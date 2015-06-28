@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
+		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
+		E8F5705F1B3F7255003F020C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705E1B3F7255003F020C /* ViewController.m */; };
+		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
+		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
+		E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F570651B3F7255003F020C /* LaunchScreen.xib */; };
+		E8F570731B3F7255003F020C /* GeocubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570721B3F7255003F020C /* GeocubeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8F5704B1B3F7255003F020C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8F570521B3F7255003F020C;
+			remoteInfo = Geocube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8F5705A1B3F7255003F020C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E8F5705B1B3F7255003F020C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E8F5705D1B3F7255003F020C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E8F5705E1B3F7255003F020C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E8F570661B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F570711B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8F570721B3F7255003F020C /* GeocubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocubeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8F570501B3F7255003F020C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F570691B3F7255003F020C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8F5704A1B3F7255003F020C = {
+			isa = PBXGroup;
+			children = (
+				E8F570551B3F7255003F020C /* Geocube */,
+				E8F5706F1B3F7255003F020C /* GeocubeTests */,
+				E8F570541B3F7255003F020C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8F570541B3F7255003F020C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8F570531B3F7255003F020C /* Geocube.app */,
+				E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8F570551B3F7255003F020C /* Geocube */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
+				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
+				E8F5705D1B3F7255003F020C /* ViewController.h */,
+				E8F5705E1B3F7255003F020C /* ViewController.m */,
+				E8F570601B3F7255003F020C /* Main.storyboard */,
+				E8F570631B3F7255003F020C /* Images.xcassets */,
+				E8F570651B3F7255003F020C /* LaunchScreen.xib */,
+				E8F570561B3F7255003F020C /* Supporting Files */,
+			);
+			path = Geocube;
+			sourceTree = "<group>";
+		};
+		E8F570561B3F7255003F020C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8F570571B3F7255003F020C /* Info.plist */,
+				E8F570581B3F7255003F020C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E8F5706F1B3F7255003F020C /* GeocubeTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8F570721B3F7255003F020C /* GeocubeTests.m */,
+				E8F570701B3F7255003F020C /* Supporting Files */,
+			);
+			path = GeocubeTests;
+			sourceTree = "<group>";
+		};
+		E8F570701B3F7255003F020C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8F570711B3F7255003F020C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8F570521B3F7255003F020C /* Geocube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
+			buildPhases = (
+				E8F5704F1B3F7255003F020C /* Sources */,
+				E8F570501B3F7255003F020C /* Frameworks */,
+				E8F570511B3F7255003F020C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Geocube;
+			productName = Geocube;
+			productReference = E8F570531B3F7255003F020C /* Geocube.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E8F5706B1B3F7255003F020C /* GeocubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F570791B3F7255003F020C /* Build configuration list for PBXNativeTarget "GeocubeTests" */;
+			buildPhases = (
+				E8F570681B3F7255003F020C /* Sources */,
+				E8F570691B3F7255003F020C /* Frameworks */,
+				E8F5706A1B3F7255003F020C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F5706E1B3F7255003F020C /* PBXTargetDependency */,
+			);
+			name = GeocubeTests;
+			productName = GeocubeTests;
+			productReference = E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8F5704B1B3F7255003F020C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Edwin Groothuis";
+				TargetAttributes = {
+					E8F570521B3F7255003F020C = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					E8F5706B1B3F7255003F020C = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = E8F570521B3F7255003F020C;
+					};
+				};
+			};
+			buildConfigurationList = E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8F5704A1B3F7255003F020C;
+			productRefGroup = E8F570541B3F7255003F020C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8F570521B3F7255003F020C /* Geocube */,
+				E8F5706B1B3F7255003F020C /* GeocubeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8F570511B3F7255003F020C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
+				E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */,
+				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F5706A1B3F7255003F020C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8F5704F1B3F7255003F020C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F5705F1B3F7255003F020C /* ViewController.m in Sources */,
+				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
+				E8F570591B3F7255003F020C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F570681B3F7255003F020C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F570731B3F7255003F020C /* GeocubeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8F5706E1B3F7255003F020C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8F570521B3F7255003F020C /* Geocube */;
+			targetProxy = E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E8F570601B3F7255003F020C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8F570611B3F7255003F020C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E8F570651B3F7255003F020C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8F570661B3F7255003F020C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E8F570741B3F7255003F020C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E8F570751B3F7255003F020C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8F570771B3F7255003F020C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Geocube/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E8F570781B3F7255003F020C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Geocube/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E8F5707A1B3F7255003F020C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeocubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocube.app/Geocube";
+			};
+			name = Debug;
+		};
+		E8F5707B1B3F7255003F020C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeocubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocube.app/Geocube";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F570741B3F7255003F020C /* Debug */,
+				E8F570751B3F7255003F020C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F570771B3F7255003F020C /* Debug */,
+				E8F570781B3F7255003F020C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E8F570791B3F7255003F020C /* Build configuration list for PBXNativeTarget "GeocubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F5707A1B3F7255003F020C /* Debug */,
+				E8F5707B1B3F7255003F020C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8F5704B1B3F7255003F020C /* Project object */;
+}
