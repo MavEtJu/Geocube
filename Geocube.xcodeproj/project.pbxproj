@@ -30,6 +30,7 @@
 		E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbObjectConfig.m */; };
 		E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */; };
 		E8F570CB1B4008DD003F020C /* dbObjectWaypointType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */; };
+		E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* Import_GPX.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypoint.m; sourceTree = "<group>"; };
 		E8F570C91B4008DD003F020C /* dbObjectWaypointType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointType.h; sourceTree = "<group>"; };
 		E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointType.m; sourceTree = "<group>"; };
+		E8F570CC1B40147E003F020C /* Import_GPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Import_GPX.h; sourceTree = "<group>"; };
+		E8F570CD1B40147E003F020C /* Import_GPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Import_GPX.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +272,8 @@
 		E8F570BA1B3FFB7F003F020C /* Convertors */ = {
 			isa = PBXGroup;
 			children = (
+				E8F570CC1B40147E003F020C /* Import_GPX.h */,
+				E8F570CD1B40147E003F020C /* Import_GPX.m */,
 			);
 			name = Convertors;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */,
+				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
