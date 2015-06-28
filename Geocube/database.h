@@ -13,14 +13,12 @@
 #define	DB_NAME         @"database.db"
 
 
-@interface database : NSObject {
-    NSInteger version;
-    
+@interface database : NSObject {   
     sqlite3 *db;
     id dbaccess;
 };
 
-- (id)init:(NSString *)dbfile;
+- (id)init;
 
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 

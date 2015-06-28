@@ -8,6 +8,7 @@
 
 #import <sqlite3.h>
 #import <Foundation/Foundation.h>
+#import "dbObjectConfig.h"
 #import "database.h"
 #import "My Tools.h"
 
@@ -20,7 +21,7 @@
         if (s == NULL) \
             string = nil; \
         else \
-            string = [[NSString alloc] initWithUTF8String:s]]; \
+            string = [[NSString alloc] initWithUTF8String:s]; \
     }
 #define INT_FETCH_AND_ASSIGN(req, col, string) \
     NSInteger string = sqlite3_column_int(req, col);
@@ -33,15 +34,18 @@
         NSAssert1(0, @"SET_VAR_TEXT: %s", sqlite3_errmsg(db));
 
 
-- (id)init:(NSString *)_dbfile
+- (id)init
 {
     NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", DocumentRoot(), DB_NAME];
-    NSLog(@"Using %@ as the database", dbname);
-    NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", DocumentRoot(), DB_NAME];
+    NSLog(@"Using %@ as the database.", dbname);
+    NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", DataDistributionDirectory(), DB_EMPTY];
     
     [self checkAndCreateDatabase:dbname empty:dbempty];
     sqlite3_open([dbname UTF8String], &db);
 
+    dbObjectConfig *c = [self config_get:@"version"];
+    NSLog(@"Database version %@.", c.value);
+    
     return self;
 }
 
@@ -51,15 +55,16 @@
     NSFileManager *fm = [[NSFileManager alloc] init];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_cleardatabase"] == TRUE) {
-        NSLog(@"Erasing database.");
+        NSLog(@"Erasing database on user request.");
         [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_cleardatabase"];
         [fm removeItemAtPath:dbname error:NULL];
     }
     
-    NSString *empty = [[NSString alloc] initWithFormat:@"%@/%@", DataDistributionDirectory(), DB_EMPTY];
     success = [fm fileExistsAtPath:dbname];
-    if (success == NO)
-        [fm copyItemAtPath:empty toPath:dbname error:nil];
+    if (success == NO) {
+        [fm copyItemAtPath:dbempty toPath:dbname error:nil];
+        NSLog(@"Initializing database from %@ to %@.", dbempty, dbname);
+    }
 }
 
 
@@ -68,6 +73,30 @@
     sqlite3_close(db);
 }
 
+
+
+- (dbObjectConfig *)config_get:(NSString *)key
+{
+    NSString *sql = @"select id, key, value from config where key = ?";
+    sqlite3_stmt *req;
+    
+    dbObjectConfig *c;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"config_get:prepare: %s", sqlite3_errmsg(db));
+        SET_VAR_TEXT(req, 1, key);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, key);
+            TEXT_FETCH_AND_ASSIGN(req, 2, value);
+            c = [[dbObjectConfig alloc] init:_id key:key value:value];
+        }
+        sqlite3_finalize(req);
+    }
+    return c;
+}
 
 
 

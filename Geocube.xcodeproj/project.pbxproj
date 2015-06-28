@@ -25,6 +25,9 @@
 		E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570AE1B3FE711003F020C /* libsqlite3.dylib */; };
 		E8F570B41B3FED0A003F020C /* My Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570B31B3FED0A003F020C /* My Tools.m */; };
 		E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8F570B71B3FF4AA003F020C /* Settings.bundle */; };
+		E8F570BC1B400124003F020C /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BB1B400124003F020C /* schema.sql */; };
+		E8F570BE1B400137003F020C /* empty.db in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BD1B400137003F020C /* empty.db */; };
+		E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbObjectConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,11 @@
 		E8F570B31B3FED0A003F020C /* My Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "My Tools.m"; sourceTree = "<group>"; };
 		E8F570B51B3FED24003F020C /* My Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My Tools.h"; sourceTree = "<group>"; };
 		E8F570B71B3FF4AA003F020C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		E8F570BB1B400124003F020C /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
+		E8F570BD1B400137003F020C /* empty.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.db; sourceTree = "<group>"; };
+		E8F570BF1B400166003F020C /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
+		E8F570C31B40059F003F020C /* dbObjectConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectConfig.h; sourceTree = "<group>"; };
+		E8F570C41B40059F003F020C /* dbObjectConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 		E8F570551B3F7255003F020C /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
+				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570B21B3FECDF003F020C /* Tools */,
 				E8F570A91B3FE52C003F020C /* Network */,
@@ -159,6 +168,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E8F570BD1B400137003F020C /* empty.db */,
 				E8F5708F1B3F7A9C003F020C /* 15670269_ACT-1.zip */,
 			);
 			name = "Data files";
@@ -201,8 +211,11 @@
 		E8F570A81B3FE522003F020C /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				E8F570BB1B400124003F020C /* schema.sql */,
 				E8F570AB1B3FE5C6003F020C /* database.h */,
 				E8F570AC1B3FE5C6003F020C /* database.m */,
+				E8F570C31B40059F003F020C /* dbObjectConfig.h */,
+				E8F570C41B40059F003F020C /* dbObjectConfig.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -331,8 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F570901B3F7A9C003F020C /* 15670269_ACT-1.zip in Resources */,
+				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
+				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 			);
@@ -362,6 +377,7 @@
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
+				E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
