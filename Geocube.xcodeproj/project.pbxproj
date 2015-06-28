@@ -28,6 +28,8 @@
 		E8F570BC1B400124003F020C /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BB1B400124003F020C /* schema.sql */; };
 		E8F570BE1B400137003F020C /* empty.db in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BD1B400137003F020C /* empty.db */; };
 		E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbObjectConfig.m */; };
+		E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */; };
+		E8F570CB1B4008DD003F020C /* dbObjectWaypointType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		E8F570BF1B400166003F020C /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E8F570C31B40059F003F020C /* dbObjectConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectConfig.h; sourceTree = "<group>"; };
 		E8F570C41B40059F003F020C /* dbObjectConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectConfig.m; sourceTree = "<group>"; };
+		E8F570C61B4008C3003F020C /* dbObjectWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypoint.h; sourceTree = "<group>"; };
+		E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypoint.m; sourceTree = "<group>"; };
+		E8F570C91B4008DD003F020C /* dbObjectWaypointType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointType.h; sourceTree = "<group>"; };
+		E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointType.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +222,10 @@
 				E8F570AC1B3FE5C6003F020C /* database.m */,
 				E8F570C31B40059F003F020C /* dbObjectConfig.h */,
 				E8F570C41B40059F003F020C /* dbObjectConfig.m */,
+				E8F570C61B4008C3003F020C /* dbObjectWaypoint.h */,
+				E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */,
+				E8F570C91B4008DD003F020C /* dbObjectWaypointType.h */,
+				E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -372,10 +382,12 @@
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
+				E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
+				E8F570CB1B4008DD003F020C /* dbObjectWaypointType.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */,
 			);

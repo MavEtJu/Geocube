@@ -21,5 +21,6 @@
 - (id)init;
 
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
+- (NSArray *)waypointtypes_all;
 
 @end

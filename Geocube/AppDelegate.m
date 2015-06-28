@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     db = [[database alloc] init];
+    WaypointTypes = [db waypointtypes_all];
     return YES;
 }
 

@@ -14,10 +14,9 @@
     NSInteger _id;
 }
 
+@property NSInteger _id;
 @property NSString *key;
 @property NSString *value;
-@property NSInteger _id;
-
 
 - (id)init:(NSInteger)_id key:(NSString *)key value:(NSString *)value;
 

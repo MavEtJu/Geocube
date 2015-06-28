@@ -12,5 +12,6 @@
 #import "database.h"
 
 database *db;
+NSArray *WaypointTypes;
 
 #endif
