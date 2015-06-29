@@ -14,12 +14,14 @@
 @interface dbObjectWaypointGroup : NSObject {
     NSInteger _id;
     NSString *name;
+    BOOL usergroup;
 }
 
-- (id)init:(NSInteger)_id name:(NSString *)name;
+- (id)init:(NSInteger)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 
 @property NSInteger _id;
 @property NSString *name;
+@property BOOL usergroup;
 
 @end
 

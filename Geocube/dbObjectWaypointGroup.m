@@ -10,12 +10,13 @@
 
 @implementation dbObjectWaypointGroup
 
-@synthesize _id, name;
+@synthesize _id, name, usergroup;
 
-- (id)init:(NSInteger)__id name:(NSString *)_name
+- (id)init:(NSInteger)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
 {
     _id = __id;
     name = _name;
+    usergroup = _usergroup;
     return self;
 }
 

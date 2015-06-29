@@ -8,6 +8,7 @@
 
 #import <sqlite3.h>
 #import <Foundation/Foundation.h>
+#import "Geocube.h"
 #import "dbObjects.h"
 #import "database.h"
 #import "My Tools.h"
@@ -47,6 +48,15 @@
     NSLog(@"Database version %@.", c.value);
     
     return self;
+}
+
+// Load all waypoints and waypoint related data in memory
+- (void)loadWaypoints
+{
+    NSMutableArray *wps, *wpgs, *wpts;
+    
+    wpgs = [self WaypointGroup_all];
+    wpts = [self WaypointTypes_all];
 }
 
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty
@@ -118,9 +128,9 @@
 
 // ------------------------
 
-- (dbObjectWaypointGroup *)get_WaypointGroup_byName:(NSString *)name
+- (dbObjectWaypointGroup *)WaypointGroup_get_byName:(NSString *)name
 {
-    NSString *sql = @"select id, name from waypoint_groups where name = ?";
+    NSString *sql = @"select id, name, usergroup from waypoint_groups where name = ?";
     sqlite3_stmt *req;
     dbObjectWaypointGroup *wpg;
     
@@ -133,11 +143,83 @@
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
-            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name];
+            INT_FETCH_AND_ASSIGN(req, 2, ug);
+            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name usergroup:ug];
         }
         sqlite3_finalize(req);
     }
     return wpg;
+}
+
+- (NSMutableArray *)WaypointGroup_all
+{
+    NSString *sql = @"select id, name, usergroup from waypoint_groups";
+    sqlite3_stmt *req;
+    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbObjectWaypointGroup *wpg;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"get_WaypointGroup_byName:prepare: %s", sqlite3_errmsg(db));
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            INT_FETCH_AND_ASSIGN(req, 2, ug);
+            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name usergroup:ug];
+            [wpgs addObject:wpg];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpgs;
+}
+
+// ------------------------
+
+- (dbObjectWaypointType *)WaypointType_get_byType:(NSString *)type
+{
+    NSString *sql = @"select id, type, icon from waypoint_types where type = ?";
+    sqlite3_stmt *req;
+    dbObjectWaypointType *wpt;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointType_get_byType:prepare %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, type);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, type);
+            TEXT_FETCH_AND_ASSIGN(req, 2, icon);
+            wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpt;
+}
+
+- (NSMutableArray *)WaypointTypes_all
+{
+    NSString *sql = @"select id, type, icon from waypoint_types";
+    sqlite3_stmt *req;
+    NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
+    dbObjectWaypointType *wpt;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointTypes_all:prepare: %s", sqlite3_errmsg(db));
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, type);
+            TEXT_FETCH_AND_ASSIGN(req, 2, icon);
+            wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
+            [wpts addObject:wpt];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpts;
 }
 
 // ------------------------

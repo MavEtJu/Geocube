@@ -27,7 +27,7 @@
 
 - (NSArray *)waypointtypes_all;
 
-- (dbObjectWaypointGroup *)get_WaypointGroup_byName:(NSString *)name;
+- (dbObjectWaypointGroup *)WaypointGroup_get_byName:(NSString *)name;
 
 @end
 

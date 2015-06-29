@@ -17,7 +17,7 @@
 - (id)init:(NSString *)filename group:(NSString *)_groupname
 {
     groupname = _groupname;
-    group = [db get_WaypointGroup_byName:groupname];
+    group = [db WaypointGroup_get_byName:groupname];
 
     NSMutableArray *_files = [[NSMutableArray alloc] initWithCapacity:20];
 

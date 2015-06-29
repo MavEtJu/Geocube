@@ -10,9 +10,21 @@
 #import "AppDelegate.h"
 
 #import "database.h"
+#import "dbObjects.h"
 
-database *db;
-NSArray *WaypointTypes;
+database *db = nil;
+
+// In memory objects from the database
+NSArray *WaypointTypes = nil;
+NSArray *WaypointGroups = nil;
+NSArray *Waypoints = nil;
+
+// System groups
+dbObjectWaypointGroup *WaypointGroup_AllWaypoints = nil;
+dbObjectWaypointGroup *WaypointGroup_AllWaypoints_Found = nil;
+dbObjectWaypointGroup *WaypointGroup_AllWaypoints_NotFound = nil;
+dbObjectWaypointGroup *WaypointGroup_LastImport = nil;
+dbObjectWaypointGroup *WaypointGroup_LastImportAdded = nil;
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
