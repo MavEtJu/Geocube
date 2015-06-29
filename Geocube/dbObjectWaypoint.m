@@ -10,7 +10,7 @@
 
 @implementation dbObjectWaypoint
 
-@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, wp_type_int, wp_type;
+@synthesize _id, wp_group_int, wp_group, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, wp_type_int, wp_type_str, wp_type;
 
 - (id)init:(NSInteger)__id
 {

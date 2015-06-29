@@ -7,17 +7,35 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
-
-@end
+#import "Import_GPX.h"
+#import "My Tools.h"
 
 @implementation ViewController
+
+- (void)pushed:(UIButton *)aButton
+{
+    NSLog(@"Pressed");
+
+    NSString *fname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], @"15670269_ACT-1.zip"];
+    Import_GPX *i = [[Import_GPX alloc] init:fname group:@"First group"];
+    [i parse];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setFrame:CGRectMake(30, 30, 100, 100)];
+    [button setTitle:@"Foo" forState:UIControlStateNormal];
+    [button setTitle:@"Bar" forState:UIControlStateHighlighted];
+    button.showsTouchWhenHighlighted = YES;
+    
+    button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [button addTarget:self action:@selector(pushed:) forControlEvents:UIControlEventTouchDown];
+
+    [self.view addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning {

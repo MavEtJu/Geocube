@@ -8,9 +8,7 @@
 
 #import <sqlite3.h>
 #import <Foundation/Foundation.h>
-#import "dbObjectConfig.h"
-#import "dbObjectWaypoint.h"
-#import "dbObjectWaypointType.h"
+#import "dbObjects.h"
 #import "database.h"
 #import "My Tools.h"
 
@@ -116,6 +114,30 @@
             NSAssert1(0, @"onfig_update:step: %s", sqlite3_errmsg(db));
         sqlite3_finalize(req);
     }
+}
+
+// ------------------------
+
+- (dbObjectWaypointGroup *)get_WaypointGroup_byName:(NSString *)name
+{
+    NSString *sql = @"select id, name from waypoint_groups where name = ?";
+    sqlite3_stmt *req;
+    dbObjectWaypointGroup *wpg;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"get_WaypointGroup_byName:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, name);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpg;
 }
 
 // ------------------------

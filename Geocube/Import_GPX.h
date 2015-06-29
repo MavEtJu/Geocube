@@ -6,12 +6,27 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef Geocube_Import_GPX_h
+#define Geocube_Import_GPX_h
 
-@interface Import_GPX : NSObject {
+#import <Foundation/Foundation.h>
+#import "dbObjects.h"
+
+@interface Import_GPX : NSObject <NSXMLParserDelegate> {
+    NSArray *files;
+    NSString *groupname;
+    dbObjectWaypointGroup *group;
+    
+    NSInteger index;
+    NSInteger inItem;
+    NSMutableString *currentText;
+    NSString *currentElement;
+    dbObjectWaypoint *currentWP;
 }
 
-- (id)init:(NSString *)filename;
-- (id)parse
+- (id)init:(NSString *)filename group:(NSString *)groupname;
+- (void)parse;
 
 @end
+
+#endif

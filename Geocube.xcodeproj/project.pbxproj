@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F5705F1B3F7255003F020C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705E1B3F7255003F020C /* ViewController.m */; };
@@ -44,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
+		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
+		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -223,12 +227,15 @@
 				E8F570BB1B400124003F020C /* schema.sql */,
 				E8F570AB1B3FE5C6003F020C /* database.h */,
 				E8F570AC1B3FE5C6003F020C /* database.m */,
+				E88FD8F41B41629D00D0CCE7 /* dbObjects.h */,
 				E8F570C31B40059F003F020C /* dbObjectConfig.h */,
 				E8F570C41B40059F003F020C /* dbObjectConfig.m */,
 				E8F570C61B4008C3003F020C /* dbObjectWaypoint.h */,
 				E8F570C71B4008C3003F020C /* dbObjectWaypoint.m */,
 				E8F570C91B4008DD003F020C /* dbObjectWaypointType.h */,
 				E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */,
+				E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */,
+				E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -388,6 +395,7 @@
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */,
+				E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
@@ -592,6 +600,7 @@
 				E8F570781B3F7255003F020C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8F570791B3F7255003F020C /* Build configuration list for PBXNativeTarget "GeocubeTests" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +609,7 @@
 				E8F5707B1B3F7255003F020C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

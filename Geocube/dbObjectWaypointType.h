@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
+#ifndef Geocube_dbObjectWaypointType_h
+#define Geocube_dbObjectWaypointType_h
+
 #import <Foundation/Foundation.h>
 
 @interface dbObjectWaypointType : NSObject {
@@ -21,3 +24,5 @@
 @property NSString *icon;
 
 @end
+
+#endif
