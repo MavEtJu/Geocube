@@ -9,7 +9,11 @@
 #ifndef Geocube_My_Tools_h
 #define Geocube_My_Tools_h
 
-NSString *DocumentRoot(void);
-NSString *DataDistributionDirectory(void);
+@interface MyTools : NSObject
+
++ (NSString *)DocumentRoot;
++ (NSString *)DataDistributionDirectory;
+
+@end
 
 #endif

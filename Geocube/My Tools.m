@@ -7,15 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "My Tools.h"
 
+@implementation MyTools
 
-NSString *DocumentRoot(void) {
+// Returns the location where the app can read and write to files
++ (NSString *)DocumentRoot
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // create path to theDirectory
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return documentsDirectory;
 }
 
-NSString *DataDistributionDirectory(void) {
+// Returns the location where the app has installed the various files
++ (NSString *)DataDistributionDirectory
+{
     return [[NSBundle mainBundle] resourcePath];
 }
+
+@end

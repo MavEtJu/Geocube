@@ -38,9 +38,9 @@
 
 - (id)init
 {
-    NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", DocumentRoot(), DB_NAME];
+    NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
     NSLog(@"Using %@ as the database.", dbname);
-    NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", DataDistributionDirectory(), DB_EMPTY];
+    NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
     
     [self checkAndCreateDatabase:dbname empty:dbempty];
     sqlite3_open([dbname UTF8String], &db);
