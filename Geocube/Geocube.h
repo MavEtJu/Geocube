@@ -26,4 +26,7 @@ extern dbObjectWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
 extern dbObjectWaypointGroup *WaypointGroup_LastImport;
 extern dbObjectWaypointGroup *WaypointGroup_LastImportAdded;
 
+// WaypointTypes
+extern dbObjectWaypointType *WaypointType_Unknown;
+
 #endif

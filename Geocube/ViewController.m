@@ -16,8 +16,8 @@
 {
     NSLog(@"Pressed");
 
-    NSString *fname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], @"15670269_ACT-1.zip"];
-    Import_GPX *i = [[Import_GPX alloc] init:fname group:@"First group"];
+    NSString *fname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], @"GC - 15670269_ACT-1.zip"];
+    Import_GPX *i = [[Import_GPX alloc] init:fname group:@"Last Import"];
     [i parse];
 }
 

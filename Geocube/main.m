@@ -26,6 +26,9 @@ dbObjectWaypointGroup *WaypointGroup_AllWaypoints_NotFound = nil;
 dbObjectWaypointGroup *WaypointGroup_LastImport = nil;
 dbObjectWaypointGroup *WaypointGroup_LastImportAdded = nil;
 
+// Waypoint types
+dbObjectWaypointType *WaypointType_Unknown;
+
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

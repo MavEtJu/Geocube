@@ -24,10 +24,9 @@
 
 - (id)init;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
+- (void)loadWaypointData;
 
-- (NSArray *)waypointtypes_all;
-
-- (dbObjectWaypointGroup *)WaypointGroup_get_byName:(NSString *)name;
+- (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
 
 @end
 
