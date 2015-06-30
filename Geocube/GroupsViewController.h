@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupsViewController : UIViewController
+@interface GroupsViewController : UITableViewController {
+    NSInteger wpgCount;
+    NSArray *wpgs;
+}
+
+- (id)init:(BOOL)showUsers;
 
 @end

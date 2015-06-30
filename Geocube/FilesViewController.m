@@ -16,7 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     // Do any additional setup after loading the view.
+    
+    UILabel *l = [[UILabel alloc] init];
+    l.text = @"Foo";
+    l.frame = CGRectMake(20.0f, 0, 200.0f, 40.0f);
+    [self.view addSubview:l];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -12,11 +12,26 @@
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 #import "LefthandMenu.h"
+#import "database.h"
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    db = [[database alloc] init];
+    [db loadWaypointData];
+    
+    /*
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    GroupsViewController *tbvc = [[GroupsViewController alloc] init];
+    tbvc.edgesForExtendedLayout = UIRectEdgeNone;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tbvc];
+    _window.rootViewController = nav;
+    [_window makeKeyAndVisible];
+    return YES;
+*/
+
     /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -30,64 +45,20 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
-     */
-/*
-    
+*/
+
     NSMutableArray *controllers = [NSMutableArray array];
     UINavigationController *nav;
     UITabBarController *tabBarController;
-    
-    self.viewController = [[JASidePanelController alloc] init];
-    self.viewController.shouldDelegateAutorotateToVisiblePanel = NO;
-    self.viewController.leftPanel = [[LefthandMenu alloc] init];
-
-    UIViewController *viewFiles = [[FilesViewController alloc] init];
-    nav = [[UINavigationController alloc] initWithRootViewController:viewFiles];
-    viewFiles.title = @"Files";
-    [controllers addObject:nav];
 
     UIViewController *viewGroups = [[GroupsViewController alloc] init];
     viewGroups.title = @"Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:viewGroups];
     [controllers addObject:nav];
 
-    tabBarController = [[UITabBarController alloc] init];
-    tabBarController.tabBar.barTintColor = [UIColor blackColor];
-    tabBarController.tabBar.translucent = NO;
-    tabBarController.viewControllers = controllers;
-    tabBarController.customizableViewControllers = controllers;
-    tabBarController.delegate = self;
-    
-    // Restore any previously selected tab
-    NSNumber *tabNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"selectedTab"];
-    if (tabNumber)
-        tabBarController.selectedIndex = [tabNumber intValue];
-    
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    tabBarController.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    _window.rootViewController = tabBarController;
-    [_window makeKeyAndVisible];
-
-    // Override point for customization after application launch.
-    db = [[database alloc] init];
-    [db loadWaypointData];
-    
- return YES;
-  */
-    
-    NSMutableArray *controllers = [NSMutableArray array];
-    UINavigationController *nav;
-    UITabBarController *tabBarController;
-    
     UIViewController *viewFiles = [[FilesViewController alloc] init];
     nav = [[UINavigationController alloc] initWithRootViewController:viewFiles];
     viewFiles.title = @"Files";
-    [controllers addObject:nav];
-    
-    UIViewController *viewGroups = [[GroupsViewController alloc] init];
-    viewGroups.title = @"Groups";
-    nav = [[UINavigationController alloc] initWithRootViewController:viewGroups];
     [controllers addObject:nav];
     
     tabBarController = [[UITabBarController alloc] init];
@@ -96,8 +67,6 @@
     tabBarController.viewControllers = controllers;
     tabBarController.customizableViewControllers = controllers;
     tabBarController.delegate = self;
-
-    /*****/
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

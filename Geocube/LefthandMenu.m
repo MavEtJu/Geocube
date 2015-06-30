@@ -99,12 +99,12 @@
     UITabBarController *tabBarController;
     UIViewController *vc;
     
-    vc = [[GroupsViewController alloc] init];
+    vc = [[GroupsViewController alloc] init:YES];
     vc.title = @"User";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
-    vc = [[GroupsViewController alloc] init];
+    vc = [[GroupsViewController alloc] init:NO];
     vc.title = @"System";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];

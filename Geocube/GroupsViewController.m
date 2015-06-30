@@ -7,38 +7,72 @@
 //
 
 #import "GroupsViewController.h"
-
-@interface GroupsViewController ()
-
-@end
+#import "Geocube.h"
 
 @implementation GroupsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (id)init:(BOOL)showUsers
+{
+    self = [super init];
+
+    NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
+    NSEnumerator *e = [WaypointGroups objectEnumerator];
+    dbObjectWaypointGroup *wpg;
+    
+    while ((wpg = [e nextObject]) != nil) {
+        if (wpg.usergroup == showUsers)
+            [ws addObject:wpg];
+    }
+    wpgs = ws;
+    wpgCount = [wpgs count];
+
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor colorWithRed:50 green:0 blue:0 alpha:1.0f];
-    self.title = @"Groups";
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return wpgCount;
 }
-*/
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    cell.textLabel.text = wpg.name;
+    cell.detailTextLabel.text = @"Detail Label";
+    
+    return cell;
+}
+
+// On selection, update the title and enable find/deselect
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.title = cell.textLabel.text;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+}
+
 
 @end
