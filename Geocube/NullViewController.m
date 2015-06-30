@@ -1,18 +1,18 @@
 //
-//  FilesViewController.m
+//  NullViewController.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 30/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "FilesViewController.h"
+#import "NullViewController.h"
 
-@interface FilesViewController ()
+@interface NullViewController ()
 
 @end
 
-@implementation FilesViewController
+@implementation NullViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,12 +22,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)loadView
-{
-    self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor colorWithRed:0 green:50 blue:0 alpha:1.0f];
 }
 
 /*

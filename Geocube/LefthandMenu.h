@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LefthandMenu : UIViewController
+@interface LefthandMenu : UIViewController <UITabBarControllerDelegate>
 
 @property (nonatomic, weak, readonly) UILabel *label;
 @property (nonatomic, weak, readonly) UIButton *hide;
