@@ -13,11 +13,27 @@
 #import "GroupsViewController.h"
 #import "LefthandMenu.h"
 #import "database.h"
+#import "My Tools.h"
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    
+    /* Create files directory */
+    [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    /* Move two zip files into files directory */
+    NSArray *files = [NSArray arrayWithObjects:@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", nil];
+    NSEnumerator *e = [files objectEnumerator];
+    NSString *f;
+    while ((f = [e nextObject]) != nil) {
+        NSString *fromfile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], f];
+        NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
+        [fm copyItemAtPath:fromfile toPath:tofile error:nil];
+    }
     
     db = [[database alloc] init];
     [db loadWaypointData];
@@ -75,12 +91,14 @@
     
     self.viewController.leftPanel = [[LefthandMenu alloc] init];
     self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:tabBarController];
-    self.viewController.rightPanel = [[LefthandMenu alloc] init];
-    
+    self.viewController.rightPanel = nil;
+
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void)doThings:(id)s {}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

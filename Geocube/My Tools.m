@@ -26,4 +26,11 @@
     return [[NSBundle mainBundle] resourcePath];
 }
 
+// Returns the location where the files distibuted by the app will be installed for the user
++ (NSString *)FilesDir
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/files", [self DocumentRoot]];
+    return s;
+}
+
 @end

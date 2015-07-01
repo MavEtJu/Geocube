@@ -13,6 +13,7 @@
 
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
++ (NSString *)FilesDir;
 
 @end
 

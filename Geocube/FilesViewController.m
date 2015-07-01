@@ -8,42 +8,109 @@
 
 #import "FilesViewController.h"
 
-@interface FilesViewController ()
-
-@end
-
 @implementation FilesViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    // Do any additional setup after loading the view.
-    
-    UILabel *l = [[UILabel alloc] init];
-    l.text = @"Foo";
-    l.frame = CGRectMake(20.0f, 0, 200.0f, 40.0f);
-    [self.view addSubview:l];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+
+    files = [NSMutableArray arrayWithObjects:@"file 1", @"file 2", nil];
+    filesCount = [files count];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor colorWithRed:0 green:50 blue:0 alpha:1.0f];
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return filesCount;
 }
-*/
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+
+    NSString *fn = [files objectAtIndex:indexPath.row];
+    cell.textLabel.text = fn;
+    cell.detailTextLabel.text = @"Detail Label";
+    
+    return cell;
+}
+
+// On selection, update the title and enable find/deselect
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.title = cell.textLabel.text;
+
+    NSString *fn = [files objectAtIndex:indexPath.row];
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:fn
+                                 message:@"Select you Choice"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* delete = [UIAlertAction
+                             actionWithTitle:@"Delete"
+                             style:UIAlertActionStyleDestructive
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    UIAlertAction* import = [UIAlertAction
+                             actionWithTitle:@"Import"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    UIAlertAction* unzip = [UIAlertAction
+                             actionWithTitle:@"Unzip"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    UIAlertAction* rename = [UIAlertAction
+                             actionWithTitle:@"Rename"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    
+    [view addAction:delete];
+    [view addAction:import];
+    [view addAction:unzip];
+    [view addAction:rename];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+
+
+}
 
 @end

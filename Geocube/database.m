@@ -30,6 +30,9 @@
 #define SET_VAR_INT(req, col, string) \
     if (sqlite3_bind_int(req, col, string) != SQLITE_OK) \
         NSAssert1(0, @"SET_VAR_INT: %s", sqlite3_errmsg(db));
+#define SET_VAR_NSINTEGER(req, col, string) \
+    if (sqlite3_bind_int64(req, col, string) != SQLITE_OK) \
+        NSAssert1(0, @"SET_VAR_INT: %s", sqlite3_errmsg(db));
 #define SET_VAR_TEXT(req, col, string) \
     if (sqlite3_bind_text(req, col, [string cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT) != SQLITE_OK) \
         NSAssert1(0, @"SET_VAR_TEXT: %s", sqlite3_errmsg(db));
@@ -42,11 +45,23 @@
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
     
     [self checkAndCreateDatabase:dbname empty:dbempty];
-    sqlite3_open([dbname UTF8String], &db);
-
-    dbObjectConfig *c = [self config_get:@"version"];
-    NSLog(@"Database version %@.", c.value);
     
+    sqlite3_open([dbempty UTF8String], &db);
+    dbObjectConfig *c_empty = [self config_get:@"version"];
+    sqlite3_close(db);
+    
+    sqlite3_open([dbname UTF8String], &db);
+    dbObjectConfig *c_real = [self config_get:@"version"];
+    sqlite3_close(db);
+    
+    NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
+    if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
+        NSLog(@"Empty is newer, overwriting old one");
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"option_cleardatabase"];
+        [self checkAndCreateDatabase:dbname empty:dbempty];
+    }
+
+    sqlite3_open([dbname UTF8String], &db);
     return self;
 }
 
@@ -212,6 +227,28 @@
         sqlite3_finalize(req);
     }
     return wpgs;
+}
+
+- (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid
+{
+    NSString *sql = @"select count(id) from waypoint_groups2waypoints where waypoint_group_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_count_waypoints:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_NSINTEGER(req, 1, wpgid);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count;
+
 }
 
 // ------------------------

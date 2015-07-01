@@ -27,6 +27,7 @@
 - (void)loadWaypointData;
 
 - (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
+- (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid;
 
 @end
 

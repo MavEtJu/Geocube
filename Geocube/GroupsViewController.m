@@ -8,6 +8,7 @@
 
 #import "GroupsViewController.h"
 #import "Geocube.h"
+#import "database.h"
 
 @implementation GroupsViewController
 
@@ -34,6 +35,11 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    self.navigationItem.rightBarButtonItem =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(doThings:)];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +66,9 @@
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = @"Detail Label";
+    
+    NSInteger c = [db WaypointGroups_count_waypoints:wpg._id];
+    cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%ld waypoints", c];
     
     return cell;
 }
@@ -71,7 +79,43 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     self.title = cell.textLabel.text;
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    self.navigationItem.leftBarButtonItem.enabled = YES;
+    
+    dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle: wpg.name
+                                 message:@"Select you Choice"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* empty = [UIAlertAction
+                            actionWithTitle:@"Empty"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                             //Do some thing here
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    
+    [view addAction:empty];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+}
+
+
+// Deselect any current selection
+- (void)deselect
+{
+}
+
+- (void)doThings:(id)sender
+{
 }
 
 

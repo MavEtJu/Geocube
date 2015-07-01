@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FilesViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-
+@interface FilesViewController : UITableViewController {
+    NSMutableArray *files;
+    NSInteger filesCount;
+}
 
 @end
