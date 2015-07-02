@@ -1,14 +1,16 @@
 //
-//  GroupsVIewControllerViewController.m
+//  GroupsViewControllerViewController.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 30/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
+#import "DOPNavbarMenu.h"
 #import "GroupsViewController.h"
 #import "Geocube.h"
 #import "database.h"
+#import "GlobalMenu.h"
 
 @implementation GroupsViewController
 
@@ -35,11 +37,12 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
-    self.navigationItem.rightBarButtonItem =
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(doThings:)];
-    
-    
+
+    self.numberOfItemsInRow = 3;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+
+    [menuItems_Global addButtons:self view:self.view numberOfItemsInRow:self.numberOfItemsInRow];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,59 +67,73 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
     dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
-    
-    NSInteger c = [db WaypointGroups_count_waypoints:wpg._id];
-    cell.detailTextLabel.text = [[NSString alloc] initWithFormat:@"%ld waypoints", c];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", [db WaypointGroups_count_waypoints:wpg._id]];
     
     return cell;
 }
 
-// On selection, update the title and enable find/deselect
-- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (DOPNavbarMenu *)tab_menu
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    self.title = cell.textLabel.text;
+    if (_tab_menu == nil) {
+        DOPNavbarMenuItem *item_empty = [DOPNavbarMenuItem ItemWithTitle:@"empty" icon:[UIImage imageNamed:@"Image"]];
+        _tab_menu = [[DOPNavbarMenu alloc] initWithItems:@[item_empty] width:self.view.dop_width maximumNumberInRow:_numberOfItemsInRow];
+        _tab_menu.backgroundColor = [UIColor blackColor];
+        _tab_menu.separatarColor = [UIColor whiteColor];
+        _tab_menu.menuName = @"Local";
+        _tab_menu.delegate = self;
+    }
+    return _tab_menu;
+}
+
+
+- (void)openMenu:(id)sender
+{
+    if (sender != self.navigationItem.rightBarButtonItem) {
+        [menuItems_Global openMenu:sender];
+        return;
+    }
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    if (self.tab_menu.isOpen) {
+        [self.tab_menu dismissWithAnimation:YES];
+    } else {
+        [self.tab_menu showInNavigationController:self.navigationController];
+    }
+}
+
+- (void)didShowMenu:(DOPNavbarMenu *)menu
+{
+    if (menu != self.tab_menu) {
+        [menuItems_Global didShowMenu:menu];
+        return;
+    }
+
+    [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    
-    dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
-    
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle: wpg.name
-                                 message:@"Select you Choice"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* empty = [UIAlertAction
-                            actionWithTitle:@"Empty"
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                             //Do some thing here
-                             [view dismissViewControllerAnimated:YES completion:nil];
-                            }];
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [view dismissViewControllerAnimated:YES completion:nil];
-                             }];
-    
-    [view addAction:empty];
-    [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
 }
 
-
-// Deselect any current selection
-- (void)deselect
+- (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
+    if (menu != self.tab_menu) {
+        [menuItems_Global didDismissMenu:menu];
+        return;
+    }
+
+    [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
-- (void)doThings:(id)sender
-{
-}
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+    if (menu != self.tab_menu) {
+        [menuItems_Global didSelectedMenu:menu atIndex:index];
+        return;
+    }
 
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
+}
 
 @end

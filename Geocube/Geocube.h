@@ -11,7 +11,13 @@
 
 #import "database.h"
 #import "dbObjects.h"
+#import "GlobalMenu.h"
+#import "AppDelegate.h"
 
+// Global menu
+extern GlobalMenu *menuItems_Global;
+
+// Database handle
 extern database *db;
 
 // In memory database information
@@ -28,5 +34,8 @@ extern dbObjectWaypointGroup *WaypointGroup_LastImportAdded;
 
 // WaypointTypes
 extern dbObjectWaypointType *WaypointType_Unknown;
+
+//
+extern AppDelegate *_AppDelegate;
 
 #endif

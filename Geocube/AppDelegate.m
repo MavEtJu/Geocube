@@ -7,18 +7,21 @@
 //
 
 #import "AppDelegate.h"
-#import "JASidePanelController.h"
 #import "Geocube.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
-#import "LefthandMenu.h"
+#import "NullViewController.h"
 #import "database.h"
 #import "My Tools.h"
 
 @implementation AppDelegate
 
+@synthesize tabBars;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    _AppDelegate = self;
     
     NSFileManager *fm = [[NSFileManager alloc] init];
     
@@ -35,6 +38,10 @@
         [fm copyItemAtPath:fromfile toPath:tofile error:nil];
     }
     
+    // Initialize the global menu
+    menuItems_Global = [[GlobalMenu alloc] init];
+    
+    // Initialize and cache the database
     db = [[database alloc] init];
     [db loadWaypointData];
     
@@ -62,7 +69,217 @@
     [self.window makeKeyAndVisible];
     return YES;
 */
+    
+    NSMutableArray *controllers;
+    UINavigationController *nav;
+    UITabBarController *tabBarController;
+    UIViewController *vc;
+    
+    tabBars = [[NSMutableArray alloc] initWithCapacity:5];
 
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Navigate";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Caches Online";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Caches Offline";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Notes and Logs";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Trackables";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Group Root Controllers
+    controllers = [NSMutableArray array];
+    vc = [[GroupsViewController alloc] init:YES];
+    vc.title = @"User";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    vc = [[GroupsViewController alloc] init:NO];
+    vc.title = @"System";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Navigate";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Files RootController
+    controllers = [NSMutableArray array];
+    vc = [[FilesViewController alloc] init];
+    vc.title = @"Shared Files";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    vc = [[FilesViewController alloc] init];
+    vc.title = @"Dropbox";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"User Profile";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Notices";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Settings";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+    // Navigate RootController
+    controllers = [NSMutableArray array];
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Help";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = controllers;
+    tabBarController.customizableViewControllers = controllers;
+    tabBarController.delegate = self;
+    [tabBars addObject:tabBarController];
+    
+
+
+    // UIResponder.window = UIWIndow
+    // UIWindow.rootViewController = UITabBarController
+    // UITabBarController.viewControllers = [UIViewController ...]
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [tabBars objectAtIndex:5];
+    [self.window makeKeyAndVisible];
+    return YES;
+
+    
+/*
     NSMutableArray *controllers = [NSMutableArray array];
     UINavigationController *nav;
     UITabBarController *tabBarController;
@@ -83,9 +300,20 @@
     tabBarController.viewControllers = controllers;
     tabBarController.customizableViewControllers = controllers;
     tabBarController.delegate = self;
+    
+    // UIResponder.window = UIWIndow
+    // UIWIndow.rootViewController = UITabBarController
+    // UITabBarController.viewControllers = [UIViewController ...]
+    
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
+    return YES;
+*/
     
+    
+    /*
     self.viewController = [[JASidePanelController alloc] init];
     self.viewController.shouldDelegateAutorotateToVisiblePanel = NO;
     
@@ -93,10 +321,20 @@
     self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:tabBarController];
     self.viewController.rightPanel = nil;
 
+    
     self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    return YES;
+     */
+    //[self.window makeKeyAndVisible];
+    //creturn YES;
 }
+
+- (void)switchController:(NSInteger)idx
+{
+    NSLog(@"AppDelegate: Switching to %ld", idx);
+    self.window.rootViewController = [tabBars objectAtIndex:idx];
+    [self.window makeKeyAndVisible];
+}
+
 
 - (void)doThings:(id)s {}
 

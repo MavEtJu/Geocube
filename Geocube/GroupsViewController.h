@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DOPNavbarMenu.h"
 
-@interface GroupsViewController : UITableViewController {
+@interface GroupsViewController : UITableViewController <UITextViewDelegate, DOPNavbarMenuDelegate> {
     NSInteger wpgCount;
     NSArray *wpgs;
 }
+
+@property (assign, nonatomic) NSInteger numberOfItemsInRow;
+@property (strong, nonatomic) DOPNavbarMenu *tab_menu, *global_menu;
 
 - (id)init:(BOOL)showUsers;
 

@@ -39,7 +39,7 @@
 @property (assign, nonatomic, readonly) NSInteger maximumNumberInRow;
 @property (assign, nonatomic, getter=isOpen) BOOL open;
 @property (weak, nonatomic) id <DOPNavbarMenuDelegate> delegate;
-
+@property (copy, nonatomic) NSString *menuName;
 @property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) UIColor *separatarColor;
 

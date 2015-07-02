@@ -11,7 +11,11 @@
 
 #import "database.h"
 #import "dbObjects.h"
+#import "GlobalMenu.h"
 
+GlobalMenu *menuItems_Global;
+
+// Database handle
 database *db = nil;
 
 // In memory objects from the database
@@ -28,6 +32,9 @@ dbObjectWaypointGroup *WaypointGroup_LastImportAdded = nil;
 
 // Waypoint types
 dbObjectWaypointType *WaypointType_Unknown;
+
+//
+AppDelegate *_AppDelegate;
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {

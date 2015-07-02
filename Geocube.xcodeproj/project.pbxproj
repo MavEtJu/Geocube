@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
+		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
+		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
+		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
-		E8DF1A7E1B4297B100FFCC95 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A7B1B4297B100FFCC95 /* JASidePanelController.m */; };
-		E8DF1A7F1B4297B100FFCC95 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A7D1B4297B100FFCC95 /* UIViewController+JASidePanel.m */; };
-		E8DF1A821B42A34A00FFCC95 /* LefthandMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A811B42A34A00FFCC95 /* LefthandMenu.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
@@ -52,6 +53,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
+		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
+		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
+		E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+DOPExtension.m"; path = "DOPNavbarMenu/UIView+DOPExtension.m"; sourceTree = "<group>"; };
+		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
+		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
+		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
@@ -60,12 +69,6 @@
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
-		E8DF1A7A1B4297B100FFCC95 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = JASidePanels/JASidePanelController.h; sourceTree = "<group>"; };
-		E8DF1A7B1B4297B100FFCC95 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = JASidePanels/JASidePanelController.m; sourceTree = "<group>"; };
-		E8DF1A7C1B4297B100FFCC95 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "JASidePanels/UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
-		E8DF1A7D1B4297B100FFCC95 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JASidePanel.m"; path = "JASidePanels/UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
-		E8DF1A801B42A34A00FFCC95 /* LefthandMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LefthandMenu.h; sourceTree = "<group>"; };
-		E8DF1A811B42A34A00FFCC95 /* LefthandMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LefthandMenu.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,15 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E8DF1A791B42975200FFCC95 /* JASidePanels */ = {
+		E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */ = {
 			isa = PBXGroup;
 			children = (
-				E8DF1A7A1B4297B100FFCC95 /* JASidePanelController.h */,
-				E8DF1A7B1B4297B100FFCC95 /* JASidePanelController.m */,
-				E8DF1A7C1B4297B100FFCC95 /* UIViewController+JASidePanel.h */,
-				E8DF1A7D1B4297B100FFCC95 /* UIViewController+JASidePanel.m */,
+				E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */,
+				E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */,
+				E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */,
+				E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */,
 			);
-			name = JASidePanels;
+			name = DOPNavbarMenu;
 			sourceTree = "<group>";
 		};
 		E8F5704A1B3F7255003F020C = {
@@ -222,7 +225,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E8DF1A791B42975200FFCC95 /* JASidePanels */,
+				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 			);
 			name = "External modules";
@@ -296,14 +299,16 @@
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E8F5705D1B3F7255003F020C /* ViewController.h */,
 				E8F5705E1B3F7255003F020C /* ViewController.m */,
-				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
-				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
-				E8DF1A801B42A34A00FFCC95 /* LefthandMenu.h */,
-				E8DF1A811B42A34A00FFCC95 /* LefthandMenu.m */,
+				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
+				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
+				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
+				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
+				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
+				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -433,18 +438,19 @@
 			files = (
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8F5705F1B3F7255003F020C /* ViewController.m in Sources */,
+				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
-				E8DF1A7F1B4297B100FFCC95 /* UIViewController+JASidePanel.m in Sources */,
+				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
+				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
+				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
-				E8DF1A821B42A34A00FFCC95 /* LefthandMenu.m in Sources */,
-				E8DF1A7E1B4297B100FFCC95 /* JASidePanelController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbObjectWaypointType.m in Sources */,
