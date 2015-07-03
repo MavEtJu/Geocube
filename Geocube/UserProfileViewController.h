@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DOPNavbarMenu.h"
+#import "GCViewController.h"
 
-@interface UserProfileViewController : UIViewController <UITextViewDelegate> {
+@interface UserProfileViewController : GCViewController {
 
 }
 

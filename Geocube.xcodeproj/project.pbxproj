@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
+		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
@@ -18,7 +20,6 @@
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
-		E8F5705F1B3F7255003F020C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705E1B3F7255003F020C /* ViewController.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
 		E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F570651B3F7255003F020C /* LaunchScreen.xib */; };
@@ -53,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
+		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
+		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
+		E82FBB291B4613D70009AB6D /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
 		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
 		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
@@ -76,8 +81,6 @@
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8F5705A1B3F7255003F020C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8F5705B1B3F7255003F020C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E8F5705D1B3F7255003F020C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E8F5705E1B3F7255003F020C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E8F570661B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -136,6 +139,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E82FBB2B1B4613E90009AB6D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E82FBB251B4613C20009AB6D /* GCViewController.h */,
+				E82FBB261B4613C20009AB6D /* GCViewController.m */,
+				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
+				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
+				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
+				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
+				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
+				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		E82FBB2C1B4613F10009AB6D /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
+				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
+				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
+				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
+				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
+				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
+				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
+				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
+			);
+			name = Pages;
+			sourceTree = "<group>";
+		};
 		E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,20 +328,8 @@
 		E8F570B61B3FF266003F020C /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
-				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
-				E8F5705D1B3F7255003F020C /* ViewController.h */,
-				E8F5705E1B3F7255003F020C /* ViewController.m */,
-				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
-				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
-				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
-				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
-				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
-				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
-				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
-				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
-				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
-				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E82FBB2B1B4613E90009AB6D /* Base */,
+				E82FBB2C1B4613F10009AB6D /* Pages */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -437,7 +458,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
-				E8F5705F1B3F7255003F020C /* ViewController.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
@@ -447,6 +467,7 @@
 				E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
+				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
@@ -458,6 +479,7 @@
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */,
+				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

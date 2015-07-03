@@ -104,12 +104,7 @@
 {
 
     NSLog(@"Switching to %ld", index);
-    NSArray *a = [items objectAtIndex:index];
     [_AppDelegate switchController:index];
-    /*
-    
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"YOU PICKED!" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [av show];*/
 }
 
 /*

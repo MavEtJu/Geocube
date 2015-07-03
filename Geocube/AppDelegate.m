@@ -10,6 +10,7 @@
 #import "Geocube.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
+#import "UserProfileViewController.h"
 #import "NullViewController.h"
 #import "database.h"
 #import "My Tools.h"
@@ -77,7 +78,7 @@
     
     tabBars = [[NSMutableArray alloc] initWithCapacity:5];
 
-    // Navigate RootController
+    // Navigate tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Navigate";
@@ -92,7 +93,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Caches Online tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Online";
@@ -107,7 +108,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Caches offline tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Offline";
@@ -122,7 +123,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Notes and logs tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Notes and Logs";
@@ -137,7 +138,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Trackables logs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Trackables";
@@ -172,10 +173,10 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Bookmarks tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
-    vc.title = @"Navigate";
+    vc.title = @"Bookmarks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
@@ -207,9 +208,9 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
 
-    // Navigate RootController
+    // User profile tabs
     controllers = [NSMutableArray array];
-    vc = [[NullViewController alloc] init];
+    vc = [[UserProfileViewController alloc] init];
     vc.title = @"User Profile";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
@@ -222,7 +223,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Notices tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Notices";
@@ -237,7 +238,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Settings tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Settings";
@@ -252,7 +253,7 @@
     tabBarController.delegate = self;
     [tabBars addObject:tabBarController];
     
-    // Navigate RootController
+    // Help tabs
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";

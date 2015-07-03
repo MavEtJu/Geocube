@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCViewController.h"
 
-@interface NullViewController : UIViewController
+@interface NullViewController : GCViewController
 
 @end

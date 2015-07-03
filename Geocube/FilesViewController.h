@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCTableViewController.h"
 
-@interface FilesViewController : UITableViewController {
+@interface FilesViewController : GCTableViewController {
     NSMutableArray *files;
     NSInteger filesCount;
 }
