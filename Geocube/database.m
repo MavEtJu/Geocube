@@ -318,7 +318,46 @@
             NSAssert1(0, @"WaypointGroups_rename:step: %s", sqlite3_errmsg(db));
         sqlite3_finalize(req);
     }
+}
 
+- (void)WaypointGroups_add_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid
+{
+    NSString *sql = @"insert into waypoint_groups2waypoints(waypoint_group_id, waypoint_id) values(?, ?)";
+    sqlite3_stmt *req;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_add_waypoint:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_NSINTEGER(req, 1, wpgid);
+        SET_VAR_NSINTEGER(req, 2, wpid);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"WWaypointGroups_add_waypoint:step: %s", sqlite3_errmsg(db));
+        sqlite3_finalize(req);
+    }
+}
+
+- (BOOL)WaypointGroups_contains_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid
+{
+    NSString *sql = @"select count(id) from waypoint_groups2waypoints where waypoint_group_id = ? and waypoint_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_count_waypoints:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_NSINTEGER(req, 1, wpgid);
+        SET_VAR_NSINTEGER(req, 2, wpid);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count == 0 ? NO : YES;
 }
 
 
@@ -395,6 +434,69 @@
         sqlite3_finalize(req);
     }
     return wps;
+}
+
+- (NSInteger)Waypoint_get_byname:(NSString *)name
+{
+    NSString *sql = @"select id from waypoints where name = ?";
+    sqlite3_stmt *req;
+    NSInteger _id = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Waypoint_get_byname:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, name);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            _id = __id;
+        }
+        sqlite3_finalize(req);
+    }
+    return _id;
+}
+
+- (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp
+{
+    NSString *sql = @"insert into waypoints(name, description) values(?, ?)";
+    sqlite3_stmt *req;
+    NSInteger _id = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Waypoint_add:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, wp.name);
+        SET_VAR_TEXT(req, 2, wp.description);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"Waypoint_add:step: %s", sqlite3_errmsg(db));
+
+        _id = sqlite3_last_insert_rowid(db);
+        sqlite3_finalize(req);
+    }
+    return _id;
+}
+
+- (void)Waypoint_update:(dbObjectWaypoint *)wp
+{
+    NSString *sql = @"update waypoints set name = ?, description = ? where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Waypoint_update:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, wp.name);
+        SET_VAR_TEXT(req, 2, wp.description);
+        SET_VAR_NSINTEGER(req, 3, wp._id);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"Waypoint_update:step: %s", sqlite3_errmsg(db));
+        
+        sqlite3_finalize(req);
+    }
 }
 
 

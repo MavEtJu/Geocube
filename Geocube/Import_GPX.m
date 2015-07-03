@@ -19,45 +19,18 @@
     groupname = _groupname;
     group = [db WaypointGroups_get_byName:groupname];
 
-    NSMutableArray *_files = [[NSMutableArray alloc] initWithCapacity:20];
-
     NSLog(@"Import_GPX: Importing %@", filename);
     
-    if ([[filename pathExtension] compare:@"zip"] == NSOrderedSame) {
-        NSString *destdir = [[NSString alloc] initWithFormat:@"%@/Import_GPX", [MyTools DocumentRoot]];
-        NSString *destfile = [[NSString alloc] initWithFormat:@"%@/%@", destdir, @"temp.data"];
-
-        NSFileManager *fm = [[NSFileManager alloc] init];
-        [fm removeItemAtPath:destdir error:nil];
-
-        BOOL isdir = false;
-        if ([fm fileExistsAtPath:destdir isDirectory:&isdir] == NO)
-            [fm createDirectoryAtPath:destdir withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        [SSZipArchive unzipFileAtPath:filename toDestination:destfile];
-        NSLog(@"Unzipping to %@", destfile);
-        
-        NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:destdir];
-        NSString *file;
-        while ((file = [dirEnum nextObject]) != nil) {
-            if ([[file pathExtension] isEqualToString: @"gpx"]) {
-                NSLog(@"found file : %@/%@", destdir, file);
-                [_files addObject:[NSString stringWithFormat:@"%@/%@", destdir, file]];
-            }
-        }
-        
-        //[fm removeItemAtPath:destdir error:nil];
-    } else {
-        [_files addObject:filename];
-    }
-    
-    files = _files;
-    NSLog(@"Found %ld files", [_files count]);
+    files = @[filename];
+    NSLog(@"Found %ld files", [files count]);
     return self;
 }
 
 - (void)parse
 {
+    [db WaypointGroups_empty:WaypointGroup_LastImport._id ];
+    [db WaypointGroups_empty:WaypointGroup_LastImportAdded._id ];
+
     NSEnumerator *eFile = [files objectEnumerator];
     NSString *filename;
     while ((filename = [eFile nextObject]) != nil) {
@@ -128,6 +101,20 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
         NSDate *date = [dateFormatter dateFromString:[currentWP.date_placed substringWithRange:NSMakeRange(0, 19)]];
         [currentWP setDate_placed_epoch:[date timeIntervalSince1970]];
+        
+        NSInteger cwp_id = [db Waypoint_get_byname:currentWP.name];
+        if (cwp_id == 0) {
+            cwp_id = [db Waypoint_add:currentWP];
+            [db WaypointGroups_add_waypoint:WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
+            [db WaypointGroups_add_waypoint:WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
+            [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
+        } else {
+            [db Waypoint_update:currentWP];
+            if ([db WaypointGroups_contains_waypoint:group._id waypoint_id:cwp_id] == NO)
+                [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
+        }
+        [db WaypointGroups_add_waypoint:WaypointGroup_LastImport._id waypoint_id:cwp_id];
+
         goto bye;
     }
     if (inItem) {
