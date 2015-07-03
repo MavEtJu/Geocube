@@ -37,6 +37,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TableViewController related functions
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
     return 1;
@@ -61,14 +63,13 @@
     return cell;
 }
 
-// On selection, update the title and enable find/deselect
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *fn = [files objectAtIndex:indexPath.row];
     
     UIAlertController *view=   [UIAlertController
                                  alertControllerWithTitle:fn
-                                 message:@"Select you Choice"
+                                 message:@"Select you choice"
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *delete = [UIAlertAction
@@ -167,7 +168,7 @@
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *tofullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], tf.text];
                              
-                             NSLog(@"Renaming '%@' to '%@'", fromfullfile, tofullfile);
+                             NSLog(@"Renaming file '%@' to '%@'", fromfullfile, tofullfile);
                              [fm moveItemAtPath:fromfullfile toPath:tofullfile error:nil];
                              [self refreshFileData];
                              [self.tableView reloadData];
@@ -186,8 +187,8 @@
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 
+#pragma mark - Local menu related functions
 
 @end

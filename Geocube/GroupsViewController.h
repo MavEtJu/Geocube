@@ -13,6 +13,7 @@
 @interface GroupsViewController : GCTableViewController {
     NSInteger wpgCount;
     NSArray *wpgs;
+    BOOL showUsers;
 }
 
 - (id)init:(BOOL)showUsers;

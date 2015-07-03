@@ -248,8 +248,79 @@
         sqlite3_finalize(req);
     }
     return count;
+}
+
+- (void)WaypointGroups_new:(NSString *)name isUser:(BOOL)isUser
+{
+    NSString *sql = @"insert into waypoint_groups(name, usergroup) values(?, ?)";
+    sqlite3_stmt *req;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_new:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, name);
+        SET_VAR_INT(req, 2, isUser);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"WaypointGroups_new:step: %s", sqlite3_errmsg(db));
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)WaypointGroups_delete:(NSInteger)_id
+{
+    NSString *sql = @"delete from waypoint_groups where id = ?";
+    sqlite3_stmt *req;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_delete:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_NSINTEGER(req, 1, _id);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"WaypointGroups_delete:step: %s", sqlite3_errmsg(db));
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)WaypointGroups_empty:(NSInteger)_id
+{
+    NSString *sql = @"delete from waypoint_groups2waypoints where waypoint_group_id = ?";
+    sqlite3_stmt *req;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_empty:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_NSINTEGER(req, 1, _id);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"WaypointGroups_empty:step: %s", sqlite3_errmsg(db));
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)WaypointGroups_rename:(NSInteger)_id newName:(NSString *)newname
+{
+    NSString *sql = @"update waypoint_groups set name = ? where id = ?";
+    sqlite3_stmt *req;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_rename:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_TEXT(req, 1, newname);
+        SET_VAR_NSINTEGER(req, 2, _id);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            NSAssert1(0, @"WaypointGroups_rename:step: %s", sqlite3_errmsg(db));
+        sqlite3_finalize(req);
+    }
 
 }
+
 
 // ------------------------
 

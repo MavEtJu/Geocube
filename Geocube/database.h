@@ -28,6 +28,10 @@
 
 - (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
 - (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid;
+- (void)WaypointGroups_new:(NSString *)name isUser:(BOOL)isUser;
+- (void)WaypointGroups_delete:(NSInteger)_id;
+- (void)WaypointGroups_empty:(NSInteger)_id;
+- (void)WaypointGroups_rename:(NSInteger)_id newName:(NSString *)newname;
 
 @end
 
