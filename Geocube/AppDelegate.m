@@ -111,12 +111,12 @@
     // Groups Root Controllers
     controllers = [NSMutableArray array];
     vc = [[GroupsViewController alloc] init:YES];
-    vc.title = @"User";
+    vc.title = @"User Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
     vc = [[GroupsViewController alloc] init:NO];
-    vc.title = @"System";
+    vc.title = @"System Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
