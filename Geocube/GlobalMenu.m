@@ -10,11 +10,12 @@
 #import "Geocube.h"
 #import "GlobalMenu.h"
 #import "DOPNavbarMenu.h"
+#import "My Tools.h"
 
 
 @implementation GlobalMenu
 
-@synthesize items, parent_vc, parent_view;
+@synthesize parent_vc, parent_view;
 
 - (id)init
 {
@@ -30,7 +31,10 @@
     parent_vc = _vc;
     parent_view = _view;
 
-    parent_vc.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Global" style:UIBarButtonItemStylePlain target:parent_vc action:@selector(openMenu:)];
+//    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
+//    UIImage *img = [UIImage imageNamed:imgfile];
+                                         
+    parent_vc.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"G" style:UIBarButtonItemStylePlain target:parent_vc action:@selector(openMenu:)];
     parent_vc.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
@@ -49,7 +53,7 @@
         _global_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:parent_vc.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         _global_menu.backgroundColor = [UIColor blackColor];
         _global_menu.separatarColor = [UIColor whiteColor];
-        _global_menu.menuName = @"Global";
+        _global_menu.menuName = @"G";
         _global_menu.delegate = parent_vc;
     }
     return _global_menu;
@@ -65,6 +69,7 @@
     }
 }
 
+/*
 - (void)openLocalMenu:(id)sender
 {
     parent_vc.navigationItem.leftBarButtonItem.enabled = NO;
@@ -73,7 +78,7 @@
     } else {
         [self.global_menu showInNavigationController:parent_vc.navigationController];
     }
-}
+}*/
 
 - (void)didShowMenu:(DOPNavbarMenu *)menu
 {
@@ -89,69 +94,8 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-
     NSLog(@"Switching to %ld", index);
     [_AppDelegate switchController:index];
 }
-
-/*
-- (void)_showFiles:(id)sender
-{
-    NSMutableArray *controllers = [NSMutableArray array];
-    UINavigationController *nav;
-    UITabBarController *tabBarController;
-    UIViewController *vc;
-    
-    vc = [[FilesViewController alloc] init];
-    vc.title = @"Shared Files";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
-    
-    vc = [[FilesViewController alloc] init];
-    vc.title = @"Dropbox";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
-    
-    tabBarController = [[UITabBarController alloc] init];
-    tabBarController.tabBar.barTintColor = [UIColor blackColor];
-    tabBarController.tabBar.translucent = NO;
-    tabBarController.viewControllers = controllers;
-    tabBarController.customizableViewControllers = controllers;
-    tabBarController.delegate = self;
-    
-    self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:tabBarController];
-}
-- (void)_showGroups:(id)sender
-{
-    NSMutableArray *controllers = [NSMutableArray array];
-    UINavigationController *nav;
-    UITabBarController *tabBarController;
-    UIViewController *vc;
-    
-    vc = [[GroupsViewController alloc] init:YES];
-    vc.title = @"User";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
-    
-    vc = [[GroupsViewController alloc] init:NO];
-    vc.title = @"System";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
-    
-    tabBarController = [[UITabBarController alloc] init];
-    tabBarController.tabBar.barTintColor = [UIColor blackColor];
-    tabBarController.tabBar.translucent = NO;
-    tabBarController.viewControllers = controllers;
-    tabBarController.customizableViewControllers = controllers;
-    tabBarController.delegate = self;
-    
-    self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:tabBarController];
-}
-
-- (void)_showNull:(id)sender
-{
-    self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NullViewController alloc] init]];
-}
-*/
 
 @end

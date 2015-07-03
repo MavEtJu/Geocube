@@ -29,6 +29,14 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"GroupsViewController:viewWillAppear");
+    [super viewWillAppear:animated];
+    [self refreshGroupData];
+    [self.tableView reloadData];
+}
+
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
@@ -104,7 +112,6 @@
                                  //Do some thing here
                                  [self groupEmpty:wpg];
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                              }];
 
     UIAlertAction *rename = [UIAlertAction
@@ -115,7 +122,6 @@
                                  //Do some thing here
                                  [self groupRename:wpg];
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                              }];
     UIAlertAction *delete = [UIAlertAction
                              actionWithTitle:@"Delete"
@@ -125,7 +131,6 @@
                                  //Do some thing here
                                  [self groupDelete:wpg];
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                              }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
@@ -133,7 +138,6 @@
                              handler:^(UIAlertAction * action)
                              {
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                              }];
     
     [view addAction:empty];
@@ -141,6 +145,7 @@
     [view addAction:delete];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)groupEmpty:(dbObjectWaypointGroup *)wpg

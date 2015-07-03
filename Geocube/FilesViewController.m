@@ -9,6 +9,9 @@
 #import "FilesViewController.h"
 #import "My Tools.h"
 #import "SSZipArchive.h"
+#import "database.h"
+#import "Geocube.h"
+#import "Import_GPX.h"
 
 @implementation FilesViewController
 
@@ -89,9 +92,9 @@
                   handler:^(UIAlertAction * action)
                   {
                       //Do some thing here
+                      [self fileImport:fn];
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
-        import.enabled = NO;
     }
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] compare:@"zip"] == NSOrderedSame) {
@@ -130,6 +133,7 @@
     [view addAction:rename];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)fileDelete:(NSString *)filename
@@ -150,6 +154,14 @@
 
     [self refreshFileData];
     [self.tableView reloadData];
+}
+
+- (void)fileImport:(NSString *)filename
+{
+    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
+    [i parse];
+    [db loadWaypointData];
 }
 
 - (void)fileRename:(NSString *)filename

@@ -16,7 +16,7 @@
     NSArray *menuItems;
 }
 
-@property (assign, nonatomic) NSInteger numberOfItemsInRow;
-@property (strong, nonatomic) DOPNavbarMenu *tab_menu, *global_menu;
+@property (nonatomic) NSInteger numberOfItemsInRow;
+@property (nonatomic, retain) DOPNavbarMenu *tab_menu, *global_menu;
 
 @end

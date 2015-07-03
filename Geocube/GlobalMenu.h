@@ -17,7 +17,6 @@
     UIView *parent_view;
 }
 
-@property (nonatomic, retain) NSArray *items;
 @property (nonatomic, retain) UIViewController *parent_vc;
 @property (nonatomic, retain) UIView *parent_view;
 
