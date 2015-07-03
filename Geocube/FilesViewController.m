@@ -66,12 +66,12 @@
 {
     NSString *fn = [files objectAtIndex:indexPath.row];
     
-    UIAlertController * view=   [UIAlertController
+    UIAlertController *view=   [UIAlertController
                                  alertControllerWithTitle:fn
                                  message:@"Select you Choice"
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction* delete = [UIAlertAction
+    UIAlertAction *delete = [UIAlertAction
                              actionWithTitle:@"Delete"
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action)
@@ -80,15 +80,18 @@
                                  [self fileDelete:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
-    UIAlertAction* import = [UIAlertAction
-                             actionWithTitle:@"XImport"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
-                                 [view dismissViewControllerAnimated:YES completion:nil];
-                             }];
-    
+    UIAlertAction *import = nil;
+    if ([[fn pathExtension] compare:@"gpx"] == NSOrderedSame) {
+        import = [UIAlertAction
+                  actionWithTitle:@"Import"
+                  style:UIAlertActionStyleDefault
+                  handler:^(UIAlertAction * action)
+                  {
+                      //Do some thing here
+                      [view dismissViewControllerAnimated:YES completion:nil];
+                  }];
+        import.enabled = NO;
+    }
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] compare:@"zip"] == NSOrderedSame) {
         unzip = [UIAlertAction
@@ -101,8 +104,8 @@
                      [view dismissViewControllerAnimated:YES completion:nil];
                  }];
     }
-    UIAlertAction* rename = [UIAlertAction
-                             actionWithTitle:@"XRename"
+    UIAlertAction *rename = [UIAlertAction
+                             actionWithTitle:@"Rename"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -110,16 +113,17 @@
                                  [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
-    UIAlertAction* cancel = [UIAlertAction
+    UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
-    
+
     [view addAction:delete];
-    [view addAction:import];
+    if (import != nil)
+        [view addAction:import];
     if (unzip != nil)
         [view addAction:unzip];
     [view addAction:rename];
@@ -149,7 +153,40 @@
 
 - (void)fileRename:(NSString *)filename
 {
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Rename file"
+                               message:[NSString stringWithFormat:@"Rename %@ to", filename]
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             NSString *fromfullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+                             UITextField *tf = alert.textFields.firstObject;
+                             NSString *tofullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], tf.text];
+                             
+                             NSLog(@"Renaming '%@' to '%@'", fromfullfile, tofullfile);
+                             [fm moveItemAtPath:fromfullfile toPath:tofullfile error:nil];
+                             [self refreshFileData];
+                             [self.tableView reloadData];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
     
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = filename;
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 
