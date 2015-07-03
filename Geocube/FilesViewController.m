@@ -7,6 +7,7 @@
 //
 
 #import "FilesViewController.h"
+#import "My Tools.h"
 
 @implementation FilesViewController
 
@@ -16,7 +17,9 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 
-    files = [NSMutableArray arrayWithObjects:@"file 1", @"file 2", nil];
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    /* Create files directory */
+    files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
     filesCount = [files count];
 }
 
@@ -53,9 +56,6 @@
 // On selection, update the title and enable find/deselect
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    self.title = cell.textLabel.text;
-
     NSString *fn = [files objectAtIndex:indexPath.row];
     
     UIAlertController * view=   [UIAlertController

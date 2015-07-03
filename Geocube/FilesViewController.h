@@ -10,7 +10,7 @@
 #import "GCTableViewController.h"
 
 @interface FilesViewController : GCTableViewController {
-    NSMutableArray *files;
+    NSArray *files;
     NSInteger filesCount;
 }
 
