@@ -19,20 +19,7 @@
 - (id)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:
-        [NSArray arrayWithObjects:@"NO",  @"Navigate", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Caches Online", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Caches Offline", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Notes and Logs", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Trackables", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"YES", @"Groups", @"_showGroups", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Bookmarks", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"YES", @"Files", @"_showFiles", nil],
-        [NSArray arrayWithObjects:@"NO",  @"User Profile", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Notices", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Settings", @"_showNull", nil],
-        [NSArray arrayWithObjects:@"NO",  @"Help", @"_showNull", nil],
-        nil];
+    items = [NSArray arrayWithObjects:@"XNavigate", @"XCaches Online", @"XCaches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
     
     return self;
 }
@@ -53,10 +40,10 @@
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
         
         NSEnumerator *e = [items objectEnumerator];
-        NSArray *as;
-        while ((as = [e nextObject]) != nil) {
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:[as objectAtIndex:1] icon:[UIImage imageNamed:@"Image"]];
-            [menuoptions addObject: item];
+        NSString *menuitem;
+        while ((menuitem = [e nextObject]) != nil) {
+            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
+            [menuoptions addObject:item];
         }
         
         _global_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:parent_vc.view.dop_width maximumNumberInRow:numberOfItemsInRow];
