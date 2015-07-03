@@ -29,6 +29,11 @@
     wpgs = ws;
     wpgCount = [wpgs count];
 
+    // Local menu
+    if (showUsers == YES)
+        menuItems = [NSArray arrayWithObjects:@"Empty Groups", @"Add Group", nil];
+    else
+        menuItems = [NSArray arrayWithObjects:@"Empty Groups", nil];
     return self;
 }
 

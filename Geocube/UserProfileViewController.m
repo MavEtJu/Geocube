@@ -20,6 +20,8 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
 }
 
 - (void)loadView

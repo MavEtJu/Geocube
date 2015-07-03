@@ -8,6 +8,7 @@
 
 #import "FilesViewController.h"
 #import "My Tools.h"
+#import "SSZipArchive.h"
 
 @implementation FilesViewController
 
@@ -16,11 +17,18 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    fm = [[NSFileManager alloc] init];
+    [self refreshFileData];
+    
+    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
+}
 
-    NSFileManager *fm = [[NSFileManager alloc] init];
-    /* Create files directory */
+- (void)refreshFileData
+{
+    // Count files in FilesDir
     files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
     filesCount = [files count];
+    [self refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,30 +77,37 @@
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
+                                 [self fileDelete:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction* import = [UIAlertAction
-                             actionWithTitle:@"Import"
+                             actionWithTitle:@"XImport"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
-    UIAlertAction* unzip = [UIAlertAction
-                             actionWithTitle:@"Unzip"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
-                                 [view dismissViewControllerAnimated:YES completion:nil];
-                             }];
+    
+    UIAlertAction *unzip = nil;
+    if ([[fn pathExtension] compare:@"zip"] == NSOrderedSame) {
+        unzip = [UIAlertAction
+                 actionWithTitle:@"Unzip"
+                 style:UIAlertActionStyleDefault
+                 handler:^(UIAlertAction * action)
+                 {
+                     //Do some thing here
+                     [self fileUnzip:fn];
+                     [view dismissViewControllerAnimated:YES completion:nil];
+                 }];
+    }
     UIAlertAction* rename = [UIAlertAction
-                             actionWithTitle:@"Rename"
+                             actionWithTitle:@"XRename"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
+                                 [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction* cancel = [UIAlertAction
@@ -105,12 +120,37 @@
     
     [view addAction:delete];
     [view addAction:import];
-    [view addAction:unzip];
+    if (unzip != nil)
+        [view addAction:unzip];
     [view addAction:rename];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
-
-
 }
+
+- (void)fileDelete:(NSString *)filename
+{
+    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    NSLog(@"Removing file '%@'", fullname);
+    [fm removeItemAtPath:fullname error:nil];
+ 
+    [self refreshFileData];
+    [self.tableView reloadData];
+}
+
+- (void)fileUnzip:(NSString *)filename
+{
+    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
+    [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir]];
+
+    [self refreshFileData];
+    [self.tableView reloadData];
+}
+
+- (void)fileRename:(NSString *)filename
+{
+    
+}
+
 
 @end
