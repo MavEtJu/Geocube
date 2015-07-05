@@ -12,6 +12,7 @@
 #import "DOPNavbarMenu.h"
 #import "My Tools.h"
 
+#define MENU_STRING @"GC"
 
 @implementation GlobalMenu
 
@@ -21,8 +22,11 @@
 {
     self = [super init];
     items = [NSArray arrayWithObjects:@"XNavigate", @"XCaches Online", @"XCaches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
-    
-    button = [[UIBarButtonItem alloc] initWithTitle:@"G" style:UIBarButtonItemStylePlain target:nil action:@selector(openMenu:)];
+
+//    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
+//    UIImage *img = [UIImage imageNamed:imgfile];
+
+    button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openMenu:)];
     button.tintColor = [UIColor whiteColor];
     
     return self;
@@ -65,7 +69,7 @@
         _global_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:parent_vc.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         _global_menu.backgroundColor = [UIColor blackColor];
         _global_menu.separatarColor = [UIColor whiteColor];
-        _global_menu.menuName = @"G";
+        _global_menu.menuName = MENU_STRING;
         _global_menu.delegate = parent_vc;
     }
     return _global_menu;
@@ -87,18 +91,15 @@
 {
     NSLog(@"GlobalMenu/didShowMenu: self.vc:%p", self.parent_vc);
 
-    [button setTitle:@"dismiss"];
-    button.enabled = YES;
+    [button setTitle:MENU_STRING];
+    button.enabled = NO;
 }
 
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
     NSLog(@"GlobalMenu/didDismissMenu: self.vc:%p", self.parent_vc);
-  
-    if (menu == nil)
-        [button setTitle:@"?"];
-    else
-        [button setTitle:menu.menuName];
+
+    [button setTitle:MENU_STRING];
     button.enabled = YES;
 }
 
