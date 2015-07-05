@@ -13,7 +13,7 @@
 #import "dbObjects.h"
 #import "GlobalMenu.h"
 
-GlobalMenu *menuItems_Global;
+GlobalMenu *menuGlobal;
 
 // Database handle
 database *db = nil;

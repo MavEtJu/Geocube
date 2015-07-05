@@ -40,7 +40,7 @@
     }
     
     // Initialize the global menu
-    menuItems_Global = [[GlobalMenu alloc] init];
+    menuGlobal = [[GlobalMenu alloc] init];
     
     // Initialize and cache the database
     db = [[database alloc] init];

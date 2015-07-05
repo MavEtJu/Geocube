@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 
 // Global menu
-extern GlobalMenu *menuItems_Global;
+extern GlobalMenu *menuGlobal;
 
 // Database handle
 extern database *db;

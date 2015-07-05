@@ -23,7 +23,16 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
-    [menuItems_Global addButtons:self view:self.view numberOfItemsInRow:self.numberOfItemsInRow];
+    [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"GCTableViewController/viewWillAppear: self:%p", self);
+
+    [menuGlobal setTarget:self];
+    [menuGlobal didDismissMenu:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,7 +58,7 @@
 - (void)openMenu:(id)sender
 {
     if (sender != self.navigationItem.rightBarButtonItem) {
-        [menuItems_Global openMenu:sender];
+        [menuGlobal openMenu:sender];
         return;
     }
     
@@ -64,7 +73,7 @@
 - (void)didShowMenu:(DOPNavbarMenu *)menu
 {
     if (menu != self.tab_menu) {
-        [menuItems_Global didShowMenu:menu];
+        [menuGlobal didShowMenu:menu];
         return;
     }
     
@@ -75,7 +84,7 @@
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
     if (menu != self.tab_menu) {
-        [menuItems_Global didDismissMenu:menu];
+        [menuGlobal didDismissMenu:menu];
         return;
     }
     
@@ -85,7 +94,7 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
-        [menuItems_Global didSelectedMenu:menu atIndex:index];
+        [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
     

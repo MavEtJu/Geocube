@@ -35,7 +35,7 @@
     [super viewWillAppear:animated];
     [self refreshGroupData];
     [self.tableView reloadData];
-}
+ }
 
 - (void)refreshGroupData
 {
@@ -206,10 +206,12 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
-        [menuItems_Global didSelectedMenu:menu atIndex:index];
+        [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
     
+    NSLog(@"GroupsViewController/didSelectedMenu: self:%p", self);
+
     // Add a group
     if (index == 1) {
         [self newGroup];

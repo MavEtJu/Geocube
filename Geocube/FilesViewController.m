@@ -34,6 +34,15 @@
     [self refreshControl];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"GroupsViewController:viewWillAppear");
+    [super viewWillAppear:animated];
+    [self refreshFileData];
+    [self.tableView reloadData];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

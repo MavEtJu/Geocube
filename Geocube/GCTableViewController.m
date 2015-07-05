@@ -23,7 +23,6 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,7 +31,16 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
-    [menuItems_Global addButtons:self view:self.view numberOfItemsInRow:self.numberOfItemsInRow];
+    [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"GCTableViewController:viewWillAppear: self:%p", self);
+    
+    [menuGlobal didDismissMenu:nil];
+    [menuGlobal setTarget:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,10 +91,12 @@
 - (void)openMenu:(id)sender
 {
     if (sender != self.navigationItem.rightBarButtonItem) {
-        [menuItems_Global openMenu:sender];
+        [menuGlobal openMenu:sender];
         return;
     }
     
+    NSLog(@"GCTableViewController/openMenu: self:%p", self);
+
     self.navigationItem.rightBarButtonItem.enabled = NO;
     if (self.tab_menu.isOpen) {
         [self.tab_menu dismissWithAnimation:YES];
@@ -98,9 +108,11 @@
 - (void)didShowMenu:(DOPNavbarMenu *)menu
 {
     if (menu != self.tab_menu) {
-        [menuItems_Global didShowMenu:menu];
+        [menuGlobal didShowMenu:menu];
         return;
     }
+
+    NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
     
     [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -109,9 +121,11 @@
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
     if (menu != self.tab_menu) {
-        [menuItems_Global didDismissMenu:menu];
+        [menuGlobal didDismissMenu:menu];
         return;
     }
+    
+    NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
     
     [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -119,9 +133,11 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
-        [menuItems_Global didSelectedMenu:menu atIndex:index];
+        [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
+    
+    NSLog(@"GCTableViewController/didSelectedMenu: self:%p", self);
     
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
