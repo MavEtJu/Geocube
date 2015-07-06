@@ -8,7 +8,7 @@
 
 #import "GCTableViewController.h"
 
-@interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate> {
+@interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating> {
     NSArray *wps;
     NSInteger wpCount;
 }
