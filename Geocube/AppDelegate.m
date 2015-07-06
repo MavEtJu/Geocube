@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Geocube.h"
-#import "FilesViewController.h"
+#import "CachesOfflineListViewController.h"
 #import "GroupsViewController.h"
+#import "FilesViewController.h"
 #import "UserProfileViewController.h"
 #import "NullViewController.h"
 #import "database.h"
@@ -83,8 +84,18 @@
     
     // Caches offline tabs
     controllers = [NSMutableArray array];
+    vc = [[GCTableViewController alloc] init];
+    vc.title = @"XFilters";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
+    vc = [[CachesOfflineListViewController alloc] init];
+    vc.title = @"List";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+    
     vc = [[NullViewController alloc] init];
-    vc.title = @"Caches Offline";
+    vc.title = @"XMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     

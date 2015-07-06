@@ -21,7 +21,7 @@
 - (id)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:@"XNavigate", @"XCaches Online", @"XCaches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
+    items = [NSArray arrayWithObjects:@"XNavigate", @"XCaches Online", @"Caches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
 
 //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
 //    UIImage *img = [UIImage imageNamed:imgfile];
@@ -34,7 +34,7 @@
 
 - (void)addButtons:(UIViewController<DOPNavbarMenuDelegate> *)_vc numberOfItemsInRow:(NSInteger)_numberOfItemsInRow
 {
-    NSLog(@"GlobalMenu/addButtons: From %p to %p", parent_vc, _vc);
+    // NSLog(@"GlobalMenu/addButtons: From %p to %p", parent_vc, _vc);
     numberOfItemsInRow = _numberOfItemsInRow;
     //parent_vc = _vc;
 
@@ -46,7 +46,7 @@
 
 - (void)setTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
 {
-    NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);
+    // NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);
     previous_vc = parent_vc;
     parent_vc.navigationItem.leftBarButtonItem = nil;
     parent_vc = _vc;
@@ -77,7 +77,7 @@
 
 - (void)openMenu:(id)sender
 {
-    NSLog(@"GlobalMenu/openMenu: self.vc:%p", self.parent_vc);
+    // NSLog(@"GlobalMenu/openMenu: self.vc:%p", self.parent_vc);
 
     button.enabled = NO;
     if (self.global_menu.isOpen) {
@@ -89,7 +89,7 @@
 
 - (void)didShowMenu:(DOPNavbarMenu *)menu
 {
-    NSLog(@"GlobalMenu/didShowMenu: self.vc:%p", self.parent_vc);
+    // NSLog(@"GlobalMenu/didShowMenu: self.vc:%p", self.parent_vc);
 
     [button setTitle:MENU_STRING];
     button.enabled = NO;
@@ -97,7 +97,7 @@
 
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
-    NSLog(@"GlobalMenu/didDismissMenu: self.vc:%p", self.parent_vc);
+    // NSLog(@"GlobalMenu/didDismissMenu: self.vc:%p", self.parent_vc);
 
     [button setTitle:MENU_STRING];
     button.enabled = YES;
@@ -105,7 +105,7 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
+    // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
  
     NSLog(@"Switching to %ld", index);
     [_AppDelegate switchController:index];

@@ -36,7 +36,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"GroupsViewController:viewWillAppear");
+    NSLog(@"FilesViewController:viewWillAppear");
     [super viewWillAppear:animated];
     [self refreshFileData];
     [self.tableView reloadData];

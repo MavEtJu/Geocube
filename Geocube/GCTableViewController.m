@@ -37,7 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"GCTableViewController:viewWillAppear: self:%p", self);
+    // NSLog(@"GCTableViewController:viewWillAppear: self:%p", self);
     
     [menuGlobal didDismissMenu:nil];
     [menuGlobal setTarget:self];
@@ -95,7 +95,7 @@
         return;
     }
     
-    NSLog(@"GCTableViewController/openMenu: self:%p", self);
+    // NSLog(@"GCTableViewController/openMenu: self:%p", self);
 
     self.navigationItem.rightBarButtonItem.enabled = NO;
     if (self.tab_menu.isOpen) {
@@ -112,7 +112,7 @@
         return;
     }
 
-    NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
+    // NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
     
     [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -125,7 +125,7 @@
         return;
     }
     
-    NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
+    // NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
     
     [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -137,7 +137,7 @@
         return;
     }
     
-    NSLog(@"GCTableViewController/didSelectedMenu: self:%p", self);
+    // NSLog(@"GCTableViewController/didSelectedMenu: self:%p", self);
     
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
