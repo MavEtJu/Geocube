@@ -16,19 +16,21 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
+    
     self.searchController.searchBar.scopeButtonTitles = @[];
+    self.searchController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.searchController.searchBar sizeToFit];
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
- //   [self.searchController.searchBar sizeToFit];
-}
+ }
 
 - (void)viewWillAppear:(BOOL)animated
 {
