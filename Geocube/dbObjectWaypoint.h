@@ -30,27 +30,32 @@
     NSInteger wp_type_int;
     NSString *wp_type_str;
     dbObjectWaypointType *wp_type;
+    
+    NSString *country;
+    NSString *state;
 }
 
-@property NSInteger _id;
-@property NSInteger wp_group_int;
-@property dbObjectWaypointGroup *wp_group;
-@property NSString *name;
-@property NSString *description;
-@property NSString *url;
-@property NSString *lat;
-@property NSString *lon;
-@property NSInteger lat_int;
-@property NSInteger lon_int;
-@property float lat_float;
-@property float lon_float;
-@property NSString *date_placed;
-@property NSInteger date_placed_epoch;
-@property float rating_difficulty;
-@property float rating_terrain;
-@property NSInteger wp_type_int;
-@property NSString *wp_type_str;
-@property dbObjectWaypointType *wp_type;
+@property (nonatomic) NSInteger _id;
+@property (nonatomic) NSInteger wp_group_int;
+@property (nonatomic, retain) dbObjectWaypointGroup *wp_group;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *lat;
+@property (nonatomic, retain) NSString *lon;
+@property (nonatomic) NSInteger lat_int;
+@property (nonatomic) NSInteger lon_int;
+@property (nonatomic) float lat_float;
+@property (nonatomic) float lon_float;
+@property (nonatomic, retain) NSString *date_placed;
+@property (nonatomic) NSInteger date_placed_epoch;
+@property (nonatomic) float rating_difficulty;
+@property (nonatomic) float rating_terrain;
+@property (nonatomic) NSInteger wp_type_int;
+@property (nonatomic) NSString *wp_type_str;
+@property (nonatomic, retain) dbObjectWaypointType *wp_type;
+@property (nonatomic, retain) NSString *country;
+@property (nonatomic, retain) NSString *state;
 
 - (id)init:(NSInteger)_id;
 

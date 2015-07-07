@@ -15,10 +15,17 @@
     UIImageView *ratingT[5];
     UILabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
+    UIImageView *icon;
+    UILabel *country, *state;
 }
 
 @property (nonatomic, retain) UILabel *description;
 @property (nonatomic, retain) UILabel *name;
+@property (nonatomic, retain) UIImageView *icon;
+@property (nonatomic, retain) UILabel *favourites;
+@property (nonatomic, retain) UILabel *country;
+@property (nonatomic, retain) UILabel *state;
+
 
 + (NSInteger)cellHeight;
 - (void)setRating:(NSInteger)t difficulty:(NSInteger)v;

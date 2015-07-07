@@ -139,6 +139,26 @@
                 [currentWP setWp_type:nil];
                 goto bye;
             }
+            goto bye;
+        }
+        if (index == 3 && currentText != nil) {
+            if ([elementName compare:@"groundspeak:difficulty"] == NSOrderedSame) {
+                [currentWP setRating_difficulty:[currentText floatValue]];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:terrain"] == NSOrderedSame) {
+                [currentWP setRating_terrain:[currentText floatValue]];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
+                [currentWP setCountry:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
+                [currentWP setState:currentText];
+                goto bye;
+            }
+            goto bye;
         }
     }
 

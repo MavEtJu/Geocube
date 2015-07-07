@@ -13,7 +13,7 @@
 
 @implementation WaypointTableViewCell
 
-@synthesize description, name;
+@synthesize description, name, favourites, icon, country, state;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -34,54 +34,95 @@
 
     UILabel *l;
     UIImageView *iv;
+    CGRect r;
+
+    /*
+     +---+--------------------+---+
+     |   | Description        | F |
+     |   +--------------------+   |
+     |   | Name               |   |
+     +---+--------------+-----+---+
+     | D |              | D XXXXX |
+     | D | Distance     | D XXXXX |
+     +---+--------------+---------+
+     */
+#define BORDER 1
+#define ICON_WIDTH 30
+#define ICON_HEIGHT 30
+#define DESCRIPTION_HEIGHT 16
+#define NAME_HEIGHT 14
+#define FAVOURITES_WIDTH 20
+#define FAVOURITES_HEIGHT 30
+#define STAR_WIDTH 19
+#define STAR_HEIGHT 18
+
+    CGRect rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
+    CGRect rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
+    CGRect rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
+    CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+    
+    // Icon
+    icon = [[UIImageView alloc] initWithFrame:rectIcon];
+    icon.image = [imageLibrary get:ImageCaches_Traditional];
+    [self.contentView addSubview:icon];
     
     // Description
-    description = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, width - 20 - 10 * 5 - 10 - 20, 16)];
-    description.font = [UIFont systemFontOfSize:14.0];
+    description = [[UILabel alloc] initWithFrame:rectDescription];
+    description.font = [UIFont boldSystemFontOfSize:14.0];
     [self.contentView addSubview:description];
     
     // Name
-    name = [[UILabel alloc] initWithFrame:CGRectMake(20, 16, width - 20 - 10 * 5 - 10 - 20 , 12)];
+    name = [[UILabel alloc] initWithFrame:rectName];
     name.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:name];
 
     // Favourites
-    iv = [[UIImageView alloc] initWithFrame:CGRectMake(width - 20, 0, 20, 30)];
+    iv = [[UIImageView alloc] initWithFrame:rectFavourites];
     iv.image = imgFavourites;
     [self.contentView addSubview:iv];
-    favourites = [[UILabel alloc] initWithFrame:CGRectMake(width - 20, 0, 20, 20)];
+    r = rectFavourites;
+    r.size.height /= 2;
+    favourites = [[UILabel alloc] initWithFrame:r];
     favourites.text = @"12";
-    favourites.font = [UIFont systemFontOfSize:8];
+    favourites.font = [UIFont boldSystemFontOfSize:10];
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:favourites];
 
     // Difficulty rating
-    l = [[UILabel alloc] initWithFrame:CGRectMake(width - 20 - 20 * 5 - 10, 0, 19, 18)];
+    r = rectRatingsD;
+    r.origin.x -= 10;
+    l = [[UILabel alloc] initWithFrame:r];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"D";
     [self.contentView addSubview:l];
 
-    CGRect r = CGRectMake(width - 20 - 20 * 5, 0, 19, 18);
+    r = rectRatingsD;
+    r.size.width = STAR_WIDTH;
     for (NSInteger i = 0; i < 5; i++) {
         ratingD[i] = [[UIImageView alloc] initWithFrame:r];
         ratingD[i].image = imgRatingOff;
         [self.contentView addSubview:ratingD[i]];
-        r.origin.x += 20;
+        r.origin.x += STAR_WIDTH;
     }
 
     // Terrain rating
-    l = [[UILabel alloc] initWithFrame:CGRectMake(width - 20 - 20 * 5 - 10, 12, 19, 18)];
+    r = rectRatingsT;
+    r.origin.x -= 10;
+    l = [[UILabel alloc] initWithFrame:r];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"T";
     [self.contentView addSubview:l];
 
-    r = CGRectMake(width - 20 - 20 * 5, 12, 19, 18);
+    r = rectRatingsT;
+    r.size.width = STAR_WIDTH;
     for (NSInteger i = 0; i < 5; i++) {
         ratingT[i] = [[UIImageView alloc] initWithFrame:r];
         ratingT[i].image = imgRatingOff;
         [self.contentView addSubview:ratingT[i]];
-        r.origin.x += 20;
+        r.origin.x += STAR_WIDTH;
     }
 
     return self;
@@ -102,7 +143,7 @@
 
 + (NSInteger)cellHeight
 {
-    return 30;
+    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
 }
 
 
