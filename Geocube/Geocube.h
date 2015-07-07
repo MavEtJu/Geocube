@@ -13,6 +13,7 @@
 #import "dbObjects.h"
 #import "GlobalMenu.h"
 #import "AppDelegate.h"
+#import "ImageLibrary.h"
 
 // Global menu
 extern GlobalMenu *menuGlobal;
@@ -34,6 +35,9 @@ extern dbObjectWaypointGroup *WaypointGroup_LastImportAdded;
 
 // WaypointTypes
 extern dbObjectWaypointType *WaypointType_Unknown;
+
+// Images
+extern ImageLibrary *imageLibrary;
 
 //
 extern AppDelegate *_AppDelegate;

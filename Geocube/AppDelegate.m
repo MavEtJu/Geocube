@@ -15,6 +15,7 @@
 #import "NullViewController.h"
 #import "database.h"
 #import "My Tools.h"
+#import "ImageLibrary.h"
 
 @implementation AppDelegate
 
@@ -46,6 +47,9 @@
     // Initialize and cache the database
     db = [[database alloc] init];
     [db loadWaypointData];
+    
+    // Initialize the image library
+    imageLibrary = [[ImageLibrary alloc] init];
 
     // Initialize the tabbar controllers
     

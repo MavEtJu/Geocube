@@ -12,6 +12,7 @@
 #import "database.h"
 #import "dbObjects.h"
 #import "GlobalMenu.h"
+#import "ImageLibrary.h"
 
 GlobalMenu *menuGlobal;
 
@@ -31,7 +32,10 @@ dbObjectWaypointGroup *WaypointGroup_LastImport = nil;
 dbObjectWaypointGroup *WaypointGroup_LastImportAdded = nil;
 
 // Waypoint types
-dbObjectWaypointType *WaypointType_Unknown;
+dbObjectWaypointType *WaypointType_Unknown = nil;
+
+// Image Library
+ImageLibrary *imageLibrary = nil;
 
 //
 AppDelegate *_AppDelegate;

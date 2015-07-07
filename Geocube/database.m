@@ -459,7 +459,7 @@
 
 - (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp
 {
-    NSString *sql = @"insert into waypoints(name, description) values(?, ?)";
+    NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
     
@@ -469,6 +469,14 @@
         
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
+        SET_VAR_TEXT(req, 3, wp.lat);
+        SET_VAR_TEXT(req, 4, wp.lon);
+        SET_VAR_NSINTEGER(req, 5, wp.lat_int);
+        SET_VAR_NSINTEGER(req, 6, wp.lon_int);
+        SET_VAR_TEXT(req, 7, wp.date_placed);
+        SET_VAR_NSINTEGER(req, 8, wp.date_placed_epoch);
+        SET_VAR_TEXT(req, 9, wp.url);
+        SET_VAR_NSINTEGER(req, 10, wp.wp_type_int);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_add:step: %s", sqlite3_errmsg(db));
@@ -481,7 +489,7 @@
 
 - (void)Waypoint_update:(dbObjectWaypoint *)wp
 {
-    NSString *sql = @"update waypoints set name = ?, description = ? where id = ?";
+    NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(dbaccess) {
@@ -490,7 +498,15 @@
         
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
-        SET_VAR_NSINTEGER(req, 3, wp._id);
+        SET_VAR_TEXT(req, 3, wp.lat);
+        SET_VAR_TEXT(req, 4, wp.lon);
+        SET_VAR_NSINTEGER(req, 5, wp.lat_int);
+        SET_VAR_NSINTEGER(req, 6, wp.lon_int);
+        SET_VAR_TEXT(req, 7, wp.date_placed);
+        SET_VAR_NSINTEGER(req, 8, wp.date_placed_epoch);
+        SET_VAR_TEXT(req, 9, wp.url);
+        SET_VAR_NSINTEGER(req, 10, wp.wp_type_int);
+        SET_VAR_NSINTEGER(req, 11, wp._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_update:step: %s", sqlite3_errmsg(db));
