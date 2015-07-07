@@ -9,6 +9,7 @@
 #import "CachesOfflineListViewController.h"
 #import "Geocube.h"
 #import "database.h"
+#import "WaypointTableViewCell.h"
 
 @implementation CachesOfflineListViewController
 
@@ -17,7 +18,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:@"waypointtableviewcell"];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -75,16 +76,25 @@
 }
 
 // Return a cell for the index path
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"waypointtableviewcell"];
+    if (cell == nil) {
+        cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"waypointtableviewcell"];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
-    cell.textLabel.text = wp.description;
-    cell.detailTextLabel.text = wp.name;
+    cell.description.text = wp.description;
+    cell.name.text = wp.name;
+    [cell setRating:wp.rating_terrain difficulty:wp.rating_difficulty];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [WaypointTableViewCell cellHeight];
 }
 
 #pragma mark - SearchBar related functions

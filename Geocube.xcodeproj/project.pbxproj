@@ -14,6 +14,10 @@
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
 		E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */; };
+		E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */; };
+		E86C65651B4B77C900E2ABFE /* waypoint rating star off.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */; };
+		E86C65661B4B77C900E2ABFE /* waypoint rating star on.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */; };
+		E86C65681B4B7FB700E2ABFE /* waypoint rating star half.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -70,6 +74,11 @@
 		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineListViewController.h; sourceTree = "<group>"; };
 		E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineListViewController.m; sourceTree = "<group>"; };
+		E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTableViewCell.h; sourceTree = "<group>"; };
+		E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTableViewCell.m; sourceTree = "<group>"; };
+		E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star off.png"; path = "images/waypoint rating star off.png"; sourceTree = "<group>"; };
+		E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star on.png"; path = "images/waypoint rating star on.png"; sourceTree = "<group>"; };
+		E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star half.png"; path = "images/waypoint rating star half.png"; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
@@ -155,6 +164,8 @@
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */,
+				E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -190,6 +201,9 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */,
+				E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */,
+				E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */,
 				E8BD82491B46A4E50029CDC9 /* global menu icon.png */,
 			);
 			name = Images;
@@ -456,6 +470,9 @@
 				E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */,
 				E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */,
 				E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */,
+				E86C65661B4B77C900E2ABFE /* waypoint rating star on.png in Resources */,
+				E86C65681B4B7FB700E2ABFE /* waypoint rating star half.png in Resources */,
+				E86C65651B4B77C900E2ABFE /* waypoint rating star off.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +493,7 @@
 			files = (
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
+				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
