@@ -13,7 +13,8 @@
     UILabel *name;
     UIImageView *ratingD[5];
     UIImageView *ratingT[5];
-    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf;
+    UILabel *favourites;
+    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
 }
 
 @property (nonatomic, retain) UILabel *description;

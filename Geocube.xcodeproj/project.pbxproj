@@ -18,6 +18,7 @@
 		E86C65651B4B77C900E2ABFE /* waypoint rating star off.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */; };
 		E86C65661B4B77C900E2ABFE /* waypoint rating star on.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */; };
 		E86C65681B4B7FB700E2ABFE /* waypoint rating star half.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */; };
+		E86C656A1B4BA89D00E2ABFE /* waypoint favourites.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65691B4BA89D00E2ABFE /* waypoint favourites.png */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -79,6 +80,7 @@
 		E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star off.png"; path = "images/waypoint rating star off.png"; sourceTree = "<group>"; };
 		E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star on.png"; path = "images/waypoint rating star on.png"; sourceTree = "<group>"; };
 		E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star half.png"; path = "images/waypoint rating star half.png"; sourceTree = "<group>"; };
+		E86C65691B4BA89D00E2ABFE /* waypoint favourites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint favourites.png"; path = "images/waypoint favourites.png"; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E86C65691B4BA89D00E2ABFE /* waypoint favourites.png */,
 				E86C65671B4B7FB700E2ABFE /* waypoint rating star half.png */,
 				E86C65631B4B77C900E2ABFE /* waypoint rating star off.png */,
 				E86C65641B4B77C900E2ABFE /* waypoint rating star on.png */,
@@ -472,6 +475,7 @@
 				E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */,
 				E86C65661B4B77C900E2ABFE /* waypoint rating star on.png in Resources */,
 				E86C65681B4B7FB700E2ABFE /* waypoint rating star half.png in Resources */,
+				E86C656A1B4BA89D00E2ABFE /* waypoint favourites.png in Resources */,
 				E86C65651B4B77C900E2ABFE /* waypoint rating star off.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 			);

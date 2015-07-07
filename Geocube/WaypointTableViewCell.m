@@ -22,15 +22,21 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    NSString *s = [NSString stringWithFormat:@"%@/waypoint rating star off.png", [MyTools DataDistributionDirectory]];
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+
+    NSString *s = [NSString stringWithFormat:@"%@/waypoint rating star off", [MyTools DataDistributionDirectory]];
     imgRatingOff = [UIImage imageNamed:s];
     s = [NSString stringWithFormat:@"%@/waypoint rating star on", [MyTools DataDistributionDirectory]];
     imgRatingOn = [UIImage imageNamed:s];
     s = [NSString stringWithFormat:@"%@/waypoint rating star half", [MyTools DataDistributionDirectory]];
     imgRatingHalf = [UIImage imageNamed:s];
+    s = [NSString stringWithFormat:@"%@/waypoint favourites", [MyTools DataDistributionDirectory]];
+    imgFavourites = [UIImage imageNamed:s];
 
     
     UILabel *l;
+    UIImageView *iv;
     
     // Description
     description = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 100, 16)];
@@ -42,13 +48,25 @@
     name.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:name];
 
+    // Favourites
+    iv = [[UIImageView alloc] initWithFrame:CGRectMake(width - 20, 0, 20, 20)];
+    iv.image = imgFavourites;
+    [self.contentView addSubview:iv];
+    favourites = [[UILabel alloc] initWithFrame:CGRectMake(width - 20, 0, 20, 20)];
+    favourites.text = @"12";
+    favourites.font = [UIFont systemFontOfSize:8];
+    favourites.textColor = [UIColor whiteColor];
+    favourites.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:favourites];
+    
+    
     // Difficulty rating
-    l = [[UILabel alloc] initWithFrame:CGRectMake(200, 0, 20, 12)];
+    l = [[UILabel alloc] initWithFrame:CGRectMake(width - 20 - 10 * 5 - 10, 0, 10, 12)];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"D";
     [self.contentView addSubview:l];
 
-    CGRect r = CGRectMake(220, 0, 10, 10);
+    CGRect r = CGRectMake(width - 20 - 10 * 5, 0, 10, 10);
     for (NSInteger i = 0; i < 5; i++) {
         ratingD[i] = [[UIImageView alloc] initWithFrame:r];
         ratingD[i].image = imgRatingOff;
@@ -57,12 +75,12 @@
     }
 
     // Terrain rating
-    l = [[UILabel alloc] initWithFrame:CGRectMake(200, 12, 20, 12)];
+    l = [[UILabel alloc] initWithFrame:CGRectMake(width - 20 - 10 * 5 - 10, 12, 10, 12)];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"T";
     [self.contentView addSubview:l];
 
-    r = CGRectMake(220, 12, 10, 10);
+    r = CGRectMake(width - 20 - 10 * 5, 12, 10, 10);
     for (NSInteger i = 0; i < 5; i++) {
         ratingT[i] = [[UIImageView alloc] initWithFrame:r];
         ratingT[i].image = imgRatingOff;
