@@ -12,7 +12,7 @@
 
 @synthesize _id, type, icon;
 
-- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSString *)_icon
+- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon
 {
     _id = __id;
     type = _type;

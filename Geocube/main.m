@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "database.h"
+#import "database-cache.h"
 #import "dbObjects.h"
 #import "GlobalMenu.h"
 #import "ImageLibrary.h"
@@ -18,21 +19,7 @@ GlobalMenu *menuGlobal;
 
 // Database handle
 database *db = nil;
-
-// In memory objects from the database
-NSArray *WaypointTypes = nil;
-NSArray *WaypointGroups = nil;
-NSArray *Waypoints = nil;
-
-// System groups
-dbObjectWaypointGroup *WaypointGroup_AllWaypoints = nil;
-dbObjectWaypointGroup *WaypointGroup_AllWaypoints_Found = nil;
-dbObjectWaypointGroup *WaypointGroup_AllWaypoints_NotFound = nil;
-dbObjectWaypointGroup *WaypointGroup_LastImport = nil;
-dbObjectWaypointGroup *WaypointGroup_LastImportAdded = nil;
-
-// Waypoint types
-dbObjectWaypointType *WaypointType_Unknown = nil;
+DatabaseCache *dbc = nil;
 
 // Image Library
 ImageLibrary *imageLibrary = nil;

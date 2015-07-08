@@ -15,7 +15,7 @@
     UIImageView *ratingT[5];
     UILabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
-    UIImageView *icon;
+    UIImageView *icon, *imgFavouritesIV;
     UILabel *stateCountry;
     UILabel *bearing;
     UILabel *compass;

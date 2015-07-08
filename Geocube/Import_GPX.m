@@ -28,8 +28,8 @@
 
 - (void)parse
 {
-    [db WaypointGroups_empty:WaypointGroup_LastImport._id ];
-    [db WaypointGroups_empty:WaypointGroup_LastImportAdded._id ];
+    [db WaypointGroups_empty:dbc.WaypointGroup_LastImport._id ];
+    [db WaypointGroups_empty:dbc.WaypointGroup_LastImportAdded._id ];
 
     NSEnumerator *eFile = [files objectEnumerator];
     NSString *filename;
@@ -105,15 +105,15 @@
         NSInteger cwp_id = [db Waypoint_get_byname:currentWP.name];
         if (cwp_id == 0) {
             cwp_id = [db Waypoint_add:currentWP];
-            [db WaypointGroups_add_waypoint:WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
-            [db WaypointGroups_add_waypoint:WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
+            [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
+            [db WaypointGroups_add_waypoint:dbc.WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
             [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
         } else {
             [db Waypoint_update:currentWP];
             if ([db WaypointGroups_contains_waypoint:group._id waypoint_id:cwp_id] == NO)
                 [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
         }
-        [db WaypointGroups_add_waypoint:WaypointGroup_LastImport._id waypoint_id:cwp_id];
+        [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImport._id waypoint_id:cwp_id];
 
         goto bye;
     }
@@ -136,7 +136,8 @@
                 goto bye;
             }
             if ([elementName compare:@"type"] == NSOrderedSame) {
-                [currentWP setWp_type:nil];
+                [currentWP setWp_type:[dbc waypointType_get_byname:currentText]];
+                [currentWP setWp_type_int:currentWP.wp_type._id];
                 goto bye;
             }
             goto bye;

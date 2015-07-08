@@ -14,6 +14,7 @@
 #import "UserProfileViewController.h"
 #import "NullViewController.h"
 #import "database.h"
+#import "database-cache.h"
 #import "My Tools.h"
 #import "ImageLibrary.h"
 
@@ -46,7 +47,8 @@
     
     // Initialize and cache the database
     db = [[database alloc] init];
-    [db loadWaypointData];
+    dbc = [[DatabaseCache alloc] init];
+    [dbc loadWaypointData];
     
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];

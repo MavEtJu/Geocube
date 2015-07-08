@@ -11,37 +11,46 @@
 
 typedef enum {
     ImageLibraryImagesMin = -1,
+
+    /* Do not reorder, index matches schema.sql */
+    ImageCaches_Benchmark,
+    ImageCaches_CITO,
+    ImageCaches_EarthCache,
+    ImageCaches_Event,
+    ImageCaches_Giga,
+    ImageCaches_GroundspeakHQ,
+    ImageCaches_Letterbox,
+    ImageCaches_Maze,
+    ImageCaches_Mega,
+    ImageCaches_MultiCache,
+    ImageCaches_Mystery,
+    ImageCaches_Other,
+    ImageCaches_TraditionalCache,
+    ImageCaches_UnknownCache,
+    ImageCaches_VirtualCache,
+    ImageCaches_Waymark,
+    ImageCaches_WebcamCache,
+    ImageCaches_WhereigoCache,
+
+    ImageWaypoints_FinalLocation,
+    ImageWaypoints_Flag,
+    ImageWaypoints_MultiStage,
+    ImageWaypoints_ParkingArea,
+    ImageWaypoints_PhysicalStage,
+    ImageWaypoints_ReferenceStage,
+    ImageWaypoints_Trailhead,
+    ImageWaypoints_VirtualStage,
     
+    ImageCaches_NFI,
+    Imagewaypoints_NFI,
+    ImageNFI,
+    /* Up to here: Do not reorder */
+
     ImageWaypointView_ratingOn,
     ImageWaypointView_ratingOff,
     ImageWaypointView_ratingHalf,
     ImageWaypointView_favourites,
     
-    ImageWaypoints_Finish,
-    ImageWaypoints_Flag,
-    ImageWaypoints_Multi,
-    ImageWaypoints_Parking,
-    ImageWaypoints_Question,
-    ImageWaypoints_Trailhead,
-    ImageWaypoints_Unknown,
-    
-    ImageCaches_Benchmark,
-    ImageCaches_Cito,
-    ImageCaches_Earth,
-    ImageCaches_Event,
-    ImageCaches_GroundspeakHQ,
-    ImageCaches_Letterbox,
-    ImageCaches_Maze,
-    ImageCaches_Mega,
-    ImageCaches_Multi,
-    ImageCaches_Mystery,
-    ImageCaches_Traditional,
-    ImageCaches_Unknown,
-    ImageCaches_Virtual,
-    ImageCaches_Waymark,
-    ImageCaches_Webcam,
-    ImageCaches_Whereigo,
-
     ImageLibraryImagesMax
 } ImageLibraryImages;
 

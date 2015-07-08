@@ -10,6 +10,7 @@
 #define Geocube_Geocube_h
 
 #import "database.h"
+#import "database-cache.h"
 #import "dbObjects.h"
 #import "GlobalMenu.h"
 #import "AppDelegate.h"
@@ -20,21 +21,7 @@ extern GlobalMenu *menuGlobal;
 
 // Database handle
 extern database *db;
-
-// In memory database information
-extern NSArray *WaypointTypes;
-extern NSArray *WaypointGroups;
-extern NSArray *Waypoints;
-
-// System Groups
-extern dbObjectWaypointGroup *WaypointGroup_AllWaypoints;
-extern dbObjectWaypointGroup *WaypointGroup_AllWaypoints_Found;
-extern dbObjectWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
-extern dbObjectWaypointGroup *WaypointGroup_LastImport;
-extern dbObjectWaypointGroup *WaypointGroup_LastImportAdded;
-
-// WaypointTypes
-extern dbObjectWaypointType *WaypointType_Unknown;
+extern DatabaseCache *dbc;
 
 // Images
 extern ImageLibrary *imageLibrary;

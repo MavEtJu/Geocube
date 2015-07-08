@@ -34,7 +34,6 @@
     imgFavourites = [imageLibrary get:ImageWaypointView_favourites];
 
     UILabel *l;
-    UIImageView *iv;
     CGRect r;
 
     /*
@@ -71,7 +70,7 @@
     CGRect rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
-    icon.image = [imageLibrary get:ImageCaches_Traditional];
+    icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
     
@@ -112,9 +111,10 @@
     [self.contentView addSubview:distance];
     
     // Favourites
-    iv = [[UIImageView alloc] initWithFrame:rectFavourites];
-    iv.image = imgFavourites;
-    [self.contentView addSubview:iv];
+    imgFavouritesIV = [[UIImageView alloc] initWithFrame:rectFavourites];
+    imgFavouritesIV.image = imgFavourites;
+    [self.contentView addSubview:imgFavouritesIV];
+    imgFavouritesIV.hidden = TRUE;
     r = rectFavourites;
     r.size.height /= 2;
     favourites = [[UILabel alloc] initWithFrame:r];
@@ -164,16 +164,21 @@
 {
     for (NSInteger i = 0; i < t; i++)
         ratingT[i].image = imgRatingOn;
+    for (NSInteger i = t; i < 5; i++)
+        ratingT[i].image = imgRatingOff;
     if (t - (int)t != 0)
-        ratingT[(int)t + 1].image = imgRatingHalf;
+        ratingT[(int)t].image = imgRatingHalf;
     
     for (NSInteger i = 0; i < d; i++)
         ratingD[i].image = imgRatingOn;
+    for (NSInteger i = d; i < 5; i++)
+        ratingD[i].image = imgRatingOff;
     if (d - (int)d != 0)
-        ratingD[(int)d + 1].image = imgRatingHalf;
+        ratingD[(int)d].image = imgRatingHalf;
     
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", favs];
+        imgFavouritesIV.hidden = FALSE;
     }
 }
 

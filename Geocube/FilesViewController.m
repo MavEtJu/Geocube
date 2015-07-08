@@ -13,13 +13,15 @@
 #import "Geocube.h"
 #import "Import_GPX.h"
 
+#define THISCELL @"FilesViewControllerCell"
+
 @implementation FilesViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
     fm = [[NSFileManager alloc] init];
     [self refreshFileData];
     
@@ -65,8 +67,8 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     NSString *fn = [files objectAtIndex:indexPath.row];
     cell.textLabel.text = fn;
@@ -170,7 +172,7 @@
     NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
     Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
     [i parse];
-    [db loadWaypointData];
+    [dbc loadWaypointData];
 }
 
 - (void)fileRename:(NSString *)filename

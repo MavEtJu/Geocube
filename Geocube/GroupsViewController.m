@@ -12,6 +12,8 @@
 #import "database.h"
 #import "GlobalMenu.h"
 
+#define THISCELL @"GroupsViewControllerCell"
+
 @implementation GroupsViewController
 
 - (id)init:(BOOL)_showUsers
@@ -40,7 +42,7 @@
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [WaypointGroups objectEnumerator];
+    NSEnumerator *e = [dbc.WaypointGroups objectEnumerator];
     dbObjectWaypointGroup *wpg;
     
     while ((wpg = [e nextObject]) != nil) {
@@ -55,7 +57,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,8 +82,8 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
     
     dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
@@ -151,7 +153,7 @@
 - (void)groupEmpty:(dbObjectWaypointGroup *)wpg
 {
     [db WaypointGroups_empty:wpg._id];
-    [db loadWaypointData];
+    [dbc loadWaypointData];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
@@ -159,7 +161,7 @@
 - (void)groupDelete:(dbObjectWaypointGroup *)wpg
 {
     [db WaypointGroups_delete:wpg._id];
-    [db loadWaypointData];
+    [dbc loadWaypointData];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
@@ -181,7 +183,7 @@
                              
                              NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
                              [db WaypointGroups_rename:wpg._id newName:tf.text];
-                             [db loadWaypointData];
+                             [dbc loadWaypointData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];
@@ -239,7 +241,7 @@
                              
                              NSLog(@"Creating new group '%@'", newgroup);
                              [db WaypointGroups_new:newgroup isUser:YES];
-                             [db loadWaypointData];
+                             [dbc loadWaypointData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];

@@ -24,7 +24,6 @@
 
 - (id)init;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
-- (void)loadWaypointData;
 
 - (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
 - (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid;
@@ -38,6 +37,11 @@
 - (NSInteger)Waypoint_get_byname:(NSString *)name;
 - (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp;
 - (void)Waypoint_update:(dbObjectWaypoint *)wp;
+
+- (NSArray *)WaypointGroups_all;
+- (NSArray *)WaypointTypes_all;
+- (NSArray *)Waypoints_all;
+
 
 @end
 

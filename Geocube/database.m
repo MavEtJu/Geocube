@@ -69,55 +69,6 @@
     return self;
 }
 
-// Load all waypoints and waypoint related data in memory
-- (void)loadWaypointData
-{
-    WaypointGroups = [self WaypointGroups_all];
-    WaypointTypes = [self WaypointTypes_all];
-    Waypoints = [self Waypoints_all];
-
-    WaypointGroup_AllWaypoints = nil;
-    WaypointGroup_AllWaypoints_Found = nil;
-    WaypointGroup_AllWaypoints_NotFound = nil;
-    WaypointGroup_LastImport = nil;
-    WaypointGroup_LastImportAdded = nil;
-    WaypointType_Unknown = nil;
-
-    NSEnumerator *e = [WaypointGroups objectEnumerator];
-    dbObjectWaypointGroup *wpg;
-    while ((wpg = [e nextObject]) != nil) {
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints = wpg;
-            continue;
-        }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints - Found"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints_Found = wpg;
-            continue;
-        }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints - Not Found"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints_NotFound = wpg;
-            continue;
-        }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import"] == NSOrderedSame) {
-            WaypointGroup_LastImport = wpg;
-            continue;
-        }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import - New"] == NSOrderedSame) {
-            WaypointGroup_LastImportAdded = wpg;
-            continue;
-        }
-    }
-
-    e = [WaypointTypes objectEnumerator];
-    dbObjectWaypointType *wpt;
-    while ((wpt = [e nextObject]) != nil) {
-        if ([wpg.name compare:@"*"] == NSOrderedSame) {
-            WaypointType_Unknown = wpt;
-            continue;
-        }
-    }
-}
-
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty
 {
     BOOL success;
@@ -382,7 +333,7 @@
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
-            TEXT_FETCH_AND_ASSIGN(req, 2, icon);
+            INT_FETCH_AND_ASSIGN(req, 2, icon);
             wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
         }
         sqlite3_finalize(req);
@@ -404,7 +355,7 @@
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
-            TEXT_FETCH_AND_ASSIGN(req, 2, icon);
+            INT_FETCH_AND_ASSIGN(req, 2, icon);
             wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
             [wpts addObject:wpt];
         }
@@ -457,6 +408,7 @@
             [wp setDate_placed_epoch:date_placed_epoch];
             [wp setUrl:url];
             [wp setWp_type_int:wp_type];
+            [wp setWp_type:[dbc waypointType_get:wp_type]];
             [wp setCountry:country];
             [wp setState:state];
             [wp setRating_difficulty:ratingD];

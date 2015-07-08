@@ -14,14 +14,14 @@
 @interface dbObjectWaypointType : NSObject {
     NSInteger _id;
     NSString *type;
-    NSString *icon;
+    NSInteger icon;
 }
 
-- (id)init:(NSInteger)_id type:(NSString *)type icon:(NSString *)icon;
+- (id)init:(NSInteger)_id type:(NSString *)type icon:(NSInteger)icon;
 
 @property NSInteger _id;
 @property NSString *type;
-@property NSString *icon;
+@property NSInteger icon;
 
 @end
 

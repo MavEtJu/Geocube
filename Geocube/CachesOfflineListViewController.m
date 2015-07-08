@@ -12,6 +12,8 @@
 #import "database.h"
 #import "WaypointTableViewCell.h"
 
+#define THISCELL @"waypointtableviewcell"
+
 @implementation CachesOfflineListViewController
 
 - (void)viewDidLoad
@@ -19,7 +21,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:@"waypointtableviewcell"];
+    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -45,7 +47,7 @@
 - (void)refreshWaypointsData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [Waypoints objectEnumerator];
+    NSEnumerator *e = [dbc.Waypoints objectEnumerator];
     dbObjectWaypoint *wp;
     
     while ((wp = [e nextObject]) != nil) {
@@ -79,16 +81,16 @@
 // Return a cell for the index path
 - (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"waypointtableviewcell"];
+    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"waypointtableviewcell"];
+        cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
     cell.description.text = wp.description;
     cell.name.text = wp.name;
-    cell.icon.image = [imageLibrary get:ImageCaches_Webcam];
+    cell.icon.image = [imageLibrary get:wp.wp_type.icon];
 
     [cell setRatings:wp.favourites terrain:wp.rating_terrain difficulty:wp.rating_difficulty];
     

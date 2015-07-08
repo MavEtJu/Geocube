@@ -43,6 +43,8 @@
 		E86C65A31B4BD3D300E2ABFE /* waypoint - trailhead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C659C1B4BD3D300E2ABFE /* waypoint - trailhead - 30x30.png */; };
 		E86C65A41B4BD3D300E2ABFE /* waypoint - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C659D1B4BD3D300E2ABFE /* waypoint - unknown - 30x30.png */; };
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
+		E86C65A91B4D388600E2ABFE /* cache - giga - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */; };
+		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -130,6 +132,9 @@
 		E86C659D1B4BD3D300E2ABFE /* waypoint - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - unknown - 30x30.png"; path = "images/waypoint - unknown - 30x30.png"; sourceTree = "<group>"; };
 		E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLibrary.h; sourceTree = "<group>"; };
 		E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibrary.m; sourceTree = "<group>"; };
+		E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30.png"; path = "images/cache - giga - 30x30.png"; sourceTree = "<group>"; };
+		E86C65AA1B4D431100E2ABFE /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "database-cache.h"; sourceTree = "<group>"; };
+		E86C65AB1B4D431100E2ABFE /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "database-cache.m"; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
@@ -254,6 +259,7 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */,
 				E86C65971B4BD3D300E2ABFE /* waypoint - finish - 30x30.png */,
 				E86C65981B4BD3D300E2ABFE /* waypoint - flag - 30x30.png */,
 				E86C65991B4BD3D300E2ABFE /* waypoint - multi - 30x30.png */,
@@ -428,6 +434,8 @@
 				E8F570CA1B4008DD003F020C /* dbObjectWaypointType.m */,
 				E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */,
 				E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */,
+				E86C65AA1B4D431100E2ABFE /* database-cache.h */,
+				E86C65AB1B4D431100E2ABFE /* database-cache.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -588,6 +596,7 @@
 				E86C65871B4BCE4600E2ABFE /* cache - mega - 30x30.png in Resources */,
 				E86C65811B4BCE4600E2ABFE /* cache - cito - 30x30.png in Resources */,
 				E86C65A41B4BD3D300E2ABFE /* waypoint - unknown - 30x30.png in Resources */,
+				E86C65A91B4D388600E2ABFE /* cache - giga - 30x30.png in Resources */,
 				E86C65741B4BC81D00E2ABFE /* waypoint rating star off 18x18.png in Resources */,
 				E86C65851B4BCE4600E2ABFE /* cache - letterbox - 30x30.png in Resources */,
 				E86C65881B4BCE4600E2ABFE /* cache - multi - 30x30.png in Resources */,
@@ -608,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
