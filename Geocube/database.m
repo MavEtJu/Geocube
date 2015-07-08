@@ -446,6 +446,8 @@
             [wp setLon:lon];
             [wp setLat_int:lat_int];
             [wp setLon_int:lon_int];
+            [wp setLat_float:lat_int / 1000000.0];
+            [wp setLon_float:lon_int / 1000000.0];
             [wp setDate_placed:date_placed];
             [wp setDate_placed_epoch:date_placed_epoch];
             [wp setUrl:url];

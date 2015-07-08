@@ -8,6 +8,7 @@
 
 #import "CachesOfflineListViewController.h"
 #import "Geocube.h"
+#import "My Tools.h"
 #import "database.h"
 #import "WaypointTableViewCell.h"
 
@@ -87,10 +88,20 @@
     dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
     cell.description.text = wp.description;
     cell.name.text = wp.name;
-    cell.favourites.text = @"42";
     cell.icon.image = [imageLibrary get:ImageCaches_Webcam];
+
+    cell.favourites.text = @"42";
     [cell setRating:2 * wp.rating_terrain difficulty:2 * wp.rating_difficulty];
     
+    coordinate_type cMe, cThere;
+    cThere.lat = wp.lat_float;
+    cThere.lon = wp.lon_float;
+    cMe = [MyTools myLocation];
+    NSInteger bearing = [MyTools coordinates2bearing:cMe to:cThere];
+    cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
+    cell.compass.text = [MyTools bearing2compass:bearing];
+    cell.distance.text = [MyTools NiceDistance:[MyTools coordinates2distance:cMe to:cThere]];
+    cell.stateCountry.text = [NSString stringWithFormat:@"%@, %@", wp.state, wp.country];
     return cell;
 }
 

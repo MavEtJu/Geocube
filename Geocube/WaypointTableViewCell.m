@@ -13,7 +13,7 @@
 
 @implementation WaypointTableViewCell
 
-@synthesize description, name, favourites, icon, country, state;
+@synthesize description, name, favourites, icon, stateCountry, bearing, compass, distance;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -26,6 +26,7 @@
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
+    NSInteger height = [self cellHeight];
 
     imgRatingOff = [imageLibrary get:ImageWaypointView_ratingOff];
     imgRatingOn = [imageLibrary get:ImageWaypointView_ratingOn];
@@ -38,12 +39,12 @@
 
     /*
      +---+--------------------+---+
-     |   | Description        | F |
-     |   +--------------------+   |
-     |   | Name               |   |
-     +---+--------------+-----+---+
-     | D |              | D XXXXX |
-     | D | Distance     | D XXXXX |
+     |   | Description        | F |  Favourites
+     |   +--------------------+   |  Difficulty
+     |   | Name               |   |  Terrain
+     +---+--------------+-----+---+  Angle
+     | A | State Country| D XXXXX |  Compass
+     | C | Distance     | T XXXXX |
      +---+--------------+---------+
      */
 #define BORDER 1
@@ -55,6 +56,8 @@
 #define FAVOURITES_HEIGHT 30
 #define STAR_WIDTH 19
 #define STAR_HEIGHT 18
+#define DISTANCE_HEIGHT 14
+#define BEARING_HEIGHT 14
 
     CGRect rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
     CGRect rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
@@ -62,10 +65,14 @@
     CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    
+    CGRect rectBearing = CGRectMake(BORDER, height - BORDER - 2 * BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
+    CGRect rectCompass = CGRectMake(BORDER, height - BORDER - BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
+    CGRect rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsT.size.width, DISTANCE_HEIGHT);
+    CGRect rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageCaches_Traditional];
+    icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
     
     // Description
@@ -77,7 +84,33 @@
     name = [[UILabel alloc] initWithFrame:rectName];
     name.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:name];
-
+    
+    // Bearing
+    bearing = [[UILabel alloc] initWithFrame:rectBearing];
+    bearing.font = [UIFont systemFontOfSize:10.0];
+    bearing.textAlignment = NSTextAlignmentCenter;
+    bearing.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:bearing];
+    
+    // Compass
+    compass = [[UILabel alloc] initWithFrame:rectCompass];
+    compass.font = [UIFont systemFontOfSize:10.0];
+    compass.textAlignment = NSTextAlignmentCenter;
+    compass.backgroundColor = [UIColor blueColor];
+    [self.contentView addSubview:compass];
+    
+    // State country
+    stateCountry = [[UILabel alloc] initWithFrame:rectStateCountry];
+    stateCountry.font = [UIFont systemFontOfSize:10];
+    stateCountry.backgroundColor = [UIColor purpleColor];
+    [self.contentView addSubview:stateCountry];
+    
+    // Distance
+    distance = [[UILabel alloc] initWithFrame:rectDistance];
+    distance.font = [UIFont systemFontOfSize:10.0];
+    distance.backgroundColor = [UIColor greenColor];
+    [self.contentView addSubview:distance];
+    
     // Favourites
     iv = [[UIImageView alloc] initWithFrame:rectFavourites];
     iv.image = imgFavourites;
@@ -142,6 +175,11 @@
 }
 
 + (NSInteger)cellHeight
+{
+    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
+}
+
+- (NSInteger)cellHeight
 {
     return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
 }

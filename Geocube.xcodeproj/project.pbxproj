@@ -381,8 +381,8 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 			);
 			name = "External modules";
 			sourceTree = "<group>";

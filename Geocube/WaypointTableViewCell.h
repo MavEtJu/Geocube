@@ -16,7 +16,10 @@
     UILabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
     UIImageView *icon;
-    UILabel *country, *state;
+    UILabel *stateCountry;
+    UILabel *bearing;
+    UILabel *compass;
+    UILabel *distance;
 }
 
 @property (nonatomic, retain) UILabel *description;
@@ -24,9 +27,13 @@
 @property (nonatomic, retain) UIImageView *icon;
 @property (nonatomic, retain) UILabel *favourites;
 @property (nonatomic, retain) UILabel *country;
-@property (nonatomic, retain) UILabel *state;
+@property (nonatomic, retain) UILabel *stateCountry;
+@property (nonatomic, retain) UILabel *bearing;
+@property (nonatomic, retain) UILabel *compass;
+@property (nonatomic, retain) UILabel *distance;
 
 
+- (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
 - (void)setRating:(NSInteger)t difficulty:(NSInteger)v;
 
