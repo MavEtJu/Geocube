@@ -14,10 +14,22 @@
 
 - (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon
 {
+    self = [super init];
     _id = __id;
     type = _type;
     icon = _icon;
+    [self finish];
     return self;
+}
+
+- (void)finish
+{
+    [super finish];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %ld", type, icon];
 }
 
 @end

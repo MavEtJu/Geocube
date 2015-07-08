@@ -7,6 +7,8 @@
 //
 
 #import "dbObjectWaypoint.h"
+#import "Geocube.h"
+#import "database-cache.h"
 
 @implementation dbObjectWaypoint
 
@@ -14,8 +16,28 @@
 
 - (id)init:(NSInteger)__id
 {
+    self = [super init];
     _id = __id;
     return self;
+}
+
+- (void)finish
+{
+    // Conversions from the data retrieved
+    lat_float = [lat floatValue];
+    lon_float = [lon floatValue];
+    lat_int = lat_float * 1000000;
+    lon_int = lon_float * 1000000;
+    wp_type = [dbc waypointType_get:wp_type_int];
+    
+    coordinates = MKCoordinates([lat floatValue], [lon floatValue]);
+
+    [super finish];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %@", name, description];
 }
 
 @end

@@ -401,21 +401,18 @@
             [wp setLat:lat];
             [wp setLon:lon];
             
-            [wp setCoordinates:MKCoordinates([lat floatValue], [lon floatValue])];
             [wp setLat_int:lat_int];
             [wp setLon_int:lon_int];
-            [wp setLat_float:lat_int / 1000000.0];
-            [wp setLon_float:lon_int / 1000000.0];
             [wp setDate_placed:date_placed];
             [wp setDate_placed_epoch:date_placed_epoch];
             [wp setUrl:url];
             [wp setWp_type_int:wp_type];
-            [wp setWp_type:[dbc waypointType_get:wp_type]];
             [wp setCountry:country];
             [wp setState:state];
             [wp setRating_difficulty:ratingD];
             [wp setRating_terrain:ratingT];
             [wp setFavourites:favourites];
+            [wp finish];
             [wps addObject:wp];
         }
         sqlite3_finalize(req);

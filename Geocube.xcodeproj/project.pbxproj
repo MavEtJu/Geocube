@@ -45,6 +45,7 @@
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
 		E86C65A91B4D388600E2ABFE /* cache - giga - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
+		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -135,6 +136,8 @@
 		E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30.png"; path = "images/cache - giga - 30x30.png"; sourceTree = "<group>"; };
 		E86C65AA1B4D431100E2ABFE /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "database-cache.h"; sourceTree = "<group>"; };
 		E86C65AB1B4D431100E2ABFE /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "database-cache.m"; sourceTree = "<group>"; };
+		E86C65AD1B4DCC6900E2ABFE /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObject.m; sourceTree = "<group>"; };
+		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E88FD8F41B41629D00D0CCE7 /* dbObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObjects.h; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				E8F570AB1B3FE5C6003F020C /* database.h */,
 				E8F570AC1B3FE5C6003F020C /* database.m */,
 				E88FD8F41B41629D00D0CCE7 /* dbObjects.h */,
+				E86C65AF1B4DCEE400E2ABFE /* dbObject.h */,
+				E86C65AD1B4DCC6900E2ABFE /* dbObject.m */,
 				E8F570C31B40059F003F020C /* dbObjectConfig.h */,
 				E8F570C41B40059F003F020C /* dbObjectConfig.m */,
 				E8F570C61B4008C3003F020C /* dbObjectWaypoint.h */,
@@ -643,6 +648,7 @@
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8F570C51B40059F003F020C /* dbObjectConfig.m in Sources */,
+				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

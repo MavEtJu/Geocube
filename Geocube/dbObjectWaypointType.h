@@ -10,8 +10,9 @@
 #define Geocube_dbObjectWaypointType_h
 
 #import <Foundation/Foundation.h>
+#import "dbObject.h"
 
-@interface dbObjectWaypointType : NSObject {
+@interface dbObjectWaypointType : dbObject {
     NSInteger _id;
     NSString *type;
     NSInteger icon;

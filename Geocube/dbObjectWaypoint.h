@@ -13,7 +13,7 @@
 #import "dbObjects.h"
 #import "My Tools.h"
 
-@interface dbObjectWaypoint : NSObject {
+@interface dbObjectWaypoint : dbObject {
     NSInteger _id;
     NSInteger wp_group_int;
     dbObjectWaypointGroup *wp_group;

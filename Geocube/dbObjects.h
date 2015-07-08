@@ -9,6 +9,7 @@
 #ifndef Geocube_dbObjects_h
 #define Geocube_dbObjects_h
 
+#import "dbObject.h"
 #import "dbObjectConfig.h"
 #import "dbObjectWaypointType.h"
 #import "dbObjectWaypointGroup.h"

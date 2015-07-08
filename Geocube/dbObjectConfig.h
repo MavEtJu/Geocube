@@ -10,8 +10,9 @@
 #define Geocube_dbObjectConfig_h
 
 #import <Foundation/Foundation.h>
+#import "dbObject.h"
 
-@interface dbObjectConfig : NSObject {
+@interface dbObjectConfig : dbObject {
     NSString *key;
     NSString *value;
     NSInteger _id;

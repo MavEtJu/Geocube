@@ -14,10 +14,22 @@
 
 - (id)init:(NSInteger)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
 {
+    self = [super init];
     _id = __id;
     name = _name;
     usergroup = _usergroup;
+    [self finish];
     return self;
+}
+
+- (void)finish
+{
+    [super finish];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %d", name, usergroup];
 }
 
 @end

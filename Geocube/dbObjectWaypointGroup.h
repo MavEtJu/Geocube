@@ -10,8 +10,9 @@
 #define Geocube_dbObjectWaypointGroup_h
 
 #import <Foundation/Foundation.h>
+#import "dbObject.h"
 
-@interface dbObjectWaypointGroup : NSObject {
+@interface dbObjectWaypointGroup : dbObject {
     NSInteger _id;
     NSString *name;
     BOOL usergroup;
