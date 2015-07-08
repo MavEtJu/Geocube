@@ -90,8 +90,7 @@
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:ImageCaches_Webcam];
 
-    cell.favourites.text = @"42";
-    [cell setRating:2 * wp.rating_terrain difficulty:2 * wp.rating_difficulty];
+    [cell setRatings:wp.favourites terrain:wp.rating_terrain difficulty:wp.rating_difficulty];
     
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;

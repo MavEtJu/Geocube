@@ -26,6 +26,8 @@
     }
 #define INT_FETCH_AND_ASSIGN(req, col, string) \
     NSInteger string = sqlite3_column_int(req, col);
+#define DOUBLE_FETCH_AND_ASSIGN(req, col, string) \
+    double string = sqlite3_column_double(req, col);
 
 #define SET_VAR_INT(req, col, string) \
     if (sqlite3_bind_int(req, col, string) != SQLITE_OK) \
@@ -36,7 +38,9 @@
 #define SET_VAR_TEXT(req, col, string) \
     if (sqlite3_bind_text(req, col, [string cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT) != SQLITE_OK) \
         NSAssert1(0, @"SET_VAR_TEXT: %s", sqlite3_errmsg(db));
-
+#define SET_VAR_DOUBLE(req, col, string) \
+    if (sqlite3_bind_double(req, col, string) != SQLITE_OK) \
+        NSAssert1(0, @"SET_VAR_DOUBLE: %s", sqlite3_errmsg(db));
 
 - (id)init
 {
@@ -413,7 +417,7 @@
 
 - (NSMutableArray *)Waypoints_all
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain from waypoints";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain, favourites from waypoints";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbObjectWaypoint *wp;
@@ -436,8 +440,9 @@
             INT_FETCH_AND_ASSIGN(req, 10, wp_type);
             TEXT_FETCH_AND_ASSIGN(req, 11, country);
             TEXT_FETCH_AND_ASSIGN(req, 12, state);
-            INT_FETCH_AND_ASSIGN(req, 13, ratingD);
-            INT_FETCH_AND_ASSIGN(req, 14, ratingT);
+            DOUBLE_FETCH_AND_ASSIGN(req, 13, ratingD);
+            DOUBLE_FETCH_AND_ASSIGN(req, 14, ratingT);
+            INT_FETCH_AND_ASSIGN(req, 15, favourites);
             
             wp = [[dbObjectWaypoint alloc] init:_id];
             [wp setName:name];
@@ -456,6 +461,7 @@
             [wp setState:state];
             [wp setRating_difficulty:ratingD];
             [wp setRating_terrain:ratingT];
+            [wp setFavourites:favourites];
             [wps addObject:wp];
         }
         sqlite3_finalize(req);
@@ -486,7 +492,7 @@
 
 - (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp
 {
-    NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?)";
+    NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain, favourites) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
     
@@ -506,8 +512,9 @@
         SET_VAR_NSINTEGER(req, 10, wp.wp_type_int);
         SET_VAR_TEXT(req, 11, wp.country);
         SET_VAR_TEXT(req, 12, wp.state);
-        SET_VAR_INT(req, 13, wp.rating_difficulty);
-        SET_VAR_INT(req, 14, wp.rating_terrain);
+        SET_VAR_DOUBLE(req, 13, wp.rating_difficulty);
+        SET_VAR_DOUBLE(req, 14, wp.rating_terrain);
+        SET_VAR_NSINTEGER(req, 15, wp.favourites);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_add:step: %s", sqlite3_errmsg(db));
@@ -520,7 +527,7 @@
 
 - (void)Waypoint_update:(dbObjectWaypoint *)wp
 {
-    NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, country = ?, state = ?, rating_difficulty = ?, rating_terrain = ? where id = ?";
+    NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, country = ?, state = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(dbaccess) {
@@ -539,9 +546,10 @@
         SET_VAR_NSINTEGER(req, 10, wp.wp_type_int);
         SET_VAR_TEXT(req, 11, wp.country);
         SET_VAR_TEXT(req, 12, wp.state);
-        SET_VAR_NSINTEGER(req, 5, wp.rating_difficulty);
-        SET_VAR_NSINTEGER(req, 6, wp.rating_terrain);
-        SET_VAR_NSINTEGER(req, 15, wp._id);
+        SET_VAR_DOUBLE(req, 13, wp.rating_difficulty);
+        SET_VAR_DOUBLE(req, 14, wp.rating_terrain);
+        SET_VAR_NSINTEGER(req, 15, wp.favourites);
+        SET_VAR_NSINTEGER(req, 16, wp._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_update:step: %s", sqlite3_errmsg(db));

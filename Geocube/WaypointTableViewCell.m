@@ -72,7 +72,7 @@
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageCaches_Traditional];
-    icon.backgroundColor = [UIColor yellowColor];
+    //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
     
     // Description
@@ -89,26 +89,26 @@
     bearing = [[UILabel alloc] initWithFrame:rectBearing];
     bearing.font = [UIFont systemFontOfSize:10.0];
     bearing.textAlignment = NSTextAlignmentCenter;
-    bearing.backgroundColor = [UIColor redColor];
+    //bearing.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:bearing];
     
     // Compass
     compass = [[UILabel alloc] initWithFrame:rectCompass];
     compass.font = [UIFont systemFontOfSize:10.0];
     compass.textAlignment = NSTextAlignmentCenter;
-    compass.backgroundColor = [UIColor blueColor];
+    //compass.backgroundColor = [UIColor blueColor];
     [self.contentView addSubview:compass];
     
     // State country
     stateCountry = [[UILabel alloc] initWithFrame:rectStateCountry];
     stateCountry.font = [UIFont systemFontOfSize:10];
-    stateCountry.backgroundColor = [UIColor purpleColor];
+    //stateCountry.backgroundColor = [UIColor purpleColor];
     [self.contentView addSubview:stateCountry];
     
     // Distance
     distance = [[UILabel alloc] initWithFrame:rectDistance];
     distance.font = [UIFont systemFontOfSize:10.0];
-    distance.backgroundColor = [UIColor greenColor];
+    //distance.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:distance];
     
     // Favourites
@@ -118,7 +118,6 @@
     r = rectFavourites;
     r.size.height /= 2;
     favourites = [[UILabel alloc] initWithFrame:r];
-    favourites.text = @"12";
     favourites.font = [UIFont boldSystemFontOfSize:10];
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
@@ -161,17 +160,21 @@
     return self;
 }
 
-- (void)setRating:(NSInteger)t difficulty:(NSInteger)d
+- (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
 {
-    for (NSInteger i = 0; i < t; i += 2)
-        ratingT[i / 2].image = imgRatingOn;
-    if (t % 2 == 1)
-        ratingT[t / 2].image = imgRatingHalf;
+    for (NSInteger i = 0; i < t; i++)
+        ratingT[i].image = imgRatingOn;
+    if (t - (int)t != 0)
+        ratingT[(int)t + 1].image = imgRatingHalf;
     
-    for (NSInteger i = 0; i < d; i += 2)
-        ratingD[i / 2].image = imgRatingOn;
-    if (d % 2 == 1)
-        ratingD[d / 2].image = imgRatingHalf;
+    for (NSInteger i = 0; i < d; i++)
+        ratingD[i].image = imgRatingOn;
+    if (d - (int)d != 0)
+        ratingD[(int)d + 1].image = imgRatingHalf;
+    
+    if (favs != 0) {
+        favourites.text = [NSString stringWithFormat:@"%ld", favs];
+    }
 }
 
 + (NSInteger)cellHeight

@@ -26,6 +26,7 @@
     NSInteger date_placed_epoch;
 
     float rating_difficulty, rating_terrain;
+    NSInteger favourites;
     
     NSInteger wp_type_int;
     NSString *wp_type_str;
@@ -51,6 +52,7 @@
 @property (nonatomic) NSInteger date_placed_epoch;
 @property (nonatomic) float rating_difficulty;
 @property (nonatomic) float rating_terrain;
+@property (nonatomic) NSInteger favourites;
 @property (nonatomic) NSInteger wp_type_int;
 @property (nonatomic) NSString *wp_type_str;
 @property (nonatomic, retain) dbObjectWaypointType *wp_type;

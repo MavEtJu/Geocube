@@ -35,7 +35,7 @@
 
 - (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
-- (void)setRating:(NSInteger)t difficulty:(NSInteger)v;
+- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
 
 @end
 
