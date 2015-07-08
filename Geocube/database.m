@@ -400,6 +400,8 @@
             [wp setDescription:desc];
             [wp setLat:lat];
             [wp setLon:lon];
+            
+            [wp setCoordinates:MKCoordinates([lat floatValue], [lon floatValue])];
             [wp setLat_int:lat_int];
             [wp setLon_int:lon_int];
             [wp setLat_float:lat_int / 1000000.0];

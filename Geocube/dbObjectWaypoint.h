@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import "dbObjects.h"
+#import "My Tools.h"
 
 @interface dbObjectWaypoint : NSObject {
     NSInteger _id;
@@ -34,6 +35,10 @@
     
     NSString *country;
     NSString *state;
+    
+    /* Not read from the database */
+    coordinate_type coordinates;
+    NSInteger calculatedDistance;
 }
 
 @property (nonatomic) NSInteger _id;
@@ -58,6 +63,9 @@
 @property (nonatomic, retain) dbObjectWaypointType *wp_type;
 @property (nonatomic, retain) NSString *country;
 @property (nonatomic, retain) NSString *state;
+
+@property (nonatomic) NSInteger calculatedDistance;
+@property (nonatomic) coordinate_type coordinates;
 
 - (id)init:(NSInteger)_id;
 

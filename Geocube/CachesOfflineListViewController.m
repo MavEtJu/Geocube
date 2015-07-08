@@ -10,6 +10,7 @@
 #import "Geocube.h"
 #import "My Tools.h"
 #import "database.h"
+#import "dbObjects.h"
 #import "WaypointTableViewCell.h"
 
 #define THISCELL @"waypointtableviewcell"
@@ -53,9 +54,23 @@
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
+        wp.calculatedDistance = [MyTools coordinates2distance:wp.coordinates to:[MyTools myLocation]];
+        
         [_wps addObject:wp];
     }
-    wps = _wps;
+    wps = [_wps sortedArrayUsingComparator: ^(dbObjectWaypoint *obj1, dbObjectWaypoint *obj2) {
+        
+        if (obj1.calculatedDistance > obj2.calculatedDistance) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if (obj1.calculatedDistance < obj2.calculatedDistance) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    
     wpCount = [wps count];
 }
 

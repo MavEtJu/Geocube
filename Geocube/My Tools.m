@@ -117,3 +117,11 @@
 }
 
 @end
+
+coordinate_type MKCoordinates(float lat, float lon)
+{
+    coordinate_type c;
+    c.lat = lat;
+    c.lon = lon;
+    return c;
+}

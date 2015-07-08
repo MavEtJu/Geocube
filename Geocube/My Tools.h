@@ -9,6 +9,8 @@
 #ifndef Geocube_My_Tools_h
 #define Geocube_My_Tools_h
 
+#import "My Tools.h"
+
 typedef struct coordinate_type {
     float lat;
     float lon;
@@ -26,5 +28,7 @@ typedef struct coordinate_type {
 + (NSString *)NiceDistance:(NSInteger)i;
 
 @end
+
+coordinate_type MKCoordinates(float lat, float lon);
 
 #endif
