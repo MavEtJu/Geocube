@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "Geosphere-Prefix.pch"
+#import "Geocube-Prefix.pch"
 
 #define THISCELL @"waypointtableviewcell"
 
@@ -119,6 +119,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [WaypointTableViewCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    NSString *newTitle = wp.description;
+    
+    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = newTitle;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 #pragma mark - SearchBar related functions

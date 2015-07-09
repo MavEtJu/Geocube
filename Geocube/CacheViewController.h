@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface CacheViewControllerTableViewController : UITableViewController
+@interface CacheViewController : GCTableViewController {
+    dbObjectWaypoint *wp;
+    
+    NSArray *cacheItems;
+    NSArray *actionItems;
+}
 
 @end

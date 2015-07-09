@@ -1,5 +1,5 @@
 //
-//  CacheViewControllerTableViewController.m
+//  CacheViewController.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 9/07/2015.
@@ -8,50 +8,152 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface CacheViewControllerTableViewController ()
+#define THISCELL @"cachetablecell"
 
-@end
+@implementation CacheViewController
 
-@implementation CacheViewControllerTableViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (id)init:(dbObjectWaypoint *)_wp
+{
+    self = [super init];
+    wp = _wp;
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    
+    cacheItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
+    actionItems = @[@"Set as Target", @"Mark as Found"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0)
+        return 1;
+    if (section == 1)
+        return [cacheItems count];
+    if (section == 2)
+        return [actionItems count];
     return 0;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 1)
+        return @"Cache data";
+    if (section == 2)
+        return @"Cache actions";
+    return nil;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+
+    // Cache header
+    if (indexPath.section == 0) {
+        return cell;
+    }
     
-    // Configure the cell...
+    // Cache data
+    if (indexPath.section == 1) {
+        cell.textLabel.text = [cacheItems objectAtIndex:indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        UIColor *tc = [UIColor blackColor];
+        switch (indexPath.row) {
+            case 0: /* Description */
+                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame)
+                    tc = [UIColor grayColor];
+                break;
+            case 1: /* Hint */
+                if ([wp.gc_hint compare:@""] == NSOrderedSame)
+                    tc = [UIColor grayColor];
+                break;
+            case 2: /* Personal note */
+                if ([wp.gc_personal_note compare:@""] == NSOrderedSame)
+                    tc = [UIColor grayColor];
+                break;
+            case 3: /* Field Note */
+                if ([wp hasFieldNotes] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+            case 4: /* Logs */
+                if ([wp hasLogs] == FALSE)
+                    tc = [UIColor grayColor];
+            case 5: /* Attributes Note */
+                if ([wp hasAttributes] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+            case 6: /* Related Waypoints */
+                if ([wp hasWaypoints] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+            case 7: /* Inventory */
+                if ([wp hasInventory] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+            case 8: /* Images */
+                if ([wp hasImages] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+            case 9: /* Group Membership */
+                if ([wp hasGroups] == FALSE)
+                    tc = [UIColor grayColor];
+                break;
+        }
+        cell.textLabel.textColor = tc;
+        return cell;
+    }
+    
+    // Cache commands
+    if (indexPath.section == 2) {
+        UIColor *tc = [UIColor blackColor];
+        switch (indexPath.row) {
+            case 0:
+                cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+                break;
+            case 1:
+                cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                break;
+        }
+        cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
+        cell.textLabel.textColor = tc;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        return cell;
+    }
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
 
 /*
 // Override to support conditional editing of the table view.

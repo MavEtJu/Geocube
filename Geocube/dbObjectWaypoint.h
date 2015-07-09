@@ -29,8 +29,10 @@
     NSString *wp_type_str;
     dbObjectWaypointType *wp_type;
     
-    NSString *country;
-    NSString *state;
+    NSString *country, *state;
+    
+    NSString *gc_short_desc, *gc_long_desc;
+    NSString *gc_hint, *gc_personal_note;
     
     /* Not read from the database */
     coordinate_type coordinates;
@@ -59,11 +61,22 @@
 @property (nonatomic, retain) dbObjectWaypointType *wp_type;
 @property (nonatomic, retain) NSString *country;
 @property (nonatomic, retain) NSString *state;
+@property (nonatomic, retain) NSString *gc_short_desc;
+@property (nonatomic, retain) NSString *gc_long_desc;
+@property (nonatomic, retain) NSString *gc_hint;
+@property (nonatomic, retain) NSString *gc_personal_note;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) coordinate_type coordinates;
 
 - (id)init:(NSInteger)_id;
+- (BOOL)hasFieldNotes;
+- (BOOL)hasLogs;
+- (BOOL)hasAttributes;
+- (BOOL)hasWaypoints;
+- (BOOL)hasInventory;
+- (BOOL)hasImages;
+- (BOOL)hasGroups;
 
 @end
 

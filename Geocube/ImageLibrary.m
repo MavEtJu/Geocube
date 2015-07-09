@@ -59,11 +59,31 @@
     ADD(@"waypoint - unknown - 30x30", Imagewaypoints_NFI);
     ADD(@"cache - unknown - 30x30", ImageNFI);
 
+    ADD(@"log - archived - 30x30", ImageLog_Archived);
+    ADD(@"log - attended - 30x30", ImageLog_Attended);
+    ADD(@"log - coordinates - 30x30", ImageLog_Coordinates);
+    ADD(@"log - didnotfind - 30x30", ImageLog_DidNotFind);
+    ADD(@"log - disabled - 18x18", ImageLog_Disabled);
+    ADD(@"log - enabled - 30x30", ImageLog_Enabled);
+    ADD(@"log - found - 30x30", ImageLog_Found);
+    ADD(@"log - needsarchiving - 30x30", ImageLog_NeedsArchiving);
+    ADD(@"log - needsmaintenance - 30x30", ImageLog_NeedsMaintenance);
+    ADD(@"log - note - 30x30", ImageLog_Note);
+    ADD(@"log - ownermaintenance - 30x30", ImageLog_OwnerMaintenance);
+    ADD(@"log - published - 30x30", ImageLog_Published);
+    ADD(@"log - reviewernote - 30x30", ImageLog_ReviewerNote);
+    ADD(@"log - unarchived - 30x30", ImageLog_Unarchived);
+    ADD(@"log - unknown - 30x30", ImageLog_Unknown);
+    ADD(@"log - willattend - 30x30", ImageLog_WillAttend);
+
     ADD(@"waypoint rating star on 19x18", ImageWaypointView_ratingOn);
     ADD(@"waypoint rating star off 18x18", ImageWaypointView_ratingOff);
     ADD(@"waypoint rating star half 18x18", ImageWaypointView_ratingHalf);
     ADD(@"waypoint favourites 20x30", ImageWaypointView_favourites);
     
+    ADD(@"icons - smiley - 30x30", ImageIcon_Smiley);
+    ADD(@"icons - sad - 30x30", ImageIcon_Sad);
+    ADD(@"icons - target - 20x20", ImageIcon_Target);
 
     return self;
 }

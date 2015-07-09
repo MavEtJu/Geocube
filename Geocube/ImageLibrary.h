@@ -42,11 +42,32 @@ typedef enum {
     Imagewaypoints_NFI,
     ImageNFI,
     /* Up to here: Do not reorder */
+    
+    ImageLog_Archived,
+    ImageLog_Attended,
+    ImageLog_Coordinates,
+    ImageLog_DidNotFind,
+    ImageLog_Disabled,
+    ImageLog_Enabled,
+    ImageLog_Found,
+    ImageLog_NeedsArchiving,
+    ImageLog_NeedsMaintenance,
+    ImageLog_Note,
+    ImageLog_OwnerMaintenance,
+    ImageLog_Published,
+    ImageLog_ReviewerNote,
+    ImageLog_Unarchived,
+    ImageLog_Unknown,
+    ImageLog_WillAttend,
 
     ImageWaypointView_ratingOn,
     ImageWaypointView_ratingOff,
     ImageWaypointView_ratingHalf,
     ImageWaypointView_favourites,
+    
+    ImageIcon_Smiley,
+    ImageIcon_Sad,
+    ImageIcon_Target,
     
     ImageLibraryImagesMax
 } ImageLibraryImages;

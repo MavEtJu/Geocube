@@ -48,6 +48,26 @@
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
 		E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740F9A1B4E3C6A002527DA /* CacheViewController.m */; };
+		E8740FA01B4E6C5F002527DA /* icons - sad - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740F9D1B4E6C5F002527DA /* icons - sad - 30x30.png */; };
+		E8740FA11B4E6C5F002527DA /* icons - smiley - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740F9E1B4E6C5F002527DA /* icons - smiley - 15x15.png */; };
+		E8740FA21B4E6C5F002527DA /* icons - target - 20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740F9F1B4E6C5F002527DA /* icons - target - 20x20.png */; };
+		E8740FAA1B4E86D9002527DA /* log - archived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA41B4E86D9002527DA /* log - archived - 30x30.png */; };
+		E8740FAB1B4E86D9002527DA /* log - attended - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA51B4E86D9002527DA /* log - attended - 30x30.png */; };
+		E8740FAC1B4E86D9002527DA /* log - coordinates - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA61B4E86D9002527DA /* log - coordinates - 30x30.png */; };
+		E8740FAD1B4E86D9002527DA /* log - didnotfind - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA71B4E86D9002527DA /* log - didnotfind - 30x30.png */; };
+		E8740FAE1B4E86D9002527DA /* log - disabled - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA81B4E86D9002527DA /* log - disabled - 18x18.png */; };
+		E8740FAF1B4E86D9002527DA /* log - enabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FA91B4E86D9002527DA /* log - enabled - 30x30.png */; };
+		E8740FBA1B4E86F6002527DA /* log - found - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB11B4E86F6002527DA /* log - found - 30x30.png */; };
+		E8740FBB1B4E86F6002527DA /* log - needsarchiving - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB21B4E86F6002527DA /* log - needsarchiving - 30x30.png */; };
+		E8740FBC1B4E86F6002527DA /* log - needsmaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB31B4E86F6002527DA /* log - needsmaintenance - 30x30.png */; };
+		E8740FBD1B4E86F6002527DA /* log - note - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB41B4E86F6002527DA /* log - note - 30x30.png */; };
+		E8740FBE1B4E86F6002527DA /* log - ownermaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB51B4E86F6002527DA /* log - ownermaintenance - 30x30.png */; };
+		E8740FBF1B4E86F6002527DA /* log - published - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB61B4E86F6002527DA /* log - published - 30x30.png */; };
+		E8740FC01B4E86F6002527DA /* log - reviewernote - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB71B4E86F6002527DA /* log - reviewernote - 30x30.png */; };
+		E8740FC11B4E86F6002527DA /* log - unarchived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FB81B4E86F6002527DA /* log - unarchived - 30x30.png */; };
+		E8740FC41B4E870D002527DA /* log - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FC21B4E870D002527DA /* log - unknown - 30x30.png */; };
+		E8740FC51B4E870D002527DA /* log - willattend - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FC31B4E870D002527DA /* log - willattend - 30x30.png */; };
+		E8740FC71B4E8824002527DA /* icons - smiley - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8740FC61B4E8824002527DA /* icons - smiley - 30x30.png */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -145,6 +165,26 @@
 		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
 		E8740F991B4E3C6A002527DA /* CacheViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheViewController.h; sourceTree = "<group>"; };
 		E8740F9A1B4E3C6A002527DA /* CacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheViewController.m; sourceTree = "<group>"; };
+		E8740F9D1B4E6C5F002527DA /* icons - sad - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30.png"; path = "images/icons - sad - 30x30.png"; sourceTree = "<group>"; };
+		E8740F9E1B4E6C5F002527DA /* icons - smiley - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 15x15.png"; path = "images/icons - smiley - 15x15.png"; sourceTree = "<group>"; };
+		E8740F9F1B4E6C5F002527DA /* icons - target - 20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 20x20.png"; path = "images/icons - target - 20x20.png"; sourceTree = "<group>"; };
+		E8740FA41B4E86D9002527DA /* log - archived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - archived - 30x30.png"; path = "images/log - archived - 30x30.png"; sourceTree = "<group>"; };
+		E8740FA51B4E86D9002527DA /* log - attended - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - attended - 30x30.png"; path = "images/log - attended - 30x30.png"; sourceTree = "<group>"; };
+		E8740FA61B4E86D9002527DA /* log - coordinates - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - coordinates - 30x30.png"; path = "images/log - coordinates - 30x30.png"; sourceTree = "<group>"; };
+		E8740FA71B4E86D9002527DA /* log - didnotfind - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - didnotfind - 30x30.png"; path = "images/log - didnotfind - 30x30.png"; sourceTree = "<group>"; };
+		E8740FA81B4E86D9002527DA /* log - disabled - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 18x18.png"; path = "images/log - disabled - 18x18.png"; sourceTree = "<group>"; };
+		E8740FA91B4E86D9002527DA /* log - enabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - enabled - 30x30.png"; path = "images/log - enabled - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB11B4E86F6002527DA /* log - found - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - found - 30x30.png"; path = "images/log - found - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB21B4E86F6002527DA /* log - needsarchiving - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsarchiving - 30x30.png"; path = "images/log - needsarchiving - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB31B4E86F6002527DA /* log - needsmaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsmaintenance - 30x30.png"; path = "images/log - needsmaintenance - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB41B4E86F6002527DA /* log - note - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - note - 30x30.png"; path = "images/log - note - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB51B4E86F6002527DA /* log - ownermaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - ownermaintenance - 30x30.png"; path = "images/log - ownermaintenance - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB61B4E86F6002527DA /* log - published - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - published - 30x30.png"; path = "images/log - published - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB71B4E86F6002527DA /* log - reviewernote - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - reviewernote - 30x30.png"; path = "images/log - reviewernote - 30x30.png"; sourceTree = "<group>"; };
+		E8740FB81B4E86F6002527DA /* log - unarchived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unarchived - 30x30.png"; path = "images/log - unarchived - 30x30.png"; sourceTree = "<group>"; };
+		E8740FC21B4E870D002527DA /* log - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unknown - 30x30.png"; path = "images/log - unknown - 30x30.png"; sourceTree = "<group>"; };
+		E8740FC31B4E870D002527DA /* log - willattend - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - willattend - 30x30.png"; path = "images/log - willattend - 30x30.png"; sourceTree = "<group>"; };
+		E8740FC61B4E8824002527DA /* icons - smiley - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 30x30.png"; path = "images/icons - smiley - 30x30.png"; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E8BD82491B46A4E50029CDC9 /* global menu icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "global menu icon.png"; path = "images/global menu icon.png"; sourceTree = "<group>"; };
@@ -223,8 +263,8 @@
 			children = (
 				E82FBB251B4613C20009AB6D /* GCViewController.h */,
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
-				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
 				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
+				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
@@ -242,8 +282,6 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
-				E8740F991B4E3C6A002527DA /* CacheViewController.h */,
-				E8740F9A1B4E3C6A002527DA /* CacheViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
@@ -309,9 +347,46 @@
 			name = "waypoint view";
 			sourceTree = "<group>";
 		};
+		E8740F9C1B4E6645002527DA /* Cache Viewing */ = {
+			isa = PBXGroup;
+			children = (
+				E8740F991B4E3C6A002527DA /* CacheViewController.h */,
+				E8740F9A1B4E3C6A002527DA /* CacheViewController.m */,
+			);
+			name = "Cache Viewing";
+			sourceTree = "<group>";
+		};
+		E8740FA31B4E86BB002527DA /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				E8740FC21B4E870D002527DA /* log - unknown - 30x30.png */,
+				E8740FC31B4E870D002527DA /* log - willattend - 30x30.png */,
+				E8740FB11B4E86F6002527DA /* log - found - 30x30.png */,
+				E8740FB21B4E86F6002527DA /* log - needsarchiving - 30x30.png */,
+				E8740FB31B4E86F6002527DA /* log - needsmaintenance - 30x30.png */,
+				E8740FB41B4E86F6002527DA /* log - note - 30x30.png */,
+				E8740FB51B4E86F6002527DA /* log - ownermaintenance - 30x30.png */,
+				E8740FB61B4E86F6002527DA /* log - published - 30x30.png */,
+				E8740FB71B4E86F6002527DA /* log - reviewernote - 30x30.png */,
+				E8740FB81B4E86F6002527DA /* log - unarchived - 30x30.png */,
+				E8740FA41B4E86D9002527DA /* log - archived - 30x30.png */,
+				E8740FA51B4E86D9002527DA /* log - attended - 30x30.png */,
+				E8740FA61B4E86D9002527DA /* log - coordinates - 30x30.png */,
+				E8740FA71B4E86D9002527DA /* log - didnotfind - 30x30.png */,
+				E8740FA81B4E86D9002527DA /* log - disabled - 18x18.png */,
+				E8740FA91B4E86D9002527DA /* log - enabled - 30x30.png */,
+			);
+			name = logs;
+			sourceTree = "<group>";
+		};
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E8740FA31B4E86BB002527DA /* logs */,
+				E8740F9D1B4E6C5F002527DA /* icons - sad - 30x30.png */,
+				E8740F9E1B4E6C5F002527DA /* icons - smiley - 15x15.png */,
+				E8740FC61B4E8824002527DA /* icons - smiley - 30x30.png */,
+				E8740F9F1B4E6C5F002527DA /* icons - target - 20x20.png */,
 				E86C65961B4BCE7D00E2ABFE /* waypoint view */,
 				E86C65751B4BCE2E00E2ABFE /* cache icons */,
 				E8BD82491B46A4E50029CDC9 /* global menu icon.png */,
@@ -476,6 +551,7 @@
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
+				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -578,11 +654,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8740FAB1B4E86D9002527DA /* log - attended - 30x30.png in Resources */,
 				E86C65861B4BCE4600E2ABFE /* cache - maze - 30x30.png in Resources */,
 				E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */,
+				E8740FC51B4E870D002527DA /* log - willattend - 30x30.png in Resources */,
 				E86C65721B4BC74200E2ABFE /* waypoint rating star on 19x18.png in Resources */,
 				E86C65951B4BCE7100E2ABFE /* cache - whereigo - 30x30.png in Resources */,
 				E86C65701B4BC74200E2ABFE /* waypoint rating star half 18x18.png in Resources */,
+				E8740FC41B4E870D002527DA /* log - unknown - 30x30.png in Resources */,
 				E86C65A11B4BD3D300E2ABFE /* waypoint - parking - 30x30.png in Resources */,
 				E86C65801B4BCE4600E2ABFE /* cache - benchmark - 30x30.png in Resources */,
 				E86C659E1B4BD3D300E2ABFE /* waypoint - finish - 30x30.png in Resources */,
@@ -590,30 +669,47 @@
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E86C65931B4BCE7100E2ABFE /* cache - waymark - 30x30.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
+				E8740FBE1B4E86F6002527DA /* log - ownermaintenance - 30x30.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
+				E8740FA11B4E6C5F002527DA /* icons - smiley - 15x15.png in Resources */,
+				E8740FBD1B4E86F6002527DA /* log - note - 30x30.png in Resources */,
 				E86C65901B4BCE7100E2ABFE /* cache - traditional - 30x30.png in Resources */,
+				E8740FAF1B4E86D9002527DA /* log - enabled - 30x30.png in Resources */,
 				E86C65A01B4BD3D300E2ABFE /* waypoint - multi - 30x30.png in Resources */,
 				E86C65831B4BCE4600E2ABFE /* cache - event - 30x30.png in Resources */,
+				E8740FBB1B4E86F6002527DA /* log - needsarchiving - 30x30.png in Resources */,
 				E86C659F1B4BD3D300E2ABFE /* waypoint - flag - 30x30.png in Resources */,
+				E8740FC01B4E86F6002527DA /* log - reviewernote - 30x30.png in Resources */,
+				E8740FA01B4E6C5F002527DA /* icons - sad - 30x30.png in Resources */,
 				E86C65941B4BCE7100E2ABFE /* cache - webcam - 30x30.png in Resources */,
 				E86C65841B4BCE4600E2ABFE /* cache - groundspeak hq - 30x30.png in Resources */,
+				E8740FAE1B4E86D9002527DA /* log - disabled - 18x18.png in Resources */,
 				E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */,
+				E8740FC11B4E86F6002527DA /* log - unarchived - 30x30.png in Resources */,
+				E8740FAA1B4E86D9002527DA /* log - archived - 30x30.png in Resources */,
 				E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */,
 				E86C65A21B4BD3D300E2ABFE /* waypoint - question - 30x30.png in Resources */,
 				E86C65891B4BCE4600E2ABFE /* cache - mystery - 30x30.png in Resources */,
+				E8740FAC1B4E86D9002527DA /* log - coordinates - 30x30.png in Resources */,
 				E86C65921B4BCE7100E2ABFE /* cache - virtual - 30x30.png in Resources */,
+				E8740FBA1B4E86F6002527DA /* log - found - 30x30.png in Resources */,
 				E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */,
 				E86C65911B4BCE7100E2ABFE /* cache - unknown - 30x30.png in Resources */,
+				E8740FAD1B4E86D9002527DA /* log - didnotfind - 30x30.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
+				E8740FA21B4E6C5F002527DA /* icons - target - 20x20.png in Resources */,
 				E86C65821B4BCE4600E2ABFE /* cache - earth - 30x30.png in Resources */,
 				E86C656C1B4BC57900E2ABFE /* waypoint favourites 20x30.png in Resources */,
 				E86C65871B4BCE4600E2ABFE /* cache - mega - 30x30.png in Resources */,
 				E86C65811B4BCE4600E2ABFE /* cache - cito - 30x30.png in Resources */,
 				E86C65A41B4BD3D300E2ABFE /* waypoint - unknown - 30x30.png in Resources */,
+				E8740FBC1B4E86F6002527DA /* log - needsmaintenance - 30x30.png in Resources */,
+				E8740FBF1B4E86F6002527DA /* log - published - 30x30.png in Resources */,
 				E86C65A91B4D388600E2ABFE /* cache - giga - 30x30.png in Resources */,
 				E86C65741B4BC81D00E2ABFE /* waypoint rating star off 18x18.png in Resources */,
 				E86C65851B4BCE4600E2ABFE /* cache - letterbox - 30x30.png in Resources */,
+				E8740FC71B4E8824002527DA /* icons - smiley - 30x30.png in Resources */,
 				E86C65881B4BCE4600E2ABFE /* cache - multi - 30x30.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
