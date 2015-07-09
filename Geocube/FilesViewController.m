@@ -20,7 +20,8 @@
     fm = [[NSFileManager alloc] init];
     [self refreshFileData];
     
-    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
+    menuItems = nil; //[NSArray arrayWithObjects:@"Manage files", nil];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)refreshFileData
@@ -70,6 +71,20 @@
     cell.detailTextLabel.text = @"Detail Label";
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        NSString *fn = [files objectAtIndex:indexPath.row];
+        [self fileDelete:fn];
+    }
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

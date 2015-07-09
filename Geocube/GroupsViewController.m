@@ -96,7 +96,7 @@
     }
     
     dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
-    
+
     UIAlertController *view=   [UIAlertController
                                 alertControllerWithTitle:wpg.name
                                 message:@"Select you choice"
