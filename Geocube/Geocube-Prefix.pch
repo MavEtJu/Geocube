@@ -41,6 +41,7 @@
 #import "GCTableViewController.h"
 #import "GCViewController.h"
 
+#import "CacheViewController.h"
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "WaypointTableViewCell.h"

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "Geosphere-Prefix.pch"
+#import "Geocube-Prefix.pch"
 
 @implementation Import_GPX
 

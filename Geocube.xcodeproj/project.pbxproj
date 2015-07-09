@@ -47,6 +47,7 @@
 		E86C65A91B4D388600E2ABFE /* cache - giga - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C65A81B4D388600E2ABFE /* cache - giga - 30x30.png */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
+		E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740F9A1B4E3C6A002527DA /* CacheViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -95,7 +96,7 @@
 		E82FBB291B4613D70009AB6D /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
-		E8467C8F1B4E06F800FFA253 /* Geosphere-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geosphere-Prefix.pch"; sourceTree = "<group>"; };
+		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
 		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
 		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
@@ -142,6 +143,8 @@
 		E86C65AB1B4D431100E2ABFE /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "database-cache.m"; sourceTree = "<group>"; };
 		E86C65AD1B4DCC6900E2ABFE /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObject.m; sourceTree = "<group>"; };
 		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
+		E8740F991B4E3C6A002527DA /* CacheViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheViewController.h; sourceTree = "<group>"; };
+		E8740F9A1B4E3C6A002527DA /* CacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheViewController.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbObjectWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObjectWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbObjectWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObjectWaypointGroup.m; sourceTree = "<group>"; };
 		E8BD82491B46A4E50029CDC9 /* global menu icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "global menu icon.png"; path = "images/global menu icon.png"; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
+				E8740F991B4E3C6A002527DA /* CacheViewController.h */,
+				E8740F9A1B4E3C6A002527DA /* CacheViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
@@ -359,7 +364,7 @@
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
-				E8467C8F1B4E06F800FFA253 /* Geosphere-Prefix.pch */,
+				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8F570C81B4008C3003F020C /* dbObjectWaypoint.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbObjectWaypointGroup.m in Sources */,
+				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
