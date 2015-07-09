@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "dbObjectWaypointType.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation dbObjectWaypointType
 

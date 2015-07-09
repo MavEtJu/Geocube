@@ -6,14 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-
-#import "database.h"
-#import "database-cache.h"
-#import "dbObjects.h"
-#import "GlobalMenu.h"
-#import "ImageLibrary.h"
+#import "Geosphere-Prefix.pch"
 
 GlobalMenu *menuGlobal;
 

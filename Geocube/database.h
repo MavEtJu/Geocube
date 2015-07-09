@@ -9,10 +9,6 @@
 #ifndef Geocube_database_h
 #define Geocube_database_h
 
-#import <Foundation/Foundation.h>
-#import <sqlite3.h>
-#import "dbObjects.h"
-
 #define	DB_EMPTY		@"empty.db"
 #define	DB_NAME         @"database.db"
 

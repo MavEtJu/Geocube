@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "database-cache.h"
-#import "Geocube.h"
-#import "database.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation DatabaseCache
 

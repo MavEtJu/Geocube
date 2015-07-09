@@ -6,10 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "dbObjectWaypoint.h"
-#import "coordinates.h"
-#import "Geocube.h"
-#import "database-cache.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation dbObjectWaypoint
 

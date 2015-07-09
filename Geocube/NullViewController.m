@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "NullViewController.h"
+#import "Geosphere-Prefix.pch"
 
 @interface NullViewController ()
 

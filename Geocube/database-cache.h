@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "dbObjects.h"
-
 @interface DatabaseCache : NSObject {
     // In memory database information
     NSArray *WaypointTypes;

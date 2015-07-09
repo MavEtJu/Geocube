@@ -6,11 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Geocube.h"
-#import "Import_GPX.h"
-#import "SSZipArchive.h"
-#import "My Tools.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation Import_GPX
 

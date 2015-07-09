@@ -6,10 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "WaypointTableViewCell.h"
-#import "My Tools.h"
-#import "Geocube.h"
-#import "ImageLibrary.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation WaypointTableViewCell
 

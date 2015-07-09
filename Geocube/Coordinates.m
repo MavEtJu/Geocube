@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <math.h>
-#import "Coordinates.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation Coordinates
 

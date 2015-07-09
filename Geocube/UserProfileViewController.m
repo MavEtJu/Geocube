@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "UserProfileViewController.h"
-#import "database.h"
-#import "GlobalMenu.h"
+#import "Geosphere-Prefix.pch"
 
 @interface UserProfileViewController ()
 

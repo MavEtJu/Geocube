@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "ImageLibrary.h"
-#import "My Tools.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation ImageLibrary
 

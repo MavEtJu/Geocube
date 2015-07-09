@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "dbObjects.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation dbObject
 

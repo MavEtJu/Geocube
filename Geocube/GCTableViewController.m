@@ -6,10 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "DOPNavbarMenu.h"
-#import "GCTableViewController.h"
-#import "Geocube.h"
-#import "GlobalMenu.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation GCTableViewController
 

@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 typedef struct coordinate_type {
     float lat;
     float lon;

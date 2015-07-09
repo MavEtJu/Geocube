@@ -6,11 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "DOPNavbarMenu.h"
-#import "GroupsViewController.h"
-#import "Geocube.h"
-#import "database.h"
-#import "GlobalMenu.h"
+#import "Geosphere-Prefix.pch"
 
 #define THISCELL @"GroupsViewControllerCell"
 

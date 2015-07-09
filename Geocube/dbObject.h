@@ -9,7 +9,6 @@
 #ifndef Geocube_dbObject_h
 #define Geocube_dbObject_h
 
-
 @interface dbObject : NSObject {
     BOOL finished;
 }

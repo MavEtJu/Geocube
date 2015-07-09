@@ -6,12 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "FilesViewController.h"
-#import "My Tools.h"
-#import "SSZipArchive.h"
-#import "database.h"
-#import "Geocube.h"
-#import "Import_GPX.h"
+#import "Geosphere-Prefix.pch"
 
 #define THISCELL @"FilesViewControllerCell"
 

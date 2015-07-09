@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "DOPNavbarMenu.h"
-
 @interface GlobalMenu : NSObject<DOPNavbarMenuDelegate> {
     NSArray *items;
     DOPNavbarMenu *_global_menu;

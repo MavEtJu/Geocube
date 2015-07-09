@@ -9,9 +9,6 @@
 #ifndef Geocube_Import_GPX_h
 #define Geocube_Import_GPX_h
 
-#import <Foundation/Foundation.h>
-#import "dbObjects.h"
-
 @interface Import_GPX : NSObject <NSXMLParserDelegate> {
     NSArray *files;
     NSString *groupname;

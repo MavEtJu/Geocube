@@ -9,8 +9,6 @@
 #ifndef Geocube_My_Tools_h
 #define Geocube_My_Tools_h
 
-#import "My Tools.h"
-
 @interface MyTools : NSObject
 
 + (NSString *)DocumentRoot;

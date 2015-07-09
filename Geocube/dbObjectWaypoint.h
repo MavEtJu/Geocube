@@ -9,11 +9,6 @@
 #ifndef Geocube_dbObjectWaypoint_h
 #define Geocube_dbObjectWaypoint_h
 
-#import <Foundation/Foundation.h>
-#import "dbObjects.h"
-#import "My Tools.h"
-#import "coordinates.h"
-
 @interface dbObjectWaypoint : dbObject {
     NSInteger _id;
     NSInteger wp_group_int;

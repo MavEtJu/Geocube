@@ -9,9 +9,6 @@
 #ifndef Geocube_dbObjectConfig_h
 #define Geocube_dbObjectConfig_h
 
-#import <Foundation/Foundation.h>
-#import "dbObject.h"
-
 @interface dbObjectConfig : dbObject {
     NSString *key;
     NSString *value;

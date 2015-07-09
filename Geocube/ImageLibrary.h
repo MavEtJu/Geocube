@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "UIKit/UIKIt.h"
-
 typedef enum {
     ImageLibraryImagesMin = -1,
 

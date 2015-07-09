@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "DOPNavbarMenu.h"
-
 @interface GCViewController : UIViewController <DOPNavbarMenuDelegate> {
     NSInteger numberOfItemsInRow;
     DOPNavbarMenu *tab_menu, *global_menu;

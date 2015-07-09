@@ -9,13 +9,6 @@
 #ifndef Geocube_Geocube_h
 #define Geocube_Geocube_h
 
-#import "database.h"
-#import "database-cache.h"
-#import "dbObjects.h"
-#import "GlobalMenu.h"
-#import "AppDelegate.h"
-#import "ImageLibrary.h"
-
 // Global menu
 extern GlobalMenu *menuGlobal;
 

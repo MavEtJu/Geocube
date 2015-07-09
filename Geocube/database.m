@@ -6,12 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <sqlite3.h>
-#import <Foundation/Foundation.h>
-#import "Geocube.h"
-#import "dbObjects.h"
-#import "database.h"
-#import "My Tools.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation database
 

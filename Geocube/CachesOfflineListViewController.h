@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "GCTableViewController.h"
+#import "Geosphere-Prefix.pch"
 
 @interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating> {
     NSArray *wps;

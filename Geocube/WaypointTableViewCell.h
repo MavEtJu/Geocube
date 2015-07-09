@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface WaypointTableViewCell : UITableViewCell {
     UILabel *description;
     UILabel *name;

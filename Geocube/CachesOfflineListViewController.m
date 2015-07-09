@@ -6,13 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "CachesOfflineListViewController.h"
-#import "Geocube.h"
-#import "My Tools.h"
-#import "Coordinates.h"
-#import "database.h"
-#import "dbObjects.h"
-#import "WaypointTableViewCell.h"
+#import "Geosphere-Prefix.pch"
 
 #define THISCELL @"waypointtableviewcell"
 

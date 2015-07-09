@@ -6,11 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Geocube.h"
-#import "GlobalMenu.h"
-#import "DOPNavbarMenu.h"
-#import "My Tools.h"
+#import "Geosphere-Prefix.pch"
 
 #define MENU_STRING @"GC"
 

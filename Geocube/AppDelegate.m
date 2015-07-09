@@ -6,17 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "Geocube.h"
-#import "CachesOfflineListViewController.h"
-#import "GroupsViewController.h"
-#import "FilesViewController.h"
-#import "UserProfileViewController.h"
-#import "NullViewController.h"
-#import "database.h"
-#import "database-cache.h"
-#import "My Tools.h"
-#import "ImageLibrary.h"
+#import "Geosphere-Prefix.pch"
 
 @implementation AppDelegate
 
