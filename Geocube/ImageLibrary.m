@@ -58,23 +58,34 @@
     ADD(@"cache - unknown - 30x30", ImageCaches_NFI);
     ADD(@"waypoint - unknown - 30x30", Imagewaypoints_NFI);
     ADD(@"cache - unknown - 30x30", ImageNFI);
-
-    ADD(@"log - archived - 30x30", ImageLog_Archived);
-    ADD(@"log - attended - 30x30", ImageLog_Attended);
-    ADD(@"log - coordinates - 30x30", ImageLog_Coordinates);
+    
+    ADD(@"container - other - 70x20", ImageContainer_Virtual);
+    ADD(@"container - micro - 70x20", ImageContainer_Micro);
+    ADD(@"container - small - 70x20", ImageContainer_Small);
+    ADD(@"container - regular - 70x20", ImageContainer_Regular);
+    ADD(@"container - large - 70x20", ImageContainer_Large);
+    ADD(@"container - notchosen - 70x20", ImageContainer_NotChosen);
+    ADD(@"container - other - 70x20", ImageContainer_Other);
+    ADD(@"container - unknown - 70x20", ImageContainer_Unknown);
+    
     ADD(@"log - didnotfind - 30x30", ImageLog_DidNotFind);
-    ADD(@"log - disabled - 18x18", ImageLog_Disabled);
     ADD(@"log - enabled - 30x30", ImageLog_Enabled);
     ADD(@"log - found - 30x30", ImageLog_Found);
     ADD(@"log - needsarchiving - 30x30", ImageLog_NeedsArchiving);
     ADD(@"log - needsmaintenance - 30x30", ImageLog_NeedsMaintenance);
-    ADD(@"log - note - 30x30", ImageLog_Note);
     ADD(@"log - ownermaintenance - 30x30", ImageLog_OwnerMaintenance);
-    ADD(@"log - published - 30x30", ImageLog_Published);
     ADD(@"log - reviewernote - 30x30", ImageLog_ReviewerNote);
+    ADD(@"log - published - 30x30", ImageLog_Published);
+    ADD(@"log - archived - 30x30", ImageLog_Archived);
+    ADD(@"log - disabled - 18x18", ImageLog_Disabled);
     ADD(@"log - unarchived - 30x30", ImageLog_Unarchived);
-    ADD(@"log - unknown - 30x30", ImageLog_Unknown);
+    ADD(@"log - coordinates - 30x30", ImageLog_Coordinates);
+    ADD(@"log - unknown - 30x30", ImageLog_WebcamPhoto);
+    ADD(@"log - note - 30x30", ImageLog_Note);
+    ADD(@"log - attended - 30x30", ImageLog_Attended);
     ADD(@"log - willattend - 30x30", ImageLog_WillAttend);
+    ADD(@"log - unknown - 30x30", ImageLog_Unknown);
+
 
     ADD(@"waypoint rating star on 19x18", ImageWaypointView_ratingOn);
     ADD(@"waypoint rating star off 18x18", ImageWaypointView_ratingOff);

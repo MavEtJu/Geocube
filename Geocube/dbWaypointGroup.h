@@ -17,9 +17,9 @@
 
 - (id)init:(NSInteger)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 
-@property NSInteger _id;
-@property NSString *name;
-@property BOOL usergroup;
+@property (nonatomic) NSInteger _id;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) BOOL usergroup;
 
 @end
 

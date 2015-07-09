@@ -17,9 +17,9 @@
 
 - (id)init:(NSInteger)_id type:(NSString *)type icon:(NSInteger)icon;
 
-@property NSInteger _id;
-@property NSString *type;
-@property NSInteger icon;
+@property (nonatomic) NSInteger _id;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic) NSInteger icon;
 
 @end
 

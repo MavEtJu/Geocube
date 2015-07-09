@@ -132,7 +132,7 @@
                 goto bye;
             }
             if ([elementName compare:@"type"] == NSOrderedSame) {
-                [currentWP setWp_type:[dbc waypointType_get_byname:currentText]];
+                [currentWP setWp_type:[dbc WaypointType_get_byname:currentText]];
                 [currentWP setWp_type_int:currentWP.wp_type._id];
                 goto bye;
             }

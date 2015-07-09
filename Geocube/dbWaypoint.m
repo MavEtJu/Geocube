@@ -26,7 +26,7 @@
     lon_float = [lon floatValue];
     lat_int = lat_float * 1000000;
     lon_int = lon_float * 1000000;
-    wp_type = [dbc waypointType_get:wp_type_int];
+    wp_type = [dbc WaypointType_get:wp_type_int];
     
     coordinates = MKCoordinates([lat floatValue], [lon floatValue]);
 

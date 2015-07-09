@@ -10,7 +10,8 @@
 
 @implementation DatabaseCache
 
-@synthesize WaypointTypes, WaypointGroups, Waypoints, WaypointGroup_AllWaypoints, WaypointGroup_AllWaypoints_Found, WaypointGroup_AllWaypoints_NotFound, WaypointGroup_LastImport,WaypointGroup_LastImportAdded, WaypointType_Unknown;
+@synthesize WaypointTypes, WaypointGroups, Waypoints, LogTypes, ContainerTypes;
+@synthesize WaypointGroup_AllWaypoints, WaypointGroup_AllWaypoints_Found, WaypointGroup_AllWaypoints_NotFound, WaypointGroup_LastImport,WaypointGroup_LastImportAdded, WaypointType_Unknown, ContainerType_Unknown, LogType_Unknown;
 
 - (id)init
 {
@@ -25,6 +26,8 @@
     WaypointGroups = [db WaypointGroups_all];
     WaypointTypes = [db WaypointTypes_all];
     Waypoints = [db Waypoints_all];
+    ContainerTypes = [db ContainerTypes_all];
+    LogTypes = [db LogTypes_all];
     
     WaypointGroup_AllWaypoints = nil;
     WaypointGroup_AllWaypoints_Found = nil;
@@ -32,6 +35,8 @@
     WaypointGroup_LastImport = nil;
     WaypointGroup_LastImportAdded = nil;
     WaypointType_Unknown = nil;
+    ContainerType_Unknown = nil;
+    LogType_Unknown = nil;
     
     NSEnumerator *e = [WaypointGroups objectEnumerator];
     dbWaypointGroup *wpg;
@@ -57,7 +62,7 @@
             continue;
         }
     }
-    
+
     e = [WaypointTypes objectEnumerator];
     dbWaypointType *wpt;
     while ((wpt = [e nextObject]) != nil) {
@@ -66,9 +71,28 @@
             continue;
         }
     }
+
+    e = [ContainerTypes objectEnumerator];
+    dbContainerType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if ([ct.size compare:@"Unknown"] == NSOrderedSame) {
+            ContainerType_Unknown = ct;
+            continue;
+        }
+    }
+
+    e = [LogTypes objectEnumerator];
+    dbLogType *lt;
+    while ((lt = [e nextObject]) != nil) {
+        if ([lt.logtype compare:@"Unknown"] == NSOrderedSame) {
+            LogType_Unknown = lt;
+            continue;
+        }
+    }
+
 }
 
-- (dbWaypointType *)waypointType_get_byname:(NSString *)name
+- (dbWaypointType *)WaypointType_get_byname:(NSString *)name
 {
     NSEnumerator *e = [WaypointTypes objectEnumerator];
     dbWaypointType *wpt;
@@ -79,7 +103,7 @@
     return nil;
 }
 
-- (dbWaypointType *)waypointType_get:(NSInteger)wp_type
+- (dbWaypointType *)WaypointType_get:(NSInteger)wp_type
 {
     NSEnumerator *e = [WaypointTypes objectEnumerator];
     dbWaypointType *wpt;
@@ -88,7 +112,51 @@
             return wpt;
     }
     return nil;
+}
 
+- (dbLogType *)LogType_get_bytype:(NSString *)type
+{
+    NSEnumerator *e = [LogTypes objectEnumerator];
+    dbLogType *lt;
+    while ((lt = [e nextObject]) != nil) {
+        if ([lt.logtype compare:type] == NSOrderedSame)
+            return lt;
+    }
+    return nil;
+}
+
+- (dbLogType *)LogType_get:(NSInteger)_id
+{
+    NSEnumerator *e = [LogTypes objectEnumerator];
+    dbLogType *lt;
+    while ((lt = [e nextObject]) != nil) {
+        if (lt._id == _id)
+            return lt;
+    }
+    return nil;
+}
+
+- (dbContainerType *)ContainerType_get_bysize:(NSString *)size
+{
+    NSEnumerator *e = [ContainerTypes objectEnumerator];
+    dbContainerType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if ([ct.size compare:size] == NSOrderedSame)
+            return ct;
+    }
+    return nil;
+}
+
+
+- (dbContainerType *)ContainerType_get:(NSInteger)_id
+{
+    NSEnumerator *e = [ContainerTypes objectEnumerator];
+    dbContainerType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if (ct._id == _id)
+            return ct;
+    }
+    return nil;
 }
 
 @end

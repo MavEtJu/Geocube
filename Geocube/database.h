@@ -29,15 +29,16 @@
 - (void)WaypointGroups_rename:(NSInteger)_id newName:(NSString *)newname;
 - (void)WaypointGroups_add_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
 - (BOOL)WaypointGroups_contains_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
+- (NSArray *)WaypointGroups_all;
 
 - (NSInteger)Waypoint_get_byname:(NSString *)name;
 - (NSInteger)Waypoint_add:(dbWaypoint *)wp;
 - (void)Waypoint_update:(dbWaypoint *)wp;
-
-- (NSArray *)WaypointGroups_all;
-- (NSArray *)WaypointTypes_all;
 - (NSArray *)Waypoints_all;
 
+- (NSArray *)WaypointTypes_all;
+- (NSArray *)ContainerTypes_all;
+- (NSArray *)LogTypes_all;
 
 @end
 

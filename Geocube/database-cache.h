@@ -11,6 +11,8 @@
     NSArray *WaypointTypes;
     NSArray *WaypointGroups;
     NSArray *Waypoints;
+    NSArray *LogTypes;
+    NSArray *ContainerTypes;
     
     // System Groups
     dbWaypointGroup *WaypointGroup_AllWaypoints;
@@ -21,25 +23,43 @@
 
     // WaypointTypes
     dbWaypointType *WaypointType_Unknown;
+    
+    // LogTypes
+    dbLogType *LogType_Unknown;
+    
+    // ContainerType
+    dbContainerType *ContainerType_Unknown;
 }
 
-@property (atomic, retain) NSArray *WaypointTypes;
-@property (atomic, retain) NSArray *WaypointGroups;
-@property (atomic, retain) NSArray *Waypoints;
+@property (nonatomic, retain) NSArray *WaypointTypes;
+@property (nonatomic, retain) NSArray *WaypointGroups;
+@property (nonatomic, retain) NSArray *Waypoints;
+@property (nonatomic, retain) NSArray *LogTypes;
+@property (nonatomic, retain) NSArray *ContainerTypes;
 
 // System Groups
-@property (atomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints;
-@property (atomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_Found;
-@property (atomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
-@property (atomic, retain) dbWaypointGroup *WaypointGroup_LastImport;
-@property (atomic, retain) dbWaypointGroup *WaypointGroup_LastImportAdded;
+@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints;
+@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_Found;
+@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
+@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_LastImport;
+@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_LastImportAdded;
 
 // WaypointTypes
-@property (atomic, retain) dbWaypointType *WaypointType_Unknown;
+@property (nonatomic, retain) dbWaypointType *WaypointType_Unknown;
+
+// LogTypes
+@property (nonatomic, retain) dbLogType *LogType_Unknown;
+
+// ContainerType
+@property (nonatomic, retain) dbContainerType *ContainerType_Unknown;
 
 - (void)loadWaypointData;
-- (dbWaypointType *)waypointType_get_byname:(NSString *)name;
-- (dbWaypointType *)waypointType_get:(NSInteger)wp_type;
+- (dbWaypointType *)WaypointType_get_byname:(NSString *)name;
+- (dbWaypointType *)WaypointType_get:(NSInteger)wp_type;
+- (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
+- (dbContainerType *)ContainerType_get:(NSInteger)_id;
+- (dbLogType *)LogType_get_bytype:(NSString *)type;
+- (dbLogType *)LogType_get:(NSInteger)_id;
 
 
 @end

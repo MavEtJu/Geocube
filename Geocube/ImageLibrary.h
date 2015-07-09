@@ -41,34 +41,44 @@ typedef enum {
     ImageCaches_NFI,
     Imagewaypoints_NFI,
     ImageNFI,
-    /* Up to here: Do not reorder */
+ 
+    ImageContainer_Virtual,
+    ImageContainer_Micro,
+    ImageContainer_Small,
+    ImageContainer_Regular,
+    ImageContainer_Large,
+    ImageContainer_NotChosen,
+    ImageContainer_Other,
+    ImageContainer_Unknown,
     
-    ImageLog_Archived,
-    ImageLog_Attended,
-    ImageLog_Coordinates,
     ImageLog_DidNotFind,
-    ImageLog_Disabled,
     ImageLog_Enabled,
     ImageLog_Found,
     ImageLog_NeedsArchiving,
     ImageLog_NeedsMaintenance,
-    ImageLog_Note,
     ImageLog_OwnerMaintenance,
-    ImageLog_Published,
     ImageLog_ReviewerNote,
+    ImageLog_Published,
+    ImageLog_Archived,
+    ImageLog_Disabled,
     ImageLog_Unarchived,
-    ImageLog_Unknown,
+    ImageLog_Coordinates,
+    ImageLog_WebcamPhoto,
+    ImageLog_Note,
+    ImageLog_Attended,
     ImageLog_WillAttend,
+    ImageLog_Unknown,
+   /* Up to here: Do not reorder */
 
     ImageWaypointView_ratingOn,
     ImageWaypointView_ratingOff,
     ImageWaypointView_ratingHalf,
     ImageWaypointView_favourites,
-    
+
     ImageIcon_Smiley,
     ImageIcon_Sad,
     ImageIcon_Target,
-    
+
     ImageLibraryImagesMax
 } ImageLibraryImages;
 

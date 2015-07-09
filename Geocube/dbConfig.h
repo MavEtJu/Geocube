@@ -15,9 +15,9 @@
     NSInteger _id;
 }
 
-@property NSInteger _id;
-@property NSString *key;
-@property NSString *value;
+@property (nonatomic) NSInteger _id;
+@property (nonatomic, retain) NSString *key;
+@property (nonatomic, retain) NSString *value;
 
 - (id)init:(NSInteger)_id key:(NSString *)key value:(NSString *)value;
 

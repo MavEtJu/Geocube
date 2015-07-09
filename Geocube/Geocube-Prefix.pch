@@ -28,6 +28,8 @@
 #import "dbWaypointGroup.h"
 #import "dbWaypointType.h"
 #import "dbWaypoint.h"
+#import "dbContainerTypes.h"
+#import "dbLogTypes.h"
 #import "database-cache.h"
 #import "database.h"
 
