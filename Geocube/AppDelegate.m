@@ -141,7 +141,7 @@
     // Files RootController
     controllers = [NSMutableArray array];
     vc = [[FilesViewController alloc] init];
-    vc.title = @"Shared Files";
+    vc.title = @"Local Files";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
