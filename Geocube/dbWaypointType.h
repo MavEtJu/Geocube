@@ -1,15 +1,15 @@
 //
-//  dbObjectWaypointType.h
+//  dbWaypointType.h
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#ifndef Geocube_dbObjectWaypointType_h
-#define Geocube_dbObjectWaypointType_h
+#ifndef Geocube_dbWaypointType_h
+#define Geocube_dbWaypointType_h
 
-@interface dbObjectWaypointType : dbObject {
+@interface dbWaypointType : dbObject {
     NSInteger _id;
     NSString *type;
     NSInteger icon;

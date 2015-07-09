@@ -12,7 +12,7 @@
 
 @implementation CacheViewController
 
-- (id)init:(dbObjectWaypoint *)_wp
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super init];
     wp = _wp;
@@ -127,6 +127,7 @@
                 break;
         }
         cell.textLabel.textColor = tc;
+        cell.imageView.image = nil;
         return cell;
     }
     

@@ -46,11 +46,11 @@
     [self checkAndCreateDatabase:dbname empty:dbempty];
     
     sqlite3_open([dbempty UTF8String], &db);
-    dbObjectConfig *c_empty = [self config_get:@"version"];
+    dbConfig *c_empty = [self config_get:@"version"];
     sqlite3_close(db);
     
     sqlite3_open([dbname UTF8String], &db);
-    dbObjectConfig *c_real = [self config_get:@"version"];
+    dbConfig *c_real = [self config_get:@"version"];
     sqlite3_close(db);
     
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
@@ -90,12 +90,12 @@
 
 // ------------------------
 
-- (dbObjectConfig *)config_get:(NSString *)key
+- (dbConfig *)config_get:(NSString *)key
 {
     NSString *sql = @"select id, key, value from config where key = ?";
     sqlite3_stmt *req;
     
-    dbObjectConfig *c;
+    dbConfig *c;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -106,7 +106,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, key);
             TEXT_FETCH_AND_ASSIGN(req, 2, value);
-            c = [[dbObjectConfig alloc] init:_id key:key value:value];
+            c = [[dbConfig alloc] init:_id key:key value:value];
         }
         sqlite3_finalize(req);
     }
@@ -133,11 +133,11 @@
 
 // ------------------------
 
-- (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name
+- (dbWaypointGroup *)WaypointGroups_get_byName:(NSString *)name
 {
     NSString *sql = @"select id, name, usergroup from waypoint_groups where name = ?";
     sqlite3_stmt *req;
-    dbObjectWaypointGroup *wpg;
+    dbWaypointGroup *wpg;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -149,7 +149,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             INT_FETCH_AND_ASSIGN(req, 2, ug);
-            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name usergroup:ug];
+            wpg = [[dbWaypointGroup alloc] init:_id name:name usergroup:ug];
         }
         sqlite3_finalize(req);
     }
@@ -161,7 +161,7 @@
     NSString *sql = @"select id, name, usergroup from waypoint_groups";
     sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbObjectWaypointGroup *wpg;
+    dbWaypointGroup *wpg;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -171,7 +171,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             INT_FETCH_AND_ASSIGN(req, 2, ug);
-            wpg = [[dbObjectWaypointGroup alloc] init:_id name:name usergroup:ug];
+            wpg = [[dbWaypointGroup alloc] init:_id name:name usergroup:ug];
             [wpgs addObject:wpg];
         }
         sqlite3_finalize(req);
@@ -313,11 +313,11 @@
 
 // ------------------------
 
-- (dbObjectWaypointType *)WaypointTypes_get_byType:(NSString *)type
+- (dbWaypointType *)WaypointTypes_get_byType:(NSString *)type
 {
     NSString *sql = @"select id, type, icon from waypoint_types where type = ?";
     sqlite3_stmt *req;
-    dbObjectWaypointType *wpt;
+    dbWaypointType *wpt;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -329,7 +329,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
             INT_FETCH_AND_ASSIGN(req, 2, icon);
-            wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
+            wpt = [[dbWaypointType alloc] init:_id type:type icon:icon];
         }
         sqlite3_finalize(req);
     }
@@ -341,7 +341,7 @@
     NSString *sql = @"select id, type, icon from waypoint_types";
     sqlite3_stmt *req;
     NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
-    dbObjectWaypointType *wpt;
+    dbWaypointType *wpt;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -351,7 +351,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
             INT_FETCH_AND_ASSIGN(req, 2, icon);
-            wpt = [[dbObjectWaypointType alloc] init:_id type:type icon:icon];
+            wpt = [[dbWaypointType alloc] init:_id type:type icon:icon];
             [wpts addObject:wpt];
         }
         sqlite3_finalize(req);
@@ -366,7 +366,7 @@
     NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain, favourites from waypoints";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbObjectWaypoint *wp;
+    dbWaypoint *wp;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -390,7 +390,7 @@
             DOUBLE_FETCH_AND_ASSIGN(req, 14, ratingT);
             INT_FETCH_AND_ASSIGN(req, 15, favourites);
             
-            wp = [[dbObjectWaypoint alloc] init:_id];
+            wp = [[dbWaypoint alloc] init:_id];
             [wp setName:name];
             [wp setDescription:desc];
             [wp setLat:lat];
@@ -436,7 +436,7 @@
     return _id;
 }
 
-- (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp
+- (NSInteger)Waypoint_add:(dbWaypoint *)wp
 {
     NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, country, state, rating_difficulty, rating_terrain, favourites) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
@@ -471,7 +471,7 @@
     return _id;
 }
 
-- (void)Waypoint_update:(dbObjectWaypoint *)wp
+- (void)Waypoint_update:(dbWaypoint *)wp
 {
     NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, country = ?, state = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ? where id = ?";
     sqlite3_stmt *req;

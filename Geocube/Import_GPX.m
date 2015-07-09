@@ -67,7 +67,7 @@
     index++;
     
     if ([currentElement compare:@"wpt"] == NSOrderedSame) {
-        currentWP = [[dbObjectWaypoint alloc] init];
+        currentWP = [[dbWaypoint alloc] init];
         [currentWP setLat:[attributeDict objectForKey:@"lat"]];
         [currentWP setLon:[attributeDict objectForKey:@"lon"]];
         

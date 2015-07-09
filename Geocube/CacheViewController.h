@@ -7,7 +7,7 @@
 //
 
 @interface CacheViewController : GCTableViewController {
-    dbObjectWaypoint *wp;
+    dbWaypoint *wp;
     
     NSArray *cacheItems;
     NSArray *actionItems;

@@ -24,10 +24,10 @@
 #import "My Tools.h"
 
 #import "dbObject.h"
-#import "dbObjectConfig.h"
-#import "dbObjectWaypointGroup.h"
-#import "dbObjectWaypointType.h"
-#import "dbObjectWaypoint.h"
+#import "dbConfig.h"
+#import "dbWaypointGroup.h"
+#import "dbWaypointType.h"
+#import "dbWaypoint.h"
 #import "database-cache.h"
 #import "database.h"
 

@@ -45,7 +45,7 @@
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.WaypointGroups objectEnumerator];
-    dbObjectWaypointGroup *wpg;
+    dbWaypointGroup *wpg;
     
     while ((wpg = [e nextObject]) != nil) {
         if (wpg.usergroup == showUsers)
@@ -87,7 +87,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
     
-    dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    dbWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", [db WaypointGroups_count_waypoints:wpg._id]];
     
@@ -101,7 +101,7 @@
         return;
     }
     
-    dbObjectWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    dbWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
 
     UIAlertController *view=   [UIAlertController
                                 alertControllerWithTitle:wpg.name
@@ -155,7 +155,7 @@
 - (void)emptyGroups
 {
     NSEnumerator *e = [wpgs objectEnumerator];
-    dbObjectWaypointGroup *wpg;
+    dbWaypointGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
         [self groupEmpty:wpg reload:NO];
     }
@@ -163,7 +163,7 @@
     [self.tableView reloadData];
 }
 
-- (void)groupEmpty:(dbObjectWaypointGroup *)wpg reload:(BOOL)reload
+- (void)groupEmpty:(dbWaypointGroup *)wpg reload:(BOOL)reload
 {
     [db WaypointGroups_empty:wpg._id];
     [dbc loadWaypointData];
@@ -173,7 +173,7 @@
     }
 }
 
-- (void)groupDelete:(dbObjectWaypointGroup *)wpg
+- (void)groupDelete:(dbWaypointGroup *)wpg
 {
     [db WaypointGroups_delete:wpg._id];
     [dbc loadWaypointData];
@@ -181,7 +181,7 @@
     [self.tableView reloadData];
 }
 
-- (void)groupRename:(dbObjectWaypointGroup *)wpg
+- (void)groupRename:(dbWaypointGroup *)wpg
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Rename group"

@@ -1,5 +1,5 @@
 //
-//  dbObjectWaypointGroup.m
+//  dbWaypointGroup.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 29/06/2015.
@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbObjectWaypointGroup
+@implementation dbWaypointGroup
 
 @synthesize _id, name, usergroup;
 

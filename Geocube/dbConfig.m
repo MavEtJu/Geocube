@@ -1,5 +1,5 @@
 //
-//  dbObjectConfig.m
+//  dbConfig.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbObjectConfig
+@implementation dbConfig
 
 @synthesize _id, key, value;
 

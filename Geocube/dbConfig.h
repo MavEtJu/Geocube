@@ -1,15 +1,15 @@
 //
-//  dbObjectConfig.h
+//  dbConfig.h
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#ifndef Geocube_dbObjectConfig_h
-#define Geocube_dbObjectConfig_h
+#ifndef Geocube_dbConfig_h
+#define Geocube_dbConfig_h
 
-@interface dbObjectConfig : dbObject {
+@interface dbConfig : dbObject {
     NSString *key;
     NSString *value;
     NSInteger _id;

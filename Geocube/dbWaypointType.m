@@ -1,5 +1,5 @@
 //
-//  dbObjectWaypointType.m
+//  dbWaypointType.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbObjectWaypointType
+@implementation dbWaypointType
 
 @synthesize _id, type, icon;
 

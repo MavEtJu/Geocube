@@ -44,7 +44,7 @@
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.Waypoints objectEnumerator];
-    dbObjectWaypoint *wp;
+    dbWaypoint *wp;
     
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
@@ -53,7 +53,7 @@
         
         [_wps addObject:wp];
     }
-    wps = [_wps sortedArrayUsingComparator: ^(dbObjectWaypoint *obj1, dbObjectWaypoint *obj2) {
+    wps = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
         
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
@@ -97,7 +97,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
     cell.description.text = wp.description;
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.wp_type.icon];
@@ -123,7 +123,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbObjectWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
     
     UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];

@@ -12,13 +12,13 @@
 @interface Import_GPX : NSObject <NSXMLParserDelegate> {
     NSArray *files;
     NSString *groupname;
-    dbObjectWaypointGroup *group;
+    dbWaypointGroup *group;
     
     NSInteger index;
     NSInteger inItem;
     NSMutableString *currentText;
     NSString *currentElement;
-    dbObjectWaypoint *currentWP;
+    dbWaypoint *currentWP;
 }
 
 - (id)init:(NSString *)filename group:(NSString *)groupname;

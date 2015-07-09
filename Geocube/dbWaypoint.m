@@ -1,5 +1,5 @@
 //
-//  dbObjectWaypoint.m
+//  dbWaypoint.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbObjectWaypoint
+@implementation dbWaypoint
 
 @synthesize _id, wp_group_int, wp_group, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, rating_difficulty, rating_terrain, favourites, wp_type_int, wp_type_str, wp_type, country, state, gc_short_desc, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates;
 

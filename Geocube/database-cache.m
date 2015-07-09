@@ -34,7 +34,7 @@
     WaypointType_Unknown = nil;
     
     NSEnumerator *e = [WaypointGroups objectEnumerator];
-    dbObjectWaypointGroup *wpg;
+    dbWaypointGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
         if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints"] == NSOrderedSame) {
             WaypointGroup_AllWaypoints = wpg;
@@ -59,7 +59,7 @@
     }
     
     e = [WaypointTypes objectEnumerator];
-    dbObjectWaypointType *wpt;
+    dbWaypointType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if ([wpg.name compare:@"*"] == NSOrderedSame) {
             WaypointType_Unknown = wpt;
@@ -68,10 +68,10 @@
     }
 }
 
-- (dbObjectWaypointType *)waypointType_get_byname:(NSString *)name
+- (dbWaypointType *)waypointType_get_byname:(NSString *)name
 {
     NSEnumerator *e = [WaypointTypes objectEnumerator];
-    dbObjectWaypointType *wpt;
+    dbWaypointType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if ([wpt.type compare:name] == NSOrderedSame)
             return wpt;
@@ -79,10 +79,10 @@
     return nil;
 }
 
-- (dbObjectWaypointType *)waypointType_get:(NSInteger)wp_type
+- (dbWaypointType *)waypointType_get:(NSInteger)wp_type
 {
     NSEnumerator *e = [WaypointTypes objectEnumerator];
-    dbObjectWaypointType *wpt;
+    dbWaypointType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if (wpt._id == wp_type)
             return wpt;

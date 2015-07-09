@@ -1,18 +1,18 @@
 //
-//  dbObjectWaypoint.h
+//  dbWaypoint.h
 //  Geocube
 //
 //  Created by Edwin Groothuis on 28/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#ifndef Geocube_dbObjectWaypoint_h
-#define Geocube_dbObjectWaypoint_h
+#ifndef Geocube_dbWaypoint_h
+#define Geocube_dbWaypoint_h
 
-@interface dbObjectWaypoint : dbObject {
+@interface dbWaypoint : dbObject {
     NSInteger _id;
     NSInteger wp_group_int;
-    dbObjectWaypointGroup *wp_group;
+    dbWaypointGroup *wp_group;
     NSString *name, *description, *url;
 
     NSString *lat, *lon;
@@ -27,7 +27,7 @@
     
     NSInteger wp_type_int;
     NSString *wp_type_str;
-    dbObjectWaypointType *wp_type;
+    dbWaypointType *wp_type;
     
     NSString *country, *state;
     
@@ -41,7 +41,7 @@
 
 @property (nonatomic) NSInteger _id;
 @property (nonatomic) NSInteger wp_group_int;
-@property (nonatomic, retain) dbObjectWaypointGroup *wp_group;
+@property (nonatomic, retain) dbWaypointGroup *wp_group;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *url;
@@ -58,7 +58,7 @@
 @property (nonatomic) NSInteger favourites;
 @property (nonatomic) NSInteger wp_type_int;
 @property (nonatomic) NSString *wp_type_str;
-@property (nonatomic, retain) dbObjectWaypointType *wp_type;
+@property (nonatomic, retain) dbWaypointType *wp_type;
 @property (nonatomic, retain) NSString *country;
 @property (nonatomic, retain) NSString *state;
 @property (nonatomic, retain) NSString *gc_short_desc;

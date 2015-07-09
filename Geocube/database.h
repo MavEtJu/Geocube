@@ -21,7 +21,7 @@
 - (id)init;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 
-- (dbObjectWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
+- (dbWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
 - (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid;
 - (void)WaypointGroups_new:(NSString *)name isUser:(BOOL)isUser;
 - (void)WaypointGroups_delete:(NSInteger)_id;
@@ -31,8 +31,8 @@
 - (BOOL)WaypointGroups_contains_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
 
 - (NSInteger)Waypoint_get_byname:(NSString *)name;
-- (NSInteger)Waypoint_add:(dbObjectWaypoint *)wp;
-- (void)Waypoint_update:(dbObjectWaypoint *)wp;
+- (NSInteger)Waypoint_add:(dbWaypoint *)wp;
+- (void)Waypoint_update:(dbWaypoint *)wp;
 
 - (NSArray *)WaypointGroups_all;
 - (NSArray *)WaypointTypes_all;

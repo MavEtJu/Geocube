@@ -1,15 +1,15 @@
 //
-//  dbObjectWaypointGroup.h
+//  dbWaypointGroup.h
 //  Geocube
 //
 //  Created by Edwin Groothuis on 29/06/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-#ifndef Geocube_dbObjectWaypointGroup_h
-#define Geocube_dbObjectWaypointGroup_h
+#ifndef Geocube_dbWaypointGroup_h
+#define Geocube_dbWaypointGroup_h
 
-@interface dbObjectWaypointGroup : dbObject {
+@interface dbWaypointGroup : dbObject {
     NSInteger _id;
     NSString *name;
     BOOL usergroup;
