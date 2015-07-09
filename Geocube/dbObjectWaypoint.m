@@ -7,6 +7,7 @@
 //
 
 #import "dbObjectWaypoint.h"
+#import "coordinates.h"
 #import "Geocube.h"
 #import "database-cache.h"
 

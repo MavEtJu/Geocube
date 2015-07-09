@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "dbObjects.h"
 #import "My Tools.h"
+#import "coordinates.h"
 
 @interface dbObjectWaypoint : dbObject {
     NSInteger _id;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
+		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
@@ -92,6 +93,8 @@
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
 		E82FBB291B4613D70009AB6D /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
+		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
+		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
 		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 			children = (
 				E8F570B51B3FED24003F020C /* My Tools.h */,
 				E8F570B31B3FED0A003F020C /* My Tools.m */,
+				E8467C8C1B4E04EE00FFA253 /* Coordinates.h */,
+				E8467C8D1B4E04EE00FFA253 /* Coordinates.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -626,6 +631,7 @@
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
+				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,

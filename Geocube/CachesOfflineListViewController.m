@@ -9,6 +9,7 @@
 #import "CachesOfflineListViewController.h"
 #import "Geocube.h"
 #import "My Tools.h"
+#import "Coordinates.h"
 #import "database.h"
 #import "dbObjects.h"
 #import "WaypointTableViewCell.h"
@@ -54,7 +55,7 @@
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
-        wp.calculatedDistance = [MyTools coordinates2distance:wp.coordinates to:[MyTools myLocation]];
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:[Coordinates myLocation]];
         
         [_wps addObject:wp];
     }
@@ -112,11 +113,11 @@
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;
     cThere.lon = wp.lon_float;
-    cMe = [MyTools myLocation];
-    NSInteger bearing = [MyTools coordinates2bearing:cMe to:cThere];
+    cMe = [Coordinates myLocation];
+    NSInteger bearing = [Coordinates coordinates2bearing:cMe to:cThere];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
-    cell.compass.text = [MyTools bearing2compass:bearing];
-    cell.distance.text = [MyTools NiceDistance:[MyTools coordinates2distance:cMe to:cThere]];
+    cell.compass.text = [Coordinates bearing2compass:bearing];
+    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:cMe to:cThere]];
     cell.stateCountry.text = [NSString stringWithFormat:@"%@, %@", wp.state, wp.country];
     return cell;
 }
