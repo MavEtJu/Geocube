@@ -61,7 +61,7 @@
 + (NSString *)bearing2compass:(NSInteger)bearing
 {
     NSString *point;
-    switch ((bearing * 16 / 360) % 16) {
+    switch ((int)((bearing + 11.25) / 22.5)) {
         case  0: point = @"N";   break;
         case  1: point = @"NNE"; break;
         case  2: point = @"NE";  break;
@@ -78,6 +78,7 @@
         case 13: point = @"WNW"; break;
         case 14: point = @"NW";  break;
         case 15: point = @"NNW"; break;
+        case 16: point = @"N";   break;
         default: point = @"???"; break;
     }
     return point;
