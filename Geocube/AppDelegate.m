@@ -80,7 +80,7 @@
     
     // Caches offline tabs
     controllers = [NSMutableArray array];
-    vc = [[GCTableViewController alloc] init];
+    vc = [[NullViewController alloc] init];
     vc.title = @"XFilters";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];

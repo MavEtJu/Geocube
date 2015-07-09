@@ -23,7 +23,8 @@
     if (showUsers == YES)
         menuItems = [NSArray arrayWithObjects:@"Empty groups", @"Add a group", nil];
     else
-        menuItems = [NSArray arrayWithObjects:@"Empty groups", nil];
+        menuItems = nil;
+    
     return self;
 }
 
@@ -33,6 +34,11 @@
     [super viewWillAppear:animated];
     [self refreshGroupData];
     [self.tableView reloadData];
+    
+    if (showUsers == YES)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    else
+        self.navigationItem.rightBarButtonItem.enabled = NO;
  }
 
 - (void)refreshGroupData
@@ -108,7 +114,7 @@
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
-                                 [self groupEmpty:wpg];
+                                 [self groupEmpty:wpg reload:YES];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
 
@@ -146,12 +152,25 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)groupEmpty:(dbObjectWaypointGroup *)wpg
+- (void)emptyGroups
+{
+    NSEnumerator *e = [wpgs objectEnumerator];
+    dbObjectWaypointGroup *wpg;
+    while ((wpg = [e nextObject]) != nil) {
+        [self groupEmpty:wpg reload:NO];
+    }
+    [self refreshGroupData];
+    [self.tableView reloadData];
+}
+
+- (void)groupEmpty:(dbObjectWaypointGroup *)wpg reload:(BOOL)reload
 {
     [db WaypointGroups_empty:wpg._id];
     [dbc loadWaypointData];
-    [self refreshGroupData];
-    [self.tableView reloadData];
+    if (reload == YES) {
+        [self refreshGroupData];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)groupDelete:(dbObjectWaypointGroup *)wpg
@@ -175,7 +194,6 @@
                          handler:^(UIAlertAction *action) {
                              //Do Some action
                              UITextField *tf = alert.textFields.firstObject;
-                             
                              
                              NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
                              [db WaypointGroups_rename:wpg._id newName:tf.text];
@@ -211,9 +229,20 @@
     NSLog(@"GroupsViewController/didSelectedMenu: self:%p", self);
 
     // Add a group
-    if (index == 1) {
-        [self newGroup];
-        return;
+    if (showUsers == YES) {
+        if (index == 0) {
+            [self emptyGroups];
+            return;
+        }
+        if (index == 1) {
+            [self newGroup];
+            return;
+        }
+    } else {
+        if (index == 0) {
+            [self emptyGroups];
+            return;
+        }
     }
     
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -20,8 +20,7 @@
     fm = [[NSFileManager alloc] init];
     [self refreshFileData];
     
-    menuItems = nil; //[NSArray arrayWithObjects:@"Manage files", nil];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    menuItems = nil;
 }
 
 - (void)refreshFileData
@@ -38,6 +37,7 @@
     [super viewWillAppear:animated];
     [self refreshFileData];
     [self.tableView reloadData];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 
