@@ -140,19 +140,31 @@
         }
         if (index == 3 && currentText != nil) {
             if ([elementName compare:@"groundspeak:difficulty"] == NSOrderedSame) {
-                [currentWP setRating_difficulty:[currentText floatValue]];
+                [currentWP setGc_rating_difficulty:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:terrain"] == NSOrderedSame) {
-                [currentWP setRating_terrain:[currentText floatValue]];
+                [currentWP setGc_rating_terrain:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
-                [currentWP setCountry:currentText];
+                [currentWP setGc_country:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
-                [currentWP setState:currentText];
+                [currentWP setGc_state:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:short_description"] == NSOrderedSame) {
+                [currentWP setGc_short_desc:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:long_description"] == NSOrderedSame) {
+                [currentWP setGc_long_desc:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:hint"] == NSOrderedSame) {
+                [currentWP setGc_hint:currentText];
                 goto bye;
             }
             goto bye;

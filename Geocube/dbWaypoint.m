@@ -10,7 +10,7 @@
 
 @implementation dbWaypoint
 
-@synthesize _id, wp_group_int, wp_group, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, rating_difficulty, rating_terrain, favourites, wp_type_int, wp_type_str, wp_type, country, state, gc_short_desc, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates;
+@synthesize _id, wp_group_int, wp_group, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, wp_type_int, wp_type_str, wp_type, gc_country, gc_state, gc_short_desc, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates;
 
 - (id)init:(NSInteger)__id
 {

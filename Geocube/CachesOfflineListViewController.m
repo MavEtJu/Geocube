@@ -102,7 +102,7 @@
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.wp_type.icon];
 
-    [cell setRatings:wp.favourites terrain:wp.rating_terrain difficulty:wp.rating_difficulty];
+    [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
     
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;
@@ -112,7 +112,7 @@
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
     cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:cMe to:cThere]];
-    cell.stateCountry.text = [NSString stringWithFormat:@"%@, %@", wp.state, wp.country];
+    cell.stateCountry.text = [NSString stringWithFormat:@"%@, %@", wp.gc_state, wp.gc_country];
     return cell;
 }
 
@@ -126,7 +126,7 @@
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
     
-    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped wayPoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
     [self.navigationController pushViewController:newController animated:YES];

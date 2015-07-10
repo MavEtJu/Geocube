@@ -13,4 +13,6 @@
     NSArray *actionItems;
 }
 
+- (id)initWithStyle:(NSInteger)style wayPoint:(dbWaypoint *)wp;
+
 @end

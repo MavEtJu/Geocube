@@ -22,14 +22,14 @@
     NSString *date_placed;
     NSInteger date_placed_epoch;
 
-    float rating_difficulty, rating_terrain;
-    NSInteger favourites;
+    float gc_rating_difficulty, gc_rating_terrain;
+    NSInteger gc_favourites;
     
     NSInteger wp_type_int;
     NSString *wp_type_str;
     dbWaypointType *wp_type;
     
-    NSString *country, *state;
+    NSString *gc_country, *gc_state;
     
     NSString *gc_short_desc, *gc_long_desc;
     NSString *gc_hint, *gc_personal_note;
@@ -53,14 +53,14 @@
 @property (nonatomic) float lon_float;
 @property (nonatomic, retain) NSString *date_placed;
 @property (nonatomic) NSInteger date_placed_epoch;
-@property (nonatomic) float rating_difficulty;
-@property (nonatomic) float rating_terrain;
-@property (nonatomic) NSInteger favourites;
+@property (nonatomic) float gc_rating_difficulty;
+@property (nonatomic) float gc_rating_terrain;
+@property (nonatomic) NSInteger gc_favourites;
 @property (nonatomic) NSInteger wp_type_int;
 @property (nonatomic) NSString *wp_type_str;
 @property (nonatomic, retain) dbWaypointType *wp_type;
-@property (nonatomic, retain) NSString *country;
-@property (nonatomic, retain) NSString *state;
+@property (nonatomic, retain) NSString *gc_country;
+@property (nonatomic, retain) NSString *gc_state;
 @property (nonatomic, retain) NSString *gc_short_desc;
 @property (nonatomic, retain) NSString *gc_long_desc;
 @property (nonatomic, retain) NSString *gc_hint;

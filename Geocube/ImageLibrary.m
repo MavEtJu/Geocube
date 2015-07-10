@@ -86,7 +86,6 @@
     ADD(@"log - willattend - 30x30", ImageLog_WillAttend);
     ADD(@"log - unknown - 30x30", ImageLog_Unknown);
 
-
     ADD(@"waypoint rating star on 19x18", ImageWaypointView_ratingOn);
     ADD(@"waypoint rating star off 18x18", ImageWaypointView_ratingOff);
     ADD(@"waypoint rating star half 18x18", ImageWaypointView_ratingHalf);

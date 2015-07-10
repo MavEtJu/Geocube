@@ -12,9 +12,9 @@
 
 @implementation CacheViewController
 
-- (id)init:(dbWaypoint *)_wp
+- (id)initWithStyle:(NSInteger)_style wayPoint:(dbWaypoint *)_wp;
 {
-    self = [super init];
+    self = [super initWithStyle:_style];
     wp = _wp;
     return self;
 }
