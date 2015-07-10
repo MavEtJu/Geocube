@@ -30,11 +30,6 @@
     actionItems = @[@"Set as Target", @"Mark as Found"];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,42 +83,46 @@
         switch (indexPath.row) {
             case 0: /* Description */
                 if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 1: /* Hint */
+//                if (wp.gc_hint == nil || [wp.gc_hint compare:@""] == NSOrderedSame)
                 if ([wp.gc_hint compare:@""] == NSOrderedSame)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 2: /* Personal note */
                 if ([wp.gc_personal_note compare:@""] == NSOrderedSame)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 3: /* Field Note */
                 if ([wp hasFieldNotes] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 4: /* Logs */
-                if ([wp hasLogs] == FALSE)
-                    tc = [UIColor grayColor];
+                if ([wp hasLogs] == 0)
+                    tc = [UIColor lightGrayColor];
+                else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], [wp hasLogs]];
+                break;
             case 5: /* Attributes Note */
                 if ([wp hasAttributes] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 6: /* Related Waypoints */
                 if ([wp hasWaypoints] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 7: /* Inventory */
                 if ([wp hasInventory] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 8: /* Images */
                 if ([wp hasImages] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
             case 9: /* Group Membership */
                 if ([wp hasGroups] == FALSE)
-                    tc = [UIColor grayColor];
+                    tc = [UIColor lightGrayColor];
                 break;
         }
         cell.textLabel.textColor = tc;
@@ -153,6 +152,29 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        return;
+    }
+
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {   /* Description */
+            UIViewController *newController = [[CacheDescriptionViewController alloc] init:wp];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+        if (indexPath.row == 1) {   /* Hint */
+            UIViewController *newController = [[CacheHintViewController alloc] init:wp];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+        return;
+    }
+
+    if (indexPath.section == 2) {
+        return;
+    }
 
 }
 

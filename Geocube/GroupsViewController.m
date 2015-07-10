@@ -30,7 +30,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"GroupsViewController:viewWillAppear");
     [super viewWillAppear:animated];
     [self refreshGroupData];
     [self.tableView reloadData];

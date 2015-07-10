@@ -34,7 +34,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"CachesOfflineListViewController/viewWillAppear");
     [super viewWillAppear:animated];
     [self refreshWaypointsData:nil];
     [self.tableView reloadData];

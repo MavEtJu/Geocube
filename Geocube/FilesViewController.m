@@ -33,7 +33,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"FilesViewController:viewWillAppear");
     [super viewWillAppear:animated];
     [self refreshFileData];
     [self.tableView reloadData];

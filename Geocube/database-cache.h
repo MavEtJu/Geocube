@@ -60,6 +60,7 @@
 - (dbContainerType *)ContainerType_get:(NSInteger)_id;
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSInteger)_id;
+- (dbWaypoint *)Waypoint_get:(NSInteger)_id;
 
 
 @end

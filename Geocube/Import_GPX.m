@@ -50,7 +50,8 @@
     [rssParser setShouldResolveExternalEntities:NO];
     
     index = 0;
-    inItem = 0;
+    inItem = NO;
+    inLog = NO;
     [rssParser parse];
 }
 
@@ -71,10 +72,29 @@
         [currentWP setLat:[attributeDict objectForKey:@"lat"]];
         [currentWP setLon:[attributeDict objectForKey:@"lon"]];
         
-        //[items addObject:currentItem];
-        inItem = TRUE;
+        logs = [NSMutableArray arrayWithCapacity:20];
+        
+        inItem = YES;
+        return;
     }
     
+    if ([currentElement compare:@"groundspeak:long_description"] == NSOrderedSame) {
+        [currentWP setGc_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        return;
+    }
+    
+    if ([currentElement compare:@"groundspeak:short_description"] == NSOrderedSame) {
+        [currentWP setGc_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        return;
+    }
+    
+    if ([currentElement compare:@"groundspeak:log"] == NSOrderedSame) {
+        currentLog = [[dbLog alloc] init];
+        [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
+        inLog = YES;
+        return;
+    }
+
     return;
 }
 
@@ -85,35 +105,51 @@
     [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
     
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
-        [currentWP setLat_float:[currentWP.lat doubleValue]];
-        [currentWP setLon_float:[currentWP.lon doubleValue]];
-        [currentWP setLat_int:currentWP.lat_float * 1000000];
-        [currentWP setLon_int:currentWP.lon_float * 1000000];
-        
-        [currentWP setWp_group:group];
-        [currentWP setWp_group_int:group._id];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-        NSDate *date = [dateFormatter dateFromString:[currentWP.date_placed substringWithRange:NSMakeRange(0, 19)]];
-        [currentWP setDate_placed_epoch:[date timeIntervalSince1970]];
+        [currentWP finish];
         
         NSInteger cwp_id = [db Waypoint_get_byname:currentWP.name];
         if (cwp_id == 0) {
             cwp_id = [db Waypoint_add:currentWP];
+            
             [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
             [db WaypointGroups_add_waypoint:dbc.WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
             [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
         } else {
+            currentWP._id = cwp_id;
             [db Waypoint_update:currentWP];
             if ([db WaypointGroups_contains_waypoint:group._id waypoint_id:cwp_id] == NO)
                 [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
         }
         [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImport._id waypoint_id:cwp_id];
+        
+        // Link logs to waypoint
+        NSEnumerator *e = [logs objectEnumerator];
+        dbLog *l;
+        while ((l = [e nextObject]) != nil) {
+            [db Logs_update_waypoint_id:l waypoint_id:cwp_id];
+        }
 
+        inItem = NO;
         goto bye;
     }
-    if (inItem) {
+    
+    if (index == 4 && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
+        [currentLog finish];
+        
+        NSInteger log_id = [db Log_by_gcid:currentLog.gc_id];
+        if (log_id == 0) {
+            currentLog._id = [db Logs_add:currentLog];
+        } else {
+            currentLog._id = log_id;
+            [db Logs_update:log_id log:currentLog];
+        }
+        [logs addObject:currentLog];
+        
+        inLog = NO;
+        goto bye;
+    }
+    
+    if (inItem == YES && inLog == NO) {
         if (index == 2 && currentText != nil) {
             if ([elementName compare:@"time"] == NSOrderedSame) {
                 [currentWP setDate_placed:currentText];
@@ -163,12 +199,36 @@
                 [currentWP setGc_long_desc:currentText];
                 goto bye;
             }
-            if ([elementName compare:@"groundspeak:hint"] == NSOrderedSame) {
+            if ([elementName compare:@"groundspeak:encoded_hints"] == NSOrderedSame) {
                 [currentWP setGc_hint:currentText];
                 goto bye;
             }
             goto bye;
         }
+        goto bye;
+    }
+    
+    if (inLog == YES) {
+        if (index == 5) {
+            if ([elementName compare:@"groundspeak:date"] == NSOrderedSame) {
+                [currentLog setDatetime:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:type"] == NSOrderedSame) {
+                [currentLog setLogtype_string:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:finder"] == NSOrderedSame) {
+                [currentLog setLogger:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
+                [currentLog setLog:currentText];
+                goto bye;
+            }
+            goto bye;
+        }
+        goto bye;
     }
 
 bye:

@@ -14,6 +14,8 @@
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
++ (NSInteger)secondsSinceEpoch:(NSString *)datetime;
++ (NSString *)simpleHTML:(NSString *)plainText;
 
 @end
 #endif

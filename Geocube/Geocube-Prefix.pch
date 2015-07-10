@@ -30,6 +30,7 @@
 #import "dbWaypoint.h"
 #import "dbContainerTypes.h"
 #import "dbLogTypes.h"
+#import "dbLogs.h"
 #import "database-cache.h"
 #import "database.h"
 
@@ -43,6 +44,8 @@
 #import "GCTableViewController.h"
 #import "GCViewController.h"
 
+#import "CacheDescriptionViewController.h"
+#import "CacheHintViewController.h"
 #import "CacheViewController.h"
 #import "NullViewController.h"
 #import "UserProfileViewController.h"

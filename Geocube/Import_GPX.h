@@ -14,11 +14,13 @@
     NSString *groupname;
     dbWaypointGroup *group;
     
+    NSMutableArray *logs;
     NSInteger index;
-    NSInteger inItem;
+    NSInteger inItem, inLog;
     NSMutableString *currentText;
     NSString *currentElement;
     dbWaypoint *currentWP;
+    dbLog *currentLog;
 }
 
 - (id)init:(NSString *)filename group:(NSString *)groupname;

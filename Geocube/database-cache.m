@@ -159,4 +159,15 @@
     return nil;
 }
 
+- (dbWaypoint *)Waypoint_get:(NSInteger)_id
+{
+    NSEnumerator *e = [Waypoints objectEnumerator];
+    dbWaypoint *wp;
+    while ((wp = [e nextObject]) != nil) {
+        if (wp._id == _id)
+            return wp;
+    }
+    return nil;
+}
+
 @end

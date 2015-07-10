@@ -32,4 +32,22 @@
     return s;
 }
 
++ (NSInteger)secondsSinceEpoch:(NSString *)datetime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString:[datetime substringWithRange:NSMakeRange(0, 19)]];
+    return [date timeIntervalSince1970];
+}
+
++ (NSString *)simpleHTML:(NSString *)plainText
+{
+    NSMutableString *s = [NSMutableString stringWithString:plainText];
+    [s replaceOccurrencesOfString:@"&" withString:@"&amp;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@"<" withString:@"&lt;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@">" withString:@"&gt;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@"\n" withString:@"<br>" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    return s;
+}
+
 @end

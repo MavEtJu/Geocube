@@ -11,8 +11,6 @@
 
 @interface dbWaypoint : dbObject {
     NSInteger _id;
-    NSInteger wp_group_int;
-    dbWaypointGroup *wp_group;
     NSString *name, *description, *url;
 
     NSString *lat, *lon;
@@ -31,6 +29,7 @@
     
     NSString *gc_country, *gc_state;
     
+    BOOL gc_short_desc_html, gc_long_desc_html;
     NSString *gc_short_desc, *gc_long_desc;
     NSString *gc_hint, *gc_personal_note;
     
@@ -40,8 +39,6 @@
 }
 
 @property (nonatomic) NSInteger _id;
-@property (nonatomic) NSInteger wp_group_int;
-@property (nonatomic, retain) dbWaypointGroup *wp_group;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *url;
@@ -61,7 +58,9 @@
 @property (nonatomic, retain) dbWaypointType *wp_type;
 @property (nonatomic, retain) NSString *gc_country;
 @property (nonatomic, retain) NSString *gc_state;
+@property (nonatomic) BOOL gc_short_desc_html;
 @property (nonatomic, retain) NSString *gc_short_desc;
+@property (nonatomic) BOOL gc_long_desc_html;
 @property (nonatomic, retain) NSString *gc_long_desc;
 @property (nonatomic, retain) NSString *gc_hint;
 @property (nonatomic, retain) NSString *gc_personal_note;
@@ -71,7 +70,7 @@
 
 - (id)init:(NSInteger)_id;
 - (BOOL)hasFieldNotes;
-- (BOOL)hasLogs;
+- (NSInteger)hasLogs;
 - (BOOL)hasAttributes;
 - (BOOL)hasWaypoints;
 - (BOOL)hasInventory;

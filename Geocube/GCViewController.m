@@ -26,7 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // NSLog(@"GCTableViewController/viewWillAppear: self:%p", self);
+    NSLog(@"%@/viewWillAppear", [self class]);
 
     [menuGlobal setTarget:self];
     [menuGlobal didDismissMenu:nil];
