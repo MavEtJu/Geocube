@@ -9,7 +9,7 @@
 @interface CacheHeaderTableViewCell : UITableViewCell {
     UIImageView *icon, *imgFavouritesIV;
     UILabel *lat, *lon;
-    UIImageView *imgSize;
+    UIImageView *size;
     UIImageView *ratingD[5];
     UIImageView *ratingT[5];
     UILabel *favourites;
@@ -17,9 +17,9 @@
 }
 
 @property (nonatomic, retain)UIImageView *icon;
+@property (nonatomic, retain)UIImageView *size;
 @property (nonatomic, retain)UILabel *lat;
 @property (nonatomic, retain)UILabel *lon;
-@property (nonatomic, retain)UIImageView *size;
 @property (nonatomic, retain)UILabel *favourites;
 
 + (NSInteger)cellHeight;

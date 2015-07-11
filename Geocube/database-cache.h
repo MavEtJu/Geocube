@@ -13,6 +13,7 @@
     NSArray *Waypoints;
     NSArray *LogTypes;
     NSArray *ContainerTypes;
+    NSArray *ContainerSizes;
     
     // System Groups
     dbWaypointGroup *WaypointGroup_AllWaypoints;
@@ -29,6 +30,9 @@
     
     // ContainerType
     dbContainerType *ContainerType_Unknown;
+    
+    // Size
+    dbContainerSize *ContainerSize_Unknown;
 }
 
 @property (nonatomic, retain) NSArray *WaypointTypes;
@@ -36,6 +40,7 @@
 @property (nonatomic, retain) NSArray *Waypoints;
 @property (nonatomic, retain) NSArray *LogTypes;
 @property (nonatomic, retain) NSArray *ContainerTypes;
+@property (nonatomic, retain) NSArray *ContainerSizes;
 
 // System Groups
 @property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints;
@@ -53,6 +58,9 @@
 // ContainerType
 @property (nonatomic, retain) dbContainerType *ContainerType_Unknown;
 
+// ContainerSize
+@property (nonatomic, retain) dbContainerSize *ContainerSize_Unknown;
+
 - (void)loadWaypointData;
 - (dbWaypointType *)WaypointType_get_byname:(NSString *)name;
 - (dbWaypointType *)WaypointType_get:(NSInteger)wp_type;
@@ -62,6 +70,8 @@
 - (dbLogType *)LogType_get:(NSInteger)_id;
 - (dbWaypoint *)Waypoint_get:(NSInteger)_id;
 - (dbWaypointGroup *)WaypointGroup_get:(NSInteger)_id;
+- (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size;
+- (dbContainerSize *)ContainerSize_get:(NSInteger)_id;
 
 
 @end

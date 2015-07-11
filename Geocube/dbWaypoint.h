@@ -33,6 +33,10 @@
     NSString *gc_short_desc, *gc_long_desc;
     NSString *gc_hint, *gc_personal_note;
     
+    NSInteger gc_containerSize_int;
+    NSString *gc_containerSize_str;
+    dbContainerSize *gc_containerSize;
+    
     /* Not read from the database */
     coordinate_type coordinates;
     NSInteger calculatedDistance;
@@ -64,6 +68,9 @@
 @property (nonatomic, retain) NSString *gc_long_desc;
 @property (nonatomic, retain) NSString *gc_hint;
 @property (nonatomic, retain) NSString *gc_personal_note;
+@property (nonatomic) NSInteger gc_containerSize_int;
+@property (nonatomic) NSString *gc_containerSize_str;
+@property (nonatomic, retain) dbContainerSize *gc_containerSize;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) coordinate_type coordinates;

@@ -10,8 +10,8 @@
 
 @implementation DatabaseCache
 
-@synthesize WaypointTypes, WaypointGroups, Waypoints, LogTypes, ContainerTypes;
-@synthesize WaypointGroup_AllWaypoints, WaypointGroup_AllWaypoints_Found, WaypointGroup_AllWaypoints_NotFound, WaypointGroup_LastImport,WaypointGroup_LastImportAdded, WaypointType_Unknown, ContainerType_Unknown, LogType_Unknown;
+@synthesize WaypointTypes, WaypointGroups, Waypoints, LogTypes, ContainerTypes, ContainerSizes;
+@synthesize WaypointGroup_AllWaypoints, WaypointGroup_AllWaypoints_Found, WaypointGroup_AllWaypoints_NotFound, WaypointGroup_LastImport,WaypointGroup_LastImportAdded, WaypointType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown;
 
 - (id)init
 {
@@ -28,6 +28,7 @@
     Waypoints = [db Waypoints_all];
     ContainerTypes = [db ContainerTypes_all];
     LogTypes = [db LogTypes_all];
+    ContainerSizes = [db ContainerSizes_all];
     
     WaypointGroup_AllWaypoints = nil;
     WaypointGroup_AllWaypoints_Found = nil;
@@ -37,6 +38,7 @@
     WaypointType_Unknown = nil;
     ContainerType_Unknown = nil;
     LogType_Unknown = nil;
+    ContainerSize_Unknown = nil;
     
     NSEnumerator *e = [WaypointGroups objectEnumerator];
     dbWaypointGroup *wpg;
@@ -86,6 +88,15 @@
     while ((lt = [e nextObject]) != nil) {
         if ([lt.logtype compare:@"Unknown"] == NSOrderedSame) {
             LogType_Unknown = lt;
+            continue;
+        }
+    }
+
+    e = [ContainerSizes objectEnumerator];
+    dbContainerSize *s;
+    while ((s = [e nextObject]) != nil) {
+        if ([s.size compare:@"Not chosen"] == NSOrderedSame) {
+            ContainerSize_Unknown = s;
             continue;
         }
     }
@@ -177,6 +188,28 @@
     while ((wpg = [e nextObject]) != nil) {
         if (wpg._id == _id)
             return wpg;
+    }
+    return nil;
+}
+
+- (dbContainerSize *)ContainerSize_get:(NSInteger)_id
+{
+    NSEnumerator *e = [ContainerSizes objectEnumerator];
+    dbContainerSize *s;
+    while ((s = [e nextObject]) != nil) {
+        if (s._id == _id)
+            return s;
+    }
+    return nil;
+}
+
+- (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size
+{
+    NSEnumerator *e = [ContainerSizes objectEnumerator];
+    dbContainerSize *s;
+    while ((s = [e nextObject]) != nil) {
+        if ([s.size compare:size] == NSOrderedSame)
+            return s;
     }
     return nil;
 }

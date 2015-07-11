@@ -78,7 +78,10 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         cell.lat.text = wp.lat;
         cell.lon.text = wp.lon;
-        [cell setRatings:3 /*wp.gc_favourites */ terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
+        [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
+        
+        cell.size.image = [imageLibrary get:wp.gc_containerSize.icon];
+        cell.icon.image = [imageLibrary get:wp.wp_type.icon];
         return cell;
     }
     

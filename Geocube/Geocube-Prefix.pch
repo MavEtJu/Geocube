@@ -25,12 +25,13 @@
 
 #import "dbObject.h"
 #import "dbConfig.h"
+#import "dbContainerType.h"
+#import "dbContainerSize.h"
 #import "dbWaypointGroup.h"
 #import "dbWaypointType.h"
 #import "dbWaypoint.h"
-#import "dbContainerTypes.h"
-#import "dbLogTypes.h"
-#import "dbLogs.h"
+#import "dbLogType.h"
+#import "dbLog.h"
 #import "database-cache.h"
 #import "database.h"
 

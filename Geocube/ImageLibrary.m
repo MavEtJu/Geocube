@@ -85,6 +85,14 @@
     ADD(@"log - attended - 30x30", ImageLog_Attended);
     ADD(@"log - willattend - 30x30", ImageLog_WillAttend);
     ADD(@"log - unknown - 30x30", ImageLog_Unknown);
+    
+    ADD(@"container - large - 70x20", ImageSize_Large);
+    ADD(@"container - micro - 70x20", ImageSize_Micro);
+    ADD(@"container - notchosen - 70x20", ImageSize_NotChosen);
+    ADD(@"container - other - 70x20", ImageSize_Other);
+    ADD(@"container - regular - 70x20", ImageSize_Regular);
+    ADD(@"container - small - 70x20", ImageSize_Small);
+    ADD(@"container - unknown - 70x20", ImageSize_Virtual);
 
     ADD(@"waypoint rating star on 19x18", ImageWaypointView_ratingOn);
     ADD(@"waypoint rating star off 18x18", ImageWaypointView_ratingOff);

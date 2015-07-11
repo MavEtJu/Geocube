@@ -1,22 +1,22 @@
 //
-//  dbWaypointType.m
+//  dbSizes.m
 //  Geocube
 //
-//  Created by Edwin Groothuis on 28/06/2015.
+//  Created by Edwin Groothuis on 11/07/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbWaypointType
+@implementation dbContainerSize
 
-@synthesize _id, type, icon;
+@synthesize _id, size, icon;
 
-- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon
+- (id)init:(NSInteger)__id size:(NSString *)_size icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;
-    type = _type;
+    size = _size;
     icon = _icon;
     [self finish];
     return self;

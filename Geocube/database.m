@@ -359,7 +359,7 @@
 
 - (NSMutableArray *)Waypoints_all
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint from waypoints";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id from waypoints";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
@@ -390,6 +390,7 @@
             BOOL_FETCH_AND_ASSIGN(req, 18, gc_short_desc_html);
             TEXT_FETCH_AND_ASSIGN(req, 19, gc_short_desc);
             TEXT_FETCH_AND_ASSIGN(req, 20, gc_hint);
+            INT_FETCH_AND_ASSIGN(req, 21, gc_container_size);
             
             wp = [[dbWaypoint alloc] init:_id];
             [wp setName:name];
@@ -413,6 +414,7 @@
             [wp setGc_short_desc_html:gc_short_desc_html];
             [wp setGc_short_desc:gc_short_desc];
             [wp setGc_hint:gc_hint];
+            [wp setGc_containerSize_int:gc_container_size];
             [wp finish];
             [wps addObject:wp];
         }
@@ -444,7 +446,7 @@
 
 - (NSInteger)Waypoint_add:(dbWaypoint *)wp
 {
-    NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    NSString *sql = @"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
     
@@ -472,6 +474,7 @@
         SET_VAR_BOOL(req, 18, wp.gc_short_desc_html);
         SET_VAR_TEXT(req, 19, wp.gc_short_desc);
         SET_VAR_TEXT(req, 20, wp.gc_hint);
+        SET_VAR_INT(req, 21, wp.gc_containerSize_int);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_add:step: %s", sqlite3_errmsg(db));
@@ -484,7 +487,7 @@
 
 - (void)Waypoint_update:(dbWaypoint *)wp
 {
-    NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ? where id = ?";
+    NSString *sql = @"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(dbaccess) {
@@ -511,7 +514,8 @@
         SET_VAR_BOOL(req, 18, wp.gc_short_desc_html);
         SET_VAR_TEXT(req, 19, wp.gc_short_desc);
         SET_VAR_TEXT(req, 20, wp.gc_hint);
-        SET_VAR_INT(req, 21, wp._id);
+        SET_VAR_INT(req, 21, wp.gc_containerSize_int);
+        SET_VAR_INT(req, 22, wp._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Waypoint_update:step: %s", sqlite3_errmsg(db));
@@ -717,8 +721,31 @@
     
 }
 
-
 // ------------------------
+
+- (NSArray *)ContainerSizes_all
+{
+    NSString *sql = @"select id, container_size, icon from container_sizes";
+    sqlite3_stmt *req;
+    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    dbContainerSize *s;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Sizes_all:prepare: %s", sqlite3_errmsg(db));
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, size);
+            INT_FETCH_AND_ASSIGN(req, 2, icon);
+            s = [[dbContainerSize alloc] init:_id size:size icon:icon];
+            [ss addObject:s];
+        }
+        sqlite3_finalize(req);
+    }
+    return ss;
+}
+
 
 // ------------------------
 

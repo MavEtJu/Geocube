@@ -67,6 +67,15 @@ typedef enum {
     ImageLog_Attended,
     ImageLog_WillAttend,
     ImageLog_Unknown,
+    
+    ImageSize_Large = 450,
+    ImageSize_Micro,
+    ImageSize_NotChosen,
+    ImageSize_Other,
+    ImageSize_Regular,
+    ImageSize_Small,
+    ImageSize_Virtual,
+
    /* Up to here: Do not reorder */
 
     ImageWaypointView_ratingOn = 500,

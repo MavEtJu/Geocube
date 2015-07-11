@@ -22,14 +22,4 @@
     return self;
 }
 
-- (void)finish
-{
-    [super finish];
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@: %d", name, usergroup];
-}
-
 @end

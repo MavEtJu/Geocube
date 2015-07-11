@@ -1,5 +1,5 @@
 //
-//  dbContainerTypes.m
+//  dbLogTypes.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 9/07/2015.
@@ -8,22 +8,18 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbContainerType
+@implementation dbLogType
 
-@synthesize _id, size, icon;
+@synthesize _id, logtype, icon;
 
-- (id)init:(NSInteger)__id size:(NSString *)_size icon:(NSInteger)_icon
+- (id)init:(NSInteger)__id logtype:(NSString *)_logtype icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;
-    size = _size;
+    logtype = _logtype;
     icon = _icon;
+    [self finish];
     return self;
-}
-
-- (void)finish
-{
-    [super finish];
 }
 
 @end

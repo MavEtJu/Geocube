@@ -47,6 +47,7 @@
 - (NSArray *)WaypointTypes_all;
 - (NSArray *)ContainerTypes_all;
 - (NSArray *)LogTypes_all;
+- (NSArray *)ContainerSizes_all;
 
 
 #define TEXT_FETCH_AND_ASSIGN(req, col, string) \

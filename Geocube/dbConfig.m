@@ -22,15 +22,4 @@
     return self;
 }
 
-- (void)finish
-{
-    [super finish];
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@: %@", key, value];
-}
-
-
 @end

@@ -82,10 +82,9 @@
     l.text = @"S";
     [self.contentView addSubview:l];
     
-    imgSize = [[UIImageView alloc] initWithFrame:rectSize];
-    imgSize.image = [imageLibrary get:ImageContainer_Unknown];
-    [self.contentView addSubview:imgSize];
-    
+    size = [[UIImageView alloc] initWithFrame:rectSize];
+    size.image = [imageLibrary get:ImageContainer_Unknown];
+    [self.contentView addSubview:size];
     
     // Difficulty rating
     r = rectRatingsD;

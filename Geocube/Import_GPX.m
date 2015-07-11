@@ -191,6 +191,10 @@
                 [currentWP setGc_state:currentText];
                 goto bye;
             }
+            if ([elementName compare:@"groundspeak:container"] == NSOrderedSame) {
+                [currentWP setGc_containerSize_str:currentText];
+                goto bye;
+            }
             if ([elementName compare:@"groundspeak:short_description"] == NSOrderedSame) {
                 [currentWP setGc_short_desc:currentText];
                 goto bye;
