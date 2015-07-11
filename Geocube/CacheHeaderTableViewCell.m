@@ -1,107 +1,65 @@
 //
-//  WaypointTableViewCell.m
+//  CacheHeaderTableViewCell.m
 //  Geocube
 //
-//  Created by Edwin Groothuis on 7/07/2015.
+//  Created by Edwin Groothuis on 11/07/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
 #import "Geocube-Prefix.pch"
 
-@implementation WaypointTableViewCell
+@implementation CacheHeaderTableViewCell
 
-@synthesize description, name, icon, stateCountry, bearing, compass, distance;
+@synthesize icon, lat, lon, size, favourites;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
+    
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
-    NSInteger height = [self cellHeight];
-
+    //NSInteger height = [self cellHeight];
+    
     imgRatingOff = [imageLibrary get:ImageWaypointView_ratingOff];
     imgRatingOn = [imageLibrary get:ImageWaypointView_ratingOn];
     imgRatingHalf = [imageLibrary get:ImageWaypointView_ratingHalf];
     imgFavourites = [imageLibrary get:ImageWaypointView_favourites];
-
-    UILabel *l;
+    
     CGRect r;
-
+    UILabel *l;
+    
     /*
-     +---+--------------------+---+
-     |   | Description        | F |  Favourites
-     |   +--------------------+   |  Difficulty
-     |   | Name               |   |  Terrain
-     +---+--------------+-----+---+  Angle
-     | A | State Country| D XXXXX |  Compass
-     | C | Distance     | T XXXXX |
-     +---+--------------+---------+
+     +---+--------------+-----+---+
+     | I |              | S XX| F |  Icon
+     +---+--------------+-----+---+  Size
+     | Lat              | D XXXXX |  Difficulty
+     | Lon              | T XXXXX |  Terrain
+     +------------------+---------+  Favourites
      */
 #define BORDER 1
 #define ICON_WIDTH 30
 #define ICON_HEIGHT 30
-#define DESCRIPTION_HEIGHT 16
-#define NAME_HEIGHT 14
 #define FAVOURITES_WIDTH 20
 #define FAVOURITES_HEIGHT 30
 #define STAR_WIDTH 19
 #define STAR_HEIGHT 18
-#define DISTANCE_HEIGHT 14
-#define BEARING_HEIGHT 14
-
+#define LAT_HEIGHT 20
+#define LON_HEIGHT 20
+    
     CGRect rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
-    CGRect rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
-    CGRect rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
     CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectBearing = CGRectMake(BORDER, height - BORDER - 2 * BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
-    CGRect rectCompass = CGRectMake(BORDER, height - BORDER - BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
-    CGRect rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsT.size.width, DISTANCE_HEIGHT);
-    CGRect rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
+    CGRect rectLat = CGRectMake(BORDER, BORDER + ICON_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER, BORDER + ICON_HEIGHT + LAT_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
+    
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
-    
-    // Description
-    description = [[UILabel alloc] initWithFrame:rectDescription];
-    description.font = [UIFont boldSystemFontOfSize:14.0];
-    [self.contentView addSubview:description];
-    
-    // Name
-    name = [[UILabel alloc] initWithFrame:rectName];
-    name.font = [UIFont systemFontOfSize:10.0];
-    [self.contentView addSubview:name];
-    
-    // Bearing
-    bearing = [[UILabel alloc] initWithFrame:rectBearing];
-    bearing.font = [UIFont systemFontOfSize:10.0];
-    bearing.textAlignment = NSTextAlignmentCenter;
-    //bearing.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:bearing];
-    
-    // Compass
-    compass = [[UILabel alloc] initWithFrame:rectCompass];
-    compass.font = [UIFont systemFontOfSize:10.0];
-    compass.textAlignment = NSTextAlignmentCenter;
-    //compass.backgroundColor = [UIColor blueColor];
-    [self.contentView addSubview:compass];
-    
-    // State country
-    stateCountry = [[UILabel alloc] initWithFrame:rectStateCountry];
-    stateCountry.font = [UIFont systemFontOfSize:10];
-    //stateCountry.backgroundColor = [UIColor purpleColor];
-    [self.contentView addSubview:stateCountry];
-    
-    // Distance
-    distance = [[UILabel alloc] initWithFrame:rectDistance];
-    distance.font = [UIFont systemFontOfSize:10.0];
-    //distance.backgroundColor = [UIColor greenColor];
-    [self.contentView addSubview:distance];
     
     // Favourites
     imgFavouritesIV = [[UIImageView alloc] initWithFrame:rectFavourites];
@@ -115,7 +73,20 @@
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:favourites];
-
+    
+    // Size
+    r = rectSize;
+    r.origin.x -= 10;
+    l = [[UILabel alloc] initWithFrame:r];
+    l.font = [UIFont systemFontOfSize:10.0];
+    l.text = @"S";
+    [self.contentView addSubview:l];
+    
+    imgSize = [[UIImageView alloc] initWithFrame:rectSize];
+    imgSize.image = [imageLibrary get:ImageContainer_Unknown];
+    [self.contentView addSubview:imgSize];
+    
+    
     // Difficulty rating
     r = rectRatingsD;
     r.origin.x -= 10;
@@ -123,7 +94,7 @@
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"D";
     [self.contentView addSubview:l];
-
+    
     r = rectRatingsD;
     r.size.width = STAR_WIDTH;
     for (NSInteger i = 0; i < 5; i++) {
@@ -132,7 +103,7 @@
         [self.contentView addSubview:ratingD[i]];
         r.origin.x += STAR_WIDTH;
     }
-
+    
     // Terrain rating
     r = rectRatingsT;
     r.origin.x -= 10;
@@ -140,7 +111,7 @@
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"T";
     [self.contentView addSubview:l];
-
+    
     r = rectRatingsT;
     r.size.width = STAR_WIDTH;
     for (NSInteger i = 0; i < 5; i++) {
@@ -149,7 +120,17 @@
         [self.contentView addSubview:ratingT[i]];
         r.origin.x += STAR_WIDTH;
     }
-
+    
+    // Lon
+    lon = [[UILabel alloc] initWithFrame:rectLon];
+    lon.font = [UIFont systemFontOfSize:10.0];
+    [self.contentView addSubview:lon];
+    
+    // Lat
+    lat = [[UILabel alloc] initWithFrame:rectLat];
+    lat.font = [UIFont systemFontOfSize:10.0];
+    [self.contentView addSubview:lat];
+    
     return self;
 }
 
@@ -177,12 +158,12 @@
 
 + (NSInteger)cellHeight
 {
-    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
+    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT;
 }
 
 - (NSInteger)cellHeight
 {
-    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
+    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT;
 }
 
 @end

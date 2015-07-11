@@ -75,7 +75,6 @@
 - (BOOL)hasWaypoints;
 - (BOOL)hasInventory;
 - (BOOL)hasImages;
-- (BOOL)hasGroups;
 
 @end
 

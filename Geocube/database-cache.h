@@ -61,6 +61,7 @@
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSInteger)_id;
 - (dbWaypoint *)Waypoint_get:(NSInteger)_id;
+- (dbWaypointGroup *)WaypointGroup_get:(NSInteger)_id;
 
 
 @end

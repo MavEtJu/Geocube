@@ -8,7 +8,9 @@
 
 #import "Geocube-Prefix.pch"
 
-#define THISCELL @"cachetablecell"
+#define THISCELL_HEADER @"cachetablecell_header"
+#define THISCELL_DATA @"cachetablecell_data"
+#define THISCELL_ACTIONS @"cachetablecell_actions"
 
 @implementation CacheViewController
 
@@ -24,7 +26,9 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
     
     cacheItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
@@ -67,15 +71,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     // Cache header
     if (indexPath.section == 0) {
+        CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.lat.text = wp.lat;
+        cell.lon.text = wp.lon;
+        [cell setRatings:3 /*wp.gc_favourites */ terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
         return cell;
     }
     
     // Cache data
     if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
         cell.textLabel.text = [cacheItems objectAtIndex:indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -120,10 +129,6 @@
                 if ([wp hasImages] == FALSE)
                     tc = [UIColor lightGrayColor];
                 break;
-            case 9: /* Group Membership */
-                if ([wp hasGroups] == FALSE)
-                    tc = [UIColor lightGrayColor];
-                break;
         }
         cell.textLabel.textColor = tc;
         cell.imageView.image = nil;
@@ -132,6 +137,7 @@
     
     // Cache commands
     if (indexPath.section == 2) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0:
@@ -147,7 +153,7 @@
         return cell;
     }
     
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,6 +181,12 @@
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
+        if (indexPath.row == 9) {    /* Groups */
+            UITableViewController *newController = [[CacheGroupsViewController alloc] init:wp];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
         return;
     }
 
@@ -184,48 +196,11 @@
 
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+        return [WaypointTableViewCell cellHeight];
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

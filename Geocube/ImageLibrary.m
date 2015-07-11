@@ -13,11 +13,12 @@
 - (id)init
 {
     self = [super init];
+    NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
     
 #define ADD(__s__, __idx__) \
     { \
         NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], __s__]; \
-        UIImage *img = [UIImage imageNamed:s]; \
+        UIImage *img = [[UIImage alloc] initWithContentsOfFile:s]; \
         if (img == nil) { \
             NSLog(@"ImageLibrary: Image %@ not found", s); \
         } else { \

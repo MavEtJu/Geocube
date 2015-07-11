@@ -23,7 +23,6 @@
 @property (nonatomic, retain) UILabel *description;
 @property (nonatomic, retain) UILabel *name;
 @property (nonatomic, retain) UIImageView *icon;
-@property (nonatomic, retain) UILabel *favourites;
 @property (nonatomic, retain) UILabel *country;
 @property (nonatomic, retain) UILabel *stateCountry;
 @property (nonatomic, retain) UILabel *bearing;

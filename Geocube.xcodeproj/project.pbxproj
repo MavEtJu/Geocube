@@ -14,6 +14,8 @@
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
+		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
+		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */; };
 		E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */; };
 		E86C656C1B4BC57900E2ABFE /* waypoint favourites 20x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C656B1B4BC57900E2ABFE /* waypoint favourites 20x30.png */; };
@@ -139,6 +141,10 @@
 		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
+		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
+		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
+		E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheHeaderTableViewCell.m; sourceTree = "<group>"; };
 		E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineListViewController.h; sourceTree = "<group>"; };
 		E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineListViewController.m; sourceTree = "<group>"; };
 		E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTableViewCell.h; sourceTree = "<group>"; };
@@ -391,6 +397,8 @@
 				E8740FE41B4FFB46002527DA /* CacheHintViewController.m */,
 				E8740FE61B508BBE002527DA /* CacheLogsViewController.h */,
 				E8740FE71B508BBE002527DA /* CacheLogsViewController.m */,
+				E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */,
+				E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */,
 			);
 			name = "Cache Viewing";
 			sourceTree = "<group>";
@@ -437,6 +445,8 @@
 			children = (
 				E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */,
 				E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */,
+				E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */,
+				E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */,
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
 			);
@@ -813,6 +823,7 @@
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLogs.m in Sources */,
+				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogTypes.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
@@ -840,6 +851,7 @@
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
+				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,

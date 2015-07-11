@@ -30,6 +30,7 @@
 - (void)WaypointGroups_add_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
 - (BOOL)WaypointGroups_contains_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
 - (NSArray *)WaypointGroups_all;
+- (NSArray *)WaypointGroups_all_byWaypointId:(NSInteger)wp_id;
 
 - (NSInteger)Waypoint_get_byname:(NSString *)name;
 - (NSInteger)Waypoint_add:(dbWaypoint *)wp;

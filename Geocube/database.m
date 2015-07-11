@@ -152,6 +152,29 @@
     return wpgs;
 }
 
+- (NSArray *)WaypointGroups_all_byWaypointId:(NSInteger)wp_id
+{
+    NSString *sql = @"select waypoint_group_id from waypoint_groups2waypoints where waypoint_id = ?";
+    sqlite3_stmt *req;
+    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbWaypointGroup *wpg;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"WaypointGroups_all_byWaypointId:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_INT(req, 1, wp_id);
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, wpgid);
+            wpg = [dbc WaypointGroup_get:wpgid];
+            [wpgs addObject:wpg];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpgs;
+}
+
 - (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid
 {
     NSString *sql = @"select count(id) from waypoint_groups2waypoints where waypoint_group_id = ?";

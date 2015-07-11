@@ -101,7 +101,7 @@
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.wp_type.icon];
 
-    [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
+    [cell setRatings:3 /*wp.gc_favourites*/ terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
     
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;

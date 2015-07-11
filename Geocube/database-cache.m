@@ -170,4 +170,15 @@
     return nil;
 }
 
+- (dbWaypointGroup *)WaypointGroup_get:(NSInteger)_id
+{
+    NSEnumerator *e = [WaypointGroups objectEnumerator];
+    dbWaypointGroup *wpg;
+    while ((wpg = [e nextObject]) != nil) {
+        if (wpg._id == _id)
+            return wpg;
+    }
+    return nil;
+}
+
 @end

@@ -49,6 +49,5 @@
 - (BOOL)hasWaypoints { return NO; }
 - (BOOL)hasInventory { return NO; }
 - (BOOL)hasImages { return NO; }
-- (BOOL)hasGroups { return NO; }
 
 @end

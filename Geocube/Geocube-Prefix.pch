@@ -46,10 +46,12 @@
 
 #import "WaypointTableViewCell.h"
 #import "LogTableViewCell.h"
+#import "CacheHeaderTableViewCell.h"
 
 #import "CacheDescriptionViewController.h"
 #import "CacheHintViewController.h"
 #import "CacheLogsViewController.h"
+#import "CacheGroupsViewController.h"
 #import "CacheViewController.h"
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
