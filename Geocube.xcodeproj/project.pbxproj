@@ -80,6 +80,8 @@
 		E8740FDF1B4F87D2002527DA /* dbLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FDE1B4F87D2002527DA /* dbLogs.m */; };
 		E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE11B4FDD1A002527DA /* CacheDescriptionViewController.m */; };
 		E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE41B4FFB46002527DA /* CacheHintViewController.m */; };
+		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
+		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbWaypointGroup.m */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
@@ -214,6 +216,10 @@
 		E8740FE11B4FDD1A002527DA /* CacheDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheDescriptionViewController.m; sourceTree = "<group>"; };
 		E8740FE31B4FFB46002527DA /* CacheHintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHintViewController.h; sourceTree = "<group>"; };
 		E8740FE41B4FFB46002527DA /* CacheHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheHintViewController.m; sourceTree = "<group>"; };
+		E8740FE61B508BBE002527DA /* CacheLogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheLogsViewController.h; sourceTree = "<group>"; };
+		E8740FE71B508BBE002527DA /* CacheLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheLogsViewController.m; sourceTree = "<group>"; };
+		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
+		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypointGroup.m; sourceTree = "<group>"; };
 		E8BD82491B46A4E50029CDC9 /* global menu icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "global menu icon.png"; path = "images/global menu icon.png"; sourceTree = "<group>"; };
@@ -300,8 +306,6 @@
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
-				E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */,
-				E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -385,6 +389,8 @@
 				E8740FE11B4FDD1A002527DA /* CacheDescriptionViewController.m */,
 				E8740FE31B4FFB46002527DA /* CacheHintViewController.h */,
 				E8740FE41B4FFB46002527DA /* CacheHintViewController.m */,
+				E8740FE61B508BBE002527DA /* CacheLogsViewController.h */,
+				E8740FE71B508BBE002527DA /* CacheLogsViewController.m */,
 			);
 			name = "Cache Viewing";
 			sourceTree = "<group>";
@@ -424,6 +430,17 @@
 				E8740FD41B4E9D76002527DA /* container - unknown - 70x20.png */,
 			);
 			name = containers;
+			sourceTree = "<group>";
+		};
+		E8740FE91B509540002527DA /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */,
+				E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */,
+				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
+				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
@@ -604,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
+				E8740FE91B509540002527DA /* TableViewCells */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 			);
@@ -793,6 +811,7 @@
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
+				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLogs.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogTypes.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
@@ -821,6 +840,7 @@
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
+				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,

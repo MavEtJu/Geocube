@@ -169,6 +169,12 @@
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
+        if (indexPath.row == 4) {   /* Logs */
+            UITableViewController *newController = [[CacheLogsViewController alloc] init:wp];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
         return;
     }
 

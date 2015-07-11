@@ -44,12 +44,15 @@
 #import "GCTableViewController.h"
 #import "GCViewController.h"
 
+#import "WaypointTableViewCell.h"
+#import "LogTableViewCell.h"
+
 #import "CacheDescriptionViewController.h"
 #import "CacheHintViewController.h"
+#import "CacheLogsViewController.h"
 #import "CacheViewController.h"
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
-#import "WaypointTableViewCell.h"
 #import "CachesOfflineListViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"

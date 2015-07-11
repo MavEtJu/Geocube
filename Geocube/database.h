@@ -41,6 +41,7 @@
 - (void)Logs_update:(NSInteger)_id log:(dbLog *)log;
 - (void)Logs_update_waypoint_id:(dbLog *)log waypoint_id:(NSInteger)wp_id;
 - (NSInteger)Logs_count_byWaypoint_id:(NSInteger)wp_id;
+- (NSArray *)Logs_all_bywaypointid:(NSInteger)wp_id;
 
 - (NSArray *)WaypointTypes_all;
 - (NSArray *)ContainerTypes_all;

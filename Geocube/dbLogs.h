@@ -17,6 +17,9 @@
     NSString *datetime;
     NSString *logger;
     NSString *log;
+    
+    // Internal values
+    NSInteger cellHeight;
 }
 
 @property (nonatomic) NSInteger _id;
@@ -30,6 +33,9 @@
 @property (nonatomic) NSInteger datetime_epoch;
 @property (nonatomic, retain) NSString *logger;
 @property (nonatomic, retain) NSString *log;
+
+// Internal values
+@property (nonatomic) NSInteger cellHeight;
 
 - (id)init:(NSInteger)__id gc_id:(NSInteger)gc_id waypoint_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
 - (id)init:(NSInteger)gc_id;

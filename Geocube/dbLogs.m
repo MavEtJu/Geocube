@@ -10,7 +10,7 @@
 
 @implementation dbLog
 
-@synthesize _id, gc_id, waypoint_id, waypoint, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log;
+@synthesize _id, gc_id, waypoint_id, waypoint, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
 
 - (id)init:(NSInteger)_gc_id
 {
@@ -31,6 +31,8 @@
     log = _log;
     
     [self finish];
+    
+    cellHeight = 0;
     
     return self;
 }

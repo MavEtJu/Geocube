@@ -10,7 +10,7 @@ typedef enum {
     ImageLibraryImagesMin = -1,
 
     /* Do not reorder, index matches schema.sql */
-    ImageCaches_Benchmark,
+    ImageCaches_Benchmark = 100,
     ImageCaches_CITO,
     ImageCaches_EarthCache,
     ImageCaches_Event,
@@ -28,8 +28,9 @@ typedef enum {
     ImageCaches_Waymark,
     ImageCaches_WebcamCache,
     ImageCaches_WhereigoCache,
+    ImageCaches_NFI,
 
-    ImageWaypoints_FinalLocation,
+    ImageWaypoints_FinalLocation = 200,
     ImageWaypoints_Flag,
     ImageWaypoints_MultiStage,
     ImageWaypoints_ParkingArea,
@@ -37,12 +38,10 @@ typedef enum {
     ImageWaypoints_ReferenceStage,
     ImageWaypoints_Trailhead,
     ImageWaypoints_VirtualStage,
-    
-    ImageCaches_NFI,
     Imagewaypoints_NFI,
     ImageNFI,
  
-    ImageContainer_Virtual,
+    ImageContainer_Virtual = 300,
     ImageContainer_Micro,
     ImageContainer_Small,
     ImageContainer_Regular,
@@ -51,7 +50,7 @@ typedef enum {
     ImageContainer_Other,
     ImageContainer_Unknown,
     
-    ImageLog_DidNotFind,
+    ImageLog_DidNotFind = 400,
     ImageLog_Enabled,
     ImageLog_Found,
     ImageLog_NeedsArchiving,
@@ -70,7 +69,7 @@ typedef enum {
     ImageLog_Unknown,
    /* Up to here: Do not reorder */
 
-    ImageWaypointView_ratingOn,
+    ImageWaypointView_ratingOn = 500,
     ImageWaypointView_ratingOff,
     ImageWaypointView_ratingHalf,
     ImageWaypointView_favourites,
@@ -83,7 +82,7 @@ typedef enum {
 } ImageLibraryImages;
 
 @interface ImageLibrary : NSObject {
-    NSMutableArray *imgs;
+    UIImage *imgs[ImageLibraryImagesMax];
 };
 
 - (id)init;

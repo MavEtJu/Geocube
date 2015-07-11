@@ -12,10 +12,6 @@
 
 @synthesize description, name, favourites, icon, stateCountry, bearing, compass, distance;
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -187,13 +183,6 @@
 - (NSInteger)cellHeight
 {
     return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
-}
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

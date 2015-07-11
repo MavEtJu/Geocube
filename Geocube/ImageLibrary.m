@@ -13,7 +13,6 @@
 - (id)init
 {
     self = [super init];
-    imgs = [NSMutableArray arrayWithCapacity:ImageLibraryImagesMax];
     
 #define ADD(__s__, __idx__) \
     { \
@@ -22,7 +21,7 @@
         if (img == nil) { \
             NSLog(@"ImageLibrary: Image %@ not found", s); \
         } else { \
-            [imgs insertObject:img atIndex:__idx__]; \
+            imgs[__idx__] = img; \
         } \
     }
     
@@ -100,7 +99,7 @@
 
 - (UIImage *)get:(NSInteger)imgnum
 {
-    UIImage *img = [imgs objectAtIndex:imgnum];
+    UIImage *img = imgs[imgnum];
     if (img == nil)
         NSLog(@"ImageLibrary: imgnum %ld not found", imgnum);
     return img;

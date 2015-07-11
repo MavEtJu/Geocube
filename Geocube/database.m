@@ -662,6 +662,38 @@
     return count;
 }
 
+- (NSArray *)Logs_all_bywaypointid:(NSInteger)wp_id
+{
+    NSString *sql = @"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger, log from logs where waypoint_id = ?";
+    sqlite3_stmt *req;
+    NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    dbLog *l;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            NSAssert1(0, @"Logs_all_bywaypointid:prepare: %s", sqlite3_errmsg(db));
+        
+        SET_VAR_INT(req, 1, wp_id);
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            INT_FETCH_AND_ASSIGN(req, 1, gc_id);
+            INT_FETCH_AND_ASSIGN(req, 2, waypoint_id);
+            INT_FETCH_AND_ASSIGN(req, 3, log_type_id);
+            TEXT_FETCH_AND_ASSIGN(req, 4, datetime);
+            //INT_FETCH_AND_ASSIGN(req, 5, datetime_epoch);
+            TEXT_FETCH_AND_ASSIGN(req, 6, logger);
+            TEXT_FETCH_AND_ASSIGN(req, 7, log);
+            l = [[dbLog alloc] init:__id gc_id:gc_id waypoint_id:waypoint_id logtype_id:log_type_id datetime:datetime logger:logger log:log];
+            [l finish];
+            [ls addObject:l];
+        }
+        sqlite3_finalize(req);
+    }
+    return ls;
+    
+}
+
 
 // ------------------------
 
