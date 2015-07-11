@@ -10,6 +10,74 @@
 
 @implementation Coordinates
 
+- (id)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
+{
+    self = [super init];
+    lat = _lat;
+    lon = _lon;
+    return self;
+}
+- (id)init:(coordinate_type)coor           // { -34.02787, 151.07357 }
+{
+    self = [super init];
+    lat = coor.lat;
+    lon = coor.lon;
+    return self;
+}
+- (NSString *)lat_decimalDegreesSigned     // -34.02787
+{
+    return [NSString stringWithFormat:@"%0.5f", lat];
+}
+- (NSString *)lon_decimalDegreesSigned     // 151.07357
+{
+    return [NSString stringWithFormat:@"%0.5f", lon];
+}
+- (NSString *)lat_decimalDegreesCardinal   // S 34.02787
+{
+    NSString *hemi = (lat < 0) ? @"S" : @"N";
+    return [NSString stringWithFormat:@"%@ %0.5f", hemi, fabs(lat)];
+    
+}
+- (NSString *)lon_decimalDegreesCardinal   // E 151.07357
+{
+    NSString *hemi = (lon < 0) ? @"W" : @"E";
+    return [NSString stringWithFormat:@"%@ %0.5f", hemi, fabs(lon)];
+}
+- (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
+{
+    NSString *hemi = (lat < 0) ? @"S" : @"N";
+    float dummy;
+    int degrees = (int)fabs(lat);
+    float mins = modff(fabs(lat), &dummy);
+    return [NSString stringWithFormat:@"%@ %d° %.3f'", hemi, degrees, mins * 60];
+}
+- (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414
+{
+    NSString *hemi = (lon < 0) ? @"W" : @"E";
+    float dummy;
+    int degrees = (int)fabs(lon);
+    float mins = modff(fabs(lon), &dummy);
+    return [NSString stringWithFormat:@"%@ %d° %.3f'", hemi, degrees, mins * 60];
+}
+- (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
+{
+    NSString *hemi = (lat < 0) ? @"S" : @"N";
+    float dummy;
+    int degrees = (int)fabs(lat);
+    float mins = modff(fabs(lat), &dummy);
+    float secs = modff(60 * mins, &dummy);
+    return [NSString stringWithFormat:@"%@ %d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+}
+- (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
+{
+    NSString *hemi = (lon < 0) ? @"W" : @"E";
+    float dummy;
+    int degrees = (int)fabs(lon);
+    float mins = modff(fabs(lon), &dummy);
+    float secs = modff(60 * mins, &dummy);
+    return [NSString stringWithFormat:@"%@ %d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+}
+
 + (coordinate_type)myLocation
 {
     coordinate_type c;

@@ -11,7 +11,21 @@ typedef struct coordinate_type {
     float lon;
 } coordinate_type;
 
-@interface Coordinates : NSObject
+@interface Coordinates : NSObject {
+    float lat;
+    float lon;
+}
+
+- (id)init:(float)lat lon:(float)log;       // -34.02787 151.07357
+- (id)init:(coordinate_type)coor;           // { -34.02787, 151.07357 }
+- (NSString *)lat_decimalDegreesSigned;     // -34.02787
+- (NSString *)lon_decimalDegreesSigned;     // 151.07357
+- (NSString *)lat_decimalDegreesCardinal;   // S 34.02787
+- (NSString *)lon_decimalDegreesCardinal;   // E 151.07357
+- (NSString *)lat_degreesDecimalMinutes;    // S 34° 1.672'
+- (NSString *)lon_degreesDecimalMinutes;    // E 151° 4.414
+- (NSString *)lat_degreesMinutesSeconds;    // S 34° 01' 40"
+- (NSString *)lon_degreesMinutesSeconds;    // E 151° 04' 25"
 
 + (NSInteger)coordinates2distance:(coordinate_type)c1 to:(coordinate_type)c2;
 + (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2;

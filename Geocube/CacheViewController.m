@@ -76,8 +76,9 @@
     if (indexPath.section == 0) {
         CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
             cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.lat.text = wp.lat;
-        cell.lon.text = wp.lon;
+        Coordinates *c = [[Coordinates alloc] init:wp.lat_float lon:wp.lon_float];
+        cell.lat.text = [c lat_degreesDecimalMinutes];
+        cell.lon.text = [c lon_degreesDecimalMinutes];
         [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
         
         cell.size.image = [imageLibrary get:wp.gc_containerSize.icon];
@@ -98,8 +99,8 @@
                     tc = [UIColor lightGrayColor];
                 break;
             case 1: /* Hint */
-//                if (wp.gc_hint == nil || [wp.gc_hint compare:@""] == NSOrderedSame)
-                if ([wp.gc_hint compare:@""] == NSOrderedSame)
+//                if (wp.gc_hint ==b nil || [wp.gc_hint compare:@""] == NSOrderedSame)
+                if ([wp.gc_hint compare:@""] == NSOrderedSame || [wp.gc_hint compare:@" "] == NSOrderedSame)
                     tc = [UIColor lightGrayColor];
                 break;
             case 2: /* Personal note */

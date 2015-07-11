@@ -19,7 +19,7 @@
     
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
-    //NSInteger height = [self cellHeight];
+    NSInteger height = [self cellHeight];
     
     imgRatingOff = [imageLibrary get:ImageWaypointView_ratingOff];
     imgRatingOn = [imageLibrary get:ImageWaypointView_ratingOn];
@@ -44,16 +44,16 @@
 #define FAVOURITES_HEIGHT 30
 #define STAR_WIDTH 19
 #define STAR_HEIGHT 18
-#define LAT_HEIGHT 20
-#define LON_HEIGHT 20
+#define LAT_HEIGHT 10
+#define LON_HEIGHT 10
     
     CGRect rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
     CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
     CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectLat = CGRectMake(BORDER, BORDER + ICON_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER, BORDER + ICON_HEIGHT + LAT_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
+    CGRect rectLat = CGRectMake(BORDER, height - BORDER - LON_HEIGHT - LAT_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER, height - BORDER - LON_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LON_HEIGHT);
     
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
