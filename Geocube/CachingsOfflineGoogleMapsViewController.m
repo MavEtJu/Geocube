@@ -20,6 +20,7 @@
                                                              longitude:151.2086
                                                                   zoom:12];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView.mapType = kGMSTypeSatellite;
     
     // Creates a marker in the center of the map.
     [self refreshWaypointsData:nil];
