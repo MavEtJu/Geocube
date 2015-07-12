@@ -99,11 +99,94 @@
     ADD(@"waypoint rating star half 18x18", ImageWaypointView_ratingHalf);
     ADD(@"waypoint favourites 20x30", ImageWaypointView_favourites);
     
+    ADD(@"map - pin stick - 35x42", ImageMap_pin);
+    ADD(@"map - dnf stick - 35x42", ImageMap_dnf);
+    ADD(@"map - found stick - 35x42", ImageMap_found);
+    ADD(@"map - pinhead black - 15x15", ImageMap_pinheadBlack);
+    ADD(@"map - pinhead green - 15x15", ImageMap_pinheadGreen);
+    ADD(@"map - pinhead pink - 15x15", ImageMap_pinheadPink);
+    ADD(@"map - pinhead purple - 15x15", ImageMap_pinheadPurple);
+    ADD(@"map - pinhead red - 15x15", ImageMap_pinheadRed);
+    ADD(@"map - pinhead white - 15x15", ImageMap_pinheadWhite);
+    ADD(@"map - pinhead yellow - 15x15", ImageMap_pinheadYellow);
+    
+    ADD(@"map - cross dnf - 19x19", ImageMap_crossDNF);
+    ADD(@"map - tick found - 24x21", ImageMap_tickFound);
+
+#define MERGE_PINHEAD(__i1__, __i2__, __idx__) {\
+    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(3, 3, 15, 15)]; \
+    imgs[__idx__] = out; \
+    }
+    
+#define MERGE_DNF(__i1__, __i2__, __idx__) {\
+    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, 1, 16, 16)]; \
+    imgs[__idx__] = out; \
+    }
+
+#define MERGE_FOUND(__i1__, __i2__, __idx__) {\
+    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, -4, 24, 21)]; \
+    imgs[__idx__] = out; \
+    }
+
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadBlack, ImageMap_pinBlack);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadGreen, ImageMap_pinGreen);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadPink, ImageMap_pinPink);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadPurple, ImageMap_pinPurple);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadRed, ImageMap_pinRed);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadWhite, ImageMap_pinWhite);
+    MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadYellow, ImageMap_pinYellow);
+
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadBlack, ImageMap_foundBlack);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadGreen, ImageMap_foundGreen);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadPink, ImageMap_foundPink);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadPurple, ImageMap_foundPurple);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadRed, ImageMap_foundRed);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadWhite, ImageMap_foundWhite);
+    MERGE_PINHEAD(ImageMap_found, ImageMap_pinheadYellow, ImageMap_foundYellow);
+    MERGE_FOUND(ImageMap_foundBlack, ImageMap_tickFound, ImageMap_foundBlack);
+    MERGE_FOUND(ImageMap_foundGreen, ImageMap_tickFound, ImageMap_foundGreen);
+    MERGE_FOUND(ImageMap_foundPink, ImageMap_tickFound, ImageMap_foundPink);
+    MERGE_FOUND(ImageMap_foundPurple, ImageMap_tickFound, ImageMap_foundPurple);
+    MERGE_FOUND(ImageMap_foundRed, ImageMap_tickFound, ImageMap_foundRed);
+    MERGE_FOUND(ImageMap_foundWhite, ImageMap_tickFound, ImageMap_foundWhite);
+    MERGE_FOUND(ImageMap_foundYellow, ImageMap_tickFound, ImageMap_foundYellow);
+
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadBlack, ImageMap_dnfBlack);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadGreen, ImageMap_dnfGreen);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadPink, ImageMap_dnfPink);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadPurple, ImageMap_dnfPurple);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadRed, ImageMap_dnfRed);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadWhite, ImageMap_dnfWhite);
+    MERGE_PINHEAD(ImageMap_dnf, ImageMap_pinheadYellow, ImageMap_dnfYellow);
+    MERGE_DNF(ImageMap_dnfBlack, ImageMap_crossDNF, ImageMap_dnfBlack);
+    MERGE_DNF(ImageMap_dnfGreen, ImageMap_crossDNF, ImageMap_dnfGreen);
+    MERGE_DNF(ImageMap_dnfPink, ImageMap_crossDNF, ImageMap_dnfPink);
+    MERGE_DNF(ImageMap_dnfPurple, ImageMap_crossDNF, ImageMap_dnfPurple);
+    MERGE_DNF(ImageMap_dnfRed, ImageMap_crossDNF, ImageMap_dnfRed);
+    MERGE_DNF(ImageMap_dnfWhite, ImageMap_crossDNF, ImageMap_dnfWhite);
+    MERGE_DNF(ImageMap_dnfYellow, ImageMap_crossDNF, ImageMap_dnfYellow);
+
     ADD(@"icons - smiley - 30x30", ImageIcon_Smiley);
     ADD(@"icons - sad - 30x30", ImageIcon_Sad);
     ADD(@"icons - target - 20x20", ImageIcon_Target);
 
     return self;
+}
+
+- (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
+{
+    CGSize size = img1.size;
+    UIGraphicsBeginImageContext(size);
+    
+    CGPoint pointImg1 = CGPointMake(0, 0);
+    [img1 drawAtPoint:pointImg1];
+    
+    CGPoint pointImg2 = cropRect.origin;
+    [img2 drawAtPoint: pointImg2];
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
 }
 
 - (UIImage *)get:(NSInteger)imgnum

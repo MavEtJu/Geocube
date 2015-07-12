@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
+		E8027BD01B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -86,6 +88,19 @@
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbWaypointGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbWaypointGroup.m */; };
+		E8A3F4631B51E9AD009F2F46 /* map - cross dnf - 19x19.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4561B51E9AD009F2F46 /* map - cross dnf - 19x19.png */; };
+		E8A3F4641B51E9AD009F2F46 /* map - dnf stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4571B51E9AD009F2F46 /* map - dnf stick - 35x42.png */; };
+		E8A3F4651B51E9AD009F2F46 /* map - found stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4581B51E9AD009F2F46 /* map - found stick - 35x42.png */; };
+		E8A3F4661B51E9AD009F2F46 /* map - own overlay - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4591B51E9AD009F2F46 /* map - own overlay - 18x18.png */; };
+		E8A3F4671B51E9AD009F2F46 /* map - pin stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45A1B51E9AD009F2F46 /* map - pin stick - 35x42.png */; };
+		E8A3F4681B51E9AD009F2F46 /* map - pinhead black - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45B1B51E9AD009F2F46 /* map - pinhead black - 15x15.png */; };
+		E8A3F4691B51E9AD009F2F46 /* map - pinhead green - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45C1B51E9AD009F2F46 /* map - pinhead green - 15x15.png */; };
+		E8A3F46A1B51E9AD009F2F46 /* map - pinhead pink - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45D1B51E9AD009F2F46 /* map - pinhead pink - 15x15.png */; };
+		E8A3F46B1B51E9AD009F2F46 /* map - pinhead purple - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45E1B51E9AD009F2F46 /* map - pinhead purple - 15x15.png */; };
+		E8A3F46C1B51E9AD009F2F46 /* map - pinhead red - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F45F1B51E9AD009F2F46 /* map - pinhead red - 15x15.png */; };
+		E8A3F46D1B51E9AD009F2F46 /* map - pinhead white - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4601B51E9AD009F2F46 /* map - pinhead white - 15x15.png */; };
+		E8A3F46E1B51E9AD009F2F46 /* map - pinhead yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4611B51E9AD009F2F46 /* map - pinhead yellow - 15x15.png */; };
+		E8A3F46F1B51E9AD009F2F46 /* map - tick found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3F4621B51E9AD009F2F46 /* map - tick found - 24x21.png */; };
 		E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8BD82491B46A4E50029CDC9 /* global menu icon.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
@@ -127,6 +142,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8027BCE1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachingsOfflineGoogleMapsViewController.h; sourceTree = "<group>"; };
+		E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachingsOfflineGoogleMapsViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -231,6 +251,19 @@
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbWaypointGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypointGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbWaypointGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypointGroup.m; sourceTree = "<group>"; };
+		E8A3F4561B51E9AD009F2F46 /* map - cross dnf - 19x19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - cross dnf - 19x19.png"; path = "images/map - cross dnf - 19x19.png"; sourceTree = "<group>"; };
+		E8A3F4571B51E9AD009F2F46 /* map - dnf stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - dnf stick - 35x42.png"; path = "images/map - dnf stick - 35x42.png"; sourceTree = "<group>"; };
+		E8A3F4581B51E9AD009F2F46 /* map - found stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - found stick - 35x42.png"; path = "images/map - found stick - 35x42.png"; sourceTree = "<group>"; };
+		E8A3F4591B51E9AD009F2F46 /* map - own overlay - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - own overlay - 18x18.png"; path = "images/map - own overlay - 18x18.png"; sourceTree = "<group>"; };
+		E8A3F45A1B51E9AD009F2F46 /* map - pin stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pin stick - 35x42.png"; path = "images/map - pin stick - 35x42.png"; sourceTree = "<group>"; };
+		E8A3F45B1B51E9AD009F2F46 /* map - pinhead black - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead black - 15x15.png"; path = "images/map - pinhead black - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F45C1B51E9AD009F2F46 /* map - pinhead green - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead green - 15x15.png"; path = "images/map - pinhead green - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F45D1B51E9AD009F2F46 /* map - pinhead pink - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead pink - 15x15.png"; path = "images/map - pinhead pink - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F45E1B51E9AD009F2F46 /* map - pinhead purple - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead purple - 15x15.png"; path = "images/map - pinhead purple - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F45F1B51E9AD009F2F46 /* map - pinhead red - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead red - 15x15.png"; path = "images/map - pinhead red - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F4601B51E9AD009F2F46 /* map - pinhead white - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead white - 15x15.png"; path = "images/map - pinhead white - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F4611B51E9AD009F2F46 /* map - pinhead yellow - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead yellow - 15x15.png"; path = "images/map - pinhead yellow - 15x15.png"; sourceTree = "<group>"; };
+		E8A3F4621B51E9AD009F2F46 /* map - tick found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 24x21.png"; path = "images/map - tick found - 24x21.png"; sourceTree = "<group>"; };
 		E8BD82491B46A4E50029CDC9 /* global menu icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "global menu icon.png"; path = "images/global menu icon.png"; sourceTree = "<group>"; };
 		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
@@ -289,6 +322,7 @@
 			files = (
 				E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */,
 				E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */,
+				B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +336,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7FCDB95B810A028E770E84C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C52879D9FDE55D2D5B94688C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C1A9513093211440A37A173 /* Pods.debug.xcconfig */,
+				A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +375,8 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
+				E8027BCE1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.h */,
+				E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
@@ -456,9 +509,30 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		E8A3F44F1B51D932009F2F46 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				E8A3F4561B51E9AD009F2F46 /* map - cross dnf - 19x19.png */,
+				E8A3F4571B51E9AD009F2F46 /* map - dnf stick - 35x42.png */,
+				E8A3F4581B51E9AD009F2F46 /* map - found stick - 35x42.png */,
+				E8A3F4591B51E9AD009F2F46 /* map - own overlay - 18x18.png */,
+				E8A3F45A1B51E9AD009F2F46 /* map - pin stick - 35x42.png */,
+				E8A3F45B1B51E9AD009F2F46 /* map - pinhead black - 15x15.png */,
+				E8A3F45C1B51E9AD009F2F46 /* map - pinhead green - 15x15.png */,
+				E8A3F45D1B51E9AD009F2F46 /* map - pinhead pink - 15x15.png */,
+				E8A3F45E1B51E9AD009F2F46 /* map - pinhead purple - 15x15.png */,
+				E8A3F45F1B51E9AD009F2F46 /* map - pinhead red - 15x15.png */,
+				E8A3F4601B51E9AD009F2F46 /* map - pinhead white - 15x15.png */,
+				E8A3F4611B51E9AD009F2F46 /* map - pinhead yellow - 15x15.png */,
+				E8A3F4621B51E9AD009F2F46 /* map - tick found - 24x21.png */,
+			);
+			name = map;
+			sourceTree = "<group>";
+		};
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E8A3F44F1B51D932009F2F46 /* map */,
 				E8740FCE1B4E9D49002527DA /* containers */,
 				E8740FA31B4E86BB002527DA /* logs */,
 				E8740F9D1B4E6C5F002527DA /* icons - sad - 30x30.png */,
@@ -479,6 +553,8 @@
 				E8F570551B3F7255003F020C /* Geocube */,
 				E8F5706F1B3F7255003F020C /* GeocubeTests */,
 				E8F570541B3F7255003F020C /* Products */,
+				C52879D9FDE55D2D5B94688C /* Pods */,
+				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -668,9 +744,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
 			buildPhases = (
+				9254E849F0A5BD2FD44239AC /* Check Pods Manifest.lock */,
 				E8F5704F1B3F7255003F020C /* Sources */,
 				E8F570501B3F7255003F020C /* Frameworks */,
 				E8F570511B3F7255003F020C /* Resources */,
+				A6786FD4ECC5DEE28B247D4B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -742,7 +820,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8740FAB1B4E86D9002527DA /* log - attended - 30x30.png in Resources */,
+				E8A3F46F1B51E9AD009F2F46 /* map - tick found - 24x21.png in Resources */,
 				E86C65861B4BCE4600E2ABFE /* cache - maze - 30x30.png in Resources */,
+				E8A3F46B1B51E9AD009F2F46 /* map - pinhead purple - 15x15.png in Resources */,
+				E8A3F46D1B51E9AD009F2F46 /* map - pinhead white - 15x15.png in Resources */,
 				E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */,
 				E8740FC51B4E870D002527DA /* log - willattend - 30x30.png in Resources */,
 				E86C65721B4BC74200E2ABFE /* waypoint rating star on 19x18.png in Resources */,
@@ -755,16 +836,21 @@
 				E86C65801B4BCE4600E2ABFE /* cache - benchmark - 30x30.png in Resources */,
 				E86C659E1B4BD3D300E2ABFE /* waypoint - finish - 30x30.png in Resources */,
 				E86C65A31B4BD3D300E2ABFE /* waypoint - trailhead - 30x30.png in Resources */,
+				E8A3F4641B51E9AD009F2F46 /* map - dnf stick - 35x42.png in Resources */,
+				E8A3F4691B51E9AD009F2F46 /* map - pinhead green - 15x15.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E86C65931B4BCE7100E2ABFE /* cache - waymark - 30x30.png in Resources */,
+				E8A3F4671B51E9AD009F2F46 /* map - pin stick - 35x42.png in Resources */,
 				E8740FDC1B4E9DBB002527DA /* container - other - 70x20.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8740FBE1B4E86F6002527DA /* log - ownermaintenance - 30x30.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
+				E8A3F46A1B51E9AD009F2F46 /* map - pinhead pink - 15x15.png in Resources */,
 				E8740FA11B4E6C5F002527DA /* icons - smiley - 15x15.png in Resources */,
 				E8740FBD1B4E86F6002527DA /* log - note - 30x30.png in Resources */,
 				E86C65901B4BCE7100E2ABFE /* cache - traditional - 30x30.png in Resources */,
+				E8A3F4681B51E9AD009F2F46 /* map - pinhead black - 15x15.png in Resources */,
 				E8740FAF1B4E86D9002527DA /* log - enabled - 30x30.png in Resources */,
 				E86C65A01B4BD3D300E2ABFE /* waypoint - multi - 30x30.png in Resources */,
 				E86C65831B4BCE4600E2ABFE /* cache - event - 30x30.png in Resources */,
@@ -778,8 +864,11 @@
 				E8740FAE1B4E86D9002527DA /* log - disabled - 18x18.png in Resources */,
 				E8F570671B3F7255003F020C /* LaunchScreen.xib in Resources */,
 				E8740FC11B4E86F6002527DA /* log - unarchived - 30x30.png in Resources */,
+				E8A3F46E1B51E9AD009F2F46 /* map - pinhead yellow - 15x15.png in Resources */,
 				E8740FAA1B4E86D9002527DA /* log - archived - 30x30.png in Resources */,
+				E8A3F4651B51E9AD009F2F46 /* map - found stick - 35x42.png in Resources */,
 				E8740FD81B4E9D76002527DA /* container - regular - 70x20.png in Resources */,
+				E8A3F46C1B51E9AD009F2F46 /* map - pinhead red - 15x15.png in Resources */,
 				E8BD824A1B46A4E50029CDC9 /* global menu icon.png in Resources */,
 				E8740FD61B4E9D76002527DA /* container - micro - 70x20.png in Resources */,
 				E86C65A21B4BD3D300E2ABFE /* waypoint - question - 30x30.png in Resources */,
@@ -789,11 +878,13 @@
 				E8740FBA1B4E86F6002527DA /* log - found - 30x30.png in Resources */,
 				E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */,
 				E86C65911B4BCE7100E2ABFE /* cache - unknown - 30x30.png in Resources */,
+				E8A3F4631B51E9AD009F2F46 /* map - cross dnf - 19x19.png in Resources */,
 				E8740FAD1B4E86D9002527DA /* log - didnotfind - 30x30.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E8740FA21B4E6C5F002527DA /* icons - target - 20x20.png in Resources */,
 				E86C65821B4BCE4600E2ABFE /* cache - earth - 30x30.png in Resources */,
 				E86C656C1B4BC57900E2ABFE /* waypoint favourites 20x30.png in Resources */,
+				E8A3F4661B51E9AD009F2F46 /* map - own overlay - 18x18.png in Resources */,
 				E8740FD71B4E9D76002527DA /* container - notchosen - 70x20.png in Resources */,
 				E86C65871B4BCE4600E2ABFE /* cache - mega - 30x30.png in Resources */,
 				E86C65811B4BCE4600E2ABFE /* cache - cito - 30x30.png in Resources */,
@@ -817,6 +908,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9254E849F0A5BD2FD44239AC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A6786FD4ECC5DEE28B247D4B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E8F5704F1B3F7255003F020C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -828,6 +952,7 @@
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
+				E8027BD01B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,
@@ -989,6 +1114,7 @@
 		};
 		E8F570771B3F7255003F020C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C1A9513093211440A37A173 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1000,6 +1126,7 @@
 		};
 		E8F570781B3F7255003F020C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

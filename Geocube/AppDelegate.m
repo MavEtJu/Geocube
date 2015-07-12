@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
+@import GoogleMaps;
+
 #import "Geocube-Prefix.pch"
 
 @implementation AppDelegate
@@ -18,6 +20,9 @@
     _AppDelegate = self;
     
     NSFileManager *fm = [[NSFileManager alloc] init];
+    
+    // Initialize Google Maps
+    [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
     
     /* Create files directory */
     [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
@@ -90,8 +95,8 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
-    vc = [[NullViewController alloc] init];
-    vc.title = @"XMap";
+    vc = [[CachingsOfflineGoogleMapsViewController alloc] init];
+    vc.title = @"Map";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
