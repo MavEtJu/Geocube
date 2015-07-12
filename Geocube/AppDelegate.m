@@ -94,12 +94,17 @@
     vc.title = @"List";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     vc = [[CachingsOfflineGoogleMapsViewController alloc] init];
-    vc.title = @"Map";
+    vc.title = @"GMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
+    vc = [[CachingsOfflineOSMViewController alloc] init];
+    vc.title = @"OSM";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
     
     // Notes and logs tabs

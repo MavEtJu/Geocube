@@ -58,6 +58,7 @@
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
 #import "CachingsOfflineGoogleMapsViewController.h"
+#import "CachingsOfflineOSMViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 
