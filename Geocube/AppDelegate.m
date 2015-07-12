@@ -100,11 +100,6 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CachingsOfflineOSMViewController alloc] init];
-    vc.title = @"OSM";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
-
     TABBARCONTROLLER(controllers)
     
     // Notes and logs tabs
