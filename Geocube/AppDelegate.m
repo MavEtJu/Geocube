@@ -95,17 +95,17 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CachesOfflineGoogleMapsViewController alloc] init];
+    vc = [[MapGoogleViewController alloc] init];
     vc.title = @"GMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CachesOfflineAppleMapsViewController alloc] init];
+    vc = [[MapAppleViewController alloc] init];
     vc.title = @"AMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CachesOfflineOSMViewController alloc] init];
+    vc = [[MapOSMViewController alloc] init];
     vc.title = @"OSM";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];

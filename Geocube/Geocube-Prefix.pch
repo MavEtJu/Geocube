@@ -59,9 +59,9 @@
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
-#import "CachesOfflineGoogleMapsViewController.h"
-#import "CachesOfflineOSMViewController.h"
-#import "CachesOfflineAppleMapsViewController.h"
+#import "MapGoogleViewController.h"
+#import "MapOSMViewController.h"
+#import "MapAppleViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 

@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation CachesOfflineOSMViewController
+@implementation MapAppleViewController
 
 - (id)init
 {
@@ -29,15 +29,8 @@
     self.view = contentView;
     
     MKMapView *mv = [[MKMapView alloc] initWithFrame:self.view.frame];
-    mv.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
+    mv.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
     [self.view addSubview:mv];
-    
-    // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
-    NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
-    MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template]; // (2)
-    overlay.canReplaceMapContent = YES;                        // (3)
-    [mv addOverlay:overlay level:MKOverlayLevelAboveLabels];         // (4)
-    mv.delegate = self;
     
     // Creates a marker in the center of the map.
     [self refreshWaypointsData:nil];
@@ -52,17 +45,8 @@
         [annotation setTitle:wp.name]; //You can set the subtitle too
         [mv addAnnotation:annotation];
     }
-
+    
     self.view = mv;
-}
-
-// From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id)overlay
-{
-    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
-        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
-    }
-    return nil;
 }
 
 - (void)refreshWaypointsData:(NSString *)searchString

@@ -10,7 +10,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation CachesOfflineGoogleMapsViewController
+@implementation MapGoogleViewController
 
 - (id)init
 {

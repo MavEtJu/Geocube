@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface CachesOfflineGoogleMapsViewController : GCViewController {
+@interface MapGoogleViewController : GCViewController {
     NSArray *wps;
     NSInteger wpCount;
 }
