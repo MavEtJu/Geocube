@@ -23,6 +23,7 @@
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
+		E867E8371B534ED800CB126A /* CachesOfflineOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* CachesOfflineOSMViewController.m */; };
 		E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */; };
 		E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65611B4B243000E2ABFE /* WaypointTableViewCell.m */; };
 		E86C656C1B4BC57900E2ABFE /* waypoint favourites 20x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86C656B1B4BC57900E2ABFE /* waypoint favourites 20x30.png */; };
@@ -178,6 +179,8 @@
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
 		E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheHeaderTableViewCell.m; sourceTree = "<group>"; };
+		E867E8351B534ED800CB126A /* CachesOfflineOSMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineOSMViewController.h; sourceTree = "<group>"; };
+		E867E8361B534ED800CB126A /* CachesOfflineOSMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineOSMViewController.m; sourceTree = "<group>"; };
 		E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineListViewController.h; sourceTree = "<group>"; };
 		E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineListViewController.m; sourceTree = "<group>"; };
 		E86C65601B4B243000E2ABFE /* WaypointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTableViewCell.h; sourceTree = "<group>"; };
@@ -370,12 +373,9 @@
 		E80F721D1B5275D200F35528 /* Caches Offline */ = {
 			isa = PBXGroup;
 			children = (
+				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
-				E8027BCE1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.h */,
-				E8027BCF1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m */,
-				E80F73781B53474C00F35528 /* CachesOfflineAppleMapsViewController.h */,
-				E80F73791B53474C00F35528 /* CachesOfflineAppleMapsViewController.m */,
 			);
 			name = "Caches Offline";
 			sourceTree = "<group>";
@@ -424,6 +424,19 @@
 				E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */,
 			);
 			name = DOPNavbarMenu;
+			sourceTree = "<group>";
+		};
+		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E8027BCE1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.h */,
+				E8027BCF1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m */,
+				E80F73781B53474C00F35528 /* CachesOfflineAppleMapsViewController.h */,
+				E80F73791B53474C00F35528 /* CachesOfflineAppleMapsViewController.m */,
+				E867E8351B534ED800CB126A /* CachesOfflineOSMViewController.h */,
+				E867E8361B534ED800CB126A /* CachesOfflineOSMViewController.m */,
+			);
+			name = MapViewControllers;
 			sourceTree = "<group>";
 		};
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
@@ -991,6 +1004,7 @@
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
+				E867E8371B534ED800CB126A /* CachesOfflineOSMViewController.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,

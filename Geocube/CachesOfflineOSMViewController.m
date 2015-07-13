@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation CachesOfflineAppleMapsViewController
+@implementation CachesOfflineOSMViewController
 
 - (id)init
 {
@@ -29,8 +29,15 @@
     self.view = contentView;
     
     MKMapView *mv = [[MKMapView alloc] initWithFrame:self.view.frame];
-    mv.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
+    mv.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
     [self.view addSubview:mv];
+    
+    // Place this into your -viewDidLoad method
+    NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
+    MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template]; // (2)
+    overlay.canReplaceMapContent = YES;                        // (3)
+    [mv addOverlay:overlay level:MKOverlayLevelAboveLabels];         // (4)
+    mv.delegate = self;
     
     // Creates a marker in the center of the map.
     [self refreshWaypointsData:nil];
@@ -45,8 +52,17 @@
         [annotation setTitle:wp.name]; //You can set the subtitle too
         [mv addAnnotation:annotation];
     }
-    
+
     self.view = mv;
+}
+
+// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id)overlay
+{
+    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
+        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
+    }
+    return nil;
 }
 
 - (void)refreshWaypointsData:(NSString *)searchString
