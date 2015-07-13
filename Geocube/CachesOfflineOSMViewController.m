@@ -32,7 +32,7 @@
     mv.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
     [self.view addSubview:mv];
     
-    // Place this into your -viewDidLoad method
+    // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
     MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template]; // (2)
     overlay.canReplaceMapContent = YES;                        // (3)
@@ -56,7 +56,7 @@
     self.view = mv;
 }
 
-// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
+// From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id)overlay
 {
     if ([overlay isKindOfClass:[MKTileOverlay class]]) {
