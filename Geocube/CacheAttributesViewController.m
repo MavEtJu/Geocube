@@ -29,6 +29,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
     
+    menuItems = nil;
+    
     return self;
 }
 
@@ -65,7 +67,7 @@
     dbAttribute *a = [attrs objectAtIndex:indexPath.row];
     
     cell.textLabel.text = a.label;
-    cell.imageView.image = nil;
+    cell.imageView.image = [imageLibrary get:a.icon];
     
     return cell;
 }

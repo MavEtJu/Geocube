@@ -111,16 +111,22 @@
                 if ([wp hasFieldNotes] == FALSE)
                     tc = [UIColor lightGrayColor];
                 break;
-            case 4: /* Logs */
-                if ([wp hasLogs] == 0)
+            case 4: { /* Logs */
+                NSInteger c = [wp hasLogs];
+                if (c == 0)
                     tc = [UIColor lightGrayColor];
                 else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], [wp hasLogs]];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
-            case 5: /* Attributes Note */
-                if ([wp hasAttributes] == FALSE)
+                }
+            case 5: { /* Attributes */
+                NSInteger c = [wp hasAttributes];
+                if (c == 0)
                     tc = [UIColor lightGrayColor];
+                else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
+                }
             case 6: /* Related Waypoints */
                 if ([wp hasWaypoints] == FALSE)
                     tc = [UIColor lightGrayColor];

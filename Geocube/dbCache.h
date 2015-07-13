@@ -81,7 +81,7 @@
 - (id)init:(NSInteger)_id;
 - (BOOL)hasFieldNotes;
 - (NSInteger)hasLogs;
-- (BOOL)hasAttributes;
+- (NSInteger)hasAttributes;
 - (BOOL)hasWaypoints;
 - (BOOL)hasInventory;
 - (BOOL)hasImages;

@@ -79,7 +79,7 @@
     return [db Logs_count_byCache_id:_id];
 }
 
-- (BOOL)hasAttributes {
+- (NSInteger)hasAttributes {
     return [db Attributes_count_byCache_id:_id];
 }
 
