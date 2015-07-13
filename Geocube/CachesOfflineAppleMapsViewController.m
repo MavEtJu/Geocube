@@ -1,51 +1,52 @@
 //
-//  CachingsOfflineGoogleMapsViewController.m
+//  CachesOfflineAppleMaps.m
 //  Geocube
 //
-//  Created by Edwin Groothuis on 11/07/2015.
+//  Created by Edwin Groothuis on 13/07/2015.
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@import GoogleMaps;
-
 #import "Geocube-Prefix.pch"
 
-@implementation CachingsOfflineGoogleMapsViewController
+@implementation CachesOfflineAppleMapsViewController
+
+- (id)init
+{
+    self = [super init];
+    
+    menuItems = @[@"Map", @"Satellite"];
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
-                                                             longitude:151.2086
-                                                                  zoom:12];
-    GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView.mapType = kGMSTypeSatellite;
+    
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
+    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view = contentView;
+    
+    MKMapView *mv = [[MKMapView alloc] initWithFrame:self.view.frame];
+    mv.mapType = MKMapTypeHybrid;
+    [self.view addSubview:mv];
     
     // Creates a marker in the center of the map.
     [self refreshWaypointsData:nil];
     NSEnumerator *e = [wps objectEnumerator];
     dbWaypoint *wp;
     while ((wp = [e nextObject]) != nil) {
-        GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
-        switch (rand() % 3) {
-            case 0:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_pinBlack];
-                break;
-            case 1:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_foundRed];
-                break;
-            case 2:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_dnfYellow];
-                break;
-        }
-        marker.title = wp.name;
-        marker.snippet = wp.description;
-        marker.map = mapView;
+        // Place a single pin
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
+        [annotation setCoordinate:coord];
+        
+        [annotation setTitle:wp.name]; //You can set the subtitle too
+        [mv addAnnotation:annotation];
     }
     
-    self.view = mapView;
+    self.view = mv;
 }
 
 - (void)refreshWaypointsData:(NSString *)searchString

@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
-		E8027BD01B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */; };
+		E8027BD01B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
+		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
+		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
+		E80F737A1B53474C00F35528 /* CachesOfflineAppleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73791B53474C00F35528 /* CachesOfflineAppleMapsViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -146,10 +149,14 @@
 		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8027BCE1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachingsOfflineGoogleMapsViewController.h; sourceTree = "<group>"; };
-		E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachingsOfflineGoogleMapsViewController.m; sourceTree = "<group>"; };
+		E8027BCE1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineGoogleMapsViewController.h; sourceTree = "<group>"; };
+		E8027BCF1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineGoogleMapsViewController.m; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
+		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E80F73781B53474C00F35528 /* CachesOfflineAppleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineAppleMapsViewController.h; sourceTree = "<group>"; };
+		E80F73791B53474C00F35528 /* CachesOfflineAppleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineAppleMapsViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -323,8 +330,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */,
 				E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */,
 				E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */,
+				E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */,
 				B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +351,8 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E80F73761B53443000F35528 /* CoreLocation.framework */,
+				E80F73741B533F4D00F35528 /* MapKit.framework */,
 				B7FCDB95B810A028E770E84C /* libPods.a */,
 			);
 			name = Frameworks;
@@ -361,8 +372,10 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
-				E8027BCE1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.h */,
-				E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */,
+				E8027BCE1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.h */,
+				E8027BCF1B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m */,
+				E80F73781B53474C00F35528 /* CachesOfflineAppleMapsViewController.h */,
+				E80F73791B53474C00F35528 /* CachesOfflineAppleMapsViewController.m */,
 			);
 			name = "Caches Offline";
 			sourceTree = "<group>";
@@ -801,6 +814,11 @@
 				TargetAttributes = {
 					E8F570521B3F7255003F020C = {
 						CreatedOnToolsVersion = 6.3.2;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E8F5706B1B3F7255003F020C = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -962,10 +980,11 @@
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
+				E80F737A1B53474C00F35528 /* CachesOfflineAppleMapsViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* WaypointTableViewCell.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
-				E8027BD01B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m in Sources */,
+				E8027BD01B514956003FD5A6 /* CachesOfflineGoogleMapsViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,

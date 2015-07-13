@@ -95,8 +95,13 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CachingsOfflineGoogleMapsViewController alloc] init];
+    vc = [[CachesOfflineGoogleMapsViewController alloc] init];
     vc.title = @"GMap";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+
+    vc = [[CachesOfflineAppleMapsViewController alloc] init];
+    vc.title = @"AMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
