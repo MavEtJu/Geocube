@@ -35,8 +35,6 @@
 #import "database-cache.h"
 #import "database.h"
 
-#import "Import_GPX.h"
-
 #import "AppDelegate.h"
 #import "GlobalMenu.h"
 #import "ImageLibrary.h"
@@ -44,6 +42,9 @@
 
 #import "GCTableViewController.h"
 #import "GCViewController.h"
+
+#import "Import_GPX.h"
+#import "ImportGPXViewController.h"
 
 #import "WaypointTableViewCell.h"
 #import "LogTableViewCell.h"

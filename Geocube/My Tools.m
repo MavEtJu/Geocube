@@ -50,4 +50,17 @@
     return s;
 }
 
++ (NSInteger)numberOfLines:(NSString *)s
+{
+    NSInteger lineNum = 0;
+    NSInteger length = [s length];
+    NSRange range = NSMakeRange(0, length);
+    while (range.location < length) {
+        range = [s lineRangeForRange:NSMakeRange(range.location, 0)];
+        range.location = NSMaxRange(range);
+        lineNum += 1;
+    }
+    return lineNum;
+}
+
 @end

@@ -10,8 +10,14 @@
 
 @implementation Import_GPX
 
-- (id)init:(NSString *)filename group:(NSString *)_groupname
+- (id)init:(NSString *)filename group:(NSString *)_groupname newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR
 {
+    newCachesCount = nCC;
+    totalCachesCount = tCC;
+    newLogsCount = nLC;
+    totalLogsCount = tLC;
+    percentageRead = pR;
+    
     groupname = _groupname;
     group = [db WaypointGroups_get_byName:groupname];
 
@@ -43,6 +49,9 @@
     
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
+    
+    NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    totalLines = [MyTools numberOfLines:s];
     
     [rssParser setDelegate:self];
     [rssParser setShouldProcessNamespaces:NO];
@@ -108,8 +117,10 @@
         [currentWP finish];
         
         NSInteger cwp_id = [db Waypoint_get_byname:currentWP.name];
+        (*totalCachesCount)++;
         if (cwp_id == 0) {
             cwp_id = [db Waypoint_add:currentWP];
+            (*newCachesCount)++;
             
             [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
             [db WaypointGroups_add_waypoint:dbc.WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
@@ -137,7 +148,9 @@
         [currentLog finish];
         
         NSInteger log_id = [db Log_by_gcid:currentLog.gc_id];
+        (*totalLogsCount)++;
         if (log_id == 0) {
+            (*newLogsCount)++;
             currentLog._id = [db Logs_add:currentLog];
         } else {
             currentLog._id = log_id;
@@ -241,6 +254,7 @@ bye:
 
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    *percentageRead = 100 * parser.lineNumber / totalLines;
     if (string == nil)
         return;
     if (currentText == nil)

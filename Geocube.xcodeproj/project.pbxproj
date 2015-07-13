@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E8027BD01B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */; };
+		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -147,6 +148,8 @@
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8027BCE1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachingsOfflineGoogleMapsViewController.h; sourceTree = "<group>"; };
 		E8027BCF1B514956003FD5A6 /* CachingsOfflineGoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachingsOfflineGoogleMapsViewController.m; sourceTree = "<group>"; };
+		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
+		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
+				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
+				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -971,6 +976,7 @@
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
 				E8F570C81B4008C3003F020C /* dbWaypoint.m in Sources */,
+				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8740FCA1B4E90D7002527DA /* dbContainerType.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbWaypointGroup.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,

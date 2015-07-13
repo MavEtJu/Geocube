@@ -14,19 +14,26 @@
 
 @implementation UserProfileViewController
 
+- (id)init
+{
+    self = [super init];
+    
+    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
 }
 
 - (void)loadView
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor greenColor];
+    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 40, 100, 40)];

@@ -10,6 +10,13 @@
 #define Geocube_Import_GPX_h
 
 @interface Import_GPX : NSObject <NSXMLParserDelegate> {
+    NSInteger *newCachesCount;
+    NSInteger *totalCachesCount;
+    NSInteger *newLogsCount;
+    NSInteger *totalLogsCount;
+    NSUInteger *percentageRead;
+    NSUInteger totalLines;
+    
     NSArray *files;
     NSString *groupname;
     dbWaypointGroup *group;
@@ -23,7 +30,7 @@
     dbLog *currentLog;
 }
 
-- (id)init:(NSString *)filename group:(NSString *)groupname;
+- (id)init:(NSString *)filename group:(NSString *)groupname newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR;
 - (void)parse;
 
 @end

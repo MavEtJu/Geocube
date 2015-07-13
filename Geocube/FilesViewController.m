@@ -178,10 +178,15 @@
 
 - (void)fileImport:(NSString *)filename
 {
-    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
-    Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
-    [i parse];
-    [dbc loadWaypointData];
+    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = @"Import";
+    [self.navigationController pushViewController:newController animated:YES];
+    
+//    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+//    Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
+//    [i parse];
+//    [dbc loadWaypointData];
 }
 
 - (void)fileRename:(NSString *)filename
@@ -195,7 +200,7 @@
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
-                             //Do Some action
+                             // Rename the file
                              NSString *fromfullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *tofullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], tf.text];

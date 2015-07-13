@@ -151,7 +151,7 @@
     [controllers addObject:nav];
     
     vc = [[NullViewController alloc] init];
-    vc.title = @"Dropbox";
+    vc.title = @"XDropbox";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
@@ -198,7 +198,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:2];
+    self.window.rootViewController = [tabBars objectAtIndex:7];
     [self.window makeKeyAndVisible];
     return YES;
 }

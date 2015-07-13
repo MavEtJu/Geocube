@@ -16,6 +16,7 @@
 + (NSString *)FilesDir;
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
 + (NSString *)simpleHTML:(NSString *)plainText;
++ (NSInteger)numberOfLines:(NSString *)s;
 
 @end
 #endif

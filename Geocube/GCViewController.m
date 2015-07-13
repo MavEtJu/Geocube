@@ -12,6 +12,14 @@
 
 @synthesize numberOfItemsInRow, tab_menu, global_menu;
 
+- (id)init
+{
+    self = [super init];
+    menuItems = [NSArray arrayWithObjects:@"Empty", nil];
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,8 +49,16 @@
 - (DOPNavbarMenu *)tab_menu
 {
     if (tab_menu == nil) {
-        DOPNavbarMenuItem *item_empty = [DOPNavbarMenuItem ItemWithTitle:@"empty" icon:[UIImage imageNamed:@"Image"]];
-        tab_menu = [[DOPNavbarMenu alloc] initWithItems:@[item_empty] width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
+        NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
+        
+        NSEnumerator *e = [menuItems objectEnumerator];
+        NSString *menuitem;
+        while ((menuitem = [e nextObject]) != nil) {
+            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
+            [menuoptions addObject:item];
+        }
+        
+        tab_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         tab_menu.backgroundColor = [UIColor blackColor];
         tab_menu.separatarColor = [UIColor whiteColor];
         tab_menu.menuName = @"Local";
