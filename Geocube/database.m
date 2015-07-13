@@ -359,7 +359,7 @@
 
 - (NSMutableArray *)Caches_all
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id from caches";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available from caches";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
@@ -391,6 +391,8 @@
             TEXT_FETCH_AND_ASSIGN(req, 19, gc_short_desc);
             TEXT_FETCH_AND_ASSIGN(req, 20, gc_hint);
             INT_FETCH_AND_ASSIGN(req, 21, gc_container_size);
+            BOOL_FETCH_AND_ASSIGN(req, 22, gc_archived);
+            BOOL_FETCH_AND_ASSIGN(req, 23, gc_available);
             
             wp = [[dbCache alloc] init:_id];
             [wp setName:name];
@@ -415,6 +417,8 @@
             [wp setGc_short_desc:gc_short_desc];
             [wp setGc_hint:gc_hint];
             [wp setGc_containerSize_int:gc_container_size];
+            [wp setGc_archived:gc_archived];
+            [wp setGc_available:gc_available];
             [wp finish];
             [wps addObject:wp];
         }
@@ -446,7 +450,7 @@
 
 - (NSInteger)Cache_add:(dbCache *)wp
 {
-    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
     
@@ -475,6 +479,8 @@
         SET_VAR_TEXT(req, 19, wp.gc_short_desc);
         SET_VAR_TEXT(req, 20, wp.gc_hint);
         SET_VAR_INT(req, 21, wp.gc_containerSize_int);
+        SET_VAR_BOOL(req, 22, wp.gc_archived);
+        SET_VAR_BOOL(req, 23, wp.gc_available);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Cache_add:step: %s", sqlite3_errmsg(db));
@@ -487,7 +493,7 @@
 
 - (void)Cache_update:(dbCache *)wp
 {
-    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ? where id = ?";
+    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(dbaccess) {
@@ -515,7 +521,9 @@
         SET_VAR_TEXT(req, 19, wp.gc_short_desc);
         SET_VAR_TEXT(req, 20, wp.gc_hint);
         SET_VAR_INT(req, 21, wp.gc_containerSize_int);
-        SET_VAR_INT(req, 22, wp._id);
+        SET_VAR_BOOL(req, 22, wp.gc_archived);
+        SET_VAR_BOOL(req, 23, wp.gc_available);
+        SET_VAR_INT(req, 24, wp._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
             NSAssert1(0, @"Cache_update:step: %s", sqlite3_errmsg(db));

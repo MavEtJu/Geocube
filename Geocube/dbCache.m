@@ -10,12 +10,28 @@
 
 @implementation dbCache
 
-@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int;
+@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int, gc_archived, gc_available;
 
 - (id)init:(NSInteger)__id
 {
     self = [super init];
     _id = __id;
+    
+    self.gc_archived = NO;
+    self.gc_available = YES;
+    self.gc_country = nil;
+    self.gc_state = nil;
+    self.gc_short_desc = nil;
+    self.gc_short_desc_html = NO;
+    self.gc_long_desc = nil;
+    self.gc_long_desc_html = NO;
+    self.gc_hint = nil;
+    self.gc_personal_note = nil;
+    self.gc_containerSize = nil;
+    self.gc_favourites = 0;
+    self.gc_rating_difficulty = 0;
+    self.gc_rating_terrain = 0;
+
     return self;
 }
 

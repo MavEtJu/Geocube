@@ -27,6 +27,7 @@
     NSString *cache_type_str;
     dbCacheType *cache_type;
     
+    BOOL gc_archived, gc_available;
     NSString *gc_country, *gc_state;
     
     BOOL gc_short_desc_html, gc_long_desc_html;
@@ -71,6 +72,8 @@
 @property (nonatomic) NSInteger gc_containerSize_int;
 @property (nonatomic) NSString *gc_containerSize_str;
 @property (nonatomic, retain) dbContainerSize *gc_containerSize;
+@property (nonatomic) BOOL gc_archived;
+@property (nonatomic) BOOL gc_available;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) coordinate_type coordinates;

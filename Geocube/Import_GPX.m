@@ -87,16 +87,22 @@
         return;
     }
     
+    if ([currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
+        [currentC setGc_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
+        [currentC setGc_available:[[attributeDict objectForKey:@"available"] boolValue]];
+        return;
+    }
+
     if ([currentElement compare:@"groundspeak:long_description"] == NSOrderedSame) {
         [currentC setGc_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
-    
+
     if ([currentElement compare:@"groundspeak:short_description"] == NSOrderedSame) {
         [currentC setGc_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
-    
+
     if ([currentElement compare:@"groundspeak:log"] == NSOrderedSame) {
         currentLog = [[dbLog alloc] init];
         [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
