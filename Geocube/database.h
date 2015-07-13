@@ -21,30 +21,30 @@
 - (id)init;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 
-- (dbWaypointGroup *)WaypointGroups_get_byName:(NSString *)name;
-- (NSInteger)WaypointGroups_count_waypoints:(NSInteger)wpgid;
-- (void)WaypointGroups_new:(NSString *)name isUser:(BOOL)isUser;
-- (void)WaypointGroups_delete:(NSInteger)_id;
-- (void)WaypointGroups_empty:(NSInteger)_id;
-- (void)WaypointGroups_rename:(NSInteger)_id newName:(NSString *)newname;
-- (void)WaypointGroups_add_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
-- (BOOL)WaypointGroups_contains_waypoint:(NSInteger)wpgid waypoint_id:(NSInteger)wpid;
-- (NSArray *)WaypointGroups_all;
-- (NSArray *)WaypointGroups_all_byWaypointId:(NSInteger)wp_id;
+- (dbCacheGroup *)CacheGroups_get_byName:(NSString *)name;
+- (NSInteger)CacheGroups_count_caches:(NSInteger)wpgid;
+- (void)CacheGroups_new:(NSString *)name isUser:(BOOL)isUser;
+- (void)CacheGroups_delete:(NSInteger)_id;
+- (void)CacheGroups_empty:(NSInteger)_id;
+- (void)CacheGroups_rename:(NSInteger)_id newName:(NSString *)newname;
+- (void)CacheGroups_add_cache:(NSInteger)wpgid cache_id:(NSInteger)wpid;
+- (BOOL)CacheGroups_contains_cache:(NSInteger)wpgid cache_id:(NSInteger)wpid;
+- (NSArray *)CacheGroups_all;
+- (NSArray *)CacheGroups_all_byCacheId:(NSInteger)wp_id;
 
-- (NSInteger)Waypoint_get_byname:(NSString *)name;
-- (NSInteger)Waypoint_add:(dbWaypoint *)wp;
-- (void)Waypoint_update:(dbWaypoint *)wp;
-- (NSArray *)Waypoints_all;
+- (NSInteger)Cache_get_byname:(NSString *)name;
+- (NSInteger)Cache_add:(dbCache *)wp;
+- (void)Cache_update:(dbCache *)wp;
+- (NSArray *)Caches_all;
 
 - (NSInteger)Log_by_gcid:(NSInteger)gc_id;
 - (NSInteger)Logs_add:(dbLog *)log;
 - (void)Logs_update:(NSInteger)_id log:(dbLog *)log;
-- (void)Logs_update_waypoint_id:(dbLog *)log waypoint_id:(NSInteger)wp_id;
-- (NSInteger)Logs_count_byWaypoint_id:(NSInteger)wp_id;
-- (NSArray *)Logs_all_bywaypointid:(NSInteger)wp_id;
+- (void)Logs_update_cache_id:(dbLog *)log cache_id:(NSInteger)wp_id;
+- (NSInteger)Logs_count_byCache_id:(NSInteger)wp_id;
+- (NSArray *)Logs_all_bycacheid:(NSInteger)wp_id;
 
-- (NSArray *)WaypointTypes_all;
+- (NSArray *)CacheTypes_all;
 - (NSArray *)ContainerTypes_all;
 - (NSArray *)LogTypes_all;
 - (NSArray *)ContainerSizes_all;

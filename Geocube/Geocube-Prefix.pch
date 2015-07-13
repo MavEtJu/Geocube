@@ -28,9 +28,9 @@
 #import "dbConfig.h"
 #import "dbContainerType.h"
 #import "dbContainerSize.h"
-#import "dbWaypointGroup.h"
-#import "dbWaypointType.h"
-#import "dbWaypoint.h"
+#import "dbCacheGroup.h"
+#import "dbCacheType.h"
+#import "dbCache.h"
 #import "dbLogType.h"
 #import "dbLog.h"
 #import "database-cache.h"
@@ -47,7 +47,7 @@
 #import "Import_GPX.h"
 #import "ImportGPXViewController.h"
 
-#import "WaypointTableViewCell.h"
+#import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"
 

@@ -7,10 +7,10 @@
 //
 
 @interface CacheHintViewController : GCViewController<UIScrollViewDelegate, UIWebViewDelegate> {
-    dbWaypoint *wp;
+    dbCache *wp;
     UIWebView *webview;
 }
 
-- (id)init:(dbWaypoint *)wp;
+- (id)init:(dbCache *)wp;
 
 @end

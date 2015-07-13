@@ -9,7 +9,7 @@
 #ifndef Geocube_dbWaypointType_h
 #define Geocube_dbWaypointType_h
 
-@interface dbWaypointType : dbObject {
+@interface dbCacheType : dbObject {
     NSInteger _id;
     NSString *type;
     NSInteger icon;

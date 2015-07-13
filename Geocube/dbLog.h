@@ -9,8 +9,8 @@
 @interface dbLog : dbObject {
     NSInteger _id;
     NSInteger gc_id;
-    NSInteger waypoint_id;
-    dbWaypoint *waypoint;
+    NSInteger cache_id;
+    dbCache *cache;
     NSInteger logtype_id;
     NSString *logtype_string;
     dbLogType *logtype;
@@ -24,8 +24,8 @@
 
 @property (nonatomic) NSInteger _id;
 @property (nonatomic) NSInteger gc_id;
-@property (nonatomic) NSInteger waypoint_id;
-@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic) NSInteger cache_id;
+@property (nonatomic, retain) dbCache *cache;
 @property (nonatomic) NSInteger logtype_id;
 @property (nonatomic, retain) dbLogType *logtype;
 @property (nonatomic, retain) NSString *logtype_string;
@@ -37,7 +37,7 @@
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (id)init:(NSInteger)__id gc_id:(NSInteger)gc_id waypoint_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
+- (id)init:(NSInteger)__id gc_id:(NSInteger)gc_id cache_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
 - (id)init:(NSInteger)gc_id;
 
 @end

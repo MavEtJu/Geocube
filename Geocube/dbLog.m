@@ -10,7 +10,7 @@
 
 @implementation dbLog
 
-@synthesize _id, gc_id, waypoint_id, waypoint, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
+@synthesize _id, gc_id, cache_id, cache, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
 
 - (id)init:(NSInteger)_gc_id
 {
@@ -19,12 +19,12 @@
     return self;
 }
 
-- (id)init:(NSInteger)__id gc_id:(NSInteger)_gc_id waypoint_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
+- (id)init:(NSInteger)__id gc_id:(NSInteger)_gc_id cache_id:(NSInteger)_cid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
 {
     self = [super init];
     _id = __id;
     gc_id = _gc_id;
-    waypoint_id = _wpid;
+    cache_id = _cid;
     logtype_id = _ltid;
     datetime = _datetime;
     logger = _logger;
@@ -47,7 +47,7 @@
         logtype = [dbc LogType_get:logtype_id];
         logtype_string = logtype.logtype;
     }
-    waypoint = [dbc Waypoint_get:waypoint_id]; // This can be nil when an import is happening
+    cache = [dbc Cache_get:cache_id]; // This can be nil when an import is happening
 
     [super finish];
 }

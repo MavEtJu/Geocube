@@ -9,7 +9,7 @@
 #ifndef Geocube_dbWaypoint_h
 #define Geocube_dbWaypoint_h
 
-@interface dbWaypoint : dbObject {
+@interface dbCache : dbObject {
     NSInteger _id;
     NSString *name, *description, *url;
 
@@ -23,9 +23,9 @@
     float gc_rating_difficulty, gc_rating_terrain;
     NSInteger gc_favourites;
     
-    NSInteger wp_type_int;
-    NSString *wp_type_str;
-    dbWaypointType *wp_type;
+    NSInteger cache_type_int;
+    NSString *cache_type_str;
+    dbCacheType *cache_type;
     
     NSString *gc_country, *gc_state;
     
@@ -57,9 +57,9 @@
 @property (nonatomic) float gc_rating_difficulty;
 @property (nonatomic) float gc_rating_terrain;
 @property (nonatomic) NSInteger gc_favourites;
-@property (nonatomic) NSInteger wp_type_int;
-@property (nonatomic) NSString *wp_type_str;
-@property (nonatomic, retain) dbWaypointType *wp_type;
+@property (nonatomic) NSInteger cache_type_int;
+@property (nonatomic) NSString *cache_type_str;
+@property (nonatomic, retain) dbCacheType *cache_type;
 @property (nonatomic, retain) NSString *gc_country;
 @property (nonatomic, retain) NSString *gc_state;
 @property (nonatomic) BOOL gc_short_desc_html;

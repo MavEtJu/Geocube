@@ -12,7 +12,7 @@
 
 @implementation CacheLogsViewController
 
-- (id)init:(dbWaypoint *)_wp
+- (id)init:(dbCache *)_wp
 {
     self = [super init];
     wp = _wp;
@@ -20,7 +20,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
     
-    logs = [db Logs_all_bywaypointid:_wp._id];
+    logs = [db Logs_all_bycacheid:_wp._id];
     
     return self;
 }

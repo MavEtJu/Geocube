@@ -9,7 +9,7 @@
 #ifndef Geocube_dbWaypointGroup_h
 #define Geocube_dbWaypointGroup_h
 
-@interface dbWaypointGroup : dbObject {
+@interface dbCacheGroup: dbObject {
     NSInteger _id;
     NSString *name;
     BOOL usergroup;

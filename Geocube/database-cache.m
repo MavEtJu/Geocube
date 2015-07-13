@@ -1,5 +1,5 @@
 //
-//  WaypointCachedData.m
+//  CacheCachedData.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 8/07/2015.
@@ -10,66 +10,66 @@
 
 @implementation DatabaseCache
 
-@synthesize WaypointTypes, WaypointGroups, Waypoints, LogTypes, ContainerTypes, ContainerSizes;
-@synthesize WaypointGroup_AllWaypoints, WaypointGroup_AllWaypoints_Found, WaypointGroup_AllWaypoints_NotFound, WaypointGroup_LastImport,WaypointGroup_LastImportAdded, WaypointType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown;
+@synthesize CacheTypes, CacheGroups, Caches, LogTypes, ContainerTypes, ContainerSizes;
+@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown;
 
 - (id)init
 {
     self = [super init];
-    [self loadWaypointData];
+    [self loadCacheData];
     return self;
 }
 
 // Load all waypoints and waypoint related data in memory
-- (void)loadWaypointData
+- (void)loadCacheData
 {
-    WaypointGroups = [db WaypointGroups_all];
-    WaypointTypes = [db WaypointTypes_all];
-    Waypoints = [db Waypoints_all];
+    CacheGroups = [db CacheGroups_all];
+    CacheTypes = [db CacheTypes_all];
+    Caches = [db Caches_all];
     ContainerTypes = [db ContainerTypes_all];
     LogTypes = [db LogTypes_all];
     ContainerSizes = [db ContainerSizes_all];
     
-    WaypointGroup_AllWaypoints = nil;
-    WaypointGroup_AllWaypoints_Found = nil;
-    WaypointGroup_AllWaypoints_NotFound = nil;
-    WaypointGroup_LastImport = nil;
-    WaypointGroup_LastImportAdded = nil;
-    WaypointType_Unknown = nil;
+    CacheGroup_AllCaches = nil;
+    CacheGroup_AllCaches_Found = nil;
+    CacheGroup_AllCaches_NotFound = nil;
+    CacheGroup_LastImport = nil;
+    CacheGroup_LastImportAdded = nil;
+    CacheType_Unknown = nil;
     ContainerType_Unknown = nil;
     LogType_Unknown = nil;
     ContainerSize_Unknown = nil;
     
-    NSEnumerator *e = [WaypointGroups objectEnumerator];
-    dbWaypointGroup *wpg;
+    NSEnumerator *e = [CacheGroups objectEnumerator];
+    dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints = wpg;
+        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches"] == NSOrderedSame) {
+            CacheGroup_AllCaches = wpg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints - Found"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints_Found = wpg;
+        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches - Found"] == NSOrderedSame) {
+            CacheGroup_AllCaches_Found = wpg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Waypoints - Not Found"] == NSOrderedSame) {
-            WaypointGroup_AllWaypoints_NotFound = wpg;
+        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches - Not Found"] == NSOrderedSame) {
+            CacheGroup_AllCaches_NotFound = wpg;
             continue;
         }
         if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import"] == NSOrderedSame) {
-            WaypointGroup_LastImport = wpg;
+            CacheGroup_LastImport = wpg;
             continue;
         }
         if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import - New"] == NSOrderedSame) {
-            WaypointGroup_LastImportAdded = wpg;
+            CacheGroup_LastImportAdded = wpg;
             continue;
         }
     }
 
-    e = [WaypointTypes objectEnumerator];
-    dbWaypointType *wpt;
+    e = [CacheTypes objectEnumerator];
+    dbCacheType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if ([wpg.name compare:@"*"] == NSOrderedSame) {
-            WaypointType_Unknown = wpt;
+            CacheType_Unknown = wpt;
             continue;
         }
     }
@@ -103,10 +103,10 @@
 
 }
 
-- (dbWaypointType *)WaypointType_get_byname:(NSString *)name
+- (dbCacheType *)CacheType_get_byname:(NSString *)name
 {
-    NSEnumerator *e = [WaypointTypes objectEnumerator];
-    dbWaypointType *wpt;
+    NSEnumerator *e = [CacheTypes objectEnumerator];
+    dbCacheType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if ([wpt.type compare:name] == NSOrderedSame)
             return wpt;
@@ -114,10 +114,10 @@
     return nil;
 }
 
-- (dbWaypointType *)WaypointType_get:(NSInteger)wp_type
+- (dbCacheType *)CacheType_get:(NSInteger)wp_type
 {
-    NSEnumerator *e = [WaypointTypes objectEnumerator];
-    dbWaypointType *wpt;
+    NSEnumerator *e = [CacheTypes objectEnumerator];
+    dbCacheType *wpt;
     while ((wpt = [e nextObject]) != nil) {
         if (wpt._id == wp_type)
             return wpt;
@@ -170,10 +170,10 @@
     return nil;
 }
 
-- (dbWaypoint *)Waypoint_get:(NSInteger)_id
+- (dbCache *)Cache_get:(NSInteger)_id
 {
-    NSEnumerator *e = [Waypoints objectEnumerator];
-    dbWaypoint *wp;
+    NSEnumerator *e = [Caches objectEnumerator];
+    dbCache *wp;
     while ((wp = [e nextObject]) != nil) {
         if (wp._id == _id)
             return wp;
@@ -181,10 +181,10 @@
     return nil;
 }
 
-- (dbWaypointGroup *)WaypointGroup_get:(NSInteger)_id
+- (dbCacheGroup *)CacheGroup_get:(NSInteger)_id
 {
-    NSEnumerator *e = [WaypointGroups objectEnumerator];
-    dbWaypointGroup *wpg;
+    NSEnumerator *e = [CacheGroups objectEnumerator];
+    dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
         if (wpg._id == _id)
             return wpg;

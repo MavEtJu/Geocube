@@ -43,8 +43,8 @@
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.WaypointGroups objectEnumerator];
-    dbWaypointGroup *wpg;
+    NSEnumerator *e = [dbc.CacheGroups objectEnumerator];
+    dbCacheGroup *wpg;
     
     while ((wpg = [e nextObject]) != nil) {
         if (wpg.usergroup == showUsers)
@@ -86,9 +86,9 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
     
-    dbWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", [db WaypointGroups_count_waypoints:wpg._id]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [db CacheGroups_count_caches:wpg._id]];
     
     return cell;
 }
@@ -100,7 +100,7 @@
         return;
     }
     
-    dbWaypointGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
 
     UIAlertController *view=   [UIAlertController
                                 alertControllerWithTitle:wpg.name
@@ -154,7 +154,7 @@
 - (void)emptyGroups
 {
     NSEnumerator *e = [wpgs objectEnumerator];
-    dbWaypointGroup *wpg;
+    dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
         [self groupEmpty:wpg reload:NO];
     }
@@ -162,25 +162,25 @@
     [self.tableView reloadData];
 }
 
-- (void)groupEmpty:(dbWaypointGroup *)wpg reload:(BOOL)reload
+- (void)groupEmpty:(dbCacheGroup *)wpg reload:(BOOL)reload
 {
-    [db WaypointGroups_empty:wpg._id];
-    [dbc loadWaypointData];
+    [db CacheGroups_empty:wpg._id];
+    [dbc loadCacheData];
     if (reload == YES) {
         [self refreshGroupData];
         [self.tableView reloadData];
     }
 }
 
-- (void)groupDelete:(dbWaypointGroup *)wpg
+- (void)groupDelete:(dbCacheGroup *)wpg
 {
-    [db WaypointGroups_delete:wpg._id];
-    [dbc loadWaypointData];
+    [db CacheGroups_delete:wpg._id];
+    [dbc loadCacheData];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
 
-- (void)groupRename:(dbWaypointGroup *)wpg
+- (void)groupRename:(dbCacheGroup *)wpg
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Rename group"
@@ -195,8 +195,8 @@
                              UITextField *tf = alert.textFields.firstObject;
                              
                              NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
-                             [db WaypointGroups_rename:wpg._id newName:tf.text];
-                             [dbc loadWaypointData];
+                             [db CacheGroups_rename:wpg._id newName:tf.text];
+                             [dbc loadCacheData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];
@@ -264,8 +264,8 @@
                              NSString *newgroup = tf.text;
                              
                              NSLog(@"Creating new group '%@'", newgroup);
-                             [db WaypointGroups_new:newgroup isUser:YES];
-                             [dbc loadWaypointData];
+                             [db CacheGroups_new:newgroup isUser:YES];
+                             [dbc loadCacheData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];

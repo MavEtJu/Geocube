@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbWaypointType
+@implementation dbCacheType
 
 @synthesize _id, type, icon;
 

@@ -10,7 +10,7 @@
 
 @implementation CacheDescriptionViewController
 
-- (id)init:(dbWaypoint *)_wp
+- (id)init:(dbCache *)_wp
 {
     self = [super self];
     

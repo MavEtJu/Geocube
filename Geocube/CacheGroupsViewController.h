@@ -8,9 +8,9 @@
 
 @interface CacheGroupsViewController : GCTableViewController {
     NSMutableArray *ugs, *sgs;
-    dbWaypoint *wp;
+    dbCache *wp;
 }
 
-- (id)init:(dbWaypoint *)wp;
+- (id)init:(dbCache *)wp;
 
 @end

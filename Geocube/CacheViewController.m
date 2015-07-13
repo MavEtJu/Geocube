@@ -14,7 +14,7 @@
 
 @implementation CacheViewController
 
-- (id)initWithStyle:(NSInteger)_style wayPoint:(dbWaypoint *)_wp;
+- (id)initWithStyle:(NSInteger)_style cache:(dbCache *)_wp;
 {
     self = [super initWithStyle:_style];
     wp = _wp;
@@ -82,7 +82,7 @@
         [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
         
         cell.size.image = [imageLibrary get:wp.gc_containerSize.icon];
-        cell.icon.image = [imageLibrary get:wp.wp_type.icon];
+        cell.icon.image = [imageLibrary get:wp.cache_type.icon];
         return cell;
     }
     
@@ -203,7 +203,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
-        return [WaypointTableViewCell cellHeight];
+        return [CacheTableViewCell cellHeight];
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 

@@ -32,9 +32,9 @@
     mapView.mapType = kGMSTypeSatellite;
     
     // Creates a marker in the center of the map.
-    [self refreshWaypointsData:nil];
+    [self refreshCachesData:nil];
     NSEnumerator *e = [wps objectEnumerator];
-    dbWaypoint *wp;
+    dbCache *wp;
     while ((wp = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
@@ -57,11 +57,11 @@
     self.view = mapView;
 }
 
-- (void)refreshWaypointsData:(NSString *)searchString
+- (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Waypoints objectEnumerator];
-    dbWaypoint *wp;
+    NSEnumerator *e = [dbc.Caches objectEnumerator];
+    dbCache *wp;
     
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
@@ -70,7 +70,7 @@
         
         [_wps addObject:wp];
     }
-    wps = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
+    wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
         
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;

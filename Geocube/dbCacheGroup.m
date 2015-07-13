@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbWaypointGroup
+@implementation dbCacheGroup
 
 @synthesize _id, name, usergroup;
 

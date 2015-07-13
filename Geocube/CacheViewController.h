@@ -7,12 +7,12 @@
 //
 
 @interface CacheViewController : GCTableViewController {
-    dbWaypoint *wp;
+    dbCache *wp;
     
     NSArray *cacheItems;
     NSArray *actionItems;
 }
 
-- (id)initWithStyle:(NSInteger)style wayPoint:(dbWaypoint *)wp;
+- (id)initWithStyle:(NSInteger)style cache:(dbCache *)wp;
 
 @end

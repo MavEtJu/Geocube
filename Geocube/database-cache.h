@@ -1,5 +1,5 @@
 //
-//  WaypointCachedData.h
+//  CacheCachedData.h
 //  Geocube
 //
 //  Created by Edwin Groothuis on 8/07/2015.
@@ -8,22 +8,22 @@
 
 @interface DatabaseCache : NSObject {
     // In memory database information
-    NSArray *WaypointTypes;
-    NSArray *WaypointGroups;
-    NSArray *Waypoints;
+    NSArray *CacheTypes;
+    NSArray *CacheGroups;
+    NSArray *Caches;
     NSArray *LogTypes;
     NSArray *ContainerTypes;
     NSArray *ContainerSizes;
     
     // System Groups
-    dbWaypointGroup *WaypointGroup_AllWaypoints;
-    dbWaypointGroup *WaypointGroup_AllWaypoints_Found;
-    dbWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
-    dbWaypointGroup *WaypointGroup_LastImport;
-    dbWaypointGroup *WaypointGroup_LastImportAdded;
+    dbCacheGroup *CacheGroup_AllCaches;
+    dbCacheGroup *CacheGroup_AllCaches_Found;
+    dbCacheGroup *CacheGroup_AllCaches_NotFound;
+    dbCacheGroup *CacheGroup_LastImport;
+    dbCacheGroup *CacheGroup_LastImportAdded;
 
-    // WaypointTypes
-    dbWaypointType *WaypointType_Unknown;
+    // CacheTypes
+    dbCacheType *CacheType_Unknown;
     
     // LogTypes
     dbLogType *LogType_Unknown;
@@ -35,22 +35,22 @@
     dbContainerSize *ContainerSize_Unknown;
 }
 
-@property (nonatomic, retain) NSArray *WaypointTypes;
-@property (nonatomic, retain) NSArray *WaypointGroups;
-@property (nonatomic, retain) NSArray *Waypoints;
+@property (nonatomic, retain) NSArray *CacheTypes;
+@property (nonatomic, retain) NSArray *CacheGroups;
+@property (nonatomic, retain) NSArray *Caches;
 @property (nonatomic, retain) NSArray *LogTypes;
 @property (nonatomic, retain) NSArray *ContainerTypes;
 @property (nonatomic, retain) NSArray *ContainerSizes;
 
 // System Groups
-@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints;
-@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_Found;
-@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_AllWaypoints_NotFound;
-@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_LastImport;
-@property (nonatomic, retain) dbWaypointGroup *WaypointGroup_LastImportAdded;
+@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches;
+@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches_Found;
+@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches_NotFound;
+@property (nonatomic, retain) dbCacheGroup *CacheGroup_LastImport;
+@property (nonatomic, retain) dbCacheGroup *CacheGroup_LastImportAdded;
 
-// WaypointTypes
-@property (nonatomic, retain) dbWaypointType *WaypointType_Unknown;
+// CacheTypes
+@property (nonatomic, retain) dbCacheType *CacheType_Unknown;
 
 // LogTypes
 @property (nonatomic, retain) dbLogType *LogType_Unknown;
@@ -61,15 +61,15 @@
 // ContainerSize
 @property (nonatomic, retain) dbContainerSize *ContainerSize_Unknown;
 
-- (void)loadWaypointData;
-- (dbWaypointType *)WaypointType_get_byname:(NSString *)name;
-- (dbWaypointType *)WaypointType_get:(NSInteger)wp_type;
+- (void)loadCacheData;
+- (dbCacheType *)CacheType_get_byname:(NSString *)name;
+- (dbCacheType *)CacheType_get:(NSInteger)wp_type;
 - (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
 - (dbContainerType *)ContainerType_get:(NSInteger)_id;
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSInteger)_id;
-- (dbWaypoint *)Waypoint_get:(NSInteger)_id;
-- (dbWaypointGroup *)WaypointGroup_get:(NSInteger)_id;
+- (dbCache *)Cache_get:(NSInteger)_id;
+- (dbCacheGroup *)CacheGroup_get:(NSInteger)_id;
 - (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size;
 - (dbContainerSize *)ContainerSize_get:(NSInteger)_id;
 

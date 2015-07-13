@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-#define THISCELL @"waypointtableviewcell"
+#define THISCELL @"cachetableviewcell"
 
 @implementation CachesOfflineListViewController
 
@@ -17,7 +17,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -35,15 +35,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self refreshWaypointsData:nil];
+    [self refreshCachesData:nil];
     [self.tableView reloadData];
 }
 
-- (void)refreshWaypointsData:(NSString *)searchString
+- (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Waypoints objectEnumerator];
-    dbWaypoint *wp;
+    NSEnumerator *e = [dbc.Caches objectEnumerator];
+    dbCache *wp;
     
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
@@ -52,7 +52,7 @@
         
         [_wps addObject:wp];
     }
-    wps = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
+    wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
         
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
@@ -88,18 +88,18 @@
 }
 
 // Return a cell for the index path
-- (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CacheTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    CacheTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell = [[CacheTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbCache *wp = [wps objectAtIndex:indexPath.row];
     cell.description.text = wp.description;
     cell.name.text = wp.name;
-    cell.icon.image = [imageLibrary get:wp.wp_type.icon];
+    cell.icon.image = [imageLibrary get:wp.cache_type.icon];
 
     [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
     
@@ -117,15 +117,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [WaypointTableViewCell cellHeight];
+    return [CacheTableViewCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbCache *wp = [wps objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
     
-    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped wayPoint:wp];
+    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
     [self.navigationController pushViewController:newController animated:YES];
@@ -138,7 +138,7 @@
     NSString *searchString = searchController.searchBar.text;
     if ([searchString compare:@""] == NSOrderedSame)
         searchString = nil;
-    [self refreshWaypointsData:searchString];
+    [self refreshCachesData:searchString];
 //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
     [self.tableView reloadData];
 }

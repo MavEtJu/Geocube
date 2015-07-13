@@ -19,14 +19,14 @@
     
     NSArray *files;
     NSString *groupname;
-    dbWaypointGroup *group;
+    dbCacheGroup *group;
     
     NSMutableArray *logs;
     NSInteger index;
     NSInteger inItem, inLog;
     NSMutableString *currentText;
     NSString *currentElement;
-    dbWaypoint *currentWP;
+    dbCache *currentC;
     dbLog *currentLog;
 }
 

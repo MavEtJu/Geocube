@@ -78,10 +78,10 @@ typedef enum {
 
    /* Up to here: Do not reorder */
 
-    ImageWaypointView_ratingOn = 500,
-    ImageWaypointView_ratingOff,
-    ImageWaypointView_ratingHalf,
-    ImageWaypointView_favourites,
+    ImageCacheView_ratingOn = 500,
+    ImageCacheView_ratingOff,
+    ImageCacheView_ratingHalf,
+    ImageCacheView_favourites,
     
     ImageLibraryImagesUnsorted = 600,
     

@@ -94,10 +94,10 @@
     ADD(@"container - small - 70x20", ImageSize_Small);
     ADD(@"container - unknown - 70x20", ImageSize_Virtual);
 
-    ADD(@"waypoint rating star on 19x18", ImageWaypointView_ratingOn);
-    ADD(@"waypoint rating star off 18x18", ImageWaypointView_ratingOff);
-    ADD(@"waypoint rating star half 18x18", ImageWaypointView_ratingHalf);
-    ADD(@"waypoint favourites 20x30", ImageWaypointView_favourites);
+    ADD(@"waypoint rating star on 19x18", ImageCacheView_ratingOn);
+    ADD(@"waypoint rating star off 18x18", ImageCacheView_ratingOff);
+    ADD(@"waypoint rating star half 18x18", ImageCacheView_ratingHalf);
+    ADD(@"waypoint favourites 20x30", ImageCacheView_favourites);
     
     ADD(@"map - pin stick - 35x42", ImageMap_pin);
     ADD(@"map - dnf stick - 35x42", ImageMap_dnf);

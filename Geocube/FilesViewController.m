@@ -186,7 +186,7 @@
 //    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
 //    Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
 //    [i parse];
-//    [dbc loadWaypointData];
+//    [dbc loadCacheData];
 }
 
 - (void)fileRename:(NSString *)filename

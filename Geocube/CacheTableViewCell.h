@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface WaypointTableViewCell : UITableViewCell {
+@interface CacheTableViewCell : UITableViewCell {
     UILabel *description;
     UILabel *name;
     UIImageView *ratingD[5];

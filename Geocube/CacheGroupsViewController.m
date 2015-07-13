@@ -12,7 +12,7 @@
 
 @implementation CacheGroupsViewController
 
-- (id)init:(dbWaypoint *)_wp
+- (id)init:(dbCache *)_wp
 {
     self = [super init];
     wp = _wp;
@@ -20,9 +20,9 @@
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
     
-    NSArray *gs = [db WaypointGroups_all_byWaypointId:wp._id];
+    NSArray *gs = [db CacheGroups_all_byCacheId:wp._id];
     NSEnumerator *e = [gs objectEnumerator];
-    dbWaypointGroup *wpg;
+    dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
         if (wpg.usergroup == TRUE)
             [ugs addObject:wpg];
@@ -76,7 +76,7 @@
     else
         e = [sgs objectEnumerator];
     
-    dbWaypointGroup *wpg;
+    dbCacheGroup *wpg;
     NSInteger c = 0;
     while ((wpg = [e nextObject]) != nil) {
         if (c == indexPath.row)
@@ -84,7 +84,7 @@
         c++;
     }
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", [db WaypointGroups_count_waypoints:wpg._id]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [db CacheGroups_count_caches:wpg._id]];
     cell.imageView.image = nil;
     
     return cell;

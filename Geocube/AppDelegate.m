@@ -43,7 +43,7 @@
     // Initialize and cache the database
     db = [[database alloc] init];
     dbc = [[DatabaseCache alloc] init];
-    [dbc loadWaypointData];
+    [dbc loadCacheData];
     
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];

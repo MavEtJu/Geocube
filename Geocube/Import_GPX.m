@@ -19,7 +19,7 @@
     percentageRead = pR;
     
     groupname = _groupname;
-    group = [db WaypointGroups_get_byName:groupname];
+    group = [db CacheGroups_get_byName:groupname];
 
     NSLog(@"Import_GPX: Importing %@", filename);
     
@@ -30,8 +30,8 @@
 
 - (void)parse
 {
-    [db WaypointGroups_empty:dbc.WaypointGroup_LastImport._id ];
-    [db WaypointGroups_empty:dbc.WaypointGroup_LastImportAdded._id ];
+    [db CacheGroups_empty:dbc.CacheGroup_LastImport._id ];
+    [db CacheGroups_empty:dbc.CacheGroup_LastImportAdded._id ];
 
     NSEnumerator *eFile = [files objectEnumerator];
     NSString *filename;
@@ -77,9 +77,9 @@
     index++;
     
     if ([currentElement compare:@"wpt"] == NSOrderedSame) {
-        currentWP = [[dbWaypoint alloc] init];
-        [currentWP setLat:[attributeDict objectForKey:@"lat"]];
-        [currentWP setLon:[attributeDict objectForKey:@"lon"]];
+        currentC = [[dbCache alloc] init];
+        [currentC setLat:[attributeDict objectForKey:@"lat"]];
+        [currentC setLon:[attributeDict objectForKey:@"lon"]];
         
         logs = [NSMutableArray arrayWithCapacity:20];
         
@@ -88,12 +88,12 @@
     }
     
     if ([currentElement compare:@"groundspeak:long_description"] == NSOrderedSame) {
-        [currentWP setGc_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        [currentC setGc_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
     
     if ([currentElement compare:@"groundspeak:short_description"] == NSOrderedSame) {
-        [currentWP setGc_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        [currentC setGc_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
     
@@ -114,30 +114,30 @@
     [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
     
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
-        [currentWP finish];
+        [currentC finish];
         
-        NSInteger cwp_id = [db Waypoint_get_byname:currentWP.name];
+        NSInteger cwp_id = [db Cache_get_byname:currentC.name];
         (*totalCachesCount)++;
         if (cwp_id == 0) {
-            cwp_id = [db Waypoint_add:currentWP];
+            cwp_id = [db Cache_add:currentC];
             (*newCachesCount)++;
             
-            [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImportAdded._id waypoint_id:cwp_id];
-            [db WaypointGroups_add_waypoint:dbc.WaypointGroup_AllWaypoints._id waypoint_id:cwp_id];
-            [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
+            [db CacheGroups_add_cache:dbc.CacheGroup_LastImportAdded._id cache_id:cwp_id];
+            [db CacheGroups_add_cache:dbc.CacheGroup_AllCaches._id cache_id:cwp_id];
+            [db CacheGroups_add_cache:group._id cache_id:cwp_id];
         } else {
-            currentWP._id = cwp_id;
-            [db Waypoint_update:currentWP];
-            if ([db WaypointGroups_contains_waypoint:group._id waypoint_id:cwp_id] == NO)
-                [db WaypointGroups_add_waypoint:group._id waypoint_id:cwp_id];
+            currentC._id = cwp_id;
+            [db Cache_update:currentC];
+            if ([db CacheGroups_contains_cache:group._id cache_id:cwp_id] == NO)
+                [db CacheGroups_add_cache:group._id cache_id:cwp_id];
         }
-        [db WaypointGroups_add_waypoint:dbc.WaypointGroup_LastImport._id waypoint_id:cwp_id];
+        [db CacheGroups_add_cache:dbc.CacheGroup_LastImport._id cache_id:cwp_id];
         
-        // Link logs to waypoint
+        // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
-            [db Logs_update_waypoint_id:l waypoint_id:cwp_id];
+            [db Logs_update_cache_id:l cache_id:cwp_id];
         }
 
         inItem = NO;
@@ -165,59 +165,59 @@
     if (inItem == YES && inLog == NO) {
         if (index == 2 && currentText != nil) {
             if ([elementName compare:@"time"] == NSOrderedSame) {
-                [currentWP setDate_placed:currentText];
+                [currentC setDate_placed:currentText];
                 goto bye;
             }
             if ([elementName compare:@"name"] == NSOrderedSame) {
-                [currentWP setName:currentText];
+                [currentC setName:currentText];
                 goto bye;
             }
             if ([elementName compare:@"desc"] == NSOrderedSame) {
-                [currentWP setDescription:currentText];
+                [currentC setDescription:currentText];
                 goto bye;
             }
             if ([elementName compare:@"url"] == NSOrderedSame) {
-                [currentWP setUrl:currentText];
+                [currentC setUrl:currentText];
                 goto bye;
             }
             if ([elementName compare:@"type"] == NSOrderedSame) {
-                [currentWP setWp_type:[dbc WaypointType_get_byname:currentText]];
-                [currentWP setWp_type_int:currentWP.wp_type._id];
+                [currentC setCache_type:[dbc CacheType_get_byname:currentText]];
+                [currentC setCache_type_int:currentC.cache_type._id];
                 goto bye;
             }
             goto bye;
         }
         if (index == 3 && currentText != nil) {
             if ([elementName compare:@"groundspeak:difficulty"] == NSOrderedSame) {
-                [currentWP setGc_rating_difficulty:[currentText floatValue]];
+                [currentC setGc_rating_difficulty:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:terrain"] == NSOrderedSame) {
-                [currentWP setGc_rating_terrain:[currentText floatValue]];
+                [currentC setGc_rating_terrain:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
-                [currentWP setGc_country:currentText];
+                [currentC setGc_country:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
-                [currentWP setGc_state:currentText];
+                [currentC setGc_state:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:container"] == NSOrderedSame) {
-                [currentWP setGc_containerSize_str:currentText];
+                [currentC setGc_containerSize_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:short_description"] == NSOrderedSame) {
-                [currentWP setGc_short_desc:currentText];
+                [currentC setGc_short_desc:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:long_description"] == NSOrderedSame) {
-                [currentWP setGc_long_desc:currentText];
+                [currentC setGc_long_desc:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:encoded_hints"] == NSOrderedSame) {
-                [currentWP setGc_hint:currentText];
+                [currentC setGc_hint:currentText];
                 goto bye;
             }
             goto bye;

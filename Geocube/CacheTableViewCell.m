@@ -1,5 +1,5 @@
 //
-//  WaypointTableViewCell.m
+//  CacheTableViewCell.m
 //  Geocube
 //
 //  Created by Edwin Groothuis on 7/07/2015.
@@ -8,7 +8,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation WaypointTableViewCell
+@implementation CacheTableViewCell
 
 @synthesize description, name, icon, stateCountry, bearing, compass, distance;
 
@@ -21,10 +21,10 @@
     NSInteger width = applicationFrame.size.width;
     NSInteger height = [self cellHeight];
 
-    imgRatingOff = [imageLibrary get:ImageWaypointView_ratingOff];
-    imgRatingOn = [imageLibrary get:ImageWaypointView_ratingOn];
-    imgRatingHalf = [imageLibrary get:ImageWaypointView_ratingHalf];
-    imgFavourites = [imageLibrary get:ImageWaypointView_favourites];
+    imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
+    imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];
+    imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
+    imgFavourites = [imageLibrary get:ImageCacheView_favourites];
 
     UILabel *l;
     CGRect r;
