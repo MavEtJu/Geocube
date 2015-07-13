@@ -79,8 +79,11 @@
     return [db Logs_count_byCache_id:_id];
 }
 
+- (BOOL)hasAttributes {
+    return [db Attributes_count_byCache_id:_id];
+}
+
 - (BOOL)hasFieldNotes { return NO; }
-- (BOOL)hasAttributes { return NO; }
 - (BOOL)hasWaypoints { return NO; }
 - (BOOL)hasInventory { return NO; }
 - (BOOL)hasImages { return NO; }

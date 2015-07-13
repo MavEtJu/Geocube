@@ -44,6 +44,12 @@
 - (NSInteger)Logs_count_byCache_id:(NSInteger)wp_id;
 - (NSArray *)Logs_all_bycacheid:(NSInteger)wp_id;
 
+- (NSArray *)Attributes_all;
+- (void)Attributes_unlink_fromcache:(NSInteger)cache_id;
+- (void)Attributes_link_cache:(dbAttribute *)attr cache_id:(NSInteger)cache_id YesNo:(BOOL)YesNO;
+- (NSInteger)Attributes_count_byCache_id:(NSInteger)cache_id;
+- (NSArray *)Attributes_all_bycacheid:(NSInteger)cache_id;
+
 - (NSArray *)CacheTypes_all;
 - (NSArray *)ContainerTypes_all;
 - (NSArray *)LogTypes_all;

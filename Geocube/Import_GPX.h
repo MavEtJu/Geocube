@@ -21,6 +21,7 @@
     NSString *groupname;
     dbCacheGroup *group;
     
+    NSMutableArray *attributes;
     NSMutableArray *logs;
     NSInteger index;
     NSInteger inItem, inLog;

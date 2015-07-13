@@ -31,6 +31,7 @@
 #import "dbCacheGroup.h"
 #import "dbCacheType.h"
 #import "dbCache.h"
+#import "dbAttribute.h"
 #import "dbLogType.h"
 #import "dbLog.h"
 #import "database-cache.h"
@@ -55,7 +56,9 @@
 #import "CacheHintViewController.h"
 #import "CacheLogsViewController.h"
 #import "CacheGroupsViewController.h"
+#import "CacheAttributesViewController.h"
 #import "CacheViewController.h"
+
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"

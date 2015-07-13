@@ -10,8 +10,8 @@
 
 @implementation DatabaseCache
 
-@synthesize CacheTypes, CacheGroups, Caches, LogTypes, ContainerTypes, ContainerSizes;
-@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown;
+@synthesize CacheTypes, CacheGroups, Caches, LogTypes, ContainerTypes, ContainerSizes, Attributes;
+@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown, Attribute_Unknown;
 
 - (id)init
 {
@@ -29,6 +29,7 @@
     ContainerTypes = [db ContainerTypes_all];
     LogTypes = [db LogTypes_all];
     ContainerSizes = [db ContainerSizes_all];
+    Attributes = [db Attributes_all];
     
     CacheGroup_AllCaches = nil;
     CacheGroup_AllCaches_Found = nil;
@@ -64,6 +65,11 @@
             continue;
         }
     }
+    NSAssert(CacheGroup_AllCaches != nil, @"CacheGroup_AllCaches");
+    NSAssert(CacheGroup_AllCaches_Found != nil, @"CacheGroup_AllCaches_Found");
+    NSAssert(CacheGroup_AllCaches_NotFound != nil, @"CacheGroup_AllCaches_NotFound");
+    NSAssert(CacheGroup_LastImport != nil, @"CacheGroup_LastImport");
+    NSAssert(CacheGroup_LastImportAdded != nil, @"CacheGroup_LastImportAdded");
 
     e = [CacheTypes objectEnumerator];
     dbCacheType *wpt;
@@ -73,6 +79,7 @@
             continue;
         }
     }
+    NSAssert(CacheType_Unknown != nil, @"CacheType_Unknown");
 
     e = [ContainerTypes objectEnumerator];
     dbContainerType *ct;
@@ -82,6 +89,7 @@
             continue;
         }
     }
+    NSAssert(ContainerType_Unknown != nil, @"ContainerType_Unknown");
 
     e = [LogTypes objectEnumerator];
     dbLogType *lt;
@@ -91,6 +99,7 @@
             continue;
         }
     }
+    NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
 
     e = [ContainerSizes objectEnumerator];
     dbContainerSize *s;
@@ -100,6 +109,17 @@
             continue;
         }
     }
+    NSAssert(CacheType_Unknown != nil, @"LogType_Unknown");
+
+    e = [Attributes objectEnumerator];
+    dbAttribute *a;
+    while ((a = [e nextObject]) != nil) {
+        if ([a.label compare:@"Unknown"] == NSOrderedSame) {
+            Attribute_Unknown = a;
+            continue;
+        }
+    }
+    NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
 
 }
 
@@ -209,6 +229,28 @@
     dbContainerSize *s;
     while ((s = [e nextObject]) != nil) {
         if ([s.size compare:size] == NSOrderedSame)
+            return s;
+    }
+    return nil;
+}
+
+- (dbAttribute *)Attribute_get:(NSInteger)_id
+{
+    NSEnumerator *e = [Attributes objectEnumerator];
+    dbAttribute *s;
+    while ((s = [e nextObject]) != nil) {
+        if (s._id == _id)
+            return s;
+    }
+    return nil;
+}
+
+- (dbAttribute *)Attribute_get_bygcid:(NSInteger)gcid
+{
+    NSEnumerator *e = [Attributes objectEnumerator];
+    dbAttribute *s;
+    while ((s = [e nextObject]) != nil) {
+        if (s.gc_id == gcid)
             return s;
     }
     return nil;

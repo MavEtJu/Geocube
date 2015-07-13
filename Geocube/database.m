@@ -10,12 +10,17 @@
 
 @implementation database
 
+#define DB_ASSERT(__s__) \
+    NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
+#define DB_ASSERT_STEP      DB_ASSERT(@"step")
+#define DB_ASSERT_PREPARE   DB_ASSERT(@"prepare")
+
 - (id)init
 {
     NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
     NSLog(@"Using %@ as the database.", dbname);
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
-    
+
     [self checkAndCreateDatabase:dbname empty:dbempty];
     
     sqlite3_open([dbempty UTF8String], &db);
@@ -72,7 +77,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"config_get:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         SET_VAR_TEXT(req, 1, key);
         
         if (sqlite3_step(req) == SQLITE_ROW) {
@@ -93,13 +98,13 @@
 
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"config_update:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, value);
         SET_VAR_TEXT(req, 2, key);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"onfig_update:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -114,7 +119,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_get_byNamee:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, name);
         
@@ -138,7 +143,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -161,7 +166,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_all_byCacheId:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wp_id);
         
@@ -183,7 +188,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_count_caches:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wpgid);
         
@@ -203,13 +208,13 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_new:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, name);
         SET_VAR_BOOL(req, 2, isUser);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"CacheGroups_new:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -221,12 +226,12 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_delete:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, _id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"CacheGroups_delete:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -238,12 +243,12 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_empty:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, _id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"CacheGroups_empty:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -255,13 +260,13 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_rename:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, newname);
         SET_VAR_INT(req, 2, _id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"CacheGroups_rename:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -273,13 +278,13 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_add_cache:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wpgid);
         SET_VAR_INT(req, 2, wpid);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"WCacheGroups_add_cache:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         sqlite3_finalize(req);
     }
 }
@@ -292,7 +297,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheGroups_count_caches:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wpgid);
         SET_VAR_INT(req, 2, wpid);
@@ -317,7 +322,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheTypes_get_byType:prepare %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, type);
         
@@ -341,7 +346,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"CacheTypes_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -359,14 +364,14 @@
 
 - (NSMutableArray *)Caches_all
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available from caches";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available from caches";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Caches_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -435,7 +440,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Cache_get_byname:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, name);
 
@@ -450,13 +455,13 @@
 
 - (NSInteger)Cache_add:(dbCache *)wp
 {
-    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, wp_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Cache_add:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
@@ -483,7 +488,7 @@
         SET_VAR_BOOL(req, 23, wp.gc_available);
 
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"Cache_add:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
 
         _id = sqlite3_last_insert_rowid(db);
         sqlite3_finalize(req);
@@ -493,12 +498,12 @@
 
 - (void)Cache_update:(dbCache *)wp
 {
-    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, wp_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ? where id = ?";
+    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Cache_update:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
@@ -526,7 +531,7 @@
         SET_VAR_INT(req, 24, wp._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"Cache_update:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         
         sqlite3_finalize(req);
     }
@@ -543,7 +548,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"LogTypes_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -568,7 +573,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"ContainerTypes_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -592,7 +597,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Log_by_gcid:prepare %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, gc_id);
         
@@ -613,7 +618,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Logs_add:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, log.cache_id);
         SET_VAR_INT(req, 2, log.logtype_id);
@@ -624,7 +629,7 @@
         SET_VAR_INT(req, 7, log.gc_id);
 
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"Logs_add:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
 
         _id = sqlite3_last_insert_rowid(db);
         sqlite3_finalize(req);
@@ -639,7 +644,7 @@
 
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Logs_update:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, log.logtype_id);
         SET_VAR_INT(req, 2, log.cache_id);
@@ -651,7 +656,7 @@
         SET_VAR_INT(req, 8, log._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"Logs_update:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         
         sqlite3_finalize(req);
     }
@@ -664,13 +669,13 @@
  
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"LogsCache_update_cache_id:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wp_id);
         SET_VAR_INT(req, 2, log._id);
         
         if (sqlite3_step(req) != SQLITE_DONE)
-            NSAssert1(0, @"LogsCache_update_cache_id:step: %s", sqlite3_errmsg(db));
+            DB_ASSERT_STEP;
         
         sqlite3_finalize(req);
     }
@@ -684,7 +689,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Logs_count_byCache_id:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wp_id);
         
@@ -706,7 +711,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Logs_all_bycacheid:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         SET_VAR_INT(req, 1, wp_id);
         
@@ -740,7 +745,7 @@
     
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Sizes_all:prepare: %s", sqlite3_errmsg(db));
+            DB_ASSERT_PREPARE;
         
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -756,6 +761,117 @@
 
 
 // ------------------------
+
+- (NSArray *)Attributes_all
+{
+    NSString *sql = @"select id, label, gc_id, icon from attributes";
+    sqlite3_stmt *req;
+    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    dbAttribute *s;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, label);
+            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
+            INT_FETCH_AND_ASSIGN(req, 3, icon);
+            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
+            [ss addObject:s];
+        }
+        sqlite3_finalize(req);
+    }
+    return ss;
+}
+
+- (void)Attributes_unlink_fromcache:(NSInteger)cache_id
+{
+    NSString *sql = @"delete from attribute2cache where cache_id = ?";
+    sqlite3_stmt *req;
+    NSInteger _id = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        
+        SET_VAR_INT(req, 1, cache_id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+
+        _id = sqlite3_last_insert_rowid(db);
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)Attributes_link_cache:(dbAttribute *)attr cache_id:(NSInteger)cache_id YesNo:(BOOL)YesNO
+{
+    NSString *sql = @"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)";
+    sqlite3_stmt *req;
+ 
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        
+        SET_VAR_INT(req, 1, attr._id);
+        SET_VAR_INT(req, 2, cache_id);
+        SET_VAR_BOOL(req, 3, YesNO);
+        
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        
+        sqlite3_finalize(req);
+    }
+}
+
+- (NSInteger)Attributes_count_byCache_id:(NSInteger)cache_id
+{
+    NSString *sql = @"select count(id) from attribute2cache where cache_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+    
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        
+        SET_VAR_INT(req, 1, cache_id);
+        
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count;
+}
+
+- (NSArray *)Attributes_all_bycacheid:(NSInteger)cache_id
+{
+    NSString *sql = @"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)";
+    sqlite3_stmt *req;
+    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    dbAttribute *s;
+
+    @synchronized(dbaccess) {
+        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        
+        SET_VAR_INT(req, 1, cache_id);
+        
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, label);
+            INT_FETCH_AND_ASSIGN(req, 2, icon);
+            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
+            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
+            [ss addObject:s];
+        }
+        sqlite3_finalize(req);
+    }
+    return ss;
+}
 
 // ------------------------
 

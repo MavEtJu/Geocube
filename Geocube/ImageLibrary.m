@@ -113,6 +113,79 @@
     ADD(@"map - cross dnf - 19x19", ImageMap_crossDNF);
     ADD(@"map - tick found - 24x21", ImageMap_tickFound);
 
+    ADD(@"icons - smiley - 30x30", ImageIcon_Smiley);
+    ADD(@"icons - sad - 30x30", ImageIcon_Sad);
+    ADD(@"icons - target - 20x20", ImageIcon_Target);
+
+
+    ADD(@"attributes - unknown", ImageAttribute_Unknown);
+    ADD(@"attributes - 01", ImageAttribute_DogsAllowed);
+    ADD(@"attributes - 02", ImageAttribute_AccessOrParkingFee);
+    ADD(@"attributes - 03", ImageAttribute_RockClimbing);
+    ADD(@"attributes - 04", ImageAttribute_Boat);
+    ADD(@"attributes - 05", ImageAttribute_ScubaGear);
+    ADD(@"attributes - 06", ImageAttribute_RecommendedForKids);
+    ADD(@"attributes - 07", ImageAttribute_TakesLessThanAnHour);
+    ADD(@"attributes - 08", ImageAttribute_ScenicVIew);
+    ADD(@"attributes - 09", ImageAttribute_SignificantHike);
+    ADD(@"attributes - 10", ImageAttribute_DifficultClimbing);
+    ADD(@"attributes - 11", ImageAttribute_MayRequireWading);
+    ADD(@"attributes - 12", ImageAttribute_MayRequireSwimming);
+    ADD(@"attributes - 13", ImageAttribute_AvailableAtAllTimes);
+    ADD(@"attributes - 14", ImageAttribute_RecommendedAtNight);
+    ADD(@"attributes - 15", ImageAttribute_AvailableDuringWinter);
+    ADD(@"attributes - 17", ImageAttribute_PoisonPlants);
+    ADD(@"attributes - 18", ImageAttribute_DangerousAnimals);
+    ADD(@"attributes - 19", ImageAttribute_Ticks);
+    ADD(@"attributes - 20", ImageAttribute_AbandonedMines);
+    ADD(@"attributes - 21", ImageAttribute_CliffFallingRocks);
+    ADD(@"attributes - 22", ImageAttribute_Hunting);
+    ADD(@"attributes - 23", ImageAttribute_DangerousArea);
+    ADD(@"attributes - 24", ImageAttribute_WheelchairAccessible);
+    ADD(@"attributes - 25", ImageAttribute_ParkingAvailable);
+    ADD(@"attributes - 26", ImageAttribute_PublicTransportation);
+    ADD(@"attributes - 27", ImageAttribute_DrinkingWaterNearby);
+    ADD(@"attributes - 28", ImageAttribute_ToiletNearby);
+    ADD(@"attributes - 29", ImageAttribute_TelephoneNearby);
+    ADD(@"attributes - 30", ImageAttribute_PicnicTablesNearby);
+    ADD(@"attributes - 31", ImageAttribute_CampingArea);
+    ADD(@"attributes - 32", ImageAttribute_Bicycles);
+    ADD(@"attributes - 33", ImageAttribute_Motorcycles);
+    ADD(@"attributes - 34", ImageAttribute_Quads);
+    ADD(@"attributes - 35", ImageAttribute_OffRoadVehicles);
+    ADD(@"attributes - 36", ImageAttribute_Snowmobiles);
+    ADD(@"attributes - 37", ImageAttribute_Horses);
+    ADD(@"attributes - 38", ImageAttribute_Campfires);
+    ADD(@"attributes - 39", ImageAttribute_Thorns);
+    ADD(@"attributes - 40", ImageAttribute_StealthRequired);
+    ADD(@"attributes - 41", ImageAttribute_StrollerAccessible);
+    ADD(@"attributes - 42", ImageAttribute_NeedsMaintenance);
+    ADD(@"attributes - 43", ImageAttribute_WatchForLivestock);
+    ADD(@"attributes - 44", ImageAttribute_FlashlightRequired);
+    ADD(@"attributes - 45", ImageAttribute_LostAndFoundTour);
+    ADD(@"attributes - 46", ImageAttribute_TruckDriversRV);
+    ADD(@"attributes - 47", ImageAttribute_FieldPuzzle);
+    ADD(@"attributes - 48", ImageAttribute_UVTorchRequired);
+    ADD(@"attributes - 49", ImageAttribute_Snowshoes);
+    ADD(@"attributes - 50", ImageAttribute_CrossCountrySkies);
+    ADD(@"attributes - 51", ImageAttribute_LongHike);
+    ADD(@"attributes - 52", ImageAttribute_SpecialToolRequired);
+    ADD(@"attributes - 53", ImageAttribute_NightCache);
+    ADD(@"attributes - 54", ImageAttribute_ParkAndGrab);
+    ADD(@"attributes - 55", ImageAttribute_AbandonedStructure);
+    ADD(@"attributes - 56", ImageAttribute_ShortHike);
+    ADD(@"attributes - 57", ImageAttribute_MediumHike);
+    ADD(@"attributes - 58", ImageAttribute_FuelNearby);
+    ADD(@"attributes - 59", ImageAttribute_FoodNearby);
+    ADD(@"attributes - 60", ImageAttribute_WirelessBeacon);
+    ADD(@"attributes - 61", ImageAttribute_PartnershipCache);
+    ADD(@"attributes - 62", ImageAttribute_SeasonalAccess);
+    ADD(@"attributes - 63", ImageAttribute_TouristFriendly);
+    ADD(@"attributes - 64", ImageAttribute_TreeClimbing);
+    ADD(@"attributes - 65", ImageAttribute_FrontYard);
+    ADD(@"attributes - 66", ImageAttribute_TeamworkRequired);
+    ADD(@"attributes - 67", ImageAttribute_PartOfGeoTour);
+
 #define MERGE_PINHEAD(__i1__, __i2__, __idx__) {\
     UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(3, 3, 15, 15)]; \
     imgs[__idx__] = out; \
@@ -165,10 +238,6 @@
     MERGE_DNF(ImageMap_dnfRed, ImageMap_crossDNF, ImageMap_dnfRed);
     MERGE_DNF(ImageMap_dnfWhite, ImageMap_crossDNF, ImageMap_dnfWhite);
     MERGE_DNF(ImageMap_dnfYellow, ImageMap_crossDNF, ImageMap_dnfYellow);
-
-    ADD(@"icons - smiley - 30x30", ImageIcon_Smiley);
-    ADD(@"icons - sad - 30x30", ImageIcon_Sad);
-    ADD(@"icons - target - 20x20", ImageIcon_Target);
 
     return self;
 }

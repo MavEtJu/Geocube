@@ -82,6 +82,7 @@
         [currentC setLon:[attributeDict objectForKey:@"lon"]];
         
         logs = [NSMutableArray arrayWithCapacity:20];
+        attributes = [NSMutableArray arrayWithCapacity:20];
         
         inItem = YES;
         return;
@@ -107,6 +108,15 @@
         currentLog = [[dbLog alloc] init];
         [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
         inLog = YES;
+        return;
+    }
+    
+    if ([currentElement compare:@"groundspeak:attribute"] == NSOrderedSame) {
+        NSInteger _id = [[attributeDict objectForKey:@"id"] integerValue];
+        BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
+        dbAttribute *a = [dbc Attribute_get_bygcid:_id];
+        a._YesNo = YesNo;
+        [attributes addObject:[dbc Attribute_get_bygcid:_id]];
         return;
     }
 
@@ -145,6 +155,15 @@
         while ((l = [e nextObject]) != nil) {
             [db Logs_update_cache_id:l cache_id:cwp_id];
         }
+        
+        // Link attributes to cache
+        [db Attributes_unlink_fromcache:cwp_id];
+        e = [attributes objectEnumerator];
+        dbAttribute *a;
+        while ((a = [e nextObject]) != nil) {
+            [db Attributes_link_cache:a cache_id:cwp_id YesNo:a._YesNo];
+        }
+        
 
         inItem = NO;
         goto bye;
