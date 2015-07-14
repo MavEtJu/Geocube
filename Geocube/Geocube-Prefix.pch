@@ -12,6 +12,7 @@
 #ifdef __OBJC__
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <math.h>
@@ -69,8 +70,8 @@
 
 #import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"
-#import "MapOSMViewController.h"
 #import "MapAppleViewController.h"
+#import "MapOSMViewController.h"
 
 #endif
 

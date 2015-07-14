@@ -28,9 +28,18 @@
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     
+    /* Create map */
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     mapView.mapType = MKMapTypeStandard;
     
+    /* Zoom in */
+    CLLocationCoordinate2D noLocation;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 1500, 1500);
+    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+    [mapView setRegion:adjustedRegion animated:YES];
+    mapView.showsUserLocation = YES;
+    
+    /* Center around here */
     CLLocationCoordinate2D center;
     center.latitude = [Coordinates myLocation_Lat];
     center.longitude = [Coordinates myLocation_Lon];

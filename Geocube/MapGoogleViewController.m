@@ -27,10 +27,10 @@
     // Do any additional setup after loading the view.
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[Coordinates myLocation_Lat]
                                                              longitude:[Coordinates myLocation_Lon]
-                                                                  zoom:12];
+                                                                  zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
-
+    
     self.view = mapView;
 }
 

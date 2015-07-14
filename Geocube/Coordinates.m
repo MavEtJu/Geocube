@@ -81,8 +81,12 @@
 + (coordinate_type)myLocation
 {
     coordinate_type c;
+    /* Sydney */
     c.lat = -33.866467;
     c.lon = 151.2076;
+    /* Random location */
+    c.lat = -33.866467;
+    c.lon = 150.2076;
     return c;
 }
 
