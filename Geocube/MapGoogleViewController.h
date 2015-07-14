@@ -8,9 +8,7 @@
 
 @import GoogleMaps;
 
-@interface MapGoogleViewController : GCViewController {
-    NSArray *wps;
-    NSInteger wpCount;
+@interface MapGoogleViewController : MapTemplateViewController {
     GMSMapView *mapView;
 }
 

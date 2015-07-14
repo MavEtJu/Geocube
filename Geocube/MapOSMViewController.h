@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface MapOSMViewController : GCViewController<MKMapViewDelegate> {
-    NSArray *wps;
-    NSInteger wpCount;
+@interface MapOSMViewController : MapTemplateViewController<MKMapViewDelegate> {
     MKMapView *mapView;
 }
 

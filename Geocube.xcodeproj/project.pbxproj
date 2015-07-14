@@ -184,6 +184,7 @@
 		E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */; };
 		E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F21B54A108001A0F8E /* DistancePickerView.m */; };
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
+		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
@@ -444,6 +445,8 @@
 		E8D569F21B54A108001A0F8E /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = ActionSheetPicker/DistancePickerView.m; sourceTree = "<group>"; };
 		E8D569F31B54A108001A0F8E /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = ActionSheetPicker/SWActionSheet.h; sourceTree = "<group>"; };
 		E8D569F41B54A108001A0F8E /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
+		E8D569FE1B54E35D001A0F8E /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
+		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
 		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
@@ -601,6 +604,8 @@
 				E80F73791B53474C00F35528 /* MapAppleViewController.m */,
 				E867E8351B534ED800CB126A /* MapOSMViewController.h */,
 				E867E8361B534ED800CB126A /* MapOSMViewController.m */,
+				E8D569FE1B54E35D001A0F8E /* MapTemplateViewController.h */,
+				E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */,
 			);
 			name = MapViewControllers;
 			sourceTree = "<group>";
@@ -1339,6 +1344,7 @@
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
+				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,

@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface MapAppleViewController : GCViewController {
-    NSArray *wps;
-    NSInteger wpCount;
+@interface MapAppleViewController : MapTemplateViewController {
     MKMapView *mapView;
 }
 

@@ -34,12 +34,6 @@
     self.view = mapView;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self loadMarkers];
-}
-
 - (void)loadMarkers
 {
     // Creates a marker in the center of the map.
@@ -54,36 +48,6 @@
         marker.snippet = wp.description;
         marker.map = mapView;
     }
-    
-}
-
-- (void)refreshCachesData:(NSString *)searchString
-{
-    NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Caches objectEnumerator];
-    dbCache *wp;
-    
-    while ((wp = [e nextObject]) != nil) {
-        if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
-            continue;
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:[Coordinates myLocation]];
-        
-        [_wps addObject:wp];
-    }
-    wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
-        
-        if (obj1.calculatedDistance > obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        
-        if (obj1.calculatedDistance < obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    
-    
-    wpCount = [wps count];
 }
 
 #pragma mark - Local menu related functions

@@ -63,11 +63,13 @@
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
+#import "FilesViewController.h"
+#import "GroupsViewController.h"
+
+#import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"
 #import "MapOSMViewController.h"
 #import "MapAppleViewController.h"
-#import "FilesViewController.h"
-#import "GroupsViewController.h"
 
 #endif
 
