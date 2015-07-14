@@ -565,9 +565,9 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
-				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
 				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,

@@ -86,6 +86,16 @@
     return c;
 }
 
++ (float)myLocation_Lat
+{
+    return [self myLocation].lat;
+}
+
++ (float)myLocation_Lon
+{
+    return [self myLocation].lon;
+}
+
 + (float)toRadians:(float)f
 {
     return f * M_PI / 180;

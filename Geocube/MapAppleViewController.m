@@ -29,7 +29,13 @@
     self.view = contentView;
     
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
-    mapView.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
+    mapView.mapType = MKMapTypeStandard;
+    
+    CLLocationCoordinate2D center;
+    center.latitude = [Coordinates myLocation_Lat];
+    center.longitude = [Coordinates myLocation_Lon];
+    mapView.centerCoordinate = center;
+    
     self.view  = mapView;
 }
 
