@@ -30,8 +30,17 @@
     
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     mapView.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
-    [self.view addSubview:mapView];
-    
+    self.view  = mapView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadMarkers];
+}
+
+- (void)loadMarkers
+{
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
     NSEnumerator *e = [wps objectEnumerator];
@@ -45,8 +54,6 @@
         [annotation setTitle:wp.name]; //You can set the subtitle too
         [mapView addAnnotation:annotation];
     }
-    
-    self.view = mapView;
 }
 
 - (void)refreshCachesData:(NSString *)searchString

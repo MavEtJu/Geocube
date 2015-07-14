@@ -65,7 +65,7 @@
     tabBarController.delegate = self; \
     [tabBars addObject:tabBarController];
 
-    // Navigate tabs
+    // Navigate tabs #0
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Navigate";
@@ -74,7 +74,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Caches Online tabs
+    // Caches Online tabs #1
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Online";
@@ -83,7 +83,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Caches offline tabs
+    // Caches offline tabs #2
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"XFilters";
@@ -112,7 +112,7 @@
 
     TABBARCONTROLLER(controllers)
     
-    // Notes and logs tabs
+    // Notes and logs tabs #3
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Notes and Logs";
@@ -121,7 +121,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Trackables logs
+    // Trackables logs #4
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Trackables";
@@ -130,7 +130,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Groups Root Controllers
+    // Groups Root Controllers #5
     controllers = [NSMutableArray array];
     vc = [[GroupsViewController alloc] init:YES];
     vc.title = @"User Groups";
@@ -144,7 +144,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Bookmarks tabs
+    // Bookmarks tabs #6
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Bookmarks";
@@ -153,7 +153,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Files RootController
+    // Files RootController #7
     controllers = [NSMutableArray array];
     vc = [[FilesViewController alloc] init];
     vc.title = @"Local Files";
@@ -167,7 +167,7 @@
 
     TABBARCONTROLLER(controllers)
 
-    // User profile tabs
+    // User profile tabs #8
     controllers = [NSMutableArray array];
     vc = [[UserProfileViewController alloc] init];
     vc.title = @"User Profile";
@@ -176,7 +176,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Notices tabs
+    // Notices tabs #9
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Notices";
@@ -185,7 +185,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Settings tabs
+    // Settings tabs #10
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Settings";
@@ -194,7 +194,7 @@
     
     TABBARCONTROLLER(controllers)
     
-    // Help tabs
+    // Help tabs #11
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";

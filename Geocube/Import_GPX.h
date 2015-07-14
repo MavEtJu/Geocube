@@ -18,7 +18,6 @@
     NSUInteger totalLines;
     
     NSArray *files;
-    NSString *groupname;
     dbCacheGroup *group;
     
     NSMutableArray *attributes;
@@ -31,7 +30,7 @@
     dbLog *currentLog;
 }
 
-- (id)init:(NSString *)filename group:(NSString *)groupname newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR;
+- (id)init:(NSString *)filename group:(dbCacheGroup *)group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR;
 - (void)parse;
 
 @end

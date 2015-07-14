@@ -10,11 +10,12 @@
 
 @implementation ImportGPXViewController
 
-- (id)init:(NSString *)_filename
+- (id)init:(NSString *)_filename group:(dbCacheGroup *)_group
 {
     self = [super init];
 
     filename = _filename;
+    group = _group;
     
     return self;
 }
@@ -56,7 +57,7 @@
     [self.view addSubview:totalLogsLabel];
     y += 40;
     
-    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:@"Testje" newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead];
+    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead];
     
     importDone = NO;
     [self performSelectorInBackground:@selector(run) withObject:nil];

@@ -10,7 +10,7 @@
 
 @implementation Import_GPX
 
-- (id)init:(NSString *)filename group:(NSString *)_groupname newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR
+- (id)init:(NSString *)filename group:(dbCacheGroup *)_group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR
 {
     newCachesCount = nCC;
     totalCachesCount = tCC;
@@ -18,10 +18,9 @@
     totalLogsCount = tLC;
     percentageRead = pR;
     
-    groupname = _groupname;
-    group = [db CacheGroups_get_byName:groupname];
+    group = _group;
 
-    NSLog(@"Import_GPX: Importing %@", filename);
+    NSLog(@"Import_GPX: Importing %@ into %@", filename, group.name);
     
     files = @[filename];
     NSLog(@"Found %ld files", [files count]);

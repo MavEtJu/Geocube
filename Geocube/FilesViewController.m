@@ -178,15 +178,36 @@
 
 - (void)fileImport:(NSString *)filename
 {
-    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = @"Import";
-    [self.navigationController pushViewController:newController animated:YES];
+//    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
+//    newController.edgesForExtendedLayout = UIRectEdgeNone;
+//    newController.title = @"Import";
+//    [self.navigationController pushViewController:newController animated:YES];
     
-//    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
-//    Import_GPX *i = [[Import_GPX alloc] init:fullname group:@"Testje"];
-//    [i parse];
-//    [dbc loadCacheData];
+    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
+    NSEnumerator *e = [[dbc CacheGroups] objectEnumerator];
+    dbCacheGroup *cg;
+    while ((cg = [e nextObject]) != nil) {
+        if (cg.usergroup == 0)
+            continue;
+        [groupNames addObject:cg.name];
+        [groups addObject:cg];
+    }
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
+                             rows:groupNames
+                             initialSelection:0
+                             doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                 UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
+                                 newController.edgesForExtendedLayout = UIRectEdgeNone;
+                                 newController.title = @"Import";
+                                 [self.navigationController pushViewController:newController animated:YES];
+                             }
+                             cancelBlock:^(ActionSheetStringPicker *picker) {
+                                 NSLog(@"Block Picker Canceled");
+                             }
+                             origin:self.view
+     ];
 }
 
 - (void)fileRename:(NSString *)filename

@@ -176,6 +176,14 @@
 		E8D569D91B53D95F001A0F8E /* attributes - 67.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D569D81B53D95E001A0F8E /* attributes - 67.png */; };
 		E8D569DB1B53DA4A001A0F8E /* attributes - unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D569DA1B53DA4A001A0F8E /* attributes - unknown.png */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
+		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
+		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
+		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
+		E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569EB1B54A108001A0F8E /* ActionSheetDistancePicker.m */; };
+		E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569ED1B54A108001A0F8E /* ActionSheetLocalePicker.m */; };
+		E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */; };
+		E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F21B54A108001A0F8E /* DistancePickerView.m */; };
+		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
@@ -418,6 +426,24 @@
 		E8D569DA1B53DA4A001A0F8E /* attributes - unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - unknown.png"; path = "images/attributes - unknown.png"; sourceTree = "<group>"; };
 		E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheAttributesViewController.h; sourceTree = "<group>"; };
 		E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheAttributesViewController.m; sourceTree = "<group>"; };
+		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = ActionSheetPicker/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		E8D569E71B54A108001A0F8E /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = ActionSheetPicker/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		E8D569E81B54A108001A0F8E /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = ActionSheetPicker/ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = ActionSheetPicker/ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		E8D569EA1B54A108001A0F8E /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = ActionSheetPicker/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		E8D569EB1B54A108001A0F8E /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = ActionSheetPicker/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		E8D569EC1B54A108001A0F8E /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = ActionSheetPicker/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		E8D569ED1B54A108001A0F8E /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = ActionSheetPicker/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		E8D569EE1B54A108001A0F8E /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = ActionSheetPicker/ActionSheetPicker.h; sourceTree = "<group>"; };
+		E8D569EF1B54A108001A0F8E /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = ActionSheetPicker/ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = ActionSheetPicker/ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		E8D569F11B54A108001A0F8E /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = ActionSheetPicker/DistancePickerView.h; sourceTree = "<group>"; };
+		E8D569F21B54A108001A0F8E /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = ActionSheetPicker/DistancePickerView.m; sourceTree = "<group>"; };
+		E8D569F31B54A108001A0F8E /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = ActionSheetPicker/SWActionSheet.h; sourceTree = "<group>"; };
+		E8D569F41B54A108001A0F8E /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
 		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
@@ -802,6 +828,31 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */,
+				E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */,
+				E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */,
+				E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */,
+				E8D569E71B54A108001A0F8E /* ActionSheetCustomPickerDelegate.h */,
+				E8D569E81B54A108001A0F8E /* ActionSheetDatePicker.h */,
+				E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */,
+				E8D569EA1B54A108001A0F8E /* ActionSheetDistancePicker.h */,
+				E8D569EB1B54A108001A0F8E /* ActionSheetDistancePicker.m */,
+				E8D569EC1B54A108001A0F8E /* ActionSheetLocalePicker.h */,
+				E8D569ED1B54A108001A0F8E /* ActionSheetLocalePicker.m */,
+				E8D569EE1B54A108001A0F8E /* ActionSheetPicker.h */,
+				E8D569EF1B54A108001A0F8E /* ActionSheetStringPicker.h */,
+				E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */,
+				E8D569F11B54A108001A0F8E /* DistancePickerView.h */,
+				E8D569F21B54A108001A0F8E /* DistancePickerView.m */,
+				E8D569F31B54A108001A0F8E /* SWActionSheet.h */,
+				E8D569F41B54A108001A0F8E /* SWActionSheet.m */,
+			);
+			name = ActionSheetPicker;
+			sourceTree = "<group>";
+		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +935,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 			);
@@ -1282,6 +1334,7 @@
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
+				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
@@ -1289,14 +1342,19 @@
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,
+				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
+				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
+				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
+				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
 				E8F570C81B4008C3003F020C /* dbCache.m in Sources */,
+				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8740FCA1B4E90D7002527DA /* dbContainerType.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbCacheGroup.m in Sources */,
@@ -1311,10 +1369,12 @@
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
+				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbCacheType.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,
+				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,

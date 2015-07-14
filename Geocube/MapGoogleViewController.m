@@ -30,7 +30,18 @@
                                                                   zoom:12];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
-    
+
+    self.view = mapView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadMarkers];
+}
+
+- (void)loadMarkers
+{
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
     NSEnumerator *e = [wps objectEnumerator];
@@ -38,23 +49,12 @@
     while ((wp = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
-        switch (rand() % 3) {
-            case 0:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_pinBlack];
-                break;
-            case 1:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_foundRed];
-                break;
-            case 2:
-                marker.icon = marker.icon = [imageLibrary get:ImageMap_dnfYellow];
-                break;
-        }
+        marker.icon = [imageLibrary get:wp.cache_type.icon];
         marker.title = wp.name;
         marker.snippet = wp.description;
         marker.map = mapView;
     }
     
-    self.view = mapView;
 }
 
 - (void)refreshCachesData:(NSString *)searchString

@@ -31,6 +31,7 @@
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     mapView.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
     [self.view addSubview:mapView];
+    //self.view = mapView;
     
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
@@ -38,7 +39,16 @@
     overlay.canReplaceMapContent = YES;                        // (3)
     [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];         // (4)
     mapView.delegate = self;
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadMarkers];
+}
+
+- (void)loadMarkers
+{
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
     NSEnumerator *e = [wps objectEnumerator];
@@ -52,8 +62,6 @@
         [annotation setTitle:wp.name]; //You can set the subtitle too
         [mapView addAnnotation:annotation];
     }
-
-    self.view = mapView;
 }
 
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/

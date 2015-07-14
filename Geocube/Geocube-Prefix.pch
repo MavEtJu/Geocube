@@ -19,6 +19,7 @@
 
 #import "SSZipArchive.h"
 #import "DOPNavbarMenu.h"
+#import "ActionSheetStringPicker.h"
 
 #import "coordinates.h"
 #import "Coordinates.h"

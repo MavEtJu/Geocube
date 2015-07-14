@@ -8,6 +8,8 @@
 
 @interface ImportGPXViewController : GCViewController {
     NSString *filename;
+    dbCacheGroup *group;
+    
     UILabel *newCachesLabel;
     UILabel *totalCachesLabel;
     UILabel *newLogsLabel;
@@ -25,6 +27,6 @@
     BOOL importDone;
 }
 
-- (id)init:(NSString *)filename;
+- (id)init:(NSString *)filename group:(dbCacheGroup *)group;
 
 @end
