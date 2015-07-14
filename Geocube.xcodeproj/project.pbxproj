@@ -185,6 +185,7 @@
 		E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F21B54A108001A0F8E /* DistancePickerView.m */; };
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
+		E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
@@ -447,6 +448,8 @@
 		E8D569F41B54A108001A0F8E /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
 		E8D569FE1B54E35D001A0F8E /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
 		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
+		E8D56A011B54E916001A0F8E /* CachesOfflineFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineFilterViewController.h; sourceTree = "<group>"; };
+		E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineFilterViewController.m; sourceTree = "<group>"; };
 		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
@@ -544,6 +547,8 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
+				E8D56A011B54E916001A0F8E /* CachesOfflineFilterViewController.h */,
+				E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */,
 			);
 			name = "Caches Offline";
 			sourceTree = "<group>";
@@ -1349,6 +1354,7 @@
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
+				E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,

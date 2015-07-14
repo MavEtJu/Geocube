@@ -63,6 +63,7 @@
 #import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
+#import "CachesOfflineFilterViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 
