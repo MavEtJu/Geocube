@@ -67,8 +67,8 @@
 
     // Navigate tabs #0
     controllers = [NSMutableArray array];
-    vc = [[NullViewController alloc] init];
-    vc.title = @"Navigate";
+    vc = [[CompassViewController alloc] init];
+    vc.title = @"Compass";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
     
@@ -208,8 +208,9 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:2];
+    self.window.rootViewController = [tabBars objectAtIndex:0];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

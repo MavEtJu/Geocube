@@ -19,6 +19,9 @@ extern DatabaseCache *dbc;
 // Images
 extern ImageLibrary *imageLibrary;
 
+// Current dbCache to navitate to
+extern dbCache *currentCache;
+
 //
 extern AppDelegate *_AppDelegate;
 

@@ -24,6 +24,13 @@
     lon = coor.lon;
     return self;
 }
+- (id)initWithCLLocationCoordinate2D:(CLLocationCoordinate2D)coor    // { -34.02787, 151.07357 }
+{
+    self = [super init];
+    lat = coor.latitude;
+    lon = coor.longitude;
+    return self;
+}
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
     return [NSString stringWithFormat:@"%0.5f", lat];
@@ -49,7 +56,7 @@
     float dummy;
     int degrees = (int)fabs(lat);
     float mins = modff(fabs(lat), &dummy);
-    return [NSString stringWithFormat:@"%@ %d° %.3f'", hemi, degrees, mins * 60];
+    return [NSString stringWithFormat:@"%@ %d° %02.3f'", hemi, degrees, mins * 60];
 }
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414
 {
@@ -57,7 +64,7 @@
     float dummy;
     int degrees = (int)fabs(lon);
     float mins = modff(fabs(lon), &dummy);
-    return [NSString stringWithFormat:@"%@ %d° %.3f'", hemi, degrees, mins * 60];
+    return [NSString stringWithFormat:@"%@ %d° %02.3f'", hemi, degrees, mins * 60];
 }
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {

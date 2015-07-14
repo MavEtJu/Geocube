@@ -186,6 +186,8 @@
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */; };
+		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
+		E8D56A0A1B5522EA001A0F8E /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D56A091B5522EA001A0F8E /* compass.png */; };
 		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
@@ -450,6 +452,9 @@
 		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
 		E8D56A011B54E916001A0F8E /* CachesOfflineFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineFilterViewController.h; sourceTree = "<group>"; };
 		E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineFilterViewController.m; sourceTree = "<group>"; };
+		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
+		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
+		E8D56A091B5522EA001A0F8E /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass.png; path = images/compass.png; sourceTree = "<group>"; };
 		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
@@ -574,17 +579,17 @@
 			isa = PBXGroup;
 			children = (
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
+				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
-				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
 				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
 				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
-				E867E8381B535A3A00CB126A /* MapViewControllers */,
-				E80F721D1B5275D200F35528 /* Caches Offline */,
+				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
+				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -823,6 +828,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E8D56A091B5522EA001A0F8E /* compass.png */,
 				E867E83C1B53D61C00CB126A /* attributes */,
 				E8A3F44F1B51D932009F2F46 /* map */,
 				E8740FCE1B4E9D49002527DA /* containers */,
@@ -1033,6 +1039,8 @@
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
 				E8740FE91B509540002527DA /* TableViewCells */,
+				E867E8381B535A3A00CB126A /* MapViewControllers */,
+				E80F721D1B5275D200F35528 /* Caches Offline */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 			);
@@ -1158,6 +1166,7 @@
 				E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */,
 				E8D569BF1B53D6DD001A0F8E /* attributes - 42.png in Resources */,
 				E8D569CE1B53D6DD001A0F8E /* attributes - 57.png in Resources */,
+				E8D56A0A1B5522EA001A0F8E /* compass.png in Resources */,
 				E8D569CF1B53D6DD001A0F8E /* attributes - 58.png in Resources */,
 				E8740FC51B4E870D002527DA /* log - willattend - 30x30.png in Resources */,
 				E86C65721B4BC74200E2ABFE /* waypoint rating star on 19x18.png in Resources */,
@@ -1372,6 +1381,7 @@
 				E88FD8F31B4160A700D0CCE7 /* dbCacheGroup.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
+				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,

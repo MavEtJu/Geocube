@@ -42,15 +42,14 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>After all, you are looking for the location of the cache!</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
+		<string>armv6</string>
 		<string>gps</string>
-		<string>armv7</string>
-		<string>camera</string>
 		<string>location-services</string>
-		<string>gyroscope</string>
-		<string>accelerometer</string>
-		<string>magnetometer</string>
+		<string>armv7</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

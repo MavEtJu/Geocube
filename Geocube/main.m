@@ -17,6 +17,9 @@ DatabaseCache *dbc = nil;
 // Image Library
 ImageLibrary *imageLibrary = nil;
 
+// Current dbCache to navigate to
+dbCache *currentCache = nil;
+
 //
 AppDelegate *_AppDelegate;
 

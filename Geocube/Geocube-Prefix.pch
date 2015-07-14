@@ -67,6 +67,7 @@
 #import "CachesOfflineFilterViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
+#import "CompassViewController.h"
 
 #import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"
