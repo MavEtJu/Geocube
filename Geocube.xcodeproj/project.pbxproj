@@ -1039,9 +1039,9 @@
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
 				E8740FE91B509540002527DA /* TableViewCells */,
+				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E80F721D1B5275D200F35528 /* Caches Offline */,
-				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 			);
 			name = GUI;

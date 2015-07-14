@@ -64,16 +64,26 @@
     tabBarController.customizableViewControllers = __controllers__; \
     tabBarController.delegate = self; \
     [tabBars addObject:tabBarController];
-
+    
     // Navigate tabs #0
     controllers = [NSMutableArray array];
     vc = [[CompassViewController alloc] init];
     vc.title = @"Compass";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
+
+    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:currentCache];
+    vc.title = @"Details";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:vc];
+
+    vc = [[MapGoogleViewController alloc] init];
+    vc.title = @"GMap";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
     
     TABBARCONTROLLER(controllers)
-    
+
     // Caches Online tabs #1
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
@@ -111,7 +121,7 @@
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
-    
+
     // Notes and logs tabs #3
     controllers = [NSMutableArray array];
     vc = [[NullViewController alloc] init];
@@ -208,7 +218,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:0];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
     [self.window makeKeyAndVisible];
     
     return YES;

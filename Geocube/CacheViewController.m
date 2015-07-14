@@ -17,8 +17,14 @@
 - (id)initWithStyle:(NSInteger)_style cache:(dbCache *)_wp;
 {
     self = [super initWithStyle:_style];
-    wp = _wp;
+    [self setCache:_wp];
     return self;
+}
+
+- (void)setCache:(dbCache *)_cache
+{
+    wp = _cache;
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -207,6 +213,11 @@
     }
 
     if (indexPath.section == 2) {
+        if (indexPath.row == 0) {   /* Set a target */
+            currentCache = wp;
+            [_AppDelegate switchController:RC_NAVIGATE];
+            return;
+        }
         return;
     }
 
