@@ -14,7 +14,7 @@
 {
     self = [super init];
     
-    menuItems = @[@"Map", @"Satellite"];
+    menuItems = @[@"Map"];
     
     return self;
 }
@@ -28,16 +28,16 @@
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     
-    MKMapView *mv = [[MKMapView alloc] initWithFrame:self.view.frame];
-    mv.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
-    [self.view addSubview:mv];
+    mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    mapView.mapType = MKMapTypeStandard; // MKMapTypeHybrid;
+    [self.view addSubview:mapView];
     
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
     MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template]; // (2)
     overlay.canReplaceMapContent = YES;                        // (3)
-    [mv addOverlay:overlay level:MKOverlayLevelAboveLabels];         // (4)
-    mv.delegate = self;
+    [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];         // (4)
+    mapView.delegate = self;
     
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
@@ -50,10 +50,10 @@
         [annotation setCoordinate:coord];
         
         [annotation setTitle:wp.name]; //You can set the subtitle too
-        [mv addAnnotation:annotation];
+        [mapView addAnnotation:annotation];
     }
 
-    self.view = mv;
+    self.view = mapView;
 }
 
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
@@ -90,8 +90,25 @@
         return (NSComparisonResult)NSOrderedSame;
     }];
     
-    
     wpCount = [wps count];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+    if (menu != self.tab_menu) {
+        [menuGlobal didSelectedMenu:menu atIndex:index];
+        return;
+    }
+    
+    switch (index) {
+        case 0: /* Map view */
+            mapView.mapType = MKMapTypeStandard;
+            return;
+    }
+    
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
 }
 
 @end

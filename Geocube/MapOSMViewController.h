@@ -9,6 +9,7 @@
 @interface MapOSMViewController : GCViewController<MKMapViewDelegate> {
     NSArray *wps;
     NSInteger wpCount;
+    MKMapView *mapView;
 }
 
 @end

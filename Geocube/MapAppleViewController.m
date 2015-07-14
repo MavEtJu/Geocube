@@ -14,7 +14,7 @@
 {
     self = [super init];
     
-    menuItems = @[@"Map", @"Satellite"];
+    menuItems = @[@"Map", @"Satellite", @"Hybrid"];
     
     return self;
 }
@@ -28,9 +28,9 @@
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     
-    MKMapView *mv = [[MKMapView alloc] initWithFrame:self.view.frame];
-    mv.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
-    [self.view addSubview:mv];
+    mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    mapView.mapType = MKMapTypeStandard; //MKMapTypeHybrid;
+    [self.view addSubview:mapView];
     
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
@@ -43,10 +43,10 @@
         [annotation setCoordinate:coord];
         
         [annotation setTitle:wp.name]; //You can set the subtitle too
-        [mv addAnnotation:annotation];
+        [mapView addAnnotation:annotation];
     }
     
-    self.view = mv;
+    self.view = mapView;
 }
 
 - (void)refreshCachesData:(NSString *)searchString
@@ -76,6 +76,30 @@
     
     
     wpCount = [wps count];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+    if (menu != self.tab_menu) {
+        [menuGlobal didSelectedMenu:menu atIndex:index];
+        return;
+    }
+    
+    switch (index) {
+        case 0: /* Map view */
+            mapView.mapType = MKMapTypeStandard;
+            return;
+        case 1: /* Satellite view */
+            mapView.mapType = MKMapTypeSatellite;
+            return;
+        case 2: /* Hybrid view */
+            mapView.mapType = MKMapTypeHybrid;
+            return;
+    }
+    
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
 }
 
 @end

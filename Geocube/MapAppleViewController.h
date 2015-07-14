@@ -9,6 +9,7 @@
 @interface MapAppleViewController : GCViewController {
     NSArray *wps;
     NSInteger wpCount;
+    MKMapView *mapView;
 }
 
 @end

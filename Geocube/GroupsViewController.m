@@ -225,8 +225,6 @@
         return;
     }
     
-    NSLog(@"GroupsViewController/didSelectedMenu: self:%p", self);
-
     // Add a group
     if (showUsers == YES) {
         if (index == 0) {

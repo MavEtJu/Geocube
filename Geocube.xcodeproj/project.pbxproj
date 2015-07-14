@@ -539,8 +539,6 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				E867E8381B535A3A00CB126A /* MapViewControllers */,
-				E80F721D1B5275D200F35528 /* Caches Offline */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
@@ -551,6 +549,8 @@
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
 				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
+				E867E8381B535A3A00CB126A /* MapViewControllers */,
+				E80F721D1B5275D200F35528 /* Caches Offline */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
