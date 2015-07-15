@@ -13,7 +13,6 @@
     NSArray *actionItems;
 }
 
-- (id)initWithStyle:(NSInteger)style cache:(dbCache *)wp;
-- (void)setCache:(dbCache *)cache;
+- (void)showCache:(dbCache *)cache;
 
 @end

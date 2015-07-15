@@ -125,7 +125,8 @@
     dbCache *wp = [wps objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
-    UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:wp];
+    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [newController showCache:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
     [self.navigationController pushViewController:newController animated:YES];

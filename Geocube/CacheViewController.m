@@ -14,14 +14,7 @@
 
 @implementation CacheViewController
 
-- (id)initWithStyle:(NSInteger)_style cache:(dbCache *)_wp;
-{
-    self = [super initWithStyle:_style];
-    [self setCache:_wp];
-    return self;
-}
-
-- (void)setCache:(dbCache *)_cache
+- (void)showCache:(dbCache *)_cache
 {
     wp = _cache;
     [self.tableView reloadData];
@@ -215,7 +208,11 @@
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
             currentCache = wp;
-            [[[[_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE] viewControllers] objectAtIndex:VC_NAVIGATE_DETAILS] setCache:currentCache];
+            UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+            UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_DETAILS];
+            CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+            [cvc showCache:currentCache];
+
             [_AppDelegate switchController:RC_NAVIGATE];
             return;
         }

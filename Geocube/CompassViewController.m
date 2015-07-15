@@ -73,51 +73,71 @@
 
     CGRect rectCompass = CGRectMake(0, HEIGHT, width, HEIGHT);
 
-    CGRect rectAccuracy = CGRectMake(0, height - HEIGHT, BLOCK, HEIGHT);
+    CGRect rectAccuracyText = CGRectMake(0, height - HEIGHT, BLOCK, HEIGHT / 3);
+    CGRect rectAccuracy = CGRectMake(0, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
     CGRect rectMyLat = CGRectMake(BLOCK, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
     CGRect rectMyLon = CGRectMake(BLOCK, height - 1 * HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectAltitude = CGRectMake(width - BLOCK, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
+    CGRect rectAltitudeText = CGRectMake(width - BLOCK, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
+    CGRect rectAltitude = CGRectMake(width - BLOCK, height - 1 * HEIGHT / 3, BLOCK, HEIGHT / 3);
 
-    Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
+    UILabel *l;
 
     cacheIcon = [[UIImageView alloc] initWithFrame:rectIcon];
-    cacheIcon.image = [imageLibrary get:currentCache.cache_type.icon];
     cacheIcon.backgroundColor = [UIColor redColor];
     [self.view addSubview:cacheIcon];
 
+#define FONTSIZE    14
+
     cacheName = [[UILabel alloc] initWithFrame:rectName];
-    cacheName.text = currentCache.name;
     cacheName.backgroundColor = [UIColor blueColor];
+    cacheName.textAlignment = NSTextAlignmentCenter;
+    cacheName.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheName];
 
     cacheLat = [[UILabel alloc] initWithFrame:rectCoordLat];
-    cacheLat.text = [coords lat_degreesDecimalMinutes];
     cacheLat.backgroundColor = [UIColor greenColor];
+    cacheLat.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheLat];
 
     cacheLon = [[UILabel alloc] initWithFrame:rectCoordLon];
-    cacheLon.text = [coords lon_degreesDecimalMinutes];
     cacheLon.backgroundColor = [UIColor yellowColor];
+    cacheLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheLon];
 
     myLat = [[UILabel alloc] initWithFrame:rectMyLat];
     myLat.text = @"-";
     myLat.backgroundColor = [UIColor brownColor];
+    myLat.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLat];
 
     myLon = [[UILabel alloc] initWithFrame:rectMyLon];
     myLon.text = @"-";
     myLon.backgroundColor = [UIColor yellowColor];
+    myLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLon];
 
+    l = [[UILabel alloc] initWithFrame:rectAccuracyText];
+    l.text = @"Accuracy";
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:l];
     accuracy = [[UILabel alloc] initWithFrame:rectAccuracy];
     accuracy.text = @"-";
     accuracy.backgroundColor = [UIColor purpleColor];
+    accuracy.textAlignment = NSTextAlignmentCenter;
+    accuracy.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:accuracy];
 
+    l = [[UILabel alloc] initWithFrame:rectAltitudeText];
+    l.text = @"Altitude";
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:l];
     altitude = [[UILabel alloc] initWithFrame:rectAltitude];
     altitude.text = @"-";
     altitude.backgroundColor = [UIColor yellowColor];
+    altitude.textAlignment = NSTextAlignmentCenter;
+    altitude.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:altitude];
 
     compassImage  = [UIImage imageNamed:[NSString stringWithFormat:@"%@/compass.png", [MyTools DataDistributionDirectory]]];
@@ -125,23 +145,48 @@
     compassImageView.image = compassImage;
     [self.view addSubview:compassImageView];
 
+    /* Initiate the location manager */
     locationManager = [[CLLocationManager alloc] init];
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = 1;
     locationManager.headingFilter = 1;
     locationManager.delegate = self;
-    [locationManager startUpdatingHeading];
 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [locationManager requestWhenInUseAuthorization];
     }
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    /* Start the location manager */
+    [locationManager startUpdatingHeading];
+    [locationManager startUpdatingLocation];
+
+    /* Initiate the current cache */
+    Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
+
+    cacheIcon.image = [imageLibrary get:currentCache.cache_type.icon];
+    cacheName.text = currentCache.name;
+    cacheLat.text = [coords lat_degreesDecimalMinutes];
+    cacheLon.text = [coords lon_degreesDecimalMinutes];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [locationManager stopUpdatingHeading];
+    [locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 
-    accuracy.text = [NSString stringWithFormat:@"%0f x %0f", newLocation.horizontalAccuracy,newLocation.verticalAccuracy];
-    altitude.text = [NSString stringWithFormat:@"%0f", manager.location.altitude];
+    accuracy.text = [NSString stringWithFormat:@"%ld m", (NSInteger)newLocation.horizontalAccuracy];
+    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)manager.location.altitude];
+
+    NSLog(@"new location: %f, %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
 
     Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:newLocation.coordinate];
     myLat.text = [c lat_degreesDecimalMinutes];
@@ -162,7 +207,7 @@
     [compassImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     compassImageView.transform = CGAffineTransformMakeRotation(newRad);
 
-    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
+//    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 
     altitude.text = [NSString stringWithFormat:@"%0f", manager.location.altitude];
 

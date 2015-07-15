@@ -58,12 +58,12 @@
     tabBars = [[NSMutableArray alloc] initWithCapacity:5];
 
 #define TABBARCONTROLLER(__controllers__) \
-tabBarController = [[UITabBarController alloc] init]; \
-tabBarController.tabBar.translucent = NO; \
-tabBarController.viewControllers = __controllers__; \
-tabBarController.customizableViewControllers = __controllers__; \
-tabBarController.delegate = self; \
-[tabBars addObject:tabBarController];
+    tabBarController = [[UITabBarController alloc] init]; \
+    tabBarController.tabBar.translucent = NO; \
+    tabBarController.viewControllers = __controllers__; \
+    tabBarController.customizableViewControllers = __controllers__; \
+    tabBarController.delegate = self; \
+    [tabBars addObject:tabBarController];
 
     // Navigate tabs #0
     controllers = [NSMutableArray array];
@@ -73,10 +73,10 @@ tabBarController.delegate = self; \
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:nil];
-    vc.title = @"Details";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:vc];
+    CacheViewController *cvc = [[CacheViewController alloc] init];
+    cvc.title = @"Details";
+    nav = [[UINavigationController alloc] initWithRootViewController:cvc];
+    [controllers addObject:nav];
 
     vc = [[MapGoogleViewController alloc] init];
     vc.title = @"GMap";
