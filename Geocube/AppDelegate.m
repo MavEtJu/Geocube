@@ -67,12 +67,13 @@
     
     // Navigate tabs #0
     controllers = [NSMutableArray array];
+    
     vc = [[CompassViewController alloc] init];
     vc.title = @"Compass";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:currentCache];
+    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:nil];
     vc.title = @"Details";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:vc];
@@ -86,6 +87,7 @@
 
     // Caches Online tabs #1
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Online";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -95,6 +97,7 @@
     
     // Caches offline tabs #2
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"XFilters";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -124,6 +127,7 @@
 
     // Notes and logs tabs #3
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Notes and Logs";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -133,6 +137,7 @@
     
     // Trackables logs #4
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Trackables";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -142,6 +147,7 @@
     
     // Groups Root Controllers #5
     controllers = [NSMutableArray array];
+    
     vc = [[GroupsViewController alloc] init:YES];
     vc.title = @"User Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -156,6 +162,7 @@
     
     // Bookmarks tabs #6
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Bookmarks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -165,6 +172,7 @@
     
     // Files RootController #7
     controllers = [NSMutableArray array];
+    
     vc = [[FilesViewController alloc] init];
     vc.title = @"Local Files";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -179,6 +187,7 @@
 
     // User profile tabs #8
     controllers = [NSMutableArray array];
+    
     vc = [[UserProfileViewController alloc] init];
     vc.title = @"User Profile";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -188,6 +197,7 @@
     
     // Notices tabs #9
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Notices";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -197,6 +207,7 @@
     
     // Settings tabs #10
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Settings";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -206,6 +217,7 @@
     
     // Help tabs #11
     controllers = [NSMutableArray array];
+    
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
