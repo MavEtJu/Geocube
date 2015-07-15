@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
@@ -215,12 +215,12 @@
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
             currentCache = wp;
+            [[[[_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE] viewControllers] objectAtIndex:VC_NAVIGATE_DETAILS] setCache:currentCache];
             [_AppDelegate switchController:RC_NAVIGATE];
             return;
         }
         return;
     }
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
