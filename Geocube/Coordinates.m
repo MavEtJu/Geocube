@@ -43,7 +43,7 @@
 {
     NSString *hemi = (lat < 0) ? @"S" : @"N";
     return [NSString stringWithFormat:@"%@ %0.5f", hemi, fabs(lat)];
-    
+
 }
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
@@ -125,10 +125,10 @@
     float φ2 = [self toRadians:c2.lat];
     float Δφ = [self toRadians:c2.lat - c1.lat];
     float Δλ = [self toRadians:c2.lon - c1.lon];
-    
+
     float a = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2);
     float c = 2 * atan2(sqrt(a), sqrt(1 - a));
-    
+
     float d = R * c;
     return d;
 }
@@ -136,11 +136,11 @@
 + (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
-    
+
     float φ1 = [self toRadians:c1.lat];
     float φ2 = [self toRadians:c2.lat];
     float Δλ = [self toRadians:c2.lon - c1.lon];
-    
+
     float y = sin(Δλ) * cos(φ2);
     float x = cos(φ1) * sin(φ2) - sin(φ1) * cos(φ2) * cos(Δλ);
     NSInteger brng = [self toDegrees:atan2(y, x)];

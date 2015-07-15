@@ -29,11 +29,11 @@
     datetime = _datetime;
     logger = _logger;
     log = _log;
-    
+
     [self finish];
-    
+
     cellHeight = 0;
-    
+
     return self;
 }
 

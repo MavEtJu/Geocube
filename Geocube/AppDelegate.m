@@ -16,17 +16,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     _AppDelegate = self;
-    
+
     NSFileManager *fm = [[NSFileManager alloc] init];
-    
+
     // Initialize Google Maps
     [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
-    
+
     /* Create files directory */
     [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
-    
+
     /* Move two zip files into files directory */
     NSArray *files = [NSArray arrayWithObjects:@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", nil];
     NSEnumerator *e = [files objectEnumerator];
@@ -36,38 +36,38 @@
         NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
         [fm copyItemAtPath:fromfile toPath:tofile error:nil];
     }
-    
+
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];
-    
+
     // Initialize and cache the database
     db = [[database alloc] init];
     dbc = [[DatabaseCache alloc] init];
     [dbc loadCacheData];
-    
+
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
     // Initialize the tabbar controllers
-    
+
     NSMutableArray *controllers;
     UINavigationController *nav;
     UITabBarController *tabBarController;
     UIViewController *vc;
-    
+
     tabBars = [[NSMutableArray alloc] initWithCapacity:5];
 
 #define TABBARCONTROLLER(__controllers__) \
-    tabBarController = [[UITabBarController alloc] init]; \
-    tabBarController.tabBar.translucent = NO; \
-    tabBarController.viewControllers = __controllers__; \
-    tabBarController.customizableViewControllers = __controllers__; \
-    tabBarController.delegate = self; \
-    [tabBars addObject:tabBarController];
-    
+tabBarController = [[UITabBarController alloc] init]; \
+tabBarController.tabBar.translucent = NO; \
+tabBarController.viewControllers = __controllers__; \
+tabBarController.customizableViewControllers = __controllers__; \
+tabBarController.delegate = self; \
+[tabBars addObject:tabBarController];
+
     // Navigate tabs #0
     controllers = [NSMutableArray array];
-    
+
     vc = [[CompassViewController alloc] init];
     vc.title = @"Compass";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -82,27 +82,27 @@
     vc.title = @"GMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
 
     // Caches Online tabs #1
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Online";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Caches offline tabs #2
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"XFilters";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     vc = [[CachesOfflineListViewController alloc] init];
     vc.title = @"List";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -127,57 +127,57 @@
 
     // Notes and logs tabs #3
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Notes and Logs";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Trackables logs #4
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Trackables";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Groups Root Controllers #5
     controllers = [NSMutableArray array];
-    
+
     vc = [[GroupsViewController alloc] init:YES];
     vc.title = @"User Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     vc = [[GroupsViewController alloc] init:NO];
     vc.title = @"System Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Bookmarks tabs #6
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Bookmarks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Files RootController #7
     controllers = [NSMutableArray array];
-    
+
     vc = [[FilesViewController alloc] init];
     vc.title = @"Local Files";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"XDropbox";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -187,44 +187,44 @@
 
     // User profile tabs #8
     controllers = [NSMutableArray array];
-    
+
     vc = [[UserProfileViewController alloc] init];
     vc.title = @"User Profile";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Notices tabs #9
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Notices";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Settings tabs #10
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Settings";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // Help tabs #11
     controllers = [NSMutableArray array];
-    
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
-    
+
     TABBARCONTROLLER(controllers)
-    
+
     // UIResponder.window = UIWIndow
     // UIWindow.rootViewController = UITabBarController
     // UITabBarController.viewControllers = [UIViewController ...]
@@ -232,7 +232,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
     [self.window makeKeyAndVisible];
-    
+
     return YES;
 }
 

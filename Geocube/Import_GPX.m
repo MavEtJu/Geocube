@@ -17,11 +17,11 @@
     newLogsCount = nLC;
     totalLogsCount = tLC;
     percentageRead = pR;
-    
+
     group = _group;
 
     NSLog(@"Import_GPX: Importing %@ into %@", filename, group.name);
-    
+
     files = @[filename];
     NSLog(@"Found %ld files", [files count]);
     return self;
@@ -38,25 +38,25 @@
         NSLog(@"Parsing %@", filename);
         [self parseOne:filename];
     }
-    
+
 }
 
 - (void)parseOne:(NSString *)filename
 {
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
-    
+
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
-    
+
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     totalLines = [MyTools numberOfLines:s];
-    
+
     [rssParser setDelegate:self];
     [rssParser setShouldProcessNamespaces:NO];
     [rssParser setShouldReportNamespacePrefixes:NO];
     [rssParser setShouldResolveExternalEntities:NO];
-    
+
     index = 0;
     inItem = NO;
     inLog = NO;
@@ -74,19 +74,19 @@
     currentElement = elementName;
     currentText = nil;
     index++;
-    
+
     if ([currentElement compare:@"wpt"] == NSOrderedSame) {
         currentC = [[dbCache alloc] init];
         [currentC setLat:[attributeDict objectForKey:@"lat"]];
         [currentC setLon:[attributeDict objectForKey:@"lon"]];
-        
+
         logs = [NSMutableArray arrayWithCapacity:20];
         attributes = [NSMutableArray arrayWithCapacity:20];
-        
+
         inItem = YES;
         return;
     }
-    
+
     if ([currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
         [currentC setGc_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
         [currentC setGc_available:[[attributeDict objectForKey:@"available"] boolValue]];
@@ -109,7 +109,7 @@
         inLog = YES;
         return;
     }
-    
+
     if ([currentElement compare:@"groundspeak:attribute"] == NSOrderedSame) {
         NSInteger _id = [[attributeDict objectForKey:@"id"] integerValue];
         BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
@@ -125,18 +125,18 @@
 - (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     index--;
-    
+
     [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
-    
+
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentC finish];
-        
+
         NSInteger cwp_id = [db Cache_get_byname:currentC.name];
         (*totalCachesCount)++;
         if (cwp_id == 0) {
             cwp_id = [db Cache_add:currentC];
             (*newCachesCount)++;
-            
+
             [db CacheGroups_add_cache:dbc.CacheGroup_LastImportAdded._id cache_id:cwp_id];
             [db CacheGroups_add_cache:dbc.CacheGroup_AllCaches._id cache_id:cwp_id];
             [db CacheGroups_add_cache:group._id cache_id:cwp_id];
@@ -147,14 +147,14 @@
                 [db CacheGroups_add_cache:group._id cache_id:cwp_id];
         }
         [db CacheGroups_add_cache:dbc.CacheGroup_LastImport._id cache_id:cwp_id];
-        
+
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
             [db Logs_update_cache_id:l cache_id:cwp_id];
         }
-        
+
         // Link attributes to cache
         [db Attributes_unlink_fromcache:cwp_id];
         e = [attributes objectEnumerator];
@@ -162,15 +162,15 @@
         while ((a = [e nextObject]) != nil) {
             [db Attributes_link_cache:a cache_id:cwp_id YesNo:a._YesNo];
         }
-        
+
 
         inItem = NO;
         goto bye;
     }
-    
+
     if (index == 4 && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
         [currentLog finish];
-        
+
         NSInteger log_id = [db Log_by_gcid:currentLog.gc_id];
         (*totalLogsCount)++;
         if (log_id == 0) {
@@ -181,11 +181,11 @@
             [db Logs_update:log_id log:currentLog];
         }
         [logs addObject:currentLog];
-        
+
         inLog = NO;
         goto bye;
     }
-    
+
     if (inItem == YES && inLog == NO) {
         if (index == 2 && currentText != nil) {
             if ([elementName compare:@"time"] == NSOrderedSame) {
@@ -248,7 +248,7 @@
         }
         goto bye;
     }
-    
+
     if (inLog == YES) {
         if (index == 5) {
             if ([elementName compare:@"groundspeak:date"] == NSOrderedSame) {

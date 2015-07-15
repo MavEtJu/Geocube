@@ -40,7 +40,7 @@ typedef enum {
     ImageWaypoints_VirtualStage,
     Imagewaypoints_NFI,
     ImageNFI,
- 
+
     ImageContainer_Virtual = 300,
     ImageContainer_Micro,
     ImageContainer_Small,
@@ -49,7 +49,7 @@ typedef enum {
     ImageContainer_NotChosen,
     ImageContainer_Other,
     ImageContainer_Unknown,
-    
+
     ImageLog_DidNotFind = 400,
     ImageLog_Enabled,
     ImageLog_Found,
@@ -67,7 +67,7 @@ typedef enum {
     ImageLog_Attended,
     ImageLog_WillAttend,
     ImageLog_Unknown,
-    
+
     ImageSize_Large = 450,
     ImageSize_Micro,
     ImageSize_NotChosen,
@@ -75,7 +75,7 @@ typedef enum {
     ImageSize_Regular,
     ImageSize_Small,
     ImageSize_Virtual,
-    
+
     ImageAttribute_Unknown = 500,
     ImageAttribute_DogsAllowed,
     ImageAttribute_AccessOrParkingFee,
@@ -145,10 +145,10 @@ typedef enum {
     ImageAttribute_TeamworkRequired,
     ImageAttribute_PartOfGeoTour,
 
-   /* Up to here: Do not reorder */
-    
+    /* Up to here: Do not reorder */
+
     ImageLibraryImagesUnsorted = 600,
-    
+
     ImageMap_pin,
     ImageMap_dnf,
     ImageMap_found,
@@ -183,7 +183,7 @@ typedef enum {
     ImageMap_dnfRed,
     ImageMap_dnfWhite,
     ImageMap_dnfYellow,
-    
+
     ImageMap_crossDNF,
     ImageMap_tickFound,
 
@@ -191,7 +191,7 @@ typedef enum {
     ImageCacheView_ratingOff,
     ImageCacheView_ratingHalf,
     ImageCacheView_favourites,
-    
+
     ImageIcon_Smiley,
     ImageIcon_Sad,
     ImageIcon_Target,

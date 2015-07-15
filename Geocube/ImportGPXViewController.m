@@ -16,7 +16,7 @@
 
     filename = _filename;
     group = _group;
-    
+
     return self;
 }
 
@@ -28,37 +28,37 @@
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
-    
+
     NSInteger width = applicationFrame.size.width;
     NSInteger y = 0;
-    
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [label setText:[NSString stringWithFormat:@"Import of %@", filename ]];
     [self.view addSubview:label];
     y += 40;
-    
+
     progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:progressLabel];
     y += 40;
-    
+
     newCachesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:newCachesLabel];
     y += 40;
-    
+
     totalCachesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:totalCachesLabel];
     y += 40;
-    
+
     newLogsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:newLogsLabel];
     y += 40;
-    
+
     totalLogsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:totalLogsLabel];
     y += 40;
-    
+
     imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead];
-    
+
     importDone = NO;
     [self performSelectorInBackground:@selector(run) withObject:nil];
     [self performSelectorInBackground:@selector(refresh) withObject:nil];

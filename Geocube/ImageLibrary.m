@@ -14,18 +14,18 @@
 {
     self = [super init];
     NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
-    
+
 #define ADD(__s__, __idx__) \
-    { \
-        NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], __s__]; \
-        UIImage *img = [[UIImage alloc] initWithContentsOfFile:s]; \
-        if (img == nil) { \
-            NSLog(@"ImageLibrary: Image %@ not found", s); \
-        } else { \
-            imgs[__idx__] = img; \
-        } \
-    }
-    
+{ \
+NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], __s__]; \
+UIImage *img = [[UIImage alloc] initWithContentsOfFile:s]; \
+if (img == nil) { \
+NSLog(@"ImageLibrary: Image %@ not found", s); \
+} else { \
+imgs[__idx__] = img; \
+} \
+}
+
     ADD(@"cache - benchmark - 30x30", ImageCaches_Benchmark);
     ADD(@"cache - cito - 30x30", ImageCaches_CITO);
     ADD(@"cache - earth - 30x30", ImageCaches_EarthCache);
@@ -44,7 +44,7 @@
     ADD(@"cache - waymark - 30x30", ImageCaches_Waymark);
     ADD(@"cache - webcam - 30x30", ImageCaches_WebcamCache);
     ADD(@"cache - whereigo - 30x30", ImageCaches_WhereigoCache);
-    
+
     ADD(@"waypoint - finish - 30x30", ImageWaypoints_FinalLocation);
     ADD(@"waypoint - flag - 30x30", ImageWaypoints_Flag);
     ADD(@"waypoint - multi - 30x30", ImageWaypoints_MultiStage);
@@ -58,7 +58,7 @@
     ADD(@"cache - unknown - 30x30", ImageCaches_NFI);
     ADD(@"waypoint - unknown - 30x30", Imagewaypoints_NFI);
     ADD(@"cache - unknown - 30x30", ImageNFI);
-    
+
     ADD(@"container - other - 70x20", ImageContainer_Virtual);
     ADD(@"container - micro - 70x20", ImageContainer_Micro);
     ADD(@"container - small - 70x20", ImageContainer_Small);
@@ -67,7 +67,7 @@
     ADD(@"container - notchosen - 70x20", ImageContainer_NotChosen);
     ADD(@"container - other - 70x20", ImageContainer_Other);
     ADD(@"container - unknown - 70x20", ImageContainer_Unknown);
-    
+
     ADD(@"log - didnotfind - 30x30", ImageLog_DidNotFind);
     ADD(@"log - enabled - 30x30", ImageLog_Enabled);
     ADD(@"log - found - 30x30", ImageLog_Found);
@@ -85,7 +85,7 @@
     ADD(@"log - attended - 30x30", ImageLog_Attended);
     ADD(@"log - willattend - 30x30", ImageLog_WillAttend);
     ADD(@"log - unknown - 30x30", ImageLog_Unknown);
-    
+
     ADD(@"container - large - 70x20", ImageSize_Large);
     ADD(@"container - micro - 70x20", ImageSize_Micro);
     ADD(@"container - notchosen - 70x20", ImageSize_NotChosen);
@@ -98,7 +98,7 @@
     ADD(@"waypoint rating star off 18x18", ImageCacheView_ratingOff);
     ADD(@"waypoint rating star half 18x18", ImageCacheView_ratingHalf);
     ADD(@"waypoint favourites 20x30", ImageCacheView_favourites);
-    
+
     ADD(@"map - pin stick - 35x42", ImageMap_pin);
     ADD(@"map - dnf stick - 35x42", ImageMap_dnf);
     ADD(@"map - found stick - 35x42", ImageMap_found);
@@ -109,7 +109,7 @@
     ADD(@"map - pinhead red - 15x15", ImageMap_pinheadRed);
     ADD(@"map - pinhead white - 15x15", ImageMap_pinheadWhite);
     ADD(@"map - pinhead yellow - 15x15", ImageMap_pinheadYellow);
-    
+
     ADD(@"map - cross dnf - 19x19", ImageMap_crossDNF);
     ADD(@"map - tick found - 24x21", ImageMap_tickFound);
 
@@ -187,19 +187,19 @@
     ADD(@"attributes - 67", ImageAttribute_PartOfGeoTour);
 
 #define MERGE_PINHEAD(__i1__, __i2__, __idx__) {\
-    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(3, 3, 15, 15)]; \
-    imgs[__idx__] = out; \
-    }
-    
+UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(3, 3, 15, 15)]; \
+imgs[__idx__] = out; \
+}
+
 #define MERGE_DNF(__i1__, __i2__, __idx__) {\
-    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, 1, 16, 16)]; \
-    imgs[__idx__] = out; \
-    }
+UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, 1, 16, 16)]; \
+imgs[__idx__] = out; \
+}
 
 #define MERGE_FOUND(__i1__, __i2__, __idx__) {\
-    UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, -4, 24, 21)]; \
-    imgs[__idx__] = out; \
-    }
+UIImage *out = [self addImageToImage:[self get:__i1__] withImage2:[self get:__i2__] andRect:CGRectMake(1, -4, 24, 21)]; \
+imgs[__idx__] = out; \
+}
 
     MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadBlack, ImageMap_pinBlack);
     MERGE_PINHEAD(ImageMap_pin, ImageMap_pinheadGreen, ImageMap_pinGreen);
@@ -246,13 +246,13 @@
 {
     CGSize size = img1.size;
     UIGraphicsBeginImageContext(size);
-    
+
     CGPoint pointImg1 = CGPointMake(0, 0);
     [img1 drawAtPoint:pointImg1];
-    
+
     CGPoint pointImg2 = cropRect.origin;
     [img2 drawAtPoint: pointImg2];
-    
+
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return result;

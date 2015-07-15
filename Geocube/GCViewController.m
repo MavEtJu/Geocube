@@ -16,18 +16,18 @@
 {
     self = [super init];
     menuItems = [NSArray arrayWithObjects:@"Empty", nil];
-    
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.numberOfItemsInRow = 3;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
-    
+
     [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
 }
 
@@ -50,14 +50,14 @@
 {
     if (tab_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
-        
+
         NSEnumerator *e = [menuItems objectEnumerator];
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
             DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
             [menuoptions addObject:item];
         }
-        
+
         tab_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         tab_menu.backgroundColor = [UIColor blackColor];
         tab_menu.separatarColor = [UIColor whiteColor];
@@ -74,7 +74,7 @@
         [menuGlobal openMenu:sender];
         return;
     }
-    
+
     self.navigationItem.rightBarButtonItem.enabled = NO;
     if (self.tab_menu.isOpen) {
         [self.tab_menu dismissWithAnimation:YES];
@@ -89,7 +89,7 @@
         [menuGlobal didShowMenu:menu];
         return;
     }
-    
+
     [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
@@ -100,7 +100,7 @@
         [menuGlobal didDismissMenu:menu];
         return;
     }
-    
+
     [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
@@ -110,7 +110,7 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }

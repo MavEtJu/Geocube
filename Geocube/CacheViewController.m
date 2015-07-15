@@ -35,7 +35,7 @@
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
-    
+
     cacheItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
 }
@@ -81,23 +81,23 @@
     // Cache header
     if (indexPath.section == 0) {
         CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
         Coordinates *c = [[Coordinates alloc] init:wp.lat_float lon:wp.lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
         [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
-        
+
         cell.size.image = [imageLibrary get:wp.gc_containerSize.icon];
         cell.icon.image = [imageLibrary get:wp.cache_type.icon];
         return cell;
     }
-    
+
     // Cache data
     if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
         cell.textLabel.text = [cacheItems objectAtIndex:indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
@@ -105,7 +105,7 @@
                     tc = [UIColor lightGrayColor];
                 break;
             case 1: /* Hint */
-//                if (wp.gc_hint ==b nil || [wp.gc_hint compare:@""] == NSOrderedSame)
+                //                if (wp.gc_hint ==b nil || [wp.gc_hint compare:@""] == NSOrderedSame)
                 if ([wp.gc_hint compare:@""] == NSOrderedSame || [wp.gc_hint compare:@" "] == NSOrderedSame)
                     tc = [UIColor lightGrayColor];
                 break;
@@ -124,7 +124,7 @@
                 else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
-                }
+            }
             case 5: { /* Attributes */
                 NSInteger c = [wp hasAttributes];
                 if (c == 0)
@@ -132,7 +132,7 @@
                 else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
-                }
+            }
             case 6: /* Related Waypoints */
                 if ([wp hasWaypoints] == FALSE)
                     tc = [UIColor lightGrayColor];
@@ -150,7 +150,7 @@
         cell.imageView.image = nil;
         return cell;
     }
-    
+
     // Cache commands
     if (indexPath.section == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
@@ -168,7 +168,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         return cell;
     }
-    
+
     return nil;
 }
 

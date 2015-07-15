@@ -66,43 +66,43 @@
     icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
-    
+
     // Description
     description = [[UILabel alloc] initWithFrame:rectDescription];
     description.font = [UIFont boldSystemFontOfSize:14.0];
     [self.contentView addSubview:description];
-    
+
     // Name
     name = [[UILabel alloc] initWithFrame:rectName];
     name.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:name];
-    
+
     // Bearing
     bearing = [[UILabel alloc] initWithFrame:rectBearing];
     bearing.font = [UIFont systemFontOfSize:10.0];
     bearing.textAlignment = NSTextAlignmentCenter;
     //bearing.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:bearing];
-    
+
     // Compass
     compass = [[UILabel alloc] initWithFrame:rectCompass];
     compass.font = [UIFont systemFontOfSize:10.0];
     compass.textAlignment = NSTextAlignmentCenter;
     //compass.backgroundColor = [UIColor blueColor];
     [self.contentView addSubview:compass];
-    
+
     // State country
     stateCountry = [[UILabel alloc] initWithFrame:rectStateCountry];
     stateCountry.font = [UIFont systemFontOfSize:10];
     //stateCountry.backgroundColor = [UIColor purpleColor];
     [self.contentView addSubview:stateCountry];
-    
+
     // Distance
     distance = [[UILabel alloc] initWithFrame:rectDistance];
     distance.font = [UIFont systemFontOfSize:10.0];
     //distance.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:distance];
-    
+
     // Favourites
     imgFavouritesIV = [[UIImageView alloc] initWithFrame:rectFavourites];
     imgFavouritesIV.image = imgFavourites;
@@ -161,14 +161,14 @@
         ratingT[i].image = imgRatingOff;
     if (t - (int)t != 0)
         ratingT[(int)t].image = imgRatingHalf;
-    
+
     for (NSInteger i = 0; i < d; i++)
         ratingD[i].image = imgRatingOn;
     for (NSInteger i = d; i < 5; i++)
         ratingD[i].image = imgRatingOff;
     if (d - (int)d != 0)
         ratingD[(int)d].image = imgRatingHalf;
-    
+
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", favs];
         imgFavouritesIV.hidden = FALSE;

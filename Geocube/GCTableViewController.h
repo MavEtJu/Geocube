@@ -9,7 +9,7 @@
 @interface GCTableViewController : UITableViewController <DOPNavbarMenuDelegate> {
     NSInteger numberOfItemsInRow;
     DOPNavbarMenu *tab_menu, *global_menu;
-    
+
     NSArray *menuItems;
 }
 

@@ -15,7 +15,7 @@
     NSArray *ContainerTypes;
     NSArray *ContainerSizes;
     NSArray *Attributes;
-    
+
     // System Groups
     dbCacheGroup *CacheGroup_AllCaches;
     dbCacheGroup *CacheGroup_AllCaches_Found;
@@ -25,16 +25,16 @@
 
     // CacheTypes
     dbCacheType *CacheType_Unknown;
-    
+
     // LogTypes
     dbLogType *LogType_Unknown;
-    
+
     // ContainerType
     dbContainerType *ContainerType_Unknown;
-    
+
     // Size
     dbContainerSize *ContainerSize_Unknown;
-    
+
     // Attribute
     dbAttribute *Attribute_Unknown;
 }

@@ -15,12 +15,12 @@
 - (id)init:(NSInteger)__id gc_id:(NSInteger)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
 {
     self = [super init];
-    
+
     icon = _icon;
     label = _label;
     gc_id = _gc_id;
     _id = __id;
-    
+
     [self finish];
     return self;
 }

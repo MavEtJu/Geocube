@@ -16,7 +16,7 @@
 {
     self = [super init];
     showUsers = _showUsers;
-    
+
     [self refreshGroupData];
 
     // Local menu
@@ -24,7 +24,7 @@
         menuItems = [NSArray arrayWithObjects:@"Empty groups", @"Add a group", nil];
     else
         menuItems = nil;
-    
+
     return self;
 }
 
@@ -33,19 +33,19 @@
     [super viewWillAppear:animated];
     [self refreshGroupData];
     [self.tableView reloadData];
-    
+
     if (showUsers == YES)
         self.navigationItem.rightBarButtonItem.enabled = YES;
     else
         self.navigationItem.rightBarButtonItem.enabled = NO;
- }
+}
 
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.CacheGroups objectEnumerator];
     dbCacheGroup *wpg;
-    
+
     while ((wpg = [e nextObject]) != nil) {
         if (wpg.usergroup == showUsers)
             [ws addObject:wpg];
@@ -85,11 +85,11 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
-    
+
     dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [db CacheGroups_count_caches:wpg._id]];
-    
+
     return cell;
 }
 
@@ -99,23 +99,23 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
-    
+
     dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
 
     UIAlertController *view=   [UIAlertController
                                 alertControllerWithTitle:wpg.name
                                 message:@"Select you choice"
                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
+
     UIAlertAction *empty = [UIAlertAction
-                             actionWithTitle:@"Empty"
-                             style:UIAlertActionStyleDestructive
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
-                                 [self groupEmpty:wpg reload:YES];
-                                 [view dismissViewControllerAnimated:YES completion:nil];
-                             }];
+                            actionWithTitle:@"Empty"
+                            style:UIAlertActionStyleDestructive
+                            handler:^(UIAlertAction * action)
+                            {
+                                //Do some thing here
+                                [self groupEmpty:wpg reload:YES];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
 
     UIAlertAction *rename = [UIAlertAction
                              actionWithTitle:@"Rename"
@@ -142,7 +142,7 @@
                              {
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
-    
+
     [view addAction:empty];
     [view addAction:rename];
     [view addAction:delete];
@@ -186,14 +186,14 @@
                                alertControllerWithTitle:@"Rename group"
                                message:[NSString stringWithFormat:@"Rename %@ to", wpg.name]
                                preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
                              UITextField *tf = alert.textFields.firstObject;
-                             
+
                              NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
                              [db CacheGroups_rename:wpg._id newName:tf.text];
                              [dbc loadCacheData];
@@ -205,14 +205,14 @@
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
-    
+
     [alert addAction:ok];
     [alert addAction:cancel];
-    
+
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = wpg.name;
     }];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -224,7 +224,7 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     // Add a group
     if (showUsers == YES) {
         if (index == 0) {
@@ -241,7 +241,7 @@
             return;
         }
     }
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }
@@ -252,7 +252,7 @@
                                alertControllerWithTitle:@"Add a group"
                                message:@"Name of the new group"
                                preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
@@ -260,7 +260,7 @@
                              //Do Some action
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *newgroup = tf.text;
-                             
+
                              NSLog(@"Creating new group '%@'", newgroup);
                              [db CacheGroups_new:newgroup isUser:YES];
                              [dbc loadCacheData];
@@ -272,14 +272,14 @@
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
-    
+
     [alert addAction:ok];
     [alert addAction:cancel];
-    
+
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Name of the new group";
     }];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 

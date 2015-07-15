@@ -19,12 +19,12 @@
     self = [super init];
     items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
 
-//    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
-//    UIImage *img = [UIImage imageNamed:imgfile];
+    //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
+    //    UIImage *img = [UIImage imageNamed:imgfile];
 
     button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openMenu:)];
     button.tintColor = [UIColor whiteColor];
-    
+
     return self;
 }
 
@@ -34,9 +34,9 @@
     numberOfItemsInRow = _numberOfItemsInRow;
     //parent_vc = _vc;
 
-//    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
-//    UIImage *img = [UIImage imageNamed:imgfile];
-                                         
+    //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
+    //    UIImage *img = [UIImage imageNamed:imgfile];
+
     _vc.navigationItem.leftBarButtonItem = button;
 }
 
@@ -54,14 +54,14 @@
 {
     if (_global_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
-        
+
         NSEnumerator *e = [items objectEnumerator];
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
             DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
             [menuoptions addObject:item];
         }
-        
+
         _global_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:parent_vc.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         _global_menu.backgroundColor = [UIColor blackColor];
         _global_menu.separatarColor = [UIColor whiteColor];
@@ -102,7 +102,7 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
- 
+
     NSLog(@"Switching to %ld", index);
     [_AppDelegate switchController:index];
 }

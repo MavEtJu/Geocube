@@ -11,7 +11,7 @@
 @implementation database
 
 #define DB_ASSERT(__s__) \
-    NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
+NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
 #define DB_ASSERT_STEP      DB_ASSERT(@"step")
 #define DB_ASSERT_PREPARE   DB_ASSERT(@"prepare")
 
@@ -22,15 +22,15 @@
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
     [self checkAndCreateDatabase:dbname empty:dbempty];
-    
+
     sqlite3_open([dbempty UTF8String], &db);
     dbConfig *c_empty = [self config_get:@"version"];
     sqlite3_close(db);
-    
+
     sqlite3_open([dbname UTF8String], &db);
     dbConfig *c_real = [self config_get:@"version"];
     sqlite3_close(db);
-    
+
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
         NSLog(@"Empty is newer, overwriting old one");
@@ -46,13 +46,13 @@
 {
     BOOL success;
     NSFileManager *fm = [[NSFileManager alloc] init];
-    
+
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_cleardatabase"] == TRUE) {
         NSLog(@"Erasing database on user request.");
         [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_cleardatabase"];
         [fm removeItemAtPath:dbname error:NULL];
     }
-    
+
     success = [fm fileExistsAtPath:dbname];
     if (success == NO) {
         [fm copyItemAtPath:dbempty toPath:dbname error:nil];
@@ -72,14 +72,14 @@
 {
     NSString *sql = @"select id, key, value from config where key = ?";
     sqlite3_stmt *req;
-    
+
     dbConfig *c;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
         SET_VAR_TEXT(req, 1, key);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, key);
@@ -102,7 +102,7 @@
 
         SET_VAR_TEXT(req, 1, value);
         SET_VAR_TEXT(req, 2, key);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -116,13 +116,13 @@
     NSString *sql = @"select id, name, usergroup from cache_groups where name = ?";
     sqlite3_stmt *req;
     dbCacheGroup *wpg;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, name);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
@@ -140,11 +140,11 @@
     sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
@@ -163,13 +163,13 @@
     sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wp_id);
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, wpgid);
             wpg = [dbc CacheGroup_get:wpgid];
@@ -185,13 +185,13 @@
     NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wpgid);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
@@ -205,14 +205,14 @@
 {
     NSString *sql = @"insert into cache_groups(name, usergroup) values(?, ?)";
     sqlite3_stmt *req;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, name);
         SET_VAR_BOOL(req, 2, isUser);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -223,13 +223,13 @@
 {
     NSString *sql = @"delete from cache_groups where id = ?";
     sqlite3_stmt *req;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, _id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -240,13 +240,13 @@
 {
     NSString *sql = @"delete from cache_group2caches where cache_group_id = ?";
     sqlite3_stmt *req;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, _id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -257,14 +257,14 @@
 {
     NSString *sql = @"update cache_groups set name = ? where id = ?";
     sqlite3_stmt *req;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, newname);
         SET_VAR_INT(req, 2, _id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -275,14 +275,14 @@
 {
     NSString *sql = @"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)";
     sqlite3_stmt *req;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wpgid);
         SET_VAR_INT(req, 2, wpid);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         sqlite3_finalize(req);
@@ -294,14 +294,14 @@
     NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wpgid);
         SET_VAR_INT(req, 2, wpid);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
@@ -319,13 +319,13 @@
     NSString *sql = @"select id, type, icon from cache_types where type = ?";
     sqlite3_stmt *req;
     dbCacheType *wpt;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, type);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
@@ -343,11 +343,11 @@
     sqlite3_stmt *req;
     NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheType *wpt;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
@@ -368,11 +368,11 @@
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
@@ -398,13 +398,13 @@
             INT_FETCH_AND_ASSIGN(req, 21, gc_container_size);
             BOOL_FETCH_AND_ASSIGN(req, 22, gc_archived);
             BOOL_FETCH_AND_ASSIGN(req, 23, gc_available);
-            
+
             wp = [[dbCache alloc] init:_id];
             [wp setName:name];
             [wp setDescription:desc];
             [wp setLat:lat];
             [wp setLon:lon];
-            
+
             [wp setLat_int:lat_int];
             [wp setLon_int:lon_int];
             [wp setDate_placed:date_placed];
@@ -437,11 +437,11 @@
     NSString *sql = @"select id from caches where name = ?";
     sqlite3_stmt *req;
     NSInteger _id = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, name);
 
         if (sqlite3_step(req) == SQLITE_ROW) {
@@ -458,11 +458,11 @@
     NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
         SET_VAR_TEXT(req, 3, wp.lat);
@@ -504,7 +504,7 @@
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_TEXT(req, 1, wp.name);
         SET_VAR_TEXT(req, 2, wp.description);
         SET_VAR_TEXT(req, 3, wp.lat);
@@ -529,10 +529,10 @@
         SET_VAR_BOOL(req, 22, wp.gc_archived);
         SET_VAR_BOOL(req, 23, wp.gc_available);
         SET_VAR_INT(req, 24, wp._id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        
+
         sqlite3_finalize(req);
     }
 }
@@ -545,11 +545,11 @@
     sqlite3_stmt *req;
     NSMutableArray *lts = [[NSMutableArray alloc] initWithCapacity:20];
     dbLogType *lt;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, logtype);
@@ -570,11 +570,11 @@
     sqlite3_stmt *req;
     NSMutableArray *cts = [[NSMutableArray alloc] initWithCapacity:20];
     dbContainerType *ct;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, size);
@@ -594,13 +594,13 @@
     NSString *sql = @"select id from logs where gc_id = ?";
     sqlite3_stmt *req;
     NSInteger _id = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, gc_id);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             _id = __id;
@@ -615,11 +615,11 @@
     NSString *sql = @"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger _id = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, log.cache_id);
         SET_VAR_INT(req, 2, log.logtype_id);
         SET_VAR_TEXT(req, 3, log.datetime);
@@ -645,7 +645,7 @@
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, log.logtype_id);
         SET_VAR_INT(req, 2, log.cache_id);
         SET_VAR_TEXT(req, 3, log.datetime);
@@ -654,10 +654,10 @@
         SET_VAR_TEXT(req, 6, log.log);
         SET_VAR_INT(req, 7, log.gc_id);
         SET_VAR_INT(req, 8, log._id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        
+
         sqlite3_finalize(req);
     }
 }
@@ -666,17 +666,17 @@
 {
     NSString *sql = @"update logs set cache_id = ? where id = ?";
     sqlite3_stmt *req;
- 
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wp_id);
         SET_VAR_INT(req, 2, log._id);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        
+
         sqlite3_finalize(req);
     }
 }
@@ -686,13 +686,13 @@
     NSString *sql = @"select count(id) from logs where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wp_id);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
@@ -708,13 +708,13 @@
     sqlite3_stmt *req;
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
     dbLog *l;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, wp_id);
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             INT_FETCH_AND_ASSIGN(req, 1, gc_id);
@@ -731,7 +731,7 @@
         sqlite3_finalize(req);
     }
     return ls;
-    
+
 }
 
 // ------------------------
@@ -742,11 +742,11 @@
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbContainerSize *s;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, size);
@@ -768,11 +768,11 @@
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, label);
@@ -791,11 +791,11 @@
     NSString *sql = @"delete from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger _id = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, cache_id);
 
         if (sqlite3_step(req) != SQLITE_DONE)
@@ -810,18 +810,18 @@
 {
     NSString *sql = @"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)";
     sqlite3_stmt *req;
- 
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, attr._id);
         SET_VAR_INT(req, 2, cache_id);
         SET_VAR_BOOL(req, 3, YesNO);
-        
+
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        
+
         sqlite3_finalize(req);
     }
 }
@@ -831,13 +831,13 @@
     NSString *sql = @"select count(id) from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
-    
+
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, cache_id);
-        
+
         if (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
@@ -857,9 +857,9 @@
     @synchronized(dbaccess) {
         if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
-        
+
         SET_VAR_INT(req, 1, cache_id);
-        
+
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, label);

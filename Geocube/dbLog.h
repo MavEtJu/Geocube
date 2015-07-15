@@ -17,7 +17,7 @@
     NSString *datetime;
     NSString *logger;
     NSString *log;
-    
+
     // Internal values
     NSInteger cellHeight;
 }

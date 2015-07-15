@@ -19,7 +19,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
     fm = [[NSFileManager alloc] init];
     [self refreshFileData];
-    
+
     menuItems = nil;
 }
 
@@ -68,7 +68,7 @@
     NSString *fn = [files objectAtIndex:indexPath.row];
     cell.textLabel.text = fn;
     cell.detailTextLabel.text = @"Detail Label";
-    
+
     return cell;
 }
 
@@ -89,12 +89,12 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *fn = [files objectAtIndex:indexPath.row];
-    
+
     UIAlertController *view=   [UIAlertController
-                                 alertControllerWithTitle:fn
-                                 message:@"Select you choice"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
+                                alertControllerWithTitle:fn
+                                message:@"Select you choice"
+                                preferredStyle:UIAlertControllerStyleActionSheet];
+
     UIAlertAction *delete = [UIAlertAction
                              actionWithTitle:@"Delete"
                              style:UIAlertActionStyleDestructive
@@ -161,7 +161,7 @@
     NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
     NSLog(@"Removing file '%@'", fullname);
     [fm removeItemAtPath:fullname error:nil];
- 
+
     [self refreshFileData];
     [self.tableView reloadData];
 }
@@ -178,11 +178,11 @@
 
 - (void)fileImport:(NSString *)filename
 {
-//    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
-//    newController.edgesForExtendedLayout = UIRectEdgeNone;
-//    newController.title = @"Import";
-//    [self.navigationController pushViewController:newController animated:YES];
-    
+    //    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
+    //    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    //    newController.title = @"Import";
+    //    [self.navigationController pushViewController:newController animated:YES];
+
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
     NSEnumerator *e = [[dbc CacheGroups] objectEnumerator];
@@ -193,20 +193,20 @@
         [groupNames addObject:cg.name];
         [groups addObject:cg];
     }
-    
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
-                             rows:groupNames
-                             initialSelection:0
-                             doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                 UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
-                                 newController.edgesForExtendedLayout = UIRectEdgeNone;
-                                 newController.title = @"Import";
-                                 [self.navigationController pushViewController:newController animated:YES];
-                             }
-                             cancelBlock:^(ActionSheetStringPicker *picker) {
-                                 NSLog(@"Block Picker Canceled");
-                             }
-                             origin:self.view
+                                            rows:groupNames
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
+                                           newController.edgesForExtendedLayout = UIRectEdgeNone;
+                                           newController.title = @"Import";
+                                           [self.navigationController pushViewController:newController animated:YES];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         NSLog(@"Block Picker Canceled");
+                                     }
+                                          origin:self.view
      ];
 }
 
@@ -225,7 +225,7 @@
                              NSString *fromfullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *tofullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], tf.text];
-                             
+
                              NSLog(@"Renaming file '%@' to '%@'", fromfullfile, tofullfile);
                              [fm moveItemAtPath:fromfullfile toPath:tofullfile error:nil];
                              [self refreshFileData];
@@ -236,7 +236,7 @@
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
-    
+
     [alert addAction:ok];
     [alert addAction:cancel];
 

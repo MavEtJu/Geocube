@@ -10,7 +10,7 @@
     CLLocationManager *locationManager;
     UIImage *compassImage;
     UIImageView *compassImageView;
-    
+
     UIImageView *cacheIcon;
     UILabel *cacheName;
     UILabel *cacheLat;

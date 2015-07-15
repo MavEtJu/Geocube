@@ -30,7 +30,7 @@
     LogTypes = [db LogTypes_all];
     ContainerSizes = [db ContainerSizes_all];
     Attributes = [db Attributes_all];
-    
+
     CacheGroup_AllCaches = nil;
     CacheGroup_AllCaches_Found = nil;
     CacheGroup_AllCaches_NotFound = nil;
@@ -40,7 +40,7 @@
     ContainerType_Unknown = nil;
     LogType_Unknown = nil;
     ContainerSize_Unknown = nil;
-    
+
     NSEnumerator *e = [CacheGroups objectEnumerator];
     dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {

@@ -16,28 +16,28 @@
     NSString *lat, *lon;
     NSInteger lat_int, lon_int;
     float lat_float, lon_float;
-    
+
     NSString *date_placed;
     NSInteger date_placed_epoch;
 
     float gc_rating_difficulty, gc_rating_terrain;
     NSInteger gc_favourites;
-    
+
     NSInteger cache_type_int;
     NSString *cache_type_str;
     dbCacheType *cache_type;
-    
+
     BOOL gc_archived, gc_available;
     NSString *gc_country, *gc_state;
-    
+
     BOOL gc_short_desc_html, gc_long_desc_html;
     NSString *gc_short_desc, *gc_long_desc;
     NSString *gc_hint, *gc_personal_note;
-    
+
     NSInteger gc_containerSize_int;
     NSString *gc_containerSize_str;
     dbContainerSize *gc_containerSize;
-    
+
     /* Not read from the database */
     coordinate_type coordinates;
     NSInteger calculatedDistance;

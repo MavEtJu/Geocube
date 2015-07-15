@@ -15,9 +15,9 @@
 - (id)init
 {
     self = [super init];
-    
+
     menuItems = @[@"Map", @"Satellite", @"Hybrid", @"Terrain"];
-    
+
     return self;
 }
 
@@ -26,11 +26,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[Coordinates myLocation_Lat]
-                                                             longitude:[Coordinates myLocation_Lon]
-                                                                  zoom:15];
+                                                            longitude:[Coordinates myLocation_Lon]
+                                                                 zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
-    
+
     self.view = mapView;
 }
 
@@ -57,7 +57,7 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     switch (index) {
         case 0: /* Map view */
             mapView.mapType = kGMSTypeNormal;
@@ -72,7 +72,7 @@
             mapView.mapType = kGMSTypeTerrain;
             return;
     }
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }

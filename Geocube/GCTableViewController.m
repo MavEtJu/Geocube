@@ -16,18 +16,18 @@
 {
     self = [super init];
     menuItems = [NSArray arrayWithObjects:@"Empty", nil];
-    
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.numberOfItemsInRow = 3;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
-    
+
     [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
 }
 
@@ -35,7 +35,7 @@
 {
     NSLog(@"%@/viewWillAppear", [self class]);
     [super viewWillAppear:animated];
-    
+
     [menuGlobal didDismissMenu:nil];
     [menuGlobal setTarget:self];
 }
@@ -67,7 +67,7 @@
 {
     if (tab_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
-        
+
         NSEnumerator *e = [menuItems objectEnumerator];
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
@@ -91,7 +91,7 @@
         [menuGlobal openMenu:sender];
         return;
     }
-    
+
     // NSLog(@"GCTableViewController/openMenu: self:%p", self);
 
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -110,7 +110,7 @@
     }
 
     // NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
-    
+
     [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
@@ -121,9 +121,9 @@
         [menuGlobal didDismissMenu:menu];
         return;
     }
-    
+
     // NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
-    
+
     [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
@@ -133,9 +133,9 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     // NSLog(@"GCTableViewController/didSelectedMenu: self:%p", self);
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }

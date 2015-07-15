@@ -11,7 +11,7 @@
     NSInteger icon;
     NSInteger gc_id;
     NSString *label;
-    
+
     // Internal stuff
     BOOL _YesNo;
 }

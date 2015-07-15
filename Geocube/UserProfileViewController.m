@@ -17,9 +17,9 @@
 - (id)init
 {
     self = [super init];
-    
+
     menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
-    
+
     return self;
 }
 
@@ -35,7 +35,7 @@
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
-    
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 40, 100, 40)];
     [label setText:@"Label created in ScrollerController.loadView"];
     [self.view addSubview:label];

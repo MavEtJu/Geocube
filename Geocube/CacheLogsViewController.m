@@ -16,12 +16,12 @@
 {
     self = [super init];
     wp = _wp;
-    
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
-    
+
     logs = [db Logs_all_bycacheid:_wp._id];
-    
+
     return self;
 }
 
@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
 }
@@ -55,7 +55,7 @@
         cell = [[LogTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+
     dbLog *l = [logs objectAtIndex:indexPath.row];
     cell.datetime.text = l.datetime;
     cell.logger.text = l.logger;
@@ -63,11 +63,11 @@
     cell.log.lineBreakMode = NSLineBreakByWordWrapping;
     dbLogType *lt = [dbc LogType_get:l.logtype_id];
     cell.logtype.image = [imageLibrary get:lt.icon];
-    
+
     [cell.log sizeToFit];
     [cell.contentView sizeToFit];
     [cell setUserInteractionEnabled:NO];
-    
+
     /* Save the height for later */
     l.cellHeight = cell.logger.frame.size.height + cell.log.frame.size.height + 10;
     return cell;

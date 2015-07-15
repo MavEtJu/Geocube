@@ -16,21 +16,21 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+
     [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
-    
+
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
-    
+
     self.searchController.searchBar.scopeButtonTitles = @[];
     self.searchController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.searchController.searchBar sizeToFit];
-    
+
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
- }
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -44,27 +44,27 @@
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.Caches objectEnumerator];
     dbCache *wp;
-    
+
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:[Coordinates myLocation]];
-        
+
         [_wps addObject:wp];
     }
     wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
-        
+
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
         }
-        
+
         if (obj1.calculatedDistance < obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedAscending;
         }
         return (NSComparisonResult)NSOrderedSame;
     }];
-    
-    
+
+
     wpCount = [wps count];
 }
 
@@ -95,14 +95,14 @@
         cell = [[CacheTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+
     dbCache *wp = [wps objectAtIndex:indexPath.row];
     cell.description.text = wp.description;
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.cache_type.icon];
 
     [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
-    
+
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;
     cThere.lon = wp.lon_float;
@@ -124,7 +124,7 @@
 {
     dbCache *wp = [wps objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
-    
+
     UIViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped cache:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
@@ -139,7 +139,7 @@
     if ([searchString compare:@""] == NSOrderedSame)
         searchString = nil;
     [self refreshCachesData:searchString];
-//    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
+    //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
     [self.tableView reloadData];
 }
 

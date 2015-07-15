@@ -8,11 +8,12 @@
 
 @interface CacheViewController : GCTableViewController {
     dbCache *wp;
-    
+
     NSArray *cacheItems;
     NSArray *actionItems;
 }
 
 - (id)initWithStyle:(NSInteger)style cache:(dbCache *)wp;
+- (void)setCache:(dbCache *)cache;
 
 @end

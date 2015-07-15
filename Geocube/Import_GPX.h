@@ -16,10 +16,10 @@
     NSInteger *totalLogsCount;
     NSUInteger *percentageRead;
     NSUInteger totalLines;
-    
+
     NSArray *files;
     dbCacheGroup *group;
-    
+
     NSMutableArray *attributes;
     NSMutableArray *logs;
     NSInteger index;

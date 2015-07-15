@@ -16,7 +16,7 @@
 {
     self = [super init];
     _id = __id;
-    
+
     self.gc_archived = NO;
     self.gc_available = YES;
     self.gc_country = nil;
@@ -43,11 +43,11 @@
     lat_int = lat_float * 1000000;
     lon_int = lon_float * 1000000;
     cache_type = [dbc CacheType_get:cache_type_int];
-    
+
     date_placed_epoch = [MyTools secondsSinceEpoch:date_placed];
 
     coordinates = MKCoordinates([lat floatValue], [lon floatValue]);
-    
+
     // Adjust container size
     if (gc_containerSize == nil) {
         if (gc_containerSize_int != 0) {
@@ -59,7 +59,7 @@
             gc_containerSize_int = gc_containerSize._id;
         }
     }
-    
+
     // Adjust cache types
     if (cache_type == nil) {
         if (cache_type_int != 0) {
@@ -71,7 +71,7 @@
             cache_type_int = cache_type._id;
         }
     }
-    
+
     [super finish];
 }
 

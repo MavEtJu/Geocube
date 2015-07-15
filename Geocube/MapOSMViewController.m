@@ -13,16 +13,16 @@
 - (id)init
 {
     self = [super init];
-    
+
     menuItems = @[@"Map"];
-    
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";         // (1)
     MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template]; // (2)
@@ -47,13 +47,13 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     switch (index) {
         case 0: /* Map view */
             mapView.mapType = MKMapTypeStandard;
             return;
     }
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }

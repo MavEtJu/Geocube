@@ -13,38 +13,38 @@
 - (id)init
 {
     self = [super init];
-    
+
     menuItems = @[@"Map", @"Satellite", @"Hybrid"];
-    
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
-    
+
     /* Create map */
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     mapView.mapType = MKMapTypeStandard;
-    
+
     /* Zoom in */
     CLLocationCoordinate2D noLocation;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 1500, 1500);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
     [mapView setRegion:adjustedRegion animated:YES];
     mapView.showsUserLocation = YES;
-    
+
     /* Center around here */
     CLLocationCoordinate2D center;
     center.latitude = [Coordinates myLocation_Lat];
     center.longitude = [Coordinates myLocation_Lon];
     mapView.centerCoordinate = center;
-    
+
     self.view  = mapView;
 }
 
@@ -59,7 +59,7 @@
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
         [annotation setCoordinate:coord];
-        
+
         [annotation setTitle:wp.name]; //You can set the subtitle too
         [mapView addAnnotation:annotation];
     }
@@ -72,7 +72,7 @@
         [menuGlobal didSelectedMenu:menu atIndex:index];
         return;
     }
-    
+
     switch (index) {
         case 0: /* Map view */
             mapView.mapType = MKMapTypeStandard;
@@ -84,7 +84,7 @@
             mapView.mapType = MKMapTypeHybrid;
             return;
     }
-    
+
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
 }

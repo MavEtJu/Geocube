@@ -16,21 +16,21 @@
 {
     self = [super init];
     cache = _cache;
-    
+
     attrs = [NSMutableArray arrayWithCapacity:5];
-    
+
     NSArray *as = [db Attributes_all_bycacheid:cache._id];
     NSEnumerator *e = [as objectEnumerator];
     dbAttribute *a;
     while ((a = [e nextObject]) != nil) {
         [attrs addObject:a];
     }
-    
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
-    
+
     menuItems = nil;
-    
+
     return self;
 }
 
@@ -63,12 +63,12 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
-    
+
     dbAttribute *a = [attrs objectAtIndex:indexPath.row];
-    
+
     cell.textLabel.text = a.label;
     cell.imageView.image = [imageLibrary get:a.icon];
-    
+
     return cell;
 }
 
