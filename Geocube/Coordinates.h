@@ -27,6 +27,10 @@ typedef struct coordinate_type {
 - (NSString *)lon_degreesDecimalMinutes;    // E 151° 4.414
 - (NSString *)lat_degreesMinutesSeconds;    // S 34° 01' 40"
 - (NSString *)lon_degreesMinutesSeconds;    // E 151° 04' 25"
+- (NSInteger)distance:(coordinate_type)c;
+- (NSInteger)distanceCLLocationCoordinate2D:(CLLocationCoordinate2D)c;
+- (NSInteger)bearing:(coordinate_type)c;
+- (NSInteger)bearingCLLocationCoordinate2D:(CLLocationCoordinate2D)c;
 
 + (NSInteger)coordinates2distance:(coordinate_type)c1 to:(coordinate_type)c2;
 + (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2;

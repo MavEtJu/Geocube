@@ -19,6 +19,7 @@
     UILabel *myLon;
     UILabel *accuracy;
     UILabel *altitude;
+    UILabel *distance;
 }
 
 @property (nonatomic,retain) CLLocationManager *locationManager;

@@ -192,7 +192,7 @@
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
-		E8F408541B56361800FBA858 /* CompassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F408531B56361800FBA858 /* CompassViewController.xib */; };
+		E8F408541B56361800FBA858 /* CompassViewController.xibXX in Resources */ = {isa = PBXBuildFile; fileRef = E8F408531B56361800FBA858 /* CompassViewController.xibXX */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
@@ -463,7 +463,7 @@
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
-		E8F408531B56361800FBA858 /* CompassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassViewController.xib; sourceTree = "<group>"; };
+		E8F408531B56361800FBA858 /* CompassViewController.xibXX */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CompassViewController.xibXX; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
-				E8F408531B56361800FBA858 /* CompassViewController.xib */,
+				E8F408531B56361800FBA858 /* CompassViewController.xibXX */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -1168,7 +1168,7 @@
 				E8D569AE1B53D6DD001A0F8E /* attributes - 25.png in Resources */,
 				E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */,
 				E8D569BF1B53D6DD001A0F8E /* attributes - 42.png in Resources */,
-				E8F408541B56361800FBA858 /* CompassViewController.xib in Resources */,
+				E8F408541B56361800FBA858 /* CompassViewController.xibXX in Resources */,
 				E8D569CE1B53D6DD001A0F8E /* attributes - 57.png in Resources */,
 				E8D56A0A1B5522EA001A0F8E /* compass.png in Resources */,
 				E8D569CF1B53D6DD001A0F8E /* attributes - 58.png in Resources */,

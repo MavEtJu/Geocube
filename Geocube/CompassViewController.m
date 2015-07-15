@@ -61,58 +61,63 @@
      +------+-------+------+
      */
 
-#define HEIGHT  height / 3
-#define BLOCK  width / 3
-    CGRect rectIcon = CGRectMake(0, 0, BLOCK, HEIGHT);
-    CGRect rectName = CGRectMake(BLOCK, 0, BLOCK, HEIGHT / 3);
-    CGRect rectCoordLat = CGRectMake(BLOCK, HEIGHT / 3, width - 2 * BLOCK, HEIGHT / 3);
-    CGRect rectCoordLon = CGRectMake(BLOCK, 2 * HEIGHT / 3, width - 2 * BLOCK, HEIGHT / 3);
-    CGRect rectSize = CGRectMake(width - BLOCK, 0, BLOCK, HEIGHT / 3);
-    CGRect rectRatingD = CGRectMake(width - BLOCK, HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectRatingT = CGRectMake(width - BLOCK, 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
+#define HEIGHT  height / 18
+#define WIDTH  width / 3
+    CGRect rectIcon = CGRectMake(WIDTH / 3, HEIGHT, WIDTH / 3, 1 * HEIGHT);
+    CGRect rectName = CGRectMake(WIDTH, 0, WIDTH, HEIGHT);
+    CGRect rectCoordLat = CGRectMake(WIDTH, HEIGHT, WIDTH, HEIGHT);
+    CGRect rectCoordLon = CGRectMake(WIDTH, 2 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectSize = CGRectMake(2 * WIDTH, 0, WIDTH, HEIGHT);
+    CGRect rectRatingD = CGRectMake(2 * WIDTH, HEIGHT, WIDTH, HEIGHT);
+    CGRect rectRatingT = CGRectMake(2 * WIDTH, 2 * HEIGHT, WIDTH, HEIGHT);
 
-    CGRect rectCompass = CGRectMake(0, HEIGHT, width, HEIGHT);
+    CGRect rectDistance = CGRectMake(0, 3 * HEIGHT, 3 * WIDTH, HEIGHT);
+    CGRect rectCompass = CGRectMake(0, 4 * HEIGHT, 3 * WIDTH, 10 * HEIGHT);
+    CGRect rectDescription = CGRectMake(0, 14 * HEIGHT, 3 * WIDTH, HEIGHT);
 
-    CGRect rectAccuracyText = CGRectMake(0, height - HEIGHT, BLOCK, HEIGHT / 3);
-    CGRect rectAccuracy = CGRectMake(0, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectMyLat = CGRectMake(BLOCK, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectMyLon = CGRectMake(BLOCK, height - 1 * HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectAltitudeText = CGRectMake(width - BLOCK, height - 2 * HEIGHT / 3, BLOCK, HEIGHT / 3);
-    CGRect rectAltitude = CGRectMake(width - BLOCK, height - 1 * HEIGHT / 3, BLOCK, HEIGHT / 3);
+    CGRect rectAccuracyText = CGRectMake(0, height - 3 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectAccuracy = CGRectMake(0, height - 2 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectMyLatText = CGRectMake(WIDTH, height - 3 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectMyLat = CGRectMake(WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectMyLon = CGRectMake(WIDTH, height - 1 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectAltitudeText = CGRectMake(2 * WIDTH, height - 3 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
 
     UILabel *l;
 
     cacheIcon = [[UIImageView alloc] initWithFrame:rectIcon];
-    cacheIcon.backgroundColor = [UIColor redColor];
     [self.view addSubview:cacheIcon];
 
 #define FONTSIZE    14
 
     cacheName = [[UILabel alloc] initWithFrame:rectName];
-    cacheName.backgroundColor = [UIColor blueColor];
     cacheName.textAlignment = NSTextAlignmentCenter;
     cacheName.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheName];
 
     cacheLat = [[UILabel alloc] initWithFrame:rectCoordLat];
-    cacheLat.backgroundColor = [UIColor greenColor];
     cacheLat.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheLat];
 
     cacheLon = [[UILabel alloc] initWithFrame:rectCoordLon];
-    cacheLon.backgroundColor = [UIColor yellowColor];
     cacheLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:cacheLon];
 
+    l = [[UILabel alloc] initWithFrame:rectMyLatText];
+    l.text = @"My location";
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:l];
+
     myLat = [[UILabel alloc] initWithFrame:rectMyLat];
     myLat.text = @"-";
-    myLat.backgroundColor = [UIColor brownColor];
+    myLat.textAlignment = NSTextAlignmentCenter;
     myLat.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLat];
 
     myLon = [[UILabel alloc] initWithFrame:rectMyLon];
     myLon.text = @"-";
-    myLon.backgroundColor = [UIColor yellowColor];
+    myLon.textAlignment = NSTextAlignmentCenter;
     myLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLon];
 
@@ -123,7 +128,6 @@
     [self.view addSubview:l];
     accuracy = [[UILabel alloc] initWithFrame:rectAccuracy];
     accuracy.text = @"-";
-    accuracy.backgroundColor = [UIColor purpleColor];
     accuracy.textAlignment = NSTextAlignmentCenter;
     accuracy.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:accuracy];
@@ -135,10 +139,21 @@
     [self.view addSubview:l];
     altitude = [[UILabel alloc] initWithFrame:rectAltitude];
     altitude.text = @"-";
-    altitude.backgroundColor = [UIColor yellowColor];
     altitude.textAlignment = NSTextAlignmentCenter;
     altitude.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:altitude];
+
+    distance = [[UILabel alloc] initWithFrame:rectDistance];
+    distance.text = @"-";
+    distance.textAlignment = NSTextAlignmentCenter;
+    distance.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:distance];
+
+    l = [[UILabel alloc] initWithFrame:rectDescription];
+    l.text = currentCache.description;
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:l];
 
     compassImage  = [UIImage imageNamed:[NSString stringWithFormat:@"%@/compass.png", [MyTools DataDistributionDirectory]]];
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
@@ -191,6 +206,8 @@
     Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:newLocation.coordinate];
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
+
+    distance.text = [Coordinates NiceDistance:[c distance:MKCoordinates(currentCache.lat_float, currentCache.lon_float)]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
@@ -209,7 +226,7 @@
 
 //    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 
-    altitude.text = [NSString stringWithFormat:@"%0f", manager.location.altitude];
+    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)manager.location.altitude];
 
     Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:manager.location.coordinate];
     myLat.text = [c lat_degreesDecimalMinutes];
