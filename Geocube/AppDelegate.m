@@ -223,6 +223,11 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
+    vc = [[HelpImagesViewController alloc] init];
+    vc.title = @"Images";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
 
     // UIResponder.window = UIWIndow
@@ -230,7 +235,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_HELP];
     [self.window makeKeyAndVisible];
 
     return YES;
