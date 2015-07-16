@@ -10,11 +10,15 @@
 
 @implementation MapOSMViewController
 
-- (id)init
+- (id)init:(NSInteger)_type
 {
     self = [super init];
+    [self whichCachesToSnow:_type whichCache:nil];
 
     menuItems = @[@"Map"];
+
+    type = SHOW_ALLCACHES;
+    thatCache = nil;
 
     return self;
 }

@@ -10,11 +10,15 @@
 
 @implementation MapAppleViewController
 
-- (id)init
+- (id)init:(NSInteger)_type
 {
     self = [super init];
+    [self whichCachesToSnow:_type whichCache:nil];
 
     menuItems = @[@"Map", @"Satellite", @"Hybrid"];
+
+    type = SHOW_ALLCACHES;
+    thatCache = nil;
 
     return self;
 }
@@ -52,15 +56,15 @@
 {
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
-    NSEnumerator *e = [wps objectEnumerator];
-    dbCache *wp;
-    while ((wp = [e nextObject]) != nil) {
+    NSEnumerator *e = [caches objectEnumerator];
+    dbCache *cache;
+    while ((cache = [e nextObject]) != nil) {
         // Place a single pin
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(cache.lat_float, cache.lon_float);
         [annotation setCoordinate:coord];
 
-        [annotation setTitle:wp.name]; //You can set the subtitle too
+        [annotation setTitle:cache.name]; //You can set the subtitle too
         [mapView addAnnotation:annotation];
     }
 }

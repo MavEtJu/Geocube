@@ -10,6 +10,12 @@
 
 @implementation MapTemplateViewController
 
+- (id)init:(NSInteger)_type
+{
+    NSAssert(0, @"loadMarkers should be overloaded for %@", [self class]);
+    return nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -21,7 +27,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     [self loadMarkers];
+}
+
+- (void)whichCachesToSnow:(NSInteger)_type whichCache:(dbCache *)_cache
+{
+    type = _type;
+    thatCache = _cache;
 }
 
 - (void)loadMarkers
@@ -31,31 +44,40 @@
 
 - (void)refreshCachesData:(NSString *)searchString
 {
-    NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray *_caches = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.Caches objectEnumerator];
-    dbCache *wp;
+    dbCache *cache;
 
-    while ((wp = [e nextObject]) != nil) {
-        if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
-            continue;
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:[Coordinates myLocation]];
-
-        [_wps addObject:wp];
+    if (type == SHOW_ONECACHE) {
+        cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:[Coordinates myLocation]];
+        caches = @[thatCache];
+        cacheCount = [caches count];
+        return;
     }
-    wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
 
-        if (obj1.calculatedDistance > obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedDescending;
+    if (type == SHOW_ALLCACHES) {
+        while ((cache = [e nextObject]) != nil) {
+            if (searchString != nil && [[cache.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
+                continue;
+            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:[Coordinates myLocation]];
+
+            [_caches addObject:cache];
         }
+        caches = [_caches sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
 
-        if (obj1.calculatedDistance < obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
+            if (obj1.calculatedDistance > obj2.calculatedDistance) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
 
-
-    wpCount = [wps count];
+            if (obj1.calculatedDistance < obj2.calculatedDistance) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        cacheCount = [caches count];
+        return;
+    }
 }
 
 #pragma mark ----

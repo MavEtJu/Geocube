@@ -213,6 +213,10 @@
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
             [cvc showCache:currentCache];
 
+            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP];
+            MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];
+            [mgv whichCachesToSnow:SHOW_ONECACHE whichCache:wp];
+
             [_AppDelegate switchController:RC_NAVIGATE];
             return;
         }

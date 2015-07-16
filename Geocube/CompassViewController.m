@@ -84,7 +84,6 @@
     CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
 
     UILabel *l;
-    CGRect r;
 
     cacheIcon = [[UIImageView alloc] initWithFrame:rectIcon];
     [self.view addSubview:cacheIcon];

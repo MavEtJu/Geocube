@@ -12,11 +12,15 @@
 
 @implementation MapGoogleViewController
 
-- (id)init
+- (id)init:(NSInteger)_type
 {
     self = [super init];
+    [self whichCachesToSnow:_type whichCache:nil];
 
     menuItems = @[@"Map", @"Satellite", @"Hybrid", @"Terrain"];
+
+    type = SHOW_ALLCACHES;
+    thatCache = nil;
 
     return self;
 }
@@ -38,14 +42,14 @@
 {
     // Creates a marker in the center of the map.
     [self refreshCachesData:nil];
-    NSEnumerator *e = [wps objectEnumerator];
-    dbCache *wp;
-    while ((wp = [e nextObject]) != nil) {
+    NSEnumerator *e = [caches objectEnumerator];
+    dbCache *cache;
+    while ((cache = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = CLLocationCoordinate2DMake(wp.lat_float, wp.lon_float);
-        marker.icon = [imageLibrary get:wp.cache_type.icon];
-        marker.title = wp.name;
-        marker.snippet = wp.description;
+        marker.position = CLLocationCoordinate2DMake(cache.lat_float, cache.lon_float);
+        marker.icon = [imageLibrary get:cache.cache_type.icon];
+        marker.title = cache.name;
+        marker.snippet = cache.description;
         marker.map = mapView;
     }
 }

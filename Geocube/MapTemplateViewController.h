@@ -6,11 +6,21 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
+enum {
+    SHOW_ONECACHE,
+    SHOW_ALLCACHES
+};
+
 @interface MapTemplateViewController : GCViewController {
-    NSArray *wps;
-    NSInteger wpCount;
+    NSArray *caches;
+    dbCache *thatCache;
+    NSInteger cacheCount;
+
+    NSInteger type;     /* SHOW_ONECACHE | SHOW_ALLCACHES */
 }
 
+- (id)init:(NSInteger)type;
 - (void)refreshCachesData:(NSString *)searchString;
+- (void)whichCachesToSnow:(NSInteger)type whichCache:(dbCache *)cache;
 
 @end
