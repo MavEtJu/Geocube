@@ -187,9 +187,10 @@ typedef enum {
     ImageMap_crossDNF,
     ImageMap_tickFound,
 
-    ImageCacheView_ratingOn,
+    ImageCacheView_ratingBase,
     ImageCacheView_ratingOff,
     ImageCacheView_ratingHalf,
+    ImageCacheView_ratingOn,
     ImageCacheView_favourites,
 
     ImageIcon_Smiley,
@@ -201,9 +202,13 @@ typedef enum {
 
 @interface ImageLibrary : NSObject {
     UIImage *imgs[ImageLibraryImagesMax];
+    UIImage *ratingImages[11];
+    NSString *names[ImageLibraryImagesMax];
 };
 
 - (id)init;
 - (UIImage *)get:(NSInteger)imgnum;
+- (NSString *)getName:(NSInteger)imgnum;
+- (UIImage *)getRating:(float)rating;
 
 @end
