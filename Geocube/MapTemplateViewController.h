@@ -23,4 +23,8 @@ enum {
 - (void)refreshCachesData:(NSString *)searchString;
 - (void)whichCachesToSnow:(NSInteger)type whichCache:(dbCache *)cache;
 
+- (void)showCache;
+- (void)showMe;
+- (void)showCacheAndMe;
+
 @end

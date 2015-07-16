@@ -15,7 +15,9 @@
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
 
-    menuItems = @[@"Map", @"Satellite", @"Hybrid"];
+    menuItems = @[@"Map", @"Satellite", @"Hybrid",
+                  @"Show cache", @"Show me", @"Show both"
+                  ];
 
     type = SHOW_ALLCACHES;
     thatCache = nil;
@@ -71,6 +73,22 @@
 
 #pragma mark - Local menu related functions
 
+- (void)showCache
+{
+    CLLocationCoordinate2D t;
+    t.latitude = currentCache.lat_float;
+    t.longitude = currentCache.lon_float;
+    [mapView setCenterCoordinate:t animated:YES];
+}
+
+- (void)showMe
+{
+    CLLocationCoordinate2D t;
+    t.latitude = [Coordinates myLocation_Lat];
+    t.longitude = [Coordinates myLocation_Lon];
+    [mapView setCenterCoordinate:t animated:YES];
+}
+
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
         [menuGlobal didSelectedMenu:menu atIndex:index];
@@ -87,6 +105,17 @@
         case 2: /* Hybrid view */
             mapView.mapType = MKMapTypeHybrid;
             return;
+
+        case 3: { /* Show cache */
+            [self showCache];
+            return;
+        }
+        case 4: { /* Show me */
+            [self showMe];
+            return;
+        }
+        case 5: /* Show both */
+            break;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

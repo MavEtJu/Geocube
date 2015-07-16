@@ -17,7 +17,9 @@
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
 
-    menuItems = @[@"Map", @"Satellite", @"Hybrid", @"Terrain"];
+    menuItems = @[@"Map", @"Satellite", @"Hybrid", @"Terrain",
+                  @"Show cache", @"Show me", @"Show both"
+                  ];
 
     type = SHOW_ALLCACHES;
     thatCache = nil;
@@ -56,6 +58,26 @@
 
 #pragma mark - Local menu related functions
 
+- (void)showCache
+{
+    CLLocationCoordinate2D t;
+    t.latitude = currentCache.lat_float;
+    t.longitude = currentCache.lon_float;
+    NSLog(@"Move camera to %f %f", t.latitude, t.longitude);
+    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:t];
+    [mapView animateWithCameraUpdate:currentCam];
+}
+
+- (void)showMe
+{
+    CLLocationCoordinate2D t;
+    t.latitude = [Coordinates myLocation_Lat];
+    t.longitude = [Coordinates myLocation_Lon];
+    NSLog(@"Move camera to %f %f", t.latitude, t.longitude);
+    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:t];
+    [mapView animateWithCameraUpdate:currentCam];
+}
+
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
         [menuGlobal didSelectedMenu:menu atIndex:index];
@@ -75,6 +97,16 @@
         case 3: /* Terrain view */
             mapView.mapType = kGMSTypeTerrain;
             return;
+
+        case 4: /* Show cache */
+            [self showCache];
+            return;
+        case 5: /* Show Me */
+            [self showMe];
+            return;
+        case 6: /* Show Both */
+            [self showCacheAndMe];
+            break;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

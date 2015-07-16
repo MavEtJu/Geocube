@@ -37,10 +37,12 @@
     thatCache = _cache;
 }
 
-- (void)loadMarkers
-{
-    NSAssert(0, @"loadMarkers should be overloaded for %@", [self class]);
+#define NEEDS_OVERLOADING(__name__) \
+- (void) __name__ { \
+    NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class]); \
 }
+
+NEEDS_OVERLOADING(loadMarkers)
 
 - (void)refreshCachesData:(NSString *)searchString
 {
@@ -80,6 +82,10 @@
     }
 }
 
-#pragma mark ----
+#pragma mark -- Menu related functions
+
+NEEDS_OVERLOADING(showCache)
+NEEDS_OVERLOADING(showMe)
+NEEDS_OVERLOADING(showCacheAndMe)
 
 @end

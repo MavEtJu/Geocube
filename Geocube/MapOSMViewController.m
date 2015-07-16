@@ -15,7 +15,9 @@
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
 
-    menuItems = @[@"Map"];
+    menuItems = @[@"Map",
+                  @"Show cache", @"Show me", @"Show both"
+                  ];
 
     type = SHOW_ALLCACHES;
     thatCache = nil;
@@ -56,6 +58,15 @@
         case 0: /* Map view */
             mapView.mapType = MKMapTypeStandard;
             return;
+
+        case 1: /* Show cache */
+            [self showCache];
+            return;
+
+        case 2: /* Show cache */
+            [self showMe];
+            return;
+
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
