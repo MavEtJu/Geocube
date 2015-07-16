@@ -74,7 +74,7 @@
     favourites.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:favourites];
 
-    // Size
+    // ContainerSize
     r = rectSize;
     r.origin.x -= 10;
     l = [[UILabel alloc] initWithFrame:r];

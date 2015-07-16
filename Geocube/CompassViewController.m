@@ -84,6 +84,7 @@
     CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
 
     UILabel *l;
+    CGRect r;
 
     cacheIcon = [[UIImageView alloc] initWithFrame:rectIcon];
     [self.view addSubview:cacheIcon];
@@ -97,11 +98,25 @@
 
     cacheLat = [[UILabel alloc] initWithFrame:rectCoordLat];
     cacheLat.font = [UIFont systemFontOfSize:FONTSIZE];
+    cacheLat.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:cacheLat];
 
     cacheLon = [[UILabel alloc] initWithFrame:rectCoordLon];
     cacheLon.font = [UIFont systemFontOfSize:FONTSIZE];
+    cacheLon.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:cacheLon];
+
+    containerSize = [[UIImageView alloc] initWithFrame:rectSize];
+    containerSize.image = [imageLibrary get:ImageContainer_Unknown];
+    [self.view addSubview:containerSize];
+
+    ratingD = [[UIImageView alloc] initWithFrame:rectRatingD];
+    ratingD.image = [imageLibrary get:ImageCacheView_ratingBase];
+    [self.view addSubview:ratingD];
+
+    ratingT = [[UIImageView alloc] initWithFrame:rectRatingT];
+    ratingT.image = [imageLibrary get:ImageCacheView_ratingBase];
+    [self.view addSubview:ratingT];
 
     l = [[UILabel alloc] initWithFrame:rectMyLatText];
     l.text = @"My location";
@@ -184,6 +199,10 @@
     Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
 
     cacheIcon.image = [imageLibrary get:currentCache.cache_type.icon];
+    containerSize.image = [imageLibrary get:currentCache.gc_containerSize.icon];
+    ratingD.image = [imageLibrary getRating:currentCache.gc_rating_difficulty];
+    ratingT.image = [imageLibrary getRating:currentCache.gc_rating_terrain];
+
     cacheName.text = currentCache.name;
     cacheLat.text = [coords lat_degreesDecimalMinutes];
     cacheLon.text = [coords lon_degreesDecimalMinutes];

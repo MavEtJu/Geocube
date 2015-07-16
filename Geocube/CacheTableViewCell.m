@@ -24,6 +24,7 @@
     imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
     imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];
     imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
+    imgRatingBase = [imageLibrary get:ImageCacheView_ratingBase];
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
 
     UILabel *l;
@@ -124,14 +125,9 @@
     l.text = @"D";
     [self.contentView addSubview:l];
 
-    r = rectRatingsD;
-    r.size.width = STAR_WIDTH;
-    for (NSInteger i = 0; i < 5; i++) {
-        ratingD[i] = [[UIImageView alloc] initWithFrame:r];
-        ratingD[i].image = imgRatingOff;
-        [self.contentView addSubview:ratingD[i]];
-        r.origin.x += STAR_WIDTH;
-    }
+    ratingD = [[UIImageView alloc] initWithFrame:rectRatingsD];
+    ratingD.image = imgRatingBase;
+    [self.contentView addSubview:ratingD];
 
     // Terrain rating
     r = rectRatingsT;
@@ -141,33 +137,17 @@
     l.text = @"T";
     [self.contentView addSubview:l];
 
-    r = rectRatingsT;
-    r.size.width = STAR_WIDTH;
-    for (NSInteger i = 0; i < 5; i++) {
-        ratingT[i] = [[UIImageView alloc] initWithFrame:r];
-        ratingT[i].image = imgRatingOff;
-        [self.contentView addSubview:ratingT[i]];
-        r.origin.x += STAR_WIDTH;
-    }
+    ratingT = [[UIImageView alloc] initWithFrame:rectRatingsT];
+    ratingT.image = imgRatingBase;
+    [self.contentView addSubview:ratingT];
 
     return self;
 }
 
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
 {
-    for (NSInteger i = 0; i < t; i++)
-        ratingT[i].image = imgRatingOn;
-    for (NSInteger i = t; i < 5; i++)
-        ratingT[i].image = imgRatingOff;
-    if (t - (int)t != 0)
-        ratingT[(int)t].image = imgRatingHalf;
-
-    for (NSInteger i = 0; i < d; i++)
-        ratingD[i].image = imgRatingOn;
-    for (NSInteger i = d; i < 5; i++)
-        ratingD[i].image = imgRatingOff;
-    if (d - (int)d != 0)
-        ratingD[(int)d].image = imgRatingHalf;
+    ratingD.image = [imageLibrary getRating:d];
+    ratingT.image = [imageLibrary getRating:t];
 
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", favs];

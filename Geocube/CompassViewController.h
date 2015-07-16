@@ -15,6 +15,9 @@
     UILabel *cacheName;
     UILabel *cacheLat;
     UILabel *cacheLon;
+    UIImageView *containerSize;
+    UIImageView *ratingD;
+    UIImageView *ratingT;
     UILabel *myLat;
     UILabel *myLon;
     UILabel *accuracy;

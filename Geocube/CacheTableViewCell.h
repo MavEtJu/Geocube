@@ -9,10 +9,10 @@
 @interface CacheTableViewCell : UITableViewCell {
     UILabel *description;
     UILabel *name;
-    UIImageView *ratingD[5];
-    UIImageView *ratingT[5];
+    UIImageView *ratingD;
+    UIImageView *ratingT;
     UILabel *favourites;
-    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
+    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase,*imgFavourites;
     UIImageView *icon, *imgFavouritesIV;
     UILabel *stateCountry;
     UILabel *bearing;

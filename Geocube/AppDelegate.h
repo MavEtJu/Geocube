@@ -45,3 +45,5 @@
 #define RC_NOTICES 9
 #define RC_SETTINGS 10
 #define RC_HELP 11
+#define    VC_HELP_HELP 0
+#define    VC_HELP_IMAGES 1
