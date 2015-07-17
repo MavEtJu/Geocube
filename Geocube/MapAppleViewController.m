@@ -51,6 +51,13 @@
     center.longitude = [Coordinates myLocation_Lon];
     mapView.centerCoordinate = center;
 
+    /* Me */
+    me = [[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([Coordinates myLocation_Lat], [Coordinates myLocation_Lon]);
+    [me setCoordinate:coord];
+    [me setTitle:@"*"]; //You can set the subtitle too
+    [mapView addAnnotation:me];
+
     self.view  = mapView;
 }
 
@@ -83,10 +90,23 @@
 
 - (void)showMe
 {
-    CLLocationCoordinate2D t;
-    t.latitude = [Coordinates myLocation_Lat];
-    t.longitude = [Coordinates myLocation_Lon];
-    [mapView setCenterCoordinate:t animated:YES];
+    [mapView setCenterCoordinate:me.coordinate animated:YES];
+}
+
+- (void)showCacheAndMe
+{
+
+    NSMutableArray *coords = [NSMutableArray arrayWithCapacity:2];
+
+    [coords addObject:me];
+
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation = [[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(currentCache.lat_float, currentCache.lon_float);
+    [annotation setCoordinate:coord];
+    [coords addObject:annotation];
+
+    [mapView showAnnotations:coords animated:YES];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
@@ -115,7 +135,8 @@
             return;
         }
         case 5: /* Show both */
-            break;
+            [self showCacheAndMe];
+            return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -10,6 +10,7 @@
 
 @interface MapGoogleViewController : MapTemplateViewController {
     GMSMapView *mapView;
+    GMSMarker *me;
 }
 
 @end

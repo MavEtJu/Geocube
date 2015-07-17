@@ -37,6 +37,13 @@
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
 
+    /* Me */
+    me = [[GMSMarker alloc] init];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([Coordinates myLocation_Lat], [Coordinates myLocation_Lon]);
+    me.position = coord;
+    me.title = @"*";
+    me.map = mapView;
+
     self.view = mapView;
 }
 
@@ -70,12 +77,22 @@
 
 - (void)showMe
 {
-    CLLocationCoordinate2D t;
-    t.latitude = [Coordinates myLocation_Lat];
-    t.longitude = [Coordinates myLocation_Lon];
-    NSLog(@"Move camera to %f %f", t.latitude, t.longitude);
-    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:t];
+    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:me.position];
     [mapView animateWithCameraUpdate:currentCam];
+}
+
+- (void)showCacheAndMe
+{
+    CLLocationCoordinate2D cache;
+    cache.latitude = currentCache.lat_float;
+    cache.longitude = currentCache.lon_float;
+
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:me.position coordinate:cache];
+
+//    for (GMSMarker *marker in _markers)
+//        bounds = [bounds includingCoordinate:marker.position];
+
+    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
@@ -106,7 +123,7 @@
             return;
         case 6: /* Show Both */
             [self showCacheAndMe];
-            break;
+            return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

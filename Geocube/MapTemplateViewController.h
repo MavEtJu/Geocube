@@ -13,8 +13,8 @@ enum {
 
 @interface MapTemplateViewController : GCViewController {
     NSArray *caches;
-    dbCache *thatCache;
     NSInteger cacheCount;
+    dbCache *thatCache;
 
     NSInteger type;     /* SHOW_ONECACHE | SHOW_ALLCACHES */
 }

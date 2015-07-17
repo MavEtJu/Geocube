@@ -8,6 +8,7 @@
 
 @interface MapAppleViewController : MapTemplateViewController {
     MKMapView *mapView;
+    MKPointAnnotation *me;
 }
 
 @end

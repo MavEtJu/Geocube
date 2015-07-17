@@ -62,11 +62,12 @@
         case 1: /* Show cache */
             [self showCache];
             return;
-
-        case 2: /* Show cache */
+        case 2: /* Show me */
             [self showMe];
             return;
-
+        case 3: /* Show cache and me */
+            [self showCacheAndMe];
+            return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
