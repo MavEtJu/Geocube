@@ -62,7 +62,7 @@ NEEDS_OVERLOADING(loadMarkers)
     dbCache *cache;
 
     if (type == SHOW_ONECACHE) {
-        cache.calculatedDistance = [Coordinates coordinates2distanceCLLocationCoordinate2D:cache.coordinates to:LM.coords];
+        cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
         caches = @[thatCache];
         cacheCount = [caches count];
         return;
@@ -72,7 +72,7 @@ NEEDS_OVERLOADING(loadMarkers)
         while ((cache = [e nextObject]) != nil) {
             if (searchString != nil && [[cache.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 continue;
-            cache.calculatedDistance = [Coordinates coordinates2distanceCLLocationCoordinate2D:cache.coordinates to:LM.coords];
+            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
 
             [_caches addObject:cache];
         }

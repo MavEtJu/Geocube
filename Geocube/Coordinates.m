@@ -13,96 +13,79 @@
 - (id)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
 {
     self = [super init];
-    lat = _lat;
-    lon = _lon;
+    coords.latitude = _lat;
+    coords.longitude= _lon;
     return self;
 }
-- (id)init:(coordinate_type)coor           // { -34.02787, 151.07357 }
+- (id)init:(CLLocationCoordinate2D)_coords           // { -34.02787, 151.07357 }
 {
     self = [super init];
-    lat = coor.lat;
-    lon = coor.lon;
-    return self;
-}
-- (id)initWithCLLocationCoordinate2D:(CLLocationCoordinate2D)coor    // { -34.02787, 151.07357 }
-{
-    self = [super init];
-    lat = coor.latitude;
-    lon = coor.longitude;
+    coords.latitude = _coords.latitude;
+    coords.longitude= _coords.longitude;
     return self;
 }
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
-    return [NSString stringWithFormat:@"%3.5f", lat];
+    return [NSString stringWithFormat:@"%3.5f", coords.latitude];
 }
 - (NSString *)lon_decimalDegreesSigned     // 151.07357
 {
-    return [NSString stringWithFormat:@"%3.5f", lon];
+    return [NSString stringWithFormat:@"%3.5f", coords.longitude];
 }
 - (NSString *)lat_decimalDegreesCardinal   // S 34.02787
 {
-    NSString *hemi = (lat < 0) ? @"S" : @"N";
-    return [NSString stringWithFormat:@"%@ %3.5f", hemi, fabs(lat)];
+    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    return [NSString stringWithFormat:@"%@ %3.5f", hemi, fabs(coords.latitude)];
 
 }
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
-    NSString *hemi = (lon < 0) ? @"W" : @"E";
-    return [NSString stringWithFormat:@"%@ %3.5f", hemi, fabs(lon)];
+    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    return [NSString stringWithFormat:@"%@ %3.5f", hemi, fabs(coords.longitude)];
 }
 - (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
 {
-    NSString *hemi = (lat < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
     float dummy;
-    int degrees = (int)fabs(lat);
-    float mins = modff(fabs(lat), &dummy);
+    int degrees = (int)fabs(coords.latitude);
+    float mins = modff(fabs(coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02.3f'", hemi, degrees, mins * 60];
 }
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414
 {
-    NSString *hemi = (lon < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
     float dummy;
-    int degrees = (int)fabs(lon);
-    float mins = modff(fabs(lon), &dummy);
+    int degrees = (int)fabs(coords.longitude);
+    float mins = modff(fabs(coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02.3f'", hemi, degrees, mins * 60];
 }
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {
-    NSString *hemi = (lat < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
     float dummy;
-    int degrees = (int)fabs(lat);
-    float mins = modff(fabs(lat), &dummy);
+    int degrees = (int)fabs(coords.latitude);
+    float mins = modff(fabs(coords.latitude), &dummy);
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 - (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
 {
-    NSString *hemi = (lon < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
     float dummy;
-    int degrees = (int)fabs(lon);
-    float mins = modff(fabs(lon), &dummy);
+    int degrees = (int)fabs(coords.longitude);
+    float mins = modff(fabs(coords.longitude), &dummy);
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 
-- (NSInteger)distance:(coordinate_type)c
+- (NSInteger)distance:(CLLocationCoordinate2D)c
 {
-    return [Coordinates coordinates2distance:MKCoordinates(lat, lon) to:c];
+    return [Coordinates coordinates2distance:coords to:c];
 }
 
-- (NSInteger)distanceCLLocationCoordinate2D:(CLLocationCoordinate2D)c
+- (NSInteger)bearing:(CLLocationCoordinate2D)c
 {
-    return [Coordinates coordinates2distance:MKCoordinates(lat, lon) to:MKCoordinates(c.latitude, c.longitude)];
-}
-
-- (NSInteger)bearing:(coordinate_type)c
-{
-    return [Coordinates coordinates2bearing:MKCoordinates(lat, lon) to:c];
-}
-
-- (NSInteger)bearingCLLocationCoordinate2D:(CLLocationCoordinate2D)c
-{
-    return [Coordinates coordinates2bearing:MKCoordinates(lat, lon) to:MKCoordinates(c.latitude, c.longitude)];
+    return [Coordinates coordinates2bearing:coords to:c];
 }
 
 
@@ -116,14 +99,14 @@
     return 180 * f / M_PI;
 }
 
-+ (NSInteger)coordinates2distance:(coordinate_type)c1 to:(coordinate_type)c2
++ (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
     float R = 6371000; // radius of Earth in metres
-    float φ1 = [self toRadians:c1.lat];
-    float φ2 = [self toRadians:c2.lat];
-    float Δφ = [self toRadians:c2.lat - c1.lat];
-    float Δλ = [self toRadians:c2.lon - c1.lon];
+    float φ1 = [self toRadians:c1.latitude];
+    float φ2 = [self toRadians:c2.latitude];
+    float Δφ = [self toRadians:c2.latitude - c1.latitude];
+    float Δλ = [self toRadians:c2.longitude - c1.longitude];
 
     float a = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2);
     float c = 2 * atan2(sqrt(a), sqrt(1 - a));
@@ -132,18 +115,13 @@
     return d;
 }
 
-+ (NSInteger)coordinates2distanceCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2
-{
-    return [Coordinates coordinates2distance:c1 to:MKCoordinates(c2.latitude, c2.longitude)];
-}
-
-+ (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2
++ (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
 
-    float φ1 = [self toRadians:c1.lat];
-    float φ2 = [self toRadians:c2.lat];
-    float Δλ = [self toRadians:c2.lon - c1.lon];
+    float φ1 = [self toRadians:c1.latitude];
+    float φ2 = [self toRadians:c2.latitude];
+    float Δλ = [self toRadians:c2.longitude - c1.longitude];
 
     float y = sin(Δλ) * cos(φ2);
     float x = cos(φ1) * sin(φ2) - sin(φ1) * cos(φ2) * cos(Δλ);
@@ -151,10 +129,6 @@
     return (brng + 360) % 360;
 }
 
-+ (NSInteger)coordinates2bearingCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2
-{
-    return [Coordinates coordinates2bearing:c1 to:MKCoordinates(c2.latitude, c2.longitude)];
-}
 
 + (NSString *)bearing2compass:(NSInteger)bearing
 {
@@ -192,11 +166,3 @@
 }
 
 @end
-
-coordinate_type MKCoordinates(float lat, float lon)
-{
-    coordinate_type c;
-    c.lat = lat;
-    c.lon = lon;
-    return c;
-}

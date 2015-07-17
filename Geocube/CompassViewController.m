@@ -209,7 +209,7 @@
 
     NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
-    Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:LM.coords];
+    Coordinates *c = [[Coordinates alloc] init:LM.coords];
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
 
@@ -228,7 +228,7 @@
     if (currentCache == nil)
         return;
 
-    distance.text = [Coordinates NiceDistance:[c distance:MKCoordinates(currentCache.lat_float, currentCache.lon_float)]];
+    distance.text = [Coordinates NiceDistance:[c distance:currentCache.coordinates]];
 
 }
 

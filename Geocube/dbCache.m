@@ -46,7 +46,7 @@
 
     date_placed_epoch = [MyTools secondsSinceEpoch:date_placed];
 
-    coordinates = MKCoordinates([lat floatValue], [lon floatValue]);
+    coordinates = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
 
     // Adjust container size
     if (gc_containerSize == nil) {

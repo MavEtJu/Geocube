@@ -39,7 +39,7 @@
     dbContainerSize *gc_containerSize;
 
     /* Not read from the database */
-    coordinate_type coordinates;
+    CLLocationCoordinate2D coordinates;
     NSInteger calculatedDistance;
 }
 
@@ -76,7 +76,7 @@
 @property (nonatomic) BOOL gc_available;
 
 @property (nonatomic) NSInteger calculatedDistance;
-@property (nonatomic) coordinate_type coordinates;
+@property (nonatomic) CLLocationCoordinate2D coordinates;
 
 - (id)init:(NSInteger)_id;
 - (BOOL)hasFieldNotes;
