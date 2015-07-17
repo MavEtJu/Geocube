@@ -22,6 +22,9 @@ extern ImageLibrary *imageLibrary;
 // Current dbCache to navitate to
 extern dbCache *currentCache;
 
+// Location Manager
+extern GCLocationManager *LM;
+
 //
 extern AppDelegate *_AppDelegate;
 

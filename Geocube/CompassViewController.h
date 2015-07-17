@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface CompassViewController : GCViewController<CLLocationManagerDelegate> {
-    CLLocationManager *locationManager;
+@interface CompassViewController : GCViewController<GCLocationManagerDelegate> {
+
     UIImage *compassImage;
     UIImageView *compassImageView;
 
@@ -23,8 +23,8 @@
     UILabel *accuracy;
     UILabel *altitude;
     UILabel *distance;
-}
 
-@property (nonatomic,retain) CLLocationManager *locationManager;
+    float oldRad;
+}
 
 @end

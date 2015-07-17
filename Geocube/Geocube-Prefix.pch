@@ -39,13 +39,14 @@
 #import "database-cache.h"
 #import "database.h"
 
+#import "GCTableViewController.h"
+#import "GCViewController.h"
+#import "GCLocationManager.h"
+
 #import "AppDelegate.h"
 #import "GlobalMenu.h"
 #import "ImageLibrary.h"
 #import "Geocube.h"
-
-#import "GCTableViewController.h"
-#import "GCViewController.h"
 
 #import "Import_GPX.h"
 #import "ImportGPXViewController.h"

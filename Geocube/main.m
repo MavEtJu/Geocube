@@ -20,6 +20,9 @@ ImageLibrary *imageLibrary = nil;
 // Current dbCache to navigate to
 dbCache *currentCache = nil;
 
+// Location Manager
+GCLocationManager *LM = nil;
+
 //
 AppDelegate *_AppDelegate;
 

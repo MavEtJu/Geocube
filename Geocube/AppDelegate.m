@@ -48,6 +48,9 @@
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
+    // Initialize the location mamager
+    LM = [[GCLocationManager alloc] init];
+
     // Initialize the tabbar controllers
 
     NSMutableArray *controllers;

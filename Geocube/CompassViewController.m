@@ -10,8 +10,6 @@
 
 @implementation CompassViewController
 
-@synthesize locationManager;
-
 - (id)init
 {
     self = [super init];
@@ -26,6 +24,8 @@
     myLon = nil;
     accuracy = nil;
     altitude = nil;
+
+    oldRad = 0;
 
     return self;
 }
@@ -173,17 +173,6 @@
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
     compassImageView.image = compassImage;
     [self.view addSubview:compassImageView];
-
-    /* Initiate the location manager */
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = 1;
-    locationManager.headingFilter = 1;
-    locationManager.delegate = self;
-
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        [locationManager requestWhenInUseAuthorization];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -191,8 +180,7 @@
     [super viewWillAppear:animated];
 
     /* Start the location manager */
-    [locationManager startUpdatingHeading];
-    [locationManager startUpdatingLocation];
+    [LM startDelegation:self];
 
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
@@ -210,29 +198,24 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [locationManager stopUpdatingHeading];
-    [locationManager stopUpdatingLocation];
+    [LM stopDelegation:self];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+/* Receive data from the location manager */
+- (void)updateData
+{
+    accuracy.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.accuracy];
+    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.altitude];
 
-    accuracy.text = [NSString stringWithFormat:@"%ld m", (NSInteger)newLocation.horizontalAccuracy];
-    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)manager.location.altitude];
+    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
-    NSLog(@"new location: %f, %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-
-    Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:newLocation.coordinate];
+    Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:LM.coords];
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
 
     distance.text = [Coordinates NiceDistance:[c distance:MKCoordinates(currentCache.lat_float, currentCache.lon_float)]];
-}
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
-{
-    // Convert Degree to Radian and move the needle
-    float oldRad = -manager.heading.trueHeading * M_PI / 180.0f;
-    float newRad = -newHeading.trueHeading * M_PI / 180.0f;
+    float newRad = -LM.direction * M_PI / 180.0f;
 
     CABasicAnimation *theAnimation;
     theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -242,13 +225,7 @@
     [compassImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     compassImageView.transform = CGAffineTransformMakeRotation(newRad);
 
-//    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
-
-    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)manager.location.altitude];
-
-    Coordinates *c = [[Coordinates alloc] initWithCLLocationCoordinate2D:manager.location.coordinate];
-    myLat.text = [c lat_degreesDecimalMinutes];
-    myLon.text = [c lon_degreesDecimalMinutes];
+    oldRad = newRad;
 }
 
 @end
