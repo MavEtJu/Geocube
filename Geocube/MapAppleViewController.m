@@ -46,15 +46,12 @@
     mapView.showsUserLocation = YES;
 
     /* Center around here */
-    CLLocationCoordinate2D center;
-    center.latitude = [Coordinates myLocation_Lat];
-    center.longitude = [Coordinates myLocation_Lon];
+    CLLocationCoordinate2D center = LM.coords;
     mapView.centerCoordinate = center;
 
     /* Me */
     me = [[MKPointAnnotation alloc] init];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([Coordinates myLocation_Lat], [Coordinates myLocation_Lon]);
-    [me setCoordinate:coord];
+    [me setCoordinate:LM.coords];
     [me setTitle:@"*"]; //You can set the subtitle too
     [mapView addAnnotation:me];
 
@@ -76,6 +73,16 @@
         [annotation setTitle:cache.name]; //You can set the subtitle too
         [mapView addAnnotation:annotation];
     }
+}
+
+- (void)updateMe
+{
+    [mapView removeAnnotation:me];
+
+    me = [[MKPointAnnotation alloc] init];
+    [me setCoordinate:LM.coords];
+    [mapView addAnnotation:me];
+
 }
 
 #pragma mark - Local menu related functions

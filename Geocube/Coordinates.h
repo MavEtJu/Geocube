@@ -34,10 +34,9 @@ typedef struct coordinate_type {
 
 + (NSInteger)coordinates2distance:(coordinate_type)c1 to:(coordinate_type)c2;
 + (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2;
++ (NSInteger)coordinates2distanceCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2;
++ (NSInteger)coordinates2bearingCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2;
 + (NSString *)bearing2compass:(NSInteger)bearing;
-+ (coordinate_type)myLocation;
-+ (float)myLocation_Lat;
-+ (float)myLocation_Lon;
 + (NSString *)NiceDistance:(NSInteger)i;
 
 @end

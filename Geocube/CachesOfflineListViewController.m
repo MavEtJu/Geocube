@@ -48,7 +48,7 @@
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:[Coordinates myLocation]];
+        wp.calculatedDistance = [Coordinates coordinates2distanceCLLocationCoordinate2D:wp.coordinates to:LM.coords];
 
         [_wps addObject:wp];
     }
@@ -106,7 +106,7 @@
     coordinate_type cMe, cThere;
     cThere.lat = wp.lat_float;
     cThere.lon = wp.lon_float;
-    cMe = [Coordinates myLocation];
+    cMe = MKCoordinates(LM.coords.latitude, LM.coords.longitude);
     NSInteger bearing = [Coordinates coordinates2bearing:cMe to:cThere];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];

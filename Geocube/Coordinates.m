@@ -106,28 +106,6 @@
 }
 
 
-+ (coordinate_type)myLocation
-{
-    coordinate_type c;
-    /* Sydney */
-    c.lat = -33.866467;
-    c.lon = 151.2076;
-    /* Random location */
-    c.lat = -33.866467;
-    c.lon = 150.2076;
-    return c;
-}
-
-+ (float)myLocation_Lat
-{
-    return [self myLocation].lat;
-}
-
-+ (float)myLocation_Lon
-{
-    return [self myLocation].lon;
-}
-
 + (float)toRadians:(float)f
 {
     return f * M_PI / 180;
@@ -154,6 +132,11 @@
     return d;
 }
 
++ (NSInteger)coordinates2distanceCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2
+{
+    return [Coordinates coordinates2distance:c1 to:MKCoordinates(c2.latitude, c2.longitude)];
+}
+
 + (NSInteger)coordinates2bearing:(coordinate_type)c1 to:(coordinate_type)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
@@ -166,6 +149,11 @@
     float x = cos(φ1) * sin(φ2) - sin(φ1) * cos(φ2) * cos(Δλ);
     NSInteger brng = [self toDegrees:atan2(y, x)];
     return (brng + 360) % 360;
+}
+
++ (NSInteger)coordinates2bearingCLLocationCoordinate2D:(coordinate_type)c1 to:(CLLocationCoordinate2D)c2
+{
+    return [Coordinates coordinates2bearing:c1 to:MKCoordinates(c2.latitude, c2.longitude)];
 }
 
 + (NSString *)bearing2compass:(NSInteger)bearing

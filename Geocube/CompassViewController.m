@@ -213,8 +213,6 @@
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
 
-    distance.text = [Coordinates NiceDistance:[c distance:MKCoordinates(currentCache.lat_float, currentCache.lon_float)]];
-
     float newRad = -LM.direction * M_PI / 180.0f;
 
     CABasicAnimation *theAnimation;
@@ -226,6 +224,12 @@
     compassImageView.transform = CGAffineTransformMakeRotation(newRad);
 
     oldRad = newRad;
+
+    if (currentCache == nil)
+        return;
+
+    distance.text = [Coordinates NiceDistance:[c distance:MKCoordinates(currentCache.lat_float, currentCache.lon_float)]];
+
 }
 
 @end

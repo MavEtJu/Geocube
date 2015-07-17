@@ -58,20 +58,22 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-
-    accuracy = newLocation.horizontalAccuracy;
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
     altitude = manager.location.altitude;
     coords = newLocation.coordinate;
+
+    accuracy = newLocation.horizontalAccuracy;
 
     [self updateDataDelegate];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    direction = newHeading.trueHeading;
     altitude = manager.location.altitude;
     coords = manager.location.coordinate;
+
+    direction = newHeading.trueHeading;
 
     [self updateDataDelegate];
 }

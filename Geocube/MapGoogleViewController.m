@@ -31,15 +31,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[Coordinates myLocation_Lat]
-                                                            longitude:[Coordinates myLocation_Lon]
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:LM.coords.latitude
+                                                            longitude:LM.coords.longitude
                                                                  zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
 
     /* Me */
     me = [[GMSMarker alloc] init];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([Coordinates myLocation_Lat], [Coordinates myLocation_Lon]);
+    CLLocationCoordinate2D coord = LM.coords;
     me.position = coord;
     me.title = @"*";
     me.map = mapView;
@@ -61,6 +61,11 @@
         marker.snippet = cache.description;
         marker.map = mapView;
     }
+}
+
+- (void)updateMe
+{
+    me.position = [LM coords];
 }
 
 #pragma mark - Local menu related functions

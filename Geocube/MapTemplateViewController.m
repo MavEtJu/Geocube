@@ -8,6 +8,9 @@
 
 #import "Geocube-Prefix.pch"
 
+#define NEEDS_OVERLOADING(__name__) \
+    - (void) __name__ { NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class]); }
+
 @implementation MapTemplateViewController
 
 - (id)init:(NSInteger)_type
@@ -20,15 +23,22 @@
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
     [self loadMarkers];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [LM startDelegation:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [LM stopDelegation:self];
+    [super viewWillDisappear:animated];
 }
 
 - (void)whichCachesToSnow:(NSInteger)_type whichCache:(dbCache *)_cache
@@ -37,11 +47,12 @@
     thatCache = _cache;
 }
 
-#define NEEDS_OVERLOADING(__name__) \
-- (void) __name__ { \
-    NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class]); \
+- (void)updateData
+{
+    [self updateMe];
 }
 
+NEEDS_OVERLOADING(updateMe)
 NEEDS_OVERLOADING(loadMarkers)
 
 - (void)refreshCachesData:(NSString *)searchString
@@ -51,7 +62,7 @@ NEEDS_OVERLOADING(loadMarkers)
     dbCache *cache;
 
     if (type == SHOW_ONECACHE) {
-        cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:[Coordinates myLocation]];
+        cache.calculatedDistance = [Coordinates coordinates2distanceCLLocationCoordinate2D:cache.coordinates to:LM.coords];
         caches = @[thatCache];
         cacheCount = [caches count];
         return;
@@ -61,7 +72,7 @@ NEEDS_OVERLOADING(loadMarkers)
         while ((cache = [e nextObject]) != nil) {
             if (searchString != nil && [[cache.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 continue;
-            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:[Coordinates myLocation]];
+            cache.calculatedDistance = [Coordinates coordinates2distanceCLLocationCoordinate2D:cache.coordinates to:LM.coords];
 
             [_caches addObject:cache];
         }

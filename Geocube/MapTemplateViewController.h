@@ -11,7 +11,7 @@ enum {
     SHOW_ALLCACHES
 };
 
-@interface MapTemplateViewController : GCViewController {
+@interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate> {
     NSArray *caches;
     NSInteger cacheCount;
     dbCache *thatCache;
@@ -26,5 +26,6 @@ enum {
 - (void)showCache;
 - (void)showMe;
 - (void)showCacheAndMe;
+- (void)updateMe;
 
 @end
