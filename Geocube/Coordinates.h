@@ -11,7 +11,7 @@
 }
 
 - (id)init:(float)lat lon:(float)log;       // -34.02787 151.07357
-- (id)init:(CLLocationCoordinate2D)coor;           // { -34.02787, 151.07357 }
+- (id)init:(CLLocationCoordinate2D)coor;    // { -34.02787, 151.07357 }
 - (NSString *)lat_decimalDegreesSigned;     // -34.02787
 - (NSString *)lon_decimalDegreesSigned;     // 151.07357
 - (NSString *)lat_decimalDegreesCardinal;   // S 34.02787
