@@ -17,9 +17,10 @@
 
 @property (copy, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) UIImage *icon;
+@property (nonatomic, readonly) BOOL enabled;
 
-- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon;
-+ (DOPNavbarMenuItem *)ItemWithTitle:(NSString *)title icon:(UIImage *)icon;
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon enabled:(BOOL)enabled;
++ (DOPNavbarMenuItem *)ItemWithTitle:(NSString *)title icon:(UIImage *)icon enabled:(BOOL)enabled;
 
 @end
 

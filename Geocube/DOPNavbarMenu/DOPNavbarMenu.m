@@ -19,16 +19,17 @@
 
 @implementation DOPNavbarMenuItem
 
-- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon {
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon enabled:(BOOL)enabled {
     self = [super init];
     if (self == nil) return nil;
     _title = title;
     _icon = icon;
+    _enabled = enabled;
     return self;
 }
 
-+ (DOPNavbarMenuItem *)ItemWithTitle:(NSString *)title icon:(UIImage *)icon {
-    return [[self alloc] initWithTitle:title icon:icon];
++ (DOPNavbarMenuItem *)ItemWithTitle:(NSString *)title icon:(UIImage *)icon enabled:(BOOL)enabled {
+    return [[self alloc] initWithTitle:title icon:icon enabled:enabled];
 }
 
 @end
@@ -78,6 +79,7 @@ static CGFloat titleFontSize = 15.0;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(buttonX, buttonY, buttonWidth, buttonHeight);
         button.tag = idx;
+        button.enabled = obj.enabled;
         [self addSubview:button];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *icon = [[UIImageView alloc] initWithImage:obj.icon];
@@ -86,7 +88,12 @@ static CGFloat titleFontSize = 15.0;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, buttonHeight-35, buttonWidth, 20)];
         label.text = obj.title;
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = self.textColor;
+
+        if (obj.enabled == YES)
+            label.textColor = self.textColor;
+        else
+            label.textColor = [UIColor darkGrayColor];
+        
         label.font = [UIFont systemFontOfSize:titleFontSize];
         [button addSubview:label];
         if ((idx+1)%self.maximumNumberInRow != 0) {
