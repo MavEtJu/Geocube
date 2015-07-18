@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "BHTabsFooterView.h"
 #import "BHTabStyle.h"
 
@@ -29,11 +31,6 @@
   CGContextAddLineToPoint(context, self.frame.size.width, self.frame.size.height - 0.5);
   CGContextStrokePath(context);
   CGContextRestoreGState(context);
-}
-
-- (void)dealloc {
-  [style release];
-  [super dealloc];
 }
 
 @end

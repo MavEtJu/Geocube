@@ -21,6 +21,8 @@
 #import "SSZipArchive.h"
 #import "DOPNavbarMenu.h"
 #import "ActionSheetStringPicker.h"
+#import "BHTabsViewController.h"
+#import "BHTabStyle.h"
 
 #import "coordinates.h"
 #import "Coordinates.h"

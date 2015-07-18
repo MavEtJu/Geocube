@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "BHTabsView.h"
 #import "BHTabStyle.h"
 
@@ -32,8 +34,6 @@
 - (void)dealloc {
   self.tabViews = nil;
   self.style = nil;
-
-  [super dealloc];
 }
 
 @end

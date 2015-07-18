@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "BHTabView.h"
 #import "BHTabStyle.h"
 
@@ -43,10 +45,10 @@ static inline CGFloat radians(CGFloat degrees) {
     self.style = [BHTabStyle defaultStyle];
 
     CGRect labelFrame = [self _tabRect];
-    self.titleLabel = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
+    self.titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
     self.titleLabel.text = title;
-    self.titleLabel.textAlignment = UITextAlignmentCenter;
-    self.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+      self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = self.style.unselectedTitleTextColor;
@@ -54,9 +56,9 @@ static inline CGFloat radians(CGFloat degrees) {
     self.titleLabel.shadowOffset = self.style.unselectedTitleShadowOffset;
     [self addSubview:self.titleLabel];
 
-    [self addGestureRecognizer:[[[UITapGestureRecognizer alloc]
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                  initWithTarget:self
-                                 action:@selector(_onTap:)] autorelease]];
+                                action:@selector(_onTap:)]];
   }
 
   return self;
@@ -143,12 +145,12 @@ static inline CGFloat radians(CGFloat degrees) {
   CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
   CGFloat locations[] = { 0.0, 0.4 };
 
-  CGColorRef tabColor = (self.selected
-                         ? self.style.selectedTabColor.CGColor
-                         : self.style.unselectedTabColor.CGColor);
+  UIColor *tabColor = (self.selected
+                         ? self.style.selectedTabColor
+                         : self.style.unselectedTabColor);
 
-  CGColorRef startColor = [UIColor whiteColor].CGColor;
-  CGColorRef endColor   = tabColor;
+    UIColor *startColor = [UIColor whiteColor];
+  UIColor *endColor   = tabColor;
   NSArray    *colors    = [NSArray arrayWithObjects:(id)startColor, (id)endColor, nil];
 
   CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)colors, locations);
@@ -161,7 +163,7 @@ static inline CGFloat radians(CGFloat degrees) {
 
   CGContextSaveGState(context);
   CGContextAddPath(context, path);
-  CGContextSetFillColorWithColor(context, tabColor);
+  CGContextSetFillColorWithColor(context, tabColor.CGColor);
   CGContextSetShadow(context, CGSizeMake(0, -1), self.style.shadowRadius);
   CGContextFillPath(context);
   CGContextRestoreGState(context);
@@ -189,8 +191,6 @@ static inline CGFloat radians(CGFloat degrees) {
 - (void)dealloc {
   self.titleLabel = nil;
   self.style = nil;
-
-  [super dealloc];
 }
 
 @end

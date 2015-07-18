@@ -192,6 +192,11 @@
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
+		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
+		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
+		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
+		E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */; };
+		E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4471B591DFF0027AE6F /* BHTabView.m */; };
 		E8F408561B57109A00FBA858 /* waypoint rating star base 95x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F408551B57109A00FBA858 /* waypoint rating star base 95x18.png */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
 		E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4085B1B58A26300FBA858 /* GCLocationManager.m */; };
@@ -465,6 +470,16 @@
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
+		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
+		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
+		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
+		E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabStyle.m; path = BHTabBar/BHTabStyle.m; sourceTree = "<group>"; };
+		E8EAF4421B591DFF0027AE6F /* BHTabsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsView.h; path = BHTabBar/BHTabsView.h; sourceTree = "<group>"; };
+		E8EAF4431B591DFF0027AE6F /* BHTabsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsView.m; path = BHTabBar/BHTabsView.m; sourceTree = "<group>"; };
+		E8EAF4441B591DFF0027AE6F /* BHTabsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsViewController.h; path = BHTabBar/BHTabsViewController.h; sourceTree = "<group>"; };
+		E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsViewController.m; path = BHTabBar/BHTabsViewController.m; sourceTree = "<group>"; };
+		E8EAF4461B591DFF0027AE6F /* BHTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabView.h; path = BHTabBar/BHTabView.h; sourceTree = "<group>"; };
+		E8EAF4471B591DFF0027AE6F /* BHTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabView.m; path = BHTabBar/BHTabView.m; sourceTree = "<group>"; };
 		E8F408551B57109A00FBA858 /* waypoint rating star base 95x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint rating star base 95x18.png"; path = "images/waypoint rating star base 95x18.png"; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
@@ -882,6 +897,23 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
+		E8EAF43D1B591DEB0027AE6F /* BHTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */,
+				E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */,
+				E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */,
+				E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */,
+				E8EAF4421B591DFF0027AE6F /* BHTabsView.h */,
+				E8EAF4431B591DFF0027AE6F /* BHTabsView.m */,
+				E8EAF4441B591DFF0027AE6F /* BHTabsViewController.h */,
+				E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */,
+				E8EAF4461B591DFF0027AE6F /* BHTabView.h */,
+				E8EAF4471B591DFF0027AE6F /* BHTabView.m */,
+			);
+			name = BHTabBar;
+			sourceTree = "<group>";
+		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -964,6 +996,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8EAF43D1B591DEB0027AE6F /* BHTabBar */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
@@ -1364,6 +1397,7 @@
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */,
+				E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
@@ -1376,6 +1410,7 @@
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,
+				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
@@ -1393,12 +1428,15 @@
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8740FCA1B4E90D7002527DA /* dbContainerType.m in Sources */,
+				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
+				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbCacheGroup.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
+				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,

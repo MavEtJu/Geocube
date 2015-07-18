@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "BHTabsViewController.h"
 #import "BHTabsFooterView.h"
 #import "BHTabStyle.h"
@@ -37,8 +39,6 @@ enum { kTagTabBase = 100 };
   self.viewControllers = nil;
   self.tabsContainerView = nil;
   self.footerView = nil;
-
-  [super dealloc];
 }
 
 - (void)_reconfigureTabs {
@@ -101,7 +101,6 @@ enum { kTagTabBase = 100 };
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   UIView *view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
-  [view release];
 
   self.view.backgroundColor = [UIColor clearColor];
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -109,7 +108,7 @@ enum { kTagTabBase = 100 };
   // The view that contains the tab views is located across the top.
 
   CGRect tabsViewFrame = CGRectMake(0, 0, frame.size.width, self.style.tabsViewHeight);
-  self.tabsContainerView = [[[BHTabsView alloc] initWithFrame:tabsViewFrame] autorelease];
+    self.tabsContainerView = [[BHTabsView alloc] initWithFrame:tabsViewFrame];
   self.tabsContainerView.backgroundColor = [UIColor clearColor];
   self.tabsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   self.tabsContainerView.style = self.style;
@@ -152,7 +151,7 @@ enum { kTagTabBase = 100 };
                                   tabsViewFrame.size.width,
                                   self.style.tabBarHeight + self.style.shadowRadius);
 
-  self.footerView = [[[BHTabsFooterView alloc] initWithFrame:footerFrame] autorelease];
+    self.footerView = [[BHTabsFooterView alloc] initWithFrame:footerFrame];
   self.footerView.backgroundColor = [UIColor clearColor];
   self.footerView.style = self.style;
   self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;

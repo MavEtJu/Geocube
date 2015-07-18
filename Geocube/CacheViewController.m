@@ -208,6 +208,7 @@
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
             currentCache = wp;
+
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_DETAILS];
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];

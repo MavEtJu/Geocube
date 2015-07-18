@@ -29,8 +29,8 @@
   id <BHTabsViewControllerDelegate> delegate;
 }
 
-@property (nonatomic, assign) id <BHTabsViewControllerDelegate> delegate;
-@property (nonatomic, assign, readonly) UIView *contentView;
+@property (nonatomic) id <BHTabsViewControllerDelegate> delegate;
+@property (nonatomic, readonly) UIView *contentView;
 @property (nonatomic, retain) BHTabStyle *style;
 
 - (id)initWithViewControllers:(NSArray *)viewControllers
