@@ -15,7 +15,7 @@
 - (id)init
 {
     self = [super init];
-    menuItems = [NSArray arrayWithObjects:@"Empty", nil];
+    menuItems = [NSArray arrayWithObjects:@"XEmpty", nil];
 
     return self;
 }
@@ -71,7 +71,12 @@
         NSEnumerator *e = [menuItems objectEnumerator];
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
+            BOOL enabled = YES;
+            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] compare:@"X"] == NSOrderedSame) {
+                enabled = NO;
+                menuitem = [menuitem substringFromIndex:1];
+            }
+            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
             [menuoptions addObject:item];
         }
 

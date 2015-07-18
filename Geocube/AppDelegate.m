@@ -98,7 +98,6 @@
 
     TABBARCONTROLLER(controllers)
 
-    // Caches offline tabs #2
     controllers = [NSMutableArray array];
 
     vc = [[NullViewController alloc] init];
@@ -124,7 +123,6 @@
     vc = [[MapOSMViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"OSM";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
 
@@ -238,7 +236,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_HELP];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
     [self.window makeKeyAndVisible];
 
     return YES;
@@ -246,7 +244,7 @@
 
 - (void)switchController:(NSInteger)idx
 {
-    NSLog(@"AppDelegate: Switching to %ld", idx);
+    NSLog(@"AppDelegate: Switching to TB %ld", idx);
     self.window.rootViewController = [tabBars objectAtIndex:idx];
     [self.window makeKeyAndVisible];
 }

@@ -17,7 +17,7 @@
 - (id)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"XHelp", nil];
+    items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"XBookmarks", @"Files", @"XUser Profile", @"XNotices", @"XSettings", @"Help", nil];
 
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];
@@ -58,7 +58,12 @@
         NSEnumerator *e = [items objectEnumerator];
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"]];
+            BOOL enabled = YES;
+            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] compare:@"X"] == NSOrderedSame) {
+                enabled = NO;
+                menuitem = [menuitem substringFromIndex:1];
+            }
+            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
             [menuoptions addObject:item];
         }
 
