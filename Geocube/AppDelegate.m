@@ -28,7 +28,7 @@
     [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
     /* Move two zip files into files directory */
-    NSArray *files = [NSArray arrayWithObjects:@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", nil];
+    NSArray *files = [NSArray arrayWithObjects:@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", @"16171009_iossimulator-freewaydrive.zip", nil];
     NSEnumerator *e = [files objectEnumerator];
     NSString *f;
     while ((f = [e nextObject]) != nil) {
@@ -123,6 +123,7 @@
     vc = [[MapOSMViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"OSM";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
 
