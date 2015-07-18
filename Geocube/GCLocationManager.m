@@ -15,10 +15,12 @@
 - (id)init
 {
     self = [super init];
+
+    delegateCounter = 0;
     
     /* Initiate the location manager */
     _LM = [[CLLocationManager alloc] init];
-    _LM.desiredAccuracy = kCLLocationAccuracyBest;
+    _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     _LM.distanceFilter = 1;
     _LM.headingFilter = 1;
     _LM.delegate = self;
@@ -37,11 +39,15 @@
     [delegate updateData];
 }
 
-- (void)startDelegation:(id)_delegate
+- (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
-    if (delegate != nil)
-        NSAssert(0, @"%s: self.delegate != nil", __FUNCTION__);
+    delegateCounter++;
 
+    NSLog(@"GCLocationManager: starting (isNavigating:%d)", isNavigating);
+    if (isNavigating == YES)
+        _LM.desiredAccuracy = kCLLocationAccuracyBest;
+    else
+        _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
     delegate = _delegate;
@@ -49,9 +55,11 @@
 
 - (void)stopDelegation:(id)_delegate
 {
-    if (self.delegate != _delegate)
-        NSAssert(0, @"%s: self.delegate == nil", __FUNCTION__);
+    delegateCounter--;
+    if (delegateCounter > 0)
+        return;
 
+    NSLog(@"GCLocationManager: stopping");
     delegate = nil;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
@@ -65,6 +73,8 @@
 
     accuracy = newLocation.horizontalAccuracy;
 
+//    NSLog(@"New coordinates: %@", [Coordinates NiceCoordinates:coords]);
+
     [self updateDataDelegate];
 }
 
@@ -74,6 +84,8 @@
     coords = manager.location.coordinate;
 
     direction = newHeading.trueHeading;
+
+//    NSLog(@"New coordinates: %@", [Coordinates NiceCoordinates:coords]);
 
     [self updateDataDelegate];
 }

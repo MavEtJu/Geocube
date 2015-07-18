@@ -21,6 +21,7 @@
     CLLocationDistance altitude;
     CLLocationDirection direction;
     CLLocationCoordinate2D coords;
+    NSInteger delegateCounter;
 }
 
 @property (nonatomic, assign) id delegate;
@@ -30,7 +31,7 @@
 @property (nonatomic) CLLocationDirection direction;
 @property (nonatomic) CLLocationCoordinate2D coords;
 
-- (void)startDelegation:(id)delegate;
+- (void)startDelegation:(id)delegate isNavigating:(BOOL)isNavigating;
 - (void)stopDelegation:(id)delegate;
 - (void)updateDataDelegate;
 
