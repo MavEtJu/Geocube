@@ -21,7 +21,7 @@
 
     // Local menu
     if (showUsers == YES)
-        menuItems = [NSArray arrayWithObjects:@"Empty groups", @"Add a group", nil];
+        menuItems = [NSMutableArray arrayWithArray:@[@"Empty groups", @"Add a group"]];
     else
         menuItems = nil;
 

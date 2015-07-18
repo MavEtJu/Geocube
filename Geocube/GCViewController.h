@@ -10,7 +10,7 @@
     NSInteger numberOfItemsInRow;
     DOPNavbarMenu *tab_menu, *global_menu;
 
-    NSArray *menuItems;
+    NSMutableArray *menuItems;
 }
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;

@@ -18,7 +18,7 @@
 {
     self = [super init];
 
-    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
+    menuItems = [NSMutableArray arrayWithArray:@[@"XNothing"]];
 
     return self;
 }

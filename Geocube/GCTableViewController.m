@@ -15,7 +15,7 @@
 - (id)init
 {
     self = [super init];
-    menuItems = [NSArray arrayWithObjects:@"XEmpty", nil];
+    menuItems = [NSMutableArray arrayWithObjects:@"XEmpty", nil];
 
     return self;
 }
