@@ -8,15 +8,20 @@
 
 enum {
     SHOW_ONECACHE,
-    SHOW_ALLCACHES
+    SHOW_ALLCACHES,
+
+    SHOW_NEITHER,
+    SHOW_CACHE,
+    SHOW_ME,
+    SHOW_BOTH,
 };
 
 @interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate> {
     NSArray *caches;
     NSInteger cacheCount;
-    dbCache *thatCache;
 
     NSInteger type;     /* SHOW_ONECACHE | SHOW_ALLCACHES */
+    NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
 }
 
 - (id)init:(NSInteger)type;
@@ -26,6 +31,7 @@ enum {
 - (void)showCache;
 - (void)showMe;
 - (void)showCacheAndMe;
+- (void)showWhom:(NSInteger)whom;
 - (void)updateMe;
 
 @end

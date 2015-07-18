@@ -14,13 +14,10 @@
 {
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
+    [self showWhom:(_type == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_CACHE];
 
-    menuItems = @[@"Map", @"Satellite", @"Hybrid",
-                  @"Show cache", @"Show me", @"Show both"
-                  ];
-
-    type = SHOW_ALLCACHES;
-    thatCache = nil;
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"XTerrain",
+                  @"Show target", @"Show me", @"Show both"]];
 
     return self;
 }
@@ -38,22 +35,21 @@
     mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     mapView.mapType = MKMapTypeStandard;
 
+    /* Me */
+    me = nil;
+    me = [[MKPointAnnotation alloc] init];
+    [me setCoordinate:LM.coords];
+    [me setTitle:@"*"]; //You can set the subtitle too
+    // [mapView addAnnotation:me];
+
+    [self showMe];
+
     /* Zoom in */
     CLLocationCoordinate2D noLocation;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 1500, 1500);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
     [mapView setRegion:adjustedRegion animated:YES];
     mapView.showsUserLocation = YES;
-
-    /* Center around here */
-    CLLocationCoordinate2D center = LM.coords;
-    mapView.centerCoordinate = center;
-
-    /* Me */
-    me = [[MKPointAnnotation alloc] init];
-    [me setCoordinate:LM.coords];
-    [me setTitle:@"*"]; //You can set the subtitle too
-    [mapView addAnnotation:me];
 
     self.view  = mapView;
 }
@@ -67,7 +63,7 @@
     while ((cache = [e nextObject]) != nil) {
         // Place a single pin
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(cache.lat_float, cache.lon_float);
+        CLLocationCoordinate2D coord = cache.coordinates;
         [annotation setCoordinate:coord];
 
         [annotation setTitle:cache.name]; //You can set the subtitle too
@@ -77,39 +73,75 @@
 
 - (void)updateMe
 {
-    [mapView removeAnnotation:me];
+    if (showWhom != SHOW_ME && showWhom != SHOW_BOTH)
+        return;
 
+    me = nil;
     me = [[MKPointAnnotation alloc] init];
     [me setCoordinate:LM.coords];
-    [mapView addAnnotation:me];
+    
+    if (showWhom == SHOW_ME)
+        [self showMe];
+    if (showWhom == SHOW_BOTH)
+        [self showCacheAndMe];
+}
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapview viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationIdentifier];
+    if(annotationView)
+        return annotationView;
+    else
+    {
+        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                                         reuseIdentifier:AnnotationIdentifier];
+        annotationView.canShowCallout = YES;
+        annotationView.image = [imageLibrary getFound:ImageMap_dnfBrown];
+//        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//        [rightButton addTarget:self action:@selector(writeSomething:) forControlEvents:UIControlEventTouchUpInside];
+//        [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+//        annotationView.rightCalloutAccessoryView = rightButton;
+        annotationView.canShowCallout = YES;
+        annotationView.draggable = YES;
+        return annotationView;
+    }
+    return nil;
 }
 
 #pragma mark - Local menu related functions
 
 - (void)showCache
 {
-    CLLocationCoordinate2D t;
-    t.latitude = currentCache.lat_float;
-    t.longitude = currentCache.lon_float;
+    if (currentCache == nil)
+        return;
+
+    [super showCache];
+    CLLocationCoordinate2D t = currentCache.coordinates;
     [mapView setCenterCoordinate:t animated:YES];
 }
 
 - (void)showMe
 {
+    [super showMe];
     [mapView setCenterCoordinate:me.coordinate animated:YES];
 }
 
 - (void)showCacheAndMe
 {
+    if (currentCache == nil)
+        return;
 
+    [super showCacheAndMe];
     NSMutableArray *coords = [NSMutableArray arrayWithCapacity:2];
 
     [coords addObject:me];
 
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     annotation = [[MKPointAnnotation alloc] init];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(currentCache.lat_float, currentCache.lon_float);
+    CLLocationCoordinate2D coord = currentCache.coordinates;
     [annotation setCoordinate:coord];
     [coords addObject:annotation];
 
@@ -133,15 +165,15 @@
             mapView.mapType = MKMapTypeHybrid;
             return;
 
-        case 3: { /* Show cache */
+        case 4: { /* Show cache */
             [self showCache];
             return;
         }
-        case 4: { /* Show me */
+        case 5: { /* Show me */
             [self showMe];
             return;
         }
-        case 5: /* Show both */
+        case 6: /* Show both */
             [self showCacheAndMe];
             return;
     }

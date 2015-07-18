@@ -15,12 +15,7 @@
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
 
-    menuItems = @[@"Map",
-                  @"Show cache", @"Show me", @"Show both"
-                  ];
-
-    type = SHOW_ALLCACHES;
-    thatCache = nil;
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"XSatellite", @"XHybrid", @"XTerrain", @"Show target", @"Show me", @"Show both"]];
 
     return self;
 }
@@ -59,13 +54,13 @@
             mapView.mapType = MKMapTypeStandard;
             return;
 
-        case 1: /* Show cache */
+        case 4: /* Show cache */
             [self showCache];
             return;
-        case 2: /* Show me */
+        case 5: /* Show me */
             [self showMe];
             return;
-        case 3: /* Show cache and me */
+        case 6: /* Show cache and me */
             [self showCacheAndMe];
             return;
     }

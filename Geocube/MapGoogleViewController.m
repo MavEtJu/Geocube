@@ -16,13 +16,10 @@
 {
     self = [super init];
     [self whichCachesToSnow:_type whichCache:nil];
+    [self showWhom:(_type == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_CACHE];
 
-    menuItems = @[@"Map", @"Satellite", @"Hybrid", @"Terrain",
-                  @"Show cache", @"Show me", @"Show both"
-                  ];
-
-    type = SHOW_ALLCACHES;
-    thatCache = nil;
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain",
+                  @"Show target", @"Show me", @"Show both"]];
 
     return self;
 }
@@ -36,13 +33,15 @@
                                                                  zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
+    mapView.myLocationEnabled = YES;
+    mapView.settings.myLocationButton = YES;
+    mapView.settings.compassButton = YES;
 
-    /* Me */
+    /* Me (not on the map) */
     me = [[GMSMarker alloc] init];
     CLLocationCoordinate2D coord = LM.coords;
     me.position = coord;
     me.title = @"*";
-    me.map = mapView;
 
     self.view = mapView;
 }
@@ -55,8 +54,12 @@
     dbCache *cache;
     while ((cache = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = CLLocationCoordinate2DMake(cache.lat_float, cache.lon_float);
-        marker.icon = [imageLibrary get:cache.cache_type.icon];
+        marker.position = cache.coordinates;
+        switch (rand() % 3) {
+            case 0: marker.icon = [imageLibrary getFound:cache.cache_type.pin]; break;
+            case 1: marker.icon = [imageLibrary getDNF:cache.cache_type.pin]; break;
+            case 2: marker.icon = [imageLibrary getNormal:cache.cache_type.pin]; break;
+        }
         marker.title = cache.name;
         marker.snippet = cache.description;
         marker.map = mapView;
@@ -65,16 +68,26 @@
 
 - (void)updateMe
 {
+    if (showWhom != SHOW_ME && showWhom != SHOW_BOTH)
+        return;
+
     me.position = [LM coords];
+    
+    if (showWhom == SHOW_ME)
+        [self showMe];
+    if (showWhom == SHOW_BOTH)
+        [self showCacheAndMe];
 }
 
 #pragma mark - Local menu related functions
 
 - (void)showCache
 {
-    CLLocationCoordinate2D t;
-    t.latitude = currentCache.lat_float;
-    t.longitude = currentCache.lon_float;
+    if (currentCache == nil)
+        return;
+
+    [super showCache];
+    CLLocationCoordinate2D t = currentCache.coordinates;
     NSLog(@"Move camera to %f %f", t.latitude, t.longitude);
     GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:t];
     [mapView animateWithCameraUpdate:currentCam];
@@ -82,16 +95,18 @@
 
 - (void)showMe
 {
+    [super showMe];
     GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:me.position];
     [mapView animateWithCameraUpdate:currentCam];
 }
 
 - (void)showCacheAndMe
 {
-    CLLocationCoordinate2D cache;
-    cache.latitude = currentCache.lat_float;
-    cache.longitude = currentCache.lon_float;
+    if (currentCache == nil)
+        return;
 
+    [super showCacheAndMe];
+    CLLocationCoordinate2D cache = currentCache.coordinates;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:me.position coordinate:cache];
 
 //    for (GMSMarker *marker in _markers)

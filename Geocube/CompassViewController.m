@@ -14,7 +14,7 @@
 {
     self = [super init];
 
-    menuItems = [NSArray arrayWithObjects:@"XNothing", nil];
+    menuItems = [NSMutableArray arrayWithArray:@[@"XNothing"]];
 
     cacheIcon = nil;
     cacheName = nil;
@@ -180,7 +180,7 @@
     [super viewWillAppear:animated];
 
     /* Start the location manager */
-    [LM startDelegation:self];
+    [LM startDelegation:self isNavigating:TRUE];
 
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
@@ -195,10 +195,11 @@
     cacheLon.text = [coords lon_degreesDecimalMinutes];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    NSLog(@"%@/viewWillDisappear", [self class]);
     [LM stopDelegation:self];
+    [super viewWillDisappear:animated];
 }
 
 /* Receive data from the location manager */
@@ -207,7 +208,7 @@
     accuracy.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.accuracy];
     altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.altitude];
 
-    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
+//    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
     myLat.text = [c lat_degreesDecimalMinutes];
@@ -229,7 +230,6 @@
         return;
 
     distance.text = [Coordinates NiceDistance:[c distance:currentCache.coordinates]];
-
 }
 
 @end

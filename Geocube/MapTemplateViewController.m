@@ -31,12 +31,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
-    [LM startDelegation:self];
+    [LM startDelegation:self isNavigating:(type == SHOW_ONECACHE)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    NSLog(@"%@/viewWillDisappear", [self class]);
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
 }
@@ -44,7 +46,6 @@
 - (void)whichCachesToSnow:(NSInteger)_type whichCache:(dbCache *)_cache
 {
     type = _type;
-    thatCache = _cache;
 }
 
 - (void)updateData
@@ -61,9 +62,9 @@ NEEDS_OVERLOADING(loadMarkers)
     NSEnumerator *e = [dbc.Caches objectEnumerator];
     dbCache *cache;
 
-    if (type == SHOW_ONECACHE) {
+    if (type == SHOW_ONECACHE && currentCache != nil) {
         cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
-        caches = @[thatCache];
+        caches = @[currentCache];
         cacheCount = [caches count];
         return;
     }
@@ -95,8 +96,32 @@ NEEDS_OVERLOADING(loadMarkers)
 
 #pragma mark -- Menu related functions
 
-NEEDS_OVERLOADING(showCache)
-NEEDS_OVERLOADING(showMe)
-NEEDS_OVERLOADING(showCacheAndMe)
+- (void)showCache
+{
+    showWhom = SHOW_CACHE;
+}
+
+- (void)showMe
+{
+    showWhom = SHOW_ME;
+}
+
+- (void)showCacheAndMe
+{
+    showWhom = SHOW_BOTH;
+}
+
+- (void)showWhom:(NSInteger)whom
+{
+    showWhom = whom;
+    if (whom == SHOW_ME)
+        [self showMe];
+    if (whom == SHOW_CACHE)
+        [self showCache];
+    if (whom == SHOW_BOTH)
+        [self showCacheAndMe];
+
+}
+
 
 @end

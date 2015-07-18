@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Edwin Groothuis. All rights reserved.
 //
 
-@interface MapAppleViewController : MapTemplateViewController {
+@interface MapAppleViewController : MapTemplateViewController<MKMapViewDelegate> {
     MKMapView *mapView;
     MKPointAnnotation *me;
 }
