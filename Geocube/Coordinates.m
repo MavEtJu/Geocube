@@ -165,4 +165,12 @@
     return [NSString stringWithFormat:@"%ld km", i / 1000];
 }
 
++ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c
+{
+    Coordinates *co = [[Coordinates alloc] init:c];
+    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+
+}
+
+
 @end

@@ -27,5 +27,6 @@
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSString *)bearing2compass:(NSInteger)bearing;
 + (NSString *)NiceDistance:(NSInteger)i;
++ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
 
 @end
