@@ -145,44 +145,53 @@ typedef enum {
     ImageAttribute_TeamworkRequired,
     ImageAttribute_PartOfGeoTour,
 
-    /* Up to here: Do not reorder */
-
-    ImageLibraryImagesUnsorted = 600,
-
-    ImageMap_pin,
-    ImageMap_dnf,
-    ImageMap_found,
-    ImageMap_pinheadBlack,
+    ImageMap_pinheadBlack = 600,
+    ImageMap_pinheadBrown,
     ImageMap_pinheadGreen,
-    ImageMap_pinheadPink,
+    ImageMap_pinheadLightblue,
     ImageMap_pinheadPurple,
     ImageMap_pinheadRed,
     ImageMap_pinheadWhite,
     ImageMap_pinheadYellow,
+    ImageMap_pinheadPink,
 
     ImageMap_pinBlack,
+    ImageMap_pinBrown,
     ImageMap_pinGreen,
-    ImageMap_pinPink,
+    ImageMap_pinLightblue,
     ImageMap_pinPurple,
     ImageMap_pinRed,
     ImageMap_pinWhite,
     ImageMap_pinYellow,
+    ImageMap_pinPink,
 
     ImageMap_foundBlack,
+    ImageMap_foundBrown,
     ImageMap_foundGreen,
-    ImageMap_foundPink,
+    ImageMap_foundLightblue,
     ImageMap_foundPurple,
     ImageMap_foundRed,
     ImageMap_foundWhite,
     ImageMap_foundYellow,
+    ImageMap_foundPink,
 
     ImageMap_dnfBlack,
+    ImageMap_dnfBrown,
     ImageMap_dnfGreen,
-    ImageMap_dnfPink,
+    ImageMap_dnfLightblue,
     ImageMap_dnfPurple,
     ImageMap_dnfRed,
     ImageMap_dnfWhite,
     ImageMap_dnfYellow,
+    ImageMap_dnfPink,
+
+    /* Up to here: Do not reorder */
+
+    ImageLibraryImagesUnsorted = 700,
+
+    ImageMap_pin,
+    ImageMap_dnf,
+    ImageMap_found,
 
     ImageMap_crossDNF,
     ImageMap_tickFound,
@@ -204,10 +213,17 @@ typedef enum {
     UIImage *imgs[ImageLibraryImagesMax];
     UIImage *ratingImages[11];
     NSString *names[ImageLibraryImagesMax];
+
+    NSInteger pin2normal;
+    NSInteger pin2found;
+    NSInteger pin2dnf;
 };
 
 - (id)init;
 - (UIImage *)get:(NSInteger)imgnum;
+- (UIImage *)getNormal:(NSInteger)imgnum;
+- (UIImage *)getFound:(NSInteger)imgnum;
+- (UIImage *)getDNF:(NSInteger)imgnum;
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 
