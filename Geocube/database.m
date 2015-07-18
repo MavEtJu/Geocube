@@ -316,7 +316,7 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
 
 - (dbCacheType *)CacheTypes_get_byType:(NSString *)type
 {
-    NSString *sql = @"select id, type, icon from cache_types where type = ?";
+    NSString *sql = @"select id, type, icon, pin from cache_types where type = ?";
     sqlite3_stmt *req;
     dbCacheType *wpt;
 
@@ -330,7 +330,8 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
             INT_FETCH_AND_ASSIGN(req, 2, icon);
-            wpt = [[dbCacheType alloc] init:_id type:type icon:icon];
+            INT_FETCH_AND_ASSIGN(req, 3, pin);
+            wpt = [[dbCacheType alloc] init:_id type:type icon:icon pin:pin];
         }
         sqlite3_finalize(req);
     }
@@ -339,7 +340,7 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
 
 - (NSMutableArray *)CacheTypes_all
 {
-    NSString *sql = @"select id, type, icon from cache_types";
+    NSString *sql = @"select id, type, icon, pin from cache_types";
     sqlite3_stmt *req;
     NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheType *wpt;
@@ -352,7 +353,8 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, type);
             INT_FETCH_AND_ASSIGN(req, 2, icon);
-            wpt = [[dbCacheType alloc] init:_id type:type icon:icon];
+            INT_FETCH_AND_ASSIGN(req, 3, pin);
+            wpt = [[dbCacheType alloc] init:_id type:type icon:icon pin:pin];
             [wpts addObject:wpt];
         }
         sqlite3_finalize(req);

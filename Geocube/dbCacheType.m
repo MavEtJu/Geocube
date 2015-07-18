@@ -10,14 +10,15 @@
 
 @implementation dbCacheType
 
-@synthesize _id, type, icon;
+@synthesize _id, type, icon, pin;
 
-- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon
+- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
 {
     self = [super init];
     _id = __id;
     type = _type;
     icon = _icon;
+    pin = _pin;
     [self finish];
     return self;
 }
