@@ -21,9 +21,10 @@
 
 @import GoogleMaps;
 
-@interface MapGoogleViewController : MapTemplateViewController {
+@interface MapGoogleViewController : MapTemplateViewController<GMSMapViewDelegate> {
     GMSMapView *mapView;
     GMSMarker *me;
+    NSMutableArray *markers;
 }
 
 @end

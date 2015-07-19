@@ -20,31 +20,49 @@
  */
 
 enum {
-    SHOW_ONECACHE,
+    SHOW_ONECACHE = 1,
     SHOW_ALLCACHES,
 
-    SHOW_NEITHER,
+    SHOW_NEITHER = 10,
     SHOW_CACHE,
     SHOW_ME,
     SHOW_BOTH,
+
+    MAPTYPE_NORMAL = 20,
+    MAPTYPE_SATELLITE,
+    MAPTYPE_HYBRID,
+    MAPTYPE_TERRAIN,
 };
 
 @interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate> {
-    NSArray *caches;
+    NSArray *cachesArray;
     NSInteger cacheCount;
 
-    NSInteger type;     /* SHOW_ONECACHE | SHOW_ALLCACHES */
+    NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
+
+    CLLocationCoordinate2D meLocation;
 }
 
 - (id)init:(NSInteger)type;
-- (void)refreshCachesData:(NSString *)searchString;
-- (void)whichCachesToSnow:(NSInteger)type whichCache:(dbCache *)cache;
+- (void)refreshCachesData;
+//- (void)whichCachesToShow:(NSInteger)type whichCache:(dbCache *)cache;
 
-- (void)showCache;
-- (void)showMe;
-- (void)showCacheAndMe;
-- (void)showWhom:(NSInteger)whom;
-- (void)updateMe;
+// To be implemented by inherited classes:
+- (void)initMap;
+- (void)initCamera;
+- (void)initMenu;
+- (void)placeMarkers;
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord;
+- (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
+- (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
+- (void)setMapType:(NSInteger)maptype;
+
+// Menu related features
+- (void)menuShowWhom:(NSInteger)whom;
+- (void)menuMapType:(NSInteger)maptype;
+
+// User related actions
+- (void)userInteraction;
 
 @end

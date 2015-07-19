@@ -25,108 +25,82 @@
 
 @implementation MapGoogleViewController
 
-- (id)init:(NSInteger)_type
+- (void)initMap
 {
-    self = [super init];
-    [self whichCachesToSnow:_type whichCache:nil];
-    [self showWhom:(_type == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_CACHE];
-
-    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain",
-                  @"Show target", @"Show me", @"Show both"]];
-
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:LM.coords.latitude
-                                                            longitude:LM.coords.longitude
-                                                                 zoom:15];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:LM.coords zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
     mapView.myLocationEnabled = YES;
-    mapView.settings.myLocationButton = YES;
-    mapView.settings.compassButton = YES;
-
-    /* Me (not on the map) */
-    me = [[GMSMarker alloc] init];
-    CLLocationCoordinate2D coord = LM.coords;
-    me.position = coord;
-    me.title = @"*";
+    mapView.delegate = self;
 
     self.view = mapView;
 }
 
-- (void)loadMarkers
+- (void)initCamera
 {
-    // Creates a marker in the center of the map.
-    [self refreshCachesData:nil];
-    NSEnumerator *e = [caches objectEnumerator];
+}
+
+- (void)initMenu
+{
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Show me", @"Show both"]];
+}
+
+- (void)placeMarkers
+{
+    // Remove everything from the map
+    NSEnumerator *e = [markers objectEnumerator];
+    GMSMarker *m;
+    while ((m = [e nextObject]) != nil) {
+        m.map = nil;
+    }
+
+    // Add the new markers to the map
+    e = [cachesArray objectEnumerator];
     dbCache *cache;
+    markers = [NSMutableArray arrayWithCapacity:20];
+
     while ((cache = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = cache.coordinates;
-        switch (rand() % 3) {
-            case 0: marker.icon = [imageLibrary getFound:cache.cache_type.pin]; break;
-            case 1: marker.icon = [imageLibrary getDNF:cache.cache_type.pin]; break;
-            case 2: marker.icon = [imageLibrary getNormal:cache.cache_type.pin]; break;
-        }
+        marker.icon = [imageLibrary getNormal:cache.cache_type.pin];
         marker.title = cache.name;
         marker.snippet = cache.description;
         marker.map = mapView;
+        [markers addObject:marker];
     }
 }
 
-- (void)updateMe
+- (void)setMapType:(NSInteger)mapType
 {
-    if (showWhom != SHOW_ME && showWhom != SHOW_BOTH)
-        return;
+    switch (mapType) {
+        case MAPTYPE_NORMAL:
+            mapView.mapType = kGMSTypeNormal;
+            break;
+        case MAPTYPE_SATELLITE:
+            mapView.mapType = kGMSTypeSatellite;
+            break;
+        case MAPTYPE_TERRAIN:
+            mapView.mapType = kGMSTypeTerrain;
+            break;
+        case MAPTYPE_HYBRID:
+            mapView.mapType = kGMSTypeHybrid;
+            break;
+    }
+}
 
-    me.position = [LM coords];
-    
-    if (showWhom == SHOW_ME)
-        [self showMe];
-    if (showWhom == SHOW_BOTH)
-        [self showCacheAndMe];
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord
+{
+    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:coord];
+    [mapView animateWithCameraUpdate:currentCam];
+}
+
+- (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
+{
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:c1 coordinate:c2];
+    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
 }
 
 #pragma mark - Local menu related functions
-
-- (void)showCache
-{
-    if (currentCache == nil)
-        return;
-
-    [super showCache];
-    CLLocationCoordinate2D t = currentCache.coordinates;
-    NSLog(@"Move camera to %f %f", t.latitude, t.longitude);
-    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:t];
-    [mapView animateWithCameraUpdate:currentCam];
-}
-
-- (void)showMe
-{
-    [super showMe];
-    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:me.position];
-    [mapView animateWithCameraUpdate:currentCam];
-}
-
-- (void)showCacheAndMe
-{
-    if (currentCache == nil)
-        return;
-
-    [super showCacheAndMe];
-    CLLocationCoordinate2D cache = currentCache.coordinates;
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:me.position coordinate:cache];
-
-//    for (GMSMarker *marker in _markers)
-//        bounds = [bounds includingCoordinate:marker.position];
-
-    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
-}
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     if (menu != self.tab_menu) {
@@ -136,31 +110,39 @@
 
     switch (index) {
         case 0: /* Map view */
-            mapView.mapType = kGMSTypeNormal;
+            [super menuMapType:MAPTYPE_NORMAL];
             return;
         case 1: /* Satellite view */
-            mapView.mapType = kGMSTypeSatellite;
+            [super menuMapType:MAPTYPE_SATELLITE];
             return;
         case 2: /* Hybrid view */
-            mapView.mapType = kGMSTypeHybrid;
+            [super menuMapType:MAPTYPE_HYBRID];
             return;
         case 3: /* Terrain view */
-            mapView.mapType = kGMSTypeTerrain;
+            [super menuMapType:MAPTYPE_TERRAIN];
             return;
 
         case 4: /* Show cache */
-            [self showCache];
+            [super menuShowWhom:SHOW_CACHE];
             return;
         case 5: /* Show Me */
-            [self showMe];
+            [super menuShowWhom:SHOW_ME];
             return;
         case 6: /* Show Both */
-            [self showCacheAndMe];
+            [super menuShowWhom:SHOW_BOTH];
             return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
+}
+
+#pragma mark -- delegation from the map
+
+- (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
+{
+    if (gesture == YES)
+        [super userInteraction];
 }
 
 @end

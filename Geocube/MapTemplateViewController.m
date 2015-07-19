@@ -26,27 +26,48 @@
 
 @implementation MapTemplateViewController
 
+NEEDS_OVERLOADING(initCamera)
+NEEDS_OVERLOADING(initMenu)
+NEEDS_OVERLOADING(initMap)
+NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord)
+NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
+NEEDS_OVERLOADING(placeMarkers)
+NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
+NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
+
 - (id)init:(NSInteger)_type
 {
-    NSAssert(0, @"loadMarkers should be overloaded for %@", [self class]);
-    return nil;
+    self = [super init];
+    cachesArray = nil;
+    cacheCount = 0;
+
+    showType = _type; /* SHOW_ONECACHE or SHOW_ALLCACHES */
+    showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
+
+    [self refreshCachesData:nil];
+
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self initMenu];
+    [self initMap];
+    [self initCamera];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadMarkers];
+    [self placeMarkers];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
-    [LM startDelegation:self isNavigating:(type == SHOW_ONECACHE)];
+    [LM startDelegation:self isNavigating:(showType == SHOW_ONECACHE)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -56,18 +77,15 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)whichCachesToSnow:(NSInteger)_type whichCache:(dbCache *)_cache
-{
-    type = _type;
-}
-
 - (void)updateData
 {
-    [self updateMe];
+    meLocation = [LM coords];
+    if (showWhom == SHOW_ME)
+        [self moveCameraTo:meLocation];
+    if (showWhom == SHOW_BOTH)
+        [self moveCameraTo:currentCache.coordinates c2:meLocation];
 }
 
-NEEDS_OVERLOADING(updateMe)
-NEEDS_OVERLOADING(loadMarkers)
 
 - (void)refreshCachesData:(NSString *)searchString
 {
@@ -75,14 +93,19 @@ NEEDS_OVERLOADING(loadMarkers)
     NSEnumerator *e = [dbc.Caches objectEnumerator];
     dbCache *cache;
 
-    if (type == SHOW_ONECACHE && currentCache != nil) {
-        cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
-        caches = @[currentCache];
-        cacheCount = [caches count];
+    if (showType == SHOW_ONECACHE) {
+        if (currentCache != nil) {
+            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
+            cachesArray = @[currentCache];
+            cacheCount = [cachesArray count];
+        } else {
+            cachesArray = nil;
+            cacheCount = 0;
+        }
         return;
     }
 
-    if (type == SHOW_ALLCACHES) {
+    if (showType == SHOW_ALLCACHES) {
         while ((cache = [e nextObject]) != nil) {
             if (searchString != nil && [[cache.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 continue;
@@ -90,7 +113,7 @@ NEEDS_OVERLOADING(loadMarkers)
 
             [_caches addObject:cache];
         }
-        caches = [_caches sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
+        cachesArray = [_caches sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
 
             if (obj1.calculatedDistance > obj2.calculatedDistance) {
                 return (NSComparisonResult)NSOrderedDescending;
@@ -102,39 +125,39 @@ NEEDS_OVERLOADING(loadMarkers)
             return (NSComparisonResult)NSOrderedSame;
         }];
         
-        cacheCount = [caches count];
+        cacheCount = [cachesArray count];
         return;
     }
 }
 
+- (void)refreshCachesData
+{
+    [self refreshCachesData:nil];
+}
+
 #pragma mark -- Menu related functions
 
-- (void)showCache
-{
-    showWhom = SHOW_CACHE;
-}
-
-- (void)showMe
-{
-    showWhom = SHOW_ME;
-}
-
-- (void)showCacheAndMe
-{
-    showWhom = SHOW_BOTH;
-}
-
-- (void)showWhom:(NSInteger)whom
+- (void)menuShowWhom:(NSInteger)whom
 {
     showWhom = whom;
     if (whom == SHOW_ME)
-        [self showMe];
+        [self moveCameraTo:meLocation];
     if (whom == SHOW_CACHE)
-        [self showCache];
+        [self moveCameraTo:currentCache.coordinates];
     if (whom == SHOW_BOTH)
-        [self showCacheAndMe];
-
+        [self moveCameraTo:currentCache.coordinates c2:meLocation];
 }
 
+- (void)menuMapType:(NSInteger)maptype
+{
+    [self setMapType:maptype];
+}
+
+#pragma mark -- User interaction
+
+- (void)userInteraction
+{
+    showWhom = SHOW_NEITHER;
+}
 
 @end
