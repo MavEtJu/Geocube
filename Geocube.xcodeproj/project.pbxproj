@@ -18,6 +18,7 @@
 		E81303F81B5A51B3006DF300 /* map - tick found - 17x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E81303F61B5A51B3006DF300 /* map - tick found - 17x15.png */; };
 		E81303FA1B5A5EB9006DF300 /* map - tick found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E81303F91B5A5EB9006DF300 /* map - tick found - 9x9.png */; };
 		E81303FC1B5A60A7006DF300 /* map - cross dnf - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E81303FB1B5A60A7006DF300 /* map - cross dnf - 9x9.png */; };
+		E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E81303FD1B5B0B68006DF300 /* waymarking.gpx */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -266,6 +267,7 @@
 		E81303F61B5A51B3006DF300 /* map - tick found - 17x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 17x15.png"; path = "images/map - tick found - 17x15.png"; sourceTree = "<group>"; };
 		E81303F91B5A5EB9006DF300 /* map - tick found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9.png"; path = "images/map - tick found - 9x9.png"; sourceTree = "<group>"; };
 		E81303FB1B5A60A7006DF300 /* map - cross dnf - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - cross dnf - 9x9.png"; path = "images/map - cross dnf - 9x9.png"; sourceTree = "<group>"; };
+		E81303FD1B5B0B68006DF300 /* waymarking.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = waymarking.gpx; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -1027,6 +1029,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E81303FD1B5B0B68006DF300 /* waymarking.gpx */,
 				E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */,
 				E8F570BD1B400137003F020C /* empty.db */,
 				E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */,
@@ -1258,6 +1261,7 @@
 				E8D56A0A1B5522EA001A0F8E /* compass.png in Resources */,
 				E8EAF4651B5A1A6D0027AE6F /* pinhead - black - 15x15.png in Resources */,
 				E8EAF4691B5A1A6D0027AE6F /* pinhead - purple - 15x15.png in Resources */,
+				E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */,
 				E8D569CF1B53D6DD001A0F8E /* attributes - 58.png in Resources */,
 				E8740FC51B4E870D002527DA /* log - willattend - 30x30.png in Resources */,
 				E86C65721B4BC74200E2ABFE /* waypoint rating star on 19x18.png in Resources */,
