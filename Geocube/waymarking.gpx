@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd" xmlns="http://www.topografix.com/GPX/1/0">
+  <name>GPX Lite Waymark List Generated from Waymarking.com</name>
+  <desc>A list of waymarks generated from Waymarking.com</desc>
+  <author />
+  <email>contact@waymarking.com</email>
+  <url>http://www.waymarking.com</url>
+  <urlname>Waymarking - Unique and Interesting Locations</urlname>
+  <time>2015-07-18T22:29:12.7180781Z</time>
+  <keywords>waymark</keywords>
+  <bounds minlat="-34.037353" minlon="151.1016" maxlat="-34.037353" maxlon="151.1016" />
+  <wpt lat="-34.037353" lon="151.1016">
+    <name>WM80EY</name>
+    <desc>Miranda, NSW, 2228 - A modern post office located in a leafy suburban part of southern Sydney.</desc>
+    <url>http://www.waymarking.com/waymarks/WM80EY_Miranda_NSW_2228</url>
+    <urlname>Miranda, NSW, 2228</urlname>
+    <sym>Waymark</sym>
+    <type>Australia Post Offices</type>
+  </wpt>
+  <wpt lat="-34.05777" lon="151.0806">
+    <name>WMM71K</name>
+    <desc>State Survey Mark 46052,Grays Point , NSW, Australia - standard NSW survey marker</desc>
+    <url>http://www.waymarking.com/waymarks/WMM71K_State_Survey_Mark_46052_Grays_Point_NSW_Australia</url>
+    <urlname>State Survey Mark 46052,Grays Point , NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-34.058317" lon="151.074217">
+    <name>WMM71N</name>
+    <desc>State Survey Mark 43932,Grays Point , NSW, Australia - standards NSW survey marker</desc>
+    <url>http://www.waymarking.com/waymarks/WMM71N_State_Survey_Mark_43932_Grays_Point_NSW_Australia</url>
+    <urlname>State Survey Mark 43932,Grays Point , NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-34.016" lon="151.06458">
+    <name>WMKDP9</name>
+    <desc>Jannali, NSW, Australia - A suburban train station 23 kilometres south of the Sydney CBD.</desc>
+    <url>http://www.waymarking.com/waymarks/WMKDP9_Jannali_NSW_Australia</url>
+    <urlname>Jannali, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Train Stations/Depots</type>
+  </wpt>
+  <wpt lat="-33.997517" lon="151.070283">
+    <name>WMDF87</name>
+    <desc>Survey Marker 36789, Como, NSW - Located on the top of a boulder in a park in Como, southern suburbs of Sydney.</desc>
+    <url>http://www.waymarking.com/waymarks/WMDF87_Survey_Marker_36789_Como_NSW</url>
+    <urlname>Survey Marker 36789, Como, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-34.007517" lon="151.189767">
+    <name>WMF3ZM</name>
+    <desc>Bonna - Kurnell, NSW - Located at Bonna Point Reserve at Kurnell, NSW.</desc>
+    <url>http://www.waymarking.com/waymarks/WMF3ZM_Bonna_Kurnell_NSW</url>
+    <urlname>Bonna - Kurnell, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australian Trig Points</type>
+  </wpt>
+  <wpt lat="-34.032717" lon="151.033883">
+    <name>WMA0XV</name>
+    <desc>State Surveymark 54716, Woronora Heights, NSW - Standard NSW surveymark S 34 1.963, E 151 2.033</desc>
+    <url>http://www.waymarking.com/waymarks/WMA0XV_State_Surveymark_54716_Woronora_Heights_NSW</url>
+    <urlname>State Surveymark 54716, Woronora Heights, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-34.01474" lon="151.22583">
+    <name>WMKZ8P</name>
+    <desc>Kurnell Reservoir, Kurnell, NSW - On the walk out to Cape Baily Lighthouse (and its' trig) this reservoir trig is easily visible. A track goes close enough to get good photographs of it.</desc>
+    <url>http://www.waymarking.com/waymarks/WMKZ8P_Kurnell_Reservoir_Kurnell_NSW</url>
+    <urlname>Kurnell Reservoir, Kurnell, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australian Trig Points</type>
+  </wpt>
+  <wpt lat="-34.01478" lon="151.226299">
+    <name>WMN4RW</name>
+    <desc>Kurnell Doppler, Sydney, NSW, Australia - "In March 1999, the Bureau of Meteorology installed an automatic weather station on Sydney Water land beside the reservoir on Kurnell headland."</desc>
+    <url>http://www.waymarking.com/waymarks/WMN4RW_Kurnell_Doppler_Sydney_NSW_Australia</url>
+    <urlname>Kurnell Doppler, Sydney, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Weather Radars</type>
+  </wpt>
+  <wpt lat="-34.079083" lon="151.011133">
+    <name>WM5KH5</name>
+    <desc>Maccas - Heathcote, NSW - A McDonald's with nice landscaping, on Princes Hwy &amp; Heathcote Road, in Heathcote, NSW.</desc>
+    <url>http://www.waymarking.com/waymarks/WM5KH5_Maccas_Heathcote_NSW</url>
+    <urlname>Maccas - Heathcote, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>McDonald's Restaurants</type>
+  </wpt>
+  <wpt lat="-33.93882" lon="151.16922">
+    <name>WMB62W</name>
+    <desc>Kingsford Smith Airport, Sydney, New South Wales, Australia - The bright and airy departure area in concourse B can accommodate the Airbus A380.</desc>
+    <url>http://www.waymarking.com/waymarks/WMB62W_Kingsford_Smith_Airport_Sydney_New_South_Wales_Australia</url>
+    <urlname>Kingsford Smith Airport, Sydney, New South Wales, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Inside Airports</type>
+  </wpt>
+  <wpt lat="-34" lon="151">
+    <name>WMC8MV</name>
+    <desc>S 34 E 151 - Holsworthy, NSW, Australia - This confluence point is located about 20km from the city of Sydney.</desc>
+    <url>http://www.waymarking.com/waymarks/WMC8MV_S_34_E_151_Holsworthy_NSW_Australia</url>
+    <urlname>S 34 E 151 - Holsworthy, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Confluence Spots</type>
+  </wpt>
+  <wpt lat="-33.93673" lon="151.16623">
+    <name>WMK2GM</name>
+    <desc>McDonald's - International Terminal, Kingsford Smith International Airport, Mascot, NSW, Australia - Grab a Blazin' Omelette or Toffee &amp; Honeycomb Shake before heading out on that long cross-continent or trans-ocean flight.</desc>
+    <url>http://www.waymarking.com/waymarks/WMK2GM_McDonalds_International_Terminal_Kingsford_Smith_International_Airport_Mascot_NSW_Australia</url>
+    <urlname>McDonald's - International Terminal, Kingsford Smith International Airport, Mascot, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>McDonald's Restaurants</type>
+  </wpt>
+  <wpt lat="-34.001" lon="151.2479">
+    <name>WM3RP3</name>
+    <desc>SS Minmi, Cape Banks, Botany - Wreck of the SS Minmi, lost on 8 May, 1937.</desc>
+    <url>http://www.waymarking.com/waymarks/WM3RP3_SS_Minmi_Cape_Banks_Botany</url>
+    <urlname>SS Minmi, Cape Banks, Botany</urlname>
+    <sym>Waymark</sym>
+    <type>Shipwrecks</type>
+  </wpt>
+  <wpt lat="-33.93437" lon="151.1629">
+    <name>WM15T7</name>
+    <desc>Kingsford Smith Airport - Sydney, Australia - Australia's largest airport. The waymark is in front of the international terminal.</desc>
+    <url>http://www.waymarking.com/waymarks/WM15T7_Kingsford_Smith_Airport_Sydney_Australia</url>
+    <urlname>Kingsford Smith Airport - Sydney, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Airports</type>
+  </wpt>
+  <wpt lat="-33.95163" lon="151.0414">
+    <name>WM7DDZ</name>
+    <desc>Salt Pan Creek, Sydney, Australia - A fantastic board through the mangroves that border Salt Pan Creek in the south western suburbs of Sydney.</desc>
+    <url>http://www.waymarking.com/waymarks/WM7DDZ_Salt_Pan_Creek_Sydney_Australia</url>
+    <urlname>Salt Pan Creek, Sydney, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Non-Coastal Boardwalks </type>
+  </wpt>
+  <wpt lat="-33.999417" lon="151.249">
+    <name>WMBR6B</name>
+    <desc>Cape Banks. NSW. Australia. - A rocky headland at the entrance to Botany Bay provides an excellent view of the wild waves rolling in from the Tasman Sea.</desc>
+    <url>http://www.waymarking.com/waymarks/WMBR6B_Cape_Banks_NSW_Australia</url>
+    <urlname>Cape Banks. NSW. Australia.</urlname>
+    <sym>Waymark</sym>
+    <type>Wavy Places</type>
+  </wpt>
+  <wpt lat="-33.9285" lon="151.13133">
+    <name>WMMQC7</name>
+    <desc>SSM 131443, Earlwood, NSW - SSM 131443 is a bronze disc on the kerb Hocking Avenue, Earlwood</desc>
+    <url>http://www.waymarking.com/waymarks/WMMQC7_SSM_131443_Earlwood_NSW</url>
+    <urlname>SSM 131443, Earlwood, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-33.92842" lon="151.135">
+    <name>WMMQCB</name>
+    <desc>SSM 131442, Earlwood, NSW - SSM 131442 is a bronze disc on the kerb of Hocking Avenue, Earlwood.</desc>
+    <url>http://www.waymarking.com/waymarks/WMMQCB_SSM_131442_Earlwood_NSW</url>
+    <urlname>SSM 131442, Earlwood, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-33.92777" lon="151.13089">
+    <name>WMMQC8</name>
+    <desc>SSM 131435, Earlwood, NSW - SSM 131435 is a bronze disc on the kerb of Hocking Avenue, Earlwood</desc>
+    <url>http://www.waymarking.com/waymarks/WMMQC8_SSM_131435_Earlwood_NSW</url>
+    <urlname>SSM 131435, Earlwood, NSW</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-33.934067" lon="151.18035">
+    <name>WMN4PA</name>
+    <desc>Relay - Sydney Airport - Sydney, NSW, Australia - This Relay is located in terminal 2 of Sydney (Kingsford Smith) Airport  in the suburb of Mascot in Sydney.</desc>
+    <url>http://www.waymarking.com/waymarks/WMN4PA_Relay_Sydney_Airport_Sydney_NSW_Australia</url>
+    <urlname>Relay - Sydney Airport - Sydney, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Newstands / Newsagencies</type>
+  </wpt>
+  <wpt lat="-33.932067" lon="151.179267">
+    <name>WM43GG</name>
+    <desc>Qantas Club Sydney Airport T3, Sydney, NSW, Australia - Qantas Club Sydney Airport T2, Sydney, NSW, Australia</desc>
+    <url>http://www.waymarking.com/waymarks/WM43GG_Qantas_Club_Sydney_Airport_T3_Sydney_NSW_Australia</url>
+    <urlname>Qantas Club Sydney Airport T3, Sydney, NSW, Australia</urlname>
+    <sym>Waymark</sym>
+    <type>Wi-Fi Hotspots</type>
+  </wpt>
+  <wpt lat="-33.930667" lon="151.18515">
+    <name>WMADTY</name>
+    <desc>Survey Mark 125644, Mascot, NSW. - Survey Mark 125644, Robey Street Mascot, NSW.</desc>
+    <url>http://www.waymarking.com/waymarks/WMADTY_Survey_Mark_125644_Mascot_NSW</url>
+    <urlname>Survey Mark 125644, Mascot, NSW.</urlname>
+    <sym>Waymark</sym>
+    <type>Australia/NZ Benchmarks</type>
+  </wpt>
+  <wpt lat="-33.9225" lon="151.16583">
+    <name>WMNQ2D</name>
+    <desc>Ikea, Tempe. Sydney. NSW.  Australia. - This Ikea is located at 634-726 Princes Highway, in the Sydney suburb of Tempe, NSW 2044.</desc>
+    <url>http://www.waymarking.com/waymarks/WMNQ2D_Ikea_Tempe_Sydney_NSW_Australia</url>
+    <urlname>Ikea, Tempe. Sydney. NSW.  Australia.</urlname>
+    <sym>Waymark</sym>
+    <type>IKEA</type>
+  </wpt>
+  <wpt lat="-33.9312" lon="151.19415">
+    <name>WMFHBB</name>
+    <desc>Mascot, NSW 9700 - Post office in suburban Mascot, NSW.</desc>
+    <url>http://www.waymarking.com/waymarks/WMFHBB_Mascot_NSW_9700</url>
+    <urlname>Mascot, NSW 9700</urlname>
+    <sym>Waymark</sym>
+    <type>Australia Post Offices</type>
+  </wpt>
+</gpx>
