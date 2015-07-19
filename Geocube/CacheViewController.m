@@ -227,9 +227,17 @@
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
             [cvc showCache:currentCache];
 
-            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP];
+            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_GMAP];
             MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];
-            [mgv whichCachesToSnow:SHOW_ONECACHE whichCache:wp];
+            [mgv refreshCachesData];
+
+            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_AMAP];
+            MapAppleViewController *mav = [nvc.viewControllers objectAtIndex:0];
+            [mav refreshCachesData];
+
+            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_OSM];
+            MapOSMViewController *mov = [nvc.viewControllers objectAtIndex:0];
+            [mov refreshCachesData];
 
             [_AppDelegate switchController:RC_NAVIGATE];
             return;
