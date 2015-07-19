@@ -22,6 +22,7 @@
 @interface MapAppleViewController : MapTemplateViewController<MKMapViewDelegate> {
     MKMapView *mapView;
     MKPointAnnotation *me;
+    NSMutableArray *markers;
 }
 
 @end

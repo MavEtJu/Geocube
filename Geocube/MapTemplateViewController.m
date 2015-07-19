@@ -142,9 +142,9 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showWhom = whom;
     if (whom == SHOW_ME)
         [self moveCameraTo:meLocation];
-    if (whom == SHOW_CACHE)
+    if (whom == SHOW_CACHE && currentCache != nil)
         [self moveCameraTo:currentCache.coordinates];
-    if (whom == SHOW_BOTH)
+    if (whom == SHOW_BOTH && currentCache != nil)
         [self moveCameraTo:currentCache.coordinates c2:meLocation];
 }
 
