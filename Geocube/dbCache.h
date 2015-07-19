@@ -36,6 +36,10 @@
     float gc_rating_difficulty, gc_rating_terrain;
     NSInteger gc_favourites;
 
+    dbCacheSymbol *cache_symbol;
+    NSInteger cache_symbol_int;
+    NSString *cache_symbol_str;
+
     NSInteger cache_type_int;
     NSString *cache_type_str;
     dbCacheType *cache_type;
@@ -71,9 +75,12 @@
 @property (nonatomic) float gc_rating_difficulty;
 @property (nonatomic) float gc_rating_terrain;
 @property (nonatomic) NSInteger gc_favourites;
+@property (nonatomic) dbCacheSymbol *cache_symbol;
+@property (nonatomic) NSInteger cache_symbol_int;
+@property (nonatomic) NSString *cache_symbol_str;
+@property (nonatomic, retain) dbCacheType *cache_type;
 @property (nonatomic) NSInteger cache_type_int;
 @property (nonatomic) NSString *cache_type_str;
-@property (nonatomic, retain) dbCacheType *cache_type;
 @property (nonatomic, retain) NSString *gc_country;
 @property (nonatomic, retain) NSString *gc_state;
 @property (nonatomic) BOOL gc_short_desc_html;

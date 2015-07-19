@@ -24,7 +24,7 @@
 @implementation DatabaseCache
 
 @synthesize CacheTypes, CacheGroups, Caches, LogTypes, ContainerTypes, ContainerSizes, Attributes;
-@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown, Attribute_Unknown;
+@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown, Attribute_Unknown, CacheSymbols;
 
 - (id)init
 {
@@ -43,6 +43,7 @@
     LogTypes = [db LogTypes_all];
     ContainerSizes = [db ContainerSizes_all];
     Attributes = [db Attributes_all];
+    CacheSymbols = [NSMutableArray arrayWithArray:[db CacheSymbols_all]];
 
     CacheGroup_AllCaches = nil;
     CacheGroup_AllCaches_Found = nil;
@@ -156,6 +157,34 @@
             return wpt;
     }
     return nil;
+}
+
+- (dbCacheSymbol *)CacheSymbol_get_bysymbol:(NSString *)symbol
+{
+    NSEnumerator *e = [CacheSymbols objectEnumerator];
+    dbCacheSymbol *lt;
+    while ((lt = [e nextObject]) != nil) {
+        if ([lt.symbol compare:symbol] == NSOrderedSame)
+            return lt;
+    }
+    return nil;
+}
+
+- (dbCacheSymbol *)CacheSymbol_get:(NSInteger)_id
+{
+    NSEnumerator *e = [CacheSymbols objectEnumerator];
+    dbCacheSymbol *lt;
+    while ((lt = [e nextObject]) != nil) {
+        if (lt._id == _id)
+            return lt;
+    }
+    return nil;
+}
+
+- (void)CacheSymbols_add:(NSInteger)_id symbol:(NSString *)symbol
+{
+    dbCacheSymbol *cs = [[dbCacheSymbol alloc] init:cs._id symbol:cs.symbol];
+    [CacheSymbols addObject:cs];
 }
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type

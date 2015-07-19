@@ -27,6 +27,7 @@
     NSArray *LogTypes;
     NSArray *ContainerTypes;
     NSArray *ContainerSizes;
+    NSMutableArray *CacheSymbols;
     NSArray *Attributes;
 
     // System Groups
@@ -59,6 +60,7 @@
 @property (nonatomic, retain) NSArray *ContainerTypes;
 @property (nonatomic, retain) NSArray *ContainerSizes;
 @property (nonatomic, retain) NSArray *Attributes;
+@property (nonatomic, retain) NSMutableArray *CacheSymbols;
 
 // System Groups
 @property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches;
@@ -87,6 +89,9 @@
 - (dbCacheType *)CacheType_get:(NSInteger)wp_type;
 - (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
 - (dbContainerType *)ContainerType_get:(NSInteger)_id;
+- (dbCacheSymbol *)CacheSymbol_get_bysymbol:(NSString *)size;
+- (dbCacheSymbol *)CacheSymbol_get:(NSInteger)_id;
+- (void)CacheSymbols_add:(NSInteger)_id symbol:(NSString *)symbol;
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSInteger)_id;
 - (dbCache *)Cache_get:(NSInteger)_id;

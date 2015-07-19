@@ -217,6 +217,15 @@
                 [currentC setUrl:currentText];
                 goto bye;
             }
+            if ([elementName compare:@"sym"] == NSOrderedSame) {
+                if ([dbc CacheSymbol_get_bysymbol:currentText] == nil) {
+                    NSLog(@"Adding symbol '%@'", currentText);
+                    NSInteger _id = [db CacheSymbols_add:currentText];
+                    [dbc CacheSymbols_add:_id symbol:currentText];
+                }
+                [currentC setCache_symbol_str:currentText];
+                goto bye;
+            }
             if ([elementName compare:@"type"] == NSOrderedSame) {
                 [currentC setCache_type:[dbc CacheType_get_byname:currentText]];
                 [currentC setCache_type_int:currentC.cache_type._id];

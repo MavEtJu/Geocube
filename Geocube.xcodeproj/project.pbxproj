@@ -19,6 +19,7 @@
 		E81303FA1B5A5EB9006DF300 /* map - tick found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E81303F91B5A5EB9006DF300 /* map - tick found - 9x9.png */; };
 		E81303FC1B5A60A7006DF300 /* map - cross dnf - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E81303FB1B5A60A7006DF300 /* map - cross dnf - 9x9.png */; };
 		E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E81303FD1B5B0B68006DF300 /* waymarking.gpx */; };
+		E81304041B5C4EB1006DF300 /* dbCacheSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -268,6 +269,8 @@
 		E81303F91B5A5EB9006DF300 /* map - tick found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9.png"; path = "images/map - tick found - 9x9.png"; sourceTree = "<group>"; };
 		E81303FB1B5A60A7006DF300 /* map - cross dnf - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - cross dnf - 9x9.png"; path = "images/map - cross dnf - 9x9.png"; sourceTree = "<group>"; };
 		E81303FD1B5B0B68006DF300 /* waymarking.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = waymarking.gpx; sourceTree = "<group>"; };
+		E81304021B5C4EB1006DF300 /* dbCacheSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCacheSymbol.h; sourceTree = "<group>"; };
+		E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCacheSymbol.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -1103,6 +1106,8 @@
 				E82840F41B510AE10055EE59 /* dbContainerSize.m */,
 				E867E8391B539F6C00CB126A /* dbAttribute.h */,
 				E867E83A1B539F6C00CB126A /* dbAttribute.m */,
+				E81304021B5C4EB1006DF300 /* dbCacheSymbol.h */,
+				E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -1518,6 +1523,7 @@
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
+				E81304041B5C4EB1006DF300 /* dbCacheSymbol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

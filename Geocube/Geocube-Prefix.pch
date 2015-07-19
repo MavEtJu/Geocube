@@ -34,6 +34,7 @@
 #import "dbContainerSize.h"
 #import "dbCacheGroup.h"
 #import "dbCacheType.h"
+#import "dbCacheSymbol.h"
 #import "dbCache.h"
 #import "dbAttribute.h"
 #import "dbLogType.h"
