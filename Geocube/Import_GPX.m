@@ -42,8 +42,8 @@
 
 - (void)parse
 {
-    [db CacheGroups_empty:dbc.CacheGroup_LastImport._id ];
-    [db CacheGroups_empty:dbc.CacheGroup_LastImportAdded._id ];
+    [dbc.CacheGroup_LastImport dbEmpty];
+    [dbc.CacheGroup_LastImportAdded dbEmpty];
 
     NSEnumerator *eFile = [files objectEnumerator];
     NSString *filename;
@@ -135,7 +135,7 @@
     return;
 }
 
-- (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     index--;
 
@@ -150,16 +150,16 @@
             cwp_id = [dbCache dbCreate:currentC];
             (*newCachesCount)++;
 
-            [db CacheGroups_add_cache:dbc.CacheGroup_LastImportAdded._id cache_id:cwp_id];
-            [db CacheGroups_add_cache:dbc.CacheGroup_AllCaches._id cache_id:cwp_id];
-            [db CacheGroups_add_cache:group._id cache_id:cwp_id];
+            [dbc.CacheGroup_LastImportAdded dbAddCache:cwp_id];
+            [dbc.CacheGroup_LastImport dbAddCache:cwp_id];
+            [group dbAddCache:cwp_id];
         } else {
             currentC._id = cwp_id;
             [currentC dbUpdate];
-            if ([db CacheGroups_contains_cache:group._id cache_id:cwp_id] == NO)
-                [db CacheGroups_add_cache:group._id cache_id:cwp_id];
+            if ([group dbContainsCache:cwp_id] == NO)
+                [group dbAddCache:cwp_id];
         }
-        [db CacheGroups_add_cache:dbc.CacheGroup_LastImport._id cache_id:cwp_id];
+        [dbc.CacheGroup_LastImport dbAddCache:cwp_id];
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];

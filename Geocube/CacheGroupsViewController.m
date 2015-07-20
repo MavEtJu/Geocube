@@ -33,7 +33,7 @@
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *gs = [db CacheGroups_all_byCacheId:wp._id];
+    NSArray *gs = [dbCacheGroup dbAllByCache:wp._id];
     NSEnumerator *e = [gs objectEnumerator];
     dbCacheGroup *wpg;
     while ((wpg = [e nextObject]) != nil) {
@@ -91,7 +91,7 @@
         c++;
     }
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [db CacheGroups_count_caches:wpg._id]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [wpg dbCountCaches]];
     cell.imageView.image = nil;
 
     return cell;

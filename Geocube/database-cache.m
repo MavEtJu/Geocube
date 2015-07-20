@@ -36,7 +36,7 @@
 // Load all waypoints and waypoint related data in memory
 - (void)loadCacheData
 {
-    CacheGroups = [db CacheGroups_all];
+    CacheGroups = [dbCacheGroup dbAll];
     CacheTypes = [dbCacheType dbAll];
     Caches = [dbCache dbAll];
     ContainerTypes = [dbContainerType dbAll];

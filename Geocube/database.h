@@ -34,17 +34,6 @@
 - (id)init;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 
-- (dbCacheGroup *)CacheGroups_get_byName:(NSString *)name;
-- (NSInteger)CacheGroups_count_caches:(NSInteger)wpgid;
-- (void)CacheGroups_new:(NSString *)name isUser:(BOOL)isUser;
-- (void)CacheGroups_delete:(NSInteger)_id;
-- (void)CacheGroups_empty:(NSInteger)_id;
-- (void)CacheGroups_rename:(NSInteger)_id newName:(NSString *)newname;
-- (void)CacheGroups_add_cache:(NSInteger)wpgid cache_id:(NSInteger)wpid;
-- (BOOL)CacheGroups_contains_cache:(NSInteger)wpgid cache_id:(NSInteger)wpid;
-- (NSArray *)CacheGroups_all;
-- (NSArray *)CacheGroups_all_byCacheId:(NSInteger)wp_id;
-
 @end
 
 #endif

@@ -34,6 +34,19 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
 
+- (void)dbEmpty;
++ (NSArray *)dbAllByCache:(NSInteger)wp_id;
++ (NSMutableArray *)dbAll;
++ (dbCacheGroup *)dbGetByName:(NSString *)name;
+- (void)dbDelete;
++ (void)dbDelete:(NSInteger)__id;
+- (void)dbUpdateName:(NSString *)newname;
+- (void)dbAddCache:(NSInteger)__id;
+- (BOOL)dbContainsCache:(NSInteger)c_id;
+- (NSInteger)dbCountCaches;
++ (NSInteger)dbCreate:(NSString *)name isUser:(BOOL)isUser;
+
+
 @end
 
 #endif

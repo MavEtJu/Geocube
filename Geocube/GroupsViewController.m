@@ -101,7 +101,7 @@
 
     dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [db CacheGroups_count_caches:wpg._id]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [wpg dbCountCaches]];
 
     return cell;
 }
@@ -177,7 +177,7 @@
 
 - (void)groupEmpty:(dbCacheGroup *)wpg reload:(BOOL)reload
 {
-    [db CacheGroups_empty:wpg._id];
+    [wpg dbEmpty];
     [dbc loadCacheData];
     if (reload == YES) {
         [self refreshGroupData];
@@ -187,7 +187,7 @@
 
 - (void)groupDelete:(dbCacheGroup *)wpg
 {
-    [db CacheGroups_delete:wpg._id];
+    [wpg dbDelete];
     [dbc loadCacheData];
     [self refreshGroupData];
     [self.tableView reloadData];
@@ -208,7 +208,7 @@
                              UITextField *tf = alert.textFields.firstObject;
 
                              NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
-                             [db CacheGroups_rename:wpg._id newName:tf.text];
+                             [wpg dbUpdateName:tf.text];
                              [dbc loadCacheData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
@@ -275,7 +275,7 @@
                              NSString *newgroup = tf.text;
 
                              NSLog(@"Creating new group '%@'", newgroup);
-                             [db CacheGroups_new:newgroup isUser:YES];
+                             [dbCacheGroup dbCreate:newgroup isUser:YES];
                              [dbc loadCacheData];
                              [self refreshGroupData];
                              [self.tableView reloadData];

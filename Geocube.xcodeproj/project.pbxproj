@@ -617,13 +617,6 @@
 			name = "Caches Offline";
 			sourceTree = "<group>";
 		};
-		E81304081B5C71DF006DF300 /* foo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = foo;
-			sourceTree = "<group>";
-		};
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1096,6 +1089,8 @@
 				E81304061B5C7075006DF300 /* database-pre.m */,
 				E8F570AB1B3FE5C6003F020C /* database.h */,
 				E8F570AC1B3FE5C6003F020C /* database.m */,
+				E86C65AA1B4D431100E2ABFE /* database-cache.h */,
+				E86C65AB1B4D431100E2ABFE /* database-cache.m */,
 				E8F570C31B40059F003F020C /* dbConfig.h */,
 				E8F570C41B40059F003F020C /* dbConfig.m */,
 				E86C65AF1B4DCEE400E2ABFE /* dbObject.h */,
@@ -1116,9 +1111,6 @@
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E8F570C61B4008C3003F020C /* dbCache.h */,
 				E8F570C71B4008C3003F020C /* dbCache.m */,
-				E81304081B5C71DF006DF300 /* foo */,
-				E86C65AA1B4D431100E2ABFE /* database-cache.h */,
-				E86C65AB1B4D431100E2ABFE /* database-cache.m */,
 				E88FD8F11B4160A700D0CCE7 /* dbCacheGroup.h */,
 				E88FD8F21B4160A700D0CCE7 /* dbCacheGroup.m */,
 			);

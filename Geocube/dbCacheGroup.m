@@ -35,4 +35,213 @@
     return self;
 }
 
+- (void)dbEmpty
+{
+    NSString *sql = @"delete from cache_group2caches where cache_group_id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, _id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        sqlite3_finalize(req);
+    }
+}
+
+
++ (dbCacheGroup *)dbGetByName:(NSString *)name
+{
+    NSString *sql = @"select id, name, usergroup from cache_groups where name = ?";
+    sqlite3_stmt *req;
+    dbCacheGroup *wpg;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_TEXT(req, 1, name);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            INT_FETCH_AND_ASSIGN(req, 2, ug);
+            wpg = [[dbCacheGroup alloc] init:_id name:name usergroup:ug];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpg;
+}
+
++ (NSMutableArray *)dbAll
+{
+    NSString *sql = @"select id, name, usergroup from cache_groups";
+    sqlite3_stmt *req;
+    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheGroup *wpg;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, _name);
+            INT_FETCH_AND_ASSIGN(req, 2, _ug);
+            wpg = [[dbCacheGroup alloc] init:__id name:_name usergroup:_ug];
+            [wpgs addObject:wpg];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpgs;
+}
+
++ (NSArray *)dbAllByCache:(NSInteger)wp_id
+{
+    NSString *sql = @"select cache_group_id from cache_group2caches where cache_id = ?";
+    sqlite3_stmt *req;
+    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheGroup *wpg;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, wp_id);
+
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, wpgid);
+            wpg = [dbc CacheGroup_get:wpgid];
+            [wpgs addObject:wpg];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpgs;
+}
+
+- (NSInteger)dbCountCaches
+{
+    NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, self._id);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count;
+}
+
++ (NSInteger)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
+{
+    NSString *sql = @"insert into cache_groups(name, usergroup) values(?, ?)";
+    sqlite3_stmt *req;
+    NSInteger __id;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_TEXT(req, 1, _name);
+        SET_VAR_BOOL(req, 2, _usergroup);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        __id = sqlite3_last_insert_rowid(dbO.db);
+        sqlite3_finalize(req);
+    }
+    return __id;
+}
+
+- (void)dbDelete
+{
+    [dbCacheGroup dbDelete:self._id];
+}
+
++ (void)dbDelete:(NSInteger)__id
+{
+    NSString *sql = @"delete from cache_groups where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, __id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)dbUpdateName:(NSString *)newname
+{
+    NSString *sql = @"update cache_groups set name = ? where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_TEXT(req, 1, newname);
+        SET_VAR_INT(req, 2, _id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)dbAddCache:(NSInteger)__id
+{
+    NSString *sql = @"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, self._id);
+        SET_VAR_INT(req, 2, __id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        sqlite3_finalize(req);
+    }
+}
+
+- (BOOL)dbContainsCache:(NSInteger)c_id
+{
+    NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, self._id);
+        SET_VAR_INT(req, 2, c_id);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count == 0 ? NO : YES;
+}
+
 @end
