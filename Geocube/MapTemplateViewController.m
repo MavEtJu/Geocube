@@ -21,9 +21,6 @@
 
 #import "Geocube-Prefix.pch"
 
-#define NEEDS_OVERLOADING(__name__) \
-    - (void) __name__ { NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class]); }
-
 @implementation MapTemplateViewController
 
 NEEDS_OVERLOADING(initCamera)

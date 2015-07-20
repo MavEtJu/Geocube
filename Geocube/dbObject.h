@@ -28,6 +28,11 @@
 
 - (void)finish;
 
++ (NSArray *)dbAll;
++ (dbObject *)dbGet:(NSInteger)_id;
+- (void)dbUpdate;
+- (NSInteger)dbCreate;
+
 @end
 
 #endif

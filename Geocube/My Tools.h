@@ -32,4 +32,11 @@
 + (NSInteger)numberOfLines:(NSString *)s;
 
 @end
+
+
+#define NEEDS_OVERLOADING_ASSERT \
+    NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
+#define NEEDS_OVERLOADING(__name__) \
+    - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
+
 #endif

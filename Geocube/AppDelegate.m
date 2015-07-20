@@ -57,6 +57,7 @@
     db = [[database alloc] init];
     dbc = [[DatabaseCache alloc] init];
     [dbc loadCacheData];
+    dbO = [[databaseObject alloc] init];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];

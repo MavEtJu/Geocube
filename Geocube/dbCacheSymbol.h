@@ -28,5 +28,10 @@
 @property (nonatomic) NSInteger _id;
 
 - (id)init:(NSInteger)_id symbol:(NSString *)symbol;
++ (NSInteger)dbCreate:(NSString *)symbol;
+
++ (NSArray *)dbAll;
++ (dbObject *)dbGet:(NSInteger)_id;
+- (NSInteger)dbCreate;
 
 @end

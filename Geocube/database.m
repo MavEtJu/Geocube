@@ -23,11 +23,6 @@
 
 @implementation database
 
-#define DB_ASSERT(__s__) \
-NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
-#define DB_ASSERT_STEP      DB_ASSERT(@"step")
-#define DB_ASSERT_PREPARE   DB_ASSERT(@"prepare")
-
 - (id)init
 {
     NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
@@ -43,6 +38,9 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
     sqlite3_open([dbname UTF8String], &db);
     dbConfig *c_real = [self config_get:@"version"];
     sqlite3_close(db);
+
+    dbO.db = db;
+    dbO.dbaccess = self;
 
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
@@ -440,7 +438,7 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
             [wp setGc_containerSize_int:gc_container_size];
             [wp setGc_archived:gc_archived];
             [wp setGc_available:gc_available];
-            [wp setCache_symbol_int:cache_type];
+            [wp setCache_symbol_int:cache_symbol];
             [wp finish];
             [wps addObject:wp];
         }
@@ -778,161 +776,8 @@ NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db))
     return ss;
 }
 
-// ------------------------
-- (NSArray *)CacheSymbols_all
-{
-    NSString *sql = @"select id, symbol from cache_symbols";
-    sqlite3_stmt *req;
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheSymbol *s;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
-            s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
-            [ss addObject:s];
-        }
-        sqlite3_finalize(req);
-    }
-    return ss;
-}
-
-- (NSInteger)CacheSymbols_add:(NSString *)symbol
-{
-    NSString *sql = @"insert into cache_symbols(symbol) values(?)";
-    sqlite3_stmt *req;
-    NSInteger _id;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_TEXT(req, 1, symbol);
-
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-        _id = sqlite3_last_insert_rowid(db);
-        sqlite3_finalize(req);
-    }
-    return _id;
-}
 
 // ------------------------
-
-- (NSArray *)Attributes_all
-{
-    NSString *sql = @"select id, label, gc_id, icon from attributes";
-    sqlite3_stmt *req;
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
-            INT_FETCH_AND_ASSIGN(req, 3, icon);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
-        }
-        sqlite3_finalize(req);
-    }
-    return ss;
-}
-
-- (void)Attributes_unlink_fromcache:(NSInteger)cache_id
-{
-    NSString *sql = @"delete from attribute2cache where cache_id = ?";
-    sqlite3_stmt *req;
-    NSInteger _id = 0;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_INT(req, 1, cache_id);
-
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
-        _id = sqlite3_last_insert_rowid(db);
-        sqlite3_finalize(req);
-    }
-}
-
-- (void)Attributes_link_cache:(dbAttribute *)attr cache_id:(NSInteger)cache_id YesNo:(BOOL)YesNO
-{
-    NSString *sql = @"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)";
-    sqlite3_stmt *req;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_INT(req, 1, attr._id);
-        SET_VAR_INT(req, 2, cache_id);
-        SET_VAR_BOOL(req, 3, YesNO);
-
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
-        sqlite3_finalize(req);
-    }
-}
-
-- (NSInteger)Attributes_count_byCache_id:(NSInteger)cache_id
-{
-    NSString *sql = @"select count(id) from attribute2cache where cache_id = ?";
-    sqlite3_stmt *req;
-    NSInteger count = 0;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_INT(req, 1, cache_id);
-
-        if (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, c);
-            count = c;
-        }
-        sqlite3_finalize(req);
-    }
-    return count;
-}
-
-- (NSArray *)Attributes_all_bycacheid:(NSInteger)cache_id
-{
-    NSString *sql = @"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)";
-    sqlite3_stmt *req;
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_INT(req, 1, cache_id);
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
-        }
-        sqlite3_finalize(req);
-    }
-    return ss;
-}
 
 // ------------------------
 

@@ -42,8 +42,8 @@
     ContainerTypes = [db ContainerTypes_all];
     LogTypes = [db LogTypes_all];
     ContainerSizes = [db ContainerSizes_all];
-    Attributes = [db Attributes_all];
-    CacheSymbols = [NSMutableArray arrayWithArray:[db CacheSymbols_all]];
+    Attributes = [dbAttribute dbAll];
+    CacheSymbols = [NSMutableArray arrayWithArray:[dbCacheSymbol dbAll]];
 
     CacheGroup_AllCaches = nil;
     CacheGroup_AllCaches_Found = nil;

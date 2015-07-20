@@ -32,7 +32,7 @@
 
     attrs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *as = [db Attributes_all_bycacheid:cache._id];
+    NSArray *as = [dbAttribute dbAllByCache:cache._id];
     NSEnumerator *e = [as objectEnumerator];
     dbAttribute *a;
     while ((a = [e nextObject]) != nil) {

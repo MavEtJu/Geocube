@@ -105,7 +105,7 @@
 }
 
 - (NSInteger)hasAttributes {
-    return [db Attributes_count_byCache_id:_id];
+    return [dbAttribute dbCountByCache:_id];
 }
 
 - (BOOL)hasFieldNotes { return NO; }

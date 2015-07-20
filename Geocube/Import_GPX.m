@@ -169,11 +169,11 @@
         }
 
         // Link attributes to cache
-        [db Attributes_unlink_fromcache:cwp_id];
+        [dbAttribute dbUnlinkAllFromCache:cwp_id];
         e = [attributes objectEnumerator];
         dbAttribute *a;
         while ((a = [e nextObject]) != nil) {
-            [db Attributes_link_cache:a cache_id:cwp_id YesNo:a._YesNo];
+            [a dbLinkToCache:cwp_id YesNo:a._YesNo];
         }
 
 
@@ -220,7 +220,7 @@
             if ([elementName compare:@"sym"] == NSOrderedSame) {
                 if ([dbc CacheSymbol_get_bysymbol:currentText] == nil) {
                     NSLog(@"Adding symbol '%@'", currentText);
-                    NSInteger _id = [db CacheSymbols_add:currentText];
+                    NSInteger _id = [dbCacheSymbol dbCreate:currentText];
                     [dbc CacheSymbols_add:_id symbol:currentText];
                 }
                 [currentC setCache_symbol_str:currentText];

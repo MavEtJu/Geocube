@@ -28,6 +28,7 @@
 #import "Coordinates.h"
 #import "My Tools.h"
 
+#import "database-pre.h"
 #import "dbObject.h"
 #import "dbConfig.h"
 #import "dbContainerType.h"
