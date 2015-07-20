@@ -59,7 +59,6 @@
 
 - (NSArray *)CacheTypes_all;
 - (NSArray *)ContainerTypes_all;
-- (NSArray *)ContainerSizes_all;
 
 @end
 

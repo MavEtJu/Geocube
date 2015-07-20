@@ -695,30 +695,6 @@
 
 // ------------------------
 
-- (NSArray *)ContainerSizes_all
-{
-    NSString *sql = @"select id, container_size, icon from container_sizes";
-    sqlite3_stmt *req;
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbContainerSize *s;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, size);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            s = [[dbContainerSize alloc] init:_id size:size icon:icon];
-            [ss addObject:s];
-        }
-        sqlite3_finalize(req);
-    }
-    return ss;
-}
-
-
 // ------------------------
 
 // ------------------------

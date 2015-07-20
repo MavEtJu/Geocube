@@ -1106,6 +1106,8 @@
 				E867E83A1B539F6C00CB126A /* dbAttribute.m */,
 				E8740FCB1B4E90EB002527DA /* dbLogType.h */,
 				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
+				E82840F31B510AE10055EE59 /* dbContainerSize.h */,
+				E82840F41B510AE10055EE59 /* dbContainerSize.m */,
 				E81304081B5C71DF006DF300 /* foo */,
 				E86C65AA1B4D431100E2ABFE /* database-cache.h */,
 				E86C65AB1B4D431100E2ABFE /* database-cache.m */,
@@ -1119,8 +1121,6 @@
 				E8740FC91B4E90D7002527DA /* dbContainerType.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
-				E82840F31B510AE10055EE59 /* dbContainerSize.h */,
-				E82840F41B510AE10055EE59 /* dbContainerSize.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
