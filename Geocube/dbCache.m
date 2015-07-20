@@ -84,6 +84,11 @@
             cache_type_int = cache_type._id;
         }
     }
+    if (cache_type == nil) {
+        cache_type = [dbc CacheType_get_byname:cache_symbol_str];
+        cache_type_int = cache_type._id;
+        cache_type_str = cache_symbol_str;
+    }
 
     // Adjust cache symbol
     if (cache_symbol == nil) {
