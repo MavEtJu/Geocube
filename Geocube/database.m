@@ -73,7 +73,6 @@
     }
 }
 
-
 - (void)dealloc
 {
     sqlite3_close(db);
