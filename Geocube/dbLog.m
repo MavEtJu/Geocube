@@ -65,9 +65,155 @@
     [super finish];
 }
 
-- (NSString *)description
+
++ (NSInteger)dbGetIdByGC:(NSInteger)_gc_id
 {
-    return [NSString stringWithFormat:@"%@: %@", logger, datetime];
+    NSString *sql = @"select id from logs where gc_id = ?";
+    sqlite3_stmt *req;
+    NSInteger __id = 0;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, _gc_id);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, ___id);
+            __id = ___id;
+        }
+        sqlite3_finalize(req);
+    }
+    return __id;
 }
+
+- (NSInteger)dbCreate
+{
+    return [dbLog dbCreate:self];
+}
+
++ (NSInteger)dbCreate:(dbLog *)log
+    {
+    NSString *sql = @"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)";
+    sqlite3_stmt *req;
+    NSInteger __id = 0;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, log.cache_id);
+        SET_VAR_INT(req, 2, log.logtype_id);
+        SET_VAR_TEXT(req, 3, log.datetime);
+        SET_VAR_INT(req, 4, log.datetime_epoch);
+        SET_VAR_TEXT(req, 5, log.logger);
+        SET_VAR_TEXT(req, 6, log.log);
+        SET_VAR_INT(req, 7, log.gc_id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+
+        __id = sqlite3_last_insert_rowid(dbO.db);
+        sqlite3_finalize(req);
+    }
+    return __id;
+}
+
+- (void)dbUpdate
+{
+    NSString *sql = @"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, logtype_id);
+        SET_VAR_INT(req, 2, cache_id);
+        SET_VAR_TEXT(req, 3, datetime);
+        SET_VAR_INT(req, 4, datetime_epoch);
+        SET_VAR_TEXT(req, 5, logger);
+        SET_VAR_TEXT(req, 6, log);
+        SET_VAR_INT(req, 7, gc_id);
+        SET_VAR_INT(req, 8, _id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+
+        sqlite3_finalize(req);
+    }
+}
+
+- (void)dbUpdateCache:(NSInteger)wp_id;
+{
+    NSString *sql = @"update logs set cache_id = ? where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(req, 2, _id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+
+        sqlite3_finalize(req);
+    }
+}
+
++ (NSInteger)dbCountByCache:(NSInteger)wp_id
+{
+    NSString *sql = @"select count(id) from logs where cache_id = ?";
+    sqlite3_stmt *req;
+    NSInteger count = 0;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, wp_id);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, c);
+            count = c;
+        }
+        sqlite3_finalize(req);
+    }
+    return count;
+}
+
++ (NSArray *)dbAllByCache:(NSInteger)wp_id
+{
+    NSString *sql = @"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?";
+    sqlite3_stmt *req;
+    NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    dbLog *l;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, wp_id);
+
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            INT_FETCH_AND_ASSIGN(req, 1, gc_id);
+            INT_FETCH_AND_ASSIGN(req, 2, cache_id);
+            INT_FETCH_AND_ASSIGN(req, 3, log_type_id);
+            TEXT_FETCH_AND_ASSIGN(req, 4, datetime);
+            //INT_FETCH_AND_ASSIGN(req, 5, datetime_epoch);
+            TEXT_FETCH_AND_ASSIGN(req, 6, logger);
+            TEXT_FETCH_AND_ASSIGN(req, 7, log);
+            l = [[dbLog alloc] init:__id gc_id:gc_id cache_id:cache_id logtype_id:log_type_id datetime:datetime logger:logger log:log];
+            [l finish];
+            [ls addObject:l];
+        }
+        sqlite3_finalize(req);
+    }
+    return ls;
+}
+
 
 @end

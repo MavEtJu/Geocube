@@ -53,4 +53,13 @@
 - (id)init:(NSInteger)__id gc_id:(NSInteger)gc_id cache_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
 - (id)init:(NSInteger)gc_id;
 
++ (NSInteger)dbGetIdByGC:(NSInteger)gc_id;
++ (NSInteger)dbCountByCache:(NSInteger)wp_id;
++ (NSArray *)dbAllByCache:(NSInteger)wp_id;
++ (NSInteger)dbCreate:(dbLog *)log;
+- (NSInteger)dbCreate;
+- (void)dbUpdateCache:(NSInteger)wp_id;
+
+
+
 @end

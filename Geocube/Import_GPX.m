@@ -165,7 +165,7 @@
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
-            [db Logs_update_cache_id:l cache_id:cwp_id];
+            [l dbUpdateCache:cwp_id];
         }
 
         // Link attributes to cache
@@ -184,14 +184,14 @@
     if (index == 4 && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
         [currentLog finish];
 
-        NSInteger log_id = [db Log_by_gcid:currentLog.gc_id];
+        NSInteger log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
         (*totalLogsCount)++;
         if (log_id == 0) {
             (*newLogsCount)++;
-            currentLog._id = [db Logs_add:currentLog];
+            currentLog._id = [dbLog dbCreate:currentLog];
         } else {
             currentLog._id = log_id;
-            [db Logs_update:log_id log:currentLog];
+            [currentLog dbUpdate];
         }
         [logs addObject:currentLog];
 

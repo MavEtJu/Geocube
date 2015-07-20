@@ -33,7 +33,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
 
-    logs = [db Logs_all_bycacheid:_wp._id];
+    logs = [dbLog dbAllByCache:_wp._id];
 
     return self;
 }

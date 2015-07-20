@@ -101,7 +101,7 @@
 }
 
 - (NSInteger)hasLogs {
-    return [db Logs_count_byCache_id:_id];
+    return [dbLog dbCountByCache:_id];
 }
 
 - (NSInteger)hasAttributes {

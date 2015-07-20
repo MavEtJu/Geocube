@@ -50,13 +50,6 @@
 - (void)Cache_update:(dbCache *)wp;
 - (NSArray *)Caches_all;
 
-- (NSInteger)Log_by_gcid:(NSInteger)gc_id;
-- (NSInteger)Logs_add:(dbLog *)log;
-- (void)Logs_update:(NSInteger)_id log:(dbLog *)log;
-- (void)Logs_update_cache_id:(dbLog *)log cache_id:(NSInteger)wp_id;
-- (NSInteger)Logs_count_byCache_id:(NSInteger)wp_id;
-- (NSArray *)Logs_all_bycacheid:(NSInteger)wp_id;
-
 @end
 
 #endif
