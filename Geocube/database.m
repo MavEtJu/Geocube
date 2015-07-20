@@ -288,54 +288,6 @@
 
 // ------------------------
 
-- (dbCacheType *)CacheTypes_get_byType:(NSString *)type
-{
-    NSString *sql = @"select id, type, icon, pin from cache_types where type = ?";
-    sqlite3_stmt *req;
-    dbCacheType *wpt;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_TEXT(req, 1, type);
-
-        if (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, type);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            INT_FETCH_AND_ASSIGN(req, 3, pin);
-            wpt = [[dbCacheType alloc] init:_id type:type icon:icon pin:pin];
-        }
-        sqlite3_finalize(req);
-    }
-    return wpt;
-}
-
-- (NSMutableArray *)CacheTypes_all
-{
-    NSString *sql = @"select id, type, icon, pin from cache_types";
-    sqlite3_stmt *req;
-    NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheType *wpt;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, type);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            INT_FETCH_AND_ASSIGN(req, 3, pin);
-            wpt = [[dbCacheType alloc] init:_id type:type icon:icon pin:pin];
-            [wpts addObject:wpt];
-        }
-        sqlite3_finalize(req);
-    }
-    return wpts;
-}
-
 // ------------------------
 
 - (NSMutableArray *)Caches_all

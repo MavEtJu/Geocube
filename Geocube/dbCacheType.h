@@ -29,12 +29,12 @@
     NSInteger pin;
 }
 
-- (id)init:(NSInteger)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
-
 @property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSInteger pin;
+
+- (id)init:(NSInteger)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end
 

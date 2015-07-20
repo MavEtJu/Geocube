@@ -36,4 +36,31 @@
     return self;
 }
 
+- (NSMutableArray *)dbAll
+{
+    NSString *sql = @"select id, type, icon, pin from cache_types";
+    sqlite3_stmt *req;
+    NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheType *wpt;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        while (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, _type);
+            INT_FETCH_AND_ASSIGN(req, 2, _icon);
+            INT_FETCH_AND_ASSIGN(req, 3, _pin);
+            wpt = [[dbCacheType alloc] init:__id type:_type icon:_icon pin:_pin];
+            [wpts addObject:wpt];
+        }
+        sqlite3_finalize(req);
+    }
+    return wpts;
+
+
+
+}
+
 @end

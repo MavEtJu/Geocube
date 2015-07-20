@@ -37,7 +37,7 @@
 - (void)loadCacheData
 {
     CacheGroups = [db CacheGroups_all];
-    CacheTypes = [db CacheTypes_all];
+    CacheTypes = [dbCacheType dbAll];
     Caches = [db Caches_all];
     ContainerTypes = [dbContainerType dbAll];
     LogTypes = [dbLogType dbAll];

@@ -57,8 +57,6 @@
 - (NSInteger)Logs_count_byCache_id:(NSInteger)wp_id;
 - (NSArray *)Logs_all_bycacheid:(NSInteger)wp_id;
 
-- (NSArray *)CacheTypes_all;
-
 @end
 
 #endif
