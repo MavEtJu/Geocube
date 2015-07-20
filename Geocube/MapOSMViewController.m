@@ -25,7 +25,7 @@
 
 - (void)initMenu
 {
-    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"XSatellite", @"XHybrid", @"XTerrain", @"Show target", @"Show me", @"Show both"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"XSatellite", @"XHybrid", @"XTerrain", @"Show target", @"Follow me", @"Show both"]];
 }
 
 - (void)viewDidLoad

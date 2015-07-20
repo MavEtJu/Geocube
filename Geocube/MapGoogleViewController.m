@@ -42,7 +42,7 @@
 
 - (void)initMenu
 {
-    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Show me", @"Show both"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Follow me", @"Show both"]];
 }
 
 - (void)placeMarkers

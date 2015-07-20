@@ -41,8 +41,6 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showType = _type; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
 
-    [self refreshCachesData:nil];
-
     return self;
 }
 
@@ -57,6 +55,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refreshCachesData:nil];
     [self placeMarkers];
 }
 
@@ -87,7 +86,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_caches = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Caches objectEnumerator];
+    NSEnumerator *e = [[dbCache dbAll] objectEnumerator];
     dbCache *cache;
 
     if (showType == SHOW_ONECACHE) {
