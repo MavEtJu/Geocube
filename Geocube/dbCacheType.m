@@ -36,7 +36,7 @@
     return self;
 }
 
-- (NSMutableArray *)dbAll
++ (NSArray *)dbAll
 {
     NSString *sql = @"select id, type, icon, pin from cache_types";
     sqlite3_stmt *req;

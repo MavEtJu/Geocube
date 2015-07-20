@@ -35,6 +35,7 @@
 @property (nonatomic)sqlite3 *db;
 
 - (id)init;
+- (void)checkVersion;
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 
 @end

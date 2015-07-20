@@ -55,6 +55,7 @@
 
     // Initialize and cache the database
     db = [[database alloc] init];
+    [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
     [dbc loadCacheData];
 

@@ -27,12 +27,16 @@
 
 - (id)init
 {
+    dbaccess = self;
+    db = nil;
+    return self;
+}
+
+- (void)checkVersion
+{
     NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
     NSLog(@"Using %@ as the database.", dbname);
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
-
-    [self checkAndCreateDatabase:dbname empty:dbempty];
-    dbaccess = self;
 
     sqlite3_open([dbempty UTF8String], &db);
     dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
@@ -51,7 +55,7 @@
 
     sqlite3_open([dbname UTF8String], &db);
 
-    return self;
+    [self checkAndCreateDatabase:dbname empty:dbempty];
 }
 
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty

@@ -183,7 +183,7 @@
 
 - (void)CacheSymbols_add:(NSInteger)_id symbol:(NSString *)symbol
 {
-    dbCacheSymbol *cs = [[dbCacheSymbol alloc] init:cs._id symbol:cs.symbol];
+    dbCacheSymbol *cs = [[dbCacheSymbol alloc] init:_id symbol:symbol];
     [CacheSymbols addObject:cs];
 }
 
