@@ -45,11 +45,6 @@
 - (NSArray *)CacheGroups_all;
 - (NSArray *)CacheGroups_all_byCacheId:(NSInteger)wp_id;
 
-- (NSInteger)Cache_get_byname:(NSString *)name;
-- (NSInteger)Cache_add:(dbCache *)wp;
-- (void)Cache_update:(dbCache *)wp;
-- (NSArray *)Caches_all;
-
 @end
 
 #endif

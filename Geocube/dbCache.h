@@ -106,6 +106,11 @@
 - (BOOL)hasInventory;
 - (BOOL)hasImages;
 
++ (NSInteger)dbGetByName:(NSString *)name;
++ (NSInteger)dbCreate:(dbCache *)wp;
+- (void)dbUpdate;
++ (NSArray *)dbAll;
+
 @end
 
 #endif

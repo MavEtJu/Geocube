@@ -144,10 +144,10 @@
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentC finish];
 
-        NSInteger cwp_id = [db Cache_get_byname:currentC.name];
+        NSInteger cwp_id = [dbCache dbGetByName:currentC.name];
         (*totalCachesCount)++;
         if (cwp_id == 0) {
-            cwp_id = [db Cache_add:currentC];
+            cwp_id = [dbCache dbCreate:currentC];
             (*newCachesCount)++;
 
             [db CacheGroups_add_cache:dbc.CacheGroup_LastImportAdded._id cache_id:cwp_id];
@@ -155,7 +155,7 @@
             [db CacheGroups_add_cache:group._id cache_id:cwp_id];
         } else {
             currentC._id = cwp_id;
-            [db Cache_update:currentC];
+            [currentC dbUpdate];
             if ([db CacheGroups_contains_cache:group._id cache_id:cwp_id] == NO)
                 [db CacheGroups_add_cache:group._id cache_id:cwp_id];
         }
