@@ -75,9 +75,9 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
 {
     CLLocationCoordinate2D t = coord;
-//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, 1500, 1500);
-//    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-//    [mapView setRegion:adjustedRegion animated:NO];
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, 1500, 1500);
+    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+    [mapView setRegion:adjustedRegion animated:NO];
 
     [mapView setCenterCoordinate:t animated:YES];
 }

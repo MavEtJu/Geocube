@@ -90,7 +90,7 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
 {
-    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:coord];
+    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:coord zoom:15];
     [mapView animateWithCameraUpdate:currentCam];
 }
 
