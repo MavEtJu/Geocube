@@ -211,6 +211,81 @@
     return _id;
 }
 
++ (dbCache *)dbGet:(NSInteger)__id
+{
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol from caches where id = ?";
+    sqlite3_stmt *req;
+    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCache *wp;
+
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, __id);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, _name);
+            TEXT_FETCH_AND_ASSIGN(req, 2, _desc);
+            TEXT_FETCH_AND_ASSIGN(req, 3, _lat);
+            TEXT_FETCH_AND_ASSIGN(req, 4, _lon);
+            INT_FETCH_AND_ASSIGN(req, 5, _lat_int);
+            INT_FETCH_AND_ASSIGN(req, 6, _lon_int);
+            TEXT_FETCH_AND_ASSIGN(req, 7, _date_placed);
+            INT_FETCH_AND_ASSIGN(req, 8, _date_placed_epoch);
+            TEXT_FETCH_AND_ASSIGN(req, 9, _url);
+            INT_FETCH_AND_ASSIGN(req, 10, _cache_type);
+            TEXT_FETCH_AND_ASSIGN(req, 11, _country);
+            TEXT_FETCH_AND_ASSIGN(req, 12, _state);
+            DOUBLE_FETCH_AND_ASSIGN(req, 13, _ratingD);
+            DOUBLE_FETCH_AND_ASSIGN(req, 14, _ratingT);
+            INT_FETCH_AND_ASSIGN(req, 15, _favourites);
+            BOOL_FETCH_AND_ASSIGN(req, 16, _gc_long_desc_html);
+            TEXT_FETCH_AND_ASSIGN(req, 17, _gc_long_desc);
+            BOOL_FETCH_AND_ASSIGN(req, 18, _gc_short_desc_html);
+            TEXT_FETCH_AND_ASSIGN(req, 19, _gc_short_desc);
+            TEXT_FETCH_AND_ASSIGN(req, 20, _gc_hint);
+            INT_FETCH_AND_ASSIGN(req, 21, _gc_container_size);
+            BOOL_FETCH_AND_ASSIGN(req, 22, _gc_archived);
+            BOOL_FETCH_AND_ASSIGN(req, 23, _gc_available);
+            BOOL_FETCH_AND_ASSIGN(req, 24, _cache_symbol);
+
+            wp = [[dbCache alloc] init:__id];
+            [wp setName:_name];
+            [wp setDescription:_desc];
+            [wp setLat:_lat];
+            [wp setLon:_lon];
+
+            [wp setLat_int:_lat_int];
+            [wp setLon_int:_lon_int];
+            [wp setDate_placed:_date_placed];
+            [wp setDate_placed_epoch:_date_placed_epoch];
+            [wp setUrl:_url];
+            [wp setCache_type_int:_cache_type];
+            [wp setGc_country:_country];
+            [wp setGc_state:_state];
+            [wp setGc_rating_difficulty:_ratingD];
+            [wp setGc_rating_terrain:_ratingT];
+            [wp setGc_favourites:_favourites];
+            [wp setGc_long_desc_html:_gc_long_desc_html];
+            [wp setGc_long_desc:_gc_long_desc];
+            [wp setGc_short_desc_html:_gc_short_desc_html];
+            [wp setGc_short_desc:_gc_short_desc];
+            [wp setGc_hint:_gc_hint];
+            [wp setGc_containerSize_int:_gc_container_size];
+            [wp setGc_archived:_gc_archived];
+            [wp setGc_available:_gc_available];
+            [wp setCache_symbol_int:_cache_symbol];
+            [wp finish];
+            [wps addObject:wp];
+        }
+        sqlite3_finalize(req);
+    }
+
+    return wp;
+}
+
 + (NSInteger)dbCreate:(dbCache *)wp
 {
     NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

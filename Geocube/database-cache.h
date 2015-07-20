@@ -23,7 +23,6 @@
     // In memory database information
     NSArray *CacheTypes;
     NSArray *CacheGroups;
-    NSArray *Caches;
     NSArray *LogTypes;
     NSArray *ContainerTypes;
     NSArray *ContainerSizes;
@@ -55,7 +54,6 @@
 
 @property (nonatomic, retain) NSArray *CacheTypes;
 @property (nonatomic, retain) NSArray *CacheGroups;
-@property (nonatomic, retain) NSArray *Caches;
 @property (nonatomic, retain) NSArray *LogTypes;
 @property (nonatomic, retain) NSArray *ContainerTypes;
 @property (nonatomic, retain) NSArray *ContainerSizes;
@@ -98,8 +96,6 @@
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSInteger)_id;
-
-- (dbCache *)Cache_get:(NSInteger)_id;
 
 - (dbCacheGroup *)CacheGroup_get:(NSInteger)_id;
 

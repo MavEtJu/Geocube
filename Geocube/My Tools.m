@@ -55,6 +55,8 @@
 
 + (NSString *)simpleHTML:(NSString *)plainText
 {
+    if (plainText == nil)
+        return @"";
     NSMutableString *s = [NSMutableString stringWithString:plainText];
     [s replaceOccurrencesOfString:@"&" withString:@"&amp;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
     [s replaceOccurrencesOfString:@"<" withString:@"&lt;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];

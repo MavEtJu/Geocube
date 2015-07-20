@@ -60,7 +60,7 @@
         logtype = [dbc LogType_get:logtype_id];
         logtype_string = logtype.logtype;
     }
-    cache = [dbc Cache_get:cache_id]; // This can be nil when an import is happening
+    cache = [dbCache dbGet:cache_id]; // This can be nil when an import is happening
 
     [super finish];
 }

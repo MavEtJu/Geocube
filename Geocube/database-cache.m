@@ -23,7 +23,7 @@
 
 @implementation DatabaseCache
 
-@synthesize CacheTypes, CacheGroups, Caches, LogTypes, ContainerTypes, ContainerSizes, Attributes;
+@synthesize CacheTypes, CacheGroups, LogTypes, ContainerTypes, ContainerSizes, Attributes;
 @synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown, Attribute_Unknown, CacheSymbols;
 
 - (id)init
@@ -38,7 +38,6 @@
 {
     CacheGroups = [dbCacheGroup dbAll];
     CacheTypes = [dbCacheType dbAll];
-    Caches = [dbCache dbAll];
     ContainerTypes = [dbContainerType dbAll];
     LogTypes = [dbLogType dbAll];
     ContainerSizes = [dbContainerSize dbAll];
@@ -228,17 +227,6 @@
     while ((ct = [e nextObject]) != nil) {
         if (ct._id == _id)
             return ct;
-    }
-    return nil;
-}
-
-- (dbCache *)Cache_get:(NSInteger)_id
-{
-    NSEnumerator *e = [Caches objectEnumerator];
-    dbCache *wp;
-    while ((wp = [e nextObject]) != nil) {
-        if (wp._id == _id)
-            return wp;
     }
     return nil;
 }

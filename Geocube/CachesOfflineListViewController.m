@@ -55,7 +55,7 @@
 - (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Caches objectEnumerator];
+    NSEnumerator *e = [[dbCache dbAll] objectEnumerator];
     dbCache *wp;
 
     while ((wp = [e nextObject]) != nil) {

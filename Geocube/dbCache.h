@@ -110,6 +110,7 @@
 + (NSInteger)dbCreate:(dbCache *)wp;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
++ (dbCache *)dbGet:(NSInteger)id;
 
 @end
 

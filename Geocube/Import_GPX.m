@@ -151,7 +151,7 @@
             (*newCachesCount)++;
 
             [dbc.CacheGroup_LastImportAdded dbAddCache:cwp_id];
-            [dbc.CacheGroup_LastImport dbAddCache:cwp_id];
+            [dbc.CacheGroup_AllCaches dbAddCache:cwp_id];
             [group dbAddCache:cwp_id];
         } else {
             currentC._id = cwp_id;
