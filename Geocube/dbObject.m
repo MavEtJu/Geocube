@@ -32,6 +32,7 @@ NEEDS_OVERLOADING(dbUpdate);
 {
     self = [super init];
     finished = NO;
+
     return self;
 }
 

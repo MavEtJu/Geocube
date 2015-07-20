@@ -23,6 +23,8 @@
 
 @implementation database
 
+@synthesize dbaccess, db;
+
 - (id)init
 {
     NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
@@ -30,15 +32,13 @@
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
     [self checkAndCreateDatabase:dbname empty:dbempty];
-    dbO.dbaccess = self;
+    dbaccess = self;
 
     sqlite3_open([dbempty UTF8String], &db);
-    dbO.db = db;
     dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
     sqlite3_open([dbname UTF8String], &db);
-    dbO.db = db;
     dbConfig *c_real = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
@@ -50,7 +50,6 @@
     }
 
     sqlite3_open([dbname UTF8String], &db);
-    dbO.db = db;
 
     return self;
 }

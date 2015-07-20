@@ -41,8 +41,8 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheSymbol *s;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         while (sqlite3_step(req) == SQLITE_ROW) {
@@ -62,8 +62,8 @@
     sqlite3_stmt *req;
     dbCacheSymbol *s;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_INT(req, 1, _id);
@@ -90,15 +90,15 @@
     sqlite3_stmt *req;
     NSInteger __id;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, symbol);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        __id = sqlite3_last_insert_rowid(dbO.db);
+        __id = sqlite3_last_insert_rowid(db.db);
         sqlite3_finalize(req);
     }
     return __id;

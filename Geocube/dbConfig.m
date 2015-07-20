@@ -42,8 +42,8 @@
 
     dbConfig *c;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
         SET_VAR_TEXT(req, 1, _key);
 
@@ -63,8 +63,8 @@
     NSString *sql = @"update config set value = ? where key = ?";
     sqlite3_stmt *req;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, value);

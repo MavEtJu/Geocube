@@ -28,7 +28,7 @@
 #import "Coordinates.h"
 #import "My Tools.h"
 
-#import "database-pre.h"
+#import "database.h"
 #import "dbObject.h"
 #import "dbConfig.h"
 #import "dbContainerType.h"
@@ -41,7 +41,6 @@
 #import "dbLogType.h"
 #import "dbLog.h"
 #import "database-cache.h"
-#import "database.h"
 
 #import "GCTableViewController.h"
 #import "GCViewController.h"

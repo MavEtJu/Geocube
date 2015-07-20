@@ -26,7 +26,6 @@ GlobalMenu *menuGlobal;
 // Database handle
 database *db = nil;
 DatabaseCache *dbc = nil;
-databaseObject *dbO = nil;
 
 // Image Library
 ImageLibrary *imageLibrary = nil;

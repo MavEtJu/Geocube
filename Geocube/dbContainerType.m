@@ -42,8 +42,8 @@
     NSMutableArray *cts = [[NSMutableArray alloc] initWithCapacity:20];
     dbContainerType *ct;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         while (sqlite3_step(req) == SQLITE_ROW) {

@@ -120,8 +120,8 @@
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         while (sqlite3_step(req) == SQLITE_ROW) {
@@ -191,8 +191,8 @@
     sqlite3_stmt *req;
     NSInteger _id = 0;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, name);
@@ -212,8 +212,8 @@
     sqlite3_stmt *req;
     NSInteger __id = 0;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, wp.name);
@@ -244,7 +244,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
 
-        __id = sqlite3_last_insert_rowid(dbO.db);
+        __id = sqlite3_last_insert_rowid(db.db);
         sqlite3_finalize(req);
     }
     return __id;
@@ -255,8 +255,8 @@
     NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ?, cache_symbol = ? where id = ?";
     sqlite3_stmt *req;
 
-    @synchronized(dbO.dbaccess) {
-        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
             DB_ASSERT_PREPARE;
 
         SET_VAR_TEXT(req, 1, name);
