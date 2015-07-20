@@ -107,49 +107,65 @@
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame)
+                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 1: /* Hint */
                 //                if (wp.gc_hint ==b nil || [wp.gc_hint compare:@""] == NSOrderedSame)
-                if ([wp.gc_hint compare:@""] == NSOrderedSame || [wp.gc_hint compare:@" "] == NSOrderedSame)
+                if ([wp.gc_hint compare:@""] == NSOrderedSame || [wp.gc_hint compare:@" "] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 2: /* Personal note */
-                if ([wp.gc_personal_note compare:@""] == NSOrderedSame)
+                if ([wp.gc_personal_note compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 3: /* Field Note */
-                if ([wp hasFieldNotes] == FALSE)
+                if ([wp hasFieldNotes] == FALSE) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 4: { /* Logs */
                 NSInteger c = [wp hasLogs];
-                if (c == 0)
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
-                else
+                    cell.userInteractionEnabled = NO;
+                } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
             }
             case 5: { /* Attributes */
                 NSInteger c = [wp hasAttributes];
-                if (c == 0)
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
-                else
+                    cell.userInteractionEnabled = NO;
+                } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
             }
             case 6: /* Related Waypoints */
-                if ([wp hasWaypoints] == FALSE)
+                if ([wp hasWaypoints] == FALSE) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 7: /* Inventory */
-                if ([wp hasInventory] == FALSE)
+                if ([wp hasInventory] == FALSE) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
             case 8: /* Images */
-                if ([wp hasImages] == FALSE)
+                if ([wp hasImages] == FALSE) {
                     tc = [UIColor lightGrayColor];
+                    cell.userInteractionEnabled = NO;
+                }
                 break;
         }
         cell.textLabel.textColor = tc;
