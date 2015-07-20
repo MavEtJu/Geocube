@@ -88,12 +88,14 @@
     [self.contentView addSubview:favourites];
 
     // ContainerSize
+    /*
     r = rectSize;
     r.origin.x -= 10;
     l = [[UILabel alloc] initWithFrame:r];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"S";
     [self.contentView addSubview:l];
+     */
 
     size = [[UIImageView alloc] initWithFrame:rectSize];
     size.image = [imageLibrary get:ImageContainer_Unknown];

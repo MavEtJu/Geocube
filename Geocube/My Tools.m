@@ -53,6 +53,15 @@
     return [date timeIntervalSince1970];
 }
 
++ (NSString *)datetimePartDate:(NSString *)datetime {
+    return [datetime substringToIndex:10];
+}
+
++ (NSString *)datetimePartTime:(NSString *)datetime
+{
+    return [datetime substringWithRange:NSMakeRange(12, 8)];
+}
+
 + (NSString *)simpleHTML:(NSString *)plainText
 {
     if (plainText == nil)

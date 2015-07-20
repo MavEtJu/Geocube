@@ -23,7 +23,7 @@
 
 @implementation dbCache
 
-@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int, gc_archived, gc_available, cache_symbol, cache_symbol_int, cache_symbol_str;
+@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int, gc_archived, gc_available, cache_symbol, cache_symbol_int, cache_symbol_str, gc_owner, gc_placed_by;
 
 - (id)init:(NSInteger)__id
 {
@@ -120,7 +120,7 @@
 
 + (NSMutableArray *)dbAll
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol from caches";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
@@ -155,6 +155,8 @@
             BOOL_FETCH_AND_ASSIGN(req, 22, _gc_archived);
             BOOL_FETCH_AND_ASSIGN(req, 23, _gc_available);
             BOOL_FETCH_AND_ASSIGN(req, 24, _cache_symbol);
+            TEXT_FETCH_AND_ASSIGN(req, 25, _gc_owner);
+            TEXT_FETCH_AND_ASSIGN(req, 26, _gc_placed_by);
 
             wp = [[dbCache alloc] init:__id];
             [wp setName:_name];
@@ -182,6 +184,8 @@
             [wp setGc_archived:_gc_archived];
             [wp setGc_available:_gc_available];
             [wp setCache_symbol_int:_cache_symbol];
+            [wp setGc_owner:_gc_owner];
+            [wp setGc_placed_by:_gc_placed_by];
             [wp finish];
             [wps addObject:wp];
         }
@@ -213,7 +217,7 @@
 
 + (dbCache *)dbGet:(NSInteger)__id
 {
-    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol from caches where id = ?";
+    NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches where id = ?";
     sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
@@ -250,6 +254,8 @@
             BOOL_FETCH_AND_ASSIGN(req, 22, _gc_archived);
             BOOL_FETCH_AND_ASSIGN(req, 23, _gc_available);
             BOOL_FETCH_AND_ASSIGN(req, 24, _cache_symbol);
+            TEXT_FETCH_AND_ASSIGN(req, 25, _gc_owner);
+            TEXT_FETCH_AND_ASSIGN(req, 26, _gc_placed_by);
 
             wp = [[dbCache alloc] init:__id];
             [wp setName:_name];
@@ -277,6 +283,9 @@
             [wp setGc_archived:_gc_archived];
             [wp setGc_available:_gc_available];
             [wp setCache_symbol_int:_cache_symbol];
+            [wp setGc_owner:_gc_owner];
+            [wp setGc_placed_by:_gc_placed_by];
+
             [wp finish];
             [wps addObject:wp];
         }
@@ -288,7 +297,7 @@
 
 + (NSInteger)dbCreate:(dbCache *)wp
 {
-    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
     NSInteger __id = 0;
 
@@ -320,6 +329,8 @@
         SET_VAR_BOOL(req, 22, wp.gc_archived);
         SET_VAR_BOOL(req, 23, wp.gc_available);
         SET_VAR_INT(req, 24, wp.cache_symbol_int);
+        SET_VAR_TEXT(req, 25, wp.gc_owner);
+        SET_VAR_TEXT(req, 26, wp.gc_placed_by);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
@@ -332,7 +343,7 @@
 
 - (void)dbUpdate
 {
-    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ?, cache_symbol = ? where id = ?";
+    NSString *sql = @"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ?, cache_symbol = ?, gc_owner = ?, gc_placed_by = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
@@ -363,7 +374,9 @@
         SET_VAR_BOOL(req, 22, gc_archived);
         SET_VAR_BOOL(req, 23, gc_available);
         SET_VAR_INT(req, 24, cache_symbol_int);
-        SET_VAR_INT(req, 25, _id);
+        SET_VAR_TEXT(req, 25, gc_owner);
+        SET_VAR_TEXT(req, 26, gc_placed_by);
+        SET_VAR_INT(req, 27, _id);
 
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;

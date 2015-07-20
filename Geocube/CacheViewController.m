@@ -80,6 +80,49 @@
     return nil;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section != 0)
+        return nil;
+
+    NSInteger width = tableView.bounds.size.width;
+
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
+    UILabel *l;
+
+    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
+    l.text = wp.description;
+    l.font = [UIFont boldSystemFontOfSize:14];
+    l.textAlignment = NSTextAlignmentCenter;
+    [headerView addSubview:l];
+
+    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+    if ([wp.gc_placed_by compare:@""] != NSOrderedSame)
+        [s appendFormat:@"by %@", wp.gc_placed_by];
+    if ([wp.date_placed compare:@""] != NSOrderedSame)
+        [s appendFormat:@" on %@", [MyTools datetimePartDate:wp.date_placed]];
+    l.text = s;
+    l.font = [UIFont systemFontOfSize:10];
+    l.textAlignment = NSTextAlignmentCenter;
+    [headerView addSubview:l];
+
+    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
+    l.text = wp.name;
+    l.font = [UIFont systemFontOfSize:12];
+    l.textAlignment = NSTextAlignmentCenter;
+    [headerView addSubview:l];
+
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return 37;
+    return [super tableView:tableView heightForHeaderInSection:section];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

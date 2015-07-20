@@ -266,6 +266,14 @@
                 [currentC setGc_hint:currentText];
                 goto bye;
             }
+            if ([elementName compare:@"groundspeak:owner"] == NSOrderedSame) {
+                [currentC setGc_owner:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:placed_by"] == NSOrderedSame) {
+                [currentC setGc_placed_by:currentText];
+                goto bye;
+            }
             goto bye;
         }
         goto bye;

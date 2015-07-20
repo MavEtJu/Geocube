@@ -27,7 +27,11 @@
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
+
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
++ (NSString *)datetimePartDate:(NSString *)datetime;
++ (NSString *)datetimePartTime:(NSString *)datetime;
+
 + (NSString *)simpleHTML:(NSString *)plainText;
 + (NSInteger)numberOfLines:(NSString *)s;
 

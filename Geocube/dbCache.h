@@ -51,6 +51,8 @@
     NSString *gc_short_desc, *gc_long_desc;
     NSString *gc_hint, *gc_personal_note;
 
+    NSString *gc_placed_by, *gc_owner;
+
     NSInteger gc_containerSize_int;
     NSString *gc_containerSize_str;
     dbContainerSize *gc_containerSize;
@@ -90,10 +92,12 @@
 @property (nonatomic, retain) NSString *gc_hint;
 @property (nonatomic, retain) NSString *gc_personal_note;
 @property (nonatomic) NSInteger gc_containerSize_int;
-@property (nonatomic) NSString *gc_containerSize_str;
+@property (nonatomic, retain) NSString *gc_containerSize_str;
 @property (nonatomic, retain) dbContainerSize *gc_containerSize;
 @property (nonatomic) BOOL gc_archived;
 @property (nonatomic) BOOL gc_available;
+@property (nonatomic, retain) NSString *gc_placed_by;
+@property (nonatomic, retain) NSString *gc_owner;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) CLLocationCoordinate2D coordinates;

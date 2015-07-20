@@ -120,7 +120,16 @@
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
     cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
-    cell.stateCountry.text = [NSString stringWithFormat:@"%@, %@", wp.gc_state, wp.gc_country];
+
+    NSMutableString *s = [NSMutableString stringWithFormat:@""];
+    if ([wp.gc_state compare:@""] != NSOrderedSame)
+        [s appendFormat:@"%@", wp.gc_state];
+    if ([wp.gc_country compare:@""] != NSOrderedSame) {
+         if ([s compare:@""] != NSOrderedSame)
+             [s appendFormat:@", "];
+        [s appendFormat:@"%@", wp.gc_country];
+    }
+    cell.stateCountry.text = s;
     return cell;
 }
 
