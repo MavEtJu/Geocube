@@ -39,6 +39,7 @@
 #import "dbCache.h"
 #import "dbAttribute.h"
 #import "dbLogType.h"
+#import "dbTravelbug.h"
 #import "dbLog.h"
 #import "database-cache.h"
 

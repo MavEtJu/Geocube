@@ -103,12 +103,12 @@
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
 - (id)init:(NSInteger)_id;
-- (BOOL)hasFieldNotes;
+- (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;
 - (NSInteger)hasAttributes;
-- (BOOL)hasWaypoints;
-- (BOOL)hasInventory;
-- (BOOL)hasImages;
+- (NSInteger)hasWaypoints;
+- (NSInteger)hasInventory;
+- (NSInteger)hasImages;
 
 + (NSInteger)dbGetByName:(NSString *)name;
 + (NSInteger)dbCreate:(dbCache *)wp;

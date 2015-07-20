@@ -27,6 +27,8 @@
     NSInteger *totalCachesCount;
     NSInteger *newLogsCount;
     NSInteger *totalLogsCount;
+    NSInteger *newTravelbugsCount;
+    NSInteger *totalTravelbugsCount;
     NSUInteger *percentageRead;
     NSUInteger totalLines;
 
@@ -35,15 +37,17 @@
 
     NSMutableArray *attributes;
     NSMutableArray *logs;
+    NSMutableArray *travelbugs;
     NSInteger index;
-    NSInteger inItem, inLog;
+    NSInteger inItem, inLog, inTravelbug;
     NSMutableString *currentText;
     NSString *currentElement;
     dbCache *currentC;
     dbLog *currentLog;
+    dbTravelbug *currentTB;
 }
 
-- (id)init:(NSString *)filename group:(dbCacheGroup *)group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR;
+- (id)init:(NSString *)filename group:(dbCacheGroup *)group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC;
 - (void)parse;
 
 @end

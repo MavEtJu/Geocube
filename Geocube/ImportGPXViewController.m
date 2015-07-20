@@ -62,6 +62,14 @@
     [self.view addSubview:totalCachesLabel];
     y += 40;
 
+    newTravelbugsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
+    [self.view addSubview:newTravelbugsLabel];
+    y += 40;
+
+    totalTravelbugsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
+    [self.view addSubview:totalTravelbugsLabel];
+    y += 40;
+
     newLogsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
     [self.view addSubview:newLogsLabel];
     y += 40;
@@ -70,7 +78,7 @@
     [self.view addSubview:totalLogsLabel];
     y += 40;
 
-    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead];
+    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead newTravelbugsCount:&newTravelbugsCount totalTravelbugsCount:&totalTravelbugsCount];
 
     importDone = NO;
     [self performSelectorInBackground:@selector(run) withObject:nil];
@@ -94,6 +102,8 @@
             totalCachesLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", totalCachesCount];
             newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", newLogsCount];
             totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", totalLogsCount];
+            newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", newTravelbugsCount];
+            totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", totalTravelbugsCount];
         }];
         [NSThread sleepForTimeInterval:0.01];
     }

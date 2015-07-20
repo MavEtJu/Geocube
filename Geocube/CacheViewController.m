@@ -192,24 +192,33 @@
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
             }
-            case 6: /* Related Waypoints */
-                if ([wp hasWaypoints] == FALSE) {
+            case 6: { /* Related Waypoints */
+                NSInteger c = [wp hasWaypoints];
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
-                }
+                } else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
-            case 7: /* Inventory */
-                if ([wp hasInventory] == FALSE) {
+            }
+            case 7: { /* Inventory */
+                NSInteger c = [wp hasInventory];
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
-                }
+                } else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
-            case 8: /* Images */
-                if ([wp hasImages] == FALSE) {
+            }
+            case 8: { /* Images */
+                NSInteger c = [wp hasImages];
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
-                }
+                } else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
                 break;
+            }
         }
         cell.textLabel.textColor = tc;
         cell.imageView.image = nil;

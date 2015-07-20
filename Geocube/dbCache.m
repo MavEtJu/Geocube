@@ -113,10 +113,13 @@
     return [dbAttribute dbCountByCache:_id];
 }
 
-- (BOOL)hasFieldNotes { return NO; }
-- (BOOL)hasWaypoints { return NO; }
-- (BOOL)hasInventory { return NO; }
-- (BOOL)hasImages { return NO; }
+- (NSInteger)hasFieldNotes { return 0; }
+- (NSInteger)hasWaypoints { return 0; }
+- (NSInteger)hasImages { return 0; }
+
+- (NSInteger)hasInventory {
+    return [dbTravelbug dbCountByCache:_id];
+}
 
 + (NSMutableArray *)dbAll
 {

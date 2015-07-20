@@ -23,13 +23,15 @@
 
 @implementation Import_GPX
 
-- (id)init:(NSString *)filename group:(dbCacheGroup *)_group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR
+- (id)init:(NSString *)filename group:(dbCacheGroup *)_group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC
 {
     newCachesCount = nCC;
     totalCachesCount = tCC;
     newLogsCount = nLC;
     totalLogsCount = tLC;
     percentageRead = pR;
+    newTravelbugsCount = nTC;
+    totalTravelbugsCount = tTC;
 
     group = _group;
 
@@ -73,6 +75,7 @@
     index = 0;
     inItem = NO;
     inLog = NO;
+    inTravelbug = NO;
     [rssParser parse];
 }
 
@@ -95,6 +98,7 @@
 
         logs = [NSMutableArray arrayWithCapacity:20];
         attributes = [NSMutableArray arrayWithCapacity:20];
+        travelbugs = [NSMutableArray arrayWithCapacity:20];
 
         inItem = YES;
         return;
@@ -120,6 +124,14 @@
         currentLog = [[dbLog alloc] init];
         [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
         inLog = YES;
+        return;
+    }
+
+    if ([currentElement compare:@"groundspeak:travelbug"] == NSOrderedSame) {
+        currentTB = [[dbTravelbug alloc] init];
+        [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
+        [currentTB setRef:[attributeDict objectForKey:@"ref"]];
+        inTravelbug = YES;
         return;
     }
 
@@ -176,12 +188,37 @@
             [a dbLinkToCache:cwp_id YesNo:a._YesNo];
         }
 
+        // Link travelbugs to cache
+        [dbTravelbug dbUnlinkAllFromCache:cwp_id];
+        e = [travelbugs objectEnumerator];
+        dbTravelbug *tb;
+        while ((tb = [e nextObject]) != nil) {
+            [tb dbLinkToCache:cwp_id];
+        }
 
         inItem = NO;
         goto bye;
     }
 
-    if (index == 4 && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
+    if (index == 4 && inTravelbug == YES && [elementName compare:@"groundspeak:travelbug"] == NSOrderedSame) {
+        [currentTB finish];
+
+        NSInteger tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
+        (*totalTravelbugsCount)++;
+        if (tb_id == 0) {
+            (*newTravelbugsCount)++;
+            currentTB._id = [dbTravelbug dbCreate:currentTB];
+        } else {
+            currentTB._id = tb_id;
+            [currentTB dbUpdate];
+        }
+        [travelbugs addObject:currentTB];
+
+        inTravelbug = NO;
+        goto bye;
+    }
+
+    if (index == 4 && inLog == YES && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
         [currentLog finish];
 
         NSInteger log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
@@ -295,6 +332,17 @@
             }
             if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
                 [currentLog setLog:currentText];
+                goto bye;
+            }
+            goto bye;
+        }
+        goto bye;
+    }
+
+    if (inTravelbug == YES) {
+        if (index == 5) {
+            if ([elementName compare:@"groundspeak:name"] == NSOrderedSame) {
+                [currentTB setName:currentText];
                 goto bye;
             }
             goto bye;
