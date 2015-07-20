@@ -30,17 +30,17 @@
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
     [self checkAndCreateDatabase:dbname empty:dbempty];
+    dbO.dbaccess = self;
 
     sqlite3_open([dbempty UTF8String], &db);
-    dbConfig *c_empty = [self config_get:@"version"];
+    dbO.db = db;
+    dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
     sqlite3_open([dbname UTF8String], &db);
-    dbConfig *c_real = [self config_get:@"version"];
-    sqlite3_close(db);
-
     dbO.db = db;
-    dbO.dbaccess = self;
+    dbConfig *c_real = [dbConfig dbGetByKey:@"version"];
+    sqlite3_close(db);
 
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
@@ -50,6 +50,8 @@
     }
 
     sqlite3_open([dbname UTF8String], &db);
+    dbO.db = db;
+
     return self;
 }
 
@@ -79,46 +81,7 @@
 
 // ------------------------
 
-- (dbConfig *)config_get:(NSString *)key
-{
-    NSString *sql = @"select id, key, value from config where key = ?";
-    sqlite3_stmt *req;
 
-    dbConfig *c;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-        SET_VAR_TEXT(req, 1, key);
-
-        if (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, key);
-            TEXT_FETCH_AND_ASSIGN(req, 2, value);
-            c = [[dbConfig alloc] init:_id key:key value:value];
-        }
-        sqlite3_finalize(req);
-    }
-    return c;
-}
-
-- (void)config_update:(NSString *)key value:(NSString *)value
-{
-    NSString *sql = @"update config set value = ? where key = ?";
-    sqlite3_stmt *req;
-
-    @synchronized(dbaccess) {
-        if (sqlite3_prepare_v2(db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        SET_VAR_TEXT(req, 1, value);
-        SET_VAR_TEXT(req, 2, key);
-
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-        sqlite3_finalize(req);
-    }
-}
 
 // ------------------------
 

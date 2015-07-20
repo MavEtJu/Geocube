@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSString *value;
 
 - (id)init:(NSInteger)_id key:(NSString *)key value:(NSString *)value;
++ (dbConfig *)dbGetByKey:(NSString *)key;
 
 @end
 

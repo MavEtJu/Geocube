@@ -35,4 +35,45 @@
     return self;
 }
 
++ (dbConfig *)dbGetByKey:(NSString *)_key
+{
+    NSString *sql = @"select id, key, value from config where key = ?";
+    sqlite3_stmt *req;
+
+    dbConfig *c;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+        SET_VAR_TEXT(req, 1, _key);
+
+        if (sqlite3_step(req) == SQLITE_ROW) {
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, _key);
+            TEXT_FETCH_AND_ASSIGN(req, 2, _value);
+            c = [[dbConfig alloc] init:__id key:_key value:_value];
+        }
+        sqlite3_finalize(req);
+    }
+    return c;
+}
+
+- (void)config_update
+{
+    NSString *sql = @"update config set value = ? where key = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(dbO.dbaccess) {
+        if (sqlite3_prepare_v2(dbO.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_TEXT(req, 1, value);
+        SET_VAR_TEXT(req, 2, key);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+        sqlite3_finalize(req);
+    }
+}
+
 @end
