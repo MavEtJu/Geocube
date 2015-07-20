@@ -39,7 +39,7 @@
     CacheGroups = [db CacheGroups_all];
     CacheTypes = [db CacheTypes_all];
     Caches = [db Caches_all];
-    ContainerTypes = [db ContainerTypes_all];
+    ContainerTypes = [dbContainerType dbAll];
     LogTypes = [dbLogType dbAll];
     ContainerSizes = [dbContainerSize dbAll];
     Attributes = [dbAttribute dbAll];
