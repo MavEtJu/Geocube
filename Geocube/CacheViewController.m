@@ -107,7 +107,7 @@
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame) {
+                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame && [wp.description compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }

@@ -48,14 +48,23 @@
 
 - (NSString *)makeHTMLString
 {
-    NSString *short_desc = wp.gc_short_desc;
-    if (wp.gc_short_desc_html == NO)
-        short_desc = [MyTools simpleHTML:short_desc];
-    NSString *long_desc = wp.gc_long_desc;
-    if (wp.gc_long_desc_html == NO)
-        long_desc = [MyTools simpleHTML:long_desc];
+    NSMutableString *ret = [NSMutableString stringWithString:wp.description];
 
-    return [NSString stringWithFormat:@"%@<hr>%@", short_desc, long_desc];
+    if ([wp.gc_short_desc compare:@""] != NSOrderedSame) {
+        NSString *s = wp.gc_short_desc;
+        if (wp.gc_short_desc_html == NO)
+            s = [MyTools simpleHTML:s];
+        [ret appendFormat:@"<hr>%@", s];
+    }
+
+    if ([wp.gc_long_desc compare:@""] != NSOrderedSame) {
+        NSString *s = wp.gc_long_desc;
+        if (wp.gc_long_desc_html == NO)
+            s = [MyTools simpleHTML:s];
+        [ret appendFormat:@"<hr>%@", s];
+    }
+
+    return ret;
 }
 
 @end
