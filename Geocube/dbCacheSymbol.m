@@ -51,7 +51,7 @@
             s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
             [ss addObject:s];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return ss;
 }
@@ -74,7 +74,7 @@
             s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
             return s;
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return nil;
 }
@@ -99,7 +99,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         __id = sqlite3_last_insert_rowid(db.db);
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return __id;
 }

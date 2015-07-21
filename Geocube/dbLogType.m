@@ -53,7 +53,7 @@
             lt = [[dbLogType alloc] init:_id logtype:logtype icon:icon];
             [lts addObject:lt];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return lts;
 }

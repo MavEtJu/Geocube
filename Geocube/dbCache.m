@@ -192,7 +192,7 @@
             [wp finish];
             [wps addObject:wp];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return wps;
 }
@@ -213,7 +213,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             _id = __id;
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return _id;
 }
@@ -292,7 +292,7 @@
             [wp finish];
             [wps addObject:wp];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 
     return wp;
@@ -339,7 +339,7 @@
             DB_ASSERT_STEP;
 
         __id = sqlite3_last_insert_rowid(db.db);
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return __id;
 }
@@ -384,7 +384,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
         
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 

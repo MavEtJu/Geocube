@@ -82,7 +82,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, ___id);
             __id = ___id;
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return __id;
 }
@@ -114,7 +114,7 @@
             DB_ASSERT_STEP;
 
         __id = sqlite3_last_insert_rowid(db.db);
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return __id;
 }
@@ -140,7 +140,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
 
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 
@@ -159,7 +159,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
 
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 
@@ -179,7 +179,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return count;
 }
@@ -210,7 +210,7 @@
             [l finish];
             [ls addObject:l];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return ls;
 }

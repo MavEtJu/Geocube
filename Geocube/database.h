@@ -78,4 +78,12 @@ extern database *db;
 #define DB_ASSERT_STEP      DB_ASSERT(@"step")
 #define DB_ASSERT_PREPARE   DB_ASSERT(@"prepare")
 
+#define DB_PREPARE(__s__) \
+    if (sqlite3_prepare_v2(db.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
+        DB_ASSERT_PREPARE;
+#define DB_FINISH \
+    sqlite3_finalize(req);
+#define DB_GET_LAST_ID(__id__) \
+        __id__ = sqlite3_last_insert_rowid(db.db);
+
 #endif

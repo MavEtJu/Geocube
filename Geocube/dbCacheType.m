@@ -55,7 +55,7 @@
             wpt = [[dbCacheType alloc] init:__id type:_type icon:_icon pin:_pin];
             [wpts addObject:wpt];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return wpts;
 

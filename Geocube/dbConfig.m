@@ -53,7 +53,7 @@
             TEXT_FETCH_AND_ASSIGN(req, 2, _value);
             c = [[dbConfig alloc] init:__id key:_key value:_value];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return c;
 }
@@ -72,7 +72,7 @@
 
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 

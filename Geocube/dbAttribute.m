@@ -40,14 +40,12 @@
 
 + (NSArray *)dbAll
 {
-    NSString *sql = @"select id, label, gc_id, icon from attributes";
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, label, gc_id, icon from attributes");
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -57,7 +55,7 @@
             s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
             [ss addObject:s];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return ss;
 }
@@ -80,7 +78,7 @@
             DB_ASSERT_STEP;
 
         __id = sqlite3_last_insert_rowid(db.db);
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 
@@ -100,7 +98,7 @@
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
 
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
 }
 
@@ -120,7 +118,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return count;
 }
@@ -146,7 +144,7 @@
             s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
             [ss addObject:s];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return ss;
 }

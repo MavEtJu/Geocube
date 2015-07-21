@@ -53,7 +53,7 @@
             ct = [[dbContainerType alloc] init:_id size:size icon:icon];
             [cts addObject:ct];
         }
-        sqlite3_finalize(req);
+        DB_FINISH;
     }
     return cts;
 }
