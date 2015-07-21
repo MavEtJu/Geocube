@@ -277,6 +277,12 @@
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
+        if (indexPath.row == 7) {    /* Groups */
+            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:wp];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
         if (indexPath.row == 9) {    /* Groups */
             UITableViewController *newController = [[CacheGroupsViewController alloc] init:wp];
             newController.edgesForExtendedLayout = UIRectEdgeNone;

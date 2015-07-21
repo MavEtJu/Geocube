@@ -21,6 +21,7 @@
 		E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E81303FD1B5B0B68006DF300 /* waymarking.gpx */; };
 		E81304041B5C4EB1006DF300 /* dbCacheSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
+		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -274,6 +275,8 @@
 		E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCacheSymbol.m; sourceTree = "<group>"; };
 		E81304091B5D9B5E006DF300 /* dbTravelbug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTravelbug.h; sourceTree = "<group>"; };
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
+		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
+		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -815,6 +818,8 @@
 				E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */,
 				E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */,
 				E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */,
+				E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */,
+				E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */,
 			);
 			name = "Cache Viewing";
 			sourceTree = "<group>";
@@ -1476,6 +1481,7 @@
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
+				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,

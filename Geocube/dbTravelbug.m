@@ -38,30 +38,6 @@
     return self;
 }
 
-+ (NSArray *)XXdbAll
-{
-    NSString *sql = @"select id, label, gc_id, icon from attributes";
-    sqlite3_stmt *req;
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
-
-    @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
-
-        while (sqlite3_step(req) == SQLITE_ROW) {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
-            INT_FETCH_AND_ASSIGN(req, 3, icon);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
-        }
-        sqlite3_finalize(req);
-    }
-    return ss;
-}
-
 + (void)dbUnlinkAllFromCache:(NSInteger)cache_id
 {
     NSString *sql = @"delete from travelbug2cache where cache_id = ?";
@@ -122,12 +98,12 @@
     return count;
 }
 
-+ (NSArray *)XXdbAllByCache:(NSInteger)cache_id
++ (NSArray *)dbAllByCache:(NSInteger)cache_id
 {
-    NSString *sql = @"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)";
+    NSString *sql = @"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2cache where cache_id = ?)";
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
+    dbTravelbug *tb;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -137,11 +113,11 @@
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            TEXT_FETCH_AND_ASSIGN(req, 2, ref);
             INT_FETCH_AND_ASSIGN(req, 2, gc_id);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
+            tb = [[dbTravelbug alloc] init:_id name:name ref:ref gc_id:gc_id];
+            [ss addObject:tb];
         }
         sqlite3_finalize(req);
     }
@@ -195,6 +171,27 @@
         sqlite3_finalize(req);
     }
     return __id;
+}
+
+- (void)dbUpdate
+{
+    NSString *sql = @"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?";
+    sqlite3_stmt *req;
+
+    @synchronized(db.dbaccess) {
+        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
+            DB_ASSERT_PREPARE;
+
+        SET_VAR_INT(req, 1, gc_id);
+        SET_VAR_TEXT(req, 2, ref);
+        SET_VAR_TEXT(req, 3, name);
+        SET_VAR_INT(req, 4, _id);
+
+        if (sqlite3_step(req) != SQLITE_DONE)
+            DB_ASSERT_STEP;
+
+        sqlite3_finalize(req);
+    }
 }
 
 @end

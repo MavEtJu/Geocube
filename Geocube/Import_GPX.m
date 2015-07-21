@@ -153,6 +153,7 @@
 
     [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
 
+    // Deal with the completion of the cache
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentC finish];
 
@@ -200,6 +201,7 @@
         goto bye;
     }
 
+    // Deal with the completion of the travelbug
     if (index == 4 && inTravelbug == YES && [elementName compare:@"groundspeak:travelbug"] == NSOrderedSame) {
         [currentTB finish];
 
@@ -218,6 +220,7 @@
         goto bye;
     }
 
+    // Deal with the completion of the log
     if (index == 4 && inLog == YES && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
         [currentLog finish];
 
@@ -236,7 +239,44 @@
         goto bye;
     }
 
-    if (inItem == YES && inLog == NO) {
+    // Deal with the data of the travelbug
+    if (inTravelbug == YES) {
+        if (index == 5) {
+            if ([elementName compare:@"groundspeak:name"] == NSOrderedSame) {
+                [currentTB setName:currentText];
+                goto bye;
+            }
+            goto bye;
+        }
+        goto bye;
+    }
+
+    // Deal with the data of the log
+    if (inLog == YES) {
+        if (index == 5) {
+            if ([elementName compare:@"groundspeak:date"] == NSOrderedSame) {
+                [currentLog setDatetime:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:type"] == NSOrderedSame) {
+                [currentLog setLogtype_string:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:finder"] == NSOrderedSame) {
+                [currentLog setLogger:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
+                [currentLog setLog:currentText];
+                goto bye;
+            }
+            goto bye;
+        }
+        goto bye;
+    }
+
+    // Deal with the data of the cache. Always the last one!
+    if (inItem == YES) {
         if (index == 2 && currentText != nil) {
             if ([elementName compare:@"time"] == NSOrderedSame) {
                 [currentC setDate_placed:currentText];
@@ -309,40 +349,6 @@
             }
             if ([elementName compare:@"groundspeak:placed_by"] == NSOrderedSame) {
                 [currentC setGc_placed_by:currentText];
-                goto bye;
-            }
-            goto bye;
-        }
-        goto bye;
-    }
-
-    if (inLog == YES) {
-        if (index == 5) {
-            if ([elementName compare:@"groundspeak:date"] == NSOrderedSame) {
-                [currentLog setDatetime:currentText];
-                goto bye;
-            }
-            if ([elementName compare:@"groundspeak:type"] == NSOrderedSame) {
-                [currentLog setLogtype_string:currentText];
-                goto bye;
-            }
-            if ([elementName compare:@"groundspeak:finder"] == NSOrderedSame) {
-                [currentLog setLogger:currentText];
-                goto bye;
-            }
-            if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
-                [currentLog setLog:currentText];
-                goto bye;
-            }
-            goto bye;
-        }
-        goto bye;
-    }
-
-    if (inTravelbug == YES) {
-        if (index == 5) {
-            if ([elementName compare:@"groundspeak:name"] == NSOrderedSame) {
-                [currentTB setName:currentText];
                 goto bye;
             }
             goto bye;

@@ -64,6 +64,7 @@
 #import "CacheLogsViewController.h"
 #import "CacheGroupsViewController.h"
 #import "CacheAttributesViewController.h"
+#import "CacheTravelbugsViewController.h"
 #import "CacheViewController.h"
 
 #import "NullViewController.h"

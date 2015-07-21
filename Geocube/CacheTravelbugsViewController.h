@@ -19,24 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbTravelbug : dbObject {
-    NSInteger _id;
-    NSString *name;
-    NSString *ref;
-    NSInteger gc_id;
-};
+@interface CacheTravelbugsViewController : GCTableViewController {
+    NSMutableArray *tbs;
+    dbCache *cache;
+}
 
-@property (nonatomic) NSInteger _id;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *ref;
-@property (nonatomic) NSInteger gc_id;
-
-+ (void)dbUnlinkAllFromCache:(NSInteger)wp_id;
-- (void)dbLinkToCache:(NSInteger)wp_id;
-+ (NSInteger)dbGetIdByGC:(NSInteger)_gc_id;
-+ (NSInteger)dbCreate:(dbTravelbug *)tb;
-- (NSInteger)dbCreate;
-+ (NSInteger)dbCountByCache:(NSInteger)wp_id;
-+ (NSArray *)dbAllByCache:(NSInteger)cache_id;
+- (id)init:(dbCache *)cache;
 
 @end
