@@ -89,7 +89,7 @@
 
         if (sqlite3_step(req) != SQLITE_DONE)
             DB_ASSERT_STEP;
-        __id = sqlite3_last_insert_rowid(db.db);
+        DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
     return __id;
