@@ -32,8 +32,6 @@
 
     _AppDelegate = self;
 
-    NSFileManager *fm = [[NSFileManager alloc] init];
-
     // Initialize Google Maps
     [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
 

@@ -36,6 +36,9 @@ dbCache *currentCache = nil;
 // Location Manager
 GCLocationManager *LM = nil;
 
+// File manager
+NSFileManager *fm = nil;
+
 //
 AppDelegate *_AppDelegate;
 
