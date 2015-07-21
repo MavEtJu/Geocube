@@ -37,8 +37,6 @@
 
 + (dbConfig *)dbGetByKey:(NSString *)_key
 {
-    sqlite3_stmt *req;
-
     dbConfig *c;
 
     @synchronized(db.dbaccess) {
@@ -59,8 +57,6 @@
 
 - (void)config_update
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update config set value = ? where key = ?");
 

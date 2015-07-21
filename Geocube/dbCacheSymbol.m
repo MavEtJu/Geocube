@@ -36,7 +36,6 @@
 
 + (NSArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheSymbol *s;
 
@@ -56,7 +55,6 @@
 
 + (dbObject *)dbGet:(NSId)_id;
 {
-    sqlite3_stmt *req;
     dbCacheSymbol *s;
 
     @synchronized(db.dbaccess) {
@@ -82,7 +80,6 @@
 
 + (NSId)dbCreate:(NSString *)symbol
 {
-    sqlite3_stmt *req;
     NSId __id;
 
     @synchronized(db.dbaccess) {

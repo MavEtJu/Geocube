@@ -40,7 +40,6 @@
 
 + (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -58,8 +57,6 @@
 
 - (void)dbLinkToCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbug2cache(travelbug_id, cache_id) values(?, ?)");
 
@@ -75,7 +72,6 @@
 
 + (NSInteger)dbCountByCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
@@ -94,7 +90,6 @@
 
 + (NSArray *)dbAllByCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbTravelbug *tb;
 
@@ -118,7 +113,6 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -142,7 +136,6 @@
 
 + (NSId)dbCreate:(dbTravelbug *)tb
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -163,8 +156,6 @@
 
 - (void)dbUpdate
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?");
 

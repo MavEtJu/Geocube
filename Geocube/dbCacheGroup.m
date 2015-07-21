@@ -37,8 +37,6 @@
 
 - (void)dbEmpty
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from cache_group2caches where cache_group_id = ?");
 
@@ -53,7 +51,6 @@
 
 + (dbCacheGroup *)dbGetByName:(NSString *)name
 {
-    sqlite3_stmt *req;
     dbCacheGroup *wpg;
 
     @synchronized(db.dbaccess) {
@@ -74,7 +71,6 @@
 
 + (NSMutableArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
 
@@ -95,7 +91,6 @@
 
 + (NSArray *)dbAllByCache:(NSId)wp_id
 {
-    sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
 
@@ -116,7 +111,6 @@
 
 - (NSInteger)dbCountCaches
 {
-    sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
@@ -135,7 +129,6 @@
 
 + (NSId)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
 {
-    sqlite3_stmt *req;
     NSId __id;
 
     @synchronized(db.dbaccess) {
@@ -159,8 +152,6 @@
 
 + (void)dbDelete:(NSId)__id
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from cache_groups where id = ?");
 
@@ -174,8 +165,6 @@
 
 - (void)dbUpdateName:(NSString *)newname
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update cache_groups set name = ? where id = ?");
 
@@ -190,8 +179,6 @@
 
 - (void)dbAddCache:(NSId)__id
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)");
 
@@ -206,7 +193,6 @@
 
 - (BOOL)dbContainsCache:(NSId)c_id
 {
-    sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {

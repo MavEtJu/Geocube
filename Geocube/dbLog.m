@@ -68,7 +68,6 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -92,7 +91,6 @@
 
 + (NSId)dbCreate:(dbLog *)log
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -117,8 +115,6 @@
 
 - (void)dbUpdate
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
 
@@ -140,8 +136,6 @@
 
 - (void)dbUpdateCache:(NSId)wp_id;
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set cache_id = ? where id = ?");
 
@@ -157,7 +151,6 @@
 
 + (NSInteger)dbCountByCache:(NSId)wp_id
 {
-    sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
@@ -176,7 +169,6 @@
 
 + (NSArray *)dbAllByCache:(NSId)wp_id
 {
-    sqlite3_stmt *req;
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
     dbLog *l;
 

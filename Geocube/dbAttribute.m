@@ -40,7 +40,6 @@
 
 + (NSArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
 
@@ -64,7 +63,6 @@
 
 + (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -82,8 +80,6 @@
 
 - (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)");
 
@@ -100,7 +96,6 @@
 
 + (NSInteger)dbCountByCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
@@ -119,7 +114,6 @@
 
 + (NSArray *)dbAllByCache:(NSId)cache_id
 {
-    sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
 

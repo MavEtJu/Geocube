@@ -123,7 +123,6 @@
 
 + (NSMutableArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
 
@@ -197,7 +196,6 @@
 
 + (NSId)dbGetByName:(NSString *)name
 {
-    sqlite3_stmt *req;
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
@@ -216,7 +214,6 @@
 
 + (dbCache *)dbGet:(NSId)__id
 {
-    sqlite3_stmt *req;
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbCache *wp;
 
@@ -294,7 +291,6 @@
 
 + (NSId)dbCreate:(dbCache *)wp
 {
-    sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
@@ -338,8 +334,6 @@
 
 - (void)dbUpdate
 {
-    sqlite3_stmt *req;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type = ?, gc_country = ?, gc_state = ?, gc_rating_difficulty = ?, gc_rating_terrain = ?, gc_favourites = ?, gc_long_desc_html = ?, gc_long_desc = ?, gc_short_desc_html = ?, gc_short_desc = ?, gc_hint = ?, gc_container_size_id = ?, gc_archived = ?, gc_available = ?, cache_symbol = ?, gc_owner = ?, gc_placed_by = ? where id = ?");
 

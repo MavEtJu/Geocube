@@ -37,7 +37,6 @@
 
 + (NSArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *lts = [[NSMutableArray alloc] initWithCapacity:20];
     dbLogType *lt;
 

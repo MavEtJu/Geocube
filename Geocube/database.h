@@ -79,6 +79,7 @@ extern database *db;
 #define DB_ASSERT_PREPARE   DB_ASSERT(@"prepare")
 
 #define DB_PREPARE(__s__) \
+    sqlite3_stmt *req; \
     if (sqlite3_prepare_v2(db.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
         DB_ASSERT_PREPARE;
 #define DB_FINISH \

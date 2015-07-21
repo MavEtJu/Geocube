@@ -38,7 +38,6 @@
 
 + (NSArray *)dbAll
 {
-    sqlite3_stmt *req;
     NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheType *wpt;
 
