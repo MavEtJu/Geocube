@@ -35,6 +35,51 @@
     return self;
 }
 
++ (void)cleanupAfterDelete
+{
+    // Delete all logs from caches not longer in an usergroup (should be zero)
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from cache_group2caches where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    // Delete all logs from caches not longer in an usergroup
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from logs where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    // Delete all travelbugs from caches not longer in an usergroup
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from travelbug2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    // Delete all attributes from caches not longer in an usergroup
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from attribute2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    // Delete all travelbugs from caches not longer in an usergroup
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from travelbug2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    // Delete all caches which are not longer in a usergroup
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from caches where id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (void)dbEmpty
 {
     @synchronized(db.dbaccess) {
@@ -45,6 +90,8 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    [dbCacheGroup cleanupAfterDelete];
 }
 
 
@@ -66,9 +113,6 @@
         DB_FINISH;
     }
     return wpg;
-
-
-
 }
 
 + (NSMutableArray *)dbAll
@@ -161,6 +205,8 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    [dbCacheGroup cleanupAfterDelete];
 }
 
 - (void)dbUpdateName:(NSString *)newname
