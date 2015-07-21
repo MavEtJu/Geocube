@@ -47,9 +47,7 @@
 
         SET_VAR_INT(req, 1, cache_id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
+        DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
@@ -63,9 +61,7 @@
         SET_VAR_INT(req, 1, _id);
         SET_VAR_INT(req, 2, cache_id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -79,7 +75,7 @@
 
         SET_VAR_INT(req, 1, cache_id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
         }
@@ -98,7 +94,7 @@
 
         SET_VAR_INT(req, 1, cache_id);
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             TEXT_FETCH_AND_ASSIGN(req, 2, ref);
@@ -120,7 +116,7 @@
 
         SET_VAR_INT(req, 1, _gc_id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, ___id);
             __id = ___id;
         }
@@ -145,9 +141,7 @@
         SET_VAR_TEXT(req, 2, tb.ref);
         SET_VAR_TEXT(req, 3, tb.name);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
+        DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
@@ -164,9 +158,7 @@
         SET_VAR_TEXT(req, 3, name);
         SET_VAR_INT(req, 4, _id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }

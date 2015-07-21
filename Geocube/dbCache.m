@@ -129,7 +129,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches");
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _name);
             TEXT_FETCH_AND_ASSIGN(req, 2, _desc);
@@ -203,7 +203,7 @@
 
         SET_VAR_TEXT(req, 1, name);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             _id = __id;
         }
@@ -222,7 +222,7 @@
 
         SET_VAR_INT(req, 1, __id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _name);
             TEXT_FETCH_AND_ASSIGN(req, 2, _desc);
@@ -323,9 +323,7 @@
         SET_VAR_TEXT(req, 25, wp.gc_owner);
         SET_VAR_TEXT(req, 26, wp.gc_placed_by);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-
+        DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
@@ -365,9 +363,7 @@
         SET_VAR_TEXT(req, 26, gc_placed_by);
         SET_VAR_INT(req, 27, _id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
-        
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }

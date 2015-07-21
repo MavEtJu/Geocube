@@ -44,7 +44,7 @@
 
         SET_VAR_TEXT(req, 1, _key);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _key);
             TEXT_FETCH_AND_ASSIGN(req, 2, _value);
@@ -63,8 +63,7 @@
         SET_VAR_TEXT(req, 1, value);
         SET_VAR_TEXT(req, 2, key);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }

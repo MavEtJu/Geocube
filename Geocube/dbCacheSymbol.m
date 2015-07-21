@@ -42,7 +42,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, symbol from cache_symbols");
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
             s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
@@ -62,7 +62,7 @@
 
         SET_VAR_INT(req, 1, _id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
             s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
@@ -87,8 +87,7 @@
 
         SET_VAR_TEXT(req, 1, symbol);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
         DB_FINISH;
     }

@@ -42,8 +42,7 @@
 
         SET_VAR_INT(req, 1, _id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -58,7 +57,7 @@
 
         SET_VAR_TEXT(req, 1, name);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             INT_FETCH_AND_ASSIGN(req, 2, ug);
@@ -67,6 +66,9 @@
         DB_FINISH;
     }
     return wpg;
+
+
+
 }
 
 + (NSMutableArray *)dbAll
@@ -77,7 +79,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, usergroup from cache_groups");
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _name);
             INT_FETCH_AND_ASSIGN(req, 2, _ug);
@@ -99,7 +101,7 @@
 
         SET_VAR_INT(req, 1, wp_id);
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, wpgid);
             wpg = [dbc CacheGroup_get:wpgid];
             [wpgs addObject:wpg];
@@ -118,7 +120,7 @@
 
         SET_VAR_INT(req, 1, self._id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
         }
@@ -137,8 +139,7 @@
         SET_VAR_TEXT(req, 1, _name);
         SET_VAR_BOOL(req, 2, _usergroup);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
@@ -157,8 +158,7 @@
 
         SET_VAR_INT(req, 1, __id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -171,8 +171,7 @@
         SET_VAR_TEXT(req, 1, newname);
         SET_VAR_INT(req, 2, _id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -185,8 +184,7 @@
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, __id);
 
-        if (sqlite3_step(req) != SQLITE_DONE)
-            DB_ASSERT_STEP;
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -201,7 +199,7 @@
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, c_id);
 
-        if (sqlite3_step(req) == SQLITE_ROW) {
+        DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
             count = c;
         }

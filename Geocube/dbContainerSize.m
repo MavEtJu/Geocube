@@ -43,7 +43,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, container_size, icon from container_sizes");
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, size);
             INT_FETCH_AND_ASSIGN(req, 2, icon);

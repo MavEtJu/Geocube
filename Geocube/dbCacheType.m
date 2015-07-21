@@ -44,7 +44,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, type, icon, pin from cache_types");
 
-        while (sqlite3_step(req) == SQLITE_ROW) {
+        DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _type);
             INT_FETCH_AND_ASSIGN(req, 2, _icon);
