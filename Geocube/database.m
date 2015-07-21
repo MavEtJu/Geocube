@@ -38,14 +38,20 @@
     NSLog(@"Using %@ as the database.", dbname);
     NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
+    // If the database doesn't exist, create it
+    [self checkAndCreateDatabase:dbname empty:dbempty];
+
+    // Determine version of the distribution database
     sqlite3_open([dbempty UTF8String], &db);
     dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
+    // Determine version of the active database
     sqlite3_open([dbname UTF8String], &db);
     dbConfig *c_real = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
+    // If the active version is different from the distribution version, then reinitialize.
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
         NSLog(@"Empty is newer, overwriting old one");
@@ -54,8 +60,6 @@
     }
 
     sqlite3_open([dbname UTF8String], &db);
-
-    [self checkAndCreateDatabase:dbname empty:dbempty];
 }
 
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty
