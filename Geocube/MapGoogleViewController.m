@@ -70,6 +70,11 @@
     }
 }
 
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
+{
+    [super openCacheView:marker.title];
+}
+
 - (void)setMapType:(NSInteger)mapType
 {
     switch (mapType) {
