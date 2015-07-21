@@ -38,14 +38,12 @@
 
 + (NSArray *)dbAll
 {
-    NSString *sql = @"select id, type, icon, pin from cache_types";
     sqlite3_stmt *req;
     NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheType *wpt;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, type, icon, pin from cache_types");
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
@@ -58,9 +56,6 @@
         DB_FINISH;
     }
     return wpts;
-
-
-
 }
 
 @end

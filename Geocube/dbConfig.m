@@ -37,14 +37,13 @@
 
 + (dbConfig *)dbGetByKey:(NSString *)_key
 {
-    NSString *sql = @"select id, key, value from config where key = ?";
     sqlite3_stmt *req;
 
     dbConfig *c;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, key, value from config where key = ?");
+
         SET_VAR_TEXT(req, 1, _key);
 
         if (sqlite3_step(req) == SQLITE_ROW) {
@@ -60,12 +59,10 @@
 
 - (void)config_update
 {
-    NSString *sql = @"update config set value = ? where key = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"update config set value = ? where key = ?");
 
         SET_VAR_TEXT(req, 1, value);
         SET_VAR_TEXT(req, 2, key);

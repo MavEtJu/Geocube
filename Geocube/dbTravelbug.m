@@ -40,13 +40,11 @@
 
 + (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
-    NSString *sql = @"delete from travelbug2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"delete from travelbug2cache where cache_id = ?");
 
         SET_VAR_INT(req, 1, cache_id);
 
@@ -60,12 +58,10 @@
 
 - (void)dbLinkToCache:(NSId)cache_id
 {
-    NSString *sql = @"insert into travelbug2cache(travelbug_id, cache_id) values(?, ?)";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into travelbug2cache(travelbug_id, cache_id) values(?, ?)");
 
         SET_VAR_INT(req, 1, _id);
         SET_VAR_INT(req, 2, cache_id);
@@ -79,13 +75,11 @@
 
 + (NSInteger)dbCountByCache:(NSId)cache_id
 {
-    NSString *sql = @"select count(id) from travelbug2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select count(id) from travelbug2cache where cache_id = ?");
 
         SET_VAR_INT(req, 1, cache_id);
 
@@ -100,14 +94,12 @@
 
 + (NSArray *)dbAllByCache:(NSId)cache_id
 {
-    NSString *sql = @"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2cache where cache_id = ?)";
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbTravelbug *tb;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2cache where cache_id = ?)");
 
         SET_VAR_INT(req, 1, cache_id);
 
@@ -126,13 +118,11 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    NSString *sql = @"select id from travelbugs where gc_id = ?";
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id from travelbugs where gc_id = ?");
 
         SET_VAR_INT(req, 1, _gc_id);
 
@@ -152,13 +142,11 @@
 
 + (NSId)dbCreate:(dbTravelbug *)tb
 {
-    NSString *sql = @"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)";
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)");
 
         SET_VAR_INT(req, 1, tb.gc_id);
         SET_VAR_TEXT(req, 2, tb.ref);
@@ -175,12 +163,10 @@
 
 - (void)dbUpdate
 {
-    NSString *sql = @"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?");
 
         SET_VAR_INT(req, 1, gc_id);
         SET_VAR_TEXT(req, 2, ref);

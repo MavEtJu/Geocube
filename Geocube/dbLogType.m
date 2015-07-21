@@ -37,14 +37,12 @@
 
 + (NSArray *)dbAll
 {
-    NSString *sql = @"select id, logtype, icon from log_types";
     sqlite3_stmt *req;
     NSMutableArray *lts = [[NSMutableArray alloc] initWithCapacity:20];
     dbLogType *lt;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, logtype, icon from log_types");
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);

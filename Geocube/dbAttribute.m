@@ -64,13 +64,11 @@
 
 + (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
-    NSString *sql = @"delete from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"delete from attribute2cache where cache_id = ?");
 
         SET_VAR_INT(req, 1, cache_id);
 
@@ -84,12 +82,10 @@
 
 - (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO
 {
-    NSString *sql = @"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)");
 
         SET_VAR_INT(req, 1, _id);
         SET_VAR_INT(req, 2, cache_id);
@@ -104,13 +100,11 @@
 
 + (NSInteger)dbCountByCache:(NSId)cache_id
 {
-    NSString *sql = @"select count(id) from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select count(id) from attribute2cache where cache_id = ?");
 
         SET_VAR_INT(req, 1, cache_id);
 
@@ -125,14 +119,12 @@
 
 + (NSArray *)dbAllByCache:(NSId)cache_id
 {
-    NSString *sql = @"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)";
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)");
 
         SET_VAR_INT(req, 1, cache_id);
 

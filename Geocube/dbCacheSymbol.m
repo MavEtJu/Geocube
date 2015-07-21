@@ -36,14 +36,12 @@
 
 + (NSArray *)dbAll
 {
-    NSString *sql = @"select id, symbol from cache_symbols";
     sqlite3_stmt *req;
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheSymbol *s;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, symbol from cache_symbols");
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -58,13 +56,11 @@
 
 + (dbObject *)dbGet:(NSId)_id;
 {
-    NSString *sql = @"select id, symbol from cache_symbols where id = ?";
     sqlite3_stmt *req;
     dbCacheSymbol *s;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, symbol from cache_symbols where id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
@@ -86,13 +82,11 @@
 
 + (NSId)dbCreate:(NSString *)symbol
 {
-    NSString *sql = @"insert into cache_symbols(symbol) values(?)";
     sqlite3_stmt *req;
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into cache_symbols(symbol) values(?)");
 
         SET_VAR_TEXT(req, 1, symbol);
 

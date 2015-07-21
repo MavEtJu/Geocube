@@ -68,13 +68,11 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    NSString *sql = @"select id from logs where gc_id = ?";
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id from logs where gc_id = ?");
 
         SET_VAR_INT(req, 1, _gc_id);
 
@@ -93,14 +91,12 @@
 }
 
 + (NSId)dbCreate:(dbLog *)log
-    {
-    NSString *sql = @"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)";
+{
     sqlite3_stmt *req;
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT(req, 1, log.cache_id);
         SET_VAR_INT(req, 2, log.logtype_id);
@@ -121,12 +117,10 @@
 
 - (void)dbUpdate
 {
-    NSString *sql = @"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
 
         SET_VAR_INT(req, 1, logtype_id);
         SET_VAR_INT(req, 2, cache_id);
@@ -146,12 +140,10 @@
 
 - (void)dbUpdateCache:(NSId)wp_id;
 {
-    NSString *sql = @"update logs set cache_id = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"update logs set cache_id = ? where id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
         SET_VAR_INT(req, 2, _id);
@@ -165,13 +157,11 @@
 
 + (NSInteger)dbCountByCache:(NSId)wp_id
 {
-    NSString *sql = @"select count(id) from logs where cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select count(id) from logs where cache_id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
 
@@ -186,14 +176,12 @@
 
 + (NSArray *)dbAllByCache:(NSId)wp_id
 {
-    NSString *sql = @"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?";
     sqlite3_stmt *req;
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
     dbLog *l;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
 
@@ -214,6 +202,5 @@
     }
     return ls;
 }
-
 
 @end

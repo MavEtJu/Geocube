@@ -37,12 +37,10 @@
 
 - (void)dbEmpty
 {
-    NSString *sql = @"delete from cache_group2caches where cache_group_id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"delete from cache_group2caches where cache_group_id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
@@ -55,13 +53,11 @@
 
 + (dbCacheGroup *)dbGetByName:(NSString *)name
 {
-    NSString *sql = @"select id, name, usergroup from cache_groups where name = ?";
     sqlite3_stmt *req;
     dbCacheGroup *wpg;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, name, usergroup from cache_groups where name = ?");
 
         SET_VAR_TEXT(req, 1, name);
 
@@ -78,14 +74,12 @@
 
 + (NSMutableArray *)dbAll
 {
-    NSString *sql = @"select id, name, usergroup from cache_groups";
     sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select id, name, usergroup from cache_groups");
 
         while (sqlite3_step(req) == SQLITE_ROW) {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
@@ -101,14 +95,12 @@
 
 + (NSArray *)dbAllByCache:(NSId)wp_id
 {
-    NSString *sql = @"select cache_group_id from cache_group2caches where cache_id = ?";
     sqlite3_stmt *req;
     NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbCacheGroup *wpg;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select cache_group_id from cache_group2caches where cache_id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
 
@@ -124,13 +116,11 @@
 
 - (NSInteger)dbCountCaches
 {
-    NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select count(id) from cache_group2caches where cache_group_id = ?");
 
         SET_VAR_INT(req, 1, self._id);
 
@@ -145,13 +135,11 @@
 
 + (NSId)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
 {
-    NSString *sql = @"insert into cache_groups(name, usergroup) values(?, ?)";
     sqlite3_stmt *req;
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into cache_groups(name, usergroup) values(?, ?)");
 
         SET_VAR_TEXT(req, 1, _name);
         SET_VAR_BOOL(req, 2, _usergroup);
@@ -171,12 +159,10 @@
 
 + (void)dbDelete:(NSId)__id
 {
-    NSString *sql = @"delete from cache_groups where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"delete from cache_groups where id = ?");
 
         SET_VAR_INT(req, 1, __id);
 
@@ -188,12 +174,10 @@
 
 - (void)dbUpdateName:(NSString *)newname
 {
-    NSString *sql = @"update cache_groups set name = ? where id = ?";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"update cache_groups set name = ? where id = ?");
 
         SET_VAR_TEXT(req, 1, newname);
         SET_VAR_INT(req, 2, _id);
@@ -206,12 +190,10 @@
 
 - (void)dbAddCache:(NSId)__id
 {
-    NSString *sql = @"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)";
     sqlite3_stmt *req;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)");
 
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, __id);
@@ -224,13 +206,11 @@
 
 - (BOOL)dbContainsCache:(NSId)c_id
 {
-    NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?";
     sqlite3_stmt *req;
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
-            DB_ASSERT_PREPARE;
+        DB_PREPARE(@"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?");
 
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, c_id);
