@@ -20,18 +20,16 @@
  */
 
 @interface dbCacheSymbol : dbObject {
-    NSInteger _id;
     NSString *symbol;
 }
 
 @property (nonatomic, retain) NSString *symbol;
-@property (nonatomic) NSInteger _id;
 
-- (id)init:(NSInteger)_id symbol:(NSString *)symbol;
-+ (NSInteger)dbCreate:(NSString *)symbol;
+- (id)init:(NSId)_id symbol:(NSString *)symbol;
++ (NSId)dbCreate:(NSString *)symbol;
 
 + (NSArray *)dbAll;
-+ (dbObject *)dbGet:(NSInteger)_id;
-- (NSInteger)dbCreate;
++ (dbObject *)dbGet:(NSId)_id;
+- (NSId)dbCreate;
 
 @end

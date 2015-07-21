@@ -23,28 +23,26 @@
 #define Geocube_dbWaypointGroup_h
 
 @interface dbCacheGroup: dbObject {
-    NSInteger _id;
     NSString *name;
     BOOL usergroup;
 }
 
-- (id)init:(NSInteger)_id name:(NSString *)name usergroup:(BOOL)usergroup;
+- (id)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
 
 - (void)dbEmpty;
-+ (NSArray *)dbAllByCache:(NSInteger)wp_id;
++ (NSArray *)dbAllByCache:(NSId)wp_id;
 + (NSMutableArray *)dbAll;
 + (dbCacheGroup *)dbGetByName:(NSString *)name;
 - (void)dbDelete;
-+ (void)dbDelete:(NSInteger)__id;
++ (void)dbDelete:(NSId)__id;
 - (void)dbUpdateName:(NSString *)newname;
-- (void)dbAddCache:(NSInteger)__id;
-- (BOOL)dbContainsCache:(NSInteger)c_id;
+- (void)dbAddCache:(NSId)__id;
+- (BOOL)dbContainsCache:(NSId)c_id;
 - (NSInteger)dbCountCaches;
-+ (NSInteger)dbCreate:(NSString *)name isUser:(BOOL)isUser;
++ (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;
 
 
 @end

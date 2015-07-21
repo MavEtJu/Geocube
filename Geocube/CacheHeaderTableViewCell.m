@@ -165,7 +165,7 @@
         ratingD[(int)d].image = imgRatingHalf;
 
     if (favs != 0) {
-        favourites.text = [NSString stringWithFormat:@"%ld", favs];
+        favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
         imgFavouritesIV.hidden = FALSE;
     }
 }

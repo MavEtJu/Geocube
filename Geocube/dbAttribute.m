@@ -23,9 +23,9 @@
 
 @implementation dbAttribute
 
-@synthesize _id, icon, label, gc_id, _YesNo;
+@synthesize icon, label, gc_id, _YesNo;
 
-- (id)init:(NSInteger)__id gc_id:(NSInteger)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
+- (id)init:(NSId)__id gc_id:(NSId)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
 {
     self = [super init];
 
@@ -64,11 +64,11 @@
 
 //
 
-+ (void)dbUnlinkAllFromCache:(NSInteger)cache_id
++ (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
     NSString *sql = @"delete from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -84,7 +84,7 @@
     }
 }
 
-- (void)dbLinkToCache:(NSInteger)cache_id YesNo:(BOOL)YesNO
+- (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO
 {
     NSString *sql = @"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)";
     sqlite3_stmt *req;
@@ -104,7 +104,7 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSInteger)cache_id
++ (NSInteger)dbCountByCache:(NSId)cache_id
 {
     NSString *sql = @"select count(id) from attribute2cache where cache_id = ?";
     sqlite3_stmt *req;
@@ -125,7 +125,7 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSInteger)cache_id
++ (NSArray *)dbAllByCache:(NSId)cache_id
 {
     NSString *sql = @"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)";
     sqlite3_stmt *req;

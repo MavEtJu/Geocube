@@ -23,9 +23,9 @@
 
 @implementation dbCacheGroup
 
-@synthesize _id, name, usergroup;
+@synthesize name, usergroup;
 
-- (id)init:(NSInteger)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
+- (id)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
 {
     self = [super init];
     _id = __id;
@@ -99,7 +99,7 @@
     return wpgs;
 }
 
-+ (NSArray *)dbAllByCache:(NSInteger)wp_id
++ (NSArray *)dbAllByCache:(NSId)wp_id
 {
     NSString *sql = @"select cache_group_id from cache_group2caches where cache_id = ?";
     sqlite3_stmt *req;
@@ -143,11 +143,11 @@
     return count;
 }
 
-+ (NSInteger)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
++ (NSId)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
 {
     NSString *sql = @"insert into cache_groups(name, usergroup) values(?, ?)";
     sqlite3_stmt *req;
-    NSInteger __id;
+    NSId __id;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -169,7 +169,7 @@
     [dbCacheGroup dbDelete:self._id];
 }
 
-+ (void)dbDelete:(NSInteger)__id
++ (void)dbDelete:(NSId)__id
 {
     NSString *sql = @"delete from cache_groups where id = ?";
     sqlite3_stmt *req;
@@ -204,7 +204,7 @@
     }
 }
 
-- (void)dbAddCache:(NSInteger)__id
+- (void)dbAddCache:(NSId)__id
 {
     NSString *sql = @"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)";
     sqlite3_stmt *req;
@@ -222,7 +222,7 @@
     }
 }
 
-- (BOOL)dbContainsCache:(NSInteger)c_id
+- (BOOL)dbContainsCache:(NSId)c_id
 {
     NSString *sql = @"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?";
     sqlite3_stmt *req;

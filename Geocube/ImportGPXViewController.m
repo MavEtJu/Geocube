@@ -97,13 +97,13 @@
 {
     while (importDone == NO) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            progressLabel.text = [NSString stringWithFormat:@"Done %ld%%", percentageRead];
-            newCachesLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", newCachesCount];
-            totalCachesLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", totalCachesCount];
-            newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", newLogsCount];
-            totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", totalLogsCount];
-            newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", newTravelbugsCount];
-            totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", totalTravelbugsCount];
+            progressLabel.text = [NSString stringWithFormat:@"Done %lu%%", (long)percentageRead];
+            newCachesLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newCachesCount];
+            totalCachesLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalCachesCount];
+            newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", (long)newLogsCount];
+            totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", (long)totalLogsCount];
+            newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", (long)newTravelbugsCount];
+            totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", (long)totalTravelbugsCount];
         }];
         [NSThread sleepForTimeInterval:0.01];
     }

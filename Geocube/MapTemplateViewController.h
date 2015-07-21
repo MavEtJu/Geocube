@@ -53,6 +53,7 @@ enum {
 - (void)initCamera;
 - (void)initMenu;
 - (void)placeMarkers;
+- (void)removeMarkers;
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord;
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */

@@ -269,7 +269,7 @@
 
 - (void)switchController:(NSInteger)idx
 {
-    NSLog(@"AppDelegate: Switching to TB %ld", idx);
+    NSLog(@"AppDelegate: Switching to TB %ld", (long)idx);
     self.window.rootViewController = [tabBars objectAtIndex:idx];
     [self.window makeKeyAndVisible];
 }

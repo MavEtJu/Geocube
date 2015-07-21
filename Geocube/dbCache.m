@@ -23,9 +23,9 @@
 
 @implementation dbCache
 
-@synthesize _id, name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int, gc_archived, gc_available, cache_symbol, cache_symbol_int, cache_symbol_str, gc_owner, gc_placed_by;
+@synthesize name, description, url, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, gc_rating_difficulty, gc_rating_terrain, gc_favourites, cache_type_int, cache_type_str, cache_type, gc_country, gc_state, gc_short_desc_html, gc_short_desc, gc_long_desc_html, gc_long_desc, gc_hint, gc_personal_note, calculatedDistance, coordinates, gc_containerSize, gc_containerSize_str, gc_containerSize_int, gc_archived, gc_available, cache_symbol, cache_symbol_int, cache_symbol_str, gc_owner, gc_placed_by;
 
-- (id)init:(NSInteger)__id
+- (id)init:(NSId)__id
 {
     self = [super init];
     _id = __id;
@@ -197,11 +197,11 @@
     return wps;
 }
 
-+ (NSInteger)dbGetByName:(NSString *)name
++ (NSId)dbGetByName:(NSString *)name
 {
     NSString *sql = @"select id from caches where name = ?";
     sqlite3_stmt *req;
-    NSInteger _id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -218,7 +218,7 @@
     return _id;
 }
 
-+ (dbCache *)dbGet:(NSInteger)__id
++ (dbCache *)dbGet:(NSId)__id
 {
     NSString *sql = @"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches where id = ?";
     sqlite3_stmt *req;
@@ -298,11 +298,11 @@
     return wp;
 }
 
-+ (NSInteger)dbCreate:(dbCache *)wp
++ (NSId)dbCreate:(dbCache *)wp
 {
     NSString *sql = @"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)

@@ -23,9 +23,9 @@
 
 @implementation dbLogType
 
-@synthesize _id, logtype, icon;
+@synthesize logtype, icon;
 
-- (id)init:(NSInteger)__id logtype:(NSString *)_logtype icon:(NSInteger)_icon
+- (id)init:(NSId)__id logtype:(NSString *)_logtype icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;

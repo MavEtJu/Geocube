@@ -23,9 +23,9 @@
 
 @implementation dbConfig
 
-@synthesize _id, key, value;
+@synthesize key, value;
 
-- (id)init:(NSInteger)__id key:(NSString *)_key value:(NSString *)_value
+- (id)init:(NSId)__id key:(NSString *)_key value:(NSString *)_value
 {
     self = [super init];
     _id = __id;

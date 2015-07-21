@@ -101,7 +101,7 @@
 
     dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [wpg dbCountCaches]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[wpg dbCountCaches]];
 
     return cell;
 }
@@ -207,7 +207,7 @@
                              //Do Some action
                              UITextField *tf = alert.textFields.firstObject;
 
-                             NSLog(@"Renaming group '%ld' to '%@'", wpg._id, tf.text);
+                             NSLog(@"Renaming group '%ld' to '%@'", (long)wpg._id, tf.text);
                              [wpg dbUpdateName:tf.text];
                              [dbc loadCacheData];
                              [self refreshGroupData];

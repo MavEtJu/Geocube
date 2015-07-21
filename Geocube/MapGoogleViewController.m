@@ -45,6 +45,16 @@
     menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Follow me", @"Show both"]];
 }
 
+- (void)removeMarkers
+{
+    NSEnumerator *e = [markers objectEnumerator];
+    GMSMarker *m;
+    while ((m = [e nextObject]) != nil) {
+        m.map = nil;
+    }
+    markers = nil;
+}
+
 - (void)placeMarkers
 {
     // Remove everything from the map

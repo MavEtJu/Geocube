@@ -20,26 +20,24 @@
  */
 
 @interface dbAttribute : dbObject {
-    NSInteger _id;
     NSInteger icon;
-    NSInteger gc_id;
+    NSId gc_id;
     NSString *label;
 
     // Internal stuff
     BOOL _YesNo;
 }
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic) NSInteger icon;
-@property (nonatomic) NSInteger gc_id;
+@property (nonatomic) NSId gc_id;
 @property (nonatomic, retain) NSString *label;
 @property (nonatomic) BOOL _YesNo;
 
-- (id)init:(NSInteger)_id gc_id:(NSInteger)gc_id label:(NSString *)label icon:(NSInteger)icon;
+- (id)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon;
 
-- (void)dbLinkToCache:(NSInteger)cache_id YesNo:(BOOL)YesNO;
-+ (void)dbUnlinkAllFromCache:(NSInteger)cache_id;
-+ (NSInteger)dbCountByCache:(NSInteger)cache_id;
-+ (NSArray *)dbAllByCache:(NSInteger)cache_id;
+- (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO;
++ (void)dbUnlinkAllFromCache:(NSId)cache_id;
++ (NSInteger)dbCountByCache:(NSId)cache_id;
++ (NSArray *)dbAllByCache:(NSId)cache_id;
 
 @end

@@ -23,10 +23,12 @@
 
 @implementation dbObject
 
+@synthesize _id;
+
 NEEDS_OVERLOADING(dbUpdate);
-- (NSInteger)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
+- (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
 + (NSArray *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
-+ (dbObject *)dbGet:(NSInteger)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
++ (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 - (id)init
 {

@@ -23,18 +23,16 @@
 #define Geocube_dbWaypointType_h
 
 @interface dbCacheType : dbObject {
-    NSInteger _id;
     NSString *type;
     NSInteger icon;
     NSInteger pin;
 }
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSInteger pin;
 
-- (id)init:(NSInteger)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
+- (id)init:(NSId)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end
 

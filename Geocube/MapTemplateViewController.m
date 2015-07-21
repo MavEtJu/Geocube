@@ -29,6 +29,7 @@ NEEDS_OVERLOADING(initMap)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
 NEEDS_OVERLOADING(placeMarkers)
+NEEDS_OVERLOADING(removeMarkers)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
@@ -70,6 +71,13 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
     [LM stopDelegation:self];
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    NSLog(@"%@/viewDidDisappear", [self class]);
+    [self removeMarkers];
     [super viewWillDisappear:animated];
 }
 
@@ -158,7 +166,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
 - (void)openCacheView:(NSString *)name
 {
-    NSInteger _id = [dbCache dbGetByName:name];
+    NSId _id = [dbCache dbGetByName:name];
     dbCache *c = [dbCache dbGet:_id];
 
     CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];

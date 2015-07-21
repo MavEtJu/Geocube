@@ -85,25 +85,24 @@
 - (void)loadCacheData;
 
 - (dbCacheType *)CacheType_get_byname:(NSString *)name;
-- (dbCacheType *)CacheType_get:(NSInteger)wp_type;
+- (dbCacheType *)CacheType_get:(NSId)wp_type;
 
 - (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
-- (dbContainerType *)ContainerType_get:(NSInteger)_id;
+- (dbContainerType *)ContainerType_get:(NSId)_id;
 
 - (dbCacheSymbol *)CacheSymbol_get_bysymbol:(NSString *)size;
-- (dbCacheSymbol *)CacheSymbol_get:(NSInteger)_id;
-- (void)CacheSymbols_add:(NSInteger)_id symbol:(NSString *)symbol;
+- (dbCacheSymbol *)CacheSymbol_get:(NSId)_id;
+- (void)CacheSymbols_add:(NSId)_id symbol:(NSString *)symbol;
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
-- (dbLogType *)LogType_get:(NSInteger)_id;
+- (dbLogType *)LogType_get:(NSId)_id;
 
-- (dbCacheGroup *)CacheGroup_get:(NSInteger)_id;
+- (dbCacheGroup *)CacheGroup_get:(NSId)_id;
 
 - (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size;
-- (dbContainerSize *)ContainerSize_get:(NSInteger)_id;
+- (dbContainerSize *)ContainerSize_get:(NSId)_id;
 
-- (dbAttribute *)Attribute_get:(NSInteger)_id;
-- (dbAttribute *)Attribute_get_bygcid:(NSInteger)gc_id;
-
+- (dbAttribute *)Attribute_get:(NSId)_id;
+- (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;
 
 @end

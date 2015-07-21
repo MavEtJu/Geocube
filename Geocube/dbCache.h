@@ -23,7 +23,6 @@
 #define Geocube_dbWaypoint_h
 
 @interface dbCache : dbObject {
-    NSInteger _id;
     NSString *name, *description, *url;
 
     NSString *lat, *lon;
@@ -37,10 +36,10 @@
     NSInteger gc_favourites;
 
     dbCacheSymbol *cache_symbol;
-    NSInteger cache_symbol_int;
+    NSId cache_symbol_int;
     NSString *cache_symbol_str;
 
-    NSInteger cache_type_int;
+    NSId cache_type_int;
     NSString *cache_type_str;
     dbCacheType *cache_type;
 
@@ -53,7 +52,7 @@
 
     NSString *gc_placed_by, *gc_owner;
 
-    NSInteger gc_containerSize_int;
+    NSId gc_containerSize_int;
     NSString *gc_containerSize_str;
     dbContainerSize *gc_containerSize;
 
@@ -62,7 +61,6 @@
     NSInteger calculatedDistance;
 }
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *url;
@@ -78,10 +76,10 @@
 @property (nonatomic) float gc_rating_terrain;
 @property (nonatomic) NSInteger gc_favourites;
 @property (nonatomic) dbCacheSymbol *cache_symbol;
-@property (nonatomic) NSInteger cache_symbol_int;
+@property (nonatomic) NSId cache_symbol_int;
 @property (nonatomic) NSString *cache_symbol_str;
 @property (nonatomic, retain) dbCacheType *cache_type;
-@property (nonatomic) NSInteger cache_type_int;
+@property (nonatomic) NSId cache_type_int;
 @property (nonatomic) NSString *cache_type_str;
 @property (nonatomic, retain) NSString *gc_country;
 @property (nonatomic, retain) NSString *gc_state;
@@ -91,7 +89,7 @@
 @property (nonatomic, retain) NSString *gc_long_desc;
 @property (nonatomic, retain) NSString *gc_hint;
 @property (nonatomic, retain) NSString *gc_personal_note;
-@property (nonatomic) NSInteger gc_containerSize_int;
+@property (nonatomic) NSId gc_containerSize_int;
 @property (nonatomic, retain) NSString *gc_containerSize_str;
 @property (nonatomic, retain) dbContainerSize *gc_containerSize;
 @property (nonatomic) BOOL gc_archived;
@@ -102,7 +100,7 @@
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
-- (id)init:(NSInteger)_id;
+- (id)init:(NSId)_id;
 - (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;
 - (NSInteger)hasAttributes;
@@ -110,11 +108,11 @@
 - (NSInteger)hasInventory;
 - (NSInteger)hasImages;
 
-+ (NSInteger)dbGetByName:(NSString *)name;
-+ (NSInteger)dbCreate:(dbCache *)wp;
++ (NSId)dbGetByName:(NSString *)name;
++ (NSId)dbCreate:(dbCache *)wp;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
-+ (dbCache *)dbGet:(NSInteger)id;
++ (dbCache *)dbGet:(NSId)id;
 
 @end
 

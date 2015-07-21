@@ -25,14 +25,12 @@
 @interface dbConfig : dbObject {
     NSString *key;
     NSString *value;
-    NSInteger _id;
 }
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) NSString *value;
 
-- (id)init:(NSInteger)_id key:(NSString *)key value:(NSString *)value;
+- (id)init:(NSId)_id key:(NSString *)key value:(NSString *)value;
 + (dbConfig *)dbGetByKey:(NSString *)key;
 
 @end

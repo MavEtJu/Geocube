@@ -23,9 +23,9 @@
 
 @implementation dbContainerSize
 
-@synthesize _id, size, icon;
+@synthesize size, icon;
 
-- (id)init:(NSInteger)__id size:(NSString *)_size icon:(NSInteger)_icon
+- (id)init:(NSId)__id size:(NSString *)_size icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;

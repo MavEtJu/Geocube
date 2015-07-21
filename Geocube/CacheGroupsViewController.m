@@ -91,7 +91,7 @@
         c++;
     }
     cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [wpg dbCountCaches]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[wpg dbCountCaches]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

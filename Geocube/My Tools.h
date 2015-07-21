@@ -37,6 +37,8 @@
 
 @end
 
+typedef sqlite3_int64 NSId;
+
 
 #define NEEDS_OVERLOADING_ASSERT \
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])

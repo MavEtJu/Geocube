@@ -283,7 +283,7 @@
 {
     UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
     imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"PINHEAD: %ld + %ld", bottom, top];
+    names[index] = [NSString stringWithFormat:@"PINHEAD: %ld + %ld", (long)bottom, (long)top];
 }
 - (void)mergePinhead:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
@@ -294,7 +294,7 @@
 {
     UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(6, 6, 13, 13)];
     imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"DNF: %ld + %ld", bottom, top];
+    names[index] = [NSString stringWithFormat:@"DNF: %ld + %ld", (long)bottom, (long)top];
 }
 - (void)mergeDNF:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
@@ -305,7 +305,7 @@
 {
     UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(6, 6, 13, 13)];
     imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"FOUND: %ld + %ld", bottom, top];
+    names[index] = [NSString stringWithFormat:@"FOUND: %ld + %ld", (long)bottom, (long)top];
 }
 - (void)mergeFound:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
@@ -350,7 +350,7 @@
 {
     UIImage *img = imgs[imgnum];
     if (img == nil)
-        NSLog(@"ImageLibrary: imgnum %ld not found", imgnum);
+        NSLog(@"ImageLibrary: imgnum %ld not found", (long)imgnum);
     return img;
 }
 
@@ -373,7 +373,7 @@
 {
     NSString *name = names[imgnum];
     if (name == nil)
-        NSLog(@"ImageLibrary: imgnum %ld not found", imgnum);
+        NSLog(@"ImageLibrary: imgnum %ld not found", (long)imgnum);
     return name;
 }
 

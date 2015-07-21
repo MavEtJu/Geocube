@@ -23,15 +23,19 @@
 #define Geocube_dbObject_h
 
 @interface dbObject : NSObject {
+    NSId _id;
+
     BOOL finished;
 }
+
+@property (nonatomic) NSId _id;
 
 - (void)finish;
 
 + (NSArray *)dbAll;
-+ (dbObject *)dbGet:(NSInteger)_id;
++ (dbObject *)dbGet:(NSId)_id;
 - (void)dbUpdate;
-- (NSInteger)dbCreate;
+- (NSId)dbCreate;
 
 @end
 

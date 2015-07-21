@@ -23,16 +23,16 @@
 
 @implementation dbLog
 
-@synthesize _id, gc_id, cache_id, cache, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
+@synthesize gc_id, cache_id, cache, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
 
-- (id)init:(NSInteger)_gc_id
+- (id)init:(NSId)_gc_id
 {
     self = [super init];
     gc_id = _gc_id;
     return self;
 }
 
-- (id)init:(NSInteger)__id gc_id:(NSInteger)_gc_id cache_id:(NSInteger)_cid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
+- (id)init:(NSId)__id gc_id:(NSId)_gc_id cache_id:(NSId)_cid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
 {
     self = [super init];
     _id = __id;
@@ -66,11 +66,11 @@
 }
 
 
-+ (NSInteger)dbGetIdByGC:(NSInteger)_gc_id
++ (NSId)dbGetIdByGC:(NSId)_gc_id
 {
     NSString *sql = @"select id from logs where gc_id = ?";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -87,16 +87,16 @@
     return __id;
 }
 
-- (NSInteger)dbCreate
+- (NSId)dbCreate
 {
     return [dbLog dbCreate:self];
 }
 
-+ (NSInteger)dbCreate:(dbLog *)log
++ (NSId)dbCreate:(dbLog *)log
     {
     NSString *sql = @"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -144,7 +144,7 @@
     }
 }
 
-- (void)dbUpdateCache:(NSInteger)wp_id;
+- (void)dbUpdateCache:(NSId)wp_id;
 {
     NSString *sql = @"update logs set cache_id = ? where id = ?";
     sqlite3_stmt *req;
@@ -163,7 +163,7 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSInteger)wp_id
++ (NSInteger)dbCountByCache:(NSId)wp_id
 {
     NSString *sql = @"select count(id) from logs where cache_id = ?";
     sqlite3_stmt *req;
@@ -184,7 +184,7 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSInteger)wp_id
++ (NSArray *)dbAllByCache:(NSId)wp_id
 {
     NSString *sql = @"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?";
     sqlite3_stmt *req;

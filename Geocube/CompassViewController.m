@@ -218,8 +218,8 @@
 /* Receive data from the location manager */
 - (void)updateData
 {
-    accuracy.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.accuracy];
-    altitude.text = [NSString stringWithFormat:@"%ld m", (NSInteger)LM.altitude];
+    accuracy.text = [NSString stringWithFormat:@"%ld m", (long)LM.accuracy];
+    altitude.text = [NSString stringWithFormat:@"%ld m", (long)LM.altitude];
 
 //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 

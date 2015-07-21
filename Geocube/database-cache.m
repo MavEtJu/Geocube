@@ -147,7 +147,7 @@
     return nil;
 }
 
-- (dbCacheType *)CacheType_get:(NSInteger)wp_type
+- (dbCacheType *)CacheType_get:(NSId)wp_type
 {
     NSEnumerator *e = [CacheTypes objectEnumerator];
     dbCacheType *wpt;
@@ -169,7 +169,7 @@
     return nil;
 }
 
-- (dbCacheSymbol *)CacheSymbol_get:(NSInteger)_id
+- (dbCacheSymbol *)CacheSymbol_get:(NSId)_id
 {
     NSEnumerator *e = [CacheSymbols objectEnumerator];
     dbCacheSymbol *lt;
@@ -180,7 +180,7 @@
     return nil;
 }
 
-- (void)CacheSymbols_add:(NSInteger)_id symbol:(NSString *)symbol
+- (void)CacheSymbols_add:(NSId)_id symbol:(NSString *)symbol
 {
     dbCacheSymbol *cs = [[dbCacheSymbol alloc] init:_id symbol:symbol];
     [CacheSymbols addObject:cs];
@@ -197,7 +197,7 @@
     return nil;
 }
 
-- (dbLogType *)LogType_get:(NSInteger)_id
+- (dbLogType *)LogType_get:(NSId)_id
 {
     NSEnumerator *e = [LogTypes objectEnumerator];
     dbLogType *lt;
@@ -220,7 +220,7 @@
 }
 
 
-- (dbContainerType *)ContainerType_get:(NSInteger)_id
+- (dbContainerType *)ContainerType_get:(NSId)_id
 {
     NSEnumerator *e = [ContainerTypes objectEnumerator];
     dbContainerType *ct;
@@ -231,7 +231,7 @@
     return nil;
 }
 
-- (dbCacheGroup *)CacheGroup_get:(NSInteger)_id
+- (dbCacheGroup *)CacheGroup_get:(NSId)_id
 {
     NSEnumerator *e = [CacheGroups objectEnumerator];
     dbCacheGroup *wpg;
@@ -242,7 +242,7 @@
     return nil;
 }
 
-- (dbContainerSize *)ContainerSize_get:(NSInteger)_id
+- (dbContainerSize *)ContainerSize_get:(NSId)_id
 {
     NSEnumerator *e = [ContainerSizes objectEnumerator];
     dbContainerSize *s;
@@ -264,7 +264,7 @@
     return nil;
 }
 
-- (dbAttribute *)Attribute_get:(NSInteger)_id
+- (dbAttribute *)Attribute_get:(NSId)_id
 {
     NSEnumerator *e = [Attributes objectEnumerator];
     dbAttribute *s;
@@ -275,7 +275,7 @@
     return nil;
 }
 
-- (dbAttribute *)Attribute_get_bygcid:(NSInteger)gcid
+- (dbAttribute *)Attribute_get_bygcid:(NSId)gcid
 {
     NSEnumerator *e = [Attributes objectEnumerator];
     dbAttribute *s;

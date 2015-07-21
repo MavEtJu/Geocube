@@ -38,7 +38,7 @@
     NSLog(@"Import_GPX: Importing %@ into %@", filename, group.name);
 
     files = @[filename];
-    NSLog(@"Found %ld files", [files count]);
+    NSLog(@"Found %lu files", (unsigned long)[files count]);
     return self;
 }
 
@@ -81,7 +81,7 @@
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    NSString * errorString = [NSString stringWithFormat:@"Import_GPX error (Error code %ld)", [parseError code]];
+    NSString * errorString = [NSString stringWithFormat:@"Import_GPX error (Error code %ld)", (long)[parseError code]];
     NSLog(@"Error parsing XML: %@", errorString);
 }
 
@@ -136,7 +136,7 @@
     }
 
     if ([currentElement compare:@"groundspeak:attribute"] == NSOrderedSame) {
-        NSInteger _id = [[attributeDict objectForKey:@"id"] integerValue];
+        NSId _id = [[attributeDict objectForKey:@"id"] integerValue];
         BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
         dbAttribute *a = [dbc Attribute_get_bygcid:_id];
         a._YesNo = YesNo;
@@ -157,7 +157,7 @@
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentC finish];
 
-        NSInteger cwp_id = [dbCache dbGetByName:currentC.name];
+        NSId cwp_id = [dbCache dbGetByName:currentC.name];
         (*totalCachesCount)++;
         if (cwp_id == 0) {
             cwp_id = [dbCache dbCreate:currentC];
@@ -205,7 +205,7 @@
     if (index == 4 && inTravelbug == YES && [elementName compare:@"groundspeak:travelbug"] == NSOrderedSame) {
         [currentTB finish];
 
-        NSInteger tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
+        NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
         (*totalTravelbugsCount)++;
         if (tb_id == 0) {
             (*newTravelbugsCount)++;
@@ -224,7 +224,7 @@
     if (index == 4 && inLog == YES && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
         [currentLog finish];
 
-        NSInteger log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
+        NSId log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
         (*totalLogsCount)++;
         if (log_id == 0) {
             (*newLogsCount)++;
@@ -297,7 +297,7 @@
             if ([elementName compare:@"sym"] == NSOrderedSame) {
                 if ([dbc CacheSymbol_get_bysymbol:currentText] == nil) {
                     NSLog(@"Adding symbol '%@'", currentText);
-                    NSInteger _id = [dbCacheSymbol dbCreate:currentText];
+                    NSId _id = [dbCacheSymbol dbCreate:currentText];
                     [dbc CacheSymbols_add:_id symbol:currentText];
                 }
                 [currentC setCache_symbol_str:currentText];

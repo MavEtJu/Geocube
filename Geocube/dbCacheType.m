@@ -23,9 +23,9 @@
 
 @implementation dbCacheType
 
-@synthesize _id, type, icon, pin;
+@synthesize type, icon, pin;
 
-- (id)init:(NSInteger)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
+- (id)init:(NSId)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
 {
     self = [super init];
     _id = __id;

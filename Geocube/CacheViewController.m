@@ -180,7 +180,7 @@
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 5: { /* Attributes */
@@ -189,7 +189,7 @@
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 6: { /* Related Waypoints */
@@ -198,7 +198,7 @@
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 7: { /* Inventory */
@@ -207,7 +207,7 @@
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 8: { /* Images */
@@ -216,7 +216,7 @@
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
         }

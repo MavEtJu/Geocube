@@ -20,23 +20,21 @@
  */
 
 @interface dbTravelbug : dbObject {
-    NSInteger _id;
     NSString *name;
     NSString *ref;
-    NSInteger gc_id;
+    NSId gc_id;
 };
 
-@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *ref;
-@property (nonatomic) NSInteger gc_id;
+@property (nonatomic) NSId gc_id;
 
-+ (void)dbUnlinkAllFromCache:(NSInteger)wp_id;
-- (void)dbLinkToCache:(NSInteger)wp_id;
-+ (NSInteger)dbGetIdByGC:(NSInteger)_gc_id;
-+ (NSInteger)dbCreate:(dbTravelbug *)tb;
-- (NSInteger)dbCreate;
-+ (NSInteger)dbCountByCache:(NSInteger)wp_id;
-+ (NSArray *)dbAllByCache:(NSInteger)cache_id;
++ (void)dbUnlinkAllFromCache:(NSId)wp_id;
+- (void)dbLinkToCache:(NSId)wp_id;
++ (NSId)dbGetIdByGC:(NSId)_gc_id;
++ (NSId)dbCreate:(dbTravelbug *)tb;
+- (NSId)dbCreate;
++ (NSInteger)dbCountByCache:(NSId)wp_id;
++ (NSArray *)dbAllByCache:(NSId)cache_id;
 
 @end

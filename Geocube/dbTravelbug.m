@@ -23,9 +23,9 @@
 
 @implementation dbTravelbug
 
-@synthesize _id, name, ref, gc_id;
+@synthesize name, ref, gc_id;
 
-- (id)init:(NSInteger)__id name:(NSString *)_name ref:(NSString *)_ref gc_id:(NSInteger)_gc_id
+- (id)init:(NSId)__id name:(NSString *)_name ref:(NSString *)_ref gc_id:(NSId)_gc_id
 {
     self = [super init];
 
@@ -38,11 +38,11 @@
     return self;
 }
 
-+ (void)dbUnlinkAllFromCache:(NSInteger)cache_id
++ (void)dbUnlinkAllFromCache:(NSId)cache_id
 {
     NSString *sql = @"delete from travelbug2cache where cache_id = ?";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -58,7 +58,7 @@
     }
 }
 
-- (void)dbLinkToCache:(NSInteger)cache_id
+- (void)dbLinkToCache:(NSId)cache_id
 {
     NSString *sql = @"insert into travelbug2cache(travelbug_id, cache_id) values(?, ?)";
     sqlite3_stmt *req;
@@ -77,7 +77,7 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSInteger)cache_id
++ (NSInteger)dbCountByCache:(NSId)cache_id
 {
     NSString *sql = @"select count(id) from travelbug2cache where cache_id = ?";
     sqlite3_stmt *req;
@@ -98,7 +98,7 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSInteger)cache_id
++ (NSArray *)dbAllByCache:(NSId)cache_id
 {
     NSString *sql = @"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2cache where cache_id = ?)";
     sqlite3_stmt *req;
@@ -124,11 +124,11 @@
     return ss;
 }
 
-+ (NSInteger)dbGetIdByGC:(NSInteger)_gc_id
++ (NSId)dbGetIdByGC:(NSId)_gc_id
 {
     NSString *sql = @"select id from travelbugs where gc_id = ?";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)
@@ -145,16 +145,16 @@
     return __id;
 }
 
-- (NSInteger)dbCreate
+- (NSId)dbCreate
 {
     return [dbTravelbug dbCreate:self];
 }
 
-+ (NSInteger)dbCreate:(dbTravelbug *)tb
++ (NSId)dbCreate:(dbTravelbug *)tb
 {
     NSString *sql = @"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)";
     sqlite3_stmt *req;
-    NSInteger __id = 0;
+    NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)

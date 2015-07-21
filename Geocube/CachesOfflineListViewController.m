@@ -117,7 +117,7 @@
     [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
-    cell.bearing.text = [NSString stringWithFormat:@"%ld°", bearing];
+    cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
     cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
 

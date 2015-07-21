@@ -23,9 +23,9 @@
 
 @implementation dbCacheSymbol
 
-@synthesize _id, symbol;
+@synthesize symbol;
 
-- (id)init:(NSInteger)__id symbol:(NSString *)_symbol
+- (id)init:(NSId)__id symbol:(NSString *)_symbol
 {
     self = [super init];
     _id = __id;
@@ -56,7 +56,7 @@
     return ss;
 }
 
-+ (dbObject *)dbGet:(NSInteger)_id;
++ (dbObject *)dbGet:(NSId)_id;
 {
     NSString *sql = @"select id, symbol from cache_symbols where id = ?";
     sqlite3_stmt *req;
@@ -79,16 +79,16 @@
     return nil;
 }
 
-- (NSInteger)dbCreate
+- (NSId)dbCreate
 {
     return [dbCacheSymbol dbCreate:symbol];
 }
 
-+ (NSInteger)dbCreate:(NSString *)symbol
++ (NSId)dbCreate:(NSString *)symbol
 {
     NSString *sql = @"insert into cache_symbols(symbol) values(?)";
     sqlite3_stmt *req;
-    NSInteger __id;
+    NSId __id;
 
     @synchronized(db.dbaccess) {
         if (sqlite3_prepare_v2(db.db, [sql cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK)

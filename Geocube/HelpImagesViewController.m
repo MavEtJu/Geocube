@@ -100,7 +100,7 @@
 
     if (indexPath.section == 0) {
         cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"%ld (%0.1f)", indexPath.row, indexPath.row / 2.0];
+        cell.textLabel.text = [NSString stringWithFormat:@"%ld (%0.1f)", (long)indexPath.row, indexPath.row / 2.0];
         cell.detailTextLabel.text = nil;
 
         return cell;

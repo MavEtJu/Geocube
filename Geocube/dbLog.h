@@ -20,11 +20,10 @@
  */
 
 @interface dbLog : dbObject {
-    NSInteger _id;
-    NSInteger gc_id;
-    NSInteger cache_id;
+    NSId gc_id;
+    NSId cache_id;
     dbCache *cache;
-    NSInteger logtype_id;
+    NSId logtype_id;
     NSString *logtype_string;
     dbLogType *logtype;
     NSString *datetime;
@@ -35,11 +34,10 @@
     NSInteger cellHeight;
 }
 
-@property (nonatomic) NSInteger _id;
-@property (nonatomic) NSInteger gc_id;
-@property (nonatomic) NSInteger cache_id;
+@property (nonatomic) NSId gc_id;
+@property (nonatomic) NSId cache_id;
 @property (nonatomic, retain) dbCache *cache;
-@property (nonatomic) NSInteger logtype_id;
+@property (nonatomic) NSId logtype_id;
 @property (nonatomic, retain) dbLogType *logtype;
 @property (nonatomic, retain) NSString *logtype_string;
 @property (nonatomic, retain) NSString *datetime;
@@ -50,15 +48,15 @@
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (id)init:(NSInteger)__id gc_id:(NSInteger)gc_id cache_id:(NSInteger)_wpid logtype_id:(NSInteger)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
-- (id)init:(NSInteger)gc_id;
+- (id)init:(NSId)__id gc_id:(NSId)gc_id cache_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
+- (id)init:(NSId)gc_id;
 
-+ (NSInteger)dbGetIdByGC:(NSInteger)gc_id;
-+ (NSInteger)dbCountByCache:(NSInteger)wp_id;
-+ (NSArray *)dbAllByCache:(NSInteger)wp_id;
-+ (NSInteger)dbCreate:(dbLog *)log;
-- (NSInteger)dbCreate;
-- (void)dbUpdateCache:(NSInteger)wp_id;
++ (NSId)dbGetIdByGC:(NSId)gc_id;
++ (NSInteger)dbCountByCache:(NSId)wp_id;
++ (NSArray *)dbAllByCache:(NSId)wp_id;
++ (NSId)dbCreate:(dbLog *)log;
+- (NSId)dbCreate;
+- (void)dbUpdateCache:(NSId)wp_id;
 
 
 

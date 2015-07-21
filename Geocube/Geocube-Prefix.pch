@@ -24,9 +24,8 @@
 #import "BHTabsViewController.h"
 #import "BHTabStyle.h"
 
-#import "coordinates.h"
-#import "Coordinates.h"
 #import "My Tools.h"
+#import "Coordinates.h"
 
 #import "database.h"
 #import "dbObject.h"
