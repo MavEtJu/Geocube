@@ -38,6 +38,9 @@ extern dbCache *currentCache;
 // Location Manager
 extern GCLocationManager *LM;
 
+// File manager
+extern NSFileManager *fm;
+
 //
 extern AppDelegate *_AppDelegate;
 
