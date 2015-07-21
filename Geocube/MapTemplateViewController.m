@@ -156,4 +156,16 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showWhom = SHOW_NEITHER;
 }
 
+- (void)openCacheView:(NSString *)name
+{
+    NSInteger _id = [dbCache dbGetByName:name];
+    dbCache *c = [dbCache dbGet:_id];
+
+    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [newController showCache:c];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = c.name;
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
 @end

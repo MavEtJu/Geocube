@@ -64,5 +64,6 @@ enum {
 
 // User related actions
 - (void)userInteraction;
+- (void)openCacheView:(NSString *)name;
 
 @end

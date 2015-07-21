@@ -74,15 +74,16 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbTravelbug *tb = [tbs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = tb.name;
     cell.detailTextLabel.text = tb.ref;
-//    cell.imageView.image = [imageLibrary get:];
-    
+    cell.userInteractionEnabled = NO;
+    cell.imageView.image = nil;
+
     return cell;
 }
 

@@ -64,12 +64,36 @@
         CLLocationCoordinate2D coord = cache.coordinates;
         [annotation setCoordinate:coord];
 
-        [annotation setTitle:cache.name]; //You can set the subtitle too
+        [annotation setTitle:cache.name];
+        [annotation setSubtitle:cache.description];
         [mapView addAnnotation:annotation];
 
         [markers addObject:annotation];
-
     }
+}
+
+- (void)mapCallOutPressed:(id)sender
+{
+    MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+    NSLog(@"%@", ann.title);
+    [super openCacheView:ann.title];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSString *c = NSStringFromClass([annotation class]);
+    if ([c compare:@"MKPointAnnotation"] != NSOrderedSame)
+        return nil;
+
+    MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
+
+    UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    dropPin.rightCalloutAccessoryView = disclosureButton;
+    dropPin.canShowCallout = YES;
+
+    return dropPin;
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
