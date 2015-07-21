@@ -22,7 +22,6 @@
 @interface FilesViewController : GCTableViewController {
     NSArray *files;
     NSInteger filesCount;
-    NSFileManager *fm;
 }
 
 @end

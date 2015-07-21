@@ -30,7 +30,6 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
-    fm = [[NSFileManager alloc] init];
     [self refreshFileData];
 
     menuItems = nil;

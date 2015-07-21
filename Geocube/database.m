@@ -65,7 +65,6 @@
 - (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty
 {
     BOOL success;
-    NSFileManager *fm = [[NSFileManager alloc] init];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_cleardatabase"] == TRUE) {
         NSLog(@"Erasing database on user request.");
