@@ -93,6 +93,7 @@
     cell.textLabel.text = wpg.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", [wpg dbCountCaches]];
     cell.imageView.image = nil;
+    cell.userInteractionEnabled = NO;
 
     return cell;
 }

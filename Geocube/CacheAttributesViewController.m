@@ -81,11 +81,9 @@
 
     cell.textLabel.text = a.label;
     cell.imageView.image = [imageLibrary get:a.icon];
+    cell.userInteractionEnabled = NO;
 
     return cell;
 }
-
-
-
 
 @end
