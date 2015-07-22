@@ -60,13 +60,14 @@
 #define LAT_HEIGHT 10
 #define LON_HEIGHT 10
 
-    CGRect rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
-    CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
-    CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
-    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectLat = CGRectMake(BORDER, height - BORDER - LON_HEIGHT - LAT_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER, height - BORDER - LON_HEIGHT, width - 2 * BORDER - 5 * STAR_WIDTH, LON_HEIGHT);
+#define N 5
+    CGRect rectIcon = CGRectMake(BORDER + N, BORDER, ICON_WIDTH - N, ICON_HEIGHT);
+    CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH - N, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT - N, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
+    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
+    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
+    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LON_HEIGHT);
 
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
