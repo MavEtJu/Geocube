@@ -39,6 +39,7 @@
     imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
     imgRatingBase = [imageLibrary get:ImageCacheView_ratingBase];
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
+    imgSize = [imageLibrary get:ImageSize_NotChosen];
 
     UILabel *l;
     CGRect r;
@@ -69,12 +70,13 @@
     CGRect rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
     CGRect rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
     CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH / 2, STAR_HEIGHT / 2);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectBearing = CGRectMake(BORDER, height - BORDER - 2 * BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
     CGRect rectCompass = CGRectMake(BORDER, height - BORDER - BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
-    CGRect rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsT.size.width, DISTANCE_HEIGHT);
-    CGRect rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
+    CGRect rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsT.size.width, DISTANCE_HEIGHT);
+    CGRect rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
@@ -154,10 +156,15 @@
     ratingT.image = imgRatingBase;
     [self.contentView addSubview:ratingT];
 
+    // Size
+    size = [[UIImageView alloc] initWithFrame:rectSize];
+    size.image = imgSize;
+    [self.contentView addSubview:size];
+
     return self;
 }
 
-- (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
+- (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d size:(NSInteger)sz
 {
     ratingD.image = [imageLibrary getRating:d];
     ratingT.image = [imageLibrary getRating:t];
@@ -166,6 +173,8 @@
         favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
         imgFavouritesIV.hidden = FALSE;
     }
+
+    size.image = [imageLibrary get:sz];
 }
 
 + (NSInteger)cellHeight

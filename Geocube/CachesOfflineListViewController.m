@@ -114,7 +114,7 @@
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.cache_type.icon];
 
-    [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
+    [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty size:wp.gc_containerSize.icon];
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];

@@ -22,10 +22,11 @@
 @interface CacheTableViewCell : UITableViewCell {
     UILabel *description;
     UILabel *name;
+    UIImageView *size;
     UIImageView *ratingD;
     UIImageView *ratingT;
     UILabel *favourites;
-    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase,*imgFavourites;
+    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
     UIImageView *icon, *imgFavouritesIV;
     UILabel *stateCountry;
     UILabel *bearing;
@@ -45,7 +46,7 @@
 
 - (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
-- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
+- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v size:(NSInteger)sz;
 
 @end
 
