@@ -143,7 +143,7 @@
     [self.view addSubview:myLat];
 
     myLon = [[UILabel alloc] initWithFrame:rectMyLon];
-    myLon.text = @"-";
+    myLon.text = @"";
     myLon.textAlignment = NSTextAlignmentCenter;
     myLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLon];
@@ -203,9 +203,11 @@
     ratingD.image = [imageLibrary getRating:currentCache.gc_rating_difficulty];
     ratingT.image = [imageLibrary getRating:currentCache.gc_rating_terrain];
 
-    cacheName.text = currentCache.name;
-    cacheLat.text = [coords lat_degreesDecimalMinutes];
-    cacheLon.text = [coords lon_degreesDecimalMinutes];
+    if (currentCache != nil) {
+        cacheName.text = currentCache.name;
+        cacheLat.text = [coords lat_degreesDecimalMinutes];
+        cacheLon.text = [coords lon_degreesDecimalMinutes];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

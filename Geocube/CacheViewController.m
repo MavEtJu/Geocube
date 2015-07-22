@@ -297,7 +297,7 @@
             currentCache = wp;
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
-            UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_DETAILS];
+            UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
             [cvc showCache:currentCache];
 
