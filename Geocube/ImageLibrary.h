@@ -54,15 +54,6 @@ typedef enum {
     Imagewaypoints_NFI,
     ImageNFI,
 
-    ImageContainer_Virtual = 300,
-    ImageContainer_Micro,
-    ImageContainer_Small,
-    ImageContainer_Regular,
-    ImageContainer_Large,
-    ImageContainer_NotChosen,
-    ImageContainer_Other,
-    ImageContainer_Unknown,
-
     ImageLog_DidNotFind = 400,
     ImageLog_Enabled,
     ImageLog_Found,

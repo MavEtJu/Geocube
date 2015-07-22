@@ -119,7 +119,7 @@
     [self.view addSubview:cacheLon];
 
     containerSize = [[UIImageView alloc] initWithFrame:rectSize];
-    containerSize.image = [imageLibrary get:ImageContainer_Unknown];
+    containerSize.image = [imageLibrary get:ImageSize_NotChosen];
     [self.view addSubview:containerSize];
 
     ratingD = [[UIImageView alloc] initWithFrame:rectRatingD];

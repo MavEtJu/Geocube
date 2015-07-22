@@ -61,15 +61,6 @@
     [self add:@"waypoint - unknown - 30x30" index:Imagewaypoints_NFI];
     [self add:@"cache - unknown - 30x30" index:ImageNFI];
 
-    [self add:@"container - other - 70x20" index:ImageContainer_Virtual];
-    [self add:@"container - micro - 70x20" index:ImageContainer_Micro];
-    [self add:@"container - small - 70x20" index:ImageContainer_Small];
-    [self add:@"container - regular - 70x20" index:ImageContainer_Regular];
-    [self add:@"container - large - 70x20" index:ImageContainer_Large];
-    [self add:@"container - notchosen - 70x20" index:ImageContainer_NotChosen];
-    [self add:@"container - other - 70x20" index:ImageContainer_Other];
-    [self add:@"container - unknown - 70x20" index:ImageContainer_Unknown];
-
     [self add:@"log - didnotfind - 30x30" index:ImageLog_DidNotFind];
     [self add:@"log - enabled - 30x30" index:ImageLog_Enabled];
     [self add:@"log - found - 30x30" index:ImageLog_Found];
