@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_dbWaypoint_h
-#define Geocube_dbWaypoint_h
-
 @interface dbCache : dbObject {
     NSString *name, *description, *url;
 
@@ -109,11 +106,9 @@
 - (NSInteger)hasImages;
 
 + (NSId)dbGetByName:(NSString *)name;
-+ (NSId)dbCreate:(dbCache *)wp;
++ (NSId)dbCreate:(dbCache *)cache;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (dbCache *)dbGet:(NSId)id;
 
 @end
-
-#endif

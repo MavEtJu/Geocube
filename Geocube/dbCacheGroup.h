@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_dbWaypointGroup_h
-#define Geocube_dbWaypointGroup_h
-
 @interface dbCacheGroup: dbObject {
     NSString *name;
     BOOL usergroup;
@@ -33,7 +30,7 @@
 @property (nonatomic) BOOL usergroup;
 
 - (void)dbEmpty;
-+ (NSArray *)dbAllByCache:(NSId)wp_id;
++ (NSArray *)dbAllByCache:(NSId)c_id;
 + (NSMutableArray *)dbAll;
 + (dbCacheGroup *)dbGetByName:(NSString *)name;
 - (void)dbDelete;
@@ -46,5 +43,3 @@
 
 
 @end
-
-#endif

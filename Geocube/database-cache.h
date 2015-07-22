@@ -85,7 +85,7 @@
 - (void)loadCacheData;
 
 - (dbCacheType *)CacheType_get_byname:(NSString *)name;
-- (dbCacheType *)CacheType_get:(NSId)wp_type;
+- (dbCacheType *)CacheType_get:(NSId)cache_type;
 
 - (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
 - (dbContainerType *)ContainerType_get:(NSId)_id;

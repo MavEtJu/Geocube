@@ -97,7 +97,7 @@
 
 + (dbCacheGroup *)dbGetByName:(NSString *)name
 {
-    dbCacheGroup *wpg;
+    dbCacheGroup *cg;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, usergroup from cache_groups where name = ?");
@@ -108,17 +108,17 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             INT_FETCH_AND_ASSIGN(req, 2, ug);
-            wpg = [[dbCacheGroup alloc] init:_id name:name usergroup:ug];
+            cg = [[dbCacheGroup alloc] init:_id name:name usergroup:ug];
         }
         DB_FINISH;
     }
-    return wpg;
+    return cg;
 }
 
 + (NSMutableArray *)dbAll
 {
-    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheGroup *wpg;
+    NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheGroup *cg;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, usergroup from cache_groups");
@@ -127,32 +127,32 @@
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _name);
             INT_FETCH_AND_ASSIGN(req, 2, _ug);
-            wpg = [[dbCacheGroup alloc] init:__id name:_name usergroup:_ug];
-            [wpgs addObject:wpg];
+            cg = [[dbCacheGroup alloc] init:__id name:_name usergroup:_ug];
+            [cgs addObject:cg];
         }
         DB_FINISH;
     }
-    return wpgs;
+    return cgs;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)wp_id
++ (NSArray *)dbAllByCache:(NSId)c_id
 {
-    NSMutableArray *wpgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheGroup *wpg;
+    NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheGroup *cg;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select cache_group_id from cache_group2caches where cache_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(req, 1, c_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, wpgid);
-            wpg = [dbc CacheGroup_get:wpgid];
-            [wpgs addObject:wpg];
+            INT_FETCH_AND_ASSIGN(req, 0, cgid);
+            cg = [dbc CacheGroup_get:cgid];
+            [cgs addObject:cg];
         }
         DB_FINISH;
     }
-    return wpgs;
+    return cgs;
 }
 
 - (NSInteger)dbCountCaches

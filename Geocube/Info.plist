@@ -22,7 +22,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)-dev</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -44,6 +44,8 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>After all, you are looking for the location of the cache!</string>
+	<key>UILaunchImageFile</key>
+	<string>GC - logo - 640x960.png</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv6</string>
@@ -57,8 +59,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UILaunchImageFile</key>
-	<string>GC - logo - 640x960.png</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

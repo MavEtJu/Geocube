@@ -20,7 +20,7 @@
  */
 
 @interface CacheViewController : GCTableViewController {
-    dbCache *wp;
+    dbCache *cache;
 
     NSArray *cacheItems;
     NSArray *actionItems;

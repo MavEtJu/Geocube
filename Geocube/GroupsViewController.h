@@ -20,8 +20,8 @@
  */
 
 @interface GroupsViewController : GCTableViewController {
-    NSInteger wpgCount;
-    NSArray *wpgs;
+    NSInteger cgCount;
+    NSArray *cgs;
     BOOL showUsers;
 }
 

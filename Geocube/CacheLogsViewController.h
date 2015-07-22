@@ -20,10 +20,10 @@
  */
 
 @interface CacheLogsViewController : GCTableViewController {
-    dbCache *wp;
+    dbCache *cache;
     NSArray *logs;
 }
 
-- (id)init:(dbCache *)wp;
+- (id)init:(dbCache *)cache;
 
 @end

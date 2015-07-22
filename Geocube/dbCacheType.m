@@ -38,8 +38,8 @@
 
 + (NSArray *)dbAll
 {
-    NSMutableArray *wpts = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheType *wpt;
+    NSMutableArray *cts = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCacheType *ct;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, type, icon, pin from cache_types");
@@ -49,12 +49,12 @@
             TEXT_FETCH_AND_ASSIGN(req, 1, _type);
             INT_FETCH_AND_ASSIGN(req, 2, _icon);
             INT_FETCH_AND_ASSIGN(req, 3, _pin);
-            wpt = [[dbCacheType alloc] init:__id type:_type icon:_icon pin:_pin];
-            [wpts addObject:wpt];
+            ct = [[dbCacheType alloc] init:__id type:_type icon:_icon pin:_pin];
+            [cts addObject:ct];
         }
         DB_FINISH;
     }
-    return wpts;
+    return cts;
 }
 
 @end

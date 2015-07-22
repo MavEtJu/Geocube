@@ -29,12 +29,12 @@
 @property (nonatomic, retain) NSString *ref;
 @property (nonatomic) NSId gc_id;
 
-+ (void)dbUnlinkAllFromCache:(NSId)wp_id;
-- (void)dbLinkToCache:(NSId)wp_id;
++ (void)dbUnlinkAllFromCache:(NSId)c_id;
+- (void)dbLinkToCache:(NSId)c_id;
 + (NSId)dbGetIdByGC:(NSId)_gc_id;
 + (NSId)dbCreate:(dbTravelbug *)tb;
 - (NSId)dbCreate;
-+ (NSInteger)dbCountByCache:(NSId)wp_id;
++ (NSInteger)dbCountByCache:(NSId)c_id;
 + (NSArray *)dbAllByCache:(NSId)cache_id;
 
 @end

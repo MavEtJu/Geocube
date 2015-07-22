@@ -123,8 +123,8 @@
 
 + (NSMutableArray *)dbAll
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCache *wp;
+    NSMutableArray *caches = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCache *cache;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches");
@@ -158,40 +158,40 @@
             TEXT_FETCH_AND_ASSIGN(req, 25, _gc_owner);
             TEXT_FETCH_AND_ASSIGN(req, 26, _gc_placed_by);
 
-            wp = [[dbCache alloc] init:__id];
-            [wp setName:_name];
-            [wp setDescription:_desc];
-            [wp setLat:_lat];
-            [wp setLon:_lon];
+            cache = [[dbCache alloc] init:__id];
+            [cache setName:_name];
+            [cache setDescription:_desc];
+            [cache setLat:_lat];
+            [cache setLon:_lon];
 
-            [wp setLat_int:_lat_int];
-            [wp setLon_int:_lon_int];
-            [wp setDate_placed:_date_placed];
-            [wp setDate_placed_epoch:_date_placed_epoch];
-            [wp setUrl:_url];
-            [wp setCache_type_int:_cache_type];
-            [wp setGc_country:_country];
-            [wp setGc_state:_state];
-            [wp setGc_rating_difficulty:_ratingD];
-            [wp setGc_rating_terrain:_ratingT];
-            [wp setGc_favourites:_favourites];
-            [wp setGc_long_desc_html:_gc_long_desc_html];
-            [wp setGc_long_desc:_gc_long_desc];
-            [wp setGc_short_desc_html:_gc_short_desc_html];
-            [wp setGc_short_desc:_gc_short_desc];
-            [wp setGc_hint:_gc_hint];
-            [wp setGc_containerSize_int:_gc_container_size];
-            [wp setGc_archived:_gc_archived];
-            [wp setGc_available:_gc_available];
-            [wp setCache_symbol_int:_cache_symbol];
-            [wp setGc_owner:_gc_owner];
-            [wp setGc_placed_by:_gc_placed_by];
-            [wp finish];
-            [wps addObject:wp];
+            [cache setLat_int:_lat_int];
+            [cache setLon_int:_lon_int];
+            [cache setDate_placed:_date_placed];
+            [cache setDate_placed_epoch:_date_placed_epoch];
+            [cache setUrl:_url];
+            [cache setCache_type_int:_cache_type];
+            [cache setGc_country:_country];
+            [cache setGc_state:_state];
+            [cache setGc_rating_difficulty:_ratingD];
+            [cache setGc_rating_terrain:_ratingT];
+            [cache setGc_favourites:_favourites];
+            [cache setGc_long_desc_html:_gc_long_desc_html];
+            [cache setGc_long_desc:_gc_long_desc];
+            [cache setGc_short_desc_html:_gc_short_desc_html];
+            [cache setGc_short_desc:_gc_short_desc];
+            [cache setGc_hint:_gc_hint];
+            [cache setGc_containerSize_int:_gc_container_size];
+            [cache setGc_archived:_gc_archived];
+            [cache setGc_available:_gc_available];
+            [cache setCache_symbol_int:_cache_symbol];
+            [cache setGc_owner:_gc_owner];
+            [cache setGc_placed_by:_gc_placed_by];
+            [cache finish];
+            [caches addObject:cache];
         }
         DB_FINISH;
     }
-    return wps;
+    return caches;
 }
 
 + (NSId)dbGetByName:(NSString *)name
@@ -214,8 +214,8 @@
 
 + (dbCache *)dbGet:(NSId)__id
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCache *wp;
+    NSMutableArray *caches = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCache *cache;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by from caches where id = ?");
@@ -251,77 +251,77 @@
             TEXT_FETCH_AND_ASSIGN(req, 25, _gc_owner);
             TEXT_FETCH_AND_ASSIGN(req, 26, _gc_placed_by);
 
-            wp = [[dbCache alloc] init:__id];
-            [wp setName:_name];
-            [wp setDescription:_desc];
-            [wp setLat:_lat];
-            [wp setLon:_lon];
+            cache = [[dbCache alloc] init:__id];
+            [cache setName:_name];
+            [cache setDescription:_desc];
+            [cache setLat:_lat];
+            [cache setLon:_lon];
 
-            [wp setLat_int:_lat_int];
-            [wp setLon_int:_lon_int];
-            [wp setDate_placed:_date_placed];
-            [wp setDate_placed_epoch:_date_placed_epoch];
-            [wp setUrl:_url];
-            [wp setCache_type_int:_cache_type];
-            [wp setGc_country:_country];
-            [wp setGc_state:_state];
-            [wp setGc_rating_difficulty:_ratingD];
-            [wp setGc_rating_terrain:_ratingT];
-            [wp setGc_favourites:_favourites];
-            [wp setGc_long_desc_html:_gc_long_desc_html];
-            [wp setGc_long_desc:_gc_long_desc];
-            [wp setGc_short_desc_html:_gc_short_desc_html];
-            [wp setGc_short_desc:_gc_short_desc];
-            [wp setGc_hint:_gc_hint];
-            [wp setGc_containerSize_int:_gc_container_size];
-            [wp setGc_archived:_gc_archived];
-            [wp setGc_available:_gc_available];
-            [wp setCache_symbol_int:_cache_symbol];
-            [wp setGc_owner:_gc_owner];
-            [wp setGc_placed_by:_gc_placed_by];
+            [cache setLat_int:_lat_int];
+            [cache setLon_int:_lon_int];
+            [cache setDate_placed:_date_placed];
+            [cache setDate_placed_epoch:_date_placed_epoch];
+            [cache setUrl:_url];
+            [cache setCache_type_int:_cache_type];
+            [cache setGc_country:_country];
+            [cache setGc_state:_state];
+            [cache setGc_rating_difficulty:_ratingD];
+            [cache setGc_rating_terrain:_ratingT];
+            [cache setGc_favourites:_favourites];
+            [cache setGc_long_desc_html:_gc_long_desc_html];
+            [cache setGc_long_desc:_gc_long_desc];
+            [cache setGc_short_desc_html:_gc_short_desc_html];
+            [cache setGc_short_desc:_gc_short_desc];
+            [cache setGc_hint:_gc_hint];
+            [cache setGc_containerSize_int:_gc_container_size];
+            [cache setGc_archived:_gc_archived];
+            [cache setGc_available:_gc_available];
+            [cache setCache_symbol_int:_cache_symbol];
+            [cache setGc_owner:_gc_owner];
+            [cache setGc_placed_by:_gc_placed_by];
 
-            [wp finish];
-            [wps addObject:wp];
+            [cache finish];
+            [caches addObject:cache];
         }
         DB_FINISH;
     }
 
-    return wp;
+    return cache;
 }
 
-+ (NSId)dbCreate:(dbCache *)wp
++ (NSId)dbCreate:(dbCache *)cache
 {
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type, gc_country, gc_state, gc_rating_difficulty, gc_rating_terrain, gc_favourites, gc_long_desc_html, gc_long_desc, gc_short_desc_html, gc_short_desc, gc_hint, gc_container_size_id, gc_archived, gc_available, cache_symbol, gc_owner, gc_placed_by) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT(req, 1, wp.name);
-        SET_VAR_TEXT(req, 2, wp.description);
-        SET_VAR_TEXT(req, 3, wp.lat);
-        SET_VAR_TEXT(req, 4, wp.lon);
-        SET_VAR_INT(req, 5, wp.lat_int);
-        SET_VAR_INT(req, 6, wp.lon_int);
-        SET_VAR_TEXT(req, 7, wp.date_placed);
-        SET_VAR_INT(req, 8, wp.date_placed_epoch);
-        SET_VAR_TEXT(req, 9, wp.url);
-        SET_VAR_INT(req, 10, wp.cache_type_int);
-        SET_VAR_TEXT(req, 11, wp.gc_country);
-        SET_VAR_TEXT(req, 12, wp.gc_state);
-        SET_VAR_DOUBLE(req, 13, wp.gc_rating_difficulty);
-        SET_VAR_DOUBLE(req, 14, wp.gc_rating_terrain);
-        SET_VAR_INT(req, 15, wp.gc_favourites);
-        SET_VAR_BOOL(req, 16, wp.gc_long_desc_html);
-        SET_VAR_TEXT(req, 17, wp.gc_long_desc);
-        SET_VAR_BOOL(req, 18, wp.gc_short_desc_html);
-        SET_VAR_TEXT(req, 19, wp.gc_short_desc);
-        SET_VAR_TEXT(req, 20, wp.gc_hint);
-        SET_VAR_INT(req, 21, wp.gc_containerSize_int);
-        SET_VAR_BOOL(req, 22, wp.gc_archived);
-        SET_VAR_BOOL(req, 23, wp.gc_available);
-        SET_VAR_INT(req, 24, wp.cache_symbol_int);
-        SET_VAR_TEXT(req, 25, wp.gc_owner);
-        SET_VAR_TEXT(req, 26, wp.gc_placed_by);
+        SET_VAR_TEXT(req, 1, cache.name);
+        SET_VAR_TEXT(req, 2, cache.description);
+        SET_VAR_TEXT(req, 3, cache.lat);
+        SET_VAR_TEXT(req, 4, cache.lon);
+        SET_VAR_INT(req, 5, cache.lat_int);
+        SET_VAR_INT(req, 6, cache.lon_int);
+        SET_VAR_TEXT(req, 7, cache.date_placed);
+        SET_VAR_INT(req, 8, cache.date_placed_epoch);
+        SET_VAR_TEXT(req, 9, cache.url);
+        SET_VAR_INT(req, 10, cache.cache_type_int);
+        SET_VAR_TEXT(req, 11, cache.gc_country);
+        SET_VAR_TEXT(req, 12, cache.gc_state);
+        SET_VAR_DOUBLE(req, 13, cache.gc_rating_difficulty);
+        SET_VAR_DOUBLE(req, 14, cache.gc_rating_terrain);
+        SET_VAR_INT(req, 15, cache.gc_favourites);
+        SET_VAR_BOOL(req, 16, cache.gc_long_desc_html);
+        SET_VAR_TEXT(req, 17, cache.gc_long_desc);
+        SET_VAR_BOOL(req, 18, cache.gc_short_desc_html);
+        SET_VAR_TEXT(req, 19, cache.gc_short_desc);
+        SET_VAR_TEXT(req, 20, cache.gc_hint);
+        SET_VAR_INT(req, 21, cache.gc_containerSize_int);
+        SET_VAR_BOOL(req, 22, cache.gc_archived);
+        SET_VAR_BOOL(req, 23, cache.gc_available);
+        SET_VAR_INT(req, 24, cache.cache_symbol_int);
+        SET_VAR_TEXT(req, 25, cache.gc_owner);
+        SET_VAR_TEXT(req, 26, cache.gc_placed_by);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);

@@ -23,11 +23,11 @@
 
 @implementation CacheDescriptionViewController
 
-- (id)init:(dbCache *)_wp
+- (id)init:(dbCache *)_cache
 {
     self = [super self];
 
-    wp = _wp;
+    cache = _cache;
 
     return self;
 }
@@ -48,18 +48,18 @@
 
 - (NSString *)makeHTMLString
 {
-    NSMutableString *ret = [NSMutableString stringWithString:wp.description];
+    NSMutableString *ret = [NSMutableString stringWithString:cache.description];
 
-    if ([wp.gc_short_desc compare:@""] != NSOrderedSame) {
-        NSString *s = wp.gc_short_desc;
-        if (wp.gc_short_desc_html == NO)
+    if ([cache.gc_short_desc compare:@""] != NSOrderedSame) {
+        NSString *s = cache.gc_short_desc;
+        if (cache.gc_short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([wp.gc_long_desc compare:@""] != NSOrderedSame) {
-        NSString *s = wp.gc_long_desc;
-        if (wp.gc_long_desc_html == NO)
+    if ([cache.gc_long_desc compare:@""] != NSOrderedSame) {
+        NSString *s = cache.gc_long_desc;
+        if (cache.gc_long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }

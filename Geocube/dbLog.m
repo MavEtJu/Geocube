@@ -130,12 +130,12 @@
     }
 }
 
-- (void)dbUpdateCache:(NSId)wp_id;
+- (void)dbUpdateCache:(NSId)c_id;
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set cache_id = ? where id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(req, 1, c_id);
         SET_VAR_INT(req, 2, _id);
 
         DB_CHECK_OKAY;
@@ -143,14 +143,14 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSId)wp_id
++ (NSInteger)dbCountByCache:(NSId)c_id
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from logs where cache_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(req, 1, c_id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
@@ -161,7 +161,7 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)wp_id
++ (NSArray *)dbAllByCache:(NSId)c_id
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
     dbLog *l;
@@ -169,7 +169,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(req, 1, c_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);

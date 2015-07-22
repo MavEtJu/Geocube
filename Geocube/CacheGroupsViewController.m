@@ -25,22 +25,22 @@
 
 @implementation CacheGroupsViewController
 
-- (id)init:(dbCache *)_wp
+- (id)init:(dbCache *)_cache
 {
     self = [super init];
-    wp = _wp;
+    cache = _cache;
 
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *gs = [dbCacheGroup dbAllByCache:wp._id];
+    NSArray *gs = [dbCacheGroup dbAllByCache:cache._id];
     NSEnumerator *e = [gs objectEnumerator];
-    dbCacheGroup *wpg;
-    while ((wpg = [e nextObject]) != nil) {
-        if (wpg.usergroup == TRUE)
-            [ugs addObject:wpg];
+    dbCacheGroup *cg;
+    while ((cg = [e nextObject]) != nil) {
+        if (cg.usergroup == TRUE)
+            [ugs addObject:cg];
         else
-            [sgs addObject:wpg];
+            [sgs addObject:cg];
     }
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -83,15 +83,15 @@
     else
         e = [sgs objectEnumerator];
 
-    dbCacheGroup *wpg;
+    dbCacheGroup *cg;
     NSInteger c = 0;
-    while ((wpg = [e nextObject]) != nil) {
+    while ((cg = [e nextObject]) != nil) {
         if (c == indexPath.row)
             break;
         c++;
     }
-    cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[wpg dbCountCaches]];
+    cell.textLabel.text = cg.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountCaches]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

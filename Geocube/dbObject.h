@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_dbObject_h
-#define Geocube_dbObject_h
-
 @interface dbObject : NSObject {
     NSId _id;
 
@@ -38,5 +35,3 @@
 - (NSId)dbCreate;
 
 @end
-
-#endif

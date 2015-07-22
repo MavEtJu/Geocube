@@ -157,44 +157,44 @@
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentC finish];
 
-        NSId cwp_id = [dbCache dbGetByName:currentC.name];
+        NSId c_id = [dbCache dbGetByName:currentC.name];
         (*totalCachesCount)++;
-        if (cwp_id == 0) {
-            cwp_id = [dbCache dbCreate:currentC];
+        if (c_id == 0) {
+            c_id = [dbCache dbCreate:currentC];
             (*newCachesCount)++;
 
-            [dbc.CacheGroup_LastImportAdded dbAddCache:cwp_id];
-            [dbc.CacheGroup_AllCaches dbAddCache:cwp_id];
-            [group dbAddCache:cwp_id];
+            [dbc.CacheGroup_LastImportAdded dbAddCache:c_id];
+            [dbc.CacheGroup_AllCaches dbAddCache:c_id];
+            [group dbAddCache:c_id];
         } else {
-            currentC._id = cwp_id;
+            currentC._id = c_id;
             [currentC dbUpdate];
-            if ([group dbContainsCache:cwp_id] == NO)
-                [group dbAddCache:cwp_id];
+            if ([group dbContainsCache:c_id] == NO)
+                [group dbAddCache:c_id];
         }
-        [dbc.CacheGroup_LastImport dbAddCache:cwp_id];
+        [dbc.CacheGroup_LastImport dbAddCache:c_id];
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
-            [l dbUpdateCache:cwp_id];
+            [l dbUpdateCache:c_id];
         }
 
         // Link attributes to cache
-        [dbAttribute dbUnlinkAllFromCache:cwp_id];
+        [dbAttribute dbUnlinkAllFromCache:c_id];
         e = [attributes objectEnumerator];
         dbAttribute *a;
         while ((a = [e nextObject]) != nil) {
-            [a dbLinkToCache:cwp_id YesNo:a._YesNo];
+            [a dbLinkToCache:c_id YesNo:a._YesNo];
         }
 
         // Link travelbugs to cache
-        [dbTravelbug dbUnlinkAllFromCache:cwp_id];
+        [dbTravelbug dbUnlinkAllFromCache:c_id];
         e = [travelbugs objectEnumerator];
         dbTravelbug *tb;
         while ((tb = [e nextObject]) != nil) {
-            [tb dbLinkToCache:cwp_id];
+            [tb dbLinkToCache:c_id];
         }
 
         inItem = NO;

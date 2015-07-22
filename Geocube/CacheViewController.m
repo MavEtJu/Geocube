@@ -29,7 +29,7 @@
 
 - (void)showCache:(dbCache *)_cache
 {
-    wp = _cache;
+    cache = _cache;
     [self.tableView reloadData];
 }
 
@@ -91,24 +91,24 @@
     UILabel *l;
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
-    l.text = wp.description;
+    l.text = cache.description;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if ([wp.gc_placed_by compare:@""] != NSOrderedSame)
-        [s appendFormat:@"by %@", wp.gc_placed_by];
-    if ([wp.date_placed compare:@""] != NSOrderedSame)
-        [s appendFormat:@" on %@", [MyTools datetimePartDate:wp.date_placed]];
+    if ([cache.gc_placed_by compare:@""] != NSOrderedSame)
+        [s appendFormat:@"by %@", cache.gc_placed_by];
+    if ([cache.date_placed compare:@""] != NSOrderedSame)
+        [s appendFormat:@" on %@", [MyTools datetimePartDate:cache.date_placed]];
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
-    l.text = wp.name;
+    l.text = cache.name;
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
@@ -131,13 +131,13 @@
     if (indexPath.section == 0) {
         CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        Coordinates *c = [[Coordinates alloc] init:wp.lat_float lon:wp.lon_float];
+        Coordinates *c = [[Coordinates alloc] init:cache.lat_float lon:cache.lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
-        [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty];
+        [cell setRatings:cache.gc_favourites terrain:cache.gc_rating_terrain difficulty:cache.gc_rating_difficulty];
 
-        cell.size.image = [imageLibrary get:wp.gc_containerSize.icon];
-        cell.icon.image = [imageLibrary get:wp.cache_type.icon];
+        cell.size.image = [imageLibrary get:cache.gc_containerSize.icon];
+        cell.icon.image = [imageLibrary get:cache.cache_type.icon];
         return cell;
     }
 
@@ -150,32 +150,32 @@
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([wp.gc_short_desc compare:@""] == NSOrderedSame && [wp.gc_long_desc compare:@""] == NSOrderedSame && [wp.description compare:@""] == NSOrderedSame) {
+                if ([cache.gc_short_desc compare:@""] == NSOrderedSame && [cache.gc_long_desc compare:@""] == NSOrderedSame && [cache.description compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
-                //                if (wp.gc_hint ==b nil || [wp.gc_hint compare:@""] == NSOrderedSame)
-                if ([wp.gc_hint compare:@""] == NSOrderedSame || [wp.gc_hint compare:@" "] == NSOrderedSame) {
+                //                if (cache.gc_hint ==b nil || [cache.gc_hint compare:@""] == NSOrderedSame)
+                if ([cache.gc_hint compare:@""] == NSOrderedSame || [cache.gc_hint compare:@" "] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 2: /* Personal note */
-                if ([wp.gc_personal_note compare:@""] == NSOrderedSame) {
+                if ([cache.gc_personal_note compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 3: /* Field Note */
-                if ([wp hasFieldNotes] == FALSE) {
+                if ([cache hasFieldNotes] == FALSE) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 4: { /* Logs */
-                NSInteger c = [wp hasLogs];
+                NSInteger c = [cache hasLogs];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
@@ -184,7 +184,7 @@
                 break;
             }
             case 5: { /* Attributes */
-                NSInteger c = [wp hasAttributes];
+                NSInteger c = [cache hasAttributes];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
@@ -193,7 +193,7 @@
                 break;
             }
             case 6: { /* Related Waypoints */
-                NSInteger c = [wp hasWaypoints];
+                NSInteger c = [cache hasWaypoints];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
@@ -202,7 +202,7 @@
                 break;
             }
             case 7: { /* Inventory */
-                NSInteger c = [wp hasInventory];
+                NSInteger c = [cache hasInventory];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
@@ -211,7 +211,7 @@
                 break;
             }
             case 8: { /* Images */
-                NSInteger c = [wp hasImages];
+                NSInteger c = [cache hasImages];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
@@ -254,37 +254,37 @@
 
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {   /* Description */
-            UIViewController *newController = [[CacheDescriptionViewController alloc] init:wp];
+            UIViewController *newController = [[CacheDescriptionViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 1) {   /* Hint */
-            UIViewController *newController = [[CacheHintViewController alloc] init:wp];
+            UIViewController *newController = [[CacheHintViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 4) {   /* Logs */
-            UITableViewController *newController = [[CacheLogsViewController alloc] init:wp];
+            UITableViewController *newController = [[CacheLogsViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 5) {   /* Attributes */
-            UITableViewController *newController = [[CacheAttributesViewController alloc] init:wp];
+            UITableViewController *newController = [[CacheAttributesViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 7) {    /* Groups */
-            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:wp];
+            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 9) {    /* Groups */
-            UITableViewController *newController = [[CacheGroupsViewController alloc] init:wp];
+            UITableViewController *newController = [[CacheGroupsViewController alloc] init:cache];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
@@ -294,7 +294,7 @@
 
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
-            currentCache = wp;
+            currentCache = cache;
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];

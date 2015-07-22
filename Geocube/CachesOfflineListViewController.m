@@ -54,18 +54,18 @@
 
 - (void)refreshCachesData:(NSString *)searchString
 {
-    NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray *_cs = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [[dbCache dbAll] objectEnumerator];
-    dbCache *wp;
+    dbCache *c;
 
-    while ((wp = [e nextObject]) != nil) {
-        if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
+    while ((c = [e nextObject]) != nil) {
+        if (searchString != nil && [[c.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
+        c.calculatedDistance = [Coordinates coordinates2distance:c.coordinates to:LM.coords];
 
-        [_wps addObject:wp];
+        [_cs addObject:c];
     }
-    wps = [_wps sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
+    cs = [_cs sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
 
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
@@ -78,7 +78,7 @@
     }];
 
 
-    wpCount = [wps count];
+    cCount = [cs count];
 }
 
 
@@ -97,7 +97,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return wpCount;
+    return cCount;
 }
 
 // Return a cell for the index path
@@ -109,25 +109,25 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
-    dbCache *wp = [wps objectAtIndex:indexPath.row];
-    cell.description.text = wp.description;
-    cell.name.text = wp.name;
-    cell.icon.image = [imageLibrary get:wp.cache_type.icon];
+    dbCache *c = [cs objectAtIndex:indexPath.row];
+    cell.description.text = c.description;
+    cell.name.text = c.name;
+    cell.icon.image = [imageLibrary get:c.cache_type.icon];
 
-    [cell setRatings:wp.gc_favourites terrain:wp.gc_rating_terrain difficulty:wp.gc_rating_difficulty size:wp.gc_containerSize.icon];
+    [cell setRatings:c.gc_favourites terrain:c.gc_rating_terrain difficulty:c.gc_rating_difficulty size:c.gc_containerSize.icon];
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:c.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
-    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:c.coordinates]];
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if ([wp.gc_state compare:@""] != NSOrderedSame)
-        [s appendFormat:@"%@", wp.gc_state];
-    if ([wp.gc_country compare:@""] != NSOrderedSame) {
+    if ([c.gc_state compare:@""] != NSOrderedSame)
+        [s appendFormat:@"%@", c.gc_state];
+    if ([c.gc_country compare:@""] != NSOrderedSame) {
          if ([s compare:@""] != NSOrderedSame)
              [s appendFormat:@", "];
-        [s appendFormat:@"%@", wp.gc_country];
+        [s appendFormat:@"%@", c.gc_country];
     }
     cell.stateCountry.text = s;
     return cell;
@@ -140,11 +140,11 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbCache *wp = [wps objectAtIndex:indexPath.row];
-    NSString *newTitle = wp.description;
+    dbCache *c = [cs objectAtIndex:indexPath.row];
+    NSString *newTitle = c.description;
 
     CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [newController showCache:wp];
+    [newController showCache:c];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
     [self.navigationController pushViewController:newController animated:YES];

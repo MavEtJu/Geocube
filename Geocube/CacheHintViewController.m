@@ -23,11 +23,11 @@
 
 @implementation CacheHintViewController
 
-- (id)init:(dbCache *)_wp
+- (id)init:(dbCache *)_cache
 {
     self = [super self];
 
-    wp = _wp;
+    cache = _cache;
 
     return self;
 }
@@ -48,7 +48,7 @@
 
 - (NSString *)makeHTMLString
 {
-    return [MyTools simpleHTML:wp.gc_hint];
+    return [MyTools simpleHTML:cache.gc_hint];
 }
 
 @end

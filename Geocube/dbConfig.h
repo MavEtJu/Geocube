@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_dbConfig_h
-#define Geocube_dbConfig_h
-
 @interface dbConfig : dbObject {
     NSString *key;
     NSString *value;
@@ -34,5 +31,3 @@
 + (dbConfig *)dbGetByKey:(NSString *)key;
 
 @end
-
-#endif

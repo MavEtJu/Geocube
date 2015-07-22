@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_dbWaypointType_h
-#define Geocube_dbWaypointType_h
-
 @interface dbCacheType : dbObject {
     NSString *type;
     NSInteger icon;
@@ -35,5 +32,3 @@
 - (id)init:(NSId)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end
-
-#endif

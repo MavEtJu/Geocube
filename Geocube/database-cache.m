@@ -55,26 +55,26 @@
     ContainerSize_Unknown = nil;
 
     NSEnumerator *e = [CacheGroups objectEnumerator];
-    dbCacheGroup *wpg;
-    while ((wpg = [e nextObject]) != nil) {
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches"] == NSOrderedSame) {
-            CacheGroup_AllCaches = wpg;
+    dbCacheGroup *cg;
+    while ((cg = [e nextObject]) != nil) {
+        if (cg.usergroup == 0 && [cg.name compare:@"All Caches"] == NSOrderedSame) {
+            CacheGroup_AllCaches = cg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches - Found"] == NSOrderedSame) {
-            CacheGroup_AllCaches_Found = wpg;
+        if (cg.usergroup == 0 && [cg.name compare:@"All Caches - Found"] == NSOrderedSame) {
+            CacheGroup_AllCaches_Found = cg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"All Caches - Not Found"] == NSOrderedSame) {
-            CacheGroup_AllCaches_NotFound = wpg;
+        if (cg.usergroup == 0 && [cg.name compare:@"All Caches - Not Found"] == NSOrderedSame) {
+            CacheGroup_AllCaches_NotFound = cg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import"] == NSOrderedSame) {
-            CacheGroup_LastImport = wpg;
+        if (cg.usergroup == 0 && [cg.name compare:@"Last Import"] == NSOrderedSame) {
+            CacheGroup_LastImport = cg;
             continue;
         }
-        if (wpg.usergroup == 0 && [wpg.name compare:@"Last Import - New"] == NSOrderedSame) {
-            CacheGroup_LastImportAdded = wpg;
+        if (cg.usergroup == 0 && [cg.name compare:@"Last Import - New"] == NSOrderedSame) {
+            CacheGroup_LastImportAdded = cg;
             continue;
         }
     }
@@ -85,20 +85,20 @@
     NSAssert(CacheGroup_LastImportAdded != nil, @"CacheGroup_LastImportAdded");
 
     e = [CacheTypes objectEnumerator];
-    dbCacheType *wpt;
-    while ((wpt = [e nextObject]) != nil) {
-        if ([wpg.name compare:@"*"] == NSOrderedSame) {
-            CacheType_Unknown = wpt;
+    dbCacheType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if ([cg.name compare:@"*"] == NSOrderedSame) {
+            CacheType_Unknown = ct;
             continue;
         }
     }
     NSAssert(CacheType_Unknown != nil, @"CacheType_Unknown");
 
     e = [ContainerTypes objectEnumerator];
-    dbContainerType *ct;
-    while ((ct = [e nextObject]) != nil) {
-        if ([ct.size compare:@"Unknown"] == NSOrderedSame) {
-            ContainerType_Unknown = ct;
+    dbContainerType *containert;
+    while ((containert = [e nextObject]) != nil) {
+        if ([containert.size compare:@"Unknown"] == NSOrderedSame) {
+            ContainerType_Unknown = containert;
             continue;
         }
     }
@@ -139,21 +139,21 @@
 - (dbCacheType *)CacheType_get_byname:(NSString *)name
 {
     NSEnumerator *e = [CacheTypes objectEnumerator];
-    dbCacheType *wpt;
-    while ((wpt = [e nextObject]) != nil) {
-        if ([wpt.type compare:name] == NSOrderedSame)
-            return wpt;
+    dbCacheType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if ([ct.type compare:name] == NSOrderedSame)
+            return ct;
     }
     return nil;
 }
 
-- (dbCacheType *)CacheType_get:(NSId)wp_type
+- (dbCacheType *)CacheType_get:(NSId)cache_type
 {
     NSEnumerator *e = [CacheTypes objectEnumerator];
-    dbCacheType *wpt;
-    while ((wpt = [e nextObject]) != nil) {
-        if (wpt._id == wp_type)
-            return wpt;
+    dbCacheType *ct;
+    while ((ct = [e nextObject]) != nil) {
+        if (ct._id == cache_type)
+            return ct;
     }
     return nil;
 }
@@ -234,10 +234,10 @@
 - (dbCacheGroup *)CacheGroup_get:(NSId)_id
 {
     NSEnumerator *e = [CacheGroups objectEnumerator];
-    dbCacheGroup *wpg;
-    while ((wpg = [e nextObject]) != nil) {
-        if (wpg._id == _id)
-            return wpg;
+    dbCacheGroup *cg;
+    while ((cg = [e nextObject]) != nil) {
+        if (cg._id == _id)
+            return cg;
     }
     return nil;
 }

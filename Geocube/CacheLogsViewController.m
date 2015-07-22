@@ -25,15 +25,15 @@
 
 @implementation CacheLogsViewController
 
-- (id)init:(dbCache *)_wp
+- (id)init:(dbCache *)_cache
 {
     self = [super init];
-    wp = _wp;
+    cache = _cache;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
 
-    logs = [dbLog dbAllByCache:_wp._id];
+    logs = [dbLog dbAllByCache:_cache._id];
 
     return self;
 }

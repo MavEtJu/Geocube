@@ -48,15 +48,15 @@
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (id)init:(NSId)__id gc_id:(NSId)gc_id cache_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
+- (id)init:(NSId)__id gc_id:(NSId)gc_id cache_id:(NSId)c_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
 - (id)init:(NSId)gc_id;
 
 + (NSId)dbGetIdByGC:(NSId)gc_id;
-+ (NSInteger)dbCountByCache:(NSId)wp_id;
-+ (NSArray *)dbAllByCache:(NSId)wp_id;
++ (NSInteger)dbCountByCache:(NSId)c_id;
++ (NSArray *)dbAllByCache:(NSId)c_id;
 + (NSId)dbCreate:(dbLog *)log;
 - (NSId)dbCreate;
-- (void)dbUpdateCache:(NSId)wp_id;
+- (void)dbUpdateCache:(NSId)c_id;
 
 
 

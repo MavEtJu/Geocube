@@ -57,14 +57,14 @@
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
     NSEnumerator *e = [dbc.CacheGroups objectEnumerator];
-    dbCacheGroup *wpg;
+    dbCacheGroup *cg;
 
-    while ((wpg = [e nextObject]) != nil) {
-        if (wpg.usergroup == showUsers)
-            [ws addObject:wpg];
+    while ((cg = [e nextObject]) != nil) {
+        if (cg.usergroup == showUsers)
+            [ws addObject:cg];
     }
-    wpgs = ws;
-    wpgCount = [wpgs count];
+    cgs = ws;
+    cgCount = [cgs count];
 }
 
 - (void)viewDidLoad
@@ -90,7 +90,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return wpgCount;
+    return cgCount;
 }
 
 // Return a cell for the index path
@@ -99,9 +99,9 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
-    dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
-    cell.textLabel.text = wpg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[wpg dbCountCaches]];
+    dbCacheGroup *cg = [cgs objectAtIndex:indexPath.row];
+    cell.textLabel.text = cg.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountCaches]];
 
     return cell;
 }
@@ -113,10 +113,10 @@
         return;
     }
 
-    dbCacheGroup *wpg = [wpgs objectAtIndex:indexPath.row];
+    dbCacheGroup *cg = [cgs objectAtIndex:indexPath.row];
 
     UIAlertController *view=   [UIAlertController
-                                alertControllerWithTitle:wpg.name
+                                alertControllerWithTitle:cg.name
                                 message:@"Select you choice"
                                 preferredStyle:UIAlertControllerStyleActionSheet];
 
@@ -126,7 +126,7 @@
                             handler:^(UIAlertAction * action)
                             {
                                 //Do some thing here
-                                [self groupEmpty:wpg reload:YES];
+                                [self groupEmpty:cg reload:YES];
                                 [view dismissViewControllerAnimated:YES completion:nil];
                             }];
 
@@ -136,7 +136,7 @@
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
-                                 [self groupRename:wpg];
+                                 [self groupRename:cg];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *delete = [UIAlertAction
@@ -145,7 +145,7 @@
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
-                                 [self groupDelete:wpg];
+                                 [self groupDelete:cg];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *cancel = [UIAlertAction
@@ -166,18 +166,18 @@
 
 - (void)emptyGroups
 {
-    NSEnumerator *e = [wpgs objectEnumerator];
-    dbCacheGroup *wpg;
-    while ((wpg = [e nextObject]) != nil) {
-        [self groupEmpty:wpg reload:NO];
+    NSEnumerator *e = [cgs objectEnumerator];
+    dbCacheGroup *cg;
+    while ((cg = [e nextObject]) != nil) {
+        [self groupEmpty:cg reload:NO];
     }
     [self refreshGroupData];
     [self.tableView reloadData];
 }
 
-- (void)groupEmpty:(dbCacheGroup *)wpg reload:(BOOL)reload
+- (void)groupEmpty:(dbCacheGroup *)cg reload:(BOOL)reload
 {
-    [wpg dbEmpty];
+    [cg dbEmpty];
     [dbc loadCacheData];
     if (reload == YES) {
         [self refreshGroupData];
@@ -185,19 +185,19 @@
     }
 }
 
-- (void)groupDelete:(dbCacheGroup *)wpg
+- (void)groupDelete:(dbCacheGroup *)cg
 {
-    [wpg dbDelete];
+    [cg dbDelete];
     [dbc loadCacheData];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
 
-- (void)groupRename:(dbCacheGroup *)wpg
+- (void)groupRename:(dbCacheGroup *)cg
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Rename group"
-                               message:[NSString stringWithFormat:@"Rename %@ to", wpg.name]
+                               message:[NSString stringWithFormat:@"Rename %@ to", cg.name]
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -207,8 +207,8 @@
                              //Do Some action
                              UITextField *tf = alert.textFields.firstObject;
 
-                             NSLog(@"Renaming group '%ld' to '%@'", (long)wpg._id, tf.text);
-                             [wpg dbUpdateName:tf.text];
+                             NSLog(@"Renaming group '%ld' to '%@'", (long)cg._id, tf.text);
+                             [cg dbUpdateName:tf.text];
                              [dbc loadCacheData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
@@ -223,7 +223,7 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = wpg.name;
+        textField.placeholder = cg.name;
     }];
 
     [self presentViewController:alert animated:YES completion:nil];

@@ -20,10 +20,10 @@
  */
 
 @interface CacheDescriptionViewController : GCViewController<UIScrollViewDelegate, UIWebViewDelegate> {
-    dbCache *wp;
+    dbCache *cache;
     UIWebView *webview;
 }
 
-- (id)init:(dbCache *)wp;
+- (id)init:(dbCache *)cache;
 
 @end
