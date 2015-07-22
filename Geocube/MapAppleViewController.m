@@ -48,14 +48,8 @@
 
 - (void)placeMarkers
 {
-    NSEnumerator *e = [markers objectEnumerator];
-    MKPointAnnotation *m;
-    while ((m = [e nextObject]) != nil) {
-        [mapView removeAnnotation:m];
-    }
-
     // Creates a marker in the center of the map.
-    e = [cachesArray objectEnumerator];
+    NSEnumerator *e = [cachesArray objectEnumerator];
     dbCache *cache;
     markers = [NSMutableArray arrayWithCapacity:20];
     while ((cache = [e nextObject]) != nil) {
@@ -70,6 +64,17 @@
 
         [markers addObject:annotation];
     }
+}
+
+- (void)removeMarkers
+{
+    NSEnumerator *e = [markers objectEnumerator];
+    MKPointAnnotation *m;
+    while ((m = [e nextObject]) != nil) {
+        [mapView removeAnnotation:m];
+        m = nil;
+    }
+    markers = nil;
 }
 
 - (void)mapCallOutPressed:(id)sender

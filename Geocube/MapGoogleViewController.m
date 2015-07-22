@@ -51,6 +51,7 @@
     GMSMarker *m;
     while ((m = [e nextObject]) != nil) {
         m.map = nil;
+        m = nil;
     }
     markers = nil;
 }
