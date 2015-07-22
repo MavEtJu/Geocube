@@ -23,7 +23,7 @@
 
 @implementation dbLog
 
-@synthesize gc_id, cache_id, cache, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
+@synthesize gc_id, waypoint, waypoint_id, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger, log, cellHeight;
 
 - (id)init:(NSId)_gc_id
 {
@@ -32,12 +32,12 @@
     return self;
 }
 
-- (id)init:(NSId)__id gc_id:(NSId)_gc_id cache_id:(NSId)_cid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
+- (id)init:(NSId)__id gc_id:(NSId)_gc_id waypoint_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log
 {
     self = [super init];
     _id = __id;
     gc_id = _gc_id;
-    cache_id = _cid;
+    waypoint_id = _wpid;
     logtype_id = _ltid;
     datetime = _datetime;
     logger = _logger;
@@ -60,7 +60,7 @@
         logtype = [dbc LogType_get:logtype_id];
         logtype_string = logtype.logtype;
     }
-    cache = [dbCache dbGet:cache_id]; // This can be nil when an import is happening
+    waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
 
     [super finish];
 }
@@ -96,7 +96,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT(req, 1, log.cache_id);
+        SET_VAR_INT(req, 1, log.waypoint_id);
         SET_VAR_INT(req, 2, log.logtype_id);
         SET_VAR_TEXT(req, 3, log.datetime);
         SET_VAR_INT(req, 4, log.datetime_epoch);
@@ -117,7 +117,7 @@
         DB_PREPARE(@"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
 
         SET_VAR_INT(req, 1, logtype_id);
-        SET_VAR_INT(req, 2, cache_id);
+        SET_VAR_INT(req, 2, waypoint_id);
         SET_VAR_TEXT(req, 3, datetime);
         SET_VAR_INT(req, 4, datetime_epoch);
         SET_VAR_TEXT(req, 5, logger);
@@ -143,14 +143,14 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSId)c_id
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from logs where cache_id = ?");
 
-        SET_VAR_INT(req, 1, c_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
@@ -161,26 +161,26 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)c_id
++ (NSArray *)dbAllByWaypoint:(NSId)_wp_id
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
     dbLog *l;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, cache_id, log_type_id, datetime, datetime_epoch, logger, log from logs where cache_id = ?");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger, log from logs where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, c_id);
+        SET_VAR_INT(req, 1, _wp_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             INT_FETCH_AND_ASSIGN(req, 1, gc_id);
-            INT_FETCH_AND_ASSIGN(req, 2, cache_id);
+            INT_FETCH_AND_ASSIGN(req, 2, wp_id);
             INT_FETCH_AND_ASSIGN(req, 3, log_type_id);
             TEXT_FETCH_AND_ASSIGN(req, 4, datetime);
             //INT_FETCH_AND_ASSIGN(req, 5, datetime_epoch);
             TEXT_FETCH_AND_ASSIGN(req, 6, logger);
             TEXT_FETCH_AND_ASSIGN(req, 7, log);
-            l = [[dbLog alloc] init:__id gc_id:gc_id cache_id:cache_id logtype_id:log_type_id datetime:datetime logger:logger log:log];
+            l = [[dbLog alloc] init:__id gc_id:gc_id waypoint_id:wp_id logtype_id:log_type_id datetime:datetime logger:logger log:log];
             [l finish];
             [ls addObject:l];
         }

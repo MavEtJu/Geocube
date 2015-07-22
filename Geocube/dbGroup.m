@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbCacheGroup
+@implementation dbGroup
 
 @synthesize name, usergroup;
 
@@ -39,42 +39,42 @@
 {
     // Delete all logs from caches not longer in an usergroup (should be zero)
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from cache_group2caches where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from group2caches where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 
     // Delete all logs from caches not longer in an usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from logs where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from logs where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 
     // Delete all travelbugs from caches not longer in an usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from travelbug2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select waypoint_id from group2caches where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 
     // Delete all attributes from caches not longer in an usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from attribute2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from attribute2waypoint where waypoint_id not in (select waypoint_id from group2caches where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 
     // Delete all travelbugs from caches not longer in an usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from travelbug2cache where cache_id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 
     // Delete all caches which are not longer in a usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from caches where id not in (select cache_id from cache_group2caches where cache_group_id in (select id from cache_groups where usergroup != 0))");
+        DB_PREPARE(@"delete from waypoints where id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
@@ -83,7 +83,7 @@
 - (void)dbEmpty
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from cache_group2caches where cache_group_id = ?");
+        DB_PREPARE(@"delete from group2waypoints where group_id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
@@ -91,16 +91,16 @@
         DB_FINISH;
     }
 
-    [dbCacheGroup cleanupAfterDelete];
+    [dbGroup cleanupAfterDelete];
 }
 
 
-+ (dbCacheGroup *)dbGetByName:(NSString *)name
++ (dbGroup *)dbGetByName:(NSString *)name
 {
-    dbCacheGroup *cg;
+    dbGroup *cg;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, usergroup from cache_groups where name = ?");
+        DB_PREPARE(@"select id, name, usergroup from groups where name = ?");
 
         SET_VAR_TEXT(req, 1, name);
 
@@ -108,7 +108,7 @@
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, name);
             INT_FETCH_AND_ASSIGN(req, 2, ug);
-            cg = [[dbCacheGroup alloc] init:_id name:name usergroup:ug];
+            cg = [[dbGroup alloc] init:_id name:name usergroup:ug];
         }
         DB_FINISH;
     }
@@ -118,16 +118,16 @@
 + (NSMutableArray *)dbAll
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheGroup *cg;
+    dbGroup *cg;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, usergroup from cache_groups");
+        DB_PREPARE(@"select id, name, usergroup from groups");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, __id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _name);
             INT_FETCH_AND_ASSIGN(req, 2, _ug);
-            cg = [[dbCacheGroup alloc] init:__id name:_name usergroup:_ug];
+            cg = [[dbGroup alloc] init:__id name:_name usergroup:_ug];
             [cgs addObject:cg];
         }
         DB_FINISH;
@@ -135,19 +135,19 @@
     return cgs;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)c_id
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheGroup *cg;
+    dbGroup *cg;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select cache_group_id from cache_group2caches where cache_id = ?");
+        DB_PREPARE(@"select group_id from group2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, c_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, cgid);
-            cg = [dbc CacheGroup_get:cgid];
+            cg = [dbc Group_get:cgid];
             [cgs addObject:cg];
         }
         DB_FINISH;
@@ -155,12 +155,12 @@
     return cgs;
 }
 
-- (NSInteger)dbCountCaches
+- (NSInteger)dbCountWaypoints
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from cache_group2caches where cache_group_id = ?");
+        DB_PREPARE(@"select count(id) from group2waypoints where group_id = ?");
 
         SET_VAR_INT(req, 1, self._id);
 
@@ -178,7 +178,7 @@
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into cache_groups(name, usergroup) values(?, ?)");
+        DB_PREPARE(@"insert into groups(name, usergroup) values(?, ?)");
 
         SET_VAR_TEXT(req, 1, _name);
         SET_VAR_BOOL(req, 2, _usergroup);
@@ -192,13 +192,13 @@
 
 - (void)dbDelete
 {
-    [dbCacheGroup dbDelete:self._id];
+    [dbGroup dbDelete:self._id];
 }
 
 + (void)dbDelete:(NSId)__id
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from cache_groups where id = ?");
+        DB_PREPARE(@"delete from groups where id = ?");
 
         SET_VAR_INT(req, 1, __id);
 
@@ -206,13 +206,13 @@
         DB_FINISH;
     }
 
-    [dbCacheGroup cleanupAfterDelete];
+    [dbGroup cleanupAfterDelete];
 }
 
 - (void)dbUpdateName:(NSString *)newname
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update cache_groups set name = ? where id = ?");
+        DB_PREPARE(@"update groups set name = ? where id = ?");
 
         SET_VAR_TEXT(req, 1, newname);
         SET_VAR_INT(req, 2, _id);
@@ -222,10 +222,10 @@
     }
 }
 
-- (void)dbAddCache:(NSId)__id
+- (void)dbAddWaypoint:(NSId)__id
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into cache_group2caches(cache_group_id, cache_id) values(?, ?)");
+        DB_PREPARE(@"insert into group2waypoint2(group_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, __id);
@@ -235,12 +235,12 @@
     }
 }
 
-- (BOOL)dbContainsCache:(NSId)c_id
+- (BOOL)dbContainsWaypoint:(NSId)c_id
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from cache_group2caches where cache_group_id = ? and cache_id = ?");
+        DB_PREPARE(@"select count(id) from group2waypoints where group_id = ? and waypoint_id = ?");
 
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, c_id);

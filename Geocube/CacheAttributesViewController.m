@@ -25,14 +25,14 @@
 
 #define THISCELL @"CacheAttributesViewController"
 
-- (id)init:(dbCache *)_cache
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super init];
-    cache = _cache;
+    waypoint = _wp;
 
     attrs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *as = [dbAttribute dbAllByCache:cache._id];
+    NSArray *as = [dbAttribute dbAllByWaypoint:waypoint._id];
     NSEnumerator *e = [as objectEnumerator];
     dbAttribute *a;
     while ((a = [e nextObject]) != nil) {

@@ -21,38 +21,40 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbContainerSize
+@implementation dbType
 
-@synthesize size, icon;
+@synthesize type, icon, pin;
 
-- (id)init:(NSId)__id size:(NSString *)_size icon:(NSInteger)_icon
+- (id)init:(NSId)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
 {
     self = [super init];
     _id = __id;
-    size = _size;
+    type = _type;
     icon = _icon;
+    pin = _pin;
     [self finish];
     return self;
 }
 
 + (NSArray *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbContainerSize *s;
+    NSMutableArray *cts = [[NSMutableArray alloc] initWithCapacity:20];
+    dbType *ct;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, container_size, icon from container_sizes");
+        DB_PREPARE(@"select id, type, icon, pin from types");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, size);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            s = [[dbContainerSize alloc] init:_id size:size icon:icon];
-            [ss addObject:s];
+            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, _type);
+            INT_FETCH_AND_ASSIGN(req, 2, _icon);
+            INT_FETCH_AND_ASSIGN(req, 3, _pin);
+            ct = [[dbType alloc] init:__id type:_type icon:_icon pin:_pin];
+            [cts addObject:ct];
         }
         DB_FINISH;
     }
-    return ss;
+    return cts;
 }
 
 @end

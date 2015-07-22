@@ -20,8 +20,8 @@
  */
 
 @interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating> {
-    NSArray *cs;
-    NSInteger cCount;
+    NSArray *waypoints;
+    NSInteger waypointCount;
 }
 
 @property (strong, nonatomic) UISearchController *searchController;

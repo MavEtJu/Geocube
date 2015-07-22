@@ -49,17 +49,17 @@
 - (void)placeMarkers
 {
     // Creates a marker in the center of the map.
-    NSEnumerator *e = [cachesArray objectEnumerator];
-    dbCache *cache;
+    NSEnumerator *e = [waypointsArray objectEnumerator];
+    dbWaypoint *wp;
     markers = [NSMutableArray arrayWithCapacity:20];
-    while ((cache = [e nextObject]) != nil) {
+    while ((wp = [e nextObject]) != nil) {
         // Place a single pin
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = cache.coordinates;
+        CLLocationCoordinate2D coord = wp.coordinates;
         [annotation setCoordinate:coord];
 
-        [annotation setTitle:cache.name];
-        [annotation setSubtitle:cache.description];
+        [annotation setTitle:wp.name];
+        [annotation setSubtitle:wp.description];
         [mapView addAnnotation:annotation];
 
         [markers addObject:annotation];
@@ -81,7 +81,7 @@
 {
     MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
     NSLog(@"%@", ann.title);
-    [super openCacheView:ann.title];
+    [super openWaypointView:ann.title];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation

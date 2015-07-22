@@ -21,86 +21,75 @@
 
 @interface DatabaseCache : NSObject {
     // In memory database information
-    NSArray *CacheTypes;
-    NSArray *CacheGroups;
+    NSArray *Types;
+    NSArray *Groups;
     NSArray *LogTypes;
-    NSArray *ContainerTypes;
-    NSArray *ContainerSizes;
-    NSMutableArray *CacheSymbols;
+    NSArray *Containers;
+    NSMutableArray *Symbols;
     NSArray *Attributes;
 
     // System Groups
-    dbCacheGroup *CacheGroup_AllCaches;
-    dbCacheGroup *CacheGroup_AllCaches_Found;
-    dbCacheGroup *CacheGroup_AllCaches_NotFound;
-    dbCacheGroup *CacheGroup_LastImport;
-    dbCacheGroup *CacheGroup_LastImportAdded;
+    dbGroup *Group_AllWaypoints;
+    dbGroup *Group_AllWaypoints_Found;
+    dbGroup *Group_AllWaypoints_NotFound;
+    dbGroup *Group_LastImport;
+    dbGroup *Group_LastImportAdded;
 
-    // CacheTypes
-    dbCacheType *CacheType_Unknown;
+    // Types
+    dbType *Type_Unknown;
 
     // LogTypes
     dbLogType *LogType_Unknown;
 
-    // ContainerType
-    dbContainerType *ContainerType_Unknown;
-
-    // Size
-    dbContainerSize *ContainerSize_Unknown;
+    // Container
+    dbContainer *Container_Unknown;
 
     // Attribute
     dbAttribute *Attribute_Unknown;
 }
 
-@property (nonatomic, retain) NSArray *CacheTypes;
-@property (nonatomic, retain) NSArray *CacheGroups;
+@property (nonatomic, retain) NSArray *Types;
+@property (nonatomic, retain) NSArray *Groups;
 @property (nonatomic, retain) NSArray *LogTypes;
-@property (nonatomic, retain) NSArray *ContainerTypes;
-@property (nonatomic, retain) NSArray *ContainerSizes;
+@property (nonatomic, retain) NSArray *Containers;
 @property (nonatomic, retain) NSArray *Attributes;
-@property (nonatomic, retain) NSMutableArray *CacheSymbols;
+@property (nonatomic, retain) NSMutableArray *Symbols;
 
 // System Groups
-@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches;
-@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches_Found;
-@property (nonatomic, retain) dbCacheGroup *CacheGroup_AllCaches_NotFound;
-@property (nonatomic, retain) dbCacheGroup *CacheGroup_LastImport;
-@property (nonatomic, retain) dbCacheGroup *CacheGroup_LastImportAdded;
+@property (nonatomic, retain) dbGroup *Group_AllWaypoints;
+@property (nonatomic, retain) dbGroup *Group_AllWaypoints_Found;
+@property (nonatomic, retain) dbGroup *Group_AllWaypoints_NotFound;
+@property (nonatomic, retain) dbGroup *Group_LastImport;
+@property (nonatomic, retain) dbGroup *Group_LastImportAdded;
 
-// CacheTypes
-@property (nonatomic, retain) dbCacheType *CacheType_Unknown;
+// Types
+@property (nonatomic, retain) dbType *Type_Unknown;
 
 // LogTypes
 @property (nonatomic, retain) dbLogType *LogType_Unknown;
 
-// ContainerType
-@property (nonatomic, retain) dbContainerType *ContainerType_Unknown;
-
 // ContainerSize
-@property (nonatomic, retain) dbContainerSize *ContainerSize_Unknown;
+@property (nonatomic, retain) dbContainer *Container_Unknown;
 
 // Attributes
 @property (nonatomic, retain) dbAttribute *Attribute_Unknown;
 
-- (void)loadCacheData;
+- (void)loadWaypointData;
 
-- (dbCacheType *)CacheType_get_byname:(NSString *)name;
-- (dbCacheType *)CacheType_get:(NSId)cache_type;
+- (dbType *)Type_get_byname:(NSString *)name;
+- (dbType *)Type_get:(NSId)cache_type;
 
-- (dbContainerType *)ContainerType_get_bysize:(NSString *)size;
-- (dbContainerType *)ContainerType_get:(NSId)_id;
+- (dbContainer *)Container_get_bysize:(NSString *)size;
+- (dbContainer *)Container_get:(NSId)_id;
 
-- (dbCacheSymbol *)CacheSymbol_get_bysymbol:(NSString *)size;
-- (dbCacheSymbol *)CacheSymbol_get:(NSId)_id;
-- (void)CacheSymbols_add:(NSId)_id symbol:(NSString *)symbol;
+- (dbSymbol *)Symbol_get_bysymbol:(NSString *)size;
+- (dbSymbol *)Symbol_get:(NSId)_id;
+- (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol;
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSId)_id;
 
-- (dbCacheGroup *)CacheGroup_get:(NSId)_id;
-
-- (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size;
-- (dbContainerSize *)ContainerSize_get:(NSId)_id;
+- (dbGroup *)Group_get:(NSId)_id;
 
 - (dbAttribute *)Attribute_get:(NSId)_id;
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;

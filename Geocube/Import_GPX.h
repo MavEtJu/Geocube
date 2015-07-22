@@ -23,8 +23,8 @@
 #define Geocube_Import_GPX_h
 
 @interface Import_GPX : NSObject <NSXMLParserDelegate> {
-    NSInteger *newCachesCount;
-    NSInteger *totalCachesCount;
+    NSInteger *newWaypointsCount;
+    NSInteger *totalWaypointsCount;
     NSInteger *newLogsCount;
     NSInteger *totalLogsCount;
     NSInteger *newTravelbugsCount;
@@ -33,7 +33,7 @@
     NSUInteger totalLines;
 
     NSArray *files;
-    dbCacheGroup *group;
+    dbGroup *group;
 
     NSMutableArray *attributes;
     NSMutableArray *logs;
@@ -42,12 +42,13 @@
     NSInteger inItem, inLog, inTravelbug;
     NSMutableString *currentText;
     NSString *currentElement;
-    dbCache *currentC;
+    dbWaypoint *currentWP;
+    dbGroundspeak *currentGS;
     dbLog *currentLog;
     dbTravelbug *currentTB;
 }
 
-- (id)init:(NSString *)filename group:(dbCacheGroup *)group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC;
+- (id)init:(NSString *)filename group:(dbGroup *)group newWaypointsCount:(NSInteger *)nWC totalWaypointsCount:(NSInteger *)tWC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC;
 - (void)parse;
 
 @end

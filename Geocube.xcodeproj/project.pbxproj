@@ -144,16 +144,21 @@
 		E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */; };
 		E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */; };
 		E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */; };
+		E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732B51B5FA352007FDC29 /* dbWaypoint.m */; };
+		E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */; };
+		E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BC1B5FB4CF007FDC29 /* dbName.m */; };
+		E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BF1B5FB4DF007FDC29 /* dbCountry.m */; };
+		E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732C21B5FB4EA007FDC29 /* dbState.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73791B53474C00F35528 /* MapAppleViewController.m */; };
 		E81303F41B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip in Resources */ = {isa = PBXBuildFile; fileRef = E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */; };
 		E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E81303FD1B5B0B68006DF300 /* waymarking.gpx */; };
-		E81304041B5C4EB1006DF300 /* dbCacheSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */; };
+		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
-		E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainerSize.m */; };
+		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
@@ -171,14 +176,13 @@
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
 		E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740F9A1B4E3C6A002527DA /* CacheViewController.m */; };
-		E8740FCA1B4E90D7002527DA /* dbContainerType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FC91B4E90D7002527DA /* dbContainerType.m */; };
 		E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FCC1B4E90EB002527DA /* dbLogType.m */; };
 		E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FDE1B4F87D2002527DA /* dbLog.m */; };
 		E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE11B4FDD1A002527DA /* CacheDescriptionViewController.m */; };
 		E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE41B4FFB46002527DA /* CacheHintViewController.m */; };
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
-		E88FD8F31B4160A700D0CCE7 /* dbCacheGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbCacheGroup.m */; };
+		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
@@ -221,8 +225,7 @@
 		E8F570BC1B400124003F020C /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BB1B400124003F020C /* schema.sql */; };
 		E8F570BE1B400137003F020C /* empty.db in Resources */ = {isa = PBXBuildFile; fileRef = E8F570BD1B400137003F020C /* empty.db */; };
 		E8F570C51B40059F003F020C /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbConfig.m */; };
-		E8F570C81B4008C3003F020C /* dbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C71B4008C3003F020C /* dbCache.m */; };
-		E8F570CB1B4008DD003F020C /* dbCacheType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbCacheType.m */; };
+		E8F570CB1B4008DD003F020C /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbType.m */; };
 		E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* Import_GPX.m */; };
 /* End PBXBuildFile section */
 
@@ -377,6 +380,16 @@
 		E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30.png"; path = "images/icons - sad - 30x30.png"; sourceTree = "<group>"; };
 		E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 15x15.png"; path = "images/icons - smiley - 15x15.png"; sourceTree = "<group>"; };
 		E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 20x20.png"; path = "images/icons - target - 20x20.png"; sourceTree = "<group>"; };
+		E80732B41B5FA352007FDC29 /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypoint.h; sourceTree = "<group>"; };
+		E80732B51B5FA352007FDC29 /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypoint.m; sourceTree = "<group>"; };
+		E80732B81B5FB4C4007FDC29 /* dbGroundspeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroundspeak.h; sourceTree = "<group>"; };
+		E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroundspeak.m; sourceTree = "<group>"; };
+		E80732BB1B5FB4CF007FDC29 /* dbName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbName.h; sourceTree = "<group>"; };
+		E80732BC1B5FB4CF007FDC29 /* dbName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbName.m; sourceTree = "<group>"; };
+		E80732BE1B5FB4DF007FDC29 /* dbCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCountry.h; sourceTree = "<group>"; };
+		E80732BF1B5FB4DF007FDC29 /* dbCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCountry.m; sourceTree = "<group>"; };
+		E80732C11B5FB4EA007FDC29 /* dbState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbState.h; sourceTree = "<group>"; };
+		E80732C21B5FB4EA007FDC29 /* dbState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbState.m; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -385,14 +398,14 @@
 		E80F73791B53474C00F35528 /* MapAppleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleViewController.m; sourceTree = "<group>"; };
 		E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "16171009_iossimulator-freewaydrive.zip"; sourceTree = "<group>"; };
 		E81303FD1B5B0B68006DF300 /* waymarking.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = waymarking.gpx; sourceTree = "<group>"; };
-		E81304021B5C4EB1006DF300 /* dbCacheSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCacheSymbol.h; sourceTree = "<group>"; };
-		E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCacheSymbol.m; sourceTree = "<group>"; };
+		E81304021B5C4EB1006DF300 /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSymbol.h; sourceTree = "<group>"; };
+		E81304031B5C4EB1006DF300 /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSymbol.m; sourceTree = "<group>"; };
 		E81304091B5D9B5E006DF300 /* dbTravelbug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTravelbug.h; sourceTree = "<group>"; };
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
-		E82840F31B510AE10055EE59 /* dbContainerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerSize.h; sourceTree = "<group>"; };
-		E82840F41B510AE10055EE59 /* dbContainerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerSize.m; sourceTree = "<group>"; };
+		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
+		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -428,8 +441,6 @@
 		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
 		E8740F991B4E3C6A002527DA /* CacheViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheViewController.h; sourceTree = "<group>"; };
 		E8740F9A1B4E3C6A002527DA /* CacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheViewController.m; sourceTree = "<group>"; };
-		E8740FC81B4E90D7002527DA /* dbContainerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainerType.h; sourceTree = "<group>"; };
-		E8740FC91B4E90D7002527DA /* dbContainerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainerType.m; sourceTree = "<group>"; };
 		E8740FCB1B4E90EB002527DA /* dbLogType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogType.h; sourceTree = "<group>"; };
 		E8740FCC1B4E90EB002527DA /* dbLogType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogType.m; sourceTree = "<group>"; };
 		E8740FDD1B4F87D2002527DA /* dbLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLog.h; sourceTree = "<group>"; };
@@ -442,8 +453,8 @@
 		E8740FE71B508BBE002527DA /* CacheLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheLogsViewController.m; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
-		E88FD8F11B4160A700D0CCE7 /* dbCacheGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCacheGroup.h; sourceTree = "<group>"; };
-		E88FD8F21B4160A700D0CCE7 /* dbCacheGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCacheGroup.m; sourceTree = "<group>"; };
+		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
+		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheAttributesViewController.h; sourceTree = "<group>"; };
 		E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheAttributesViewController.m; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
@@ -525,10 +536,8 @@
 		E8F570BF1B400166003F020C /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E8F570C31B40059F003F020C /* dbConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbConfig.h; sourceTree = "<group>"; };
 		E8F570C41B40059F003F020C /* dbConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbConfig.m; sourceTree = "<group>"; };
-		E8F570C61B4008C3003F020C /* dbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCache.h; sourceTree = "<group>"; };
-		E8F570C71B4008C3003F020C /* dbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCache.m; sourceTree = "<group>"; };
-		E8F570C91B4008DD003F020C /* dbCacheType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCacheType.h; sourceTree = "<group>"; };
-		E8F570CA1B4008DD003F020C /* dbCacheType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCacheType.m; sourceTree = "<group>"; };
+		E8F570C91B4008DD003F020C /* dbType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbType.h; sourceTree = "<group>"; };
+		E8F570CA1B4008DD003F020C /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbType.m; sourceTree = "<group>"; };
 		E8F570CC1B40147E003F020C /* Import_GPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Import_GPX.h; sourceTree = "<group>"; };
 		E8F570CD1B40147E003F020C /* Import_GPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Import_GPX.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1055,26 +1064,32 @@
 				E86C65AD1B4DCC6900E2ABFE /* dbObject.m */,
 				E867E8391B539F6C00CB126A /* dbAttribute.h */,
 				E867E83A1B539F6C00CB126A /* dbAttribute.m */,
-				E8F570C61B4008C3003F020C /* dbCache.h */,
-				E8F570C71B4008C3003F020C /* dbCache.m */,
-				E88FD8F11B4160A700D0CCE7 /* dbCacheGroup.h */,
-				E88FD8F21B4160A700D0CCE7 /* dbCacheGroup.m */,
-				E81304021B5C4EB1006DF300 /* dbCacheSymbol.h */,
-				E81304031B5C4EB1006DF300 /* dbCacheSymbol.m */,
-				E8F570C91B4008DD003F020C /* dbCacheType.h */,
-				E8F570CA1B4008DD003F020C /* dbCacheType.m */,
 				E8F570C31B40059F003F020C /* dbConfig.h */,
 				E8F570C41B40059F003F020C /* dbConfig.m */,
-				E82840F31B510AE10055EE59 /* dbContainerSize.h */,
-				E82840F41B510AE10055EE59 /* dbContainerSize.m */,
-				E8740FC81B4E90D7002527DA /* dbContainerType.h */,
-				E8740FC91B4E90D7002527DA /* dbContainerType.m */,
+				E80732BE1B5FB4DF007FDC29 /* dbCountry.h */,
+				E80732BF1B5FB4DF007FDC29 /* dbCountry.m */,
+				E82840F31B510AE10055EE59 /* dbContainer.h */,
+				E82840F41B510AE10055EE59 /* dbContainer.m */,
+				E80732B81B5FB4C4007FDC29 /* dbGroundspeak.h */,
+				E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */,
+				E88FD8F11B4160A700D0CCE7 /* dbGroup.h */,
+				E88FD8F21B4160A700D0CCE7 /* dbGroup.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E8740FCB1B4E90EB002527DA /* dbLogType.h */,
 				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
+				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
+				E80732BC1B5FB4CF007FDC29 /* dbName.m */,
+				E81304021B5C4EB1006DF300 /* dbSymbol.h */,
+				E81304031B5C4EB1006DF300 /* dbSymbol.m */,
 				E81304091B5D9B5E006DF300 /* dbTravelbug.h */,
 				E813040A1B5D9B5E006DF300 /* dbTravelbug.m */,
+				E8F570C91B4008DD003F020C /* dbType.h */,
+				E8F570CA1B4008DD003F020C /* dbType.m */,
+				E80732B41B5FA352007FDC29 /* dbWaypoint.h */,
+				E80732B51B5FA352007FDC29 /* dbWaypoint.m */,
+				E80732C11B5FB4EA007FDC29 /* dbState.h */,
+				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -1426,7 +1441,8 @@
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
-				E82840F51B510AE10055EE59 /* dbContainerSize.m in Sources */,
+				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
+				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */,
@@ -1434,6 +1450,7 @@
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
+				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
@@ -1442,14 +1459,14 @@
 				E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
-				E8F570C81B4008C3003F020C /* dbCache.m in Sources */,
+				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
-				E8740FCA1B4E90D7002527DA /* dbContainerType.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
-				E88FD8F31B4160A700D0CCE7 /* dbCacheGroup.m in Sources */,
+				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
+				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
@@ -1464,19 +1481,20 @@
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
-				E8F570CB1B4008DD003F020C /* dbCacheType.m in Sources */,
+				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
+				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
-				E81304041B5C4EB1006DF300 /* dbCacheSymbol.m in Sources */,
+				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

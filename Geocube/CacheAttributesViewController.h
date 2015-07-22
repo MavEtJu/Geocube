@@ -21,9 +21,9 @@
 
 @interface CacheAttributesViewController : GCTableViewController {
     NSMutableArray *attrs;
-    dbCache *cache;
+    dbWaypoint *waypoint;
 }
 
-- (id)init:(dbCache *)cache;
+- (id)init:(dbWaypoint *)waypoint;
 
 @end

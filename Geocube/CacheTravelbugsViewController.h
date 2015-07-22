@@ -21,9 +21,9 @@
 
 @interface CacheTravelbugsViewController : GCTableViewController {
     NSMutableArray *tbs;
-    dbCache *cache;
+    dbWaypoint *waypoint;
 }
 
-- (id)init:(dbCache *)cache;
+- (id)init:(dbWaypoint *)waypoint;
 
 @end

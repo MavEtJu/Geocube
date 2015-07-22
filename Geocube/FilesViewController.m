@@ -197,8 +197,8 @@
 
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
-    NSEnumerator *e = [[dbc CacheGroups] objectEnumerator];
-    dbCacheGroup *cg;
+    NSEnumerator *e = [[dbc Groups] objectEnumerator];
+    dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
         if (cg.usergroup == 0)
             continue;

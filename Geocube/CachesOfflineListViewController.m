@@ -54,18 +54,18 @@
 
 - (void)refreshCachesData:(NSString *)searchString
 {
-    NSMutableArray *_cs = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [[dbCache dbAll] objectEnumerator];
-    dbCache *c;
+    NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSEnumerator *e = [[dbWaypoint dbAll] objectEnumerator];
+    dbWaypoint *wp;
 
-    while ((c = [e nextObject]) != nil) {
-        if (searchString != nil && [[c.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
+    while ((wp = [e nextObject]) != nil) {
+        if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
-        c.calculatedDistance = [Coordinates coordinates2distance:c.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
 
-        [_cs addObject:c];
+        [_wps addObject:wp];
     }
-    cs = [_cs sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
+    waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
@@ -77,8 +77,7 @@
         return (NSComparisonResult)NSOrderedSame;
     }];
 
-
-    cCount = [cs count];
+    waypointCount = [waypoints count];
 }
 
 
@@ -97,7 +96,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return cCount;
+    return waypointCount;
 }
 
 // Return a cell for the index path
@@ -109,25 +108,25 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
-    dbCache *c = [cs objectAtIndex:indexPath.row];
-    cell.description.text = c.description;
-    cell.name.text = c.name;
-    cell.icon.image = [imageLibrary get:c.cache_type.icon];
+    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    cell.description.text = wp.description;
+    cell.name.text = wp.name;
+    cell.icon.image = [imageLibrary get:wp.type.icon];
 
-    [cell setRatings:c.gc_favourites terrain:c.gc_rating_terrain difficulty:c.gc_rating_difficulty size:c.gc_containerSize.icon];
+    [cell setRatings:wp.groundspeak.favourites terrain:wp.groundspeak.rating_terrain difficulty:wp.groundspeak.rating_difficulty size:wp.groundspeak.container.icon];
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:c.coordinates];
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
-    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:c.coordinates]];
+    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if ([c.gc_state compare:@""] != NSOrderedSame)
-        [s appendFormat:@"%@", c.gc_state];
-    if ([c.gc_country compare:@""] != NSOrderedSame) {
+    if (wp.groundspeak.state != nil)
+        [s appendFormat:@"%@", wp.groundspeak.state.name];
+    if (wp.groundspeak.country != nil) {
          if ([s compare:@""] != NSOrderedSame)
              [s appendFormat:@", "];
-        [s appendFormat:@"%@", c.gc_country];
+        [s appendFormat:@"%@", wp.groundspeak.country.name];
     }
     cell.stateCountry.text = s;
     return cell;
@@ -140,11 +139,11 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbCache *c = [cs objectAtIndex:indexPath.row];
-    NSString *newTitle = c.description;
+    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    NSString *newTitle = wp.description;
 
     CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [newController showCache:c];
+    [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
     [self.navigationController pushViewController:newController animated:YES];

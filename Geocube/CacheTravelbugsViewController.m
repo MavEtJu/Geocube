@@ -25,14 +25,14 @@
 
 #define THISCELL @"CacheTravelbugsViewController"
 
-- (id)init:(dbCache *)_cache
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super init];
-    cache = _cache;
+    waypoint = _wp;
 
     tbs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *as = [dbTravelbug dbAllByCache:cache._id];
+    NSArray *as = [dbTravelbug dbAllByWaypoint:waypoint._id];
     NSEnumerator *e = [as objectEnumerator];
     dbTravelbug *tb;
     while ((tb = [e nextObject]) != nil) {

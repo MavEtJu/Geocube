@@ -27,9 +27,9 @@
 
 @implementation CacheViewController
 
-- (void)showCache:(dbCache *)_cache
+- (void)showWaypoint:(dbWaypoint *)_wp
 {
-    cache = _cache;
+    waypoint = _wp;
     [self.tableView reloadData];
 }
 
@@ -42,7 +42,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
-    cacheItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
+    waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
 }
 
@@ -65,7 +65,7 @@
     if (section == 0)
         return 1;
     if (section == 1)
-        return [cacheItems count];
+        return [waypointItems count];
     if (section == 2)
         return [actionItems count];
     return 0;
@@ -74,9 +74,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 1)
-        return @"Cache data";
+        return @"Waypoint data";
     if (section == 2)
-        return @"Cache actions";
+        return @"Waypoint actions";
     return nil;
 }
 
@@ -91,24 +91,24 @@
     UILabel *l;
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
-    l.text = cache.description;
+    l.text = waypoint.description;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if ([cache.gc_placed_by compare:@""] != NSOrderedSame)
-        [s appendFormat:@"by %@", cache.gc_placed_by];
-    if ([cache.date_placed compare:@""] != NSOrderedSame)
-        [s appendFormat:@" on %@", [MyTools datetimePartDate:cache.date_placed]];
+    if ([waypoint.groundspeak.placed_by_str compare:@""] != NSOrderedSame)
+        [s appendFormat:@"by %@", waypoint.groundspeak.placed_by_str];
+    if ([waypoint.date_placed compare:@""] != NSOrderedSame)
+        [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
-    l.text = cache.name;
+    l.text = waypoint.name;
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
@@ -131,92 +131,92 @@
     if (indexPath.section == 0) {
         CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        Coordinates *c = [[Coordinates alloc] init:cache.lat_float lon:cache.lon_float];
+        Coordinates *c = [[Coordinates alloc] init:waypoint.lat_float lon:waypoint.lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
-        [cell setRatings:cache.gc_favourites terrain:cache.gc_rating_terrain difficulty:cache.gc_rating_difficulty];
+        [cell setRatings:waypoint.groundspeak.favourites terrain:waypoint.groundspeak.rating_terrain difficulty:waypoint.groundspeak.rating_difficulty];
 
-        cell.size.image = [imageLibrary get:cache.gc_containerSize.icon];
-        cell.icon.image = [imageLibrary get:cache.cache_type.icon];
+        cell.size.image = [imageLibrary get:waypoint.groundspeak.container.icon];
+        cell.icon.image = [imageLibrary get:waypoint.type.icon];
         return cell;
     }
 
     // Cache data
     if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
-        cell.textLabel.text = [cacheItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = [waypointItems objectAtIndex:indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([cache.gc_short_desc compare:@""] == NSOrderedSame && [cache.gc_long_desc compare:@""] == NSOrderedSame && [cache.description compare:@""] == NSOrderedSame) {
+                if ([waypoint.groundspeak.short_desc compare:@""] == NSOrderedSame && [waypoint.groundspeak.long_desc compare:@""] == NSOrderedSame && [waypoint.description compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
-                //                if (cache.gc_hint ==b nil || [cache.gc_hint compare:@""] == NSOrderedSame)
-                if ([cache.gc_hint compare:@""] == NSOrderedSame || [cache.gc_hint compare:@" "] == NSOrderedSame) {
+                //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint compare:@""] == NSOrderedSame)
+                if ([waypoint.groundspeak.hint compare:@""] == NSOrderedSame || [waypoint.groundspeak.hint compare:@" "] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 2: /* Personal note */
-                if ([cache.gc_personal_note compare:@""] == NSOrderedSame) {
+                if ([waypoint.groundspeak.personal_note compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 3: /* Field Note */
-                if ([cache hasFieldNotes] == FALSE) {
+                if ([waypoint hasFieldNotes] == FALSE) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 4: { /* Logs */
-                NSInteger c = [cache hasLogs];
+                NSInteger c = [waypoint hasLogs];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 5: { /* Attributes */
-                NSInteger c = [cache hasAttributes];
+                NSInteger c = [waypoint hasAttributes];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 6: { /* Related Waypoints */
-                NSInteger c = [cache hasWaypoints];
+                NSInteger c = [waypoint hasWaypoints];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 7: { /* Inventory */
-                NSInteger c = [cache hasInventory];
+                NSInteger c = [waypoint hasInventory];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
             case 8: { /* Images */
-                NSInteger c = [cache hasImages];
+                NSInteger c = [waypoint hasImages];
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [cacheItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
             }
         }
@@ -254,37 +254,37 @@
 
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {   /* Description */
-            UIViewController *newController = [[CacheDescriptionViewController alloc] init:cache];
+            UIViewController *newController = [[CacheDescriptionViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 1) {   /* Hint */
-            UIViewController *newController = [[CacheHintViewController alloc] init:cache];
+            UIViewController *newController = [[CacheHintViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 4) {   /* Logs */
-            UITableViewController *newController = [[CacheLogsViewController alloc] init:cache];
+            UITableViewController *newController = [[CacheLogsViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 5) {   /* Attributes */
-            UITableViewController *newController = [[CacheAttributesViewController alloc] init:cache];
+            UITableViewController *newController = [[CacheAttributesViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 7) {    /* Groups */
-            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:cache];
+            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
         if (indexPath.row == 9) {    /* Groups */
-            UITableViewController *newController = [[CacheGroupsViewController alloc] init:cache];
+            UITableViewController *newController = [[CacheGroupsViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
@@ -294,24 +294,24 @@
 
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
-            currentCache = cache;
+            currentWaypoint = waypoint;
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
-            [cvc showCache:currentCache];
+            [cvc showWaypoint:currentWaypoint];
 
             nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_GMAP];
             MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];
-            [mgv refreshCachesData];
+            [mgv refreshWaypointsData];
 
             nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_AMAP];
             MapAppleViewController *mav = [nvc.viewControllers objectAtIndex:0];
-            [mav refreshCachesData];
+            [mav refreshWaypointsData];
 
             nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_OSM];
             MapOSMViewController *mov = [nvc.viewControllers objectAtIndex:0];
-            [mov refreshCachesData];
+            [mov refreshWaypointsData];
 
             [_AppDelegate switchController:RC_NAVIGATE];
             return;

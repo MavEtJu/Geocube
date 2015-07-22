@@ -38,14 +38,14 @@
     return self;
 }
 
-+ (void)dbUnlinkAllFromCache:(NSId)cache_id
++ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from travelbug2cache where cache_id = ?");
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -53,27 +53,27 @@
     }
 }
 
-- (void)dbLinkToCache:(NSId)cache_id
+- (void)dbLinkToWaypoint:(NSId)wp_id
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into travelbug2cache(travelbug_id, cache_id) values(?, ?)");
+        DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(req, 1, _id);
-        SET_VAR_INT(req, 2, cache_id);
+        SET_VAR_INT(req, 2, wp_id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSId)cache_id
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from travelbug2cache where cache_id = ?");
+        DB_PREPARE(@"select count(id) from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
@@ -84,15 +84,15 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)cache_id
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbTravelbug *tb;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2cache where cache_id = ?)");
+        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);

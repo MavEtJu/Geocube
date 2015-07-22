@@ -61,14 +61,14 @@
 
 //
 
-+ (void)dbUnlinkAllFromCache:(NSId)cache_id
++ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from attribute2cache where cache_id = ?");
+        DB_PREPARE(@"delete from attribute2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -76,13 +76,13 @@
     }
 }
 
-- (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO
+- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into attribute2cache(attribute_id, cache_id, yes ) values(?, ?, ?)");
+        DB_PREPARE(@"insert into attribute2waypoint(attribute_id, waypoint_id, yes ) values(?, ?, ?)");
 
         SET_VAR_INT(req, 1, _id);
-        SET_VAR_INT(req, 2, cache_id);
+        SET_VAR_INT(req, 2, wp_id);
         SET_VAR_BOOL(req, 3, YesNO);
 
         DB_CHECK_OKAY;
@@ -90,14 +90,14 @@
     }
 }
 
-+ (NSInteger)dbCountByCache:(NSId)cache_id
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
 {
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from attribute2cache where cache_id = ?");
+        DB_PREPARE(@"select count(id) from attribute2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, c);
@@ -108,15 +108,15 @@
     return count;
 }
 
-+ (NSArray *)dbAllByCache:(NSId)cache_id
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
     dbAttribute *s;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2cache where cache_id = ?)");
+        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoint where waypoint_id = ?)");
 
-        SET_VAR_INT(req, 1, cache_id);
+        SET_VAR_INT(req, 1, wp_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);

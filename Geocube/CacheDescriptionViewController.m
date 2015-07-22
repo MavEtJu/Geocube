@@ -23,11 +23,11 @@
 
 @implementation CacheDescriptionViewController
 
-- (id)init:(dbCache *)_cache
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super self];
 
-    cache = _cache;
+    waypoint = _wp;
 
     return self;
 }
@@ -48,18 +48,18 @@
 
 - (NSString *)makeHTMLString
 {
-    NSMutableString *ret = [NSMutableString stringWithString:cache.description];
+    NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
 
-    if ([cache.gc_short_desc compare:@""] != NSOrderedSame) {
-        NSString *s = cache.gc_short_desc;
-        if (cache.gc_short_desc_html == NO)
+    if ([waypoint.groundspeak.short_desc compare:@""] != NSOrderedSame) {
+        NSString *s = waypoint.groundspeak.short_desc;
+        if (waypoint.groundspeak.short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([cache.gc_long_desc compare:@""] != NSOrderedSame) {
-        NSString *s = cache.gc_long_desc;
-        if (cache.gc_long_desc_html == NO)
+    if ([waypoint.groundspeak.long_desc compare:@""] != NSOrderedSame) {
+        NSString *s = waypoint.groundspeak.long_desc;
+        if (waypoint.groundspeak.long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }

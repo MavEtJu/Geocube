@@ -20,12 +20,12 @@
  */
 
 @interface CacheViewController : GCTableViewController {
-    dbCache *cache;
+    dbWaypoint *waypoint;
 
-    NSArray *cacheItems;
+    NSArray *waypointItems;
     NSArray *actionItems;
 }
 
-- (void)showCache:(dbCache *)cache;
+- (void)showWaypoint:(dbWaypoint *)wp;
 
 @end

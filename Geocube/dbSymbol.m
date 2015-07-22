@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbCacheSymbol
+@implementation dbSymbol
 
 @synthesize symbol;
 
@@ -37,15 +37,15 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCacheSymbol *s;
+    dbSymbol *s;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, symbol from cache_symbols");
+        DB_PREPARE(@"select id, symbol from symbols");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
-            s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
+            s = [[dbSymbol alloc] init:_id symbol:_symbol];
             [ss addObject:s];
         }
         DB_FINISH;
@@ -55,17 +55,17 @@
 
 + (dbObject *)dbGet:(NSId)_id;
 {
-    dbCacheSymbol *s;
+    dbSymbol *s;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, symbol from cache_symbols where id = ?");
+        DB_PREPARE(@"select id, symbol from symbols where id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
             TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
-            s = [[dbCacheSymbol alloc] init:_id symbol:_symbol];
+            s = [[dbSymbol alloc] init:_id symbol:_symbol];
             return s;
         }
         DB_FINISH;
@@ -75,7 +75,7 @@
 
 - (NSId)dbCreate
 {
-    return [dbCacheSymbol dbCreate:symbol];
+    return [dbSymbol dbCreate:symbol];
 }
 
 + (NSId)dbCreate:(NSString *)symbol
@@ -83,7 +83,7 @@
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into cache_symbols(symbol) values(?)");
+        DB_PREPARE(@"insert into symbols(symbol) values(?)");
 
         SET_VAR_TEXT(req, 1, symbol);
 

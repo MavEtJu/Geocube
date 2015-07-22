@@ -23,10 +23,10 @@
 
 @implementation Import_GPX
 
-- (id)init:(NSString *)filename group:(dbCacheGroup *)_group newCachesCount:(NSInteger *)nCC totalCachesCount:(NSInteger *)tCC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC
+- (id)init:(NSString *)filename group:(dbGroup *)_group newWaypointsCount:(NSInteger *)nWC totalWaypointsCount:(NSInteger *)tWC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC
 {
-    newCachesCount = nCC;
-    totalCachesCount = tCC;
+    newWaypointsCount = nWC;
+    totalWaypointsCount = tWC;
     newLogsCount = nLC;
     totalLogsCount = tLC;
     percentageRead = pR;
@@ -44,8 +44,8 @@
 
 - (void)parse
 {
-    [dbc.CacheGroup_LastImport dbEmpty];
-    [dbc.CacheGroup_LastImportAdded dbEmpty];
+    [dbc.Group_LastImport dbEmpty];
+    [dbc.Group_LastImportAdded dbEmpty];
 
     NSEnumerator *eFile = [files objectEnumerator];
     NSString *filename;
@@ -92,9 +92,9 @@
     index++;
 
     if ([currentElement compare:@"wpt"] == NSOrderedSame) {
-        currentC = [[dbCache alloc] init];
-        [currentC setLat:[attributeDict objectForKey:@"lat"]];
-        [currentC setLon:[attributeDict objectForKey:@"lon"]];
+        currentWP = [[dbWaypoint alloc] init];
+        [currentWP setLat:[attributeDict objectForKey:@"lat"]];
+        [currentWP setLon:[attributeDict objectForKey:@"lon"]];
 
         logs = [NSMutableArray arrayWithCapacity:20];
         attributes = [NSMutableArray arrayWithCapacity:20];
@@ -105,18 +105,19 @@
     }
 
     if ([currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
-        [currentC setGc_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
-        [currentC setGc_available:[[attributeDict objectForKey:@"available"] boolValue]];
+        currentGS = [[dbGroundspeak alloc] init];
+        [currentGS setArchived:[[attributeDict objectForKey:@"archived"] boolValue]];
+        [currentGS setAvailable:[[attributeDict objectForKey:@"available"] boolValue]];
         return;
     }
 
     if ([currentElement compare:@"groundspeak:long_description"] == NSOrderedSame) {
-        [currentC setGc_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        [currentGS setLong_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
 
     if ([currentElement compare:@"groundspeak:short_description"] == NSOrderedSame) {
-        [currentC setGc_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        [currentGS setShort_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
         return;
     }
 
@@ -155,24 +156,24 @@
 
     // Deal with the completion of the cache
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
-        [currentC finish];
+        [currentWP finish];
 
-        NSId c_id = [dbCache dbGetByName:currentC.name];
-        (*totalCachesCount)++;
+        NSId c_id = [dbWaypoint dbGetByName:currentWP.name];
+        (*totalWaypointsCount)++;
         if (c_id == 0) {
-            c_id = [dbCache dbCreate:currentC];
-            (*newCachesCount)++;
+            c_id = [dbWaypoint dbCreate:currentWP];
+            (*newWaypointsCount)++;
 
-            [dbc.CacheGroup_LastImportAdded dbAddCache:c_id];
-            [dbc.CacheGroup_AllCaches dbAddCache:c_id];
-            [group dbAddCache:c_id];
+            [dbc.Group_LastImportAdded dbAddWaypoint:c_id];
+            [dbc.Group_AllWaypoints dbAddWaypoint:c_id];
+            [group dbAddWaypoint:c_id];
         } else {
-            currentC._id = c_id;
-            [currentC dbUpdate];
-            if ([group dbContainsCache:c_id] == NO)
-                [group dbAddCache:c_id];
+            currentWP._id = c_id;
+            [currentWP dbUpdate];
+            if ([group dbContainsWaypoint:c_id] == NO)
+                [group dbAddWaypoint:c_id];
         }
-        [dbc.CacheGroup_LastImport dbAddCache:c_id];
+        [dbc.Group_LastImport dbAddWaypoint:c_id];
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
@@ -182,19 +183,19 @@
         }
 
         // Link attributes to cache
-        [dbAttribute dbUnlinkAllFromCache:c_id];
+        [dbAttribute dbUnlinkAllFromWaypoint:c_id];
         e = [attributes objectEnumerator];
         dbAttribute *a;
         while ((a = [e nextObject]) != nil) {
-            [a dbLinkToCache:c_id YesNo:a._YesNo];
+            [a dbLinkToWaypoint:c_id YesNo:a._YesNo];
         }
 
         // Link travelbugs to cache
-        [dbTravelbug dbUnlinkAllFromCache:c_id];
+        [dbTravelbug dbUnlinkAllFromWaypoint:c_id];
         e = [travelbugs objectEnumerator];
         dbTravelbug *tb;
         while ((tb = [e nextObject]) != nil) {
-            [tb dbLinkToCache:c_id];
+            [tb dbLinkToWaypoint:c_id];
         }
 
         inItem = NO;
@@ -279,76 +280,80 @@
     if (inItem == YES) {
         if (index == 2 && currentText != nil) {
             if ([elementName compare:@"time"] == NSOrderedSame) {
-                [currentC setDate_placed:currentText];
+                [currentWP setDate_placed:currentText];
                 goto bye;
             }
             if ([elementName compare:@"name"] == NSOrderedSame) {
-                [currentC setName:currentText];
+                [currentWP setName:currentText];
                 goto bye;
             }
             if ([elementName compare:@"desc"] == NSOrderedSame) {
-                [currentC setDescription:currentText];
+                [currentWP setDescription:currentText];
                 goto bye;
             }
             if ([elementName compare:@"url"] == NSOrderedSame) {
-                [currentC setUrl:currentText];
+                [currentWP setUrl:currentText];
+                goto bye;
+            }
+            if ([elementName compare:@"urlname"] == NSOrderedSame) {
+                [currentWP setUrlname:currentText];
                 goto bye;
             }
             if ([elementName compare:@"sym"] == NSOrderedSame) {
-                if ([dbc CacheSymbol_get_bysymbol:currentText] == nil) {
+                if ([dbc Symbol_get_bysymbol:currentText] == nil) {
                     NSLog(@"Adding symbol '%@'", currentText);
-                    NSId _id = [dbCacheSymbol dbCreate:currentText];
-                    [dbc CacheSymbols_add:_id symbol:currentText];
+                    NSId _id = [dbSymbol dbCreate:currentText];
+                    [dbc Symbols_add:_id symbol:currentText];
                 }
-                [currentC setCache_symbol_str:currentText];
+                [currentWP setSymbol_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"type"] == NSOrderedSame) {
-                [currentC setCache_type:[dbc CacheType_get_byname:currentText]];
-                [currentC setCache_type_int:currentC.cache_type._id];
+                [currentWP setType:[dbc Type_get_byname:currentText]];
+                [currentWP setType_id:currentWP.type._id];
                 goto bye;
             }
             goto bye;
         }
         if (index == 3 && currentText != nil) {
             if ([elementName compare:@"groundspeak:difficulty"] == NSOrderedSame) {
-                [currentC setGc_rating_difficulty:[currentText floatValue]];
+                [currentGS setRating_difficulty:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:terrain"] == NSOrderedSame) {
-                [currentC setGc_rating_terrain:[currentText floatValue]];
+                [currentGS setRating_terrain:[currentText floatValue]];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
-                [currentC setGc_country:currentText];
+                [currentGS setCountry_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
-                [currentC setGc_state:currentText];
+                [currentGS setState_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:container"] == NSOrderedSame) {
-                [currentC setGc_containerSize_str:currentText];
+                [currentGS setContainer_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:short_description"] == NSOrderedSame) {
-                [currentC setGc_short_desc:currentText];
+                [currentGS setShort_desc:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:long_description"] == NSOrderedSame) {
-                [currentC setGc_long_desc:currentText];
+                [currentGS setLong_desc:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:encoded_hints"] == NSOrderedSame) {
-                [currentC setGc_hint:currentText];
+                [currentGS setHint:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:owner"] == NSOrderedSame) {
-                [currentC setGc_owner:currentText];
+                [currentGS setOwner:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:placed_by"] == NSOrderedSame) {
-                [currentC setGc_placed_by:currentText];
+                [currentGS setPlaced_by_str:currentText];
                 goto bye;
             }
             goto bye;

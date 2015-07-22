@@ -35,8 +35,8 @@ enum {
 };
 
 @interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate> {
-    NSArray *cachesArray;
-    NSInteger cacheCount;
+    NSArray *waypointsArray;
+    NSInteger waypointCount;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
@@ -45,7 +45,7 @@ enum {
 }
 
 - (id)init:(NSInteger)type;
-- (void)refreshCachesData;
+- (void)refreshWaypointsData;
 //- (void)whichCachesToShow:(NSInteger)type whichCache:(dbCache *)cache;
 
 // To be implemented by inherited classes:
@@ -65,6 +65,6 @@ enum {
 
 // User related actions
 - (void)userInteraction;
-- (void)openCacheView:(NSString *)name;
+- (void)openWaypointView:(NSString *)name;
 
 @end

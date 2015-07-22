@@ -23,86 +23,85 @@
 
 @implementation DatabaseCache
 
-@synthesize CacheTypes, CacheGroups, LogTypes, ContainerTypes, ContainerSizes, Attributes;
-@synthesize CacheGroup_AllCaches, CacheGroup_AllCaches_Found, CacheGroup_AllCaches_NotFound, CacheGroup_LastImport,CacheGroup_LastImportAdded, CacheType_Unknown, ContainerType_Unknown, LogType_Unknown, ContainerSize_Unknown, Attribute_Unknown, CacheSymbols;
+@synthesize Types, Groups, LogTypes, Containers, Attributes;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
 
 - (id)init
 {
     self = [super init];
-    [self loadCacheData];
+    [self loadWaypointData];
     return self;
 }
 
 // Load all waypoints and waypoint related data in memory
-- (void)loadCacheData
+- (void)loadWaypointData
 {
-    CacheGroups = [dbCacheGroup dbAll];
-    CacheTypes = [dbCacheType dbAll];
-    ContainerTypes = [dbContainerType dbAll];
+    Groups = [dbGroup dbAll];
+    Types = [dbType dbAll];
+    Containers = [dbContainer dbAll];
     LogTypes = [dbLogType dbAll];
-    ContainerSizes = [dbContainerSize dbAll];
+    Containers = [dbContainer dbAll];
     Attributes = [dbAttribute dbAll];
-    CacheSymbols = [NSMutableArray arrayWithArray:[dbCacheSymbol dbAll]];
+    Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
 
-    CacheGroup_AllCaches = nil;
-    CacheGroup_AllCaches_Found = nil;
-    CacheGroup_AllCaches_NotFound = nil;
-    CacheGroup_LastImport = nil;
-    CacheGroup_LastImportAdded = nil;
-    CacheType_Unknown = nil;
-    ContainerType_Unknown = nil;
+    Group_AllWaypoints = nil;
+    Group_AllWaypoints_Found = nil;
+    Group_AllWaypoints_NotFound = nil;
+    Group_LastImport = nil;
+    Group_LastImportAdded = nil;
+    Type_Unknown = nil;
+    Container_Unknown = nil;
     LogType_Unknown = nil;
-    ContainerSize_Unknown = nil;
 
-    NSEnumerator *e = [CacheGroups objectEnumerator];
-    dbCacheGroup *cg;
+    NSEnumerator *e = [Groups objectEnumerator];
+    dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
-        if (cg.usergroup == 0 && [cg.name compare:@"All Caches"] == NSOrderedSame) {
-            CacheGroup_AllCaches = cg;
+        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints"] == NSOrderedSame) {
+            Group_AllWaypoints = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Caches - Found"] == NSOrderedSame) {
-            CacheGroup_AllCaches_Found = cg;
+        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Found"] == NSOrderedSame) {
+            Group_AllWaypoints_Found = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Caches - Not Found"] == NSOrderedSame) {
-            CacheGroup_AllCaches_NotFound = cg;
+        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Not Found"] == NSOrderedSame) {
+            Group_AllWaypoints_NotFound = cg;
             continue;
         }
         if (cg.usergroup == 0 && [cg.name compare:@"Last Import"] == NSOrderedSame) {
-            CacheGroup_LastImport = cg;
+            Group_LastImport = cg;
             continue;
         }
         if (cg.usergroup == 0 && [cg.name compare:@"Last Import - New"] == NSOrderedSame) {
-            CacheGroup_LastImportAdded = cg;
+            Group_LastImportAdded = cg;
             continue;
         }
     }
-    NSAssert(CacheGroup_AllCaches != nil, @"CacheGroup_AllCaches");
-    NSAssert(CacheGroup_AllCaches_Found != nil, @"CacheGroup_AllCaches_Found");
-    NSAssert(CacheGroup_AllCaches_NotFound != nil, @"CacheGroup_AllCaches_NotFound");
-    NSAssert(CacheGroup_LastImport != nil, @"CacheGroup_LastImport");
-    NSAssert(CacheGroup_LastImportAdded != nil, @"CacheGroup_LastImportAdded");
+    NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
+    NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
+    NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
+    NSAssert(Group_LastImport != nil, @"Group_LastImport");
+    NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 
-    e = [CacheTypes objectEnumerator];
-    dbCacheType *ct;
+    e = [Types objectEnumerator];
+    dbType *ct;
     while ((ct = [e nextObject]) != nil) {
-        if ([cg.name compare:@"*"] == NSOrderedSame) {
-            CacheType_Unknown = ct;
+        if ([ct.type compare:@"*"] == NSOrderedSame) {
+            Type_Unknown = ct;
             continue;
         }
     }
-    NSAssert(CacheType_Unknown != nil, @"CacheType_Unknown");
+    NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
-    e = [ContainerTypes objectEnumerator];
-    dbContainerType *containert;
-    while ((containert = [e nextObject]) != nil) {
-        if ([containert.size compare:@"Unknown"] == NSOrderedSame) {
-            ContainerType_Unknown = containert;
+    e = [Types objectEnumerator];
+    dbType *type;
+    while ((type = [e nextObject]) != nil) {
+        if ([type.type compare:@"Unknown"] == NSOrderedSame) {
+            Type_Unknown = type;
             continue;
         }
     }
-    NSAssert(ContainerType_Unknown != nil, @"ContainerType_Unknown");
+    NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
     e = [LogTypes objectEnumerator];
     dbLogType *lt;
@@ -113,16 +112,6 @@
         }
     }
     NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
-
-    e = [ContainerSizes objectEnumerator];
-    dbContainerSize *s;
-    while ((s = [e nextObject]) != nil) {
-        if ([s.size compare:@"Not chosen"] == NSOrderedSame) {
-            ContainerSize_Unknown = s;
-            continue;
-        }
-    }
-    NSAssert(CacheType_Unknown != nil, @"LogType_Unknown");
 
     e = [Attributes objectEnumerator];
     dbAttribute *a;
@@ -136,10 +125,10 @@
 
 }
 
-- (dbCacheType *)CacheType_get_byname:(NSString *)name
+- (dbType *)Type_get_byname:(NSString *)name
 {
-    NSEnumerator *e = [CacheTypes objectEnumerator];
-    dbCacheType *ct;
+    NSEnumerator *e = [Types objectEnumerator];
+    dbType *ct;
     while ((ct = [e nextObject]) != nil) {
         if ([ct.type compare:name] == NSOrderedSame)
             return ct;
@@ -147,10 +136,10 @@
     return nil;
 }
 
-- (dbCacheType *)CacheType_get:(NSId)cache_type
+- (dbType *)Type_get:(NSId)cache_type
 {
-    NSEnumerator *e = [CacheTypes objectEnumerator];
-    dbCacheType *ct;
+    NSEnumerator *e = [Types objectEnumerator];
+    dbType *ct;
     while ((ct = [e nextObject]) != nil) {
         if (ct._id == cache_type)
             return ct;
@@ -158,10 +147,10 @@
     return nil;
 }
 
-- (dbCacheSymbol *)CacheSymbol_get_bysymbol:(NSString *)symbol
+- (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
 {
-    NSEnumerator *e = [CacheSymbols objectEnumerator];
-    dbCacheSymbol *lt;
+    NSEnumerator *e = [Symbols objectEnumerator];
+    dbSymbol *lt;
     while ((lt = [e nextObject]) != nil) {
         if ([lt.symbol compare:symbol] == NSOrderedSame)
             return lt;
@@ -169,10 +158,10 @@
     return nil;
 }
 
-- (dbCacheSymbol *)CacheSymbol_get:(NSId)_id
+- (dbSymbol *)Symbol_get:(NSId)_id
 {
-    NSEnumerator *e = [CacheSymbols objectEnumerator];
-    dbCacheSymbol *lt;
+    NSEnumerator *e = [Symbols objectEnumerator];
+    dbSymbol *lt;
     while ((lt = [e nextObject]) != nil) {
         if (lt._id == _id)
             return lt;
@@ -180,10 +169,10 @@
     return nil;
 }
 
-- (void)CacheSymbols_add:(NSId)_id symbol:(NSString *)symbol
+- (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol
 {
-    dbCacheSymbol *cs = [[dbCacheSymbol alloc] init:_id symbol:symbol];
-    [CacheSymbols addObject:cs];
+    dbSymbol *cs = [[dbSymbol alloc] init:_id symbol:symbol];
+    [Symbols addObject:cs];
 }
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type
@@ -208,33 +197,10 @@
     return nil;
 }
 
-- (dbContainerType *)ContainerType_get_bysize:(NSString *)size
+- (dbGroup *)Group_get:(NSId)_id
 {
-    NSEnumerator *e = [ContainerTypes objectEnumerator];
-    dbContainerType *ct;
-    while ((ct = [e nextObject]) != nil) {
-        if ([ct.size compare:size] == NSOrderedSame)
-            return ct;
-    }
-    return nil;
-}
-
-
-- (dbContainerType *)ContainerType_get:(NSId)_id
-{
-    NSEnumerator *e = [ContainerTypes objectEnumerator];
-    dbContainerType *ct;
-    while ((ct = [e nextObject]) != nil) {
-        if (ct._id == _id)
-            return ct;
-    }
-    return nil;
-}
-
-- (dbCacheGroup *)CacheGroup_get:(NSId)_id
-{
-    NSEnumerator *e = [CacheGroups objectEnumerator];
-    dbCacheGroup *cg;
+    NSEnumerator *e = [Groups objectEnumerator];
+    dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
         if (cg._id == _id)
             return cg;
@@ -242,10 +208,10 @@
     return nil;
 }
 
-- (dbContainerSize *)ContainerSize_get:(NSId)_id
+- (dbContainer *)Container_get:(NSId)_id
 {
-    NSEnumerator *e = [ContainerSizes objectEnumerator];
-    dbContainerSize *s;
+    NSEnumerator *e = [Containers objectEnumerator];
+    dbContainer *s;
     while ((s = [e nextObject]) != nil) {
         if (s._id == _id)
             return s;
@@ -253,10 +219,10 @@
     return nil;
 }
 
-- (dbContainerSize *)ContainerSize_get_bysize:(NSString *)size
+- (dbContainer *)Container_get_bysize:(NSString *)size
 {
-    NSEnumerator *e = [ContainerSizes objectEnumerator];
-    dbContainerSize *s;
+    NSEnumerator *e = [Containers objectEnumerator];
+    dbContainer *s;
     while ((s = [e nextObject]) != nil) {
         if ([s.size compare:size] == NSOrderedSame)
             return s;

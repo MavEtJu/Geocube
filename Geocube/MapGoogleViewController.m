@@ -66,16 +66,16 @@
     }
 
     // Add the new markers to the map
-    e = [cachesArray objectEnumerator];
-    dbCache *cache;
+    e = [waypointsArray objectEnumerator];
+    dbWaypoint *wp;
     markers = [NSMutableArray arrayWithCapacity:20];
 
-    while ((cache = [e nextObject]) != nil) {
+    while ((wp = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = cache.coordinates;
-        marker.icon = [imageLibrary getNormal:cache.cache_type.pin];
-        marker.title = cache.name;
-        marker.snippet = cache.description;
+        marker.position = wp.coordinates;
+        marker.icon = [imageLibrary getNormal:wp.type.pin];
+        marker.title = wp.name;
+        marker.snippet = wp.description;
         marker.map = mapView;
         [markers addObject:marker];
     }
@@ -83,7 +83,7 @@
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    [super openCacheView:marker.title];
+    [super openWaypointView:marker.title];
 }
 
 - (void)setMapType:(NSInteger)mapType

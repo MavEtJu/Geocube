@@ -21,21 +21,21 @@
 
 #import "Geocube-Prefix.pch"
 
-#define THISCELL @"CacheGroupsViewControllerCell"
+#define THISCELL @"GroupsViewControllerCell"
 
 @implementation CacheGroupsViewController
 
-- (id)init:(dbCache *)_cache
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super init];
-    cache = _cache;
+    waypoint = _wp;
 
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *gs = [dbCacheGroup dbAllByCache:cache._id];
+    NSArray *gs = [dbGroup dbAllByWaypoint:waypoint._id];
     NSEnumerator *e = [gs objectEnumerator];
-    dbCacheGroup *cg;
+    dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
         if (cg.usergroup == TRUE)
             [ugs addObject:cg];
@@ -83,7 +83,7 @@
     else
         e = [sgs objectEnumerator];
 
-    dbCacheGroup *cg;
+    dbGroup *cg;
     NSInteger c = 0;
     while ((cg = [e nextObject]) != nil) {
         if (c == indexPath.row)
@@ -91,7 +91,7 @@
         c++;
     }
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountCaches]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountWaypoints]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

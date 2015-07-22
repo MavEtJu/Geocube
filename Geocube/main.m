@@ -31,7 +31,7 @@ DatabaseCache *dbc = nil;
 ImageLibrary *imageLibrary = nil;
 
 // Current dbCache to navigate to
-dbCache *currentCache = nil;
+dbWaypoint *currentWaypoint = nil;
 
 // Location Manager
 GCLocationManager *LM = nil;

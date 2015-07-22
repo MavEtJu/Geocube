@@ -19,27 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbCacheGroup: dbObject {
-    NSString *name;
-    BOOL usergroup;
+@interface dbType : dbObject {
+    NSString *type;
+    NSInteger icon;
+    NSInteger pin;
 }
 
-- (id)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic) NSInteger icon;
+@property (nonatomic) NSInteger pin;
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic) BOOL usergroup;
-
-- (void)dbEmpty;
-+ (NSArray *)dbAllByCache:(NSId)c_id;
-+ (NSMutableArray *)dbAll;
-+ (dbCacheGroup *)dbGetByName:(NSString *)name;
-- (void)dbDelete;
-+ (void)dbDelete:(NSId)__id;
-- (void)dbUpdateName:(NSString *)newname;
-- (void)dbAddCache:(NSId)__id;
-- (BOOL)dbContainsCache:(NSId)c_id;
-- (NSInteger)dbCountCaches;
-+ (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;
-
+- (id)init:(NSId)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end

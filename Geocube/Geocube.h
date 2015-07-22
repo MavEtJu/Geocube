@@ -32,8 +32,8 @@ extern DatabaseCache *dbc;
 // Images
 extern ImageLibrary *imageLibrary;
 
-// Current dbCache to navitate to
-extern dbCache *currentCache;
+// Current dbWaypoint to navitate to
+extern dbWaypoint *currentWaypoint;
 
 // Location Manager
 extern GCLocationManager *LM;

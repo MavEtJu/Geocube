@@ -56,8 +56,8 @@
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.CacheGroups objectEnumerator];
-    dbCacheGroup *cg;
+    NSEnumerator *e = [dbc.Groups objectEnumerator];
+    dbGroup *cg;
 
     while ((cg = [e nextObject]) != nil) {
         if (cg.usergroup == showUsers)
@@ -99,9 +99,9 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
-    dbCacheGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountCaches]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountWaypoints]];
 
     return cell;
 }
@@ -113,7 +113,7 @@
         return;
     }
 
-    dbCacheGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
 
     UIAlertController *view=   [UIAlertController
                                 alertControllerWithTitle:cg.name
@@ -167,7 +167,7 @@
 - (void)emptyGroups
 {
     NSEnumerator *e = [cgs objectEnumerator];
-    dbCacheGroup *cg;
+    dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
         [self groupEmpty:cg reload:NO];
     }
@@ -175,25 +175,25 @@
     [self.tableView reloadData];
 }
 
-- (void)groupEmpty:(dbCacheGroup *)cg reload:(BOOL)reload
+- (void)groupEmpty:(dbGroup *)cg reload:(BOOL)reload
 {
     [cg dbEmpty];
-    [dbc loadCacheData];
+    [dbc loadWaypointData];
     if (reload == YES) {
         [self refreshGroupData];
         [self.tableView reloadData];
     }
 }
 
-- (void)groupDelete:(dbCacheGroup *)cg
+- (void)groupDelete:(dbGroup *)cg
 {
     [cg dbDelete];
-    [dbc loadCacheData];
+    [dbc loadWaypointData];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
 
-- (void)groupRename:(dbCacheGroup *)cg
+- (void)groupRename:(dbGroup *)cg
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Rename group"
@@ -209,7 +209,7 @@
 
                              NSLog(@"Renaming group '%ld' to '%@'", (long)cg._id, tf.text);
                              [cg dbUpdateName:tf.text];
-                             [dbc loadCacheData];
+                             [dbc loadWaypointData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];
@@ -275,8 +275,8 @@
                              NSString *newgroup = tf.text;
 
                              NSLog(@"Creating new group '%@'", newgroup);
-                             [dbCacheGroup dbCreate:newgroup isUser:YES];
-                             [dbc loadCacheData];
+                             [dbGroup dbCreate:newgroup isUser:YES];
+                             [dbc loadWaypointData];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];

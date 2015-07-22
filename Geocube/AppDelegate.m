@@ -58,7 +58,7 @@
     db = [[database alloc] init];
     [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
-    [dbc loadCacheData];
+    [dbc loadWaypointData];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];

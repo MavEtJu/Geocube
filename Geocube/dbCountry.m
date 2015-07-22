@@ -19,17 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbCacheSymbol : dbObject {
-    NSString *symbol;
-}
+#import "Geocube-Prefix.pch"
 
-@property (nonatomic, retain) NSString *symbol;
+@implementation dbCountry
 
-- (id)init:(NSId)_id symbol:(NSString *)symbol;
-+ (NSId)dbCreate:(NSString *)symbol;
-
-+ (NSArray *)dbAll;
-+ (dbObject *)dbGet:(NSId)_id;
-- (NSId)dbCreate;
+@synthesize name, code;
 
 @end

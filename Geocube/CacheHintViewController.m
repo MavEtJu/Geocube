@@ -23,11 +23,11 @@
 
 @implementation CacheHintViewController
 
-- (id)init:(dbCache *)_cache
+- (id)init:(dbWaypoint *)_wp
 {
     self = [super self];
 
-    cache = _cache;
+    waypoint = _wp;
 
     return self;
 }
@@ -48,7 +48,7 @@
 
 - (NSString *)makeHTMLString
 {
-    return [MyTools simpleHTML:cache.gc_hint];
+    return [MyTools simpleHTML:waypoint.groundspeak.hint];
 }
 
 @end

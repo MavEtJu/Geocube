@@ -23,7 +23,7 @@
 
 @implementation ImportGPXViewController
 
-- (id)init:(NSString *)_filename group:(dbCacheGroup *)_group
+- (id)init:(NSString *)_filename group:(dbGroup *)_group
 {
     self = [super init];
 
@@ -54,12 +54,12 @@
     [self.view addSubview:progressLabel];
     y += 40;
 
-    newCachesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
-    [self.view addSubview:newCachesLabel];
+    newWaypointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
+    [self.view addSubview:newWaypointsLabel];
     y += 40;
 
-    totalCachesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
-    [self.view addSubview:totalCachesLabel];
+    totalWaypointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
+    [self.view addSubview:totalWaypointsLabel];
     y += 40;
 
     newTravelbugsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
@@ -78,7 +78,7 @@
     [self.view addSubview:totalLogsLabel];
     y += 40;
 
-    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newCachesCount:&newCachesCount totalCachesCount:&totalCachesCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead newTravelbugsCount:&newTravelbugsCount totalTravelbugsCount:&totalTravelbugsCount];
+    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newWaypointsCount:&newWaypointsCount totalWaypointsCount:&totalWaypointsCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead newTravelbugsCount:&newTravelbugsCount totalTravelbugsCount:&totalTravelbugsCount];
 
     importDone = NO;
     [self performSelectorInBackground:@selector(run) withObject:nil];
@@ -98,8 +98,8 @@
     while (importDone == NO) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             progressLabel.text = [NSString stringWithFormat:@"Done %lu%%", (long)percentageRead];
-            newCachesLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newCachesCount];
-            totalCachesLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalCachesCount];
+            newWaypointsLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newWaypointsCount];
+            totalWaypointsLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalWaypointsCount];
             newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", (long)newLogsCount];
             totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", (long)totalLogsCount];
             newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", (long)newTravelbugsCount];

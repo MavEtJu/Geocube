@@ -177,7 +177,7 @@
     [self.view addSubview:distance];
 
     l = [[UILabel alloc] initWithFrame:rectDescription];
-    l.text = currentCache.description;
+    l.text = currentWaypoint.description;
     l.textAlignment = NSTextAlignmentCenter;
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
@@ -196,15 +196,15 @@
     [LM startDelegation:self isNavigating:TRUE];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:currentCache.lat_float lon:currentCache.lon_float];
+    Coordinates *coords = [[Coordinates alloc] init:currentWaypoint.lat_float lon:currentWaypoint.lon_float];
 
-    cacheIcon.image = [imageLibrary get:currentCache.cache_type.icon];
-    containerSize.image = [imageLibrary get:currentCache.gc_containerSize.icon];
-    ratingD.image = [imageLibrary getRating:currentCache.gc_rating_difficulty];
-    ratingT.image = [imageLibrary getRating:currentCache.gc_rating_terrain];
+    cacheIcon.image = [imageLibrary get:currentWaypoint.type.icon];
+    containerSize.image = [imageLibrary get:currentWaypoint.groundspeak.container.icon];
+    ratingD.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_difficulty];
+    ratingT.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_terrain];
 
-    if (currentCache != nil) {
-        cacheName.text = currentCache.name;
+    if (currentWaypoint != nil) {
+        cacheName.text = currentWaypoint.name;
         cacheLat.text = [coords lat_degreesDecimalMinutes];
         cacheLon.text = [coords lon_degreesDecimalMinutes];
     }
@@ -241,10 +241,10 @@
 
     oldRad = newRad;
 
-    if (currentCache == nil)
+    if (currentWaypoint == nil)
         return;
 
-    distance.text = [Coordinates NiceDistance:[c distance:currentCache.coordinates]];
+    distance.text = [Coordinates NiceDistance:[c distance:currentWaypoint.coordinates]];
 }
 
 @end

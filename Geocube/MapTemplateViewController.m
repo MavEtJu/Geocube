@@ -36,8 +36,8 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (id)init:(NSInteger)_type
 {
     self = [super init];
-    cachesArray = nil;
-    cacheCount = 0;
+    waypointsArray = nil;
+    waypointCount = 0;
 
     showType = _type; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
@@ -56,7 +56,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self refreshCachesData:nil];
+    [self refreshWaypointsData:nil];
     [self placeMarkers];
 }
 
@@ -87,37 +87,37 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     if (showWhom == SHOW_ME)
         [self moveCameraTo:meLocation];
     if (showWhom == SHOW_BOTH)
-        [self moveCameraTo:currentCache.coordinates c2:meLocation];
+        [self moveCameraTo:currentWaypoint.coordinates c2:meLocation];
 }
 
 
-- (void)refreshCachesData:(NSString *)searchString
+- (void)refreshWaypointsData:(NSString *)searchString
 {
-    NSMutableArray *_caches = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [[dbCache dbAll] objectEnumerator];
-    dbCache *cache;
+    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSEnumerator *e = [[dbWaypoint dbAll] objectEnumerator];
+    dbWaypoint *wp;
 
     if (showType == SHOW_ONECACHE) {
-        if (currentCache != nil) {
-            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
-            cachesArray = @[currentCache];
-            cacheCount = [cachesArray count];
+        if (currentWaypoint != nil) {
+            currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:currentWaypoint.coordinates to:LM.coords];
+            waypointsArray = @[currentWaypoint];
+            waypointCount = [waypointsArray count];
         } else {
-            cachesArray = nil;
-            cacheCount = 0;
+            waypointsArray = nil;
+            waypointCount = 0;
         }
         return;
     }
 
     if (showType == SHOW_ALLCACHES) {
-        while ((cache = [e nextObject]) != nil) {
-            if (searchString != nil && [[cache.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
+        while ((wp = [e nextObject]) != nil) {
+            if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 continue;
-            cache.calculatedDistance = [Coordinates coordinates2distance:cache.coordinates to:LM.coords];
+            wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
 
-            [_caches addObject:cache];
+            [wps addObject:wp];
         }
-        cachesArray = [_caches sortedArrayUsingComparator: ^(dbCache *obj1, dbCache *obj2) {
+        waypointsArray = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
             if (obj1.calculatedDistance > obj2.calculatedDistance) {
                 return (NSComparisonResult)NSOrderedDescending;
@@ -129,14 +129,14 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
             return (NSComparisonResult)NSOrderedSame;
         }];
         
-        cacheCount = [cachesArray count];
+        waypointCount = [waypointsArray count];
         return;
     }
 }
 
-- (void)refreshCachesData
+- (void)refreshWaypointsData
 {
-    [self refreshCachesData:nil];
+    [self refreshWaypointsData:nil];
 }
 
 #pragma mark -- Menu related functions
@@ -146,10 +146,10 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showWhom = whom;
     if (whom == SHOW_ME)
         [self moveCameraTo:meLocation];
-    if (whom == SHOW_CACHE && currentCache != nil)
-        [self moveCameraTo:currentCache.coordinates];
-    if (whom == SHOW_BOTH && currentCache != nil)
-        [self moveCameraTo:currentCache.coordinates c2:meLocation];
+    if (whom == SHOW_CACHE && currentWaypoint != nil)
+        [self moveCameraTo:currentWaypoint.coordinates];
+    if (whom == SHOW_BOTH && currentWaypoint != nil)
+        [self moveCameraTo:currentWaypoint.coordinates c2:meLocation];
 }
 
 - (void)menuMapType:(NSInteger)maptype
@@ -164,15 +164,15 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showWhom = SHOW_NEITHER;
 }
 
-- (void)openCacheView:(NSString *)name
+- (void)openWaypointView:(NSString *)name
 {
-    NSId _id = [dbCache dbGetByName:name];
-    dbCache *c = [dbCache dbGet:_id];
+    NSId _id = [dbWaypoint dbGetByName:name];
+    dbWaypoint *wp = [dbWaypoint dbGet:_id];
 
     CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [newController showCache:c];
+    [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = c.name;
+    newController.title = wp.name;
     [self.navigationController pushViewController:newController animated:YES];
 }
 

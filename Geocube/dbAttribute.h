@@ -35,9 +35,9 @@
 
 - (id)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon;
 
-- (void)dbLinkToCache:(NSId)cache_id YesNo:(BOOL)YesNO;
-+ (void)dbUnlinkAllFromCache:(NSId)cache_id;
-+ (NSInteger)dbCountByCache:(NSId)cache_id;
-+ (NSArray *)dbAllByCache:(NSId)cache_id;
+- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO;
++ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 
 @end
