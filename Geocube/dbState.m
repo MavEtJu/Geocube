@@ -48,7 +48,7 @@
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
             TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(1, code);
+            TEXT_FETCH_AND_ASSIGN(2, code);
             s = [[dbState alloc] init:_id name:name code:code];
             [ss addObject:s];
         }
@@ -69,7 +69,7 @@
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
             TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(1, code);
+            TEXT_FETCH_AND_ASSIGN(2, code);
             s = [[dbState alloc] init:_id name:name code:code];
         }
         DB_FINISH;

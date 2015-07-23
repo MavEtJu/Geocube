@@ -43,7 +43,7 @@
         DB_PREPARE(@"select id, symbol from symbols");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
             TEXT_FETCH_AND_ASSIGN(1, _symbol);
             s = [[dbSymbol alloc] init:_id symbol:_symbol];
             [ss addObject:s];

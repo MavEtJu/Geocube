@@ -48,7 +48,7 @@
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN( 1, label);
+            TEXT_FETCH_AND_ASSIGN(1, label);
             INT_FETCH_AND_ASSIGN( 2, gc_id);
             INT_FETCH_AND_ASSIGN( 3, icon);
             s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
@@ -83,7 +83,7 @@
 
         SET_VAR_INT( 1, _id);
         SET_VAR_INT( 2, wp_id);
-        SET_VAR_BOOL( 3, YesNO);
+        SET_VAR_BOOL(3, YesNO);
 
         DB_CHECK_OKAY;
         DB_FINISH;

@@ -96,13 +96,13 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT(1, log.waypoint_id);
-        SET_VAR_INT(2, log.logtype_id);
+        SET_VAR_INT( 1, log.waypoint_id);
+        SET_VAR_INT( 2, log.logtype_id);
         SET_VAR_TEXT(3, log.datetime);
-        SET_VAR_INT(4, log.datetime_epoch);
+        SET_VAR_INT( 4, log.datetime_epoch);
         SET_VAR_TEXT(5, log.logger);
         SET_VAR_TEXT(6, log.log);
-        SET_VAR_INT(7, log.gc_id);
+        SET_VAR_INT( 7, log.gc_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -116,14 +116,14 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log_type_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
 
-        SET_VAR_INT(1, logtype_id);
-        SET_VAR_INT(2, waypoint_id);
+        SET_VAR_INT( 1, logtype_id);
+        SET_VAR_INT( 2, waypoint_id);
         SET_VAR_TEXT(3, datetime);
-        SET_VAR_INT(4, datetime_epoch);
+        SET_VAR_INT( 4, datetime_epoch);
         SET_VAR_TEXT(5, logger);
         SET_VAR_TEXT(6, log);
-        SET_VAR_INT(7, gc_id);
-        SET_VAR_INT(8, _id);
+        SET_VAR_INT( 7, gc_id);
+        SET_VAR_INT( 8, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -172,10 +172,10 @@
         SET_VAR_INT(1, _wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(0, __id);
-            INT_FETCH_AND_ASSIGN(1, gc_id);
-            INT_FETCH_AND_ASSIGN(2, wp_id);
-            INT_FETCH_AND_ASSIGN(3, log_type_id);
+            INT_FETCH_AND_ASSIGN( 0, __id);
+            INT_FETCH_AND_ASSIGN( 1, gc_id);
+            INT_FETCH_AND_ASSIGN( 2, wp_id);
+            INT_FETCH_AND_ASSIGN( 3, log_type_id);
             TEXT_FETCH_AND_ASSIGN(4, datetime);
             //INT_FETCH_AND_ASSIGN(5, datetime_epoch);
             TEXT_FETCH_AND_ASSIGN(6, logger);

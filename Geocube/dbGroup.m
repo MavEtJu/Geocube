@@ -105,9 +105,9 @@
         SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
             TEXT_FETCH_AND_ASSIGN(1, name);
-            INT_FETCH_AND_ASSIGN(2, ug);
+            INT_FETCH_AND_ASSIGN( 2, ug);
             cg = [[dbGroup alloc] init:_id name:name usergroup:ug];
         }
         DB_FINISH;
@@ -124,9 +124,9 @@
         DB_PREPARE(@"select id, name, usergroup from groups");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(0, __id);
+            INT_FETCH_AND_ASSIGN( 0, __id);
             TEXT_FETCH_AND_ASSIGN(1, _name);
-            INT_FETCH_AND_ASSIGN(2, _ug);
+            INT_FETCH_AND_ASSIGN( 2, _ug);
             cg = [[dbGroup alloc] init:__id name:_name usergroup:_ug];
             [cgs addObject:cg];
         }
@@ -215,7 +215,7 @@
         DB_PREPARE(@"update groups set name = ? where id = ?");
 
         SET_VAR_TEXT(1, newname);
-        SET_VAR_INT(2, _id);
+        SET_VAR_INT( 2, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

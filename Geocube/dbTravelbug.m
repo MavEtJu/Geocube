@@ -134,7 +134,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)");
 
-        SET_VAR_INT(1, tb.gc_id);
+        SET_VAR_INT( 1, tb.gc_id);
         SET_VAR_TEXT(2, tb.ref);
         SET_VAR_TEXT(3, tb.name);
 
@@ -150,10 +150,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?");
 
-        SET_VAR_INT(1, gc_id);
+        SET_VAR_INT( 1, gc_id);
         SET_VAR_TEXT(2, ref);
         SET_VAR_TEXT(3, name);
-        SET_VAR_INT(4, _id);
+        SET_VAR_INT( 4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

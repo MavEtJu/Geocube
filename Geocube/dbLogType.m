@@ -44,9 +44,9 @@
         DB_PREPARE(@"select id, logtype, icon from log_types");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
             TEXT_FETCH_AND_ASSIGN(1, logtype);
-            INT_FETCH_AND_ASSIGN(2, icon);
+            INT_FETCH_AND_ASSIGN( 2, icon);
             lt = [[dbLogType alloc] init:_id logtype:logtype icon:icon];
             [lts addObject:lt];
         }
