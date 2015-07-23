@@ -99,6 +99,7 @@
         logs = [NSMutableArray arrayWithCapacity:20];
         attributes = [NSMutableArray arrayWithCapacity:20];
         travelbugs = [NSMutableArray arrayWithCapacity:20];
+        currentGS = nil;
 
         inItem = YES;
         return;
@@ -108,6 +109,8 @@
         currentGS = [[dbGroundspeak alloc] init];
         [currentGS setArchived:[[attributeDict objectForKey:@"archived"] boolValue]];
         [currentGS setAvailable:[[attributeDict objectForKey:@"available"] boolValue]];
+
+        inGroundspeak = YES;
         return;
     }
 
@@ -124,6 +127,7 @@
     if ([currentElement compare:@"groundspeak:log"] == NSOrderedSame) {
         currentLog = [[dbLog alloc] init];
         [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
+
         inLog = YES;
         return;
     }
@@ -132,6 +136,7 @@
         currentTB = [[dbTravelbug alloc] init];
         [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
         [currentTB setRef:[attributeDict objectForKey:@"ref"]];
+
         inTravelbug = YES;
         return;
     }
@@ -161,19 +166,35 @@
         NSId c_id = [dbWaypoint dbGetByName:currentWP.name];
         (*totalWaypointsCount)++;
         if (c_id == 0) {
-            c_id = [dbWaypoint dbCreate:currentWP];
+            currentWP._id = currentWP._id;
             (*newWaypointsCount)++;
 
+            // Save the groundspeak related data
+            if (currentGS != nil) {
+                [currentGS setWaypoint_id:currentWP._id];
+                [dbGroundspeak dbCreate:currentGS];
+                [currentWP updateGroundspeak:currentGS._id];
+            }
+
+            // Update the group
             [dbc.Group_LastImportAdded dbAddWaypoint:c_id];
             [dbc.Group_AllWaypoints dbAddWaypoint:c_id];
             [group dbAddWaypoint:c_id];
         } else {
             currentWP._id = c_id;
             [currentWP dbUpdate];
+
+            // Save the groundspeak data
+            currentGS.waypoint_id = currentWP._id;
+            currentGS._id = currentWP.groundspeak_id;
+            [currentGS dbUpdate];
+
+            // Update the group
             if ([group dbContainsWaypoint:c_id] == NO)
                 [group dbAddWaypoint:c_id];
         }
         [dbc.Group_LastImport dbAddWaypoint:c_id];
+
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
@@ -202,6 +223,14 @@
         goto bye;
     }
 
+    if (index == 2 && [currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
+        [currentGS finish];
+        // The saving of the data gets done when the waypoint is finished.
+
+        inGroundspeak = NO;
+        goto bye;
+    }
+
     // Deal with the completion of the travelbug
     if (index == 4 && inTravelbug == YES && [elementName compare:@"groundspeak:travelbug"] == NSOrderedSame) {
         [currentTB finish];
@@ -210,7 +239,7 @@
         (*totalTravelbugsCount)++;
         if (tb_id == 0) {
             (*newTravelbugsCount)++;
-            currentTB._id = [dbTravelbug dbCreate:currentTB];
+            [dbTravelbug dbCreate:currentTB];
         } else {
             currentTB._id = tb_id;
             [currentTB dbUpdate];
@@ -229,7 +258,7 @@
         (*totalLogsCount)++;
         if (log_id == 0) {
             (*newLogsCount)++;
-            currentLog._id = [dbLog dbCreate:currentLog];
+            [dbLog dbCreate:currentLog];
         } else {
             currentLog._id = log_id;
             [currentLog dbUpdate];

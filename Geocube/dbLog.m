@@ -84,14 +84,14 @@
     return __id;
 }
 
-- (NSId)dbCreate
+- (void)dbCreate
 {
     return [dbLog dbCreate:self];
 }
 
-+ (NSId)dbCreate:(dbLog *)log
++ (void)dbCreate:(dbLog *)log
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
@@ -105,10 +105,10 @@
         SET_VAR_INT(req, 7, log.gc_id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return __id;
+    log._id = _id;
 }
 
 - (void)dbUpdate

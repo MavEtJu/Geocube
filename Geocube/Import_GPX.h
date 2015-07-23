@@ -39,7 +39,7 @@
     NSMutableArray *logs;
     NSMutableArray *travelbugs;
     NSInteger index;
-    NSInteger inItem, inLog, inTravelbug;
+    NSInteger inItem, inLog, inTravelbug, inGroundspeak;
     NSMutableString *currentText;
     NSString *currentElement;
     dbWaypoint *currentWP;

@@ -78,9 +78,10 @@
 - (NSInteger)hasImages;
 
 + (NSId)dbGetByName:(NSString *)name;
-+ (NSId)dbCreate:(dbWaypoint *)wp;
++ (void)dbCreate:(dbWaypoint *)wp;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (dbWaypoint *)dbGet:(NSId)id;
+- (void)updateGroundspeak:(NSId)gs_id;
 
 @end

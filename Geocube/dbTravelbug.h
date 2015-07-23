@@ -32,8 +32,8 @@
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
 - (void)dbLinkToWaypoint:(NSId)wp_id;
 + (NSId)dbGetIdByGC:(NSId)_gc_id;
-+ (NSId)dbCreate:(dbTravelbug *)tb;
-- (NSId)dbCreate;
++ (void)dbCreate:(dbTravelbug *)tb;
+- (void)dbCreate;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 

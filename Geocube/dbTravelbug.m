@@ -40,15 +40,12 @@
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
-    NSId __id = 0;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
         DB_FINISH;
     }
 }
@@ -125,14 +122,14 @@
     return __id;
 }
 
-- (NSId)dbCreate
+- (void)dbCreate
 {
-    return [dbTravelbug dbCreate:self];
+    [dbTravelbug dbCreate:self];
 }
 
-+ (NSId)dbCreate:(dbTravelbug *)tb
++ (void)dbCreate:(dbTravelbug *)tb
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)");
@@ -142,10 +139,10 @@
         SET_VAR_TEXT(req, 3, tb.name);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return __id;
+    tb._id = _id;
 }
 
 - (void)dbUpdate

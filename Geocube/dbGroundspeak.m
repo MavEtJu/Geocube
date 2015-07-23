@@ -159,12 +159,12 @@
     return gs;
 }
 
-+ (NSId)dbCreate:(dbGroundspeak *)gs
++ (void)dbCreate:(dbGroundspeak *)gs
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into groundspeak(country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_size_id, archived, available, owner, placed_by_id, waypoint_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into groundspeak(country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT(req,    1, gs.country_id);
         SET_VAR_INT(req,    2, gs.state_id);
@@ -184,16 +184,16 @@
         SET_VAR_INT(req,   16, gs.waypoint_id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return __id;
+    gs._id = _id;
 }
 
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update groundspeak set country_id = ?, state_id = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ?, long_desc_html = ?, long_desc = ?, short_desc_html = ?, short_desc = ?, hint = ?, container_size_id = ?, archived = ?, available = ?, owner = ?, placed_by_id = ?, waypoint_id = ? where id = ?");
+        DB_PREPARE(@"update groundspeak set country_id = ?, state_id = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ?, long_desc_html = ?, long_desc = ?, short_desc_html = ?, short_desc = ?, hint = ?, container_id = ?, archived = ?, available = ?, owner = ?, placed_by_id = ?, waypoint_id = ? where id = ?");
 
         SET_VAR_INT(req,    1, country_id);
         SET_VAR_INT(req,    2, state_id);

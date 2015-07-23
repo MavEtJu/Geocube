@@ -175,7 +175,7 @@
 
 + (NSId)dbCreate:(NSString *)_name isUser:(BOOL)_usergroup
 {
-    NSId __id;
+    NSId _id;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into groups(name, usergroup) values(?, ?)");
@@ -184,10 +184,10 @@
         SET_VAR_BOOL(req, 2, _usergroup);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return __id;
+    return _id;
 }
 
 - (void)dbDelete

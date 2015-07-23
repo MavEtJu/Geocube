@@ -197,7 +197,7 @@
     return wp;
 }
 
-+ (NSId)dbCreate:(dbWaypoint *)wp
++ (void)dbCreate:(dbWaypoint *)wp
 {
     NSId _id = 0;
 
@@ -222,7 +222,7 @@
         DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return _id;
+    wp._id = _id;
 }
 
 - (void)dbUpdate
@@ -248,6 +248,25 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+}
+
+- (void)dbUpdateGroundspeak
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set groundspeak_id = ? where id = ?");
+
+        SET_VAR_INT(req,  1, groundspeak_id);
+        SET_VAR_INT(req,  2, _id);
+        
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
+- (void)updateGroundspeak:(NSId)gs_id
+{
+    self.groundspeak_id = gs_id;
+    [self dbUpdateGroundspeak];
 }
 
 @end
