@@ -124,36 +124,23 @@
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, symbol, groundspeak, urlname from caches");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _name);
-            TEXT_FETCH_AND_ASSIGN(req, 2, _desc);
-            TEXT_FETCH_AND_ASSIGN(req, 3, _lat);
-            TEXT_FETCH_AND_ASSIGN(req, 4, _lon);
-            INT_FETCH_AND_ASSIGN(req, 5, _lat_int);
-            INT_FETCH_AND_ASSIGN(req, 6, _lon_int);
-            TEXT_FETCH_AND_ASSIGN(req, 7, _date_placed);
-            INT_FETCH_AND_ASSIGN(req, 8, _date_placed_epoch);
-            TEXT_FETCH_AND_ASSIGN(req, 9, _url);
-            INT_FETCH_AND_ASSIGN(req, 10, _type_id);
-            INT_FETCH_AND_ASSIGN(req, 11, _symbol_id);
-            INT_FETCH_AND_ASSIGN(req, 12, _groundspeak_id);
-            TEXT_FETCH_AND_ASSIGN(req, 13, _urlname);
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            wp = [[dbWaypoint alloc] init:_id];
 
-            wp = [[dbWaypoint alloc] init:__id];
-            [wp setName:_name];
-            [wp setDescription:_desc];
-            [wp setLat:_lat];
-            [wp setLon:_lon];
+            TEXT_FETCH(req,  1, wp.name);
+            TEXT_FETCH(req,  2, wp.description);
+            TEXT_FETCH(req,  3, wp.lat);
+            TEXT_FETCH(req,  4, wp.lon);
+            INT_FETCH(req,   5, wp.lat_int);
+            INT_FETCH(req,   6, wp.lon_int);
+            TEXT_FETCH(req,  7, wp.date_placed);
+            INT_FETCH(req,   8, wp.date_placed_epoch);
+            TEXT_FETCH(req,  9, wp.url);
+            INT_FETCH(req,  10, wp.type_id);
+            INT_FETCH(req,  11, wp.symbol_id);
+            INT_FETCH(req,  12, wp.groundspeak_id);
+            TEXT_FETCH(req, 13, wp.urlname);
 
-            [wp setLat_int:_lat_int];
-            [wp setLon_int:_lon_int];
-            [wp setDate_placed:_date_placed];
-            [wp setDate_placed_epoch:_date_placed_epoch];
-            [wp setUrl:_url];
-            [wp setType_id:_type_id];
-            [wp setSymbol_id:_symbol_id];
-            [wp setGroundspeak_id:_groundspeak_id];
-            [wp setUrlname:_urlname];
             [wp finish];
             [wps addObject:wp];
         }
@@ -180,45 +167,32 @@
     return _id;
 }
 
-+ (dbWaypoint *)dbGet:(NSId)__id
++ (dbWaypoint *)dbGet:(NSId)_id
 {
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, cache_symbol, groundspeak_id, urlname from caches where id = ?");
 
-        SET_VAR_INT(req, 1, __id);
+        SET_VAR_INT(req, 1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _name);
-            TEXT_FETCH_AND_ASSIGN(req, 2, _desc);
-            TEXT_FETCH_AND_ASSIGN(req, 3, _lat);
-            TEXT_FETCH_AND_ASSIGN(req, 4, _lon);
-            INT_FETCH_AND_ASSIGN(req, 5, _lat_int);
-            INT_FETCH_AND_ASSIGN(req, 6, _lon_int);
-            TEXT_FETCH_AND_ASSIGN(req, 7, _date_placed);
-            INT_FETCH_AND_ASSIGN(req, 8, _date_placed_epoch);
-            TEXT_FETCH_AND_ASSIGN(req, 9, _url);
-            INT_FETCH_AND_ASSIGN(req, 10, _type_id);
-            INT_FETCH_AND_ASSIGN(req, 11, _symbol_id);
-            INT_FETCH_AND_ASSIGN(req, 12, _gs_id);
-            TEXT_FETCH_AND_ASSIGN(req, 13, _urlname);
+            INT_FETCH(req,   0, _id);
+            wp = [[dbWaypoint alloc] init:_id];
 
-            wp = [[dbWaypoint alloc] init:__id];
-            [wp setName:_name];
-            [wp setDescription:_desc];
-            [wp setLat:_lat];
-            [wp setLon:_lon];
-            [wp setLat_int:_lat_int];
-            [wp setLon_int:_lon_int];
-            [wp setDate_placed:_date_placed];
-            [wp setDate_placed_epoch:_date_placed_epoch];
-            [wp setUrl:_url];
-            [wp setUrlname:_urlname];
-            [wp setType_id:_type_id];
-            [wp setSymbol_id:_symbol_id];
-            [wp setGroundspeak_id:_gs_id];
+            TEXT_FETCH(req,  1, wp.name);
+            TEXT_FETCH(req,  2, wp.description);
+            TEXT_FETCH(req,  3, wp.lat);
+            TEXT_FETCH(req,  4, wp.lon);
+            INT_FETCH(req,   5, wp.lat_int);
+            INT_FETCH(req,   6, wp.lon_int);
+            TEXT_FETCH(req,  7, wp.date_placed);
+            INT_FETCH(req,   8, wp.date_placed_epoch);
+            TEXT_FETCH(req,  9, wp.url);
+            INT_FETCH(req,  10, wp.type_id);
+            INT_FETCH(req,  11, wp.symbol_id);
+            INT_FETCH(req,  12, wp.groundspeak_id);
+            TEXT_FETCH(req, 13, wp.urlname);
 
             [wp finish];
         }
@@ -230,30 +204,30 @@
 
 + (NSId)dbCreate:(dbWaypoint *)wp
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, symbol, urlname, groundspeak__id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
 
-        SET_VAR_TEXT(req, 1, wp.name);
-        SET_VAR_TEXT(req, 2, wp.description);
-        SET_VAR_TEXT(req, 3, wp.lat);
-        SET_VAR_TEXT(req, 4, wp.lon);
-        SET_VAR_INT(req, 5, wp.lat_int);
-        SET_VAR_INT(req, 6, wp.lon_int);
-        SET_VAR_TEXT(req, 7, wp.date_placed);
-        SET_VAR_INT(req, 8, wp.date_placed_epoch);
-        SET_VAR_TEXT(req, 9, wp.url);
-        SET_VAR_INT(req, 10, wp.type_id);
-        SET_VAR_INT(req, 11, wp.symbol_id);
+        SET_VAR_TEXT(req,  1, wp.name);
+        SET_VAR_TEXT(req,  2, wp.description);
+        SET_VAR_TEXT(req,  3, wp.lat);
+        SET_VAR_TEXT(req,  4, wp.lon);
+        SET_VAR_INT(req,   5, wp.lat_int);
+        SET_VAR_INT(req,   6, wp.lon_int);
+        SET_VAR_TEXT(req,  7, wp.date_placed);
+        SET_VAR_INT(req,   8, wp.date_placed_epoch);
+        SET_VAR_TEXT(req,  9, wp.url);
+        SET_VAR_INT(req,  10, wp.type_id);
+        SET_VAR_INT(req,  11, wp.symbol_id);
         SET_VAR_TEXT(req, 12, wp.urlname);
-        SET_VAR_INT(req, 13, wp.groundspeak_id);
+        SET_VAR_INT(req,  13, wp.groundspeak_id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    return __id;
+    return _id;
 }
 
 - (void)dbUpdate
@@ -261,20 +235,20 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type_id = ?, symbol = ?, groundspeak_id = ?, urlname = ? where id = ?");
 
-        SET_VAR_TEXT(req, 1, name);
-        SET_VAR_TEXT(req, 2, description);
-        SET_VAR_TEXT(req, 3, lat);
-        SET_VAR_TEXT(req, 4, lon);
-        SET_VAR_INT(req, 5, lat_int);
-        SET_VAR_INT(req, 6, lon_int);
-        SET_VAR_TEXT(req, 7, date_placed);
-        SET_VAR_INT(req, 8, date_placed_epoch);
-        SET_VAR_TEXT(req, 9, url);
-        SET_VAR_INT(req, 10, type_id);
-        SET_VAR_INT(req, 11, symbol_id);
-        SET_VAR_INT(req, 12, groundspeak_id);
+        SET_VAR_TEXT(req,  1, name);
+        SET_VAR_TEXT(req,  2, description);
+        SET_VAR_TEXT(req,  3, lat);
+        SET_VAR_TEXT(req,  4, lon);
+        SET_VAR_INT(req,   5, lat_int);
+        SET_VAR_INT(req,   6, lon_int);
+        SET_VAR_TEXT(req,  7, date_placed);
+        SET_VAR_INT(req,   8, date_placed_epoch);
+        SET_VAR_TEXT(req,  9, url);
+        SET_VAR_INT(req,  10, type_id);
+        SET_VAR_INT(req,  11, symbol_id);
+        SET_VAR_INT(req,  12, groundspeak_id);
         SET_VAR_TEXT(req, 13, urlname);
-        SET_VAR_INT(req, 14, _id);
+        SET_VAR_INT(req,  14, _id);
         
         DB_CHECK_OKAY;
         DB_FINISH;
