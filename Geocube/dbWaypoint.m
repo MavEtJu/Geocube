@@ -78,11 +78,6 @@
             type_id = type._id;
         }
     }
-    if (type == nil) {
-        type = [dbc Type_get_byname:symbol_str];
-        type_id = type._id;
-        type_str = symbol_str;
-    }
 
     // Adjust cache symbol
     if (symbol == nil) {
@@ -172,7 +167,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol, groundspeak_id, urlname from waypoints where id = ?");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints where id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
@@ -233,7 +228,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol = ?, groundspeak_id = ?, urlname = ? where id = ?");
+        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ? where id = ?");
 
         SET_VAR_TEXT(req,  1, name);
         SET_VAR_TEXT(req,  2, description);

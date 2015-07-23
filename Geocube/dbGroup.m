@@ -195,12 +195,12 @@
     [dbGroup dbDelete:self._id];
 }
 
-+ (void)dbDelete:(NSId)__id
++ (void)dbDelete:(NSId)_id
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from groups where id = ?");
 
-        SET_VAR_INT(req, 1, __id);
+        SET_VAR_INT(req, 1, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
