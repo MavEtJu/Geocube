@@ -57,11 +57,9 @@
 @property (nonatomic) float lon_float;
 @property (nonatomic, retain) NSString *date_placed;
 @property (nonatomic) NSInteger date_placed_epoch;
-@property (nonatomic, retain) dbSymbol *cache_symbol;
 @property (nonatomic) NSId symbol_id;
 @property (nonatomic, retain) NSString *symbol_str;
 @property (nonatomic, retain) dbSymbol *symbol;
-@property (nonatomic, retain) dbType *cache_type;
 @property (nonatomic) NSId type_id;
 @property (nonatomic, retain) NSString *type_str;
 @property (nonatomic, retain) dbType *type;
@@ -80,7 +78,7 @@
 - (NSInteger)hasImages;
 
 + (NSId)dbGetByName:(NSString *)name;
-+ (NSId)dbCreate:(dbWaypoint *)cache;
++ (NSId)dbCreate:(dbWaypoint *)wp;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (dbWaypoint *)dbGet:(NSId)id;

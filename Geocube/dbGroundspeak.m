@@ -92,7 +92,7 @@
     dbGroundspeak *gs;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id from caches");
+        DB_PREPARE(@"select id, country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id from groundspeak");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -121,23 +121,6 @@
         DB_FINISH;
     }
     return gss;
-}
-
-+ (NSId)dbGetByName:(NSString *)name
-{
-    NSId _id = 0;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id from caches where name = ?");
-
-        SET_VAR_TEXT(req, 1, name);
-
-        DB_IF_STEP {
-            INT_FETCH(req, 0, _id);
-        }
-        DB_FINISH;
-    }
-    return _id;
 }
 
 + (dbGroundspeak *)dbGet:(NSId)_id
@@ -210,7 +193,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update caches set country_id = ?, state_id = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ?, long_desc_html = ?, long_desc = ?, short_desc_html = ?, short_desc = ?, hint = ?, container_size_id = ?, archived = ?, available = ?, owner = ?, placed_by_id = ?, waypoint_id = ? where id = ?");
+        DB_PREPARE(@"update groundspeak set country_id = ?, state_id = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ?, long_desc_html = ?, long_desc = ?, short_desc_html = ?, short_desc = ?, hint = ?, container_size_id = ?, archived = ?, available = ?, owner = ?, placed_by_id = ?, waypoint_id = ? where id = ?");
 
         SET_VAR_INT(req,    1, country_id);
         SET_VAR_INT(req,    2, state_id);

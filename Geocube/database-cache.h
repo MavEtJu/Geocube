@@ -77,7 +77,7 @@
 - (void)loadWaypointData;
 
 - (dbType *)Type_get_byname:(NSString *)name;
-- (dbType *)Type_get:(NSId)cache_type;
+- (dbType *)Type_get:(NSId)_id;
 
 - (dbContainer *)Container_get_bysize:(NSString *)size;
 - (dbContainer *)Container_get:(NSId)_id;

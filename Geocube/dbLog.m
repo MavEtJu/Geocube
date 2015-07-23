@@ -94,7 +94,7 @@
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into logs(cache_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger, log, gc_id) values(?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT(req, 1, log.waypoint_id);
         SET_VAR_INT(req, 2, log.logtype_id);
@@ -114,7 +114,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update logs set log_type_id = ?, cache_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
+        DB_PREPARE(@"update logs set log_type_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger = ?, log = ?, gc_id = ? where id = ?");
 
         SET_VAR_INT(req, 1, logtype_id);
         SET_VAR_INT(req, 2, waypoint_id);
@@ -133,7 +133,7 @@
 - (void)dbUpdateCache:(NSId)c_id;
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update logs set cache_id = ? where id = ?");
+        DB_PREPARE(@"update logs set waypoint_id = ? where id = ?");
 
         SET_VAR_INT(req, 1, c_id);
         SET_VAR_INT(req, 2, _id);
@@ -148,7 +148,7 @@
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from logs where cache_id = ?");
+        DB_PREPARE(@"select count(id) from logs where waypoint_id = ?");
 
         SET_VAR_INT(req, 1, wp_id);
 

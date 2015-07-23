@@ -89,8 +89,7 @@
 - (NSInteger)hasInventory;
 - (NSInteger)hasImages;
 
-+ (NSId)dbGetByName:(NSString *)name;
-+ (NSId)dbCreate:(dbGroundspeak *)cache;
++ (NSId)dbCreate:(dbGroundspeak *)gs;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (dbGroundspeak *)dbGet:(NSId)id;

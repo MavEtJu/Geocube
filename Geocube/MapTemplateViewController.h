@@ -46,7 +46,7 @@ enum {
 
 - (id)init:(NSInteger)type;
 - (void)refreshWaypointsData;
-//- (void)whichCachesToShow:(NSInteger)type whichCache:(dbCache *)cache;
+//- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;
 
 // To be implemented by inherited classes:
 - (void)initMap;

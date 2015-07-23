@@ -136,12 +136,12 @@
     return nil;
 }
 
-- (dbType *)Type_get:(NSId)cache_type
+- (dbType *)Type_get:(NSId)_id
 {
     NSEnumerator *e = [Types objectEnumerator];
     dbType *ct;
     while ((ct = [e nextObject]) != nil) {
-        if (ct._id == cache_type)
+        if (ct._id == _id)
             return ct;
     }
     return nil;
