@@ -354,10 +354,12 @@
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
+                [dbCountry makeNameExist:currentText];
                 [currentGS setCountry_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
+                [dbState makeNameExist:currentText];
                 [currentGS setState_str:currentText];
                 goto bye;
             }

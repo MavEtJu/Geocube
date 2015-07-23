@@ -27,4 +27,10 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *code;
 
+- (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code;
++ (NSArray *)dbAll;
++ (void)makeNameExist:(NSString *)name;
++ (dbCountry *)dbGet:(NSId)_id;
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code;
+
 @end

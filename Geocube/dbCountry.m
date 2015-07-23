@@ -25,4 +25,82 @@
 
 @synthesize name, code;
 
+- (id)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code
+{
+    self = [super init];
+
+    _id = __id;
+    name = _name;
+    code = _code;
+
+    [self finish];
+    return self;
+}
+
++ (NSArray *)dbAll
+{
+    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    dbCountry *s;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, code from countries");
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            TEXT_FETCH_AND_ASSIGN(req, 1, code);
+            s = [[dbCountry alloc] init:_id name:name code:code];
+            [ss addObject:s];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (dbCountry *)dbGet:(NSId)_id
+{
+    dbCountry *s;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, code from countries where id = ?");
+
+        SET_VAR_INT(req, 1, _id);
+
+        DB_IF_STEP {
+            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            TEXT_FETCH_AND_ASSIGN(req, 1, name);
+            TEXT_FETCH_AND_ASSIGN(req, 1, code);
+            s = [[dbCountry alloc] init:_id name:name code:code];
+        }
+        DB_FINISH;
+    }
+    return s;
+}
+
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code
+{
+    NSId _id;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into countries(name, code) values(?, ?)");
+
+        SET_VAR_TEXT(req, 1, name);
+        SET_VAR_TEXT(req, 2, code);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(_id);
+    }
+    
+    return _id;
+}
+
++ (void)makeNameExist:(NSString *)name
+{
+    if ([dbc Country_get_byName:name] == nil) {
+        NSId _id = [dbCountry dbCreate:name code:name];
+        dbCountry *c = [self dbGet:_id];
+        [dbc Country_add:c];
+    }
+}
+
 @end

@@ -25,8 +25,10 @@
     NSArray *Groups;
     NSArray *LogTypes;
     NSArray *Containers;
-    NSMutableArray *Symbols;
     NSArray *Attributes;
+    NSMutableArray *Symbols;
+    NSMutableArray *Countries;
+    NSMutableArray *States;
 
     // System Groups
     dbGroup *Group_AllWaypoints;
@@ -54,6 +56,8 @@
 @property (nonatomic, retain) NSArray *Containers;
 @property (nonatomic, retain) NSArray *Attributes;
 @property (nonatomic, retain) NSMutableArray *Symbols;
+@property (nonatomic, retain) NSMutableArray *Countries;
+@property (nonatomic, retain) NSMutableArray *States;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
@@ -93,5 +97,11 @@
 
 - (dbAttribute *)Attribute_get:(NSId)_id;
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;
+
+- (dbCountry *)Country_get_byName:(NSString *)name;
+- (void)Country_add:(dbCountry *)country;
+
+- (dbState *)State_get_byName:(NSString *)name;
+- (void)State_add:(dbState *)state;
 
 @end

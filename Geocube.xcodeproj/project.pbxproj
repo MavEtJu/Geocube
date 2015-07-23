@@ -1083,6 +1083,8 @@
 				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
 				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
 				E80732BC1B5FB4CF007FDC29 /* dbName.m */,
+				E80732C11B5FB4EA007FDC29 /* dbState.h */,
+				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 				E81304021B5C4EB1006DF300 /* dbSymbol.h */,
 				E81304031B5C4EB1006DF300 /* dbSymbol.m */,
 				E81304091B5D9B5E006DF300 /* dbTravelbug.h */,
@@ -1091,8 +1093,6 @@
 				E8F570CA1B4008DD003F020C /* dbType.m */,
 				E80732B41B5FA352007FDC29 /* dbWaypoint.h */,
 				E80732B51B5FA352007FDC29 /* dbWaypoint.m */,
-				E80732C11B5FB4EA007FDC29 /* dbState.h */,
-				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";

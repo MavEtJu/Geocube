@@ -23,7 +23,7 @@
 
 @implementation DatabaseCache
 
-@synthesize Types, Groups, LogTypes, Containers, Attributes;
+@synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
 
 - (id)init
@@ -43,6 +43,8 @@
     Containers = [dbContainer dbAll];
     Attributes = [dbAttribute dbAll];
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
+    Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
+    States = [NSMutableArray arrayWithArray:[dbState dbAll]];
 
     Group_AllWaypoints = nil;
     Group_AllWaypoints_Found = nil;
@@ -250,6 +252,38 @@
             return s;
     }
     return nil;
+}
+
+- (dbCountry *)Country_get_byName:(NSString *)name
+{
+    NSEnumerator *e = [Countries objectEnumerator];
+    dbCountry *s;
+    while ((s = [e nextObject]) != nil) {
+        if ([s.name compare:name] == NSOrderedSame)
+            return s;
+    }
+    return nil;
+}
+
+- (void)Country_add:(dbCountry *)country
+{
+    [Countries addObject:country];
+}
+
+- (dbState *)State_get_byName:(NSString *)name
+{
+    NSEnumerator *e = [States objectEnumerator];
+    dbState *s;
+    while ((s = [e nextObject]) != nil) {
+        if ([s.name compare:name] == NSOrderedSame)
+            return s;
+    }
+    return nil;
+}
+
+- (void)State_add:(dbState *)state
+{
+    [States addObject:state];
 }
 
 @end
