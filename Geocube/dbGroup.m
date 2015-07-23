@@ -60,7 +60,7 @@
 
     // Delete all attributes from caches not longer in an usergroup
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from attribute2waypoint where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_PREPARE(@"delete from attribute2waypoints where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }

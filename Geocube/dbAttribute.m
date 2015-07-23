@@ -66,7 +66,7 @@
     NSId __id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from attribute2waypoint where waypoint_id = ?");
+        DB_PREPARE(@"delete from attribute2waypoints where waypoint_id = ?");
 
         SET_VAR_INT( 1, wp_id);
 
@@ -79,7 +79,7 @@
 - (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into attribute2waypoint(attribute_id, waypoint_id, yes ) values(?, ?, ?)");
+        DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes ) values(?, ?, ?)");
 
         SET_VAR_INT( 1, _id);
         SET_VAR_INT( 2, wp_id);
@@ -95,7 +95,7 @@
     NSInteger count = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select count(id) from attribute2waypoint where waypoint_id = ?");
+        DB_PREPARE(@"select count(id) from attribute2waypoints where waypoint_id = ?");
 
         SET_VAR_INT( 1, wp_id);
 
@@ -114,7 +114,7 @@
     dbAttribute *s;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoint where waypoint_id = ?)");
+        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoints where waypoint_id = ?)");
 
         SET_VAR_INT( 1, wp_id);
 
