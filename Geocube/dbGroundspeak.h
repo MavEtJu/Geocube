@@ -22,13 +22,19 @@
 #import "dbObject.h"
 
 @interface dbGroundspeak : dbObject {
+    NSId waypoint_id;
+
     float rating_difficulty, rating_terrain;
     NSInteger favourites;
 
     BOOL archived, available;
-    NSString *country_str, *state_str;
-    NSId country_int, state_int;
+
+    NSString *country_str;
+    NSId country_id;
     dbCountry *country;
+
+    NSString *state_str;
+    NSId state_id;
     dbState *state;
 
     BOOL short_desc_html, long_desc_html;
@@ -41,18 +47,19 @@
     NSId placed_by_id;
     dbName *placed_by;
 
-    NSId container_int;
+    NSId container_id;
     NSString *container_str;
     dbContainer *container;
 }
 
+@property (nonatomic) NSId waypoint_id;
 @property (nonatomic) float rating_difficulty;
 @property (nonatomic) float rating_terrain;
 @property (nonatomic) NSInteger favourites;
-@property (nonatomic) NSId country_int;
+@property (nonatomic) NSId country_id;
 @property (nonatomic, retain) NSString *country_str;
 @property (nonatomic, retain) dbCountry *country;
-@property (nonatomic) NSId state_int;
+@property (nonatomic) NSId state_id;
 @property (nonatomic, retain) NSString *state_str;
 @property (nonatomic, retain) dbState *state;
 @property (nonatomic) BOOL short_desc_html;
@@ -61,12 +68,12 @@
 @property (nonatomic, retain) NSString *long_desc;
 @property (nonatomic, retain) NSString *hint;
 @property (nonatomic, retain) NSString *personal_note;
-@property (nonatomic) NSId container_int;
+@property (nonatomic) NSId container_id;
 @property (nonatomic, retain) NSString *container_str;
 @property (nonatomic, retain) dbContainer *container;
 @property (nonatomic) BOOL archived;
 @property (nonatomic) BOOL available;
-@property (nonatomic) NSInteger placed_by_int;
+@property (nonatomic) NSId placed_by_id;
 @property (nonatomic, retain) NSString *placed_by_str;
 @property (nonatomic, retain) dbName *placed_by;
 @property (nonatomic, retain) NSString *owner;

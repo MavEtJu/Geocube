@@ -58,6 +58,21 @@ extern database *db;
 #define DOUBLE_FETCH_AND_ASSIGN(req, col, string) \
     double string = sqlite3_column_double(req, col);
 
+#define TEXT_FETCH(req, col, string) \
+    { \
+        char *s = (char *)sqlite3_column_text(req, col); \
+        if (s == NULL) \
+            string = nil; \
+        else \
+            string = [[NSString alloc] initWithUTF8String:s]; \
+    }
+#define BOOL_FETCH(req, col, string) \
+    string = sqlite3_column_int(req, col);
+#define INT_FETCH(req, col, string) \
+    string = sqlite3_column_int(req, col);
+#define DOUBLE_FETCH(req, col, string) \
+    string = sqlite3_column_double(req, col);
+
 #define SET_VAR_BOOL(req, col, string) \
     if (sqlite3_bind_int(req, col, string) != SQLITE_OK) \
         NSAssert1(0, @"SET_VAR_BOOL: %s", sqlite3_errmsg(db.db));
