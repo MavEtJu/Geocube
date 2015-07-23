@@ -207,7 +207,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol, urlname, groundspeak_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
 
         SET_VAR_TEXT(req,  1, wp.name);
         SET_VAR_TEXT(req,  2, wp.description);

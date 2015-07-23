@@ -225,7 +225,7 @@
 - (void)dbAddWaypoint:(NSId)__id
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into group2waypoint2(group_id, waypoint_id) values(?, ?)");
+        DB_PREPARE(@"insert into group2waypoints(group_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(req, 1, self._id);
         SET_VAR_INT(req, 2, __id);
