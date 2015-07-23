@@ -24,10 +24,10 @@
     UIImage *compassImage;
     UIImageView *compassImageView;
 
-    UIImageView *cacheIcon;
-    UILabel *cacheName;
-    UILabel *cacheLat;
-    UILabel *cacheLon;
+    UIImageView *wpIcon;
+    UILabel *wpName;
+    UILabel *wpLat;
+    UILabel *wpLon;
     UIImageView *containerSize;
     UIImageView *ratingD;
     UIImageView *ratingT;

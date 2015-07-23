@@ -29,10 +29,10 @@
 
     menuItems = [NSMutableArray arrayWithArray:@[@"XNothing"]];
 
-    cacheIcon = nil;
-    cacheName = nil;
-    cacheLat = nil;
-    cacheLon = nil;
+    wpIcon = nil;
+    wpName = nil;
+    wpLat = nil;
+    wpLon = nil;
     myLat = nil;
     myLon = nil;
     accuracy = nil;
@@ -98,25 +98,25 @@
 
     UILabel *l;
 
-    cacheIcon = [[UIImageView alloc] initWithFrame:rectIcon];
-    [self.view addSubview:cacheIcon];
+    wpIcon = [[UIImageView alloc] initWithFrame:rectIcon];
+    [self.view addSubview:wpIcon];
 
 #define FONTSIZE    14
 
-    cacheName = [[UILabel alloc] initWithFrame:rectName];
-    cacheName.textAlignment = NSTextAlignmentCenter;
-    cacheName.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:cacheName];
+    wpName = [[UILabel alloc] initWithFrame:rectName];
+    wpName.textAlignment = NSTextAlignmentCenter;
+    wpName.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:wpName];
 
-    cacheLat = [[UILabel alloc] initWithFrame:rectCoordLat];
-    cacheLat.font = [UIFont systemFontOfSize:FONTSIZE];
-    cacheLat.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:cacheLat];
+    wpLat = [[UILabel alloc] initWithFrame:rectCoordLat];
+    wpLat.font = [UIFont systemFontOfSize:FONTSIZE];
+    wpLat.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:wpLat];
 
-    cacheLon = [[UILabel alloc] initWithFrame:rectCoordLon];
-    cacheLon.font = [UIFont systemFontOfSize:FONTSIZE];
-    cacheLon.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:cacheLon];
+    wpLon = [[UILabel alloc] initWithFrame:rectCoordLon];
+    wpLon.font = [UIFont systemFontOfSize:FONTSIZE];
+    wpLon.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:wpLon];
 
     containerSize = [[UIImageView alloc] initWithFrame:rectSize];
     containerSize.image = [imageLibrary get:ImageSize_NotChosen];
@@ -198,15 +198,15 @@
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:currentWaypoint.lat_float lon:currentWaypoint.lon_float];
 
-    cacheIcon.image = [imageLibrary get:currentWaypoint.type.icon];
+    wpIcon.image = [imageLibrary get:currentWaypoint.type.icon];
     containerSize.image = [imageLibrary get:currentWaypoint.groundspeak.container.icon];
     ratingD.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_difficulty];
     ratingT.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_terrain];
 
     if (currentWaypoint != nil) {
-        cacheName.text = currentWaypoint.name;
-        cacheLat.text = [coords lat_degreesDecimalMinutes];
-        cacheLon.text = [coords lon_degreesDecimalMinutes];
+        wpName.text = currentWaypoint.name;
+        wpLat.text = [coords lat_degreesDecimalMinutes];
+        wpLon.text = [coords lon_degreesDecimalMinutes];
     }
 }
 
