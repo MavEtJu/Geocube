@@ -21,6 +21,7 @@
 
 @interface CacheHintViewController : GCViewController<UIScrollViewDelegate, UIWebViewDelegate> {
     dbWaypoint *waypoint;
+    dbGroundspeak *groundspeak;
     UIWebView *webview;
 }
 

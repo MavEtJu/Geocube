@@ -48,8 +48,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [LM startDelegation:nil isNavigating:NO];
     [self refreshCachesData:nil];
     [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [LM stopDelegation:nil];
 }
 
 - (void)refreshCachesData:(NSString *)searchString

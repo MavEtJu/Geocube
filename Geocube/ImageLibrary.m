@@ -87,11 +87,11 @@
     [self add:@"container - small - 70x20" index:ImageSize_Small];
     [self add:@"container - unknown - 70x20" index:ImageSize_Virtual];
 
-    [self add:@"waypoint rating star base 95x18" index:ImageCacheView_ratingBase];
-    [self add:@"waypoint rating star on 19x18" index:ImageCacheView_ratingOn];
-    [self add:@"waypoint rating star off 18x18" index:ImageCacheView_ratingOff];
-    [self add:@"waypoint rating star half 18x18" index:ImageCacheView_ratingHalf];
-    [self add:@"waypoint favourites 20x30" index:ImageCacheView_favourites];
+    [self add:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
+    [self add:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
+    [self add:@"ratings - star off 18x18" index:ImageCacheView_ratingOff];
+    [self add:@"ratings - star half 18x18" index:ImageCacheView_ratingHalf];
+    [self add:@"ratings - favourites 20x30" index:ImageCacheView_favourites];
 
     [self add:@"map - pin stick - 35x42" index:ImageMap_pin];
     [self add:@"map - dnf stick - 35x42" index:ImageMap_dnf];

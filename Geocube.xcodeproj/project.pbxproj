@@ -150,12 +150,29 @@
 		E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BF1B5FB4DF007FDC29 /* dbCountry.m */; };
 		E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732C21B5FB4EA007FDC29 /* dbState.m */; };
 		E80732C51B609D75007FDC29 /* compass_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732C41B609D75007FDC29 /* compass_needle.png */; };
+		E80732CD1B60F57E007FDC29 /* 13746815-myfinds.zip in Resources */ = {isa = PBXBuildFile; fileRef = E80732C81B60F57E007FDC29 /* 13746815-myfinds.zip */; };
+		E80732CE1B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip in Resources */ = {isa = PBXBuildFile; fileRef = E80732C91B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip */; };
+		E80732CF1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E80732CA1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip */; };
+		E80732D01B60F57E007FDC29 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E80732CB1B60F57E007FDC29 /* GCA - 7248.zip */; };
+		E80732D11B60F57E007FDC29 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E80732CC1B60F57E007FDC29 /* waymarking.gpx */; };
+		E80732D81B60FAB4007FDC29 /* ratings - favourites 20x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D31B60FAB4007FDC29 /* ratings - favourites 20x30.png */; };
+		E80732D91B60FAB4007FDC29 /* ratings - star base 95x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D41B60FAB4007FDC29 /* ratings - star base 95x18.png */; };
+		E80732DA1B60FAB4007FDC29 /* ratings - star half 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */; };
+		E80732DB1B60FAB4007FDC29 /* ratings - star off 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D61B60FAB4007FDC29 /* ratings - star off 18x18.png */; };
+		E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */; };
+		E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */; };
+		E80732E71B60FBCA007FDC29 /* pinhead - brown - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */; };
+		E80732E81B60FBCA007FDC29 /* pinhead - green - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */; };
+		E80732E91B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */; };
+		E80732EA1B60FBCA007FDC29 /* pinhead - pink - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */; };
+		E80732EB1B60FBCA007FDC29 /* pinhead - purple - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */; };
+		E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */; };
+		E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */; };
+		E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73791B53474C00F35528 /* MapAppleViewController.m */; };
-		E81303F41B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip in Resources */ = {isa = PBXBuildFile; fileRef = E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */; };
-		E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E81303FD1B5B0B68006DF300 /* waymarking.gpx */; };
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
@@ -196,7 +213,6 @@
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
-		E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -212,7 +228,6 @@
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
 		E8F570731B3F7255003F020C /* GeocubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570721B3F7255003F020C /* GeocubeTests.m */; };
-		E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E8F5708F1B3F7A9C003F020C /* GC - 15670269_ACT-1.zip */; };
 		E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570911B3F7CAE003F020C /* libz.dylib */; };
 		E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E8F570991B3F7F6A003F020C /* ioapi.c */; };
 		E8F570A41B3F7F6A003F020C /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E8F5709B1B3F7F6A003F020C /* mztools.c */; };
@@ -392,14 +407,31 @@
 		E80732C11B5FB4EA007FDC29 /* dbState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbState.h; sourceTree = "<group>"; };
 		E80732C21B5FB4EA007FDC29 /* dbState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbState.m; sourceTree = "<group>"; };
 		E80732C41B609D75007FDC29 /* compass_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass_needle.png; path = images/compass_needle.png; sourceTree = "<group>"; };
+		E80732C81B60F57E007FDC29 /* 13746815-myfinds.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "13746815-myfinds.zip"; path = "files/13746815-myfinds.zip"; sourceTree = "<group>"; };
+		E80732C91B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "16171009_iossimulator-freewaydrive.zip"; path = "files/16171009_iossimulator-freewaydrive.zip"; sourceTree = "<group>"; };
+		E80732CA1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "GC - 15670269_ACT-1.zip"; path = "files/GC - 15670269_ACT-1.zip"; sourceTree = "<group>"; };
+		E80732CB1B60F57E007FDC29 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "GCA - 7248.zip"; path = "files/GCA - 7248.zip"; sourceTree = "<group>"; };
+		E80732CC1B60F57E007FDC29 /* waymarking.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = waymarking.gpx; path = files/waymarking.gpx; sourceTree = "<group>"; };
+		E80732D31B60FAB4007FDC29 /* ratings - favourites 20x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - favourites 20x30.png"; path = "images/ratings - favourites 20x30.png"; sourceTree = "<group>"; };
+		E80732D41B60FAB4007FDC29 /* ratings - star base 95x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star base 95x18.png"; path = "images/ratings - star base 95x18.png"; sourceTree = "<group>"; };
+		E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star half 18x18.png"; path = "images/ratings - star half 18x18.png"; sourceTree = "<group>"; };
+		E80732D61B60FAB4007FDC29 /* ratings - star off 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star off 18x18.png"; path = "images/ratings - star off 18x18.png"; sourceTree = "<group>"; };
+		E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star on 19x18.png"; path = "images/ratings - star on 19x18.png"; sourceTree = "<group>"; };
+		E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - black - 15x15.png"; path = "images/pinhead - black - 15x15.png"; sourceTree = "<group>"; };
+		E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - brown - 15x15.png"; path = "images/pinhead - brown - 15x15.png"; sourceTree = "<group>"; };
+		E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - green - 15x15.png"; path = "images/pinhead - green - 15x15.png"; sourceTree = "<group>"; };
+		E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - lightblue - 15x15.png"; path = "images/pinhead - lightblue - 15x15.png"; sourceTree = "<group>"; };
+		E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - pink - 15x15.png"; path = "images/pinhead - pink - 15x15.png"; sourceTree = "<group>"; };
+		E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - purple - 15x15.png"; path = "images/pinhead - purple - 15x15.png"; sourceTree = "<group>"; };
+		E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - red - 15x15.png"; path = "images/pinhead - red - 15x15.png"; sourceTree = "<group>"; };
+		E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - white - 15x15.png"; path = "images/pinhead - white - 15x15.png"; sourceTree = "<group>"; };
+		E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - yellow - 15x15.png"; path = "images/pinhead - yellow - 15x15.png"; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E80F73781B53474C00F35528 /* MapAppleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAppleViewController.h; sourceTree = "<group>"; };
 		E80F73791B53474C00F35528 /* MapAppleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleViewController.m; sourceTree = "<group>"; };
-		E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "16171009_iossimulator-freewaydrive.zip"; sourceTree = "<group>"; };
-		E81303FD1B5B0B68006DF300 /* waymarking.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = waymarking.gpx; sourceTree = "<group>"; };
 		E81304021B5C4EB1006DF300 /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSymbol.h; sourceTree = "<group>"; };
 		E81304031B5C4EB1006DF300 /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSymbol.m; sourceTree = "<group>"; };
 		E81304091B5D9B5E006DF300 /* dbTravelbug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTravelbug.h; sourceTree = "<group>"; };
@@ -483,7 +515,6 @@
 		E8D56A021B54E916001A0F8E /* CachesOfflineFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineFilterViewController.m; sourceTree = "<group>"; };
 		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
-		E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GCA - 7248.zip"; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
@@ -514,7 +545,6 @@
 		E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570711B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570721B3F7255003F020C /* GeocubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocubeTests.m; sourceTree = "<group>"; };
-		E8F5708F1B3F7A9C003F020C /* GC - 15670269_ACT-1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "GC - 15670269_ACT-1.zip"; sourceTree = "<group>"; };
 		E8F570911B3F7CAE003F020C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E8F570981B3F7F6A003F020C /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		E8F570991B3F7F6A003F020C /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -584,6 +614,18 @@
 				A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E80732D21B60FA90007FDC29 /* ratings */ = {
+			isa = PBXGroup;
+			children = (
+				E80732D31B60FAB4007FDC29 /* ratings - favourites 20x30.png */,
+				E80732D41B60FAB4007FDC29 /* ratings - star base 95x18.png */,
+				E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */,
+				E80732D61B60FAB4007FDC29 /* ratings - star off 18x18.png */,
+				E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */,
+			);
+			name = ratings;
 			sourceTree = "<group>";
 		};
 		E80F721D1B5275D200F35528 /* Caches Offline */ = {
@@ -860,6 +902,15 @@
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */,
+				E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */,
+				E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */,
+				E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */,
+				E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */,
+				E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */,
+				E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */,
+				E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */,
+				E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */,
 				E807328A1B5F857A007FDC29 /* map - cross dnf - 9x9.png */,
 				E807328B1B5F857A007FDC29 /* map - cross dnf - 15x15.png */,
 				E807328C1B5F857A007FDC29 /* map - cross dnf - 19x19.png */,
@@ -889,6 +940,7 @@
 				E867E83C1B53D61C00CB126A /* attributes */,
 				E8A3F44F1B51D932009F2F46 /* map */,
 				E8740FCE1B4E9D49002527DA /* containers */,
+				E80732D21B60FA90007FDC29 /* ratings */,
 				E8740FA31B4E86BB002527DA /* logs */,
 				E86C65961B4BCE7D00E2ABFE /* waypoint view */,
 				E86C65751B4BCE2E00E2ABFE /* cache icons */,
@@ -1009,11 +1061,12 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				E81303FD1B5B0B68006DF300 /* waymarking.gpx */,
-				E81303F31B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip */,
+				E80732C81B60F57E007FDC29 /* 13746815-myfinds.zip */,
+				E80732C91B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip */,
+				E80732CA1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip */,
+				E80732CB1B60F57E007FDC29 /* GCA - 7248.zip */,
+				E80732CC1B60F57E007FDC29 /* waymarking.gpx */,
 				E8F570BD1B400137003F020C /* empty.db */,
-				E8DA95C51B423EBC003E46A4 /* GCA - 7248.zip */,
-				E8F5708F1B3F7A9C003F020C /* GC - 15670269_ACT-1.zip */,
 			);
 			name = "Data files";
 			sourceTree = "<group>";
@@ -1239,14 +1292,18 @@
 				E80732051B5F84B4007FDC29 /* attributes - 30.png in Resources */,
 				E80732121B5F84B4007FDC29 /* attributes - 43.png in Resources */,
 				E80732101B5F84B4007FDC29 /* attributes - 41.png in Resources */,
+				E80732CD1B60F57E007FDC29 /* 13746815-myfinds.zip in Resources */,
 				E80731F31B5F84B4007FDC29 /* attributes - 11.png in Resources */,
 				E80732751B5F852A007FDC29 /* waypoint - finish - 30x30.png in Resources */,
 				E807324B1B5F84E8007FDC29 /* log - willattend - 30x30.png in Resources */,
 				E80732241B5F84B4007FDC29 /* attributes - 61.png in Resources */,
-				E8F570901B3F7A9C003F020C /* GC - 15670269_ACT-1.zip in Resources */,
 				E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */,
+				E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */,
+				E80732E71B60FBCA007FDC29 /* pinhead - brown - 15x15.png in Resources */,
 				E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */,
+				E80732D81B60FAB4007FDC29 /* ratings - favourites 20x30.png in Resources */,
 				E80732461B5F84E8007FDC29 /* log - ownermaintenance - 30x30.png in Resources */,
+				E80732DA1B60FAB4007FDC29 /* ratings - star half 18x18.png in Resources */,
 				E80732451B5F84E8007FDC29 /* log - note - 30x30.png in Resources */,
 				E80731FD1B5F84B4007FDC29 /* attributes - 22.png in Resources */,
 				E80732041B5F84B4007FDC29 /* attributes - 29.png in Resources */,
@@ -1259,6 +1316,7 @@
 				E807326A1B5F850C007FDC29 /* cache - virtual - 30x30.png in Resources */,
 				E807326B1B5F850C007FDC29 /* cache - waymark - 30x30.png in Resources */,
 				E80732781B5F852A007FDC29 /* waypoint - parking - 30x30.png in Resources */,
+				E80732DB1B60FAB4007FDC29 /* ratings - star off 18x18.png in Resources */,
 				E80732201B5F84B4007FDC29 /* attributes - 57.png in Resources */,
 				E80731EF1B5F84B4007FDC29 /* attributes - 07.png in Resources */,
 				E807322A1B5F84B4007FDC29 /* attributes - 67.png in Resources */,
@@ -1280,7 +1338,9 @@
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
 				E80732851B5F8561007FDC29 /* container - notchosen - 70x20.png in Resources */,
+				E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */,
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
+				E80732E81B60FBCA007FDC29 /* pinhead - green - 15x15.png in Resources */,
 				E80732A41B5F857A007FDC29 /* map - pinhead pink - 15x15.png in Resources */,
 				E807327A1B5F852A007FDC29 /* waypoint - trailhead - 30x30.png in Resources */,
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
@@ -1289,17 +1349,16 @@
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
 				E80731F61B5F84B4007FDC29 /* attributes - 14.png in Resources */,
 				E807327B1B5F852A007FDC29 /* waypoint - unknown - 30x30.png in Resources */,
-				E81303FE1B5B0B68006DF300 /* waymarking.gpx in Resources */,
 				E807329E1B5F857A007FDC29 /* map - dnf stick - 35x42.png in Resources */,
 				E807320C1B5F84B4007FDC29 /* attributes - 37.png in Resources */,
 				E80732B01B5F8593007FDC29 /* global menu icon.png in Resources */,
 				E80732081B5F84B4007FDC29 /* attributes - 33.png in Resources */,
 				E80731F91B5F84B4007FDC29 /* attributes - 18.png in Resources */,
-				E81303F41B5A4F48006DF300 /* 16171009_iossimulator-freewaydrive.zip in Resources */,
 				E80732431B5F84E8007FDC29 /* log - needsarchiving - 30x30.png in Resources */,
 				E807329C1B5F857A007FDC29 /* map - cross dnf - 15x15.png in Resources */,
 				E80732291B5F84B4007FDC29 /* attributes - 66.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
+				E80732D91B60FAB4007FDC29 /* ratings - star base 95x18.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E80732171B5F84B4007FDC29 /* attributes - 48.png in Resources */,
 				E80731EB1B5F84B4007FDC29 /* attributes - 03.png in Resources */,
@@ -1308,6 +1367,7 @@
 				E80732191B5F84B4007FDC29 /* attributes - 50.png in Resources */,
 				E80731FE1B5F84B4007FDC29 /* attributes - 23.png in Resources */,
 				E80732621B5F850C007FDC29 /* cache - groundspeak hq - 30x30.png in Resources */,
+				E80732CE1B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip in Resources */,
 				E807321E1B5F84B4007FDC29 /* attributes - 55.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E80732A71B5F857A007FDC29 /* map - pinhead white - 15x15.png in Resources */,
@@ -1325,6 +1385,7 @@
 				E80732151B5F84B4007FDC29 /* attributes - 46.png in Resources */,
 				E80732AA1B5F857A007FDC29 /* map - tick found - 17x15.png in Resources */,
 				E80732601B5F850C007FDC29 /* cache - event - 30x30.png in Resources */,
+				E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E80732141B5F84B4007FDC29 /* attributes - 45.png in Resources */,
 				E80732481B5F84E8007FDC29 /* log - reviewernote - 30x30.png in Resources */,
@@ -1332,6 +1393,7 @@
 				E80732861B5F8561007FDC29 /* container - other - 70x20.png in Resources */,
 				E80731FC1B5F84B4007FDC29 /* attributes - 21.png in Resources */,
 				E80732A01B5F857A007FDC29 /* map - own overlay - 18x18.png in Resources */,
+				E80732D01B60F57E007FDC29 /* GCA - 7248.zip in Resources */,
 				E807321B1B5F84B4007FDC29 /* attributes - 52.png in Resources */,
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80732A81B5F857A007FDC29 /* map - pinhead yellow - 15x15.png in Resources */,
@@ -1339,7 +1401,9 @@
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
 				E80732A21B5F857A007FDC29 /* map - pinhead black - 15x15.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,
+				E80732CF1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip in Resources */,
 				E80732211B5F84B4007FDC29 /* attributes - 58.png in Resources */,
+				E80732EA1B60FBCA007FDC29 /* pinhead - pink - 15x15.png in Resources */,
 				E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */,
 				E807322B1B5F84B4007FDC29 /* attributes - unknown.png in Resources */,
 				E80731F01B5F84B4007FDC29 /* attributes - 08.png in Resources */,
@@ -1350,10 +1414,12 @@
 				E80732251B5F84B4007FDC29 /* attributes - 62.png in Resources */,
 				E80732491B5F84E8007FDC29 /* log - unarchived - 30x30.png in Resources */,
 				E80732261B5F84B4007FDC29 /* attributes - 63.png in Resources */,
+				E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */,
 				E80732A61B5F857A007FDC29 /* map - pinhead red - 15x15.png in Resources */,
 				E80732691B5F850C007FDC29 /* cache - unknown - 30x30.png in Resources */,
 				E80731ED1B5F84B4007FDC29 /* attributes - 05.png in Resources */,
 				E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */,
+				E80732E91B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png in Resources */,
 				E807320B1B5F84B4007FDC29 /* attributes - 36.png in Resources */,
 				E80732471B5F84E8007FDC29 /* log - published - 30x30.png in Resources */,
 				E807320D1B5F84B4007FDC29 /* attributes - 38.png in Resources */,
@@ -1361,9 +1427,10 @@
 				E807321D1B5F84B4007FDC29 /* attributes - 54.png in Resources */,
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
+				E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
+				E80732D11B60F57E007FDC29 /* waymarking.gpx in Resources */,
 				E807329D1B5F857A007FDC29 /* map - cross dnf - 19x19.png in Resources */,
-				E8DA95C61B423EBC003E46A4 /* GCA - 7248.zip in Resources */,
 				E80732441B5F84E8007FDC29 /* log - needsmaintenance - 30x30.png in Resources */,
 				E807325E1B5F850C007FDC29 /* cache - cito - 30x30.png in Resources */,
 				E80732661B5F850C007FDC29 /* cache - multi - 30x30.png in Resources */,
@@ -1377,6 +1444,7 @@
 				E80732401B5F84E8007FDC29 /* log - disabled - 18x18.png in Resources */,
 				E80732111B5F84B4007FDC29 /* attributes - 42.png in Resources */,
 				E80732131B5F84B4007FDC29 /* attributes - 44.png in Resources */,
+				E80732EB1B60FBCA007FDC29 /* pinhead - purple - 15x15.png in Resources */,
 				E80732A51B5F857A007FDC29 /* map - pinhead purple - 15x15.png in Resources */,
 				E80731F81B5F84B4007FDC29 /* attributes - 17.png in Resources */,
 			);

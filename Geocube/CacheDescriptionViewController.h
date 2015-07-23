@@ -21,6 +21,7 @@
 
 @interface CacheDescriptionViewController : GCViewController<UIScrollViewDelegate, UIWebViewDelegate> {
     dbWaypoint *waypoint;
+    dbGroundspeak *groundspeak;
     UIWebView *webview;
 }
 

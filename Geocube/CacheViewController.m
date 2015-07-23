@@ -30,6 +30,7 @@
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
     waypoint = _wp;
+    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
     [self.tableView reloadData];
 }
 
@@ -134,9 +135,9 @@
         Coordinates *c = [[Coordinates alloc] init:waypoint.lat_float lon:waypoint.lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
-        [cell setRatings:waypoint.groundspeak.favourites terrain:waypoint.groundspeak.rating_terrain difficulty:waypoint.groundspeak.rating_difficulty];
+        [cell setRatings:groundspeak.favourites terrain:groundspeak.rating_terrain difficulty:groundspeak.rating_difficulty];
 
-        cell.size.image = [imageLibrary get:waypoint.groundspeak.container.icon];
+        cell.size.image = [imageLibrary get:groundspeak.container.icon];
         cell.icon.image = [imageLibrary get:waypoint.type.icon];
         return cell;
     }
@@ -150,20 +151,20 @@
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([waypoint.groundspeak.short_desc compare:@""] == NSOrderedSame && [waypoint.groundspeak.long_desc compare:@""] == NSOrderedSame && [waypoint.description compare:@""] == NSOrderedSame) {
+                if ([groundspeak.short_desc compare:@""] == NSOrderedSame && [groundspeak.long_desc compare:@""] == NSOrderedSame && [waypoint.description compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
                 //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint compare:@""] == NSOrderedSame)
-                if ([waypoint.groundspeak.hint compare:@""] == NSOrderedSame || [waypoint.groundspeak.hint compare:@" "] == NSOrderedSame) {
+                if ([groundspeak.hint compare:@""] == NSOrderedSame || [groundspeak.hint compare:@" "] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 2: /* Personal note */
-                if ([waypoint.groundspeak.personal_note compare:@""] == NSOrderedSame) {
+                if ([groundspeak.personal_note compare:@""] == NSOrderedSame) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }

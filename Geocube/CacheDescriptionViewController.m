@@ -28,6 +28,7 @@
     self = [super self];
 
     waypoint = _wp;
+    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
 
     return self;
 }
@@ -50,16 +51,16 @@
 {
     NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
 
-    if ([waypoint.groundspeak.short_desc compare:@""] != NSOrderedSame) {
-        NSString *s = waypoint.groundspeak.short_desc;
-        if (waypoint.groundspeak.short_desc_html == NO)
+    if ([groundspeak.short_desc compare:@""] != NSOrderedSame) {
+        NSString *s = groundspeak.short_desc;
+        if (groundspeak.short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([waypoint.groundspeak.long_desc compare:@""] != NSOrderedSame) {
-        NSString *s = waypoint.groundspeak.long_desc;
-        if (waypoint.groundspeak.long_desc_html == NO)
+    if ([groundspeak.long_desc compare:@""] != NSOrderedSame) {
+        NSString *s = groundspeak.long_desc;
+        if (groundspeak.long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }

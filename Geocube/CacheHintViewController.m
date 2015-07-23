@@ -28,6 +28,7 @@
     self = [super self];
 
     waypoint = _wp;
+    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
 
     return self;
 }
@@ -48,7 +49,7 @@
 
 - (NSString *)makeHTMLString
 {
-    return [MyTools simpleHTML:waypoint.groundspeak.hint];
+    return [MyTools simpleHTML:groundspeak.hint];
 }
 
 @end
