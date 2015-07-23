@@ -163,10 +163,10 @@
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentWP finish];
 
-        NSId c_id = [dbWaypoint dbGetByName:currentWP.name];
+        currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
         (*totalWaypointsCount)++;
-        if (c_id == 0) {
-            currentWP._id = currentWP._id;
+        if (currentWP._id == 0) {
+            [dbWaypoint dbCreate:currentWP];
             (*newWaypointsCount)++;
 
             // Save the groundspeak related data
@@ -177,11 +177,10 @@
             }
 
             // Update the group
-            [dbc.Group_LastImportAdded dbAddWaypoint:c_id];
-            [dbc.Group_AllWaypoints dbAddWaypoint:c_id];
-            [group dbAddWaypoint:c_id];
+            [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
+            [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
+            [group dbAddWaypoint:currentWP._id];
         } else {
-            currentWP._id = c_id;
             [currentWP dbUpdate];
 
             // Save the groundspeak data
@@ -190,33 +189,33 @@
             [currentGS dbUpdate];
 
             // Update the group
-            if ([group dbContainsWaypoint:c_id] == NO)
-                [group dbAddWaypoint:c_id];
+            if ([group dbContainsWaypoint:currentWP._id] == NO)
+                [group dbAddWaypoint:currentWP._id];
         }
-        [dbc.Group_LastImport dbAddWaypoint:c_id];
+        [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
-            [l dbUpdateCache:c_id];
+            [l dbUpdateCache:currentWP._id];
         }
 
         // Link attributes to cache
-        [dbAttribute dbUnlinkAllFromWaypoint:c_id];
+        [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
         e = [attributes objectEnumerator];
         dbAttribute *a;
         while ((a = [e nextObject]) != nil) {
-            [a dbLinkToWaypoint:c_id YesNo:a._YesNo];
+            [a dbLinkToWaypoint:currentWP._id YesNo:a._YesNo];
         }
 
         // Link travelbugs to cache
-        [dbTravelbug dbUnlinkAllFromWaypoint:c_id];
+        [dbTravelbug dbUnlinkAllFromWaypoint:currentWP._id];
         e = [travelbugs objectEnumerator];
         dbTravelbug *tb;
         while ((tb = [e nextObject]) != nil) {
-            [tb dbLinkToWaypoint:c_id];
+            [tb dbLinkToWaypoint:currentWP._id];
         }
 
         inItem = NO;
