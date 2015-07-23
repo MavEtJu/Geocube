@@ -85,7 +85,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from group2waypoints where group_id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT(1, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -102,12 +102,12 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, usergroup from groups where name = ?");
 
-        SET_VAR_TEXT(req, 1, name);
+        SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, name);
-            INT_FETCH_AND_ASSIGN(req, 2, ug);
+            INT_FETCH_AND_ASSIGN(0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, name);
+            INT_FETCH_AND_ASSIGN(2, ug);
             cg = [[dbGroup alloc] init:_id name:name usergroup:ug];
         }
         DB_FINISH;
@@ -124,9 +124,9 @@
         DB_PREPARE(@"select id, name, usergroup from groups");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _name);
-            INT_FETCH_AND_ASSIGN(req, 2, _ug);
+            INT_FETCH_AND_ASSIGN(0, __id);
+            TEXT_FETCH_AND_ASSIGN(1, _name);
+            INT_FETCH_AND_ASSIGN(2, _ug);
             cg = [[dbGroup alloc] init:__id name:_name usergroup:_ug];
             [cgs addObject:cg];
         }
@@ -143,10 +143,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select group_id from group2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, cgid);
+            INT_FETCH_AND_ASSIGN(0, cgid);
             cg = [dbc Group_get:cgid];
             [cgs addObject:cg];
         }
@@ -162,10 +162,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from group2waypoints where group_id = ?");
 
-        SET_VAR_INT(req, 1, self._id);
+        SET_VAR_INT(1, self._id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, c);
+            INT_FETCH_AND_ASSIGN(0, c);
             count = c;
         }
         DB_FINISH;
@@ -180,8 +180,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into groups(name, usergroup) values(?, ?)");
 
-        SET_VAR_TEXT(req, 1, _name);
-        SET_VAR_BOOL(req, 2, _usergroup);
+        SET_VAR_TEXT(1, _name);
+        SET_VAR_BOOL(2, _usergroup);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -200,7 +200,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from groups where id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT(1, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -214,8 +214,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update groups set name = ? where id = ?");
 
-        SET_VAR_TEXT(req, 1, newname);
-        SET_VAR_INT(req, 2, _id);
+        SET_VAR_TEXT(1, newname);
+        SET_VAR_INT(2, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -227,8 +227,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into group2waypoints(group_id, waypoint_id) values(?, ?)");
 
-        SET_VAR_INT(req, 1, self._id);
-        SET_VAR_INT(req, 2, __id);
+        SET_VAR_INT(1, self._id);
+        SET_VAR_INT(2, __id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -242,11 +242,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from group2waypoints where group_id = ? and waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, self._id);
-        SET_VAR_INT(req, 2, c_id);
+        SET_VAR_INT(1, self._id);
+        SET_VAR_INT(2, c_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, c);
+            INT_FETCH_AND_ASSIGN(0, c);
             count = c;
         }
         DB_FINISH;

@@ -44,9 +44,9 @@
         DB_PREPARE(@"select id, size, icon from containers");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, size);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN( 1, size);
+            INT_FETCH_AND_ASSIGN( 2, icon);
             s = [[dbContainer alloc] init:_id size:size icon:icon];
             [ss addObject:s];
         }

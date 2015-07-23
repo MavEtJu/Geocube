@@ -95,25 +95,25 @@
         DB_PREPARE(@"select id, country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id from groundspeak");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
             gs = [[dbGroundspeak alloc] init:_id];
 
-            INT_FETCH(req,    1, gs.country_id);
-            INT_FETCH(req,    2, gs.state_id);
-            DOUBLE_FETCH(req, 3, gs.rating_difficulty);
-            DOUBLE_FETCH(req, 4, gs.rating_terrain);
-            INT_FETCH(req,    5, gs.favourites);
-            BOOL_FETCH(req,   6, gs.long_desc_html);
-            TEXT_FETCH(req,   7, gs.long_desc);
-            BOOL_FETCH(req,   8, gs.short_desc_html);
-            TEXT_FETCH(req,   9, gs.short_desc);
-            TEXT_FETCH(req,  10, gs.hint);
-            INT_FETCH(req,   11, gs.container_id);
-            BOOL_FETCH(req,  12, gs.archived);
-            BOOL_FETCH(req,  13, gs.available);
-            TEXT_FETCH(req,  14, gs.owner);
-            INT_FETCH(req,   15, gs.placed_by_id);
-            INT_FETCH(req,   16, gs.waypoint_id);
+            INT_FETCH(    1, gs.country_id);
+            INT_FETCH(    2, gs.state_id);
+            DOUBLE_FETCH( 3, gs.rating_difficulty);
+            DOUBLE_FETCH( 4, gs.rating_terrain);
+            INT_FETCH(    5, gs.favourites);
+            BOOL_FETCH(   6, gs.long_desc_html);
+            TEXT_FETCH(   7, gs.long_desc);
+            BOOL_FETCH(   8, gs.short_desc_html);
+            TEXT_FETCH(   9, gs.short_desc);
+            TEXT_FETCH(  10, gs.hint);
+            INT_FETCH(   11, gs.container_id);
+            BOOL_FETCH(  12, gs.archived);
+            BOOL_FETCH(  13, gs.available);
+            TEXT_FETCH(  14, gs.owner);
+            INT_FETCH(   15, gs.placed_by_id);
+            INT_FETCH(   16, gs.waypoint_id);
 
             [gs finish];
             [gss addObject:gs];
@@ -130,26 +130,26 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id from groundspeak where id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT( 1, _id);
 
         DB_IF_STEP {
             gs = [[dbGroundspeak alloc] init:_id];
-            INT_FETCH(req,    0, gs.country_id);
-            INT_FETCH(req,    1, gs.state_id);
-            DOUBLE_FETCH(req, 2, gs.rating_difficulty);
-            DOUBLE_FETCH(req, 3, gs.rating_terrain);
-            INT_FETCH(req,    4, gs.favourites);
-            BOOL_FETCH(req,   5, gs.long_desc_html);
-            TEXT_FETCH(req,   6, gs.long_desc);
-            BOOL_FETCH(req,   7, gs.short_desc_html);
-            TEXT_FETCH(req,   8, gs.short_desc);
-            TEXT_FETCH(req,   9, gs.hint);
-            INT_FETCH(req,   10, gs.container_id);
-            BOOL_FETCH(req,  11, gs.archived);
-            BOOL_FETCH(req,  12, gs.available);
-            TEXT_FETCH(req,  13, gs.owner);
-            INT_FETCH(req,   14, gs.placed_by_id);
-            INT_FETCH(req,   15, gs.waypoint_id);
+            INT_FETCH(    0, gs.country_id);
+            INT_FETCH(    1, gs.state_id);
+            DOUBLE_FETCH( 2, gs.rating_difficulty);
+            DOUBLE_FETCH( 3, gs.rating_terrain);
+            INT_FETCH(    4, gs.favourites);
+            BOOL_FETCH(   5, gs.long_desc_html);
+            TEXT_FETCH(   6, gs.long_desc);
+            BOOL_FETCH(   7, gs.short_desc_html);
+            TEXT_FETCH(   8, gs.short_desc);
+            TEXT_FETCH(   9, gs.hint);
+            INT_FETCH(   10, gs.container_id);
+            BOOL_FETCH(  11, gs.archived);
+            BOOL_FETCH(  12, gs.available);
+            TEXT_FETCH(  13, gs.owner);
+            INT_FETCH(   14, gs.placed_by_id);
+            INT_FETCH(   15, gs.waypoint_id);
 
             [gs finish];
         }
@@ -166,22 +166,22 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into groundspeak(country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT(req,    1, gs.country_id);
-        SET_VAR_INT(req,    2, gs.state_id);
-        SET_VAR_DOUBLE(req, 3, gs.rating_difficulty);
-        SET_VAR_DOUBLE(req, 4, gs.rating_terrain);
-        SET_VAR_INT(req,    5, gs.favourites);
-        SET_VAR_BOOL(req,   6, gs.long_desc_html);
-        SET_VAR_TEXT(req,   7, gs.long_desc);
-        SET_VAR_BOOL(req,   8, gs.short_desc_html);
-        SET_VAR_TEXT(req,   9, gs.short_desc);
-        SET_VAR_TEXT(req,  10, gs.hint);
-        SET_VAR_INT(req,   11, gs.container_id);
-        SET_VAR_BOOL(req,  12, gs.archived);
-        SET_VAR_BOOL(req,  13, gs.available);
-        SET_VAR_TEXT(req,  14, gs.owner);
-        SET_VAR_INT(req,   15, gs.placed_by_id);
-        SET_VAR_INT(req,   16, gs.waypoint_id);
+        SET_VAR_INT(    1, gs.country_id);
+        SET_VAR_INT(    2, gs.state_id);
+        SET_VAR_DOUBLE( 3, gs.rating_difficulty);
+        SET_VAR_DOUBLE( 4, gs.rating_terrain);
+        SET_VAR_INT(    5, gs.favourites);
+        SET_VAR_BOOL(   6, gs.long_desc_html);
+        SET_VAR_TEXT(   7, gs.long_desc);
+        SET_VAR_BOOL(   8, gs.short_desc_html);
+        SET_VAR_TEXT(   9, gs.short_desc);
+        SET_VAR_TEXT(  10, gs.hint);
+        SET_VAR_INT(   11, gs.container_id);
+        SET_VAR_BOOL(  12, gs.archived);
+        SET_VAR_BOOL(  13, gs.available);
+        SET_VAR_TEXT(  14, gs.owner);
+        SET_VAR_INT(   15, gs.placed_by_id);
+        SET_VAR_INT(   16, gs.waypoint_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -195,23 +195,23 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update groundspeak set country_id = ?, state_id = ?, rating_difficulty = ?, rating_terrain = ?, favourites = ?, long_desc_html = ?, long_desc = ?, short_desc_html = ?, short_desc = ?, hint = ?, container_id = ?, archived = ?, available = ?, owner = ?, placed_by_id = ?, waypoint_id = ? where id = ?");
 
-        SET_VAR_INT(req,    1, country_id);
-        SET_VAR_INT(req,    2, state_id);
-        SET_VAR_DOUBLE(req, 3, rating_difficulty);
-        SET_VAR_DOUBLE(req, 4, rating_terrain);
-        SET_VAR_INT(req,    5, favourites);
-        SET_VAR_BOOL(req,   6, long_desc_html);
-        SET_VAR_TEXT(req,   7, long_desc);
-        SET_VAR_BOOL(req,   8, short_desc_html);
-        SET_VAR_TEXT(req,   9, short_desc);
-        SET_VAR_TEXT(req,  10, hint);
-        SET_VAR_INT(req,   11, container_id);
-        SET_VAR_BOOL(req,  12, archived);
-        SET_VAR_BOOL(req,  13, available);
-        SET_VAR_TEXT(req,  14, owner);
-        SET_VAR_INT(req,   15, placed_by_id);
-        SET_VAR_INT(req,   16, waypoint_id);
-        SET_VAR_INT(req,   17, _id);
+        SET_VAR_INT(    1, country_id);
+        SET_VAR_INT(    2, state_id);
+        SET_VAR_DOUBLE( 3, rating_difficulty);
+        SET_VAR_DOUBLE( 4, rating_terrain);
+        SET_VAR_INT(    5, favourites);
+        SET_VAR_BOOL(   6, long_desc_html);
+        SET_VAR_TEXT(   7, long_desc);
+        SET_VAR_BOOL(   8, short_desc_html);
+        SET_VAR_TEXT(   9, short_desc);
+        SET_VAR_TEXT(  10, hint);
+        SET_VAR_INT(   11, container_id);
+        SET_VAR_BOOL(  12, archived);
+        SET_VAR_BOOL(  13, available);
+        SET_VAR_TEXT(  14, owner);
+        SET_VAR_INT(   15, placed_by_id);
+        SET_VAR_INT(   16, waypoint_id);
+        SET_VAR_INT(   17, _id);
         
         DB_CHECK_OKAY;
         DB_FINISH;

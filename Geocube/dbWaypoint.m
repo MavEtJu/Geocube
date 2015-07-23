@@ -119,22 +119,22 @@
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
             wp = [[dbWaypoint alloc] init:_id];
 
-            TEXT_FETCH(req,  1, wp.name);
-            TEXT_FETCH(req,  2, wp.description);
-            TEXT_FETCH(req,  3, wp.lat);
-            TEXT_FETCH(req,  4, wp.lon);
-            INT_FETCH(req,   5, wp.lat_int);
-            INT_FETCH(req,   6, wp.lon_int);
-            TEXT_FETCH(req,  7, wp.date_placed);
-            INT_FETCH(req,   8, wp.date_placed_epoch);
-            TEXT_FETCH(req,  9, wp.url);
-            INT_FETCH(req,  10, wp.type_id);
-            INT_FETCH(req,  11, wp.symbol_id);
-            INT_FETCH(req,  12, wp.groundspeak_id);
-            TEXT_FETCH(req, 13, wp.urlname);
+            TEXT_FETCH(  1, wp.name);
+            TEXT_FETCH(  2, wp.description);
+            TEXT_FETCH(  3, wp.lat);
+            TEXT_FETCH(  4, wp.lon);
+            INT_FETCH(   5, wp.lat_int);
+            INT_FETCH(   6, wp.lon_int);
+            TEXT_FETCH(  7, wp.date_placed);
+            INT_FETCH(   8, wp.date_placed_epoch);
+            TEXT_FETCH(  9, wp.url);
+            INT_FETCH(  10, wp.type_id);
+            INT_FETCH(  11, wp.symbol_id);
+            INT_FETCH(  12, wp.groundspeak_id);
+            TEXT_FETCH( 13, wp.urlname);
 
             [wp finish];
             [wps addObject:wp];
@@ -151,10 +151,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id from waypoints where name = ?");
 
-        SET_VAR_TEXT(req, 1, name);
+        SET_VAR_TEXT( 1, name);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
+            INT_FETCH_AND_ASSIGN( 0, __id);
             _id = __id;
         }
         DB_FINISH;
@@ -169,25 +169,25 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints where id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH(req,   0, _id);
+            INT_FETCH(  0, _id);
             wp = [[dbWaypoint alloc] init:_id];
 
-            TEXT_FETCH(req,  1, wp.name);
-            TEXT_FETCH(req,  2, wp.description);
-            TEXT_FETCH(req,  3, wp.lat);
-            TEXT_FETCH(req,  4, wp.lon);
-            INT_FETCH(req,   5, wp.lat_int);
-            INT_FETCH(req,   6, wp.lon_int);
-            TEXT_FETCH(req,  7, wp.date_placed);
-            INT_FETCH(req,   8, wp.date_placed_epoch);
-            TEXT_FETCH(req,  9, wp.url);
-            INT_FETCH(req,  10, wp.type_id);
-            INT_FETCH(req,  11, wp.symbol_id);
-            INT_FETCH(req,  12, wp.groundspeak_id);
-            TEXT_FETCH(req, 13, wp.urlname);
+            TEXT_FETCH( 1, wp.name);
+            TEXT_FETCH( 2, wp.description);
+            TEXT_FETCH( 3, wp.lat);
+            TEXT_FETCH( 4, wp.lon);
+            INT_FETCH(  5, wp.lat_int);
+            INT_FETCH(  6, wp.lon_int);
+            TEXT_FETCH( 7, wp.date_placed);
+            INT_FETCH(  8, wp.date_placed_epoch);
+            TEXT_FETCH( 9, wp.url);
+            INT_FETCH( 10, wp.type_id);
+            INT_FETCH(  11, wp.symbol_id);
+            INT_FETCH(  12, wp.groundspeak_id);
+            TEXT_FETCH( 13, wp.urlname);
 
             [wp finish];
         }
@@ -204,19 +204,19 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
 
-        SET_VAR_TEXT(req,  1, wp.name);
-        SET_VAR_TEXT(req,  2, wp.description);
-        SET_VAR_TEXT(req,  3, wp.lat);
-        SET_VAR_TEXT(req,  4, wp.lon);
-        SET_VAR_INT(req,   5, wp.lat_int);
-        SET_VAR_INT(req,   6, wp.lon_int);
-        SET_VAR_TEXT(req,  7, wp.date_placed);
-        SET_VAR_INT(req,   8, wp.date_placed_epoch);
-        SET_VAR_TEXT(req,  9, wp.url);
-        SET_VAR_INT(req,  10, wp.type_id);
-        SET_VAR_INT(req,  11, wp.symbol_id);
-        SET_VAR_TEXT(req, 12, wp.urlname);
-        SET_VAR_INT(req,  13, wp.groundspeak_id);
+        SET_VAR_TEXT( 1, wp.name);
+        SET_VAR_TEXT( 2, wp.description);
+        SET_VAR_TEXT( 3, wp.lat);
+        SET_VAR_TEXT( 4, wp.lon);
+        SET_VAR_INT(  5, wp.lat_int);
+        SET_VAR_INT(  6, wp.lon_int);
+        SET_VAR_TEXT( 7, wp.date_placed);
+        SET_VAR_INT(  8, wp.date_placed_epoch);
+        SET_VAR_TEXT( 9, wp.url);
+        SET_VAR_INT( 10, wp.type_id);
+        SET_VAR_INT( 11, wp.symbol_id);
+        SET_VAR_TEXT(12, wp.urlname);
+        SET_VAR_INT( 13, wp.groundspeak_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -230,20 +230,20 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ? where id = ?");
 
-        SET_VAR_TEXT(req,  1, name);
-        SET_VAR_TEXT(req,  2, description);
-        SET_VAR_TEXT(req,  3, lat);
-        SET_VAR_TEXT(req,  4, lon);
-        SET_VAR_INT(req,   5, lat_int);
-        SET_VAR_INT(req,   6, lon_int);
-        SET_VAR_TEXT(req,  7, date_placed);
-        SET_VAR_INT(req,   8, date_placed_epoch);
-        SET_VAR_TEXT(req,  9, url);
-        SET_VAR_INT(req,  10, type_id);
-        SET_VAR_INT(req,  11, symbol_id);
-        SET_VAR_INT(req,  12, groundspeak_id);
-        SET_VAR_TEXT(req, 13, urlname);
-        SET_VAR_INT(req,  14, _id);
+        SET_VAR_TEXT( 1, name);
+        SET_VAR_TEXT( 2, description);
+        SET_VAR_TEXT( 3, lat);
+        SET_VAR_TEXT( 4, lon);
+        SET_VAR_INT(  5, lat_int);
+        SET_VAR_INT(  6, lon_int);
+        SET_VAR_TEXT( 7, date_placed);
+        SET_VAR_INT(  8, date_placed_epoch);
+        SET_VAR_TEXT( 9, url);
+        SET_VAR_INT( 10, type_id);
+        SET_VAR_INT( 11, symbol_id);
+        SET_VAR_INT( 12, groundspeak_id);
+        SET_VAR_TEXT(13, urlname);
+        SET_VAR_INT( 14, _id);
         
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -255,8 +255,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set groundspeak_id = ? where id = ?");
 
-        SET_VAR_INT(req,  1, groundspeak_id);
-        SET_VAR_INT(req,  2, _id);
+        SET_VAR_INT(1, groundspeak_id);
+        SET_VAR_INT(2, _id);
         
         DB_CHECK_OKAY;
         DB_FINISH;

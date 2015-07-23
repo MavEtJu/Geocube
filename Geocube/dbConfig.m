@@ -42,12 +42,12 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, key, value from config where key = ?");
 
-        SET_VAR_TEXT(req, 1, _key);
+        SET_VAR_TEXT(1, _key);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _key);
-            TEXT_FETCH_AND_ASSIGN(req, 2, _value);
+            INT_FETCH_AND_ASSIGN( 0, __id);
+            TEXT_FETCH_AND_ASSIGN(1, _key);
+            TEXT_FETCH_AND_ASSIGN(2, _value);
             c = [[dbConfig alloc] init:__id key:_key value:_value];
         }
         DB_FINISH;
@@ -60,8 +60,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update config set value = ? where key = ?");
 
-        SET_VAR_TEXT(req, 1, value);
-        SET_VAR_TEXT(req, 2, key);
+        SET_VAR_TEXT(1, value);
+        SET_VAR_TEXT(2, key);
 
         DB_CHECK_OKAY;
         DB_FINISH;

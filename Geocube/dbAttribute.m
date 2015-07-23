@@ -47,10 +47,10 @@
         DB_PREPARE(@"select id, label, gc_id, icon from attributes");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
-            INT_FETCH_AND_ASSIGN(req, 3, icon);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN( 1, label);
+            INT_FETCH_AND_ASSIGN( 2, gc_id);
+            INT_FETCH_AND_ASSIGN( 3, icon);
             s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
             [ss addObject:s];
         }
@@ -68,7 +68,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from attribute2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT( 1, wp_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -81,9 +81,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into attribute2waypoint(attribute_id, waypoint_id, yes ) values(?, ?, ?)");
 
-        SET_VAR_INT(req, 1, _id);
-        SET_VAR_INT(req, 2, wp_id);
-        SET_VAR_BOOL(req, 3, YesNO);
+        SET_VAR_INT( 1, _id);
+        SET_VAR_INT( 2, wp_id);
+        SET_VAR_BOOL( 3, YesNO);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -97,10 +97,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from attribute2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT( 1, wp_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, c);
+            INT_FETCH_AND_ASSIGN( 0, c);
             count = c;
         }
         DB_FINISH;
@@ -116,13 +116,13 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoint where waypoint_id = ?)");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT( 1, wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, label);
-            INT_FETCH_AND_ASSIGN(req, 2, icon);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, label);
+            INT_FETCH_AND_ASSIGN( 2, icon);
+            INT_FETCH_AND_ASSIGN( 3, gc_id);
             s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
             [ss addObject:s];
         }

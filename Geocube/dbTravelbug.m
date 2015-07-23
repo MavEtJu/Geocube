@@ -43,7 +43,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -55,8 +55,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
-        SET_VAR_INT(req, 1, _id);
-        SET_VAR_INT(req, 2, wp_id);
+        SET_VAR_INT(1, _id);
+        SET_VAR_INT(2, wp_id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -70,10 +70,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, c);
+            INT_FETCH_AND_ASSIGN(0, c);
             count = c;
         }
         DB_FINISH;
@@ -89,13 +89,13 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)");
 
-        SET_VAR_INT(req, 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, name);
-            TEXT_FETCH_AND_ASSIGN(req, 2, ref);
-            INT_FETCH_AND_ASSIGN(req, 2, gc_id);
+            INT_FETCH_AND_ASSIGN(0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, name);
+            TEXT_FETCH_AND_ASSIGN(2, ref);
+            INT_FETCH_AND_ASSIGN(2, gc_id);
             tb = [[dbTravelbug alloc] init:_id name:name ref:ref gc_id:gc_id];
             [ss addObject:tb];
         }
@@ -111,10 +111,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id from travelbugs where gc_id = ?");
 
-        SET_VAR_INT(req, 1, _gc_id);
+        SET_VAR_INT(1, _gc_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, ___id);
+            INT_FETCH_AND_ASSIGN(0, ___id);
             __id = ___id;
         }
         DB_FINISH;
@@ -134,9 +134,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)");
 
-        SET_VAR_INT(req, 1, tb.gc_id);
-        SET_VAR_TEXT(req, 2, tb.ref);
-        SET_VAR_TEXT(req, 3, tb.name);
+        SET_VAR_INT(1, tb.gc_id);
+        SET_VAR_TEXT(2, tb.ref);
+        SET_VAR_TEXT(3, tb.name);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -150,10 +150,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?");
 
-        SET_VAR_INT(req, 1, gc_id);
-        SET_VAR_TEXT(req, 2, ref);
-        SET_VAR_TEXT(req, 3, name);
-        SET_VAR_INT(req, 4, _id);
+        SET_VAR_INT(1, gc_id);
+        SET_VAR_TEXT(2, ref);
+        SET_VAR_TEXT(3, name);
+        SET_VAR_INT(4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

@@ -46,9 +46,9 @@
         DB_PREPARE(@"select id, name, code from states");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, name);
-            TEXT_FETCH_AND_ASSIGN(req, 1, code);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, name);
+            TEXT_FETCH_AND_ASSIGN(1, code);
             s = [[dbState alloc] init:_id name:name code:code];
             [ss addObject:s];
         }
@@ -64,12 +64,12 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, code from states where id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, name);
-            TEXT_FETCH_AND_ASSIGN(req, 1, code);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, name);
+            TEXT_FETCH_AND_ASSIGN(1, code);
             s = [[dbState alloc] init:_id name:name code:code];
         }
         DB_FINISH;
@@ -85,8 +85,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into states(name, code) values(?, ?)");
 
-        SET_VAR_TEXT(req, 1, name);
-        SET_VAR_TEXT(req, 2, code);
+        SET_VAR_TEXT(1, name);
+        SET_VAR_TEXT(2, code);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);

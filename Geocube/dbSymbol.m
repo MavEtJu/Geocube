@@ -43,8 +43,8 @@
         DB_PREPARE(@"select id, symbol from symbols");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
+            INT_FETCH_AND_ASSIGN(0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, _symbol);
             s = [[dbSymbol alloc] init:_id symbol:_symbol];
             [ss addObject:s];
         }
@@ -60,11 +60,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, symbol from symbols where id = ?");
 
-        SET_VAR_INT(req, 1, _id);
+        SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, _id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _symbol);
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            TEXT_FETCH_AND_ASSIGN(1, _symbol);
             s = [[dbSymbol alloc] init:_id symbol:_symbol];
             return s;
         }
@@ -85,7 +85,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into symbols(symbol) values(?)");
 
-        SET_VAR_TEXT(req, 1, symbol);
+        SET_VAR_TEXT(1, symbol);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);

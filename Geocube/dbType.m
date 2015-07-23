@@ -45,10 +45,10 @@
         DB_PREPARE(@"select id, type, icon, pin from types");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(req, 0, __id);
-            TEXT_FETCH_AND_ASSIGN(req, 1, _type);
-            INT_FETCH_AND_ASSIGN(req, 2, _icon);
-            INT_FETCH_AND_ASSIGN(req, 3, _pin);
+            INT_FETCH_AND_ASSIGN( 0, __id);
+            TEXT_FETCH_AND_ASSIGN(1, _type);
+            INT_FETCH_AND_ASSIGN( 2, _icon);
+            INT_FETCH_AND_ASSIGN( 3, _pin);
             ct = [[dbType alloc] init:__id type:_type icon:_icon pin:_pin];
             [cts addObject:ct];
         }
