@@ -149,6 +149,7 @@
 		E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BC1B5FB4CF007FDC29 /* dbName.m */; };
 		E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BF1B5FB4DF007FDC29 /* dbCountry.m */; };
 		E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732C21B5FB4EA007FDC29 /* dbState.m */; };
+		E80732C51B609D75007FDC29 /* compass_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732C41B609D75007FDC29 /* compass_needle.png */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
@@ -390,6 +391,7 @@
 		E80732BF1B5FB4DF007FDC29 /* dbCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCountry.m; sourceTree = "<group>"; };
 		E80732C11B5FB4EA007FDC29 /* dbState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbState.h; sourceTree = "<group>"; };
 		E80732C21B5FB4EA007FDC29 /* dbState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbState.m; sourceTree = "<group>"; };
+		E80732C41B609D75007FDC29 /* compass_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass_needle.png; path = images/compass_needle.png; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -882,6 +884,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E80732C41B609D75007FDC29 /* compass_needle.png */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E867E83C1B53D61C00CB126A /* attributes */,
 				E8A3F44F1B51D932009F2F46 /* map */,
@@ -1332,6 +1335,7 @@
 				E807321B1B5F84B4007FDC29 /* attributes - 52.png in Resources */,
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80732A81B5F857A007FDC29 /* map - pinhead yellow - 15x15.png in Resources */,
+				E80732C51B609D75007FDC29 /* compass_needle.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
 				E80732A21B5F857A007FDC29 /* map - pinhead black - 15x15.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,

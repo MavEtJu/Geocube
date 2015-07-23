@@ -182,7 +182,7 @@
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
 
-    compassImage  = [UIImage imageNamed:[NSString stringWithFormat:@"%@/compass.png", [MyTools DataDistributionDirectory]]];
+    compassImage  = [UIImage imageNamed:[NSString stringWithFormat:@"%@/compass_needle.png", [MyTools DataDistributionDirectory]]];
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
     compassImageView.image = compassImage;
     [self.view addSubview:compassImageView];

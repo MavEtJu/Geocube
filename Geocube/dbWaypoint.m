@@ -121,7 +121,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, symbol, groundspeak, urlname from caches");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(req, 0, _id);
@@ -154,7 +154,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id from caches where name = ?");
+        DB_PREPARE(@"select id from waypoints where name = ?");
 
         SET_VAR_TEXT(req, 1, name);
 
@@ -172,7 +172,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, cache_symbol, groundspeak_id, urlname from caches where id = ?");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol, groundspeak_id, urlname from waypoints where id = ?");
 
         SET_VAR_INT(req, 1, _id);
 
@@ -207,7 +207,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into caches(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, cache_type_id, symbol, urlname, groundspeak__id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol, urlname, groundspeak_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
 
         SET_VAR_TEXT(req,  1, wp.name);
         SET_VAR_TEXT(req,  2, wp.description);
@@ -233,7 +233,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update caches set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, cache_type_id = ?, symbol = ?, groundspeak_id = ?, urlname = ? where id = ?");
+        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol = ?, groundspeak_id = ?, urlname = ? where id = ?");
 
         SET_VAR_TEXT(req,  1, name);
         SET_VAR_TEXT(req,  2, description);
