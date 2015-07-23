@@ -169,6 +169,7 @@
 		E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */; };
 		E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */; };
 		E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */; };
+		E80732F01B610A37007FDC29 /* GC37FF6.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E80732EF1B610A37007FDC29 /* GC37FF6.gpx */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
@@ -426,6 +427,7 @@
 		E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - red - 15x15.png"; path = "images/pinhead - red - 15x15.png"; sourceTree = "<group>"; };
 		E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - white - 15x15.png"; path = "images/pinhead - white - 15x15.png"; sourceTree = "<group>"; };
 		E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - yellow - 15x15.png"; path = "images/pinhead - yellow - 15x15.png"; sourceTree = "<group>"; };
+		E80732EF1B610A37007FDC29 /* GC37FF6.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = GC37FF6.gpx; path = files/GC37FF6.gpx; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1061,6 +1063,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E80732EF1B610A37007FDC29 /* GC37FF6.gpx */,
 				E80732C81B60F57E007FDC29 /* 13746815-myfinds.zip */,
 				E80732C91B60F57E007FDC29 /* 16171009_iossimulator-freewaydrive.zip */,
 				E80732CA1B60F57E007FDC29 /* GC - 15670269_ACT-1.zip */,
@@ -1324,6 +1327,7 @@
 				E807325D1B5F850C007FDC29 /* cache - benchmark - 30x30.png in Resources */,
 				E80732761B5F852A007FDC29 /* waypoint - flag - 30x30.png in Resources */,
 				E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */,
+				E80732F01B610A37007FDC29 /* GC37FF6.gpx in Resources */,
 				E807326C1B5F850C007FDC29 /* cache - webcam - 30x30.png in Resources */,
 				E80732031B5F84B4007FDC29 /* attributes - 28.png in Resources */,
 				E80732091B5F84B4007FDC29 /* attributes - 34.png in Resources */,
