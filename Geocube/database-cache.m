@@ -23,7 +23,7 @@
 
 @implementation DatabaseCache
 
-@synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States;
+@synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States, Accounts;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
 
 - (id)init
@@ -42,6 +42,7 @@
     LogTypes = [dbLogType dbAll];
     Containers = [dbContainer dbAll];
     Attributes = [dbAttribute dbAll];
+    Accounts = [dbAccount dbAll];
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
     Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
     States = [NSMutableArray arrayWithArray:[dbState dbAll]];

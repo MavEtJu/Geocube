@@ -29,6 +29,7 @@
 
 #import "database.h"
 #import "dbObject.h"
+#import "dbAccount.h"
 #import "dbConfig.h"
 #import "dbContainer.h"
 #import "dbGroup.h"

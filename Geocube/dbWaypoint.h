@@ -81,6 +81,8 @@
 + (void)dbCreate:(dbWaypoint *)wp;
 - (void)dbUpdate;
 + (NSArray *)dbAll;
++ (NSArray *)dbAllFound;
++ (NSArray *)dbAllNotFound;
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
 

@@ -37,6 +37,7 @@
 + (void)dbDelete:(NSId)__id;
 - (void)dbUpdateName:(NSString *)newname;
 - (void)dbAddWaypoint:(NSId)__id;
+- (void)dbAddWaypoints:(NSArray *)waypoints;
 - (BOOL)dbContainsWaypoint:(NSId)c_id;
 - (NSInteger)dbCountWaypoints;
 + (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;

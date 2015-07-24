@@ -77,6 +77,14 @@
     inLog = NO;
     inTravelbug = NO;
     [rssParser parse];
+
+    [[dbc Group_AllWaypoints_Found] dbEmpty];
+    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
+    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
+    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
+    [dbc loadWaypointData];
+
+
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError

@@ -162,6 +162,12 @@ Enjoy</groundspeak:text>
 
 Today I waited between two rain breaks and signed the red logbook. TFTC!</groundspeak:text>
         </groundspeak:log>
+        <groundspeak:log id="473442383">
+          <groundspeak:date>2015-01-23T08:44:33Z</groundspeak:date>
+          <groundspeak:type>Didn't find it</groundspeak:type>
+          <groundspeak:finder id="8305738">Team MavEtJu</groundspeak:finder>
+          <groundspeak:text encoded="False">No luck. Maybe tomorrow.</groundspeak:text>
+        </groundspeak:log>
         <groundspeak:log id="468830034">
           <groundspeak:date>2014-12-30T20:00:00Z</groundspeak:date>
           <groundspeak:type>Found it</groundspeak:type>

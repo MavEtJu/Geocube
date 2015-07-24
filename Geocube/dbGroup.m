@@ -242,6 +242,17 @@
     }
 }
 
+- (void)dbAddWaypoints:(NSArray *)waypoints
+{
+    NSEnumerator *e = [waypoints objectEnumerator];
+    dbWaypoint *wp;
+    while ((wp = [e nextObject]) != nil) {
+        [self dbAddWaypoint:wp._id];
+    }
+
+}
+
+
 - (BOOL)dbContainsWaypoint:(NSId)c_id
 {
     NSInteger count = 0;
