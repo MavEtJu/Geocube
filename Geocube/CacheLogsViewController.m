@@ -70,8 +70,8 @@
     }
 
     dbLog *l = [logs objectAtIndex:indexPath.row];
-    cell.datetime.text = l.datetime;
-    cell.logger.text = l.logger;
+    cell.datetime.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
+    cell.logger.text = l.logger.name;
     cell.log.text = l.log;
     cell.log.lineBreakMode = NSLineBreakByWordWrapping;
     dbLogType *lt = [dbc LogType_get:l.logtype_id];

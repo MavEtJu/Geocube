@@ -31,6 +31,7 @@
 {
     waypoint = _wp;
     groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
+    [groundspeak finish];
     [self.tableView reloadData];
 }
 
@@ -99,8 +100,8 @@
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if ([waypoint.groundspeak.placed_by_str compare:@""] != NSOrderedSame)
-        [s appendFormat:@"by %@", waypoint.groundspeak.placed_by_str];
+    if ([groundspeak.placed_by compare:@""] != NSOrderedSame)
+        [s appendFormat:@"by %@", groundspeak.placed_by];
     if ([waypoint.date_placed compare:@""] != NSOrderedSame)
         [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
     l.text = s;

@@ -42,6 +42,7 @@
     NSInteger inItem, inLog, inTravelbug, inGroundspeak;
     NSMutableString *currentText;
     NSString *currentElement;
+    NSString *gsOwnerNameId, *logFinderNameId;
     dbWaypoint *currentWP;
     dbGroundspeak *currentGS;
     dbLog *currentLog;

@@ -27,7 +27,11 @@
     NSString *logtype_string;
     dbLogType *logtype;
     NSString *datetime;
-    NSString *logger;
+    NSString *logger_gsid;
+    NSString *logger_str;
+    NSId logger_id;
+    dbName *logger;
+
     NSString *log;
 
     // Internal values
@@ -42,13 +46,16 @@
 @property (nonatomic, retain) NSString *logtype_string;
 @property (nonatomic, retain) NSString *datetime;
 @property (nonatomic) NSInteger datetime_epoch;
-@property (nonatomic, retain) NSString *logger;
+@property (nonatomic, retain) NSString *logger_gsid;
+@property (nonatomic, retain) NSString *logger_str;
+@property (nonatomic) NSId logger_id;
+@property (nonatomic, retain) dbName *logger;
 @property (nonatomic, retain) NSString *log;
 
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (id)init:(NSId)__id gc_id:(NSId)gc_id waypoint_id:(NSId)wp_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger:(NSString *)_logger log:(NSString *)_log;
+- (id)init:(NSId)__id gc_id:(NSId)gc_id waypoint_id:(NSId)wp_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log;
 - (id)init:(NSId)gc_id;
 
 + (NSId)dbGetIdByGC:(NSId)gc_id;

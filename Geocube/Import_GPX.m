@@ -132,6 +132,17 @@
         return;
     }
 
+    if ([currentElement compare:@"groundspeak:finder"] == NSOrderedSame) {
+        logFinderNameId = [attributeDict objectForKey:@"id"];
+        [currentLog setLogger_gsid:logFinderNameId];
+        return;
+    }
+    if ([currentElement compare:@"groundspeak:owner"] == NSOrderedSame) {
+        gsOwnerNameId = [attributeDict objectForKey:@"id"];
+        [currentGS setOwner_gsid:gsOwnerNameId];
+        return;
+    }
+
     if ([currentElement compare:@"groundspeak:travelbug"] == NSOrderedSame) {
         currentTB = [[dbTravelbug alloc] init];
         [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
@@ -173,7 +184,8 @@
             if (currentGS != nil) {
                 [currentGS setWaypoint_id:currentWP._id];
                 [dbGroundspeak dbCreate:currentGS];
-                [currentWP updateGroundspeak:currentGS._id];
+                currentWP.groundspeak_id = currentGS._id;
+                [currentWP dbUpdateGroundspeak];
             }
 
             // Update the group
@@ -292,7 +304,8 @@
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:finder"] == NSOrderedSame) {
-                [currentLog setLogger:currentText];
+                [dbName makeNameExist:currentText code:logFinderNameId];
+                [currentLog setLogger_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
@@ -379,11 +392,12 @@
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:owner"] == NSOrderedSame) {
-                [currentGS setOwner:currentText];
+                [dbName makeNameExist:currentText code:gsOwnerNameId];
+                [currentGS setOwner_str:currentText];
                 goto bye;
             }
             if ([elementName compare:@"groundspeak:placed_by"] == NSOrderedSame) {
-                [currentGS setPlaced_by_str:currentText];
+                [currentGS setPlaced_by:currentText];
                 goto bye;
             }
             goto bye;

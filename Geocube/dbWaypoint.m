@@ -263,10 +263,4 @@
     }
 }
 
-- (void)updateGroundspeak:(NSId)gs_id
-{
-    self.groundspeak_id = gs_id;
-    [self dbUpdateGroundspeak];
-}
-
 @end

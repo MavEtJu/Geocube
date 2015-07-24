@@ -19,6 +19,21 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbName : dbObject
+@interface dbName : dbObject {
+    NSString *name;
+    NSString *code;
+}
+
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *code;
+
+- (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code;
++ (void)makeNameExist:(NSString *)name code:(NSString *)code;
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code;
+- (void)dbUpdateName;
++ (dbName *)dbGet:(NSId)_id;
++ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code;
++ (dbName *)dbGetByCode:(NSString *)code;
++ (dbName *)dbGetByName:(NSString *)name;
 
 @end

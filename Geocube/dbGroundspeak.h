@@ -41,11 +41,12 @@
     NSString *short_desc, *long_desc;
     NSString *hint, *personal_note;
 
-    NSString *owner;
+    NSString *placed_by;
 
-    NSString *placed_by_str;
-    NSId placed_by_id;
-    dbName *placed_by;
+    NSString *owner_gsid;
+    NSString *owner_str;
+    NSId owner_id;
+    dbName *owner;
 
     NSId container_id;
     NSString *container_str;
@@ -73,10 +74,11 @@
 @property (nonatomic, retain) dbContainer *container;
 @property (nonatomic) BOOL archived;
 @property (nonatomic) BOOL available;
-@property (nonatomic) NSId placed_by_id;
-@property (nonatomic, retain) NSString *placed_by_str;
-@property (nonatomic, retain) dbName *placed_by;
-@property (nonatomic, retain) NSString *owner;
+@property (nonatomic, retain) NSString *placed_by;
+@property (nonatomic, retain) NSString *owner_str;
+@property (nonatomic, retain) NSString *owner_gsid;
+@property (nonatomic) NSId owner_id;
+@property (nonatomic, retain) dbName *owner;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) CLLocationCoordinate2D coordinates;

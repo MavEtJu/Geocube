@@ -82,6 +82,6 @@
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (dbWaypoint *)dbGet:(NSId)id;
-- (void)updateGroundspeak:(NSId)gs_id;
+- (void)dbUpdateGroundspeak;
 
 @end
