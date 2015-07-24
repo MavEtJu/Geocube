@@ -181,6 +181,7 @@
     // Deal with the completion of the cache
     if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
         [currentWP finish];
+        [currentGS finish];
 
         currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
         (*totalWaypointsCount)++;

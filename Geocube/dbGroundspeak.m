@@ -82,6 +82,28 @@
         }
     }
 
+    if (state == nil) {
+        if (state_id != 0) {
+            state = [dbc State_get:state_id];
+            state_str = state.name;
+        }
+        if (state_str != nil) {
+            state = [dbc State_get_byName:state_str];
+            state_id = state._id;
+        }
+    }
+
+    if (country == nil) {
+        if (country_id != 0) {
+            country = [dbc Country_get:country_id];
+            country_str = country.name;
+        }
+        if (country_str != nil) {
+            country = [dbc Country_get_byName:country_str];
+            country_id = country._id;
+        }
+    }
+
     [super finish];
 }
 

@@ -71,6 +71,7 @@
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
 
         [_wps addObject:wp];
+        wp.groundspeak = [dbGroundspeak dbGet:wp.groundspeak_id];
     }
     waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
@@ -116,11 +117,12 @@
     }
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    dbGroundspeak *gs = wp.groundspeak;
     cell.description.text = wp.description;
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary get:wp.type.icon];
 
-    [cell setRatings:wp.groundspeak.favourites terrain:wp.groundspeak.rating_terrain difficulty:wp.groundspeak.rating_difficulty size:wp.groundspeak.container.icon];
+    [cell setRatings:gs.favourites terrain:gs.rating_terrain difficulty:gs.rating_difficulty size:gs.container.icon];
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
@@ -128,12 +130,12 @@
     cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (wp.groundspeak.state != nil)
-        [s appendFormat:@"%@", wp.groundspeak.state.name];
-    if (wp.groundspeak.country != nil) {
+    if (gs.state != nil)
+        [s appendFormat:@"%@", gs.state.name];
+    if (gs.country != nil) {
          if ([s compare:@""] != NSOrderedSame)
              [s appendFormat:@", "];
-        [s appendFormat:@"%@", wp.groundspeak.country.name];
+        [s appendFormat:@"%@", gs.country.name];
     }
     cell.stateCountry.text = s;
     return cell;

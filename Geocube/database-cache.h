@@ -102,8 +102,10 @@
 
 - (dbCountry *)Country_get_byName:(NSString *)name;
 - (void)Country_add:(dbCountry *)country;
+- (dbCountry *)Country_get:(NSId)_id;
 
 - (dbState *)State_get_byName:(NSString *)name;
 - (void)State_add:(dbState *)state;
+- (dbState *)State_get:(NSId)_id;
 
 @end

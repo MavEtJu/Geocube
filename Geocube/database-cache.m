@@ -266,6 +266,17 @@
     return nil;
 }
 
+- (dbCountry *)Country_get:(NSId)_id
+{
+    NSEnumerator *e = [Countries objectEnumerator];
+    dbCountry *s;
+    while ((s = [e nextObject]) != nil) {
+        if (s._id == _id)
+            return s;
+    }
+    return nil;
+}
+
 - (void)Country_add:(dbCountry *)country
 {
     [Countries addObject:country];
@@ -277,6 +288,17 @@
     dbState *s;
     while ((s = [e nextObject]) != nil) {
         if ([s.name compare:name] == NSOrderedSame)
+            return s;
+    }
+    return nil;
+}
+
+- (dbState *)State_get:(NSId)_id
+{
+    NSEnumerator *e = [States objectEnumerator];
+    dbState *s;
+    while ((s = [e nextObject]) != nil) {
+        if (s._id == _id)
             return s;
     }
     return nil;
