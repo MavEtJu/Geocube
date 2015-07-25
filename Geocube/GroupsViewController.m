@@ -74,12 +74,6 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -295,8 +289,5 @@
 
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-
-
 
 @end

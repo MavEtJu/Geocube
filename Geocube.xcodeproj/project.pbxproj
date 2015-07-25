@@ -219,6 +219,7 @@
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
+		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
 		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
 		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
 		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
@@ -541,6 +542,8 @@
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
+		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
+		E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAccountsViewController.m; sourceTree = "<group>"; };
 		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
 		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
 		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
@@ -1008,6 +1011,15 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
+		E8E8CFE91B639A0400CC741A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */,
+				E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		E8EAF43D1B591DEB0027AE6F /* BHTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1215,6 +1227,7 @@
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
+				E8E8CFE91B639A0400CC741A /* Settings */,
 				E80F721D1B5275D200F35528 /* Caches Offline */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 			);
@@ -1621,6 +1634,7 @@
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
+				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,

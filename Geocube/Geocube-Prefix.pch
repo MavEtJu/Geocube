@@ -62,6 +62,8 @@
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"
 
+#import "SettingsAccountsViewController.h"
+
 #import "CacheDescriptionViewController.h"
 #import "CacheHintViewController.h"
 #import "CacheLogsViewController.h"

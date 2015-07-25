@@ -236,7 +236,12 @@
     controllers = [NSMutableArray array];
 
     vc = [[NullViewController alloc] init];
-    vc.title = @"Settings";
+    vc.title = @"XSettings";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [controllers addObject:nav];
+
+    vc = [[SettingsAccountsViewController alloc] init];
+    vc.title = @"Accounts";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 

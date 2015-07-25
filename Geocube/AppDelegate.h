@@ -59,6 +59,8 @@
 #define RC_USERPROFILE 8
 #define RC_NOTICES 9
 #define RC_SETTINGS 10
+#define    VC_SETTINGS 0
+#define    VC_ACCOUNTS
 #define RC_HELP 11
 #define    VC_HELP_HELP 0
 #define    VC_HELP_IMAGES 1
