@@ -45,10 +45,10 @@
         SET_VAR_TEXT(1, _key);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN( 0, __id);
-            TEXT_FETCH_AND_ASSIGN(1, _key);
-            TEXT_FETCH_AND_ASSIGN(2, _value);
-            c = [[dbConfig alloc] init:__id key:_key value:_value];
+            c = [[dbConfig alloc] init];
+            INT_FETCH( 0, c._id);
+            TEXT_FETCH(1, c.key);
+            TEXT_FETCH(2, c.value);
         }
         DB_FINISH;
     }

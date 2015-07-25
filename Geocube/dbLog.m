@@ -82,7 +82,7 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id from logs where gc_id = ?");
@@ -90,12 +90,11 @@
         SET_VAR_INT(1, _gc_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, ___id);
-            __id = ___id;
+            INT_FETCH(0, _id);
         }
         DB_FINISH;
     }
-    return __id;
+    return _id;
 }
 
 - (void)dbCreate
@@ -178,7 +177,6 @@
 + (NSArray *)dbAllByWaypoint:(NSId)_wp_id
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
-    dbLog *l;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log from logs where waypoint_id = ?");
@@ -186,15 +184,15 @@
         SET_VAR_INT(1, _wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, __id);
-            INT_FETCH_AND_ASSIGN( 1, gc_id);
-            INT_FETCH_AND_ASSIGN( 2, wp_id);
-            INT_FETCH_AND_ASSIGN( 3, log_type_id);
-            TEXT_FETCH_AND_ASSIGN(4, datetime);
-            //INT_FETCH_AND_ASSIGN(5, datetime_epoch);
-            INT_FETCH_AND_ASSIGN( 6, logger_id);
-            TEXT_FETCH_AND_ASSIGN(7, log);
-            l = [[dbLog alloc] init:__id gc_id:gc_id waypoint_id:wp_id logtype_id:log_type_id datetime:datetime logger_id:logger_id log:log];
+            dbLog *l = [[dbLog alloc] init];;
+            INT_FETCH( 0, l._id);
+            INT_FETCH( 1, l.gc_id);
+            INT_FETCH( 2, l.waypoint_id);
+            INT_FETCH( 3, l.logtype_id);
+            TEXT_FETCH(4, l.datetime);
+            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH( 6, l.logger_id);
+            TEXT_FETCH(7, l.log);
             [l finish];
             [ls addObject:l];
         }

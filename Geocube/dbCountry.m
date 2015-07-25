@@ -40,17 +40,16 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbCountry *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, code from countries");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbCountry alloc] init:_id name:name code:code];
-            [ss addObject:s];
+            dbCountry *c;
+            INT_FETCH( 0, c._id);
+            TEXT_FETCH(1, c.name);
+            TEXT_FETCH(2, c.code);
+            [ss addObject:c];
         }
         DB_FINISH;
     }
@@ -59,7 +58,7 @@
 
 + (dbCountry *)dbGet:(NSId)_id
 {
-    dbCountry *s;
+    dbCountry *c;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, code from countries where id = ?");
@@ -67,14 +66,14 @@
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbCountry alloc] init:_id name:name code:code];
+            c = [[dbCountry alloc] init];
+            INT_FETCH(0, c._id);
+            TEXT_FETCH(1, c.name);
+            TEXT_FETCH(2, c.code);
         }
         DB_FINISH;
     }
-    return s;
+    return c;
 }
 
 + (NSId)dbCreate:(NSString *)name code:(NSString *)code

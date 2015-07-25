@@ -112,10 +112,9 @@
         SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            INT_FETCH_AND_ASSIGN( 2, ug);
-            cg = [[dbGroup alloc] init:_id name:name usergroup:ug];
+            INT_FETCH( 0, cg._id);
+            TEXT_FETCH(1, cg.name);
+            INT_FETCH( 2, cg.usergroup);
         }
         DB_FINISH;
     }
@@ -125,16 +124,15 @@
 + (NSMutableArray *)dbAll
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
-    dbGroup *cg;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, usergroup from groups");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, __id);
-            TEXT_FETCH_AND_ASSIGN(1, _name);
-            INT_FETCH_AND_ASSIGN( 2, _ug);
-            cg = [[dbGroup alloc] init:__id name:_name usergroup:_ug];
+            dbGroup *cg = [[dbGroup alloc] init];
+            INT_FETCH( 0, cg._id);
+            TEXT_FETCH(1, cg.name);
+            INT_FETCH( 2, cg.usergroup);
             [cgs addObject:cg];
         }
         DB_FINISH;

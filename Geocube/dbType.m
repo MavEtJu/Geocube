@@ -38,23 +38,22 @@
 
 + (NSArray *)dbAll
 {
-    NSMutableArray *cts = [[NSMutableArray alloc] initWithCapacity:20];
-    dbType *ct;
+    NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, type, icon, pin from types");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, __id);
-            TEXT_FETCH_AND_ASSIGN(1, _type);
-            INT_FETCH_AND_ASSIGN( 2, _icon);
-            INT_FETCH_AND_ASSIGN( 3, _pin);
-            ct = [[dbType alloc] init:__id type:_type icon:_icon pin:_pin];
-            [cts addObject:ct];
+            dbType *t = [[dbType alloc] init];;
+            INT_FETCH( 0, t._id);
+            TEXT_FETCH(1, t.type);
+            INT_FETCH( 2, t.icon);
+            INT_FETCH( 3, t.pin);
+            [ts addObject:t];
         }
         DB_FINISH;
     }
-    return cts;
+    return ts;
 }
 
 @end

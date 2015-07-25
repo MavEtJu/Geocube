@@ -29,19 +29,18 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAccount *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, site, url, account, password from accounts");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, site);
-            TEXT_FETCH_AND_ASSIGN(2, url);
-            TEXT_FETCH_AND_ASSIGN(3, account);
-            TEXT_FETCH_AND_ASSIGN(4, password);
-            s = [[dbAccount alloc] init:_id site:site url:url account:account password:password];
-            [ss addObject:s];
+            dbAccount *a = [[dbAccount alloc] init];
+            INT_FETCH( 0, a._id);
+            TEXT_FETCH(1, a.site);
+            TEXT_FETCH(2, a.url);
+            TEXT_FETCH(3, a.account);
+            TEXT_FETCH(4, a.password);
+            [ss addObject:a];
         }
         DB_FINISH;
     }

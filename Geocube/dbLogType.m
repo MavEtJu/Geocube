@@ -38,16 +38,15 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *lts = [[NSMutableArray alloc] initWithCapacity:20];
-    dbLogType *lt;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, logtype, icon from log_types");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, logtype);
-            INT_FETCH_AND_ASSIGN( 2, icon);
-            lt = [[dbLogType alloc] init:_id logtype:logtype icon:icon];
+            dbLogType *lt = [[dbLogType alloc] init];
+            INT_FETCH( 0, lt._id);
+            TEXT_FETCH(1, lt.logtype);
+            INT_FETCH( 2, lt.icon);
             [lts addObject:lt];
         }
         DB_FINISH;

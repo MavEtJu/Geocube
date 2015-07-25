@@ -40,16 +40,15 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbName *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, code from names");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbName alloc] init:_id name:name code:code];
+            dbName *s = [[dbName alloc] init];
+            INT_FETCH( 0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
             [ss addObject:s];
         }
         DB_FINISH;
@@ -67,10 +66,10 @@
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbName alloc] init:_id name:name code:code];
+            s = [[dbName alloc] init];
+            INT_FETCH(0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
         }
         DB_FINISH;
     }
@@ -88,10 +87,10 @@
         SET_VAR_TEXT(2, code);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbName alloc] init:_id name:name code:code];
+            s = [[dbName alloc] init];
+            INT_FETCH(0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
         }
         DB_FINISH;
     }
@@ -108,10 +107,10 @@
         SET_VAR_TEXT(1, code);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbName alloc] init:_id name:name code:code];
+            s = [[dbName alloc] init];
+            INT_FETCH(0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
         }
         DB_FINISH;
     }
@@ -128,10 +127,10 @@
         SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, code);
-            s = [[dbName alloc] init:_id name:name code:code];
+            s = [[dbName alloc] init];
+            INT_FETCH(0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
         }
         DB_FINISH;
     }

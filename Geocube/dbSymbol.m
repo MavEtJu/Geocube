@@ -37,15 +37,14 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbSymbol *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, symbol from symbols");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, _symbol);
-            s = [[dbSymbol alloc] init:_id symbol:_symbol];
+            dbSymbol *s = [[dbSymbol alloc] init];
+            INT_FETCH( 0, s._id);
+            TEXT_FETCH(1, s.symbol);
             [ss addObject:s];
         }
         DB_FINISH;
@@ -63,14 +62,13 @@
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, _symbol);
-            s = [[dbSymbol alloc] init:_id symbol:_symbol];
-            return s;
+            s = [[dbSymbol alloc] init];
+            INT_FETCH( 0, s._id);
+            TEXT_FETCH(1, s.symbol);
         }
         DB_FINISH;
     }
-    return nil;
+    return s;
 }
 
 - (NSId)dbCreate

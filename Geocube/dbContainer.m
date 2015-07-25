@@ -38,17 +38,16 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbContainer *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, size, icon from containers");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, size);
-            INT_FETCH_AND_ASSIGN( 2, icon);
-            s = [[dbContainer alloc] init:_id size:size icon:icon];
-            [ss addObject:s];
+            dbContainer *c;
+            INT_FETCH( 0, c._id);
+            TEXT_FETCH(1, c.size);
+            INT_FETCH( 2, c.icon);
+            [ss addObject:c];
         }
         DB_FINISH;
     }

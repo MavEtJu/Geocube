@@ -45,11 +45,11 @@ extern database *db;
 #define TEXT_FETCH_AND_ASSIGN(col, string) \
     NSString *string = nil; \
     { \
-        char *s = (char *)sqlite3_column_text(req, col); \
-        if (s == NULL) \
+        char *__s = (char *)sqlite3_column_text(req, col); \
+        if (__s == NULL) \
             string = nil; \
         else \
-            string = [[NSString alloc] initWithUTF8String:s]; \
+            string = [[NSString alloc] initWithUTF8String:__s]; \
     }
 #define BOOL_FETCH_AND_ASSIGN(col, string) \
     BOOL string = sqlite3_column_int(req, col);
@@ -60,11 +60,11 @@ extern database *db;
 
 #define TEXT_FETCH(col, string) \
     { \
-        char *s = (char *)sqlite3_column_text(req, col); \
-        if (s == NULL) \
+        char *__s = (char *)sqlite3_column_text(req, col); \
+        if (__s == NULL) \
             string = nil; \
         else \
-            string = [[NSString alloc] initWithUTF8String:s]; \
+            string = [[NSString alloc] initWithUTF8String:__s]; \
     }
 #define BOOL_FETCH(col, string) \
     string = sqlite3_column_int(req, col);

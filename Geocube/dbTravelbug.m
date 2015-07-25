@@ -84,7 +84,6 @@
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbTravelbug *tb;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)");
@@ -92,11 +91,11 @@
         SET_VAR_INT(1, wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
-            TEXT_FETCH_AND_ASSIGN(2, ref);
-            INT_FETCH_AND_ASSIGN(2, gc_id);
-            tb = [[dbTravelbug alloc] init:_id name:name ref:ref gc_id:gc_id];
+            dbTravelbug *tb = [[dbTravelbug alloc] init];;
+            INT_FETCH(0, tb._id);
+            TEXT_FETCH(1, tb.name);
+            TEXT_FETCH(2, tb.ref);
+            INT_FETCH(2, tb.gc_id);
             [ss addObject:tb];
         }
         DB_FINISH;
@@ -106,7 +105,7 @@
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
 {
-    NSId __id = 0;
+    NSId _id = 0;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id from travelbugs where gc_id = ?");
@@ -114,12 +113,11 @@
         SET_VAR_INT(1, _gc_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, ___id);
-            __id = ___id;
+            INT_FETCH(0, _id);
         }
         DB_FINISH;
     }
-    return __id;
+    return _id;
 }
 
 - (void)dbCreate

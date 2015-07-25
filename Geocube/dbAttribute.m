@@ -41,18 +41,17 @@
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, label, gc_id, icon from attributes");
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, label);
-            INT_FETCH_AND_ASSIGN( 2, gc_id);
-            INT_FETCH_AND_ASSIGN( 3, icon);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
+            dbAttribute *a = [[dbAttribute alloc] init];
+            INT_FETCH( 0, a._id);
+            TEXT_FETCH(1, a.label);
+            INT_FETCH( 2, a.gc_id);
+            INT_FETCH( 3, a.icon);
+            [ss addObject:a];
         }
         DB_FINISH;
     }
@@ -111,7 +110,6 @@
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbAttribute *s;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoints where waypoint_id = ?)");
@@ -119,12 +117,12 @@
         SET_VAR_INT( 1, wp_id);
 
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            TEXT_FETCH_AND_ASSIGN(1, label);
-            INT_FETCH_AND_ASSIGN( 2, icon);
-            INT_FETCH_AND_ASSIGN( 3, gc_id);
-            s = [[dbAttribute alloc] init:_id gc_id:gc_id label:label icon:icon];
-            [ss addObject:s];
+            dbAttribute *a = [[dbAttribute alloc] init];
+            INT_FETCH( 0, a._id);
+            TEXT_FETCH(1, a.label);
+            INT_FETCH( 2, a.icon);
+            INT_FETCH( 3, a.gc_id);
+            [ss addObject:a];
         }
         DB_FINISH;
     }
