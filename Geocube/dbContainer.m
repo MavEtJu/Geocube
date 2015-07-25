@@ -43,7 +43,7 @@
         DB_PREPARE(@"select id, size, icon from containers");
 
         DB_WHILE_STEP {
-            dbContainer *c;
+            dbContainer *c = [[dbContainer alloc] init];
             INT_FETCH( 0, c._id);
             TEXT_FETCH(1, c.size);
             INT_FETCH( 2, c.icon);
