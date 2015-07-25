@@ -24,7 +24,7 @@
 @implementation DatabaseCache
 
 @synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States, Accounts;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
 
 - (id)init
 {
@@ -49,6 +49,7 @@
 
     Group_AllWaypoints = nil;
     Group_AllWaypoints_Found = nil;
+    Group_AllWaypoints_Attended = nil;
     Group_AllWaypoints_NotFound = nil;
     Group_LastImport = nil;
     Group_LastImportAdded = nil;
@@ -61,6 +62,10 @@
     while ((cg = [e nextObject]) != nil) {
         if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints"] == NSOrderedSame) {
             Group_AllWaypoints = cg;
+            continue;
+        }
+        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Attended"] == NSOrderedSame) {
+            Group_AllWaypoints_Attended = cg;
             continue;
         }
         if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Found"] == NSOrderedSame) {
@@ -82,6 +87,7 @@
     }
     NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
     NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
+    NSAssert(Group_AllWaypoints_Attended != nil, @"Group_AllWaypoints_Attended");
     NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");

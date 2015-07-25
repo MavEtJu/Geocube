@@ -35,6 +35,7 @@
     dbGroup *Group_AllWaypoints;
     dbGroup *Group_AllWaypoints_Found;
     dbGroup *Group_AllWaypoints_NotFound;
+    dbGroup *Group_AllWaypoints_Attended;
     dbGroup *Group_LastImport;
     dbGroup *Group_LastImportAdded;
 
@@ -65,6 +66,7 @@
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_Found;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_NotFound;
+@property (nonatomic, retain) dbGroup *Group_AllWaypoints_Attended;
 @property (nonatomic, retain) dbGroup *Group_LastImport;
 @property (nonatomic, retain) dbGroup *Group_LastImportAdded;
 

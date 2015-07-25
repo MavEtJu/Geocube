@@ -171,6 +171,7 @@
 		E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */; };
 		E80732F01B610A37007FDC29 /* GC37FF6.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E80732EF1B610A37007FDC29 /* GC37FF6.gpx */; };
 		E80732F31B626133007FDC29 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732F21B626133007FDC29 /* dbAccount.m */; };
+		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
@@ -256,6 +257,18 @@
 			remoteInfo = Geocube;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E80732F61B633A74007FDC29 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -431,6 +444,8 @@
 		E80732EF1B610A37007FDC29 /* GC37FF6.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = GC37FF6.gpx; path = files/GC37FF6.gpx; sourceTree = "<group>"; };
 		E80732F11B626133007FDC29 /* dbAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAccount.h; sourceTree = "<group>"; };
 		E80732F21B626133007FDC29 /* dbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAccount.m; sourceTree = "<group>"; };
+		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -580,6 +595,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E80732F51B633A74007FDC29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8F570501B3F7255003F020C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -631,6 +653,14 @@
 				E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */,
 			);
 			name = ratings;
+			sourceTree = "<group>";
+		};
+		E80732F91B633A74007FDC29 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				E80732FA1B633A74007FDC29 /* main.m */,
+			);
+			path = objects;
 			sourceTree = "<group>";
 		};
 		E80F721D1B5275D200F35528 /* Caches Offline */ = {
@@ -1001,6 +1031,7 @@
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E8F5706F1B3F7255003F020C /* GeocubeTests */,
+				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
 				C52879D9FDE55D2D5B94688C /* Pods */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
@@ -1012,6 +1043,7 @@
 			children = (
 				E8F570531B3F7255003F020C /* Geocube.app */,
 				E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */,
+				E80732F81B633A74007FDC29 /* objects */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1210,6 +1242,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E80732F71B633A74007FDC29 /* objects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */;
+			buildPhases = (
+				E80732F41B633A74007FDC29 /* Sources */,
+				E80732F51B633A74007FDC29 /* Frameworks */,
+				E80732F61B633A74007FDC29 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = objects;
+			productName = objects;
+			productReference = E80732F81B633A74007FDC29 /* objects */;
+			productType = "com.apple.product-type.tool";
+		};
 		E8F570521B3F7255003F020C /* Geocube */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
@@ -1253,9 +1302,12 @@
 		E8F5704B1B3F7255003F020C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Edwin Groothuis";
 				TargetAttributes = {
+					E80732F71B633A74007FDC29 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					E8F570521B3F7255003F020C = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = NRQ2A5FE8M;
@@ -1286,6 +1338,7 @@
 			targets = (
 				E8F570521B3F7255003F020C /* Geocube */,
 				E8F5706B1B3F7255003F020C /* GeocubeTests */,
+				E80732F71B633A74007FDC29 /* objects */,
 			);
 		};
 /* End PBXProject section */
@@ -1502,6 +1555,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E80732F41B633A74007FDC29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E80732FB1B633A74007FDC29 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8F5704F1B3F7255003F020C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1610,6 +1671,29 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E80732FD1B633A74007FDC29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E80732FE1B633A74007FDC29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		E8F570741B3F7255003F020C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1698,11 +1782,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C1A9513093211440A37A173 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1717,11 +1801,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1769,6 +1853,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E80732FD1B633A74007FDC29 /* Debug */,
+				E80732FE1B633A74007FDC29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

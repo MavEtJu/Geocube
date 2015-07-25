@@ -80,6 +80,8 @@
 
     [[dbc Group_AllWaypoints_Found] dbEmpty];
     [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
+    [[dbc Group_AllWaypoints_Attended] dbEmpty];
+    [[dbc Group_AllWaypoints_Attended] dbAddWaypoints:[dbWaypoint dbAllAttended]];
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
     [dbc loadWaypointData];

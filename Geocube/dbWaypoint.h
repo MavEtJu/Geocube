@@ -82,6 +82,7 @@
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (NSArray *)dbAllFound;
++ (NSArray *)dbAllAttended;
 + (NSArray *)dbAllNotFound;
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
