@@ -220,6 +220,7 @@
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
+		E8E8CFF41B64FAC900CC741A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF31B64FAC900CC741A /* main.m */; };
 		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
 		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
 		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
@@ -261,6 +262,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E80732F61B633A74007FDC29 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		E8E8CFEF1B64FAC900CC741A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -544,6 +554,8 @@
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
 		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
 		E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAccountsViewController.m; sourceTree = "<group>"; };
+		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E8CFF31B64FAC900CC741A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
 		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
 		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
@@ -599,6 +611,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		E80732F51B633A74007FDC29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8E8CFEE1B64FAC900CC741A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1020,6 +1039,14 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		E8E8CFF21B64FAC900CC741A /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				E8E8CFF31B64FAC900CC741A /* main.m */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		E8EAF43D1B591DEB0027AE6F /* BHTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1042,8 +1069,9 @@
 			children = (
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				E8F570551B3F7255003F020C /* Geocube */,
-				E8F5706F1B3F7255003F020C /* GeocubeTests */,
 				E80732F91B633A74007FDC29 /* objects */,
+				E8F5706F1B3F7255003F020C /* GeocubeTests */,
+				E8E8CFF21B64FAC900CC741A /* tests */,
 				E8F570541B3F7255003F020C /* Products */,
 				C52879D9FDE55D2D5B94688C /* Pods */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
@@ -1056,6 +1084,7 @@
 				E8F570531B3F7255003F020C /* Geocube.app */,
 				E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */,
 				E80732F81B633A74007FDC29 /* objects */,
+				E8E8CFF11B64FAC900CC741A /* tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1272,6 +1301,23 @@
 			productReference = E80732F81B633A74007FDC29 /* objects */;
 			productType = "com.apple.product-type.tool";
 		};
+		E8E8CFF01B64FAC900CC741A /* tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8E8CFF51B64FAC900CC741A /* Build configuration list for PBXNativeTarget "tests" */;
+			buildPhases = (
+				E8E8CFED1B64FAC900CC741A /* Sources */,
+				E8E8CFEE1B64FAC900CC741A /* Frameworks */,
+				E8E8CFEF1B64FAC900CC741A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tests;
+			productName = tests;
+			productReference = E8E8CFF11B64FAC900CC741A /* tests */;
+			productType = "com.apple.product-type.tool";
+		};
 		E8F570521B3F7255003F020C /* Geocube */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
@@ -1321,6 +1367,9 @@
 					E80732F71B633A74007FDC29 = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					E8E8CFF01B64FAC900CC741A = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					E8F570521B3F7255003F020C = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = NRQ2A5FE8M;
@@ -1352,6 +1401,7 @@
 				E8F570521B3F7255003F020C /* Geocube */,
 				E8F5706B1B3F7255003F020C /* GeocubeTests */,
 				E80732F71B633A74007FDC29 /* objects */,
+				E8E8CFF01B64FAC900CC741A /* tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1576,6 +1626,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8E8CFED1B64FAC900CC741A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E8CFF41B64FAC900CC741A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8F5704F1B3F7255003F020C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1700,6 +1758,29 @@
 			name = Debug;
 		};
 		E80732FE1B633A74007FDC29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E8E8CFF61B64FAC900CC741A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E8E8CFF71B64FAC900CC741A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1875,6 +1956,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E8E8CFF51B64FAC900CC741A /* Build configuration list for PBXNativeTarget "tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8E8CFF61B64FAC900CC741A /* Debug */,
+				E8E8CFF71B64FAC900CC741A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */ = {
 			isa = XCConfigurationList;
