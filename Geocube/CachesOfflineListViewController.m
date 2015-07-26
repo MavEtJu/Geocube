@@ -25,9 +25,19 @@
 
 @implementation CachesOfflineListViewController
 
+- (id)init
+{
+    self = [super init];
+
+    menuItems = nil;
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
