@@ -113,7 +113,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:c1 coordinate:c2];
-    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
+    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 }
 
 #pragma mark - Local menu related functions
