@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPXViewController : GCViewController {
+@interface ImportGPXViewController : GCViewController<Import_GPXDelegate> {
     NSString *filename;
     dbGroup *group;
 
@@ -31,17 +31,7 @@
     UILabel *totalTravelbugsLabel;
     UILabel *progressLabel;
 
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
-    NSInteger newTravelbugsCount;
-    NSInteger totalTravelbugsCount;
-
-    NSUInteger percentageRead;
-
     Import_GPX *imp;
-    BOOL importDone;
 }
 
 - (id)init:(NSString *)filename group:(dbGroup *)group;

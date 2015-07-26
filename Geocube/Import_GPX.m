@@ -23,15 +23,20 @@
 
 @implementation Import_GPX
 
-- (id)init:(NSString *)filename group:(dbGroup *)_group newWaypointsCount:(NSInteger *)nWC totalWaypointsCount:(NSInteger *)tWC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC
+@synthesize delegate;
+
+- (id)init:(NSString *)filename group:(dbGroup *)_group
 {
-    newWaypointsCount = nWC;
-    totalWaypointsCount = tWC;
-    newLogsCount = nLC;
-    totalLogsCount = tLC;
-    percentageRead = pR;
-    newTravelbugsCount = nTC;
-    totalTravelbugsCount = tTC;
+    self = [super init];
+    delegate = nil;
+
+    newWaypointsCount = 0;
+    totalWaypointsCount = 0;
+    newLogsCount = 0;
+    totalLogsCount = 0;
+    percentageRead = 0;
+    newTravelbugsCount = 0;
+    totalTravelbugsCount = 0;
 
     group = _group;
 
@@ -85,8 +90,6 @@
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
     [dbc loadWaypointData];
-
-
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -186,10 +189,10 @@
         [currentGS finish];
 
         currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
-        (*totalWaypointsCount)++;
+        totalWaypointsCount++;
         if (currentWP._id == 0) {
             [dbWaypoint dbCreate:currentWP];
-            (*newWaypointsCount)++;
+            newWaypointsCount++;
 
             // Save the groundspeak related data
             if (currentGS != nil) {
@@ -217,7 +220,6 @@
         }
         [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
-
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
@@ -242,6 +244,7 @@
         }
 
         inItem = NO;
+        [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount];
         goto bye;
     }
 
@@ -258,9 +261,9 @@
         [currentTB finish];
 
         NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
-        (*totalTravelbugsCount)++;
+        totalTravelbugsCount++;
         if (tb_id == 0) {
-            (*newTravelbugsCount)++;
+            newTravelbugsCount++;
             [dbTravelbug dbCreate:currentTB];
         } else {
             currentTB._id = tb_id;
@@ -277,9 +280,9 @@
         [currentLog finish];
 
         NSId log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
-        (*totalLogsCount)++;
+        totalLogsCount++;
         if (log_id == 0) {
-            (*newLogsCount)++;
+            newLogsCount++;
             [dbLog dbCreate:currentLog];
         } else {
             currentLog._id = log_id;
@@ -422,7 +425,7 @@ bye:
 
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    *percentageRead = 100 * parser.lineNumber / totalLines;
+    percentageRead = 100 * parser.lineNumber / totalLines;
     if (string == nil)
         return;
     if (currentText == nil)

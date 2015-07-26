@@ -78,35 +78,29 @@
     [self.view addSubview:totalLogsLabel];
     y += 40;
 
-    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group newWaypointsCount:&newWaypointsCount totalWaypointsCount:&totalWaypointsCount newLogsCount:&newLogsCount totalLogsCount:&totalLogsCount percentageRead:&percentageRead newTravelbugsCount:&newTravelbugsCount totalTravelbugsCount:&totalTravelbugsCount];
+    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group];
+    imp.delegate = self;
 
-    importDone = NO;
     [self performSelectorInBackground:@selector(run) withObject:nil];
-    [self performSelectorInBackground:@selector(refresh) withObject:nil];
 }
 
 - (void)run
 {
     [imp parse];
-    percentageRead = 100;
-    [NSThread sleepForTimeInterval:0.02];
-    importDone = YES;
+    progressLabel.text = @"Done 100%";
 }
 
-- (void)refresh
+- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount
 {
-    while (importDone == NO) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            progressLabel.text = [NSString stringWithFormat:@"Done %lu%%", (long)percentageRead];
-            newWaypointsLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newWaypointsCount];
-            totalWaypointsLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalWaypointsCount];
-            newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", (long)newLogsCount];
-            totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", (long)totalLogsCount];
-            newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", (long)newTravelbugsCount];
-            totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", (long)totalTravelbugsCount];
-        }];
-        [NSThread sleepForTimeInterval:0.01];
-    }
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        progressLabel.text = [NSString stringWithFormat:@"Done %lu%%", (long)percentageRead];
+        newWaypointsLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newWaypointsCount];
+        totalWaypointsLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalWaypointsCount];
+        newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", (long)newLogsCount];
+        totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", (long)totalLogsCount];
+        newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", (long)newTravelbugsCount];
+        totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", (long)totalTravelbugsCount];
+    }];
 }
 
 @end

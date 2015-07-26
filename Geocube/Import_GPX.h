@@ -24,18 +24,18 @@
 
 @protocol Import_GPXDelegate
 
-- (void)updateData;
+- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount;
 
 @end
 
 @interface Import_GPX : NSObject <NSXMLParserDelegate> {
-    NSInteger *newWaypointsCount;
-    NSInteger *totalWaypointsCount;
-    NSInteger *newLogsCount;
-    NSInteger *totalLogsCount;
-    NSInteger *newTravelbugsCount;
-    NSInteger *totalTravelbugsCount;
-    NSUInteger *percentageRead;
+    NSInteger newWaypointsCount;
+    NSInteger totalWaypointsCount;
+    NSInteger newLogsCount;
+    NSInteger totalLogsCount;
+    NSInteger newTravelbugsCount;
+    NSInteger totalTravelbugsCount;
+    NSUInteger percentageRead;
     NSUInteger totalLines;
 
     NSArray *files;
@@ -53,9 +53,13 @@
     dbGroundspeak *currentGS;
     dbLog *currentLog;
     dbTravelbug *currentTB;
+
+    id delegate;
 }
 
-- (id)init:(NSString *)filename group:(dbGroup *)group newWaypointsCount:(NSInteger *)nWC totalWaypointsCount:(NSInteger *)tWC newLogsCount:(NSInteger *)nLC totalLogsCount:(NSInteger *)tLC percentageRead:(NSUInteger *)pR newTravelbugsCount:(NSInteger *)nTC totalTravelbugsCount:(NSInteger *)tTC;
+@property (nonatomic)id delegate;
+
+- (id)init:(NSString *)filename group:(dbGroup *)group;
 - (void)parse;
 
 @end
