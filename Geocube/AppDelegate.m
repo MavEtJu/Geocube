@@ -92,7 +92,7 @@
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
-    CacheViewController *cvc = [[CacheViewController alloc] init];
+    CacheViewController *cvc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
     cvc.title = @"Target";
     nav = [[UINavigationController alloc] initWithRootViewController:cvc];
     [controllers addObject:nav];
