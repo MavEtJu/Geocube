@@ -103,15 +103,15 @@
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
-    if (overlay == lineMeToGZ) {
-        if (viewLineMeToGZ == nil) {
-            viewLineMeToGZ = [[MKPolylineView alloc] initWithPolyline:lineMeToGZ];
-            viewLineMeToGZ.fillColor = [UIColor redColor];
-            viewLineMeToGZ.strokeColor = [UIColor redColor];
-            viewLineMeToGZ.lineWidth = 5;
+    if (overlay == lineMeToWaypoint) {
+        if (viewLineMeToWaypoint == nil) {
+            viewLineMeToWaypoint = [[MKPolylineView alloc] initWithPolyline:lineMeToWaypoint];
+            viewLineMeToWaypoint.fillColor = [UIColor redColor];
+            viewLineMeToWaypoint.strokeColor = [UIColor redColor];
+            viewLineMeToWaypoint.lineWidth = 5;
         }
 
-        return viewLineMeToGZ;
+        return viewLineMeToWaypoint;
     }
     
     return nil;
@@ -160,23 +160,23 @@
     }
 }
 
-- (void)addLineMeToGZ
+- (void)addLineMeToWaypoint
 {
     CLLocationCoordinate2D coordinateArray[2];
     coordinateArray[0] = LM.coords;
     coordinateArray[1] = currentWaypoint.coordinates;
 
-    lineMeToGZ = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
-    [mapView setVisibleMapRect:[lineMeToGZ boundingMapRect]]; //If you want the route to be visible
+    lineMeToWaypoint = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    [mapView setVisibleMapRect:[lineMeToWaypoint boundingMapRect]]; //If you want the route to be visible
 
-    [mapView addOverlay:lineMeToGZ];
+    [mapView addOverlay:lineMeToWaypoint];
 }
 
-- (void)removeLineMeToGZ
+- (void)removeLineMeToWaypoint
 {
-    [mapView removeOverlay:lineMeToGZ];
-    viewLineMeToGZ = nil;
-    lineMeToGZ = nil;
+    [mapView removeOverlay:lineMeToWaypoint];
+    viewLineMeToWaypoint = nil;
+    lineMeToWaypoint = nil;
 }
 
 #pragma mark - Local menu related functions
@@ -203,16 +203,12 @@
 
         case 4: /* Show cache */
             [super menuShowWhom:SHOW_CACHE];
-            [self removeLineMeToGZ];
             return;
         case 5: /* Show Me */
             [super menuShowWhom:SHOW_ME];
-            [self removeLineMeToGZ];
             return;
         case 6: /* Show Both */
             [super menuShowWhom:SHOW_BOTH];
-            [self removeLineMeToGZ];
-            [self addLineMeToGZ];
             return;
     }
 

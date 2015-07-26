@@ -30,6 +30,8 @@ NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
 NEEDS_OVERLOADING(placeMarkers)
 NEEDS_OVERLOADING(removeMarkers)
+NEEDS_OVERLOADING(addLineMeToWaypoint)
+NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
@@ -82,6 +84,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     [super viewWillDisappear:animated];
 }
 
+/* Delegated from CLLocation */
 - (void)updateData
 {
     meLocation = [LM coords];
@@ -89,6 +92,10 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
         [self moveCameraTo:meLocation];
     if (showWhom == SHOW_BOTH)
         [self moveCameraTo:currentWaypoint.coordinates c2:meLocation];
+
+    [self removeLineMeToWaypoint];
+    if (currentWaypoint != nil)
+        [self addLineMeToWaypoint];
 }
 
 

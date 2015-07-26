@@ -24,8 +24,8 @@
     MKPointAnnotation *me;
     NSMutableArray *markers;
 
-    MKPolyline *lineMeToGZ;
-    MKPolylineView *viewLineMeToGZ;
+    MKPolyline *lineMeToWaypoint;
+    MKPolylineView *viewLineMeToWaypoint;
 }
 
 

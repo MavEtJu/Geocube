@@ -116,21 +116,21 @@
     [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 }
 
-- (void)addLineMeToGZ
+- (void)addLineMeToWaypoint
 {
-    GMSMutablePath *pathMeToGZ = [GMSMutablePath path];
-    [pathMeToGZ addCoordinate:currentWaypoint.coordinates];
-    [pathMeToGZ addCoordinate:LM.coords];
+    GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
+    [pathMeToWaypoint addCoordinate:currentWaypoint.coordinates];
+    [pathMeToWaypoint addCoordinate:LM.coords];
 
-    lineMeToGZ = [GMSPolyline polylineWithPath:pathMeToGZ];
-    lineMeToGZ.strokeWidth = 2.f;
-    lineMeToGZ.strokeColor = [UIColor redColor];
-    lineMeToGZ.map = mapView;
+    lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];
+    lineMeToWaypoint.strokeWidth = 2.f;
+    lineMeToWaypoint.strokeColor = [UIColor redColor];
+    lineMeToWaypoint.map = mapView;
 }
 
-- (void)removeLineMeToGZ
+- (void)removeLineMeToWaypoint
 {
-    lineMeToGZ.map = nil;
+    lineMeToWaypoint.map = nil;
 }
 
 #pragma mark - Local menu related functions
@@ -157,16 +157,12 @@
 
         case 4: /* Show cache */
             [super menuShowWhom:SHOW_CACHE];
-            [self removeLineMeToGZ];
             return;
         case 5: /* Show Me */
             [super menuShowWhom:SHOW_ME];
-            [self removeLineMeToGZ];
             return;
         case 6: /* Show Both */
             [super menuShowWhom:SHOW_BOTH];
-            [self removeLineMeToGZ];
-            [self addLineMeToGZ];
             return;
     }
 

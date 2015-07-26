@@ -26,7 +26,7 @@
     GMSMarker *me;
     NSMutableArray *markers;
 
-    GMSPolyline *lineMeToGZ;
+    GMSPolyline *lineMeToWaypoint;
 }
 
 @end
