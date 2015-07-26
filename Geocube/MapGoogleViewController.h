@@ -25,6 +25,8 @@
     GMSMapView *mapView;
     GMSMarker *me;
     NSMutableArray *markers;
+
+    GMSPolyline *lineMeToGZ;
 }
 
 @end

@@ -116,6 +116,23 @@
     [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 }
 
+- (void)addLineMeToGZ
+{
+    GMSMutablePath *pathMeToGZ = [GMSMutablePath path];
+    [pathMeToGZ addCoordinate:currentWaypoint.coordinates];
+    [pathMeToGZ addCoordinate:LM.coords];
+
+    lineMeToGZ = [GMSPolyline polylineWithPath:pathMeToGZ];
+    lineMeToGZ.strokeWidth = 2.f;
+    lineMeToGZ.strokeColor = [UIColor redColor];
+    lineMeToGZ.map = mapView;
+}
+
+- (void)removeLineMeToGZ
+{
+    lineMeToGZ.map = nil;
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
@@ -140,12 +157,16 @@
 
         case 4: /* Show cache */
             [super menuShowWhom:SHOW_CACHE];
+            [self removeLineMeToGZ];
             return;
         case 5: /* Show Me */
             [super menuShowWhom:SHOW_ME];
+            [self removeLineMeToGZ];
             return;
         case 6: /* Show Both */
             [super menuShowWhom:SHOW_BOTH];
+            [self removeLineMeToGZ];
+            [self addLineMeToGZ];
             return;
     }
 

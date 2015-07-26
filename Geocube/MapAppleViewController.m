@@ -101,6 +101,22 @@
     return dropPin;
 }
 
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+{
+    if (overlay == lineMeToGZ) {
+        if (viewLineMeToGZ == nil) {
+            viewLineMeToGZ = [[MKPolylineView alloc] initWithPolyline:lineMeToGZ];
+            viewLineMeToGZ.fillColor = [UIColor redColor];
+            viewLineMeToGZ.strokeColor = [UIColor redColor];
+            viewLineMeToGZ.lineWidth = 5;
+        }
+
+        return viewLineMeToGZ;
+    }
+    
+    return nil;
+}
+
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
 {
     CLLocationCoordinate2D t = coord;
@@ -144,6 +160,25 @@
     }
 }
 
+- (void)addLineMeToGZ
+{
+    CLLocationCoordinate2D coordinateArray[2];
+    coordinateArray[0] = LM.coords;
+    coordinateArray[1] = currentWaypoint.coordinates;
+
+    lineMeToGZ = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    [mapView setVisibleMapRect:[lineMeToGZ boundingMapRect]]; //If you want the route to be visible
+
+    [mapView addOverlay:lineMeToGZ];
+}
+
+- (void)removeLineMeToGZ
+{
+    [mapView removeOverlay:lineMeToGZ];
+    viewLineMeToGZ = nil;
+    lineMeToGZ = nil;
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
@@ -168,12 +203,16 @@
 
         case 4: /* Show cache */
             [super menuShowWhom:SHOW_CACHE];
+            [self removeLineMeToGZ];
             return;
         case 5: /* Show Me */
             [super menuShowWhom:SHOW_ME];
+            [self removeLineMeToGZ];
             return;
         case 6: /* Show Both */
             [super menuShowWhom:SHOW_BOTH];
+            [self removeLineMeToGZ];
+            [self addLineMeToGZ];
             return;
     }
 

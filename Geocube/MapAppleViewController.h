@@ -23,6 +23,10 @@
     MKMapView *mapView;
     MKPointAnnotation *me;
     NSMutableArray *markers;
+
+    MKPolyline *lineMeToGZ;
+    MKPolylineView *viewLineMeToGZ;
 }
+
 
 @end
