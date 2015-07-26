@@ -135,7 +135,7 @@
     if (gs.country != nil) {
          if ([s compare:@""] != NSOrderedSame)
              [s appendFormat:@", "];
-        [s appendFormat:@"%@", gs.country.name];
+        [s appendFormat:@"%@", gs.country.code];
     }
     cell.stateCountry.text = s;
     return cell;

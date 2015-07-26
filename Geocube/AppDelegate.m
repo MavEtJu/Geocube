@@ -65,6 +65,7 @@
 
     // Initialize the location mamager
     LM = [[GCLocationManager alloc] init];
+    [LM startDelegation:nil isNavigating:NO];
 
     // Initialize the tabbar controllers
 
