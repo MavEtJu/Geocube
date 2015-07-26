@@ -54,7 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"%@/viewWillAppear", [self class]);
+    NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
 
     [menuGlobal setTarget:self];
     [menuGlobal didDismissMenu:nil];
