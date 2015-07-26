@@ -30,6 +30,8 @@
     filename = _filename;
     group = _group;
 
+    menuItems = nil;
+
     return self;
 }
 

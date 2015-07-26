@@ -39,7 +39,14 @@
 
     self.numberOfItemsInRow = 3;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+
+    if (menuItems == nil) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor lightGrayColor];
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    }
 
     [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
 }

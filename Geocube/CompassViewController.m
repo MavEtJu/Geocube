@@ -27,7 +27,7 @@
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"XNothing"]];
+    menuItems = nil;
 
     wpIcon = nil;
     wpName = nil;
