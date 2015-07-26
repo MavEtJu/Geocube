@@ -87,4 +87,21 @@
     return lineNum;
 }
 
++ (NSString *)niceNumber:(NSInteger)i
+{
+    NSMutableString *sin = [NSMutableString stringWithFormat:@"%ld", (long)i];
+    if (i < 1000)
+        return sin;
+
+    NSMutableString *sout = [NSMutableString stringWithString:@""];
+    NSInteger l = [sin length];
+    while (l > 0) {
+        if ([sout length] != 0)
+            [sout insertString:@" " atIndex:0];
+        [sout insertString:[sin substringWithRange:NSMakeRange(l > 3 ? l - 3 : 0, l > 3 ? 3 : l)] atIndex:0];
+        l -= 3;
+    }
+    return sout;
+}
+
 @end

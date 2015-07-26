@@ -35,6 +35,8 @@
 + (NSString *)simpleHTML:(NSString *)plainText;
 + (NSInteger)numberOfLines:(NSString *)s;
 
++ (NSString *)niceNumber:(NSInteger)i;
+
 @end
 
 typedef sqlite3_int64 NSId;

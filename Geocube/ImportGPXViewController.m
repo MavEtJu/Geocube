@@ -95,13 +95,13 @@
 - (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        progressLabel.text = [NSString stringWithFormat:@"Done %lu%%", (long)percentageRead];
-        newWaypointsLabel.text = [NSString stringWithFormat:@"New caches imported: %ld", (long)newWaypointsCount];
-        totalWaypointsLabel.text = [NSString stringWithFormat:@"Total caches read: %ld", (long)totalWaypointsCount];
-        newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %ld", (long)newLogsCount];
-        totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %ld", (long)totalLogsCount];
-        newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %ld", (long)newTravelbugsCount];
-        totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %ld", (long)totalTravelbugsCount];
+        progressLabel.text = [NSString stringWithFormat:@"Done %@%%", [MyTools niceNumber:percentageRead]];
+        newWaypointsLabel.text = [NSString stringWithFormat:@"New caches imported: %@", [MyTools niceNumber:newWaypointsCount]];
+        totalWaypointsLabel.text = [NSString stringWithFormat:@"Total caches read: %@", [MyTools niceNumber:totalWaypointsCount]];
+        newLogsLabel.text = [NSString stringWithFormat:@"New logs imported: %@", [MyTools niceNumber:newLogsCount]];
+        totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %@", [MyTools niceNumber:totalLogsCount]];
+        newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %@", [MyTools niceNumber:newTravelbugsCount]];
+        totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %@", [MyTools niceNumber:totalTravelbugsCount]];
     }];
 }
 
