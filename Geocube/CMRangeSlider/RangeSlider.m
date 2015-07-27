@@ -228,20 +228,4 @@
 	trackingSlider = nil; //we are no longer tracking either slider
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
-
-- (void)dealloc {
-	[backgroundImageView release];
-	[minSlider release];
-	[maxSlider release];
-    [super dealloc];
-}
-
-
 @end
