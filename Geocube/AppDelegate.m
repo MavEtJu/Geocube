@@ -126,8 +126,8 @@
 
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
-    vc.title = @"XFilters";
+    vc = [[FiltersViewController alloc] init];
+    vc.title = @"Filters";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 

@@ -72,6 +72,11 @@
 #import "CacheTravelbugsViewController.h"
 #import "CacheViewController.h"
 
+#import "FilterObject.h"
+#import "FilterGroupsTableViewCell.h"
+#import "FilterTypesTableViewCell.h"
+#import "FiltersViewController.h"
+
 #import "NullViewController.h"
 #import "HelpImagesViewController.h"
 #import "UserProfileViewController.h"

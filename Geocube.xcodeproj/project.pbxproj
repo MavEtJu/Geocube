@@ -221,6 +221,10 @@
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
 		E8E8CFF41B64FAC900CC741A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF31B64FAC900CC741A /* main.m */; };
+		E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF91B6588C600CC741A /* FiltersViewController.m */; };
+		E8E8CFFE1B658DC000CC741A /* FilterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFFD1B658DC000CC741A /* FilterObject.m */; };
+		E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */; };
+		E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0061B66493600CC741A /* FilterTypesTableViewCell.m */; };
 		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
 		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
 		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
@@ -556,6 +560,14 @@
 		E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAccountsViewController.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E8CFF31B64FAC900CC741A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8E8CFF81B6588C600CC741A /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
+		E8E8CFF91B6588C600CC741A /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
+		E8E8CFFC1B658DC000CC741A /* FilterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterObject.h; sourceTree = "<group>"; };
+		E8E8CFFD1B658DC000CC741A /* FilterObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterObject.m; sourceTree = "<group>"; };
+		E8E8D0021B65F77B00CC741A /* FilterGroupsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterGroupsTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterGroupsTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D0051B66493600CC741A /* FilterTypesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTypesTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0061B66493600CC741A /* FilterTypesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTypesTableViewCell.m; sourceTree = "<group>"; };
 		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
 		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
 		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
@@ -718,20 +730,20 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
+				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
-				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
-				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
-				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
-				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
-				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
-				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
-				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
-				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8F408571B57510400FBA858 /* HelpImagesViewController.h */,
 				E8F408581B57510400FBA858 /* HelpImagesViewController.m */,
+				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
+				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
+				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
+				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
+				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
+				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -879,16 +891,16 @@
 			children = (
 				E8740F991B4E3C6A002527DA /* CacheViewController.h */,
 				E8740F9A1B4E3C6A002527DA /* CacheViewController.m */,
+				E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */,
+				E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */,
 				E8740FE01B4FDD1A002527DA /* CacheDescriptionViewController.h */,
 				E8740FE11B4FDD1A002527DA /* CacheDescriptionViewController.m */,
+				E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */,
+				E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */,
 				E8740FE31B4FFB46002527DA /* CacheHintViewController.h */,
 				E8740FE41B4FFB46002527DA /* CacheHintViewController.m */,
 				E8740FE61B508BBE002527DA /* CacheLogsViewController.h */,
 				E8740FE71B508BBE002527DA /* CacheLogsViewController.m */,
-				E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */,
-				E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */,
-				E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */,
-				E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */,
 				E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */,
 				E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */,
 			);
@@ -1045,6 +1057,21 @@
 				E8E8CFF31B64FAC900CC741A /* main.m */,
 			);
 			path = tests;
+			sourceTree = "<group>";
+		};
+		E8E8CFFB1B658C3300CC741A /* Filter Viewing */ = {
+			isa = PBXGroup;
+			children = (
+				E8E8CFF81B6588C600CC741A /* FiltersViewController.h */,
+				E8E8CFF91B6588C600CC741A /* FiltersViewController.m */,
+				E8E8CFFC1B658DC000CC741A /* FilterObject.h */,
+				E8E8CFFD1B658DC000CC741A /* FilterObject.m */,
+				E8E8D0021B65F77B00CC741A /* FilterGroupsTableViewCell.h */,
+				E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */,
+				E8E8D0051B66493600CC741A /* FilterTypesTableViewCell.h */,
+				E8E8D0061B66493600CC741A /* FilterTypesTableViewCell.m */,
+			);
+			name = "Filter Viewing";
 			sourceTree = "<group>";
 		};
 		E8EAF43D1B591DEB0027AE6F /* BHTabBar */ = {
@@ -1259,6 +1286,7 @@
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E80F721D1B5275D200F35528 /* Caches Offline */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
+				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -1638,10 +1666,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E8CFFE1B658DC000CC741A /* FilterObject.m in Sources */,
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */,
 				E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */,
+				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
@@ -1675,6 +1705,7 @@
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
+				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
@@ -1686,6 +1717,7 @@
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
+				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
