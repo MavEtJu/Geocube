@@ -23,11 +23,13 @@
 
 @implementation FilterDifficultyTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    fo = _fo;
 
-    [self header:fo];
+    [self header];
+    [self configInit];
 
     CGRect rect;
     NSInteger y = 0;
@@ -65,7 +67,11 @@
     [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
     [slider setInRangeTrackImage:image];
 
+    slider.min = (config_min - 1) / 4.0;
+    slider.max = (config_max - 1) / 4.0;
+
     [self.contentView addSubview:slider];
+    [self reportSlider:nil];
     y += 35;
 
     [self.contentView sizeToFit];
@@ -74,13 +80,36 @@
     return self;
 }
 
+- (void)configInit
+{
+    configPrefix = @"difficulty";
+    NSString *s = [self configGet:@"min"];
+    if (s == nil)
+        config_min = 1;
+    else
+        config_min = [s floatValue];
+    s = [self configGet:@"max"];
+    if (s == nil)
+        config_max = 5;
+    else
+        config_max = [s floatValue];
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"min" value:[NSString stringWithFormat:@"%0.1f", config_min]];
+    [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", config_max]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
 - (void)reportSlider:(RangeSlider *)s
 {
-    float min = (2 + (int)(4 * slider.min * 2)) / 2.0;
-    float max = (2 + (int)(4 * slider.max * 2)) / 2.0;
+    config_min = (2 + (int)(4 * slider.min * 2)) / 2.0;
+    config_max = (2 + (int)(4 * slider.max * 2)) / 2.0;
+    [self configUpdate];
 
-    NSString *minString = [NSString stringWithFormat:((int)min == min) ? @"%1.0f" : @"%0.1f", min];
-    NSString *maxString = [NSString stringWithFormat:((int)max == max) ? @"%1.0f" : @"%0.1f", max];
+    NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
+    NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
 
     sliderLabel.text = [NSString stringWithFormat:@"Difficulty: %@ - %@", minString, maxString];
 }
