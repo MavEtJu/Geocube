@@ -19,9 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterGroupsTableViewCell : FilterTableViewCell
+@interface FilterFavouritesTableViewCell : FilterTableViewCell {
+    RangeSlider *slider;
+    UILabel *sliderLabel;
+}
 
 @end
-
-
-

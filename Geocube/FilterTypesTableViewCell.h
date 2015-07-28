@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTypesTableViewCell : UITableViewCell {
-    NSInteger height;
-}
-
-- (NSInteger)cellHeight;
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
+@interface FilterTypesTableViewCell : FilterTableViewCell
 
 @end

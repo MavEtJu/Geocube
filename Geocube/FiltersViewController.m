@@ -43,7 +43,7 @@
     [filters addObject:[FilterObject init:@"Any Distance"]];
     [filters addObject:[FilterObject init:@"Any Direction"]];
     [filters addObject:[FilterObject init:@"Any Text"]];
-    [filters addObject:[FilterObject init:@"Any date"]];
+    [filters addObject:[FilterObject init:@"Any Date"]];
     [filters addObject:[FilterObject init:@"Any Category"]];
     [filters addObject:[FilterObject init:@"Other Requirements"]];
 
@@ -100,6 +100,58 @@
         FilterTypesTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
         if (cell == nil) {
             cell = [[FilterTypesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+
+        /* Save the height for later */
+        fo.cellHeight = [cell cellHeight];
+        return cell;
+    }
+
+    // Favourites
+    if (indexPath.row == 2) {
+        FilterFavouritesTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterFavouritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+
+        /* Save the height for later */
+        fo.cellHeight = [cell cellHeight];
+        return cell;
+    }
+
+    // Sizes
+    if (indexPath.row == 3) {
+        FilterSizesTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterSizesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+
+        /* Save the height for later */
+        fo.cellHeight = [cell cellHeight];
+        return cell;
+    }
+
+    // Difficulty
+    if (indexPath.row == 4) {
+        FilterDifficultyTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterDifficultyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+
+        /* Save the height for later */
+        fo.cellHeight = [cell cellHeight];
+        return cell;
+    }
+
+    // Terrain
+    if (indexPath.row == 5) {
+        FilterTerrainTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterTerrainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
 

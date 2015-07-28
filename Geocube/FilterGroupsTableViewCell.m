@@ -40,10 +40,10 @@
     NSInteger y = 0;
     UILabel *l;
 
-    rect = CGRectMake(20, 2, width - 20, cellHeight);
+    rect = CGRectMake(20, 2, width - 40, cellHeight);
     l = [[UILabel alloc] initWithFrame:rect];
     l.font = f1;
-    l.text = @"Any Group";
+    l.text = fo.name;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
     y += cellHeight;
@@ -70,11 +70,6 @@
     height = y;
 
     return self;
-}
-
-- (NSInteger)cellHeight
-{
-    return height;
 }
 
 @end

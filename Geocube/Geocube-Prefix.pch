@@ -23,6 +23,7 @@
 #import "ActionSheetStringPicker.h"
 #import "BHTabsViewController.h"
 #import "BHTabStyle.h"
+#import "RangeSlider.h"
 
 #import "My Tools.h"
 #import "Coordinates.h"
@@ -73,7 +74,12 @@
 #import "CacheViewController.h"
 
 #import "FilterObject.h"
+#import "FilterTableViewCell.h"
+#import "FilterDifficultyTableViewCell.h"
+#import "FilterFavouritesTableViewCell.h"
 #import "FilterGroupsTableViewCell.h"
+#import "FilterSizesTableViewCell.h"
+#import "FilterTerrainTableViewCell.h"
 #import "FilterTypesTableViewCell.h"
 #import "FiltersViewController.h"
 

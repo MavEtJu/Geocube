@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation FilterTypesTableViewCell
+@implementation FilterTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
 {
@@ -30,7 +30,6 @@
     /* Get some standard values */
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     UIFont *f1 = cell.textLabel.font;
-    UIFont *f2 = cell.detailTextLabel.font;
     NSInteger cellHeight = cell.frame.size.height;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
@@ -38,44 +37,25 @@
 
     CGRect rect;
     NSInteger y = 0;
+    UILabel *l;
 
     rect = CGRectMake(20, 2, width - 40, cellHeight);
-    UILabel *l = [[UILabel alloc] initWithFrame:rect];
+    l = [[UILabel alloc] initWithFrame:rect];
     l.font = f1;
     l.text = fo.name;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
     y += cellHeight;
 
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        height = y;
-        return self;
-    }
-
-    NSArray *types = [dbc Types];
-    NSEnumerator *e = [types objectEnumerator];
-    dbType *t;
-    while ((t = [e nextObject]) != nil) {
-        UIImage *img = [imageLibrary get:t.icon];
-        rect = CGRectMake(20, y, img.size.width, img.size.height);
-        UIImageView *tv = [[UIImageView alloc] initWithFrame:rect];
-        tv.image = img;
-        [self.contentView addSubview:tv];
-
-        rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
-        l = [[UILabel alloc] initWithFrame:rect];
-        l.text = t.type;
-        l.font = f2;
-        [self.contentView addSubview:l];
-
-        y += tv.frame.size.height;
-    }
-
     [self.contentView sizeToFit];
     height = y;
-
     return self;
+}
+
+
+- (NSInteger)cellHeight
+{
+    return height;
 }
 
 @end

@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation FilterTypesTableViewCell
+@implementation FilterDifficultyTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
 {
@@ -38,9 +38,10 @@
 
     CGRect rect;
     NSInteger y = 0;
+    UILabel *l;
 
     rect = CGRectMake(20, 2, width - 40, cellHeight);
-    UILabel *l = [[UILabel alloc] initWithFrame:rect];
+    l = [[UILabel alloc] initWithFrame:rect];
     l.font = f1;
     l.text = fo.name;
     l.textAlignment = NSTextAlignmentCenter;
@@ -53,29 +54,42 @@
         return self;
     }
 
-    NSArray *types = [dbc Types];
-    NSEnumerator *e = [types objectEnumerator];
-    dbType *t;
-    while ((t = [e nextObject]) != nil) {
-        UIImage *img = [imageLibrary get:t.icon];
-        rect = CGRectMake(20, y, img.size.width, img.size.height);
-        UIImageView *tv = [[UIImageView alloc] initWithFrame:rect];
-        tv.image = img;
-        [self.contentView addSubview:tv];
+    rect = CGRectMake(20, y, width - 40, 15);
+    sliderLabel = [[UILabel alloc] initWithFrame:rect];
+    sliderLabel.text = @"Difficulty: 1 - 5";
+    sliderLabel.font = f2;
+    sliderLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:sliderLabel];
+    y += 25;
 
-        rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
-        l = [[UILabel alloc] initWithFrame:rect];
-        l.text = t.type;
-        l.font = f2;
-        [self.contentView addSubview:l];
+    rect = CGRectMake(20, y, width - 40, 15);
+    slider = [[RangeSlider alloc] initWithFrame:rect];
+    slider.minimumRangeLength = .00;
+    [slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
+    UIImage *image = [UIImage imageNamed:@"fillrange.png"];
+    [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
+    [slider setInRangeTrackImage:image];
 
-        y += tv.frame.size.height;
-    }
+    [self.contentView addSubview:slider];
+    y += 35;
 
     [self.contentView sizeToFit];
     height = y;
-
+    
     return self;
+}
+
+- (void)reportSlider:(RangeSlider *)s
+{
+    float min = (2 + (int)(4 * slider.min * 2)) / 2.0;
+    float max = (2 + (int)(4 * slider.max * 2)) / 2.0;
+
+    NSString *minString = [NSString stringWithFormat:((int)min == min) ? @"%1.0f" : @"%0.1f", min];
+    NSString *maxString = [NSString stringWithFormat:((int)max == max) ? @"%1.0f" : @"%0.1f", max];
+
+    sliderLabel.text = [NSString stringWithFormat:@"Difficulty: %@ - %@", minString, maxString];
 }
 
 @end

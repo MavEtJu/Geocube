@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation FilterTypesTableViewCell
+@implementation FilterSizesTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
 {
@@ -53,28 +53,28 @@
         return self;
     }
 
-    NSArray *types = [dbc Types];
-    NSEnumerator *e = [types objectEnumerator];
-    dbType *t;
-    while ((t = [e nextObject]) != nil) {
-        UIImage *img = [imageLibrary get:t.icon];
+    NSArray *containers = [dbc Containers];
+    NSEnumerator *e = [containers objectEnumerator];
+    dbContainer *c;
+    while ((c = [e nextObject]) != nil) {
+        UIImage *img = [imageLibrary get:c.icon];
         rect = CGRectMake(20, y, img.size.width, img.size.height);
-        UIImageView *tv = [[UIImageView alloc] initWithFrame:rect];
-        tv.image = img;
-        [self.contentView addSubview:tv];
+        UIImageView *cv = [[UIImageView alloc] initWithFrame:rect];
+        cv.image = img;
+        [self.contentView addSubview:cv];
 
         rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
         l = [[UILabel alloc] initWithFrame:rect];
-        l.text = t.type;
+        l.text = c.size;
         l.font = f2;
         [self.contentView addSubview:l];
 
-        y += tv.frame.size.height;
+        y += cv.frame.size.height;
     }
 
     [self.contentView sizeToFit];
     height = y;
-
+    
     return self;
 }
 
