@@ -234,6 +234,12 @@
 		E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E8D0191B66E75900CC741A /* fullrange.png */; };
 		E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D01B1B66E75900CC741A /* RangeSlider.m */; };
 		E8E8D0201B66E75900CC741A /* rangethumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E8D01C1B66E75900CC741A /* rangethumb.png */; };
+		E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0221B67208800CC741A /* FilterDistanceTableViewCell.m */; };
+		E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0251B6720A300CC741A /* FilterDirectionTableViewCell.m */; };
+		E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0281B6720D400CC741A /* FilterTextTableViewCell.m */; };
+		E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02B1B6720F100CC741A /* FilterDateTableViewCell.m */; };
+		E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */; };
+		E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */; };
 		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
 		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
 		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
@@ -592,6 +598,18 @@
 		E8E8D01A1B66E75900CC741A /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeSlider.h; path = CMRangeSlider/RangeSlider.h; sourceTree = "<group>"; };
 		E8E8D01B1B66E75900CC741A /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RangeSlider.m; path = CMRangeSlider/RangeSlider.m; sourceTree = "<group>"; };
 		E8E8D01C1B66E75900CC741A /* rangethumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rangethumb.png; path = CMRangeSlider/rangethumb.png; sourceTree = "<group>"; };
+		E8E8D0211B67208800CC741A /* FilterDistanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDistanceTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0221B67208800CC741A /* FilterDistanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDistanceTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D0241B6720A300CC741A /* FilterDirectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDirectionTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0251B6720A300CC741A /* FilterDirectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDirectionTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D0271B6720D400CC741A /* FilterTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTextTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0281B6720D400CC741A /* FilterTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTextTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D02A1B6720F100CC741A /* FilterDateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDateTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D02B1B6720F100CC741A /* FilterDateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDateTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D02D1B67210800CC741A /* FilterCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCategoryTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryTableViewCell.m; sourceTree = "<group>"; };
+		E8E8D0301B67212000CC741A /* FilterOthersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterOthersTableViewCell.h; sourceTree = "<group>"; };
+		E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOthersTableViewCell.m; sourceTree = "<group>"; };
 		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
 		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
 		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
@@ -1092,16 +1110,28 @@
 				E8E8CFFD1B658DC000CC741A /* FilterObject.m */,
 				E8E8D0141B6653E600CC741A /* FilterTableViewCell.h */,
 				E8E8D0151B6653E600CC741A /* FilterTableViewCell.m */,
+				E8E8D02D1B67210800CC741A /* FilterCategoryTableViewCell.h */,
+				E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */,
+				E8E8D02A1B6720F100CC741A /* FilterDateTableViewCell.h */,
+				E8E8D02B1B6720F100CC741A /* FilterDateTableViewCell.m */,
 				E8E8D0081B6651BD00CC741A /* FilterDifficultyTableViewCell.h */,
 				E8E8D0091B6651BD00CC741A /* FilterDifficultyTableViewCell.m */,
+				E8E8D0241B6720A300CC741A /* FilterDirectionTableViewCell.h */,
+				E8E8D0251B6720A300CC741A /* FilterDirectionTableViewCell.m */,
+				E8E8D0211B67208800CC741A /* FilterDistanceTableViewCell.h */,
+				E8E8D0221B67208800CC741A /* FilterDistanceTableViewCell.m */,
 				E8E8D00E1B66521600CC741A /* FilterFavouritesTableViewCell.h */,
 				E8E8D00F1B66521600CC741A /* FilterFavouritesTableViewCell.m */,
 				E8E8D0021B65F77B00CC741A /* FilterGroupsTableViewCell.h */,
 				E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */,
+				E8E8D0301B67212000CC741A /* FilterOthersTableViewCell.h */,
+				E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */,
 				E8E8D0111B66524A00CC741A /* FilterSizesTableViewCell.h */,
 				E8E8D0121B66524A00CC741A /* FilterSizesTableViewCell.m */,
 				E8E8D00B1B6651D200CC741A /* FilterTerrainTableViewCell.h */,
 				E8E8D00C1B6651D200CC741A /* FilterTerrainTableViewCell.m */,
+				E8E8D0271B6720D400CC741A /* FilterTextTableViewCell.h */,
+				E8E8D0281B6720D400CC741A /* FilterTextTableViewCell.m */,
 				E8E8D0051B66493600CC741A /* FilterTypesTableViewCell.h */,
 				E8E8D0061B66493600CC741A /* FilterTypesTableViewCell.m */,
 			);
@@ -1728,6 +1758,7 @@
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
+				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
@@ -1737,8 +1768,10 @@
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
+				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8D56A031B54E916001A0F8E /* CachesOfflineFilterViewController.m in Sources */,
+				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F570B41B3FED0A003F020C /* My Tools.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
@@ -1754,6 +1787,7 @@
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
+				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
@@ -1767,10 +1801,12 @@
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */,
+				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
+				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
