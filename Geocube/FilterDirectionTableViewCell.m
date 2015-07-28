@@ -23,11 +23,13 @@
 
 @implementation FilterDirectionTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    fo = _fo;
 
-    [self header:fo];
+    [self header];
+    [self configInit];
 
     directions = @[@"North", @"North East", @"East", @"South East", @"South", @"South West", @"West", @"North West"];
     direction = 0;

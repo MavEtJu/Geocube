@@ -23,11 +23,13 @@
 
 @implementation FilterDateTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    fo = _fo;
 
-    [self header:fo];
+    [self header];
+    [self configInit];
 
     CGRect rect;
     NSInteger y = 0;

@@ -26,13 +26,14 @@
     NSInteger cellHeight, width;
 
     NSString *configPrefix;
+    FilterObject *fo;
 }
 
 - (NSInteger)cellHeight;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
 
-- (void)header:(FilterObject *)fo;
+- (void)header;
 
 - (NSString *)configGet:(NSString *)name;
 - (void)configInit;

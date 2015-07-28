@@ -28,7 +28,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header:fo];
+    [self header];
     [self configInit];
 
     CGRect rect;
@@ -65,12 +65,11 @@
     [slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
     [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
+    [slider setInRangeTrackImage:image];
     slider.min = config_min / 100.0;
     slider.max = config_max / 100.0;
-    [slider setInRangeTrackImage:image];
-    [self reportSlider:nil];
-
     [self.contentView addSubview:slider];
+    [self reportSlider:nil];
     y += 35;
 
     [self.contentView sizeToFit];

@@ -23,11 +23,13 @@
 
 @implementation FilterTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    [self header:fo];
+    fo = _fo;
+    
+    [self header];
+    [self configInit];
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight;
@@ -35,7 +37,7 @@
     return self;
 }
 
-- (void)header:(FilterObject *)fo
+- (void)header
 {
     /* Get some standard values */
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
