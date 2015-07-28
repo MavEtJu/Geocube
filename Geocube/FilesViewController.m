@@ -206,20 +206,21 @@
         [groups addObject:cg];
     }
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
-                                            rows:groupNames
-                                initialSelection:0
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
-                                           newController.edgesForExtendedLayout = UIRectEdgeNone;
-                                           newController.title = @"Import";
-                                           [self.navigationController pushViewController:newController animated:YES];
-                                       }
-                                     cancelBlock:^(ActionSheetStringPicker *picker) {
-                                         NSLog(@"Block Picker Canceled");
-                                     }
-                                          origin:self.view
-     ];
+    [ActionSheetStringPicker
+        showPickerWithTitle:@"Select a Group"
+        rows:groupNames
+        initialSelection:0
+        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            newController.title = @"Import";
+            [self.navigationController pushViewController:newController animated:YES];
+        }
+        cancelBlock:^(ActionSheetStringPicker *picker) {
+            NSLog(@"Block Picker Canceled");
+        }
+        origin:self.view
+    ];
 }
 
 - (void)fileRename:(NSString *)filename
