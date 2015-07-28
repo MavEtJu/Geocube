@@ -21,10 +21,15 @@
 
 @interface FilterTableViewCell : UITableViewCell {
     NSInteger height;
+
+    UIFont *f1, *f2;
+    NSInteger cellHeight, width;
 }
 
 - (NSInteger)cellHeight;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
+
+- (void)header:(FilterObject *)fo;
 
 @end

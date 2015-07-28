@@ -27,14 +27,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    /* Get some standard values */
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    UIFont *f1 = cell.textLabel.font;
-    UIFont *f2 = cell.detailTextLabel.font;
-    NSInteger cellHeight = cell.frame.size.height;
-
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
+    [self header:fo];
 
     CGRect rect;
     NSInteger y = 0;
@@ -50,7 +43,7 @@
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
-        height = y;
+        fo.cellHeight = height = y;
         return self;
     }
 
@@ -76,7 +69,7 @@
     y += 35;
 
     [self.contentView sizeToFit];
-    height = y;
+    fo.cellHeight = height = y;
 
     return self;
 }

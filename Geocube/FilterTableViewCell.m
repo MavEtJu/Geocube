@@ -27,16 +27,25 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
+    [self header:fo];
+
+    [self.contentView sizeToFit];
+    fo.cellHeight = cellHeight;
+
+    return self;
+}
+
+- (void)header:(FilterObject *)fo
+{
     /* Get some standard values */
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    UIFont *f1 = cell.textLabel.font;
-    NSInteger cellHeight = cell.frame.size.height;
+    f1 = cell.textLabel.font;
+    f2 = cell.detailTextLabel.font;
+    cellHeight = cell.frame.size.height;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-
+    width = applicationFrame.size.width;
     CGRect rect;
-    NSInteger y = 0;
     UILabel *l;
 
     rect = CGRectMake(20, 2, width - 40, cellHeight);
@@ -45,13 +54,7 @@
     l.text = fo.name;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
-    y += cellHeight;
-
-    [self.contentView sizeToFit];
-    height = y;
-    return self;
 }
-
 
 - (NSInteger)cellHeight
 {

@@ -89,9 +89,6 @@
             cell = [[FilterGroupsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
         return cell;
     }
 
@@ -102,9 +99,6 @@
             cell = [[FilterTypesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
         return cell;
     }
 
@@ -115,9 +109,6 @@
             cell = [[FilterFavouritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
         return cell;
     }
 
@@ -128,9 +119,6 @@
             cell = [[FilterSizesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
         return cell;
     }
 
@@ -141,9 +129,6 @@
             cell = [[FilterDifficultyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
         return cell;
     }
 
@@ -154,9 +139,66 @@
             cell = [[FilterTerrainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        return cell;
+    }
 
-        /* Save the height for later */
-        fo.cellHeight = [cell cellHeight];
+    // Distance
+    if (indexPath.row == 6) {
+        FilterDistanceTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterDistanceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        return cell;
+    }
+
+    // Direction
+    if (indexPath.row == 7) {
+        FilterDirectionTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterDirectionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        return cell;
+    }
+
+    // Text
+    if (indexPath.row == 8) {
+        FilterTextTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        return cell;
+    }
+
+    // Date
+    if (indexPath.row == 9) {
+        FilterDateTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterDateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        return cell;
+    }
+
+    // Category
+    if (indexPath.row == 10) {
+        FilterCategoryTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        return cell;
+    }
+
+    // Other
+    if (indexPath.row == 11) {
+        FilterOthersTableViewCell *cell; //= [aTableView dequeueReusableCellWithIdentifier:THISCELL_GROUPS];
+        if (cell == nil) {
+            cell = [[FilterOthersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
         return cell;
     }
 
