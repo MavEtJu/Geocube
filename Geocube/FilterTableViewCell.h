@@ -24,6 +24,8 @@
 
     UIFont *f1, *f2;
     NSInteger cellHeight, width;
+
+    NSString *configPrefix;
 }
 
 - (NSInteger)cellHeight;
@@ -31,5 +33,9 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
 
 - (void)header:(FilterObject *)fo;
+
+- (NSString *)configGet:(NSString *)name;
+- (void)configInit;
+- (void)configSet:(NSString *)name value:(NSString *)value;
 
 @end

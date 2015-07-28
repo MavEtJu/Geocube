@@ -22,6 +22,8 @@
 @interface FilterFavouritesTableViewCell : FilterTableViewCell {
     RangeSlider *slider;
     UILabel *sliderLabel;
+    NSInteger config_min, config_max;
+    FilterObject *fo;
 }
 
 @end

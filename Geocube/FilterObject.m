@@ -41,5 +41,4 @@
     return [[FilterObject alloc] init:name];
 }
 
-
 @end

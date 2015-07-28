@@ -23,11 +23,13 @@
 
 @implementation FilterFavouritesTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    fo = _fo;
 
     [self header:fo];
+    [self configInit];
 
     CGRect rect;
     NSInteger y = 0;
@@ -63,7 +65,10 @@
     [slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
     [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
+    slider.min = config_min / 100.0;
+    slider.max = config_max / 100.0;
     [slider setInRangeTrackImage:image];
+    [self reportSlider:nil];
 
     [self.contentView addSubview:slider];
     y += 35;
@@ -74,21 +79,44 @@
     return self;
 }
 
+- (void)configInit
+{
+    configPrefix = @"favourites";
+    NSString *s = [self configGet:@"min"];
+    if (s == nil)
+        config_min = 0;
+    else
+        config_min = [s integerValue];
+    s = [self configGet:@"max"];
+    if (s == nil)
+        config_max = 100;
+    else
+        config_max = [s integerValue];
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", config_min]];
+    [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", config_max]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
 - (void)reportSlider:(RangeSlider *)s
 {
-    float min = (int)(100 * slider.min);
-    float max = (int)(100 * slider.max);
+    config_min = (int)(100 * slider.min);
+    config_max = (int)(100 * slider.max);
+    [self configUpdate];
 
-    NSString *minString = [NSString stringWithFormat:((int)min == min) ? @"%1.0f" : @"%0.1f", min];
-    NSString *maxString = [NSString stringWithFormat:((int)max == max) ? @"%1.0f" : @"%0.1f", max];
+    NSString *minString = [NSString stringWithFormat:@"%ld", config_min];
+    NSString *maxString = [NSString stringWithFormat:@"%ld", config_max];
 
-    if (min == 0 && max == 100)
+    if (config_min == 0 && config_max == 100)
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: anything"];
-    else if (min == max)
+    else if (config_min == config_max)
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: %@", minString];
-    else if (max == 100)
+    else if (config_max == 100)
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: at least %@", minString];
-    else if (min == 0)
+    else if (config_min == 0)
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: at most %@", maxString];
     else
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: between %@ and %@", minString, maxString];
