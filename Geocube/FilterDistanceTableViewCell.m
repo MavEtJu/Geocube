@@ -68,7 +68,7 @@
     distanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
     distanceButton.frame = rect;
     [distanceButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:distanceButton]
+    [self.contentView addSubview:distanceButton];
     [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:distanceKm ] smallUnit:[NSNumber numberWithLong:distanceM] element:nil];
 
     y += 35;
