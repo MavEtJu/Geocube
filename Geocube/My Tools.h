@@ -36,6 +36,7 @@
 + (NSInteger)numberOfLines:(NSString *)s;
 
 + (NSString *)niceNumber:(NSInteger)i;
++ (NSString *)NiceDistance:(NSInteger)i;
 
 @end
 
