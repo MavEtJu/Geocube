@@ -54,7 +54,7 @@
     l.text = @"Distance: ";
     [self.contentView addSubview:l];
 
-    rect = CGRectMake(80, y, 40, 15);
+    rect = CGRectMake(80, y, 20, 15);
     compareButton = [UIButton buttonWithType:UIButtonTypeSystem];
     compareButton.frame = rect;
     [compareButton addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
@@ -64,12 +64,12 @@
 
     distanceM = 500;
     distanceKm = 2;
-    rect = CGRectMake(120, y, width - 20 - 120, 15);
+    rect = CGRectMake(100, y, width - 20 - 120, 15);
     distanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
     distanceButton.frame = rect;
     [distanceButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:distanceButton];
-    [self measurementWasSelectedWithBigUnit:[NSNumber numberWithInt:distanceKm ] smallUnit:[NSNumber numberWithInt:distanceM] element:distanceButton];
+    [self.contentView addSubview:distanceButton]
+    [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:distanceKm ] smallUnit:[NSNumber numberWithLong:distanceM] element:nil];
 
     y += 35;
 
