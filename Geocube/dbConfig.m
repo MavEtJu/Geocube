@@ -55,7 +55,7 @@
     return c;
 }
 
-- (void)config_update
+- (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update config set value = ? where key = ?");
@@ -66,6 +66,38 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+}
+
+- (NSId)dbCreate
+{
+    NSId __id;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into config(key, value) values(?, ?)");
+
+        SET_VAR_TEXT(1, key);
+        SET_VAR_TEXT(2, value);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(__id)
+        DB_FINISH;
+    }
+
+    return __id;
+}
+
++ (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value
+{
+    dbConfig *c = [dbConfig dbGetByKey:key];
+    if (c != nil) {
+        c.value = value;
+        [c dbUpdate];
+        return;
+    }
+    c = [[dbConfig alloc] init];
+    c.key = key;
+    c.value = value;
+    [c dbCreate];
 }
 
 @end

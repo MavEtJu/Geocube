@@ -29,5 +29,8 @@
 
 - (id)init:(NSId)_id key:(NSString *)key value:(NSString *)value;
 + (dbConfig *)dbGetByKey:(NSString *)key;
++ (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value;
+- (NSId)dbCreate;
+- (void)dbUpdate;
 
 @end
