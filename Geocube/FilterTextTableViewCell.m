@@ -170,13 +170,13 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"cachename" value:tvCacheName.text];
-    [self configSet:@"owner" value:tvOwner.text];
-    [self configSet:@"placedby" value:tvPlacedBy.text];
-    [self configSet:@"state" value:tvState.text];
-    [self configSet:@"country" value:tvCountry.text];
-    [self configSet:@"description" value:tvDescription.text];
-    [self configSet:@"logs" value:tvLogs.text];
+    [self configSet:@"cachename" value:cacheName];
+    [self configSet:@"owner" value:owner];
+    [self configSet:@"placedby" value:placedBy];
+    [self configSet:@"state" value:state];
+    [self configSet:@"country" value:country];
+    [self configSet:@"description" value:description];
+    [self configSet:@"logs" value:logs];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 
@@ -184,6 +184,20 @@
 
 - (void)finishText:(UITextField *)textField
 {
+    if (tvCacheName != nil)
+        cacheName = tvCacheName.text;
+    if (tvOwner != nil)
+        owner = tvOwner.text;
+    if (tvPlacedBy != nil)
+        placedBy = tvPlacedBy.text;
+    if (tvState != nil)
+        state = tvState.text;
+    if (tvCountry != nil)
+        country = tvCountry.text;
+    if (tvDescription != nil)
+        description = tvDescription.text;
+    if (tvLogs != nil)
+        logs = tvLogs.text;
     [self configUpdate];
 }
 

@@ -107,25 +107,25 @@
 
     s = [self configGet:@"placed_epoch"];
     if (s == nil)
-        epochPlaced = 0;
+        epochPlaced = 946684800;
     else
         epochPlaced = [s integerValue];
 
     s = [self configGet:@"lastlog_epoch"];
     if (s == nil)
-        epochLastLog = 0;
+        epochLastLog = 946684800;
     else
         epochLastLog = [s integerValue];
 
     s = [self configGet:@"placed_compare"];
     if (s == nil)
-        comparePlaced= 0;
+        comparePlaced= 1;
     else
         comparePlaced = [s integerValue];
 
     s = [self configGet:@"lastlog_compare"];
     if (s == nil)
-        compareLastLog = 0;
+        compareLastLog = 1;
     else
         compareLastLog = [s integerValue];
 }

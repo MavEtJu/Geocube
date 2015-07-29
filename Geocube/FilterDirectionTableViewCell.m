@@ -82,6 +82,8 @@
             return;
         direction++;
     }
+    if (direction >= [directions count])
+        direction = 0;
 }
 
 - (void)configUpdate
