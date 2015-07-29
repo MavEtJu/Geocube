@@ -23,7 +23,7 @@
 
 @implementation dbType
 
-@synthesize type, icon, pin;
+@synthesize type, icon, pin, selected;
 
 - (id)init:(NSId)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
 {

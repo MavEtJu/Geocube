@@ -23,11 +23,15 @@
     NSString *type;
     NSInteger icon;
     NSInteger pin;
+
+    /* Not read from the database */
+    BOOL selected;
 }
 
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSInteger pin;
+@property (nonatomic) BOOL selected;
 
 - (id)init:(NSId)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
 
