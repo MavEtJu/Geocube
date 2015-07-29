@@ -53,7 +53,10 @@
     rect = CGRectMake(20, 2, width - 40, cellHeight);
     l = [[UILabel alloc] initWithFrame:rect];
     l.font = f1;
-    l.text = fo.name;
+    if (fo.expanded == YES)
+        l.text = [NSString stringWithFormat:@"Selected %@", fo.name];
+    else
+        l.text = [NSString stringWithFormat:@"Any %@", fo.name];
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
 }

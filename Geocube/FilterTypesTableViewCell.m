@@ -32,15 +32,8 @@
     [self configInit];
 
     CGRect rect;
-    NSInteger y = 0;
-
-    rect = CGRectMake(20, 2, width - 40, cellHeight);
-    UILabel *l = [[UILabel alloc] initWithFrame:rect];
-    l.font = f1;
-    l.text = fo.name;
-    l.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:l];
-    y += cellHeight;
+    NSInteger y = cellHeight;
+    UILabel *l;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
