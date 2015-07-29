@@ -23,7 +23,7 @@
 
 @implementation dbContainer
 
-@synthesize size, icon;
+@synthesize size, icon, selected;
 
 - (id)init:(NSId)__id size:(NSString *)_size icon:(NSInteger)_icon
 {

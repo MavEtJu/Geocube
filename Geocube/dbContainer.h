@@ -22,10 +22,14 @@
 @interface dbContainer : dbObject {
     NSString *size;
     NSInteger icon;
+
+    /* Not read from the database */
+    BOOL selected;
 }
 
 @property (nonatomic, retain) NSString *size;
 @property (nonatomic) NSInteger icon;
+@property (nonatomic) BOOL selected;
 
 - (id)init:(NSId)_id size:(NSString *)size icon:(NSInteger)icon;
 
