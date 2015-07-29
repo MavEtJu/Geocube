@@ -34,7 +34,7 @@
     menuItems = [NSMutableArray arrayWithArray:@[@"XSet default values"]];
 
     filters = [NSMutableArray arrayWithCapacity:10];
-    [filters addObject:[FilterObject init:@"X Any Group"]];
+    [filters addObject:[FilterObject init:@"Any Group"]];
     [filters addObject:[FilterObject init:@"X Any Cache Type"]];
     [filters addObject:[FilterObject init:@"Any Favourites"]];
     [filters addObject:[FilterObject init:@"X Any Size"]];

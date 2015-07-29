@@ -49,15 +49,26 @@
         return self;
     }
 
-    NSArray *groups = [dbc Groups];
+    groups = [dbc Groups];
+
     NSEnumerator *e = [groups objectEnumerator];
     dbGroup *g;
     while ((g = [e nextObject]) != nil) {
+        NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
+        NSString *c = [self configGet:s];
+        if (c == nil)
+            g.selected = NO;
+        else
+            g.selected = [c boolValue];
+
         rect = CGRectMake(20, y, width - 40, 15);
-        l = [[UILabel alloc] initWithFrame:rect];
-        l.font = f2;
-        l.text = g.name;
-        [self.contentView addSubview:l];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        b.frame = rect;
+        [b setTitle:g.name forState:UIControlStateNormal];
+        [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+        [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        [self.contentView addSubview:b];
+
         y += 15;
     }
 
@@ -65,6 +76,29 @@
     fo.cellHeight = height = y;
 
     return self;
+}
+
+- (void)configInit
+{
+    configPrefix = @"groups";
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
+- (void)clickGroup:(UIButton *)b
+{
+    NSEnumerator *e = [groups objectEnumerator];
+    dbGroup *g;
+    while ((g = [e nextObject]) != nil) {
+        if ([g.name compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
+            g.selected = !g.selected;
+            [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+            [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
+        }
+    }
 }
 
 @end
