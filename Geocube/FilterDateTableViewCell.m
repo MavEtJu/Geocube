@@ -32,16 +32,8 @@
     [self configInit];
 
     CGRect rect;
-    NSInteger y = 0;
+    NSInteger y = cellHeight;
     UILabel *l;
-
-    rect = CGRectMake(20, 2, width - 40, cellHeight);
-    l = [[UILabel alloc] initWithFrame:rect];
-    l.font = f1;
-    l.text = fo.name;
-    l.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:l];
-    y += cellHeight;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -56,22 +48,22 @@
     l.text = @"Placed on: ";
     [self.contentView addSubview:l];
 
-    rect = CGRectMake(80, y, 20, 15);
+    rect = CGRectMake(80, y, 50, 15);
     buttonComparePlaced = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonComparePlaced.frame = rect;
     [buttonComparePlaced addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonComparePlaced];
-    comparePlaced = 0;
+    comparePlaced--;
     [self clickCompare:buttonComparePlaced];
 
-    rect = CGRectMake(100, y, width - 120, 15);
+    rect = CGRectMake(130, y, width - 150, 15);
     buttonDatePlaced = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonDatePlaced.frame = rect;
     [buttonDatePlaced addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDatePlaced];
-    [self clickCompare:buttonDatePlaced];
+    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochPlaced ] element:buttonDatePlaced];
 
-    y += 35;
+    y += 20;
 
     rect = CGRectMake(20, y, width - 40, 15);
     l = [[UILabel alloc] initWithFrame:rect];
@@ -80,26 +72,64 @@
     l.text = @"Last log: ";
     [self.contentView addSubview:l];
 
-    rect = CGRectMake(80, y, 20, 15);
+    rect = CGRectMake(80, y, 50, 15);
     buttonCompareLastLog = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonCompareLastLog.frame = rect;
     [buttonCompareLastLog addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonCompareLastLog];
-    compareLastLog = 0;
+    compareLastLog--;
     [self clickCompare:buttonCompareLastLog];
 
-    rect = CGRectMake(100, y, width - 120, 15);
+    rect = CGRectMake(130, y, width - 150, 15);
     buttonDateLastLog = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonDateLastLog.frame = rect;
     [buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDateLastLog];
-    [self clickCompare:buttonDateLastLog];
-    y += 35;
+    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog ] element:buttonDateLastLog];
+    
+    y += 20;
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
 
     return self;
+}
+
+- (void)configInit
+{
+    configPrefix = @"dates";
+    NSString *s = [self configGet:@"placed_epoch"];
+    if (s == nil)
+        epochPlaced = 0;
+    else
+        epochPlaced = [s integerValue];
+
+    s = [self configGet:@"lastlog_epoch"];
+    if (s == nil)
+        epochLastLog = 0;
+    else
+        epochLastLog = [s integerValue];
+
+    s = [self configGet:@"placed_compare"];
+    if (s == nil)
+        comparePlaced= 0;
+    else
+        comparePlaced = [s integerValue];
+
+    s = [self configGet:@"lastlog_compare"];
+    if (s == nil)
+        compareLastLog = 0;
+    else
+        compareLastLog = [s integerValue];
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", epochPlaced]];
+    [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", epochLastLog]];
+    [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", comparePlaced]];
+    [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", compareLastLog]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 
 - (void)clickCompare:(UIButton *)b
@@ -109,19 +139,17 @@
         compare = compareLastLog = (compareLastLog + 1) % 3;
     if (b == buttonComparePlaced)
         compare = comparePlaced = (comparePlaced + 1) % 3;
+    [self configUpdate];
 
     switch (compare) {
     case 0:
-        [b setTitle:@"=<" forState:UIControlStateNormal];
-        [b setTitle:@"=<" forState:UIControlStateSelected];
+        [b setTitle:@"before" forState:UIControlStateNormal];
         break;
     case 1:
-        [b setTitle:@">=" forState:UIControlStateNormal];
-        [b setTitle:@">=" forState:UIControlStateSelected];
+        [b setTitle:@"after" forState:UIControlStateNormal];
         break;
     case 2:
-        [b setTitle:@"=" forState:UIControlStateNormal];
-        [b setTitle:@"=" forState:UIControlStateSelected];
+        [b setTitle:@"on" forState:UIControlStateNormal];
         break;
     }
 }
@@ -136,7 +164,11 @@
     NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
     NSDate *maxDate = [NSDate date];
 
-    NSDate *d = [NSDate dateWithTimeIntervalSince1970:12345678];
+    NSDate *d;
+    if (b == buttonDateLastLog)
+        d = [NSDate dateWithTimeIntervalSince1970:epochLastLog];
+    if (b == buttonDatePlaced)
+        d = [NSDate dateWithTimeIntervalSince1970:epochPlaced];
 
     asdp =
         [[ActionSheetDatePicker alloc]
@@ -158,7 +190,12 @@
     NSString *dateFromString = [dateFormatter stringFromDate:date];
 
     [b setTitle:dateFromString forState:UIControlStateNormal];
-    [b setTitle:dateFromString forState:UIControlStateSelected];
+
+    if (b == buttonDateLastLog)
+        epochLastLog = [date timeIntervalSince1970];
+    if (b == buttonDatePlaced)
+        epochPlaced = [date timeIntervalSince1970];
+    [self configUpdate];
 }
 
 @end

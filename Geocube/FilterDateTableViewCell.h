@@ -25,6 +25,7 @@
     UIButton *buttonDatePlaced, *buttonDateLastLog;
 
     ActionSheetDatePicker *asdp;
+    NSInteger epochPlaced, epochLastLog;
 }
 
 @end
