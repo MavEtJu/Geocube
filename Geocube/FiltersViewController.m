@@ -34,18 +34,18 @@
     menuItems = [NSMutableArray arrayWithArray:@[@"XSet default values"]];
 
     filters = [NSMutableArray arrayWithCapacity:10];
-    [filters addObject:[FilterObject init:@"XAny Group"]];
-    [filters addObject:[FilterObject init:@"XAny Cache Type"]];
+    [filters addObject:[FilterObject init:@"X Any Group"]];
+    [filters addObject:[FilterObject init:@"X Any Cache Type"]];
     [filters addObject:[FilterObject init:@"Any Favourites"]];
-    [filters addObject:[FilterObject init:@"XAny Size"]];
+    [filters addObject:[FilterObject init:@"X Any Size"]];
     [filters addObject:[FilterObject init:@"Any Difficulty"]];
     [filters addObject:[FilterObject init:@"Any Terrain"]];
-    [filters addObject:[FilterObject init:@"XAny Distance"]];
-    [filters addObject:[FilterObject init:@"XAny Direction"]];
-    [filters addObject:[FilterObject init:@"XAny Text"]];
-    [filters addObject:[FilterObject init:@"XAny Date"]];
-    [filters addObject:[FilterObject init:@"XXAny Category"]];
-    [filters addObject:[FilterObject init:@"XXOther Requirements"]];
+    [filters addObject:[FilterObject init:@"X Any Distance"]];
+    [filters addObject:[FilterObject init:@"X Any Direction"]];
+    [filters addObject:[FilterObject init:@"Any Text"]];
+    [filters addObject:[FilterObject init:@"X Any Date"]];
+    [filters addObject:[FilterObject init:@"XX Any Category"]];
+    [filters addObject:[FilterObject init:@"XX Other Requirements"]];
 
     return self;
 }

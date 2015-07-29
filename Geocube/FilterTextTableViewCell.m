@@ -57,10 +57,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    cacheName = [[UITextField alloc] initWithFrame:rect];
-    cacheName.frame = rect;
-    cacheName.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:cacheName];
+    tvCacheName = [[UITextField alloc] initWithFrame:rect];
+    tvCacheName.frame = rect;
+    tvCacheName.backgroundColor = [UIColor lightGrayColor];
+    tvCacheName.delegate = self;
+    tvCacheName.text = cacheName;
+    [tvCacheName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvCacheName];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -71,10 +74,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    owner = [[UITextField alloc] initWithFrame:rect];
-    owner.frame = rect;
-    owner.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:owner];
+    tvOwner = [[UITextField alloc] initWithFrame:rect];
+    tvOwner.frame = rect;
+    tvOwner.backgroundColor = [UIColor lightGrayColor];
+    tvOwner.delegate = self;
+    tvOwner.text = owner;
+    [tvOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvOwner];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -85,10 +91,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    state = [[UITextField alloc] initWithFrame:rect];
-    state.frame = rect;
-    state.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:state];
+    tvState = [[UITextField alloc] initWithFrame:rect];
+    tvState.frame = rect;
+    tvState.backgroundColor = [UIColor lightGrayColor];
+    tvState.delegate = self;
+    tvState.text = state;
+    [tvState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvState];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -99,10 +108,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    country = [[UITextField alloc] initWithFrame:rect];
-    country.frame = rect;
-    country.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:country];
+    tvCountry = [[UITextField alloc] initWithFrame:rect];
+    tvCountry.frame = rect;
+    tvCountry.backgroundColor = [UIColor lightGrayColor];
+    tvCountry.delegate = self;
+    tvCountry.text = country;
+    [tvCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvCountry];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -113,10 +125,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    description = [[UITextField alloc] initWithFrame:rect];
-    description.frame = rect;
-    description.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:description];
+    tvDescription = [[UITextField alloc] initWithFrame:rect];
+    tvDescription.frame = rect;
+    tvDescription.backgroundColor = [UIColor lightGrayColor];
+    tvDescription.delegate = self;
+    tvDescription.text = description;
+    [tvDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvDescription];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -127,10 +142,13 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    logs = [[UITextField alloc] initWithFrame:rect];
-    logs.frame = rect;
-    logs.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:logs];
+    tvLogs = [[UITextField alloc] initWithFrame:rect];
+    tvLogs.frame = rect;
+    tvLogs.backgroundColor = [UIColor lightGrayColor];
+    tvLogs.delegate = self;
+    tvLogs.text = logs;
+    [tvLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
+    [self.contentView addSubview:tvLogs];
     y += 20;
 
     [self.contentView sizeToFit];
@@ -138,5 +156,35 @@
 
     return self;
 }
+
+- (void)configInit
+{
+    configPrefix = @"text";
+
+    cacheName = [self configGet:@"cachename"];
+    owner = [self configGet:@"owner"];
+    placedBy = [self configGet:@"placedby"];
+    state = [self configGet:@"state"];
+    country = [self configGet:@"country"];
+    description = [self configGet:@"description"];
+    logs = [self configGet:@"logs"];
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"cachename" value:tvCacheName.text];
+    [self configSet:@"owner" value:tvOwner.text];
+    [self configSet:@"placedby" value:tvPlacedBy.text];
+    [self configSet:@"state" value:tvState.text];
+    [self configSet:@"country" value:tvCountry.text];
+    [self configSet:@"description" value:tvDescription.text];
+    [self configSet:@"logs" value:tvLogs.text];
+}
+
+- (void)finishText:(UITextField *)textField
+{
+    [self configUpdate];
+}
+
 
 @end
