@@ -38,5 +38,6 @@
 - (NSString *)configGet:(NSString *)name;
 - (void)configInit;
 - (void)configSet:(NSString *)name value:(NSString *)value;
+- (void)configUpdate;
 
 @end

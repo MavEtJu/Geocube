@@ -23,7 +23,7 @@
 
 @implementation FilterObject
 
-@synthesize name, expanded, cellHeight;
+@synthesize name, expanded, cellHeight, tvc;
 
 - (id)init:(NSString *)_name
 {

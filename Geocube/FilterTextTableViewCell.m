@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;
@@ -149,9 +149,15 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"text";
+
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
 
     cacheName = [self configGet:@"cachename"];
     owner = [self configGet:@"owner"];
@@ -172,6 +178,8 @@
     [self configSet:@"description" value:tvDescription.text];
     [self configSet:@"logs" value:tvLogs.text];
 }
+
+#pragma mark -- callback functions
 
 - (void)finishText:(UITextField *)textField
 {

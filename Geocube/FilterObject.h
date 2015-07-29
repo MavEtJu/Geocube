@@ -23,11 +23,13 @@
     BOOL expanded;
     NSString *name;
     NSInteger cellHeight;
+    UITableViewCell *tvc;
 }
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL expanded;
 @property (nonatomic) NSInteger cellHeight;
+@property (nonatomic) UITableViewCell *tvc;
 
 - (id)init:(NSString *)name;
 + (FilterObject *)init:(NSString *)name;

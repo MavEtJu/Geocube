@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;
@@ -87,11 +87,17 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"distance";
+    
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
 
-    NSString *s = [self configGet:@"distanceKm"];
+    s = [self configGet:@"distanceKm"];
     if (s == nil)
         distanceKm = 10;
     else
@@ -131,6 +137,8 @@
     [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", variationKm]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
+
+#pragma mark -- callback functions
 
 - (void)clickCompare:(UIButton *)b
 {

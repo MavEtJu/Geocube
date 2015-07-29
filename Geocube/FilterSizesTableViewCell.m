@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;

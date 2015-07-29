@@ -28,9 +28,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
-    
+    [self header];
+
     CGRect rect;
     NSInteger y = cellHeight;
 
@@ -69,15 +69,27 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"groups";
+
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
+
+    s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
 }
 
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
+
+#pragma mark -- callback functions
 
 - (void)clickGroup:(UIButton *)b
 {

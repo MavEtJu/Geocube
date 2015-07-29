@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
     
-    [self header];
     [self configInit];
+    [self header];
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight;
@@ -66,6 +66,8 @@
     return height;
 }
 
+#pragma mark -- configuration
+
 - (NSString *)configGet:(NSString *)_name
 {
     dbConfig *c = [dbConfig dbGetByKey:[NSString stringWithFormat:@"config_%@_%@", configPrefix, _name]];
@@ -81,6 +83,11 @@
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
     [dbConfig dbUpdateOrInsert:[NSString stringWithFormat:@"config_%@_%@", configPrefix, _name] value:_value];
+}
+
+- (void)configUpdate
+{
+    NSAssert(0, @"%@ should be overriden", [self class]);
 }
 
 @end

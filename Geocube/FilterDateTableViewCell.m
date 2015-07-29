@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;
@@ -95,10 +95,17 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"dates";
-    NSString *s = [self configGet:@"placed_epoch"];
+    
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
+
+    s = [self configGet:@"placed_epoch"];
     if (s == nil)
         epochPlaced = 0;
     else
@@ -131,6 +138,8 @@
     [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", compareLastLog]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
+
+#pragma mark -- callback functions
 
 - (void)clickCompare:(UIButton *)b
 {

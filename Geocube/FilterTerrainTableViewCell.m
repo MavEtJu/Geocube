@@ -28,8 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;
@@ -70,10 +70,17 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"terrain";
-    NSString *s = [self configGet:@"min"];
+
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
+
+    s = [self configGet:@"min"];
     if (s == nil)
         config_min = 1;
     else
@@ -91,6 +98,8 @@
     [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
+
+#pragma mark -- callback functions
 
 - (void)reportSlider:(RangeSlider *)s
 {

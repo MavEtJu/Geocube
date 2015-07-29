@@ -30,8 +30,8 @@
 
     directions = @[@"North", @"North East", @"East", @"South East", @"South", @"South West", @"West", @"North West"];
 
-    [self header];
     [self configInit];
+    [self header];
 
     CGRect rect;
     NSInteger y = cellHeight;
@@ -64,13 +64,18 @@
     return self;
 }
 
+#pragma mark -- configuration
+
 - (void)configInit
 {
     configPrefix = @"direction";
+    
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
 
     directionString = [self configGet:@"direction"];
     NSEnumerator *e = [directions objectEnumerator];
-    NSString *s;
     direction = 0;
     while ((s = [e nextObject]) != nil) {
         if ([s compare:directionString] == NSOrderedSame)
@@ -84,6 +89,8 @@
     [self configSet:@"direction" value:directionString];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
+
+#pragma mark -- callback functions
 
 - (void)clickDirection:(UIButton *)s
 {
