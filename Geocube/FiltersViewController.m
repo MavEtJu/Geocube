@@ -37,7 +37,7 @@
     [filters addObject:[FilterObject init:@"Group"]];
     [filters addObject:[FilterObject init:@"Cache Type"]];
     [filters addObject:[FilterObject init:@"Favourites"]];
-    [filters addObject:[FilterObject init:@"Size X"]];
+    [filters addObject:[FilterObject init:@"Size"]];
     [filters addObject:[FilterObject init:@"Difficulty"]];
     [filters addObject:[FilterObject init:@"Terrain"]];
     [filters addObject:[FilterObject init:@"Distance"]];

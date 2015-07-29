@@ -33,7 +33,6 @@
 
     CGRect rect;
     NSInteger y = cellHeight;
-    UILabel *l;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -41,7 +40,7 @@
         return self;
     }
 
-    NSArray *containers = [dbc Containers];
+    containers = [dbc Containers];
     NSEnumerator *e = [containers objectEnumerator];
     dbContainer *c;
     while ((c = [e nextObject]) != nil) {
@@ -51,11 +50,20 @@
         cv.image = img;
         [self.contentView addSubview:cv];
 
+        NSString *cfg = [self configGet:[NSString stringWithFormat:@"containers_%ld", (long)c._id]];
+        if (cfg == nil)
+            c.selected = NO;
+        else
+            c.selected = [cfg boolValue];
+
         rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
-        l = [[UILabel alloc] initWithFrame:rect];
-        l.text = c.size;
-        l.font = f2;
-        [self.contentView addSubview:l];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        b.frame = rect;
+        b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [b setTitle:c.size forState:UIControlStateNormal];
+        [b setTitleColor:c.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+        [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        [self.contentView addSubview:b];
 
         y += cv.frame.size.height;
     }
@@ -64,6 +72,39 @@
     fo.cellHeight = height = y;
     
     return self;
+}
+
+#pragma mark -- configuration
+
+- (void)configInit
+{
+    configPrefix = @"sizes";
+
+    NSString *s = [self configGet:@"enabled"];
+    if (s != nil)
+        fo.expanded = [s boolValue];
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
+#pragma mark -- callback functions
+
+- (void)clickGroup:(UIButton *)b
+{
+    NSEnumerator *e = [containers objectEnumerator];
+    dbContainer *c;
+    while ((c = [e nextObject]) != nil) {
+        if ([c.size compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
+            c.selected = !c.selected;
+            [b setTitleColor:c.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+            [self configSet:[NSString stringWithFormat:@"containers_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
+            [self configUpdate];
+            return;
+        }
+    }
 }
 
 @end
