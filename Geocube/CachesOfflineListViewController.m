@@ -72,7 +72,7 @@
 - (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [[dbWaypoint dbAll] objectEnumerator];
+    NSEnumerator *e = [[CacheFilter filter] objectEnumerator];
     dbWaypoint *wp;
 
     while ((wp = [e nextObject]) != nil) {

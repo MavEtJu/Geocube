@@ -247,6 +247,57 @@
     return wps;
 }
 
++ (NSArray *)dbAllInGroups:(NSArray *)groups
+{
+    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
+    dbWaypoint *wp;
+
+    NSMutableString *where = [NSMutableString stringWithString:@""];
+    NSEnumerator *e = [groups objectEnumerator];
+    dbObject *o;
+    while ((o = [e nextObject]) != nil) {
+        if ([where compare:@""] != NSOrderedSame)
+            [where appendString:@" or "];
+        [where appendFormat:@"group_id = ?"];
+    }
+
+    @synchronized(db.dbaccess) {
+        NSString *sql = [NSString stringWithFormat:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints wp where wp.id in (select waypoint_id from group2waypoints where %@)", where];
+        DB_PREPARE(sql);
+        NSInteger i = 1;
+        NSEnumerator *e = [groups objectEnumerator];
+        dbObject *o;
+        while ((o = [e nextObject]) != nil) {
+            SET_VAR_INT((int)i, o._id);
+            i++;
+        }
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN( 0, _id);
+            wp = [[dbWaypoint alloc] init:_id];
+
+            TEXT_FETCH( 1, wp.name);
+            TEXT_FETCH( 2, wp.description);
+            TEXT_FETCH( 3, wp.lat);
+            TEXT_FETCH( 4, wp.lon);
+            INT_FETCH(  5, wp.lat_int);
+            INT_FETCH(  6, wp.lon_int);
+            TEXT_FETCH( 7, wp.date_placed);
+            INT_FETCH(  8, wp.date_placed_epoch);
+            TEXT_FETCH( 9, wp.url);
+            INT_FETCH( 10, wp.type_id);
+            INT_FETCH( 11, wp.symbol_id);
+            INT_FETCH( 12, wp.groundspeak_id);
+            TEXT_FETCH(13, wp.urlname);
+
+            [wp finish];
+            [wps addObject:wp];
+        }
+        DB_FINISH;
+    }
+    return wps;
+}
+
 + (NSId)dbGetByName:(NSString *)name
 {
     NSId _id = 0;

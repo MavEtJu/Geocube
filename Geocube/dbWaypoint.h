@@ -84,6 +84,7 @@
 + (NSArray *)dbAllFound;
 + (NSArray *)dbAllAttended;
 + (NSArray *)dbAllNotFound;
++ (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
 
