@@ -89,6 +89,7 @@
             cell = [[FilterGroupsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -99,6 +100,7 @@
             cell = [[FilterTypesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -109,6 +111,7 @@
             cell = [[FilterFavouritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -119,6 +122,7 @@
             cell = [[FilterSizesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -129,6 +133,7 @@
             cell = [[FilterDifficultyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -139,6 +144,7 @@
             cell = [[FilterTerrainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -149,6 +155,7 @@
             cell = [[FilterDistanceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -159,6 +166,7 @@
             cell = [[FilterDirectionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -169,6 +177,7 @@
             cell = [[FilterTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -179,6 +188,7 @@
             cell = [[FilterDateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -189,6 +199,7 @@
             cell = [[FilterCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        fo.tvc = cell;
         return cell;
     }
 
@@ -199,15 +210,7 @@
             cell = [[FilterOthersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_GROUPS filterObject:fo];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        return cell;
-    }
-
-    // Only show the header
-    if (fo.expanded == NO) {
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-        cell = [cell initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:THISCELL];
-
-        cell.textLabel.text = fo.name;
+        fo.tvc = cell;
         return cell;
     }
 
@@ -218,6 +221,8 @@
 {
     FilterObject *fo = [filters objectAtIndex:indexPath.row];
     fo.expanded = !fo.expanded;
+    FilterTableViewCell *ftvc = (FilterTableViewCell *)fo.tvc;
+    [ftvc configUpdate];
     [aTableView reloadData];
 }
 
