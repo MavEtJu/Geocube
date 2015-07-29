@@ -17,9 +17,10 @@
 #define kBottomControlPointDYInGridUnits  1
 #define kTopControlPointDXInGridUnits     10
 
+/*
 static inline CGFloat radians(CGFloat degrees) {
   return degrees * M_PI/180;
-}
+} */
 
 @interface BHTabView ()
 
