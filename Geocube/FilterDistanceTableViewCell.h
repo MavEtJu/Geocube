@@ -20,12 +20,12 @@
  */
 
 @interface FilterDistanceTableViewCell : FilterTableViewCell {
-    UIButton *compareButton;
-    BOOL compareSmaller;
-    UIButton *distanceButton;
+    UIButton *compareDistanceButton;
+    UIButton *distanceButton, *variationButton;
+    NSInteger compareDistance;
 
-    NSInteger distanceKm;
-    NSInteger distanceM;;
+    NSInteger distanceKm, distanceM;
+    NSInteger variationKm, variationM;
 }
 
 @end

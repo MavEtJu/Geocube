@@ -40,7 +40,7 @@
     [filters addObject:[FilterObject init:@"X Any Size"]];
     [filters addObject:[FilterObject init:@"Any Difficulty"]];
     [filters addObject:[FilterObject init:@"Any Terrain"]];
-    [filters addObject:[FilterObject init:@"X Any Distance"]];
+    [filters addObject:[FilterObject init:@"Any Distance"]];
     [filters addObject:[FilterObject init:@"X Any Direction"]];
     [filters addObject:[FilterObject init:@"Any Text"]];
     [filters addObject:[FilterObject init:@"X Any Date"]];
