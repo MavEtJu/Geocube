@@ -70,7 +70,7 @@
 
 - (NSString *)configGet:(NSString *)_name
 {
-    dbConfig *c = [dbConfig dbGetByKey:[NSString stringWithFormat:@"config_%@_%@", configPrefix, _name]];
+    dbFilter *c = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
     if (c == nil)
         return nil;
     return c.value;
@@ -82,7 +82,7 @@
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    [dbConfig dbUpdateOrInsert:[NSString stringWithFormat:@"config_%@_%@", configPrefix, _name] value:_value];
+    [dbFilter dbUpdateOrInsert:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
 }
 
 - (void)configUpdate

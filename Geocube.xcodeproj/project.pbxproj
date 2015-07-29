@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */; };
+		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
 		E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A71B5F84B4007FDC29 /* attributes - 02.png */; };
 		E80731EB1B5F84B4007FDC29 /* attributes - 03.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A81B5F84B4007FDC29 /* attributes - 03.png */; };
@@ -306,6 +307,8 @@
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8027BCE1B514956003FD5A6 /* MapGoogleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGoogleViewController.h; sourceTree = "<group>"; };
 		E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGoogleViewController.m; sourceTree = "<group>"; };
+		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
+		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E80731A61B5F84B4007FDC29 /* attributes - 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 01.png"; path = "images/attributes - 01.png"; sourceTree = "<group>"; };
 		E80731A71B5F84B4007FDC29 /* attributes - 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 02.png"; path = "images/attributes - 02.png"; sourceTree = "<group>"; };
 		E80731A81B5F84B4007FDC29 /* attributes - 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 03.png"; path = "images/attributes - 03.png"; sourceTree = "<group>"; };
@@ -1311,6 +1314,8 @@
 				E80732BF1B5FB4DF007FDC29 /* dbCountry.m */,
 				E82840F31B510AE10055EE59 /* dbContainer.h */,
 				E82840F41B510AE10055EE59 /* dbContainer.m */,
+				E8045B841B68E9D100DD44CC /* dbFilter.h */,
+				E8045B851B68E9D100DD44CC /* dbFilter.m */,
 				E80732B81B5FB4C4007FDC29 /* dbGroundspeak.h */,
 				E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */,
 				E88FD8F11B4160A700D0CCE7 /* dbGroup.h */,
@@ -1791,6 +1796,7 @@
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
+				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
@@ -2088,6 +2094,7 @@
 				E8E8CFF71B64FAC900CC741A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */ = {
 			isa = XCConfigurationList;

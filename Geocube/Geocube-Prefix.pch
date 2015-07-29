@@ -35,6 +35,7 @@
 #import "dbAccount.h"
 #import "dbConfig.h"
 #import "dbContainer.h"
+#import "dbFilter.h"
 #import "dbGroup.h"
 #import "dbType.h"
 #import "dbSymbol.h"
