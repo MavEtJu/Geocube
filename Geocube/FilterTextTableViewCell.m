@@ -177,6 +177,7 @@
     [self configSet:@"country" value:tvCountry.text];
     [self configSet:@"description" value:tvDescription.text];
     [self configSet:@"logs" value:tvLogs.text];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 
 #pragma mark -- callback functions
