@@ -22,12 +22,16 @@
 @interface dbGroup: dbObject {
     NSString *name;
     BOOL usergroup;
+
+    /* Not read from the database */
+    BOOL selected;
 }
 
 - (id)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
+@property (nonatomic) BOOL selected;
 
 - (void)dbEmpty;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;

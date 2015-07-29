@@ -23,7 +23,7 @@
 
 @implementation dbGroup
 
-@synthesize name, usergroup;
+@synthesize name, usergroup, selected;
 
 - (id)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
 {
