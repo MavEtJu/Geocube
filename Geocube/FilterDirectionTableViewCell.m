@@ -28,11 +28,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
+    directions = @[@"North", @"North East", @"East", @"South East", @"South", @"South West", @"West", @"North West"];
+
     [self header];
     [self configInit];
-
-    directions = @[@"North", @"North East", @"East", @"South East", @"South", @"South West", @"West", @"North West"];
-    direction = 0;
 
     CGRect rect;
     NSInteger y = 0;
@@ -73,6 +72,27 @@
     return self;
 }
 
+- (void)configInit
+{
+    configPrefix = @"direction";
+
+    directionString = [self configGet:@"direction"];
+    NSEnumerator *e = [directions objectEnumerator];
+    NSString *s;
+    direction = 0;
+    while ((s = [e nextObject]) != nil) {
+        if ([s compare:directionString] == NSOrderedSame)
+            return;
+        direction++;
+    }
+}
+
+- (void)configUpdate
+{
+    [self configSet:@"direction" value:directionString];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
 - (void)clickDirection:(UIButton *)s
 {
     if (s == nil) {
@@ -87,7 +107,9 @@
         initialSelection:direction
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             direction = selectedIndex;
+            directionString = [directions objectAtIndex:direction];
             [self clickDirection:nil];
+            [self configUpdate];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
         }

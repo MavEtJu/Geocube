@@ -97,7 +97,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"difficulty";
+    configPrefix = @"distance";
 
     NSString *s = [self configGet:@"distanceKm"];
     if (s == nil)
