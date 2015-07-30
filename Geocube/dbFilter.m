@@ -100,4 +100,13 @@
     [c dbCreate];
 }
 
++ (void)dbAllClear
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from filters");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

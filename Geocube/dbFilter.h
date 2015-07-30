@@ -32,5 +32,6 @@
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value;
 - (NSId)dbCreate;
 - (void)dbUpdate;
++ (void)dbAllClear;
 
 @end
