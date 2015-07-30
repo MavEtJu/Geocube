@@ -252,6 +252,114 @@
         caches = after;
     }
 
+    /* Text filters
+     * An empty entry means that it matches.
+     */
+    [filter setConfigPrefix:@"text"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        NSString *cachename = [filter configGet:@"cachename"];
+        NSString *owner = [filter configGet:@"owner"];
+        NSString *state = [filter configGet:@"state"];
+        NSString *country = [filter configGet:@"country"];
+        NSString *description = [filter configGet:@"description"];
+        NSString *logs = [filter configGet:@"logs"];
+
+        __block NSMutableArray *countries = nil;
+        __block NSMutableArray *states = nil;
+        __block NSMutableArray *owners = nil;
+
+        if ([country compare:@""] != NSOrderedSame) {
+            countries = [NSMutableArray arrayWithCapacity:20];
+            [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+                if ([c.name localizedCaseInsensitiveContainsString:country] ||
+                    [c.code localizedCaseInsensitiveContainsString:country])
+                    [countries addObject:c];
+            }];
+        }
+
+        if ([state compare:@""] != NSOrderedSame) {
+            states = [NSMutableArray arrayWithCapacity:20];
+            [[dbc States] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
+                if ([c.name localizedCaseInsensitiveContainsString:state] ||
+                    [c.code localizedCaseInsensitiveContainsString:state])
+                    [states addObject:c];
+            }];
+        }
+
+        if ([owner compare:@""] != NSOrderedSame) {
+            owners = [NSMutableArray arrayWithCapacity:20];
+            [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *n, NSUInteger idx, BOOL *stop) {
+                if ([n.name localizedCaseInsensitiveContainsString:owner])
+                    [owners addObject:n];
+            }];
+        }
+
+        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            __block BOOL rv = YES;
+
+            if ([cachename compare:@""] != NSOrderedSame &&
+                [wp.name localizedCaseInsensitiveContainsString:cachename] == NO) {
+                rv = NO;
+            }
+
+            if ([description compare:@""] != NSOrderedSame &&
+                [wp.description localizedCaseInsensitiveContainsString:description] == NO &&
+                [wp.groundspeak.long_desc localizedCaseInsensitiveContainsString:description] == NO &&
+                [wp.groundspeak.short_desc localizedCaseInsensitiveContainsString:description] == NO) {
+                rv = NO;
+            }
+
+            if (states != nil) {
+                __block BOOL matched = NO;
+                [states enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+                    if (s._id == wp.groundspeak.state_id) {
+                        matched = YES;
+                        *stop = YES;
+                    }
+                }];
+                if (matched == NO)
+                    rv = NO;
+            }
+
+            if (countries != nil) {
+                __block BOOL matched = NO;
+                [countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+                    if (c._id == wp.groundspeak.country_id) {
+                        matched = YES;
+                        *stop = YES;
+                    }
+                }];
+                if (matched == NO)
+                    rv = NO;
+            }
+
+            if (owners != nil) {
+                __block BOOL matched = NO;
+                [owners enumerateObjectsUsingBlock:^(dbName *o, NSUInteger idx, BOOL *stop) {
+                    if (o._id == wp.groundspeak.owner_id) {
+                        matched = YES;
+                        *stop = YES;
+                    }
+                }];
+                if (matched == NO)
+                    rv = NO;
+            }
+
+            if ([logs compare:@""] != NSOrderedSame) {
+                if ([dbLog dbCountByWaypointLogString:wp LogString:logs] == 0)
+                    rv = NO;
+            }
+
+            if (rv == YES)
+                [after addObject:wp];
+        }];
+
+        caches = after;
+    }
+
     return caches;
 }
 

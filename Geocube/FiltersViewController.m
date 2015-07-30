@@ -42,7 +42,7 @@
     [filters addObject:[FilterObject init:@"Terrain"]];
     [filters addObject:[FilterObject init:@"Distance"]];
     [filters addObject:[FilterObject init:@"Direction"]];
-    [filters addObject:[FilterObject init:@"Text X"]];
+    [filters addObject:[FilterObject init:@"Text"]];
     [filters addObject:[FilterObject init:@"Date"]];
     [filters addObject:[FilterObject init:@"Category XYZ"]];
     [filters addObject:[FilterObject init:@"Other Requirements XYZ"]];
