@@ -43,6 +43,7 @@
     /* Not read from the database */
     CLLocationCoordinate2D coordinates;
     NSInteger calculatedDistance;
+    NSInteger calculatedBearing;
 }
 
 @property (nonatomic, retain) NSString *name;
@@ -67,6 +68,7 @@
 @property (nonatomic, retain) dbGroundspeak *groundspeak;
 
 @property (nonatomic) NSInteger calculatedDistance;
+@property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
 - (id)init:(NSId)_id;
