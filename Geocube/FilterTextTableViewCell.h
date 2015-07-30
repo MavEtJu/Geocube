@@ -19,14 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTextTableViewCell : FilterTableViewCell<UITextFieldDelegate> {
-    UITextField *tvCacheName;
-    UITextField *tvOwner;
-    UITextField *tvPlacedBy;
-    UITextField *tvState;
-    UITextField *tvCountry;
-    UITextField *tvDescription;
-    UITextField *tvLogs;
+@interface FilterTextTableViewCell : FilterTableViewCell {
+    UIButton *bCacheName;
+    UIButton *bOwner;
+    UIButton *bPlacedBy;
+    UIButton *bState;
+    UIButton *bCountry;
+    UIButton *bDescription;
+    UIButton *bLogs;
 
     NSString *cacheName;
     NSString *owner;

@@ -49,13 +49,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvCacheName = [[UITextField alloc] initWithFrame:rect];
-    tvCacheName.frame = rect;
-    tvCacheName.backgroundColor = [UIColor lightGrayColor];
-    tvCacheName.delegate = self;
-    tvCacheName.text = cacheName;
-    [tvCacheName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvCacheName];
+    bCacheName = [UIButton buttonWithType:UIButtonTypeSystem];
+    bCacheName.frame = rect;
+    bCacheName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bCacheName setTitle:cacheName forState:UIControlStateNormal];
+    [bCacheName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bCacheName];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -66,13 +65,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvOwner = [[UITextField alloc] initWithFrame:rect];
-    tvOwner.frame = rect;
-    tvOwner.backgroundColor = [UIColor lightGrayColor];
-    tvOwner.delegate = self;
-    tvOwner.text = owner;
-    [tvOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvOwner];
+    bOwner = [UIButton buttonWithType:UIButtonTypeSystem];
+    bOwner.frame = rect;
+    bOwner.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bOwner setTitle:owner forState:UIControlStateNormal];
+    [bOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bOwner];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -83,13 +81,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvState = [[UITextField alloc] initWithFrame:rect];
-    tvState.frame = rect;
-    tvState.backgroundColor = [UIColor lightGrayColor];
-    tvState.delegate = self;
-    tvState.text = state;
-    [tvState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvState];
+    bState = [UIButton buttonWithType:UIButtonTypeSystem];
+    bState.frame = rect;
+    bState.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bState setTitle:state forState:UIControlStateNormal];
+    [bState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bState];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -100,13 +97,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvCountry = [[UITextField alloc] initWithFrame:rect];
-    tvCountry.frame = rect;
-    tvCountry.backgroundColor = [UIColor lightGrayColor];
-    tvCountry.delegate = self;
-    tvCountry.text = country;
-    [tvCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvCountry];
+    bCountry = [UIButton buttonWithType:UIButtonTypeSystem];
+    bCountry.frame = rect;
+    bCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bCountry setTitle:country forState:UIControlStateNormal];
+    [bCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bCountry];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -117,13 +113,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvDescription = [[UITextField alloc] initWithFrame:rect];
-    tvDescription.frame = rect;
-    tvDescription.backgroundColor = [UIColor lightGrayColor];
-    tvDescription.delegate = self;
-    tvDescription.text = description;
-    [tvDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvDescription];
+    bDescription = [UIButton buttonWithType:UIButtonTypeSystem];
+    bDescription.frame = rect;
+    bDescription.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bDescription setTitle:description forState:UIControlStateNormal];
+    [bDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bDescription];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -134,13 +129,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    tvLogs = [[UITextField alloc] initWithFrame:rect];
-    tvLogs.frame = rect;
-    tvLogs.backgroundColor = [UIColor lightGrayColor];
-    tvLogs.delegate = self;
-    tvLogs.text = logs;
-    [tvLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventEditingDidEnd];
-    [self.contentView addSubview:tvLogs];
+    bLogs = [UIButton buttonWithType:UIButtonTypeSystem];
+    bLogs.frame = rect;
+    bLogs.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bLogs setTitle:logs forState:UIControlStateNormal];
+    [bLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bLogs];
     y += 20;
 
     [self.contentView sizeToFit];
@@ -182,23 +176,46 @@
 
 #pragma mark -- callback functions
 
-- (void)finishText:(UITextField *)textField
+- (void)finishText:(UIButton *)b
 {
-    if (tvCacheName != nil)
-        cacheName = tvCacheName.text;
-    if (tvOwner != nil)
-        owner = tvOwner.text;
-    if (tvPlacedBy != nil)
-        placedBy = tvPlacedBy.text;
-    if (tvState != nil)
-        state = tvState.text;
-    if (tvCountry != nil)
-        country = tvCountry.text;
-    if (tvDescription != nil)
-        description = tvDescription.text;
-    if (tvLogs != nil)
-        logs = tvLogs.text;
-    [self configUpdate];
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Change field"
+                               message:@"New field"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = alert.textFields.firstObject;
+                             NSString *newstring = tf.text;
+
+                             [b setTitle:newstring forState:UIControlStateNormal];
+                             if (b == bCacheName) cacheName = newstring;
+                             if (b == bOwner) owner = newstring;
+                             if (b == bPlacedBy) placedBy = newstring;
+                             if (b == bState) state = newstring;
+                             if (b == bCountry) country = newstring;
+                             if (b == bDescription) description = newstring;
+                             if (b == bLogs) logs = newstring;
+                             [self configUpdate];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Change field 2";
+    }];
+
+    UIViewController* activeVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [activeVC presentViewController:alert animated:YES completion:nil];
 }
 
 @end
