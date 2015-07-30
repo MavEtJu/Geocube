@@ -26,5 +26,6 @@
 @property (nonatomic, retain) NSString *configPrefix;
 
 + (NSArray *)filter;
++ (BOOL)filterDistance:(dbWaypoint *)wp;
 
 @end

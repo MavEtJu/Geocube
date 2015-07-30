@@ -742,15 +742,6 @@
 			path = objects;
 			sourceTree = "<group>";
 		};
-		E80F721D1B5275D200F35528 /* Caches Offline */ = {
-			isa = PBXGroup;
-			children = (
-				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
-				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
-			);
-			name = "Caches Offline";
-			sourceTree = "<group>";
-		};
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +766,8 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
+				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
@@ -1366,7 +1359,6 @@
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
-				E80F721D1B5275D200F35528 /* Caches Offline */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);

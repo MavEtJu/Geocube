@@ -80,11 +80,11 @@
             continue;
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
 
-        [_wps addObject:wp];
-        wp.groundspeak = [dbGroundspeak dbGet:wp.groundspeak_id];
+        if ([CacheFilter filterDistance:wp] == YES)
+            [_wps addObject:wp];
+        // wp.groundspeak = [dbGroundspeak dbGet:wp.groundspeak_id];
     }
     waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
-
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
         }

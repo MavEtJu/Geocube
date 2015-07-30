@@ -182,6 +182,39 @@
     return caches;
 }
 
++ (BOOL)filterDistance:(dbWaypoint *)wp
+{
+    CacheFilter *filter = [[CacheFilter alloc] init];
+
+    [filter setConfigPrefix:@"distance"];
+    NSString *c = [filter configGet:@"enabled"];
+    if (c == nil || [c boolValue] == NO)
+        return YES;
+
+    NSInteger compareDistance = [[filter configGet:@"compareDistance"] integerValue];
+    NSInteger distanceM = [[filter configGet:@"distanceM"] integerValue];
+    NSInteger distanceKm = [[filter configGet:@"distanceKm"] integerValue];
+    NSInteger variationM = [[filter configGet:@"variationM"] integerValue];
+    NSInteger variationKm = [[filter configGet:@"variationKm"] integerValue];
+
+    if (compareDistance == 0) {         /* <= */
+        if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
+            return YES;
+        return NO;
+    } else if (compareDistance == 1) {  /* >= */
+        if (wp.calculatedDistance >= distanceKm * 1000 + distanceM)
+            return YES;
+        return NO;
+    } else {                            /* = */
+        if (wp.calculatedDistance >= (distanceKm - variationKm) * 1000 + (distanceM - variationM) &&
+            wp.calculatedDistance <= (distanceKm + variationKm) * 1000 + (distanceM + variationM))
+            return YES;
+        return NO;
+    }
+
+    return NO;
+}
+
 - (NSString *)configGet:(NSString *)_name
 {
     dbFilter *c = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];

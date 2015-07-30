@@ -123,7 +123,8 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
                 continue;
             wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
 
-            [wps addObject:wp];
+            if ([CacheFilter filterDistance:wp] == YES)
+                [wps addObject:wp];
         }
         waypointsArray = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
