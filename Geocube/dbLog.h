@@ -64,6 +64,7 @@
 + (void)dbCreate:(dbLog *)log;
 - (void)dbCreate;
 - (void)dbUpdateCache:(NSId)wp_id;
++ (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;
 
 
 

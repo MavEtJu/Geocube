@@ -201,4 +201,23 @@
     return ls;
 }
 
++ (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
+{
+    NSInteger c = 0;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select count(id) from logs where waypoint_id = ? and log like ?");
+
+        SET_VAR_INT(1, wp._id);
+        NSString *s = [NSString stringWithFormat:@"%%%@%%", string];
+        SET_VAR_TEXT(2, s);
+
+        DB_IF_STEP {
+            INT_FETCH(0, c);
+        }
+        DB_FINISH;
+    }
+    return c;
+}
+
 @end
