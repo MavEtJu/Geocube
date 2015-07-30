@@ -97,12 +97,12 @@
     return _id;
 }
 
-- (void)dbCreate
+- (NSId)dbCreate
 {
     return [dbLog dbCreate:self];
 }
 
-+ (void)dbCreate:(dbLog *)log
++ (NSId)dbCreate:(dbLog *)log
 {
     NSId _id = 0;
 
@@ -122,6 +122,7 @@
         DB_FINISH;
     }
     log._id = _id;
+    return _id;
 }
 
 - (void)dbUpdate

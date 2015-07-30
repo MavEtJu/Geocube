@@ -120,12 +120,12 @@
     return _id;
 }
 
-- (void)dbCreate
+- (NSId)dbCreate
 {
-    [dbTravelbug dbCreate:self];
+    return [dbTravelbug dbCreate:self];
 }
 
-+ (void)dbCreate:(dbTravelbug *)tb
++ (NSId)dbCreate:(dbTravelbug *)tb
 {
     NSId _id = 0;
 
@@ -141,6 +141,7 @@
         DB_FINISH;
     }
     tb._id = _id;
+    return _id;
 }
 
 - (void)dbUpdate
