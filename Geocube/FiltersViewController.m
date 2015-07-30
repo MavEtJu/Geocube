@@ -31,7 +31,7 @@
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"XSet default values"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Set default values"]];
 
     filters = [NSMutableArray arrayWithCapacity:10];
     [filters addObject:[FilterObject init:@"Group"]];
@@ -235,5 +235,28 @@
 
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
+
+#pragma mark - Local menu related
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+    if (menu != self.tab_menu) {
+        [menuGlobal didSelectedMenu:menu atIndex:index];
+        return;
+    }
+
+    // Add a group
+    if (index == 0) {
+        [dbFilter dbAllClear];
+        [filters enumerateObjectsUsingBlock:^(FilterObject *fo, NSUInteger idx, BOOL *stop) {
+            fo.expanded = NO;
+        }];
+        [self.tableView reloadData];
+        return;
+    }
+
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
+}
+
 
 @end
