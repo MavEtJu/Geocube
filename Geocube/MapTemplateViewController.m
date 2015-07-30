@@ -81,7 +81,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
     [self removeMarkers];
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
 }
 
 /* Delegated from CLLocation */

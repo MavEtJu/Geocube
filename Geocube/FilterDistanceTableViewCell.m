@@ -130,12 +130,12 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"compareDistance" value:[NSString stringWithFormat:@"%ld", compareDistance]];
-    [self configSet:@"distanceM" value:[NSString stringWithFormat:@"%ld", distanceM]];
-    [self configSet:@"distanceKm" value:[NSString stringWithFormat:@"%ld", distanceKm]];
-    [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", variationM]];
-    [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", variationKm]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"compareDistance" value:[NSString stringWithFormat:@"%ld", (long)compareDistance]];
+    [self configSet:@"distanceM" value:[NSString stringWithFormat:@"%ld", (long)distanceM]];
+    [self configSet:@"distanceKm" value:[NSString stringWithFormat:@"%ld", (long)distanceKm]];
+    [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", (long)variationM]];
+    [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", (long)variationKm]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
 }
 
 #pragma mark -- callback functions

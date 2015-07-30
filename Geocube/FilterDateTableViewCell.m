@@ -132,10 +132,10 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", epochPlaced]];
-    [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", epochLastLog]];
-    [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", comparePlaced]];
-    [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", compareLastLog]];
+    [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochPlaced]];
+    [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochLastLog]];
+    [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)comparePlaced]];
+    [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", (long)compareLastLog]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 

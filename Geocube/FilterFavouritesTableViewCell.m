@@ -93,9 +93,9 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", config_min]];
-    [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", config_max]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)config_min]];
+    [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)config_max]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
 }
 
 #pragma mark -- callback functions
@@ -106,8 +106,8 @@
     config_max = (int)(100 * slider.max);
     [self configUpdate];
 
-    NSString *minString = [NSString stringWithFormat:@"%ld", config_min];
-    NSString *maxString = [NSString stringWithFormat:@"%ld", config_max];
+    NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
+    NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
 
     if (config_min == 0 && config_max == 100)
         sliderLabel.text = [NSString stringWithFormat:@"Favourites: anything"];
