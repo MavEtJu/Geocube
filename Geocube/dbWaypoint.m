@@ -91,6 +91,9 @@
         }
     }
 
+    if (groundspeak_id != 0)
+        groundspeak = [dbGroundspeak dbGet:groundspeak_id];
+
     [super finish];
 }
 

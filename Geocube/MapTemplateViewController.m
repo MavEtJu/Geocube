@@ -102,7 +102,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)refreshWaypointsData:(NSString *)searchString
 {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [[dbWaypoint dbAll] objectEnumerator];
+    NSEnumerator *e = [[CacheFilter filter] objectEnumerator];
     dbWaypoint *wp;
 
     if (showType == SHOW_ONECACHE) {

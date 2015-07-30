@@ -29,6 +29,7 @@
 {
     CacheFilter *filter = [[CacheFilter alloc] init];
     NSMutableArray *caches;
+    NSMutableArray *after;
 
     /* Filter out by group:
      * The filter selects out the caches which belong to a certain group.
@@ -52,6 +53,130 @@
         [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
     } else {
         caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+    }
+
+    /* Filter out cache types:
+     * The filter selects out the caches which are of a certain type.
+     * If a type is not defined then it will be considered not to be included.
+     */
+
+    [filter setConfigPrefix:@"types"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        NSEnumerator *eT = [[dbc Types] objectEnumerator];
+        dbGroup *type;
+        while ((type = [eT nextObject]) != nil) {
+            c = [filter configGet:[NSString stringWithFormat:@"type_%ld", (long)type._id]];
+            if (c == nil || [c boolValue] == NO)
+                continue;
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.type_id == type._id)
+                    [after addObject:wp];
+            }];
+        }
+
+        caches = after;
+    }
+
+    /* Filter out favourites:
+     * - If the min is 0 and the max is 100, then everything goes.
+     * - If the min is 0 and the max is not 100, then at most max.
+     * - If the min is not 0 and the max is 100, then at least min.
+     * - If the min is not 0 and the max is not 100, then between min and max.
+     */
+
+    [filter setConfigPrefix:@"favourites"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        NSInteger min = [[filter configGet:@"min"] integerValue];
+        NSInteger max = [[filter configGet:@"max"] integerValue];
+
+        if (min == 0 && max == 100) {
+            after = caches;
+        } else if (min == 0) {
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.groundspeak.favourites <= max)
+                    [after addObject:wp];
+            }];
+        } else if (max == 100) {
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.groundspeak.favourites >= min)
+                    [after addObject:wp];
+            }];
+        } else {
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.groundspeak.favourites >= min && wp.groundspeak.favourites <= max)
+                    [after addObject:wp];
+            }];
+        }
+
+        caches = after;
+    }
+
+    /* Filter out sizes:
+     * The filter selects out the caches which are of a certain size.
+     * If a size is not defined then it will be considered not to be included.
+     */
+
+    [filter setConfigPrefix:@"sizes"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        NSEnumerator *eT = [[dbc Containers] objectEnumerator];
+        dbContainer *container;
+        while ((container = [eT nextObject]) != nil) {
+            c = [filter configGet:[NSString stringWithFormat:@"container_%ld", (long)container._id]];
+            if (c == nil || [c boolValue] == NO)
+                continue;
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.groundspeak.container_id == container._id)
+                    [after addObject:wp];
+            }];
+        }
+
+        caches = after;
+    }
+
+    /* Filter out difficulty rating
+     */
+    [filter setConfigPrefix:@"difficulty"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        float min = [[filter configGet:@"min"] floatValue];
+        float max = [[filter configGet:@"max"] floatValue];
+
+        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            if (wp.groundspeak.rating_difficulty >= min && wp.groundspeak.rating_difficulty <= max)
+                [after addObject:wp];
+        }];
+
+        caches = after;
+    }
+
+    /* Filter out terrain rating
+     */
+
+    [filter setConfigPrefix:@"terrain"];
+    after = [NSMutableArray arrayWithCapacity:200];
+
+    c = [filter configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        float min = [[filter configGet:@"min"] floatValue];
+        float max = [[filter configGet:@"max"] floatValue];
+
+        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            if (wp.groundspeak.rating_terrain >= min && wp.groundspeak.rating_terrain <= max)
+                [after addObject:wp];
+        }];
+
+        caches = after;
     }
 
     return caches;

@@ -50,7 +50,7 @@
         cv.image = img;
         [self.contentView addSubview:cv];
 
-        NSString *cfg = [self configGet:[NSString stringWithFormat:@"containers_%ld", (long)c._id]];
+        NSString *cfg = [self configGet:[NSString stringWithFormat:@"container_%ld", (long)c._id]];
         if (cfg == nil)
             c.selected = NO;
         else
@@ -100,7 +100,7 @@
         if ([c.size compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
             c.selected = !c.selected;
             [b setTitleColor:c.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"containers_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
+            [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
             [self configUpdate];
             return;
         }

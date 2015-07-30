@@ -100,7 +100,7 @@
         if ([t.type compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
             t.selected = !t.selected;
             [b setTitleColor:t.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"types_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
+            [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
             [self configUpdate];
             return;
         }
