@@ -215,6 +215,29 @@
     return NO;
 }
 
++ (BOOL)filterDirection:(dbWaypoint *)wp
+{
+    CacheFilter *filter = [[CacheFilter alloc] init];
+
+    [filter setConfigPrefix:@"direction"];
+    NSString *c = [filter configGet:@"enabled"];
+    if (c == nil || [c boolValue] == NO)
+        return YES;
+
+    NSInteger direction = [[filter configGet:@"direction"] integerValue];
+
+    if (direction == 0 && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) return YES;
+    if (direction == 1 &&  wp.calculatedBearing <=  90 && wp.calculatedBearing >=   0) return YES;
+    if (direction == 2 &&  wp.calculatedBearing <= 135 && wp.calculatedBearing >=  45) return YES;
+    if (direction == 3 &&  wp.calculatedBearing <= 180 && wp.calculatedBearing >=  90) return YES;
+    if (direction == 4 &&  wp.calculatedBearing <= 225 && wp.calculatedBearing >= 135) return YES;
+    if (direction == 5 &&  wp.calculatedBearing <= 270 && wp.calculatedBearing >= 180) return YES;
+    if (direction == 6 &&  wp.calculatedBearing <= 315 && wp.calculatedBearing >= 225) return YES;
+    if (direction == 7 &&  wp.calculatedBearing <= 360 && wp.calculatedBearing >= 270) return YES;
+
+    return NO;
+}
+
 - (NSString *)configGet:(NSString *)_name
 {
     dbFilter *c = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];

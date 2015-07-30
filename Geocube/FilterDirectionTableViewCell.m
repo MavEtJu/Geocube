@@ -74,21 +74,13 @@
     if (s != nil)
         fo.expanded = [s boolValue];
 
-    directionString = [self configGet:@"direction"];
-    NSEnumerator *e = [directions objectEnumerator];
-    direction = 0;
-    while ((s = [e nextObject]) != nil) {
-        if ([s compare:directionString] == NSOrderedSame)
-            return;
-        direction++;
-    }
-    if (direction >= [directions count])
-        direction = 0;
+    direction = [[self configGet:@"direction"] integerValue];
+    directionString = [directions objectAtIndex:direction];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"direction" value:directionString];
+    [self configSet:@"direction" value:[NSString stringWithFormat:@"%ld", (long)direction]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 

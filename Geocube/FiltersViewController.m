@@ -40,8 +40,8 @@
     [filters addObject:[FilterObject init:@"Size"]];
     [filters addObject:[FilterObject init:@"Difficulty"]];
     [filters addObject:[FilterObject init:@"Terrain"]];
-    [filters addObject:[FilterObject init:@"Distance X"]];
-    [filters addObject:[FilterObject init:@"Direction X"]];
+    [filters addObject:[FilterObject init:@"Distance"]];
+    [filters addObject:[FilterObject init:@"Direction"]];
     [filters addObject:[FilterObject init:@"Text X"]];
     [filters addObject:[FilterObject init:@"Date X"]];
     [filters addObject:[FilterObject init:@"Category XYZ"]];

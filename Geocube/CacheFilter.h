@@ -27,5 +27,6 @@
 
 + (NSArray *)filter;
 + (BOOL)filterDistance:(dbWaypoint *)wp;
++ (BOOL)filterDirection:(dbWaypoint *)wp;
 
 @end
