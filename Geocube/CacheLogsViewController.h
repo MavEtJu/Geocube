@@ -20,10 +20,12 @@
  */
 
 @interface CacheLogsViewController : GCTableViewController {
+    BOOL mineOnly;
     dbWaypoint *waypoint;
     NSArray *logs;
 }
 
 - (id)init:(dbWaypoint *)waypoint;
+- (id)initMine:(dbWaypoint *)waypoint;
 
 @end

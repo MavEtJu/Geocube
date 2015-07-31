@@ -29,11 +29,22 @@
 {
     self = [super init];
     waypoint = _wp;
+    mineOnly = NO;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
+
+    return self;
+}
+
+- (id)initMine:(dbWaypoint *)_wp
+{
+    self = [self init:_wp];
+
+    mineOnly = YES;
+    logs = [dbLog dbAllByWaypointLogged:waypoint._id];
 
     return self;
 }

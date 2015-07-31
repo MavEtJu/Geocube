@@ -61,11 +61,10 @@
 + (NSId)dbGetIdByGC:(NSId)gc_id;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
++ (NSArray *)dbAllByWaypointLogged:(NSId)wp_id;
 + (NSId)dbCreate:(dbLog *)log;
 - (NSId)dbCreate;
 - (void)dbUpdateCache:(NSId)wp_id;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;
-
-
 
 @end

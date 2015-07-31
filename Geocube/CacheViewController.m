@@ -170,12 +170,15 @@
                     cell.userInteractionEnabled = NO;
                 }
                 break;
-            case 3: /* Field Note */
-                if ([waypoint hasFieldNotes] == FALSE) {
+            case 3: { /* Field Note */
+                NSInteger c = [waypoint hasFieldNotes];
+                if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
-                }
+                } else
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
                 break;
+            }
             case 4: { /* Logs */
                 NSInteger c = [waypoint hasLogs];
                 if (c == 0) {
@@ -263,6 +266,12 @@
         }
         if (indexPath.row == 1) {   /* Hint */
             UIViewController *newController = [[CacheHintViewController alloc] init:waypoint];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+        if (indexPath.row == 3) {   /* Field Notes */
+            UITableViewController *newController = [[CacheLogsViewController alloc] initMine:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;

@@ -105,7 +105,10 @@
     return [dbAttribute dbCountByWaypoint:_id];
 }
 
-- (NSInteger)hasFieldNotes { return 0; }
+- (NSInteger)hasFieldNotes {
+    return [[dbLog dbAllByWaypointLogged:_id] count];
+}
+
 - (NSInteger)hasWaypoints { return 0; }
 - (NSInteger)hasImages { return 0; }
 
