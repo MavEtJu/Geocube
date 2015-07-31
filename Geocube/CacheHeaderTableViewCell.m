@@ -71,7 +71,7 @@
 
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
-    icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
+    icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
 

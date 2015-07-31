@@ -79,14 +79,14 @@
         
         switch (wp.logStatus) {
             case LOGSTATUS_FOUND:
-                marker.icon = [imageLibrary getFound:wp.type.pin];
+                marker.icon = [imageLibrary getPinFound:wp.type.pin];
                 break;
             case LOGSTATUS_NOTFOUND:
-                marker.icon = [imageLibrary getDNF:wp.type.pin];
+                marker.icon = [imageLibrary getPinDNF:wp.type.pin];
                 break;
             case LOGSTATUS_NOTLOGGED:
             default:
-                marker.icon = [imageLibrary getNormal:wp.type.pin];
+                marker.icon = [imageLibrary getPinNormal:wp.type.pin];
                 break;
         }
 

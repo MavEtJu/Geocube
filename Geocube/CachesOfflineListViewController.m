@@ -134,7 +134,12 @@
     dbGroundspeak *gs = wp.groundspeak;
     cell.description.text = wp.description;
     cell.name.text = wp.name;
-    cell.icon.image = [imageLibrary get:wp.type.icon];
+    if (wp.logStatus == LOGSTATUS_NOTLOGGED)
+        cell.icon.image = [imageLibrary getTypeNormal:wp.type.icon];
+    if (wp.logStatus == LOGSTATUS_NOTFOUND)
+        cell.icon.image = [imageLibrary getTypeDNF:wp.type.icon];
+    if (wp.logStatus == LOGSTATUS_FOUND)
+        cell.icon.image = [imageLibrary getTypeFound:wp.type.icon];
 
     [cell setRatings:gs.favourites terrain:gs.rating_terrain difficulty:gs.rating_difficulty size:gs.container.icon];
 

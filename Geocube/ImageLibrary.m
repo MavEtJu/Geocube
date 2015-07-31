@@ -28,24 +28,24 @@
     self = [super init];
     NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
 
-    [self add:@"cache - benchmark - 30x30" index:ImageCaches_Benchmark];
-    [self add:@"cache - cito - 30x30" index:ImageCaches_CITO];
-    [self add:@"cache - earth - 30x30" index:ImageCaches_EarthCache];
-    [self add:@"cache - event - 30x30" index:ImageCaches_Event];
-    [self add:@"cache - giga - 30x30" index:ImageCaches_Giga];
-    [self add:@"cache - groundspeak hq - 30x30" index:ImageCaches_GroundspeakHQ];
-    [self add:@"cache - letterbox - 30x30" index:ImageCaches_Letterbox];
-    [self add:@"cache - maze - 30x30" index:ImageCaches_Maze];
-    [self add:@"cache - mega - 30x30" index:ImageCaches_Mega];
-    [self add:@"cache - multi - 30x30" index:ImageCaches_MultiCache];
-    [self add:@"cache - mystery - 30x30" index:ImageCaches_Mystery];
-    [self add:@"cache - unknown - 30x30" index:ImageCaches_Other];
-    [self add:@"cache - traditional - 30x30" index:ImageCaches_TraditionalCache];
-    [self add:@"cache - unknown - 30x30" index:ImageCaches_UnknownCache];
-    [self add:@"cache - virtual - 30x30" index:ImageCaches_VirtualCache];
-    [self add:@"cache - waymark - 30x30" index:ImageCaches_Waymark];
-    [self add:@"cache - webcam - 30x30" index:ImageCaches_WebcamCache];
-    [self add:@"cache - whereigo - 30x30" index:ImageCaches_WhereigoCache];
+    [self add:@"cache - benchmark - 30x30" index:ImageTypes_Benchmark];
+    [self add:@"cache - cito - 30x30" index:ImageTypes_CITO];
+    [self add:@"cache - earth - 30x30" index:ImageTypes_EarthCache];
+    [self add:@"cache - event - 30x30" index:ImageTypes_Event];
+    [self add:@"cache - giga - 30x30" index:ImageTypes_Giga];
+    [self add:@"cache - groundspeak hq - 30x30" index:ImageTypes_GroundspeakHQ];
+    [self add:@"cache - letterbox - 30x30" index:ImageTypes_Letterbox];
+    [self add:@"cache - maze - 30x30" index:ImageTypes_Maze];
+    [self add:@"cache - mega - 30x30" index:ImageTypes_Mega];
+    [self add:@"cache - multi - 30x30" index:ImageTypes_MultiCache];
+    [self add:@"cache - mystery - 30x30" index:ImageTypes_Mystery];
+    [self add:@"cache - unknown - 30x30" index:ImageTypes_Other];
+    [self add:@"cache - traditional - 30x30" index:ImageTypes_TraditionalCache];
+    [self add:@"cache - unknown - 30x30" index:ImageTypes_UnknownCache];
+    [self add:@"cache - virtual - 30x30" index:ImageTypes_VirtualCache];
+    [self add:@"cache - waymark - 30x30" index:ImageTypes_Waymark];
+    [self add:@"cache - webcam - 30x30" index:ImageTypes_WebcamCache];
+    [self add:@"cache - whereigo - 30x30" index:ImageTypes_WhereigoCache];
 
     [self add:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self add:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
@@ -57,7 +57,7 @@
     [self add:@"waypoint - trailhead - 30x30" index:ImageWaypoints_Trailhead];
     [self add:@"waypoint - trailhead - 30x30" index:ImageWaypoints_VirtualStage];
 
-    [self add:@"cache - unknown - 30x30" index:ImageCaches_NFI];
+    [self add:@"cache - unknown - 30x30" index:ImageTypes_NFI];
     [self add:@"waypoint - unknown - 30x30" index:Imagewaypoints_NFI];
     [self add:@"cache - unknown - 30x30" index:ImageNFI];
 
@@ -106,8 +106,10 @@
     [self add:@"pinhead - yellow - 15x15" index:ImageMap_pinheadYellow];
     [self add:@"pinhead - pink - 15x15" index:ImageMap_pinheadPink];
 
-    [self add:@"map - cross dnf - 9x9" index:ImageMap_crossDNF];
-    [self add:@"map - tick found - 9x9" index:ImageMap_tickFound];
+    [self add:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
+    [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
+    [self add:@"map - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
+    [self add:@"map - tick found - 24x21" index:ImageMap_typeTickFound];
 
     [self add:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self add:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -207,15 +209,15 @@
     [self mergePinhead:ImageMap_found top:ImageMap_pinheadYellow index:ImageMap_foundYellow];
     [self mergePinhead:ImageMap_found top:ImageMap_pinheadPink index:ImageMap_foundPink];
 
-    [self mergeFound:ImageMap_foundBlack top:ImageMap_tickFound index:ImageMap_foundBlack];
-    [self mergeFound:ImageMap_foundBrown top:ImageMap_tickFound index:ImageMap_foundBrown];
-    [self mergeFound:ImageMap_foundGreen top:ImageMap_tickFound index:ImageMap_foundGreen];
-    [self mergeFound:ImageMap_foundLightblue top:ImageMap_tickFound index:ImageMap_foundLightblue];
-    [self mergeFound:ImageMap_foundPurple top:ImageMap_tickFound index:ImageMap_foundPurple];
-    [self mergeFound:ImageMap_foundRed top:ImageMap_tickFound index:ImageMap_foundRed];
-    [self mergeFound:ImageMap_foundWhite top:ImageMap_tickFound index:ImageMap_foundWhite];
-    [self mergeFound:ImageMap_foundYellow top:ImageMap_tickFound index:ImageMap_foundYellow];
-    [self mergeFound:ImageMap_foundPink top:ImageMap_tickFound index:ImageMap_foundPink];
+    [self mergeFound:ImageMap_foundBlack top:ImageMap_pinTickFound index:ImageMap_foundBlack];
+    [self mergeFound:ImageMap_foundBrown top:ImageMap_pinTickFound index:ImageMap_foundBrown];
+    [self mergeFound:ImageMap_foundGreen top:ImageMap_pinTickFound index:ImageMap_foundGreen];
+    [self mergeFound:ImageMap_foundLightblue top:ImageMap_pinTickFound index:ImageMap_foundLightblue];
+    [self mergeFound:ImageMap_foundPurple top:ImageMap_pinTickFound index:ImageMap_foundPurple];
+    [self mergeFound:ImageMap_foundRed top:ImageMap_pinTickFound index:ImageMap_foundRed];
+    [self mergeFound:ImageMap_foundWhite top:ImageMap_pinTickFound index:ImageMap_foundWhite];
+    [self mergeFound:ImageMap_foundYellow top:ImageMap_pinTickFound index:ImageMap_foundYellow];
+    [self mergeFound:ImageMap_foundPink top:ImageMap_pinTickFound index:ImageMap_foundPink];
 
     /* Create DNF pins */
     [self mergePinhead:ImageMap_dnf top:ImageMap_pinheadBlack index:ImageMap_dnfBlack];
@@ -228,15 +230,15 @@
     [self mergePinhead:ImageMap_dnf top:ImageMap_pinheadYellow index:ImageMap_dnfYellow];
     [self mergePinhead:ImageMap_dnf top:ImageMap_pinheadPink index:ImageMap_dnfPink];
 
-    [self mergeDNF:ImageMap_dnfBlack top:ImageMap_crossDNF index:ImageMap_dnfBlack];
-    [self mergeDNF:ImageMap_dnfBrown top:ImageMap_crossDNF index:ImageMap_dnfBrown];
-    [self mergeDNF:ImageMap_dnfGreen top:ImageMap_crossDNF index:ImageMap_dnfGreen];
-    [self mergeDNF:ImageMap_dnfLightblue top:ImageMap_crossDNF index:ImageMap_dnfLightblue];
-    [self mergeDNF:ImageMap_dnfPurple top:ImageMap_crossDNF index:ImageMap_dnfPurple];
-    [self mergeDNF:ImageMap_dnfRed top:ImageMap_crossDNF index:ImageMap_dnfRed];
-    [self mergeDNF:ImageMap_dnfWhite top:ImageMap_crossDNF index:ImageMap_dnfWhite];
-    [self mergeDNF:ImageMap_dnfYellow top:ImageMap_crossDNF index:ImageMap_dnfYellow];
-    [self mergeDNF:ImageMap_dnfPink top:ImageMap_crossDNF index:ImageMap_dnfPink];
+    [self mergeDNF:ImageMap_dnfBlack top:ImageMap_pinCrossDNF index:ImageMap_dnfBlack];
+    [self mergeDNF:ImageMap_dnfBrown top:ImageMap_pinCrossDNF index:ImageMap_dnfBrown];
+    [self mergeDNF:ImageMap_dnfGreen top:ImageMap_pinCrossDNF index:ImageMap_dnfGreen];
+    [self mergeDNF:ImageMap_dnfLightblue top:ImageMap_pinCrossDNF index:ImageMap_dnfLightblue];
+    [self mergeDNF:ImageMap_dnfPurple top:ImageMap_pinCrossDNF index:ImageMap_dnfPurple];
+    [self mergeDNF:ImageMap_dnfRed top:ImageMap_pinCrossDNF index:ImageMap_dnfRed];
+    [self mergeDNF:ImageMap_dnfWhite top:ImageMap_pinCrossDNF index:ImageMap_dnfWhite];
+    [self mergeDNF:ImageMap_dnfYellow top:ImageMap_pinCrossDNF index:ImageMap_dnfYellow];
+    [self mergeDNF:ImageMap_dnfPink top:ImageMap_pinCrossDNF index:ImageMap_dnfPink];
 
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
@@ -250,6 +252,52 @@
     [self mergeRating:8 full:4 half:0];
     [self mergeRating:9 full:4 half:1];
     [self mergeRating:10 full:5 half:0];
+
+    /* Types */
+    type2found = ImageTypes_foundBenchmark - ImageTypes_Benchmark;
+    type2dnf = ImageTypes_dnfBenchmark - ImageTypes_Benchmark;
+
+    /* Create found types */
+    [self mergeFound:ImageTypes_Benchmark top:ImageMap_typeTickFound index:ImageTypes_foundBenchmark];
+    [self mergeFound:ImageTypes_CITO top:ImageMap_typeTickFound index:ImageTypes_foundCITO];
+    [self mergeFound:ImageTypes_EarthCache top:ImageMap_typeTickFound index:ImageTypes_foundEarthCache];
+    [self mergeFound:ImageTypes_Event top:ImageMap_typeTickFound index:ImageTypes_foundEvent];
+    [self mergeFound:ImageTypes_Giga top:ImageMap_typeTickFound index:ImageTypes_foundGiga];
+    [self mergeFound:ImageTypes_GroundspeakHQ top:ImageMap_typeTickFound index:ImageTypes_foundGroundspeakHQ];
+    [self mergeFound:ImageTypes_Letterbox top:ImageMap_typeTickFound index:ImageTypes_foundLetterbox];
+    [self mergeFound:ImageTypes_Maze top:ImageMap_typeTickFound index:ImageTypes_foundMaze];
+    [self mergeFound:ImageTypes_Mega top:ImageMap_typeTickFound index:ImageTypes_foundMega];
+    [self mergeFound:ImageTypes_MultiCache top:ImageMap_typeTickFound index:ImageTypes_foundMultiCache];
+    [self mergeFound:ImageTypes_Mystery top:ImageMap_typeTickFound index:ImageTypes_foundMystery];
+    [self mergeFound:ImageTypes_Other top:ImageMap_typeTickFound index:ImageTypes_foundOther];
+    [self mergeFound:ImageTypes_TraditionalCache top:ImageMap_typeTickFound index:ImageTypes_foundTraditionalCache];
+    [self mergeFound:ImageTypes_UnknownCache top:ImageMap_typeTickFound index:ImageTypes_foundUnknownCache];
+    [self mergeFound:ImageTypes_VirtualCache top:ImageMap_typeTickFound index:ImageTypes_foundVirtualCache];
+    [self mergeFound:ImageTypes_Waymark top:ImageMap_typeTickFound index:ImageTypes_foundWaymark];
+    [self mergeFound:ImageTypes_WebcamCache top:ImageMap_typeTickFound index:ImageTypes_foundWebcamCache];
+    [self mergeFound:ImageTypes_WhereigoCache top:ImageMap_typeTickFound index:ImageTypes_foundWhereigoCache];
+    [self mergeFound:ImageTypes_NFI top:ImageMap_typeTickFound index:ImageTypes_foundNFI];
+
+    /* Create DNF types */
+    [self mergeFound:ImageTypes_Benchmark top:ImageMap_typeCrossDNF index:ImageTypes_dnfBenchmark];
+    [self mergeFound:ImageTypes_CITO top:ImageMap_typeCrossDNF index:ImageTypes_dnfCITO];
+    [self mergeFound:ImageTypes_EarthCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfEarthCache];
+    [self mergeFound:ImageTypes_Event top:ImageMap_typeCrossDNF index:ImageTypes_dnfEvent];
+    [self mergeFound:ImageTypes_Giga top:ImageMap_typeCrossDNF index:ImageTypes_dnfGiga];
+    [self mergeFound:ImageTypes_GroundspeakHQ top:ImageMap_typeCrossDNF index:ImageTypes_dnfGroundspeakHQ];
+    [self mergeFound:ImageTypes_Letterbox top:ImageMap_typeCrossDNF index:ImageTypes_dnfLetterbox];
+    [self mergeFound:ImageTypes_Maze top:ImageMap_typeCrossDNF index:ImageTypes_dnfMaze];
+    [self mergeFound:ImageTypes_Mega top:ImageMap_typeCrossDNF index:ImageTypes_dnfMega];
+    [self mergeFound:ImageTypes_MultiCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfMultiCache];
+    [self mergeFound:ImageTypes_Mystery top:ImageMap_typeCrossDNF index:ImageTypes_dnfMystery];
+    [self mergeFound:ImageTypes_Other top:ImageMap_typeCrossDNF index:ImageTypes_dnfOther];
+    [self mergeFound:ImageTypes_TraditionalCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfTraditionalCache];
+    [self mergeFound:ImageTypes_UnknownCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfUnknownCache];
+    [self mergeFound:ImageTypes_VirtualCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfVirtualCache];
+    [self mergeFound:ImageTypes_Waymark top:ImageMap_typeCrossDNF index:ImageTypes_dnfWaymark];
+    [self mergeFound:ImageTypes_WebcamCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfWebcamCache];
+    [self mergeFound:ImageTypes_WhereigoCache top:ImageMap_typeCrossDNF index:ImageTypes_dnfWhereigoCache];
+    [self mergeFound:ImageTypes_NFI top:ImageMap_typeCrossDNF index:ImageTypes_dnfNFI];
 
     return self;
 }
@@ -345,19 +393,34 @@
     return img;
 }
 
-- (UIImage *)getFound:(NSInteger)imgnum
+- (UIImage *)getPinFound:(NSInteger)imgnum
 {
     return [self get:imgnum + pin2found];
 }
 
-- (UIImage *)getDNF:(NSInteger)imgnum
+- (UIImage *)getPinDNF:(NSInteger)imgnum
 {
     return [self get:imgnum + pin2dnf];
 }
 
-- (UIImage *)getNormal:(NSInteger)imgnum
+- (UIImage *)getPinNormal:(NSInteger)imgnum
 {
     return [self get:imgnum + pin2normal];
+}
+
+- (UIImage *)getTypeFound:(NSInteger)imgnum
+{
+    return [self get:imgnum + type2found];
+}
+
+- (UIImage *)getTypeDNF:(NSInteger)imgnum
+{
+    return [self get:imgnum + type2dnf];
+}
+
+- (UIImage *)getTypeNormal:(NSInteger)imgnum
+{
+    return [self get:imgnum + type2normal];
 }
 
 - (NSString *)getName:(NSInteger)imgnum

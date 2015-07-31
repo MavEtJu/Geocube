@@ -23,25 +23,65 @@ typedef enum {
     ImageLibraryImagesMin = -1,
 
     /* Do not reorder, index matches schema.sql */
-    ImageCaches_Benchmark = 100,
-    ImageCaches_CITO,
-    ImageCaches_EarthCache,
-    ImageCaches_Event,
-    ImageCaches_Giga,
-    ImageCaches_GroundspeakHQ,
-    ImageCaches_Letterbox,
-    ImageCaches_Maze,
-    ImageCaches_Mega,
-    ImageCaches_MultiCache,
-    ImageCaches_Mystery,
-    ImageCaches_Other,
-    ImageCaches_TraditionalCache,
-    ImageCaches_UnknownCache,
-    ImageCaches_VirtualCache,
-    ImageCaches_Waymark,
-    ImageCaches_WebcamCache,
-    ImageCaches_WhereigoCache,
-    ImageCaches_NFI,
+    ImageTypes_Benchmark = 100,
+    ImageTypes_CITO,
+    ImageTypes_EarthCache,
+    ImageTypes_Event,
+    ImageTypes_Giga,
+    ImageTypes_GroundspeakHQ,
+    ImageTypes_Letterbox,
+    ImageTypes_Maze,
+    ImageTypes_Mega,
+    ImageTypes_MultiCache,
+    ImageTypes_Mystery,
+    ImageTypes_Other,
+    ImageTypes_TraditionalCache,
+    ImageTypes_UnknownCache,
+    ImageTypes_VirtualCache,
+    ImageTypes_Waymark,
+    ImageTypes_WebcamCache,
+    ImageTypes_WhereigoCache,
+    ImageTypes_NFI,
+
+    ImageTypes_foundBenchmark,
+    ImageTypes_foundCITO,
+    ImageTypes_foundEarthCache,
+    ImageTypes_foundEvent,
+    ImageTypes_foundGiga,
+    ImageTypes_foundGroundspeakHQ,
+    ImageTypes_foundLetterbox,
+    ImageTypes_foundMaze,
+    ImageTypes_foundMega,
+    ImageTypes_foundMultiCache,
+    ImageTypes_foundMystery,
+    ImageTypes_foundOther,
+    ImageTypes_foundTraditionalCache,
+    ImageTypes_foundUnknownCache,
+    ImageTypes_foundVirtualCache,
+    ImageTypes_foundWaymark,
+    ImageTypes_foundWebcamCache,
+    ImageTypes_foundWhereigoCache,
+    ImageTypes_foundNFI,
+
+    ImageTypes_dnfBenchmark,
+    ImageTypes_dnfCITO,
+    ImageTypes_dnfEarthCache,
+    ImageTypes_dnfEvent,
+    ImageTypes_dnfGiga,
+    ImageTypes_dnfGroundspeakHQ,
+    ImageTypes_dnfLetterbox,
+    ImageTypes_dnfMaze,
+    ImageTypes_dnfMega,
+    ImageTypes_dnfMultiCache,
+    ImageTypes_dnfMystery,
+    ImageTypes_dnfOther,
+    ImageTypes_dnfTraditionalCache,
+    ImageTypes_dnfUnknownCache,
+    ImageTypes_dnfVirtualCache,
+    ImageTypes_dnfWaymark,
+    ImageTypes_dnfWebcamCache,
+    ImageTypes_dnfWhereigoCache,
+    ImageTypes_dnfNFI,
 
     ImageWaypoints_FinalLocation = 200,
     ImageWaypoints_Flag,
@@ -197,8 +237,10 @@ typedef enum {
     ImageMap_dnf,
     ImageMap_found,
 
-    ImageMap_crossDNF,
-    ImageMap_tickFound,
+    ImageMap_pinCrossDNF,
+    ImageMap_pinTickFound,
+    ImageMap_typeCrossDNF,
+    ImageMap_typeTickFound,
 
     ImageCacheView_ratingBase,
     ImageCacheView_ratingOff,
@@ -221,13 +263,20 @@ typedef enum {
     NSInteger pin2normal;
     NSInteger pin2found;
     NSInteger pin2dnf;
+
+    NSInteger type2normal;
+    NSInteger type2found;
+    NSInteger type2dnf;
 };
 
 - (id)init;
 - (UIImage *)get:(NSInteger)imgnum;
-- (UIImage *)getNormal:(NSInteger)imgnum;
-- (UIImage *)getFound:(NSInteger)imgnum;
-- (UIImage *)getDNF:(NSInteger)imgnum;
+- (UIImage *)getPinNormal:(NSInteger)imgnum;
+- (UIImage *)getPinFound:(NSInteger)imgnum;
+- (UIImage *)getPinDNF:(NSInteger)imgnum;
+- (UIImage *)getTypeNormal:(NSInteger)imgnum;
+- (UIImage *)getTypeFound:(NSInteger)imgnum;
+- (UIImage *)getTypeDNF:(NSInteger)imgnum;
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 

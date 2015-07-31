@@ -53,7 +53,7 @@
 
     // Image
     logtype = [[UIImageView alloc] initWithFrame:rectImage];
-    logtype.image = [imageLibrary get:ImageCaches_TraditionalCache];
+    logtype.image = [imageLibrary get:ImageTypes_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:logtype];
 

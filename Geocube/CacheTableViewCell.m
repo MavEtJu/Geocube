@@ -79,7 +79,7 @@
     CGRect rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingsD.size.width, DISTANCE_HEIGHT);
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
-    icon.image = [imageLibrary get:ImageCaches_TraditionalCache];
+    icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:icon];
 
