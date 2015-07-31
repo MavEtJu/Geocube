@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <sys/time.h>
 #import "Geocube-Prefix.pch"
 
 @implementation MyTools
@@ -111,6 +112,50 @@
     if (i < 10000)
         return [NSString stringWithFormat:@"%0.1f km", i / 1000.0];
     return [NSString stringWithFormat:@"%ld km", (long)i / 1000];
+}
+
+- (id)initClock:(NSString *)_title
+{
+    self = [super init];
+
+    clockTitle = _title;
+    gettimeofday(&clock, NULL);
+    [self clockShowAndReset];
+
+    return self;
+}
+
+- (void)clockShowAndReset
+{
+    [self clockShowAndReset:nil];
+}
+
+- (void)clockShowAndReset:(NSString *)title
+{
+    struct timeval now, diff;
+    gettimeofday(&now, NULL);
+    if (now.tv_usec < clock.tv_usec) {
+        now.tv_sec--;
+        now.tv_usec += 1000000;
+    }
+    diff.tv_usec = now.tv_usec - clock.tv_usec;
+    diff.tv_sec = now.tv_sec - clock.tv_sec;
+
+    clock = now;
+    if (clockEnabled == NO)
+        return;
+
+    NSMutableString *t = [NSMutableString stringWithString:clockTitle];
+    if (title != nil) {
+        [t appendString:@":"];
+        [t appendString:title];
+    }
+    NSLog(@"CLOCK: %@ %ld.%06d", t, diff.tv_sec, diff.tv_usec);
+}
+
+- (void)clockEnable:(BOOL)yesno
+{
+    clockEnabled = yesno;
 }
 
 @end

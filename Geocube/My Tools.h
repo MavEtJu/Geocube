@@ -22,7 +22,11 @@
 #ifndef Geocube_My_Tools_h
 #define Geocube_My_Tools_h
 
-@interface MyTools : NSObject
+@interface MyTools : NSObject {
+    struct timeval clock;
+    BOOL clockEnabled;
+    NSString *clockTitle;
+}
 
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
@@ -37,6 +41,11 @@
 
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)NiceDistance:(NSInteger)i;
+
+- (id)initClock:(NSString *)title;
+- (void)clockShowAndReset;
+- (void)clockShowAndReset:(NSString *)title;
+- (void)clockEnable:(BOOL)yesno;
 
 @end
 

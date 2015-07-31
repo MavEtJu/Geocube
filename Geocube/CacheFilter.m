@@ -30,6 +30,8 @@
     CacheFilter *filter = [[CacheFilter alloc] init];
     NSMutableArray *caches;
     NSMutableArray *after;
+    MyTools *clock = [[MyTools alloc] initClock:@"filter"];
+    [clock clockEnable:NO];
 
     /* Filter out by group:
      * The filter selects out the caches which belong to a certain group.
@@ -38,6 +40,8 @@
 
     [filter setConfigPrefix:@"groups"];
     caches = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"groups"];
+
 
     NSString *c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -52,7 +56,9 @@
         }
         [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
     } else {
+        [clock clockShowAndReset];
         caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+        [clock clockShowAndReset];
     }
 
     /* Filter out cache types:
@@ -62,6 +68,7 @@
 
     [filter setConfigPrefix:@"types"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"types"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -89,6 +96,7 @@
 
     [filter setConfigPrefix:@"favourites"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"favourites"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -124,6 +132,7 @@
 
     [filter setConfigPrefix:@"sizes"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"sizes"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -146,6 +155,7 @@
      */
     [filter setConfigPrefix:@"difficulty"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"difficulty"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -165,6 +175,7 @@
 
     [filter setConfigPrefix:@"terrain"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"terrain"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -183,6 +194,7 @@
      */
     [filter setConfigPrefix:@"dates"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"dates"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
@@ -257,6 +269,7 @@
      */
     [filter setConfigPrefix:@"text"];
     after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"text"];
 
     c = [filter configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
