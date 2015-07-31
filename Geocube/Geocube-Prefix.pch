@@ -32,6 +32,7 @@
 #import <sqlite3.h>
 
 #import "SSZipArchive.h"
+#import "DejalActivityView.h"
 #import "DOPNavbarMenu.h"
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"

@@ -31,7 +31,7 @@
     NSMutableArray *caches;
     NSMutableArray *after;
     MyTools *clock = [[MyTools alloc] initClock:@"filter"];
-    [clock clockEnable:NO];
+    [clock clockEnable:YES];
 
     /* Filter out by group:
      * The filter selects out the caches which belong to a certain group.

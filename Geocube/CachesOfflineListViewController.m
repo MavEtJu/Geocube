@@ -59,8 +59,13 @@
 {
     [super viewWillAppear:animated];
     [LM startDelegation:nil isNavigating:NO];
-    [self refreshCachesData:nil];
-    [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
+    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -69,11 +74,19 @@
     [LM stopDelegation:nil];
 }
 
+- (void)refreshCachesData
+{
+    [self refreshCachesData:nil];
+    [DejalBezelActivityView removeView];
+}
+
 - (void)refreshCachesData:(NSString *)searchString
 {
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
     MyTools *clock = [[MyTools alloc] initClock:@"refreshCachesData"];
+
     NSEnumerator *e = [[CacheFilter filter] objectEnumerator];
+
     [clock clockShowAndReset];
     dbWaypoint *wp;
 
@@ -100,6 +113,7 @@
     }];
 
     waypointCount = [waypoints count];
+    [self.tableView reloadData];
 }
 
 
