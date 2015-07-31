@@ -48,7 +48,10 @@
     while ((f = [e nextObject]) != nil) {
         NSString *fromfile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], f];
         NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
-        [fm copyItemAtPath:fromfile toPath:tofile error:nil];
+        NSError *error;
+        if ([fm fileExistsAtPath:tofile isDirectory:nil] == YES)
+            [fm removeItemAtPath:tofile error:nil];
+        [fm copyItemAtPath:fromfile toPath:tofile error:&error];
     }
 
     // Initialize the global menu
