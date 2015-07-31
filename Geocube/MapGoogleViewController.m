@@ -73,10 +73,23 @@
     while ((wp = [e nextObject]) != nil) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
-        marker.icon = [imageLibrary getNormal:wp.type.pin];
         marker.title = wp.name;
         marker.snippet = wp.description;
         marker.map = mapView;
+        
+        switch (wp.logStatus) {
+            case LOGSTATUS_FOUND:
+                marker.icon = [imageLibrary getFound:wp.type.pin];
+                break;
+            case LOGSTATUS_NOTFOUND:
+                marker.icon = [imageLibrary getDNF:wp.type.pin];
+                break;
+            case LOGSTATUS_NOTLOGGED:
+            default:
+                marker.icon = [imageLibrary getNormal:wp.type.pin];
+                break;
+        }
+
         [markers addObject:marker];
     }
 }

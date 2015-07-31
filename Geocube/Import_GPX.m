@@ -90,6 +90,7 @@
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
     [dbc loadWaypointData];
+    [dbWaypoint dbUpdateLogStatus];
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -188,6 +189,7 @@
         [currentWP finish];
         [currentGS finish];
 
+        // Determine if it is a new waypoint or an existing one
         currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
         totalWaypointsCount++;
         if (currentWP._id == 0) {

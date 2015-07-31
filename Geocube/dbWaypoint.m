@@ -23,7 +23,7 @@
 
 @implementation dbWaypoint
 
-@synthesize groundspeak, groundspeak_id, name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type,  symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing;
+@synthesize groundspeak, groundspeak_id, name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type,  symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing, logStatus;
 
 - (id)init:(NSId)__id
 {
@@ -51,6 +51,7 @@
     self.symbol = nil;
     self.coordinates = CLLocationCoordinate2DMake(0, 0);
     self.calculatedDistance = 0;
+    self.logStatus = LOGSTATUS_NOTLOGGED;
 
     return self;
 }
@@ -122,7 +123,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
@@ -141,6 +142,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
 
             [wp finish];
             [wps addObject:wp];
@@ -156,8 +158,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-//        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it') and logger_id in (select id from names where name = 'Team MavEtJu'))");
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints where id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select account from accounts))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select account from accounts))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints where id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select account from accounts))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select account from accounts))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
@@ -176,6 +177,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
 
             [wp finish];
             [wps addObject:wp];
@@ -191,7 +193,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Found it') and logger_id in (select id from names where name in (select account from accounts)))");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Found it') and logger_id in (select id from names where name in (select account from accounts)))");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
@@ -210,6 +212,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
 
             [wp finish];
             [wps addObject:wp];
@@ -225,7 +228,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Attended') and logger_id in (select id from names where name in (select account from accounts)))");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Attended') and logger_id in (select id from names where name in (select account from accounts)))");
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
@@ -244,6 +247,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
 
             [wp finish];
             [wps addObject:wp];
@@ -268,7 +272,7 @@
     }
 
     @synchronized(db.dbaccess) {
-        NSString *sql = [NSString stringWithFormat:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints wp where wp.id in (select waypoint_id from group2waypoints where %@)", where];
+        NSString *sql = [NSString stringWithFormat:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints wp where wp.id in (select waypoint_id from group2waypoints where %@)", where];
         DB_PREPARE(sql);
         NSInteger i = 1;
         NSEnumerator *e = [groups objectEnumerator];
@@ -295,6 +299,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
 
             [wp finish];
             [wps addObject:wp];
@@ -327,7 +332,7 @@
     dbWaypoint *wp;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname from waypoints where id = ?");
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints where id = ?");
 
         SET_VAR_INT(1, _id);
 
@@ -348,6 +353,7 @@
             INT_FETCH( 11, wp.symbol_id);
             INT_FETCH( 12, wp.groundspeak_id);
             TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 12, wp.logStatus);
 
             [wp finish];
         }
@@ -362,7 +368,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id, log_status) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, wp.name);
         SET_VAR_TEXT( 2, wp.description);
@@ -377,6 +383,7 @@
         SET_VAR_INT( 11, wp.symbol_id);
         SET_VAR_TEXT(12, wp.urlname);
         SET_VAR_INT( 13, wp.groundspeak_id);
+        SET_VAR_INT( 14, wp.logStatus);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -388,7 +395,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ? where id = ?");
+        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ?, log_status = ? where id = ?");
 
         SET_VAR_TEXT( 1, name);
         SET_VAR_TEXT( 2, description);
@@ -403,7 +410,8 @@
         SET_VAR_INT( 11, symbol_id);
         SET_VAR_INT( 12, groundspeak_id);
         SET_VAR_TEXT(13, urlname);
-        SET_VAR_INT( 14, _id);
+        SET_VAR_INT( 14, logStatus);
+        SET_VAR_INT( 15, _id);
         
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -418,6 +426,20 @@
         SET_VAR_INT(1, groundspeak_id);
         SET_VAR_INT(2, _id);
         
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (void)dbUpdateLogStatus
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set log_status = 1 where id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Didn''t find it') and logger_id in (select id from names where name in (select account from accounts)))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set log_status = 2 where id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Found it' or logtype = 'Attended') and logger_id in (select id from names where name in (select account from accounts)))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }

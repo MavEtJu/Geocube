@@ -24,7 +24,7 @@
 @implementation DatabaseCache
 
 @synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States, Accounts;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound;
 
 - (id)init
 {
@@ -119,8 +119,23 @@
             LogType_Unknown = lt;
             continue;
         }
+        if ([lt.logtype compare:@"Found it"] == NSOrderedSame) {
+            LogType_Found = lt;
+            continue;
+        }
+        if ([lt.logtype compare:@"Attended"] == NSOrderedSame) {
+            LogType_Attended = lt;
+            continue;
+        }
+        if ([lt.logtype compare:@"Didn't find it"] == NSOrderedSame) {
+            LogType_NotFound = lt;
+            continue;
+        }
     }
     NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
+    NSAssert(LogType_Attended != nil, @"LogType_Attended");
+    NSAssert(LogType_NotFound != nil, @"LogType_NotFound");
+    NSAssert(LogType_Found != nil, @"LogType_Found");
 
     e = [Attributes objectEnumerator];
     dbAttribute *a;

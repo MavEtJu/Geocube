@@ -44,6 +44,9 @@
 
     // LogTypes
     dbLogType *LogType_Unknown;
+    dbLogType *LogType_Found;
+    dbLogType *LogType_Attended;
+    dbLogType *LogType_NotFound;
 
     // Container
     dbContainer *Container_Unknown;
@@ -75,6 +78,9 @@
 
 // LogTypes
 @property (nonatomic, retain) dbLogType *LogType_Unknown;
+@property (nonatomic, retain) dbLogType *LogType_Found;
+@property (nonatomic, retain) dbLogType *LogType_Attended;
+@property (nonatomic, retain) dbLogType *LogType_NotFound;
 
 // ContainerSize
 @property (nonatomic, retain) dbContainer *Container_Unknown;

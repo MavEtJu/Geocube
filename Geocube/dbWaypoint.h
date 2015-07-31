@@ -40,11 +40,19 @@
     NSString *type_str;
     dbType *type;
 
+    NSInteger logStatus;
+
     /* Not read from the database */
     CLLocationCoordinate2D coordinates;
     NSInteger calculatedDistance;
     NSInteger calculatedBearing;
 }
+
+enum {
+        LOGSTATUS_NOTLOGGED,
+        LOGSTATUS_NOTFOUND,
+        LOGSTATUS_FOUND,
+};
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
@@ -66,6 +74,7 @@
 @property (nonatomic, retain) dbType *type;
 @property (nonatomic) NSId groundspeak_id;
 @property (nonatomic, retain) dbGroundspeak *groundspeak;
+@property (nonatomic) NSInteger logStatus;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
@@ -89,5 +98,6 @@
 + (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
++ (void)dbUpdateLogStatus;
 
 @end
