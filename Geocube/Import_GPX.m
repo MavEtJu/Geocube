@@ -209,6 +209,8 @@
             [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
             [group dbAddWaypoint:currentWP._id];
         } else {
+            dbWaypoint *oldWP = [dbWaypoint dbGet:currentWP._id];
+            currentWP.groundspeak_id = oldWP.groundspeak_id;
             [currentWP dbUpdate];
 
             // Save the groundspeak data
