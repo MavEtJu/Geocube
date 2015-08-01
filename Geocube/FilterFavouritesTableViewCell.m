@@ -73,7 +73,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"favourites";
+    [self configPrefix:@"favourites"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

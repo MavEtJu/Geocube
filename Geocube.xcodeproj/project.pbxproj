@@ -10,7 +10,7 @@
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
-		E8045B891B697A3B00DD44CC /* CacheFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* CacheFilter.m */; };
+		E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* CacheFilterManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
 		E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A71B5F84B4007FDC29 /* attributes - 02.png */; };
 		E80731EB1B5F84B4007FDC29 /* attributes - 03.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A81B5F84B4007FDC29 /* attributes - 03.png */; };
@@ -310,8 +310,8 @@
 		E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGoogleViewController.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
-		E8045B871B697A3B00DD44CC /* CacheFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFilter.h; sourceTree = "<group>"; };
-		E8045B881B697A3B00DD44CC /* CacheFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheFilter.m; sourceTree = "<group>"; };
+		E8045B871B697A3B00DD44CC /* CacheFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFilterManager.h; sourceTree = "<group>"; };
+		E8045B881B697A3B00DD44CC /* CacheFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheFilterManager.m; sourceTree = "<group>"; };
 		E80731A61B5F84B4007FDC29 /* attributes - 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 01.png"; path = "images/attributes - 01.png"; sourceTree = "<group>"; };
 		E80731A71B5F84B4007FDC29 /* attributes - 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 02.png"; path = "images/attributes - 02.png"; sourceTree = "<group>"; };
 		E80731A81B5F84B4007FDC29 /* attributes - 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 03.png"; path = "images/attributes - 03.png"; sourceTree = "<group>"; };
@@ -760,8 +760,8 @@
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
 				E8F4085A1B58A26300FBA858 /* GCLocationManager.h */,
 				E8F4085B1B58A26300FBA858 /* GCLocationManager.m */,
-				E8045B871B697A3B00DD44CC /* CacheFilter.h */,
-				E8045B881B697A3B00DD44CC /* CacheFilter.m */,
+				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
+				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1798,7 +1798,7 @@
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
-				E8045B891B697A3B00DD44CC /* CacheFilter.m in Sources */,
+				E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,

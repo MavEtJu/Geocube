@@ -91,7 +91,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"distance";
+    [self configPrefix:@"distance"];
     
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

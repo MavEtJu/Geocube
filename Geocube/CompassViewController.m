@@ -177,7 +177,7 @@
     [self.view addSubview:distance];
 
     l = [[UILabel alloc] initWithFrame:rectDescription];
-    l.text = currentWaypoint.description;
+    l.text = waypointManager.currentWaypoint.description;
     l.textAlignment = NSTextAlignmentCenter;
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
@@ -196,15 +196,15 @@
     [LM startDelegation:self isNavigating:TRUE];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:currentWaypoint.lat_float lon:currentWaypoint.lon_float];
+    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.lat_float lon:waypointManager.currentWaypoint.lon_float];
 
-    wpIcon.image = [imageLibrary get:currentWaypoint.type.icon];
-    containerSize.image = [imageLibrary get:currentWaypoint.groundspeak.container.icon];
-    ratingD.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_difficulty];
-    ratingT.image = [imageLibrary getRating:currentWaypoint.groundspeak.rating_terrain];
+    wpIcon.image = [imageLibrary get:waypointManager.currentWaypoint.type.icon];
+    containerSize.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
+    ratingD.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
+    ratingT.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
 
-    if (currentWaypoint != nil) {
-        wpName.text = currentWaypoint.name;
+    if (waypointManager.currentWaypoint != nil) {
+        wpName.text = waypointManager.currentWaypoint.name;
         wpLat.text = [coords lat_degreesDecimalMinutes];
         wpLon.text = [coords lon_degreesDecimalMinutes];
     }
@@ -241,10 +241,10 @@
 
     oldRad = newRad;
 
-    if (currentWaypoint == nil)
+    if (waypointManager.currentWaypoint == nil)
         return;
 
-    distance.text = [Coordinates NiceDistance:[c distance:currentWaypoint.coordinates]];
+    distance.text = [Coordinates NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
 }
 
 @end

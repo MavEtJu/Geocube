@@ -305,12 +305,12 @@
 
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
-            currentWaypoint = waypoint;
+            waypointManager.currentWaypoint = waypoint;
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
-            [cvc showWaypoint:currentWaypoint];
+            [cvc showWaypoint:waypointManager.currentWaypoint];
 
             nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_GMAP];
             MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];

@@ -147,7 +147,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"text";
+    [self configPrefix:@"text"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

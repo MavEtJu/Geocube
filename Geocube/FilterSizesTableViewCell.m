@@ -78,7 +78,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"sizes";
+    [self configPrefix:@"sizes"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

@@ -34,10 +34,9 @@
     CLLocationDistance altitude;
     CLLocationDirection direction;
     CLLocationCoordinate2D coords;
-    NSInteger delegateCounter;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) NSMutableArray *delegates;
 
 @property (nonatomic) CLLocationAccuracy accuracy;
 @property (nonatomic) CLLocationDistance altitude;

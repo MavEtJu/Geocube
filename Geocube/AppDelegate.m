@@ -35,6 +35,9 @@
     // File manager
     fm = [[NSFileManager alloc] init];
 
+    // Waypoint Manager
+    waypointManager = [[CacheFilterManager alloc] init];
+
     // Initialize Google Maps
     [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
 

@@ -164,7 +164,7 @@
 {
     CLLocationCoordinate2D coordinateArray[2];
     coordinateArray[0] = LM.coords;
-    coordinateArray[1] = currentWaypoint.coordinates;
+    coordinateArray[1] = waypointManager.currentWaypoint.coordinates;
 
     lineMeToWaypoint = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
     [mapView setVisibleMapRect:[lineMeToWaypoint boundingMapRect]]; //If you want the route to be visible

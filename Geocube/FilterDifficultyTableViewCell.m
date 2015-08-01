@@ -75,7 +75,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"difficulty";
+    [self configPrefix:@"difficulty"];
     
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

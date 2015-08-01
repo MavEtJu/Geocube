@@ -68,7 +68,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"direction";
+    [self configPrefix:@"direction"];
     
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

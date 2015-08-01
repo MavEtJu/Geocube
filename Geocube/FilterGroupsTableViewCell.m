@@ -73,7 +73,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"groups";
+    [self configPrefix:@"groups"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

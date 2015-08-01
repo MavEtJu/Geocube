@@ -74,7 +74,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"terrain";
+    [self configPrefix:@"terrain"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

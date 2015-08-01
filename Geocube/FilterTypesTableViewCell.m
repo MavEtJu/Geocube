@@ -78,7 +78,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"types";
+    [self configPrefix:@"types"];
 
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

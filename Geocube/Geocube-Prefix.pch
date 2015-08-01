@@ -71,7 +71,7 @@
 #import "AppDelegate.h"
 #import "GlobalMenu.h"
 #import "ImageLibrary.h"
-#import "CacheFilter.h"
+#import "CacheFilterManager.h"
 #import "Geocube.h"
 
 #import "Import_GPX.h"

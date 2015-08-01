@@ -132,7 +132,7 @@
 - (void)addLineMeToWaypoint
 {
     GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
-    [pathMeToWaypoint addCoordinate:currentWaypoint.coordinates];
+    [pathMeToWaypoint addCoordinate:waypointManager.currentWaypoint.coordinates];
     [pathMeToWaypoint addCoordinate:LM.coords];
 
     lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];

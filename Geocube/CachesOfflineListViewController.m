@@ -58,7 +58,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [LM startDelegation:nil isNavigating:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,7 +70,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [LM stopDelegation:nil];
 }
 
 - (void)refreshCachesData
@@ -85,7 +83,8 @@
     NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
     MyTools *clock = [[MyTools alloc] initClock:@"refreshCachesData"];
 
-    NSEnumerator *e = [[CacheFilter filter] objectEnumerator];
+    [waypointManager applyFilters:LM.coords];
+    NSEnumerator *e = [[waypointManager currentWaypoints] objectEnumerator];
 
     [clock clockShowAndReset];
     dbWaypoint *wp;
@@ -93,14 +92,9 @@
     while ((wp = [e nextObject]) != nil) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
             continue;
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
-
-        if ([CacheFilter filterDistance:wp] == YES &&
-            [CacheFilter filterDirection:wp] == YES)
-            [_wps addObject:wp];
-        // wp.groundspeak = [dbGroundspeak dbGet:wp.groundspeak_id];
+        [_wps addObject:wp];
     }
+
     waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;

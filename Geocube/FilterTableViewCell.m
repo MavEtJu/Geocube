@@ -68,21 +68,23 @@
 
 #pragma mark -- configuration
 
-- (NSString *)configGet:(NSString *)_name
-{
-    dbFilter *c = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
-    if (c == nil)
-        return nil;
-    return c.value;
-}
-
 - (void)configInit
 {
 }
 
+- (void)configPrefix:(NSString *)prefix
+{
+    configPrefix = prefix;
+}
+
+- (NSString *)configGet:(NSString *)_name
+{
+    return [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
+}
+
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    [dbFilter dbUpdateOrInsert:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
+    [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
 }
 
 - (void)configUpdate

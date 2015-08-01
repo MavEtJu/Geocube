@@ -91,10 +91,10 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     if (showWhom == SHOW_ME)
         [self moveCameraTo:meLocation];
     if (showWhom == SHOW_BOTH)
-        [self moveCameraTo:currentWaypoint.coordinates c2:meLocation];
+        [self moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
 
     [self removeLineMeToWaypoint];
-    if (currentWaypoint != nil)
+    if (waypointManager.currentWaypoint != nil)
         [self addLineMeToWaypoint];
 }
 
@@ -102,13 +102,14 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)refreshWaypointsData:(NSString *)searchString
 {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [[CacheFilter filter] objectEnumerator];
+    [waypointManager applyFilters:LM.coords];
+    NSEnumerator *e = [[waypointManager currentWaypoints] objectEnumerator];
     dbWaypoint *wp;
 
     if (showType == SHOW_ONECACHE) {
-        if (currentWaypoint != nil) {
-            currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:currentWaypoint.coordinates to:LM.coords];
-            waypointsArray = @[currentWaypoint];
+        if (waypointManager.currentWaypoint != nil) {
+            waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
+            waypointsArray = @[waypointManager.currentWaypoint];
             waypointCount = [waypointsArray count];
         } else {
             waypointsArray = nil;
@@ -121,12 +122,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
         while ((wp = [e nextObject]) != nil) {
             if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 continue;
-            wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-            wp.calculatedBearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
-
-            if ([CacheFilter filterDistance:wp] == YES &&
-                [CacheFilter filterDirection:wp] == YES)
-                [wps addObject:wp];
+            [wps addObject:wp];
         }
         waypointsArray = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
@@ -157,10 +153,10 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     showWhom = whom;
     if (whom == SHOW_ME)
         [self moveCameraTo:meLocation];
-    if (whom == SHOW_CACHE && currentWaypoint != nil)
-        [self moveCameraTo:currentWaypoint.coordinates];
-    if (whom == SHOW_BOTH && currentWaypoint != nil)
-        [self moveCameraTo:currentWaypoint.coordinates c2:meLocation];
+    if (whom == SHOW_CACHE && waypointManager.currentWaypoint != nil)
+        [self moveCameraTo:waypointManager.currentWaypoint.coordinates];
+    if (whom == SHOW_BOTH && waypointManager.currentWaypoint != nil)
+        [self moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
 }
 
 - (void)menuMapType:(NSInteger)maptype

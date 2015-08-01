@@ -36,6 +36,7 @@
 - (void)header;
 
 - (NSString *)configGet:(NSString *)name;
+- (void)configPrefix:(NSString *)prefix;
 - (void)configInit;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)configUpdate;

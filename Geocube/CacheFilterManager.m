@@ -21,13 +21,30 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation CacheFilter
+@implementation CacheFilterManager
 
-@synthesize configPrefix;
+@synthesize configPrefix, currentWaypoint, currentWaypoints;
 
-+ (NSArray *)filter
+- (id)init
 {
-    CacheFilter *filter = [[CacheFilter alloc] init];
+    self = [super init];
+
+    currentWaypoints = nil;
+    currentWaypoint = nil;
+    needsRefresh = YES;
+
+    [LM startDelegation:self isNavigating:TRUE];
+
+    return self;
+}
+
+- (void)applyFilters:(CLLocationCoordinate2D)coords
+{
+    /* Do not unnecessary go through this */
+    if (needsRefresh != YES)
+        return;
+
+//    CacheFilterManager *filter = [[CacheFilterManager alloc] init];
     NSMutableArray *caches;
     NSMutableArray *after;
     MyTools *clock = [[MyTools alloc] initClock:@"filter"];
@@ -38,27 +55,26 @@
      * If a group is not defined then it will be considered not to be included.
      */
 
-    [filter setConfigPrefix:@"groups"];
+    [self setConfigPrefix:@"groups"];
     caches = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"groups"];
 
 
-    NSString *c = [filter configGet:@"enabled"];
+    NSString *c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
         NSMutableArray *groups = [NSMutableArray arrayWithCapacity:20];
         NSEnumerator *e = [[dbc Groups] objectEnumerator];
         dbGroup *group;
         while ((group = [e nextObject]) != nil) {
-            c = [filter configGet:[NSString stringWithFormat:@"group_%ld", (long)group._id]];
+            c = [self _configGet:[NSString stringWithFormat:@"group_%ld", (long)group._id]];
             if (c == nil || [c boolValue] == 0)
                 continue;
             [groups addObject:group];
         }
         [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
     } else {
-        [clock clockShowAndReset];
         caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
-        [clock clockShowAndReset];
+        [clock clockShowAndReset:@"dbAll"];
     }
 
     /* Filter out cache types:
@@ -66,16 +82,16 @@
      * If a type is not defined then it will be considered not to be included.
      */
 
-    [filter setConfigPrefix:@"types"];
+    [self setConfigPrefix:@"types"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"types"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
         NSEnumerator *eT = [[dbc Types] objectEnumerator];
         dbGroup *type;
         while ((type = [eT nextObject]) != nil) {
-            c = [filter configGet:[NSString stringWithFormat:@"type_%ld", (long)type._id]];
+            c = [self _configGet:[NSString stringWithFormat:@"type_%ld", (long)type._id]];
             if (c == nil || [c boolValue] == NO)
                 continue;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -94,14 +110,14 @@
      * - If the min is not 0 and the max is not 100, then between min and max.
      */
 
-    [filter setConfigPrefix:@"favourites"];
+    [self setConfigPrefix:@"favourites"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"favourites"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSInteger min = [[filter configGet:@"min"] integerValue];
-        NSInteger max = [[filter configGet:@"max"] integerValue];
+        NSInteger min = [[self _configGet:@"min"] integerValue];
+        NSInteger max = [[self _configGet:@"max"] integerValue];
 
         if (min == 0 && max == 100) {
             after = caches;
@@ -130,16 +146,16 @@
      * If a size is not defined then it will be considered not to be included.
      */
 
-    [filter setConfigPrefix:@"sizes"];
+    [self setConfigPrefix:@"sizes"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"sizes"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
         NSEnumerator *eT = [[dbc Containers] objectEnumerator];
         dbContainer *container;
         while ((container = [eT nextObject]) != nil) {
-            c = [filter configGet:[NSString stringWithFormat:@"container_%ld", (long)container._id]];
+            c = [self _configGet:[NSString stringWithFormat:@"container_%ld", (long)container._id]];
             if (c == nil || [c boolValue] == NO)
                 continue;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -153,14 +169,14 @@
 
     /* Filter out difficulty rating
      */
-    [filter setConfigPrefix:@"difficulty"];
+    [self setConfigPrefix:@"difficulty"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"difficulty"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        float min = [[filter configGet:@"min"] floatValue];
-        float max = [[filter configGet:@"max"] floatValue];
+        float min = [[self _configGet:@"min"] floatValue];
+        float max = [[self _configGet:@"max"] floatValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (wp.groundspeak.rating_difficulty >= min && wp.groundspeak.rating_difficulty <= max)
@@ -173,14 +189,14 @@
     /* Filter out terrain rating
      */
 
-    [filter setConfigPrefix:@"terrain"];
+    [self setConfigPrefix:@"terrain"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"terrain"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        float min = [[filter configGet:@"min"] floatValue];
-        float max = [[filter configGet:@"max"] floatValue];
+        float min = [[self _configGet:@"min"] floatValue];
+        float max = [[self _configGet:@"max"] floatValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (wp.groundspeak.rating_terrain >= min && wp.groundspeak.rating_terrain <= max)
@@ -192,16 +208,16 @@
 
     /* Filter out dates
      */
-    [filter setConfigPrefix:@"dates"];
+    [self setConfigPrefix:@"dates"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"dates"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSInteger placedEpoch = [[filter configGet:@"placed_epoch"] integerValue];
-        NSInteger lastLogEpoch = [[filter configGet:@"lastlog_epoch"] integerValue];
-        NSInteger placedCompare = [[filter configGet:@"placed_compare"] integerValue];
-        NSInteger lastLogCompare = [[filter configGet:@"lastlog_compare"] integerValue];
+        NSInteger placedEpoch = [[self _configGet:@"placed_epoch"] integerValue];
+        NSInteger lastLogEpoch = [[self _configGet:@"lastlog_epoch"] integerValue];
+        NSInteger placedCompare = [[self _configGet:@"placed_compare"] integerValue];
+        NSInteger lastLogCompare = [[self _configGet:@"lastlog_compare"] integerValue];
 
         if (placedCompare == 0) {           // before
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -264,21 +280,21 @@
         caches = after;
     }
 
-    /* Text filters
+    /* Text self
      * An empty entry means that it matches.
      */
-    [filter setConfigPrefix:@"text"];
+    [self setConfigPrefix:@"text"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"text"];
 
-    c = [filter configGet:@"enabled"];
+    c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSString *cachename = [filter configGet:@"cachename"];
-        NSString *owner = [filter configGet:@"owner"];
-        NSString *state = [filter configGet:@"state"];
-        NSString *country = [filter configGet:@"country"];
-        NSString *description = [filter configGet:@"description"];
-        NSString *logs = [filter configGet:@"logs"];
+        NSString *cachename = [self _configGet:@"cachename"];
+        NSString *owner = [self _configGet:@"owner"];
+        NSString *state = [self _configGet:@"state"];
+        NSString *country = [self _configGet:@"country"];
+        NSString *description = [self _configGet:@"description"];
+        NSString *logs = [self _configGet:@"logs"];
 
         __block NSMutableArray *countries = nil;
         __block NSMutableArray *states = nil;
@@ -373,68 +389,81 @@
         caches = after;
     }
 
-    return caches;
-}
+    /* Filter by distance */
+    [self setConfigPrefix:@"distance"];
+    after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"distance"];
 
-+ (BOOL)filterDistance:(dbWaypoint *)wp
-{
-    CacheFilter *filter = [[CacheFilter alloc] init];
+    c = [self _configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
 
-    [filter setConfigPrefix:@"distance"];
-    NSString *c = [filter configGet:@"enabled"];
-    if (c == nil || [c boolValue] == NO)
-        return YES;
+        NSInteger compareDistance = [[self _configGet:@"compareDistance"] integerValue];
+        NSInteger distanceM = [[self _configGet:@"distanceM"] integerValue];
+        NSInteger distanceKm = [[self _configGet:@"distanceKm"] integerValue];
+        NSInteger variationM = [[self _configGet:@"variationM"] integerValue];
+        NSInteger variationKm = [[self _configGet:@"variationKm"] integerValue];
 
-    NSInteger compareDistance = [[filter configGet:@"compareDistance"] integerValue];
-    NSInteger distanceM = [[filter configGet:@"distanceM"] integerValue];
-    NSInteger distanceKm = [[filter configGet:@"distanceKm"] integerValue];
-    NSInteger variationM = [[filter configGet:@"variationM"] integerValue];
-    NSInteger variationKm = [[filter configGet:@"variationKm"] integerValue];
+        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
 
-    if (compareDistance == 0) {         /* <= */
-        if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
-            return YES;
-        return NO;
-    } else if (compareDistance == 1) {  /* >= */
-        if (wp.calculatedDistance >= distanceKm * 1000 + distanceM)
-            return YES;
-        return NO;
-    } else {                            /* = */
-        if (wp.calculatedDistance >= (distanceKm - variationKm) * 1000 + (distanceM - variationM) &&
-            wp.calculatedDistance <= (distanceKm + variationKm) * 1000 + (distanceM + variationM))
-            return YES;
-        return NO;
+            BOOL fine = NO;
+            if (compareDistance == 0) {         /* <= */
+                if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
+                    fine = YES;
+            } else if (compareDistance == 1) {  /* >= */
+                if (wp.calculatedDistance >= distanceKm * 1000 + distanceM)
+                    fine = YES;
+            } else {                            /* = */
+                if (wp.calculatedDistance >= (distanceKm - variationKm) * 1000 + (distanceM - variationM) &&
+                    wp.calculatedDistance <= (distanceKm + variationKm) * 1000 + (distanceM + variationM))
+                    fine = YES;
+            }
+            if (fine == YES)
+                [after addObject:wp];
+        }];
+        caches = after;
     }
 
-    return NO;
+    /* Filter by direction */
+    [self setConfigPrefix:@"direction"];
+    after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"direction"];
+
+    c = [self _configGet:@"enabled"];
+    if (c != nil && [c boolValue] == YES) {
+        NSInteger direction = [[self _configGet:@"direction"] integerValue];
+
+        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:wp.coordinates];
+            BOOL fine = NO;
+
+            if (direction == 0 && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
+            if (direction == 1 &&  wp.calculatedBearing <=  90 && wp.calculatedBearing >=   0) fine = YES;
+            if (direction == 2 &&  wp.calculatedBearing <= 135 && wp.calculatedBearing >=  45) fine = YES;
+            if (direction == 3 &&  wp.calculatedBearing <= 180 && wp.calculatedBearing >=  90) fine = YES;
+            if (direction == 4 &&  wp.calculatedBearing <= 225 && wp.calculatedBearing >= 135) fine = YES;
+            if (direction == 5 &&  wp.calculatedBearing <= 270 && wp.calculatedBearing >= 180) fine = YES;
+            if (direction == 6 &&  wp.calculatedBearing <= 315 && wp.calculatedBearing >= 225) fine = YES;
+            if (direction == 7 &&  wp.calculatedBearing <= 360 && wp.calculatedBearing >= 270) fine = YES;
+
+            if (fine == YES)
+                [after addObject:wp];
+        }];
+        caches = after;
+    }
+
+    currentWaypoints = caches;
+    needsRefresh = NO;
 }
 
-+ (BOOL)filterDirection:(dbWaypoint *)wp
+- (NSString *)_configGet:(NSString *)_name
 {
-    CacheFilter *filter = [[CacheFilter alloc] init];
-
-    [filter setConfigPrefix:@"direction"];
-    NSString *c = [filter configGet:@"enabled"];
-    if (c == nil || [c boolValue] == NO)
-        return YES;
-
-    NSInteger direction = [[filter configGet:@"direction"] integerValue];
-
-    if (direction == 0 && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) return YES;
-    if (direction == 1 &&  wp.calculatedBearing <=  90 && wp.calculatedBearing >=   0) return YES;
-    if (direction == 2 &&  wp.calculatedBearing <= 135 && wp.calculatedBearing >=  45) return YES;
-    if (direction == 3 &&  wp.calculatedBearing <= 180 && wp.calculatedBearing >=  90) return YES;
-    if (direction == 4 &&  wp.calculatedBearing <= 225 && wp.calculatedBearing >= 135) return YES;
-    if (direction == 5 &&  wp.calculatedBearing <= 270 && wp.calculatedBearing >= 180) return YES;
-    if (direction == 6 &&  wp.calculatedBearing <= 315 && wp.calculatedBearing >= 225) return YES;
-    if (direction == 7 &&  wp.calculatedBearing <= 360 && wp.calculatedBearing >= 270) return YES;
-
-    return NO;
+    return [self configGet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
 }
 
 - (NSString *)configGet:(NSString *)_name
 {
-    dbFilter *c = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
+    dbFilter *c = [dbFilter dbGetByKey:_name];
     if (c == nil)
         return nil;
     return c.value;
@@ -442,7 +471,18 @@
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    [dbFilter dbUpdateOrInsert:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
+    needsRefresh = YES;
+    [dbFilter dbUpdateOrInsert:_name value:_value];
+}
+
+- (void)configPrefix:(NSString *)_prefix
+{
+    configPrefix = _prefix;
+}
+
+/* Receive data from the location manager */
+- (void)updateData
+{
 }
 
 @end

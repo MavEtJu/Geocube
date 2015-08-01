@@ -99,7 +99,7 @@
 
 - (void)configInit
 {
-    configPrefix = @"dates";
+    [self configPrefix:@"dates"];
     
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)

@@ -23,20 +23,20 @@
 
 @implementation GCLocationManager
 
-@synthesize altitude, accuracy, coords, direction, delegate;
+@synthesize altitude, accuracy, coords, direction, delegates;
 
 - (id)init
 {
     self = [super init];
 
-    delegateCounter = 0;
-    
     /* Initiate the location manager */
     _LM = [[CLLocationManager alloc] init];
     _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     _LM.distanceFilter = 1;
     _LM.headingFilter = 1;
     _LM.delegate = self;
+
+    delegates = [NSMutableArray arrayWithCapacity:5];
 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [_LM requestWhenInUseAuthorization];
@@ -47,35 +47,36 @@
 
 - (void)updateDataDelegate
 {
-    if (delegate == nil)
+    if ([delegates count] == 0)
         return;
-    [delegate updateData];
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        [delegate updateData];
+    }];
 }
 
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
-    delegateCounter++;
-
-    NSLog(@"GCLocationManager: starting (isNavigating:%d)", isNavigating);
+    NSLog(@"GCLocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
     if (isNavigating == YES)
         _LM.desiredAccuracy = kCLLocationAccuracyBest;
     else
         _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
-    delegate = _delegate;
+    if (_delegate != nil)
+        [delegates addObject:_delegate];
 }
 
 - (void)stopDelegation:(id)_delegate
 {
-    delegateCounter--;
-    if (delegateCounter > 0)
-        return;
+    NSLog(@"GCLocationManager: stopping for %@", [_delegate class]);
+    [delegates removeObject:_delegate];
 
-    NSLog(@"GCLocationManager: stopping");
-    delegate = nil;
+    if ([delegates count] > 0)
+        return;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
+    NSLog(@"GCLocationManager: stopping");
 }
 
 

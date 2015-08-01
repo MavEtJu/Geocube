@@ -33,7 +33,7 @@ extern DatabaseCache *dbc;
 extern ImageLibrary *imageLibrary;
 
 // Current dbWaypoint to navitate to
-extern dbWaypoint *currentWaypoint;
+extern CacheFilterManager *waypointManager;
 
 // Location Manager
 extern GCLocationManager *LM;
