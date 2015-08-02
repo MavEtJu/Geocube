@@ -102,10 +102,12 @@
 {
     NSString *fn = [files objectAtIndex:indexPath.row];
 
-    UIAlertController *view=   [UIAlertController
-                                alertControllerWithTitle:fn
-                                message:@"Select you choice"
-                                preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *view= [UIAlertController
+                              alertControllerWithTitle:fn
+                              message:@"Select you choice"
+                              preferredStyle:UIAlertControllerStyleActionSheet];
+    view.popoverPresentationController.sourceView = self.view;
+    view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
     UIAlertAction *delete = [UIAlertAction
                              actionWithTitle:@"Delete"
