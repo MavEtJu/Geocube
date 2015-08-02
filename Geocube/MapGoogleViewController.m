@@ -79,12 +79,37 @@
         
         switch (wp.logStatus) {
             case LOGSTATUS_FOUND:
+                if (wp.groundspeak.archived == YES) {
+                    marker.icon = [imageLibrary getPinArchivedFound:wp.type.pin];
+                    break;
+                }
+                if (wp.groundspeak.available == NO) {
+                    marker.icon = [imageLibrary getPinDisabledFound:wp.type.pin];
+                    break;
+                }
                 marker.icon = [imageLibrary getPinFound:wp.type.pin];
                 break;
             case LOGSTATUS_NOTFOUND:
+                if (wp.groundspeak.archived == YES) {
+                    marker.icon = [imageLibrary getPinArchivedDNF:wp.type.pin];
+                    break;
+                }
+                if (wp.groundspeak.available == NO) {
+                    marker.icon = [imageLibrary getPinDisabledDNF:wp.type.pin];
+                    break;
+                }
                 marker.icon = [imageLibrary getPinDNF:wp.type.pin];
                 break;
             case LOGSTATUS_NOTLOGGED:
+                if (wp.groundspeak.archived == YES) {
+                    marker.icon = [imageLibrary getPinArchived:wp.type.pin];
+                    break;
+                }
+                if (wp.groundspeak.available == NO) {
+                    marker.icon = [imageLibrary getPinDisabled:wp.type.pin];
+                    break;
+                }
+                /* FALL THROUGH */
             default:
                 marker.icon = [imageLibrary getPinNormal:wp.type.pin];
                 break;

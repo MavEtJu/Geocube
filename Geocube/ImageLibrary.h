@@ -229,6 +229,66 @@ typedef enum {
     ImageMap_dnfYellow,
     ImageMap_dnfPink,
 
+    ImageMap_disabledBlack,
+    ImageMap_disabledBrown,
+    ImageMap_disabledGreen,
+    ImageMap_disabledLightblue,
+    ImageMap_disabledPurple,
+    ImageMap_disabledRed,
+    ImageMap_disabledWhite,
+    ImageMap_disabledYellow,
+    ImageMap_disabledPink,
+
+    ImageMap_archivedBlack,
+    ImageMap_archivedBrown,
+    ImageMap_archivedGreen,
+    ImageMap_archivedLightblue,
+    ImageMap_archivedPurple,
+    ImageMap_archivedRed,
+    ImageMap_archivedWhite,
+    ImageMap_archivedYellow,
+    ImageMap_archivedPink,
+
+    ImageMap_disabledFoundBlack,
+    ImageMap_disabledFoundBrown,
+    ImageMap_disabledFoundGreen,
+    ImageMap_disabledFoundLightblue,
+    ImageMap_disabledFoundPurple,
+    ImageMap_disabledFoundRed,
+    ImageMap_disabledFoundWhite,
+    ImageMap_disabledFoundYellow,
+    ImageMap_disabledFoundPink,
+
+    ImageMap_archivedFoundBlack,
+    ImageMap_archivedFoundBrown,
+    ImageMap_archivedFoundGreen,
+    ImageMap_archivedFoundLightblue,
+    ImageMap_archivedFoundPurple,
+    ImageMap_archivedFoundRed,
+    ImageMap_archivedFoundWhite,
+    ImageMap_archivedFoundYellow,
+    ImageMap_archivedFoundPink,
+
+    ImageMap_disabledDNFBlack,
+    ImageMap_disabledDNFBrown,
+    ImageMap_disabledDNFGreen,
+    ImageMap_disabledDNFLightblue,
+    ImageMap_disabledDNFPurple,
+    ImageMap_disabledDNFRed,
+    ImageMap_disabledDNFWhite,
+    ImageMap_disabledDNFYellow,
+    ImageMap_disabledDNFPink,
+
+    ImageMap_archivedDNFBlack,
+    ImageMap_archivedDNFBrown,
+    ImageMap_archivedDNFGreen,
+    ImageMap_archivedDNFLightblue,
+    ImageMap_archivedDNFPurple,
+    ImageMap_archivedDNFRed,
+    ImageMap_archivedDNFWhite,
+    ImageMap_archivedDNFYellow,
+    ImageMap_archivedDNFPink,
+
     /* Up to here: Do not reorder */
 
     ImageLibraryImagesUnsorted = 700,
@@ -236,11 +296,15 @@ typedef enum {
     ImageMap_pin,
     ImageMap_dnf,
     ImageMap_found,
+    ImageMap_disabled,
+    ImageMap_archived,
 
     ImageMap_pinCrossDNF,
     ImageMap_pinTickFound,
     ImageMap_typeCrossDNF,
     ImageMap_typeTickFound,
+    ImageMap_pinOutlineDisabled,
+    ImageMap_pinOutlineArchived,
 
     ImageCacheView_ratingBase,
     ImageCacheView_ratingOff,
@@ -263,6 +327,12 @@ typedef enum {
     NSInteger pin2normal;
     NSInteger pin2found;
     NSInteger pin2dnf;
+    NSInteger pin2disabled;
+    NSInteger pin2archived;
+    NSInteger pin2foundDisabled;
+    NSInteger pin2foundArchived;
+    NSInteger pin2dnfDisabled;
+    NSInteger pin2dnfArchived;
 
     NSInteger type2normal;
     NSInteger type2found;
@@ -274,10 +344,17 @@ typedef enum {
 - (UIImage *)getPinNormal:(NSInteger)imgnum;
 - (UIImage *)getPinFound:(NSInteger)imgnum;
 - (UIImage *)getPinDNF:(NSInteger)imgnum;
+- (UIImage *)getPinDisabled:(NSInteger)imgnum;
+- (UIImage *)getPinArchived:(NSInteger)imgnum;
 - (UIImage *)getTypeNormal:(NSInteger)imgnum;
 - (UIImage *)getTypeFound:(NSInteger)imgnum;
 - (UIImage *)getTypeDNF:(NSInteger)imgnum;
+- (UIImage *)getPinDisabledFound:(NSInteger)imgnum;
+- (UIImage *)getPinArchivedFound:(NSInteger)imgnum;
+- (UIImage *)getPinDisabledDNF:(NSInteger)imgnum;
+- (UIImage *)getPinArchivedDNF:(NSInteger)imgnum;
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
+
 
 @end

@@ -110,6 +110,8 @@
     [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
     [self add:@"map - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
     [self add:@"map - tick found - 24x21" index:ImageMap_typeTickFound];
+    [self add:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
+    [self add:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
 
     [self add:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self add:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -186,6 +188,12 @@
     pin2normal = ImageMap_pinBlack - ImageMap_pinheadBlack;
     pin2found = ImageMap_foundBlack - ImageMap_pinheadBlack;
     pin2dnf = ImageMap_dnfBlack - ImageMap_pinheadBlack;
+    pin2disabled = ImageMap_disabledBlack - ImageMap_pinheadBlack;
+    pin2archived = ImageMap_archivedBlack - ImageMap_pinheadBlack;
+    pin2foundDisabled = ImageMap_disabledFoundBlack - ImageMap_pinheadBlack;
+    pin2foundArchived = ImageMap_archivedFoundBlack - ImageMap_pinheadBlack;
+    pin2dnfDisabled = ImageMap_disabledDNFBlack - ImageMap_pinheadBlack;
+    pin2dnfArchived = ImageMap_archivedDNFBlack - ImageMap_pinheadBlack;
 
     /* Create pins */
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBlack index:ImageMap_pinBlack];
@@ -239,6 +247,88 @@
     [self mergeDNF:ImageMap_dnfWhite top:ImageMap_pinCrossDNF index:ImageMap_dnfWhite];
     [self mergeDNF:ImageMap_dnfYellow top:ImageMap_pinCrossDNF index:ImageMap_dnfYellow];
     [self mergeDNF:ImageMap_dnfPink top:ImageMap_pinCrossDNF index:ImageMap_dnfPink];
+
+    /* Create disabled pins */
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBlack index:ImageMap_disabledBlack];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBrown index:ImageMap_disabledBrown];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadGreen index:ImageMap_disabledGreen];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadLightblue index:ImageMap_disabledLightblue];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPurple index:ImageMap_disabledPurple];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadRed index:ImageMap_disabledRed];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadWhite index:ImageMap_disabledWhite];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadYellow index:ImageMap_disabledYellow];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPink index:ImageMap_disabledPink];
+
+    [self mergeDisabled:ImageMap_disabledBlack top:ImageMap_pinOutlineDisabled index:ImageMap_disabledBlack];
+    [self mergeDisabled:ImageMap_disabledBrown top:ImageMap_pinOutlineDisabled index:ImageMap_disabledBrown];
+    [self mergeDisabled:ImageMap_disabledGreen top:ImageMap_pinOutlineDisabled index:ImageMap_disabledGreen];
+    [self mergeDisabled:ImageMap_disabledLightblue top:ImageMap_pinOutlineDisabled index:ImageMap_disabledLightblue];
+    [self mergeDisabled:ImageMap_disabledPurple top:ImageMap_pinOutlineDisabled index:ImageMap_disabledPurple];
+    [self mergeDisabled:ImageMap_disabledRed top:ImageMap_pinOutlineDisabled index:ImageMap_disabledRed];
+    [self mergeDisabled:ImageMap_disabledWhite top:ImageMap_pinOutlineDisabled index:ImageMap_disabledWhite];
+    [self mergeDisabled:ImageMap_disabledYellow top:ImageMap_pinOutlineDisabled index:ImageMap_disabledYellow];
+    [self mergeDisabled:ImageMap_disabledPink top:ImageMap_pinOutlineDisabled index:ImageMap_disabledPink];
+
+    [self mergeDisabled:ImageMap_foundBlack top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundBlack];
+    [self mergeDisabled:ImageMap_foundBrown top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundBrown];
+    [self mergeDisabled:ImageMap_foundGreen top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundGreen];
+    [self mergeDisabled:ImageMap_foundLightblue top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundLightblue];
+    [self mergeDisabled:ImageMap_foundPurple top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundPurple];
+    [self mergeDisabled:ImageMap_foundRed top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundRed];
+    [self mergeDisabled:ImageMap_foundWhite top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundWhite];
+    [self mergeDisabled:ImageMap_foundYellow top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundYellow];
+    [self mergeDisabled:ImageMap_foundPink top:ImageMap_pinOutlineDisabled index:ImageMap_disabledFoundPink];
+
+    [self mergeDisabled:ImageMap_dnfBlack top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFBlack];
+    [self mergeDisabled:ImageMap_dnfBrown top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFBrown];
+    [self mergeDisabled:ImageMap_dnfGreen top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFGreen];
+    [self mergeDisabled:ImageMap_dnfLightblue top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFLightblue];
+    [self mergeDisabled:ImageMap_dnfPurple top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFPurple];
+    [self mergeDisabled:ImageMap_dnfRed top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFRed];
+    [self mergeDisabled:ImageMap_dnfWhite top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFWhite];
+    [self mergeDisabled:ImageMap_dnfYellow top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFYellow];
+    [self mergeDisabled:ImageMap_dnfPink top:ImageMap_pinOutlineDisabled index:ImageMap_disabledDNFPink];
+
+    /* Create archived pins */
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBlack index:ImageMap_archivedBlack];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBrown index:ImageMap_archivedBrown];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadGreen index:ImageMap_archivedGreen];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadLightblue index:ImageMap_archivedLightblue];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPurple index:ImageMap_archivedPurple];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadRed index:ImageMap_archivedRed];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadWhite index:ImageMap_archivedWhite];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadYellow index:ImageMap_archivedYellow];
+    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPink index:ImageMap_archivedPink];
+
+    [self mergeArchived:ImageMap_archivedBlack top:ImageMap_pinOutlineArchived index:ImageMap_archivedBlack];
+    [self mergeArchived:ImageMap_archivedBrown top:ImageMap_pinOutlineArchived index:ImageMap_archivedBrown];
+    [self mergeArchived:ImageMap_archivedGreen top:ImageMap_pinOutlineArchived index:ImageMap_archivedGreen];
+    [self mergeArchived:ImageMap_archivedLightblue top:ImageMap_pinOutlineArchived index:ImageMap_archivedLightblue];
+    [self mergeArchived:ImageMap_archivedPurple top:ImageMap_pinOutlineArchived index:ImageMap_archivedPurple];
+    [self mergeArchived:ImageMap_archivedRed top:ImageMap_pinOutlineArchived index:ImageMap_archivedRed];
+    [self mergeArchived:ImageMap_archivedWhite top:ImageMap_pinOutlineArchived index:ImageMap_archivedWhite];
+    [self mergeArchived:ImageMap_archivedYellow top:ImageMap_pinOutlineArchived index:ImageMap_archivedYellow];
+    [self mergeArchived:ImageMap_archivedPink top:ImageMap_pinOutlineArchived index:ImageMap_archivedPink];
+
+    [self mergeArchived:ImageMap_foundBlack top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundBlack];
+    [self mergeArchived:ImageMap_foundBrown top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundBrown];
+    [self mergeArchived:ImageMap_foundGreen top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundGreen];
+    [self mergeArchived:ImageMap_foundLightblue top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundLightblue];
+    [self mergeArchived:ImageMap_foundPurple top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundPurple];
+    [self mergeArchived:ImageMap_foundRed top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundRed];
+    [self mergeArchived:ImageMap_foundWhite top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundWhite];
+    [self mergeArchived:ImageMap_foundYellow top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundYellow];
+    [self mergeArchived:ImageMap_foundPink top:ImageMap_pinOutlineArchived index:ImageMap_archivedFoundPink];
+
+    [self mergeArchived:ImageMap_dnfBlack top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFBlack];
+    [self mergeArchived:ImageMap_dnfBrown top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFBrown];
+    [self mergeArchived:ImageMap_dnfGreen top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFGreen];
+    [self mergeArchived:ImageMap_dnfLightblue top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFLightblue];
+    [self mergeArchived:ImageMap_dnfPurple top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFPurple];
+    [self mergeArchived:ImageMap_dnfRed top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFRed];
+    [self mergeArchived:ImageMap_dnfWhite top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFWhite];
+    [self mergeArchived:ImageMap_dnfYellow top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFYellow];
+    [self mergeArchived:ImageMap_dnfPink top:ImageMap_pinOutlineArchived index:ImageMap_archivedDNFPink];
 
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
@@ -329,26 +419,34 @@
     [self mergePinhead2:index bottom:bottom top:top];
 }
 
-- (void)mergeDNF2:(NSInteger)index bottom:(NSInteger)bottom top:(NSInteger)top
+- (void)mergeXXX:(NSInteger)index bottom:(NSInteger)bottom top:(NSInteger)top name:(NSString *)name
 {
     UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(6, 6, 13, 13)];
     imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"DNF: %ld + %ld", (long)bottom, (long)top];
+    names[index] = [NSString stringWithFormat:@"%@: %ld + %ld", name, (long)bottom, (long)top];
 }
 - (void)mergeDNF:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
-    [self mergeDNF2:index bottom:bottom top:top];
-}
-
-- (void)mergeFound2:(NSInteger)index bottom:(NSInteger)bottom top:(NSInteger)top
-{
-    UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(6, 6, 13, 13)];
-    imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"FOUND: %ld + %ld", (long)bottom, (long)top];
+    [self mergeXXX:index bottom:bottom top:top name:@"DNF"];
 }
 - (void)mergeFound:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
-    [self mergeFound2:index bottom:bottom top:top];
+    [self mergeXXX:index bottom:bottom top:top name:@"FOUND"];
+}
+
+- (void)mergeYYY:(NSInteger)index bottom:(NSInteger)bottom top:(NSInteger)top name:(NSString *)name
+{
+    UIImage *out = [self addImageToImage:[self get:bottom] withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
+    imgs[index] = out;
+    names[index] = [NSString stringWithFormat:@"%@: %ld + %ld", name, (long)bottom, (long)top];
+}
+- (void)mergeDisabled:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
+{
+    [self mergeYYY:index bottom:bottom top:top name:@"DISABLED"];
+}
+- (void)mergeArchived:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
+{
+    [self mergeYYY:index bottom:bottom top:top name:@"ARCHIVED"];
 }
 
 - (void)mergeRating:(NSInteger)index full:(NSInteger)full half:(NSInteger)half
@@ -406,6 +504,36 @@
 - (UIImage *)getPinNormal:(NSInteger)imgnum
 {
     return [self get:imgnum + pin2normal];
+}
+
+- (UIImage *)getPinDisabled:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2disabled];
+}
+
+- (UIImage *)getPinArchived:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2archived];
+}
+
+- (UIImage *)getPinDisabledFound:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2foundDisabled];
+}
+
+- (UIImage *)getPinArchivedFound:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2foundArchived];
+}
+
+- (UIImage *)getPinDisabledDNF:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2dnfDisabled];
+}
+
+- (UIImage *)getPinArchivedDNF:(NSInteger)imgnum
+{
+    return [self get:imgnum + pin2dnfArchived];
 }
 
 - (UIImage *)getTypeFound:(NSInteger)imgnum

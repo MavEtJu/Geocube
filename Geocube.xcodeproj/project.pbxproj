@@ -205,6 +205,8 @@
 		E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE41B4FFB46002527DA /* CacheHintViewController.m */; };
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
+		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
+		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
@@ -543,6 +545,8 @@
 		E8740FE71B508BBE002527DA /* CacheLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheLogsViewController.m; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
+		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
+		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
@@ -1012,6 +1016,8 @@
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */,
+				E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */,
 				E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */,
 				E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */,
 				E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */,
@@ -1565,6 +1571,7 @@
 				E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */,
 				E80732F01B610A37007FDC29 /* GC37FF6.gpx in Resources */,
 				E807326C1B5F850C007FDC29 /* cache - webcam - 30x30.png in Resources */,
+				E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */,
 				E80732031B5F84B4007FDC29 /* attributes - 28.png in Resources */,
 				E80732091B5F84B4007FDC29 /* attributes - 34.png in Resources */,
 				E80732061B5F84B4007FDC29 /* attributes - 31.png in Resources */,
@@ -1670,6 +1677,7 @@
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
 				E8E8D0201B66E75900CC741A /* rangethumb.png in Resources */,
 				E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */,
+				E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */,
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
 				E80732D11B60F57E007FDC29 /* waymarking.gpx in Resources */,
