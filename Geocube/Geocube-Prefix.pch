@@ -82,6 +82,7 @@
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"
 
+#import "SettingsMainViewController.h"
 #import "SettingsAccountsViewController.h"
 
 #import "CacheDescriptionViewController.h"

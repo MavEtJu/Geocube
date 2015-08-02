@@ -19,12 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MyConfig : NSObject {
-    BOOL distanceMetric;
+@interface SettingsMainViewController : GCTableViewController {
+    UISwitch *distanceMetric;
 }
-
-@property (nonatomic) BOOL distanceMetric;
-
-- (void)metricUpdate:(BOOL)value;
 
 @end

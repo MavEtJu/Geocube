@@ -107,7 +107,7 @@
 
 + (NSString *)NiceDistance:(NSInteger)i
 {
-    if (myConfig.metric == YES) {
+    if (myConfig.distanceMetric == YES) {
         if (i < 1000)
             return [NSString stringWithFormat:@"%ld m", (long)i];
         if (i < 10000)

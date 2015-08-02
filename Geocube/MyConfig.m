@@ -23,7 +23,7 @@
 
 @implementation MyConfig
 
-@synthesize metric;
+@synthesize distanceMetric;
 
 - (id)init
 {
@@ -40,14 +40,22 @@
 {
     dbConfig *c;
 
-    c = [dbConfig dbGetByKey:@"metric"];
+    c = [dbConfig dbGetByKey:@"distance_metric"];
     if (c == nil)
-        [dbConfig dbUpdateOrInsert:@"metric" value:@"1"];
+        [dbConfig dbUpdateOrInsert:@"distance_metric" value:@"1"];
 }
 
 - (void)loadValues
 {
-    metric = [[dbConfig dbGetByKey:@"metric"].value boolValue];
+    distanceMetric = [[dbConfig dbGetByKey:@"distance_metric"].value boolValue];
+}
+
+- (void)metricUpdate:(BOOL)value
+{
+    distanceMetric = value;
+    dbConfig *c = [dbConfig dbGetByKey:@"distance_metric"];
+    c.value = [NSString stringWithFormat:@"%ld", (long)value];
+    [c dbUpdate];
 }
 
 @end

@@ -245,8 +245,8 @@
     // Settings tabs #10
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
-    vc.title = @"XSettings";
+    vc = [[SettingsMainViewController alloc] init];
+    vc.title = @"Settings";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [controllers addObject:nav];
 
@@ -277,7 +277,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_SETTINGS];
     [self.window makeKeyAndVisible];
 
     return YES;
