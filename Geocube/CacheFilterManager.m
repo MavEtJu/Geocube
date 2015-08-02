@@ -32,8 +32,10 @@
     currentWaypoints = nil;
     currentWaypoint = nil;
     needsRefresh = YES;
+    lastCoordinates.latitude = 0;
+    lastCoordinates.longitude = 0;
 
-    [LM startDelegation:self isNavigating:TRUE];
+    [LM startDelegation:self isNavigating:NO];
 
     return self;
 }
@@ -389,6 +391,12 @@
         caches = after;
     }
 
+    /* Calculate the distance and the bearing */
+    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
+        wp.calculatedBearing = [Coordinates coordinates2distance:coords to:wp.coordinates];
+    }];
+
     /* Filter by distance */
     [self setConfigPrefix:@"distance"];
     after = [NSMutableArray arrayWithCapacity:200];
@@ -404,8 +412,6 @@
         NSInteger variationKm = [[self _configGet:@"variationKm"] integerValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
-
             BOOL fine = NO;
             if (compareDistance == 0) {         /* <= */
                 if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
@@ -434,7 +440,6 @@
         NSInteger direction = [[self _configGet:@"direction"] integerValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:wp.coordinates];
             BOOL fine = NO;
 
             if (direction == 0 && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
@@ -483,6 +488,10 @@
 /* Receive data from the location manager */
 - (void)updateData
 {
+    NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:LM.coords]);
+    if ([Coordinates coordinates2distance:lastCoordinates to:LM.coords] > 1000)
+        needsRefresh = YES;
+    lastCoordinates = LM.coords;
 }
 
 @end

@@ -20,10 +20,10 @@
  */
 
 @interface CacheFilterManager : NSObject<GCLocationManagerDelegate> {
-    dbWaypoint *currentWaypoint;
-
+    CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
     NSMutableArray *currentWaypoints;
+    dbWaypoint *currentWaypoint;
 }
 
 @property (nonatomic, retain) NSString *configPrefix;

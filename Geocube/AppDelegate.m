@@ -35,6 +35,10 @@
     // File manager
     fm = [[NSFileManager alloc] init];
 
+    // Initialize the location mamager
+    LM = [[GCLocationManager alloc] init];
+    [LM startDelegation:nil isNavigating:NO];
+
     // Waypoint Manager
     waypointManager = [[CacheFilterManager alloc] init];
 
@@ -43,19 +47,6 @@
 
     /* Create files directory */
     [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
-
-    /* Move two zip files into files directory */
-    NSArray *files = @[@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", @"16171009_iossimulator-freewaydrive.zip", @"waymarking.gpx", @"13746815-myfinds.zip", @"GC37FF6.gpx"];
-    NSEnumerator *e = [files objectEnumerator];
-    NSString *f;
-    while ((f = [e nextObject]) != nil) {
-        NSString *fromfile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], f];
-        NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
-        NSError *error;
-        if ([fm fileExistsAtPath:tofile isDirectory:nil] == YES)
-            [fm removeItemAtPath:tofile error:nil];
-        [fm copyItemAtPath:fromfile toPath:tofile error:&error];
-    }
 
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];
@@ -69,9 +60,18 @@
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
-    // Initialize the location mamager
-    LM = [[GCLocationManager alloc] init];
-    [LM startDelegation:nil isNavigating:NO];
+    /* Move two zip files into files directory */
+    NSArray *files = @[@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", @"16171009_iossimulator-freewaydrive.zip", @"waymarking.gpx", @"13746815-myfinds.zip", @"GC37FF6.gpx"];
+    NSEnumerator *e = [files objectEnumerator];
+    NSString *f;
+    while ((f = [e nextObject]) != nil) {
+        NSString *fromfile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], f];
+        NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
+        NSError *error;
+        if ([fm fileExistsAtPath:tofile isDirectory:nil] == YES)
+            [fm removeItemAtPath:tofile error:nil];
+        [fm copyItemAtPath:fromfile toPath:tofile error:&error];
+    }
 
     // Initialize the tabbar controllers
 
