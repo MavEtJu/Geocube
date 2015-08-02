@@ -154,7 +154,7 @@
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
-    cell.distance.text = [Coordinates NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+    cell.distance.text = [MyTools NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (gs.state != nil)

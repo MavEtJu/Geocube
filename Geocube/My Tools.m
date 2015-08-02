@@ -107,11 +107,24 @@
 
 + (NSString *)NiceDistance:(NSInteger)i
 {
-    if (i < 1000)
-        return [NSString stringWithFormat:@"%ld m", (long)i];
-    if (i < 10000)
-        return [NSString stringWithFormat:@"%0.1f km", i / 1000.0];
-    return [NSString stringWithFormat:@"%ld km", (long)i / 1000];
+    if (myConfig.metric == YES) {
+        if (i < 1000)
+            return [NSString stringWithFormat:@"%ld m", (long)i];
+        if (i < 10000)
+            return [NSString stringWithFormat:@"%0.2f km", i / 1000.0];
+        return [NSString stringWithFormat:@"%ld km", (long)i / 1000];
+    } else {
+        /* Metric to imperial conversions
+         * 1 mile is 1.6093 kilometers
+         * 1 foot is 0.30480 meters
+         */
+        if (i <= 161)   // 1/10th of a mile
+            return [NSString stringWithFormat:@"%ld feet", (long)(i / 0.30480)];
+        if (i <= 16093)   // 10 miles
+            return [NSString stringWithFormat:@"%0.2f miles", i / 1609.3];
+        return [NSString stringWithFormat:@"%ld miles", (long)(i / 1609.3)];
+    }
+
 }
 
 - (id)initClock:(NSString *)_title

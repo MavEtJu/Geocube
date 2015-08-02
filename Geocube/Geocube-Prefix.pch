@@ -72,6 +72,7 @@
 #import "GlobalMenu.h"
 #import "ImageLibrary.h"
 #import "CacheFilterManager.h"
+#import "MyConfig.h"
 #import "Geocube.h"
 
 #import "Import_GPX.h"

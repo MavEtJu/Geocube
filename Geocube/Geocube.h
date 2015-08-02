@@ -41,6 +41,9 @@ extern GCLocationManager *LM;
 // File manager
 extern NSFileManager *fm;
 
+// Configuration Manager
+extern MyConfig *myConfig;
+
 //
 extern AppDelegate *_AppDelegate;
 

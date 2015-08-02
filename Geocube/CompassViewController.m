@@ -220,8 +220,8 @@
 /* Receive data from the location manager */
 - (void)updateData
 {
-    accuracy.text = [NSString stringWithFormat:@"%ld m", (long)LM.accuracy];
-    altitude.text = [NSString stringWithFormat:@"%ld m", (long)LM.altitude];
+    accuracy.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.accuracy]];
+    altitude.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.altitude]];
 
 //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
@@ -244,7 +244,7 @@
     if (waypointManager.currentWaypoint == nil)
         return;
 
-    distance.text = [Coordinates NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+    distance.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
 }
 
 @end

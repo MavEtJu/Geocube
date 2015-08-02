@@ -57,6 +57,9 @@
     dbc = [[DatabaseCache alloc] init];
     [dbc loadWaypointData];
 
+    // Initialize the configuration manager
+    myConfig = [[MyConfig alloc] init];
+
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 

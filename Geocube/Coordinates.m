@@ -169,15 +169,6 @@
     return point;
 }
 
-+ (NSString *)NiceDistance:(NSInteger)i
-{
-    if (i < 1000)
-        return [NSString stringWithFormat:@"%ld m", (long)i];
-    if (i < 10000)
-        return [NSString stringWithFormat:@"%0.1f km", i / 1000.0];
-    return [NSString stringWithFormat:@"%ld km", (long)i / 1000];
-}
-
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
