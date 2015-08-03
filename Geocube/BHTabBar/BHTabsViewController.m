@@ -5,6 +5,8 @@
 #import "BHTabStyle.h"
 #import "BHTabsView.h"
 
+#import "Geocube-prefix.pch"
+
 enum { kTagTabBase = 100 };
 
 @interface BHTabsViewController ()
@@ -101,8 +103,10 @@ enum { kTagTabBase = 100 };
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   UIView *view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
+  self.edgesForExtendedLayout = UIRectEdgeNone;
 
   self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor whiteColor];
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
   // The view that contains the tab views is located across the top.
@@ -158,6 +162,16 @@ enum { kTagTabBase = 100 };
 
   [self.tabsContainerView addSubview:footerView];
   [self.tabsContainerView bringSubviewToFront:footerView];
+
+    /***** FOO ****/
+    UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame = CGRectMake(2, 15, 20, 20);
+    b.backgroundColor = [UIColor redColor];
+    [b setImage:imgMenu forState:UIControlStateNormal];
+    [self.view addSubview:b];
+    [b addTarget:menuGlobal action:@selector(openMenu:) forControlEvents:UIControlEventTouchDown];
+    /***** FOO ****/
 
   [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:0]];
 }

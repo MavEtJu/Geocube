@@ -227,7 +227,6 @@
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
-		E8E8CFF41B64FAC900CC741A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF31B64FAC900CC741A /* main.m */; };
 		E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF91B6588C600CC741A /* FiltersViewController.m */; };
 		E8E8CFFE1B658DC000CC741A /* FilterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFFD1B658DC000CC741A /* FilterObject.m */; };
 		E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */; };
@@ -592,7 +591,6 @@
 		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
 		E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAccountsViewController.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8E8CFF31B64FAC900CC741A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8E8CFF81B6588C600CC741A /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
 		E8E8CFF91B6588C600CC741A /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
 		E8E8CFFC1B658DC000CC741A /* FilterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterObject.h; sourceTree = "<group>"; };
@@ -1119,14 +1117,6 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		E8E8CFF21B64FAC900CC741A /* tests */ = {
-			isa = PBXGroup;
-			children = (
-				E8E8CFF31B64FAC900CC741A /* main.m */,
-			);
-			path = tests;
-			sourceTree = "<group>";
-		};
 		E8E8CFFB1B658C3300CC741A /* Filter Viewing */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,7 +1190,6 @@
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F5706F1B3F7255003F020C /* GeocubeTests */,
-				E8E8CFF21B64FAC900CC741A /* tests */,
 				E8F570541B3F7255003F020C /* Products */,
 				C52879D9FDE55D2D5B94688C /* Pods */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
@@ -1770,7 +1759,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8E8CFF41B64FAC900CC741A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

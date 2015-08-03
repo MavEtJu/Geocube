@@ -80,7 +80,6 @@
 
     NSMutableArray *controllers;
     UINavigationController *nav;
-    UITabBarController *tabBarController;
     UIViewController *vc;
 
     tabBars = [[NSMutableArray alloc] initWithCapacity:5];
@@ -92,6 +91,14 @@
     tabBarController.customizableViewControllers = __controllers__; \
     tabBarController.delegate = self; \
     [tabBars addObject:tabBarController];
+#undef TABBARCONTROLLER
+#define TABBARCONTROLLER(__controllers__) { \
+        BHTabsViewController *tbc = \
+            [[BHTabsViewController alloc] \
+            initWithViewControllers:__controllers__ \
+            style:[BHTabStyle defaultStyle]]; \
+        [tabBars addObject:tbc]; \
+    }
 
     // Navigate tabs #0
     controllers = [NSMutableArray array];
@@ -99,26 +106,31 @@
     vc = [[CompassViewController alloc] init];
     vc.title = @"Compass";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     CacheViewController *cvc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
     cvc.title = @"Target";
     nav = [[UINavigationController alloc] initWithRootViewController:cvc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapGoogleViewController alloc] init:SHOW_ONECACHE];
     vc.title = @"GMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapAppleViewController alloc] init:SHOW_ONECACHE];
     vc.title = @"AMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapOSMViewController alloc] init:SHOW_ONECACHE];
     vc.title = @"OSM";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -129,6 +141,7 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Caches Online";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -138,26 +151,31 @@
     vc = [[FiltersViewController alloc] init];
     vc.title = @"Filters";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[CachesOfflineListViewController alloc] init];
     vc.title = @"List";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapGoogleViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"GMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapAppleViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"AMap";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[MapOSMViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"OSM";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -168,6 +186,7 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Notes and Logs";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -178,6 +197,7 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Trackables";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -188,11 +208,13 @@
     vc = [[GroupsViewController alloc] init:YES];
     vc.title = @"User Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[GroupsViewController alloc] init:NO];
     vc.title = @"System Groups";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -203,6 +225,7 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Bookmarks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -213,11 +236,13 @@
     vc = [[FilesViewController alloc] init];
     vc.title = @"Local Files";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[NullViewController alloc] init];
     vc.title = @"XDropbox";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -228,6 +253,7 @@
     vc = [[UserProfileViewController alloc] init];
     vc.title = @"User Profile";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -238,6 +264,7 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Notices";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -248,11 +275,13 @@
     vc = [[SettingsMainViewController alloc] init];
     vc.title = @"Settings";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[SettingsAccountsViewController alloc] init];
     vc.title = @"Accounts";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -263,11 +292,13 @@
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     vc = [[HelpImagesViewController alloc] init];
     vc.title = @"Images";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
     TABBARCONTROLLER(controllers)
@@ -277,7 +308,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_SETTINGS];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
     [self.window makeKeyAndVisible];
 
     return YES;
