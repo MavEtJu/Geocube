@@ -119,6 +119,7 @@
 
     [self add:@"menu icon - global" index:ImageIcon_GlobalMenu];
     [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
+    [self add:@"menu icon - close" index:ImageIcon_CloseButton];
 
     [self add:@"attributes - unknown" index:ImageAttribute_Unknown];
     [self add:@"attributes - 01" index:ImageAttribute_DogsAllowed];
