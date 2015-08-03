@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
     menuItems = [NSMutableArray arrayWithArray:@[@"Add account"]];
 }
