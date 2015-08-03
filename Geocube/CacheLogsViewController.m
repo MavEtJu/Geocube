@@ -36,6 +36,8 @@
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 
+    hasCloseButton = YES;
+    
     return self;
 }
 

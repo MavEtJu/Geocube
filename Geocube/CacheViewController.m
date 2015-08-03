@@ -27,6 +27,16 @@
 
 @implementation CacheViewController
 
+- initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
+{
+    self = [super initWithStyle:style];
+
+    menuItems = nil;
+    hasCloseButton = canBeClosed;
+
+    return self;
+}
+
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
     waypoint = _wp;

@@ -31,16 +31,52 @@
 
     menuItems = [NSMutableArray arrayWithObjects:@"XEmpty", nil];
     self.numberOfItemsInRow = 3;
+    
+    hasCloseButton = NO;
 
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (closeButton != nil)
+        [self.view bringSubviewToFront:closeButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
+
     [super viewWillAppear:animated];
+
+    // Deal with the local menu button
+    if (menuItems == nil)
+        menuGlobal.localMenuButton.hidden = YES;
+    else
+        menuGlobal.localMenuButton.hidden = NO;
     [menuGlobal setLocalMenuTarget:self];
+
+    // Add a close button to the view
+    closeButton = nil;
+    if (hasCloseButton == YES) {
+        UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+        b.frame = CGRectMake(0, 0, 15, 15);
+        b.backgroundColor = [UIColor redColor];
+        [b setImage:imgMenu forState:UIControlStateNormal];
+        [self.view addSubview:b];
+        [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
+        closeButton = b;
+    }
 }
+
+- (void)closePage:(UIButton *)b
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma -- UITableView related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
@@ -58,6 +94,20 @@
 {
     return nil;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (closeButton == nil)
+        return;
+
+    CGRect frame = closeButton.frame;
+    frame.origin.y = scrollView.contentOffset.y;
+    closeButton.frame = frame;
+
+    [self.view bringSubviewToFront:closeButton];
+}
+
+#pragma -- Local menu related functions
 
 - (DOPNavbarMenu *)tab_menu
 {
@@ -89,6 +139,9 @@
 - (void)openLocalMenu:(id)sender
 {
     // NSLog(@"GCTableViewController/openMenu: self:%p", self);
+
+    if (menuItems == nil)
+        return;
 
     if (self.tab_menu.isOpen) {
         [self.tab_menu dismissWithAnimation:YES];

@@ -23,6 +23,9 @@
     NSInteger numberOfItemsInRow;
     DOPNavbarMenu *tab_menu;
     NSMutableArray *menuItems;
+
+    BOOL hasCloseButton;
+    UIButton *closeButton;
 }
 
 @property (nonatomic) NSInteger numberOfItemsInRow;

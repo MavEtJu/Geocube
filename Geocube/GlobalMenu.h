@@ -34,10 +34,12 @@
     UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
     UIBarButtonItem *button;
     id localMenuDelegate;
+    UIButton *localMenuButton;
 }
 
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
 @property (nonatomic) id localMenuDelegate;
+@property (nonatomic, retain) UIButton *localMenuButton;
 
 - (void)openGlobalMenu:(id)sender;
 - (void)openLocalMenu:(id)sender;

@@ -109,7 +109,7 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    CacheViewController *cvc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    CacheViewController *cvc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
     cvc.title = @"Target";
     nav = [[UINavigationController alloc] initWithRootViewController:cvc];
     nav.navigationBarHidden = YES;

@@ -43,6 +43,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 
     menuItems = nil;
+    hasCloseButton = YES;
 
     return self;
 }

@@ -46,6 +46,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
 
+    hasCloseButton = YES;
+    
     return self;
 }
 

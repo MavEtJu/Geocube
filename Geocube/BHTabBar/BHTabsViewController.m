@@ -181,6 +181,7 @@ enum { kTagTabBase = 100 };
     [b setImage:imgMenu forState:UIControlStateNormal];
     [self.view addSubview:b];
     [b addTarget:menuGlobal action:@selector(openLocalMenu:) forControlEvents:UIControlEventTouchDown];
+    menuGlobal.localMenuButton = b;
     /***** Global Menu ****/
 
   [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:0]];

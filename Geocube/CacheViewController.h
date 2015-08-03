@@ -28,5 +28,6 @@
 }
 
 - (void)showWaypoint:(dbWaypoint *)wp;
+- initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed;
 
 @end

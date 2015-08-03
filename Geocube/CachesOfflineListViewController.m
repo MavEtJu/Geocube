@@ -63,8 +63,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
     [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -178,7 +178,7 @@
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
-    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
     [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;

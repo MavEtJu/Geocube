@@ -25,10 +25,12 @@
 
 - (id)init:(dbWaypoint *)_wp
 {
-    self = [super self];
+    self = [super init];
 
     waypoint = _wp;
     groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
+
+    hasCloseButton = YES;
 
     return self;
 }

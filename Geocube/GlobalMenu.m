@@ -25,7 +25,7 @@
 
 @implementation GlobalMenu
 
-@synthesize parent_vc, previous_vc, localMenuDelegate;
+@synthesize parent_vc, previous_vc, localMenuDelegate, localMenuButton;
 
 - (id)init
 {

@@ -31,8 +31,17 @@
 
     menuItems = [NSMutableArray arrayWithArray:@[@"XEmpty"]];
     self.numberOfItemsInRow = 3;
+    
+    hasCloseButton = NO;
 
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (closeButton == nil)
+        [self.view bringSubviewToFront:closeButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -40,14 +49,33 @@
     [super viewWillAppear:animated];
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
 
+    // Deal with the local menu
+    if (menuItems == nil)
+        menuGlobal.localMenuButton.hidden = YES;
+    else
+        menuGlobal.localMenuButton.hidden = NO;
     [menuGlobal setLocalMenuTarget:self];
+
+    // Add a close button to the view
+    closeButton = nil;
+    if (hasCloseButton == YES) {
+        UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+        b.frame = CGRectMake(0, 0, 15, 15);
+        b.backgroundColor = [UIColor redColor];
+        [b setImage:imgMenu forState:UIControlStateNormal];
+        [self.view addSubview:b];
+        [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
+        closeButton = b;
+    }
 }
 
-- (void)didReceiveMemoryWarning
+- (void)closePage:(UIButton *)b
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma -- Local menu related functions
 
 - (DOPNavbarMenu *)tab_menu
 {
