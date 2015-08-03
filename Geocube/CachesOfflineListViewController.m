@@ -140,7 +140,7 @@
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     dbGroundspeak *gs = wp.groundspeak;
-    cell.description.text = wp.description;
+    cell.description.text = wp.urlname;
     cell.name.text = wp.name;
     if (wp.logStatus == LOGSTATUS_NOTLOGGED)
         cell.icon.image = [imageLibrary getTypeNormal:wp.type.icon];

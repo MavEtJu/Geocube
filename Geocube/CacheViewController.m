@@ -93,7 +93,7 @@
     UILabel *l;
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
-    l.text = waypoint.description;
+    l.text = waypoint.urlname;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
@@ -184,8 +184,9 @@
                 if (c == 0) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
-                } else
+                } else {
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
+                }
                 break;
             }
             case 5: { /* Attributes */
