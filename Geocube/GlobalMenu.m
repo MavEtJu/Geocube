@@ -43,16 +43,6 @@
     return self;
 }
 
-- (void)addButtons:(UIViewController<DOPNavbarMenuDelegate> *)_vc numberOfItemsInRow:(NSInteger)_numberOfItemsInRow
-{
-    // NSLog(@"GlobalMenu/addButtons: From %p to %p", parent_vc, _vc);
-    numberOfItemsInRow = _numberOfItemsInRow;
-    //parent_vc = _vc;
-
-    //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
-    //    UIImage *img = [UIImage imageNamed:imgfile];
-}
-
 - (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
 {
     // NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);

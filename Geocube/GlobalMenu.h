@@ -39,7 +39,6 @@
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
 @property (nonatomic) id localMenuDelegate;
 
-- (void)addButtons:(UIViewController<DOPNavbarMenuDelegate> *)vc numberOfItemsInRow:(NSInteger)numberOfItemsInRow;
 - (void)openGlobalMenu:(id)sender;
 - (void)openLocalMenu:(id)sender;
 - (void)didDismissMenu:(DOPNavbarMenu *)menu;
