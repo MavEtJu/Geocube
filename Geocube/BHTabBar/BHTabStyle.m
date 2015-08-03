@@ -24,6 +24,7 @@
   if ((self = [super init])) {
     self.tabsViewHeight = 50;
     self.tabHeight = 40;
+    self.tabHeight = 30;    // 40 goes over the status bar, making it smaller for now.
     self.tabBarHeight = 5;
     self.overlapAsPercentageOfTabWidth = 0.20;
     self.shadowRadius = 3;
