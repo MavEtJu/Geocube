@@ -21,10 +21,13 @@
 
 @interface MyConfig : NSObject {
     BOOL distanceMetric;
+    BOOL themeGeosphere;
 }
 
 @property (nonatomic) BOOL distanceMetric;
+@property (nonatomic) BOOL themeGeosphere;
 
-- (void)metricUpdate:(BOOL)value;
+- (void)distanceMetricUpdate:(BOOL)value;
+- (void)themeGeosphereUpdate:(BOOL)value;
 
 @end

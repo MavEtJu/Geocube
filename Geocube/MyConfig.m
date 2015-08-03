@@ -23,7 +23,7 @@
 
 @implementation MyConfig
 
-@synthesize distanceMetric;
+@synthesize distanceMetric, themeGeosphere;
 
 - (id)init
 {
@@ -43,19 +43,36 @@
     c = [dbConfig dbGetByKey:@"distance_metric"];
     if (c == nil)
         [dbConfig dbUpdateOrInsert:@"distance_metric" value:@"1"];
+
+    c = [dbConfig dbGetByKey:@"theme_geosphere"];
+    if (c == nil)
+        [dbConfig dbUpdateOrInsert:@"theme_geosphere" value:@"0"];
 }
 
 - (void)loadValues
 {
     distanceMetric = [[dbConfig dbGetByKey:@"distance_metric"].value boolValue];
+    themeGeosphere = [[dbConfig dbGetByKey:@"theme_geosphere"].value boolValue];
 }
 
-- (void)metricUpdate:(BOOL)value
+- (void)BOOLUpdate:(NSString *)key value:(BOOL)value
 {
     distanceMetric = value;
-    dbConfig *c = [dbConfig dbGetByKey:@"distance_metric"];
+    dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = [NSString stringWithFormat:@"%ld", (long)value];
     [c dbUpdate];
+}
+
+- (void)distanceMetricUpdate:(BOOL)value
+{
+    distanceMetric = value;
+    [self BOOLUpdate:@"distance_metric" value:value];
+}
+
+- (void)themeGeosphereUpdate:(BOOL)value
+{
+    themeGeosphere = value;
+    [self BOOLUpdate:@"theme_geosphere" value:value];
 }
 
 @end
