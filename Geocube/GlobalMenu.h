@@ -33,11 +33,11 @@
     NSInteger numberOfItemsInRow;
     UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
     UIBarButtonItem *button;
-    id delegate;
+    id localMenuDelegate;
 }
 
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
-@property (nonatomic) id delegate;
+@property (nonatomic) id localMenuDelegate;
 
 - (void)addButtons:(UIViewController<DOPNavbarMenuDelegate> *)vc numberOfItemsInRow:(NSInteger)numberOfItemsInRow;
 - (void)openGlobalMenu:(id)sender;

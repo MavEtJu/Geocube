@@ -25,7 +25,7 @@
 
 @implementation GlobalMenu
 
-@synthesize parent_vc, previous_vc, delegate;
+@synthesize parent_vc, previous_vc, localMenuDelegate;
 
 - (id)init
 {
@@ -59,7 +59,7 @@
     previous_vc = parent_vc;
     parent_vc = _vc;
     button.target = _vc;
-    delegate = _vc;
+    localMenuDelegate = _vc;
 }
 
 - (DOPNavbarMenu *)global_menu
@@ -83,15 +83,15 @@
         _global_menu.backgroundColor = [UIColor blackColor];
         _global_menu.separatarColor = [UIColor whiteColor];
         _global_menu.menuName = MENU_STRING;
-        _global_menu.delegate = parent_vc;
+        _global_menu.delegate = self;
     }
     return _global_menu;
 }
 
 - (void)openLocalMenu:(id)sender
 {
-    if (delegate != nil)
-        [delegate openLocalMenu:sender];
+    if (localMenuDelegate != nil)
+        [localMenuDelegate openLocalMenu:sender];
 }
 
 - (void)openGlobalMenu:(id)sender
