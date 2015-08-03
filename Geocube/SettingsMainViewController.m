@@ -17,7 +17,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
-    menuItems = [NSMutableArray arrayWithArray:@[@"XReset to default"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
 }
 
 #pragma mark - TableViewController related functions
@@ -125,11 +125,6 @@
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (menu != self.tab_menu) {
-        [menuGlobal didSelectedMenu:menu atIndex:index];
-        return;
-    }
-
     if (index == 0) {
         [self resetValues];
         return;

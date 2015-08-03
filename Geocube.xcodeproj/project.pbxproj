@@ -142,7 +142,6 @@
 		E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732981B5F857A007FDC29 /* map - tick found - 9x9.png */; };
 		E80732AA1B5F857A007FDC29 /* map - tick found - 17x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732991B5F857A007FDC29 /* map - tick found - 17x15.png */; };
 		E80732AB1B5F857A007FDC29 /* map - tick found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E807329A1B5F857A007FDC29 /* map - tick found - 24x21.png */; };
-		E80732B01B5F8593007FDC29 /* global menu icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AC1B5F8593007FDC29 /* global menu icon.png */; };
 		E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */; };
 		E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */; };
 		E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */; };
@@ -184,6 +183,8 @@
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
+		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
+		E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67C1B6F76E70019F9D2 /* menu icon - local.png */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
@@ -447,7 +448,6 @@
 		E80732981B5F857A007FDC29 /* map - tick found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9.png"; path = "images/map - tick found - 9x9.png"; sourceTree = "<group>"; };
 		E80732991B5F857A007FDC29 /* map - tick found - 17x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 17x15.png"; path = "images/map - tick found - 17x15.png"; sourceTree = "<group>"; };
 		E807329A1B5F857A007FDC29 /* map - tick found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 24x21.png"; path = "images/map - tick found - 24x21.png"; sourceTree = "<group>"; };
-		E80732AC1B5F8593007FDC29 /* global menu icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "global menu icon.png"; path = "images/global menu icon.png"; sourceTree = "<group>"; };
 		E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30.png"; path = "images/icons - sad - 30x30.png"; sourceTree = "<group>"; };
 		E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 15x15.png"; path = "images/icons - smiley - 15x15.png"; sourceTree = "<group>"; };
 		E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 20x20.png"; path = "images/icons - target - 20x20.png"; sourceTree = "<group>"; };
@@ -504,6 +504,8 @@
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
 		E82FBB291B4613D70009AB6D /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
+		E832E67B1B6F76E70019F9D2 /* menu icon - global.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global.png"; path = "images/menu icon - global.png"; sourceTree = "<group>"; };
+		E832E67C1B6F76E70019F9D2 /* menu icon - local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local.png"; path = "images/menu icon - local.png"; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -1013,7 +1015,8 @@
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				E80732AC1B5F8593007FDC29 /* global menu icon.png */,
+				E832E67B1B6F76E70019F9D2 /* menu icon - global.png */,
+				E832E67C1B6F76E70019F9D2 /* menu icon - local.png */,
 				E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */,
 				E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */,
 				E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */,
@@ -1586,6 +1589,7 @@
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
+				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
 				E80732851B5F8561007FDC29 /* container - notchosen - 70x20.png in Resources */,
 				E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */,
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
@@ -1595,12 +1599,12 @@
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
 				E80732181B5F84B4007FDC29 /* attributes - 49.png in Resources */,
 				E80732071B5F84B4007FDC29 /* attributes - 32.png in Resources */,
+				E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */,
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
 				E80731F61B5F84B4007FDC29 /* attributes - 14.png in Resources */,
 				E807327B1B5F852A007FDC29 /* waypoint - unknown - 30x30.png in Resources */,
 				E807329E1B5F857A007FDC29 /* map - dnf stick - 35x42.png in Resources */,
 				E807320C1B5F84B4007FDC29 /* attributes - 37.png in Resources */,
-				E80732B01B5F8593007FDC29 /* global menu icon.png in Resources */,
 				E80732081B5F84B4007FDC29 /* attributes - 33.png in Resources */,
 				E80731F91B5F84B4007FDC29 /* attributes - 18.png in Resources */,
 				E80732431B5F84E8007FDC29 /* log - needsarchiving - 30x30.png in Resources */,

@@ -23,47 +23,23 @@
 
 @implementation GCTableViewController
 
-@synthesize numberOfItemsInRow, tab_menu, global_menu;
+@synthesize numberOfItemsInRow, tab_menu;
 
 - (id)init
 {
     self = [super init];
+
     menuItems = [NSMutableArray arrayWithObjects:@"XEmpty", nil];
+    self.numberOfItemsInRow = 3;
 
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    self.numberOfItemsInRow = 3;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Local" style:UIBarButtonItemStylePlain target:self action:@selector(openMenu:)];
-
-    if (menuItems == nil) {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor lightGrayColor];
-    } else {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
-    }
-
-    [menuGlobal addButtons:self numberOfItemsInRow:self.numberOfItemsInRow];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
     [super viewWillAppear:animated];
-
-    [menuGlobal didDismissMenu:nil];
-    [menuGlobal setTarget:self];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [menuGlobal setLocalMenuTarget:self];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -110,16 +86,10 @@
 }
 
 
-- (void)openMenu:(id)sender
+- (void)openLocalMenu:(id)sender
 {
-    if (sender != self.navigationItem.rightBarButtonItem) {
-        [menuGlobal openMenu:sender];
-        return;
-    }
-
     // NSLog(@"GCTableViewController/openMenu: self:%p", self);
 
-    self.navigationItem.rightBarButtonItem.enabled = NO;
     if (self.tab_menu.isOpen) {
         [self.tab_menu dismissWithAnimation:YES];
     } else {
@@ -129,36 +99,15 @@
 
 - (void)didShowMenu:(DOPNavbarMenu *)menu
 {
-    if (menu != self.tab_menu) {
-        [menuGlobal didShowMenu:menu];
-        return;
-    }
-
     // NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
-
-    [self.navigationItem.rightBarButtonItem setTitle:@"dismiss"];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
-    if (menu != self.tab_menu) {
-        [menuGlobal didDismissMenu:menu];
-        return;
-    }
-
     // NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
-
-    [self.navigationItem.rightBarButtonItem setTitle:menu.menuName];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (menu != self.tab_menu) {
-        [menuGlobal didSelectedMenu:menu atIndex:index];
-        return;
-    }
-
     // NSLog(@"GCTableViewController/didSelectedMenu: self:%p", self);
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -25,7 +25,8 @@
 
 @implementation SettingsAccountsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
@@ -75,12 +76,8 @@
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (menu != self.tab_menu) {
-        [menuGlobal didSelectedMenu:menu atIndex:index];
-        return;
-    }
-
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
     if (index == 0) {
         [self addAccount];
         return;

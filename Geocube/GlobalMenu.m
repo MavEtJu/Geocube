@@ -25,7 +25,7 @@
 
 @implementation GlobalMenu
 
-@synthesize parent_vc, previous_vc;
+@synthesize parent_vc, previous_vc, delegate;
 
 - (id)init
 {
@@ -35,8 +35,10 @@
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];
 
-    button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openMenu:)];
+    button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openGlobalMenu:)];
     button.tintColor = [UIColor whiteColor];
+
+    numberOfItemsInRow = 3;
 
     return self;
 }
@@ -49,18 +51,15 @@
 
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];
-
-    _vc.navigationItem.leftBarButtonItem = button;
 }
 
-- (void)setTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
+- (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
 {
     // NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);
     previous_vc = parent_vc;
-    parent_vc.navigationItem.leftBarButtonItem = nil;
     parent_vc = _vc;
     button.target = _vc;
-    parent_vc.navigationItem.leftBarButtonItem = button;
+    delegate = _vc;
 }
 
 - (DOPNavbarMenu *)global_menu
@@ -89,7 +88,13 @@
     return _global_menu;
 }
 
-- (void)openMenu:(id)sender
+- (void)openLocalMenu:(id)sender
+{
+    if (delegate != nil)
+        [delegate openLocalMenu:sender];
+}
+
+- (void)openGlobalMenu:(id)sender
 {
     // NSLog(@"GlobalMenu/openMenu: self.vc:%p", self.parent_vc);
 

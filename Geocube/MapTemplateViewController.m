@@ -47,7 +47,8 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 

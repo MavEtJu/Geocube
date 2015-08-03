@@ -238,12 +238,8 @@
 
 #pragma mark - Local menu related
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (menu != self.tab_menu) {
-        [menuGlobal didSelectedMenu:menu atIndex:index];
-        return;
-    }
-
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
     // Add a group
     if (index == 0) {
         [dbFilter dbAllClear];

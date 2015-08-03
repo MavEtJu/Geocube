@@ -19,14 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCViewController : UIViewController <DOPNavbarMenuDelegate> {
+@interface GCViewController : UIViewController <GlobalMenuDelegate, DOPNavbarMenuDelegate> {
     NSInteger numberOfItemsInRow;
-    DOPNavbarMenu *tab_menu, *global_menu;
+    DOPNavbarMenu *tab_menu;
 
     NSMutableArray *menuItems;
 }
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
-@property (strong, nonatomic) DOPNavbarMenu *tab_menu, *global_menu;
+@property (strong, nonatomic) DOPNavbarMenu *tab_menu;
 
 @end

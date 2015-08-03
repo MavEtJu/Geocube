@@ -317,6 +317,7 @@ typedef enum {
     ImageIcon_Target,
 
     ImageIcon_GlobalMenu,
+    ImageIcon_LocalMenu,
 
     ImageLibraryImagesMax
 } ImageLibraryImages;

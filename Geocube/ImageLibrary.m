@@ -117,7 +117,8 @@
     [self add:@"icons - sad - 30x30" index:ImageIcon_Sad];
     [self add:@"icons - target - 20x20" index:ImageIcon_Target];
 
-    [self add:@"global menu icon" index:ImageIcon_GlobalMenu];
+    [self add:@"menu icon - global" index:ImageIcon_GlobalMenu];
+    [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
 
     [self add:@"attributes - unknown" index:ImageAttribute_Unknown];
     [self add:@"attributes - 01" index:ImageAttribute_DogsAllowed];

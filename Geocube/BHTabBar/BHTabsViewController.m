@@ -170,7 +170,17 @@ enum { kTagTabBase = 100 };
     b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
     [self.view addSubview:b];
-    [b addTarget:menuGlobal action:@selector(openMenu:) forControlEvents:UIControlEventTouchDown];
+    [b addTarget:menuGlobal action:@selector(openGlobalMenu:) forControlEvents:UIControlEventTouchDown];
+    /***** Global Menu ****/
+
+    /***** Local Menu ****/
+    imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    b = [UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame = CGRectMake(frame.size.width - 2 - imgMenu.size.width, self.style.tabsViewHeight - self.style.tabHeight + (self.style.tabHeight - imgMenu.size.height) / 2, imgMenu.size.width, imgMenu.size.height);
+    b.backgroundColor = [UIColor redColor];
+    [b setImage:imgMenu forState:UIControlStateNormal];
+    [self.view addSubview:b];
+    [b addTarget:menuGlobal action:@selector(openLocalMenu:) forControlEvents:UIControlEventTouchDown];
     /***** Global Menu ****/
 
   [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:0]];

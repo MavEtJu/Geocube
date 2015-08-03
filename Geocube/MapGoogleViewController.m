@@ -173,12 +173,8 @@
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (menu != self.tab_menu) {
-        [menuGlobal didSelectedMenu:menu atIndex:index];
-        return;
-    }
-
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
     switch (index) {
         case 0: /* Map view */
             [super menuMapType:MAPTYPE_NORMAL];

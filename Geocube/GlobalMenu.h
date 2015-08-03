@@ -19,20 +19,31 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class GlobalMenu;
+
+@protocol GlobalMenuDelegate
+
+- (void)openLocalMenu:(id)sender;
+
+@end
+
 @interface GlobalMenu : NSObject<DOPNavbarMenuDelegate> {
     NSArray *items;
     DOPNavbarMenu *_global_menu;
     NSInteger numberOfItemsInRow;
     UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
     UIBarButtonItem *button;
+    id delegate;
 }
 
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
+@property (nonatomic) id delegate;
 
 - (void)addButtons:(UIViewController<DOPNavbarMenuDelegate> *)vc numberOfItemsInRow:(NSInteger)numberOfItemsInRow;
-- (void)openMenu:(id)sender;
+- (void)openGlobalMenu:(id)sender;
+- (void)openLocalMenu:(id)sender;
 - (void)didDismissMenu:(DOPNavbarMenu *)menu;
 - (void)didShowMenu:(DOPNavbarMenu *)menu;
-- (void)setTarget:(UIViewController<DOPNavbarMenuDelegate> *)vc;
+- (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)vc;
 
 @end

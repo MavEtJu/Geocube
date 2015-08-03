@@ -64,13 +64,14 @@
 #import "dbLog.h"
 #import "database-cache.h"
 
+#import "GlobalMenu.h"
+
 #import "GCTableViewController.h"
 #import "GCViewController.h"
 #import "GCLocationManager.h"
 
 #import "AppDelegate.h"
 #import "ImageLibrary.h"
-#import "GlobalMenu.h"
 #import "CacheFilterManager.h"
 #import "MyConfig.h"
 #import "Geocube.h"
