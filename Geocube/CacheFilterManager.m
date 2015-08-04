@@ -40,6 +40,11 @@
     return self;
 }
 
+- (void)needsRefresh
+{
+    needsRefresh = YES;
+}
+
 - (void)applyFilters:(CLLocationCoordinate2D)coords
 {
     /* Do not unnecessary go through this */

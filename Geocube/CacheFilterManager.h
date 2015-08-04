@@ -35,6 +35,7 @@
 - (NSString *)configGet:(NSString *)name;
 - (void)configPrefix:(NSString *)prefix;
 - (void)configSet:(NSString *)name value:(NSString *)value;
+- (void)needsRefresh;
 
 
 @end

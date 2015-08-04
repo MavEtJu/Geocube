@@ -1391,8 +1391,8 @@
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
-				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
+				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = GUI;
