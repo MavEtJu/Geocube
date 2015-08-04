@@ -23,6 +23,8 @@
 
     UIImage *compassImage;
     UIImageView *compassImageView;
+    UIImage *lineImage;
+    UIImageView *lineImageView;
 
     UIImageView *wpIcon;
     UILabel *wpName;
@@ -37,7 +39,8 @@
     UILabel *altitude;
     UILabel *distance;
 
-    float oldRad;
+    float oldCompass;
+    float oldBearing;
 }
 
 @end

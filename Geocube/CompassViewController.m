@@ -38,7 +38,8 @@
     accuracy = nil;
     altitude = nil;
 
-    oldRad = 0;
+    oldCompass = 0;
+    oldBearing = 0;
 
     return self;
 }
@@ -182,10 +183,15 @@
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
 
-    compassImage  = [UIImage imageNamed:[NSString stringWithFormat:@"%@/compass_needle.png", [MyTools DataDistributionDirectory]]];
+    compassImage  = [imageLibrary get:ImageCompass_Magnetic];
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
     compassImageView.image = compassImage;
     [self.view addSubview:compassImageView];
+
+    lineImage  = [imageLibrary get:ImageCompass_Line];
+    lineImageView = [[UIImageView alloc] initWithFrame:rectCompass];
+    lineImageView.image = lineImage;
+    [self.view addSubview:lineImageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -229,20 +235,28 @@
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
 
-    float newRad = -LM.direction * M_PI / 180.0f;
+    float newCompass = -LM.direction * M_PI / 180.0f;
 
     CABasicAnimation *theAnimation;
     theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
-    theAnimation.toValue = [NSNumber numberWithFloat:newRad];
+    theAnimation.fromValue = [NSNumber numberWithFloat:oldCompass];
+    theAnimation.toValue = [NSNumber numberWithFloat:newCompass];
     theAnimation.duration = 0.5f;
     [compassImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-    compassImageView.transform = CGAffineTransformMakeRotation(newRad);
-
-    oldRad = newRad;
+    compassImageView.transform = CGAffineTransformMakeRotation(newCompass);
+    oldCompass = newCompass;
 
     if (waypointManager.currentWaypoint == nil)
         return;
+
+    float newBearing = ([Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction ) * M_PI / 180.0;
+    theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    theAnimation.fromValue = [NSNumber numberWithFloat:oldBearing];
+    theAnimation.toValue = [NSNumber numberWithFloat:newBearing];
+    theAnimation.duration = 0.5f;
+    [lineImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+    lineImageView.transform = CGAffineTransformMakeRotation(newBearing);
+    oldBearing = newBearing;
 
     distance.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
 }

@@ -320,6 +320,9 @@ typedef enum {
     ImageIcon_LocalMenu,
     ImageIcon_CloseButton,
 
+    ImageCompass_Magnetic,
+    ImageCompass_Line,
+
     ImageLibraryImagesMax
 } ImageLibraryImages;
 

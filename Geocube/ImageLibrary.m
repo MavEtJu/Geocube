@@ -121,6 +121,9 @@
     [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
     [self add:@"menu icon - close" index:ImageIcon_CloseButton];
 
+    [self add:@"compass - magnetic" index:ImageCompass_Magnetic];
+    [self add:@"compass - redline" index:ImageCompass_Line];
+
     [self add:@"attributes - unknown" index:ImageAttribute_Unknown];
     [self add:@"attributes - 01" index:ImageAttribute_DogsAllowed];
     [self add:@"attributes - 02" index:ImageAttribute_AccessOrParkingFee];

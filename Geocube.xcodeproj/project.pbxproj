@@ -186,6 +186,8 @@
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
 		E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67C1B6F76E70019F9D2 /* menu icon - local.png */; };
 		E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67F1B7024E40019F9D2 /* menu icon - close.png */; };
+		E832E6851B70DABB0019F9D2 /* compass - magnetic.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E6841B70DABB0019F9D2 /* compass - magnetic.png */; };
+		E832E6871B70DDD30019F9D2 /* compass - redline.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E6861B70DDD30019F9D2 /* compass - redline.png */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
@@ -508,6 +510,8 @@
 		E832E67B1B6F76E70019F9D2 /* menu icon - global.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global.png"; path = "images/menu icon - global.png"; sourceTree = "<group>"; };
 		E832E67C1B6F76E70019F9D2 /* menu icon - local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local.png"; path = "images/menu icon - local.png"; sourceTree = "<group>"; };
 		E832E67F1B7024E40019F9D2 /* menu icon - close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close.png"; path = "images/menu icon - close.png"; sourceTree = "<group>"; };
+		E832E6841B70DABB0019F9D2 /* compass - magnetic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - magnetic.png"; path = "images/compass - magnetic.png"; sourceTree = "<group>"; };
+		E832E6861B70DDD30019F9D2 /* compass - redline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - redline.png"; path = "images/compass - redline.png"; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -1065,6 +1069,8 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E832E6861B70DDD30019F9D2 /* compass - redline.png */,
+				E832E6841B70DABB0019F9D2 /* compass - magnetic.png */,
 				E80732C41B609D75007FDC29 /* compass_needle.png */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E867E83C1B53D61C00CB126A /* attributes */,
@@ -1574,6 +1580,7 @@
 				E80731EF1B5F84B4007FDC29 /* attributes - 07.png in Resources */,
 				E807322A1B5F84B4007FDC29 /* attributes - 67.png in Resources */,
 				E80731F21B5F84B4007FDC29 /* attributes - 10.png in Resources */,
+				E832E6871B70DDD30019F9D2 /* compass - redline.png in Resources */,
 				E807325D1B5F850C007FDC29 /* cache - benchmark - 30x30.png in Resources */,
 				E80732761B5F852A007FDC29 /* waypoint - flag - 30x30.png in Resources */,
 				E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */,
@@ -1690,6 +1697,7 @@
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
 				E80732D11B60F57E007FDC29 /* waymarking.gpx in Resources */,
+				E832E6851B70DABB0019F9D2 /* compass - magnetic.png in Resources */,
 				E807329D1B5F857A007FDC29 /* map - cross dnf - 19x19.png in Resources */,
 				E80732441B5F84E8007FDC29 /* log - needsmaintenance - 30x30.png in Resources */,
 				E807325E1B5F850C007FDC29 /* cache - cito - 30x30.png in Resources */,
