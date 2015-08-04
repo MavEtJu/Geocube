@@ -488,7 +488,7 @@
 /* Receive data from the location manager */
 - (void)updateData
 {
-    NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:LM.coords]);
+    NSLog(@"Coordinates: %@ - Direction: %ld", [Coordinates NiceCoordinates:LM.coords], (long)LM.direction);
     if ([Coordinates coordinates2distance:lastCoordinates to:LM.coords] > 1000)
         needsRefresh = YES;
     lastCoordinates = LM.coords;
