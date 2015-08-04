@@ -105,6 +105,23 @@
     return sout;
 }
 
++ (NSString *)niceFileSize:(NSInteger)i
+{
+    if (i < 1024)
+        return [NSString stringWithFormat:@"%ld bytes", (long)i];
+
+    if (i < 10 * 1024 )
+        return [NSString stringWithFormat:@"%0.1f Kb", i / 1024.0];
+
+    if (i < 1024 * 1024 )
+        return [NSString stringWithFormat:@"%ld Kb", (long)(i / 1024)];
+
+    if (i < 10 * 1024 * 1024 )
+        return [NSString stringWithFormat:@"%0.1f Mb", i / (1024.0 * 1024.0)];
+
+    return [NSString stringWithFormat:@"%ld Mb", (long)(i / (1024 * 1024))];
+}
+
 + (NSString *)NiceDistance:(NSInteger)i
 {
     if (myConfig.distanceMetric == YES) {

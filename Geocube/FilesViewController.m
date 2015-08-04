@@ -38,8 +38,18 @@
 - (void)refreshFileData
 {
     // Count files in FilesDir
+
     files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
+    filesDates = [NSMutableArray arrayWithCapacity:20];
+    filesSizes = [NSMutableArray arrayWithCapacity:20];
     filesCount = [files count];
+
+    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+        NSDictionary *a = [fm attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
+        NSNumber *s = [a objectForKey:NSFileSize];
+        [filesSizes addObject:s];
+    }];
+
     [self refreshControl];
 }
 
@@ -79,7 +89,7 @@
 
     NSString *fn = [files objectAtIndex:indexPath.row];
     cell.textLabel.text = fn;
-    cell.detailTextLabel.text = @"Detail Label";
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
 
     return cell;
 }

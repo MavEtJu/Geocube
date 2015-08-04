@@ -40,6 +40,7 @@
 + (NSInteger)numberOfLines:(NSString *)s;
 
 + (NSString *)niceNumber:(NSInteger)i;
++ (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)NiceDistance:(NSInteger)i;
 
 - (id)initClock:(NSString *)title;

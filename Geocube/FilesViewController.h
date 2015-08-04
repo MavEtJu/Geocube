@@ -21,6 +21,8 @@
 
 @interface FilesViewController : GCTableViewController {
     NSArray *files;
+    NSMutableArray *filesSizes;
+    NSMutableArray *filesDates;
     NSInteger filesCount;
 }
 
