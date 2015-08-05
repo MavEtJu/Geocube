@@ -22,12 +22,21 @@
 @interface MyConfig : NSObject {
     BOOL distanceMetric;
     BOOL themeGeosphere;
+    NSString *currentWaypoint;
+    NSInteger currentPage;
+    NSInteger currentPageTab;
 }
 
 @property (nonatomic) BOOL distanceMetric;
 @property (nonatomic) BOOL themeGeosphere;
+@property (nonatomic, retain) NSString *currentWaypoint;
+@property (nonatomic) NSInteger currentPage;
+@property (nonatomic) NSInteger currentPageTab;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)themeGeosphereUpdate:(BOOL)value;
+- (void)currentWaypointUpdate:(NSString *)name;
+- (void)currentPageUpdate:(NSInteger)value;
+- (void)currentPageTabUpdate:(NSInteger)value;
 
 @end
