@@ -239,19 +239,22 @@
 
     CABasicAnimation *theAnimation;
     theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    theAnimation.fromValue = [NSNumber numberWithFloat:oldCompass];
+    theAnimation.fromValue = [NSNumber numberWithFloat:newCompass];
     theAnimation.toValue = [NSNumber numberWithFloat:newCompass];
     theAnimation.duration = 0.5f;
     [compassImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     compassImageView.transform = CGAffineTransformMakeRotation(newCompass);
     oldCompass = newCompass;
 
-    if (waypointManager.currentWaypoint == nil)
+    if (waypointManager.currentWaypoint == nil) {
+        lineImageView.hidden = YES;
         return;
+    }
+    lineImageView.hidden = NO;
 
     float newBearing = ([Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction ) * M_PI / 180.0;
     theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    theAnimation.fromValue = [NSNumber numberWithFloat:oldBearing];
+    theAnimation.fromValue = [NSNumber numberWithFloat:newBearing];
     theAnimation.toValue = [NSNumber numberWithFloat:newBearing];
     theAnimation.duration = 0.5f;
     [lineImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
