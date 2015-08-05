@@ -31,6 +31,7 @@
     group = _group;
 
     menuItems = nil;
+    hasCloseButton = YES;
 
     return self;
 }
