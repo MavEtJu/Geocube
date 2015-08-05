@@ -39,9 +39,14 @@
 
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
-    waypoint = _wp;
-    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
-    [groundspeak finish];
+    if (_wp == nil) {
+        waypoint = nil;
+        groundspeak = nil;
+    } else {
+        waypoint = _wp;
+        groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
+        [groundspeak finish];
+    }
     [self.tableView reloadData];
 }
 
@@ -244,10 +249,14 @@
     // Cache commands
     if (indexPath.section == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0:
                 cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+                if ([waypointManager currentWaypoint] != nil && [[waypointManager currentWaypoint].name compare:waypoint.name] == NSOrderedSame)
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 break;
             case 1:
                 cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
@@ -255,7 +264,6 @@
         }
         cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
         cell.textLabel.textColor = tc;
-        cell.accessoryType = UITableViewCellAccessoryNone;
         return cell;
     }
 
@@ -316,7 +324,14 @@
 
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
+            if ([waypointManager currentWaypoint] != nil &&
+                [[waypointManager currentWaypoint].name compare:waypoint.name] == NSOrderedSame) {
+                [waypointManager setCurrentWaypoint:nil];
+                return;
+            }
+
             [waypointManager setCurrentWaypoint:waypoint];
+            [self.tableView reloadData];
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];

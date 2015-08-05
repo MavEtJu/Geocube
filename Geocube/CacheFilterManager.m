@@ -65,7 +65,7 @@
      * If a group is not defined then it will be considered not to be included.
      */
 
-    [self setConfigPrefix:@"groups"];
+    [self configPrefix:@"groups"];
     caches = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"groups"];
 
@@ -92,7 +92,7 @@
      * If a type is not defined then it will be considered not to be included.
      */
 
-    [self setConfigPrefix:@"types"];
+    [self configPrefix:@"types"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"types"];
 
@@ -120,7 +120,7 @@
      * - If the min is not 0 and the max is not 100, then between min and max.
      */
 
-    [self setConfigPrefix:@"favourites"];
+    [self configPrefix:@"favourites"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"favourites"];
 
@@ -156,7 +156,7 @@
      * If a size is not defined then it will be considered not to be included.
      */
 
-    [self setConfigPrefix:@"sizes"];
+    [self configPrefix:@"sizes"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"sizes"];
 
@@ -179,7 +179,7 @@
 
     /* Filter out difficulty rating
      */
-    [self setConfigPrefix:@"difficulty"];
+    [self configPrefix:@"difficulty"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"difficulty"];
 
@@ -199,7 +199,7 @@
     /* Filter out terrain rating
      */
 
-    [self setConfigPrefix:@"terrain"];
+    [self configPrefix:@"terrain"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"terrain"];
 
@@ -218,7 +218,7 @@
 
     /* Filter out dates
      */
-    [self setConfigPrefix:@"dates"];
+    [self configPrefix:@"dates"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"dates"];
 
@@ -293,7 +293,7 @@
     /* Text self
      * An empty entry means that it matches.
      */
-    [self setConfigPrefix:@"text"];
+    [self configPrefix:@"text"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"text"];
 
@@ -406,7 +406,7 @@
     }];
 
     /* Filter by distance */
-    [self setConfigPrefix:@"distance"];
+    [self configPrefix:@"distance"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"distance"];
 
@@ -439,7 +439,7 @@
     }
 
     /* Filter by direction */
-    [self setConfigPrefix:@"direction"];
+    [self configPrefix:@"direction"];
     after = [NSMutableArray arrayWithCapacity:200];
     [clock clockShowAndReset:@"direction"];
 
