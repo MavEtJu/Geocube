@@ -117,6 +117,7 @@
     // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
 
     NSLog(@"Switching to %ld", (long)index);
+    [myConfig currentPageUpdate:index];
     [_AppDelegate switchController:index];
 }
 

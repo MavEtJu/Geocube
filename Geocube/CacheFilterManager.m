@@ -35,6 +35,9 @@
     lastCoordinates.latitude = 0;
     lastCoordinates.longitude = 0;
 
+    if ([myConfig.currentWaypoint compare:@""] != NSOrderedSame)
+        currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:myConfig.currentWaypoint]];
+
     [LM startDelegation:self isNavigating:NO];
 
     return self;
@@ -499,4 +502,9 @@
     lastCoordinates = LM.coords;
 }
 
+- (void)setCurrentWaypoint:(dbWaypoint *)wp
+{
+    currentWaypoint = wp;
+    [myConfig currentWaypointUpdate:wp.name];
+}
 @end

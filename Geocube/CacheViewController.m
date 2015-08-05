@@ -316,7 +316,7 @@
 
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
-            waypointManager.currentWaypoint = waypoint;
+            [waypointManager setCurrentWaypoint:waypoint];
 
             UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
             UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];

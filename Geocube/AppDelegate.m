@@ -39,9 +39,6 @@
     LM = [[GCLocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];
 
-    // Waypoint Manager
-    waypointManager = [[CacheFilterManager alloc] init];
-
     // Initialize Google Maps
     [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
 
@@ -55,10 +52,13 @@
     db = [[database alloc] init];
     [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
-    [dbc loadWaypointData];
 
-    // Initialize the configuration manager
+    // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
+
+    // Waypoint Manager - after myConfig, LM, db
+    waypointManager = [[CacheFilterManager alloc] init];
+   [dbc loadWaypointData];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
@@ -308,7 +308,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_NAVIGATE];
+    self.window.rootViewController = [tabBars objectAtIndex:[myConfig currentPage]];
     [self.window makeKeyAndVisible];
 
     return YES;

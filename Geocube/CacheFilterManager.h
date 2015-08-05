@@ -27,7 +27,7 @@
 }
 
 @property (nonatomic, retain) NSString *configPrefix;
-@property (nonatomic, retain) dbWaypoint *currentWaypoint;
+@property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
 @property (nonatomic, retain) NSMutableArray *currentWaypoints;
 
 - (id)init;
@@ -36,6 +36,7 @@
 - (void)configPrefix:(NSString *)prefix;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)needsRefresh;
+- (void)setCurrentWaypoint:(dbWaypoint *)wp;
 
 
 @end
