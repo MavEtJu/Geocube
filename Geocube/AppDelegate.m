@@ -308,7 +308,7 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:RC_CACHESOFFLINE];
+    self.window.rootViewController = [tabBars objectAtIndex:RC_NAVIGATE];
     [self.window makeKeyAndVisible];
 
     return YES;
