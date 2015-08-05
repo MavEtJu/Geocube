@@ -173,7 +173,11 @@
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+}
 
++ (float)degrees2rad:(NSInteger)d
+{
+    return d * M_PI / 180.0;
 }
 
 

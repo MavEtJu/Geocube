@@ -40,5 +40,6 @@
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSString *)bearing2compass:(NSInteger)bearing;
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
++ (float)degrees2rad:(NSInteger)d;
 
 @end
