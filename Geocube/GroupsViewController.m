@@ -172,6 +172,7 @@
 - (void)groupEmpty:(dbGroup *)cg reload:(BOOL)reload
 {
     [cg dbEmpty];
+    [waypointManager needsRefresh];
     [dbc loadWaypointData];
     if (reload == YES) {
         [self refreshGroupData];
@@ -182,6 +183,7 @@
 - (void)groupDelete:(dbGroup *)cg
 {
     [cg dbDelete];
+    [waypointManager needsRefresh];
     [dbc loadWaypointData];
     [self refreshGroupData];
     [self.tableView reloadData];
