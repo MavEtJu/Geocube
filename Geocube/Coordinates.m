@@ -90,6 +90,14 @@
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
+- (float)lat
+{
+    return coords.latitude;
+}
+- (float)lon
+{
+    return coords.longitude;
+}
 
 - (NSInteger)distance:(CLLocationCoordinate2D)c
 {
@@ -180,5 +188,45 @@
     return d * M_PI / 180.0;
 }
 
++ (float)degreesDecimalMinutes2degrees:(NSString *)ddm
+{
+    NSScanner *scanner = [NSScanner scannerWithString:ddm];
+    BOOL okay = YES;
+
+    NSString *direction;
+    okay &= [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"NESW"] intoString:&direction];
+
+    int degrees;
+    okay &= [scanner scanInt:&degrees];
+
+    float mins;
+    okay &= [scanner scanFloat:&mins];
+
+    if (mins > 60 || mins < 0)
+        okay = NO;
+    if (degrees > 180 || degrees < 0)
+        okay = NO;
+
+    float ddegrees = degrees + mins / 60.0;
+
+    if ([[direction uppercaseString] compare:@"W"] == NSOrderedSame)
+        ddegrees = -ddegrees;
+    if ([[direction uppercaseString] compare:@"S"] == NSOrderedSame)
+        ddegrees = -ddegrees;
+
+    if (okay)
+        return ddegrees;
+    return 0;
+}
+
+- (id)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
+{
+    self = [super init];
+
+    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:lat];
+    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:lon];
+
+    return self;
+}
 
 @end
