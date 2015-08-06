@@ -29,9 +29,9 @@
 
 - initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
 {
-    self = [super initWithStyle:style];
+    self = [super init];
 
-    menuItems = nil;
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint"]];
     hasCloseButton = canBeClosed;
 
     return self;
@@ -376,6 +376,76 @@
     if (indexPath.section == 0)
         return [CacheTableViewCell cellHeight];
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    // Add a waypoint
+    if (index == 0) {
+        [self newWaypoint];
+        return;
+    }
+
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
+}
+
+- (void)newWaypoint
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Add a related waypoint"
+                               message:@"Add a related waypoint2"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *lat = tf.text;
+                             NSLog(@"Lattitude '%@'", lat);
+
+                             tf = [alert.textFields objectAtIndex:1];
+                             NSString *lon = tf.text;
+                             NSLog(@"Longitude '%@'", lon);
+
+                             dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+                             wp.lat = lat;
+                             wp.lon = lon;
+                             wp.lat_int = [lat integerValue] * 1000000;
+                             wp.lon_int = [lon integerValue] * 1000000;
+                             wp.name = [NSString stringWithFormat:@"XX%@", [waypoint.name substringFromIndex:2]];
+                             wp.description = @"foo - description";
+                             wp.date_placed_epoch = time(NULL);
+                             wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
+                             wp.url = nil;
+                             wp.urlname = @"foo - urlname";
+                             wp.symbol_id = 1;
+                             wp.type_id = [dbc Type_Unknown]._id;
+                             [dbWaypoint dbCreate:wp];
+
+                             [self.tableView reloadData];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Lattitude";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Longitude";
+    }];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
