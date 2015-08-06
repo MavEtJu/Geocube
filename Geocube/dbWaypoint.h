@@ -99,5 +99,6 @@ enum {
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
 + (void)dbUpdateLogStatus;
++ (NSString *)makeName:(NSString *)suffix;
 
 @end

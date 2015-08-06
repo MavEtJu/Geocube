@@ -461,4 +461,18 @@
     }
 }
 
++ (NSString *)makeName:(NSString *)suffix
+{
+
+    for (char c = 'A'; c <= 'Z'; c++) {
+        for (NSInteger i = 0; i < 10; i++) {
+            NSString *s = [NSString stringWithFormat:@"%c%ld%@", c, (long)i, suffix];
+            if ([dbWaypoint dbGetByName:s] == 0)
+                return s;
+        }
+    }
+
+    return nil;
+}
+
 @end
