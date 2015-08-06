@@ -21,31 +21,25 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation CacheTravelbugsViewController
+#define THISCELL @"CacheWaypointsViewController"
 
-#define THISCELL @"CacheTravelbugsViewController"
+@implementation CacheWaypointsViewController
 
 - (id)init:(dbWaypoint *)_wp
 {
     self = [super init];
+
     waypoint = _wp;
-
-    tbs = [NSMutableArray arrayWithCapacity:5];
-
-    NSArray *as = [dbTravelbug dbAllByWaypoint:waypoint._id];
-    NSEnumerator *e = [as objectEnumerator];
-    dbTravelbug *tb;
-    while ((tb = [e nextObject]) != nil) {
-        [tbs addObject:tb];
-    }
-
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
-
-    menuItems = nil;
+    wps = [waypoint hasWaypoints];
     hasCloseButton = YES;
 
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 #pragma mark - TableViewController related functions
@@ -57,12 +51,7 @@
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tbs count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Travelbugs";
+    return [wps count];
 }
 
 // Return a cell for the index path
@@ -72,14 +61,23 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbTravelbug *tb = [tbs objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = tb.name;
-    cell.detailTextLabel.text = tb.ref;
-    cell.userInteractionEnabled = NO;
-    cell.imageView.image = nil;
+    cell.textLabel.text = wp.urlname;
+    cell.detailTextLabel.text = wp.name;
+    cell.imageView.image = [imageLibrary get:wp.type.icon];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+
+    [self.navigationController popViewControllerAnimated:YES];
+    CacheViewController *cvc = (CacheViewController *)self.navigationController.topViewController;
+    [cvc showWaypoint:wp];
+    return;
 }
 
 @end

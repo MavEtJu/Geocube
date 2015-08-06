@@ -177,11 +177,11 @@
     distance.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:distance];
 
-    l = [[UILabel alloc] initWithFrame:rectDescription];
-    l.text = waypointManager.currentWaypoint.description;
-    l.textAlignment = NSTextAlignmentCenter;
-    l.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:l];
+    wpDescription = [[UILabel alloc] initWithFrame:rectDescription];
+    wpDescription.text = waypointManager.currentWaypoint.urlname;
+    wpDescription.textAlignment = NSTextAlignmentCenter;
+    wpDescription.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:wpDescription];
 
     compassImage  = [imageLibrary get:ImageCompass_Magnetic];
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
@@ -209,10 +209,20 @@
     ratingD.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
     ratingT.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
 
+    altitude.text = @"";
+    accuracy.text = @"";
+    distance.text = @"";
+
     if (waypointManager.currentWaypoint != nil) {
         wpName.text = waypointManager.currentWaypoint.name;
+        wpDescription.text = waypointManager.currentWaypoint.urlname;
         wpLat.text = [coords lat_degreesDecimalMinutes];
         wpLon.text = [coords lon_degreesDecimalMinutes];
+    } else {
+        wpName.text = @"";
+        wpDescription.text = @"";
+        wpLat.text = @"";
+        wpLon.text = @"";
     }
 }
 

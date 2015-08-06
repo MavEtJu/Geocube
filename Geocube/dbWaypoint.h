@@ -84,7 +84,7 @@ enum {
 - (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;
 - (NSInteger)hasAttributes;
-- (NSInteger)hasWaypoints;
+- (NSArray *)hasWaypoints;
 - (NSInteger)hasInventory;
 - (NSInteger)hasImages;
 

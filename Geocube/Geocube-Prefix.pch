@@ -92,6 +92,7 @@
 #import "CacheGroupsViewController.h"
 #import "CacheAttributesViewController.h"
 #import "CacheTravelbugsViewController.h"
+#import "CacheWaypointsViewController.h"
 #import "CacheViewController.h"
 
 #import "FilterObject.h"

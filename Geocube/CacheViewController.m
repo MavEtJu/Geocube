@@ -59,7 +59,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
-    waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Related Waypoints", @"Inventory", @"Images", @"Group Members"];
+    waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Note", @"Logs", @"Attributes", @"Additional Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
 }
 
@@ -74,11 +74,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    if (waypoint == nil)
+        return 0;
     return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (waypoint == nil)
+        return 0;
     if (section == 0)
         return 1;
     if (section == 1)
@@ -90,6 +94,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (waypointManager.currentWaypoint == nil)
+        return 0;
     if (section == 1)
         return @"Waypoint data";
     if (section == 2)
@@ -214,12 +220,12 @@
                 break;
             }
             case 6: { /* Related Waypoints */
-                NSInteger c = [waypoint hasWaypoints];
-                if (c == 0) {
+                NSArray *wps = [waypoint hasWaypoints];
+                if ([wps count] <= 1) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 } else
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)([wps count] - 1)];
                 break;
             }
             case 7: { /* Inventory */
@@ -307,7 +313,13 @@
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
-        if (indexPath.row == 7) {    /* Groups */
+        if (indexPath.row == 6) {    /* Waypoints */
+            UITableViewController *newController = [[CacheWaypointsViewController alloc] init:waypoint];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+        if (indexPath.row == 7) {    /* Travelbugs */
             UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
@@ -327,6 +339,8 @@
             if ([waypointManager currentWaypoint] != nil &&
                 [[waypointManager currentWaypoint].name compare:waypoint.name] == NSOrderedSame) {
                 [waypointManager setCurrentWaypoint:nil];
+                [self showWaypoint:nil];
+                [self.tableView reloadData];
                 return;
             }
 

@@ -277,6 +277,7 @@
 		E8F570C51B40059F003F020C /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbConfig.m */; };
 		E8F570CB1B4008DD003F020C /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbType.m */; };
 		E8F570CE1B40147E003F020C /* Import_GPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* Import_GPX.m */; };
+		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -685,6 +686,8 @@
 		E8F570CA1B4008DD003F020C /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbType.m; sourceTree = "<group>"; };
 		E8F570CC1B40147E003F020C /* Import_GPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Import_GPX.h; sourceTree = "<group>"; };
 		E8F570CD1B40147E003F020C /* Import_GPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Import_GPX.m; sourceTree = "<group>"; };
+		E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheWaypointsViewController.h; sourceTree = "<group>"; };
+		E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheWaypointsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -964,6 +967,8 @@
 				E8740FE71B508BBE002527DA /* CacheLogsViewController.m */,
 				E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */,
 				E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */,
+				E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */,
+				E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */,
 			);
 			name = "Cache Viewing";
 			sourceTree = "<group>";
@@ -1857,6 +1862,7 @@
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
+				E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,

@@ -42,6 +42,7 @@
 
     [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
 
+    /*
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
@@ -53,6 +54,7 @@
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated

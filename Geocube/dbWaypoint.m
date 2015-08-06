@@ -110,11 +110,27 @@
     return [[dbLog dbAllByWaypointLogged:_id] count];
 }
 
-- (NSInteger)hasWaypoints { return 0; }
 - (NSInteger)hasImages { return 0; }
 
 - (NSInteger)hasInventory {
     return [dbTravelbug dbCountByWaypoint:_id];
+}
+
+- (NSArray *)hasWaypoints
+{
+    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, groundspeak_id, urlname from waypoints where name like ?")
+
+        NSString *sql = [NSString stringWithFormat:@"%%%@", [self.name substringFromIndex:2]];
+        SET_VAR_TEXT(1, sql);
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN( 0, __id);
+            [wps addObject:[dbWaypoint dbGet:__id]];
+        }
+    }
+    return wps;
 }
 
 + (NSMutableArray *)dbAll

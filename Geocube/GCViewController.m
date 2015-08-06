@@ -67,6 +67,7 @@
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         closeButton = b;
     }
+
 }
 
 - (void)closePage:(UIButton *)b
