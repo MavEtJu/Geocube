@@ -412,17 +412,20 @@
                              NSString *lon = tf.text;
                              NSLog(@"Longitude '%@'", lon);
 
+                             Coordinates *c;
+                             c = [[Coordinates alloc] initString:lat lon:lon];
+
                              dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-                             wp.lat = lat;
-                             wp.lon = lon;
-                             wp.lat_int = [lat integerValue] * 1000000;
-                             wp.lon_int = [lon integerValue] * 1000000;
-                             wp.name = [NSString stringWithFormat:@"XX%@", [waypoint.name substringFromIndex:2]];
-                             wp.description = @"foo - description";
+                             wp.lat = [c lat_decimalDegreesSigned];
+                             wp.lon = [c lon_decimalDegreesSigned];
+                             wp.lat_int = [c lat] * 1000000;
+                             wp.lon_int = [c lon] * 1000000;
+                             wp.name = [dbWaypoint makeName:[waypoint.name substringFromIndex:2]];
+                             wp.description = wp.name;
                              wp.date_placed_epoch = time(NULL);
                              wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
                              wp.url = nil;
-                             wp.urlname = @"foo - urlname";
+                             wp.urlname = wp.name;
                              wp.symbol_id = 1;
                              wp.type_id = [dbc Type_Unknown]._id;
                              [dbWaypoint dbCreate:wp];
@@ -439,10 +442,10 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Lattitude";
+        textField.placeholder = @"Lattitude (like S 12 34.567)";
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Longitude";
+        textField.placeholder = @"Longitude (like E 23.45.678)";
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
