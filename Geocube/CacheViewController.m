@@ -348,24 +348,25 @@
             [waypointManager setCurrentWaypoint:waypoint];
             [self.tableView reloadData];
 
-            UITabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
-            UINavigationController *nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_TARGET];
+            BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+            UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
             [cvc showWaypoint:waypointManager.currentWaypoint];
 
-            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_GMAP];
+            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_GMAP];
             MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];
             [mgv refreshWaypointsData];
 
-            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_AMAP];
+            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_AMAP];
             MapAppleViewController *mav = [nvc.viewControllers objectAtIndex:0];
             [mav refreshWaypointsData];
 
-            nvc = [[tb viewControllers] objectAtIndex:VC_NAVIGATE_MAP_OSM];
+            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_OSM];
             MapOSMViewController *mov = [nvc.viewControllers objectAtIndex:0];
             [mov refreshWaypointsData];
 
             [_AppDelegate switchController:RC_NAVIGATE];
+            [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
             return;
         }
         return;
