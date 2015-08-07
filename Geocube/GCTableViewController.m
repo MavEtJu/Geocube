@@ -25,13 +25,14 @@
 
 @synthesize numberOfItemsInRow, tab_menu;
 
-- (id)init
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
 
     menuItems = [NSMutableArray arrayWithObjects:@"XEmpty", nil];
     self.numberOfItemsInRow = 3;
-    
+
+    closeButton = nil;
     hasCloseButton = NO;
 
     return self;
@@ -40,7 +41,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (closeButton != nil)
+    if (hasCloseButton == YES)
         [self.view bringSubviewToFront:closeButton];
 }
 
@@ -58,8 +59,7 @@
     [menuGlobal setLocalMenuTarget:self];
 
     // Add a close button to the view
-    closeButton = nil;
-    if (hasCloseButton == YES) {
+    if (hasCloseButton == YES && closeButton == nil) {
         UIImage *imgMenu = [imageLibrary get:ImageIcon_CloseButton];
         UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
         b.frame = CGRectMake(0, 0, imgMenu.size.width, imgMenu.size.height);

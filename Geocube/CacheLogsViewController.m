@@ -27,7 +27,7 @@
 
 - (id)init:(dbWaypoint *)_wp
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStylePlain];
     waypoint = _wp;
     mineOnly = NO;
 

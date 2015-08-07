@@ -29,7 +29,7 @@
 
 - initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
 {
-    self = [super init];
+    self = [super initWithStyle:style];
 
     menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint"]];
     hasCloseButton = canBeClosed;
