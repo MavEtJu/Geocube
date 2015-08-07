@@ -32,8 +32,10 @@
 @property (nonatomic) id <BHTabsViewControllerDelegate> delegate;
 @property (nonatomic, readonly) UIView *contentView;
 @property (nonatomic, retain) BHTabStyle *style;
+@property (nonatomic, retain) NSArray *viewControllers;
 
 - (id)initWithViewControllers:(NSArray *)viewControllers
                         style:(BHTabStyle *)style;
+- (void)makeTabViewCurrent:(NSInteger)idx;
 
 @end

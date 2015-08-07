@@ -11,7 +11,6 @@ enum { kTagTabBase = 100 };
 
 @interface BHTabsViewController ()
 
-@property (nonatomic, retain) NSArray *viewControllers;
 @property (nonatomic, assign, readwrite) UIView *contentView;
 @property (nonatomic, retain) BHTabsView *tabsContainerView;
 @property (nonatomic, retain) BHTabsFooterView *footerView;
@@ -20,8 +19,7 @@ enum { kTagTabBase = 100 };
 
 @implementation BHTabsViewController
 
-@synthesize delegate, style, viewControllers, contentView,
-  tabsContainerView, footerView;
+@synthesize delegate, style, viewControllers, contentView, tabsContainerView, footerView;
 
 - (id)initWithViewControllers:(NSArray *)theViewControllers
                         style:(BHTabStyle *)theStyle {
@@ -81,6 +79,11 @@ enum { kTagTabBase = 100 };
   [self.view addSubview:self.contentView];
 
   [self _reconfigureTabs];
+}
+
+- (void)makeTabViewCurrent:(NSInteger)idx
+{
+    [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:idx]];
 }
 
 - (void)didTapTabView:(BHTabView *)tappedView {
