@@ -23,15 +23,16 @@
 
 @implementation dbAccount
 
-@synthesize site, url, account, password;
+@synthesize site, url, account, password, url_queries;
 
-- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url account:(NSString *)_account password:(NSString *)_password
+- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password
 {
     self = [super init];
 
     _id = __id;
     site = _site;
     url = _url;
+    url_queries = _url_queries;
     account = _account;
     password = _password;
 
@@ -44,15 +45,16 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, account, password from accounts");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
             INT_FETCH( 0, a._id);
             TEXT_FETCH(1, a.site);
             TEXT_FETCH(2, a.url);
-            TEXT_FETCH(3, a.account);
-            TEXT_FETCH(4, a.password);
+            TEXT_FETCH(3, a.url_queries);
+            TEXT_FETCH(4, a.account);
+            TEXT_FETCH(5, a.password);
             [ss addObject:a];
         }
         DB_FINISH;

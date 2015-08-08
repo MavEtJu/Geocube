@@ -7,7 +7,7 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("version", "1");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,

@@ -22,12 +22,14 @@
 @interface dbAccount : dbObject {
     NSString *site;
     NSString *url;
+    NSString *url_queries;
     NSString *account;
     NSString *password;
 }
 
 @property (nonatomic, retain) NSString *site;
 @property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *url_queries;
 @property (nonatomic, retain) NSString *account;
 @property (nonatomic, retain) NSString *password;
 
