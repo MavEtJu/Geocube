@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>66D72839-798E-4EE7-A2B6-6E9BB9288B00</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Geocube</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6AE82908918BF2E581A0A4C70FDF759DD0309439</key>
+		<string>ssh://github.com/MavEtJu/Geocube</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Geocube.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6AE82908918BF2E581A0A4C70FDF759DD0309439</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/MavEtJu/Geocube</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6AE82908918BF2E581A0A4C70FDF759DD0309439</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6AE82908918BF2E581A0A4C70FDF759DD0309439</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GC</string>
+		</dict>
+	</array>
+</dict>
+</plist>
