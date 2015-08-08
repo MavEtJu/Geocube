@@ -432,6 +432,9 @@
                              wp.type_id = [dbc Type_Unknown]._id;
                              [dbWaypoint dbCreate:wp];
 
+                             [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
+                             [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
+
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
