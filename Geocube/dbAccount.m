@@ -62,4 +62,18 @@
     return ss;
 }
 
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update accounts set account = ?, password = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.account);
+        SET_VAR_TEXT(2, self.password);
+        SET_VAR_INT(3, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

@@ -74,6 +74,53 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbAccount *a = [accounts objectAtIndex:indexPath.row];
+
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Update account details"
+                               message:@"Enter your account detaills"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *username = tf.text;
+                             tf = [alert.textFields objectAtIndex:1];
+                             NSString *password = tf.text;
+
+                             a.account = username;
+                             a.password = password;
+                             [a dbUpdate];
+
+                             [self.tableView reloadData];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Username";
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Password";
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+    return;
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
