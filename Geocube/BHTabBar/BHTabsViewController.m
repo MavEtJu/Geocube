@@ -78,6 +78,8 @@ enum { kTagTabBase = 100 };
   
   [self.view addSubview:self.contentView];
 
+    [myConfig currentPageTabUpdate:currentTabIndex];
+
   [self _reconfigureTabs];
 }
 

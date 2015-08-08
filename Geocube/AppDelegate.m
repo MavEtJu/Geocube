@@ -307,9 +307,13 @@
     // UIWindow.rootViewController = UITabBarController
     // UITabBarController.viewControllers = [UIViewController ...]
 
+    BHTabsViewController *currentTab = [tabBars objectAtIndex:[myConfig currentPage]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [tabBars objectAtIndex:[myConfig currentPage]];
+    self.window.rootViewController = currentTab;
+    NSInteger cpt = [myConfig currentPageTab];
+
     [self.window makeKeyAndVisible];
+    [currentTab makeTabViewCurrent:cpt];
 
     return YES;
 }
