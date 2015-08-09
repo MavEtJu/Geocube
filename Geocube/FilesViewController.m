@@ -48,6 +48,8 @@
         NSDictionary *a = [fm attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
         NSNumber *s = [a objectForKey:NSFileSize];
         [filesSizes addObject:s];
+        NSDate *d = [a objectForKey:NSFileModificationDate];
+        [filesDates addObject:d];
     }];
 
     [self refreshControl];
@@ -89,7 +91,7 @@
 
     NSString *fn = [files objectAtIndex:indexPath.row];
     cell.textLabel.text = fn;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]], [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
 
     return cell;
 }
