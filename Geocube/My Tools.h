@@ -42,6 +42,7 @@
 
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)niceFileSize:(NSInteger)i;
++ (NSString *)niceTimeDifference:(NSInteger)i;
 + (NSString *)NiceDistance:(NSInteger)i;
 
 - (id)initClock:(NSString *)title;
