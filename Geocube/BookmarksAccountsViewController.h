@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BookmarksAccountsViewController : GCTableViewController
+@interface BookmarksAccountsViewController : GCTableViewController {
+    NSArray *accounts;
+}
 
 @end
