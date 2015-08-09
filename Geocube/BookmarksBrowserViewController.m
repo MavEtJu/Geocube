@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation BookmarksViewController
+@implementation BookmarksBrowserViewController
 
 - (id)init
 {
@@ -41,14 +41,12 @@
 
     webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:webView];
-
-    dbAccount *dba = [[dbc Accounts] objectAtIndex:1];
-    [self loadURL:dba.url_queries];
 }
 
 - (void)loadURL:(NSString *)urlString
 {
-    NSURL *url = [NSURL URLWithString:urlString];
+    urlHome = urlString;
+    NSURL *url = [NSURL URLWithString:urlHome];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 }
@@ -60,9 +58,8 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)newRequest navigationType:(UIWebViewNavigationType)navigationType
 {
-
     receivedData = nil;
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
+    req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
 
     // Spoof iOS Safari headers for sites that sniff the User Agent
     urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
@@ -115,11 +112,9 @@
 {
     // Go back home
     if (index == 0) {
-        dbAccount *dba = [[dbc Accounts] objectAtIndex:1];
-        [self loadURL:dba.url_queries];
+        [self loadURL:urlHome];
         return;
     }
 }
 
 @end
-

@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BookmarksViewController : GCViewController<UIWebViewDelegate> {
-    UIWebView *webView;
-
-    NSMutableData *receivedData;
-    NSURLConnection *urlConnection;
-    NSString *suggestedFilename;
-}
+@interface BookmarksAccountsViewController : GCTableViewController
 
 @end
