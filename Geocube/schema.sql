@@ -7,7 +7,7 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("version", "1");
 
 create table filters (
     id integer primary key,
@@ -624,6 +624,13 @@ create table travelbugs (
 );
 create index travelbugs_idx_gc_id on travelbugs(gc_id);
 create index travelbugs_idx_id on travelbugs(id);
+
+create table bookmarks (
+    id integer primary key,
+    url text,
+    name text
+);
+create index bookmarks_idx_id on bookmarks(id);
 
 create table travelbug2waypoint (
     id integer primary key,
