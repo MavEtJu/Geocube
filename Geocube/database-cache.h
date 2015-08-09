@@ -29,7 +29,6 @@
     NSMutableArray *Symbols;
     NSMutableArray *Countries;
     NSMutableArray *States;
-    NSArray *Accounts;
 
     // System Groups
     dbGroup *Group_AllWaypoints;
@@ -64,7 +63,6 @@
 @property (nonatomic, retain) NSMutableArray *Symbols;
 @property (nonatomic, retain) NSMutableArray *Countries;
 @property (nonatomic, retain) NSMutableArray *States;
-@property (nonatomic, retain) NSArray *Accounts;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
