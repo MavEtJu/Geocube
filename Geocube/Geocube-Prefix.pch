@@ -28,6 +28,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <WebKit/WebKit.h>
 #import <math.h>
 #import <sqlite3.h>
 
@@ -118,6 +119,7 @@
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 #import "CompassViewController.h"
+#import "BookmarksViewController.h"
 
 #import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"

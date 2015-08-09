@@ -215,6 +215,7 @@
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
+		E8C522FB1B760DA300423BCE /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BookmarksViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
@@ -565,6 +566,8 @@
 		E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainViewController.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
+		E8C522F91B760DA300423BCE /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
+		E8C522FA1B760DA300423BCE /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
 		E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DejalActivityView.m; path = DejalActivityView/DejalActivityView.m; sourceTree = "<group>"; };
 		E8D569DC1B5468C5001A0F8E /* CacheAttributesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheAttributesViewController.h; sourceTree = "<group>"; };
@@ -792,6 +795,8 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E8C522F91B760DA300423BCE /* BookmarksViewController.h */,
+				E8C522FA1B760DA300423BCE /* BookmarksViewController.m */,
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
@@ -1228,6 +1233,8 @@
 			isa = PBXGroup;
 			children = (
 				E8F570BF1B400166003F020C /* Geocube.h */,
+				E8F570581B3F7255003F020C /* main.m */,
+				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570B21B3FECDF003F020C /* Tools */,
 				E8F570A91B3FE52C003F020C /* Network */,
@@ -1247,9 +1254,7 @@
 			isa = PBXGroup;
 			children = (
 				E8F570571B3F7255003F020C /* Info.plist */,
-				E8F570581B3F7255003F020C /* main.m */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
-				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
+				E8C522FB1B760DA300423BCE /* BookmarksViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
