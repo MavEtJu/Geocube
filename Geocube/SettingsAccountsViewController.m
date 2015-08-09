@@ -36,7 +36,7 @@
 
 - (void)refreshAccountData
 {
-    accounts = [dbc Accounts];
+    accounts = [dbAccount dbAll];
     accountsCount = [accounts count];
     [self refreshControl];
 }
@@ -78,7 +78,6 @@
 {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
 
-
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update account details"
                                message:@"Enter your account detaills"
@@ -110,15 +109,15 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = a.account;
         textField.placeholder = @"Username";
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = a.password;
         textField.placeholder = @"Password";
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
-
-    return;
 }
 
 #pragma mark - Local menu related functions
