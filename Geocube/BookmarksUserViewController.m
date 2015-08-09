@@ -78,6 +78,7 @@
         dbBookmark *a = [bms objectAtIndex:indexPath.row];
         [a dbDelete];
         bms = [dbBookmark dbAll];
+        [self.tableView reloadData];
     }
 }
 
