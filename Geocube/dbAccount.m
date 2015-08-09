@@ -40,6 +40,28 @@
     return self;
 }
 
++ (dbAccount *)dbGet:(NSId)_id
+{
+    dbAccount *a = nil;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, site, url, url_queries, account, password from accounts where id = ?");
+        SET_VAR_INT(1, _id);
+
+        DB_IF_STEP {
+            a = [[dbAccount alloc] init];
+            INT_FETCH( 0, a._id);
+            TEXT_FETCH(1, a.site);
+            TEXT_FETCH(2, a.url);
+            TEXT_FETCH(3, a.url_queries);
+            TEXT_FETCH(4, a.account);
+            TEXT_FETCH(5, a.password);
+        }
+        DB_FINISH;
+    }
+    return a;
+}
+
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];

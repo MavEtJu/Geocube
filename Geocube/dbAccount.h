@@ -33,4 +33,6 @@
 @property (nonatomic, retain) NSString *account;
 @property (nonatomic, retain) NSString *password;
 
++ (dbAccount *)dbGet:(NSId)_id;
+
 @end
