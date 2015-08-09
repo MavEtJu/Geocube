@@ -222,6 +222,12 @@
     // Bookmarks tabs #6
     controllers = [NSMutableArray array];
 
+    vc = [[BookmarksUserViewController alloc] init];
+    vc.title = @"User";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     vc = [[BookmarksAccountsViewController alloc] init];
     vc.title = @"Accounts";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];

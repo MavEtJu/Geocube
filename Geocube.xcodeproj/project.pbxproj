@@ -215,7 +215,9 @@
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
-		E8A7FA951B77763F003F4132 /* BookmarksUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BookmarksUserViewController.m */; };
+		E8A7FA951B77763F003F4132 /* BookmarksAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BookmarksAccountsViewController.m */; };
+		E8A7FA981B77F7F7003F4132 /* BookmarksUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BookmarksUserViewController.m */; };
+		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
 		E8C522FB1B760DA300423BCE /* BookmarksBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BookmarksBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
@@ -568,7 +570,11 @@
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E8A7FA931B77763F003F4132 /* BookmarksAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksAccountsViewController.h; sourceTree = "<group>"; };
-		E8A7FA941B77763F003F4132 /* BookmarksUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksUserViewController.m; sourceTree = "<group>"; };
+		E8A7FA941B77763F003F4132 /* BookmarksAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksAccountsViewController.m; sourceTree = "<group>"; };
+		E8A7FA961B77F7F7003F4132 /* BookmarksUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksUserViewController.h; sourceTree = "<group>"; };
+		E8A7FA971B77F7F7003F4132 /* BookmarksUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksUserViewController.m; sourceTree = "<group>"; };
+		E8A7FA991B77F8C5003F4132 /* dbBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbBookmark.h; sourceTree = "<group>"; };
+		E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbBookmark.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BookmarksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksBrowserViewController.h; sourceTree = "<group>"; };
 		E8C522FA1B760DA300423BCE /* BookmarksBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksBrowserViewController.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
@@ -1081,9 +1087,11 @@
 			isa = PBXGroup;
 			children = (
 				E8A7FA931B77763F003F4132 /* BookmarksAccountsViewController.h */,
-				E8A7FA941B77763F003F4132 /* BookmarksUserViewController.m */,
+				E8A7FA941B77763F003F4132 /* BookmarksAccountsViewController.m */,
 				E8C522F91B760DA300423BCE /* BookmarksBrowserViewController.h */,
 				E8C522FA1B760DA300423BCE /* BookmarksBrowserViewController.m */,
+				E8A7FA961B77F7F7003F4132 /* BookmarksUserViewController.h */,
+				E8A7FA971B77F7F7003F4132 /* BookmarksUserViewController.m */,
 			);
 			name = Bookmarks;
 			sourceTree = "<group>";
@@ -1244,9 +1252,9 @@
 		E8F570551B3F7255003F020C /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
+				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
-				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570B21B3FECDF003F020C /* Tools */,
 				E8F570A91B3FE52C003F020C /* Network */,
@@ -1356,6 +1364,8 @@
 				E80732F21B626133007FDC29 /* dbAccount.m */,
 				E867E8391B539F6C00CB126A /* dbAttribute.h */,
 				E867E83A1B539F6C00CB126A /* dbAttribute.m */,
+				E8A7FA991B77F8C5003F4132 /* dbBookmark.h */,
+				E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */,
 				E8F570C31B40059F003F020C /* dbConfig.h */,
 				E8F570C41B40059F003F020C /* dbConfig.m */,
 				E80732BE1B5FB4DF007FDC29 /* dbCountry.h */,
@@ -1809,6 +1819,7 @@
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */,
+				E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */,
 				E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */,
 				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
@@ -1868,6 +1879,7 @@
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
+				E8A7FA981B77F7F7003F4132 /* BookmarksUserViewController.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
@@ -1894,7 +1906,7 @@
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
-				E8A7FA951B77763F003F4132 /* BookmarksUserViewController.m in Sources */,
+				E8A7FA951B77763F003F4132 /* BookmarksAccountsViewController.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,

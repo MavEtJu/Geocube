@@ -48,6 +48,7 @@
 #import "database.h"
 #import "dbObject.h"
 #import "dbAccount.h"
+#import "dbBookmark.h"
 #import "dbConfig.h"
 #import "dbContainer.h"
 #import "dbFilter.h"
@@ -112,6 +113,10 @@
 #import "FilterOthersTableViewCell.h"
 #import "FiltersViewController.h"
 
+#import "BookmarksAccountsViewController.h"
+#import "BookmarksBrowserViewController.h"
+#import "BookmarksUserViewController.h"
+
 #import "NullViewController.h"
 #import "HelpImagesViewController.h"
 #import "UserProfileViewController.h"
@@ -119,8 +124,6 @@
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 #import "CompassViewController.h"
-#import "BookmarksAccountsViewController.h"
-#import "BookmarksBrowserViewController.h"
 
 #import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"
