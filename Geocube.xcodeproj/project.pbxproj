@@ -212,6 +212,8 @@
 		E8A7FA981B77F7F7003F4132 /* BookmarksUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BookmarksUserViewController.m */; };
 		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
 		E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9E1B78408A003F4132 /* HelpAboutViewController.m */; };
+		E8A7FAA21B78784F003F4132 /* ImageDownloadHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImageDownloadHandler.m */; };
+		E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA41B78A678003F4132 /* dbImage.m */; };
 		E8C522FB1B760DA300423BCE /* BookmarksBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BookmarksBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
@@ -564,6 +566,10 @@
 		E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbBookmark.m; sourceTree = "<group>"; };
 		E8A7FA9D1B78408A003F4132 /* HelpAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpAboutViewController.h; sourceTree = "<group>"; };
 		E8A7FA9E1B78408A003F4132 /* HelpAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpAboutViewController.m; sourceTree = "<group>"; };
+		E8A7FAA01B78784F003F4132 /* ImageDownloadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadHandler.h; sourceTree = "<group>"; };
+		E8A7FAA11B78784F003F4132 /* ImageDownloadHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadHandler.m; sourceTree = "<group>"; };
+		E8A7FAA31B78A678003F4132 /* dbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbImage.h; sourceTree = "<group>"; };
+		E8A7FAA41B78A678003F4132 /* dbImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbImage.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BookmarksBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksBrowserViewController.h; sourceTree = "<group>"; };
 		E8C522FA1B760DA300423BCE /* BookmarksBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksBrowserViewController.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
@@ -1369,6 +1375,8 @@
 				E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */,
 				E88FD8F11B4160A700D0CCE7 /* dbGroup.h */,
 				E88FD8F21B4160A700D0CCE7 /* dbGroup.m */,
+				E8A7FAA31B78A678003F4132 /* dbImage.h */,
+				E8A7FAA41B78A678003F4132 /* dbImage.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E8740FCB1B4E90EB002527DA /* dbLogType.h */,
@@ -1437,6 +1445,8 @@
 			children = (
 				E8F570CC1B40147E003F020C /* Import_GPX.h */,
 				E8F570CD1B40147E003F020C /* Import_GPX.m */,
+				E8A7FAA01B78784F003F4132 /* ImageDownloadHandler.h */,
+				E8A7FAA11B78784F003F4132 /* ImageDownloadHandler.m */,
 			);
 			name = Convertors;
 			sourceTree = "<group>";
@@ -1873,6 +1883,7 @@
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
+				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
@@ -1884,6 +1895,7 @@
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
+				E8A7FAA21B78784F003F4132 /* ImageDownloadHandler.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,

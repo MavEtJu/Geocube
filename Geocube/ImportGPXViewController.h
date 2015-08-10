@@ -30,6 +30,7 @@
     UILabel *newTravelbugsLabel;
     UILabel *totalTravelbugsLabel;
     UILabel *progressLabel;
+    UILabel *newImagesLabel;
 
     Import_GPX *imp;
 }

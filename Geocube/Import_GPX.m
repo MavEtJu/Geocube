@@ -37,6 +37,7 @@
     percentageRead = 0;
     newTravelbugsCount = 0;
     totalTravelbugsCount = 0;
+    newImagesCount = 0;
 
     group = _group;
 
@@ -224,6 +225,11 @@
         }
         [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
+        if (currentGS != nil) {
+            newImagesCount += [ImageDownloadHandler findImagesInDescription:currentGS.long_desc];
+            newImagesCount += [ImageDownloadHandler findImagesInDescription:currentGS.short_desc];
+        }
+
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
@@ -248,7 +254,7 @@
         }
 
         inItem = NO;
-        [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount];
+        [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount newImagesCount:newImagesCount];
         goto bye;
     }
 

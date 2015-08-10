@@ -81,6 +81,10 @@
     [self.view addSubview:totalLogsLabel];
     y += 40;
 
+    newImagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, 40)];
+    [self.view addSubview:newImagesLabel];
+    y += 40;
+
     imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group];
     imp.delegate = self;
 
@@ -94,7 +98,7 @@
     [waypointManager needsRefresh];
 }
 
-- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount
+- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         progressLabel.text = [NSString stringWithFormat:@"Done %@%%", [MyTools niceNumber:percentageRead]];
@@ -104,6 +108,7 @@
         totalLogsLabel.text = [NSString stringWithFormat:@"Total logs read: %@", [MyTools niceNumber:totalLogsCount]];
         newTravelbugsLabel.text = [NSString stringWithFormat:@"New travelbugs imported: %@", [MyTools niceNumber:newTravelbugsCount]];
         totalTravelbugsLabel.text = [NSString stringWithFormat:@"Total travelbugs read: %@", [MyTools niceNumber:totalTravelbugsCount]];
+        newImagesLabel.text = [NSString stringWithFormat:@"New images found: %@", [MyTools niceNumber:newImagesCount]];
     }];
 }
 

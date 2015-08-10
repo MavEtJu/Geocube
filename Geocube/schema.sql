@@ -612,7 +612,7 @@ create table images (
     id integer primary key,
     url text,
     datetime integer,
-    data text
+    datafile text
 );
 create index images_idx_url on images(url);
 
