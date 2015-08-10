@@ -19,29 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum ImageTypes {
-    IMAGETYPE_NONE = 0,
-    IMAGETYPE_LOG = 1,
-    IMAGETYPE_CACHE = 2,
-    IMAGETYPE_USER = 3,
-};
-
-@interface dbImage : dbObject {
-    NSString *url;
-    NSString *datafile;
+@interface CacheImageViewController : GCViewController {
+    dbImage *img;
 }
 
-@property (nonatomic, retain) NSString *url;
-@property (nonatomic, retain) NSString *datafile;
-
-- (id)init:(NSString *)url datafile:(NSString *)datafile;
-+ (NSString *)createDataFilename:(NSString *)url;
-+ (dbImage *)dbGetByURL:(NSString *)url;
-+ (NSId)dbCreate:(dbImage *)img;
-- (BOOL)dbLinkedtoWaypoint:(NSId)wp_id;
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(NSInteger)type;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type;
-- (UIImage *)imageGet;
+- (id)init:(dbImage *)img;
 
 @end

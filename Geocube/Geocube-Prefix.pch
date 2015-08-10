@@ -98,6 +98,8 @@
 #import "CacheAttributesViewController.h"
 #import "CacheTravelbugsViewController.h"
 #import "CacheWaypointsViewController.h"
+#import "CacheImageViewController.h"
+#import "CacheImagesViewController.h"
 #import "CacheViewController.h"
 
 #import "FilterObject.h"

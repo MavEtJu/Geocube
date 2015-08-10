@@ -52,7 +52,7 @@
         if (imgToDownload == nil)
             continue;
 
-        NSLog(@"Downloading %@", imgToDownload.url);
+        NSLog(@"%@/run: Downloading %@", [self class], imgToDownload.url);
 
         // Send a synchronous request
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
@@ -60,7 +60,7 @@
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
-        NSLog(@"Downloaded %@ (%ld bytes)", imgToDownload.url, [data length]);
+        NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, [data length]);
         if (error == nil)
         {
             [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile] atomically:NO];
@@ -124,22 +124,28 @@
         imgtag = [imgtag substringFromIndex:1];
         r = [imgtag rangeOfString:quote];
         if (r.location == NSNotFound) {
-            NSLog(@"No trailing %@", quote);
+            NSLog(@"%@/parse: No trailing %@", [self class], quote);
             continue;
         }
 
         imgtag = [imgtag substringToIndex:r.location];
         NSString *datafile = [dbImage createDataFilename:imgtag];
-        NSLog(@"Found image: %@", imgtag);
+        NSLog(@"%@/parse: Found image: %@", [self class], imgtag);
 
         dbImage *img = [dbImage dbGetByURL:imgtag];
         if (img == nil) {
             img = [[dbImage alloc] init:imgtag datafile:datafile];
             [dbImage dbCreate:img];
+        } else {
+            NSLog(@"%@/parse: Image already seen", [self class]);
         }
+
+        if ([img dbLinkedtoWaypoint:wp_id] == NO)
+            [img dbLinkToWaypoint:wp_id type:IMAGETYPE_CACHE];
 
         if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
             @synchronized(imagesDownloadManager) {
+                NSLog(@"%@/parse: Queue for downloading", [self class]);
                 [imagesDownloadManager.todo addObject:img];
             }
         }

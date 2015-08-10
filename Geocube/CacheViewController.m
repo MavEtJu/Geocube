@@ -326,6 +326,12 @@
             [self.navigationController pushViewController:newController animated:YES];
             return;
         }
+        if (indexPath.row == 8) {    /* Images */
+            UITableViewController *newController = [[CacheImagesViewController alloc] init:waypoint];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
         if (indexPath.row == 9) {    /* Groups */
             UITableViewController *newController = [[CacheGroupsViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;

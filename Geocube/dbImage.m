@@ -75,6 +75,29 @@
     return is;
 }
 
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type
+{
+    NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, url, datafile from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");
+
+        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(2, type);
+
+        DB_WHILE_STEP {
+            dbImage *i = [[dbImage alloc] init];;
+            INT_FETCH(  0, i._id);
+            TEXT_FETCH( 1, i.url);
+            TEXT_FETCH( 2, i.datafile);
+            [i finish];
+            [is addObject:i];
+        }
+        DB_FINISH;
+    }
+    return is;
+}
+
 + (NSString *)createDataFilename:(NSString *)url
 {
     // Create pointer to the string as UTF8
@@ -111,6 +134,58 @@
         DB_FINISH;
     }
     return img;
+}
+
+- (BOOL)dbLinkedtoWaypoint:(NSId)wp_id
+{
+    BOOL linked = NO;
+    @synchronized (db.dbaccess) {
+        DB_PREPARE(@"select id from image2waypoint where waypoint_id = ? and image_id = ?");
+
+        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(2, _id);
+
+        DB_IF_STEP {
+            linked = YES;
+        }
+        DB_FINISH;
+    }
+    return linked;
+}
+
+- (void)dbLinkToWaypoint:(NSId)wp_id type:(NSInteger)type
+{
+    @synchronized (db.dbaccess) {
+        DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
+
+        SET_VAR_INT(1, _id);
+        SET_VAR_INT(2, wp_id);
+        SET_VAR_INT(3, type);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
+{
+    NSInteger linked = 0;
+    @synchronized (db.dbaccess) {
+        DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ?");
+
+        SET_VAR_INT(1, wp_id);
+
+        DB_IF_STEP {
+            INT_FETCH(0, linked);
+        }
+        DB_FINISH;
+    }
+    return linked;
+}
+
+- (UIImage *)imageGet
+{
+    return [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile]];
 }
 
 @end

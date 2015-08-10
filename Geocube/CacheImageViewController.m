@@ -19,29 +19,35 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum ImageTypes {
-    IMAGETYPE_NONE = 0,
-    IMAGETYPE_LOG = 1,
-    IMAGETYPE_CACHE = 2,
-    IMAGETYPE_USER = 3,
-};
+#import "Geocube-Prefix.pch"
 
-@interface dbImage : dbObject {
-    NSString *url;
-    NSString *datafile;
+@implementation CacheImageViewController
+
+- (id)init:(dbImage *)_img
+{
+    self = [super init];
+
+    img = _img;
+    hasCloseButton = YES;
+
+    return self;
 }
 
-@property (nonatomic, retain) NSString *url;
-@property (nonatomic, retain) NSString *datafile;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 
-- (id)init:(NSString *)url datafile:(NSString *)datafile;
-+ (NSString *)createDataFilename:(NSString *)url;
-+ (dbImage *)dbGetByURL:(NSString *)url;
-+ (NSId)dbCreate:(dbImage *)img;
-- (BOOL)dbLinkedtoWaypoint:(NSId)wp_id;
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(NSInteger)type;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type;
-- (UIImage *)imageGet;
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
+    self.view = contentView;
+
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
+
+    UIImageView *i = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    i.image = image;
+    [self.view addSubview:i];
+
+    [self.view sizeToFit];
+}
 
 @end

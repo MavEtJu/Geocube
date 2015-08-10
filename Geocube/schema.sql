@@ -604,9 +604,11 @@ insert into attributes(gc_id, icon, label) values(67, 567, "Part of a GeoTour");
 create table image2waypoint (
     id integer primary key,
     waypoint_id integer,		-- points to waypoints(id)
-    image_id integer			-- points to images(id)
+    image_id integer,			-- points to images(id)
+    type integer			-- 1: log image 2: cache image 3: user image
 );
 create index image2waypoint_idx_waypoint_id on image2waypoint(waypoint_id);
+create index image2waypoint_idx_waypoint_id_type on image2waypoint(waypoint_id, type);
 
 create table images (
     id integer primary key,

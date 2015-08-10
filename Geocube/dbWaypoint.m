@@ -110,7 +110,9 @@
     return [[dbLog dbAllByWaypointLogged:_id] count];
 }
 
-- (NSInteger)hasImages { return 0; }
+- (NSInteger)hasImages {
+    return [dbImage dbCountByWaypoint:_id];
+}
 
 - (NSInteger)hasInventory {
     return [dbTravelbug dbCountByWaypoint:_id];
