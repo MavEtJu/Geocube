@@ -74,7 +74,7 @@
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
         marker.title = wp.name;
-        marker.snippet = wp.description;
+        marker.snippet = wp.urlname;
         marker.map = mapView;
         
         switch (wp.logStatus) {
