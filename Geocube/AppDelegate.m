@@ -64,7 +64,7 @@
     imageLibrary = [[ImageLibrary alloc] init];
 
     /* Move two zip files into files directory */
-    NSArray *files = @[@"GCA - 7248.zip", @"GC - 15670269_ACT-1.zip", @"16171009_iossimulator-freewaydrive.zip", @"waymarking.gpx", @"13746815-myfinds.zip", @"GC37FF6.gpx", @"GCA - 7340.gpx"];
+    NSArray *files = @[];
     NSEnumerator *e = [files objectEnumerator];
     NSString *f;
     while ((f = [e nextObject]) != nil) {
