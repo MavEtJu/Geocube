@@ -129,6 +129,7 @@
             INT_FETCH_AND_ASSIGN( 0, __id);
             [wps addObject:[dbWaypoint dbGet:__id]];
         }
+        DB_FINISH;
     }
     return wps;
 }

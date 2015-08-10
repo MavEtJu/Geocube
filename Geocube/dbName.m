@@ -149,6 +149,7 @@
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
+        DB_FINISH;
     }
 
     return _id;
@@ -163,6 +164,7 @@
         SET_VAR_INT(2, self._id);
 
         DB_CHECK_OKAY;
+        DB_FINISH;
     }
 }
 
