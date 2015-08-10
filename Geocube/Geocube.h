@@ -32,6 +32,9 @@ extern DatabaseCache *dbc;
 // Images
 extern ImageLibrary *imageLibrary;
 
+// Images Download Manager
+extern ImagesDownloadManager *imagesDownloadManager;
+
 // Current dbWaypoint to navitate to
 extern CacheFilterManager *waypointManager;
 

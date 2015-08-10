@@ -226,8 +226,8 @@
         [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
         if (currentGS != nil) {
-            newImagesCount += [ImageDownloadHandler findImagesInDescription:currentGS.long_desc];
-            newImagesCount += [ImageDownloadHandler findImagesInDescription:currentGS.short_desc];
+            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.long_desc];
+            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.short_desc];
         }
 
         // Link logs to cache

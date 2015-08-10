@@ -30,6 +30,9 @@ DatabaseCache *dbc = nil;
 // Image Library
 ImageLibrary *imageLibrary = nil;
 
+// Images Download Manager
+ImagesDownloadManager *imagesDownloadManager = nil;
+
 // Current dbCache to navigate to
 CacheFilterManager *waypointManager = nil;
 

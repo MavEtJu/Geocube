@@ -19,8 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImageDownloadHandler : NSObject
+@interface ImagesDownloadManager : NSObject {
+    NSMutableArray *todo;
 
-+ (NSInteger)findImagesInDescription:(NSString *)desc;
+    dbImage *imgToDownload;
+
+    NSMutableData *activeDownload;
+    NSURLConnection *imageConnection;
+    NSURLConnection *conn;
+}
+
+@property (nonatomic, retain) NSMutableArray *todo;
+@property (nonatomic, retain) NSMutableData *activeDownload;
+@property (nonatomic, retain) NSURLConnection *imageConnection;
+
++ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc;
 
 @end

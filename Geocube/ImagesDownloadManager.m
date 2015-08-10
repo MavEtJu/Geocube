@@ -21,9 +21,58 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation ImageDownloadHandler
+@implementation ImagesDownloadManager
 
-+ (NSInteger)findImagesInDescription:(NSString *)desc
+@synthesize todo, activeDownload, imageConnection;
+
+- (id)init
+{
+    self = [super init];
+
+    if ([fm fileExistsAtPath:[MyTools ImagesDir]] == NO)
+        [fm createDirectoryAtPath:[MyTools ImagesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    todo = [NSMutableArray arrayWithCapacity:20];
+
+    [self performSelectorInBackground:@selector(run) withObject:nil];
+
+    return self;
+}
+
+- (void)run
+{
+    while (TRUE) {
+        imgToDownload = nil;
+        [NSThread sleepForTimeInterval:1.0];
+
+        @synchronized (imagesDownloadManager) {
+            if ([todo count] != 0) {
+                imgToDownload = [todo objectAtIndex:0];
+            }
+        }
+        if (imgToDownload == nil)
+            continue;
+
+        NSLog(@"Downloading %@", imgToDownload.url);
+
+        // Send a synchronous request
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+
+        NSLog(@"Downloaded %@ (%ld bytes)", imgToDownload.url, [data length]);
+        if (error == nil)
+        {
+            [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile] atomically:NO];
+        }
+
+        @synchronized (imagesDownloadManager) {
+            [todo removeObjectAtIndex:0];
+        }
+    }
+}
+
++ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc;
 {
     NSInteger found = 0;
     NSString *next = desc;
@@ -80,15 +129,19 @@
         }
 
         imgtag = [imgtag substringToIndex:r.location];
-        NSLog(@"Found image: %@", imgtag);
-
         NSString *datafile = [dbImage createDataFilename:imgtag];
-        NSLog(@"Saving as %@", datafile);
+        NSLog(@"Found image: %@", imgtag);
 
         dbImage *img = [dbImage dbGetByURL:imgtag];
         if (img == nil) {
             img = [[dbImage alloc] init:imgtag datafile:datafile];
             [dbImage dbCreate:img];
+        }
+
+        if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
+            @synchronized(imagesDownloadManager) {
+                [imagesDownloadManager.todo addObject:img];
+            }
         }
 
         found++;

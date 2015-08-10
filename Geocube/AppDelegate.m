@@ -48,6 +48,9 @@
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];
 
+    // Initialize the global menu
+    imagesDownloadManager = [[ImagesDownloadManager alloc] init];
+
     // Initialize and cache the database
     db = [[database alloc] init];
     [db checkVersion];
