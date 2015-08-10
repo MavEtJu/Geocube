@@ -31,6 +31,7 @@
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
++ (NSString *)ImagesDir;
 
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
 + (NSString *)dateString:(NSInteger)seconds;

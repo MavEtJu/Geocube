@@ -46,6 +46,13 @@
     return s;
 }
 
+// Returns the location where the files distibuted by the app will be installed for the user
++ (NSString *)ImagesDir
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/images/", [self DocumentRoot]];
+    return s;
+}
+
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
