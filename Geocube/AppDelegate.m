@@ -301,6 +301,12 @@
     // Help tabs #11
     controllers = [NSMutableArray array];
 
+    vc = [[HelpAboutViewController alloc] init];
+    vc.title = @"About";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     vc = [[NullViewController alloc] init];
     vc.title = @"Help";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];

@@ -21,10 +21,6 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface UserProfileViewController ()
-
-@end
-
 @implementation UserProfileViewController
 
 - (id)init

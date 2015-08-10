@@ -117,8 +117,10 @@
 #import "BookmarksBrowserViewController.h"
 #import "BookmarksUserViewController.h"
 
-#import "NullViewController.h"
 #import "HelpImagesViewController.h"
+#import "HelpAboutViewController.h"
+
+#import "NullViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
 #import "FilesViewController.h"
