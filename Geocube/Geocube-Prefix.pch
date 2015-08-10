@@ -43,7 +43,7 @@
 #import "BHTabsViewController.h"
 #import "RangeSlider.h"
 
-#import "My Tools.h"
+#import "MyTools.h"
 #import "Coordinates.h"
 
 #import "database.h"
