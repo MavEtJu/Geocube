@@ -33,9 +33,18 @@
         [fm createDirectoryAtPath:[MyTools ImagesDir] withIntermediateDirectories:NO attributes:nil error:nil];
     todo = [NSMutableArray arrayWithCapacity:20];
 
-    [self performSelectorInBackground:@selector(run) withObject:nil];
+    running = 0;
 
     return self;
+}
+
+- (void)start
+{
+    if (running == 0) {
+        running = 10;
+        [self performSelectorInBackground:@selector(run) withObject:nil];
+    }
+    running = 10;
 }
 
 - (void)run
@@ -44,11 +53,16 @@
         imgToDownload = nil;
         [NSThread sleepForTimeInterval:1.0];
 
+        NSLog(@"%@/run: Queue is %ld deep", [self class], [todo count]);
         @synchronized (imagesDownloadManager) {
-            if ([todo count] != 0) {
+            if ([todo count] != 0)
                 imgToDownload = [todo objectAtIndex:0];
-            }
         }
+        // After 10 attempts stop, enough for now
+        if (--running == 0)
+            return;
+
+        // Nothing to download, wait one second and try again.
         if (imgToDownload == nil)
             continue;
 
@@ -60,10 +74,11 @@
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
-        NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, [data length]);
-        if (error == nil)
-        {
+        if (error == nil) {
+            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, [data length]);
             [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile] atomically:NO];
+        } else {
+            NSLog(@"Failed! %@", error);
         }
 
         @synchronized (imagesDownloadManager) {
@@ -72,7 +87,7 @@
     }
 }
 
-+ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc;
++ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc type:(NSInteger)type
 {
     NSInteger found = 0;
     NSString *next = desc;
@@ -141,12 +156,13 @@
         }
 
         if ([img dbLinkedtoWaypoint:wp_id] == NO)
-            [img dbLinkToWaypoint:wp_id type:IMAGETYPE_CACHE];
+            [img dbLinkToWaypoint:wp_id type:type];
 
         if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
             @synchronized(imagesDownloadManager) {
                 NSLog(@"%@/parse: Queue for downloading", [self class]);
                 [imagesDownloadManager.todo addObject:img];
+                [imagesDownloadManager start];
             }
         }
 

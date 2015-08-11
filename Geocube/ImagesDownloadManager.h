@@ -27,12 +27,15 @@
     NSMutableData *activeDownload;
     NSURLConnection *imageConnection;
     NSURLConnection *conn;
+
+    NSInteger running;
 }
 
 @property (nonatomic, retain) NSMutableArray *todo;
 @property (nonatomic, retain) NSMutableData *activeDownload;
 @property (nonatomic, retain) NSURLConnection *imageConnection;
 
-+ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc;
++ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc type:(NSInteger)type;
+- (void)start;
 
 @end
