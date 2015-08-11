@@ -51,7 +51,6 @@
 {
     while (TRUE) {
         imgToDownload = nil;
-        [NSThread sleepForTimeInterval:1.0];
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], [todo count]);
         @synchronized (imagesDownloadManager) {
@@ -63,9 +62,23 @@
             return;
 
         // Nothing to download, wait one second and try again.
-        if (imgToDownload == nil)
+        if (imgToDownload == nil) {
+            [NSThread sleepForTimeInterval:1.0];
             continue;
+        }
 
+        // Make sure we don't accidently fall asleep
+        running = 10;
+
+        // It could be that multiple entries for the same URL is here.
+        // If so, only download the first one.
+        if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile ]] == YES) {
+            NSLog(@"%@/run: Already found %@", [self class], imgToDownload.datafile);
+            @synchronized (imagesDownloadManager) {
+                [todo removeObjectAtIndex:0];
+            }
+            continue;
+        }
         NSLog(@"%@/run: Downloading %@", [self class], imgToDownload.url);
 
         // Send a synchronous request
@@ -91,6 +104,9 @@
 {
     NSInteger found = 0;
     NSString *next = desc;
+
+    if (desc == nil)
+        return 0;
 
     do {
         NSString *d = next;
@@ -152,7 +168,7 @@
             img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
             [dbImage dbCreate:img];
         } else {
-            NSLog(@"%@/parse: Image already seen", [self class]);
+            //NSLog(@"%@/parse: Image already seen", [self class]);
         }
 
         if ([img dbLinkedtoWaypoint:wp_id] == NO)
