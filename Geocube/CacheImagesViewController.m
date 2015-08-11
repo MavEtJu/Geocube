@@ -87,7 +87,7 @@
     if (img == nil)
         return nil;
 
-    cell.textLabel.text = img.url;
+    cell.textLabel.text = img.name;
     cell.userInteractionEnabled = YES;
     cell.imageView.image = [img imageGet];
     

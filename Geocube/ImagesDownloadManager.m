@@ -149,7 +149,7 @@
 
         dbImage *img = [dbImage dbGetByURL:imgtag];
         if (img == nil) {
-            img = [[dbImage alloc] init:imgtag datafile:datafile];
+            img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
             [dbImage dbCreate:img];
         } else {
             NSLog(@"%@/parse: Image already seen", [self class]);

@@ -21,6 +21,10 @@
 
 @interface CacheImageViewController : GCViewController {
     dbImage *img;
+    UIScrollView *sv;
+    UIImage *image;
+    UIImageView *imgview;
+    BOOL zoomedin;
 }
 
 - (id)init:(dbImage *)img;

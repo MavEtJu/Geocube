@@ -29,6 +29,8 @@
 
     img = _img;
     hasCloseButton = YES;
+    zoomedin = NO;
+    image = nil;
 
     return self;
 }
@@ -38,16 +40,65 @@
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    self.view = contentView;
+    sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
+    self.view = sv;
 
-    UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
+    image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
 
-    UIImageView *i = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    i.image = image;
-    [self.view addSubview:i];
+    imgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    imgview.image = image;
+    [self.view addSubview:imgview];
 
+    [self zoominout];
+
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTaped:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [imgview addGestureRecognizer:singleTap];
+    [imgview setUserInteractionEnabled:YES];
+}
+
+- (void)imageTaped:(UIGestureRecognizer *)gestureRecognizer {
+    [UIView animateWithDuration:0.5 animations:^(void){
+        [self zoominout];
+    }];
+}
+
+- (void)zoominout
+{
+    if (zoomedin == YES) {
+        imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        sv.contentSize = image.size;
+        [self.view sizeToFit];
+        zoomedin = NO;
+        return;
+    }
+
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
+    // Nothing to zoom in if the picture is small enough already.
+    if (image.size.width < applicationFrame.size.width &&
+        image.size.height < applicationFrame.size.height)
+        return;
+
+    float rw = 1.0 * image.size.width / applicationFrame.size.width;
+    float rh = 1.0 * image.size.height / applicationFrame.size.height;
+
+    if (rw < 1.0 && rh >= 1.0) {
+        imgview.frame = CGRectMake(0, 0, image.size.width / rh, image.size.height / rh);
+    }
+    if (rh < 1.0 && rw >= 1.0) {
+        imgview.frame = CGRectMake(0, 0, image.size.width / rw, image.size.height / rw);
+    }
+    if (rh >= 1.0 && rw >= 1.0) {
+        float rx = (rh > rw) ? rh : rw;
+        imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
+    }
+
+
+    sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
+    zoomedin = YES;
 }
 
 @end

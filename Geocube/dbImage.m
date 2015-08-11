@@ -23,14 +23,15 @@
 
 @implementation dbImage
 
-@synthesize url, datafile;
+@synthesize url, name, datafile;
 
-- (id)init:(NSString *)_url datafile:(NSString *)_datafile
+- (id)init:(NSString *)_url name:(NSString *)_name datafile:(NSString *)_datafile
 {
     self = [super init];
 
     url = _url;
     datafile = _datafile;
+    name = _name;
 
     [self finish];
 
@@ -42,10 +43,11 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into images(url, datafile) values(?, ?)");
+        DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
 
         SET_VAR_TEXT( 1, img.url);
         SET_VAR_TEXT( 2, img.datafile);
+        SET_VAR_TEXT( 3, img.name);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -60,13 +62,14 @@
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, url, datafile from images");
+        DB_PREPARE(@"select id, url, datafile, filename from images");
 
         DB_WHILE_STEP {
             dbImage *i = [[dbImage alloc] init];;
             INT_FETCH(  0, i._id);
             TEXT_FETCH( 1, i.url);
             TEXT_FETCH( 2, i.datafile);
+            TEXT_FETCH( 3, i.name);
             [i finish];
             [is addObject:i];
         }
@@ -80,7 +83,7 @@
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, url, datafile from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");
+        DB_PREPARE(@"select id, url, datafile, filename from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");
 
         SET_VAR_INT(1, wp_id);
         SET_VAR_INT(2, type);
@@ -90,6 +93,7 @@
             INT_FETCH(  0, i._id);
             TEXT_FETCH( 1, i.url);
             TEXT_FETCH( 2, i.datafile);
+            TEXT_FETCH( 3, i.name);
             [i finish];
             [is addObject:i];
         }
@@ -122,7 +126,7 @@
     dbImage *img;
 
     @synchronized (db.dbaccess) {
-        DB_PREPARE(@"select id, url, datafile from images where url = ?");
+        DB_PREPARE(@"select id, url, datafile, filename from images where url = ?");
 
         SET_VAR_TEXT(1, url);
         DB_IF_STEP {
@@ -130,6 +134,7 @@
             INT_FETCH(0, img._id);
             TEXT_FETCH(1, img.url);
             TEXT_FETCH(2, img.datafile);
+            TEXT_FETCH(3, img.name);
         }
         DB_FINISH;
     }
@@ -186,6 +191,11 @@
 - (UIImage *)imageGet
 {
     return [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile]];
+}
+
++ (NSString *)filename:(NSString *)url
+{
+    return [url lastPathComponent];
 }
 
 @end

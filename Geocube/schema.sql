@@ -613,6 +613,7 @@ create index image2waypoint_idx_waypoint_id_type on image2waypoint(waypoint_id, 
 create table images (
     id integer primary key,
     url text,
+    filename text,
     datetime integer,
     datafile text
 );

@@ -28,13 +28,15 @@ enum ImageTypes {
 
 @interface dbImage : dbObject {
     NSString *url;
+    NSString *name;
     NSString *datafile;
 }
 
 @property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *datafile;
 
-- (id)init:(NSString *)url datafile:(NSString *)datafile;
+- (id)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile;
 + (NSString *)createDataFilename:(NSString *)url;
 + (dbImage *)dbGetByURL:(NSString *)url;
 + (NSId)dbCreate:(dbImage *)img;
@@ -43,5 +45,6 @@ enum ImageTypes {
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type;
 - (UIImage *)imageGet;
++ (NSString *)filename:(NSString *)url;
 
 @end
