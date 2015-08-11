@@ -66,6 +66,8 @@
 
 - (void)zoominout
 {
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
     if (zoomedin == YES) {
         imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
         sv.contentSize = image.size;
@@ -74,13 +76,20 @@
         return;
     }
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-
     // Nothing to zoom in if the picture is small enough already.
     if (image.size.width < applicationFrame.size.width &&
-        image.size.height < applicationFrame.size.height)
-        return;
+        image.size.height < applicationFrame.size.height) {
 
+        // Center around the middle of the screen
+        imgview.frame = CGRectMake((applicationFrame.size.width - image.size.width) / 2, (applicationFrame.size.height - image.size.height) / 2, image.size.width, image.size.height);
+
+        sv.contentSize = imgview.frame.size;
+        [self.view sizeToFit];
+        zoomedin = NO;
+        return;
+    }
+
+    // Adjust the picture according to the ration of the width and the height
     float rw = 1.0 * image.size.width / applicationFrame.size.width;
     float rh = 1.0 * image.size.height / applicationFrame.size.height;
 
@@ -94,7 +103,6 @@
         float rx = (rh > rw) ? rh : rw;
         imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
     }
-
 
     sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
