@@ -159,6 +159,7 @@
         cell.lon.text = [c lon_degreesDecimalMinutes];
         [cell setRatings:groundspeak.favourites terrain:groundspeak.rating_terrain difficulty:groundspeak.rating_difficulty];
 
+        cell.userInteractionEnabled = NO;
         cell.size.image = [imageLibrary get:groundspeak.container.icon];
         cell.icon.image = [imageLibrary get:waypoint.type.icon];
         return cell;
