@@ -24,6 +24,7 @@
 @implementation MyConfig
 
 @synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
+@synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
 
 - (id)init
 {
@@ -49,6 +50,9 @@
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
+    CHECK(@"geocachinglive_staging", @"1");
+    CHECK(@"geocachinglive_API1", @"");
+    CHECK(@"geocachinglive_API2", @"");
 }
 
 - (void)loadValues
@@ -58,6 +62,9 @@
     currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
+    GeocachingLive_staging = [[dbConfig dbGetByKey:@"geocachinglive_staging"].value boolValue];
+    GeocachingLive_API1 = [dbConfig dbGetByKey:@"geocachinglive_API1"].value;
+    GeocachingLive_API2 = [dbConfig dbGetByKey:@"geocachinglive_API2"].value;
 }
 
 - (void)BOOLUpdate:(NSString *)key value:(BOOL)value
@@ -109,6 +116,24 @@
 {
     currentPageTab = value;
     [self NSIntegerUpdate:@"pagetab_current" value:value];
+}
+
+- (void)geocachingLive_staging:(BOOL)value
+{
+    GeocachingLive_staging = value;
+    [self BOOLUpdate:@"geocachinglive_staging" value:value];
+}
+
+- (void)geocachingLive_API1Update:(NSString *)value
+{
+    GeocachingLive_API1 = value;
+    [self NSStringUpdate:@"geocachinglive_API1" value:value];
+}
+
+- (void)geocachingLive_API2Update:(NSString *)value
+{
+    GeocachingLive_API2 = value;
+    [self NSStringUpdate:@"geocachinglive_API2" value:value];
 }
 
 @end

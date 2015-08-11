@@ -37,17 +37,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 2;
+    return 3;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)   // Distance section
-        return 1;
-
-    if (section == 1)   // Theme section
-        return 1;
+    switch (section) {
+        case 0: // Distance section
+            return 1;
+        case 1: // Theme section
+            return 1;
+        case 2: // Groudspeak API
+            return 3;
+    }
 
     return 0;
 }
@@ -60,6 +63,8 @@
             return @"Distances";
         case 1:
             return @"Theme";
+        case 2:
+            return @"Groundspeak GeocachingLive";
     }
 
     return nil;
@@ -120,6 +125,31 @@
             }
             break;
         }
+        case 2: {   // Groundspeak API
+            cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+            switch (indexPath.row) {
+                case 0: {   // API key 1
+                    cell.textLabel.text = @"API key 1";
+                    cell.detailTextLabel.text = myConfig.GeocachingLive_API1;
+                    return cell;
+                }
+                case 1: {   // API key 1
+                    cell.textLabel.text = @"API key 2";
+                    cell.detailTextLabel.text = myConfig.GeocachingLive_API2;
+                    return cell;
+                }
+                case 2: {   // Staging
+                    cell.textLabel.text = @"Use staging server";
+                    
+                    geocachingLiveStaging = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    geocachingLiveStaging.on = myConfig.GeocachingLive_staging;
+                    [geocachingLiveStaging addTarget:self action:@selector(updateGeocachingLiveStaging:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = geocachingLiveStaging;
+                    return cell;
+                }
+            }
+            break;
+        }
     }
 
     return nil;
@@ -133,6 +163,58 @@
 - (void)updateThemeGeosphere:(UISwitch *)s
 {
     [myConfig themeGeosphereUpdate:s.on];
+}
+
+- (void)updateGeocachingLiveStaging:(UISwitch *)s
+{
+    [myConfig geocachingLive_staging:s.on];
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {   // Groundspeak geocaching.com
+        if (indexPath.row != 0 && indexPath.row != 1)
+            return;
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Groundspeak Geocaching Live key"
+                                   message:@"API key"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 //Do Some action
+                                 UITextField *tf = [alert.textFields objectAtIndex:0];
+                                 NSString *key = tf.text;
+
+                                 if (indexPath.row == 0)
+                                     [myConfig geocachingLive_API1Update:key];
+                                 else
+                                     [myConfig geocachingLive_API2Update:key];
+
+                                 [self.tableView reloadData];
+                             }];
+        UIAlertAction *cancel = [UIAlertAction
+                                 actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+
+        [alert addAction:ok];
+        [alert addAction:cancel];
+
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            if (indexPath.row == 0)
+                textField.text = myConfig.GeocachingLive_API1;
+            else
+                textField.text = myConfig.GeocachingLive_API2;
+            textField.placeholder = @"API Key";
+        }];
+
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Local menu related functions

@@ -25,18 +25,30 @@
     NSString *currentWaypoint;
     NSInteger currentPage;
     NSInteger currentPageTab;
+
+    BOOL GeocachingLive_staging;
+    NSString *GeocachingLive_API1;
+    NSString *GeocachingLive_API2;
 }
 
 @property (nonatomic) BOOL distanceMetric;
 @property (nonatomic) BOOL themeGeosphere;
+
 @property (nonatomic, retain) NSString *currentWaypoint;
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) NSInteger currentPageTab;
+
+@property (nonatomic) BOOL GeocachingLive_staging;
+@property (nonatomic, retain) NSString *GeocachingLive_API1;
+@property (nonatomic, retain) NSString *GeocachingLive_API2;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)themeGeosphereUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
+- (void)geocachingLive_staging:(BOOL)value;
+- (void)geocachingLive_API1Update:(NSString *)value;
+- (void)geocachingLive_API2Update:(NSString *)value;
 
 @end

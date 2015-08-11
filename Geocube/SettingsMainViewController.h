@@ -22,6 +22,7 @@
 @interface SettingsMainViewController : GCTableViewController {
     UISwitch *distanceMetric;
     UISwitch *themeGeosphere;
+    UISwitch *geocachingLiveStaging;
 }
 
 @end
