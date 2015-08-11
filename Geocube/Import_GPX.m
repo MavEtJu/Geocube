@@ -226,14 +226,15 @@
         [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
         if (currentGS != nil) {
-            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.long_desc];
-            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.short_desc];
+            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.long_desc type:IMAGETYPE_CACHE];
+            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.short_desc type:IMAGETYPE_CACHE];
         }
 
         // Link logs to cache
         NSEnumerator *e = [logs objectEnumerator];
         dbLog *l;
         while ((l = [e nextObject]) != nil) {
+            newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
             [l dbUpdateCache:currentWP._id];
         }
 
