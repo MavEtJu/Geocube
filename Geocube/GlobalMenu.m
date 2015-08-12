@@ -30,7 +30,7 @@
 - (id)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"XNotes and Logs", @"XTrackables", @"Groups", @"Bookmarks", @"Files", @"XUser Profile", @"XNotices", @"Settings", @"Help", nil];
+    items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"Notes and Logs", @"XTrackables", @"Groups", @"Bookmarks", @"Files", @"XUser Profile", @"XNotices", @"Settings", @"Help", nil];
 
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];

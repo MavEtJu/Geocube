@@ -187,7 +187,19 @@
     controllers = [NSMutableArray array];
 
     vc = [[NullViewController alloc] init];
-    vc.title = @"Notes and Logs";
+    vc.title = @"Personal";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Field";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Images";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
