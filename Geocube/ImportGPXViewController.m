@@ -152,10 +152,22 @@
     y += height;
 
     imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group];
-    imp.delegate = self;
-    imagesDownloadManager.delegate = self;
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    imp.delegate = self;
+    imagesDownloadManager.delegate = self;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    imp.delegate = nil;
+    imagesDownloadManager.delegate = nil;
 }
 
 - (void)run

@@ -261,7 +261,8 @@
             }
 
             inItem = NO;
-            [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount newImagesCount:newImagesCount];
+            if (delegate != nil)
+                [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount newImagesCount:newImagesCount];
 
             goto bye;
         }
