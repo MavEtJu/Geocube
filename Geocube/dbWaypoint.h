@@ -100,5 +100,6 @@ enum {
 - (void)dbUpdateGroundspeak;
 + (void)dbUpdateLogStatus;
 + (NSString *)makeName:(NSString *)suffix;
++ (NSArray *)waypointsWithImages;
 
 @end

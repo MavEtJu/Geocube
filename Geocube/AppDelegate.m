@@ -198,7 +198,7 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[NotesImagesViewController alloc] init];
     vc.title = @"Images";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

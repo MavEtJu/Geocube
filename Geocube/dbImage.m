@@ -172,6 +172,23 @@
     }
 }
 
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(NSInteger)type
+{
+    NSInteger linked = 0;
+    @synchronized (db.dbaccess) {
+        DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ? and type = ?");
+
+        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(2, type);
+
+        DB_IF_STEP {
+            INT_FETCH(0, linked);
+        }
+        DB_FINISH;
+    }
+    return linked;
+}
+
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id
 {
     NSInteger linked = 0;

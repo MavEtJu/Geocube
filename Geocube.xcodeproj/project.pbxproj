@@ -174,6 +174,7 @@
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
+		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -498,6 +499,8 @@
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
+		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
+		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -777,6 +780,15 @@
 				E80732FA1B633A74007FDC29 /* main.m */,
 			);
 			path = objects;
+			sourceTree = "<group>";
+		};
+		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
+			isa = PBXGroup;
+			children = (
+				E82002271B7B1C04009AE50F /* NotesImagesViewController.h */,
+				E82002281B7B1C04009AE50F /* NotesImagesViewController.m */,
+			);
+			name = "Notes and logs";
 			sourceTree = "<group>";
 		};
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
@@ -1431,6 +1443,7 @@
 				E82FBB2B1B4613E90009AB6D /* Base */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740FE91B509540002527DA /* TableViewCells */,
+				E82002261B7B1B8F009AE50F /* Notes and logs */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E8A7FA921B777616003F4132 /* Bookmarks */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
@@ -1897,6 +1910,7 @@
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
+				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
