@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-#define THISCELL @"GroupsViewControllerCell"
+#define THISCELL @"CacheGroupsViewControllerCell"
 
 @implementation CacheGroupsViewController
 
@@ -44,7 +44,7 @@
     }
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 
     hasCloseButton = YES;
     
@@ -76,8 +76,10 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
     NSEnumerator *e;
     if (indexPath.section == 0)

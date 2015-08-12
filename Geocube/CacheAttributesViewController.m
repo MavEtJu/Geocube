@@ -40,7 +40,7 @@
     }
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 
     menuItems = nil;
     hasCloseButton = YES;
@@ -75,8 +75,10 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
     dbAttribute *a = [attrs objectAtIndex:indexPath.row];
 

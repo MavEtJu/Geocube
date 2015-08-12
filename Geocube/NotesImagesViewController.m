@@ -64,8 +64,10 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
     NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
