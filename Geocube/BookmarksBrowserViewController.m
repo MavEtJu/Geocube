@@ -98,7 +98,7 @@
     if (receivedData == nil)
         return;
 
-    NSLog(@"Received %ld bytes", [receivedData length]);
+    NSLog(@"Received %ld bytes", (unsigned long)[receivedData length]);
     [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
     [DejalBezelActivityView removeViewAnimated:NO];
 

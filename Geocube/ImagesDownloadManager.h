@@ -35,7 +35,7 @@
 @property (nonatomic, retain) NSMutableData *activeDownload;
 @property (nonatomic, retain) NSURLConnection *imageConnection;
 
-+ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc type:(NSInteger)type;
++ (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
 - (void)start;
 
 @end

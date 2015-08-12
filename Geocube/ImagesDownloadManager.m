@@ -52,7 +52,7 @@
     while (TRUE) {
         imgToDownload = nil;
 
-        NSLog(@"%@/run: Queue is %ld deep", [self class], [todo count]);
+        NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[todo count]);
         @synchronized (imagesDownloadManager) {
             if ([todo count] != 0)
                 imgToDownload = [todo objectAtIndex:0];
@@ -88,7 +88,7 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
         if (error == nil) {
-            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, [data length]);
+            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, (unsigned long)[data length]);
             [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile] atomically:NO];
         } else {
             NSLog(@"Failed! %@", error);
@@ -100,7 +100,7 @@
     }
 }
 
-+ (NSInteger)findImagesInDescription:(NSInteger)wp_id text:(NSString *)desc type:(NSInteger)type
++ (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type
 {
     NSInteger found = 0;
     NSString *next = desc;
