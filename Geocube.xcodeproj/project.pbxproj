@@ -1279,7 +1279,6 @@
 		E8F570551B3F7255003F020C /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
-				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
@@ -1301,6 +1300,7 @@
 		E8F570561B3F7255003F020C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
 			);
