@@ -23,7 +23,7 @@
 
 @implementation ImagesDownloadManager
 
-@synthesize todo, activeDownload, imageConnection;
+@synthesize todo, activeDownload, imageConnection, delegate;
 
 - (id)init
 {
@@ -34,6 +34,7 @@
     todo = [NSMutableArray arrayWithCapacity:20];
 
     running = 0;
+    delegate = nil;
 
     return self;
 }
@@ -54,6 +55,8 @@
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[todo count]);
         @synchronized (imagesDownloadManager) {
+            if (delegate != nil)
+                [delegate updateData:[todo count]];
             if ([todo count] != 0)
                 imgToDownload = [todo objectAtIndex:0];
         }

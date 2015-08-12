@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol ImagesDownloadManagerDelegate
+
+- (void)updateData:(NSInteger)queuedImages;
+
+@end
+
 @interface ImagesDownloadManager : NSObject {
     NSMutableArray *todo;
 
@@ -29,8 +35,10 @@
     NSURLConnection *conn;
 
     NSInteger running;
+    id delegate;
 }
 
+@property (nonatomic)id delegate;
 @property (nonatomic, retain) NSMutableArray *todo;
 @property (nonatomic, retain) NSMutableData *activeDownload;
 @property (nonatomic, retain) NSURLConnection *imageConnection;
