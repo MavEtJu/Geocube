@@ -198,4 +198,17 @@
     return [url lastPathComponent];
 }
 
+- (void)dbUnlinkFromWaypoint:(NSId)wp_id
+{
+    @synchronized (db.dbaccess) {
+        DB_PREPARE(@"delete from image2waypoint where waypoint_id = ? and image_id = ?");
+
+        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(2, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

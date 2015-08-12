@@ -46,5 +46,6 @@ enum ImageTypes {
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type;
 - (UIImage *)imageGet;
 + (NSString *)filename:(NSString *)url;
+- (void)dbUnlinkFromWaypoint:(NSId)wp_id;
 
 @end
