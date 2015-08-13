@@ -42,6 +42,7 @@
 #import "BHTabStyle.h"
 #import "BHTabsViewController.h"
 #import "RangeSlider.h"
+#import "AFOAuth2Manager.h"
 
 #import "MyTools.h"
 #import "Coordinates.h"
