@@ -38,6 +38,8 @@
     else
         menuItems = nil;
 
+    [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+
     return self;
 }
 
@@ -91,7 +93,8 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+    if (cell == nil)
+        cell = [[UITableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     dbGroup *cg = [cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;

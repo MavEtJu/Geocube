@@ -81,6 +81,27 @@
     return count;
 }
 
+
++ (NSArray *)dbAll
+{
+    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs");
+
+        DB_WHILE_STEP {
+            dbTravelbug *tb = [[dbTravelbug alloc] init];
+            INT_FETCH(0, tb._id);
+            TEXT_FETCH(1, tb.name);
+            TEXT_FETCH(2, tb.ref);
+            INT_FETCH(2, tb.gc_id);
+            [tbs addObject:tb];
+        }
+        DB_FINISH;
+    }
+    return tbs;
+}
+
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];

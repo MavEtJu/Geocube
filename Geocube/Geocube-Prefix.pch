@@ -43,6 +43,8 @@
 #import "BHTabsViewController.h"
 #import "RangeSlider.h"
 
+#import "UITableViewCellWithSubtitle.h"
+
 #import "MyTools.h"
 #import "Coordinates.h"
 
@@ -128,6 +130,7 @@
 #import "HelpAboutViewController.h"
 
 #import "NullViewController.h"
+#import "TravelbugsViewController.h"
 #import "UserProfileViewController.h"
 #import "CachesOfflineListViewController.h"
 #import "FilesViewController.h"

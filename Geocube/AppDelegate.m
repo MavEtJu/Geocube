@@ -209,7 +209,7 @@
     // Trackables logs #4
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[TravelbugsViewController alloc] init];
     vc.title = @"Trackables";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

@@ -175,6 +175,8 @@
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
+		E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TravelbugsViewController.m */; };
+		E820F2091B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -501,6 +503,10 @@
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
 		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
+		E820F2041B7DA451009FB999 /* TravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelbugsViewController.h; sourceTree = "<group>"; };
+		E820F2051B7DA451009FB999 /* TravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelbugsViewController.m; sourceTree = "<group>"; };
+		E820F2071B7DBA0D009FB999 /* UITableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellWithSubtitle.h; sourceTree = "<group>"; };
+		E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellWithSubtitle.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -830,6 +836,8 @@
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
+				E820F2041B7DA451009FB999 /* TravelbugsViewController.h */,
+				E820F2051B7DA451009FB999 /* TravelbugsViewController.m */,
 				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
 				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 			);
@@ -1047,6 +1055,8 @@
 				E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */,
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
+				E820F2071B7DBA0D009FB999 /* UITableViewCellWithSubtitle.h */,
+				E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1892,6 +1902,7 @@
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
+				E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
@@ -1921,6 +1932,7 @@
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
+				E820F2091B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
