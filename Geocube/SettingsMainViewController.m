@@ -21,7 +21,8 @@
 
 #import "Geocube-Prefix.pch"
 
-#define THISCELL @"SettingsMainViewControllerCell"
+#define THISCELL_SUBTITLE @"SettingsMainViewControllerCellSubtitle"
+#define THISCELL_DEFAULT @"SettingsMainViewControllerCellDefault"
 
 @implementation SettingsMainViewController
 
@@ -29,7 +30,8 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
+    [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
 }
 
@@ -73,11 +75,12 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     switch (indexPath.section) {
         case 0: {   // Distance
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Metric
                     cell.textLabel.text = @"Metric";
@@ -102,6 +105,9 @@
             break;
         }
         case 1: {   // Theme
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Geosphere theme
                     cell.textLabel.text = @"Geosphere";
@@ -126,7 +132,9 @@
             break;
         }
         case 2: {   // Groundspeak API
-            cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[UITableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_SUBTITLE];
             switch (indexPath.row) {
                 case 0: {   // API key 1
                     cell.textLabel.text = @"API key 1";

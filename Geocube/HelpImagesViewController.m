@@ -96,7 +96,8 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    cell = [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     if (indexPath.section == 0) {
         cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];
