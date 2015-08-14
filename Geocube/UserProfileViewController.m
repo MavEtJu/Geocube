@@ -36,14 +36,18 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-}
 
-- (void)loadView
-{
+
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
+
+    /*
+    NSURL *baseURL = [NSURL URLWithString:@"https://staging.geocaching.com/"];
+    NSString *OAUTH_CONSUMER_KEY = @"9C7552E1-3C04-4D04-A395-230D8931E494";
+    NSString *OAUTH_CONSUMER_SECRET = @"DA7CC147-7B5B-4423-BCB4-D0C03E2BF685";
+     */
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 40, 100, 40)];
     [label setText:@"Label created in ScrollerController.loadView"];
