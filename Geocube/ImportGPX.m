@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation Import_GPX
+@implementation ImportGPX
 
 @synthesize delegate;
 
@@ -41,14 +41,14 @@
 
     group = _group;
 
-    NSLog(@"Import_GPX: Importing info %@", group.name);
+    NSLog(@"%@: Importing info %@", [self class], group.name);
 
     return self;
 }
 
 - (void)parseBefore
 {
-    NSLog(@"Import_GPX: Parsing initializing");
+    NSLog(@"%@: Parsing initializing", [self class]);
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
 }
@@ -58,7 +58,7 @@
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
 
-    NSLog(@"Import_GPX: Parsing %@", filename);
+    NSLog(@"%@: Parsing %@", [self class], filename);
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
@@ -83,7 +83,7 @@
 
 - (void)parseAfter
 {
-    NSLog(@"Import_GPX: Parsing done");
+    NSLog(@"%@: Parsing done", [self class]);
     [[dbc Group_AllWaypoints_Found] dbEmpty];
     [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
     [[dbc Group_AllWaypoints_Attended] dbEmpty];
@@ -96,7 +96,7 @@
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    NSString * errorString = [NSString stringWithFormat:@"Import_GPX error (Error code %ld)", (long)[parseError code]];
+    NSString * errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
     NSLog(@"Error parsing XML: %@", errorString);
 }
 

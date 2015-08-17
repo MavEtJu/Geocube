@@ -165,7 +165,7 @@
     [self.view addSubview:totalImagesLabel];
     y += height;
 
-    imp = [[Import_GPX alloc] init:group];
+    imp = [[ImportGPX alloc] init:group];
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
 }

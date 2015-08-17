@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPXViewController : GCViewController<Import_GPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate> {
+@interface ImportGPXViewController : GCViewController<ImportGPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate> {
     NSMutableArray *filenames;
     dbGroup *group;
 
@@ -34,7 +34,7 @@
     UILabel *totalImagesLabel;
     UILabel *queuedImagesLabel;
 
-    Import_GPX *imp;
+    ImportGPX *imp;
 }
 
 - (id)init:(NSString *)filename group:(dbGroup *)group;

@@ -22,13 +22,13 @@
 #ifndef Geocube_Import_GPX_h
 #define Geocube_Import_GPX_h
 
-@protocol Import_GPXDelegate
+@protocol ImportGPXDelegate
 
 - (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount;
 
 @end
 
-@interface Import_GPX : NSObject <NSXMLParserDelegate> {
+@interface ImportGPX : NSObject <NSXMLParserDelegate> {
     NSInteger newWaypointsCount;
     NSInteger totalWaypointsCount;
     NSInteger newLogsCount;
