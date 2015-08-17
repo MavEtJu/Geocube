@@ -81,7 +81,7 @@
 
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update account details"
-                               message:@"Enter your account detaills"
+                               message:@"Enter your account name"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction

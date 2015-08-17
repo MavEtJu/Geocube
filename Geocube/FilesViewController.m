@@ -134,7 +134,8 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *import = nil;
-    if ([[fn pathExtension] compare:@"gpx"] == NSOrderedSame) {
+    if ([[fn pathExtension] isEqualToString:@"gpx"] == YES ||
+        [[fn pathExtension] isEqualToString:@"zip"] == YES) {
         import = [UIAlertAction
                   actionWithTitle:@"Import"
                   style:UIAlertActionStyleDefault

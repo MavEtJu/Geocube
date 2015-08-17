@@ -27,13 +27,27 @@
 {
     self = [super init];
 
-    filename = _filename;
+    filenames = [NSMutableArray arrayWithCapacity:1];
+    if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
+        [filenames addObject:_filename];
+    }
+    if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
+        NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
+        NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
+        [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+    }
+
     group = _group;
 
     menuItems = nil;
     hasCloseButton = YES;
 
     return self;
+}
+
+- (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
+{
+    [filenames addObject:[unzippedFilePath lastPathComponent]];
 }
 
 - (void)viewDidLoad
@@ -55,10 +69,10 @@
     NSInteger y = 0;
     UILabel *l;
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
-    [label setText:[NSString stringWithFormat:@"Import of %@", filename ]];
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
+    filenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
+    [filenameLabel setText:@"Import of ?"];
+    filenameLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:filenameLabel];
     y += height;
 
     // Progress label
@@ -151,7 +165,7 @@
     [self.view addSubview:totalImagesLabel];
     y += height;
 
-    imp = [[Import_GPX alloc] init:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] group:group];
+    imp = [[Import_GPX alloc] init:group];
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
 }
@@ -172,11 +186,18 @@
 
 - (void)run
 {
+    [imp parseBefore];
     @autoreleasepool {
-        [imp parse];
-        progressLabel.text = @"100%";
-        [waypointManager needsRefresh];
+        [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
+            }];
+            [imp parse:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
+            progressLabel.text = @"100%";
+            [waypointManager needsRefresh];
+        }];
     }
+    [imp parseAfter];
 }
 
 - (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount

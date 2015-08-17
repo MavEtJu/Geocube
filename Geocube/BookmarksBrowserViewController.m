@@ -79,7 +79,9 @@
             receivedData = [NSMutableData dataWithCapacity:0];
             suggestedFilename = response.suggestedFilename;
             [webView stopLoading];
-            [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
+            }];
             *stop = YES;
         }
     }];
@@ -98,9 +100,25 @@
     if (receivedData == nil)
         return;
 
-    NSLog(@"Received %ld bytes", (unsigned long)[receivedData length]);
+    NSInteger length = [receivedData length];
+    NSLog(@"Received %ld bytes", length);
     [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
-    [DejalBezelActivityView removeViewAnimated:NO];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Download complete"
+                                   message:[NSString stringWithFormat:@"Downloaded %@", [MyTools niceFileSize:length]]
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil];
+
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
 
     receivedData = nil;
     urlConnection = nil;

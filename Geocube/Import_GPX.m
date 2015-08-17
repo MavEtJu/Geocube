@@ -25,7 +25,7 @@
 
 @synthesize delegate;
 
-- (id)init:(NSString *)filename group:(dbGroup *)_group
+- (id)init:(dbGroup *)_group
 {
     self = [super init];
     delegate = nil;
@@ -41,31 +41,24 @@
 
     group = _group;
 
-    NSLog(@"Import_GPX: Importing %@ into %@", filename, group.name);
+    NSLog(@"Import_GPX: Importing info %@", group.name);
 
-    files = @[filename];
-    NSLog(@"Found %lu files", (unsigned long)[files count]);
     return self;
 }
 
-- (void)parse
+- (void)parseBefore
 {
+    NSLog(@"Import_GPX: Parsing initializing");
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
-
-    NSEnumerator *eFile = [files objectEnumerator];
-    NSString *filename;
-    while ((filename = [eFile nextObject]) != nil) {
-        NSLog(@"Parsing %@", filename);
-        [self parseOne:filename];
-    }
-
 }
 
-- (void)parseOne:(NSString *)filename
+- (void)parse:(NSString *)filename
 {
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
+
+    NSLog(@"Import_GPX: Parsing %@", filename);
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
@@ -86,7 +79,11 @@
     @autoreleasepool {
         [rssParser parse];
     }
+}
 
+- (void)parseAfter
+{
+    NSLog(@"Import_GPX: Parsing done");
     [[dbc Group_AllWaypoints_Found] dbEmpty];
     [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
     [[dbc Group_AllWaypoints_Attended] dbEmpty];

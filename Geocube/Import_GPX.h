@@ -60,8 +60,10 @@
 
 @property (nonatomic)id delegate;
 
-- (id)init:(NSString *)filename group:(dbGroup *)group;
-- (void)parse;
+- (id)init:(dbGroup *)group;
+- (void)parseBefore;
+- (void)parse:(NSString *)filename;
+- (void)parseAfter;
 
 @end
 
