@@ -44,7 +44,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    accounts = [dbAccount dbAll];
+    accounts = [NSMutableArray arrayWithCapacity:20];
+    [[dbAccount dbAll] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (a.account != nil && [a.account isEqualToString:@""] == NO)
+            [accounts addObject:a];
+    }];
     [self.tableView reloadData];
 }
 

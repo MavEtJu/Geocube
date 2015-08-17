@@ -20,7 +20,7 @@
  */
 
 @interface BookmarksAccountsViewController : GCTableViewController {
-    NSArray *accounts;
+    NSMutableArray *accounts;
 }
 
 @end

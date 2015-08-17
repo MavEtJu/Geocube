@@ -7,7 +7,7 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("version", "1");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,
@@ -649,9 +649,20 @@ create table accounts (
     url text,
     url_queries text,
     account text,
-    password text
+    password text,
+    protocol integer,	-- 0 none, 1 groundspeak, 2 okapi
+    oauth_consumer_public text,
+    oauth_consumer_private text
 );
-insert into accounts(site, url, url_queries) values("GroundSpeak Geocaching.com", "https://www.geocaching.com/", "https://www.geocaching.com/pocket/");
-insert into accounts(site, url, url_queries) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/");
-insert into accounts(site, url, url_queries) values("OpenCaching BeNeLux", "http://www.opencaching.nl/", "http://www.opencaching.nl/query.php");
-insert into accounts(site, url, url_queries) values("OpenCaching North America", "http://www.opencaching.us/", "http://www.opencaching.us/query.php");
+insert into accounts(site, url, url_queries, protocol) values("Groundspeak Geocaching.com", "https://www.geocaching.com/", "https://www.geocaching.com/pocket/", 1);
+insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 0);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching BeNeLux", "http://www.opencaching.nl/", "http://www.opencaching.nl/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching North America", "http://www.opencaching.us/", "http://www.opencaching.us/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Deutschand", "http://www.opencaching.de/", "http://www.opencaching.de/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching CZ", "http://www.opencaching.cz/", "http://www.opencaching.cz/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Italy", "http://www.opencaching.it/", "http://www.opencaching.it/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching UK", "http://www.opencaching.org.uk/", "http://www.opencaching.org.uk/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Spain", "http://www.opencachingspain.es/", "http://www.opencachingspain.es/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Romania", "http://www.opencaching.ro/", "http://www.opencaching.ro/query.php", 2);

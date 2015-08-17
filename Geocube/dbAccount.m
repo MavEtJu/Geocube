@@ -23,9 +23,9 @@
 
 @implementation dbAccount
 
-@synthesize site, url, account, password, url_queries;
+@synthesize site, url, account, password, url_queries, oauth_consumer_private, oauth_consumer_public, protocol;
 
-- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password
+- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password protocol:(NSInteger)_protocol oauth_public:(NSString *)_oauth_public oauth_private:(NSString *)_oauth_private
 {
     self = [super init];
 
@@ -35,6 +35,9 @@
     url_queries = _url_queries;
     account = _account;
     password = _password;
+    protocol = _protocol;
+    oauth_consumer_public = _oauth_public;
+    oauth_consumer_private = _oauth_private;
 
     [self finish];
     return self;
@@ -45,7 +48,7 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, url_queries, account, password from accounts where id = ?");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
@@ -56,6 +59,9 @@
             TEXT_FETCH(3, a.url_queries);
             TEXT_FETCH(4, a.account);
             TEXT_FETCH(5, a.password);
+            INT_FETCH( 6, a.protocol);
+            TEXT_FETCH(7, a.oauth_consumer_public);
+            TEXT_FETCH(8, a.oauth_consumer_private);
         }
         DB_FINISH;
     }
@@ -67,7 +73,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, url_queries, account, password from accounts");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
@@ -77,6 +83,9 @@
             TEXT_FETCH(3, a.url_queries);
             TEXT_FETCH(4, a.account);
             TEXT_FETCH(5, a.password);
+            INT_FETCH( 6, a.protocol);
+            TEXT_FETCH(7, a.oauth_consumer_public);
+            TEXT_FETCH(8, a.oauth_consumer_private);
             [ss addObject:a];
         }
         DB_FINISH;
@@ -87,11 +96,10 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set account = ?, password = ? where id = ?");
+        DB_PREPARE(@"update accounts set account = ? where id = ?");
 
         SET_VAR_TEXT(1, self.account);
-        SET_VAR_TEXT(2, self.password);
-        SET_VAR_INT(3, self._id);
+        SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

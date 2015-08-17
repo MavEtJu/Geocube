@@ -91,11 +91,8 @@
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *username = tf.text;
-                             tf = [alert.textFields objectAtIndex:1];
-                             NSString *password = tf.text;
 
                              a.account = username;
-                             a.password = password;
                              [a dbUpdate];
 
                              [self.tableView reloadData];
@@ -113,11 +110,7 @@
         textField.text = a.account;
         textField.placeholder = @"Username";
     }];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = a.password;
-        textField.placeholder = @"Password";
-    }];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 
