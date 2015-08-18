@@ -93,7 +93,7 @@
     return ss;
 }
 
-- (void)dbUpdate
+- (void)dbUpdateAccount
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update accounts set account = ? where id = ?");
@@ -104,6 +104,45 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+}
+
+- (void)dbUpdateOAuth
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.oauth_consumer_public);
+        SET_VAR_TEXT(2, self.oauth_consumer_private);
+        SET_VAR_INT( 3, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (dbAccount *)dbGetBySite:(NSString *)site
+{
+    dbAccount *a = nil;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts where site = ?");
+        SET_VAR_TEXT(1, site);
+
+        DB_IF_STEP {
+            a = [[dbAccount alloc] init];
+            INT_FETCH( 0, a._id);
+            TEXT_FETCH(1, a.site);
+            TEXT_FETCH(2, a.url);
+            TEXT_FETCH(3, a.url_queries);
+            TEXT_FETCH(4, a.account);
+            TEXT_FETCH(5, a.password);
+            INT_FETCH( 6, a.protocol);
+            TEXT_FETCH(7, a.oauth_consumer_public);
+            TEXT_FETCH(8, a.oauth_consumer_private);
+        }
+        DB_FINISH;
+    }
+    return a;
 }
 
 @end

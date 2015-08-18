@@ -7,7 +7,8 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("url_licenses", "http://localhost:8000/licenses.txt");
+insert into config(key, value) values("version", "3");
 
 create table filters (
     id integer primary key,

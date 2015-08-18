@@ -47,5 +47,8 @@ enum dbAccountProtocol {
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password protocol:(NSInteger)_protocol oauth_public:(NSString *)oauth_public oauth_private:(NSString *)oauth_private;
+- (void)dbUpdateAccount;
+- (void)dbUpdateOAuth;
++ (dbAccount *)dbGetBySite:(NSString *)site;
 
 @end

@@ -31,7 +31,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add account"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Download licenses"]];
 }
 
 - (void)refreshAccountData
@@ -93,7 +93,7 @@
                              NSString *username = tf.text;
 
                              a.account = username;
-                             [a dbUpdate];
+                             [a dbUpdateAccount];
 
                              [self.tableView reloadData];
                          }];
@@ -119,7 +119,7 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     if (index == 0) {
-        [self addAccount];
+        [self downloadLicenses];
         return;
     }
 
@@ -127,8 +127,52 @@
     [av show];
 }
 
-- (void)addAccount
+- (void)downloadLicenses
 {
+    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_licenses"] value]];
+
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+
+    if (error == nil) {
+        NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
+        [ImportLicenses parse:data];
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Licenses download"
+                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"licenses_revision"] value]]
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                            ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        NSLog(@"%@: Failed! %@", [self class], error);
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Licenses download"
+                                   message:[NSString stringWithFormat:@"Failed to download: %@", error]
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                            ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
+
+
 }
 
 @end
