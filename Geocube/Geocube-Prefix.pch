@@ -95,6 +95,7 @@
 #import "SettingsAccountsViewController.h"
 
 #import "NotesImagesViewController.h"
+#import "NotesFieldnotesViewController.h"
 
 #import "CacheDescriptionViewController.h"
 #import "CacheHintViewController.h"

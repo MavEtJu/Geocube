@@ -515,4 +515,76 @@
     return ss;
 }
 
++ (NSArray *)waypointsWithLogs
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
+    dbWaypoint *wp;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints where id in (select waypoint_id from logs)");
+
+        SET_VAR_INT(1, IMAGETYPE_USER);
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN(  0, _id);
+            wp = [[dbWaypoint alloc] init:_id];
+
+            TEXT_FETCH( 1, wp.name);
+            TEXT_FETCH( 2, wp.description);
+            TEXT_FETCH( 3, wp.lat);
+            TEXT_FETCH( 4, wp.lon);
+            INT_FETCH(  5, wp.lat_int);
+            INT_FETCH(  6, wp.lon_int);
+            TEXT_FETCH( 7, wp.date_placed);
+            INT_FETCH(  8, wp.date_placed_epoch);
+            TEXT_FETCH( 9, wp.url);
+            INT_FETCH( 10, wp.type_id);
+            INT_FETCH( 11, wp.symbol_id);
+            INT_FETCH( 12, wp.groundspeak_id);
+            TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
+
+            [wp finish];
+            [ss addObject:wp];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray *)waypointsWithMyLogs
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
+    dbWaypoint *wp;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select account from accounts where account != '')))");
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN(  0, _id);
+            wp = [[dbWaypoint alloc] init:_id];
+
+            TEXT_FETCH( 1, wp.name);
+            TEXT_FETCH( 2, wp.description);
+            TEXT_FETCH( 3, wp.lat);
+            TEXT_FETCH( 4, wp.lon);
+            INT_FETCH(  5, wp.lat_int);
+            INT_FETCH(  6, wp.lon_int);
+            TEXT_FETCH( 7, wp.date_placed);
+            INT_FETCH(  8, wp.date_placed_epoch);
+            TEXT_FETCH( 9, wp.url);
+            INT_FETCH( 10, wp.type_id);
+            INT_FETCH( 11, wp.symbol_id);
+            INT_FETCH( 12, wp.groundspeak_id);
+            TEXT_FETCH(13, wp.urlname);
+            INT_FETCH( 14, wp.logStatus);
+
+            [wp finish];
+            [ss addObject:wp];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
 @end

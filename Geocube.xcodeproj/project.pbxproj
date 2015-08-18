@@ -207,6 +207,7 @@
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87E474A1B82A301005606A2 /* ImportLicenses.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E47491B82A301005606A2 /* ImportLicenses.m */; };
+		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -565,6 +566,8 @@
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87E47481B82A301005606A2 /* ImportLicenses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLicenses.h; sourceTree = "<group>"; };
 		E87E47491B82A301005606A2 /* ImportLicenses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLicenses.m; sourceTree = "<group>"; };
+		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
+		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -797,6 +800,8 @@
 			children = (
 				E82002271B7B1C04009AE50F /* NotesImagesViewController.h */,
 				E82002281B7B1C04009AE50F /* NotesImagesViewController.m */,
+				E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */,
+				E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */,
 			);
 			name = "Notes and logs";
 			sourceTree = "<group>";
@@ -1962,6 +1967,7 @@
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
+				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

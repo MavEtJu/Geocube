@@ -192,7 +192,7 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[NotesFieldnotesViewController alloc] init];
     vc.title = @"Field";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

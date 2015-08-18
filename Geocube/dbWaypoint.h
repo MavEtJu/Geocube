@@ -101,5 +101,7 @@ enum {
 + (void)dbUpdateLogStatus;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray *)waypointsWithImages;
++ (NSArray *)waypointsWithLogs;
++ (NSArray *)waypointsWithMyLogs;
 
 @end
