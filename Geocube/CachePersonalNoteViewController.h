@@ -19,9 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesFieldnotesViewController : GCTableViewController {
-    NSArray *waypointsWithLogs;
-    NSMutableArray *logs;
+@interface CachePersonalNoteViewController : GCViewController<YIPopupTextViewDelegate> {
+    dbWaypoint *waypoint;
+    UILabel *l;
+    YIPopupTextView *tv;
+    dbPersonalNote *note;
 }
+
+- (id)init:(dbWaypoint *)waypoint;
 
 @end

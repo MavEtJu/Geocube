@@ -114,6 +114,10 @@
     return [dbImage dbCountByWaypoint:_id];
 }
 
+- (NSInteger)hasPersonalNotes {
+    return [dbTravelbug dbCountByWaypoint:_id];
+}
+
 - (NSInteger)hasInventory {
     return [dbTravelbug dbCountByWaypoint:_id];
 }

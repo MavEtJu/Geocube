@@ -19,9 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesFieldnotesViewController : GCTableViewController {
-    NSArray *waypointsWithLogs;
-    NSMutableArray *logs;
+@interface dbPersonalNote : dbObject {
+    NSId waypoint_id;
+    NSString *wp_name;
+    NSString *note;
 }
+
+@property (nonatomic) NSId waypoint_id;
+@property (nonatomic, retain) NSString *wp_name;
+@property (nonatomic, retain) NSString *note;
+
++ (dbPersonalNote *)dbGetByWaypointID:(NSInteger)wp_id;
 
 @end

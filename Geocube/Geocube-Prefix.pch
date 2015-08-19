@@ -41,6 +41,7 @@
 #import "ActionSheetDistancePicker.h"
 #import "BHTabStyle.h"
 #import "BHTabsViewController.h"
+#import "YIPopupTextView.h"
 #import "RangeSlider.h"
 
 #import "UITableViewCellWithSubtitle.h"
@@ -67,6 +68,7 @@
 #import "dbGroundspeak.h"
 #import "dbWaypoint.h"
 #import "dbLog.h"
+#import "dbPersonalNote.h"
 #import "dbImage.h"
 #import "database-cache.h"
 
@@ -97,6 +99,7 @@
 #import "NotesImagesViewController.h"
 #import "NotesFieldnotesViewController.h"
 
+#import "CachePersonalNoteViewController.h"
 #import "CacheDescriptionViewController.h"
 #import "CacheHintViewController.h"
 #import "CacheLogsViewController.h"

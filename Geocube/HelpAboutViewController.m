@@ -78,6 +78,9 @@
           @"DOPNavbarMenu: Copyright (c) 2015 Weizhou (https://github.com/dopcn/DOPNavbarMenu)"
           ];
     y += [self addText:y text:
+          @"YIPopupTextView: Copyright (c) 2012 Yasuhiro Inami. All rights reserved. (https://github.com/inamiy/YIPopupTextView)"
+          ];
+    y += [self addText:y text:
           @"SSZipArchive: Copyright (c) 2010-2015, Sam Soffes, http://soff.es (https://github.com/iosphere/ssziparchive)"
           ];
 

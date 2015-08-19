@@ -188,9 +188,9 @@
                 }
                 break;
             case 2: /* Personal note */
-                if ([groundspeak.personal_note compare:@""] == NSOrderedSame) {
+                if ([dbPersonalNote dbGetByWaypointID:waypoint._id] == nil) {
                     tc = [UIColor lightGrayColor];
-                    cell.userInteractionEnabled = NO;
+                    cell.userInteractionEnabled = YES;     // Be able to create one
                 }
                 break;
             case 3: { /* Field Note */
@@ -293,6 +293,12 @@
         }
         if (indexPath.row == 1) {   /* Hint */
             UIViewController *newController = [[CacheHintViewController alloc] init:waypoint];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+        if (indexPath.row == 2) {   /* Personal note */
+            UIViewController *newController = [[CachePersonalNoteViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;
