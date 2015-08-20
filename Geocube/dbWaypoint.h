@@ -41,6 +41,7 @@
     dbType *type;
 
     NSInteger logStatus;
+    BOOL highlight;
 
     /* Not read from the database */
     CLLocationCoordinate2D coordinates;
@@ -75,6 +76,7 @@ enum {
 @property (nonatomic) NSId groundspeak_id;
 @property (nonatomic, retain) dbGroundspeak *groundspeak;
 @property (nonatomic) NSInteger logStatus;
+@property (nonatomic) BOOL highlight;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;

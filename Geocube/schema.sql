@@ -8,7 +8,7 @@ create table config (
 );
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_licenses", "http://localhost:8000/licenses.txt");
-insert into config(key, value) values("version", "4");
+insert into config(key, value) values("version", "5");
 
 create table filters (
     id integer primary key,
@@ -59,7 +59,8 @@ create table waypoints (
     type_id integer,			-- pointer to types(id)
     groundspeak_id integer,		-- pointer to groundspeak(id)
 
-    log_status integer			-- 0 not logged, 1 DNF, 2 found
+    log_status integer,			-- 0 not logged, 1 DNF, 2 found
+    highlight bool
 );
 create index waypoint_idx_name on waypoints(name);
 create index waypoint_idx_id on waypoints(id);
