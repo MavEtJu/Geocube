@@ -100,7 +100,7 @@
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 

@@ -40,7 +40,7 @@
     }
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     menuItems = nil;
     hasCloseButton = YES;
@@ -70,7 +70,7 @@
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell = [[UITableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
