@@ -92,12 +92,14 @@
 #import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"
+#import "PersonalNoteTableViewCell.h"
 
 #import "SettingsMainViewController.h"
 #import "SettingsAccountsViewController.h"
 
 #import "NotesImagesViewController.h"
 #import "NotesFieldnotesViewController.h"
+#import "NotesPersonalNotesViewController.h"
 
 #import "CachePersonalNoteViewController.h"
 #import "CacheDescriptionViewController.h"

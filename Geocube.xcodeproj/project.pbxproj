@@ -189,6 +189,8 @@
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
+		E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */; };
+		E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
@@ -533,6 +535,10 @@
 		E8575FFA1B8466D900F34483 /* YISSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YISSTextView.m; path = YIPopupTextView/YISSTextView.m; sourceTree = "<group>"; };
 		E8575FFD1B849BE600F34483 /* dbPersonalNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPersonalNote.h; sourceTree = "<group>"; };
 		E8575FFE1B849BE600F34483 /* dbPersonalNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPersonalNote.m; sourceTree = "<group>"; };
+		E85760001B84A8E200F34483 /* NotesPersonalNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesPersonalNotesViewController.h; sourceTree = "<group>"; };
+		E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesPersonalNotesViewController.m; sourceTree = "<group>"; };
+		E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNoteTableViewCell.h; sourceTree = "<group>"; };
+		E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNoteTableViewCell.m; sourceTree = "<group>"; };
 		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
 		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
@@ -814,6 +820,8 @@
 				E82002281B7B1C04009AE50F /* NotesImagesViewController.m */,
 				E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */,
 				E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */,
+				E85760001B84A8E200F34483 /* NotesPersonalNotesViewController.h */,
+				E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */,
 			);
 			name = "Notes and logs";
 			sourceTree = "<group>";
@@ -1088,6 +1096,8 @@
 				E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */,
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
+				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
+				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E820F2071B7DBA0D009FB999 /* UITableViewCellWithSubtitle.h */,
 				E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */,
 			);
@@ -1906,6 +1916,7 @@
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E8A7FAAB1B794E70003F4132 /* CacheImagesViewController.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
+				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
@@ -1947,6 +1958,7 @@
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
+				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,

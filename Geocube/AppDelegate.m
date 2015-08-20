@@ -186,7 +186,7 @@
     // Notes and logs tabs #3
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[NotesPersonalNotesViewController alloc] init];
     vc.title = @"Personal";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

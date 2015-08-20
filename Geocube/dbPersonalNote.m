@@ -23,7 +23,7 @@
 
 @implementation dbPersonalNote
 
-@synthesize note, wp_name, waypoint_id;
+@synthesize note, wp_name, waypoint_id, cellHeight;
 
 - (NSId)dbCreate
 {
@@ -76,6 +76,27 @@
     }
 
     return pn;
+}
+
++ (NSArray *)dbAll
+{
+    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, waypoint_id, wp_name, note from personal_notes");
+
+        DB_WHILE_STEP {
+            dbPersonalNote *pn = [[dbPersonalNote alloc] init];
+            INT_FETCH( 0, pn._id);
+            INT_FETCH( 1, pn.waypoint_id);
+            TEXT_FETCH(2, pn.wp_name);
+            TEXT_FETCH(3, pn.note);
+            [ss addObject:pn];
+        }
+        DB_FINISH;
+    }
+
+    return ss;
 }
 
 @end
