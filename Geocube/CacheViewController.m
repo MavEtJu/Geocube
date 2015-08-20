@@ -31,8 +31,8 @@
 {
     self = [super initWithStyle:style];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint"]];
-    hasCloseButton = canBeClosed;
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight"]];
+    hasCloseButton = YES;
 
     return self;
 }
@@ -398,9 +398,12 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // Add a waypoint
-    if (index == 0) {
-        [self newWaypoint];
-        return;
+    switch (index) {
+        case 0:
+            [self newWaypoint];
+            return;
+        case 1:
+            break;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
