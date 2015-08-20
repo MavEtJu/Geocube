@@ -293,6 +293,9 @@
             [where appendString:@" or "];
         [where appendFormat:@"group_id = ?"];
     }
+    // Stop selecting this criteria without actually selecting a group!
+    if ([where isEqualToString:@""] == YES)
+        return nil;
 
     @synchronized(db.dbaccess) {
         NSString *sql = [NSString stringWithFormat:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status from waypoints wp where wp.id in (select waypoint_id from group2waypoints where %@)", where];
