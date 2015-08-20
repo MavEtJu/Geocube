@@ -60,31 +60,31 @@
     NSEnumerator *e = [Groups objectEnumerator];
     dbGroup *cg;
     while ((cg = [e nextObject]) != nil) {
-        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints"] == YES) {
             Group_AllWaypoints = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Attended"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Attended"] == YES) {
             Group_AllWaypoints_Attended = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Found"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
             Group_AllWaypoints_Found = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Not Found"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Not Found"] == YES) {
             Group_AllWaypoints_NotFound = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"All Waypoints - Manually entered"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Manually entered"] == YES) {
             Group_AllWaypoints_ManuallyAdded = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"Last Import"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import"] == YES) {
             Group_LastImport = cg;
             continue;
         }
-        if (cg.usergroup == 0 && [cg.name compare:@"Last Import - New"] == NSOrderedSame) {
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import - New"] == YES) {
             Group_LastImportAdded = cg;
             continue;
         }
@@ -100,7 +100,7 @@
     e = [Types objectEnumerator];
     dbType *ct;
     while ((ct = [e nextObject]) != nil) {
-        if ([ct.type compare:@"*"] == NSOrderedSame) {
+        if ([ct.type isEqualToString:@"*"] == YES) {
             Type_Unknown = ct;
             continue;
         }
@@ -110,7 +110,7 @@
     e = [Types objectEnumerator];
     dbType *type;
     while ((type = [e nextObject]) != nil) {
-        if ([type.type compare:@"Unknown"] == NSOrderedSame) {
+        if ([type.type isEqualToString:@"Unknown"] == YES) {
             Type_Unknown = type;
             continue;
         }
@@ -120,19 +120,19 @@
     e = [LogTypes objectEnumerator];
     dbLogType *lt;
     while ((lt = [e nextObject]) != nil) {
-        if ([lt.logtype compare:@"Unknown"] == NSOrderedSame) {
+        if ([lt.logtype isEqualToString:@"Unknown"] == YES) {
             LogType_Unknown = lt;
             continue;
         }
-        if ([lt.logtype compare:@"Found it"] == NSOrderedSame) {
+        if ([lt.logtype isEqualToString:@"Found it"] == YES) {
             LogType_Found = lt;
             continue;
         }
-        if ([lt.logtype compare:@"Attended"] == NSOrderedSame) {
+        if ([lt.logtype isEqualToString:@"Attended"] == YES) {
             LogType_Attended = lt;
             continue;
         }
-        if ([lt.logtype compare:@"Didn't find it"] == NSOrderedSame) {
+        if ([lt.logtype isEqualToString:@"Didn't find it"] == YES) {
             LogType_NotFound = lt;
             continue;
         }
@@ -145,7 +145,7 @@
     e = [Attributes objectEnumerator];
     dbAttribute *a;
     while ((a = [e nextObject]) != nil) {
-        if ([a.label compare:@"Unknown"] == NSOrderedSame) {
+        if ([a.label isEqualToString:@"Unknown"] == YES) {
             Attribute_Unknown = a;
             continue;
         }
@@ -159,7 +159,7 @@
     NSEnumerator *e = [Types objectEnumerator];
     dbType *ct;
     while ((ct = [e nextObject]) != nil) {
-        if ([ct.type compare:name] == NSOrderedSame)
+        if ([ct.type isEqualToString:name] == YES)
             return ct;
     }
     return nil;
@@ -181,7 +181,7 @@
     NSEnumerator *e = [Symbols objectEnumerator];
     dbSymbol *lt;
     while ((lt = [e nextObject]) != nil) {
-        if ([lt.symbol compare:symbol] == NSOrderedSame)
+        if ([lt.symbol isEqualToString:symbol] == YES)
             return lt;
     }
     return nil;
@@ -209,7 +209,7 @@
     NSEnumerator *e = [LogTypes objectEnumerator];
     dbLogType *lt;
     while ((lt = [e nextObject]) != nil) {
-        if ([lt.logtype compare:type] == NSOrderedSame)
+        if ([lt.logtype isEqualToString:type] == YES)
             return lt;
     }
     return nil;
@@ -253,7 +253,7 @@
     NSEnumerator *e = [Containers objectEnumerator];
     dbContainer *s;
     while ((s = [e nextObject]) != nil) {
-        if ([s.size compare:size] == NSOrderedSame)
+        if ([s.size isEqualToString:size] == YES)
             return s;
     }
     return nil;
@@ -286,7 +286,7 @@
     NSEnumerator *e = [Countries objectEnumerator];
     dbCountry *s;
     while ((s = [e nextObject]) != nil) {
-        if ([s.name compare:name] == NSOrderedSame)
+        if ([s.name isEqualToString:name] == YES)
             return s;
     }
     return nil;
@@ -313,7 +313,7 @@
     NSEnumerator *e = [States objectEnumerator];
     dbState *s;
     while ((s = [e nextObject]) != nil) {
-        if ([s.name compare:name] == NSOrderedSame)
+        if ([s.name isEqualToString:name] == YES)
             return s;
     }
     return nil;

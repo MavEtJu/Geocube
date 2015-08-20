@@ -162,7 +162,7 @@
     if (gs.state != nil)
         [s appendFormat:@"%@", gs.state.name];
     if (gs.country != nil) {
-         if ([s compare:@""] != NSOrderedSame)
+         if ([s isEqualToString:@""] == NO)
              [s appendFormat:@", "];
         [s appendFormat:@"%@", gs.country.code];
     }
@@ -192,7 +192,7 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     NSString *searchString = searchController.searchBar.text;
-    if ([searchString compare:@""] == NSOrderedSame)
+    if ([searchString isEqualToString:@""] == YES)
         searchString = nil;
     [self refreshCachesData:searchString];
     //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];

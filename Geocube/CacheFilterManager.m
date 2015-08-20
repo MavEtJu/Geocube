@@ -35,7 +35,7 @@
     lastCoordinates.latitude = 0;
     lastCoordinates.longitude = 0;
 
-    if ([myConfig.currentWaypoint compare:@""] != NSOrderedSame)
+    if ([myConfig.currentWaypoint isEqualToString:@""] == NO)
         currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:myConfig.currentWaypoint]];
 
     [LM startDelegation:self isNavigating:NO];
@@ -310,7 +310,7 @@
         __block NSMutableArray *states = nil;
         __block NSMutableArray *owners = nil;
 
-        if ([country compare:@""] != NSOrderedSame) {
+        if ([country isEqualToString:@""] == NO) {
             countries = [NSMutableArray arrayWithCapacity:20];
             [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
                 if ([c.name localizedCaseInsensitiveContainsString:country] ||
@@ -319,7 +319,7 @@
             }];
         }
 
-        if ([state compare:@""] != NSOrderedSame) {
+        if ([state isEqualToString:@""] == NO) {
             states = [NSMutableArray arrayWithCapacity:20];
             [[dbc States] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
                 if ([c.name localizedCaseInsensitiveContainsString:state] ||
@@ -328,7 +328,7 @@
             }];
         }
 
-        if ([owner compare:@""] != NSOrderedSame) {
+        if ([owner isEqualToString:@""] == NO) {
             owners = [NSMutableArray arrayWithCapacity:20];
             [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *n, NSUInteger idx, BOOL *stop) {
                 if ([n.name localizedCaseInsensitiveContainsString:owner])
@@ -339,12 +339,12 @@
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             __block BOOL rv = YES;
 
-            if ([cachename compare:@""] != NSOrderedSame &&
+            if ([cachename isEqualToString:@""] == NO &&
                 [wp.name localizedCaseInsensitiveContainsString:cachename] == NO) {
                 rv = NO;
             }
 
-            if ([description compare:@""] != NSOrderedSame &&
+            if ([description isEqualToString:@""] == NO &&
                 [wp.description localizedCaseInsensitiveContainsString:description] == NO &&
                 [wp.groundspeak.long_desc localizedCaseInsensitiveContainsString:description] == NO &&
                 [wp.groundspeak.short_desc localizedCaseInsensitiveContainsString:description] == NO) {
@@ -387,7 +387,7 @@
                     rv = NO;
             }
 
-            if ([logs compare:@""] != NSOrderedSame) {
+            if ([logs isEqualToString:@""] == NO) {
                 if ([dbLog dbCountByWaypointLogString:wp LogString:logs] == 0)
                     rv = NO;
             }

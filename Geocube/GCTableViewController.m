@@ -117,7 +117,7 @@
         NSString *menuitem;
         while ((menuitem = [e nextObject]) != nil) {
             BOOL enabled = YES;
-            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] compare:@"X"] == NSOrderedSame) {
+            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
                 enabled = NO;
                 menuitem = [menuitem substringFromIndex:1];
             }

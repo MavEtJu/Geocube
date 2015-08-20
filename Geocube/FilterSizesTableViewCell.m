@@ -97,7 +97,7 @@
     NSEnumerator *e = [containers objectEnumerator];
     dbContainer *c;
     while ((c = [e nextObject]) != nil) {
-        if ([c.size compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
+        if ([c.size isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             c.selected = !c.selected;
             [b setTitleColor:c.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];

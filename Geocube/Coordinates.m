@@ -209,9 +209,9 @@
 
     float ddegrees = degrees + mins / 60.0;
 
-    if ([[direction uppercaseString] compare:@"W"] == NSOrderedSame)
+    if ([[direction uppercaseString] isEqualToString:@"W"] == YES)
         ddegrees = -ddegrees;
-    if ([[direction uppercaseString] compare:@"S"] == NSOrderedSame)
+    if ([[direction uppercaseString] isEqualToString:@"S"] == YES)
         ddegrees = -ddegrees;
 
     if (okay)

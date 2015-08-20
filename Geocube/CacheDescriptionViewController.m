@@ -53,14 +53,14 @@
 {
     NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
 
-    if ([groundspeak.short_desc compare:@""] != NSOrderedSame) {
+    if ([groundspeak.short_desc isEqualToString:@""] == NO) {
         NSString *s = groundspeak.short_desc;
         if (groundspeak.short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([groundspeak.long_desc compare:@""] != NSOrderedSame) {
+    if ([groundspeak.long_desc isEqualToString:@""] == NO) {
         NSString *s = groundspeak.long_desc;
         if (groundspeak.long_desc_html == NO)
             s = [MyTools simpleHTML:s];

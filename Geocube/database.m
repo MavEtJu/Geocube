@@ -53,7 +53,7 @@
 
     // If the active version is different from the distribution version, then reinitialize.
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
-    if ([c_real.value compare:c_empty.value] != NSOrderedSame) {
+    if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty is newer, overwriting old one");
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"option_cleardatabase"];
         [self checkAndCreateDatabase:dbname empty:dbempty];

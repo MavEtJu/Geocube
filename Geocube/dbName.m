@@ -171,13 +171,13 @@
 + (void)makeNameExist:(NSString *)_name code:(NSString *)_code
 {
     dbName *name;
-    if (_code != nil && [_code compare:@""] != NSOrderedSame) {
+    if (_code != nil && [_code isEqualToString:@""] == NO) {
         name = [dbName dbGetByCode:_code];
         if (name == nil) {
             [dbName dbCreate:_name code:_code];
             return;
         }
-        if ([name.name compare:_name] == NSOrderedSame)
+        if ([name.name isEqualToString:_name] == YES)
             return;
         name.name = _name;
         [name dbUpdateName];

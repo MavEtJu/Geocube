@@ -97,7 +97,7 @@
     NSEnumerator *e = [types objectEnumerator];
     dbType *t;
     while ((t = [e nextObject]) != nil) {
-        if ([t.type compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
+        if ([t.type isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             t.selected = !t.selected;
             [b setTitleColor:t.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];

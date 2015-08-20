@@ -96,7 +96,7 @@
     NSEnumerator *e = [groups objectEnumerator];
     dbGroup *g;
     while ((g = [e nextObject]) != nil) {
-        if ([g.name compare:[b titleForState:UIControlStateNormal]] == NSOrderedSame) {
+        if ([g.name isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             g.selected = !g.selected;
             [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];

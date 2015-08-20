@@ -289,7 +289,7 @@
     NSEnumerator *e = [groups objectEnumerator];
     dbObject *o;
     while ((o = [e nextObject]) != nil) {
-        if ([where compare:@""] != NSOrderedSame)
+        if ([where isEqualToString:@""] == NO)
             [where appendString:@" or "];
         [where appendFormat:@"group_id = ?"];
     }

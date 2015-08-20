@@ -121,9 +121,9 @@
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if ([groundspeak.placed_by compare:@""] != NSOrderedSame)
+    if ([groundspeak.placed_by isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", groundspeak.placed_by];
-    if ([waypoint.date_placed compare:@""] != NSOrderedSame)
+    if ([waypoint.date_placed isEqualToString:@""] == NO)
         [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
@@ -175,14 +175,14 @@
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([groundspeak.short_desc compare:@""] == NSOrderedSame && [groundspeak.long_desc compare:@""] == NSOrderedSame && [waypoint.description compare:@""] == NSOrderedSame) {
+                if ([groundspeak.short_desc isEqualToString:@""] == YES && [groundspeak.long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
-                //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint compare:@""] == NSOrderedSame)
-                if ([groundspeak.hint compare:@""] == NSOrderedSame || [groundspeak.hint compare:@" "] == NSOrderedSame) {
+                //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint isEqualToString:@""] == YES)
+                if ([groundspeak.hint isEqualToString:@""] == YES || [groundspeak.hint isEqualToString:@" "] == YES) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
@@ -263,7 +263,7 @@
         switch (indexPath.row) {
             case 0:
                 cell.imageView.image = [imageLibrary get:ImageIcon_Target];
-                if ([waypointManager currentWaypoint] != nil && [[waypointManager currentWaypoint].name compare:waypoint.name] == NSOrderedSame)
+                if ([waypointManager currentWaypoint] != nil && [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES)
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 break;
             case 1:
@@ -351,7 +351,7 @@
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set a target */
             if ([waypointManager currentWaypoint] != nil &&
-                [[waypointManager currentWaypoint].name compare:waypoint.name] == NSOrderedSame) {
+                [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES) {
                 [waypointManager setCurrentWaypoint:nil];
                 [self showWaypoint:nil];
                 [self.tableView reloadData];

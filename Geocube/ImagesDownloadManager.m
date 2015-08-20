@@ -138,22 +138,22 @@
 
         imgtag = [imgtag substringFromIndex:r.location + r.length];
 
-        while ([[imgtag substringToIndex:1] compare:@" "] == NSOrderedSame) {
+        while ([[imgtag substringToIndex:1] isEqualToString:@" "] == YES) {
             imgtag = [imgtag substringFromIndex:1];
         }
-        if ([[imgtag substringToIndex:1] compare:@"="] != NSOrderedSame) {
+        if ([[imgtag substringToIndex:1] isEqualToString:@"="] == NO) {
             NSLog(@"No =");
             continue;
         }
         imgtag = [imgtag substringFromIndex:1];
-        while ([[imgtag substringToIndex:1] compare:@" "] == NSOrderedSame) {
+        while ([[imgtag substringToIndex:1] isEqualToString:@" "] == YES) {
             imgtag = [imgtag substringFromIndex:1];
         }
         //NSLog(@"%@", imgtag);
 
         // Search for the " or '
         NSString *quote = [imgtag substringToIndex:1];
-        if ([quote compare:@"'"] != NSOrderedSame && [quote compare:@"\""] != NSOrderedSame)
+        if ([quote isEqualToString:@"'"] == NO && [quote isEqualToString:@"\""] == NO)
             quote = @" ";
         imgtag = [imgtag substringFromIndex:1];
         r = [imgtag rangeOfString:quote];

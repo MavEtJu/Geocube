@@ -107,7 +107,7 @@
         currentText = nil;
         index++;
 
-        if ([currentElement compare:@"wpt"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"wpt"] == YES) {
             currentWP = [[dbWaypoint alloc] init];
             [currentWP setLat:[attributeDict objectForKey:@"lat"]];
             [currentWP setLon:[attributeDict objectForKey:@"lon"]];
@@ -121,7 +121,7 @@
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:cache"] == YES) {
             currentGS = [[dbGroundspeak alloc] init];
             [currentGS setArchived:[[attributeDict objectForKey:@"archived"] boolValue]];
             [currentGS setAvailable:[[attributeDict objectForKey:@"available"] boolValue]];
@@ -130,17 +130,17 @@
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:long_description"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:long_description"] == YES) {
             [currentGS setLong_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:short_description"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:short_description"] == YES) {
             [currentGS setShort_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:log"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:log"] == YES) {
             currentLog = [[dbLog alloc] init];
             [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
 
@@ -148,18 +148,18 @@
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:finder"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:finder"] == YES) {
             logFinderNameId = [attributeDict objectForKey:@"id"];
             [currentLog setLogger_gsid:logFinderNameId];
             return;
         }
-        if ([currentElement compare:@"groundspeak:owner"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:owner"] == YES) {
             gsOwnerNameId = [attributeDict objectForKey:@"id"];
             [currentGS setOwner_gsid:gsOwnerNameId];
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:travelbug"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:travelbug"] == YES) {
             currentTB = [[dbTravelbug alloc] init];
             [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
             [currentTB setRef:[attributeDict objectForKey:@"ref"]];
@@ -168,7 +168,7 @@
             return;
         }
 
-        if ([currentElement compare:@"groundspeak:attribute"] == NSOrderedSame) {
+        if ([currentElement isEqualToString:@"groundspeak:attribute"] == YES) {
             NSId _id = [[attributeDict objectForKey:@"id"] integerValue];
             BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
             dbAttribute *a = [dbc Attribute_get_bygcid:_id];
@@ -189,7 +189,7 @@
         [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
 
         // Deal with the completion of the cache
-        if (index == 1 && [elementName compare:@"wpt"] == NSOrderedSame) {
+        if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
             [currentWP finish];
             [currentGS finish];
 
@@ -264,7 +264,7 @@
             goto bye;
         }
 
-        if (index == 2 && [currentElement compare:@"groundspeak:cache"] == NSOrderedSame) {
+        if (index == 2 && [currentElement isEqualToString:@"groundspeak:cache"] == YES) {
             [currentGS finish];
             // The saving of the data gets done when the waypoint is finished.
 
@@ -273,7 +273,7 @@
         }
 
         // Deal with the completion of the travelbug
-        if (index == 4 && inTravelbug == YES && [elementName compare:@"groundspeak:travelbug"] == NSOrderedSame) {
+        if (index == 4 && inTravelbug == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
             [currentTB finish];
 
             NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
@@ -292,7 +292,7 @@
         }
 
         // Deal with the completion of the log
-        if (index == 4 && inLog == YES && [elementName compare:@"groundspeak:log"] == NSOrderedSame) {
+        if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
             [currentLog finish];
 
             NSId log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
@@ -313,7 +313,7 @@
         // Deal with the data of the travelbug
         if (inTravelbug == YES) {
             if (index == 5) {
-                if ([elementName compare:@"groundspeak:name"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:name"] == YES) {
                     [currentTB setName:currentText];
                     goto bye;
                 }
@@ -325,20 +325,20 @@
         // Deal with the data of the log
         if (inLog == YES) {
             if (index == 5) {
-                if ([elementName compare:@"groundspeak:date"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:date"] == YES) {
                     [currentLog setDatetime:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:type"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
                     [currentLog setLogtype_string:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:finder"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
                     [dbName makeNameExist:currentText code:logFinderNameId];
                     [currentLog setLogger_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:text"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:text"] == YES) {
                     [currentLog setLog:currentText];
                     goto bye;
                 }
@@ -350,27 +350,27 @@
         // Deal with the data of the cache. Always the last one!
         if (inItem == YES) {
             if (index == 2 && currentText != nil) {
-                if ([elementName compare:@"time"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"time"] == YES) {
                     [currentWP setDate_placed:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"name"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"name"] == YES) {
                     [currentWP setName:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"desc"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"desc"] == YES) {
                     [currentWP setDescription:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"url"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"url"] == YES) {
                     [currentWP setUrl:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"urlname"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"urlname"] == YES) {
                     [currentWP setUrlname:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"sym"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"sym"] == YES) {
                     if ([dbc Symbol_get_bysymbol:currentText] == nil) {
                         NSLog(@"Adding symbol '%@'", currentText);
                         NSId _id = [dbSymbol dbCreate:currentText];
@@ -379,7 +379,7 @@
                     [currentWP setSymbol_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"type"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"type"] == YES) {
                     [currentWP setType:[dbc Type_get_byname:currentText]];
                     [currentWP setType_id:currentWP.type._id];
                     goto bye;
@@ -387,46 +387,46 @@
                 goto bye;
             }
             if (index == 3 && currentText != nil) {
-                if ([elementName compare:@"groundspeak:difficulty"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:difficulty"] == YES) {
                     [currentGS setRating_difficulty:[currentText floatValue]];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:terrain"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:terrain"] == YES) {
                     [currentGS setRating_terrain:[currentText floatValue]];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:country"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:country"] == YES) {
                     [dbCountry makeNameExist:currentText];
                     [currentGS setCountry_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:state"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:state"] == YES) {
                     [dbState makeNameExist:currentText];
                     [currentGS setState_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:container"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:container"] == YES) {
                     [currentGS setContainer_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:short_description"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:short_description"] == YES) {
                     [currentGS setShort_desc:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:long_description"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:long_description"] == YES) {
                     [currentGS setLong_desc:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:encoded_hints"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:encoded_hints"] == YES) {
                     [currentGS setHint:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:owner"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
                     [dbName makeNameExist:currentText code:gsOwnerNameId];
                     [currentGS setOwner_str:currentText];
                     goto bye;
                 }
-                if ([elementName compare:@"groundspeak:placed_by"] == NSOrderedSame) {
+                if ([elementName isEqualToString:@"groundspeak:placed_by"] == YES) {
                     [currentGS setPlaced_by:currentText];
                     goto bye;
                 }

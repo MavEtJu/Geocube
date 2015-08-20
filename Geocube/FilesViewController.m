@@ -147,7 +147,7 @@
                   }];
     }
     UIAlertAction *unzip = nil;
-    if ([[fn pathExtension] compare:@"zip"] == NSOrderedSame) {
+    if ([[fn pathExtension] isEqualToString:@"zip"] == YES) {
         unzip = [UIAlertAction
                  actionWithTitle:@"Unzip"
                  style:UIAlertActionStyleDefault

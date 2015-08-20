@@ -87,7 +87,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     NSString *c = NSStringFromClass([annotation class]);
-    if ([c compare:@"MKPointAnnotation"] != NSOrderedSame)
+    if ([c isEqualToString:@"MKPointAnnotation"] == NO)
         return nil;
 
     MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
