@@ -176,7 +176,6 @@
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TravelbugsViewController.m */; };
-		E820F2091B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -200,6 +199,8 @@
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
+		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
+		E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
@@ -518,8 +519,6 @@
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E820F2041B7DA451009FB999 /* TravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelbugsViewController.h; sourceTree = "<group>"; };
 		E820F2051B7DA451009FB999 /* TravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelbugsViewController.m; sourceTree = "<group>"; };
-		E820F2071B7DBA0D009FB999 /* UITableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellWithSubtitle.h; sourceTree = "<group>"; };
-		E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellWithSubtitle.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -562,6 +561,9 @@
 		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
+		E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellRightImage.m; sourceTree = "<group>"; };
+		E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 30x30.png"; path = "images/icons - smiley - 30x30.png"; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -1137,8 +1139,8 @@
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
-				E820F2071B7DBA0D009FB999 /* UITableViewCellWithSubtitle.h */,
-				E820F2081B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m */,
+				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
+				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1151,6 +1153,7 @@
 				E832E67C1B6F76E70019F9D2 /* menu icon - local.png */,
 				E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */,
 				E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */,
+				E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */,
 				E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */,
 			);
 			name = icons;
@@ -1730,6 +1733,7 @@
 				E80732451B5F84E8007FDC29 /* log - note - 30x30.png in Resources */,
 				E80731FD1B5F84B4007FDC29 /* attributes - 22.png in Resources */,
 				E80732041B5F84B4007FDC29 /* attributes - 29.png in Resources */,
+				E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */,
 				E80732AB1B5F857A007FDC29 /* map - tick found - 24x21.png in Resources */,
 				E80732871B5F8561007FDC29 /* container - regular - 70x20.png in Resources */,
 				E80732161B5F84B4007FDC29 /* attributes - 47.png in Resources */,
@@ -2030,7 +2034,6 @@
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
-				E820F2091B7DBA0D009FB999 /* UITableViewCellWithSubtitle.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
@@ -2051,6 +2054,7 @@
 				E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
 				E8A7FA951B77763F003F4132 /* BookmarksAccountsViewController.m in Sources */,
+				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,

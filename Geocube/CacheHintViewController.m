@@ -31,6 +31,7 @@
     groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
 
     hasCloseButton = YES;
+    menuItems = nil;
     
     return self;
 }

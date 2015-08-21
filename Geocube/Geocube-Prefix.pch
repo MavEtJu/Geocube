@@ -44,8 +44,6 @@
 #import "YIPopupTextView.h"
 #import "RangeSlider.h"
 
-#import "UITableViewCellWithSubtitle.h"
-
 #import "MyTools.h"
 #import "Coordinates.h"
 
@@ -94,6 +92,7 @@
 #import "ImportLicenses.h"
 
 #import "GCTableViewCell.h"
+#import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"
 #import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"

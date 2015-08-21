@@ -71,7 +71,7 @@
 {
     NSString *mime = [response MIMEType];
 
-    NSArray *mimeTypes = @[@"application/gpx", @"application/zip", @"text/xml"];
+    NSArray *mimeTypes = @[@"application/gpx", @"application/gpx+xml", @"application/zip", @"text/xml"];
 
     [mimeTypes enumerateObjectsUsingBlock:^(NSString *mimeType, NSUInteger idx, BOOL *stop) {
         if ([mime isEqualToString:mimeType] == YES) {

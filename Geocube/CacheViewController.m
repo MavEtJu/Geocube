@@ -57,7 +57,7 @@
 
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
+    [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
     waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Notes", @"Logs", @"Attributes", @"Additional Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
@@ -180,7 +180,7 @@
                 break;
             case 1: /* Hint */
                 //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint isEqualToString:@""] == YES)
-                if ([groundspeak.hint isEqualToString:@""] == YES || [groundspeak.hint isEqualToString:@" "] == YES) {
+                if (groundspeak.hint == nil || [groundspeak.hint isEqualToString:@""] == YES || [groundspeak.hint isEqualToString:@" "] == YES) {
                     tc = [UIColor lightGrayColor];
                     cell.userInteractionEnabled = NO;
                 }
@@ -255,6 +255,8 @@
     // Cache commands
     if (indexPath.section == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+        if (cell == nil)
+            cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
         cell.accessoryType = UITableViewCellAccessoryNone;
 
         UIColor *tc = [UIColor blackColor];

@@ -37,6 +37,7 @@
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 
     hasCloseButton = YES;
+    menuItems = nil;
     
     return self;
 }

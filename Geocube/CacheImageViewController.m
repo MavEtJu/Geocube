@@ -29,6 +29,7 @@
 
     img = _img;
     hasCloseButton = YES;
+    menuItems = nil;
     zoomedin = NO;
     image = nil;
 

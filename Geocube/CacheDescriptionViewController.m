@@ -30,6 +30,7 @@
     waypoint = _wp;
     groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
 
+    menuItems = nil;
     hasCloseButton = YES;
 
     return self;
