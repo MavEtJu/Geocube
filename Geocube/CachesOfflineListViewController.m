@@ -167,6 +167,7 @@
         [s appendFormat:@"%@", gs.country.code];
     }
     cell.stateCountry.text = s;
+
     return cell;
 }
 

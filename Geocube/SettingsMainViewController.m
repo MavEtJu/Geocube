@@ -30,8 +30,8 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
-    [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
 }
 
@@ -80,7 +80,7 @@
         case 0: {   // Distance
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Metric
                     cell.textLabel.text = @"Metric";
@@ -91,14 +91,6 @@
                     [distanceMetric addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = distanceMetric;
 
-                    CAGradientLayer *gradient = [CAGradientLayer layer];
-                    gradient.frame = cell.bounds;
-                    gradient.colors = [NSArray arrayWithObjects:
-                        (id)[[UIColor colorWithRed:232/255.0 green:223/255.0 blue:175/255.0 alpha:1] CGColor],
-                        (id)[[UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1] CGColor],
-                        nil];
-                    [cell.layer insertSublayer:gradient atIndex:0];
-                    
                     return cell;
                 }
             }
@@ -107,7 +99,7 @@
         case 1: {   // Theme
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Geosphere theme
                     cell.textLabel.text = @"Geosphere";
@@ -118,14 +110,6 @@
                     [themeGeosphere addTarget:self action:@selector(updateThemeGeosphere:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = themeGeosphere;
 
-                    CAGradientLayer *gradient = [CAGradientLayer layer];
-                    gradient.frame = cell.bounds;
-                    gradient.colors = [NSArray arrayWithObjects:
-                        (id)[[UIColor colorWithRed:232/255.0 green:223/255.0 blue:175/255.0 alpha:1] CGColor],
-                        (id)[[UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1] CGColor],
-                        nil];
-                    [cell.layer insertSublayer:gradient atIndex:0];
-                    
                     return cell;
                 }
             }
@@ -134,7 +118,7 @@
         case 2: {   // Groundspeak API
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
             if (cell == nil)
-                cell = [[UITableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_SUBTITLE];
+                cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_SUBTITLE];
             switch (indexPath.row) {
                 case 0: {   // API key 1
                     cell.textLabel.text = @"API key 1";
@@ -171,6 +155,25 @@
 - (void)updateThemeGeosphere:(UISwitch *)s
 {
     [myConfig themeGeosphereUpdate:s.on];
+    if (s.on == YES) {
+        currentTheme = [[ThemeGeosphere alloc] init];
+    } else {
+        currentTheme = [[ThemeNormal alloc] init];
+    }
+    [self.tableView setNeedsDisplay];
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Theme changed"
+                               message:@"Please restart the app"
+                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)updateGeocachingLiveStaging:(UISwitch *)s

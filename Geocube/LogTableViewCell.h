@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface LogTableViewCell : UITableViewCell {
+@interface LogTableViewCell : GCTableViewCell {
     UIImageView *logtype;
     UILabel *datetime;
     UILabel *logger;

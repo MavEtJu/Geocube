@@ -35,6 +35,8 @@
     closeButton = nil;
     hasCloseButton = NO;
 
+    self.tableView.backgroundColor = currentTheme.tableView_backgroundColor;
+
     return self;
 }
 
@@ -105,6 +107,39 @@
 
     [self.view bringSubviewToFront:closeButton];
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (currentTheme.tableViewCell_gradient == YES) {
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = cell.bounds;
+        gradient.colors = [NSArray arrayWithObjects:
+                           (id)[currentTheme.tableViewCell_gradient1 CGColor],
+                           (id)[currentTheme.tableViewCell_gradient2 CGColor],
+                           nil];
+        [cell.layer insertSublayer:gradient atIndex:0];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    return;
+//        view.tintColor = [UIColor blackColor];
+        // Text Color
+        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+        [header.textLabel setBackgroundColor:[UIColor clearColor]];
+
+    //if (currentTheme.tableViewCell_gradient == YES) {
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = header.bounds;
+        gradient.colors = [NSArray arrayWithObjects:
+                           (id)[currentTheme.tableViewCell_gradient1 CGColor],
+                           (id)[currentTheme.tableViewCell_gradient2 CGColor],
+                           nil];
+        [header.layer insertSublayer:gradient atIndex:0];
+//    }
+}
+
 
 #pragma -- Local menu related functions
 

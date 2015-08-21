@@ -50,4 +50,7 @@ extern MyConfig *myConfig;
 //
 extern AppDelegate *_AppDelegate;
 
+// Theme
+extern ThemeTemplate *currentTheme;
+
 #endif

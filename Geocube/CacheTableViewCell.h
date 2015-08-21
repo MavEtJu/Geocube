@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheTableViewCell : UITableViewCell {
+@interface CacheTableViewCell : GCTableViewCell {
     UILabel *description;
     UILabel *name;
     UIImageView *size;

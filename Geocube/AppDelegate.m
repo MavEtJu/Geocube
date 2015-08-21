@@ -51,13 +51,20 @@
     // Initialize the global menu
     imagesDownloadManager = [[ImagesDownloadManager alloc] init];
 
-    // Initialize and cache the database
+    // Initialize and cache the database - after file manager
     db = [[database alloc] init];
     [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
 
     // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
+
+    // Initialize the theme - after myconfig
+    if (myConfig.themeGeosphere == YES) {
+        currentTheme = [[ThemeGeosphere alloc] init];
+    } else {
+        currentTheme = [[ThemeNormal alloc] init];
+    }
 
     // Waypoint Manager - after myConfig, LM, db
     waypointManager = [[CacheFilterManager alloc] init];

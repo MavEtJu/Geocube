@@ -191,6 +191,11 @@
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
 		E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */; };
 		E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */; };
+		E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760071B85DB5500F34483 /* GCTableViewCell.m */; };
+		E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */; };
+		E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeNormal.m */; };
+		E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760111B85E06E00F34483 /* ThemeGeosphere.m */; };
+		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
@@ -539,6 +544,16 @@
 		E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesPersonalNotesViewController.m; sourceTree = "<group>"; };
 		E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNoteTableViewCell.h; sourceTree = "<group>"; };
 		E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNoteTableViewCell.m; sourceTree = "<group>"; };
+		E85760061B85DB5500F34483 /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCell.h; sourceTree = "<group>"; };
+		E85760071B85DB5500F34483 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
+		E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellWithSubtitle.h; sourceTree = "<group>"; };
+		E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellWithSubtitle.m; sourceTree = "<group>"; };
+		E857600D1B85E04500F34483 /* ThemeNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNormal.h; sourceTree = "<group>"; };
+		E857600E1B85E04500F34483 /* ThemeNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNormal.m; sourceTree = "<group>"; };
+		E85760101B85E06E00F34483 /* ThemeGeosphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeGeosphere.h; sourceTree = "<group>"; };
+		E85760111B85E06E00F34483 /* ThemeGeosphere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeGeosphere.m; sourceTree = "<group>"; };
+		E85760131B85E08400F34483 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTemplate.h; sourceTree = "<group>"; };
+		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
 		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
 		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
@@ -829,10 +844,6 @@
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				E82FBB251B4613C20009AB6D /* GCViewController.h */,
-				E82FBB261B4613C20009AB6D /* GCViewController.m */,
-				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
-				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
@@ -881,6 +892,34 @@
 				E8575FFA1B8466D900F34483 /* YISSTextView.m */,
 			);
 			name = YIPopupTextView;
+			sourceTree = "<group>";
+		};
+		E857600C1B85DF5600F34483 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				E857600D1B85E04500F34483 /* ThemeNormal.h */,
+				E857600E1B85E04500F34483 /* ThemeNormal.m */,
+				E85760101B85E06E00F34483 /* ThemeGeosphere.h */,
+				E85760111B85E06E00F34483 /* ThemeGeosphere.m */,
+				E85760131B85E08400F34483 /* ThemeTemplate.h */,
+				E85760141B85E08400F34483 /* ThemeTemplate.m */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
+		E85760161B85E08F00F34483 /* Geocube */ = {
+			isa = PBXGroup;
+			children = (
+				E82FBB251B4613C20009AB6D /* GCViewController.h */,
+				E82FBB261B4613C20009AB6D /* GCViewController.m */,
+				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
+				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
+				E85760061B85DB5500F34483 /* GCTableViewCell.h */,
+				E85760071B85DB5500F34483 /* GCTableViewCell.m */,
+				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
+				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
+			);
+			name = Geocube;
 			sourceTree = "<group>";
 		};
 		E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */ = {
@@ -1499,6 +1538,8 @@
 			isa = PBXGroup;
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
+				E85760161B85E08F00F34483 /* Geocube */,
+				E857600C1B85DF5600F34483 /* Themes */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
@@ -1919,6 +1960,7 @@
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
+				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
@@ -1949,6 +1991,7 @@
 				E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
+				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
@@ -1968,6 +2011,7 @@
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
+				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BookmarksUserViewController.m in Sources */,
@@ -1977,6 +2021,7 @@
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BookmarksBrowserViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
+				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
@@ -2012,6 +2057,7 @@
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,
+				E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

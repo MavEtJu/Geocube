@@ -56,8 +56,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
     waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Notes", @"Logs", @"Attributes", @"Additional Waypoints", @"Inventory", @"Images", @"Group Members"];
     actionItems = @[@"Set as Target", @"Mark as Found"];
@@ -94,8 +94,6 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (waypointManager.currentWaypoint == nil)
-        return 0;
     if (section == 1)
         return @"Waypoint data";
     if (section == 2)

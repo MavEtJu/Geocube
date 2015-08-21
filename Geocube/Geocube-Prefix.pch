@@ -72,6 +72,10 @@
 #import "dbImage.h"
 #import "database-cache.h"
 
+#import "ThemeTemplate.h"
+#import "ThemeGeosphere.h"
+#import "ThemeNormal.h"
+
 #import "GlobalMenu.h"
 
 #import "GCTableViewController.h"
@@ -89,6 +93,8 @@
 #import "ImportGPXViewController.h"
 #import "ImportLicenses.h"
 
+#import "GCTableViewCell.h"
+#import "GCTableViewCellWithSubtitle.h"
 #import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"

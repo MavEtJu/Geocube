@@ -68,6 +68,8 @@
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         closeButton = b;
     }
+
+    self.view.backgroundColor = currentTheme.view_backgroundColor;
 }
 
 - (void)closePage:(UIButton *)b

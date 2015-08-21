@@ -2,58 +2,39 @@
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
  * Copyright 2015 Edwin Groothuis
- * 
+ *
  * This file is part of Geocube.
- * 
+ *
  * Geocube is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Geocube is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #import "Geocube-Prefix.pch"
 
-GlobalMenu *menuGlobal;
+@implementation ThemeGeosphere
 
-// Database handle
-database *db = nil;
-DatabaseCache *dbc = nil;
-
-// Image Library
-ImageLibrary *imageLibrary = nil;
-
-// Images Download Manager
-ImagesDownloadManager *imagesDownloadManager = nil;
-
-// Current dbCache to navigate to
-CacheFilterManager *waypointManager = nil;
-
-// Location Manager
-GCLocationManager *LM = nil;
-
-// File manager
-NSFileManager *fm = nil;
-
-// Configuration manager
-MyConfig *myConfig = nil;
-
-//
-AppDelegate *_AppDelegate;
-
-// Current Theme
-ThemeTemplate *currentTheme;
-
-int main(int argc, char * argv[])
+- (id)init
 {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+    self = [super init];
+    
+    tableView_backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+    view_backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+
+    tableViewCell_gradient = YES;
+    tableViewCell_gradient1 = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:175/255.0 alpha:1];
+    tableViewCell_gradient2 = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+
+    return self;
 }
+
+@end

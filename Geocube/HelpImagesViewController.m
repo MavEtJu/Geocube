@@ -63,7 +63,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
 }
 
 #pragma mark - TableViewController related functions
@@ -97,7 +97,7 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     if (indexPath.section == 0) {
         cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];

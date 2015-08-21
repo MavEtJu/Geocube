@@ -32,7 +32,7 @@
     menuItems = [NSMutableArray arrayWithArray:@[@"Add bookmark"]];
     bms = [dbBookmark dbAll];
 
-    [self.tableView registerClass:[UITableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     return self;
 }
@@ -55,7 +55,7 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     if (cell == nil)
-        cell = [[UITableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     dbBookmark *a = [bms objectAtIndex:indexPath.row];
     cell.textLabel.text = a.name;
