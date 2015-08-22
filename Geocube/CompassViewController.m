@@ -56,11 +56,11 @@
     [self.view sizeToFit];
 
     NSInteger width = applicationFrame.size.width;
-    NSInteger height = self.view.frame.size.height - 100;
+    NSInteger height = self.view.frame.size.height - 50;
 
     /*
      +------+-------+------+
-     |Icon  |GC Code| SIze |
+     |Icon  |GC Code| Size |
      |      |Coordin|Rating|
      +------+-------+------+
      |       Distance      |
@@ -77,25 +77,29 @@
 
 #define HEIGHT  height / 18
 #define WIDTH  width / 3
-    CGRect rectIcon = CGRectMake(WIDTH / 3, HEIGHT, WIDTH / 3, 1 * HEIGHT);
-    CGRect rectName = CGRectMake(WIDTH, 0, WIDTH, HEIGHT);
-    CGRect rectCoordLat = CGRectMake(WIDTH, HEIGHT, WIDTH, HEIGHT);
-    CGRect rectCoordLon = CGRectMake(WIDTH, 2 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectSize = CGRectMake(2 * WIDTH, 0, WIDTH, HEIGHT);
-    CGRect rectRatingD = CGRectMake(2 * WIDTH, HEIGHT, WIDTH, HEIGHT);
-    CGRect rectRatingT = CGRectMake(2 * WIDTH, 2 * HEIGHT, WIDTH, HEIGHT);
 
-    CGRect rectDistance = CGRectMake(0, 3 * HEIGHT, 3 * WIDTH, HEIGHT);
-    CGRect rectCompass = CGRectMake(0, 4 * HEIGHT, 3 * WIDTH, 10 * HEIGHT);
-    CGRect rectDescription = CGRectMake(0, 14 * HEIGHT, 3 * WIDTH, HEIGHT);
+    UIFont *f = [UIFont systemFontOfSize:14];
+    NSInteger textHeight = f.lineHeight;
 
-    CGRect rectAccuracyText = CGRectMake(0, height - 3 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectAccuracy = CGRectMake(0, height - 2 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectMyLatText = CGRectMake(WIDTH, height - 3 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectMyLat = CGRectMake(WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectMyLon = CGRectMake(WIDTH, height - 1 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectAltitudeText = CGRectMake(2 * WIDTH, height - 3 * HEIGHT, WIDTH, HEIGHT);
-    CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * HEIGHT, WIDTH, HEIGHT);
+    CGRect rectIcon = CGRectMake(WIDTH / 3, 0.5 * textHeight, WIDTH / 3, 2.5 * textHeight);
+    CGRect rectName = CGRectMake(WIDTH, 0 * textHeight, WIDTH, textHeight);
+    CGRect rectCoordLat = CGRectMake(WIDTH, 1.5 * textHeight, WIDTH, textHeight);
+    CGRect rectCoordLon = CGRectMake(WIDTH, 2.5 * textHeight, WIDTH, textHeight);
+    CGRect rectSize = CGRectMake(2 * WIDTH, 0 * textHeight, WIDTH, textHeight);
+    CGRect rectRatingD = CGRectMake(2 * WIDTH, 1.5 * textHeight, WIDTH, textHeight);
+    CGRect rectRatingT = CGRectMake(2 * WIDTH, 2.5 * textHeight, WIDTH, textHeight);
+
+    CGRect rectDistance = CGRectMake(0, 4 * textHeight, 3 * WIDTH, textHeight);
+    CGRect rectDescription = CGRectMake(0, height - 5 * textHeight, 3 * WIDTH, textHeight);
+    CGRect rectCompass = CGRectMake(0, 5 * textHeight, 3 * WIDTH, rectDescription.origin.y - rectDistance.origin.y);
+
+    CGRect rectAccuracyText = CGRectMake(0, height - 3.5 * textHeight, WIDTH, 1 * textHeight);
+    CGRect rectAccuracy = CGRectMake(0, height - 2 * textHeight, WIDTH, textHeight);
+    CGRect rectMyLatText = CGRectMake(WIDTH, height - 3.5 * textHeight, WIDTH, textHeight);
+    CGRect rectMyLat = CGRectMake(WIDTH, height - 2 * textHeight, WIDTH, textHeight);
+    CGRect rectMyLon = CGRectMake(WIDTH, height - 1 * textHeight, WIDTH, textHeight);
+    CGRect rectAltitudeText = CGRectMake(2 * WIDTH, height - 3.5 * textHeight, WIDTH, textHeight);
+    CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * textHeight, WIDTH, textHeight);
 
     UILabel *l;
 
