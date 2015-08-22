@@ -76,7 +76,8 @@
         marker.title = wp.name;
         marker.snippet = wp.urlname;
         marker.map = mapView;
-        
+        marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
+
         switch (wp.logStatus) {
             case LOGSTATUS_FOUND:
                 if (wp.groundspeak.archived == YES) {
