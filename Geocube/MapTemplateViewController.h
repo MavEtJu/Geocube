@@ -46,6 +46,7 @@ enum {
 
 - (id)init:(NSInteger)type;
 - (void)refreshWaypointsData;
+- (UIImage *)waypointImage:(dbWaypoint *)wp;
 //- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;
 
 // To be implemented by inherited classes:

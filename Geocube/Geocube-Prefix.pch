@@ -149,6 +149,7 @@
 #import "GroupsViewController.h"
 #import "CompassViewController.h"
 
+#import "GCPointAnnotation.h"
 #import "MapTemplateViewController.h"
 #import "MapGoogleViewController.h"
 #import "MapAppleViewController.h"

@@ -54,9 +54,12 @@
     markers = [NSMutableArray arrayWithCapacity:20];
     while ((wp = [e nextObject]) != nil) {
         // Place a single pin
-        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = wp.coordinates;
         [annotation setCoordinate:coord];
+
+        annotation._id = wp._id;
+        annotation.name = wp.name;
 
         [annotation setTitle:wp.name];
         [annotation setSubtitle:wp.description];
@@ -87,10 +90,14 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     NSString *c = NSStringFromClass([annotation class]);
-    if ([c isEqualToString:@"MKPointAnnotation"] == NO)
+    if ([c isEqualToString:@"GCPointAnnotation"] == NO)
         return nil;
 
+    GCPointAnnotation *a = annotation;
     MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
+
+    dbWaypoint *wp = [dbWaypoint dbGet:a._id];
+    dropPin.image = [self waypointImage:wp];
 
     UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];

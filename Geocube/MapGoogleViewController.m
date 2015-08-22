@@ -77,45 +77,9 @@
         marker.snippet = wp.urlname;
         marker.map = mapView;
         marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
+        marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
 
-        switch (wp.logStatus) {
-            case LOGSTATUS_FOUND:
-                if (wp.groundspeak.archived == YES) {
-                    marker.icon = [imageLibrary getPinArchivedFound:wp.type.pin];
-                    break;
-                }
-                if (wp.groundspeak.available == NO) {
-                    marker.icon = [imageLibrary getPinDisabledFound:wp.type.pin];
-                    break;
-                }
-                marker.icon = [imageLibrary getPinFound:wp.type.pin];
-                break;
-            case LOGSTATUS_NOTFOUND:
-                if (wp.groundspeak.archived == YES) {
-                    marker.icon = [imageLibrary getPinArchivedDNF:wp.type.pin];
-                    break;
-                }
-                if (wp.groundspeak.available == NO) {
-                    marker.icon = [imageLibrary getPinDisabledDNF:wp.type.pin];
-                    break;
-                }
-                marker.icon = [imageLibrary getPinDNF:wp.type.pin];
-                break;
-            case LOGSTATUS_NOTLOGGED:
-                if (wp.groundspeak.archived == YES) {
-                    marker.icon = [imageLibrary getPinArchived:wp.type.pin];
-                    break;
-                }
-                if (wp.groundspeak.available == NO) {
-                    marker.icon = [imageLibrary getPinDisabled:wp.type.pin];
-                    break;
-                }
-                /* FALL THROUGH */
-            default:
-                marker.icon = [imageLibrary getPinNormal:wp.type.pin];
-                break;
-        }
-
+        marker.icon = [self waypointImage:wp];
         [markers addObject:marker];
     }
 }
