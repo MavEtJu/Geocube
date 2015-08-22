@@ -62,7 +62,7 @@
         annotation.name = wp.name;
 
         [annotation setTitle:wp.name];
-        [annotation setSubtitle:wp.description];
+        [annotation setSubtitle:wp.urlname];
         [mapView addAnnotation:annotation];
 
         [markers addObject:annotation];
