@@ -194,10 +194,14 @@
     BOOL okay = YES;
 
     NSString *direction;
-    okay &= [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"NESW"] intoString:&direction];
+    okay &= [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"NESWnesw"] intoString:&direction];
 
     int degrees;
     okay &= [scanner scanInt:&degrees];
+
+    // Skip over funny degrees things
+    NSCharacterSet *digits = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    [scanner scanUpToCharactersFromSet:digits intoString:nil];
 
     float mins;
     okay &= [scanner scanFloat:&mins];
