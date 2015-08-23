@@ -105,10 +105,10 @@
     // Difficulty rating
     r = rectRatingsD;
     r.origin.x -= 10;
-    l = [[UILabel alloc] initWithFrame:r];
-    l.font = [UIFont systemFontOfSize:10.0];
-    l.text = @"D";
-    [self.contentView addSubview:l];
+    labelRatingD = [[UILabel alloc] initWithFrame:r];
+    labelRatingD.font = [UIFont systemFontOfSize:10.0];
+    labelRatingD.text = @"D";
+    [self.contentView addSubview:labelRatingD];
 
     r = rectRatingsD;
     r.size.width = STAR_WIDTH;
@@ -122,10 +122,10 @@
     // Terrain rating
     r = rectRatingsT;
     r.origin.x -= 10;
-    l = [[UILabel alloc] initWithFrame:r];
-    l.font = [UIFont systemFontOfSize:10.0];
-    l.text = @"T";
-    [self.contentView addSubview:l];
+    labelRatingT = [[UILabel alloc] initWithFrame:r];
+    labelRatingT.font = [UIFont systemFontOfSize:10.0];
+    labelRatingT.text = @"T";
+    [self.contentView addSubview:labelRatingT];
 
     r = rectRatingsT;
     r.size.width = STAR_WIDTH;
@@ -179,6 +179,16 @@
 - (NSInteger)cellHeight
 {
     return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT;
+}
+
+- (void)showGroundspeak:(BOOL)yesno
+{
+    labelRatingD.hidden = !yesno;
+    labelRatingT.hidden = !yesno;
+    for (NSInteger i = 0; i < 5; i++) {
+        ratingD[i].hidden = !yesno;
+        ratingT[i].hidden = !yesno;
+    }
 }
 
 @end

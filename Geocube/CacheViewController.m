@@ -119,7 +119,7 @@
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if ([groundspeak.placed_by isEqualToString:@""] == NO)
+    if (groundspeak != nil && groundspeak.placed_by != nil && [groundspeak.placed_by isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", groundspeak.placed_by];
     if ([waypoint.date_placed isEqualToString:@""] == NO)
         [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
@@ -160,6 +160,8 @@
         cell.userInteractionEnabled = NO;
         cell.size.image = [imageLibrary get:groundspeak.container.icon];
         cell.icon.image = [imageLibrary get:waypoint.type.icon];
+
+        [cell showGroundspeak:(groundspeak != nil)];
         return cell;
     }
 

@@ -23,6 +23,7 @@
     UIImageView *icon, *imgFavouritesIV;
     UILabel *lat, *lon;
     UIImageView *size;
+    UILabel *labelRatingD, *labelRatingT;
     UIImageView *ratingD[5];
     UIImageView *ratingT[5];
     UILabel *favourites;
@@ -38,5 +39,6 @@
 + (NSInteger)cellHeight;
 - (NSInteger)cellHeight;
 - (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
+- (void)showGroundspeak:(BOOL)yesno;
 
 @end

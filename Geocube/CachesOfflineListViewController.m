@@ -168,6 +168,8 @@
     }
     cell.stateCountry.text = s;
 
+    [cell showGroundspeak:(gs != nil)];
+
     return cell;
 }
 

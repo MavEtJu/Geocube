@@ -135,26 +135,26 @@
     // Difficulty rating
     r = rectRatingsD;
     r.origin.x -= 10;
-    l = [[UILabel alloc] initWithFrame:r];
-    l.font = [UIFont systemFontOfSize:10.0];
-    l.text = @"D";
-    [self.contentView addSubview:l];
+    labelRatingD = [[UILabel alloc] initWithFrame:r];
+    labelRatingD.font = [UIFont systemFontOfSize:10.0];
+    labelRatingD.text = @"D";
+    [self.contentView addSubview:labelRatingD];
 
-    ratingD = [[UIImageView alloc] initWithFrame:rectRatingsD];
-    ratingD.image = imgRatingBase;
-    [self.contentView addSubview:ratingD];
+    imgRatingD = [[UIImageView alloc] initWithFrame:rectRatingsD];
+    //ratingD.image = imgRatingBase;
+    [self.contentView addSubview:imgRatingD];
 
     // Terrain rating
     r = rectRatingsT;
     r.origin.x -= 10;
-    l = [[UILabel alloc] initWithFrame:r];
-    l.font = [UIFont systemFontOfSize:10.0];
-    l.text = @"T";
-    [self.contentView addSubview:l];
+    labelRatingT = [[UILabel alloc] initWithFrame:r];
+    labelRatingT.font = [UIFont systemFontOfSize:10.0];
+    labelRatingT.text = @"T";
+    [self.contentView addSubview:labelRatingT];
 
-    ratingT = [[UIImageView alloc] initWithFrame:rectRatingsT];
-    ratingT.image = imgRatingBase;
-    [self.contentView addSubview:ratingT];
+    imgRatingT = [[UIImageView alloc] initWithFrame:rectRatingsT];
+    //ratingT.image = imgRatingBase;
+    [self.contentView addSubview:imgRatingT];
 
     // Size
     size = [[UIImageView alloc] initWithFrame:rectSize];
@@ -166,8 +166,8 @@
 
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d size:(NSInteger)sz
 {
-    ratingD.image = [imageLibrary getRating:d];
-    ratingT.image = [imageLibrary getRating:t];
+    imgRatingD.image = [imageLibrary getRating:d];
+    imgRatingT.image = [imageLibrary getRating:t];
 
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
@@ -185,6 +185,14 @@
 - (NSInteger)cellHeight
 {
     return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
+}
+
+- (void)showGroundspeak:(BOOL)yesno
+{
+    imgRatingD.hidden = !yesno;
+    imgRatingT.hidden = !yesno;
+    labelRatingD.hidden = !yesno;
+    labelRatingT.hidden = !yesno;
 }
 
 @end

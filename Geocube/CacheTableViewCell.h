@@ -23,8 +23,8 @@
     UILabel *description;
     UILabel *name;
     UIImageView *size;
-    UIImageView *ratingD;
-    UIImageView *ratingT;
+    UILabel *labelRatingD, *labelRatingT;
+    UIImageView *imgRatingD, *imgRatingT;
     UILabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
     UIImageView *icon, *imgFavouritesIV;
@@ -43,10 +43,10 @@
 @property (nonatomic, retain) UILabel *compass;
 @property (nonatomic, retain) UILabel *distance;
 
-
 - (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
 - (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v size:(NSInteger)sz;
+- (void)showGroundspeak:(BOOL)yesno;
 
 @end
 
