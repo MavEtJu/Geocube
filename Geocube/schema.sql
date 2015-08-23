@@ -636,6 +636,10 @@ create table bookmarks (
     name text
 );
 create index bookmarks_idx_id on bookmarks(id);
+insert into bookmarks(name, url) values("Localhost:8000", "http://127.0.0.1:8000/");
+insert into bookmarks(name, url) values("MavvieMac:8000", "http://mavviemac:8000/");
+insert into bookmarks(name, url) values("Geocaching.com - Pocket Queries", "https://www.geocaching.com/pocket/");
+insert into bookmarks(name, url) values("Geocaching Australia - Queries", "http://www.geocaching.com.au/my/query/");
 
 create table travelbug2waypoint (
     id integer primary key,
