@@ -54,4 +54,9 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbContainer dbCount:@"containers"];
+}
+
 @end

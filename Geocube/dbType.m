@@ -56,4 +56,9 @@
     return ts;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbType dbCount:@"types"];
+}
+
 @end

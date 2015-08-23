@@ -99,4 +99,9 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbPersonalNote dbCount:@"personal_notes"];
+}
+
 @end

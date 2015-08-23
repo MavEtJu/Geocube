@@ -33,5 +33,7 @@
 + (dbObject *)dbGet:(NSId)_id;
 - (void)dbUpdate;
 - (NSId)dbCreate;
++ (NSInteger)dbCount;
++ (NSInteger)dbCount:(NSString *)tablename;
 
 @end

@@ -102,6 +102,11 @@
     return tbs;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbTravelbug dbCount:@"travelbugs"];
+}
+
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];

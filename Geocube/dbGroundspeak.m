@@ -160,6 +160,11 @@
     return gss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbGroundspeak dbCount:@"groundspeak"];
+}
+
 + (dbGroundspeak *)dbGet:(NSId)_id
 {
     dbGroundspeak *gs;

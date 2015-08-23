@@ -93,6 +93,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbAccount dbCount:@"accounts"];
+}
+
 - (void)dbUpdateAccount
 {
     @synchronized(db.dbaccess) {

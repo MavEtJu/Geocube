@@ -147,6 +147,11 @@
     return cgs;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbGroup dbCount:@"groups"];
+}
+
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];

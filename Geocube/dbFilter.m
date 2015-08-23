@@ -109,4 +109,9 @@
     }
 }
 
++ (NSInteger)dbCount
+{
+    return [dbFilter dbCount:@"filters"];
+}
+
 @end

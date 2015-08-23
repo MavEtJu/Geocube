@@ -58,6 +58,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbAttribute dbCount:@"attributes"];
+}
+
 //
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id

@@ -56,6 +56,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbState dbCount:@"states"];
+}
+
 + (dbState *)dbGet:(NSId)_id
 {
     dbState *s;

@@ -76,6 +76,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbBookmark dbCount:@"bookmarks"];
+}
+
 + (NSId)dbCreate:(dbBookmark *)bm;
 {
     NSId _id;

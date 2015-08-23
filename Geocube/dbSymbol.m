@@ -52,6 +52,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbSymbol dbCount:@"symbols"];
+}
+
 + (dbObject *)dbGet:(NSId)_id;
 {
     dbSymbol *s;

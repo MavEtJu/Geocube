@@ -100,4 +100,9 @@
     [c dbCreate];
 }
 
++ (NSInteger)dbCount
+{
+    return [dbConfig dbCount:@"config"];
+}
+
 @end

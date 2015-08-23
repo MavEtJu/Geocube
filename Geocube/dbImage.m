@@ -78,6 +78,11 @@
     return is;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbImage dbCount:@"images"];
+}
+
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];

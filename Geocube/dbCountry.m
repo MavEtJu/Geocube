@@ -56,6 +56,11 @@
     return ss;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbCountry dbCount:@"countries"];
+}
+
 + (dbCountry *)dbGet:(NSId)_id
 {
     dbCountry *c;

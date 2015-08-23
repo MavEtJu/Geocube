@@ -177,6 +177,11 @@
     return wps;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbWaypoint dbCount:@"waypoints"];
+}
+
 + (NSArray *)dbAllNotFound
 {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];

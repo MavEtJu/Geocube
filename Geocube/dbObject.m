@@ -29,6 +29,7 @@ NEEDS_OVERLOADING(dbUpdate);
 - (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
 + (NSArray *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
 + (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
++ (NSInteger)dbCount { NEEDS_OVERLOADING_ASSERT; return -1; }
 
 - (id)init
 {
@@ -41,6 +42,22 @@ NEEDS_OVERLOADING(dbUpdate);
 - (void)finish
 {
     finished = YES;
+}
+
++ (NSInteger)dbCount:(NSString *)table
+{
+    NSInteger c = -1;
+
+    @synchronized(db.dbaccess) {
+        NSString *sql = [NSString stringWithFormat:@"select count(id) from %@", table];
+        DB_PREPARE(sql);
+
+        DB_IF_STEP {
+            INT_FETCH(0, c);
+        }
+        DB_FINISH;
+    }
+    return c;
 }
 
 @end

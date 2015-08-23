@@ -248,4 +248,9 @@
     return c;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbLog dbCount:@"logs"];
+}
+
 @end

@@ -54,4 +54,9 @@
     return lts;
 }
 
++ (NSInteger)dbCount
+{
+    return [dbLogType dbCount:@"log_types"];
+}
+
 @end

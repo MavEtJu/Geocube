@@ -189,4 +189,9 @@
     }
 }
 
++ (NSInteger)dbCount
+{
+    return [dbName dbCount:@"names"];
+}
+
 @end
