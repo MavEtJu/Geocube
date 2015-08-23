@@ -110,6 +110,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//  [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     if (currentTheme.tableViewCell_gradient == YES) {
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = cell.bounds;
