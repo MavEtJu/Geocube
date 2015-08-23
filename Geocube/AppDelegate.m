@@ -341,6 +341,12 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
+    vc = [[HelpDatabaseViewController alloc] init];
+    vc.title = @"DB";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
 
     // UIResponder.window = UIWIndow

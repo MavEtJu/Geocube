@@ -68,5 +68,7 @@
 #define    VC_SETTINGS 0
 #define    VC_ACCOUNTS
 #define RC_HELP 11
-#define    VC_HELP_HELP 0
-#define    VC_HELP_IMAGES 1
+#define    VC_HELP_ABOUT 0
+#define    VC_HELP_HELP 1
+#define    VC_HELP_IMAGES 2
+#define    VC_HELP_DATABASE 3

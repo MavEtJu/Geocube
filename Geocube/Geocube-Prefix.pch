@@ -94,6 +94,7 @@
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"
+#import "GCTableViewCellTwoTextfields.h"
 #import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"
 #import "CacheHeaderTableViewCell.h"
@@ -140,6 +141,7 @@
 
 #import "HelpImagesViewController.h"
 #import "HelpAboutViewController.h"
+#import "HelpDatabaseViewController.h"
 
 #import "NullViewController.h"
 #import "TravelbugsViewController.h"

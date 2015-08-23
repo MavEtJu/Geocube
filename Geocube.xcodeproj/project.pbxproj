@@ -202,6 +202,8 @@
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */; };
 		E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */; };
+		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
+		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
@@ -567,6 +569,10 @@
 		E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 30x30.png"; path = "images/icons - smiley - 30x30.png"; sourceTree = "<group>"; };
 		E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPointAnnotation.h; sourceTree = "<group>"; };
 		E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPointAnnotation.m; sourceTree = "<group>"; };
+		E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDatabaseViewController.h; sourceTree = "<group>"; };
+		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
+		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellTwoTextfields.h; sourceTree = "<group>"; };
+		E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellTwoTextfields.m; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -1146,6 +1152,8 @@
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
 				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
+				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */,
+				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1219,6 +1227,8 @@
 				E8F408581B57510400FBA858 /* HelpImagesViewController.m */,
 				E8A7FA9D1B78408A003F4132 /* HelpAboutViewController.h */,
 				E8A7FA9E1B78408A003F4132 /* HelpAboutViewController.m */,
+				E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */,
+				E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -1993,6 +2003,7 @@
 				E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
+				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
@@ -2056,6 +2067,7 @@
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
+				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
