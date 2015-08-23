@@ -41,7 +41,6 @@
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
     imgSize = [imageLibrary get:ImageSize_NotChosen];
 
-    UILabel *l;
     CGRect r;
 
     /*

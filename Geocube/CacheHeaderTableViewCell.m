@@ -40,7 +40,6 @@
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
 
     CGRect r;
-    UILabel *l;
 
     /*
      +---+--------------+-----+---+
