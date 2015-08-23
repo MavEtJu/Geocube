@@ -28,6 +28,7 @@
 
 @interface database : NSObject {
     sqlite3 *db;
+    NSString *dbname, *dbempty;
     id dbaccess;
 }
 
@@ -36,7 +37,8 @@
 
 - (id)init;
 - (void)checkVersion;
-- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
+//- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
+- (NSInteger)getDatabaseSize;
 
 @end
 

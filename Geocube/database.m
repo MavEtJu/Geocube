@@ -34,9 +34,9 @@
 
 - (void)checkVersion
 {
-    NSString *dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
+    dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
     NSLog(@"Using %@ as the database.", dbname);
-    NSString *dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
+    dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
     // Keep a symlink to /Users/edwin/db to the database for easy access
     NSError *e;
@@ -44,7 +44,7 @@
     [fm createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:dbname error:&e];
 
     // If the database doesn't exist, create it
-    [self checkAndCreateDatabase:dbname empty:dbempty];
+    [self checkAndCreateDatabase];
 
     // Determine version of the distribution database
     sqlite3_open([dbempty UTF8String], &db);
@@ -61,13 +61,13 @@
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty is newer, overwriting old one");
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"option_cleardatabase"];
-        [self checkAndCreateDatabase:dbname empty:dbempty];
+        [self checkAndCreateDatabase];
     }
 
     sqlite3_open([dbname UTF8String], &db);
 }
 
-- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty
+- (void)checkAndCreateDatabase
 {
     BOOL success;
 
@@ -87,6 +87,16 @@
 - (void)dealloc
 {
     sqlite3_close(db);
+}
+
+- (NSInteger)getDatabaseSize
+{
+    NSError *e = nil;
+    NSDictionary *as = [fm attributesOfItemAtPath:dbname error:&e];
+    if (e != nil)
+        return -1;
+    NSNumber *n = [as valueForKey:@"NSFileSize"];
+    return [n integerValue];
 }
 
 @end
