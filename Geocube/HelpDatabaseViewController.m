@@ -121,7 +121,7 @@
         cell = [[GCTableViewCellTwoTextfields alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     cell.fieldLabel.text = [fields objectAtIndex:indexPath.row];
-    cell.valueLabel.text = [NSString stringWithFormat:@"%@", [values objectAtIndex:indexPath.row]];
+    cell.valueLabel.text = [MyTools niceNumber:[[values objectAtIndex:indexPath.row] integerValue]];
     cell.userInteractionEnabled = NO;
 
     return cell;
