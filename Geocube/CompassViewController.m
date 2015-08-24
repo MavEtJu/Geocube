@@ -187,6 +187,11 @@
     wpDescription.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:wpDescription];
 
+    if (rectCompass.size.height < rectCompass.size.width)
+        rectCompass.size.width = rectCompass.size.height;
+    else
+        rectCompass.size.height = rectCompass.size.width;
+    rectCompass.origin.x = (width - rectCompass.size.width) / 2;
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
     [self.view addSubview:compassImageView];
     lineImageView = [[UIImageView alloc] initWithFrame:rectCompass];
