@@ -204,6 +204,7 @@
 		E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */; };
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
 		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */; };
+		E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
@@ -573,6 +574,7 @@
 		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
 		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellTwoTextfields.h; sourceTree = "<group>"; };
 		E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellTwoTextfields.m; sourceTree = "<group>"; };
+		E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black.png"; path = "images/compass - white arrow on black.png"; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -944,6 +946,17 @@
 			name = DOPNavbarMenu;
 			sourceTree = "<group>";
 		};
+		E8611A981B8ABC8F00B9D7C3 /* Compass */ = {
+			isa = PBXGroup;
+			children = (
+				E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */,
+				E832E6861B70DDD30019F9D2 /* compass - redline.png */,
+				E832E6841B70DABB0019F9D2 /* compass - magnetic.png */,
+				E80732C41B609D75007FDC29 /* compass_needle.png */,
+			);
+			name = Compass;
+			sourceTree = "<group>";
+		};
 		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,9 +1249,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E832E6861B70DDD30019F9D2 /* compass - redline.png */,
-				E832E6841B70DABB0019F9D2 /* compass - magnetic.png */,
-				E80732C41B609D75007FDC29 /* compass_needle.png */,
+				E8611A981B8ABC8F00B9D7C3 /* Compass */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E867E83C1B53D61C00CB126A /* attributes */,
 				E8A3F44F1B51D932009F2F46 /* map */,
@@ -1859,6 +1870,7 @@
 				E80732261B5F84B4007FDC29 /* attributes - 63.png in Resources */,
 				E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */,
 				E80732A61B5F857A007FDC29 /* map - pinhead red - 15x15.png in Resources */,
+				E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */,
 				E80732691B5F850C007FDC29 /* cache - unknown - 30x30.png in Resources */,
 				E80731ED1B5F84B4007FDC29 /* attributes - 05.png in Resources */,
 				E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */,

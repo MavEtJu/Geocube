@@ -322,6 +322,7 @@ typedef enum {
 
     ImageCompass_Magnetic,
     ImageCompass_Line,
+    ImageCompass_WhiteArrowOnBlack,
 
     ImageLibraryImagesMax
 } ImageLibraryImages;

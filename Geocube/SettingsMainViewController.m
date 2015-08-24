@@ -33,6 +33,8 @@
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
+
+    compassTypes = @[@"Default", @"White arrow on black"];
 }
 
 #pragma mark - TableViewController related functions
@@ -49,7 +51,7 @@
         case 0: // Distance section
             return 1;
         case 1: // Theme section
-            return 1;
+            return 2;
         case 2: // Groudspeak API
             return 3;
     }
@@ -84,7 +86,6 @@
             switch (indexPath.row) {
                 case 0: {   // Metric
                     cell.textLabel.text = @"Metric";
-                    cell.textLabel.backgroundColor = [UIColor clearColor];
 
                     distanceMetric = [[UISwitch alloc] initWithFrame:CGRectZero];
                     distanceMetric.on = myConfig.distanceMetric;
@@ -97,13 +98,12 @@
             break;
         }
         case 1: {   // Theme
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Geosphere theme
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
                     cell.textLabel.text = @"Geosphere";
-                    cell.textLabel.backgroundColor = [UIColor clearColor];
 
                     themeGeosphere = [[UISwitch alloc] initWithFrame:CGRectZero];
                     themeGeosphere.on = myConfig.themeGeosphere;
@@ -112,6 +112,15 @@
 
                     return cell;
                 }
+                case 1: {   // Compass type
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+                    cell.textLabel.text = @"Compass type";
+                    cell.detailTextLabel.text = [compassTypes objectAtIndex:[myConfig compassType]];
+                    return cell;
+                }
+
             }
             break;
         }
@@ -184,48 +193,83 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {   // Groundspeak geocaching.com
-        if (indexPath.row != 0 && indexPath.row != 1)
-            return;
-
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Groundspeak Geocaching Live key"
-                                   message:@"API key"
-                                   preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction *action) {
-                                 //Do Some action
-                                 UITextField *tf = [alert.textFields objectAtIndex:0];
-                                 NSString *key = tf.text;
-
-                                 if (indexPath.row == 0)
-                                     [myConfig geocachingLive_API1Update:key];
-                                 else
-                                     [myConfig geocachingLive_API2Update:key];
-
-                                 [self.tableView reloadData];
-                             }];
-        UIAlertAction *cancel = [UIAlertAction
-                                 actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action) {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                 }];
-
-        [alert addAction:ok];
-        [alert addAction:cancel];
-
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            if (indexPath.row == 0)
-                textField.text = myConfig.GeocachingLive_API1;
-            else
-                textField.text = myConfig.GeocachingLive_API2;
-            textField.placeholder = @"API Key";
-        }];
-
-        [self presentViewController:alert animated:YES completion:nil];
+        if (indexPath.row == 0 || indexPath.row == 1)
+            [self updateGeocachingLiveKey:indexPath.row];
+        return;
     }
+
+    if (indexPath.section == 1) {   // Theme
+        if (indexPath.row == 1)
+            [self updateThemeCompass];
+        return;
+    }
+}
+
+- (void)updateThemeCompass
+{
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Compass"
+                                            rows:compassTypes
+                                initialSelection:myConfig.compassType
+                                          target:self
+                                   successAction:@selector(updateThemeCompassSuccess:element:)
+                                    cancelAction:@selector(updateThemeCompassCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger i = [selectedIndex intValue];
+    [myConfig compassTypeUpdate:i];
+    [self.tableView reloadData];
+}
+
+- (void)updateThemeCompassCancel:(id)sender
+{
+    // nothing
+}
+
+
+- (void)updateGeocachingLiveKey:(NSInteger)row
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Groundspeak Geocaching Live key"
+                               message:@"API key"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *key = tf.text;
+
+                             if (row == 0)
+                                 [myConfig geocachingLive_API1Update:key];
+                             else
+                                 [myConfig geocachingLive_API2Update:key];
+
+                             [self.tableView reloadData];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        if (row == 0)
+            textField.text = myConfig.GeocachingLive_API1;
+        else
+            textField.text = myConfig.GeocachingLive_API2;
+        textField.placeholder = @"API Key";
+    }];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Local menu related functions

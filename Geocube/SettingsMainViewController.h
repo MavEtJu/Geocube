@@ -23,6 +23,8 @@
     UISwitch *distanceMetric;
     UISwitch *themeGeosphere;
     UISwitch *geocachingLiveStaging;
+
+    NSArray *compassTypes;
 }
 
 @end

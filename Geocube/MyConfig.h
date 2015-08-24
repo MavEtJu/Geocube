@@ -26,6 +26,8 @@
     NSInteger currentPage;
     NSInteger currentPageTab;
 
+    NSInteger compassType;
+
     BOOL GeocachingLive_staging;
     NSString *GeocachingLive_API1;
     NSString *GeocachingLive_API2;
@@ -42,11 +44,14 @@
 @property (nonatomic, retain) NSString *GeocachingLive_API1;
 @property (nonatomic, retain) NSString *GeocachingLive_API2;
 
+@property (nonatomic) NSInteger compassType;
+
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)themeGeosphereUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
+- (void)compassTypeUpdate:(NSInteger)value;
 - (void)geocachingLive_staging:(BOOL)value;
 - (void)geocachingLive_API1Update:(NSString *)value;
 - (void)geocachingLive_API2Update:(NSString *)value;

@@ -25,6 +25,7 @@
 
 @synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
 @synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
+@synthesize compassType;
 
 - (id)init
 {
@@ -53,6 +54,7 @@
     CHECK(@"geocachinglive_staging", @"1");
     CHECK(@"geocachinglive_API1", @"");
     CHECK(@"geocachinglive_API2", @"");
+    CHECK(@"compass_type", @"0");
 }
 
 - (void)loadValues
@@ -65,6 +67,7 @@
     GeocachingLive_staging = [[dbConfig dbGetByKey:@"geocachinglive_staging"].value boolValue];
     GeocachingLive_API1 = [dbConfig dbGetByKey:@"geocachinglive_API1"].value;
     GeocachingLive_API2 = [dbConfig dbGetByKey:@"geocachinglive_API2"].value;
+    compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
 }
 
 - (void)BOOLUpdate:(NSString *)key value:(BOOL)value
@@ -135,5 +138,12 @@
     GeocachingLive_API2 = value;
     [self NSStringUpdate:@"geocachinglive_API2" value:value];
 }
+
+- (void)compassTypeUpdate:(NSInteger)value
+{
+    compassType = value;
+    [self NSIntegerUpdate:@"compass_type" value:value];
+}
+
 
 @end

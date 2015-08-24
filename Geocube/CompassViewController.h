@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+enum GCCompassType {
+    COMPASS_DEFAULT = 0,
+    COMPASS_WHITEARROWONBLACK
+};
+
 @interface CompassViewController : GCViewController<GCLocationManagerDelegate> {
 
     UIImage *compassImage;

@@ -187,14 +187,9 @@
     wpDescription.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:wpDescription];
 
-    compassImage  = [imageLibrary get:ImageCompass_Magnetic];
     compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
-    compassImageView.image = compassImage;
     [self.view addSubview:compassImageView];
-
-    lineImage  = [imageLibrary get:ImageCompass_Line];
     lineImageView = [[UIImageView alloc] initWithFrame:rectCompass];
-    lineImageView.image = lineImage;
     [self.view addSubview:lineImageView];
 }
 
@@ -228,7 +223,23 @@
         wpLat.text = @"";
         wpLon.text = @"";
     }
+
+    // Update compass type
+    switch (myConfig.compassType) {
+        case COMPASS_DEFAULT:
+            compassImage  = [imageLibrary get:ImageCompass_Magnetic];
+            compassImageView.image = compassImage;
+            lineImage = [imageLibrary get:ImageCompass_Line];
+            lineImageView.image = lineImage;
+            break;
+        case COMPASS_WHITEARROWONBLACK:
+            compassImageView.image = nil;
+            lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
+            lineImageView.image = lineImage;
+            break;
+    }
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
