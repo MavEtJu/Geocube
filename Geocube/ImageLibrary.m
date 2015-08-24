@@ -121,8 +121,8 @@
     [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
     [self add:@"menu icon - close" index:ImageIcon_CloseButton];
 
-    [self add:@"compass - magnetic" index:ImageCompass_Magnetic];
-    [self add:@"compass - redline" index:ImageCompass_Line];
+    [self add:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
+    [self add:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
     [self add:@"compass - white arrow on black" index:ImageCompass_WhiteArrowOnBlack];
     [self add:@"compass - red arrow on black" index:ImageCompass_RedArrowOnBlack];
     [self add:@"compass - airplane - airplane" index:ImageCompass_AirplaneAirplane];

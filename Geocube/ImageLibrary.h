@@ -320,8 +320,8 @@ typedef enum {
     ImageIcon_LocalMenu,
     ImageIcon_CloseButton,
 
-    ImageCompass_Magnetic,
-    ImageCompass_Line,
+    ImageCompass_RedArrowOnBlueCompass,
+    ImageCompass_RedArrowOnBlueArrow,
     ImageCompass_WhiteArrowOnBlack,
     ImageCompass_RedArrowOnBlack,
     ImageCompass_AirplaneAirplane,

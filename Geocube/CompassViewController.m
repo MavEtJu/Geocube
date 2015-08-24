@@ -231,10 +231,10 @@
 
     // Update compass type
     switch (myConfig.compassType) {
-        case COMPASS_DEFAULT:
-            compassImage  = [imageLibrary get:ImageCompass_Magnetic];
+        case COMPASS_REDONBLUECOMPASS:
+            compassImage  = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
             compassImageView.image = compassImage;
-            lineImage = [imageLibrary get:ImageCompass_Line];
+            lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlueArrow];
             lineImageView.image = lineImage;
             break;
         case COMPASS_WHITEARROWONBLACK:

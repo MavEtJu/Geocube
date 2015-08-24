@@ -150,7 +150,6 @@
 		E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BC1B5FB4CF007FDC29 /* dbName.m */; };
 		E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BF1B5FB4DF007FDC29 /* dbCountry.m */; };
 		E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732C21B5FB4EA007FDC29 /* dbState.m */; };
-		E80732C51B609D75007FDC29 /* compass_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732C41B609D75007FDC29 /* compass_needle.png */; };
 		E80732D81B60FAB4007FDC29 /* ratings - favourites 20x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D31B60FAB4007FDC29 /* ratings - favourites 20x30.png */; };
 		E80732D91B60FAB4007FDC29 /* ratings - star base 95x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D41B60FAB4007FDC29 /* ratings - star base 95x18.png */; };
 		E80732DA1B60FAB4007FDC29 /* ratings - star half 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */; };
@@ -182,8 +181,6 @@
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
 		E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67C1B6F76E70019F9D2 /* menu icon - local.png */; };
 		E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67F1B7024E40019F9D2 /* menu icon - close.png */; };
-		E832E6851B70DABB0019F9D2 /* compass - magnetic.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E6841B70DABB0019F9D2 /* compass - magnetic.png */; };
-		E832E6871B70DDD30019F9D2 /* compass - redline.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E6861B70DDD30019F9D2 /* compass - redline.png */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
@@ -208,6 +205,8 @@
 		E8611A9D1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */; };
 		E8611A9E1B8AF6DC00B9D7C3 /* compass - airplane - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */; };
 		E8611AA01B8B215E00B9D7C3 /* compass - red arrow on black.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9F1B8B215E00B9D7C3 /* compass - red arrow on black.png */; };
+		E8611AA31B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA11B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png */; };
+		E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
@@ -491,7 +490,6 @@
 		E80732BF1B5FB4DF007FDC29 /* dbCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbCountry.m; sourceTree = "<group>"; };
 		E80732C11B5FB4EA007FDC29 /* dbState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbState.h; sourceTree = "<group>"; };
 		E80732C21B5FB4EA007FDC29 /* dbState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbState.m; sourceTree = "<group>"; };
-		E80732C41B609D75007FDC29 /* compass_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass_needle.png; path = images/compass_needle.png; sourceTree = "<group>"; };
 		E80732D31B60FAB4007FDC29 /* ratings - favourites 20x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - favourites 20x30.png"; path = "images/ratings - favourites 20x30.png"; sourceTree = "<group>"; };
 		E80732D41B60FAB4007FDC29 /* ratings - star base 95x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star base 95x18.png"; path = "images/ratings - star base 95x18.png"; sourceTree = "<group>"; };
 		E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star half 18x18.png"; path = "images/ratings - star half 18x18.png"; sourceTree = "<group>"; };
@@ -535,8 +533,6 @@
 		E832E67B1B6F76E70019F9D2 /* menu icon - global.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global.png"; path = "images/menu icon - global.png"; sourceTree = "<group>"; };
 		E832E67C1B6F76E70019F9D2 /* menu icon - local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local.png"; path = "images/menu icon - local.png"; sourceTree = "<group>"; };
 		E832E67F1B7024E40019F9D2 /* menu icon - close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close.png"; path = "images/menu icon - close.png"; sourceTree = "<group>"; };
-		E832E6841B70DABB0019F9D2 /* compass - magnetic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - magnetic.png"; path = "images/compass - magnetic.png"; sourceTree = "<group>"; };
-		E832E6861B70DDD30019F9D2 /* compass - redline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - redline.png"; path = "images/compass - redline.png"; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -581,6 +577,8 @@
 		E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - airplane - airplane.png"; path = "images/compass - airplane - airplane.png"; sourceTree = "<group>"; };
 		E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - airplane - compass.png"; path = "images/compass - airplane - compass.png"; sourceTree = "<group>"; };
 		E8611A9F1B8B215E00B9D7C3 /* compass - red arrow on black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red arrow on black.png"; path = "images/compass - red arrow on black.png"; sourceTree = "<group>"; };
+		E8611AA11B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red on blue compass - arrow.png"; path = "images/compass - red on blue compass - arrow.png"; sourceTree = "<group>"; };
+		E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red on blue compass - compass.png"; path = "images/compass - red on blue compass - compass.png"; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -955,13 +953,12 @@
 		E8611A981B8ABC8F00B9D7C3 /* Compass */ = {
 			isa = PBXGroup;
 			children = (
+				E8611AA11B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png */,
+				E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */,
 				E8611A9F1B8B215E00B9D7C3 /* compass - red arrow on black.png */,
 				E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */,
 				E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */,
 				E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */,
-				E832E6861B70DDD30019F9D2 /* compass - redline.png */,
-				E832E6841B70DABB0019F9D2 /* compass - magnetic.png */,
-				E80732C41B609D75007FDC29 /* compass_needle.png */,
 			);
 			name = Compass;
 			sourceTree = "<group>";
@@ -1784,7 +1781,6 @@
 				E80731EF1B5F84B4007FDC29 /* attributes - 07.png in Resources */,
 				E807322A1B5F84B4007FDC29 /* attributes - 67.png in Resources */,
 				E80731F21B5F84B4007FDC29 /* attributes - 10.png in Resources */,
-				E832E6871B70DDD30019F9D2 /* compass - redline.png in Resources */,
 				E807325D1B5F850C007FDC29 /* cache - benchmark - 30x30.png in Resources */,
 				E80732761B5F852A007FDC29 /* waypoint - flag - 30x30.png in Resources */,
 				E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */,
@@ -1846,6 +1842,7 @@
 				E80732411B5F84E8007FDC29 /* log - enabled - 30x30.png in Resources */,
 				E807321F1B5F84B4007FDC29 /* attributes - 56.png in Resources */,
 				E807321A1B5F84B4007FDC29 /* attributes - 51.png in Resources */,
+				E8611AA31B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png in Resources */,
 				E807323C1B5F84E8007FDC29 /* log - archived - 30x30.png in Resources */,
 				E8E8D01D1B66E75900CC741A /* fillrange.png in Resources */,
 				E80732421B5F84E8007FDC29 /* log - found - 30x30.png in Resources */,
@@ -1864,7 +1861,6 @@
 				E807321B1B5F84B4007FDC29 /* attributes - 52.png in Resources */,
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80732A81B5F857A007FDC29 /* map - pinhead yellow - 15x15.png in Resources */,
-				E80732C51B609D75007FDC29 /* compass_needle.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
 				E80732A21B5F857A007FDC29 /* map - pinhead black - 15x15.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,
@@ -1891,6 +1887,7 @@
 				E80732471B5F84E8007FDC29 /* log - published - 30x30.png in Resources */,
 				E807320D1B5F84B4007FDC29 /* attributes - 38.png in Resources */,
 				E807321C1B5F84B4007FDC29 /* attributes - 53.png in Resources */,
+				E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */,
 				E807321D1B5F84B4007FDC29 /* attributes - 54.png in Resources */,
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
@@ -1899,7 +1896,6 @@
 				E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */,
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
-				E832E6851B70DABB0019F9D2 /* compass - magnetic.png in Resources */,
 				E807329D1B5F857A007FDC29 /* map - cross dnf - 19x19.png in Resources */,
 				E80732441B5F84E8007FDC29 /* log - needsmaintenance - 30x30.png in Resources */,
 				E807325E1B5F850C007FDC29 /* cache - cito - 30x30.png in Resources */,
