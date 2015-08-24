@@ -205,6 +205,8 @@
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
 		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */; };
 		E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */; };
+		E8611A9D1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */; };
+		E8611A9E1B8AF6DC00B9D7C3 /* compass - airplane - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
@@ -575,6 +577,8 @@
 		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellTwoTextfields.h; sourceTree = "<group>"; };
 		E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellTwoTextfields.m; sourceTree = "<group>"; };
 		E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black.png"; path = "images/compass - white arrow on black.png"; sourceTree = "<group>"; };
+		E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - airplane - airplane.png"; path = "images/compass - airplane - airplane.png"; sourceTree = "<group>"; };
+		E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - airplane - compass.png"; path = "images/compass - airplane - compass.png"; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -949,6 +953,8 @@
 		E8611A981B8ABC8F00B9D7C3 /* Compass */ = {
 			isa = PBXGroup;
 			children = (
+				E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */,
+				E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */,
 				E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */,
 				E832E6861B70DDD30019F9D2 /* compass - redline.png */,
 				E832E6841B70DABB0019F9D2 /* compass - magnetic.png */,
@@ -1746,6 +1752,7 @@
 				E80732121B5F84B4007FDC29 /* attributes - 43.png in Resources */,
 				E80732101B5F84B4007FDC29 /* attributes - 41.png in Resources */,
 				E80731F31B5F84B4007FDC29 /* attributes - 11.png in Resources */,
+				E8611A9D1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png in Resources */,
 				E80732751B5F852A007FDC29 /* waypoint - finish - 30x30.png in Resources */,
 				E807324B1B5F84E8007FDC29 /* log - willattend - 30x30.png in Resources */,
 				E80732241B5F84B4007FDC29 /* attributes - 61.png in Resources */,
@@ -1805,6 +1812,7 @@
 				E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */,
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
 				E80731F61B5F84B4007FDC29 /* attributes - 14.png in Resources */,
+				E8611A9E1B8AF6DC00B9D7C3 /* compass - airplane - compass.png in Resources */,
 				E807327B1B5F852A007FDC29 /* waypoint - unknown - 30x30.png in Resources */,
 				E807329E1B5F857A007FDC29 /* map - dnf stick - 35x42.png in Resources */,
 				E807320C1B5F84B4007FDC29 /* attributes - 37.png in Resources */,

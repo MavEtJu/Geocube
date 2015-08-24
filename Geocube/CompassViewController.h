@@ -21,7 +21,8 @@
 
 enum GCCompassType {
     COMPASS_DEFAULT = 0,
-    COMPASS_WHITEARROWONBLACK
+    COMPASS_WHITEARROWONBLACK,
+    COMPASS_AIRPLANE
 };
 
 @interface CompassViewController : GCViewController<GCLocationManagerDelegate> {

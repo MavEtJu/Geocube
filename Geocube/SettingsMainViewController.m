@@ -34,7 +34,7 @@
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
 
-    compassTypes = @[@"Default", @"White arrow on black"];
+    compassTypes = @[@"Default", @"White arrow on black", @"Airplane"];
 }
 
 #pragma mark - TableViewController related functions

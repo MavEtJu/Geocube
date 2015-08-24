@@ -237,6 +237,11 @@
             lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
             lineImageView.image = lineImage;
             break;
+        case COMPASS_AIRPLANE:
+            compassImageView.image = [imageLibrary get:ImageCompass_AirplaneCompass];
+            lineImage = [imageLibrary get:ImageCompass_AirplaneAirplane];
+            lineImageView.image = lineImage;
+            break;
     }
 }
 
