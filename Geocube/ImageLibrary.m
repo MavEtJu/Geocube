@@ -124,6 +124,7 @@
     [self add:@"compass - magnetic" index:ImageCompass_Magnetic];
     [self add:@"compass - redline" index:ImageCompass_Line];
     [self add:@"compass - white arrow on black" index:ImageCompass_WhiteArrowOnBlack];
+    [self add:@"compass - red arrow on black" index:ImageCompass_RedArrowOnBlack];
     [self add:@"compass - airplane - airplane" index:ImageCompass_AirplaneAirplane];
     [self add:@"compass - airplane - compass" index:ImageCompass_AirplaneCompass];
 

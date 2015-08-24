@@ -242,6 +242,11 @@
             lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
             lineImageView.image = lineImage;
             break;
+        case COMPASS_REDARROWONBLACK:
+            compassImageView.image = nil;
+            lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlack];
+            lineImageView.image = lineImage;
+            break;
         case COMPASS_AIRPLANE:
             compassImageView.image = [imageLibrary get:ImageCompass_AirplaneCompass];
             lineImage = [imageLibrary get:ImageCompass_AirplaneAirplane];
