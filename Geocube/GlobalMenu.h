@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class GlobalMenu;
-
 @protocol GlobalMenuDelegate
 
 - (void)openLocalMenu:(id)sender;
