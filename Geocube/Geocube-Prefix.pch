@@ -46,6 +46,8 @@
 #import "YIPopupTextView.h"
 #import "RangeSlider.h"
 
+#import "Geocube-Classes.h"
+
 #import "MyTools.h"
 #import "Coordinates.h"
 
