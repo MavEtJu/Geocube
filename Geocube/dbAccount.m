@@ -23,45 +23,32 @@
 
 @implementation dbAccount
 
-@synthesize site, url, account, password, url_queries, oauth_consumer_private, oauth_consumer_public, protocol;
-
-- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password protocol:(NSInteger)_protocol oauth_public:(NSString *)_oauth_public oauth_private:(NSString *)_oauth_private
-{
-    self = [super init];
-
-    _id = __id;
-    site = _site;
-    url = _url;
-    url_queries = _url_queries;
-    account = _account;
-    password = _password;
-    protocol = _protocol;
-    oauth_consumer_public = _oauth_public;
-    oauth_consumer_private = _oauth_private;
-
-    [self finish];
-    return self;
-}
+@synthesize site, url, account, password, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url;
 
 + (dbAccount *)dbGet:(NSId)_id
 {
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts where id = ?");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
             a = [[dbAccount alloc] init];
-            INT_FETCH( 0, a._id);
-            TEXT_FETCH(1, a.site);
-            TEXT_FETCH(2, a.url);
-            TEXT_FETCH(3, a.url_queries);
-            TEXT_FETCH(4, a.account);
-            TEXT_FETCH(5, a.password);
-            INT_FETCH( 6, a.protocol);
-            TEXT_FETCH(7, a.oauth_consumer_public);
-            TEXT_FETCH(8, a.oauth_consumer_private);
+            INT_FETCH(  0, a._id);
+            TEXT_FETCH( 1, a.site);
+            TEXT_FETCH( 2, a.url);
+            TEXT_FETCH( 3, a.url_queries);
+            TEXT_FETCH( 4, a.account);
+            TEXT_FETCH( 5, a.password);
+            INT_FETCH(  6, a.protocol);
+            TEXT_FETCH( 7, a.oauth_consumer_public);
+            TEXT_FETCH( 8, a.oauth_consumer_private);
+            TEXT_FETCH( 9, a.oauth_token);
+            TEXT_FETCH(10, a.oauth_token_secret);
+            TEXT_FETCH(11, a.oauth_request_url);
+            TEXT_FETCH(12, a.oauth_authorize_url);
+            TEXT_FETCH(13, a.oauth_access_url);
         }
         DB_FINISH;
     }
@@ -73,19 +60,24 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
-            INT_FETCH( 0, a._id);
-            TEXT_FETCH(1, a.site);
-            TEXT_FETCH(2, a.url);
-            TEXT_FETCH(3, a.url_queries);
-            TEXT_FETCH(4, a.account);
-            TEXT_FETCH(5, a.password);
-            INT_FETCH( 6, a.protocol);
-            TEXT_FETCH(7, a.oauth_consumer_public);
-            TEXT_FETCH(8, a.oauth_consumer_private);
+            INT_FETCH(  0, a._id);
+            TEXT_FETCH( 1, a.site);
+            TEXT_FETCH( 2, a.url);
+            TEXT_FETCH( 3, a.url_queries);
+            TEXT_FETCH( 4, a.account);
+            TEXT_FETCH( 5, a.password);
+            INT_FETCH(  6, a.protocol);
+            TEXT_FETCH( 7, a.oauth_consumer_public);
+            TEXT_FETCH( 8, a.oauth_consumer_private);
+            TEXT_FETCH( 9, a.oauth_token);
+            TEXT_FETCH(10, a.oauth_token_secret);
+            TEXT_FETCH(11, a.oauth_request_url);
+            TEXT_FETCH(12, a.oauth_authorize_url);
+            TEXT_FETCH(13, a.oauth_access_url);
             [ss addObject:a];
         }
         DB_FINISH;
@@ -111,13 +103,30 @@
     }
 }
 
-- (void)dbUpdateOAuth
+- (void)dbUpdateOAuthConsumer
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ? where id = ?");
+        DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ? where id = ?");
 
         SET_VAR_TEXT(1, self.oauth_consumer_public);
         SET_VAR_TEXT(2, self.oauth_consumer_private);
+        SET_VAR_TEXT(3, self.oauth_request_url);
+        SET_VAR_TEXT(4, self.oauth_authorize_url);
+        SET_VAR_TEXT(5, self.oauth_access_url);
+        SET_VAR_INT( 6, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
+- (void)dbUpdateOAuthToken
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update accounts set oauth_token = ?, oauth_token_secret = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.oauth_token);
+        SET_VAR_TEXT(2, self.oauth_token_secret);
         SET_VAR_INT( 3, self._id);
 
         DB_CHECK_OKAY;
@@ -130,20 +139,25 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private from accounts where site = ?");
+        DB_PREPARE(@"select id, site, url, url_queries, account, password, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url from accounts where site = ?");
         SET_VAR_TEXT(1, site);
 
         DB_IF_STEP {
             a = [[dbAccount alloc] init];
-            INT_FETCH( 0, a._id);
-            TEXT_FETCH(1, a.site);
-            TEXT_FETCH(2, a.url);
-            TEXT_FETCH(3, a.url_queries);
-            TEXT_FETCH(4, a.account);
-            TEXT_FETCH(5, a.password);
-            INT_FETCH( 6, a.protocol);
-            TEXT_FETCH(7, a.oauth_consumer_public);
-            TEXT_FETCH(8, a.oauth_consumer_private);
+            INT_FETCH(  0, a._id);
+            TEXT_FETCH( 1, a.site);
+            TEXT_FETCH( 2, a.url);
+            TEXT_FETCH( 3, a.url_queries);
+            TEXT_FETCH( 4, a.account);
+            TEXT_FETCH( 5, a.password);
+            INT_FETCH(  6, a.protocol);
+            TEXT_FETCH( 7, a.oauth_consumer_public);
+            TEXT_FETCH( 8, a.oauth_consumer_private);
+            TEXT_FETCH( 9, a.oauth_token);
+            TEXT_FETCH(10, a.oauth_token_secret);
+            TEXT_FETCH(11, a.oauth_request_url);
+            TEXT_FETCH(12, a.oauth_authorize_url);
+            TEXT_FETCH(13, a.oauth_access_url);
         }
         DB_FINISH;
     }

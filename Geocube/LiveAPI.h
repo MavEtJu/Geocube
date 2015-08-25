@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsAccountsViewController : GCTableViewController {
-    NSArray *accounts;
-    NSInteger accountsCount;
-    GCOAuthBlackbox *oabb;
-    dbAccount *oauth_account;
-}
+@interface LiveAPI : NSObject
 
 @end

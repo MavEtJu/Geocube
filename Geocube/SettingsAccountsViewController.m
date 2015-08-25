@@ -77,7 +77,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbAccount *a = [accounts objectAtIndex:indexPath.row];
+    oauth_account = [accounts objectAtIndex:indexPath.row];
 
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update account details"
@@ -92,10 +92,39 @@
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *username = tf.text;
 
-                             a.account = username;
-                             [a dbUpdateAccount];
+                             oauth_account.account = username;
+                             [oauth_account dbUpdateAccount];
 
                              [self.tableView reloadData];
+
+                             oabb = [[GCOAuthBlackbox alloc] init];
+
+                             [oabb URLRequestToken:oauth_account.oauth_request_url];
+                             [oabb URLAuthorize:oauth_account.oauth_authorize_url];
+                             [oabb URLAccessToken:oauth_account.oauth_access_url];
+                             [oabb consumerKey:oauth_account.oauth_consumer_public];
+                             [oabb consumerSecret:oauth_account.oauth_consumer_private];
+
+                             [oabb obtainRequestToken];
+                             oabb.delegate = self;
+                             NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", oauth_account.oauth_authorize_url, oabb.token];
+
+                             //
+
+                             BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
+                             UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
+                             BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+
+                             [_AppDelegate switchController:RC_BOOKMARKS];
+
+                             [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
+                             [bbvc prepare_oauth:oabb];
+                             [bbvc loadURL:url];
+
+                             //
+
+                             //[webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+
                          }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -107,12 +136,24 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = a.account;
+        textField.text = oauth_account.account;
         textField.placeholder = @"Username";
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (void)oauthdanced:(NSString *)token secret:(NSString *)secret
+{
+    oauth_account.oauth_token = token;
+    oauth_account.oauth_token_secret = secret;
+    [oauth_account dbUpdateOAuthToken];
+    oauth_account = nil;
+    oabb = nil;
+
+    [_AppDelegate switchController:RC_SETTINGS];
+}
+
 
 #pragma mark - Local menu related functions
 
@@ -132,11 +173,11 @@
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_licenses"] value]];
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
-    if (error == nil) {
+    if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         [ImportLicenses parse:data];
 
@@ -156,9 +197,16 @@
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
 
+        NSString *err;
+        if (error != nil) {
+            err = error.description;
+        } else {
+            err = [NSString stringWithFormat:@"HTTP status %ld", response.statusCode];
+        }
+
         UIAlertController *alert= [UIAlertController
                                    alertControllerWithTitle:@"Licenses download"
-                                   message:[NSString stringWithFormat:@"Failed to download: %@", error]
+                                   message:[NSString stringWithFormat:@"Failed to download: %@", err]
                                    preferredStyle:UIAlertControllerStyleAlert
                                    ];
 

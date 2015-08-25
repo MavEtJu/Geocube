@@ -85,6 +85,11 @@
 
     if ([elementName isEqualToString:@"license"] == YES) {
         site = [attributeDict objectForKey:@"site"];
+        url_request = nil;
+        url_access = nil;
+        url_authorize = nil;
+        oauth_private = nil;
+        oauth_public = nil;
         return;
     }
 }
@@ -99,11 +104,26 @@
         oauth_public = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         goto bye;
     }
+    if ([elementName isEqualToString:@"oauth_url_request"] == YES) {
+        url_request = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        goto bye;
+    }
+    if ([elementName isEqualToString:@"oauth_url_authorize"] == YES) {
+        url_authorize = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        goto bye;
+    }
+    if ([elementName isEqualToString:@"oauth_url_access"] == YES) {
+        url_access = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        goto bye;
+    }
     if ([elementName isEqualToString:@"license"] == YES) {
         dbAccount *a = [dbAccount dbGetBySite:site];
         a.oauth_consumer_private = oauth_private;
         a.oauth_consumer_public = oauth_public;
-        [a dbUpdateOAuth];
+        a.oauth_request_url = url_request;
+        a.oauth_access_url = url_access;
+        a.oauth_authorize_url = url_authorize;
+        [a dbUpdateOAuthConsumer];
 
         goto bye;
     }

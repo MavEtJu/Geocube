@@ -7,7 +7,7 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("url_licenses", "http://localhost:8000/licenses.txt");
+insert into config(key, value) values("url_licenses", "http://localhost:8001/licenses.txt");
 insert into config(key, value) values("version", "5");
 
 create table filters (
@@ -658,7 +658,12 @@ create table accounts (
     password text,
     protocol integer,	-- 0 none, 1 groundspeak, 2 okapi
     oauth_consumer_public text,
-    oauth_consumer_private text
+    oauth_consumer_private text,
+    oauth_request_url text,
+    oauth_access_url text,
+    oauth_authorize_url text,
+    oauth_token text,
+    oauth_token_secret text
 );
 insert into accounts(site, url, url_queries, protocol) values("Groundspeak Geocaching.com", "https://www.geocaching.com/", "https://www.geocaching.com/pocket/", 1);
 insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 0);

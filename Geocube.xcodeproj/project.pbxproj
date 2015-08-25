@@ -166,6 +166,9 @@
 		E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */; };
 		E80732F31B626133007FDC29 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732F21B626133007FDC29 /* dbAccount.m */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
+		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
+		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
+		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
@@ -508,6 +511,12 @@
 		E80732F21B626133007FDC29 /* dbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAccount.m; sourceTree = "<group>"; };
 		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuthBlackbox.h; sourceTree = "<group>"; };
+		E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuthBlackbox.m; sourceTree = "<group>"; };
+		E807A5F61B8BC9CF00EBA187 /* OKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAPI.h; sourceTree = "<group>"; };
+		E807A5F71B8BC9CF00EBA187 /* OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAPI.m; sourceTree = "<group>"; };
+		E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveAPI.h; sourceTree = "<group>"; };
+		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1554,6 +1563,12 @@
 		E8F570A91B3FE52C003F020C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */,
+				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
+				E807A5F61B8BC9CF00EBA187 /* OKAPI.h */,
+				E807A5F71B8BC9CF00EBA187 /* OKAPI.m */,
+				E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */,
+				E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -2001,6 +2016,7 @@
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
+				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
@@ -2072,10 +2088,12 @@
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
+				E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
+				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,

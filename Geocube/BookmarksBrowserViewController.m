@@ -29,18 +29,18 @@
 
     menuItems = [NSMutableArray arrayWithArray:@[@"Go home"]];
 
+    webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    webView.delegate = self;
+
+    webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:webView];
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    webView.delegate = self;
-
-    webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:webView];
 }
 
 - (void)loadURL:(NSString *)urlString
@@ -49,6 +49,11 @@
     NSURL *url = [NSURL URLWithString:urlHome];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
+}
+
+- (void)loadURLRequest:(NSURLRequest *)_req
+{
+    [webView loadRequest:_req];
 }
 
 // https://www.geocaching.com/pocket/downloadpq.ashx?g=9bf11fd9-abcd-49b2-b182-74e494e5a1fe&src=web
@@ -61,11 +66,48 @@
     receivedData = nil;
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
 
-    // Spoof iOS Safari headers for sites that sniff the User Agent
-    urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    //urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+
+    // OAuth related stuff
+    NSLog(@"W: %@", req);
+
+    NSString *url = [req.URL absoluteString];
+    NSString *query = [req.URL query];
+    url = [url substringToIndex:(url.length - [query length] - 1)];
+
+    if (oabb == nil)
+        return YES;
+
+    // OAuth related stuff
+    if ([[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
+        // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
+        [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
+            NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
+            NSString *key = [ss objectAtIndex:0];
+            NSString *value = [ss objectAtIndex:1];
+
+            if ([key isEqualToString:@"oauth_token"] == YES)
+                [oabb token:[oabb urldecode:value]];
+            if ([key isEqualToString:@"oauth_verifier"] == YES)
+                [oabb verifier:[oabb urldecode:value]];
+        }];
+
+//        NSLog(@"token: %@", oauth_token);
+//        NSLog(@"verifier: %@", oauth_verifier);
+            
+        [oabb obtainAuthorize];
+        return NO;
+    }
 
     return YES;
 }
+
+- (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
+{
+    oabb = _oabb;
+}
+
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -121,7 +163,7 @@
     }];
 
     receivedData = nil;
-    urlConnection = nil;
+    //urlConnection = nil;
 }
 
 #pragma mark - Local menu related functions

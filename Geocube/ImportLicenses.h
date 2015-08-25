@@ -26,6 +26,9 @@
     NSString *site;
     NSString *oauth_public;
     NSString *oauth_private;
+    NSString *url_request;
+    NSString *url_access;
+    NSString *url_authorize;
 
     NSMutableString *currentText;
 }

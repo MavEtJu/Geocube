@@ -34,6 +34,11 @@ enum dbAccountProtocol {
     NSInteger protocol;
     NSString *oauth_consumer_public;
     NSString *oauth_consumer_private;
+    NSString *oauth_token;
+    NSString *oauth_token_secret;
+    NSString *oauth_access_url;
+    NSString *oauth_authorize_url;
+    NSString *oauth_request_url;
 }
 
 @property (nonatomic, retain) NSString *site;
@@ -44,11 +49,16 @@ enum dbAccountProtocol {
 @property (nonatomic) NSInteger protocol;
 @property (nonatomic, retain) NSString *oauth_consumer_public;
 @property (nonatomic, retain) NSString *oauth_consumer_private;
+@property (nonatomic, retain) NSString *oauth_token;
+@property (nonatomic, retain) NSString *oauth_token_secret;
+@property (nonatomic, retain) NSString *oauth_access_url;
+@property (nonatomic, retain) NSString *oauth_authorize_url;
+@property (nonatomic, retain) NSString *oauth_request_url;
 
 + (dbAccount *)dbGet:(NSId)_id;
-- (id)init:(NSId)__id site:(NSString *)_site url:(NSString *)_url url_queries:(NSString *)_url_queries account:(NSString *)_account password:(NSString *)_password protocol:(NSInteger)_protocol oauth_public:(NSString *)oauth_public oauth_private:(NSString *)oauth_private;
 - (void)dbUpdateAccount;
-- (void)dbUpdateOAuth;
+- (void)dbUpdateOAuthConsumer;
+- (void)dbUpdateOAuthToken;
 + (dbAccount *)dbGetBySite:(NSString *)site;
 
 @end

@@ -19,16 +19,22 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class GCOAuthBlackbox;
+
 @interface BookmarksBrowserViewController : GCViewController<UIWebViewDelegate> {
     UIWebView *webView;
 
     NSMutableData *receivedData;
-    NSURLConnection *urlConnection;
+    //NSURLConnection *urlConnection;
     NSString *suggestedFilename;
     NSMutableURLRequest *req;
     NSString *urlHome;
+
+    GCOAuthBlackbox *oabb;
 }
 
 - (void)loadURL:(NSString *)urlString;
+- (void)loadURLRequest:(NSURLRequest *)req;
+- (void)prepare_oauth:(GCOAuthBlackbox *)oabb;
 
 @end
