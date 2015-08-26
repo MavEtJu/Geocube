@@ -97,6 +97,24 @@
     return _id;
 }
 
++ (NSArray *)dbAllIdGCId
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, gc_id from logs");
+
+        DB_WHILE_STEP {
+            dbLog *l = [[dbLog alloc] init];
+            INT_FETCH(0, l._id);
+            INT_FETCH(1, l.gc_id);
+            [ss addObject:l];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
 - (NSId)dbCreate
 {
     return [dbLog dbCreate:self];

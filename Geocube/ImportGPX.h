@@ -42,6 +42,7 @@
     NSArray *files;
     dbGroup *group;
 
+    NSMutableArray *logIdGCId;
     NSMutableArray *attributesYES, *attributesNO;
     NSMutableArray *logs;
     NSMutableArray *travelbugs;

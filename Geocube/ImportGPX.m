@@ -75,6 +75,7 @@
     inItem = NO;
     inLog = NO;
     inTravelbug = NO;
+    logIdGCId = [NSMutableArray arrayWithArray:[dbLog dbAllIdGCId]];
 
     @autoreleasepool {
         [rssParser parse];
@@ -296,11 +297,19 @@
         if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
             [currentLog finish];
 
-            NSId log_id = [dbLog dbGetIdByGC:currentLog.gc_id];
+            __block NSId log_id = 0;
+            [logIdGCId enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                if (log.gc_id == currentLog.gc_id) {
+                    log_id = log._id;
+                    *stop = YES;
+                }
+            }];
+
             totalLogsCount++;
             if (log_id == 0) {
                 newLogsCount++;
                 [dbLog dbCreate:currentLog];
+                [logIdGCId addObject:currentLog];   // Extend array just in case
             } else {
                 currentLog._id = log_id;
                 [currentLog dbUpdate];

@@ -59,6 +59,7 @@
 - (id)init:(NSId)gc_id;
 
 + (NSId)dbGetIdByGC:(NSId)gc_id;
++ (NSArray *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypointLogged:(NSId)wp_id;
