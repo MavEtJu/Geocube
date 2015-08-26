@@ -56,7 +56,7 @@
     }
 }
 
-+ (dbPersonalNote *)dbGetByWaypointID:(NSInteger)wp_id
++ (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id
 {
     dbPersonalNote *pn = nil;
 

@@ -163,7 +163,7 @@
         if (error != nil) {
             err = error.description;
         } else {
-            err = [NSString stringWithFormat:@"HTTP status %ld", response.statusCode];
+            err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
         }
 
         UIAlertController *alert= [UIAlertController

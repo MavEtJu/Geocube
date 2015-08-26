@@ -33,6 +33,6 @@
 @property (nonatomic, retain) NSString *note;
 @property (nonatomic) NSInteger cellHeight;
 
-+ (dbPersonalNote *)dbGetByWaypointID:(NSInteger)wp_id;
++ (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id;
 
 @end

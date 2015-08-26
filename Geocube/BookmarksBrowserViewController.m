@@ -114,6 +114,7 @@
     NSString *mime = [response MIMEType];
 
     NSArray *mimeTypes = @[@"application/gpx", @"application/gpx+xml", @"application/zip", @"text/xml"];
+    NSLog(@"Found mime type: %@", mime);
 
     [mimeTypes enumerateObjectsUsingBlock:^(NSString *mimeType, NSUInteger idx, BOOL *stop) {
         if ([mime isEqualToString:mimeType] == YES) {
@@ -143,7 +144,7 @@
         return;
 
     NSInteger length = [receivedData length];
-    NSLog(@"Received %ld bytes", length);
+    NSLog(@"Received %ld bytes", (long)length);
     [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
