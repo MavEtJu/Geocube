@@ -176,9 +176,9 @@
     return oauth;
 }
 
-- (void)obtainAuthorize
+- (void)obtainAccessToken
 {
-    NSLog(@"obtainAuthorize");
+    NSLog(@"obtainAccessToken");
 
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:AccessTokenURL];
 
@@ -257,7 +257,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"%@", request);
+    NSLog(@"webView:shouldStartLoadWithRequest: %@", request);
 
     NSString *url = [request.URL absoluteString];
     NSString *query = [request.URL query];
@@ -279,7 +279,7 @@
         NSLog(@"token: %@", token);
         NSLog(@"verifier: %@", verifier);
 
-        [self obtainAuthorize];
+        [self obtainAccessToken];
         return NO;
     }
 
@@ -449,34 +449,6 @@
 - (NSString *)urldecode:(NSString *)in
 {
     return [in stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-- (NSDictionary *)services_users_byUsername:(NSString *)username
-{
-    NSLog(@"services_users_byUsername");
-
-    NSString *urlString = [NSString stringWithFormat:@"%@/okapi/services/users/user?username=%@&fields=caches_found%%7Ccaches_notfound", server, username];
-    NSURL *urlURL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:urlURL];
-
-    NSString *oauth = [self oauth_header:urlRequest];
-    [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
-    [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
-
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
-
-    // Expected:
-    // oauth_token=q3rHbDurHspVhzuV36Wp&
-    // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    return json;
 }
 
 - (NSDictionary *)GetYourUserProfile

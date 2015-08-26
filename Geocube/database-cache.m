@@ -23,7 +23,7 @@
 
 @implementation DatabaseCache
 
-@synthesize Types, Groups, LogTypes, Containers, Attributes, Countries, States;
+@synthesize Accounts, Types, Groups, LogTypes, Containers, Attributes, Countries, States;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound;
 
 - (id)init
@@ -36,6 +36,7 @@
 // Load all waypoints and waypoint related data in memory
 - (void)loadWaypointData
 {
+    Accounts = [dbAccount dbAll];
     Groups = [dbGroup dbAll];
     Types = [dbType dbAll];
     Containers = [dbContainer dbAll];

@@ -36,7 +36,7 @@
 
 - (void)refreshAccountData
 {
-    accounts = [dbAccount dbAll];
+    accounts = [dbc Accounts];
     accountsCount = [accounts count];
     [self refreshControl];
 }
@@ -77,7 +77,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    oauth_account = [accounts objectAtIndex:indexPath.row];
+    dbAccount *account = [accounts objectAtIndex:indexPath.row];
 
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update account details"
@@ -92,39 +92,12 @@
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *username = tf.text;
 
-                             oauth_account.account = username;
-                             [oauth_account dbUpdateAccount];
+                             account.account = username;
+                             [account dbUpdateAccount];
 
                              [self.tableView reloadData];
 
-                             oabb = [[GCOAuthBlackbox alloc] init];
-
-                             [oabb URLRequestToken:oauth_account.oauth_request_url];
-                             [oabb URLAuthorize:oauth_account.oauth_authorize_url];
-                             [oabb URLAccessToken:oauth_account.oauth_access_url];
-                             [oabb consumerKey:oauth_account.oauth_consumer_public];
-                             [oabb consumerSecret:oauth_account.oauth_consumer_private];
-
-                             [oabb obtainRequestToken];
-                             oabb.delegate = self;
-                             NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", oauth_account.oauth_authorize_url, oabb.token];
-
-                             //
-
-                             BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
-                             UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
-                             BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
-
-                             [_AppDelegate switchController:RC_BOOKMARKS];
-
-                             [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
-                             [bbvc prepare_oauth:oabb];
-                             [bbvc loadURL:url];
-
-                             //
-
-                             //[webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-
+                             [account.remoteAPI Authenticate];
                          }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -136,22 +109,11 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = oauth_account.account;
+        textField.text = account.account;
         textField.placeholder = @"Username";
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)oauthdanced:(NSString *)token secret:(NSString *)secret
-{
-    oauth_account.oauth_token = token;
-    oauth_account.oauth_token_secret = secret;
-    [oauth_account dbUpdateOAuthToken];
-    oauth_account = nil;
-    oabb = nil;
-
-    [_AppDelegate switchController:RC_SETTINGS];
 }
 
 

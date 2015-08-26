@@ -95,7 +95,7 @@
 //        NSLog(@"token: %@", oauth_token);
 //        NSLog(@"verifier: %@", oauth_verifier);
             
-        [oabb obtainAuthorize];
+        [oabb obtainAccessToken];
         return NO;
     }
 

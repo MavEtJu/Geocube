@@ -111,6 +111,7 @@
 #import "LiveAPI.h"
 #import "OKAPI.h"
 #import "GCOAuthBlackbox.h"
+#import "RemoteAPI.h"
 
 #import "SettingsMainViewController.h"
 #import "SettingsAccountsViewController.h"

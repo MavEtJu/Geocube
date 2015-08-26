@@ -93,6 +93,7 @@
 @class NullViewController;
 @class OKAPI;
 @class PersonalNoteTableViewCell;
+@class RemoteAPI;
 @class SettingsAccountsViewController;
 @class SettingsMainViewController;
 @class ThemeGeosphere;

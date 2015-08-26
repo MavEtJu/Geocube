@@ -22,8 +22,6 @@
 @interface SettingsAccountsViewController : GCTableViewController {
     NSArray *accounts;
     NSInteger accountsCount;
-    GCOAuthBlackbox *oabb;
-    dbAccount *oauth_account;
 }
 
 @end

@@ -23,7 +23,13 @@
 
 @implementation dbAccount
 
-@synthesize site, url, account, password, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url;
+@synthesize site, url, account, password, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, remoteAPI;
+
+- (void)finish
+{
+    remoteAPI = [[RemoteAPI alloc] init:self];
+    finished = YES;
+}
 
 + (dbAccount *)dbGet:(NSId)_id
 {
@@ -49,6 +55,7 @@
             TEXT_FETCH(11, a.oauth_request_url);
             TEXT_FETCH(12, a.oauth_authorize_url);
             TEXT_FETCH(13, a.oauth_access_url);
+            [a finish];
         }
         DB_FINISH;
     }
@@ -78,6 +85,7 @@
             TEXT_FETCH(11, a.oauth_request_url);
             TEXT_FETCH(12, a.oauth_authorize_url);
             TEXT_FETCH(13, a.oauth_access_url);
+            [a finish];
             [ss addObject:a];
         }
         DB_FINISH;
@@ -158,6 +166,7 @@
             TEXT_FETCH(11, a.oauth_request_url);
             TEXT_FETCH(12, a.oauth_authorize_url);
             TEXT_FETCH(13, a.oauth_access_url);
+            [a finish];
         }
         DB_FINISH;
     }

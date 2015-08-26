@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface OKAPI : NSObject
+@interface OKAPI : NSObject {
+    RemoteAPI *remoteAPI;
+}
+
+- (id)init:(RemoteAPI *)remoteAPI;
+- (NSDictionary *)services_users_byUsername:(NSString *)username;
 
 @end

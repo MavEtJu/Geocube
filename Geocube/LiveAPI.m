@@ -23,4 +23,58 @@
 
 @implementation LiveAPI
 
+- (id)init:(RemoteAPI *)_remoteAPI
+{
+    self = [super init];
+
+    remoteAPI = _remoteAPI;
+
+    return self;
+}
+
+- (NSDictionary *)GetYourUserProfile
+{
+    NSLog(@"GetYourUserProfile");
+
+    NSString *urlString = @"https://api.groundspeak.com/LiveV6/geocaching.svc/GetYourUserProfile?format=json";
+    NSURL *urlURL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:urlURL];
+
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    /*
+     {
+     "AccessToken": "D7dYifnoQrG6QrbpHlTFOuW/BI0=",
+     "DeviceInfo": {
+     "ApplicationSoftwareVersion": "4.98.2",
+     "DeviceOperatingSystem": "10.10.5",
+     "DeviceUniqueId": "8141B980-CF1B-491B-9247-18AB78A3A8B1"
+     },
+     "ProfileOptions": {
+     "FavoritePointsData": "true",
+     "PublicProfileData": "true"
+     }
+     }
+*/
+    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"ProfileOptions\":{\"PublicProfileData\":\"true\",\"EmailData\":\"true\"},\"DeviceInfo\":{ \"ApplicationSoftwareVersion\":\"1.2.3.4\",\"DeviceOperatingSystem\":\"2.3.4.5\",\"DeviceUniqueId\":\"42\"}}", remoteAPI.oabb.token];
+    urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    // Expected:
+    // oauth_token=q3rHbDurHspVhzuV36Wp&
+    // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
+
 @end

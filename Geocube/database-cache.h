@@ -21,6 +21,7 @@
 
 @interface DatabaseCache : NSObject {
     // In memory database information
+    NSArray *Accounts;
     NSArray *Types;
     NSArray *Groups;
     NSArray *LogTypes;
@@ -55,6 +56,7 @@
     dbAttribute *Attribute_Unknown;
 }
 
+@property (nonatomic, retain) NSArray *Accounts;
 @property (nonatomic, retain) NSArray *Types;
 @property (nonatomic, retain) NSArray *Groups;
 @property (nonatomic, retain) NSArray *LogTypes;

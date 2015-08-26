@@ -92,12 +92,12 @@
 - (void)server:(NSString *)s;
 
 - (void)obtainRequestToken;
-- (void)obtainAuthorize;
+- (void)obtainAccessToken;
 
-- (NSDictionary *)services_users_byUsername:(NSString *)username;
-- (NSDictionary *)GetYourUserProfile;
+- (NSString *)oauth_header:(NSURLRequest *)urlRequest;
 - (void)webview:(BookmarksBrowserViewController *)bbvc url:(NSString *)url;
-- (NSString *)urldecode:(NSString *)in;
 
+- (NSString *)urldecode:(NSString *)in;
+- (NSString *)urlencode:(NSString *)in;
 
 @end

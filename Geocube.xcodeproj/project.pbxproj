@@ -184,6 +184,7 @@
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
 		E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67C1B6F76E70019F9D2 /* menu icon - local.png */; };
 		E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67F1B7024E40019F9D2 /* menu icon - close.png */; };
+		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
@@ -542,6 +543,9 @@
 		E832E67B1B6F76E70019F9D2 /* menu icon - global.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global.png"; path = "images/menu icon - global.png"; sourceTree = "<group>"; };
 		E832E67C1B6F76E70019F9D2 /* menu icon - local.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local.png"; path = "images/menu icon - local.png"; sourceTree = "<group>"; };
 		E832E67F1B7024E40019F9D2 /* menu icon - close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close.png"; path = "images/menu icon - close.png"; sourceTree = "<group>"; };
+		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
+		E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
+		E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -1416,6 +1420,7 @@
 			isa = PBXGroup;
 			children = (
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
+				E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */,
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
@@ -1563,6 +1568,8 @@
 		E8F570A91B3FE52C003F020C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
+				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
 				E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */,
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E807A5F61B8BC9CF00EBA187 /* OKAPI.h */,
@@ -2072,6 +2079,7 @@
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BookmarksUserViewController.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
+				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,

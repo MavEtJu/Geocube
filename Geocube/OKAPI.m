@@ -23,4 +23,41 @@
 
 @implementation OKAPI
 
+- (id)init:(RemoteAPI *)_remoteAPI
+{
+    self = [super init];
+
+    remoteAPI = _remoteAPI;
+
+    return self;
+}
+
+- (NSDictionary *)services_users_byUsername:(NSString *)username
+{
+    NSLog(@"services_users_byUsername");
+
+    NSString *urlString = [NSString stringWithFormat:@"%@/okapi/services/users/user?username=%@&fields=caches_found%%7Ccaches_notfound", remoteAPI.account.url, remoteAPI.account.account];
+    NSURL *urlURL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:urlURL];
+
+    NSString *oauth = [remoteAPI.oabb oauth_header:urlRequest];
+    [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
+    [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
+
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    // Expected:
+    // oauth_token=q3rHbDurHspVhzuV36Wp&
+    // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
+
 @end

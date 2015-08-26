@@ -39,6 +39,9 @@ enum dbAccountProtocol {
     NSString *oauth_access_url;
     NSString *oauth_authorize_url;
     NSString *oauth_request_url;
+
+    // Not read from the database
+    RemoteAPI *remoteAPI;
 }
 
 @property (nonatomic, retain) NSString *site;
@@ -54,6 +57,7 @@ enum dbAccountProtocol {
 @property (nonatomic, retain) NSString *oauth_access_url;
 @property (nonatomic, retain) NSString *oauth_authorize_url;
 @property (nonatomic, retain) NSString *oauth_request_url;
+@property (nonatomic, retain) RemoteAPI *remoteAPI;
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;

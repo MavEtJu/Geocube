@@ -37,21 +37,34 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
+    __block NSInteger y = 10;
 
-    /*
-    NSURL *baseURL = [NSURL URLWithString:@"https://staging.geocaching.com/"];
-    NSString *OAUTH_CONSUMER_KEY = @"9C7552E1-3C04-4D04-A395-230D8931E494";
-    NSString *OAUTH_CONSUMER_SECRET = @"DA7CC147-7B5B-4423-BCB4-D0C03E2BF685";
-     */
+    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 40, 100, 40)];
-    [label setText:@"Label created in ScrollerController.loadView"];
-    [self.view addSubview:label];
+        if (a.account == nil || [a.account length] == 0)
+            return;
+
+        UILabel *l;
+
+        l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 15)];
+        [l setText:a.site];
+        l.font = [UIFont systemFontOfSize:14];
+        [self.view addSubview:l];
+
+        NSDictionary *d = [a.remoteAPI UserStatistics];
+
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4 * 3, y, width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"%@ %@", [d valueForKey:@"waypoints_found"], [d valueForKey:@"waypoints_notfound"]]];
+        l.font = [UIFont systemFontOfSize:14];
+        [self.view addSubview:l];
+
+        y += 15;
+    }];
 }
 
 - (void)didReceiveMemoryWarning

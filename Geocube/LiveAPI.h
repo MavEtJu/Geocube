@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface LiveAPI : NSObject
+@interface LiveAPI : NSObject {
+    RemoteAPI *remoteAPI;
+}
+
+- (id)init:(RemoteAPI *)remoteAPI;
+- (NSDictionary *)GetYourUserProfile;
+
 
 @end
