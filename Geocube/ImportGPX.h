@@ -42,7 +42,7 @@
     NSArray *files;
     dbGroup *group;
 
-    NSMutableArray *attributes;
+    NSMutableArray *attributesYES, *attributesNO;
     NSMutableArray *logs;
     NSMutableArray *travelbugs;
     NSInteger index;

@@ -80,14 +80,33 @@
     }
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO
+- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNo
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes ) values(?, ?, ?)");
+        DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values(?, ?, ?)");
 
         SET_VAR_INT( 1, _id);
         SET_VAR_INT( 2, wp_id);
-        SET_VAR_BOOL(3, YesNO);
+        SET_VAR_BOOL(3, YesNo);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray *)attrs YesNo:(BOOL)YesNo
+{
+    if ([attrs count] == 0)
+        return;
+    
+    __block NSMutableString *sql = [NSMutableString stringWithString:@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values "];
+    [attrs enumerateObjectsUsingBlock:^(dbAttribute *attr, NSUInteger idx, BOOL *stop) {
+        if (idx != 0)
+            [sql appendString:@","];
+        [sql appendFormat:@"(%ld, %ld, %d)", (long)attr._id, (long)wp_id, YesNo];
+    }];
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(sql);
 
         DB_CHECK_OKAY;
         DB_FINISH;

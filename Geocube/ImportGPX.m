@@ -113,7 +113,8 @@
             [currentWP setLon:[attributeDict objectForKey:@"lon"]];
 
             logs = [NSMutableArray arrayWithCapacity:20];
-            attributes = [NSMutableArray arrayWithCapacity:20];
+            attributesYES = [NSMutableArray arrayWithCapacity:20];
+            attributesNO = [NSMutableArray arrayWithCapacity:20];
             travelbugs = [NSMutableArray arrayWithCapacity:20];
             currentGS = nil;
 
@@ -173,7 +174,10 @@
             BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
             dbAttribute *a = [dbc Attribute_get_bygcid:_id];
             a._YesNo = YesNo;
-            [attributes addObject:[dbc Attribute_get_bygcid:_id]];
+            if (YesNo == YES)
+                [attributesYES addObject:[dbc Attribute_get_bygcid:_id]];
+            else
+                [attributesNO addObject:[dbc Attribute_get_bygcid:_id]];
             return;
         }
         
@@ -243,11 +247,8 @@
 
             // Link attributes to cache
             [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
-            e = [attributes objectEnumerator];
-            dbAttribute *a;
-            while ((a = [e nextObject]) != nil) {
-                [a dbLinkToWaypoint:currentWP._id YesNo:a._YesNo];
-            }
+            [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
+            [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
 
             // Link travelbugs to cache
             [dbTravelbug dbUnlinkAllFromWaypoint:currentWP._id];
