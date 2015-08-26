@@ -57,20 +57,18 @@
         [self.view addSubview:l];
 
         NSDictionary *d = [a.remoteAPI UserStatistics];
+        NSMutableString *s = [NSMutableString stringWithFormat:@"%@ found", [d valueForKey:@"waypoints_found"]];
+        NSObject *dnf = [d valueForKey:@"waypoints_notfound"];
+        if ([dnf isKindOfClass:[NSNumber class]] == YES)
+            [s appendFormat:@" / %@ DNF", dnf];
 
         l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4 * 3, y, width / 4, 15)];
-        [l setText:[NSString stringWithFormat:@"%@ %@", [d valueForKey:@"waypoints_found"], [d valueForKey:@"waypoints_notfound"]]];
+        [l setText:s];
         l.font = [UIFont systemFontOfSize:14];
         [self.view addSubview:l];
 
         y += 15;
     }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
