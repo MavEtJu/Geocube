@@ -22,7 +22,8 @@
 enum dbAccountProtocol {
     ProtocolNone = 0,
     ProtocolGroundspeak = 1,
-    ProtocolOKAPI = 2
+    ProtocolOKAPI = 2,
+    ProtocolGCA = 3
 };
 
 @interface dbAccount : dbObject {

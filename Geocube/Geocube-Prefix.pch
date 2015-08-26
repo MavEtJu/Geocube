@@ -110,6 +110,7 @@
 
 #import "LiveAPI.h"
 #import "OKAPI.h"
+#import "GeocachingAustralia.h"
 #import "GCOAuthBlackbox.h"
 #import "RemoteAPI.h"
 

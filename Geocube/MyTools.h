@@ -51,6 +51,9 @@
 - (void)clockShowAndReset:(NSString *)title;
 - (void)clockEnable:(BOOL)yesno;
 
++ (NSString *)urlencode:(NSString *)in;
++ (NSString *)urldecode:(NSString *)in;
+
 @end
 
 typedef sqlite3_int64 NSId;

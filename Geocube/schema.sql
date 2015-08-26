@@ -656,7 +656,7 @@ create table accounts (
     url_queries text,
     account text,
     password text,
-    protocol integer,	-- 0 none, 1 groundspeak, 2 okapi
+    protocol integer,	-- 0 none, 1 groundspeak, 2 okapi, 3 GCA
     oauth_consumer_public text,
     oauth_consumer_private text,
     oauth_request_url text,
@@ -666,7 +666,7 @@ create table accounts (
     oauth_token_secret text
 );
 insert into accounts(site, url, url_queries, protocol) values("Groundspeak Geocaching.com", "https://www.geocaching.com/", "https://www.geocaching.com/pocket/", 1);
-insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 0);
+insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 3);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching BeNeLux", "http://www.opencaching.nl/", "http://www.opencaching.nl/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching North America", "http://www.opencaching.us/", "http://www.opencaching.us/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching Deutschand", "http://www.opencaching.de/", "http://www.opencaching.de/query.php", 2);

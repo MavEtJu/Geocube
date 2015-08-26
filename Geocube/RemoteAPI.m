@@ -27,12 +27,16 @@
 
     gs = nil;
     okapi = nil;
+    gca = nil;
     switch (account.protocol) {
         case ProtocolGroundspeak:
             gs = [[LiveAPI alloc] init:self];
             break;
         case ProtocolOKAPI:
             okapi = [[OKAPI alloc] init:self];
+            break;
+        case ProtocolGCA:
+            gca = [[GeocachingAustralia alloc] init:self];
             break;
     }
     return self;
@@ -52,7 +56,7 @@
 
         [oabb obtainRequestToken];
         oabb.delegate = self;
-        NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [oabb urlencode:oabb.token]];
+        NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlencode:oabb.token]];
 
         BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
         UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
@@ -108,8 +112,16 @@
 
         [ret setValue:@"" forKey:@"waypoints_notfound"];
         return ret;
-
     }
+
+    if (account.protocol == ProtocolGCA) {
+        NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+        NSDictionary *dict = [gca cacher_statistic__finds:username];
+        [ret setValue:[dict valueForKey:@"waypoints_found"] forKey:@"waypoints_found"];
+        [ret setValue:@"" forKey:@"waypoints_notfound"];
+        return ret;
+    }
+
     return nil;
 }
 

@@ -131,20 +131,20 @@
 
     timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
 
-    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [self urlencode:consumerKey]];
-    [oauth appendFormat:@", oauth_nonce=\"%@\"", [self urlencode:nonce]];
+    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [ MyTools urlencode:consumerKey]];
+    [oauth appendFormat:@", oauth_nonce=\"%@\"", [MyTools urlencode:nonce]];
     [oauth appendFormat:@", oauth_timestamp=\"%@\"", timestamp];
     [oauth appendFormat:@", oauth_signature_method=\"%@\"", signatureMethod];
-    [oauth appendFormat:@", oauth_version=\"%@\"", [self urlencode:version]];
+    [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlencode:version]];
     if (callback != nil)
-        [oauth appendFormat:@", oauth_callback=\"%@\"", [self urlencode:callback]];
+        [oauth appendFormat:@", oauth_callback=\"%@\"", [MyTools urlencode:callback]];
     if (token != nil)
-        [oauth appendFormat:@", oauth_token=\"%@\"", [self urlencode:token]];
+        [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlencode:token]];
     if (verifier != nil)
-        [oauth appendFormat:@", oauth_verifier=\"%@\"", [self urlencode:verifier]];
+        [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlencode:verifier]];
 
     [self calculateSignature:urlRequest];
-    [oauth appendFormat:@", oauth_signature=\"%@\"", [self urlencode:signature]];
+    [oauth appendFormat:@", oauth_signature=\"%@\"", [MyTools urlencode:signature]];
 
     return oauth;
 }
@@ -160,18 +160,18 @@
 
     NSMutableString *oauth = [NSMutableString stringWithFormat:@"OAuth "];
 
-    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [self urlencode:consumerKey]];
-    [oauth appendFormat:@", oauth_nonce=\"%@\"", [self urlencode:nonce]];
+    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [MyTools urlencode:consumerKey]];
+    [oauth appendFormat:@", oauth_nonce=\"%@\"", [MyTools urlencode:nonce]];
     [oauth appendFormat:@", oauth_timestamp=\"%@\"", timestamp];
     [oauth appendFormat:@", oauth_signature_method=\"%@\"", signatureMethod];
-    [oauth appendFormat:@", oauth_version=\"%@\"", [self urlencode:version]];
+    [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlencode:version]];
     if (token != nil)
-        [oauth appendFormat:@", oauth_token=\"%@\"", [self urlencode:token]];
+        [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlencode:token]];
     if (verifier != nil)
-        [oauth appendFormat:@", oauth_verifier=\"%@\"", [self urlencode:verifier]];
+        [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlencode:verifier]];
 
     [self calculateSignature:urlRequest];
-    [oauth appendFormat:@", oauth_signature=\"%@\"", [self urlencode:signature]];
+    [oauth appendFormat:@", oauth_signature=\"%@\"", [MyTools urlencode:signature]];
 
     return oauth;
 }
@@ -205,9 +205,9 @@
         NSString *value = [ss objectAtIndex:1];
 
         if ([key isEqualToString:@"oauth_token"] == YES)
-            token = [self urldecode:value];
+            token = [MyTools urldecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
-            tokenSecret = [self urldecode:value];
+            tokenSecret = [MyTools urldecode:value];
     }];
     if (delegate != nil)
         [delegate oauthdanced:token secret:tokenSecret];
@@ -241,9 +241,9 @@
         NSString *value = [ss objectAtIndex:1];
 
         if ([key isEqualToString:@"oauth_token"] == YES)
-            token = [self urldecode:value];
+            token = [MyTools urldecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
-            tokenSecret = [self urldecode:value];
+            tokenSecret = [MyTools urldecode:value];
     }];
 
     NSLog(@"token: %@", token);
@@ -271,9 +271,9 @@
             NSString *value = [ss objectAtIndex:1];
 
             if ([key isEqualToString:@"oauth_token"] == YES)
-                token = [self urldecode:value];
+                token = [MyTools urldecode:value];
             if ([key isEqualToString:@"oauth_verifier"] == YES)
-                verifier = [self urldecode:value];
+                verifier = [MyTools urldecode:value];
         }];
 
         NSLog(@"token: %@", token);
@@ -311,7 +311,7 @@
         NSArray *queries = [query componentsSeparatedByString:@"&"];
         [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
             NSArray *ss = [s componentsSeparatedByString:@"="];
-            [paramDict setValue:[self urldecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
+            [paramDict setValue:[MyTools urldecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
     }
 
@@ -320,7 +320,7 @@
         NSArray *queries = [body componentsSeparatedByString:@"&"];
         [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
             NSArray *ss = [s componentsSeparatedByString:@"="];
-            [paramDict setValue:[self urldecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
+            [paramDict setValue:[MyTools urldecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
     }
 
@@ -345,7 +345,7 @@
     [order enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         if ([params compare:@""] != NSOrderedSame)
             [params appendString:@"&"];
-        [params appendFormat:@"%@=%@", [self urlencode:key], [self urlencode:[paramDict objectForKey:key]]];
+        [params appendFormat:@"%@=%@", [MyTools urlencode:key], [MyTools urlencode:[paramDict objectForKey:key]]];
     }];
 
     /*
@@ -366,9 +366,9 @@
 
     NSMutableString *pre = [NSMutableString stringWithString:method];
     [pre appendString:@"&"];
-    [pre appendString:[self urlencode:BaseURL]];
+    [pre appendString:[MyTools urlencode:BaseURL]];
     [pre appendString:@"&"];
-    [pre appendString:[self urlencode:params ]];
+    [pre appendString:[MyTools urlencode:params ]];
 
     /*
     expected = @"POST&https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&include_entities%3Dtrue%26oauth_consumer_key%3Dxvz1evFS4wEEPTGEFPHBog%26oauth_nonce%3DkYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1318622958%26oauth_token%3D370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb%26oauth_version%3D1.0%26status%3DHello%2520Ladies%2520%252B%2520Gentlemen%252C%2520a%2520signed%2520OAuth%2520request%2521";
@@ -387,10 +387,10 @@
     // Getting a signing key
 
     NSMutableString *sk = [NSMutableString stringWithString:@""];
-    [sk appendString:[self urlencode:consumerSecret]];
+    [sk appendString:[MyTools urlencode:consumerSecret]];
     [sk appendString:@"&"];
     if (tokenSecret != nil)
-        [sk appendString:[self urlencode:tokenSecret]];
+        [sk appendString:[MyTools urlencode:tokenSecret]];
 
     /*
     expected = @"kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw&LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE";
@@ -422,33 +422,6 @@
 
     signature = [HMAC base64EncodedStringWithOptions:0];
     NSLog(@"Signature: %@", signature);
-}
-
-
-- (NSString *)urlencode:(NSString *)in
-{
-    NSMutableString *output = [NSMutableString string];
-    const unsigned char *source = (const unsigned char *)[in UTF8String];
-    NSInteger sourceLen = strlen((const char *)source);
-    for (int i = 0; i < sourceLen; ++i) {
-        const unsigned char thisChar = source[i];
-        if (thisChar == ' '){
-            [output appendString:@"%20"];
-        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
-                   (thisChar >= 'a' && thisChar <= 'z') ||
-                   (thisChar >= 'A' && thisChar <= 'Z') ||
-                   (thisChar >= '0' && thisChar <= '9')) {
-            [output appendFormat:@"%c", thisChar];
-        } else {
-            [output appendFormat:@"%%%02X", thisChar];
-        }
-    }
-    return output;
-}
-
-- (NSString *)urldecode:(NSString *)in
-{
-    return [in stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

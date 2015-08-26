@@ -87,9 +87,9 @@
             NSString *value = [ss objectAtIndex:1];
 
             if ([key isEqualToString:@"oauth_token"] == YES)
-                [oabb token:[oabb urldecode:value]];
+                [oabb token:[MyTools urldecode:value]];
             if ([key isEqualToString:@"oauth_verifier"] == YES)
-                [oabb verifier:[oabb urldecode:value]];
+                [oabb verifier:[MyTools urldecode:value]];
         }];
 
 //        NSLog(@"token: %@", oauth_token);

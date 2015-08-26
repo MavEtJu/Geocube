@@ -8,8 +8,11 @@
 
 @interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate> {
     GCOAuthBlackbox *oabb;
+
     LiveAPI *gs;
     OKAPI *okapi;
+    GeocachingAustralia *gca;
+
     dbAccount *account;
 
     NSInteger stats_found, stats_notfound;
