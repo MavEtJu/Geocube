@@ -73,13 +73,15 @@
 
     NSString *url = [req.URL absoluteString];
     NSString *query = [req.URL query];
-    url = [url substringToIndex:(url.length - [query length] - 1)];
+    if ([query length] != 0)
+        url = [url substringToIndex:(url.length - [query length] - 1)];
 
     if (oabb == nil)
         return YES;
 
     // OAuth related stuff
-    if ([[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
+    if ([url length] == [oabb.callback length] &&
+        [[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
         [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
             NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
