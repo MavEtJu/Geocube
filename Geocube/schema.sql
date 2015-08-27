@@ -669,7 +669,7 @@ insert into accounts(site, url, url_queries, protocol) values("Groundspeak Geoca
 insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 3);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching BeNeLux", "http://www.opencaching.nl/", "http://www.opencaching.nl/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching North America", "http://www.opencaching.us/", "http://www.opencaching.us/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Deutschand", "http://www.opencaching.de/", "http://www.opencaching.de/query.php", 2);
+insert into accounts(site, url, url_queries, protocol) values("OpenCaching Deutschland", "http://www.opencaching.de/", "http://www.opencaching.de/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching CZ", "http://www.opencaching.cz/", "http://www.opencaching.cz/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
 insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
