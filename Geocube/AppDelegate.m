@@ -353,6 +353,7 @@
     // UIWindow.rootViewController = UITabBarController
     // UITabBarController.viewControllers = [UIViewController ...]
 
+    [self switchController:[myConfig currentPage]];
     BHTabsViewController *currentTab = [tabBars objectAtIndex:[myConfig currentPage]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
