@@ -85,6 +85,8 @@ enum { kTagTabBase = 100 };
 
 - (void)makeTabViewCurrent:(NSInteger)idx
 {
+    if (idx < 0 || idx >= [self.tabsContainerView.tabViews count])
+        idx = 0;
     [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:idx]];
 }
 
