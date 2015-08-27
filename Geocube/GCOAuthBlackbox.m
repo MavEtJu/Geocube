@@ -187,13 +187,22 @@
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
 
-    NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"%@ - token is nil after obtainAccessToken, not further authenticating", [self class]);
+        if (delegate != nil)
+            [delegate oauthtripped:@"Unable to obtain access token."  error:error];
+        tokenSecret = nil;
+        token = nil;
+        return;
+    }
 
     // Expected:
     // oauth_token=q3rHbDurHspVhzuV36Wp&
@@ -223,12 +232,21 @@
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
 
-    NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"%@ - Unable to obtain request token, aborting", [self class]);
+        token = nil;
+        tokenSecret = nil;
+        if (delegate != nil)
+            [delegate oauthtripped:@"Unable to obtain request token, aborting" error:error];
+        return;
+    }
 
     // Expected:
     // oauth_token=b3vbGSxCEB2xNRjHfmj6&

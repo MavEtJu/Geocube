@@ -10,7 +10,7 @@
 
 @implementation RemoteAPI
 
-@synthesize account, oabb;
+@synthesize account, oabb, authenticationDelegate;
 @synthesize stats_found, stats_notfound;
 
 - (id)init:(dbAccount *)_account;
@@ -54,8 +54,13 @@
         [oabb consumerKey:account.oauth_consumer_public];
         [oabb consumerSecret:account.oauth_consumer_private];
 
-        [oabb obtainRequestToken];
         oabb.delegate = self;
+        [oabb obtainRequestToken];
+        if (oabb.token == nil) {
+            NSLog(@"%@ - token is nil after obtainRequestToken, not further authenticating", [self class]);
+            return NO;
+        }
+
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlencode:oabb.token]];
 
         BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
@@ -67,6 +72,7 @@
         [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
         [bbvc prepare_oauth:oabb];
         [bbvc loadURL:url];
+        return YES;
     }
     
     return NO;
@@ -80,7 +86,24 @@
     account = nil;
     oabb = nil;
 
+    if (authenticationDelegate)
+        [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
+
     [_AppDelegate switchController:RC_SETTINGS];
+}
+
+- (void)oauthtripped:(NSString *)reason error:(NSError *)error
+{
+    NSLog(@"tripped: %@", reason);
+    account.oauth_token = nil;
+    account.oauth_token_secret = nil;
+    [account dbUpdateOAuthToken];
+    account = nil;
+    oabb = nil;
+
+    [_AppDelegate switchController:RC_SETTINGS];
+    if (authenticationDelegate)
+        [authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:error];
 }
 
 - (NSDictionary *)UserStatistics

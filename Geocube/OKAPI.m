@@ -44,7 +44,7 @@
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
 
-    NSURLResponse *response = nil;
+    NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -55,6 +55,9 @@
     // Expected:
     // oauth_token=q3rHbDurHspVhzuV36Wp&
     // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     return json;

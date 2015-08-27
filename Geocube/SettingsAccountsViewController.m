@@ -97,6 +97,7 @@
 
                              [self.tableView reloadData];
 
+                             account.remoteAPI.authenticationDelegate = self;
                              [account.remoteAPI Authenticate];
                          }];
     UIAlertAction *cancel = [UIAlertAction
@@ -114,6 +115,51 @@
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)remoteAPI:(RemoteAPI *)api failure:(NSString *)failure error:(NSError *)error
+{
+    NSMutableString *msg = [NSMutableString stringWithString:failure];
+    [msg appendString:@" This means that you cannot obtain information for this account."];
+    
+    if (error != nil)
+        [msg appendFormat:@" (%@)", [error description] ];
+
+    NSLog(@"failure: %@", msg);
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Authentication failed"
+                               message:msg
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+
+    [alert addAction:ok];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
+}
+
+- (void)remoteAPI:(RemoteAPI *)api success:(NSString *)success;
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Authentication successful"
+                               message:@"Yay!"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+
+    [alert addAction:ok];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
 }
 
 

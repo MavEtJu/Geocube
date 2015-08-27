@@ -22,6 +22,7 @@
 @protocol GCOAuthBlackboxDelegate
 
 - (void)oauthdanced:(NSString *)token secret:(NSString *)secret;
+- (void)oauthtripped:(NSString *)reason error:(NSError *)error;
 
 @end
 
