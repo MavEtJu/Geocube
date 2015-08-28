@@ -60,7 +60,7 @@
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
     waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Notes", @"Logs", @"Attributes", @"Additional Waypoints", @"Inventory", @"Images", @"Group Members"];
-    actionItems = @[@"Set as Target", @"Mark as Found"];
+    actionItems = @[@"Set as target", @"Mark as found", @"Open in browser"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -258,20 +258,35 @@
 
     // Cache commands
     if (indexPath.section == 2) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
-        if (cell == nil)
-            cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        UITableViewCell *cellNormal = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
+        if (cellNormal == nil)
+            cellNormal = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DATA];
+        cellNormal.userInteractionEnabled = YES;
+
+        UITableViewCell *cellImage = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+        if (cellImage == nil)
+            cellImage = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
+        cellImage.accessoryType = UITableViewCellAccessoryNone;
+        cellImage.userInteractionEnabled = YES;
+
+        UITableViewCell *cell = nil;
 
         UIColor *tc = [UIColor blackColor];
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+                cellImage.imageView.image = [imageLibrary get:ImageIcon_Target];
                 if ([waypointManager currentWaypoint] != nil && [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES)
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    cellImage.accessoryType = UITableViewCellAccessoryCheckmark;
+                cell = cellImage;
                 break;
             case 1:
-                cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                cellImage.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                cell = cellImage;
+                break;
+            case 2:
+                cell = cellNormal;
+                if (waypoint.url == nil)
+                    cell.userInteractionEnabled = NO;
                 break;
         }
         cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
@@ -386,6 +401,18 @@
             [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
             return;
         }
+
+        if (indexPath.row == 2) {
+            [_AppDelegate switchController:RC_BOOKMARKS];
+            BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
+            UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
+            BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+
+            [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
+            [bbvc loadURL:waypoint.urlname];
+            return;
+        }
+
         return;
     }
 }
