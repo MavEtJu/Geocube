@@ -28,17 +28,25 @@
     self = [super init];
 
     remoteAPI = _remoteAPI;
+    okapi_prefix = @"/okapi/services";
 
     return self;
+}
+
+- (NSString *)string_array:(NSArray *)fields
+{
+    return [MyTools urlencode:[fields componentsJoinedByString:@"|"]];
 }
 
 - (NSDictionary *)services_users_byUsername:(NSString *)username
 {
     NSLog(@"services_users_byUsername");
 
-    NSString *urlString = [NSString stringWithFormat:@"%@/okapi/services/users/user?username=%@&fields=caches_found%%7Ccaches_notfound", remoteAPI.account.url, remoteAPI.account.account];
+    NSArray *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url" ,@"uuid"];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/users/user?username=%@&fields=%@", remoteAPI.account.url_site, okapi_prefix, remoteAPI.account.accountname, [self string_array:fields]];
     NSURL *urlURL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:urlURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
 
     NSString *oauth = [remoteAPI.oabb oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];

@@ -85,7 +85,7 @@
         NSLog(@"%@/run: Downloading %@", [self class], imgToDownload.url);
 
         // Send a synchronous request
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
+        GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
         NSURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];

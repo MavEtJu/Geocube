@@ -67,7 +67,9 @@
 @class GCTableViewCellTwoTextfields;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
+@class GCURLRequest;
 @class GCViewController;
+@class GeocachingAustralia;
 @class GlobalMenu;
 @class GroupsViewController;
 @class HelpAboutViewController;
@@ -77,7 +79,7 @@
 @class ImagesDownloadManager;
 @class ImportGPX;
 @class ImportGPXViewController;
-@class ImportLicenses;
+@class ImportSites;
 @class LiveAPI;
 @class LogTableViewCell;
 @class MapAppleViewController;

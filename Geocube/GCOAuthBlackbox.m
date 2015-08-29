@@ -120,7 +120,7 @@
     body = s;
 }
 
-- (NSString *)oauth_header:(NSURLRequest *)urlRequest
+- (NSString *)oauth_header:(GCMutableURLRequest *)urlRequest
 {
     NSMutableString *oauth = [NSMutableString stringWithFormat:@"OAuth "];
 
@@ -149,38 +149,11 @@
     return oauth;
 }
 
-- (NSString *)XXX:(NSURLRequest *)urlRequest
-{
-    /*
-    OAuth oauth_consumer_key="3C60A9FF-752E-4347-8456-42C511F04879",
-    oauth_token="8XHcsUoorjAdJ6YEazsyT24vdz0%3D", oauth_signature_method="HMAC-SHA1", oauth_version="1.0",
-    oauth_verifier="z1MxXz0%3D", oauth_nonce="5855813070538152447", oauth_timestamp="1440420182",
-    oauth_signature="cR6F0NN9771ORV9XdzxhM7KxlJs%3D"
-     */
-
-    NSMutableString *oauth = [NSMutableString stringWithFormat:@"OAuth "];
-
-    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [MyTools urlencode:consumerKey]];
-    [oauth appendFormat:@", oauth_nonce=\"%@\"", [MyTools urlencode:nonce]];
-    [oauth appendFormat:@", oauth_timestamp=\"%@\"", timestamp];
-    [oauth appendFormat:@", oauth_signature_method=\"%@\"", signatureMethod];
-    [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlencode:version]];
-    if (token != nil)
-        [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlencode:token]];
-    if (verifier != nil)
-        [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlencode:verifier]];
-
-    [self calculateSignature:urlRequest];
-    [oauth appendFormat:@", oauth_signature=\"%@\"", [MyTools urlencode:signature]];
-
-    return oauth;
-}
-
 - (void)obtainAccessToken
 {
     NSLog(@"obtainAccessToken");
 
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:AccessTokenURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:AccessTokenURL];
 
     callback = nil;
     NSString *oauth = [self oauth_header:urlRequest];
@@ -226,7 +199,7 @@
 {
     NSLog(@"obtainRequestToken");
 
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:RequestTokenURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:RequestTokenURL];
 
     NSString *oauth = [self oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
@@ -304,7 +277,7 @@
     return YES;
 }
 
-- (void)calculateSignature:(NSURLRequest *)url
+- (void)calculateSignature:(GCMutableURLRequest *)url
 {
     // Step described at https://dev.twitter.com/oauth/overview/creating-signatures
     NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];

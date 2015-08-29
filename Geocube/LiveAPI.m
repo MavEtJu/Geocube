@@ -38,7 +38,7 @@
 
     NSString *urlString = @"https://api.groundspeak.com/LiveV6/geocaching.svc/GetYourUserProfile?format=json";
     NSURL *urlURL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:urlURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
 
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];

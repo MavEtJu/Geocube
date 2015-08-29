@@ -80,6 +80,7 @@
 
 #import "GlobalMenu.h"
 
+#import "GCURLRequest.h"
 #import "GCTableViewController.h"
 #import "GCViewController.h"
 #import "GCLocationManager.h"
@@ -93,7 +94,7 @@
 
 #import "ImportGPX.h"
 #import "ImportGPXViewController.h"
-#import "ImportLicenses.h"
+#import "ImportSites.h"
 
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
