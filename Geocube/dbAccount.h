@@ -21,18 +21,25 @@
 
 enum dbAccountProtocol {
     ProtocolNone = 0,
-    ProtocolGroundspeak = 1,
+    ProtocolLiveAPI = 1,
     ProtocolOKAPI = 2,
     ProtocolGCA = 3
 };
 
 @interface dbAccount : dbObject {
     NSString *site;
-    NSString *url;
+    NSString *url_site;
     NSString *url_queries;
-    NSString *account;
-    NSString *password;
+    NSString *accountname;
     NSInteger protocol;
+    NSInteger geocube_id;
+    NSInteger revision;
+
+    NSString *gca_cookie_name;
+    NSString *gca_cookie_value;
+    NSString *gca_callback_url;
+    NSString *gca_autenticate_url;
+
     NSString *oauth_consumer_public;
     NSString *oauth_consumer_private;
     NSString *oauth_token;
@@ -42,15 +49,18 @@ enum dbAccountProtocol {
     NSString *oauth_request_url;
 
     // Not read from the database
+    BOOL canDoRemoteStuff;
     RemoteAPI *remoteAPI;
 }
 
 @property (nonatomic, retain) NSString *site;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSString *url_site;
 @property (nonatomic, retain) NSString *url_queries;
-@property (nonatomic, retain) NSString *account;
-@property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSString *accountname;
 @property (nonatomic) NSInteger protocol;
+@property (nonatomic) NSInteger geocube_id;
+@property (nonatomic) NSInteger revision;
+
 @property (nonatomic, retain) NSString *oauth_consumer_public;
 @property (nonatomic, retain) NSString *oauth_consumer_private;
 @property (nonatomic, retain) NSString *oauth_token;
@@ -58,12 +68,20 @@ enum dbAccountProtocol {
 @property (nonatomic, retain) NSString *oauth_access_url;
 @property (nonatomic, retain) NSString *oauth_authorize_url;
 @property (nonatomic, retain) NSString *oauth_request_url;
+
+@property (nonatomic, retain) NSString *gca_cookie_name;
+@property (nonatomic, retain) NSString *gca_cookie_value;
+@property (nonatomic, retain) NSString *gca_callback_url;
+@property (nonatomic, retain) NSString *gca_authenticate_url;
+@property (nonatomic) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
 - (void)dbUpdateOAuthConsumer;
 - (void)dbUpdateOAuthToken;
+- (void)dbUpdateCookieValue;
 + (dbAccount *)dbGetBySite:(NSString *)site;
+- (void)dbClearAuthentication;
 
 @end

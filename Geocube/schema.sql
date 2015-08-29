@@ -7,8 +7,8 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("url_licenses", "http://localhost:8001/licenses.txt");
-insert into config(key, value) values("version", "6");
+insert into config(key, value) values("url_sites", "http://localhost:8001/geocube_sites.txt");
+insert into config(key, value) values("version", "4");
 
 create table filters (
     id integer primary key,
@@ -651,12 +651,20 @@ create index travelbug2waypoint_idx_cache_id on travelbug2waypoint(waypoint_id);
 
 create table accounts (
     id integer primary key,
+    geocube_id integer,
+    revision integer,
+
     site text,
-    url text,
+    url_site text,
     url_queries text,
-    account text,
-    password text,
+    accountname text,
     protocol integer,	-- 0 none, 1 groundspeak, 2 okapi, 3 GCA
+
+    gca_cookie_name text,
+    gca_cookie_value text,
+    gca_authenticate_url text,
+    gca_callback_url text,
+
     oauth_consumer_public text,
     oauth_consumer_private text,
     oauth_request_url text,
@@ -665,18 +673,6 @@ create table accounts (
     oauth_token text,
     oauth_token_secret text
 );
-insert into accounts(site, url, url_queries, protocol) values("Groundspeak Geocaching.com", "https://www.geocaching.com/", "https://www.geocaching.com/pocket/", 1);
-insert into accounts(site, url, url_queries, protocol) values("Geocaching Australia", "http://www.geocaching.com.au/", "http://geocaching.com.au/my/query/", 3);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching BeNeLux", "http://www.opencaching.nl/", "http://www.opencaching.nl/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching North America", "http://www.opencaching.us/", "http://www.opencaching.us/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Deutschland", "http://www.opencaching.de/", "http://www.opencaching.de/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching CZ", "http://www.opencaching.cz/", "http://www.opencaching.cz/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Poland", "http://www.opencaching.pl/", "http://www.opencaching.pl/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Italy", "http://www.opencaching.it/", "http://www.opencaching.it/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching UK", "http://www.opencaching.org.uk/", "http://www.opencaching.org.uk/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Spain", "http://www.opencachingspain.es/", "http://www.opencachingspain.es/query.php", 2);
-insert into accounts(site, url, url_queries, protocol) values("OpenCaching Romania", "http://www.opencaching.ro/", "http://www.opencaching.ro/query.php", 2);
 
 create table personal_notes (
     id integer primary key,
