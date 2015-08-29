@@ -46,7 +46,7 @@
     [super viewWillAppear:animated];
     accounts = [NSMutableArray arrayWithCapacity:20];
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if (a.account != nil && [a.account isEqualToString:@""] == NO)
+        if (a.accountname != nil && [a.accountname isEqualToString:@""] == NO)
             [accounts addObject:a];
     }];
     [self.tableView reloadData];
@@ -77,11 +77,11 @@
 
     cell.userInteractionEnabled = YES;
     cell.textLabel.textColor = [UIColor blackColor];
-    if (a.account == nil || [a.account isEqualToString:@""] == YES) {
+    if (a.accountname == nil || [a.accountname isEqualToString:@""] == YES) {
         cell.userInteractionEnabled = NO;
         cell.textLabel.textColor = [UIColor lightGrayColor];
     } else {
-        cell.detailTextLabel.text = a.account;
+        cell.detailTextLabel.text = a.accountname;
     }
 
     return cell;
