@@ -90,6 +90,14 @@
     return s;
 }
 
++ (NSString *)stripHTML:(NSString *)l {
+    NSRange r;
+    NSString *s = l;
+    while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        s = [s stringByReplacingCharactersInRange:r withString:@""];
+    return s;
+}
+
 + (NSInteger)numberOfLines:(NSString *)s
 {
     NSInteger lineNum = 0;
