@@ -38,6 +38,7 @@
 + (NSString *)datetimePartDate:(NSString *)datetime;
 + (NSString *)datetimePartTime:(NSString *)datetime;
 
++ (NSString *)stripHTML:(NSString *)s;
 + (NSString *)simpleHTML:(NSString *)plainText;
 + (NSInteger)numberOfLines:(NSString *)s;
 
