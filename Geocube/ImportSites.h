@@ -19,17 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportLicenses : NSObject<NSXMLParserDelegate> {
+@interface ImportSites : NSObject<NSXMLParserDelegate> {
     NSString *version;
     NSString *revision;
+    NSString *site_revision;
+    NSString *site_id;
+
+    dbAccount *account;
 
     NSString *site;
-    NSString *oauth_public;
-    NSString *oauth_private;
-    NSString *url_request;
-    NSString *url_access;
-    NSString *url_authorize;
-
     NSMutableString *currentText;
 }
 

@@ -30,7 +30,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL];
     menuItems = [NSMutableArray arrayWithArray:@[@"Download licenses"]];
 }
 
@@ -38,7 +38,7 @@
 {
     accounts = [dbc Accounts];
     accountsCount = [accounts count];
-    [self refreshControl];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,13 +64,21 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     if (cell == nil)
-        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
-    cell.detailTextLabel.text = a.account;
+    cell.detailTextLabel.text = a.accountname;
+    if (a.accountname == nil || [a.accountname isEqualToString:@""] == YES)
+        cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+    else {
+        if (a.canDoRemoteStuff == YES)
+            cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+        else
+            cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
+    }
 
     return cell;
 }
@@ -92,7 +100,7 @@
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *username = tf.text;
 
-                             account.account = username;
+                             account.accountname = username;
                              [account dbUpdateAccount];
 
                              [self.tableView reloadData];
@@ -100,6 +108,15 @@
                              account.remoteAPI.authenticationDelegate = self;
                              [account.remoteAPI Authenticate];
                          }];
+
+    UIAlertAction *forget = [UIAlertAction
+                             actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [account dbClearAuthentication];
+                                 [self refreshAccountData];
+                                 [self.tableView reloadData];
+                             }];
+
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
@@ -107,10 +124,11 @@
                              }];
 
     [alert addAction:ok];
+    [alert addAction:forget];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = account.account;
+        textField.text = account.accountname;
         textField.placeholder = @"Username";
     }];
 
@@ -141,6 +159,9 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self presentViewController:alert animated:YES completion:nil];
     }];
+
+    [self refreshAccountData];
+    [self.tableView reloadData];
 }
 
 - (void)remoteAPI:(RemoteAPI *)api success:(NSString *)success;
@@ -160,6 +181,9 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self presentViewController:alert animated:YES completion:nil];
     }];
+
+    [self refreshAccountData];
+    [self.tableView reloadData];
 }
 
 
@@ -178,20 +202,20 @@
 
 - (void)downloadLicenses
 {
-    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_licenses"] value]];
+    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_sites"] value]];
 
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
     if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
-        [ImportLicenses parse:data];
+        [ImportSites parse:data];
 
         UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Licenses download"
-                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"licenses_revision"] value]]
+                                   alertControllerWithTitle:@"Site information download"
+                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]
                                    preferredStyle:UIAlertControllerStyleAlert
                                    ];
 
@@ -202,6 +226,9 @@
                             ];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+        [dbc AccountsReload];
+        [self refreshAccountData];
+        [self.tableView reloadData];
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
 
