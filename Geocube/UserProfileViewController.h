@@ -20,7 +20,7 @@
  */
 
 @interface UserProfileViewController : GCViewController {
-
+    UIScrollView *contentView;
 }
 
 @end
