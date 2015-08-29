@@ -445,7 +445,7 @@
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Add a related waypoint"
-                               message:@"Add a related waypoint2"
+                               message:@"Lattitude is north and south\nLongitude is east and west"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
