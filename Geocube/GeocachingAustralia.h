@@ -19,11 +19,25 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GeocachingAustralia : NSObject {
+@protocol GeocachingAustraliaDelegate
+
+- (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie;
+
+@end
+
+@interface GeocachingAustralia : NSObject<NSURLConnectionDataDelegate> {
     RemoteAPI *remoteAPI;
+    id delegate;
+    NSHTTPCookie *authCookie;
+    NSString *callback;
 }
+
+@property (nonatomic) id delegate;
+@property (nonatomic, retain, readonly) NSString *callback;
 
 - (id)init:(RemoteAPI *)remoteAPI;
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
+- (NSDictionary *)cacher_statistic__hides:(NSString *)name;
+- (void)storeCookie:(NSHTTPCookie *)cookie;
 
 @end
