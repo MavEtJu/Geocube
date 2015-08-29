@@ -228,9 +228,10 @@
 		E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE41B4FFB46002527DA /* CacheHintViewController.m */; };
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
-		E87E474A1B82A301005606A2 /* ImportLicenses.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E47491B82A301005606A2 /* ImportLicenses.m */; };
+		E87E474A1B82A301005606A2 /* ImportSites.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E47491B82A301005606A2 /* ImportSites.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */; };
+		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -628,12 +629,14 @@
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
-		E87E47481B82A301005606A2 /* ImportLicenses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLicenses.h; sourceTree = "<group>"; };
-		E87E47491B82A301005606A2 /* ImportLicenses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLicenses.m; sourceTree = "<group>"; };
+		E87E47481B82A301005606A2 /* ImportSites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSites.h; sourceTree = "<group>"; };
+		E87E47491B82A301005606A2 /* ImportSites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSites.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
 		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E87E474E1B8301DE005606A2 /* CachePersonalNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachePersonalNoteViewController.h; sourceTree = "<group>"; };
 		E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachePersonalNoteViewController.m; sourceTree = "<group>"; };
+		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
+		E880379B1B915CEE0053AD01 /* GCURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCURLRequest.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -1588,6 +1591,8 @@
 		E8F570B21B3FECDF003F020C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E880379A1B915CEE0053AD01 /* GCURLRequest.h */,
+				E880379B1B915CEE0053AD01 /* GCURLRequest.m */,
 				E8A7FAA61B78CE36003F4132 /* MyTools.h */,
 				E8A7FAA71B78CE36003F4132 /* MyTools.m */,
 				E8467C8C1B4E04EE00FFA253 /* Coordinates.h */,
@@ -1629,8 +1634,8 @@
 			children = (
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
-				E87E47481B82A301005606A2 /* ImportLicenses.h */,
-				E87E47491B82A301005606A2 /* ImportLicenses.m */,
+				E87E47481B82A301005606A2 /* ImportSites.h */,
+				E87E47491B82A301005606A2 /* ImportSites.m */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 			);
@@ -2018,6 +2023,7 @@
 				E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
+				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
@@ -2075,7 +2081,7 @@
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
-				E87E474A1B82A301005606A2 /* ImportLicenses.m in Sources */,
+				E87E474A1B82A301005606A2 /* ImportSites.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
