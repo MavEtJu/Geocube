@@ -21,6 +21,7 @@
 
 @interface OKAPI : NSObject {
     RemoteAPI *remoteAPI;
+    NSString *okapi_prefix;
 }
 
 - (id)init:(RemoteAPI *)remoteAPI;
