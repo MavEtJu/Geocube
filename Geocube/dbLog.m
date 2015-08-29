@@ -225,7 +225,7 @@
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log from logs where waypoint_id = ? and logger_id in (select id from names where name in (select account from accounts))");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))");
 
         SET_VAR_INT(1, wp_id);
 
