@@ -21,7 +21,7 @@
 
 @interface DatabaseCache : NSObject {
     // In memory database information
-    NSArray *Accounts;
+    NSMutableArray *Accounts;
     NSArray *Types;
     NSArray *Groups;
     NSArray *LogTypes;
@@ -117,5 +117,7 @@
 - (dbState *)State_get_byName:(NSString *)name;
 - (void)State_add:(dbState *)state;
 - (dbState *)State_get:(NSId)_id;
+
+- (void)AccountsReload;
 
 @end

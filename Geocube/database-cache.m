@@ -36,7 +36,7 @@
 // Load all waypoints and waypoint related data in memory
 - (void)loadWaypointData
 {
-    Accounts = [dbAccount dbAll];
+    Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
     Groups = [dbGroup dbAll];
     Types = [dbType dbAll];
     Containers = [dbContainer dbAll];
@@ -334,6 +334,43 @@
 - (void)State_add:(dbState *)state
 {
     [States addObject:state];
+}
+
+- (void)AccountsReload
+{
+    NSMutableArray *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
+
+    [newAccounts enumerateObjectsUsingBlock:^(dbAccount *newAccount, NSUInteger idx, BOOL *stop) {
+        __block BOOL found = NO;
+        [Accounts enumerateObjectsUsingBlock:^(dbAccount *oldAccount, NSUInteger idx, BOOL *stop) {
+            if (newAccount.geocube_id == oldAccount.geocube_id) {
+                oldAccount.gca_cookie_name = newAccount.gca_cookie_name;
+                oldAccount.gca_cookie_value = newAccount.gca_cookie_value;
+                oldAccount.gca_callback_url = newAccount.gca_callback_url;
+                oldAccount.gca_authenticate_url = newAccount.gca_authenticate_url;
+
+                oldAccount.oauth_consumer_public = newAccount.oauth_consumer_public;
+                oldAccount.oauth_consumer_private = newAccount.oauth_consumer_private;
+                oldAccount.oauth_request_url = newAccount.oauth_request_url;
+                oldAccount.oauth_access_url = newAccount.oauth_access_url;
+                oldAccount.oauth_authorize_url = newAccount.oauth_authorize_url;
+                oldAccount.oauth_token = newAccount.oauth_token;
+                oldAccount.oauth_token_secret = newAccount.oauth_token_secret;
+
+                oldAccount.revision = newAccount.revision;
+                oldAccount.site = newAccount.site;
+                oldAccount.url_site = newAccount.url_site;
+                oldAccount.url_queries = newAccount.url_queries;
+                oldAccount.accountname = newAccount.accountname;
+                oldAccount.protocol = newAccount.protocol;
+
+                *stop = YES;
+                found = YES;
+            }
+        }];
+        if (found == NO)
+            [Accounts addObject:newAccount];
+    }];
 }
 
 @end
