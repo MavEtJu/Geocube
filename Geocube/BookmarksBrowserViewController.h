@@ -31,10 +31,12 @@
     NSString *urlHome;
 
     GCOAuthBlackbox *oabb;
+    GeocachingAustralia *gca;
 }
 
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;
 - (void)prepare_oauth:(GCOAuthBlackbox *)oabb;
+- (void)prepare_gca:(GeocachingAustralia *)gca;
 
 @end

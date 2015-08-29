@@ -47,11 +47,11 @@
 {
     urlHome = urlString;
     NSURL *url = [NSURL URLWithString:urlHome];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    GCURLRequest *request = [GCURLRequest requestWithURL:url];
     [webView loadRequest:request];
 }
 
-- (void)loadURLRequest:(NSURLRequest *)_req
+- (void)loadURLRequest:(GCURLRequest *)_req
 {
     [webView loadRequest:_req];
 }
@@ -65,8 +65,10 @@
 {
     receivedData = nil;
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
+    NSURLConnection *urlConnection;
 
-    //urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    if (oabb == nil && gca == nil)
+        urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
 
     // OAuth related stuff
     NSLog(@"W: %@", req);
@@ -76,11 +78,9 @@
     if ([query length] != 0)
         url = [url substringToIndex:(url.length - [query length] - 1)];
 
-    if (oabb == nil)
-        return YES;
-
     // OAuth related stuff
-    if ([url length] == [oabb.callback length] &&
+    if (oabb != nil &&
+        [url length] >= [oabb.callback length] &&
         [[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
         [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
@@ -101,12 +101,35 @@
         return NO;
     }
 
+    // Geocaching Australia related stuff
+    if (gca != nil &&
+        [url length] >= [gca.callback length] &&
+        [[url substringToIndex:[gca.callback length]] isEqualToString:gca.callback] == YES) {
+        NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
+
+        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+            if ([cookie.name isEqualToString:@"phpbb3mysql_data"] == NO)
+                return;
+
+            [gca storeCookie:cookie];
+            *stop = YES;
+        }];
+
+        return NO;
+    }
+
     return YES;
 }
 
 - (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
 {
     oabb = _oabb;
+}
+
+- (void)prepare_gca:(GeocachingAustralia *)_gca
+{
+    gca = _gca;
 }
 
 
@@ -132,7 +155,7 @@
     }];
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)_data
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)_data
 {
     if (receivedData == nil)
         return;
@@ -140,7 +163,7 @@
   //  NSLog(@"Size: %ld", (long)[data length]);
 }
 
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (receivedData == nil)
         return;
