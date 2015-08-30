@@ -13,4 +13,10 @@ for fn in db*.m; do
 	fi
 done
 
+echo
+echo "Classes:"
+grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
+grep @class Geocube-Classes.h | sort > /tmp/b
+diff /tmp/[ab]
+
 echo 
