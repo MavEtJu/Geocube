@@ -152,7 +152,7 @@
 - (NSDictionary *)UserStatistics:(NSString *)username
 /* Returns:
  * waypoints_found
- * waypoints_dnf
+ * waypoints_notfound
  * waypoints_hidden
  * recommendations_given
  * recommendations_received

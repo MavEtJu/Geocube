@@ -129,7 +129,6 @@
     }];
 
     found = NO;
-    ret = [[NSMutableDictionary alloc] initWithCapacity:1];
     [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
         if (found == YES) {
             // <div class='floater60'><b>49</b> </div>
@@ -146,7 +145,6 @@
     }];
 
     found = NO;
-    ret = [[NSMutableDictionary alloc] initWithCapacity:1];
     [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
         if (found == YES) {
             // <div class='floater60'><b>49</b> </div>

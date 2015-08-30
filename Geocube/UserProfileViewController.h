@@ -21,6 +21,8 @@
 
 @interface UserProfileViewController : GCViewController {
     UIScrollView *contentView;
+
+    NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
 }
 
 @end

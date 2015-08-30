@@ -55,6 +55,12 @@
     NSInteger width = applicationFrame.size.width;
     __block NSInteger y = 10;
 
+    totalFound = 0;
+    totalDNF = 0;
+    totalHidden = 0;
+    totalRecommendationsGiven = 0;
+    totalRecommendationsReceived = 0;
+
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
 
         if (a.accountname == nil || [a.accountname length] == 0)
@@ -81,56 +87,92 @@
         }
 
         NSDictionary *d = [a.remoteAPI UserStatistics];
-        NSObject *o;
-
-        o = [d valueForKey:@"waypoints_found"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, 15)];
-            [l setText:[NSString stringWithFormat:@"Found: %@", o]];
-            l.font = [UIFont systemFontOfSize:14];
-            [contentView addSubview:l];
-            y += 15;
-        }
-
-        o = [d valueForKey:@"waypoints_dnf"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, 15)];
-            [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
-            l.font = [UIFont systemFontOfSize:14];
-            [contentView addSubview:l];
-            y += 15;
-        }
-
-        o = [d valueForKey:@"waypoints_hidden"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, 15)];
-            [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
-            l.font = [UIFont systemFontOfSize:14];
-            [contentView addSubview:l];
-            y += 15;
-        }
-
-        o = [d valueForKey:@"recommendations_given"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, 15)];
-            [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
-            l.font = [UIFont systemFontOfSize:14];
-            [contentView addSubview:l];
-            y += 15;
-        }
-
-        o = [d valueForKey:@"recommendations_received"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, 15)];
-            [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
-            l.font = [UIFont systemFontOfSize:14];
-            [contentView addSubview:l];
-            y += 15;
-        }
-
+        [self showStatistics:d y:&y width:width];
     }];
 
+    /* Total */
+    y += 10;
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 15)];
+    [l setText:@"Total"];
+    l.font = [UIFont systemFontOfSize:14];
+    [contentView addSubview:l];
+    y += 15;
+
+    NSDictionary *totals = [NSDictionary dictionaryWithObjects:@[
+         [NSNumber numberWithInteger:totalFound],
+         [NSNumber numberWithInteger:totalDNF],
+         [NSNumber numberWithInteger:totalHidden],
+         [NSNumber numberWithInteger:totalRecommendationsGiven],
+         [NSNumber numberWithInteger:totalRecommendationsReceived]
+        ] forKeys:@[
+          @"waypoints_found",
+          @"waypoints_notfound",
+          @"waypoints_hidden",
+          @"recommendations_given",
+          @"recommendations_received"
+        ]
+    ];
+
+    [self showStatistics:totals y:&y width:width];
     [contentView setContentSize:CGSizeMake(width, y)];
+}
+
+- (void)showStatistics:(NSDictionary *)d y:(NSInteger *)y width:(NSInteger)width
+{
+    NSObject *o;
+    NSNumber *n;
+    UILabel *l;
+
+    o = [d valueForKey:@"waypoints_found"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        n = (NSNumber *)o; totalFound += [n integerValue];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, *y, 3 * width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"Found: %@", o]];
+        l.font = [UIFont systemFontOfSize:14];
+        [contentView addSubview:l];
+        *y += 15;
+    }
+
+    o = [d valueForKey:@"waypoints_notfound"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        n = (NSNumber *)o; totalDNF += [n integerValue];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, *y, 3 * width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
+        l.font = [UIFont systemFontOfSize:14];
+        [contentView addSubview:l];
+        *y += 15;
+    }
+
+    o = [d valueForKey:@"waypoints_hidden"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        n = (NSNumber *)o; totalHidden += [n integerValue];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, *y, 3 * width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
+        l.font = [UIFont systemFontOfSize:14];
+        [contentView addSubview:l];
+        *y += 15;
+    }
+
+    o = [d valueForKey:@"recommendations_given"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        n = (NSNumber *)o; totalRecommendationsGiven += [n integerValue];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, *y, 3 * width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
+        l.font = [UIFont systemFontOfSize:14];
+        [contentView addSubview:l];
+        *y += 15;
+    }
+
+    o = [d valueForKey:@"recommendations_received"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        n = (NSNumber *)o; totalRecommendationsReceived += [n integerValue];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, *y, 3 * width / 4, 15)];
+        [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
+        l.font = [UIFont systemFontOfSize:14];
+        [contentView addSubview:l];
+        *y += 15;
+    }
+
 }
 
 
