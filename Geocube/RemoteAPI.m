@@ -182,6 +182,11 @@
         [ret setValue:[d valueForKey:@"FindCount"] forKey:@"waypoints_found"];
         [ret setValue:[d valueForKey:@"HideCount"] forKey:@"waypoints_hidden"];
 
+        dict = [gs GetCacheIdsFavoritedByUser];
+        d = [dict objectForKey:@"CacheCodes"];
+        NSNumber *n = [NSNumber numberWithUnsignedInteger:[d count]];
+        [ret setValue:n forKey:@"recommendations_given"];
+
         return ret;
     }
 

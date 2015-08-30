@@ -25,6 +25,7 @@
 
 - (id)init:(RemoteAPI *)remoteAPI;
 - (NSDictionary *)GetYourUserProfile;
+- (NSDictionary *)GetCacheIdsFavoritedByUser;
 
 
 @end

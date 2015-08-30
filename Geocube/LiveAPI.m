@@ -80,4 +80,31 @@
     return json;
 }
 
+- (NSDictionary *)GetCacheIdsFavoritedByUser
+{
+    NSLog(@"GetCacheIdsFavoritedByUser");
+
+    NSString *urlString = [NSString stringWithFormat:@"https://api.groundspeak.com/LiveV6/geocaching.svc/GetCacheIdsFavoritedByUser?format=json&accessToken=%@", [MyTools urlencode:remoteAPI.oabb.token ]];
+    NSURL *urlURL = [NSURL URLWithString:urlString];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
+
+    [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
+
 @end
