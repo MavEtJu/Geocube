@@ -49,9 +49,7 @@
                   ];
         // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSLog(@"Before: %ld", [[cookiemgr cookies] count]);
         [cookiemgr setCookie:authCookie];
-        NSLog(@"After: %ld", [[cookiemgr cookies] count]);
     }
     return self;
 }
@@ -81,27 +79,38 @@
     return lines;
 }
 
-- (NSDictionary *)cacher_statistic__finds:(NSString *)name
+- (NSString *)FindValueInLine:(NSArray *)lines key:(NSString *)key
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlencode:name]];
-    NSArray *lines = [self loadPage:urlString];
-
     __block BOOL found = NO;
-    __block NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
+    __block NSString *value = nil;
+
     [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
         if (found == YES) {
             // <div class='floater60'><b>49</b> </div>
-            [ret setValue:[MyTools stripHTML:l] forKey:@"waypoints_found"];
+            value = [MyTools stripHTML:l];
             *stop = YES;
             return;
         }
 
         // <div class='floater40'>Geocaching Australia Finds</div>
-        NSRange r = [l rangeOfString:@"Geocaching Australia Finds"];
+        NSRange r = [l rangeOfString:key];
         if (r.location == NSNotFound)
             return;
         found = YES;
     }];
+
+    return value;
+}
+
+- (NSDictionary *)cacher_statistic__finds:(NSString *)name
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlencode:name]];
+    NSArray *lines = [self loadPage:urlString];
+    NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
+
+    NSString *value = [self FindValueInLine:lines key:@"Geocaching Australia Finds"];
+    if (value != nil)
+        [ret setValue:value forKey:@"waypoints_found"];
 
     return ret;
 }
@@ -110,55 +119,19 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/hides/", [MyTools urlencode:name]];
     NSArray *lines = [self loadPage:urlString];
+    NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
-    __block BOOL found = NO;
-    __block NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
-        if (found == YES) {
-            // <div class='floater60'><b>49</b> </div>
-            [ret setValue:[MyTools stripHTML:l] forKey:@"waypoints_hidden"];
-            *stop = YES;
-            return;
-        }
+    NSString *value = [self FindValueInLine:lines key:@"Total Geocaching Australia Hides"];
+    if (value != nil)
+        [ret setValue:value forKey:@"waypoints_hidden"];
 
-        // <div class='floater40'>Geocaching Australia Finds</div>
-        NSRange r = [l rangeOfString:@"Total Geocaching Australia Hides"];
-        if (r.location == NSNotFound)
-            return;
-        found = YES;
-    }];
+    value = [self FindValueInLine:lines key:@"Recommendations on Caches Hidden"];
+    if (value != nil)
+        [ret setValue:value forKey:@"recommendations_received"];
 
-    found = NO;
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
-        if (found == YES) {
-            // <div class='floater60'><b>49</b> </div>
-            [ret setValue:[MyTools stripHTML:l] forKey:@"recommendations_received"];
-            *stop = YES;
-            return;
-        }
-
-        // <div class='floater40'>Geocaching Australia Finds</div>
-        NSRange r = [l rangeOfString:@"Recommendations on Caches Hidden"];
-        if (r.location == NSNotFound)
-            return;
-        found = YES;
-    }];
-
-    found = NO;
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
-        if (found == YES) {
-            // <div class='floater60'><b>49</b> </div>
-            [ret setValue:[MyTools stripHTML:l] forKey:@"recommendations_given"];
-            *stop = YES;
-            return;
-        }
-
-        // <div class='floater40'>Geocaching Australia Finds</div>
-        NSRange r = [l rangeOfString:@"Recommended Caches Hidden"];
-        if (r.location == NSNotFound)
-            return;
-        found = YES;
-    }];
+    value = [self FindValueInLine:lines key:@"Recommendations Caches Hidden"];
+    if (value != nil)
+        [ret setValue:value forKey:@"recommendations_given"];
 
     return ret;
 }
