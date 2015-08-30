@@ -946,14 +946,14 @@
 		E85760161B85E08F00F34483 /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
-				E82FBB251B4613C20009AB6D /* GCViewController.h */,
-				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
 				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
 				E85760061B85DB5500F34483 /* GCTableViewCell.h */,
 				E85760071B85DB5500F34483 /* GCTableViewCell.m */,
 				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
 				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
+				E82FBB251B4613C20009AB6D /* GCViewController.h */,
+				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 			);
 			name = Geocube;
 			sourceTree = "<group>";
