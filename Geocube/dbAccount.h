@@ -51,6 +51,7 @@ enum dbAccountProtocol {
     // Not read from the database
     BOOL canDoRemoteStuff;
     RemoteAPI *remoteAPI;
+    NSInteger idx;
 }
 
 @property (nonatomic, retain) NSString *site;
@@ -73,8 +74,10 @@ enum dbAccountProtocol {
 @property (nonatomic, retain) NSString *gca_cookie_value;
 @property (nonatomic, retain) NSString *gca_callback_url;
 @property (nonatomic, retain) NSString *gca_authenticate_url;
+
 @property (nonatomic) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
+@property (nonatomic) NSInteger idx;
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;

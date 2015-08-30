@@ -23,7 +23,7 @@
 
 @implementation dbAccount
 
-@synthesize site, url_site, accountname, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, canDoRemoteStuff;
+@synthesize site, url_site, accountname, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, canDoRemoteStuff, idx;
 
 - (void)finish
 {

@@ -21,6 +21,10 @@
 
 @interface UserProfileViewController : GCViewController {
     UIScrollView *contentView;
+    NSMutableArray *accountViews;
+
+    UIFont *font14;
+    NSInteger textHeight14;
 
     NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
 }
