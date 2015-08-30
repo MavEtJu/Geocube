@@ -68,6 +68,7 @@
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
 @class GCURLRequest;
+@class GCMutableURLRequest;
 @class GCViewController;
 @class GeocachingAustralia;
 @class GlobalMenu;
@@ -91,7 +92,6 @@
 @class NotesFieldnotesViewController;
 @class NotesImagesViewController;
 @class NotesPersonalNotesViewController;
-@class NullViewController;
 @class NullViewController;
 @class OKAPI;
 @class PersonalNoteTableViewCell;
