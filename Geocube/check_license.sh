@@ -16,7 +16,7 @@ done
 echo
 echo "Classes:"
 grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
-grep @class Geocube-Classes.h | sort > /tmp/b
+grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
 echo 

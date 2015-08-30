@@ -43,6 +43,7 @@
 @class CachesOfflineListViewController;
 @class CompassViewController;
 @class Coordinates;
+@class DatabaseCache;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;
@@ -60,6 +61,7 @@
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
 @class GCLocationManager;
+@class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
 @class GCTableViewCell;
@@ -68,7 +70,6 @@
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
 @class GCURLRequest;
-@class GCMutableURLRequest;
 @class GCViewController;
 @class GeocachingAustralia;
 @class GlobalMenu;
@@ -103,7 +104,6 @@
 @class ThemeTemplate;
 @class TravelbugsViewController;
 @class UserProfileViewController;
-@class DatabaseCache;
 @class database;
 @class dbAccount;
 @class dbAttribute;
