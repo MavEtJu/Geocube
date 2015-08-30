@@ -21,6 +21,7 @@
 
 @interface LiveAPI : NSObject {
     RemoteAPI *remoteAPI;
+    NSString *liveAPIPrefix;
 }
 
 - (id)init:(RemoteAPI *)remoteAPI;
