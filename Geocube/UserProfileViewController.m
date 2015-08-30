@@ -157,7 +157,7 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalFound with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, textHeight14)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
         [l setText:[NSString stringWithFormat:@"Found: %@", o]];
         l.font = font14;
         [view addSubview:l];
@@ -168,7 +168,7 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalDNF with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, textHeight14)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
         [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
         l.font = font14;
         [view addSubview:l];
@@ -179,7 +179,7 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalHidden with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, textHeight14)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
         [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
         l.font = font14;
         [view addSubview:l];
@@ -190,7 +190,7 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalRecommendationsGiven with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, textHeight14)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
         [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
         l.font = font14;
         [view addSubview:l];
@@ -201,7 +201,7 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalRecommendationsReceived with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 4, y, 3 * width / 4, textHeight14)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
         [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
         l.font = font14;
         [view addSubview:l];
@@ -235,7 +235,6 @@
     for (UIView *subview in contentView.subviews) {
         subview.frame = CGRectMake(subview.frame.origin.x, y, subview.frame.size.width, subview.frame.size.height);
         y += subview.frame.size.height;
-        NSLog(@"%ld", y);
     }
 }
 
