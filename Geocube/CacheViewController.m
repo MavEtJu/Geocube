@@ -409,7 +409,7 @@
             BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
             [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
-            [bbvc loadURL:waypoint.urlname];
+            [bbvc loadURL:waypoint.url];
             return;
         }
 
