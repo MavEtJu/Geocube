@@ -38,19 +38,44 @@
     return [MyTools urlencode:[fields componentsJoinedByString:@"|"]];
 }
 
-- (NSDictionary *)services_users_byUsername:(NSString *)username
+- (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
 {
-    NSLog(@"services_users_byUsername");
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@%@", remoteAPI.account.url_site, okapi_prefix, url];
+    if (parameters != nil) {
+        [urlString appendFormat:@"?%@", parameters];
+    }
 
-    NSArray *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url" ,@"uuid"];
-
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/users/user?username=%@&fields=%@", remoteAPI.account.url_site, okapi_prefix, remoteAPI.account.accountname, [self string_array:fields]];
     NSURL *urlURL = [NSURL URLWithString:urlString];
     GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
 
     NSString *oauth = [remoteAPI.oabb oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    return urlRequest;
+}
+
+- (GCMutableURLRequest *)prepareURLRequest:(NSString *)url
+{
+    return [self prepareURLRequest:url parameters:nil];
+}
+
+- (GCMutableURLRequest *)prepareURLRequest:(NSString *)url method:(NSString *)method
+{
+    GCMutableURLRequest *req = [self prepareURLRequest:url parameters:nil];
+    [req setHTTPMethod:method];
+    return req;
+}
+
+- (NSDictionary *)services_users_byUsername:(NSString *)username
+{
+    NSLog(@"services_users_byUsername");
+
+    NSArray *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url" ,@"uuid"];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname, [self string_array:fields]]];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
@@ -59,10 +84,6 @@
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
-
-    // Expected:
-    // oauth_token=q3rHbDurHspVhzuV36Wp&
-    // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
 
     if (error != nil || response.statusCode != 200)
         return nil;
