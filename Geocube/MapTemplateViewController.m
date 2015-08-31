@@ -254,7 +254,6 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
         [tb makeTabViewCurrent:VC_NAVIGATE_TARGET];
 
         return;
-
     }
 
 }
