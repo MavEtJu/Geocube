@@ -104,6 +104,11 @@
 
 + (void)AccountsNeedToBeInitialized
 {
+    // If there are already notices then don't post this one.
+
+    if ([dbNotice dbCount] != 0)
+        return;
+
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     [fmt setDateFormat:@"yyyy-MM-dd"];
 

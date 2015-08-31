@@ -93,6 +93,8 @@
 @class NotesFieldnotesViewController;
 @class NotesImagesViewController;
 @class NotesPersonalNotesViewController;
+@class NoticeTableViewCell;
+@class NoticesViewController;
 @class NullViewController;
 @class OKAPI;
 @class PersonalNoteTableViewCell;
@@ -118,6 +120,7 @@
 @class dbLog;
 @class dbLogType;
 @class dbName;
+@class dbNotice;
 @class dbObject;
 @class dbPersonalNote;
 @class dbState;
