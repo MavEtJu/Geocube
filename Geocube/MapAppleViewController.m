@@ -136,15 +136,28 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
+    CLLocationDegrees left, right, top, bottom;
+    left = MIN(c1.latitude, c2.latitude);
+    right = MAX(c1.latitude, c2.latitude);
+    top = MAX(c1.longitude, c2.longitude);
+    bottom = MIN(c1.longitude, c2.longitude);
+
+    CLLocationCoordinate2D d1, d2;
+
+    d1.latitude = left - (right - left) * 0.1;
+    d2.latitude = right + (right - left) * 0.1;
+    d1.longitude = top + (top - bottom) * 0.1;
+    d2.longitude = bottom - (top - bottom) * 0.1;
+
     NSMutableArray *coords = [NSMutableArray arrayWithCapacity:2];
     MKPointAnnotation *annotation;
 
     annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:c1];
+    [annotation setCoordinate:d1];
     [coords addObject:annotation];
 
     annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:c2];
+    [annotation setCoordinate:d2];
     [coords addObject:annotation];
 
     [mapView showAnnotations:coords animated:YES];
