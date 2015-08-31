@@ -295,7 +295,7 @@
     // Notices tabs #9
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[NoticesViewController alloc] init];
     vc.title = @"Notices";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
@@ -361,6 +361,16 @@
 
     [self.window makeKeyAndVisible];
     [currentTab makeTabViewCurrent:cpt];
+
+    /* No site information yet? */
+    dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
+    if (db == nil) {
+        [self switchController:RC_NOTICES];
+        currentTab = [tabBars objectAtIndex:RC_NOTICES];
+        cpt = VC_NOTICES;
+        [currentTab makeTabViewCurrent:cpt];
+        [NoticesViewController AccountsNeedToBeInitialized];
+    }
 
     return YES;
 }

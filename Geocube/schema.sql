@@ -8,7 +8,8 @@ create table config (
 );
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "http://localhost:8001/geocube_sites.txt");
-insert into config(key, value) values("version", "4");
+insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,
@@ -683,3 +684,12 @@ create table personal_notes (
 create index personal_notes_idx_wpname on personal_notes(wp_name);
 create index personal_notes_idx_waypoint_id on personal_notes(waypoint_id);
 create index personal_notes_idx_id on personal_notes(id);
+
+create table notices (
+    id integer primary key,
+    note text,
+    sender text,
+    date text,
+    seen bool
+);
+create index notices_idx_id on notices(id);

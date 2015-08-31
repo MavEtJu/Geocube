@@ -31,7 +31,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL];
-    menuItems = [NSMutableArray arrayWithArray:@[@"Download licenses"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Download site info"]];
 }
 
 - (void)refreshAccountData
@@ -253,9 +253,6 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
-
-
-
 }
 
 @end

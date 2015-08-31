@@ -64,9 +64,10 @@
 #define    VC_FILES_DROPBOX 1
 #define RC_USERPROFILE 8
 #define RC_NOTICES 9
+#define    VC_NOTICES 0
 #define RC_SETTINGS 10
-#define    VC_SETTINGS 0
-#define    VC_ACCOUNTS
+#define    VC_SETTINGS_SETTINGS 0
+#define    VC_SETTINGS_ACCOUNTS 1
 #define RC_HELP 11
 #define    VC_HELP_ABOUT 0
 #define    VC_HELP_HELP 1

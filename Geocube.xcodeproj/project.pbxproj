@@ -232,6 +232,9 @@
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
+		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
+		E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A11B946D1F0053AD01 /* dbNotice.m */; };
+		E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -637,6 +640,12 @@
 		E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachePersonalNoteViewController.m; sourceTree = "<group>"; };
 		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
 		E880379B1B915CEE0053AD01 /* GCURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCURLRequest.m; sourceTree = "<group>"; };
+		E880379D1B9467E90053AD01 /* NoticesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticesViewController.h; sourceTree = "<group>"; };
+		E880379E1B9467E90053AD01 /* NoticesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticesViewController.m; sourceTree = "<group>"; };
+		E88037A01B946D1F0053AD01 /* dbNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbNotice.h; sourceTree = "<group>"; };
+		E88037A11B946D1F0053AD01 /* dbNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbNotice.m; sourceTree = "<group>"; };
+		E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTableViewCell.h; sourceTree = "<group>"; };
+		E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableViewCell.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -909,6 +918,8 @@
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
+				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
+				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
 				E820F2041B7DA451009FB999 /* TravelbugsViewController.h */,
@@ -1186,6 +1197,8 @@
 				E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */,
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
+				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
+				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
@@ -1555,6 +1568,8 @@
 				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
 				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
 				E80732BC1B5FB4CF007FDC29 /* dbName.m */,
+				E88037A01B946D1F0053AD01 /* dbNotice.h */,
+				E88037A11B946D1F0053AD01 /* dbNotice.m */,
 				E8575FFD1B849BE600F34483 /* dbPersonalNote.h */,
 				E8575FFE1B849BE600F34483 /* dbPersonalNote.m */,
 				E80732C11B5FB4EA007FDC29 /* dbState.h */,
@@ -2034,6 +2049,7 @@
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
+				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
@@ -2081,10 +2097,12 @@
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
+				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E87E474A1B82A301005606A2 /* ImportSites.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
+				E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,

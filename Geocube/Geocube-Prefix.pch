@@ -67,6 +67,7 @@
 #import "dbLog.h"
 #import "dbLogType.h"
 #import "dbName.h"
+#import "dbNotice.h"
 #import "dbPersonalNote.h"
 #import "dbState.h"
 #import "dbSymbol.h"
@@ -104,6 +105,7 @@
 #import "CacheHeaderTableViewCell.h"
 #import "CacheTableViewCell.h"
 #import "LogTableViewCell.h"
+#import "NoticeTableViewCell.h"
 #import "PersonalNoteTableViewCell.h"
 
 #import "BookmarksAccountsViewController.h"
@@ -156,6 +158,7 @@
 #import "HelpImagesViewController.h"
 
 #import "CachesOfflineListViewController.h"
+#import "NoticesViewController.h"
 #import "CompassViewController.h"
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
