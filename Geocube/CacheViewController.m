@@ -227,7 +227,7 @@
                 NSArray *wps = [waypoint hasWaypoints];
                 if ([wps count] <= 1) {
                     tc = [UIColor lightGrayColor];
-                    cell.userInteractionEnabled = NO;
+                    cell.userInteractionEnabled = YES;     // Be able to create one
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)([wps count] - 1)];
                 break;
@@ -341,9 +341,14 @@
             return;
         }
         if (indexPath.row == 6) {    /* Waypoints */
-            UITableViewController *newController = [[CacheWaypointsViewController alloc] init:waypoint];
-            newController.edgesForExtendedLayout = UIRectEdgeNone;
-            [self.navigationController pushViewController:newController animated:YES];
+            NSArray *wps = [waypoint hasWaypoints];
+            if ([wps count] <= 1) {
+                [self newWaypoint];
+            } else {
+                UITableViewController *newController = [[CacheWaypointsViewController alloc] init:waypoint];
+                newController.edgesForExtendedLayout = UIRectEdgeNone;
+                [self.navigationController pushViewController:newController animated:YES];
+            }
             return;
         }
         if (indexPath.row == 7) {    /* Travelbugs */
@@ -445,7 +450,7 @@
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Add a related waypoint"
-                               message:@"Lattitude is north and south\nLongitude is east and west"
+                               message:@"Lattitude is north and south\nLongitude is east and west\nUse 3679 for the directional"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -495,12 +500,46 @@
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Lattitude (like S 12 34.567)";
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+        [textField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Longitude (like E 23.45.678)";
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+        [textField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)editingChanged:(UITextField *)tf
+{
+    if ([tf.text length] == 1) {
+        if ([tf.text isEqualToString:@"N"] == YES ||
+            [tf.text isEqualToString:@"E"] == YES ||
+            [tf.text isEqualToString:@"S"] == YES ||
+            [tf.text isEqualToString:@"W"] == YES) {
+            return;
+        }
+        if ([tf.text isEqualToString:@"3"] == YES) {
+            tf.text = @"E ";
+            return;
+        }
+        if ([tf.text isEqualToString:@"6"] == YES) {
+            tf.text = @"N ";
+            return;
+        }
+        if ([tf.text isEqualToString:@"7"] == YES) {
+            tf.text = @"S ";
+            return;
+        }
+        if ([tf.text isEqualToString:@"9"] == YES) {
+            tf.text = @"W ";
+            return;
+        }
+        tf.text = @"";
+        return;
+    }
 }
 
 @end
