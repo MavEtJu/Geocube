@@ -101,6 +101,72 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    if (index == 0) {      // Reload
+        [self downloadNotices];
+        return;
+    }
+
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
+}
+
+- (void)downloadNotices
+{
+    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_notices"] value]];
+
+    GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+
+    if (error == nil && response.statusCode == 200) {
+        NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
+        [ImportSites parse:data];
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Notices Download"
+                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                             ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        [self.tableView reloadData];
+    } else {
+        NSLog(@"%@: Failed! %@", [self class], error);
+
+        NSString *err;
+        if (error != nil) {
+            err = error.description;
+        } else {
+            err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
+        }
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Notices download"
+                                   message:[NSString stringWithFormat:@"Failed to download: %@", err]
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                             ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 #pragma random stuff
 
 + (void)AccountsNeedToBeInitialized
@@ -117,6 +183,7 @@
     n.sender = @"System";
     n.seen = NO;
     n.date = [fmt stringFromDate:[NSDate date]];
+    n.geocube_id = 0;
     n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the menu on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.";
     [n dbCreate];
 }

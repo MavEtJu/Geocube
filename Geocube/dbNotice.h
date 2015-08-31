@@ -23,6 +23,7 @@
     NSString *note;
     NSString *sender;
     NSString *date;
+    NSInteger geocube_id;
     BOOL seen;
 
     // Not obtained from the database
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) NSString *sender;
 @property (nonatomic, retain) NSString *date;
 @property (nonatomic) BOOL seen;
+@property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger cellHeight;
 
 + (NSInteger)countUnread;

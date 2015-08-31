@@ -23,17 +23,18 @@
 
 @implementation dbNotice
 
-@synthesize note, sender, seen, date, cellHeight;
+@synthesize note, sender, seen, date, cellHeight, geocube_id;
 
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into notices(note, sender, date, seen) values(?, ?, ?, ?)");
+        DB_PREPARE(@"insert into notices(note, sender, date, seen, geocube_id) values(?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, note);
         SET_VAR_TEXT(2, sender);
         SET_VAR_TEXT(3, date);
         SET_VAR_BOOL(4, seen);
+        SET_VAR_INT (5, geocube_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id)
@@ -47,7 +48,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, note, sender, date, seen from notices order by seen, date, id");
+        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices order by seen, date, id");
 
         DB_WHILE_STEP {
             dbNotice *n = [[dbNotice alloc] init];
@@ -56,6 +57,7 @@
             TEXT_FETCH(2, n.sender);
             TEXT_FETCH(3, n.date);
             BOOL_FETCH(4, n.seen);
+            INT_FETCH (5, n.geocube_id);
             [n finish];
             [ss addObject:n];
         }

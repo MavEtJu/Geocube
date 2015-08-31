@@ -687,6 +687,7 @@ create index personal_notes_idx_id on personal_notes(id);
 
 create table notices (
     id integer primary key,
+    geocube_id integer,
     note text,
     sender text,
     date text,

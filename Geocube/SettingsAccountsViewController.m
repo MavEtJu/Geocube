@@ -240,7 +240,7 @@
         }
 
         UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Licenses download"
+                                   alertControllerWithTitle:@"Site Information Download"
                                    message:[NSString stringWithFormat:@"Failed to download: %@", err]
                                    preferredStyle:UIAlertControllerStyleAlert
                                    ];
