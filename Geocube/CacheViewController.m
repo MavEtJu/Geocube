@@ -373,12 +373,12 @@
     }
 
     if (indexPath.section == 2) {
-        if (indexPath.row == 0) {   /* Set a target */
+        if (indexPath.row == 0) {   /* Set as target */
             if ([waypointManager currentWaypoint] != nil &&
                 [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES) {
                 [waypointManager setCurrentWaypoint:nil];
                 [self showWaypoint:nil];
-                [self.tableView reloadData];
+                [self.navigationController popViewControllerAnimated:YES];
                 return;
             }
 

@@ -25,7 +25,7 @@
 
 @implementation AppDelegate
 
-@synthesize tabBars;
+@synthesize tabBars, currentTabBar;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -368,6 +368,7 @@
 - (void)switchController:(NSInteger)idx
 {
     NSLog(@"AppDelegate: Switching to TB %ld", (long)idx);
+    currentTabBar = idx;
     self.window.rootViewController = [tabBars objectAtIndex:idx];
     [self.window makeKeyAndVisible];
 }

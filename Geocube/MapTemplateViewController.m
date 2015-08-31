@@ -212,25 +212,51 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     NSId _id = [dbWaypoint dbGetByName:name];
     dbWaypoint *wp = [dbWaypoint dbGet:_id];
 
-    // Find the right tab
-    BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_CACHESOFFLINE];
-    // And the right navigation view controller
-    UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_CACHESOFFLINE_LIST];
-    // And the right view controller
-    CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
-    // Make sure there is nothing extra on it
-    while ([cvc.navigationController.viewControllers count] != 1)
-        [cvc.navigationController popViewControllerAnimated:NO];
+    // Find the right tab and the right navigation view controller
+    BHTabsViewController *tb = nil;
+    UINavigationController *nvc = nil;
+    if (_AppDelegate.currentTabBar == RC_CACHESOFFLINE) {
+        // Find the right tab and the right navigation view controller
+        tb = [_AppDelegate.tabBars objectAtIndex:RC_CACHESOFFLINE];
+        nvc = [tb.viewControllers objectAtIndex:VC_CACHESOFFLINE_LIST];
 
-    // Bring the right tab to the front.
-    [tb makeTabViewCurrent:VC_CACHESOFFLINE_LIST];
+        // Pick the right view controller
+        CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
 
-    // And then push the CacheViewController on top of it
-    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
-    [newController showWaypoint:wp];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = wp.name;
-    [cvc.navigationController pushViewController:newController animated:YES];
+        // Make sure there is nothing extra on it
+        while ([cvc.navigationController.viewControllers count] != 1)
+            [cvc.navigationController popViewControllerAnimated:NO];
+
+        // Bring the right tab to the front.
+        [tb makeTabViewCurrent:VC_CACHESOFFLINE_LIST];
+
+        // And then push the CacheViewController on top of it
+        CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+        [newController showWaypoint:wp];
+        newController.edgesForExtendedLayout = UIRectEdgeNone;
+        newController.title = wp.name;
+        [cvc.navigationController pushViewController:newController animated:YES];
+
+        return;
+    }
+    if (_AppDelegate.currentTabBar == RC_NAVIGATE) {
+        // Find the right tab and the right navigation view controller
+        tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+        nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
+
+        // Pick the right view controller
+        CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+
+        // Make sure there is nothing extra on it
+        [cvc showWaypoint:waypointManager.currentWaypoint];
+
+        // Bring the right tab to the front.
+        [tb makeTabViewCurrent:VC_NAVIGATE_TARGET];
+
+        return;
+
+    }
+
 }
 
 @end

@@ -26,8 +26,8 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) JASidePanelController *viewController;
 @property (nonatomic, retain) NSMutableArray *tabBars;
+@property (nonatomic) NSInteger currentTabBar;
 
 - (void)switchController:(NSInteger)idx;
 
