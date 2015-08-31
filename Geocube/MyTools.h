@@ -55,6 +55,8 @@
 + (NSString *)urlencode:(NSString *)in;
 + (NSString *)urldecode:(NSString *)in;
 
++ (NSString *)checkCoordinate:(NSString *)text;
+
 @end
 
 typedef sqlite3_int64 NSId;
