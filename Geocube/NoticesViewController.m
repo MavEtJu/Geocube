@@ -76,6 +76,7 @@
     cell.noteLabel.backgroundColor = bg;
     cell.senderLabel.backgroundColor = bg;
     cell.dateLabel.backgroundColor = bg;
+    cell.backgroundColor = bg;
 
     n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height + 10;
 

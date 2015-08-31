@@ -42,7 +42,7 @@
      */
 #define BORDER 1
 #define HEIGHT_NAME  15
-#define WIDTH_DATE 100
+#define WIDTH_DATE 80
 
     CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, HEIGHT_NAME);
     CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, HEIGHT_NAME);
