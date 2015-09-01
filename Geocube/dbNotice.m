@@ -106,7 +106,7 @@
 
 + (NSInteger)dbCount
 {
-    NSInteger c;
+    NSInteger c = 0;
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(*) from notices");
         DB_IF_STEP {
@@ -119,7 +119,7 @@
 
 + (NSInteger)countUnread
 {
-    NSInteger c;
+    NSInteger c = 0;
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(*) from notices set seen = 0");
         DB_IF_STEP {
