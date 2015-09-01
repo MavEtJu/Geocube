@@ -48,7 +48,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices order by seen, date, id");
+        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices order by seen, date desc, id");
 
         DB_WHILE_STEP {
             dbNotice *n = [[dbNotice alloc] init];
