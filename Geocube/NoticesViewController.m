@@ -72,13 +72,16 @@
     [cell sizeToFit];
     cell.userInteractionEnabled = YES;
 
-    UIColor *bg = (n.seen == YES) ? [UIColor whiteColor] : [UIColor yellowColor];
+    UIColor *bg = [UIColor whiteColor];
+    if (n.seen == NO)
+        bg = [UIColor yellowColor];
+
     cell.noteLabel.backgroundColor = bg;
     cell.senderLabel.backgroundColor = bg;
     cell.dateLabel.backgroundColor = bg;
     cell.backgroundColor = bg;
 
-    n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height + 10;
+    n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height;
 
     return cell;
 }
@@ -86,6 +89,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbNotice *n = [notices objectAtIndex:indexPath.row];
+    if (n.cellHeight == 0)
+        return 40;
     return n.cellHeight;
 }
 
@@ -125,11 +130,11 @@
 
     if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
-        [ImportSites parse:data];
+        [ImportNotices parse:data];
 
         UIAlertController *alert= [UIAlertController
                                    alertControllerWithTitle:@"Notices Download"
-                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]
+                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]
                                    preferredStyle:UIAlertControllerStyleAlert
                                    ];
 
@@ -140,6 +145,7 @@
                              ];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+        notices = [dbNotice dbAll];
         [self.tableView reloadData];
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
@@ -184,7 +190,7 @@
     n.seen = NO;
     n.date = [fmt stringFromDate:[NSDate date]];
     n.geocube_id = 0;
-    n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the menu on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.";
+    n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the menu on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.\n\nIf you tap on this note, the background will change, indicating you have seen it.";
     [n dbCreate];
 }
 

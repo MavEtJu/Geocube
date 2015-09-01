@@ -67,6 +67,30 @@
     return ss;
 }
 
++ (dbNotice *)dbGetByGCId:(NSInteger)geocube_id
+{
+    dbNotice *n = nil;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices where geocube_id = ? order by seen, geocube_id desc");
+
+        SET_VAR_INT(1, geocube_id);
+
+        DB_IF_STEP {
+            n = [[dbNotice alloc] init];
+            INT_FETCH( 0, n._id);
+            TEXT_FETCH(1, n.note);
+            TEXT_FETCH(2, n.sender);
+            TEXT_FETCH(3, n.date);
+            BOOL_FETCH(4, n.seen);
+            INT_FETCH (5, n.geocube_id);
+            [n finish];
+        }
+        DB_FINISH;
+    }
+    return n;
+}
+
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {

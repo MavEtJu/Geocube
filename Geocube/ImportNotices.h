@@ -19,25 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbNotice : dbObject {
+@interface ImportNotices : NSObject<NSXMLParserDelegate> {
     NSString *note;
     NSString *sender;
     NSString *date;
     NSInteger geocube_id;
-    BOOL seen;
 
-    // Not obtained from the database
-    NSInteger cellHeight;
+    NSString *version;
+    NSString *revision;
+    NSMutableString *currentText;
 }
 
-@property (nonatomic, retain) NSString *note;
-@property (nonatomic, retain) NSString *sender;
-@property (nonatomic, retain) NSString *date;
-@property (nonatomic) BOOL seen;
-@property (nonatomic) NSInteger geocube_id;
-@property (nonatomic) NSInteger cellHeight;
-
-+ (NSInteger)countUnread;
-+ (dbNotice *)dbGetByGCId:(NSInteger)geocube_id;
++ (void)parse:(NSData *)data;
 
 @end

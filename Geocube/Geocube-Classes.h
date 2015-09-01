@@ -81,6 +81,7 @@
 @class ImagesDownloadManager;
 @class ImportGPX;
 @class ImportGPXViewController;
+@class ImportNotices;
 @class ImportSites;
 @class LiveAPI;
 @class LogTableViewCell;

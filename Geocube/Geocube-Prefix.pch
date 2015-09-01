@@ -96,6 +96,7 @@
 #import "ImportGPX.h"
 #import "ImportGPXViewController.h"
 #import "ImportSites.h"
+#import "ImportNotices.h"
 
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"

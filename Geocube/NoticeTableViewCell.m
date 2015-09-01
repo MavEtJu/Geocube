@@ -42,23 +42,23 @@
      */
 #define BORDER 1
 #define HEIGHT_NAME  15
-#define WIDTH_DATE 80
+#define WIDTH_DATE 60
 
     CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, HEIGHT_NAME);
     CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, HEIGHT_NAME);
     CGRect rectNote = CGRectMake(BORDER, BORDER + HEIGHT_NAME, width - 2 * BORDER, 30);
 
-    // Name
+    // Sender
     senderLabel = [[UILabel alloc] initWithFrame:rectSender];
-    senderLabel.font = [UIFont systemFontOfSize:14.0];
+    senderLabel.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:senderLabel];
 
     // Date
     dateLabel = [[UILabel alloc] initWithFrame:rectDate];
-    dateLabel.font = [UIFont systemFontOfSize:14.0];
+    dateLabel.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:dateLabel];
 
-    // Log
+    // Note
     noteLabel = [[UILabel alloc] initWithFrame:rectNote];
     noteLabel.font = [UIFont systemFontOfSize:14.0];
     noteLabel.numberOfLines = 0;

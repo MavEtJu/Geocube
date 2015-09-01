@@ -235,6 +235,7 @@
 		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
 		E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A11B946D1F0053AD01 /* dbNotice.m */; };
 		E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */; };
+		E88037A81B954F290053AD01 /* ImportNotices.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A71B954F290053AD01 /* ImportNotices.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -646,6 +647,8 @@
 		E88037A11B946D1F0053AD01 /* dbNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbNotice.m; sourceTree = "<group>"; };
 		E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTableViewCell.h; sourceTree = "<group>"; };
 		E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableViewCell.m; sourceTree = "<group>"; };
+		E88037A61B954F290053AD01 /* ImportNotices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportNotices.h; sourceTree = "<group>"; };
+		E88037A71B954F290053AD01 /* ImportNotices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportNotices.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -1649,6 +1652,8 @@
 			children = (
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
+				E88037A61B954F290053AD01 /* ImportNotices.h */,
+				E88037A71B954F290053AD01 /* ImportNotices.m */,
 				E87E47481B82A301005606A2 /* ImportSites.h */,
 				E87E47491B82A301005606A2 /* ImportSites.m */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
@@ -2063,6 +2068,7 @@
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
+				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
