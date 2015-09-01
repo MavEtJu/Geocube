@@ -65,6 +65,7 @@
     totalRecommendationsReceived = 0;
 
     accountViews = [NSMutableArray arrayWithCapacity:[dbc.Accounts count] + 1];
+    __block NSInteger count = 0;
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
 
@@ -72,6 +73,7 @@
             [accountViews addObject:@""];
             return;
         }
+        count++;
 
         UILabel *l;
 
@@ -101,6 +103,16 @@
         a.idx = idx;
         [self performSelectorInBackground:@selector(runStatistics:) withObject:a];
     }];
+
+    if (count == 0) {
+        UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
+        l.text = @"No accounts are configured yet. As such no information is available is here yet.";
+        l.numberOfLines = 0;
+        [l sizeToFit];
+        [contentView addSubview:l];
+        y += l.frame.size.height;
+        return;
+    }
 
     /* Total */
     // Spacer
