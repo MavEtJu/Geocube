@@ -88,9 +88,10 @@
     [vs addObject:[NSNumber numberWithInteger:[dbType dbCount]]];
     [fs addObject:@"Waypoints"];
     [vs addObject:[NSNumber numberWithInteger:[dbWaypoint dbCount]]];
+    fields1 = fs;
+    values1 = vs;
 
-    fields = fs;
-    values = vs;
+    config = [dbConfig dbAll];
 }
 
 - (void)viewDidLoad
@@ -104,13 +105,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 1;
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return @"Database count";
+    if (section == 1)
+        return @"Configuration";
+    return nil;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [fields count];
+    if (section == 0)
+        return [fields1 count];
+    if (section == 1)
+        return [config count];
+    return 0;
 }
 
 // Return a cell for the index path
@@ -120,9 +134,17 @@
     if (cell == nil)
         cell = [[GCTableViewCellTwoTextfields alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
-    cell.fieldLabel.text = [fields objectAtIndex:indexPath.row];
-    cell.valueLabel.text = [MyTools niceNumber:[[values objectAtIndex:indexPath.row] integerValue]];
-    cell.userInteractionEnabled = NO;
+    if (indexPath.section == 0) {
+        cell.fieldLabel.text = [fields1 objectAtIndex:indexPath.row];
+        cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
+        cell.userInteractionEnabled = NO;
+    }
+    if (indexPath.section == 1) {
+        dbConfig *c = [config objectAtIndex:indexPath.row];
+        cell.fieldLabel.text = c.key;
+        cell.valueLabel.text = c.value;
+        cell.userInteractionEnabled = NO;
+    }
 
     return cell;
 }

@@ -20,8 +20,9 @@
  */
 
 @interface HelpDatabaseViewController : GCTableViewController {
-    NSArray *fields;
-    NSArray *values;
+    NSArray *fields1;
+    NSArray *values1;
+    NSArray *config;
 }
 
 @end
