@@ -76,12 +76,12 @@
 
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlencode:oabb.token]];
 
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
-        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
+        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
         BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
-        [_AppDelegate switchController:RC_BOOKMARKS];
-        [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
+        [_AppDelegate switchController:RC_BROWSER];
+        [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_oauth:oabb];
         [bbvc loadURL:url];
         return YES;
@@ -91,14 +91,14 @@
         // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
         NSString *url = account.gca_authenticate_url;
 
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
-        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
+        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
         BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
         gca.delegate = self;
 
-        [_AppDelegate switchController:RC_BOOKMARKS];
-        [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
+        [_AppDelegate switchController:RC_BROWSER];
+        [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_gca:gca];
         [bbvc loadURL:url];
         return YES;

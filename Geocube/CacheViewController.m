@@ -408,12 +408,12 @@
         }
 
         if (indexPath.row == 2) {
-            [_AppDelegate switchController:RC_BOOKMARKS];
-            BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BOOKMARKS];
-            UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BOOKMARKS_BROWSER];
+            [_AppDelegate switchController:RC_BROWSER];
+            BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+            UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
             BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
-            [btc makeTabViewCurrent:VC_BOOKMARKS_BROWSER];
+            [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
             [bbvc loadURL:waypoint.url];
             return;
         }
