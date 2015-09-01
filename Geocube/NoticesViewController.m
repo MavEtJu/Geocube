@@ -43,6 +43,36 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if ([notices count] > 1)
+        return;
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Initialize notices"
+                               message:@"Currently no notices details have been download. Normally you update them by tapping on the local menu button at the top left and select 'Download notices'. But for now you can update them by pressing the 'Import' button"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *import = [UIAlertAction
+                             actionWithTitle:@"Import"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 [self downloadNotices];
+                             }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:import];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -72,14 +102,11 @@
     [cell sizeToFit];
     cell.userInteractionEnabled = YES;
 
-    UIColor *bg = [UIColor whiteColor];
-    if (n.seen == NO)
-        bg = [UIColor yellowColor];
-
-    cell.noteLabel.backgroundColor = bg;
-    cell.senderLabel.backgroundColor = bg;
-    cell.dateLabel.backgroundColor = bg;
-    cell.backgroundColor = bg;
+    if (n.seen == NO) {
+        cell.noteLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        [cell.noteLabel sizeToFit];
+    } else
+        cell.noteLabel.font = [UIFont systemFontOfSize:14.0];
 
     n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height;
 
@@ -182,15 +209,12 @@
     if ([dbNotice dbCount] != 0)
         return;
 
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    [fmt setDateFormat:@"yyyy-MM-dd"];
-
     dbNotice *n = [[dbNotice alloc] init];
     n.sender = @"System";
     n.seen = NO;
-    n.date = [fmt stringFromDate:[NSDate date]];
+    n.date = @"2015-08-01";
     n.geocube_id = 0;
-    n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the menu on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.\n\nIf you tap on this note, the background will change, indicating you have seen it.";
+    n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the local menu button on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.\n\nIf you tap on this note, the text will from bold to normal, indicating you have seen it.";
     [n dbCreate];
 }
 
