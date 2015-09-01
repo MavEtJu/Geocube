@@ -55,6 +55,27 @@
     return c;
 }
 
+
++ (NSArray *)dbAll
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, key, value from config");
+
+        DB_WHILE_STEP {
+            dbConfig *c = [[dbConfig alloc] init];
+            INT_FETCH( 0, c._id);
+            TEXT_FETCH(1, c.key);
+            TEXT_FETCH(2, c.value);
+
+            [ss addObject:c];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
