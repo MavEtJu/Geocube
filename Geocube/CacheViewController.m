@@ -32,7 +32,7 @@
     self = [super initWithStyle:style];
 
     menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight"]];
-    hasCloseButton = YES;
+    hasCloseButton = canBeClosed;
 
     return self;
 }
