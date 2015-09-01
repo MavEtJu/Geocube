@@ -76,6 +76,8 @@
     [vs addObject:[NSNumber numberWithInteger:[dbLogType dbCount]]];
     [fs addObject:@"Names"];
     [vs addObject:[NSNumber numberWithInteger:[dbName dbCount]]];
+    [fs addObject:@"Notices"];
+    [vs addObject:[NSNumber numberWithInteger:[dbNotice dbCount]]];
     [fs addObject:@"Personal Notes"];
     [vs addObject:[NSNumber numberWithInteger:[dbPersonalNote dbCount]]];
     [fs addObject:@"States"];
@@ -136,7 +138,11 @@
 
     if (indexPath.section == 0) {
         cell.fieldLabel.text = [fields1 objectAtIndex:indexPath.row];
-        cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
+        NSObject *o = [values1 objectAtIndex:indexPath.row];
+        if ([o isKindOfClass:[NSNumber class]] == YES)
+            cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
+        else
+            cell.valueLabel.text = [values1 objectAtIndex:indexPath.row];
         cell.userInteractionEnabled = NO;
     }
     if (indexPath.section == 1) {
