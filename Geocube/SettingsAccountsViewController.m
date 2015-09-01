@@ -48,6 +48,36 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if ([accounts count] != 0)
+        return;
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Initialize site details"
+                               message:@"Currently no site details have been initialized. Normally you update them by tapping on the local menu button at the top left and select 'Download site information'. But for now you can update them by pressing the 'Import' button"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *import = [UIAlertAction
+                             actionWithTitle:@"Import"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 [self downloadLicenses];
+                             }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:import];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
