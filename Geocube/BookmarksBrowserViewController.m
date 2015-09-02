@@ -53,15 +53,17 @@
     [webView loadRequest:request];
 }
 
-- (void)showActivity:(BOOL)enable
+- (void)showActivity:(NSInteger)enable
 {
     @synchronized(self) {
-        NSLog(@"showActivity - %ld %d", networkActivityIndicator, enable);
-        if (enable)
+        NSLog(@"showActivity - %ld %ld", networkActivityIndicator, enable);
+        if (enable == YES)
             networkActivityIndicator++;
-        else
+        else if (enable == NO) {
             if (networkActivityIndicator > 0)
                 networkActivityIndicator--;
+        } else if (enable == -1)
+            networkActivityIndicator = 0;
         if (networkActivityIndicator > 0)
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         else
@@ -114,7 +116,8 @@
 
 //        NSLog(@"token: %@", oauth_token);
 //        NSLog(@"verifier: %@", oauth_verifier);
-            
+
+        [self showActivity:-1];
         [oabb obtainAccessToken];
         return NO;
     }
@@ -134,6 +137,7 @@
             *stop = YES;
         }];
 
+        [self showActivity:-1];
         return NO;
     }
 
