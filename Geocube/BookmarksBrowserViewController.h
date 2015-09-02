@@ -32,6 +32,7 @@
 
     GCOAuthBlackbox *oabb;
     GeocachingAustralia *gca;
+    NSInteger networkActivityIndicator;
 }
 
 - (void)loadURL:(NSString *)urlString;

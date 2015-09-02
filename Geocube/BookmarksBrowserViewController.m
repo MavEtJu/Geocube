@@ -35,6 +35,8 @@
     webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:webView];
 
+    networkActivityIndicator = 0;
+
     return self;
 }
 
@@ -49,6 +51,22 @@
     NSURL *url = [NSURL URLWithString:urlHome];
     GCURLRequest *request = [GCURLRequest requestWithURL:url];
     [webView loadRequest:request];
+}
+
+- (void)showActivity:(BOOL)enable
+{
+    @synchronized(self) {
+        NSLog(@"showActivity - %ld %d", networkActivityIndicator, enable);
+        if (enable)
+            networkActivityIndicator++;
+        else
+            if (networkActivityIndicator > 0)
+                networkActivityIndicator--;
+        if (networkActivityIndicator > 0)
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        else
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
 }
 
 - (void)loadURLRequest:(GCURLRequest *)_req
@@ -119,6 +137,7 @@
         return NO;
     }
 
+    [self showActivity:YES];
     return YES;
 }
 
@@ -141,6 +160,8 @@
     NSArray *mimeTypes = @[@"application/gpx", @"application/gpx+xml", @"application/zip", @"text/xml"];
     NSLog(@"Found mime type: %@", mime);
 
+    [self showActivity:NO];
+
     [mimeTypes enumerateObjectsUsingBlock:^(NSString *mimeType, NSUInteger idx, BOOL *stop) {
         if ([mime isEqualToString:mimeType] == YES) {
             NSLog(@"Found mime type: %@", mime);
@@ -154,6 +175,27 @@
         }
     }];
 }
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
+    NSLog(@"Error for WEBVIEW: %@", [error description]);
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Failed to download"
+                               message:[error description]
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil];
+
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+    [self showActivity:NO];
+}
+
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)_data
 {
