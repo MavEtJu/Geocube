@@ -66,6 +66,7 @@
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
 @class GCTableViewCell;
+@class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
 @class GCTableViewCellTwoTextfields;
 @class GCTableViewCellWithSubtitle;
