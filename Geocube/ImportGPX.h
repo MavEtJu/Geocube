@@ -41,6 +41,7 @@
 
     NSArray *files;
     dbGroup *group;
+    dbAccount *account;
 
     NSMutableArray *logIdGCId;
     NSMutableArray *attributesYES, *attributesNO;
@@ -61,7 +62,7 @@
 
 @property (nonatomic)id delegate;
 
-- (id)init:(dbGroup *)group;
+- (id)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;
 - (void)parse:(NSString *)filename;
 - (void)parseAfter;

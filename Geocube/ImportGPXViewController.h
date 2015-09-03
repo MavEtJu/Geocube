@@ -22,6 +22,7 @@
 @interface ImportGPXViewController : GCViewController<ImportGPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate> {
     NSMutableArray *filenames;
     dbGroup *group;
+    dbAccount *account;
 
     UILabel *filenameLabel;
     UILabel *newWaypointsLabel;
@@ -37,6 +38,6 @@
     ImportGPX *imp;
 }
 
-- (id)init:(NSString *)filename group:(dbGroup *)group;
+- (id)init:(NSString *)filename group:(dbGroup *)group account:(dbAccount *)account;
 
 @end

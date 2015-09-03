@@ -23,7 +23,7 @@
 
 @implementation ImportGPXViewController
 
-- (id)init:(NSString *)_filename group:(dbGroup *)_group
+- (id)init:(NSString *)_filename group:(dbGroup *)_group account:(dbAccount *)_account
 {
     self = [super init];
 
@@ -38,6 +38,7 @@
     }
 
     group = _group;
+    account = _account;
 
     menuItems = nil;
     hasCloseButton = YES;
@@ -165,7 +166,7 @@
     [self.view addSubview:totalImagesLabel];
     y += height;
 
-    imp = [[ImportGPX alloc] init:group];
+    imp = [[ImportGPX alloc] init:group account:account];
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
 }

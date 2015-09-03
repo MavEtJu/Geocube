@@ -129,7 +129,7 @@
     [headerView addSubview:l];
 
     l = [[UILabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
-    l.text = waypoint.name;
+    l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];

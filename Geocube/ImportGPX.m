@@ -25,7 +25,7 @@
 
 @synthesize delegate;
 
-- (id)init:(dbGroup *)_group
+- (id)init:(dbGroup *)_group account:(dbAccount *)_account;
 {
     self = [super init];
     delegate = nil;
@@ -40,6 +40,7 @@
     newImagesCount = 0;
 
     group = _group;
+    account = _account;
 
     NSLog(@"%@: Importing info %@", [self class], group.name);
 
@@ -112,6 +113,9 @@
             currentWP = [[dbWaypoint alloc] init];
             [currentWP setLat:[attributeDict objectForKey:@"lat"]];
             [currentWP setLon:[attributeDict objectForKey:@"lon"]];
+
+            currentWP.account = account;
+            currentWP.account_id = account._id;
 
             logs = [NSMutableArray arrayWithCapacity:20];
             attributesYES = [NSMutableArray arrayWithCapacity:20];

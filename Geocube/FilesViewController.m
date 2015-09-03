@@ -227,7 +227,32 @@
         rows:groupNames
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:[groups objectAtIndex:selectedIndex]];
+            [self fileImport2:filename group:[groups objectAtIndex:selectedIndex]];
+        }
+        cancelBlock:^(ActionSheetStringPicker *picker) {
+            NSLog(@"Block Picker Canceled");
+        }
+        origin:self.view
+    ];
+}
+
+- (void)fileImport2:(NSString *)filename group:(dbGroup *)group
+{
+    NSMutableArray *accounts = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *accountNames = [NSMutableArray arrayWithCapacity:10];
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (a.accountname == nil || [a.accountname isEqualToString:@""] == YES)
+            return;
+        [accountNames addObject:a.site];
+        [accounts addObject:a];
+    }];
+
+    [ActionSheetStringPicker
+        showPickerWithTitle:@"Select the source"
+        rows:accountNames
+        initialSelection:0
+        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:group account:[accounts objectAtIndex:selectedIndex]];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
             [self.navigationController pushViewController:newController animated:YES];
@@ -237,6 +262,7 @@
         }
         origin:self.view
     ];
+
 }
 
 - (void)fileRename:(NSString *)filename
