@@ -59,6 +59,7 @@ create table waypoints (
     symbol_id integer,			-- pointer to symbols(id)
     type_id integer,			-- pointer to types(id)
     groundspeak_id integer,		-- pointer to groundspeak(id)
+    account_id integer,			-- pointer to accounts(id)
 
     log_status integer,			-- 0 not logged, 1 DNF, 2 found
     highlight bool

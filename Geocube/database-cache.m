@@ -373,4 +373,15 @@
     }];
 }
 
+- (dbAccount *)Account_get:(NSId)_id
+{
+    NSEnumerator *e = [Accounts objectEnumerator];
+    dbAccount *a;
+    while ((a = [e nextObject]) != nil) {
+        if (a._id == _id)
+            return a;
+    }
+    return nil;
+}
+
 @end

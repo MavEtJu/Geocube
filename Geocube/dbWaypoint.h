@@ -40,6 +40,9 @@
     NSString *type_str;
     dbType *type;
 
+    NSId account_id;
+    dbAccount *account;
+
     NSInteger logStatus;
     BOOL highlight;
 
@@ -77,6 +80,8 @@ enum {
 @property (nonatomic, retain) dbGroundspeak *groundspeak;
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL highlight;
+@property (nonatomic) NSId account_id;
+@property (nonatomic, retain) dbAccount *account;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;

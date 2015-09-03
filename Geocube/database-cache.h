@@ -119,5 +119,6 @@
 - (dbState *)State_get:(NSId)_id;
 
 - (void)AccountsReload;
+- (dbAccount *)Account_get:(NSId)_id;
 
 @end
