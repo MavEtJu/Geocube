@@ -148,13 +148,19 @@
     return wps;
 }
 
-+ (NSMutableArray *)dbAll
++ (NSMutableArray *)dbAllXXX:(NSString *)where
 {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints wp"];
+    if (where != nil) {
+        [sql appendString:@" where "];
+        [sql appendString:where];
+    }
+
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints");
+        DB_PREPARE(sql);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
@@ -182,6 +188,12 @@
         }
         DB_FINISH;
     }
+    return wps;
+}
+
++ (NSArray *)dbAll
+{
+    NSArray *wps = [dbWaypoint dbAllXXX:nil];
     return wps;
 }
 
@@ -192,169 +204,37 @@
 
 + (NSArray *)dbAllNotFound
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints where id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))");
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [wps addObject:wp];
-        }
-        DB_FINISH;
-    }
+    NSArray *wps = [dbWaypoint dbAllXXX:@"name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))"];
     return wps;
 }
 
 + (NSArray *)dbAllFound
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Found it') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))");
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [wps addObject:wp];
-        }
-        DB_FINISH;
-    }
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Found it') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
     return wps;
 }
 
 + (NSArray *)dbAllAttended
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints wp where wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))");
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [wps addObject:wp];
-        }
-        DB_FINISH;
-    }
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
     return wps;
 }
 
 + (NSArray *)dbAllInGroups:(NSArray *)groups
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbWaypoint *wp;
-
     NSMutableString *where = [NSMutableString stringWithString:@""];
     NSEnumerator *e = [groups objectEnumerator];
     dbObject *o;
     while ((o = [e nextObject]) != nil) {
         if ([where isEqualToString:@""] == NO)
             [where appendString:@" or "];
-        [where appendFormat:@"group_id = ?"];
+        [where appendFormat:@"group_id = %ld", (long)o._id];
     }
     // Stop selecting this criteria without actually selecting a group!
     if ([where isEqualToString:@""] == YES)
         return nil;
 
-    @synchronized(db.dbaccess) {
-        NSString *sql = [NSString stringWithFormat:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints wp where wp.id in (select waypoint_id from group2waypoints where %@)", where];
-        DB_PREPARE(sql);
-        NSInteger i = 1;
-        NSEnumerator *e = [groups objectEnumerator];
-        dbObject *o;
-        while ((o = [e nextObject]) != nil) {
-            SET_VAR_INT((int)i, o._id);
-            i++;
-        }
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [wps addObject:wp];
-        }
-        DB_FINISH;
-    }
+    NSArray *wps = [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"wp.id in (select waypoint_id from group2waypoints where %@)", where]];
     return wps;
 }
 
@@ -378,40 +258,8 @@
 
 + (dbWaypoint *)dbGet:(NSId)_id
 {
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            INT_FETCH(  0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-        }
-        DB_FINISH;
-    }
-
-    return wp;
+    NSArray *wps = [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"wp.id = %ld", (long)_id]];
+    return [wps objectAtIndex:0];
 }
 
 + (void)dbCreate:(dbWaypoint *)wp
@@ -516,117 +364,20 @@
 
 + (NSArray *)waypointsWithImages
 {
-    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints where id in (select waypoint_id from image2waypoint where type = ?)");
-
-        SET_VAR_INT(1, IMAGETYPE_USER);
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(  0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [ss addObject:wp];
-        }
-        DB_FINISH;
-    }
-    return ss;
+    NSArray *wps = [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"id in (select waypoint_id from image2waypoint where type = %d)", IMAGETYPE_USER]];
+    return wps;
 }
 
 + (NSArray *)waypointsWithLogs
 {
-    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints where id in (select waypoint_id from logs)");
-
-        SET_VAR_INT(1, IMAGETYPE_USER);
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(  0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [ss addObject:wp];
-        }
-        DB_FINISH;
-    }
-    return ss;
+    NSArray *wps = [dbWaypoint dbAllXXX:@"id in (select waypoint_id from logs)"];
+    return wps;
 }
 
 + (NSArray *)waypointsWithMyLogs
 {
-    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
-    dbWaypoint *wp;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))");
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN(  0, _id);
-            wp = [[dbWaypoint alloc] init:_id];
-
-            TEXT_FETCH( 1, wp.name);
-            TEXT_FETCH( 2, wp.description);
-            TEXT_FETCH( 3, wp.lat);
-            TEXT_FETCH( 4, wp.lon);
-            INT_FETCH(  5, wp.lat_int);
-            INT_FETCH(  6, wp.lon_int);
-            TEXT_FETCH( 7, wp.date_placed);
-            INT_FETCH(  8, wp.date_placed_epoch);
-            TEXT_FETCH( 9, wp.url);
-            INT_FETCH( 10, wp.type_id);
-            INT_FETCH( 11, wp.symbol_id);
-            INT_FETCH( 12, wp.groundspeak_id);
-            TEXT_FETCH(13, wp.urlname);
-            INT_FETCH( 14, wp.logStatus);
-            BOOL_FETCH(15, wp.highlight);
-            INT_FETCH( 16, wp.account_id);
-
-            [wp finish];
-            [ss addObject:wp];
-        }
-        DB_FINISH;
-    }
-    return ss;
+    NSArray *wps = [dbWaypoint dbAllXXX:@"id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
+    return wps;
 }
 
 @end
