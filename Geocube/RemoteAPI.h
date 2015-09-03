@@ -49,4 +49,8 @@
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
 
+- (NSDictionary *)GSGetGeocacheDataTypes;
+- (BOOL)CreateLogNote:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+
+
 @end

@@ -54,6 +54,7 @@
 
 + (NSString *)urlencode:(NSString *)in;
 + (NSString *)urldecode:(NSString *)in;
++ (NSString *)tickescape:(NSString *)in;
 
 + (NSString *)checkCoordinate:(NSString *)text;
 

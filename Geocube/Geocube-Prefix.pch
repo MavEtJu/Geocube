@@ -102,6 +102,7 @@
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellTwoTextfields.h"
+#import "GCTableViewCellKeyValue.h"
 
 #import "CacheHeaderTableViewCell.h"
 #import "CacheTableViewCell.h"
@@ -132,6 +133,7 @@
 #import "CacheHintViewController.h"
 #import "CacheImageViewController.h"
 #import "CacheImagesViewController.h"
+#import "CacheLogViewController.h"
 #import "CacheLogsViewController.h"
 #import "CachePersonalNoteViewController.h"
 #import "CacheTravelbugsViewController.h"

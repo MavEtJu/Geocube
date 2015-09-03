@@ -209,4 +209,23 @@
     return nil;
 }
 
+- (BOOL)CreateLogNote:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+{
+    if (account.protocol == ProtocolLiveAPI) {
+        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypointName dateLogged:dateLogged note:note favourite:favourite];
+    }
+
+    return NO;
+}
+
+- (NSDictionary *)GSGetGeocacheDataTypes
+{
+    if (account.protocol == ProtocolLiveAPI) {
+        NSDictionary *dict = [gs GetGeocacheDataTypes];
+        return dict;
+    }
+
+    return nil;
+}
+
 @end

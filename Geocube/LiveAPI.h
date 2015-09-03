@@ -22,11 +22,13 @@
 @interface LiveAPI : NSObject {
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
+    NSMutableDictionary *GSLogTypes;
 }
 
 - (id)init:(RemoteAPI *)remoteAPI;
 - (NSDictionary *)GetYourUserProfile;
 - (NSDictionary *)GetCacheIdsFavoritedByUser;
-
+- (NSDictionary *)GetGeocacheDataTypes;
+- (BOOL)CreateFieldNoteAndPublish:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 
 @end

@@ -407,6 +407,13 @@
             return;
         }
 
+        if (indexPath.row == 1) {   /* Mark as found */
+            UIViewController *newController = [[CacheLogViewController alloc] init:waypoint];
+            newController.edgesForExtendedLayout = UIRectEdgeNone;
+            [self.navigationController pushViewController:newController animated:YES];
+            return;
+        }
+
         if (indexPath.row == 2) {
             [_AppDelegate switchController:RC_BROWSER];
             BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];

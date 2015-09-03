@@ -34,6 +34,7 @@
 @class CacheHintViewController;
 @class CacheImageViewController;
 @class CacheImagesViewController;
+@class CacheLogViewController;
 @class CacheLogsViewController;
 @class CachePersonalNoteViewController;
 @class CacheTableViewCell;

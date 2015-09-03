@@ -254,6 +254,11 @@
     return [in stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
++ (NSString *)tickescape:(NSString *)in
+{
+    return [in stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+}
+
 + (NSString *)checkCoordinate:(NSString *)text
 {
     // Don't check empty strings
