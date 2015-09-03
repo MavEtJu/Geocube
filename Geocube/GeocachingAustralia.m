@@ -37,7 +37,7 @@
                            dictionaryWithObjects:@[
                                @"/",
                                remoteAPI.account.gca_cookie_name,
-                               [MyTools urlencode:remoteAPI.account.gca_cookie_value],
+                               [MyTools urlEncode:remoteAPI.account.gca_cookie_value],
                                @".geocaching.com.au" //remoteAPI.account.url_site
                            ] forKeys:@[
                                NSHTTPCookiePath,
@@ -104,7 +104,7 @@
 
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlencode:name]];
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlEncode:name]];
     NSArray *lines = [self loadPage:urlString];
     NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
@@ -117,7 +117,7 @@
 
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/hides/", [MyTools urlencode:name]];
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/hides/", [MyTools urlEncode:name]];
     NSArray *lines = [self loadPage:urlString];
     NSDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 

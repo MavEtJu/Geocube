@@ -52,9 +52,9 @@
 - (void)clockShowAndReset:(NSString *)title;
 - (void)clockEnable:(BOOL)yesno;
 
-+ (NSString *)urlencode:(NSString *)in;
-+ (NSString *)urldecode:(NSString *)in;
-+ (NSString *)tickescape:(NSString *)in;
++ (NSString *)urlEncode:(NSString *)in;
++ (NSString *)urlDecode:(NSString *)in;
++ (NSString *)tickEscape:(NSString *)in;
 + (NSString *)JSONEscape:(NSString *)in;
 
 + (NSString *)checkCoordinate:(NSString *)text;

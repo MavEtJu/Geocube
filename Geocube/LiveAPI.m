@@ -108,7 +108,7 @@
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlencode:remoteAPI.oabb.token]]];
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
@@ -129,7 +129,7 @@
 {
     NSLog(@"GetGeocacheDataTypes");
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetGeocacheDataTypes" parameters:[NSString stringWithFormat:@"accessToken=%@&logTypes=true", [MyTools urlencode:remoteAPI.oabb.token]]];
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetGeocacheDataTypes" parameters:[NSString stringWithFormat:@"accessToken=%@&logTypes=true", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;

@@ -35,7 +35,7 @@
 
 - (NSString *)string_array:(NSArray *)fields
 {
-    return [MyTools urlencode:[fields componentsJoinedByString:@"|"]];
+    return [MyTools urlEncode:[fields componentsJoinedByString:@"|"]];
 }
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters

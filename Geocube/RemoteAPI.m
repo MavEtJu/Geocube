@@ -74,7 +74,7 @@
             return NO;
         }
 
-        NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlencode:oabb.token]];
+        NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
 
         BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
         UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
@@ -109,7 +109,7 @@
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie
 {
-    account.gca_cookie_value = [MyTools urldecode:cookie.value];
+    account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [account dbUpdateCookieValue];
 
     if (authenticationDelegate)

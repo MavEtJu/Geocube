@@ -228,7 +228,7 @@
     clockEnabled = yesno;
 }
 
-+ (NSString *)urlencode:(NSString *)in
++ (NSString *)urlEncode:(NSString *)in
 {
     NSMutableString *output = [NSMutableString string];
     const unsigned char *source = (const unsigned char *)[in UTF8String];
@@ -249,12 +249,12 @@
     return output;
 }
 
-+ (NSString *)urldecode:(NSString *)in
++ (NSString *)urlDecode:(NSString *)in
 {
     return [in stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-+ (NSString *)tickescape:(NSString *)in
++ (NSString *)tickEscape:(NSString *)in
 {
     return [in stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
