@@ -73,19 +73,6 @@
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
-    /* Move two zip files into files directory */
-    NSArray *files = @[];
-    NSEnumerator *e = [files objectEnumerator];
-    NSString *f;
-    while ((f = [e nextObject]) != nil) {
-        NSString *fromfile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], f];
-        NSString *tofile = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools FilesDir], f];
-        NSError *error;
-        if ([fm fileExistsAtPath:tofile isDirectory:nil] == YES)
-            [fm removeItemAtPath:tofile error:nil];
-        [fm copyItemAtPath:fromfile toPath:tofile error:&error];
-    }
-
     // Initialize the tabbar controllers
 
     NSMutableArray *controllers;
@@ -371,7 +358,6 @@
         [currentTab makeTabViewCurrent:cpt];
         [NoticesViewController AccountsNeedToBeInitialized];
     }
-
     return YES;
 }
 

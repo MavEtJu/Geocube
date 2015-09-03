@@ -58,13 +58,11 @@
 - (void)refreshGroupData
 {
     NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
-    NSEnumerator *e = [dbc.Groups objectEnumerator];
-    dbGroup *cg;
 
-    while ((cg = [e nextObject]) != nil) {
+    [dbc.Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == showUsers)
             [ws addObject:cg];
-    }
+    }];
     cgs = ws;
     cgCount = [cgs count];
 }
@@ -163,11 +161,9 @@
 
 - (void)emptyGroups
 {
-    NSEnumerator *e = [cgs objectEnumerator];
-    dbGroup *cg;
-    while ((cg = [e nextObject]) != nil) {
+    [cgs enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         [self groupEmpty:cg reload:NO];
-    }
+    }];
     [self refreshGroupData];
     [self.tableView reloadData];
 }

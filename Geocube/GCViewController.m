@@ -84,9 +84,7 @@
     if (tab_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
 
-        NSEnumerator *e = [menuItems objectEnumerator];
-        NSString *menuitem;
-        while ((menuitem = [e nextObject]) != nil) {
+        [menuItems enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
             BOOL enabled = YES;
             if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
                 enabled = NO;
@@ -94,7 +92,7 @@
             }
             DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
             [menuoptions addObject:item];
-        }
+        }];
 
         tab_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
         tab_menu.backgroundColor = [UIColor blackColor];

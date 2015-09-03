@@ -58,38 +58,36 @@
     Container_Unknown = nil;
     LogType_Unknown = nil;
 
-    NSEnumerator *e = [Groups objectEnumerator];
-    dbGroup *cg;
-    while ((cg = [e nextObject]) != nil) {
+    [Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints"] == YES) {
             Group_AllWaypoints = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Attended"] == YES) {
             Group_AllWaypoints_Attended = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
             Group_AllWaypoints_Found = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Not Found"] == YES) {
             Group_AllWaypoints_NotFound = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Manually entered"] == YES) {
             Group_AllWaypoints_ManuallyAdded = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import"] == YES) {
             Group_LastImport = cg;
-            continue;
+            return;
         }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import - New"] == YES) {
             Group_LastImportAdded = cg;
-            continue;
+            return;
         }
-    }
+    }];
     NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
     NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
     NSAssert(Group_AllWaypoints_Attended != nil, @"Group_AllWaypoints_Attended");
@@ -98,105 +96,93 @@
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 
-    e = [Types objectEnumerator];
-    dbType *ct;
-    while ((ct = [e nextObject]) != nil) {
+    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type isEqualToString:@"*"] == YES) {
             Type_Unknown = ct;
-            continue;
+            *stop = YES;
         }
-    }
+    }];
     NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
-    e = [Types objectEnumerator];
-    dbType *type;
-    while ((type = [e nextObject]) != nil) {
-        if ([type.type isEqualToString:@"Unknown"] == YES) {
-            Type_Unknown = type;
-            continue;
-        }
-    }
-    NSAssert(Type_Unknown != nil, @"Type_Unknown");
-
-    e = [LogTypes objectEnumerator];
-    dbLogType *lt;
-    while ((lt = [e nextObject]) != nil) {
+    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
         if ([lt.logtype isEqualToString:@"Unknown"] == YES) {
             LogType_Unknown = lt;
-            continue;
+            return;
         }
         if ([lt.logtype isEqualToString:@"Found it"] == YES) {
             LogType_Found = lt;
-            continue;
+            return;
         }
         if ([lt.logtype isEqualToString:@"Attended"] == YES) {
             LogType_Attended = lt;
-            continue;
+            return;
         }
         if ([lt.logtype isEqualToString:@"Didn't find it"] == YES) {
             LogType_NotFound = lt;
-            continue;
+            return;
         }
-    }
+    }];
     NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
     NSAssert(LogType_Attended != nil, @"LogType_Attended");
     NSAssert(LogType_NotFound != nil, @"LogType_NotFound");
     NSAssert(LogType_Found != nil, @"LogType_Found");
 
-    e = [Attributes objectEnumerator];
-    dbAttribute *a;
-    while ((a = [e nextObject]) != nil) {
+    [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if ([a.label isEqualToString:@"Unknown"] == YES) {
             Attribute_Unknown = a;
-            continue;
+            *stop = YES;
         }
-    }
+    }];
     NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
 
 }
 
 - (dbType *)Type_get_byname:(NSString *)name
 {
-    NSEnumerator *e = [Types objectEnumerator];
-    dbType *ct;
-    while ((ct = [e nextObject]) != nil) {
-        if ([ct.type isEqualToString:name] == YES)
-            return ct;
-    }
-    return nil;
+    __block dbType *_ct = nil;
+    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+        if ([ct.type isEqualToString:name] == YES) {
+            _ct = ct;
+            *stop = YES;
+        }
+    }];
+    return _ct;
 }
 
 - (dbType *)Type_get:(NSId)_id
 {
-    NSEnumerator *e = [Types objectEnumerator];
-    dbType *ct;
-    while ((ct = [e nextObject]) != nil) {
-        if (ct._id == _id)
-            return ct;
-    }
-    return nil;
+    __block dbType *_ct = nil;
+    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+        if (ct._id == _id) {
+            _ct = ct;
+            *stop = YES;
+        }
+    }];
+    return _ct;
 }
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
 {
-    NSEnumerator *e = [Symbols objectEnumerator];
-    dbSymbol *lt;
-    while ((lt = [e nextObject]) != nil) {
-        if ([lt.symbol isEqualToString:symbol] == YES)
-            return lt;
-    }
-    return nil;
+    __block dbSymbol *_lt = nil;
+    [Symbols enumerateObjectsUsingBlock:^(dbSymbol *lt, NSUInteger idx, BOOL *stop) {
+        if ([lt.symbol isEqualToString:symbol] == YES) {
+            _lt = lt;
+            *stop = YES;
+        }
+    }];
+    return _lt;
 }
 
 - (dbSymbol *)Symbol_get:(NSId)_id
 {
-    NSEnumerator *e = [Symbols objectEnumerator];
-    dbSymbol *lt;
-    while ((lt = [e nextObject]) != nil) {
-        if (lt._id == _id)
-            return lt;
-    }
-    return nil;
+    __block dbSymbol *_lt = nil;
+    [Symbols enumerateObjectsUsingBlock:^(dbSymbol *lt, NSUInteger idx, BOOL *stop) {
+        if (lt._id == _id) {
+            _lt = lt;
+            *stop = YES;
+        }
+    }];
+    return _lt;
 }
 
 - (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol
@@ -207,101 +193,110 @@
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type
 {
-    NSEnumerator *e = [LogTypes objectEnumerator];
-    dbLogType *lt;
-    while ((lt = [e nextObject]) != nil) {
-        if ([lt.logtype isEqualToString:type] == YES)
-            return lt;
-    }
-    return nil;
+    __block dbLogType *_lt = nil;
+    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
+        if ([lt.logtype isEqualToString:type] == YES) {
+            _lt = lt;
+            *stop = YES;
+        }
+    }];
+    return _lt;
 }
 
 - (dbLogType *)LogType_get:(NSId)_id
 {
-    NSEnumerator *e = [LogTypes objectEnumerator];
-    dbLogType *lt;
-    while ((lt = [e nextObject]) != nil) {
-        if (lt._id == _id)
-            return lt;
-    }
-    return nil;
+    __block dbLogType *_lt = nil;
+    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
+        if (lt._id == _id) {
+            _lt = lt;
+            *stop = YES;
+        }
+    }];
+    return _lt;
 }
 
 - (dbGroup *)Group_get:(NSId)_id
 {
-    NSEnumerator *e = [Groups objectEnumerator];
-    dbGroup *cg;
-    while ((cg = [e nextObject]) != nil) {
-        if (cg._id == _id)
-            return cg;
-    }
-    return nil;
+    __block dbGroup *_g = nil;
+    [Groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
+        if (g._id == _id) {
+            _g = g;
+            *stop = YES;
+        }
+    }];
+    return _g;
 }
 
 - (dbContainer *)Container_get:(NSId)_id
 {
-    NSEnumerator *e = [Containers objectEnumerator];
-    dbContainer *s;
-    while ((s = [e nextObject]) != nil) {
-        if (s._id == _id)
-            return s;
-    }
-    return nil;
+    __block dbContainer *_c = nil;
+    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
+        if (c._id == _id) {
+            _c = c;
+            *stop = YES;
+        }
+    }];
+    return _c;
 }
 
 - (dbContainer *)Container_get_bysize:(NSString *)size
 {
-    NSEnumerator *e = [Containers objectEnumerator];
-    dbContainer *s;
-    while ((s = [e nextObject]) != nil) {
-        if ([s.size isEqualToString:size] == YES)
-            return s;
-    }
-    return nil;
+    __block dbContainer *_c = nil;
+    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
+        if ([c.size isEqualToString:size] == YES) {
+            _c = c;
+            *stop = YES;
+        }
+    }];
+    return _c;
 }
 
 - (dbAttribute *)Attribute_get:(NSId)_id
 {
-    NSEnumerator *e = [Attributes objectEnumerator];
-    dbAttribute *s;
-    while ((s = [e nextObject]) != nil) {
-        if (s._id == _id)
-            return s;
-    }
-    return nil;
+    __block dbAttribute *_a = nil;
+    [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
+        if (a._id == _id) {
+            _a = a;
+            *stop = YES;
+        }
+    }];
+    return _a;
 }
 
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gcid
 {
-    NSEnumerator *e = [Attributes objectEnumerator];
-    dbAttribute *s;
-    while ((s = [e nextObject]) != nil) {
-        if (s.gc_id == gcid)
-            return s;
-    }
-    return nil;
+    __block dbAttribute *_a = nil;
+    [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
+        if (a.gc_id == gcid) {
+            _a = a;
+            *stop = YES;
+        }
+    }];
+    return _a;
 }
 
 - (dbCountry *)Country_get_byName:(NSString *)name
 {
-    NSEnumerator *e = [Countries objectEnumerator];
-    dbCountry *s;
-    while ((s = [e nextObject]) != nil) {
-        if ([s.name isEqualToString:name] == YES)
-            return s;
-    }
-    return nil;
+    __block dbCountry *_c = nil;
+    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+        if ([c.name isEqualToString:name] == YES) {
+            _c = c;
+            *stop = YES;
+        }
+    }];
+    return _c;
 }
 
 - (dbCountry *)Country_get:(NSId)_id
 {
-    NSEnumerator *e = [Countries objectEnumerator];
-    dbCountry *s;
-    while ((s = [e nextObject]) != nil) {
-        if (s._id == _id)
-            return s;
-    }
-    return nil;
+    __block dbCountry *_c = nil;
+    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+        if (c._id == _id) {
+            _c = c;
+            *stop = YES;
+        }
+    }];
+    return _c;
 }
 
 - (void)Country_add:(dbCountry *)country
@@ -311,24 +306,26 @@
 
 - (dbState *)State_get_byName:(NSString *)name
 {
-    NSEnumerator *e = [States objectEnumerator];
-    dbState *s;
-    while ((s = [e nextObject]) != nil) {
-        if ([s.name isEqualToString:name] == YES)
-            return s;
-    }
-    return nil;
+    __block dbState *_s = nil;
+    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+        if ([s.name isEqualToString:name] == YES) {
+            _s = s;
+            *stop = YES;
+        }
+    }];
+    return _s;
 }
 
 - (dbState *)State_get:(NSId)_id
 {
-    NSEnumerator *e = [States objectEnumerator];
-    dbState *s;
-    while ((s = [e nextObject]) != nil) {
-        if (s._id == _id)
-            return s;
-    }
-    return nil;
+    __block dbState *_s = nil;
+    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+        if (s._id == _id) {
+            _s = s;
+            *stop = YES;
+        }
+    }];
+    return _s;
 }
 
 - (void)State_add:(dbState *)state
@@ -375,13 +372,14 @@
 
 - (dbAccount *)Account_get:(NSId)_id
 {
-    NSEnumerator *e = [Accounts objectEnumerator];
-    dbAccount *a;
-    while ((a = [e nextObject]) != nil) {
-        if (a._id == _id)
-            return a;
-    }
-    return nil;
+    __block dbAccount *_a;
+    [Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (a._id == _id) {
+            _a = a;
+            *stop = YES;
+        }
+    }];
+    return _a;
 }
 
 @end

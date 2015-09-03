@@ -239,12 +239,10 @@
             }
 
             // Link logs to cache
-            NSEnumerator *e = [logs objectEnumerator];
-            dbLog *l;
-            while ((l = [e nextObject]) != nil) {
+            [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
                 [l dbUpdateCache:currentWP._id];
-            }
+            }];
 
             // Link attributes to cache
             [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
@@ -253,11 +251,9 @@
 
             // Link travelbugs to cache
             [dbTravelbug dbUnlinkAllFromWaypoint:currentWP._id];
-            e = [travelbugs objectEnumerator];
-            dbTravelbug *tb;
-            while ((tb = [e nextObject]) != nil) {
+            [travelbugs enumerateObjectsUsingBlock:^(dbTravelbug *tb, NSUInteger idx, BOOL *stop) {
                 [tb dbLinkToWaypoint:currentWP._id];
-            }
+            }];
 
             inItem = NO;
             if (delegate != nil)

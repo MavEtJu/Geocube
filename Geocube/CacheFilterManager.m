@@ -70,17 +70,15 @@
     [clock clockShowAndReset:@"groups"];
 
 
-    NSString *c = [self _configGet:@"enabled"];
+    __block NSString *c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSMutableArray *groups = [NSMutableArray arrayWithCapacity:20];
-        NSEnumerator *e = [[dbc Groups] objectEnumerator];
-        dbGroup *group;
-        while ((group = [e nextObject]) != nil) {
-            c = [self _configGet:[NSString stringWithFormat:@"group_%ld", (long)group._id]];
-            if (c == nil || [c boolValue] == 0)
-                continue;
+        __block NSMutableArray *groups = [NSMutableArray arrayWithCapacity:20];
+        [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
+            NSString *c = [self _configGet:[NSString stringWithFormat:@"group_%ld", (long)group._id]];
+            if (c == nil || [c boolValue] == NO)
+                return;
             [groups addObject:group];
-        }
+        }];
         [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
     } else {
         caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
@@ -98,17 +96,15 @@
 
     c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSEnumerator *eT = [[dbc Types] objectEnumerator];
-        dbGroup *type;
-        while ((type = [eT nextObject]) != nil) {
+        [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL *stop) {
             c = [self _configGet:[NSString stringWithFormat:@"type_%ld", (long)type._id]];
             if (c == nil || [c boolValue] == NO)
-                continue;
+                return;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 if (wp.type_id == type._id)
                     [after addObject:wp];
             }];
-        }
+        }];
 
         caches = after;
     }
@@ -162,17 +158,15 @@
 
     c = [self _configGet:@"enabled"];
     if (c != nil && [c boolValue] == YES) {
-        NSEnumerator *eT = [[dbc Containers] objectEnumerator];
-        dbContainer *container;
-        while ((container = [eT nextObject]) != nil) {
+        [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer *container, NSUInteger idx, BOOL *stop) {
             c = [self _configGet:[NSString stringWithFormat:@"container_%ld", (long)container._id]];
             if (c == nil || [c boolValue] == NO)
-                continue;
+                return;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 if (wp.groundspeak.container_id == container._id)
                     [after addObject:wp];
             }];
-        }
+        }];
 
         caches = after;
     }

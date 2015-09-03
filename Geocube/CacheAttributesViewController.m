@@ -33,11 +33,9 @@
     attrs = [NSMutableArray arrayWithCapacity:5];
 
     NSArray *as = [dbAttribute dbAllByWaypoint:waypoint._id];
-    NSEnumerator *e = [as objectEnumerator];
-    dbAttribute *a;
-    while ((a = [e nextObject]) != nil) {
+    [as enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         [attrs addObject:a];
-    }
+    }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];

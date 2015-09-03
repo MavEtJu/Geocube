@@ -104,8 +104,6 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     [waypointManager applyFilters:LM.coords];
-    NSEnumerator *e = [[waypointManager currentWaypoints] objectEnumerator];
-    dbWaypoint *wp;
 
     if (showType == SHOW_ONECACHE) {
         if (waypointManager.currentWaypoint != nil) {
@@ -120,11 +118,11 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     }
 
     if (showType == SHOW_ALLCACHES) {
-        while ((wp = [e nextObject]) != nil) {
+        [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
-                continue;
+                return;
             [wps addObject:wp];
-        }
+        }];
         waypointsArray = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
 
             if (obj1.calculatedDistance > obj2.calculatedDistance) {

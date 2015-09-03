@@ -31,8 +31,7 @@
     [self configInit];
     [self header];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
+    __block NSInteger y = cellHeight;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -42,9 +41,7 @@
 
     groups = [dbc Groups];
 
-    NSEnumerator *e = [groups objectEnumerator];
-    dbGroup *g;
-    while ((g = [e nextObject]) != nil) {
+    [groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
@@ -52,7 +49,7 @@
         else
             g.selected = [c boolValue];
 
-        rect = CGRectMake(20, y, width - 40, 15);
+        CGRect rect = CGRectMake(20, y, width - 40, 15);
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         [b setTitle:g.name forState:UIControlStateNormal];
@@ -61,7 +58,7 @@
         [self.contentView addSubview:b];
 
         y += 15;
-    }
+    }];
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
@@ -93,17 +90,15 @@
 
 - (void)clickGroup:(UIButton *)b
 {
-    NSEnumerator *e = [groups objectEnumerator];
-    dbGroup *g;
-    while ((g = [e nextObject]) != nil) {
+    [groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
         if ([g.name isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             g.selected = !g.selected;
             [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
             [self configUpdate];
-            return;
+            *stop = YES;
         }
-    }
+    }];
 }
 
 @end

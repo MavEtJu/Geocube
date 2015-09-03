@@ -223,13 +223,11 @@
 + (NSArray *)dbAllInGroups:(NSArray *)groups
 {
     NSMutableString *where = [NSMutableString stringWithString:@""];
-    NSEnumerator *e = [groups objectEnumerator];
-    dbObject *o;
-    while ((o = [e nextObject]) != nil) {
+    [groups enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
         if ([where isEqualToString:@""] == NO)
             [where appendString:@" or "];
-        [where appendFormat:@"group_id = %ld", (long)o._id];
-    }
+        [where appendFormat:@"group_id = %ld", (long)group._id];
+    }];
     // Stop selecting this criteria without actually selecting a group!
     if ([where isEqualToString:@""] == YES)
         return nil;

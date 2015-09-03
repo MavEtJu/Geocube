@@ -33,15 +33,12 @@
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *gs = [dbGroup dbAllByWaypoint:waypoint._id];
-    NSEnumerator *e = [gs objectEnumerator];
-    dbGroup *cg;
-    while ((cg = [e nextObject]) != nil) {
+    [[dbGroup dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == TRUE)
             [ugs addObject:cg];
         else
             [sgs addObject:cg];
-    }
+    }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];

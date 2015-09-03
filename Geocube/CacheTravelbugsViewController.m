@@ -32,12 +32,9 @@
 
     tbs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray *as = [dbTravelbug dbAllByWaypoint:waypoint._id];
-    NSEnumerator *e = [as objectEnumerator];
-    dbTravelbug *tb;
-    while ((tb = [e nextObject]) != nil) {
+    [[dbTravelbug dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbTravelbug *tb, NSUInteger idx, BOOL *stop) {
         [tbs addObject:tb];
-    }
+    }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];

@@ -31,8 +31,7 @@
     [self configInit];
     [self header];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
+    __block NSInteger y = cellHeight;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -41,11 +40,9 @@
     }
 
     types = [dbc Types];
-    NSEnumerator *e = [types objectEnumerator];
-    dbType *t;
-    while ((t = [e nextObject]) != nil) {
+    [types enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
         UIImage *img = [imageLibrary get:t.icon];
-        rect = CGRectMake(20, y, img.size.width, img.size.height);
+        CGRect rect = CGRectMake(20, y, img.size.width, img.size.height);
         UIImageView *tv = [[UIImageView alloc] initWithFrame:rect];
         tv.image = img;
         [self.contentView addSubview:tv];
@@ -66,7 +63,7 @@
         [self.contentView addSubview:b];
 
         y += tv.frame.size.height;
-    }
+    }];
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
@@ -94,17 +91,15 @@
 
 - (void)clickGroup:(UIButton *)b
 {
-    NSEnumerator *e = [types objectEnumerator];
-    dbType *t;
-    while ((t = [e nextObject]) != nil) {
+    [types enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
         if ([t.type isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             t.selected = !t.selected;
             [b setTitleColor:t.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
             [self configUpdate];
-            return;
+            *stop = YES;
         }
-    }
+    }];
 }
 
 @end

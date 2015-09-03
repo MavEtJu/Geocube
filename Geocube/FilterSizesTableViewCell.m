@@ -31,8 +31,7 @@
     [self configInit];
     [self header];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
+    __block NSInteger y = cellHeight;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -41,11 +40,9 @@
     }
 
     containers = [dbc Containers];
-    NSEnumerator *e = [containers objectEnumerator];
-    dbContainer *c;
-    while ((c = [e nextObject]) != nil) {
+    [containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         UIImage *img = [imageLibrary get:c.icon];
-        rect = CGRectMake(20, y, img.size.width, img.size.height);
+        CGRect rect = CGRectMake(20, y, img.size.width, img.size.height);
         UIImageView *cv = [[UIImageView alloc] initWithFrame:rect];
         cv.image = img;
         [self.contentView addSubview:cv];
@@ -66,7 +63,7 @@
         [self.contentView addSubview:b];
 
         y += cv.frame.size.height;
-    }
+    }];
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
@@ -94,17 +91,15 @@
 
 - (void)clickGroup:(UIButton *)b
 {
-    NSEnumerator *e = [containers objectEnumerator];
-    dbContainer *c;
-    while ((c = [e nextObject]) != nil) {
+    [containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         if ([c.size isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             c.selected = !c.selected;
             [b setTitleColor:c.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
             [self configUpdate];
-            return;
+            *stop = YES;
         }
-    }
+    }];
 }
 
 @end

@@ -215,14 +215,12 @@
 
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
-    NSEnumerator *e = [[dbc Groups] objectEnumerator];
-    dbGroup *cg;
-    while ((cg = [e nextObject]) != nil) {
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == 0)
-            continue;
+            return;
         [groupNames addObject:cg.name];
         [groups addObject:cg];
-    }
+    }];
 
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select a Group"

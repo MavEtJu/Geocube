@@ -86,16 +86,13 @@
     MyTools *clock = [[MyTools alloc] initClock:@"refreshCachesData"];
 
     [waypointManager applyFilters:LM.coords];
-    NSEnumerator *e = [[waypointManager currentWaypoints] objectEnumerator];
-
     [clock clockShowAndReset];
-    dbWaypoint *wp;
 
-    while ((wp = [e nextObject]) != nil) {
+    [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
-            continue;
+            return;
         [_wps addObject:wp];
-    }
+    }];
 
     waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
         if (obj1.calculatedDistance > obj2.calculatedDistance) {

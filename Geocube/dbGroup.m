@@ -254,12 +254,9 @@
 
 - (void)dbAddWaypoints:(NSArray *)waypoints
 {
-    NSEnumerator *e = [waypoints objectEnumerator];
-    dbWaypoint *wp;
-    while ((wp = [e nextObject]) != nil) {
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         [self dbAddWaypoint:wp._id];
-    }
-
+    }];
 }
 
 

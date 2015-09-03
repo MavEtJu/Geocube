@@ -49,10 +49,8 @@
 - (void)placeMarkers
 {
     // Creates a marker in the center of the map.
-    NSEnumerator *e = [waypointsArray objectEnumerator];
-    dbWaypoint *wp;
     markers = [NSMutableArray arrayWithCapacity:20];
-    while ((wp = [e nextObject]) != nil) {
+    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         // Place a single pin
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = wp.coordinates;
@@ -66,17 +64,15 @@
         [mapView addAnnotation:annotation];
 
         [markers addObject:annotation];
-    }
+    }];
 }
 
 - (void)removeMarkers
 {
-    NSEnumerator *e = [markers objectEnumerator];
-    MKPointAnnotation *m;
-    while ((m = [e nextObject]) != nil) {
+    [markers enumerateObjectsUsingBlock:^(MKPointAnnotation *m, NSUInteger idx, BOOL *stop) {
         [mapView removeAnnotation:m];
         m = nil;
-    }
+    }];
     markers = nil;
 }
 

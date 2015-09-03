@@ -47,30 +47,23 @@
 
 - (void)removeMarkers
 {
-    NSEnumerator *e = [markers objectEnumerator];
-    GMSMarker *m;
-    while ((m = [e nextObject]) != nil) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
         m.map = nil;
         m = nil;
-    }
+    }];
     markers = nil;
 }
 
 - (void)placeMarkers
 {
     // Remove everything from the map
-    NSEnumerator *e = [markers objectEnumerator];
-    GMSMarker *m;
-    while ((m = [e nextObject]) != nil) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
         m.map = nil;
-    }
+    }];
 
     // Add the new markers to the map
-    e = [waypointsArray objectEnumerator];
-    dbWaypoint *wp;
     markers = [NSMutableArray arrayWithCapacity:20];
-
-    while ((wp = [e nextObject]) != nil) {
+    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
         marker.title = wp.name;
@@ -81,7 +74,7 @@
 
         marker.icon = [self waypointImage:wp];
         [markers addObject:marker];
-    }
+    }];
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
