@@ -258,40 +258,43 @@
 
     // Cache commands
     if (indexPath.section == 2) {
-        UITableViewCell *cellNormal = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
-        if (cellNormal == nil)
-            cellNormal = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DATA];
-        cellNormal.userInteractionEnabled = YES;
+        if (indexPath.row == 0 || indexPath.row == 1) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
+            cell.userInteractionEnabled = YES;
 
-        UITableViewCell *cellImage = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
-        if (cellImage == nil)
-            cellImage = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
-        cellImage.accessoryType = UITableViewCellAccessoryNone;
-        cellImage.userInteractionEnabled = YES;
+            UIColor *tc = [UIColor blackColor];
+            switch (indexPath.row) {
+                case 0:
+                    cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+                    break;
+                case 1:
+                    cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                    break;
+            }
+            cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
+            cell.textLabel.textColor = tc;
+            return cell;
+        }
 
-        UITableViewCell *cell = nil;
+        if (indexPath.row == 2) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DATA];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.userInteractionEnabled = YES;
 
-        UIColor *tc = [UIColor blackColor];
-        switch (indexPath.row) {
-            case 0:
-                cellImage.imageView.image = [imageLibrary get:ImageIcon_Target];
-                if ([waypointManager currentWaypoint] != nil && [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES)
-                    cellImage.accessoryType = UITableViewCellAccessoryCheckmark;
-                cell = cellImage;
-                break;
-            case 1:
-                cellImage.imageView.image = [imageLibrary get:ImageIcon_Smiley];
-                cell = cellImage;
-                break;
-            case 2:
-                cell = cellNormal;
+            UIColor *tc = [UIColor blackColor];
+            if (indexPath.row == 2) {
                 if (waypoint.url == nil)
                     cell.userInteractionEnabled = NO;
-                break;
+            }
+
+            cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
+            cell.textLabel.textColor = tc;
+            return cell;
         }
-        cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
-        cell.textLabel.textColor = tc;
-        return cell;
     }
 
     return nil;
