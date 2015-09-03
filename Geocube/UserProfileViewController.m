@@ -55,7 +55,7 @@
     }
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
+    width = applicationFrame.size.width;
     __block NSInteger y = 10;
 
     totalFound = 0;
@@ -154,9 +154,6 @@
     NSObject *o;
     UILabel *l;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-
     UIView *view = [accountViews objectAtIndex:idx];
     for (UIView *subview in view.subviews) {
         [subview removeFromSuperview];
@@ -248,6 +245,7 @@
         subview.frame = CGRectMake(subview.frame.origin.x, y, subview.frame.size.width, subview.frame.size.height);
         y += subview.frame.size.height;
     }
+    [contentView setContentSize:CGSizeMake(width, y)];
 }
 
 

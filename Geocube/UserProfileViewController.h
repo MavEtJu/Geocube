@@ -25,6 +25,7 @@
 
     UIFont *font14;
     NSInteger textHeight14;
+    NSInteger width;
 
     NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
 }
