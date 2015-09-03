@@ -96,8 +96,8 @@
         }
 
         UIView *v = [[UIView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
-        [accountViews addObject:v];
         [contentView addSubview:v];
+        [accountViews addObject:v];
         y += 1;
 
         a.idx = idx;
