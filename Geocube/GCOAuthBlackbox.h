@@ -96,6 +96,6 @@
 - (void)obtainAccessToken;
 
 - (NSString *)oauth_header:(GCMutableURLRequest *)urlRequest;
-- (void)webview:(BookmarksBrowserViewController *)bbvc url:(NSString *)url;
+- (void)webview:(BrowserBrowserViewController *)bbvc url:(NSString *)url;
 
 @end

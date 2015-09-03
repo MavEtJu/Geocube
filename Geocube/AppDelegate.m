@@ -228,22 +228,22 @@
 
     TABBARCONTROLLER(controllers)
 
-    // Bookmarks tabs #6
+    // Browser tabs #6
     controllers = [NSMutableArray array];
 
-    vc = [[BookmarksUserViewController alloc] init];
+    vc = [[BrowserUserViewController alloc] init];
     vc.title = @"User";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[BookmarksAccountsViewController alloc] init];
-    vc.title = @"Accounts";
+    vc = [[BrowserAccountsViewController alloc] init];
+    vc.title = @"Queries";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[BookmarksBrowserViewController alloc] init];
+    vc = [[BrowserBrowserViewController alloc] init];
     vc.title = @"Browser";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

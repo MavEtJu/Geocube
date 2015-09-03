@@ -1271,7 +1271,7 @@
 			name = map;
 			sourceTree = "<group>";
 		};
-		E8A7FA921B777616003F4132 /* Bookmarks */ = {
+		E8A7FA921B777616003F4132 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
 				E8A7FA931B77763F003F4132 /* BookmarksAccountsViewController.h */,
@@ -1281,7 +1281,7 @@
 				E8A7FA961B77F7F7003F4132 /* BookmarksUserViewController.h */,
 				E8A7FA971B77F7F7003F4132 /* BookmarksUserViewController.m */,
 			);
-			name = Bookmarks;
+			name = Browser;
 			sourceTree = "<group>";
 		};
 		E8A7FA9C1B784065003F4132 /* Help */ = {
@@ -1639,7 +1639,7 @@
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
 				E8A7FA9C1B784065003F4132 /* Help */,
-				E8A7FA921B777616003F4132 /* Bookmarks */,
+				E8A7FA921B777616003F4132 /* Browser */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFE91B639A0400CC741A /* Settings */,

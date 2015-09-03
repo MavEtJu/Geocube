@@ -23,7 +23,7 @@
 
 #define THISCELL @"BookmarksUserTableViewCell"
 
-@implementation BookmarksUserViewController
+@implementation BrowserUserViewController
 
 - (id)init
 {
@@ -122,7 +122,7 @@
 
                                BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
                                UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-                               BookmarksBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+                               BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
                                [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
                                [bbvc loadURL:bm.url];

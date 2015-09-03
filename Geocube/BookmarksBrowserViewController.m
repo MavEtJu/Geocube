@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation BookmarksBrowserViewController
+@implementation BrowserBrowserViewController
 
 - (id)init
 {
@@ -222,7 +222,7 @@
 
         UIAlertController *alert= [UIAlertController
                                    alertControllerWithTitle:@"Download complete"
-                                   message:[NSString stringWithFormat:@"Downloaded %@", [MyTools niceFileSize:length]]
+                                   message:[NSString stringWithFormat:@"Downloaded %@. You can find them in the Files menu.", [MyTools niceFileSize:length]]
                                    preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction *ok = [UIAlertAction

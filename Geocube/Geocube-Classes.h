@@ -23,9 +23,9 @@
 #define Geocube_Geocube_Classes_h
 
 @class AppDelegate;
-@class BookmarksAccountsViewController;
-@class BookmarksBrowserViewController;
-@class BookmarksUserViewController;
+@class BrowserAccountsViewController;
+@class BrowserBrowserViewController;
+@class BrowserUserViewController;
 @class CacheAttributesViewController;
 @class CacheDescriptionViewController;
 @class CacheFilterManager;

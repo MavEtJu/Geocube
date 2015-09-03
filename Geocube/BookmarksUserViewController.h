@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BookmarksUserViewController : GCTableViewController {
+@interface BrowserUserViewController : GCTableViewController {
     NSArray *bms;
 }
 

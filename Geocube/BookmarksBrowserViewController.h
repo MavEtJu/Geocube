@@ -19,9 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class GCOAuthBlackbox;
-
-@interface BookmarksBrowserViewController : GCViewController<UIWebViewDelegate> {
+@interface BrowserBrowserViewController : GCViewController<UIWebViewDelegate> {
     UIWebView *webView;
 
     NSMutableData *receivedData;

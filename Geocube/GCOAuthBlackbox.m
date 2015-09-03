@@ -241,7 +241,7 @@
     NSLog(@"token_secret: %@", tokenSecret);
 }
 
-- (void)webview:(BookmarksBrowserViewController *)bbvc url:(NSString *)url
+- (void)webview:(BrowserBrowserViewController *)bbvc url:(NSString *)url
 {
     [bbvc loadURL:url];
 }

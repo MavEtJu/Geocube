@@ -57,7 +57,7 @@
 #define    VC_GROUPS_SYSTEMGROUPS 1
 #define RC_BROWSER 6
 #define    VC_BROWSER_USERS 0
-#define    VC_BROWSER_ACCOUNTS 1
+#define    VC_BROWSER_QUERIES 1
 #define    VC_BROWSER_BROWSER 2
 #define RC_FILES 7
 #define    VC_FILES_LOCALFILES 0
