@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class JASidePanelController;
-
 @interface AppDelegate : UIResponder <UITabBarControllerDelegate> {
     NSMutableArray *tabBars;
 }
