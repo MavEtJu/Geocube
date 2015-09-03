@@ -202,7 +202,7 @@
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     date = [todayDate timeIntervalSince1970];
 
-    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, gslogtype, (long)date, [MyTools tickescape:note], (favourite == YES) ? @"true" : @"false"];
+    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, gslogtype, (long)date, [MyTools JSONEscape:note], (favourite == YES) ? @"true" : @"false"];
     urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
 
     NSHTTPURLResponse *response = nil;
