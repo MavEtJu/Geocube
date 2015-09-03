@@ -204,7 +204,7 @@
 
 + (NSArray *)dbAllNotFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))"];
     return wps;
 }
 
@@ -257,6 +257,8 @@
 + (dbWaypoint *)dbGet:(NSId)_id
 {
     NSArray *wps = [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"wp.id = %ld", (long)_id]];
+    if ([wps count] == 0)
+        return nil;
     return [wps objectAtIndex:0];
 }
 
