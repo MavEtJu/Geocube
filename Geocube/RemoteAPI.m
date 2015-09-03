@@ -61,6 +61,11 @@
         // Reset it
         oabb = [[GCOAuthBlackbox alloc] init];
 
+        if (account.oauth_consumer_private == nil || [account.oauth_consumer_private isEqualToString:@""] == YES) {
+            [self oauthtripped:@"No OAuth client information is available." error:nil];
+            return NO;
+        }
+
         [oabb URLRequestToken:account.oauth_request_url];
         [oabb URLAuthorize:account.oauth_authorize_url];
         [oabb URLAccessToken:account.oauth_access_url];
@@ -70,6 +75,7 @@
         oabb.delegate = self;
         [oabb obtainRequestToken];
         if (oabb.token == nil) {
+            [self oauthtripped:@"No request token was returned." error:nil];
             NSLog(@"%@ - token is nil after obtainRequestToken, not further authenticating", [self class]);
             return NO;
         }
