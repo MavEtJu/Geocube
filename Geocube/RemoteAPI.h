@@ -51,11 +51,14 @@
 
 - (id)init:(dbAccount*)account;
 - (BOOL)Authenticate;
+- (BOOL)commentSupportsPhotos;
+- (BOOL)commentSupportsTrackables;
 - (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
-- (BOOL)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 
+- (void)services_caches_formatters_gpx:(NSString *)wpname;
 
 @end

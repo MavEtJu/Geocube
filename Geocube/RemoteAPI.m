@@ -154,14 +154,42 @@
         [authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:error];
 }
 
+- (BOOL)commentSupportsPhotos
+{
+    switch (account.protocol) {
+        case ProtocolLiveAPI:
+            return YES;
+        case ProtocolOKAPI:
+            return NO;
+        case ProtocolGCA:
+            return NO;
+    }
+    return NO;
+}
+
+- (BOOL)commentSupportsTrackables
+{
+    switch (account.protocol) {
+        case ProtocolLiveAPI:
+            return YES;
+        case ProtocolOKAPI:
+            return NO;
+        case ProtocolGCA:
+            return NO;
+    }
+    return NO;
+}
+
 - (NSArray *)logtypes:(NSString *)waypointType
 {
-    if (account.protocol == ProtocolLiveAPI)
-        return [gs logtypes:waypointType];
-    if (account.protocol == ProtocolOKAPI)
-        return [okapi logtypes:waypointType];
-    if (account.protocol == ProtocolGCA)
-        return [gca logtypes:waypointType];
+    switch (account.protocol) {
+        case ProtocolLiveAPI:
+            return [gs logtypes:waypointType];
+        case ProtocolOKAPI:
+            return [okapi logtypes:waypointType];
+        case ProtocolGCA:
+            return [gca logtypes:waypointType];
+    }
     return nil;
 }
 
@@ -230,7 +258,7 @@
     return nil;
 }
 
-- (BOOL)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     if (account.protocol == ProtocolLiveAPI) {
         return [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
@@ -256,6 +284,11 @@
 {
     clientMsg = msg;
     clientError = error;
+}
+
+- (void)services_caches_formatters_gpx:(NSString *)wpname
+{
+    [okapi services_caches_formatters_gpx:wpname];
 }
 
 @end

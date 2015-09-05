@@ -209,7 +209,7 @@
     return json;
 }
 
-- (BOOL)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     NSLog(@"CreateFieldNoteAndPublish");
 
@@ -260,9 +260,12 @@
     NSLog(@"retbody: %@", retbody);
 
     if (error != nil || response.statusCode != 200)
-        return NO;
+        return 0;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    return YES;
+
+    NSDictionary *log = [json objectForKey:@"Log"];
+    NSNumber *log_id = [log objectForKey:@"ID"];
+    return [log_id integerValue];
 }
 
 

@@ -89,6 +89,7 @@ create table groundspeak (
 
 create table names (
     id integer primary key,
+    account_id integer,			-- pointer to accounts(id)
     name text,
     code text
 );
@@ -505,6 +506,7 @@ create table logs (
     datetime text,
     datetime_epoch integer,
     logger_id integer,			-- points to names(id)
+    needstobelogged bool,
     log text
 );
 create index logs_idx_id on logs(id);

@@ -107,7 +107,7 @@
     return json;
 }
 
-- (BOOL)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     NSLog(@"services_logs_submit");
 
@@ -123,17 +123,32 @@
 
     if (error != nil || response.statusCode != 200) {
         [delegate alertError:@"OKAPI - Unable to submit request" error:error];
-        return NO;
+        return 0;
     }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     BOOL success = [[json valueForKey:@"success"] boolValue];;
     if (success == NO) {
         [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
-        return NO;
+        return 0;
     }
 
-   return YES;
+   return -1;
+}
+
+- (void)services_caches_formatters_gpx:(NSString *)wpname
+{
+    NSLog(@"services_caches_formatters_gpx");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/formatters/gpx" parameters:[NSString stringWithFormat:@"cache_codes=%@&ns_ground=true&latest_logs=true", [MyTools urlEncode:wpname]]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
 }
 
 @end

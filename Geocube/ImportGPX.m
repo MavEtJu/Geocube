@@ -62,6 +62,13 @@
     NSLog(@"%@: Parsing %@", [self class], filename);
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
+    [self parseData:data];
+}
+
+- (void)parseData:(NSData *)data
+{
+    NSLog(@"%@: Parsing data", [self class]);
+
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
 
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];

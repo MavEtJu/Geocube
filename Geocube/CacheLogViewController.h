@@ -24,7 +24,7 @@
     NSString *logtype;
     NSString *note;
     NSString *date;
-    BOOL fp;
+    BOOL fp, upload;
 }
 
 - (id)init:(dbWaypoint *)waypoint;

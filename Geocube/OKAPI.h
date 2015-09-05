@@ -37,7 +37,8 @@
 - (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)services_users_byUsername:(NSString *)username;
-- (BOOL)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (void)services_caches_formatters_gpx:(NSString *)wpname;
 
 
 @end

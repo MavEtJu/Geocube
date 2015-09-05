@@ -56,8 +56,12 @@
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    NSDate *date = [dateFormatter dateFromString:[datetime substringWithRange:NSMakeRange(0, 19)]];
+    if ([datetime length] == 10) {
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    } else {
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    }
+    NSDate *date = [dateFormatter dateFromString:datetime];
     return [date timeIntervalSince1970];
 }
 

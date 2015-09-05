@@ -32,6 +32,7 @@
     waypoint = _waypoint;
     logtype = @"Found it";
     fp = NO;
+    upload = YES;
 
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
@@ -56,7 +57,7 @@
     switch (section) {
         case 0: return 3;
         case 1: return 3;
-        case 2: return 1;
+        case 2: return 2;
     }
     return 0;
 }
@@ -79,6 +80,7 @@
         cell = [[GCTableViewCellKeyValue alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.userInteractionEnabled = YES;
 
     switch (indexPath.section) {
         case 0: {
@@ -102,6 +104,10 @@
             switch (indexPath.row) {
                 case 0:
                     cell.keyLabel.text = @"Photo";
+                    if ([waypoint.account.remoteAPI commentSupportsPhotos] == NO) {
+                        cell.userInteractionEnabled = NO;
+                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                    }
                     break;
                 case 1: {
                     cell.keyLabel.text = @"Favourite Point";
@@ -109,16 +115,35 @@
                     fpSwitch.on = fp;
                     [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = fpSwitch;
+                    cell.userInteractionEnabled = NO;
                     break;
                 }
                 case 2:
                     cell.keyLabel.text = @"Trackable";
+                    if ([waypoint.account.remoteAPI commentSupportsTrackables] == NO) {
+                        cell.userInteractionEnabled = NO;
+                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                    }
                     break;
             }
             break;
         }
         case 2: {
-            cell.keyLabel.text = @"Submit!";
+            switch (indexPath.row) {
+                case 0: {
+                    cell.keyLabel.text = @"Upload";
+                    UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    fpSwitch.on = upload;
+                    [fpSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = fpSwitch;
+                    cell.userInteractionEnabled = NO;
+                    break;
+                }
+                case 1:
+                    cell.keyLabel.text = @"Submit!";
+                    break;
+            }
+            break;
         }
     }
 
@@ -130,6 +155,11 @@
 - (void)updateFPSwitch:(UISwitch *)s
 {
     fp = s.on;
+}
+
+- (void)updateUploadSwitch:(UISwitch *)s
+{
+    upload = s.on;
 }
 
 
@@ -164,9 +194,14 @@
             }
             break;
         }
-        case 2:
-            [self submitLog];
+        case 2: {
+            switch (indexPath.row) {
+                case 1:
+                    [self submitLog];
+                    break;
+            }
             break;
+        }
     }
     return;
 }
@@ -286,14 +321,22 @@
         return;
     }
 
-    if ([waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp] == NO) {
-        NSMutableString *s = [NSMutableString stringWithFormat:@"Unable to submit the note: %@", waypoint.account.remoteAPI.clientMsg];
-        if (waypoint.account.remoteAPI.clientError != nil)
-            [s appendFormat:@" (%@)", waypoint.account.remoteAPI.clientError];
+    // Do not upload, save it locally for later
+    if (upload == NO) {
+        [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+
+    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp];
+
+    // Successful but not log id returned
+    if (gc_id == -1) {
+        [self.navigationController popViewControllerAnimated:YES];
 
         UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Submission failed"
-                                   message:s
+                                   alertControllerWithTitle:@"Submission successful"
+                                   message:@"However, because of the system used the logs are not directly updated. Select the 'refresh waypoint' options from the menu here to refresh it."
                                    preferredStyle:UIAlertControllerStyleAlert
                                    ];
 
@@ -303,8 +346,38 @@
                              handler:nil
                              ];
         [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self.parentViewController presentViewController:alert animated:YES completion:nil];
+        return;
     }
+
+    // Successful and a log id returned
+    if (gc_id > 0) {
+        dbLog *log = [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
+        log.gc_id = gc_id;
+        [log dbUpdate];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+
+    // Unsuccessful
+    NSMutableString *s = [NSMutableString stringWithFormat:@"Unable to submit the note: %@", waypoint.account.remoteAPI.clientMsg];
+    if (waypoint.account.remoteAPI.clientError != nil)
+        [s appendFormat:@" (%@)", waypoint.account.remoteAPI.clientError];
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Submission failed"
+                               message:s
+                               preferredStyle:UIAlertControllerStyleAlert
+                               ];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil
+                         ];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 
