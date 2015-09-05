@@ -23,6 +23,8 @@
 
 @implementation LiveAPI
 
+@synthesize delegate;
+
 - (id)init:(RemoteAPI *)_remoteAPI
 {
     self = [super init];
@@ -30,9 +32,41 @@
     remoteAPI = _remoteAPI;
     liveAPIPrefix = @"https://api.groundspeak.com/LiveV6/geocaching.svc/";
 
-    GSLogTypes = nil;
+    GSLogTypesEvents = nil;
+    GSLogTypesOthers = nil;
 
     return self;
+}
+
+- (NSArray *)logtypes:(NSString *)waypointType
+{
+
+    if (GSLogTypesEvents == nil)
+        [self GetGeocacheDataTypes];
+
+    if ([waypointType isEqualToString:@"event"] == YES) {
+        NSMutableArray *rs = [NSMutableArray arrayWithCapacity:20];
+        [GSLogTypesEvents enumerateObjectsUsingBlock:^(NSNumber *num1, NSUInteger idx, BOOL *stop) {
+            [[GSLogTypes allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+                if ([[GSLogTypes objectForKey:key] integerValue] == [num1 integerValue]) {
+                    [rs addObject:key];
+                    *stop = YES;
+                }
+            }];
+        }];
+        return rs;
+    }
+
+    NSMutableArray *rs = [NSMutableArray arrayWithCapacity:20];
+    [GSLogTypesOthers enumerateObjectsUsingBlock:^(NSNumber *num1, NSUInteger idx, BOOL *stop) {
+        [[GSLogTypes allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+            if ([[GSLogTypes objectForKey:key] integerValue] == [num1 integerValue]) {
+                [rs addObject:key];
+                *stop = YES;
+            }
+        }];
+    }];
+    return rs;
 }
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
@@ -151,19 +185,31 @@
      * For trackable: Write note, Dropped Off, Retrieved It from a Cache, Discovered It
      */
 
+    GSLogTypesEvents = [NSMutableArray arrayWithCapacity:20];
+    GSLogTypesOthers = [NSMutableArray arrayWithCapacity:20];
     GSLogTypes = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [[json valueForKey:@"EventLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
+        [GSLogTypesEvents addObject:num];
+    }];
+    [[json valueForKey:@"GeocacheLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
+        [GSLogTypesOthers addObject:num];
+    }];
+
     NSArray *d = [json objectForKey:@"WptLogTypes"];
     if (d == nil)
         return nil;
 
     [d enumerateObjectsUsingBlock:^(NSDictionary *gslt, NSUInteger idx, BOOL *stop) {
+        if ([[gslt objectForKey:@"AdminActionable"] boolValue] == YES && [[gslt objectForKey:@"OwnerActionable"] boolValue] == NO)
+            return;
         [GSLogTypes setValue:[NSNumber numberWithInteger:[[gslt objectForKey:@"WptLogTypeId"] integerValue]] forKey:[gslt objectForKey:@"WptLogTypeName"]];
     }];
 
     return json;
 }
 
-- (BOOL)CreateFieldNoteAndPublish:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (BOOL)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     NSLog(@"CreateFieldNoteAndPublish");
 
@@ -192,10 +238,10 @@
     NSInteger gslogtype;
     NSTimeInterval date;
 
-    if (GSLogTypes == nil)
+    if (GSLogTypesEvents == nil)
         [self GetGeocacheDataTypes];
 
-    gslogtype = [[GSLogTypes objectForKey:logtype.logtype] integerValue];
+    gslogtype = [[GSLogTypes objectForKey:logtype] integerValue];
 
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
     [dateF setDateFormat:@"YYYY-MM-dd"];

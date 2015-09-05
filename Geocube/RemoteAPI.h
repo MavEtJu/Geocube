@@ -26,7 +26,7 @@
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, GeocachingAustraliaDelegate> {
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate> {
     GCOAuthBlackbox *oabb;
 
     LiveAPI *gs;
@@ -37,20 +37,25 @@
 
     NSInteger stats_found, stats_notfound;
     id authenticationDelegate;
+
+    NSString *clientMsg;
+    NSError *clientError;
 }
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
 @property (nonatomic) NSInteger stats_found, stats_notfound;
 @property (nonatomic) id authenticationDelegate;
+@property (nonatomic, retain) NSString *clientMsg;
+@property (nonatomic, retain) NSError *clientError;
 
 - (id)init:(dbAccount*)account;
 - (BOOL)Authenticate;
+- (NSArray *)logtypes:(NSString *)waypointType;
+
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
-
-- (NSDictionary *)GSGetGeocacheDataTypes;
-- (BOOL)CreateLogNote:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (BOOL)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 
 
 @end

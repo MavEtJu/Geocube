@@ -54,6 +54,11 @@
     return self;
 }
 
+- (NSArray *)logtypes:(NSString *)waypointType
+{
+    return @[@"Found it"];
+}
+
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
     if (delegate != nil)

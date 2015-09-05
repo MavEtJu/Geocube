@@ -23,6 +23,8 @@
 
 @implementation OKAPI
 
+@synthesize delegate;
+
 - (id)init:(RemoteAPI *)_remoteAPI
 {
     self = [super init];
@@ -31,6 +33,13 @@
     okapi_prefix = @"/okapi/services";
 
     return self;
+}
+
+- (NSArray *)logtypes:(NSString *)waypointType
+{
+    if ([waypointType isEqualToString:@"event"] == YES)
+        return @[@"Will attend", @"Attended", @"Comment"];
+    return @[@"Found it", @"Didn't find it", @"Comment"];
 }
 
 - (NSString *)string_array:(NSArray *)fields
@@ -85,11 +94,46 @@
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        if (response.statusCode == 400) {
+            [delegate alertError:@"OKAPI - Unable to submit request: No such user" error:error];
+        } else {
+            [delegate alertError:@"OKAPI - The server was unable to deal with the request" error:error];
+        }
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     return json;
+}
+
+- (BOOL)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+{
+    NSLog(@"services_logs_submit");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/logs/submit" parameters:[NSString stringWithFormat:@"cache_code=%@&logtype=%@&comment_format=%@&comment=%@&when=%@&recommend=%@", [MyTools urlEncode:waypointName], [MyTools urlEncode:logtype], @"plaintext", [MyTools urlEncode:note], [MyTools urlEncode:dateLogged], favourite == YES ? @"true" : @"false"]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200) {
+        [delegate alertError:@"OKAPI - Unable to submit request" error:error];
+        return NO;
+    }
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    BOOL success = [[json valueForKey:@"success"] boolValue];;
+    if (success == NO) {
+        [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
+        return NO;
+    }
+
+   return YES;
 }
 
 @end

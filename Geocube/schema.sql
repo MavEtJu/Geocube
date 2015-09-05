@@ -495,6 +495,7 @@ insert into log_types(logtype, icon) values("Write note", 413);
 insert into log_types(logtype, icon) values("Attended", 414);
 insert into log_types(logtype, icon) values("Will Attend", 415);
 insert into log_types(logtype, icon) values("Unknown", 416);
+insert into log_types(logtype, icon) values("Comment", 413);
 
 create table logs (
     id integer primary key,

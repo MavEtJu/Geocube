@@ -19,12 +19,25 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol OKAPIDelegate
+
+- (void)alertError:(NSString *)msg error:(NSError *)error;
+
+@end
+
 @interface OKAPI : NSObject {
     RemoteAPI *remoteAPI;
     NSString *okapi_prefix;
+    id delegate;
 }
 
+@property (nonatomic) id delegate;
+
 - (id)init:(RemoteAPI *)remoteAPI;
+- (NSArray *)logtypes:(NSString *)waypointType;
+
 - (NSDictionary *)services_users_byUsername:(NSString *)username;
+- (BOOL)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+
 
 @end

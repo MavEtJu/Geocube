@@ -30,7 +30,7 @@
     self = [super init];
 
     waypoint = _waypoint;
-    logtype = [dbc LogType_Found];
+    logtype = @"Found it";
     fp = NO;
 
     NSDate *d = [NSDate date];
@@ -85,7 +85,7 @@
             switch (indexPath.row) {
                 case 0:
                     cell.keyLabel.text = @"Type";
-                    cell.valueLabel.text = logtype.logtype;
+                    cell.valueLabel.text = logtype;
                     break;
                 case 1:
                     cell.keyLabel.text = @"Date";
@@ -176,17 +176,23 @@
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:10];
     __block NSInteger selected;
 
-    [[dbc LogTypes] enumerateObjectsUsingBlock:^(dbLogType *l, NSUInteger idx, BOOL *stop) {
-        if (l == logtype)
+    NSString *type = @"other";
+    if ([waypoint.type.type isEqualToString:@"Geocache|Event Cache"] == YES ||
+        [waypoint.type.type isEqualToString:@"Geocache|Giga"] == YES ||
+        [waypoint.type.type isEqualToString:@"Geocache|Mega"] == YES)
+        type = @"event";
+
+    [[waypoint.account.remoteAPI logtypes:type] enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
+        if ([l isEqualToString:logtype] == YES)
             selected = idx;
-        [as addObject:l.logtype];
+        [as addObject:l];
     }];
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select a Logtype"
         rows:as
         initialSelection:selected
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            logtype = [[dbc LogTypes] objectAtIndex:selectedIndex];
+            logtype = [as objectAtIndex:selectedIndex];
             [self.tableView reloadData];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -263,12 +269,42 @@
 
 - (void)submitLog
 {
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if (a.protocol == ProtocolLiveAPI) {
-            [a.remoteAPI CreateLogNote:logtype waypointName:waypoint.name dateLogged:date note:note favourite:fp];
-            *stop = YES;
-        }
-    }];
+    if ([note length] == 0) {
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Please fill in the comment"
+                                   message:@"Even TFTC is better than nothing at all"
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                             ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
+    if ([waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp] == NO) {
+        NSMutableString *s = [NSMutableString stringWithFormat:@"Unable to submit the note: %@", waypoint.account.remoteAPI.clientMsg];
+        if (waypoint.account.remoteAPI.clientError != nil)
+            [s appendFormat:@" (%@)", waypoint.account.remoteAPI.clientError];
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Submission failed"
+                                   message:s
+                                   preferredStyle:UIAlertControllerStyleAlert
+                                   ];
+
+        UIAlertAction *ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil
+                             ];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 

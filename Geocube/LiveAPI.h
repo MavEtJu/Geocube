@@ -19,16 +19,31 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol LiveAPIDelegate
+
+- (void)alertError:(NSString *)msg error:(NSError *)error;
+
+@end
+
 @interface LiveAPI : NSObject {
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
+
+    NSMutableArray *GSLogTypesEvents;
+    NSMutableArray *GSLogTypesOthers;
     NSMutableDictionary *GSLogTypes;
+
+    id delegate;
 }
 
+@property (nonatomic) id delegate;
+
 - (id)init:(RemoteAPI *)remoteAPI;
+- (NSArray *)logtypes:(NSString *)waypointType;
+
 - (NSDictionary *)GetYourUserProfile;
 - (NSDictionary *)GetCacheIdsFavoritedByUser;
 - (NSDictionary *)GetGeocacheDataTypes;
-- (BOOL)CreateFieldNoteAndPublish:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (BOOL)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 
 @end

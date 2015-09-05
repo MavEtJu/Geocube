@@ -21,7 +21,7 @@
 
 @interface CacheLogViewController : GCTableViewController<YIPopupTextViewDelegate> {
     dbWaypoint *waypoint;
-    dbLogType *logtype;
+    NSString *logtype;
     NSString *note;
     NSString *date;
     BOOL fp;

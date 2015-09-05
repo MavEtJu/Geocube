@@ -22,6 +22,7 @@
 @protocol GeocachingAustraliaDelegate
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie;
+- (void)alertError:(NSString *)msg error:(NSError *)error;
 
 @end
 
@@ -36,6 +37,8 @@
 @property (nonatomic, retain, readonly) NSString *callback;
 
 - (id)init:(RemoteAPI *)remoteAPI;
+- (NSArray *)logtypes:(NSString *)waypointType;
+
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name;
 - (void)storeCookie:(NSHTTPCookie *)cookie;

@@ -25,6 +25,7 @@
 
 @synthesize account, oabb, authenticationDelegate;
 @synthesize stats_found, stats_notfound;
+@synthesize clientError, clientMsg;
 
 - (id)init:(dbAccount *)_account;
 {
@@ -44,12 +45,15 @@
     switch (account.protocol) {
         case ProtocolLiveAPI:
             gs = [[LiveAPI alloc] init:self];
+            gs.delegate = self;
             break;
         case ProtocolOKAPI:
             okapi = [[OKAPI alloc] init:self];
+            okapi.delegate = self;
             break;
         case ProtocolGCA:
             gca = [[GeocachingAustralia alloc] init:self];
+            gca.delegate = self;
             break;
     }
     return self;
@@ -150,6 +154,17 @@
         [authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:error];
 }
 
+- (NSArray *)logtypes:(NSString *)waypointType
+{
+    if (account.protocol == ProtocolLiveAPI)
+        return [gs logtypes:waypointType];
+    if (account.protocol == ProtocolOKAPI)
+        return [okapi logtypes:waypointType];
+    if (account.protocol == ProtocolGCA)
+        return [gca logtypes:waypointType];
+    return nil;
+}
+
 - (NSDictionary *)UserStatistics
 {
     return [self UserStatistics:account.accountname];
@@ -215,10 +230,13 @@
     return nil;
 }
 
-- (BOOL)CreateLogNote:(dbLogType *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (BOOL)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     if (account.protocol == ProtocolLiveAPI) {
-        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypointName dateLogged:dateLogged note:note favourite:favourite];
+        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
+    }
+    if (account.protocol == ProtocolOKAPI) {
+        return [okapi services_logs_submit:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
     }
 
     return NO;
@@ -232,6 +250,12 @@
     }
 
     return nil;
+}
+
+- (void)alertError:(NSString *)msg error:(NSError *)error
+{
+    clientMsg = msg;
+    clientError = error;
 }
 
 @end
