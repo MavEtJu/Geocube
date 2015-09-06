@@ -268,5 +268,42 @@
     return [log_id integerValue];
 }
 
+- (NSDictionary *)SearchForGeocaches:(NSString *)wpname
+{
+    NSLog(@"SearchForGeocaches");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
+
+    /*
+     * {
+     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
+     *  "CacheCode": {
+     *      "CacheCodes": [
+     *          "GC3NZDM"
+     *      ]
+     *      },
+     *      "GeocacheLogCount": 20,
+     *      "IsLite": false,
+     *      "MaxPerPage": 20,
+     *      "TrackableLogCount": 1
+     *  }
+     */
+    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":{\"CacheCodes\":[\"%@\"]},\"GeocacheLogCount\":20,\"IsLite\":false,\"MaxPerPage\":20,\"TrackableLogCount\":1}", remoteAPI.oabb.token, wpname];
+    urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
 
 @end
