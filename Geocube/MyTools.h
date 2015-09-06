@@ -33,6 +33,7 @@
 + (NSString *)FilesDir;
 + (NSString *)ImagesDir;
 
++ (NSInteger)secondsSinceEpochWindows:(NSString *)datetime;
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
 + (NSString *)dateString:(NSInteger)seconds;
 + (NSString *)datetimePartDate:(NSString *)datetime;

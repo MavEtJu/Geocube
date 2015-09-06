@@ -53,6 +53,12 @@
     return s;
 }
 
++ (NSInteger)secondsSinceEpochWindows:(NSString *)datetime
+{
+    // /Date(1413702000000-0700)/
+    return [[datetime substringFromIndex:6] integerValue] / 1000;
+}
+
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
