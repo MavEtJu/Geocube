@@ -96,13 +96,13 @@
         }
     }
 
-    if (groundspeak_id != 0)
-        groundspeak = [dbGroundspeak dbGet:groundspeak_id];
-
     if (account_id != 0)
         account = [dbc Account_get:account_id];
     if (account != nil)
         account_id = account._id;
+
+    if (groundspeak_id != 0)
+        groundspeak = [dbGroundspeak dbGet:groundspeak_id waypoint:self];
 
     [super finish];
 }

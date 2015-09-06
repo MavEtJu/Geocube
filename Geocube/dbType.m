@@ -31,11 +31,16 @@
     _id = __id;
     type_major = _type_major;
     type_minor = _type_minor;
-    type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
     icon = _icon;
     pin = _pin;
     [self finish];
     return self;
+}
+
+- (void)finish
+{
+    type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
+    [super finish];
 }
 
 + (NSArray *)dbAll
@@ -52,6 +57,7 @@
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH( 3, t.icon);
             INT_FETCH( 4, t.pin);
+            [t finish];
             [ts addObject:t];
         }
         DB_FINISH;

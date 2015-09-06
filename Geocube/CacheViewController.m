@@ -44,8 +44,7 @@
         groundspeak = nil;
     } else {
         waypoint = _wp;
-        groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
-        [groundspeak finish];
+        groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id waypoint:waypoint];
     }
     [self.tableView reloadData];
 }

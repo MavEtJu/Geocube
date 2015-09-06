@@ -56,6 +56,11 @@
 
 - (void)finish
 {
+    NSAssert(FALSE, @"dbGroundspeak:finish should not be called");
+}
+
+- (void)finish:(dbWaypoint *)callingWaypoint
+{
     // Adjust container size
     if (container == nil) {
         if (container_id != 0) {
@@ -68,8 +73,6 @@
         }
     }
 
-    dbWaypoint *waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening;
-
     if (owner == nil) {
         if (owner_id != 0) {
             owner = [dbName dbGet:owner_id];
@@ -77,9 +80,9 @@
         }
         if (owner_str != nil) {
             if (owner_gsid == nil)
-                owner = [dbName dbGetByName:owner_str account:waypoint.account];
+                owner = [dbName dbGetByName:owner_str account:callingWaypoint.account];
             else
-                owner = [dbName dbGetByNameCode:owner_str code:owner_gsid account:waypoint.account];
+                owner = [dbName dbGetByNameCode:owner_str code:owner_gsid account:callingWaypoint.account];
             owner_id = owner._id;
         }
     }
@@ -125,49 +128,18 @@
     return [dbTravelbug dbCountByWaypoint:_id];
 }
 
-+ (NSMutableArray *)dbAll
-{
-    NSMutableArray *gss = [[NSMutableArray alloc] initWithCapacity:20];
-    dbGroundspeak *gs;
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, country_id, state_id, rating_difficulty, rating_terrain, favourites, long_desc_html, long_desc, short_desc_html, short_desc, hint, container_id, archived, available, owner, placed_by_id, waypoint_id from groundspeak");
-
-        DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, _id);
-            gs = [[dbGroundspeak alloc] init:_id];
-
-            INT_FETCH(    1, gs.country_id);
-            INT_FETCH(    2, gs.state_id);
-            DOUBLE_FETCH( 3, gs.rating_difficulty);
-            DOUBLE_FETCH( 4, gs.rating_terrain);
-            INT_FETCH(    5, gs.favourites);
-            BOOL_FETCH(   6, gs.long_desc_html);
-            TEXT_FETCH(   7, gs.long_desc);
-            BOOL_FETCH(   8, gs.short_desc_html);
-            TEXT_FETCH(   9, gs.short_desc);
-            TEXT_FETCH(  10, gs.hint);
-            INT_FETCH(   11, gs.container_id);
-            BOOL_FETCH(  12, gs.archived);
-            BOOL_FETCH(  13, gs.available);
-            INT_FETCH(   14, gs.owner_id);
-            TEXT_FETCH(  15, gs.placed_by);
-            INT_FETCH(   16, gs.waypoint_id);
-
-            [gs finish];
-            [gss addObject:gs];
-        }
-        DB_FINISH;
-    }
-    return gss;
-}
-
 + (NSInteger)dbCount
 {
     return [dbGroundspeak dbCount:@"groundspeak"];
 }
 
 + (dbGroundspeak *)dbGet:(NSId)_id
+{
+    NSAssert(FALSE, @"dbGroundspeak:dbGet: should not be called");
+    return nil;
+}
+
++ (dbGroundspeak *)dbGet:(NSId)_id waypoint:(dbWaypoint *)callingWaypoint
 {
     dbGroundspeak *gs;
 
@@ -195,7 +167,7 @@
             TEXT_FETCH(  14, gs.placed_by);
             INT_FETCH(   15, gs.waypoint_id);
 
-            [gs finish];
+            [gs finish:callingWaypoint];
         }
         DB_FINISH;
     }

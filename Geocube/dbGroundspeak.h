@@ -93,7 +93,8 @@
 
 + (void)dbCreate:(dbGroundspeak *)gs;
 - (void)dbUpdate;
-+ (NSArray *)dbAll;
+- (void)finish:(dbWaypoint *)callingWaypoint;
 + (dbGroundspeak *)dbGet:(NSId)id;
++ (dbGroundspeak *)dbGet:(NSId)id waypoint:(dbWaypoint *)callingWaypoing;
 
 @end

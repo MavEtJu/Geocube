@@ -28,7 +28,7 @@
     self = [super init];
 
     waypoint = _wp;
-    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id];
+    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id waypoint:waypoint];
 
     hasCloseButton = YES;
     menuItems = nil;

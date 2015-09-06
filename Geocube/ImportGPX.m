@@ -212,7 +212,7 @@
         // Deal with the completion of the cache
         if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
             [currentWP finish];
-            [currentGS finish];
+            [currentGS finish:currentWP];
 
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
@@ -402,7 +402,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    NSArray *as = [currentElement componentsSeparatedByString:@"|"];
+                    NSArray *as = [currentText componentsSeparatedByString:@"|"];
                     [currentWP setType:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
                     [currentWP setType_id:currentWP.type._id];
                     goto bye;
