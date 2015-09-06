@@ -121,11 +121,12 @@
     // Now see what we had and what we need to change
     NSId wpid = [dbWaypoint dbGetByName:wp.name];
     if (wpid == 0) {
-        [wp dbCreate];
+        [dbWaypoint dbCreate:wp];
         gs.waypoint_id = wp._id;
         [gs dbCreate];
         wp.groundspeak_id = gs._id;
         [wp dbUpdateGroundspeak];
+        [group dbAddWaypoint:wp._id];
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         dbGroundspeak *gsold = [dbGroundspeak dbGet:wpold.groundspeak_id waypoint:wpold];
@@ -139,16 +140,16 @@
 
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
+    [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
 }
 
-- (void)parseAttributes:(NSArray *)logs waypoint:(dbWaypoint *)wp
+- (void)parseAttributes:(NSArray *)attributes waypoint:(dbWaypoint *)wp
 {
     [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
-    [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAttribute:d waypoint:wp];
     }];
 }
-
 
 - (void)parseAttribute:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
 {
@@ -162,6 +163,69 @@
     dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
     BOOL yesNo = [[dict objectForKey:@"IsON"] boolValue];
     [a dbLinkToWaypoint:wp._id YesNo:yesNo];
+}
+
+- (void)parseAdditionalWaypoints:(NSArray *)wps waypoint:(dbWaypoint *)wp
+{
+    [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseAdditionalWaypoint:d waypoint:wp];
+    }];
+}
+
+- (void)parseAdditionalWaypoint:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+{
+    /*
+     {
+        "Code": "PK5F521",
+        "Comment": "",
+        "Description": "GC5F521 Parking",
+        "GUID": "f97fbfac-22f8-41db-a71c-2a8f472e5738",
+        "GeocacheCode": "GC5F521",
+        "Latitude": -34.04566666666667,
+        "Longitude": 151.12505,
+        "Name": "Parking Area",
+        "Type": "Waypoint|Parking Area",
+        "UTCEnteredDate": "/Date(1441523969270-0700)/",
+        "Url": "http://www.geocaching.com/seek/wpt.aspx?WID=f97fbfac-22f8-41db-a71c-2a8f472e5738",
+        UrlName": "GC5F521 Parking",
+        "WptTypeID": 217
+     }
+    */
+
+    dbWaypoint *awp = [[dbWaypoint alloc] init];
+
+    // Waypoint object
+    awp.name = [dict objectForKey:@"Code"];
+    awp.description = [dict objectForKey:@"Description"];
+    awp.url = [dict objectForKey:@"Url"];
+    awp.urlname = [dict objectForKey:@"UrlName"];
+
+    awp.lat_float = [[dict objectForKey:@"Latitude"] floatValue];
+    awp.lat_int = [[dict objectForKey:@"Latitude"] floatValue] * 1000000;
+    awp.lat = [[dict objectForKey:@"Latitude"] stringValue];
+
+    awp.lon_float = [[dict objectForKey:@"Longitude"] floatValue];
+    awp.lon_int = [[dict objectForKey:@"Longitude"] floatValue] * 1000000;
+    awp.lon = [[dict objectForKey:@"Longitude"] stringValue];
+
+    awp.date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCEnteredDate"]];
+    awp.date_placed = [MyTools dateString:awp.date_placed_epoch];
+
+    awp.symbol_str = [dict objectForKey:@"Name"];
+    awp.type_str = [dict objectForKey:@"Type"];
+
+    awp.account_id = account._id;
+    [awp finish];
+
+    NSId wpid = [dbWaypoint dbGetByName:awp.name];
+    if (wpid == 0) {
+        [dbWaypoint dbCreate:awp];
+        [group dbAddWaypoint:awp._id];
+    } else {
+        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
+        awp._id = wpold._id;
+        [awp dbUpdate];
+    }
 }
 
 - (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
