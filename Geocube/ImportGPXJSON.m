@@ -138,6 +138,30 @@
     }
 
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
+    [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
+}
+
+- (void)parseAttributes:(NSArray *)logs waypoint:(dbWaypoint *)wp
+{
+    [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
+    [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseAttribute:d waypoint:wp];
+    }];
+}
+
+
+- (void)parseAttribute:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+{
+    /*
+     {
+        "AttributeTypeID": 1,
+        "IsOn": true
+     },
+     */
+    NSInteger gc_id = [[dict objectForKey:@"AttributeTypeID"] integerValue];
+    dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
+    BOOL yesNo = [[dict objectForKey:@"IsON"] boolValue];
+    [a dbLinkToWaypoint:wp._id YesNo:yesNo];
 }
 
 - (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
