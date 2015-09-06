@@ -79,7 +79,18 @@
         }
         if (type_str != nil) {
             NSArray *as = [type_str componentsSeparatedByString:@"|"];
-            type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
+            if ([as count] == 2) {
+                // Geocache|Traditional Cache
+                type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
+            } else {
+                // Traditional Cache
+                [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
+                    if ([t.type_minor isEqualToString:type_str] == YES) {
+                        type = t;
+                        *stop = YES;
+                    }
+                }];
+            }
             type_id = type._id;
         }
     }
