@@ -56,14 +56,16 @@
 {
     NSLog(@"%@: Parsing data", [self class]);
 
-    NSArray *as = [dict objectForKey:@"Geocaches"];
-    [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
-        [self parseGeocaches:d];
-    }];
-
+    [self parseGeocaches:[dict objectForKey:@"Geocaches"]];
 }
 
-- (void)parseGeocaches:(NSDictionary *)dict
+- (void)parseGeocaches:(NSArray *)as
+{
+    [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseGeocache:d];
+    }];
+}
+- (void)parseGeocache:(NSDictionary *)dict
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     dbGroundspeak *gs = [[dbGroundspeak alloc] init];
@@ -85,7 +87,7 @@
     wp.date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCPlaceDate"]];
     wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
 
-    wp.symbol_str = [dict valueForKeyPath:@"ContainerType.ContainerTypeName"];
+    wp.symbol_str = @"Geocache";
     wp.type_str = [dict valueForKeyPath:@"CacheType.GeocacheTypeName"];
 
     wp.account_id = account._id;
@@ -114,7 +116,110 @@
     gs.owner_str = [dict valueForKeyPath:@"Owner.UserName"];
 
     gs.container_str = [dict valueForKeyPath:@"ContainerType.ContainerTypeName"];
-    [gs finish];
+    [gs finish:wp];
+
+    // Now see what we had and what we need to change
+    NSId wpid = [dbWaypoint dbGetByName:wp.name];
+    if (wpid == 0) {
+        [wp dbCreate];
+        gs.waypoint_id = wp._id;
+        [gs dbCreate];
+        wp.groundspeak_id = gs._id;
+        [wp dbUpdateGroundspeak];
+    } else {
+        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
+        dbGroundspeak *gsold = [dbGroundspeak dbGet:wpold.groundspeak_id waypoint:wpold];
+        wp._id = wpold._id;
+        wp.groundspeak_id = gsold._id;
+        gs._id = gsold._id;
+        gs.waypoint_id = wp._id;
+        [wp dbUpdate];
+        [gs dbUpdate];
+    }
+
+    [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
+}
+
+- (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
+{
+    [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseLog:d waypoint:wp];
+    }];
+}
+
+- (void)parseLog:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+{
+    /*
+     {
+        "CacheCode": "GC5F521",
+        "CannotDelete": false,
+        "Code": "GLJRQDY1",
+        "Finder": {
+            "AvatarUrl": "http://www.geocaching.com/images/default_avatar.jpg",
+            "FindCount": 61,
+            "GalleryImageCount": null,
+            "HideCount": 0,
+            "HomeCoordinates": null,
+            "Id": 1695430,
+            "IsAdmin": false,
+            "MemberType": {
+                "MemberTypeId": 1,
+                "MemberTypeName": "Basic"
+            },
+            "PublicGuid": "5daf4cbb-f070-42cb-9e99-fb2c741d0dad",
+            "UserName": "lellyelly"
+        },
+        "Guid": "8d2aca04-334d-449b-9591-f210c4af008c",
+        "ID": 537776688,
+        "Images": [],
+        "IsApproved": false,
+        "IsArchived": false,
+        "LogIsEncoded": false,
+        "LogText": "Haha felt like a creep looking under here! Lucky theres a place to hide to wait for the muggles to disappear!",
+        "LogType": {
+            "AdminActionable": false,
+            "ImageName": "icon_smile",
+            "ImageURL": "http://www.geocaching.com/images/icons/icon_smile.gif",
+            "OwnerActionable": false,
+            "WptLogTypeId": 2,
+            "WptLogTypeName": "Found it"
+        },
+        "UTCCreateDate": "/Date(1441334756497)/",
+        "UpdatedLatitude": null,
+        "UpdatedLongitude": null,
+        "Url": "http://coord.info/GLJRQDY1",
+        "VisitDate": "/Date(1441334712280-0700)/"
+    },
+     */
+
+    dbLog *l = [[dbLog alloc] init];
+    l.waypoint_id = wp._id;
+    l.gc_id = [[dict objectForKey:@"ID"] integerValue];
+    l.datetime_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCCreateDate"]];
+    l.datetime = [MyTools dateString:l.datetime_epoch];
+    l.needstobelogged = NO;
+    l.log = [dict objectForKey:@"LogText"];
+    l.logtype_string = [dict valueForKeyPath:@"LogType.WptLogTypeName"];
+
+    dbName *name = [[dbName alloc] init];
+    name.name = [dict valueForKeyPath:@"Finder.UserName"];
+    name.account_id = wp.account_id;
+    name.account = wp.account;
+    name.code = [[dict valueForKeyPath:@"Finder.Id"] stringValue];
+    [name finish];
+    dbName *n = [dbName dbGetByNameCode:name.name code:name.code account:wp.account];
+    if (n != nil) {
+        name = n;
+    } else {
+        [name dbCreate];
+    }
+    l.logger_id = name._id;
+    [l finish];
+
+    NSInteger l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
+    if (l_id == 0) {
+        [l dbCreate];
+    }
 }
 
 - (void)parseAfter
