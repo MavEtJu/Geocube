@@ -193,7 +193,7 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
             }];
-            [imp parse:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
+            [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
             progressLabel.text = @"100%";
             [waypointManager needsRefresh];
         }];
