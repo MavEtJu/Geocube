@@ -136,7 +136,7 @@
    return -1;
 }
 
-- (void)services_caches_formatters_gpx:(NSString *)wpname
+- (NSString *)services_caches_formatters_gpx:(NSString *)wpname
 {
     NSLog(@"services_caches_formatters_gpx");
 
@@ -149,6 +149,8 @@
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
+
+    return retbody;
 }
 
 @end
