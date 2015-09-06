@@ -22,18 +22,22 @@
 @interface dbName : dbObject {
     NSString *name;
     NSString *code;
+    NSId account_id;
+    dbAccount *account;
 }
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *code;
+@property (nonatomic) NSId account_id;
+@property (nonatomic, retain) dbAccount *account;
 
-- (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code;
-+ (void)makeNameExist:(NSString *)name code:(NSString *)code;
-+ (NSId)dbCreate:(NSString *)name code:(NSString *)code;
+- (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
++ (void)makeNameExist:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 - (void)dbUpdateName;
 + (dbName *)dbGet:(NSId)_id;
-+ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code;
-+ (dbName *)dbGetByCode:(NSString *)code;
-+ (dbName *)dbGetByName:(NSString *)name;
++ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
++ (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account;
++ (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account;
 
 @end

@@ -54,7 +54,7 @@
     [dbc.Group_LastImportAdded dbEmpty];
 }
 
-- (void)parse:(NSString *)filename
+- (void)parseFile:(NSString *)filename
 {
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
@@ -63,6 +63,11 @@
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
     [self parseData:data];
+}
+
+- (void)parseString:(NSString *)string
+{
+    [self parseData:[string dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)parseData:(NSData *)data
@@ -351,7 +356,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
-                    [dbName makeNameExist:currentText code:logFinderNameId];
+                    [dbName makeNameExist:currentText code:logFinderNameId account:account];
                     [currentLog setLogger_str:currentText];
                     goto bye;
                 }
@@ -439,7 +444,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
-                    [dbName makeNameExist:currentText code:gsOwnerNameId];
+                    [dbName makeNameExist:currentText code:gsOwnerNameId account:account];
                     [currentGS setOwner_str:currentText];
                     goto bye;
                 }

@@ -64,8 +64,9 @@
 
 - (id)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;
-- (void)parse:(NSString *)filename;
+- (void)parseFile:(NSString *)filename;
 - (void)parseData:(NSData *)data;
+- (void)parseString:(NSString *)data;
 - (void)parseAfter;
 
 @end

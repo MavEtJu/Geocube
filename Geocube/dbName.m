@@ -23,18 +23,28 @@
 
 @implementation dbName
 
-@synthesize name, code;
+@synthesize name, code, account_id, account;
 
-- (id)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code
+- (id)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code account:(dbAccount *)_account
 {
     self = [super init];
 
     _id = __id;
     name = _name;
     code = _code;
+    account = _account;
 
     [self finish];
     return self;
+}
+
+- (void)finish
+{
+    if (account == nil)
+        account = [dbc Account_get:account_id];
+    if (account_id == 0)
+        account_id = account._id;
+    [super finish];
 }
 
 + (NSArray *)dbAll
@@ -42,13 +52,15 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, code from names");
+        DB_PREPARE(@"select id, name, code, account_id from names");
 
         DB_WHILE_STEP {
             dbName *s = [[dbName alloc] init];
             INT_FETCH( 0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
+            INT_FETCH( 3, s.account_id);
+            [s finish];
             [ss addObject:s];
         }
         DB_FINISH;
@@ -61,91 +73,103 @@
     dbName *s;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, code from names where id = ?");
+        DB_PREPARE(@"select id, name, code, account_id from names where id = ?");
 
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
-            INT_FETCH(0, s._id);
+            INT_FETCH( 0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
+            INT_FETCH( 3, s.account_id);
+            [s finish];
         }
         DB_FINISH;
     }
     return s;
 }
 
-+ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code
++ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
     dbName *s = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, code from names where name = ? and code = ?");
+        DB_PREPARE(@"select id, name, code, account_id from names where name = ? and code = ? and account_id = ?");
 
         SET_VAR_TEXT(1, name);
         SET_VAR_TEXT(2, code);
+        SET_VAR_INT( 3, account._id);
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
             INT_FETCH(0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
+            INT_FETCH( 3, s.account_id);
+            [s finish];
         }
         DB_FINISH;
     }
     return s;
 }
 
-+ (dbName *)dbGetByCode:(NSString *)code
++ (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account
 {
     dbName *s = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, code from names where code = ?");
+        DB_PREPARE(@"select id, name, code, account_id from names where code = ? and account_id = ?");
 
         SET_VAR_TEXT(1, code);
+        SET_VAR_INT( 2, account._id);
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
             INT_FETCH(0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
+            INT_FETCH( 3, s.account_id);
+            [s finish];
         }
         DB_FINISH;
     }
     return s;
 }
 
-+ (dbName *)dbGetByName:(NSString *)name
++ (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account
 {
     dbName *s = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, code from names where name = ?");
+        DB_PREPARE(@"select id, name, code, account_id from names where name = ? and account_id = ?");
 
         SET_VAR_TEXT(1, name);
+        SET_VAR_INT( 2, account._id);
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
             INT_FETCH(0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
+            INT_FETCH( 3, s.account_id);
+            [s finish];
         }
         DB_FINISH;
     }
     return s;
 }
 
-+ (NSId)dbCreate:(NSString *)name code:(NSString *)code
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
     NSId _id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into names(name, code) values(?, ?)");
+        DB_PREPARE(@"insert into names(name, code, account_id) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, name);
         SET_VAR_TEXT(2, code);
+        SET_VAR_INT( 3, account._id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -161,20 +185,20 @@
         DB_PREPARE(@"update names set name = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
-        SET_VAR_INT(2, self._id);
+        SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
 
-+ (void)makeNameExist:(NSString *)_name code:(NSString *)_code
++ (void)makeNameExist:(NSString *)_name code:(NSString *)_code account:(dbAccount *)account
 {
     dbName *name;
     if (_code != nil && [_code isEqualToString:@""] == NO) {
-        name = [dbName dbGetByCode:_code];
+        name = [dbName dbGetByCode:_code account:account];
         if (name == nil) {
-            [dbName dbCreate:_name code:_code];
+            [dbName dbCreate:_name code:_code account:account];
             return;
         }
         if ([name.name isEqualToString:_name] == YES)
@@ -184,8 +208,8 @@
         return;
     }
 
-    if ([dbName dbGetByName:_name] == nil) {
-        [dbName dbCreate:_name code:nil];
+    if ([dbName dbGetByName:_name account:account] == nil) {
+        [dbName dbCreate:_name code:nil account:account];
     }
 }
 

@@ -71,9 +71,9 @@
         }
         if (logger_str != nil) {
             if (logger_gsid == nil)
-                logger = [dbName dbGetByName:logger_str];
+                logger = [dbName dbGetByName:logger_str account:waypoint.account];
             else
-                logger = [dbName dbGetByNameCode:logger_str code:logger_gsid];
+                logger = [dbName dbGetByNameCode:logger_str code:logger_gsid account:waypoint.account];
             logger_id = logger._id;
         }
     }
@@ -293,7 +293,7 @@
     log.logtype = lt;
     log.logtype_string = lt.logtype;
 
-    dbName *name = [dbName dbGetByName:waypoint.account.accountname];
+    dbName *name = [dbName dbGetByName:waypoint.account.accountname account:waypoint.account];
     log.logger = name;
     log.logger_id = name._id;
     log.logger_gsid = name.code;

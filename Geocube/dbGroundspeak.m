@@ -68,6 +68,8 @@
         }
     }
 
+    dbWaypoint *waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening;
+
     if (owner == nil) {
         if (owner_id != 0) {
             owner = [dbName dbGet:owner_id];
@@ -75,9 +77,9 @@
         }
         if (owner_str != nil) {
             if (owner_gsid == nil)
-                owner = [dbName dbGetByName:owner_str];
+                owner = [dbName dbGetByName:owner_str account:waypoint.account];
             else
-                owner = [dbName dbGetByNameCode:owner_str code:owner_gsid];
+                owner = [dbName dbGetByNameCode:owner_str code:owner_gsid account:waypoint.account];
             owner_id = owner._id;
         }
     }
