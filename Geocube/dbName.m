@@ -179,6 +179,13 @@
     return _id;
 }
 
+- (NSId)dbCreate
+{
+    NSId i = [dbName dbCreate:name code:code account:account];
+    _id = i;
+    return i;
+}
+
 - (void)dbUpdateName
 {
     @synchronized(db.dbaccess) {

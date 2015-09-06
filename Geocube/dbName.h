@@ -34,6 +34,7 @@
 - (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 + (void)makeNameExist:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 + (NSId)dbCreate:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
+- (NSId)dbCreate;
 - (void)dbUpdateName;
 + (dbName *)dbGet:(NSId)_id;
 + (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
