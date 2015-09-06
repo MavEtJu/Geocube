@@ -44,6 +44,7 @@
 #import "DOPNavbarMenu.h"
 #import "RangeSlider.h"
 #import "SSZipArchive.h"
+#import "XMLDictionary.h"
 #import "YIPopupTextView.h"
 
 #import "Geocube-Classes.h"
@@ -94,6 +95,7 @@
 #import "CacheFilterManager.h"
 
 #import "ImportGPX.h"
+#import "ImportGPXJSON.h"
 #import "ImportGPXViewController.h"
 #import "ImportSites.h"
 #import "ImportNotices.h"

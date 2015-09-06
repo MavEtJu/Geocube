@@ -176,6 +176,9 @@
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
+		E81D24291B9AF45B001E6027 /* a.json in Resources */ = {isa = PBXBuildFile; fileRef = E81D24281B9AF45B001E6027 /* a.json */; };
+		E81D242C1B9B06B7001E6027 /* ImportGPXJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */; };
+		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TravelbugsViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
@@ -538,6 +541,11 @@
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
+		E81D24281B9AF45B001E6027 /* a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = a.json; path = files/a.json; sourceTree = "<group>"; };
+		E81D242A1B9B06B7001E6027 /* ImportGPXJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXJSON.h; sourceTree = "<group>"; };
+		E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXJSON.m; sourceTree = "<group>"; };
+		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
+		E81D242F1B9BDB94001E6027 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
 		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E820F2041B7DA451009FB999 /* TravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelbugsViewController.h; sourceTree = "<group>"; };
@@ -880,6 +888,15 @@
 				E80732FA1B633A74007FDC29 /* main.m */,
 			);
 			path = objects;
+			sourceTree = "<group>";
+		};
+		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				E81D242E1B9BDB94001E6027 /* XMLDictionary.h */,
+				E81D242F1B9BDB94001E6027 /* XMLDictionary.m */,
+			);
+			name = XMLDictionary;
 			sourceTree = "<group>";
 		};
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
@@ -1500,6 +1517,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E81D24281B9AF45B001E6027 /* a.json */,
 				E8F570BD1B400137003F020C /* empty.db */,
 			);
 			name = "Data files";
@@ -1514,6 +1532,7 @@
 				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
@@ -1662,6 +1681,8 @@
 			children = (
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
+				E81D242A1B9B06B7001E6027 /* ImportGPXJSON.h */,
+				E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */,
 				E88037A61B954F290053AD01 /* ImportNotices.h */,
 				E88037A71B954F290053AD01 /* ImportNotices.m */,
 				E87E47481B82A301005606A2 /* ImportSites.h */,
@@ -1856,6 +1877,7 @@
 				E80731EC1B5F84B4007FDC29 /* attributes - 04.png in Resources */,
 				E80732A11B5F857A007FDC29 /* map - pin stick - 35x42.png in Resources */,
 				E807320F1B5F84B4007FDC29 /* attributes - 40.png in Resources */,
+				E81D24291B9AF45B001E6027 /* a.json in Resources */,
 				E80732271B5F84B4007FDC29 /* attributes - 64.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
@@ -2076,7 +2098,9 @@
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
+				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
+				E81D242C1B9B06B7001E6027 /* ImportGPXJSON.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,

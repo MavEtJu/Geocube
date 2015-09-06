@@ -270,6 +270,47 @@
     return NO;
 }
 
+- (BOOL)updateWaypoint:(dbWaypoint *)waypoint
+{
+    NSArray *groups = [dbGroup dbAllByWaypoint:waypoint._id];
+    dbAccount *a = waypoint.account;
+
+    __block dbGroup *g = nil;
+    [groups enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
+        if (group.usergroup == YES) {
+            g = group;
+            *stop = YES;
+        }
+    }];
+
+    if (account.protocol == ProtocolLiveAPI) {
+        //NSDictionary *json = [gs SearchForGeocaches:waypoint.name];
+        NSString *s = [NSString stringWithFormat:@"%@/a.json", [MyTools DataDistributionDirectory]];
+        NSData *data = [NSData dataWithContentsOfFile:s];
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+        ImportGPXJSON *imp = [[ImportGPXJSON alloc] init:g account:a];
+        [imp parseBefore];
+        [imp parseDictionary:json];
+        [imp parseAfter];
+
+        return YES;
+    }
+    if (account.protocol == ProtocolOKAPI) {
+        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.name];
+
+        ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
+        [imp parseBefore];
+        [imp parseString:gpx];
+        [imp parseAfter];
+
+        return YES;
+    }
+
+    return NO;
+}
+
 - (NSDictionary *)GSGetGeocacheDataTypes
 {
     if (account.protocol == ProtocolLiveAPI) {
@@ -284,11 +325,6 @@
 {
     clientMsg = msg;
     clientError = error;
-}
-
-- (void)services_caches_formatters_gpx:(NSString *)wpname
-{
-    [okapi services_caches_formatters_gpx:wpname];
 }
 
 @end

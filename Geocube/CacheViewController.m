@@ -31,7 +31,7 @@
 {
     self = [super initWithStyle:style];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint"]];
     hasCloseButton = canBeClosed;
 
     return self;
@@ -450,6 +450,9 @@
             return;
         case 1:
             break;
+        case 2:
+            [self refreshWaypoint];
+            return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -526,5 +529,12 @@
 {
     tf.text = [MyTools checkCoordinate:tf.text];
 }
+
+- (void)refreshWaypoint
+{
+    [waypoint.account.remoteAPI updateWaypoint:waypoint];
+    [self.tableView reloadData];
+}
+
 
 @end

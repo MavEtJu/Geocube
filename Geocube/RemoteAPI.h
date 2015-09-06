@@ -58,7 +58,6 @@
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
 - (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-
-- (void)services_caches_formatters_gpx:(NSString *)wpname;
+- (BOOL)updateWaypoint:(dbWaypoint *)waypoint;
 
 @end
