@@ -60,7 +60,7 @@
 - (id)init:(NSId)__id gc_id:(NSId)gc_id waypoint_id:(NSId)wp_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged;
 - (id)init:(NSId)gc_id;
 
-+ (NSId)dbGetIdByGC:(NSId)gc_id;
++ (NSId)dbGetIdByGC:(NSId)gc_id account:(dbAccount *)account;
 + (NSArray *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;

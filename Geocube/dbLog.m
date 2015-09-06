@@ -76,20 +76,23 @@
                 logger = [dbName dbGetByNameCode:logger_str code:logger_gsid account:waypoint.account];
             logger_id = logger._id;
         }
+        if (logger_gsid == nil)
+            logger_gsid = logger.code;
     }
 
     [super finish];
 }
 
 
-+ (NSId)dbGetIdByGC:(NSId)_gc_id
++ (NSId)dbGetIdByGC:(NSId)_gc_id account:(dbAccount *)account
 {
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id from logs where gc_id = ?");
+        DB_PREPARE(@"select id from logs where gc_id = ? and waypoint_id in (select id from waypoints where account_id = ?) order by datetime_epoch desc");
 
         SET_VAR_INT(1, _gc_id);
+        SET_VAR_INT(2, account._id);
 
         DB_IF_STEP {
             INT_FETCH(0, _id);
@@ -104,7 +107,7 @@
     NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id from logs");
+        DB_PREPARE(@"select id, gc_id from logs order by datetime_epoch desc");
 
         DB_WHILE_STEP {
             dbLog *l = [[dbLog alloc] init];
@@ -202,7 +205,7 @@
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ?");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
 
         SET_VAR_INT(1, _wp_id);
 
@@ -230,7 +233,7 @@
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
 
         SET_VAR_INT(1, wp_id);
 
