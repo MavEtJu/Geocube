@@ -75,10 +75,11 @@
     if (type == nil) {
         if (type_id != 0) {
             type = [dbc Type_get:type_id];
-            type_str = type.type;
+            type_str = type.type_full;
         }
         if (type_str != nil) {
-            type = [dbc Type_get_byname:type_str];
+            NSArray *as = [type_str componentsSeparatedByString:@"|"];
+            type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
             type_id = type._id;
         }
     }

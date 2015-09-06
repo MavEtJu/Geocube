@@ -92,7 +92,7 @@
 
 - (void)loadWaypointData;
 
-- (dbType *)Type_get_byname:(NSString *)name;
+- (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
 - (dbType *)Type_get:(NSId)_id;
 
 - (dbContainer *)Container_get_bysize:(NSString *)size;

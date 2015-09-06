@@ -97,7 +97,7 @@
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 
     [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
-        if ([ct.type isEqualToString:@"*"] == YES) {
+        if ([ct.type_major isEqualToString:@"*"] == YES) {
             Type_Unknown = ct;
             *stop = YES;
         }
@@ -137,11 +137,12 @@
 
 }
 
-- (dbType *)Type_get_byname:(NSString *)name
+- (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor
 {
     __block dbType *_ct = nil;
     [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
-        if ([ct.type isEqualToString:name] == YES) {
+        if ([ct.type_major isEqualToString:major] == YES &&
+            [ct.type_minor isEqualToString:minor] == YES) {
             _ct = ct;
             *stop = YES;
         }

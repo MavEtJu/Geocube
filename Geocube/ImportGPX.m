@@ -402,7 +402,8 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    [currentWP setType:[dbc Type_get_byname:currentText]];
+                    NSArray *as = [currentElement componentsSeparatedByString:@"|"];
+                    [currentWP setType:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
                     [currentWP setType_id:currentWP.type._id];
                     goto bye;
                 }

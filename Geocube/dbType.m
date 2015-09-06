@@ -23,13 +23,15 @@
 
 @implementation dbType
 
-@synthesize type, icon, pin, selected;
+@synthesize type_major, type_minor, type_full, icon, pin, selected;
 
-- (id)init:(NSId)__id type:(NSString *)_type icon:(NSInteger)_icon pin:(NSInteger)_pin
+- (id)init:(NSId)__id type_major:(NSString *)_type_major type_minor:(NSString *)_type_minor icon:(NSInteger)_icon pin:(NSInteger)_pin
 {
     self = [super init];
     _id = __id;
-    type = _type;
+    type_major = _type_major;
+    type_minor = _type_minor;
+    type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
     icon = _icon;
     pin = _pin;
     [self finish];
@@ -41,14 +43,15 @@
     NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, type, icon, pin from types");
+        DB_PREPARE(@"select id, type_major, type_minor, icon, pin from types");
 
         DB_WHILE_STEP {
             dbType *t = [[dbType alloc] init];;
             INT_FETCH( 0, t._id);
-            TEXT_FETCH(1, t.type);
-            INT_FETCH( 2, t.icon);
-            INT_FETCH( 3, t.pin);
+            TEXT_FETCH(1, t.type_major);
+            TEXT_FETCH(2, t.type_minor);
+            INT_FETCH( 3, t.icon);
+            INT_FETCH( 4, t.pin);
             [ts addObject:t];
         }
         DB_FINISH;

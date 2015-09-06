@@ -20,7 +20,9 @@
  */
 
 @interface dbType : dbObject {
-    NSString *type;
+    NSString *type_major;
+    NSString *type_minor;
+    NSString *type_full;
     NSInteger icon;
     NSInteger pin;
 
@@ -28,11 +30,13 @@
     BOOL selected;
 }
 
-@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSString *type_minor;
+@property (nonatomic, retain) NSString *type_major;
+@property (nonatomic, retain) NSString *type_full;
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSInteger pin;
 @property (nonatomic) BOOL selected;
 
-- (id)init:(NSId)_id type:(NSString *)type icon:(NSInteger)icon pin:(NSInteger)pin;
+- (id)init:(NSId)_id type_major:(NSString *)type_major type_minor:(NSString *)type_minor icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end
