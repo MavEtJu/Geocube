@@ -258,7 +258,6 @@
 
 - (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
 {
-    [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseImage:d waypoint:wp imageSource:imageSource];
     }];
