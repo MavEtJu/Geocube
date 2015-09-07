@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation ImportGPXJSON
+@implementation ImportLiveAPIJSON
 
 - (id)init:(dbGroup *)_group account:(dbAccount *)_account;
 {

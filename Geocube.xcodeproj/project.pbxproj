@@ -176,7 +176,7 @@
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
-		E81D242C1B9B06B7001E6027 /* ImportGPXJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */; };
+		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TravelbugsViewController.m */; };
@@ -540,8 +540,8 @@
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
-		E81D242A1B9B06B7001E6027 /* ImportGPXJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXJSON.h; sourceTree = "<group>"; };
-		E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXJSON.m; sourceTree = "<group>"; };
+		E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
+		E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
 		E81D242F1B9BDB94001E6027 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
 		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
@@ -1678,8 +1678,8 @@
 			children = (
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
-				E81D242A1B9B06B7001E6027 /* ImportGPXJSON.h */,
-				E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */,
+				E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */,
+				E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */,
 				E88037A61B954F290053AD01 /* ImportNotices.h */,
 				E88037A71B954F290053AD01 /* ImportNotices.m */,
 				E87E47481B82A301005606A2 /* ImportSites.h */,
@@ -2096,7 +2096,7 @@
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
-				E81D242C1B9B06B7001E6027 /* ImportGPXJSON.m in Sources */,
+				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,

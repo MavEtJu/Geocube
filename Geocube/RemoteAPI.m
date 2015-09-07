@@ -292,7 +292,7 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
          */
 
-        ImportGPXJSON *imp = [[ImportGPXJSON alloc] init:g account:a];
+        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
         [imp parseBefore];
         [imp parseDictionary:json];
         [imp parseAfter];

@@ -82,8 +82,8 @@
 @class ImageLibrary;
 @class ImagesDownloadManager;
 @class ImportGPX;
-@class ImportGPXJSON;
 @class ImportGPXViewController;
+@class ImportLiveAPIJSON;
 @class ImportNotices;
 @class ImportSites;
 @class LiveAPI;

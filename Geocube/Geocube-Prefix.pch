@@ -95,7 +95,7 @@
 #import "CacheFilterManager.h"
 
 #import "ImportGPX.h"
-#import "ImportGPXJSON.h"
+#import "ImportLiveAPIJSON.h"
 #import "ImportGPXViewController.h"
 #import "ImportSites.h"
 #import "ImportNotices.h"

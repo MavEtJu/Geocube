@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPXJSON : NSObject {
+@interface ImportLiveAPIJSON : NSObject {
     NSInteger newWaypointsCount;
     NSInteger totalWaypointsCount;
     NSInteger newLogsCount;
