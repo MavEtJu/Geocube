@@ -51,8 +51,20 @@ AppDelegate *_AppDelegate;
 // Current Theme
 ThemeTemplate *currentTheme;
 
+// Hardware models
+NSInteger hardwaremodel;
+
 int main(int argc, char * argv[])
 {
+    UIDevice *device = [UIDevice currentDevice];
+    hardwaremodel = hardwareModelUnknown;
+    if ([device.model containsString:@"iPad"] == YES)
+        hardwaremodel = hardwareModelIPad;
+    if ([device.model containsString:@"iPhone"] == YES)
+        hardwaremodel = hardwareModelIPhone;
+    if ([device.model containsString:@"iPod"] == YES)
+        hardwaremodel = hardwareModelIPod;
+
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

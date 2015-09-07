@@ -53,4 +53,13 @@ extern AppDelegate *_AppDelegate;
 // Theme
 extern ThemeTemplate *currentTheme;
 
+// Hardware models
+enum {
+    hardwareModelUnknown = 0,
+    hardwareModelIPod,
+    hardwareModelIPad,
+    hardwareModelIPhone
+};
+extern NSInteger hardwaremodel;
+
 #endif
