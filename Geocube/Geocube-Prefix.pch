@@ -112,9 +112,9 @@
 #import "NoticeTableViewCell.h"
 #import "PersonalNoteTableViewCell.h"
 
-#import "BookmarksAccountsViewController.h"
-#import "BookmarksBrowserViewController.h"
-#import "BookmarksUserViewController.h"
+#import "BrowserAccountsViewController.h"
+#import "BrowserBrowserViewController.h"
+#import "BrowserUserViewController.h"
 
 #import "GCOAuthBlackbox.h"
 #import "GeocachingAustralia.h"
