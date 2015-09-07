@@ -87,8 +87,33 @@
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
     NSURLConnection *urlConnection;
 
-    if (oabb == nil && gca == nil)
-        urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    if (oabb == nil && gca == nil) {
+        [self showActivity:YES];
+        NSString *urlString = [[newRequest URL] absoluteString];
+        if ([urlString containsString:@"geocaching.com/"] == YES &&
+            [urlString containsString:@"/pocket/downloadpq.ashx"] == YES) {
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            return NO;
+        }
+        if ([urlString containsString:@"geocaching.com.au/my/query/gpx/"] == YES ||
+            [urlString containsString:@"geocaching.com.au/my/query/zip/"] == YES) {
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            return NO;
+        }
+        if ([urlString containsString:@"opencaching"] == YES &&
+            [urlString containsString:@"search.php"] == YES &&
+            [urlString containsString:@"output=gpxgc"] == YES) {
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            return NO;
+        }
+        if ([[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".zip"] == YES ||
+            [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".xml"] == YES ||
+            [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".gpx"] == YES) {
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            return NO;
+        }
+        return YES;
+    }
 
     // OAuth related stuff
     NSLog(@"W: %@", req);
@@ -122,7 +147,7 @@
         return NO;
     }
 
-    // Geocaching Australia related stuff
+    // Geocaching Australia Authentication related stuff
     if (gca != nil &&
         [url length] >= [gca.callback length] &&
         [[url substringToIndex:[gca.callback length]] isEqualToString:gca.callback] == YES) {
@@ -197,6 +222,11 @@
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
     [self showActivity:NO];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self showActivity:-1];
 }
 
 
