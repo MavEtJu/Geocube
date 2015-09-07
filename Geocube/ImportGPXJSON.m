@@ -141,8 +141,119 @@
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
     [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
-//    [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:wp];
+    [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:wp];
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_CACHE];
+}
+
+- (void)parseTrackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
+{
+    [dbTravelbug dbUnlinkAllFromWaypoint:wp._id];
+    [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseTrackable:d waypoint:wp];
+    }];
+}
+
+- (void)parseTrackable:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+{
+    /*
+     {
+         "AllowedToBeCollected": null,
+         "Archived": false,
+         "BugTypeID": 1302,
+         "Code": "TB1TE1B",
+         "CurrentGeocacheCode": "GC1DTJC",
+         "CurrentGoal": "My mission is to visit Banks and see other Piggy banks all over the world",
+         "CurrentOwner": {
+             "AvatarUrl": "http://www.geocaching.com/images/default_avatar.jpg",
+             "FindCount": null,
+             "GalleryImageCount": null,
+             "HideCount": null,
+             "HomeCoordinates": null,
+             "Id": null,
+             "IsAdmin": false,
+             "MemberType": null,
+             "PublicGuid": "00000000-0000-0000-0000-000000000000",
+             "UserName": null
+         },
+         "DateCreated": "/Date(1180571341627-0700)/",
+         "Description": "",
+         "IconUrl": "http://www.geocaching.com/images/wpttypes/1302.gif",
+         "Id": 1270672,
+         "Images": [],
+         "InCollection": false,
+         "Name": "Piggy Bank Geocoin",
+         "OriginalOwner": {
+             "AvatarUrl": "http://img.geocaching.com/user/avatar/fb986d53-5701-4f12-ab5f-fba83de4d033.jpg",
+             "FindCount": null,
+             "GalleryImageCount": null,
+             "HideCount": null,
+             "HomeCoordinates": null,
+             "Id": 131247,
+             "IsAdmin": false,
+             "MemberType": null,
+             "PublicGuid": "8b746a92-d5c8-4141-b391-c85d7427d119",
+             "UserName": "Skippy."
+         },
+         "TBTypeName": "Piggy Bank Geocoins",
+         "TBTypeNameSingular": "Piggy Bank Geocoin",
+         "TrackableLogs": [
+             {
+                 "CacheID": null,
+                 "Code": "TL671TXR",
+                 "ID": 177883141,
+                 "Images": [],
+                 "IsArchived": false,
+                 "LogGuid": "1797c8a0-206b-4f8a-9124-e42d4096acaf",
+                 "LogIsEncoded": false,
+                 "LogText": "This trackable was not in cache shire's treasure #3",
+                 "LogType": {
+                     "AdminActionable": false,
+                     "ImageName": "icon_note",
+                     "ImageURL": "http://www.geocaching.com/images/icons/icon_note.gif",
+                     "OwnerActionable": false,
+                     "WptLogTypeId": 4,
+                     "WptLogTypeName": "Write note"
+                 },
+                 "LoggedBy": {
+                     "AvatarUrl": "http://img.geocaching.com/user/avatar/3426232f-a633-4022-91d9-bedf12c7e45d.jpg",
+                     "FindCount": 51,
+                     "GalleryImageCount": null,
+                     "HideCount": 0,
+                     "HomeCoordinates": null,
+                     "Id": 7752632,
+                     "IsAdmin": false,
+                     "MemberType": null,
+                     "PublicGuid": "1f0e45ae-9211-4237-9156-4d884ec8d526",
+                     "UserName": "surf_storm"
+                 },
+                 "UTCCreateDate": "/Date(1375079795000)/",
+                 "UpdatedLatitude": null,
+                 "UpdatedLongitude": null,
+                 "Url": "http://coord.info/TL671TXR",
+                 "VisitDate": "/Date(1375079798004-0700)/"
+             }
+         ],
+         "TrackingCode": null,
+         "Url": "http://coord.info/TB1TE1B",
+         "UserCount": null,
+         "WptTypeID": 1302
+     },
+     */
+
+    dbTravelbug *tb = [[dbTravelbug alloc] init];
+    tb.name = [dict objectForKey:@"Name"];
+    tb.gc_id = [[dict objectForKey:@"Id"] integerValue];
+    tb.ref = [dict objectForKey:@"Code"];
+
+    NSId _id = [dbTravelbug dbGetIdByGC:tb.gc_id];
+    if (_id == 0) {
+        [dbTravelbug dbCreate:tb];
+    } else {
+        tb._id = _id;
+        [tb dbUpdate];
+    }
+
+    [tb dbLinkToWaypoint:wp._id];
 }
 
 - (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
