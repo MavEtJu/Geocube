@@ -531,9 +531,19 @@
 
 - (void)refreshWaypoint
 {
-    [waypoint.account.remoteAPI updateWaypoint:waypoint];
-    [self.tableView reloadData];
+    [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
 }
 
+- (void)runRefreshWaypoint
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
+    }];
+    [waypoint.account.remoteAPI updateWaypoint:waypoint];
+    [self.tableView reloadData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+         [DejalBezelActivityView removeViewAnimated:NO];
+     }];
+}
 
 @end
