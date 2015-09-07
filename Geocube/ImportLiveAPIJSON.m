@@ -453,7 +453,7 @@
     l.logger_id = name._id;
     [l finish];
 
-    NSInteger l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
+    NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
     if (l_id == 0) {
         [l dbCreate];
     }
