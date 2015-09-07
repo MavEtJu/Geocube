@@ -56,7 +56,7 @@
 - (void)showActivity:(NSInteger)enable
 {
     @synchronized(self) {
-        NSLog(@"showActivity - %ld %ld", networkActivityIndicator, enable);
+        NSLog(@"showActivity - %ld %ld", (long)networkActivityIndicator, (long)enable);
         if (enable == YES)
             networkActivityIndicator++;
         else if (enable == NO) {
