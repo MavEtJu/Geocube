@@ -284,11 +284,13 @@
     }];
 
     if (account.protocol == ProtocolLiveAPI) {
-  //      NSDictionary *ejson = [gs SearchForGeocaches:waypoint.name];
+        NSDictionary *json = [gs SearchForGeocaches:waypoint.name];
+        /*
         NSString *s = [NSString stringWithFormat:@"%@/a.json", [MyTools DataDistributionDirectory]];
         NSData *data = [NSData dataWithContentsOfFile:s];
         NSError *error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+         */
 
         ImportGPXJSON *imp = [[ImportGPXJSON alloc] init:g account:a];
         [imp parseBefore];
