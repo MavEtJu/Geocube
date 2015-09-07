@@ -142,7 +142,7 @@
                   handler:^(UIAlertAction * action)
                   {
                       //Do some thing here
-                      [self fileImport:fn];
+                      [self fileImport:fn view:[aTableView cellForRowAtIndexPath:indexPath]];
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
     }
@@ -175,6 +175,18 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
 
+    // Set close to the text beginning
+    UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
+    CGRect rectToUse = cell.bounds;
+    rectToUse.origin.x = rectToUse.size.width - 200;
+    rectToUse.origin.x = 100;
+    rectToUse.size.width -= rectToUse.origin.x;
+    rectToUse.size.width = 100;
+
+    UIPopoverPresentationController *popPresenter = [view popoverPresentationController];
+    popPresenter.sourceView = [aTableView cellForRowAtIndexPath:indexPath];
+    popPresenter.sourceRect = rectToUse;
+
     [view addAction:delete];
     if (import != nil)
         [view addAction:import];
@@ -206,7 +218,7 @@
     [self.tableView reloadData];
 }
 
-- (void)fileImport:(NSString *)filename
+- (void)fileImport:(NSString *)filename view:(UITableViewCell *)tablecell
 {
     //    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
     //    newController.edgesForExtendedLayout = UIRectEdgeNone;
@@ -227,16 +239,17 @@
         rows:groupNames
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            [self fileImport2:filename group:[groups objectAtIndex:selectedIndex]];
+            [self fileImport2:filename group:[groups objectAtIndex:selectedIndex] view:tablecell];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");
         }
-        origin:self.view
+//        origin:self.view
+        origin:tablecell
     ];
 }
 
-- (void)fileImport2:(NSString *)filename group:(dbGroup *)group
+- (void)fileImport2:(NSString *)filename group:(dbGroup *)group view:(UITableViewCell *)tablecell
 {
     NSMutableArray *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *accountNames = [NSMutableArray arrayWithCapacity:10];
@@ -260,7 +273,7 @@
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");
         }
-        origin:self.view
+        origin:tablecell
     ];
 
 }

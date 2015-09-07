@@ -151,6 +151,18 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
 
+    // Set close to the text beginning
+    UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
+    CGRect rectToUse = cell.bounds;
+    rectToUse.origin.x = rectToUse.size.width - 200;
+    rectToUse.origin.x = 100;
+    rectToUse.size.width -= rectToUse.origin.x;
+    rectToUse.size.width = 100;
+
+    UIPopoverPresentationController *popPresenter = [view popoverPresentationController];
+    popPresenter.sourceView = [aTableView cellForRowAtIndexPath:indexPath];
+    popPresenter.sourceRect = rectToUse;
+
     [view addAction:empty];
     [view addAction:rename];
     [view addAction:delete];
