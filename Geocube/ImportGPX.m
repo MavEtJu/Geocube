@@ -256,8 +256,18 @@
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
-                newLogsCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
-                [l dbUpdateCache:currentWP._id];
+                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
+                l.waypoint_id = currentWP._id;
+                [l finish];
+                NSId _id = [dbLog dbGetIdByGC:l.gc_id account:account];
+                if (_id == 0) {
+                    newLogsCount++;
+                    [l dbCreate];
+                } else {
+                    l._id = _id;
+                    [l dbUpdate];
+                }
+                totalLogsCount++;
             }];
 
             // Link attributes to cache
@@ -268,7 +278,17 @@
             // Link travelbugs to cache
             [dbTravelbug dbUnlinkAllFromWaypoint:currentWP._id];
             [travelbugs enumerateObjectsUsingBlock:^(dbTravelbug *tb, NSUInteger idx, BOOL *stop) {
+                NSId _id = [dbTravelbug dbGetIdByGC:tb.gc_id];
+                [tb finish];
+                if (_id == 0) {
+                    newTravelbugsCount++;
+                    [tb dbCreate];
+                } else {
+                    tb._id = _id;
+                    [tb dbUpdate];
+                }
                 [tb dbLinkToWaypoint:currentWP._id];
+                totalTravelbugsCount++;
             }];
 
             inItem = NO;
@@ -288,17 +308,17 @@
 
         // Deal with the completion of the travelbug
         if (index == 4 && inTravelbug == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
-            [currentTB finish];
+//          [currentTB finish];
 
-            NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
-            totalTravelbugsCount++;
-            if (tb_id == 0) {
-                newTravelbugsCount++;
-                [dbTravelbug dbCreate:currentTB];
-            } else {
-                currentTB._id = tb_id;
-                [currentTB dbUpdate];
-            }
+//          NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
+//          totalTravelbugsCount++;
+//          if (tb_id == 0) {
+//              newTravelbugsCount++;
+//              [dbTravelbug dbCreate:currentTB];
+//          } else {
+//              currentTB._id = tb_id;
+//              [currentTB dbUpdate];
+//          }
             [travelbugs addObject:currentTB];
 
             inTravelbug = NO;
@@ -307,25 +327,25 @@
 
         // Deal with the completion of the log
         if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
-            [currentLog finish];
+//          [currentLog finish];
 
-            __block NSId log_id = 0;
-            [logIdGCId enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
-                if (log.gc_id == currentLog.gc_id) {
-                    log_id = log._id;
-                    *stop = YES;
-                }
-            }];
+//          __block NSId log_id = 0;
+//          [logIdGCId enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+//              if (log.gc_id == currentLog.gc_id) {
+//                  log_id = log._id;
+//                  *stop = YES;
+//              }
+//          }];
 
-            totalLogsCount++;
-            if (log_id == 0) {
-                newLogsCount++;
-                [dbLog dbCreate:currentLog];
-                [logIdGCId addObject:currentLog];   // Extend array just in case
-            } else {
-                currentLog._id = log_id;
-                [currentLog dbUpdate];
-            }
+//          totalLogsCount++;
+//          if (log_id == 0) {
+//              newLogsCount++;
+//              [dbLog dbCreate:currentLog];
+//              [logIdGCId addObject:currentLog];   // Extend array just in case
+//          } else {
+//              currentLog._id = log_id;
+//              [currentLog dbUpdate];
+//          }
             [logs addObject:currentLog];
 
             inLog = NO;
