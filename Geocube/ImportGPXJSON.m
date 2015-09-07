@@ -141,6 +141,45 @@
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
     [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
+//    [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:wp];
+    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_CACHE];
+}
+
+- (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
+{
+    [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
+    [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseImage:d waypoint:wp imageSource:imageSource];
+    }];
+}
+
+- (void)parseImage:(NSDictionary *)dict waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
+{
+    /*
+     {
+        "DateCreated": "/Date(1415357658767-0800)/",
+        "Description": "",
+        "ImageGuid": "bef09faf-6c1d-42e7-98f9-f52bfe84f872",
+        "MobileUrl": "http://img.geocaching.com/cache/large/bef09faf-6c1d-42e7-98f9-f52bfe84f872.jpg",
+        "Name": "Shanti",
+        "ThumbUrl": "http://img.geocaching.com/cache/thumb/bef09faf-6c1d-42e7-98f9-f52bfe84f872.jpg",
+        "Url": "http://img.geocaching.com/cache/bef09faf-6c1d-42e7-98f9-f52bfe84f872.jpg"
+     }
+     */
+
+    NSString *url = [dict objectForKey:@"Url"];
+    NSString *name = [dict objectForKey:@"Name"];
+    NSString *df = [dbImage createDataFilename:url];
+
+    dbImage *img = [dbImage dbGetByURL:url];
+    if (img == nil) {
+        img = [[dbImage alloc] init:url name:name datafile:df];
+        [dbImage dbCreate:img];
+    }
+    [ImagesDownloadManager addToQueue:img];
+
+    if ([img dbLinkedtoWaypoint:wp._id] == NO)
+        [img dbLinkToWaypoint:wp._id type:imageSource];
 }
 
 - (void)parseAttributes:(NSArray *)attributes waypoint:(dbWaypoint *)wp
@@ -308,6 +347,8 @@
     if (l_id == 0) {
         [l dbCreate];
     }
+
+    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
 }
 
 - (void)parseAfter
