@@ -191,4 +191,13 @@
     return found;
 }
 
++ (void)addToQueue:(dbImage *)img
+{
+    @synchronized(imagesDownloadManager) {
+        NSLog(@"%@/parse: Queue for downloading", [self class]);
+        [imagesDownloadManager.todo addObject:img];
+        [imagesDownloadManager start];
+    }
+}
+
 @end

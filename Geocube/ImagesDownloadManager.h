@@ -44,6 +44,7 @@
 @property (nonatomic, retain) NSURLConnection *imageConnection;
 
 + (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
++ (void)addToQueue:(dbImage *)img;
 - (void)start;
 
 @end
