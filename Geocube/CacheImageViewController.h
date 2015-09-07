@@ -19,13 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol CacheImageViewControllerDelegate
+
+- (dbImage *)swipeToLeft;
+- (dbImage *)swipeToRight;
+
+@end
+
 @interface CacheImageViewController : GCViewController {
     dbImage *img;
     UIScrollView *sv;
     UIImage *image;
     UIImageView *imgview;
     BOOL zoomedin;
+    id delegate;
 }
+
+@property (nonatomic) id delegate;
 
 - (id)init:(dbImage *)img;
 

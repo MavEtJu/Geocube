@@ -41,7 +41,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self showCloseButton];
+}
 
+- (void)showCloseButton
+{
     if (hasCloseButton == YES)
         [self.view bringSubviewToFront:closeButton];
 }

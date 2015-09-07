@@ -176,7 +176,6 @@
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
 		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
-		E81D24291B9AF45B001E6027 /* a.json in Resources */ = {isa = PBXBuildFile; fileRef = E81D24281B9AF45B001E6027 /* a.json */; };
 		E81D242C1B9B06B7001E6027 /* ImportGPXJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
@@ -541,7 +540,6 @@
 		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
-		E81D24281B9AF45B001E6027 /* a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = a.json; path = files/a.json; sourceTree = "<group>"; };
 		E81D242A1B9B06B7001E6027 /* ImportGPXJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXJSON.h; sourceTree = "<group>"; };
 		E81D242B1B9B06B7001E6027 /* ImportGPXJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
@@ -1517,7 +1515,6 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				E81D24281B9AF45B001E6027 /* a.json */,
 				E8F570BD1B400137003F020C /* empty.db */,
 			);
 			name = "Data files";
@@ -1877,7 +1874,6 @@
 				E80731EC1B5F84B4007FDC29 /* attributes - 04.png in Resources */,
 				E80732A11B5F857A007FDC29 /* map - pin stick - 35x42.png in Resources */,
 				E807320F1B5F84B4007FDC29 /* attributes - 40.png in Resources */,
-				E81D24291B9AF45B001E6027 /* a.json in Resources */,
 				E80732271B5F84B4007FDC29 /* attributes - 64.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,

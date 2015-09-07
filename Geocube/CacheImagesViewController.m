@@ -42,6 +42,8 @@
     cacheImages = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_CACHE];
     logImages = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_LOG];
 
+    currentIndexPath = [[NSIndexPath alloc] init];
+
     return self;
 }
 
@@ -125,6 +127,7 @@
 {
     dbImage *img = nil;
 
+    currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:indexPath.section];
     switch (indexPath.section) {
         case 0: img = [userImages objectAtIndex:indexPath.row]; break;
         case 1: img = [cacheImages objectAtIndex:indexPath.row]; break;
@@ -134,10 +137,50 @@
     if (img == nil)
         return;
 
-    UIViewController *newController = [[CacheImageViewController alloc] init:img];
+    CacheImageViewController *newController = [[CacheImageViewController alloc] init:img];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
+    newController.delegate = self;
     return;
+}
+
+- (dbImage *)swipeToRight
+{
+    NSLog(@"SwipeToRight");
+    if (currentIndexPath.row != 0) {
+        dbImage *img = nil;
+        currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row - 1 inSection:currentIndexPath.section];
+        switch (currentIndexPath.section) {
+            case 0: img = [userImages objectAtIndex:currentIndexPath.row]; break;
+            case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
+            case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+        }
+        return img;
+    }
+    return nil;
+}
+
+- (dbImage *)swipeToLeft
+{
+    NSLog(@"SwipeToLeft");
+    NSInteger max = 0;
+    switch (currentIndexPath.section) {
+        case 0: max = [userImages count]; break;
+        case 1: max = [cacheImages count]; break;
+        case 2: max = [logImages count]; break;
+    }
+
+    if (currentIndexPath.row != max - 1) {
+        dbImage *img = nil;
+        currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row + 1 inSection:currentIndexPath.section];
+        switch (currentIndexPath.section) {
+            case 0: img = [userImages objectAtIndex:currentIndexPath.row]; break;
+            case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
+            case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+        }
+        return img;
+    }
+    return nil;
 }
 
 #pragma mark - Local menu related functions

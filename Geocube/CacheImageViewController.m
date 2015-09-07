@@ -23,6 +23,8 @@
 
 @implementation CacheImageViewController
 
+@synthesize delegate;
+
 - (id)init:(dbImage *)_img
 {
     self = [super init];
@@ -30,8 +32,8 @@
     img = _img;
     hasCloseButton = YES;
     menuItems = nil;
-    zoomedin = NO;
     image = nil;
+    delegate = nil;
 
     return self;
 }
@@ -44,12 +46,20 @@
     sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
     self.view = sv;
 
+    [self loadImage];
+}
+
+- (void)loadImage
+{
+    [imgview removeFromSuperview];
+
     image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
 
     imgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     imgview.image = image;
     [self.view addSubview:imgview];
 
+    zoomedin = NO;
     [self zoominout];
 
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTaped:)];
@@ -57,12 +67,44 @@
     singleTap.numberOfTouchesRequired = 1;
     [imgview addGestureRecognizer:singleTap];
     [imgview setUserInteractionEnabled:YES];
+
+    UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
+    swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
+    [imgview addGestureRecognizer:swipeleft];
+
+    UISwipeGestureRecognizer * swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
+    swiperight.direction=UISwipeGestureRecognizerDirectionRight;
+    [imgview addGestureRecognizer:swiperight];
+
+    [self showCloseButton];
 }
 
 - (void)imageTaped:(UIGestureRecognizer *)gestureRecognizer {
     [UIView animateWithDuration:0.5 animations:^(void){
         [self zoominout];
     }];
+}
+
+- (void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    if (delegate != nil) {
+        dbImage *imgnew = [delegate swipeToLeft];
+        if (imgnew != nil) {
+            img = imgnew;
+            [self loadImage];
+        }
+    }
+}
+
+- (void)swiperight:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    if (delegate != nil) {
+        dbImage *imgnew = [delegate swipeToRight];
+        if (imgnew != nil) {
+            img = imgnew;
+            [self loadImage];
+        }
+    }
 }
 
 - (void)zoominout
