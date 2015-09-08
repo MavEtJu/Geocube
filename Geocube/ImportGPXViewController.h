@@ -21,6 +21,7 @@
 
 @interface ImportGPXViewController : GCViewController<ImportGPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate> {
     NSMutableArray *filenames;
+    NSMutableArray *filenamesToBeRemoved;
     dbGroup *group;
     dbAccount *account;
 

@@ -27,6 +27,7 @@
 {
     self = [super init];
 
+    filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
     filenames = [NSMutableArray arrayWithCapacity:1];
     if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
         [filenames addObject:_filename];
@@ -49,6 +50,7 @@
 - (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
 {
     [filenames addObject:[unzippedFilePath lastPathComponent]];
+    [filenamesToBeRemoved addObject:[unzippedFilePath lastPathComponent]];
 }
 
 - (void)viewDidLoad
@@ -199,6 +201,10 @@
         }];
     }
     [imp parseAfter];
+
+    [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+        [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] error:nil];
+    }];
 }
 
 - (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount
