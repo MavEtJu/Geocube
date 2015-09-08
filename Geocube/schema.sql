@@ -701,3 +701,10 @@ create table notices (
     seen bool
 );
 create index notices_idx_id on notices(id);
+
+create table file_imports (
+    id integer primary key,
+    filename text,
+    filesize integer,
+    last_import_epoch integer
+);

@@ -117,6 +117,7 @@
 @class dbConfig;
 @class dbContainer;
 @class dbCountry;
+@class dbFileImport;
 @class dbFilter;
 @class dbGroundspeak;
 @class dbGroup;

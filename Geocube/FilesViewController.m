@@ -39,18 +39,22 @@
 {
     // Count files in FilesDir
 
-    files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
+    NSArray *files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
+    filesNames = [NSMutableArray arrayWithCapacity:20];
     filesDates = [NSMutableArray arrayWithCapacity:20];
     filesSizes = [NSMutableArray arrayWithCapacity:20];
     filesCount = [files count];
 
     [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
         NSDictionary *a = [fm attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
+        [filesNames addObject:file];
         NSNumber *s = [a objectForKey:NSFileSize];
         [filesSizes addObject:s];
         NSDate *d = [a objectForKey:NSFileModificationDate];
         [filesDates addObject:d];
     }];
+
+    fileImports = [dbFileImport dbAll];
 
     [self refreshControl];
 }
@@ -90,9 +94,24 @@
     if (cell == nil)
         cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
-    NSString *fn = [files objectAtIndex:indexPath.row];
+    NSString *fn = [filesNames objectAtIndex:indexPath.row];
+    NSNumber *fs = [filesSizes objectAtIndex:indexPath.row];
+
+    __block dbFileImport *fi = nil;
+    [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {
+        if ([_fi.filename isEqualToString:fn] == YES &&
+            _fi.filesize == [fs integerValue]) {
+            fi = _fi;
+            *stop = YES;
+        }
+    }];
+
+    NSString *imported = @"";
+    if (fi != nil)
+        imported = [NSString stringWithFormat:@"(Imported %@)", [MyTools niceTimeDifference:fi.lastimport]];
+
     cell.textLabel.text = fn;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]], [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@ %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]], [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]], imported];
 
     return cell;
 }
@@ -108,14 +127,14 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
-        NSString *fn = [files objectAtIndex:indexPath.row];
+        NSString *fn = [filesNames objectAtIndex:indexPath.row];
         [self fileDelete:fn];
     }
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *fn = [files objectAtIndex:indexPath.row];
+    NSString *fn = [filesNames objectAtIndex:indexPath.row];
 
     UIAlertController *view= [UIAlertController
                               alertControllerWithTitle:fn
@@ -142,7 +161,7 @@
                   handler:^(UIAlertAction * action)
                   {
                       //Do some thing here
-                      [self fileImport:fn view:[aTableView cellForRowAtIndexPath:indexPath]];
+                      [self fileImport:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
     }
@@ -218,7 +237,7 @@
     [self.tableView reloadData];
 }
 
-- (void)fileImport:(NSString *)filename view:(UITableViewCell *)tablecell
+- (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
     //    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
     //    newController.edgesForExtendedLayout = UIRectEdgeNone;
@@ -239,17 +258,16 @@
         rows:groupNames
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            [self fileImport2:filename group:[groups objectAtIndex:selectedIndex] view:tablecell];
+            [self fileImport2:row group:[groups objectAtIndex:selectedIndex] view:tablecell];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");
         }
-//        origin:self.view
         origin:tablecell
     ];
 }
 
-- (void)fileImport2:(NSString *)filename group:(dbGroup *)group view:(UITableViewCell *)tablecell
+- (void)fileImport2:(NSInteger)row group:(dbGroup *)group view:(UITableViewCell *)tablecell
 {
     NSMutableArray *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *accountNames = [NSMutableArray arrayWithCapacity:10];
@@ -265,10 +283,32 @@
         rows:accountNames
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            __block NSString *filename = [filesNames objectAtIndex:row];
+            __block NSNumber *filesize = [filesSizes objectAtIndex:row];
             UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:group account:[accounts objectAtIndex:selectedIndex]];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
             [self.navigationController pushViewController:newController animated:YES];
+
+            __block dbFileImport *fi = nil;
+            [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {
+                if ([_fi.filename isEqualToString:filename] == YES &&
+                    _fi.filesize == [filesize integerValue]) {
+                    fi = _fi;
+                    *stop = YES;
+                }
+            }];
+            if (fi == nil) {
+                dbFileImport *fi = [[dbFileImport alloc] init];
+                fi.filename = filename;
+                fi.filesize = [filesize integerValue];
+                fi.lastimport = time(NULL);
+                [dbFileImport dbCreate:fi];
+            } else {
+                fi.lastimport = time(NULL);
+                [fi dbUpdate];
+            }
+            [self.tableView reloadData];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");
