@@ -147,6 +147,8 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
 - (UIImage *)waypointImage:(dbWaypoint *)wp
 {
+    return [imageLibrary getPin:wp.type.pin found:wp.logStatus disabled:(wp.groundspeak.available == NO) archived:wp.groundspeak.archived highlight:wp.highlight];
+    /*
     switch (wp.logStatus) {
         case LOGSTATUS_FOUND:
             if (wp.groundspeak != nil) {
@@ -173,11 +175,13 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
                 if (wp.groundspeak.available == NO)
                     return [imageLibrary getPinDisabled:wp.type.pin];
             }
+    */
             /* FALL THROUGH */
-
+/*
         default:
             return [imageLibrary getPinNormal:wp.type.pin];
     }
+*/
 }
 
 #pragma mark -- Menu related functions

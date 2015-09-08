@@ -70,15 +70,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 2;
+    return 3;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return 11;
+        return 25;
     if (section == 1)
+        return 11;
+    if (section == 2)
         return imgCount;
     return 0;
 }
@@ -86,8 +88,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return @"getRating:";
+        return @"pins:";
     if (section == 1)
+        return @"getRating:";
+    if (section == 2)
         return @"get:";
     return nil;
 }
@@ -100,6 +104,109 @@
         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     if (indexPath.section == 0) {
+        switch (indexPath.row) {
+
+            case 0:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin";
+                break;
+            case 1:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin - found";
+                break;
+            case 2:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin - not found";
+                break;
+
+            case 3:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadBlack found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin - disabled";
+                break;
+            case 4:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadBlack found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin - found - disabled";
+                break;
+            case 5:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadBlack found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Pin - not found - disabled";
+                break;
+
+            case 6:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - archived";
+                break;
+            case 7:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - found - archived";
+                break;
+            case 8:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - not found - archived";
+                break;
+
+            case 9:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - disabled - archived";
+                break;
+            case 10:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - found - disabled - archived";
+                break;
+            case 11:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Pin - not found - disabled - archived";
+                break;
+
+            case 12:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Pin - disabled - highlight";
+                break;
+            case 13:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Pin - found - disabled - highlight";
+                break;
+            case 14:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Pin - not found - disabled - highlight";
+                break;
+
+            case 15:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - archived - highlight";
+                break;
+            case 16:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - found - archived - highlight";
+                break;
+            case 17:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - not found - archived - highlight";
+                break;
+
+            case 18:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - disabled - highlight";
+                break;
+            case 19:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - found - disabled - highlight";
+                break;
+            case 20:
+                cell.imageView.image = [imageLibrary getPin:ImageMap_pinheadRed found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Pin - not found - disabled - highlight";
+                break;
+
+            default:
+                cell.imageView.image = nil;
+                cell.textLabel.text = @"None";
+                break;
+
+        }
+        return cell;
+    }
+
+    if (indexPath.section == 1) {
         cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];
         cell.textLabel.text = [NSString stringWithFormat:@"%ld (%0.1f)", (long)indexPath.row, indexPath.row / 2.0];
         cell.detailTextLabel.text = nil;
@@ -107,7 +214,7 @@
         return cell;
     }
 
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         cell.imageView.image = [imgs objectAtIndex:indexPath.row];
         cell.textLabel.text = [names objectAtIndex:indexPath.row];
         cell.detailTextLabel.text = [[numbers objectAtIndex:indexPath.row] stringValue];

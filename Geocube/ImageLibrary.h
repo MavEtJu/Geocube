@@ -43,6 +43,7 @@ typedef enum {
     ImageTypes_WhereigoCache,
     ImageTypes_NFI,
 
+    /*
     ImageTypes_foundBenchmark,
     ImageTypes_foundCITO,
     ImageTypes_foundEarthCache,
@@ -82,6 +83,7 @@ typedef enum {
     ImageTypes_dnfWebcamCache,
     ImageTypes_dnfWhereigoCache,
     ImageTypes_dnfNFI,
+     */
 
     ImageWaypoints_FinalLocation = 200,
     ImageWaypoints_Flag,
@@ -209,6 +211,7 @@ typedef enum {
     ImageMap_pinYellow,
     ImageMap_pinPink,
 
+    /*
     ImageMap_foundBlack,
     ImageMap_foundBrown,
     ImageMap_foundGreen,
@@ -288,6 +291,7 @@ typedef enum {
     ImageMap_archivedDNFWhite,
     ImageMap_archivedDNFYellow,
     ImageMap_archivedDNFPink,
+     */
 
     /* Up to here: Do not reorder */
 
@@ -335,6 +339,7 @@ typedef enum {
     UIImage *ratingImages[11];
     NSString *names[ImageLibraryImagesMax];
 
+    /*
     NSInteger pin2normal;
     NSInteger pin2found;
     NSInteger pin2dnf;
@@ -348,10 +353,14 @@ typedef enum {
     NSInteger type2normal;
     NSInteger type2found;
     NSInteger type2dnf;
+     */
 };
 
 - (id)init;
 - (UIImage *)get:(NSInteger)imgnum;
+- (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+- (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+/*
 - (UIImage *)getPinNormal:(NSInteger)imgnum;
 - (UIImage *)getPinFound:(NSInteger)imgnum;
 - (UIImage *)getPinDNF:(NSInteger)imgnum;
@@ -364,6 +373,7 @@ typedef enum {
 - (UIImage *)getPinArchivedFound:(NSInteger)imgnum;
 - (UIImage *)getPinDisabledDNF:(NSInteger)imgnum;
 - (UIImage *)getPinArchivedDNF:(NSInteger)imgnum;
+ */
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 
