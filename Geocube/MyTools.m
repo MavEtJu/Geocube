@@ -179,19 +179,29 @@
 
 + (NSString *)niceTimeDifference:(NSInteger)i
 {
-    NSInteger diff = time(NULL) - i;
+    long diff = time(NULL) - i;
 
-    if (diff < 60)
-        return [NSString stringWithFormat:@"%ld seconds ago", (long)diff];
-    if (diff < 3600)
-        return [NSString stringWithFormat:@"%ld minutes ago", (long)diff / 60];
-    if (diff < 24 * 3600)
-        return [NSString stringWithFormat:@"%ld hours ago", (long)diff / 3600];
-    if (diff < 7 * 24 * 3600)
-        return [NSString stringWithFormat:@"%ld days ago", (long)diff / (24 * 3600)];
-    if (diff < 365 * 24 * 3600)
-        return [NSString stringWithFormat:@"%ld weeks ago", (long)diff / ( 7 * 24 * 3600)];
-    return [NSString stringWithFormat:@"%ld years ago", (long)diff / (365 * 24 * 3600)];
+    if (diff < 60) {
+        return [NSString stringWithFormat:@"%ld second%@ ago", diff, diff == 1 ? @"" : @"s"];
+    }
+    if (diff < 3600) {
+        diff /= 60;
+        return [NSString stringWithFormat:@"%ld minute%@ ago", diff, diff == 1 ? @"" : @"s"];
+    }
+    if (diff < 24 * 3600) {
+        diff /= 3600;
+        return [NSString stringWithFormat:@"%ld hour%@ ago", diff, diff == 1 ? @"" : @"s"];
+    }
+    if (diff < 7 * 24 * 3600) {
+        diff /= 24 * 3600;
+        return [NSString stringWithFormat:@"%ld day%@ ago", diff, diff == 1 ? @"" : @"s"];
+    }
+    if (diff < 365 * 24 * 3600) {
+        diff /= 7 * 24 * 3600;
+        return [NSString stringWithFormat:@"%ld week%@ ago", diff, diff == 1 ? @"" : @"s"];
+    }
+    diff /= 365 * 24 * 3600;
+    return [NSString stringWithFormat:@"%ld year%@ ago", diff, diff == 1 ? @"" : @"s"];
 }
 
 - (id)initClock:(NSString *)_title
