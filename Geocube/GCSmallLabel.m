@@ -19,8 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLabel : UILabel
+#import "Geocube-Prefix.pch"
 
-- (void)bold:(BOOL)onoff;
+@implementation GCSmallLabel
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    self.font = myConfig.GCSmallFont;
+    return self;
+}
+
+- (void)bold:(BOOL)onoff
+{
+    if (onoff == YES)
+        self.font = [UIFont boldSystemFontOfSize:myConfig.GCSmallFont.pointSize];
+    else
+        self.font = [UIFont systemFontOfSize:myConfig.GCSmallFont.pointSize];
+}
 
 @end

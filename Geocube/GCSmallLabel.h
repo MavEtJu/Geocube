@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLabel : UILabel
+@interface GCSmallLabel : UILabel
 
 - (void)bold:(BOOL)onoff;
 

@@ -40,28 +40,26 @@
      |                            |
      +----------------------------+
      */
-#define BORDER 1
-#define HEIGHT_NAME  15
+#define BORDER 10
 #define WIDTH_DATE 60
 
-    CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, HEIGHT_NAME);
-    CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, HEIGHT_NAME);
-    CGRect rectNote = CGRectMake(BORDER, BORDER + HEIGHT_NAME, width - 2 * BORDER, 30);
+    NSInteger height_name = myConfig.GCSmallFont.lineHeight;
+    CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
+    CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
+    CGRect rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
 
     // Sender
-    senderLabel = [[UILabel alloc] initWithFrame:rectSender];
-    senderLabel.font = [UIFont systemFontOfSize:10.0];
+    senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
+    [senderLabel bold:YES];
     [self.contentView addSubview:senderLabel];
 
     // Date
-    dateLabel = [[UILabel alloc] initWithFrame:rectDate];
-    dateLabel.font = [UIFont systemFontOfSize:10.0];
+    dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
+    [dateLabel bold:YES];
     [self.contentView addSubview:dateLabel];
 
     // Note
-    noteLabel = [[UILabel alloc] initWithFrame:rectNote];
-    noteLabel.font = [UIFont systemFontOfSize:14.0];
-    noteLabel.numberOfLines = 0;
+    noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
     [self.contentView addSubview:noteLabel];
     
     return self;

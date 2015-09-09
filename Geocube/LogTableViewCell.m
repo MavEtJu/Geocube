@@ -41,15 +41,16 @@
      |                            |
      +----------------------------+
      */
-#define BORDER 1
+#define BORDER 10
 #define IMAGE_WIDTH 10
-#define IMAGE_HEIGHT 10
-#define DATE_WIDTH 100
+#define DATE_WIDTH 150
 
-    CGRect rectImage = CGRectMake(BORDER, BORDER, IMAGE_WIDTH, IMAGE_HEIGHT);
-    CGRect rectDatetime = CGRectMake(BORDER + IMAGE_WIDTH, BORDER, DATE_WIDTH, IMAGE_HEIGHT);
-    CGRect rectLogger = CGRectMake(BORDER + IMAGE_WIDTH + DATE_WIDTH, BORDER, width - 2 * BORDER - DATE_WIDTH - IMAGE_HEIGHT, IMAGE_HEIGHT);
-    CGRect rectLog = CGRectMake(BORDER, BORDER + IMAGE_HEIGHT, width - 2 * BORDER, 30);
+    NSInteger height_name = myConfig.GCSmallFont.lineHeight;
+
+    CGRect rectImage = CGRectMake(BORDER, BORDER, IMAGE_WIDTH, height_name);
+    CGRect rectDatetime = CGRectMake(BORDER + IMAGE_WIDTH + BORDER, BORDER, DATE_WIDTH, height_name);
+    CGRect rectLogger = CGRectMake(BORDER + IMAGE_WIDTH + DATE_WIDTH, BORDER, width - 2 * BORDER - DATE_WIDTH - height_name, height_name);
+    CGRect rectLog = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 30);
 
     // Image
     logtype = [[UIImageView alloc] initWithFrame:rectImage];
@@ -58,20 +59,18 @@
     [self.contentView addSubview:logtype];
 
     // Date
-    datetime = [[UILabel alloc] initWithFrame:rectDatetime];
-    datetime.font = [UIFont systemFontOfSize:10.0];
+    datetime = [[GCSmallLabel alloc] initWithFrame:rectDatetime];
+    [datetime bold:YES];
     [self.contentView addSubview:datetime];
 
     // Logger
-    logger = [[UILabel alloc] initWithFrame:rectLogger];
-    logger.font = [UIFont boldSystemFontOfSize:10.0];
+    logger = [[GCSmallLabel alloc] initWithFrame:rectLogger];
+    [logger bold:YES];
+    logger.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:logger];
 
     // Log
-    log = [[UILabel alloc] initWithFrame:rectLog];
-    log.font = [UIFont systemFontOfSize:12.0];
-    log.numberOfLines = 0;
-    //bearing.backgroundColor = [UIColor redColor];
+    log = [[GCTextblock alloc] initWithFrame:rectLog];
     [self.contentView addSubview:log];
 
     return self;

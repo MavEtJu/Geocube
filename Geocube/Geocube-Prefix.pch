@@ -102,6 +102,7 @@
 #import "ImportNotices.h"
 
 #import "GCLabel.h"
+#import "GCSmallLabel.h"
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"

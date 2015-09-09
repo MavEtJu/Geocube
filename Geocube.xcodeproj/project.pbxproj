@@ -194,6 +194,7 @@
 		E847A58A1B9FDB3300BEFE83 /* type - disabled - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */; };
 		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
 		E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58F1BA04AF400BEFE83 /* GCTextblock.m */; };
+		E847A5931BA0524E00BEFE83 /* GCSmallLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -578,6 +579,8 @@
 		E847A58C1BA0425100BEFE83 /* GCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLabel.m; sourceTree = "<group>"; };
 		E847A58E1BA04AF400BEFE83 /* GCTextblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTextblock.h; sourceTree = "<group>"; };
 		E847A58F1BA04AF400BEFE83 /* GCTextblock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTextblock.m; sourceTree = "<group>"; };
+		E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSmallLabel.h; sourceTree = "<group>"; };
+		E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSmallLabel.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1004,6 +1007,8 @@
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
 				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
+				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
+				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
 				E847A58E1BA04AF400BEFE83 /* GCTextblock.h */,
 				E847A58F1BA04AF400BEFE83 /* GCTextblock.m */,
 			);
@@ -1671,9 +1676,9 @@
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
 				E85760161B85E08F00F34483 /* Geocube */,
+				E8740FE91B509540002527DA /* TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
-				E8740FE91B509540002527DA /* TableViewCells */,
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E8A7FA921B777616003F4132 /* Browser */,
@@ -2216,6 +2221,7 @@
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
+				E847A5931BA0524E00BEFE83 /* GCSmallLabel.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,

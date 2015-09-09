@@ -31,4 +31,12 @@
     return self;
 }
 
+- (void)bold:(BOOL)onoff
+{
+    if (onoff == YES)
+        self.font = [UIFont boldSystemFontOfSize:myConfig.GCTextblockFont.pointSize];
+    else
+        self.font = [UIFont systemFontOfSize:myConfig.GCTextblockFont.pointSize];
+}
+
 @end

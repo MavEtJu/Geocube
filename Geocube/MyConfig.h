@@ -33,6 +33,7 @@
     NSString *GeocachingLive_API2;
 
     UIFont *GCLabelFont;
+    UIFont *GCSmallFont;
     UIFont *GCTextblockFont;
 }
 
@@ -50,6 +51,7 @@
 @property (nonatomic) NSInteger compassType;
 
 @property (nonatomic, readonly, retain) UIFont *GCLabelFont;
+@property (nonatomic, readonly, retain) UIFont *GCSmallFont;
 @property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
 
 - (void)distanceMetricUpdate:(BOOL)value;

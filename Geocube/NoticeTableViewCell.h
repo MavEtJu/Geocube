@@ -20,15 +20,15 @@
  */
 
 @interface NoticeTableViewCell : GCTableViewCell {
-    UILabel *noteLabel;
-    UILabel *senderLabel;
-    UILabel *dateLabel;
+    GCTextblock *noteLabel;
+    GCSmallLabel *senderLabel;
+    GCSmallLabel *dateLabel;
     BOOL seen;
 }
 
-@property (nonatomic, retain) UILabel *noteLabel;
-@property (nonatomic, retain) UILabel *senderLabel;
-@property (nonatomic, retain) UILabel *dateLabel;
+@property (nonatomic, retain) GCTextblock *noteLabel;
+@property (nonatomic, retain) GCSmallLabel *senderLabel;
+@property (nonatomic, retain) GCSmallLabel *dateLabel;
 @property (nonatomic) BOOL seen;
 
 @end

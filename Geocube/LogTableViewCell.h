@@ -21,14 +21,14 @@
 
 @interface LogTableViewCell : GCTableViewCell {
     UIImageView *logtype;
-    UILabel *datetime;
-    UILabel *logger;
-    UILabel *log;
+    GCSmallLabel *datetime;
+    GCSmallLabel *logger;
+    GCTextblock *log;
 }
 
 @property (nonatomic, retain) UIImageView *logtype;
-@property (nonatomic, retain) UILabel *datetime;
-@property (nonatomic, retain) UILabel *logger;
-@property (nonatomic, retain) UILabel *log;
+@property (nonatomic, retain) GCSmallLabel *datetime;
+@property (nonatomic, retain) GCSmallLabel *logger;
+@property (nonatomic, retain) GCTextblock *log;
 
 @end

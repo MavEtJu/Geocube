@@ -23,7 +23,7 @@
 
 @implementation MyConfig
 
-@synthesize GCLabelFont, GCTextblockFont;
+@synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
 @synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
 @synthesize compassType;
@@ -39,6 +39,7 @@
 
     GCLabelFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
     GCTextblockFont = [UIFont systemFontOfSize:tvc.detailTextLabel.font.pointSize];
+    GCSmallFont = [UIFont systemFontOfSize:11];
 
     return self;
 }

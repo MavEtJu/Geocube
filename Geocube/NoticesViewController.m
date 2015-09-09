@@ -102,13 +102,9 @@
     [cell sizeToFit];
     cell.userInteractionEnabled = YES;
 
-    if (n.seen == NO) {
-        cell.noteLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        [cell.noteLabel sizeToFit];
-    } else
-        cell.noteLabel.font = [UIFont systemFontOfSize:14.0];
+    [cell.noteLabel bold:(n.seen == NO)];
 
-    n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height;
+    n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height + 10;
 
     return cell;
 }

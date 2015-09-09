@@ -21,4 +21,6 @@
 
 @interface GCTextblock : UILabel
 
+- (void)bold:(BOOL)onoff;
+
 @end
