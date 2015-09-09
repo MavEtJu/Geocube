@@ -365,6 +365,12 @@
     return img;
 }
 
+- (UIImage *)getPin:(dbWaypoint *)wp
+{
+    return [self getPin:wp.type.pin found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
+}
+
+
 - (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
     UIImage *img = [imageLibrary get:imgnum];
@@ -390,6 +396,11 @@
     }
 
     return img;
+}
+
+- (UIImage *)getType:(dbWaypoint *)wp
+{
+    return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
 }
 
 @end

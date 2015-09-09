@@ -147,41 +147,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
 - (UIImage *)waypointImage:(dbWaypoint *)wp
 {
-    return [imageLibrary getPin:wp.type.pin found:wp.logStatus disabled:(wp.groundspeak.available == NO) archived:wp.groundspeak.archived highlight:wp.highlight];
-    /*
-    switch (wp.logStatus) {
-        case LOGSTATUS_FOUND:
-            if (wp.groundspeak != nil) {
-                if (wp.groundspeak.archived == YES)
-                    return [imageLibrary getPinArchivedFound:wp.type.pin];
-                if (wp.groundspeak.available == NO)
-                    return [imageLibrary getPinDisabledFound:wp.type.pin];
-            }
-            return [imageLibrary getPinFound:wp.type.pin];
-
-        case LOGSTATUS_NOTFOUND:
-            if (wp.groundspeak != nil) {
-                if (wp.groundspeak.archived == YES)
-                    return [imageLibrary getPinArchivedDNF:wp.type.pin];
-                if (wp.groundspeak.available == NO)
-                    return [imageLibrary getPinDisabledDNF:wp.type.pin];
-            }
-            return [imageLibrary getPinDNF:wp.type.pin];
-
-        case LOGSTATUS_NOTLOGGED:
-            if (wp.groundspeak != nil) {
-                if (wp.groundspeak.archived == YES)
-                    return [imageLibrary getPinArchived:wp.type.pin];
-                if (wp.groundspeak.available == NO)
-                    return [imageLibrary getPinDisabled:wp.type.pin];
-            }
-    */
-            /* FALL THROUGH */
-/*
-        default:
-            return [imageLibrary getPinNormal:wp.type.pin];
-    }
-*/
+    return [imageLibrary getPin:wp];
 }
 
 #pragma mark -- Menu related functions
