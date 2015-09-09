@@ -43,48 +43,6 @@ typedef enum {
     ImageTypes_WhereigoCache,
     ImageTypes_NFI,
 
-    /*
-    ImageTypes_foundBenchmark,
-    ImageTypes_foundCITO,
-    ImageTypes_foundEarthCache,
-    ImageTypes_foundEvent,
-    ImageTypes_foundGiga,
-    ImageTypes_foundGroundspeakHQ,
-    ImageTypes_foundLetterbox,
-    ImageTypes_foundMaze,
-    ImageTypes_foundMega,
-    ImageTypes_foundMultiCache,
-    ImageTypes_foundMystery,
-    ImageTypes_foundOther,
-    ImageTypes_foundTraditionalCache,
-    ImageTypes_foundUnknownCache,
-    ImageTypes_foundVirtualCache,
-    ImageTypes_foundWaymark,
-    ImageTypes_foundWebcamCache,
-    ImageTypes_foundWhereigoCache,
-    ImageTypes_foundNFI,
-
-    ImageTypes_dnfBenchmark,
-    ImageTypes_dnfCITO,
-    ImageTypes_dnfEarthCache,
-    ImageTypes_dnfEvent,
-    ImageTypes_dnfGiga,
-    ImageTypes_dnfGroundspeakHQ,
-    ImageTypes_dnfLetterbox,
-    ImageTypes_dnfMaze,
-    ImageTypes_dnfMega,
-    ImageTypes_dnfMultiCache,
-    ImageTypes_dnfMystery,
-    ImageTypes_dnfOther,
-    ImageTypes_dnfTraditionalCache,
-    ImageTypes_dnfUnknownCache,
-    ImageTypes_dnfVirtualCache,
-    ImageTypes_dnfWaymark,
-    ImageTypes_dnfWebcamCache,
-    ImageTypes_dnfWhereigoCache,
-    ImageTypes_dnfNFI,
-     */
-
     ImageWaypoints_FinalLocation = 200,
     ImageWaypoints_Flag,
     ImageWaypoints_MultiStage,
@@ -211,88 +169,6 @@ typedef enum {
     ImageMap_pinYellow,
     ImageMap_pinPink,
 
-    /*
-    ImageMap_foundBlack,
-    ImageMap_foundBrown,
-    ImageMap_foundGreen,
-    ImageMap_foundLightblue,
-    ImageMap_foundPurple,
-    ImageMap_foundRed,
-    ImageMap_foundWhite,
-    ImageMap_foundYellow,
-    ImageMap_foundPink,
-
-    ImageMap_dnfBlack,
-    ImageMap_dnfBrown,
-    ImageMap_dnfGreen,
-    ImageMap_dnfLightblue,
-    ImageMap_dnfPurple,
-    ImageMap_dnfRed,
-    ImageMap_dnfWhite,
-    ImageMap_dnfYellow,
-    ImageMap_dnfPink,
-
-    ImageMap_disabledBlack,
-    ImageMap_disabledBrown,
-    ImageMap_disabledGreen,
-    ImageMap_disabledLightblue,
-    ImageMap_disabledPurple,
-    ImageMap_disabledRed,
-    ImageMap_disabledWhite,
-    ImageMap_disabledYellow,
-    ImageMap_disabledPink,
-
-    ImageMap_archivedBlack,
-    ImageMap_archivedBrown,
-    ImageMap_archivedGreen,
-    ImageMap_archivedLightblue,
-    ImageMap_archivedPurple,
-    ImageMap_archivedRed,
-    ImageMap_archivedWhite,
-    ImageMap_archivedYellow,
-    ImageMap_archivedPink,
-
-    ImageMap_disabledFoundBlack,
-    ImageMap_disabledFoundBrown,
-    ImageMap_disabledFoundGreen,
-    ImageMap_disabledFoundLightblue,
-    ImageMap_disabledFoundPurple,
-    ImageMap_disabledFoundRed,
-    ImageMap_disabledFoundWhite,
-    ImageMap_disabledFoundYellow,
-    ImageMap_disabledFoundPink,
-
-    ImageMap_archivedFoundBlack,
-    ImageMap_archivedFoundBrown,
-    ImageMap_archivedFoundGreen,
-    ImageMap_archivedFoundLightblue,
-    ImageMap_archivedFoundPurple,
-    ImageMap_archivedFoundRed,
-    ImageMap_archivedFoundWhite,
-    ImageMap_archivedFoundYellow,
-    ImageMap_archivedFoundPink,
-
-    ImageMap_disabledDNFBlack,
-    ImageMap_disabledDNFBrown,
-    ImageMap_disabledDNFGreen,
-    ImageMap_disabledDNFLightblue,
-    ImageMap_disabledDNFPurple,
-    ImageMap_disabledDNFRed,
-    ImageMap_disabledDNFWhite,
-    ImageMap_disabledDNFYellow,
-    ImageMap_disabledDNFPink,
-
-    ImageMap_archivedDNFBlack,
-    ImageMap_archivedDNFBrown,
-    ImageMap_archivedDNFGreen,
-    ImageMap_archivedDNFLightblue,
-    ImageMap_archivedDNFPurple,
-    ImageMap_archivedDNFRed,
-    ImageMap_archivedDNFWhite,
-    ImageMap_archivedDNFYellow,
-    ImageMap_archivedDNFPink,
-     */
-
     /* Up to here: Do not reorder */
 
     ImageLibraryImagesUnsorted = 700,
@@ -338,42 +214,13 @@ typedef enum {
     UIImage *imgs[ImageLibraryImagesMax];
     UIImage *ratingImages[11];
     NSString *names[ImageLibraryImagesMax];
-
-    /*
-    NSInteger pin2normal;
-    NSInteger pin2found;
-    NSInteger pin2dnf;
-    NSInteger pin2disabled;
-    NSInteger pin2archived;
-    NSInteger pin2foundDisabled;
-    NSInteger pin2foundArchived;
-    NSInteger pin2dnfDisabled;
-    NSInteger pin2dnfArchived;
-
-    NSInteger type2normal;
-    NSInteger type2found;
-    NSInteger type2dnf;
-     */
 };
 
 - (id)init;
 - (UIImage *)get:(NSInteger)imgnum;
 - (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
 - (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
-/*
-- (UIImage *)getPinNormal:(NSInteger)imgnum;
-- (UIImage *)getPinFound:(NSInteger)imgnum;
-- (UIImage *)getPinDNF:(NSInteger)imgnum;
-- (UIImage *)getPinDisabled:(NSInteger)imgnum;
-- (UIImage *)getPinArchived:(NSInteger)imgnum;
-- (UIImage *)getTypeNormal:(NSInteger)imgnum;
-- (UIImage *)getTypeFound:(NSInteger)imgnum;
-- (UIImage *)getTypeDNF:(NSInteger)imgnum;
-- (UIImage *)getPinDisabledFound:(NSInteger)imgnum;
-- (UIImage *)getPinArchivedFound:(NSInteger)imgnum;
-- (UIImage *)getPinDisabledDNF:(NSInteger)imgnum;
-- (UIImage *)getPinArchivedDNF:(NSInteger)imgnum;
- */
+
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 
