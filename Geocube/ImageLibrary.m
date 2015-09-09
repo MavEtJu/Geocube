@@ -110,6 +110,8 @@
     [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
     [self add:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
     [self add:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
+    [self add:@"map - highlight - 21x21" index:ImageMap_pinOutlineHighlight];
+    [self add:@"map - background - 35x42" index:ImageMap_background];
     [self add:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
     [self add:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
     [self add:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
@@ -270,6 +272,16 @@
     return [self mergeXXX:bottom top:top];
 }
 
+- (UIImage *)mergeHighlight:(UIImage *)bottom top:(NSInteger)top
+{
+    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 21, 21)];
+}
+
+- (UIImage *)mergePin:(UIImage *)bottom top:(NSInteger)top
+{
+    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 35, 42)];
+}
+
 - (UIImage *)mergeYYY:(UIImage *)bottom top:(NSInteger)top
 {
     return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
@@ -340,7 +352,12 @@
 
 - (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
-    UIImage *img = [imageLibrary get:imgnum + ImageMap_pinBlack - ImageMap_pinheadBlack];
+    UIImage *img = [imageLibrary get:ImageMap_background];
+
+    if (highlight == YES)
+        img = [self mergeHighlight:img top:ImageMap_pinOutlineHighlight];
+
+    img = [self mergePin:img top:imgnum + ImageMap_pinBlack - ImageMap_pinheadBlack];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];

@@ -178,6 +178,8 @@ typedef enum {
     ImageMap_found,
     ImageMap_disabled,
     ImageMap_archived,
+    ImageMap_background,
+    ImageMap_pinOutlineHighlight,
 
     ImageMap_pinCrossDNF,
     ImageMap_pinTickFound,
