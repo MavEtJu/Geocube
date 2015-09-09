@@ -159,6 +159,7 @@
         cell.userInteractionEnabled = NO;
         cell.size.image = [imageLibrary get:groundspeak.container.icon];
         cell.icon.image = [imageLibrary get:waypoint.type.icon];
+        cell.icon.image = [imageLibrary getType:waypoint.type.icon found:waypoint.logStatus disabled:(waypoint.groundspeak.available == NO) archived:waypoint.groundspeak.archived highlight:waypoint.highlight];
 
         [cell showGroundspeak:(groundspeak != nil)];
         return cell;
