@@ -171,6 +171,9 @@
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
         imgFavouritesIV.hidden = FALSE;
+    } else {
+        favourites.text = nil;
+        imgFavouritesIV.hidden = TRUE;;
     }
 
     size.image = [imageLibrary get:sz];
