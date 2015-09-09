@@ -360,6 +360,19 @@
     }
 }
 
+- (void)dbUpdateHighlight
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
+
+        SET_VAR_BOOL(1, self.highlight);
+        SET_VAR_INT( 2, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSString *)makeName:(NSString *)suffix
 {
 

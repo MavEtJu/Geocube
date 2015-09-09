@@ -106,6 +106,7 @@ enum {
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;
 + (void)dbUpdateLogStatus;
+- (void)dbUpdateHighlight;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;

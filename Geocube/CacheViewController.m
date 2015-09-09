@@ -448,7 +448,9 @@
             [self newWaypoint];
             return;
         case 1:
-            break;
+            waypoint.highlight = !waypoint.highlight;
+            [waypoint dbUpdateHighlight];
+            return;
         case 2:
             [self refreshWaypoint];
             return;
