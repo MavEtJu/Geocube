@@ -107,6 +107,7 @@
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellTwoTextfields.h"
 #import "GCTableViewCellKeyValue.h"
+#import "GCTextblock.h"
 
 #import "CacheHeaderTableViewCell.h"
 #import "CacheTableViewCell.h"

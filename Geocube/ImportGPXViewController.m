@@ -68,7 +68,7 @@
     NSInteger labelSize = 3 * width / 4 - 2 * margin;
     NSInteger valueOffset = 3 * width / 4 + margin;
     NSInteger valueSize = width / 4 - 2 * margin - myConfig.GCLabelFont.pointSize;
-    NSInteger height = myConfig.GCLabelHeight;
+    NSInteger height = myConfig.GCLabelFont.lineHeight;
     NSInteger y = 0;
     GCLabel *l;
 

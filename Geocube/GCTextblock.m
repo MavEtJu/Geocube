@@ -21,27 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation GCTableViewCellTwoTextfields
+@implementation GCTextblock
 
-@synthesize fieldLabel, valueLabel;
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:style reuseIdentifier:nil];
-    CGRect frame = cell.frame;
-    frame.origin.x += 10;
-    frame.size.width -= 2 * 10;
-
-    // Name
-    fieldLabel = [[GCLabel alloc] initWithFrame:frame];
-    [self.contentView addSubview:fieldLabel];
-
-    valueLabel = [[GCLabel alloc] initWithFrame:frame];
-    valueLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:valueLabel];
-
+    self = [super initWithFrame:frame];
+    self.font = myConfig.GCTextblockFont;
+    self.numberOfLines = 0;
     return self;
 }
 

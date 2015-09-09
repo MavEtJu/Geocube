@@ -35,13 +35,11 @@
 - (NSInteger)addText:(NSInteger)y text:(NSString *)t
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-    UILabel *l;
+    width = applicationFrame.size.width;
+    GCTextblock *l;
 
     CGRect rect = CGRectMake(10, y, width - 20, 0);
-    l = [[UILabel alloc] initWithFrame:rect];
-    l.font = [UIFont systemFontOfSize:12.0];
-    l.numberOfLines = 0;
+    l = [[GCTextblock alloc] initWithFrame:rect];
     l.text = t;
     [l sizeToFit];
     [self.view addSubview:l];
@@ -55,7 +53,7 @@
     NSInteger y = 10;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
+    UIScrollView *contentView = [[UIScrollView alloc] initWithFrame:applicationFrame];
     self.view = contentView;
 
     y += [self addText:y text:
@@ -87,6 +85,8 @@
     y += [self addText:y text:
           @"My sincere thanks to all of the above for their generousity."
           ];
+
+    contentView.contentSize = CGSizeMake(width, y);
 }
 
 @end

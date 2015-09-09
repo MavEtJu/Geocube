@@ -193,6 +193,7 @@
 		E847A5891B9FDB3300BEFE83 /* type - archived - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5871B9FDB3300BEFE83 /* type - archived - 24x24.png */; };
 		E847A58A1B9FDB3300BEFE83 /* type - disabled - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */; };
 		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
+		E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58F1BA04AF400BEFE83 /* GCTextblock.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -575,6 +576,8 @@
 		E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - disabled - 24x24.png"; path = "images/type - disabled - 24x24.png"; sourceTree = "<group>"; };
 		E847A58B1BA0425100BEFE83 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
 		E847A58C1BA0425100BEFE83 /* GCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLabel.m; sourceTree = "<group>"; };
+		E847A58E1BA04AF400BEFE83 /* GCTextblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTextblock.h; sourceTree = "<group>"; };
+		E847A58F1BA04AF400BEFE83 /* GCTextblock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTextblock.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1001,6 +1004,8 @@
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
 				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
+				E847A58E1BA04AF400BEFE83 /* GCTextblock.h */,
+				E847A58F1BA04AF400BEFE83 /* GCTextblock.m */,
 			);
 			name = Geocube;
 			sourceTree = "<group>";
@@ -2161,6 +2166,7 @@
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
+				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,

@@ -72,6 +72,7 @@
 @class GCTableViewCellTwoTextfields;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
+@class GCTextblock;
 @class GCURLRequest;
 @class GCViewController;
 @class GeocachingAustralia;

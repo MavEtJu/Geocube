@@ -30,6 +30,7 @@
     self = [super init];
     menuItems = nil;
 
+    [self.tableView registerClass:[GCTableViewCellTwoTextfields class] forCellReuseIdentifier:THISCELL];
     [self reloadNumbers];
 
     return self;
@@ -100,7 +101,6 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellTwoTextfields class] forCellReuseIdentifier:THISCELL];
 }
 
 #pragma mark - TableViewController related functions

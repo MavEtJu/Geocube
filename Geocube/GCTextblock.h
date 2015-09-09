@@ -19,30 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
-@implementation GCTableViewCellTwoTextfields
-
-@synthesize fieldLabel, valueLabel;
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:style reuseIdentifier:nil];
-    CGRect frame = cell.frame;
-    frame.origin.x += 10;
-    frame.size.width -= 2 * 10;
-
-    // Name
-    fieldLabel = [[GCLabel alloc] initWithFrame:frame];
-    [self.contentView addSubview:fieldLabel];
-
-    valueLabel = [[GCLabel alloc] initWithFrame:frame];
-    valueLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:valueLabel];
-
-    return self;
-}
+@interface GCTextblock : UILabel
 
 @end
