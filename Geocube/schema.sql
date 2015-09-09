@@ -469,7 +469,7 @@ insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Flag", 
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Multi Stage", 202, 600);
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Parking Area", 203, 600);
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Physical Stage", 204, 600);
-insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Reference Stage", 205, 600);
+insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Reference Point", 205, 600);
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Trailhead", 206, 600);
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Virtual Stage", 207, 600);
 
