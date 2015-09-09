@@ -23,6 +23,7 @@
 
 @implementation MyConfig
 
+@synthesize GCLabelFont, GCLabelHeight;
 @synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
 @synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
 @synthesize compassType;
@@ -33,6 +34,11 @@
 
     [self checkDefaults];
     [self loadValues];
+
+    UITableViewCell *tvc = [[UITableViewCell alloc] init];
+
+    GCLabelFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
+    GCLabelHeight = GCLabelFont.lineHeight;
 
     return self;
 }

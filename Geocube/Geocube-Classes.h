@@ -61,6 +61,7 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
+@class GCLabel;
 @class GCLocationManager;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

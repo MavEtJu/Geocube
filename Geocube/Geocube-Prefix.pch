@@ -101,6 +101,7 @@
 #import "ImportSites.h"
 #import "ImportNotices.h"
 
+#import "GCLabel.h"
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"

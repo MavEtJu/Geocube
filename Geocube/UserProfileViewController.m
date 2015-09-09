@@ -29,9 +29,6 @@
 
     menuItems = [NSMutableArray arrayWithArray:@[@"Reload"]];
 
-    font14 = [UIFont systemFontOfSize:14];
-    textHeight14 = font14.lineHeight;
-
     return self;
 }
 
@@ -56,6 +53,7 @@
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
+    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
     __block NSInteger y = 10;
 
     totalFound = 0;
@@ -75,19 +73,17 @@
         }
         count++;
 
-        UILabel *l;
+        GCLabel *l;
 
         /* Site name */
-        l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
         [l setText:a.site];
-        l.font = font14;
         [contentView addSubview:l];
         y += 15;
 
         if (a.canDoRemoteStuff == NO) {
-            l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
             [l setText:@"Remote API is not available for this account, please check the settings."];
-            l.font = font14;
             l.numberOfLines = 0;
             [l sizeToFit];
             [contentView addSubview:l];
@@ -105,7 +101,7 @@
     }];
 
     if (count == 0) {
-        UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
+        GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
         l.text = @"No accounts are configured yet. As such no information is available is here yet.";
         l.numberOfLines = 0;
         [l sizeToFit];
@@ -121,9 +117,8 @@
     y += v.frame.size.height;
 
     // Header
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(10, y, width - 20, textHeight14)];
+    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
     [l setText:@"Total"];
-    l.font = font14;
     [contentView addSubview:l];
     y += l.frame.size.height;
 
@@ -152,7 +147,8 @@
 - (void)showStatistics:(NSInteger)idx dict:(NSDictionary *)d
 {
     NSObject *o;
-    UILabel *l;
+    GCLabel *l;
+    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
 
     UIView *view = [accountViews objectAtIndex:idx];
     for (UIView *subview in view.subviews) {
@@ -166,9 +162,8 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalFound with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
         [l setText:[NSString stringWithFormat:@"Found: %@", o]];
-        l.font = font14;
         [view addSubview:l];
         y += l.frame.size.height;
     }
@@ -177,9 +172,8 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalDNF with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
         [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
-        l.font = font14;
         [view addSubview:l];
         y += l.frame.size.height;
     }
@@ -188,9 +182,8 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalHidden with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
         [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
-        l.font = font14;
         [view addSubview:l];
         y += l.frame.size.height;
     }
@@ -199,9 +192,8 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalRecommendationsGiven with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
         [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
-        l.font = font14;
         [view addSubview:l];
         y += l.frame.size.height;
     }
@@ -210,9 +202,8 @@
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         if (idx != idxTotal)
             [self updateTotal:&totalRecommendationsReceived with:o];
-        l = [[UILabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, textHeight14)];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
         [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
-        l.font = font14;
         [view addSubview:l];
         y += l.frame.size.height;
     }

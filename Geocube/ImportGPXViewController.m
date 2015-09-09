@@ -67,104 +67,113 @@
     NSInteger labelOffset = margin;
     NSInteger labelSize = 3 * width / 4 - 2 * margin;
     NSInteger valueOffset = 3 * width / 4 + margin;
-    NSInteger valueSize = width / 4 - 2 * margin;
-    NSInteger height = 30;
+    NSInteger valueSize = width / 4 - 2 * margin - myConfig.GCLabelFont.pointSize;
+    NSInteger height = myConfig.GCLabelHeight;
     NSInteger y = 0;
-    UILabel *l;
+    GCLabel *l;
 
-    filenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
+    filenameLabel = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
     [filenameLabel setText:@"Import of ?"];
     filenameLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:filenameLabel];
     y += height;
 
     // Progress label
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"Done:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    progressLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    progressLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize + myConfig.GCLabelFont.pointSize, height)];
+    progressLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:progressLabel];
     y += height;
 
     // New waypoint counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"New waypoints imported:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    newWaypointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newWaypointsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:newWaypointsLabel];
     y += height;
 
     // Total waypoint counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"Total waypoints read:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    totalWaypointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalWaypointsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:totalWaypointsLabel];
     y += height;
 
     // New travelbugs counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"New travelbugs imported:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    newTravelbugsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newTravelbugsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:newTravelbugsLabel];
     y += height;
 
     // Total travelbugs counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"Total travelbugs read:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    totalTravelbugsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalTravelbugsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:totalTravelbugsLabel];
     y += height;
 
     // New logs counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"New logs imported:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    newLogsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    newLogsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:newLogsLabel];
     y += height;
 
     // Total logs counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"Total logs read:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    totalLogsLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalLogsLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:totalLogsLabel];
     y += height;
 
     // Queued images counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"New images queued:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    queuedImagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    queuedImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    queuedImagesLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:queuedImagesLabel];
     y += height;
 
     // Total images counter
-    l = [[UILabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
     l.text = @"Total images read:";
     l.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:l];
 
-    totalImagesLabel = [[UILabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+    totalImagesLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:totalImagesLabel];
     y += height;
 

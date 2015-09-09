@@ -31,6 +31,9 @@
     BOOL GeocachingLive_staging;
     NSString *GeocachingLive_API1;
     NSString *GeocachingLive_API2;
+
+    UIFont *GCLabelFont;
+    CGFloat GCLabelHeight;
 }
 
 @property (nonatomic) BOOL distanceMetric;
@@ -45,6 +48,9 @@
 @property (nonatomic, retain) NSString *GeocachingLive_API2;
 
 @property (nonatomic) NSInteger compassType;
+
+@property (nonatomic, readonly, retain) UIFont *GCLabelFont;
+@property (nonatomic, readonly) CGFloat GCLabelHeight;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)themeGeosphereUpdate:(BOOL)value;

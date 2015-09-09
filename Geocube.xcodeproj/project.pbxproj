@@ -192,6 +192,7 @@
 		E847A5861B9FDA1100BEFE83 /* type - tick found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5841B9FDA1100BEFE83 /* type - tick found - 24x21.png */; };
 		E847A5891B9FDB3300BEFE83 /* type - archived - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5871B9FDB3300BEFE83 /* type - archived - 24x24.png */; };
 		E847A58A1B9FDB3300BEFE83 /* type - disabled - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */; };
+		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -572,6 +573,8 @@
 		E847A5841B9FDA1100BEFE83 /* type - tick found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - tick found - 24x21.png"; path = "images/type - tick found - 24x21.png"; sourceTree = "<group>"; };
 		E847A5871B9FDB3300BEFE83 /* type - archived - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - archived - 24x24.png"; path = "images/type - archived - 24x24.png"; sourceTree = "<group>"; };
 		E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - disabled - 24x24.png"; path = "images/type - disabled - 24x24.png"; sourceTree = "<group>"; };
+		E847A58B1BA0425100BEFE83 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
+		E847A58C1BA0425100BEFE83 /* GCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLabel.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -996,6 +999,8 @@
 				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
 				E82FBB251B4613C20009AB6D /* GCViewController.h */,
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
+				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
+				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
 			);
 			name = Geocube;
 			sourceTree = "<group>";
@@ -2137,6 +2142,7 @@
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
+				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
