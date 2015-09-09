@@ -108,10 +108,12 @@
 
     [self add:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
     [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
-    [self add:@"map - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
-    [self add:@"map - tick found - 24x21" index:ImageMap_typeTickFound];
     [self add:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
     [self add:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
+    [self add:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
+    [self add:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
+    [self add:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
+    [self add:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
 
     [self add:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self add:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -368,10 +370,10 @@
     UIImage *img = [imageLibrary get:imgnum];
 
     if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
+        img = [self mergeDisabled:img top:ImageMap_typeOutlineDisabled];
 
     if (archived == YES)
-        img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
+        img = [self mergeArchived:img top:ImageMap_typeOutlineArchived];
 
     switch (found) {
         case LOGSTATUS_NOTLOGGED:

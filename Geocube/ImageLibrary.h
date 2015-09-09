@@ -181,10 +181,12 @@ typedef enum {
 
     ImageMap_pinCrossDNF,
     ImageMap_pinTickFound,
-    ImageMap_typeCrossDNF,
-    ImageMap_typeTickFound,
     ImageMap_pinOutlineDisabled,
     ImageMap_pinOutlineArchived,
+    ImageMap_typeCrossDNF,
+    ImageMap_typeTickFound,
+    ImageMap_typeOutlineDisabled,
+    ImageMap_typeOutlineArchived,
 
     ImageCacheView_ratingBase,
     ImageCacheView_ratingOff,
