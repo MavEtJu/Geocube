@@ -23,6 +23,14 @@
 
 #define THISCELL @"HelpImagesCells"
 
+enum {
+    IMAGES_TYPE = 0,
+    IMAGES_PIN,
+    IMAGES_RATING,
+    IMAGES_IMAGES,
+    IMAGES_MAX
+};
+
 @implementation HelpImagesViewController
 
 - (id)init
@@ -70,28 +78,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 3;
+    return IMAGES_MAX;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return 25;
-    if (section == 1)
+    if (section == IMAGES_PIN)
+        return 21;
+    if (section == IMAGES_TYPE)
+        return 21;
+    if (section == IMAGES_RATING)
         return 11;
-    if (section == 2)
+    if (section == IMAGES_IMAGES)
         return imgCount;
     return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (section == IMAGES_PIN)
         return @"pins:";
-    if (section == 1)
+    if (section == IMAGES_TYPE)
+        return @"container:";
+    if (section == IMAGES_RATING)
         return @"getRating:";
-    if (section == 2)
+    if (section == IMAGES_IMAGES)
         return @"get:";
     return nil;
 }
@@ -103,7 +115,7 @@
     if (cell == nil)
         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
-    if (indexPath.section == 0) {
+    if (indexPath.section == IMAGES_PIN) {
         switch (indexPath.row) {
 
             case 0:
@@ -206,7 +218,110 @@
         return cell;
     }
 
-    if (indexPath.section == 1) {
+    if (indexPath.section == IMAGES_TYPE) {
+        switch (indexPath.row) {
+
+            case 0:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Type";
+                break;
+            case 1:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Type - found";
+                break;
+            case 2:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO];
+                cell.textLabel.text = @"Type - not found";
+                break;
+
+            case 3:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Type - disabled";
+                break;
+            case 4:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Type - found - disabled";
+                break;
+            case 5:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO];
+                cell.textLabel.text = @"Type - not found - disabled";
+                break;
+
+            case 6:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - archived";
+                break;
+            case 7:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - found - archived";
+                break;
+            case 8:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - not found - archived";
+                break;
+
+            case 9:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - disabled - archived";
+                break;
+            case 10:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - found - disabled - archived";
+                break;
+            case 11:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:NO];
+                cell.textLabel.text = @"Type - not found - disabled - archived";
+                break;
+
+            case 12:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Type - disabled - highlight";
+                break;
+            case 13:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Type - found - disabled - highlight";
+                break;
+            case 14:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:YES];
+                cell.textLabel.text = @"Type - not found - disabled - highlight";
+                break;
+
+            case 15:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - archived - highlight";
+                break;
+            case 16:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - found - archived - highlight";
+                break;
+            case 17:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - not found - archived - highlight";
+                break;
+
+            case 18:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - disabled - highlight";
+                break;
+            case 19:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - found - disabled - highlight";
+                break;
+            case 20:
+                cell.imageView.image = [imageLibrary getType:ImageTypes_TraditionalCache found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:YES];
+                cell.textLabel.text = @"Type - not found - disabled - highlight";
+                break;
+
+            default:
+                cell.imageView.image = nil;
+                cell.textLabel.text = @"None";
+                break;
+
+        }
+        return cell;
+    }
+
+    if (indexPath.section == IMAGES_RATING) {
         cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];
         cell.textLabel.text = [NSString stringWithFormat:@"%ld (%0.1f)", (long)indexPath.row, indexPath.row / 2.0];
         cell.detailTextLabel.text = nil;
@@ -214,7 +329,7 @@
         return cell;
     }
 
-    if (indexPath.section == 2) {
+    if (indexPath.section == IMAGES_IMAGES) {
         cell.imageView.image = [imgs objectAtIndex:indexPath.row];
         cell.textLabel.text = [names objectAtIndex:indexPath.row];
         cell.detailTextLabel.text = [[numbers objectAtIndex:indexPath.row] stringValue];
