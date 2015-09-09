@@ -83,7 +83,7 @@
     [cell.log sizeToFit];
 
     CGRect f = cell.frame;
-    f.size.height = cell.log.frame.size.height + cell.name.frame.size.height;
+    f.size.height = cell.log.frame.size.height + cell.name.frame.size.height + 10;
     cell.frame = f;
 
     pn.cellHeight = f.size.height;

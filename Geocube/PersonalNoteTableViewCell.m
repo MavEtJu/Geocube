@@ -40,21 +40,22 @@
      |                            |
      +----------------------------+
      */
-#define BORDER 1
-#define HEIGHT_NAME  15
+#define BORDER 10
 
-    CGRect rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, HEIGHT_NAME);
-    CGRect rectLog = CGRectMake(BORDER, BORDER + HEIGHT_NAME, width - 2 * BORDER, 30);
+    NSInteger height = myConfig.GCSmallFont.lineHeight;
+    CGRect rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
+    CGRect rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
 
     // Name
-    name = [[UILabel alloc] initWithFrame:rectName];
-    name.font = [UIFont systemFontOfSize:12.0];
+    name = [[GCSmallLabel alloc] initWithFrame:rectName];
+    [name bold:YES];
     [self.contentView addSubview:name];
 
     // Log
-    log = [[UILabel alloc] initWithFrame:rectLog];
-    log.font = [UIFont systemFontOfSize:12.0];
-    log.numberOfLines = 0;
+    log = [[GCTextblock alloc] initWithFrame:rectLog];
+    [log sizeToFit];
+
+    [self.contentView sizeToFit];
     [self.contentView addSubview:log];
 
     return self;

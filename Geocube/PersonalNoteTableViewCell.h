@@ -20,8 +20,8 @@
  */
 
 @interface PersonalNoteTableViewCell : UITableViewCell {
-        UILabel *log;
-        UILabel *name;
+        GCTextblock *log;
+        GCSmallLabel *name;
 }
 
 @property (nonatomic, retain) UILabel *log;
