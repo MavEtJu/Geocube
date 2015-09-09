@@ -142,6 +142,10 @@
     cell.description.text = wp.urlname;
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary getType:wp];
+    if (wp.highlight == YES)
+        cell.description.backgroundColor = [UIColor yellowColor];
+    else
+        cell.description.backgroundColor = [UIColor clearColor];
 
     [cell setRatings:gs.favourites terrain:gs.rating_terrain difficulty:gs.rating_difficulty size:gs.container.icon];
 
