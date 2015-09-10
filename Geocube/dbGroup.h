@@ -37,7 +37,6 @@
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 + (NSMutableArray *)dbAll;
 + (dbGroup *)dbGetByName:(NSString *)name;
-- (void)dbDelete;
 + (void)dbDelete:(NSId)__id;
 - (void)dbUpdateName:(NSString *)newname;
 - (void)dbAddWaypoint:(NSId)__id;

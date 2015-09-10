@@ -28,7 +28,5 @@
 @property (nonatomic) NSString *url;
 
 + (NSId)dbCreate:(dbBookmark *)bm;
-- (void)dbUpdate;
-- (void)dbDelete;
 
 @end
