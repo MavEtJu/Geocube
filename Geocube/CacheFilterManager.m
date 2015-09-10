@@ -304,7 +304,7 @@
         __block NSMutableArray *states = nil;
         __block NSMutableArray *owners = nil;
 
-        if ([country isEqualToString:@""] == NO) {
+        if (country != nil && [country isEqualToString:@""] == NO) {
             countries = [NSMutableArray arrayWithCapacity:20];
             [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
                 if ([c.name localizedCaseInsensitiveContainsString:country] ||
@@ -313,7 +313,7 @@
             }];
         }
 
-        if ([state isEqualToString:@""] == NO) {
+        if (state != nil && [state isEqualToString:@""] == NO) {
             states = [NSMutableArray arrayWithCapacity:20];
             [[dbc States] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
                 if ([c.name localizedCaseInsensitiveContainsString:state] ||
@@ -322,7 +322,7 @@
             }];
         }
 
-        if ([owner isEqualToString:@""] == NO) {
+        if (owner != nil && [owner isEqualToString:@""] == NO) {
             owners = [NSMutableArray arrayWithCapacity:20];
             [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *n, NSUInteger idx, BOOL *stop) {
                 if ([n.name localizedCaseInsensitiveContainsString:owner])
@@ -333,12 +333,12 @@
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             __block BOOL rv = YES;
 
-            if ([cachename isEqualToString:@""] == NO &&
+            if (cachename != nil && [cachename isEqualToString:@""] == NO &&
                 [wp.name localizedCaseInsensitiveContainsString:cachename] == NO) {
                 rv = NO;
             }
 
-            if ([description isEqualToString:@""] == NO &&
+            if (description != nil && [description isEqualToString:@""] == NO &&
                 [wp.description localizedCaseInsensitiveContainsString:description] == NO &&
                 [wp.groundspeak.long_desc localizedCaseInsensitiveContainsString:description] == NO &&
                 [wp.groundspeak.short_desc localizedCaseInsensitiveContainsString:description] == NO) {
@@ -381,7 +381,7 @@
                     rv = NO;
             }
 
-            if ([logs isEqualToString:@""] == NO) {
+            if (logs != nil && [logs isEqualToString:@""] == NO) {
                 if ([dbLog dbCountByWaypointLogString:wp LogString:logs] == 0)
                     rv = NO;
             }
