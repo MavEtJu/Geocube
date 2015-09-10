@@ -33,6 +33,7 @@
 + (dbObject *)dbGet:(NSId)_id;
 - (void)dbUpdate;
 - (NSId)dbCreate;
+- (void)dbDelete;
 + (NSInteger)dbCount;
 + (NSInteger)dbCount:(NSString *)tablename;
 

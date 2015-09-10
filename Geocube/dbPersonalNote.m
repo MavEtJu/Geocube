@@ -78,6 +78,28 @@
     return pn;
 }
 
++ (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname
+{
+    dbPersonalNote *pn = nil;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, waypoint_id, wp_name, note from personal_notes where wp_name = ?");
+
+        SET_VAR_TEXT(1, wpname);
+
+        DB_IF_STEP {
+            pn = [[dbPersonalNote alloc] init];
+            INT_FETCH( 0, pn._id);
+            INT_FETCH( 1, pn.waypoint_id);
+            TEXT_FETCH(2, pn.wp_name);
+            TEXT_FETCH(3, pn.note);
+        }
+        DB_FINISH;
+    }
+    
+    return pn;
+}
+
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
@@ -97,6 +119,18 @@
     }
 
     return ss;
+}
+
+- (void)dbDelete
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from personal_notes where id = ?");
+
+        SET_VAR_INT(0, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
 }
 
 + (NSInteger)dbCount

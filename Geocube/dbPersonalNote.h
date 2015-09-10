@@ -34,5 +34,6 @@
 @property (nonatomic) NSInteger cellHeight;
 
 + (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id;
++ (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname;
 
 @end
