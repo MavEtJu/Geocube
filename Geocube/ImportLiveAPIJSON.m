@@ -108,7 +108,6 @@
     gs.short_desc = [dict objectForKey:@"ShortDescription"];
     gs.long_desc = [dict objectForKey:@"LongDescription"];
     gs.hint = [dict objectForKey:@"EncodedHints"];
-    //gs.personal_note = [dict objectForKey:@"GeocacheNote"];
 
     gs.placed_by = [dict objectForKey:@"PlacedBy"];
 
@@ -136,6 +135,26 @@
         gs.waypoint_id = wp._id;
         [wp dbUpdate];
         [gs dbUpdate];
+    }
+
+    NSString *personal_note = [dict objectForKey:@"GeocacheNote"];
+    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.name];
+    if (pn != nil) {
+        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+            [pn dbDelete];
+            pn = nil;
+        } else {
+            pn.note = personal_note;
+            [pn dbUpdate];
+        }
+    } else {
+        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+            pn = [[dbPersonalNote alloc] init];
+            pn.wp_name = wp.name;
+            pn.waypoint_id = wp._id;
+            pn.note = personal_note;
+            [pn dbCreate];
+        }
     }
 
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
