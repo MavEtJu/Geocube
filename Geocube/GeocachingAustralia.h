@@ -38,9 +38,10 @@
 
 - (id)init:(RemoteAPI *)remoteAPI;
 - (NSArray *)logtypes:(NSString *)waypointType;
+- (void)storeCookie:(NSHTTPCookie *)cookie;
 
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name;
-- (void)storeCookie:(NSHTTPCookie *)cookie;
+- (NSString *)cache_gpx:(NSString *)wpname;
 
 @end

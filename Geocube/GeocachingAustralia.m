@@ -141,4 +141,11 @@
     return ret;
 }
 
+- (NSString *)cache_gpx:(NSString *)wpname
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
+    NSArray *lines = [self loadPage:urlString];
+    return [lines componentsJoinedByString:@""];
+}
+
 @end
