@@ -21,7 +21,7 @@
 
 @interface CachePersonalNoteViewController : GCViewController<YIPopupTextViewDelegate> {
     dbWaypoint *waypoint;
-    UILabel *l;
+    GCTextblock *l;
     YIPopupTextView *tv;
     dbPersonalNote *note;
 }

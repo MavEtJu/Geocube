@@ -45,9 +45,8 @@
     UIScrollView *view = [[UIScrollView alloc] initWithFrame:applicationFrame];
     self.view = view;
 
-    l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
+    l = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
     l.text = note.note;
-    l.numberOfLines = 0;
     [l sizeToFit];
     l.userInteractionEnabled = YES;
 
