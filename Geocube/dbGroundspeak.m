@@ -23,7 +23,7 @@
 
 @implementation dbGroundspeak
 
-@synthesize rating_difficulty, rating_terrain, favourites, country, country_id, country_str, state, state_id, state_str, short_desc_html, short_desc, long_desc_html, long_desc, hint, personal_note, container, container_str, container_id, archived, available, placed_by, owner_gsid, owner, owner_id, owner_str, waypoint_id;
+@synthesize rating_difficulty, rating_terrain, favourites, country, country_id, country_str, state, state_id, state_str, short_desc_html, short_desc, long_desc_html, long_desc, hint, container, container_str, container_id, archived, available, placed_by, owner_gsid, owner, owner_id, owner_str, waypoint_id;
 
 - (id)init:(NSId)__id
 {
@@ -40,7 +40,6 @@
     self.long_desc = nil;
     self.long_desc_html = NO;
     self.hint = nil;
-    self.personal_note = nil;
     self.container = nil;
     self.favourites = 0;
     self.rating_difficulty = 0;

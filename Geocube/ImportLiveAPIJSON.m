@@ -108,7 +108,7 @@
     gs.short_desc = [dict objectForKey:@"ShortDescription"];
     gs.long_desc = [dict objectForKey:@"LongDescription"];
     gs.hint = [dict objectForKey:@"EncodedHints"];
-    gs.personal_note = [dict objectForKey:@"GeocacheNote"];
+    //gs.personal_note = [dict objectForKey:@"GeocacheNote"];
 
     gs.placed_by = [dict objectForKey:@"PlacedBy"];
 

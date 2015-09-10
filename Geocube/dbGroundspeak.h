@@ -39,7 +39,7 @@
 
     BOOL short_desc_html, long_desc_html;
     NSString *short_desc, *long_desc;
-    NSString *hint, *personal_note;
+    NSString *hint;
 
     NSString *placed_by;
 
@@ -68,7 +68,6 @@
 @property (nonatomic) BOOL long_desc_html;
 @property (nonatomic, retain) NSString *long_desc;
 @property (nonatomic, retain) NSString *hint;
-@property (nonatomic, retain) NSString *personal_note;
 @property (nonatomic) NSId container_id;
 @property (nonatomic, retain) NSString *container_str;
 @property (nonatomic, retain) dbContainer *container;
