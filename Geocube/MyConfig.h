@@ -26,6 +26,9 @@
     NSInteger currentPage;
     NSInteger currentPageTab;
 
+    NSInteger lastImportSource;
+    NSInteger lastImportGroup;
+
     NSInteger compassType;
 
     BOOL GeocachingLive_staging;
@@ -44,6 +47,9 @@
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) NSInteger currentPageTab;
 
+@property (nonatomic) NSInteger lastImportSource;
+@property (nonatomic) NSInteger lastImportGroup;
+
 @property (nonatomic) BOOL GeocachingLive_staging;
 @property (nonatomic, retain) NSString *GeocachingLive_API1;
 @property (nonatomic, retain) NSString *GeocachingLive_API2;
@@ -59,6 +65,8 @@
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
+- (void)lastImportGroupUpdate:(NSInteger)value;
+- (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)compassTypeUpdate:(NSInteger)value;
 - (void)geocachingLive_staging:(BOOL)value;
 - (void)geocachingLive_API1Update:(NSString *)value;

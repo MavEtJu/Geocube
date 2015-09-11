@@ -256,8 +256,9 @@
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select a Group"
         rows:groupNames
-        initialSelection:0
+        initialSelection:[myConfig lastImportGroup]
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            [myConfig lastImportGroupUpdate:selectedIndex];
             [self fileImport2:row group:[groups objectAtIndex:selectedIndex] view:tablecell];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -281,8 +282,9 @@
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select the source"
         rows:accountNames
-        initialSelection:0
+        initialSelection:[myConfig lastImportSource]
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            [myConfig lastImportSourceUpdate:selectedIndex];
             __block NSString *filename = [filesNames objectAtIndex:row];
             __block NSNumber *filesize = [filesSizes objectAtIndex:row];
             UIViewController *newController = [[ImportGPXViewController alloc] init:filename group:group account:[accounts objectAtIndex:selectedIndex]];

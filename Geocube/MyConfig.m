@@ -25,6 +25,7 @@
 
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
+@synthesize lastImportGroup, lastImportSource;
 @synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
 @synthesize compassType;
 
@@ -58,6 +59,8 @@
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
+    CHECK(@"lastimport_group", @"0");
+    CHECK(@"lastimport_source", @"0");
     CHECK(@"geocachinglive_staging", @"1");
     CHECK(@"geocachinglive_API1", @"");
     CHECK(@"geocachinglive_API2", @"");
@@ -71,6 +74,8 @@
     currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
+    lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
+    lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     GeocachingLive_staging = [[dbConfig dbGetByKey:@"geocachinglive_staging"].value boolValue];
     GeocachingLive_API1 = [dbConfig dbGetByKey:@"geocachinglive_API1"].value;
     GeocachingLive_API2 = [dbConfig dbGetByKey:@"geocachinglive_API2"].value;
@@ -126,6 +131,18 @@
 {
     currentPageTab = value;
     [self NSIntegerUpdate:@"pagetab_current" value:value];
+}
+
+- (void)lastImportGroupUpdate:(NSInteger)value
+{
+    lastImportGroup = value;
+    [self NSIntegerUpdate:@"lastimport_group" value:value];
+}
+
+- (void)lastImportSourceUpdate:(NSInteger)value
+{
+    lastImportSource = value;
+    [self NSIntegerUpdate:@"lastimport_source" value:value];
 }
 
 - (void)geocachingLive_staging:(BOOL)value
