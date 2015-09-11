@@ -43,7 +43,7 @@
     dbGroup *group;
     dbAccount *account;
 
-    NSMutableArray *logIdGCId;
+    NSMutableDictionary *logIdGCId;
     NSMutableArray *attributesYES, *attributesNO;
     NSMutableArray *logs;
     NSMutableArray *travelbugs;

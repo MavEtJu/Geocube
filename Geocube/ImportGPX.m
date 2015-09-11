@@ -43,6 +43,7 @@
     account = _account;
 
     NSLog(@"%@: Importing info %@", [self class], group.name);
+    
 
     return self;
 }
@@ -88,7 +89,7 @@
     inItem = NO;
     inLog = NO;
     inTravelbug = NO;
-    logIdGCId = [NSMutableArray arrayWithArray:[dbLog dbAllIdGCId]];
+    logIdGCId = [dbLog dbAllIdGCId];
 
     @autoreleasepool {
         [rssParser parse];
@@ -258,14 +259,20 @@
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
                 l.waypoint_id = currentWP._id;
-                [l finish];
-                NSId _id = [dbLog dbGetIdByGC:l.gc_id account:account];
+
+                __block NSId _id = 0;
+                dbLog *_l = [logIdGCId objectForKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
+                if (_l != nil)
+                    _id = _l._id;
+
                 if (_id == 0) {
                     newLogsCount++;
+                    [l finish];
                     [l dbCreate];
+                    [logIdGCId setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
                 } else {
                     l._id = _id;
-                    [l dbUpdate];
+                    [l dbUpdateNote];
                 }
                 totalLogsCount++;
             }];
