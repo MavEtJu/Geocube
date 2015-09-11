@@ -256,7 +256,7 @@
 {
     UIImage *out = [self mergePinhead2:[self get:bottom] top:top];
     imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"Merge of %ld and %ld", bottom, top];
+    names[index] = [NSString stringWithFormat:@"Merge of %ld and %ld", (long)bottom, (long)top];
 }
 
 - (UIImage *)mergeXXX:(UIImage *)bottom top:(NSInteger)top
