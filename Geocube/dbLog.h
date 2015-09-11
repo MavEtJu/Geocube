@@ -61,13 +61,14 @@
 - (id)init:(NSId)gc_id;
 
 + (NSId)dbGetIdByGC:(NSId)gc_id account:(dbAccount *)account;
-+ (NSArray *)dbAllIdGCId;
++ (NSMutableDictionary *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypointLogged:(NSId)wp_id;
 + (NSId)dbCreate:(dbLog *)log;
 - (NSId)dbCreate;
 - (void)dbUpdateCache:(NSId)wp_id;
+- (void)dbUpdateNote;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;
 + (dbLog *)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged;
 

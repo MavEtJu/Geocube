@@ -102,9 +102,9 @@
     return _id;
 }
 
-+ (NSArray *)dbAllIdGCId
++ (NSDictionary *)dbAllIdGCId
 {
-    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
+    NSMutableDictionary *ss = [NSMutableDictionary dictionaryWithCapacity:4000];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, gc_id from logs order by datetime_epoch desc");
@@ -113,7 +113,7 @@
             dbLog *l = [[dbLog alloc] init];
             INT_FETCH(0, l._id);
             INT_FETCH(1, l.gc_id);
-            [ss addObject:l];
+            [ss setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
         }
         DB_FINISH;
     }
@@ -176,6 +176,19 @@
 
         SET_VAR_INT(1, c_id);
         SET_VAR_INT(2, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
+- (void)dbUpdateNote
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update logs set log = ? where id = ?");
+
+        SET_VAR_TEXT(1, log);
+        SET_VAR_INT( 2, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
