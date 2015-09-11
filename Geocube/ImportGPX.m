@@ -315,17 +315,6 @@
 
         // Deal with the completion of the travelbug
         if (index == 4 && inTravelbug == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
-//          [currentTB finish];
-
-//          NSId tb_id = [dbTravelbug dbGetIdByGC:currentTB.gc_id];
-//          totalTravelbugsCount++;
-//          if (tb_id == 0) {
-//              newTravelbugsCount++;
-//              [dbTravelbug dbCreate:currentTB];
-//          } else {
-//              currentTB._id = tb_id;
-//              [currentTB dbUpdate];
-//          }
             [travelbugs addObject:currentTB];
 
             inTravelbug = NO;
@@ -334,25 +323,6 @@
 
         // Deal with the completion of the log
         if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
-//          [currentLog finish];
-
-//          __block NSId log_id = 0;
-//          [logIdGCId enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
-//              if (log.gc_id == currentLog.gc_id) {
-//                  log_id = log._id;
-//                  *stop = YES;
-//              }
-//          }];
-
-//          totalLogsCount++;
-//          if (log_id == 0) {
-//              newLogsCount++;
-//              [dbLog dbCreate:currentLog];
-//              [logIdGCId addObject:currentLog];   // Extend array just in case
-//          } else {
-//              currentLog._id = log_id;
-//              [currentLog dbUpdate];
-//          }
             [logs addObject:currentLog];
 
             inLog = NO;
