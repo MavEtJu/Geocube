@@ -122,6 +122,11 @@
     account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [account dbUpdateCookieValue];
 
+    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+    [bbvc prepare_gca:nil];
+
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
 
@@ -134,6 +139,11 @@
     account.oauth_token_secret = secret;
     [account dbUpdateOAuthToken];
     //oabb = nil;
+
+    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+    [bbvc prepare_oauth:nil];
 
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
@@ -148,6 +158,11 @@
     account.oauth_token_secret = nil;
     [account dbUpdateOAuthToken];
     oabb = nil;
+
+    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
+    [bbvc prepare_oauth:nil];
 
     [_AppDelegate switchController:RC_SETTINGS];
     if (authenticationDelegate)
