@@ -51,12 +51,26 @@
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         [cookiemgr setCookie:authCookie];
     }
+
+    logtypes = [NSMutableDictionary dictionaryWithCapacity:20];
+    [logtypes setObject:@"F" forKey:@"Found it"];
+    [logtypes setObject:@"D" forKey:@"Did not find it"];
+    [logtypes setObject:@"N" forKey:@"Noted"];
+    [logtypes setObject:@"E" forKey:@"Needs archiving"];
+    [logtypes setObject:@"M" forKey:@"Needs maintenance"];
+    [logtypes setObject:@"C" forKey:@"Maintained"];
+    [logtypes setObject:@"B" forKey:@"Published"];
+    [logtypes setObject:@"I" forKey:@"Disabled"];
+    [logtypes setObject:@"L" forKey:@"Enabled"];
+    [logtypes setObject:@"V" forKey:@"Archived"];
+    [logtypes setObject:@"U" forKey:@"Unarchived"];
+
     return self;
 }
 
 - (NSArray *)logtypes:(NSString *)waypointType
 {
-    return @[@"Found it"];
+    return [logtypes allKeys];
 }
 
 - (void)storeCookie:(NSHTTPCookie *)cookie
@@ -77,8 +91,35 @@
     if (data == nil || response.statusCode != 200)
         return nil;
 
-    // <div class='floater40'>Geocaching Australia Finds</div>
-    // <div class='floater60'><b>49</b> </div>
+    NSArray *lines = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+    return lines;
+}
+
+- (NSArray *)postPage:(NSString *)baseUrl params:(NSDictionary *)params
+{
+    NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
+
+    NSMutableString *ps = [NSMutableString stringWithString:@""];
+    [[params allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        if ([ps isEqualToString:@""] == NO)
+            [ps appendString:@"&"];
+        [ps appendFormat:@"%@=%@", [MyTools urlEncode:key], [MyTools urlEncode:[params valueForKey:key]]];
+    }];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    GCMutableURLRequest *req = [GCMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+
+    if (data == nil || response.statusCode != 200)
+        return nil;
+
     NSArray *lines = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 
     return lines;
@@ -146,6 +187,49 @@
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
     NSArray *lines = [self loadPage:urlString];
     return [lines componentsJoinedByString:@""];
+}
+
+- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/log/new/%@", [MyTools urlEncode:wpname]];
+
+    NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithCapacity:5];
+    [logtypes enumerateKeysAndObjectsUsingBlock:^(NSString *lt, NSString *value, BOOL *stop) {
+        if ([lt isEqualToString:logtype] == YES) {
+            [ps setValue:value forKey:@"action"];
+            *stop = YES;
+        }
+    }];
+    [ps setValue:note forKey:@"text"];
+
+    if (favourite == YES)
+        [ps setValue:@"5" forKey:@"Overall Experience"];
+    else
+        [ps setValue:@"2" forKey:@"Overall Experience"];
+
+    [ps setValue:[dateLogged substringWithRange:NSMakeRange(0, 4)] forKey:@"gca_date_selector_year"];
+    [ps setValue:[dateLogged substringWithRange:NSMakeRange(5, 2)] forKey:@"gca_date_selector_month"];
+    [ps setValue:[dateLogged substringWithRange:NSMakeRange(8, 2)] forKey:@"gca_date_selector_day"];
+
+    [ps setValue:@"" forKey:@"coords"];
+    [ps setValue:@"" forKey:@"hints"];
+    [ps setValue:@"" forKey:@"public_tags"];
+    [ps setValue:@"" forKey:@"private_tags"];
+    [ps setValue:@"" forKey:@"cacher"];
+    [ps setValue:@"Log" forKey:@"button"];
+
+    NSArray *lines = [self postPage:urlString params:ps];
+
+    __block BOOL found = NO;
+    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
+        NSRange r = [l rangeOfString:@"Log added"];
+        if (r.location == NSNotFound)
+            return;
+        found = YES;
+    }];
+    if (found == NO)
+        return 0;
+    return -1;
 }
 
 @end

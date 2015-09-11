@@ -266,6 +266,9 @@
     if (account.protocol == ProtocolOKAPI) {
         return [okapi services_logs_submit:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
     }
+    if (account.protocol == ProtocolGCA) {
+        return [gca my_log_new:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
+    }
 
     return NO;
 }

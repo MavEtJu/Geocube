@@ -31,6 +31,8 @@
     id delegate;
     NSHTTPCookie *authCookie;
     NSString *callback;
+
+    NSMutableDictionary *logtypes;
 }
 
 @property (nonatomic) id delegate;
@@ -43,5 +45,6 @@
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name;
 - (NSString *)cache_gpx:(NSString *)wpname;
+- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 
 @end
