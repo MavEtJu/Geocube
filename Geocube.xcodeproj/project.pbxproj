@@ -253,6 +253,7 @@
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
+		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */; };
 		E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BrowserUserViewController.m */; };
 		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
@@ -689,6 +690,7 @@
 		E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainViewController.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
+		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A7FA931B77763F003F4132 /* BrowserAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserAccountsViewController.h; sourceTree = "<group>"; };
 		E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserAccountsViewController.m; sourceTree = "<group>"; };
 		E8A7FA961B77F7F7003F4132 /* BrowserUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserUserViewController.h; sourceTree = "<group>"; };
@@ -1545,6 +1547,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E897702E1BA3910F000573FB /* Import Complete.wav */,
 				E8F570BD1B400137003F020C /* empty.db */,
 			);
 			name = "Data files";
@@ -1993,6 +1996,7 @@
 				E80732261B5F84B4007FDC29 /* attributes - 63.png in Resources */,
 				E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */,
 				E80732A61B5F857A007FDC29 /* map - pinhead red - 15x15.png in Resources */,
+				E897702F1BA39110000573FB /* Import Complete.wav in Resources */,
 				E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */,
 				E80732691B5F850C007FDC29 /* cache - unknown - 30x30.png in Resources */,
 				E847A5971BA0DB4500BEFE83 /* map - background - 35x42.png in Resources */,

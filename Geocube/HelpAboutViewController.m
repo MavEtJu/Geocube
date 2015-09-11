@@ -81,6 +81,9 @@
     y += [self addText:y text:
           @"SSZipArchive: Copyright (c) 2010-2015, Sam Soffes, http://soff.es (https://github.com/iosphere/ssziparchive)"
           ];
+    y += [self addText:y text:
+          @"'Import Complete' sound: Copyright (c) 2011, Brandon Morris CC-BY 3.0 (http://opengameart.org/content/completion-sound)"
+          ];
 
     y += [self addText:y text:
           @"My sincere thanks to all of the above for their generousity."
