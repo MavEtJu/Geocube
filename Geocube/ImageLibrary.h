@@ -218,6 +218,7 @@ typedef enum {
     UIImage *imgs[ImageLibraryImagesMax];
     UIImage *ratingImages[11];
     NSString *names[ImageLibraryImagesMax];
+    NSMutableDictionary *pinImages, *typeImages;
 };
 
 - (id)init;

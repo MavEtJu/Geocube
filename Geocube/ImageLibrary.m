@@ -224,6 +224,10 @@
     [self mergeRating:9 full:4 half:1];
     [self mergeRating:10 full:5 half:0];
 
+    /* Pin and type images */
+    pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
+    typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
+
     return self;
 }
 
@@ -350,7 +354,56 @@
     return ratingImages[(int)(2 * rating)];
 }
 
+- (NSString *)getPinTypeCode:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+{
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+
+    if (highlight == YES)
+        [s appendString:@"H"];
+    else
+        [s appendString:@"h"];
+
+    [s appendFormat:@"%ld", imgnum];
+
+    if (disabled == YES)
+        [s appendString:@"D"];
+    else
+        [s appendString:@"d"];
+
+    if (archived == YES)
+        [s appendString:@"A"];
+    else
+        [s appendString:@"a"];
+
+    switch (found) {
+        case LOGSTATUS_NOTLOGGED:
+            [s appendString:@"-"];
+            break;
+        case LOGSTATUS_NOTFOUND:
+            [s appendString:@"l"];
+            break;
+        case LOGSTATUS_FOUND:
+            [s appendString:@"L"];
+            break;
+    }
+
+    return s;
+}
+
 - (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+{
+    NSString *s = [self getPinTypeCode:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+    UIImage *img = [pinImages valueForKey:s];
+    if (img == nil) {
+        NSLog(@"Creating pin %@s", s);
+        img = [self getPinImage:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+        [pinImages setObject:img forKey:s];
+    }
+
+    return img;
+}
+
+- (UIImage *)getPinImage:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
     UIImage *img = [imageLibrary get:ImageMap_background];
 
@@ -387,8 +440,19 @@
     return [self getPin:wp.type.pin found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
 }
 
-
 - (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+{
+    NSString *s = [self getPinTypeCode:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+    UIImage *img = [typeImages valueForKey:s];
+    if (img == nil) {
+        img = [self getTypeImage:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+        [typeImages setObject:img forKey:s];
+    }
+
+    return img;
+}
+
+- (UIImage *)getTypeImage:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
     UIImage *img = [imageLibrary get:imgnum];
 
