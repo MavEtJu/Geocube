@@ -80,6 +80,14 @@
     GeocachingLive_API1 = [dbConfig dbGetByKey:@"geocachinglive_API1"].value;
     GeocachingLive_API2 = [dbConfig dbGetByKey:@"geocachinglive_API2"].value;
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
+        NSLog(@"Erasing page settings.");
+        [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_resetpage"];
+
+        [self currentPageUpdate:0];
+        [self currentPageTabUpdate:0];
+    }
 }
 
 - (void)BOOLUpdate:(NSString *)key value:(BOOL)value
