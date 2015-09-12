@@ -59,15 +59,44 @@
     return [[datetime substringFromIndex:6] integerValue] / 1000;
 }
 
++ (NSDate *)dateFromISO8601String17:(NSString *)string {
+    if (string == nil) {
+        return nil;
+    }
+
+    struct tm tm;
+    time_t t;
+
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%dT%H:%M:%S%z", &tm);
+    tm.tm_isdst = -1;
+    t = mktime(&tm);
+
+    return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
+}
+
++ (NSDate *)dateFromISO8601String10:(NSString *)string {
+    if (string == nil) {
+        return nil;
+    }
+
+    struct tm tm;
+    time_t t;
+
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
+    tm.tm_isdst = -1;
+    t = mktime(&tm);
+
+    return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
+}
+
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDate *date;
     if ([datetime length] == 10) {
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        date = [self dateFromISO8601String10:datetime];
     } else {
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        date = [self dateFromISO8601String17:datetime];
     }
-    NSDate *date = [dateFormatter dateFromString:datetime];
     return [date timeIntervalSince1970];
 }
 
