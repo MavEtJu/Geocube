@@ -140,7 +140,7 @@
     NSString *personal_note = [dict objectForKey:@"GeocacheNote"];
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.name];
     if (pn != nil) {
-        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+        if (personal_note == nil || [personal_note isKindOfClass:[NSNull class]] == YES || [personal_note isEqualToString:@""] == YES) {
             [pn dbDelete];
             pn = nil;
         } else {
@@ -148,7 +148,7 @@
             [pn dbUpdate];
         }
     } else {
-        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+        if (personal_note != nil && [personal_note isKindOfClass:[NSNull class]] == NO && [personal_note isEqualToString:@""] == NO) {
             pn = [[dbPersonalNote alloc] init];
             pn.wp_name = wp.name;
             pn.waypoint_id = wp._id;
