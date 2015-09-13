@@ -85,6 +85,8 @@
         [clock clockShowAndReset:@"dbAll"];
     }
 
+    NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], [caches count]);
+
     /* Filter out cache types:
      * The filter selects out the caches which are of a certain type.
      * If a type is not defined then it will be considered not to be included.
@@ -459,6 +461,7 @@
         caches = after;
     }
 
+    NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], [caches count]);
     currentWaypoints = caches;
     needsRefresh = NO;
 }
