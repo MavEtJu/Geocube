@@ -24,7 +24,8 @@
 @implementation DatabaseCache
 
 @synthesize Accounts, Types, Groups, LogTypes, Containers, Attributes, Countries, States;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound, Symbol_Unknown;
+
 
 - (id)init
 {
@@ -104,6 +105,14 @@
     }];
     NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
+    [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
+        if ([s.symbol isEqualToString:@"*"] == YES) {
+            Symbol_Unknown = s;
+            *stop = YES;
+        }
+    }];
+    NSAssert(Symbol_Unknown != nil, @"Symbol_Unknown");
+
     [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
         if ([lt.logtype isEqualToString:@"Unknown"] == YES) {
             LogType_Unknown = lt;
@@ -147,6 +156,8 @@
             *stop = YES;
         }
     }];
+    if (_ct == nil)
+        return Type_Unknown;
     return _ct;
 }
 
@@ -159,6 +170,8 @@
             *stop = YES;
         }
     }];
+    if (_ct == nil)
+        return Type_Unknown;
     return _ct;
 }
 
@@ -171,6 +184,8 @@
             *stop = YES;
         }
     }];
+    if (_lt == nil)
+        return Symbol_Unknown;
     return _lt;
 }
 
@@ -183,6 +198,8 @@
             *stop = YES;
         }
     }];
+    if (_lt == nil)
+        return Symbol_Unknown;
     return _lt;
 }
 

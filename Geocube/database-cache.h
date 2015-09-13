@@ -78,6 +78,9 @@
 // Types
 @property (nonatomic, retain) dbType *Type_Unknown;
 
+// Symbols
+@property (nonatomic, retain) dbSymbol *Symbol_Unknown;
+
 // LogTypes
 @property (nonatomic, retain) dbLogType *LogType_Unknown;
 @property (nonatomic, retain) dbLogType *LogType_Found;

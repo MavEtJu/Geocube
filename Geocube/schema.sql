@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "0");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,
@@ -438,6 +438,7 @@ insert into symbols(symbol) values("Trailhead");
 insert into symbols(symbol) values("Virtual Stage");
 insert into symbols(symbol) values("Waymark");
 insert into symbols(symbol) values("Waymark Found");
+insert into symbols(symbol) values("*");
 
 create table types (
     id integer primary key,
@@ -449,15 +450,21 @@ create table types (
 create index types_idx_id on types(id);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Benchmark", 100, 601);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "CITO", 101, 608);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Cache In Trash Out Event", 101, 608);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Earthcache", 102, 606);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Event Cache", 103, 608);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Giga", 104, 608);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Giga-Event Cache", 104, 608);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "GroundspeakHQ", 105, 600);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Groundspeak HQ", 105, 600);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Groundspeak Block Party", 105, 600);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Letterbox Hybrid", 106, 601);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Maze", 107, 604);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Mega", 108, 608);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Mega-Event Cache", 108, 608);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Multi-cache", 109, 607);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Mystery", 110, 604);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Unknown (Mystery) Cache", 110, 604);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Other", 111, 601);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Traditional Cache", 112, 602);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Unknown Cache", 113, 604);
@@ -465,6 +472,12 @@ insert into types(type_major, type_minor, icon, pin) values("Geocache", "Virtual
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Waymark", 115, 601);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Webcam Cache", 116, 606);
 insert into types(type_major, type_minor, icon, pin) values("Geocache", "Wherigo Cache", 117, 603);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Wherigo Caches", 117, 603);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Project APE Cache", 111, 601);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Locationless (Reverse) Cache", 111, 601);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "GPS Adventures Exhibit", 111, 601);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Lost and Found Event Caches", 111, 601);
+insert into types(type_major, type_minor, icon, pin) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 601);
 
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Final Location", 200, 600);
 insert into types(type_major, type_minor, icon, pin) values("Waypoint", "Flag", 201, 600);

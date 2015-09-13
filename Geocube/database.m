@@ -59,9 +59,17 @@
     // If the active version is different from the distribution version, then reinitialize.
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
-        NSLog(@"Empty is newer, overwriting old one");
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"option_cleardatabase"];
-        [self checkAndCreateDatabase];
+        NSLog(@"Empty database is newer, upgrading");
+        sqlite3_open([dbname UTF8String], &db);
+
+        for (NSInteger version = [c_real.value integerValue]; version < [c_empty.value integerValue]; version++) {
+            NSLog(@"Upgrading from %ld", (long)version);
+            [self performUpgrade:version];
+        }
+        c_real.value = c_empty.value;
+        [c_real dbUpdate];
+
+        sqlite3_close(db);
     }
 
     sqlite3_open([dbname UTF8String], &db);
@@ -98,5 +106,75 @@
     NSNumber *n = [as valueForKey:@"NSFileSize"];
     return [n integerValue];
 }
+
+- (void)performUpgrade:(NSInteger)version
+{
+    if (version == 0) {
+        [self performUpgrade_0_1];
+        return;
+    }
+    if (version == 1) {
+        [self performUpgrade_1_2];
+        return;
+    }
+    NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
+}
+
+#undef DB_ASSERT
+#define DB_ASSERT(__s__) \
+    NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(self.db))
+
+#undef DB_PREPARE
+#define DB_PREPARE(__s__) \
+    sqlite3_stmt *req; \
+    if (sqlite3_prepare_v2(self.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
+        DB_ASSERT_PREPARE;
+
+#undef DB_GET_LAST_ID
+#define DB_GET_LAST_ID(__id__) \
+    __id__ = sqlite3_last_insert_rowid(self.db);
+
+- (void)performUpgrade_0_1
+{
+    NSArray *a = @[
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Cache In Trash Out Event', 101, 608)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Giga-Event Cache', 104, 608)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak HQ', 105, 600)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak Block Party', 105, 600)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Mega-Event Cache', 108, 608)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Unknown (Mystery) Cache', 110, 604)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Wherigo Caches', 117, 603)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Project APE Cache', 111, 601)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Locationless (Reverse) Cache', 111, 601)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'GPS Adventures Exhibit', 111, 601)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Lost and Found Event Caches', 111, 601)",
+    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak Lost and Found Celebration', 111, 601)"
+    ];
+
+    @synchronized(self.dbaccess) {
+        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+            DB_PREPARE(sql);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }];
+    }
+}
+
+- (void)performUpgrade_1_2
+{
+    NSArray *a = @[
+    @"insert into symbols(symbol) values('*')"
+    ];
+
+    @synchronized(self.dbaccess) {
+        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+            DB_PREPARE(sql);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }];
+    }
+}
+
+
 
 @end
