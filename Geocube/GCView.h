@@ -19,38 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
-@implementation ThemeNormal
-
-- (id)init
-{
-    self = [super init];
-
-    {
-        UILabel *tv = [[UILabel alloc] init];
-        labelTextColor = tv.textColor;
-        labelBackgroundColor = tv.backgroundColor;
-
-        textColor = tv.textColor;
-        backgroundColor = tv.backgroundColor;
-    }
-    {
-        UITableViewCell *tvc = [[UITableViewCell alloc] init];
-        tableViewCellBackgroundColor = tvc.backgroundColor;
-    }
-    {
-        UITableView *tv = [[UITableView alloc] init];
-        tableViewBackgroundColor = tv.backgroundColor;
-    }
-    {
-        UIView *v = [[UIView alloc] init];
-        viewBackgroundColor = v.backgroundColor;
-    }
-
-    tableViewCellGradient = NO;
-
-    return self;
-}
+@interface GCView : UIView
 
 @end

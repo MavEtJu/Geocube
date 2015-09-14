@@ -27,12 +27,13 @@
 {
     self = [super init];
     
-    tableView_backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
-    view_backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+    tableViewBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+    viewBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+    tableViewCellBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
 
-    tableViewCell_gradient = YES;
-    tableViewCell_gradient1 = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:175/255.0 alpha:1];
-    tableViewCell_gradient2 = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
+    tableViewCellGradient = YES;
+    tableViewCellGradient1 = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:175/255.0 alpha:1];
+    tableViewCellGradient2 = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
 
     return self;
 }

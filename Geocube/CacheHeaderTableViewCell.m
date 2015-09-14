@@ -80,7 +80,7 @@
     imgFavouritesIV.hidden = TRUE;
     r = rectFavourites;
     r.size.height /= 2;
-    favourites = [[UILabel alloc] initWithFrame:r];
+    favourites = [[GCLabel alloc] initWithFrame:r];
     favourites.font = [UIFont boldSystemFontOfSize:10];
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
@@ -103,7 +103,7 @@
     // Difficulty rating
     r = rectRatingsD;
     r.origin.x -= 10;
-    labelRatingD = [[UILabel alloc] initWithFrame:r];
+    labelRatingD = [[GCLabel alloc] initWithFrame:r];
     labelRatingD.font = [UIFont systemFontOfSize:10.0];
     labelRatingD.text = @"D";
     [self.contentView addSubview:labelRatingD];
@@ -120,7 +120,7 @@
     // Terrain rating
     r = rectRatingsT;
     r.origin.x -= 10;
-    labelRatingT = [[UILabel alloc] initWithFrame:r];
+    labelRatingT = [[GCLabel alloc] initWithFrame:r];
     labelRatingT.font = [UIFont systemFontOfSize:10.0];
     labelRatingT.text = @"T";
     [self.contentView addSubview:labelRatingT];
@@ -135,12 +135,12 @@
     }
 
     // Lon
-    lon = [[UILabel alloc] initWithFrame:rectLon];
+    lon = [[GCLabel alloc] initWithFrame:rectLon];
     lon.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:lon];
 
     // Lat
-    lat = [[UILabel alloc] initWithFrame:rectLat];
+    lat = [[GCLabel alloc] initWithFrame:rectLat];
     lat.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:lat];
 

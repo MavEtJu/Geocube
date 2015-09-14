@@ -35,7 +35,7 @@
     closeButton = nil;
     hasCloseButton = NO;
 
-    self.tableView.backgroundColor = currentTheme.tableView_backgroundColor;
+    self.tableView.backgroundColor = currentTheme.tableViewBackgroundColor;
 
     return self;
 }
@@ -111,12 +111,12 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //  [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
-    if (currentTheme.tableViewCell_gradient == YES) {
+    if (currentTheme.tableViewCellGradient == YES) {
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = cell.bounds;
         gradient.colors = [NSArray arrayWithObjects:
-                           (id)[currentTheme.tableViewCell_gradient1 CGColor],
-                           (id)[currentTheme.tableViewCell_gradient2 CGColor],
+                           (id)[currentTheme.tableViewCellGradient1 CGColor],
+                           (id)[currentTheme.tableViewCellGradient2 CGColor],
                            nil];
         [cell.layer insertSublayer:gradient atIndex:0];
     }
@@ -134,8 +134,8 @@
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = header.bounds;
         gradient.colors = [NSArray arrayWithObjects:
-                           (id)[currentTheme.tableViewCell_gradient1 CGColor],
-                           (id)[currentTheme.tableViewCell_gradient2 CGColor],
+                           (id)[currentTheme.tableViewCellGradient1 CGColor],
+                           (id)[currentTheme.tableViewCellGradient2 CGColor],
                            nil];
         [header.layer insertSublayer:gradient atIndex:0];
 //    }

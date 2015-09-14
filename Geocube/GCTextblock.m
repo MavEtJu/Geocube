@@ -26,8 +26,12 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+
     self.font = myConfig.GCTextblockFont;
     self.numberOfLines = 0;
+    self.textColor = currentTheme.labelTextColor;
+    self.backgroundColor = currentTheme.labelBackgroundColor;
+    
     return self;
 }
 

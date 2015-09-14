@@ -40,7 +40,7 @@
 - (void)header
 {
     /* Get some standard values */
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     f1 = cell.textLabel.font;
     f2 = cell.detailTextLabel.font;
     cellHeight = cell.frame.size.height;
@@ -51,7 +51,7 @@
     UILabel *l;
 
     rect = CGRectMake(20, 2, width - 40, cellHeight);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.font = f1;
     if (fo.expanded == YES)
         l.text = [NSString stringWithFormat:@"Selected %@", fo.name];

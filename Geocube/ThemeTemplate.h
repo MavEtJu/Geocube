@@ -20,18 +20,35 @@
  */
 
 @interface ThemeTemplate : NSObject {
-    UIColor *tableView_backgroundColor;
-    UIColor *view_backgroundColor;
+    UIColor *backgroundColor;
+    UIColor *textColor;
 
-    BOOL tableViewCell_gradient;
-    UIColor *tableViewCell_gradient1;
-    UIColor *tableViewCell_gradient2;
+    UIColor *labelTextColor;
+    UIColor *labelBackgroundColor;
+
+    UIColor *viewBackgroundColor;
+
+    UIColor *tableViewBackgroundColor;
+
+    UIColor *tableViewCellBackgroundColor;
+    BOOL tableViewCellGradient;
+    UIColor *tableViewCellGradient1;
+    UIColor *tableViewCellGradient2;
 }
 
-@property (readonly, nonatomic, retain) UIColor *tableView_backgroundColor;
-@property (readonly, nonatomic, retain) UIColor *view_backgroundColor;
-@property (readonly, nonatomic)         BOOL tableViewCell_gradient;
-@property (readonly, nonatomic, retain) UIColor *tableViewCell_gradient1;
-@property (readonly, nonatomic, retain) UIColor *tableViewCell_gradient2;
+@property (readonly, nonatomic, retain) UIColor *backgroundColor;
+@property (readonly, nonatomic, retain) UIColor *textColor;
+
+@property (readonly, nonatomic, retain) UIColor *labelBackgroundColor;
+@property (readonly, nonatomic, retain) UIColor *labelTextColor;
+
+@property (readonly, nonatomic, retain) UIColor *viewBackgroundColor;
+
+@property (readonly, nonatomic, retain) UIColor *tableViewBackgroundColor;
+
+@property (readonly, nonatomic, retain) UIColor *tableViewCellBackgroundColor;
+@property (readonly, nonatomic)         BOOL tableViewCellGradient;
+@property (readonly, nonatomic, retain) UIColor *tableViewCellGradient1;
+@property (readonly, nonatomic, retain) UIColor *tableViewCellGradient2;
 
 @end

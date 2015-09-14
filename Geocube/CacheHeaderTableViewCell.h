@@ -19,22 +19,22 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheHeaderTableViewCell : UITableViewCell {
+@interface CacheHeaderTableViewCell : GCTableViewCell {
     UIImageView *icon, *imgFavouritesIV;
-    UILabel *lat, *lon;
+    GCLabel *lat, *lon;
     UIImageView *size;
-    UILabel *labelRatingD, *labelRatingT;
+    GCLabel *labelRatingD, *labelRatingT;
     UIImageView *ratingD[5];
     UIImageView *ratingT[5];
-    UILabel *favourites;
+    GCLabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
 }
 
 @property (nonatomic, retain)UIImageView *icon;
 @property (nonatomic, retain)UIImageView *size;
-@property (nonatomic, retain)UILabel *lat;
-@property (nonatomic, retain)UILabel *lon;
-@property (nonatomic, retain)UILabel *favourites;
+@property (nonatomic, retain)GCLabel *lat;
+@property (nonatomic, retain)GCLabel *lon;
+@property (nonatomic, retain)GCLabel *favourites;
 
 + (NSInteger)cellHeight;
 - (NSInteger)cellHeight;

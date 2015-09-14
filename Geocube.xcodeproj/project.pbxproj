@@ -167,6 +167,8 @@
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
 		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
 		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
+		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
+		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
@@ -535,6 +537,10 @@
 		E807A5F71B8BC9CF00EBA187 /* OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAPI.m; sourceTree = "<group>"; };
 		E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveAPI.h; sourceTree = "<group>"; };
 		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
+		E80AEEAF1BA5983A00106F7F /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNight.h; sourceTree = "<group>"; };
+		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
+		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
+		E80AEEBD1BA670B200106F7F /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
 		E80F73711B530C4600F35528 /* ImportGPXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXViewController.h; sourceTree = "<group>"; };
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -990,12 +996,14 @@
 		E857600C1B85DF5600F34483 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				E857600D1B85E04500F34483 /* ThemeNormal.h */,
-				E857600E1B85E04500F34483 /* ThemeNormal.m */,
-				E85760101B85E06E00F34483 /* ThemeGeosphere.h */,
-				E85760111B85E06E00F34483 /* ThemeGeosphere.m */,
 				E85760131B85E08400F34483 /* ThemeTemplate.h */,
 				E85760141B85E08400F34483 /* ThemeTemplate.m */,
+				E85760101B85E06E00F34483 /* ThemeGeosphere.h */,
+				E85760111B85E06E00F34483 /* ThemeGeosphere.m */,
+				E857600D1B85E04500F34483 /* ThemeNormal.h */,
+				E857600E1B85E04500F34483 /* ThemeNormal.m */,
+				E80AEEAF1BA5983A00106F7F /* ThemeNight.h */,
+				E80AEEB01BA5983A00106F7F /* ThemeNight.m */,
 			);
 			name = Themes;
 			sourceTree = "<group>";
@@ -1017,6 +1025,8 @@
 				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
 				E847A58E1BA04AF400BEFE83 /* GCTextblock.h */,
 				E847A58F1BA04AF400BEFE83 /* GCTextblock.m */,
+				E80AEEBC1BA670B200106F7F /* GCView.h */,
+				E80AEEBD1BA670B200106F7F /* GCView.m */,
 			);
 			name = Geocube;
 			sourceTree = "<group>";
@@ -2167,6 +2177,7 @@
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
+				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
@@ -2190,6 +2201,7 @@
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
 				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,
+				E80AEEBE1BA670B200106F7F /* GCView.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,

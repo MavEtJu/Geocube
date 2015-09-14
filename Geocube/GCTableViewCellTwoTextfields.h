@@ -20,11 +20,11 @@
  */
 
 @interface GCTableViewCellTwoTextfields : GCTableViewCell {
-    UILabel *fieldLabel;
-    UILabel *valueLabel;
+    GCLabel *fieldLabel;
+    GCLabel *valueLabel;
 }
 
-@property (nonatomic, retain) UILabel *fieldLabel;
-@property (nonatomic, retain) UILabel *valueLabel;
+@property (nonatomic, retain) GCLabel *fieldLabel;
+@property (nonatomic, retain) GCLabel *valueLabel;
 
 @end

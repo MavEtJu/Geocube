@@ -26,7 +26,11 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
     self.font = myConfig.GCLabelFont;
+    self.backgroundColor = currentTheme.labelBackgroundColor;
+    self.textColor = currentTheme.labelTextColor;
+
     return self;
 }
 

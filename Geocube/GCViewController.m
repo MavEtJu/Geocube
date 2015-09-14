@@ -73,7 +73,7 @@
         closeButton = b;
     }
 
-    self.view.backgroundColor = currentTheme.view_backgroundColor;
+    self.view.backgroundColor = currentTheme.viewBackgroundColor;
 }
 
 - (void)closePage:(UIButton *)b

@@ -23,13 +23,17 @@
 
 @implementation ThemeTemplate
 
-@synthesize view_backgroundColor, tableView_backgroundColor, tableViewCell_gradient, tableViewCell_gradient1, tableViewCell_gradient2;
+@synthesize textColor, backgroundColor;
+@synthesize labelTextColor, labelBackgroundColor;
+@synthesize viewBackgroundColor;
+@synthesize tableViewBackgroundColor;
+@synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;
 
 - (id)init
 {
     self = [super init];
 
-    tableViewCell_gradient = NO;
+    tableViewCellGradient = NO;
 
     return self;
 }

@@ -83,37 +83,37 @@
     [self.contentView addSubview:icon];
 
     // Description
-    description = [[UILabel alloc] initWithFrame:rectDescription];
+    description = [[GCLabel alloc] initWithFrame:rectDescription];
     description.font = [UIFont boldSystemFontOfSize:14.0];
     [self.contentView addSubview:description];
 
     // Name
-    name = [[UILabel alloc] initWithFrame:rectName];
+    name = [[GCLabel alloc] initWithFrame:rectName];
     name.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:name];
 
     // Bearing
-    bearing = [[UILabel alloc] initWithFrame:rectBearing];
+    bearing = [[GCLabel alloc] initWithFrame:rectBearing];
     bearing.font = [UIFont systemFontOfSize:10.0];
     bearing.textAlignment = NSTextAlignmentCenter;
     //bearing.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:bearing];
 
     // Compass
-    compass = [[UILabel alloc] initWithFrame:rectCompass];
+    compass = [[GCLabel alloc] initWithFrame:rectCompass];
     compass.font = [UIFont systemFontOfSize:10.0];
     compass.textAlignment = NSTextAlignmentCenter;
     //compass.backgroundColor = [UIColor blueColor];
     [self.contentView addSubview:compass];
 
     // State country
-    stateCountry = [[UILabel alloc] initWithFrame:rectStateCountry];
+    stateCountry = [[GCLabel alloc] initWithFrame:rectStateCountry];
     stateCountry.font = [UIFont systemFontOfSize:10];
     //stateCountry.backgroundColor = [UIColor purpleColor];
     [self.contentView addSubview:stateCountry];
 
     // Distance
-    distance = [[UILabel alloc] initWithFrame:rectDistance];
+    distance = [[GCLabel alloc] initWithFrame:rectDistance];
     distance.font = [UIFont systemFontOfSize:10.0];
     //distance.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:distance];
@@ -125,7 +125,7 @@
     imgFavouritesIV.hidden = TRUE;
     r = rectFavourites;
     r.size.height /= 2;
-    favourites = [[UILabel alloc] initWithFrame:r];
+    favourites = [[GCLabel alloc] initWithFrame:r];
     favourites.font = [UIFont boldSystemFontOfSize:10];
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
@@ -134,7 +134,7 @@
     // Difficulty rating
     r = rectRatingsD;
     r.origin.x -= 10;
-    labelRatingD = [[UILabel alloc] initWithFrame:r];
+    labelRatingD = [[GCLabel alloc] initWithFrame:r];
     labelRatingD.font = [UIFont systemFontOfSize:10.0];
     labelRatingD.text = @"D";
     [self.contentView addSubview:labelRatingD];
@@ -146,7 +146,7 @@
     // Terrain rating
     r = rectRatingsT;
     r.origin.x -= 10;
-    labelRatingT = [[UILabel alloc] initWithFrame:r];
+    labelRatingT = [[GCLabel alloc] initWithFrame:r];
     labelRatingT.font = [UIFont systemFontOfSize:10.0];
     labelRatingT.text = @"T";
     [self.contentView addSubview:labelRatingT];

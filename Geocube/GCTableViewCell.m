@@ -28,9 +28,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
     // Make the text background colours transparent
-    self.backgroundColor = [UIColor clearColor];
-    self.textLabel.backgroundColor = [UIColor clearColor];
-    self.detailTextLabel.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+    self.textLabel.textColor = currentTheme.labelTextColor;
+    self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
+    self.detailTextLabel.textColor = currentTheme.labelTextColor;
+    self.detailTextLabel.backgroundColor = currentTheme.labelBackgroundColor;
 
     return self;
 }

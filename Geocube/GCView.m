@@ -21,34 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation ThemeNormal
+@implementation GCView
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
 
-    {
-        UILabel *tv = [[UILabel alloc] init];
-        labelTextColor = tv.textColor;
-        labelBackgroundColor = tv.backgroundColor;
-
-        textColor = tv.textColor;
-        backgroundColor = tv.backgroundColor;
-    }
-    {
-        UITableViewCell *tvc = [[UITableViewCell alloc] init];
-        tableViewCellBackgroundColor = tvc.backgroundColor;
-    }
-    {
-        UITableView *tv = [[UITableView alloc] init];
-        tableViewBackgroundColor = tv.backgroundColor;
-    }
-    {
-        UIView *v = [[UIView alloc] init];
-        viewBackgroundColor = v.backgroundColor;
-    }
-
-    tableViewCellGradient = NO;
+    self.backgroundColor = currentTheme.viewBackgroundColor;
 
     return self;
 }

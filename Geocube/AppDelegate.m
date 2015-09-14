@@ -63,7 +63,7 @@
     if (myConfig.themeGeosphere == YES) {
         currentTheme = [[ThemeGeosphere alloc] init];
     } else {
-        currentTheme = [[ThemeNormal alloc] init];
+        currentTheme = [[ThemeNight alloc] init];
     }
 
     // Waypoint Manager - after myConfig, LM, db

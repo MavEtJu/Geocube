@@ -80,6 +80,7 @@
 
 #import "ThemeTemplate.h"
 #import "ThemeGeosphere.h"
+#import "ThemeNight.h"
 #import "ThemeNormal.h"
 
 #import "AppDelegate.h"
@@ -110,6 +111,7 @@
 #import "GCTableViewCellTwoTextfields.h"
 #import "GCTableViewCellKeyValue.h"
 #import "GCTextblock.h"
+#import "GCView.h"
 
 #import "CacheHeaderTableViewCell.h"
 #import "CacheTableViewCell.h"

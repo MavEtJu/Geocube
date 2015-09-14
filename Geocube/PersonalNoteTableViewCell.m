@@ -55,6 +55,8 @@
     log = [[GCTextblock alloc] initWithFrame:rectLog];
     [log sizeToFit];
 
+    self.contentView.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+
     [self.contentView sizeToFit];
     [self.contentView addSubview:log];
 

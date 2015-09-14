@@ -75,6 +75,7 @@
 @class GCTableViewController;
 @class GCTextblock;
 @class GCURLRequest;
+@class GCView;
 @class GCViewController;
 @class GeocachingAustralia;
 @class GlobalMenu;
@@ -109,6 +110,7 @@
 @class SettingsAccountsViewController;
 @class SettingsMainViewController;
 @class ThemeGeosphere;
+@class ThemeNight;
 @class ThemeNormal;
 @class ThemeTemplate;
 @class TravelbugsViewController;

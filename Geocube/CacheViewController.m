@@ -100,23 +100,23 @@
     return nil;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (GCView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section != 0)
         return nil;
 
     NSInteger width = tableView.bounds.size.width;
 
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
-    UILabel *l;
+    GCView *headerView = [[GCView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
+    GCLabel *l;
 
-    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
     l.text = waypoint.urlname;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
-    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
     if (groundspeak != nil && groundspeak.placed_by != nil && [groundspeak.placed_by isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", groundspeak.placed_by];
@@ -127,7 +127,7 @@
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
-    l = [[UILabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
+    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
     l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;

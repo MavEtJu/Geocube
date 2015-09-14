@@ -76,7 +76,6 @@
     cell.textLabel.text = a.site;
 
     cell.userInteractionEnabled = YES;
-    cell.textLabel.textColor = [UIColor blackColor];
     if (a.accountname == nil || [a.accountname isEqualToString:@""] == YES) {
         cell.userInteractionEnabled = NO;
         cell.textLabel.textColor = [UIColor lightGrayColor];

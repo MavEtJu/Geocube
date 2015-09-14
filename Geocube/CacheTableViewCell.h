@@ -20,28 +20,28 @@
  */
 
 @interface CacheTableViewCell : GCTableViewCell {
-    UILabel *description;
-    UILabel *name;
+    GCLabel *description;
+    GCLabel *name;
     UIImageView *size;
-    UILabel *labelRatingD, *labelRatingT;
+    GCLabel *labelRatingD, *labelRatingT;
     UIImageView *imgRatingD, *imgRatingT;
-    UILabel *favourites;
+    GCLabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
     UIImageView *icon, *imgFavouritesIV;
-    UILabel *stateCountry;
-    UILabel *bearing;
-    UILabel *compass;
-    UILabel *distance;
+    GCLabel *stateCountry;
+    GCLabel *bearing;
+    GCLabel *compass;
+    GCLabel *distance;
 }
 
-@property (nonatomic, retain) UILabel *description;
-@property (nonatomic, retain) UILabel *name;
+@property (nonatomic, retain) GCLabel *description;
+@property (nonatomic, retain) GCLabel *name;
 @property (nonatomic, retain) UIImageView *icon;
-@property (nonatomic, retain) UILabel *country;
-@property (nonatomic, retain) UILabel *stateCountry;
-@property (nonatomic, retain) UILabel *bearing;
-@property (nonatomic, retain) UILabel *compass;
-@property (nonatomic, retain) UILabel *distance;
+@property (nonatomic, retain) GCLabel *country;
+@property (nonatomic, retain) GCLabel *stateCountry;
+@property (nonatomic, retain) GCLabel *bearing;
+@property (nonatomic, retain) GCLabel *compass;
+@property (nonatomic, retain) GCLabel *distance;
 
 - (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
