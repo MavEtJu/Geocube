@@ -48,9 +48,6 @@ MyConfig *myConfig = nil;
 //
 AppDelegate *_AppDelegate;
 
-// Current Theme
-ThemeTemplate *currentTheme;
-
 // Hardware models
 NSInteger hardwaremodel;
 

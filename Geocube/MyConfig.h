@@ -21,7 +21,6 @@
 
 @interface MyConfig : NSObject {
     BOOL distanceMetric;
-    BOOL themeGeosphere;
     NSString *currentWaypoint;
     NSInteger currentPage;
     NSInteger currentPageTab;
@@ -30,10 +29,7 @@
     NSInteger lastImportGroup;
 
     NSInteger compassType;
-
-    BOOL GeocachingLive_staging;
-    NSString *GeocachingLive_API1;
-    NSString *GeocachingLive_API2;
+    NSInteger themeType;
 
     UIFont *GCLabelFont;
     UIFont *GCSmallFont;
@@ -41,7 +37,6 @@
 }
 
 @property (nonatomic) BOOL distanceMetric;
-@property (nonatomic) BOOL themeGeosphere;
 
 @property (nonatomic, retain) NSString *currentWaypoint;
 @property (nonatomic) NSInteger currentPage;
@@ -50,26 +45,20 @@
 @property (nonatomic) NSInteger lastImportSource;
 @property (nonatomic) NSInteger lastImportGroup;
 
-@property (nonatomic) BOOL GeocachingLive_staging;
-@property (nonatomic, retain) NSString *GeocachingLive_API1;
-@property (nonatomic, retain) NSString *GeocachingLive_API2;
-
 @property (nonatomic) NSInteger compassType;
+@property (nonatomic) NSInteger themeType;
 
 @property (nonatomic, readonly, retain) UIFont *GCLabelFont;
 @property (nonatomic, readonly, retain) UIFont *GCSmallFont;
 @property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
 
 - (void)distanceMetricUpdate:(BOOL)value;
-- (void)themeGeosphereUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
 - (void)lastImportGroupUpdate:(NSInteger)value;
 - (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)compassTypeUpdate:(NSInteger)value;
-- (void)geocachingLive_staging:(BOOL)value;
-- (void)geocachingLive_API1Update:(NSString *)value;
-- (void)geocachingLive_API2Update:(NSString *)value;
+- (void)themeTypeUpdate:(NSInteger)value;
 
 @end

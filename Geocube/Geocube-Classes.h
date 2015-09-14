@@ -110,6 +110,7 @@
 @class SettingsAccountsViewController;
 @class SettingsMainViewController;
 @class ThemeGeosphere;
+@class ThemeManager;
 @class ThemeNight;
 @class ThemeNormal;
 @class ThemeTemplate;

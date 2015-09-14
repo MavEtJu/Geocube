@@ -24,10 +24,9 @@
 @implementation MyConfig
 
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
-@synthesize distanceMetric, themeGeosphere, currentWaypoint, currentPage, currentPageTab;
+@synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab;
 @synthesize lastImportGroup, lastImportSource;
-@synthesize GeocachingLive_API1, GeocachingLive_API2, GeocachingLive_staging;
-@synthesize compassType;
+@synthesize compassType, themeType;
 
 - (id)init
 {
@@ -55,31 +54,25 @@
         [dbConfig dbUpdateOrInsert:__key__ value:__default__]
 
     CHECK(@"distance_metric", @"1");
-    CHECK(@"theme_geosphere", @"0");
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
     CHECK(@"lastimport_group", @"0");
     CHECK(@"lastimport_source", @"0");
-    CHECK(@"geocachinglive_staging", @"1");
-    CHECK(@"geocachinglive_API1", @"");
-    CHECK(@"geocachinglive_API2", @"");
     CHECK(@"compass_type", @"0");
+    CHECK(@"theme_type", @"0");
 }
 
 - (void)loadValues
 {
     distanceMetric = [[dbConfig dbGetByKey:@"distance_metric"].value boolValue];
-    themeGeosphere = [[dbConfig dbGetByKey:@"theme_geosphere"].value boolValue];
     currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
     lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
     lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
-    GeocachingLive_staging = [[dbConfig dbGetByKey:@"geocachinglive_staging"].value boolValue];
-    GeocachingLive_API1 = [dbConfig dbGetByKey:@"geocachinglive_API1"].value;
-    GeocachingLive_API2 = [dbConfig dbGetByKey:@"geocachinglive_API2"].value;
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
+    themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -117,12 +110,6 @@
     [self BOOLUpdate:@"distance_metric" value:value];
 }
 
-- (void)themeGeosphereUpdate:(BOOL)value
-{
-    themeGeosphere = value;
-    [self BOOLUpdate:@"theme_geosphere" value:value];
-}
-
 - (void)currentWaypointUpdate:(NSString *)value
 {
     currentWaypoint = value;
@@ -153,29 +140,16 @@
     [self NSIntegerUpdate:@"lastimport_source" value:value];
 }
 
-- (void)geocachingLive_staging:(BOOL)value
-{
-    GeocachingLive_staging = value;
-    [self BOOLUpdate:@"geocachinglive_staging" value:value];
-}
-
-- (void)geocachingLive_API1Update:(NSString *)value
-{
-    GeocachingLive_API1 = value;
-    [self NSStringUpdate:@"geocachinglive_API1" value:value];
-}
-
-- (void)geocachingLive_API2Update:(NSString *)value
-{
-    GeocachingLive_API2 = value;
-    [self NSStringUpdate:@"geocachinglive_API2" value:value];
-}
-
 - (void)compassTypeUpdate:(NSInteger)value
 {
     compassType = value;
     [self NSIntegerUpdate:@"compass_type" value:value];
 }
 
+- (void)themeTypeUpdate:(NSInteger)value
+{
+    themeType = value;
+    [self NSIntegerUpdate:@"theme_type" value:value];
+}
 
 @end

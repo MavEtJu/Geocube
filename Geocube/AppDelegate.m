@@ -60,11 +60,8 @@
     myConfig = [[MyConfig alloc] init];
 
     // Initialize the theme - after myconfig
-    if (myConfig.themeGeosphere == YES) {
-        currentTheme = [[ThemeGeosphere alloc] init];
-    } else {
-        currentTheme = [[ThemeNight alloc] init];
-    }
+    themeManager = [[ThemeManager alloc] init];
+    [themeManager setTheme:myConfig.themeType];
 
     // Waypoint Manager - after myConfig, LM, db
     waypointManager = [[CacheFilterManager alloc] init];

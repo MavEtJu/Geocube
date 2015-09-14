@@ -19,11 +19,21 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsMainViewController : GCTableViewController {
-    UISwitch *distanceMetric;
-    UISwitch *themeGeosphere;
+extern ThemeTemplate *currentTheme;
+extern ThemeManager *themeManager;
 
-    NSArray *compassTypes;
+enum GCThemeType {
+    THEME_NORMAL = 0,
+    THEME_NIGHT,
+    THEME_GEOSPHERE
+};
+
+@interface ThemeManager : NSObject {
+    NSArray *themeNames;
 }
+
+@property (nonatomic, retain, readonly) NSArray *themeNames;
+
+- (void)setTheme:(NSInteger)nr;
 
 @end
