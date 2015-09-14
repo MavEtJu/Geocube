@@ -34,18 +34,18 @@ enum GCCompassType {
     UIImageView *lineImageView;
 
     UIImageView *wpIcon;
-    UILabel *wpName;
-    UILabel *wpDescription;
-    UILabel *wpLat;
-    UILabel *wpLon;
+    GCLabel *wpName;
+    GCLabel *wpDescription;
+    GCLabel *wpLat;
+    GCLabel *wpLon;
     UIImageView *containerSize;
     UIImageView *ratingD;
     UIImageView *ratingT;
-    UILabel *myLat;
-    UILabel *myLon;
-    UILabel *accuracy;
-    UILabel *altitude;
-    UILabel *distance;
+    GCLabel *myLat;
+    GCLabel *myLon;
+    GCLabel *accuracy;
+    GCLabel *altitude;
+    GCLabel *distance;
 
     float oldCompass;
     float oldBearing;

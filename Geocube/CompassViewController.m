@@ -101,24 +101,24 @@
     CGRect rectAltitudeText = CGRectMake(2 * WIDTH, height - 3.5 * textHeight, WIDTH, textHeight);
     CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * textHeight, WIDTH, textHeight);
 
-    UILabel *l;
+    GCLabel *l;
 
     wpIcon = [[UIImageView alloc] initWithFrame:rectIcon];
     [self.view addSubview:wpIcon];
 
 #define FONTSIZE    14
 
-    wpName = [[UILabel alloc] initWithFrame:rectName];
+    wpName = [[GCLabel alloc] initWithFrame:rectName];
     wpName.textAlignment = NSTextAlignmentCenter;
     wpName.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:wpName];
 
-    wpLat = [[UILabel alloc] initWithFrame:rectCoordLat];
+    wpLat = [[GCLabel alloc] initWithFrame:rectCoordLat];
     wpLat.font = [UIFont systemFontOfSize:FONTSIZE];
     wpLat.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:wpLat];
 
-    wpLon = [[UILabel alloc] initWithFrame:rectCoordLon];
+    wpLon = [[GCLabel alloc] initWithFrame:rectCoordLon];
     wpLon.font = [UIFont systemFontOfSize:FONTSIZE];
     wpLon.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:wpLon];
@@ -135,53 +135,53 @@
     ratingT.image = [imageLibrary get:ImageCacheView_ratingBase];
     [self.view addSubview:ratingT];
 
-    l = [[UILabel alloc] initWithFrame:rectMyLatText];
+    l = [[GCLabel alloc] initWithFrame:rectMyLatText];
     l.text = @"My location";
     l.textAlignment = NSTextAlignmentCenter;
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
 
-    myLat = [[UILabel alloc] initWithFrame:rectMyLat];
+    myLat = [[GCLabel alloc] initWithFrame:rectMyLat];
     myLat.text = @"-";
     myLat.textAlignment = NSTextAlignmentCenter;
     myLat.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLat];
 
-    myLon = [[UILabel alloc] initWithFrame:rectMyLon];
+    myLon = [[GCLabel alloc] initWithFrame:rectMyLon];
     myLon.text = @"";
     myLon.textAlignment = NSTextAlignmentCenter;
     myLon.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:myLon];
 
-    l = [[UILabel alloc] initWithFrame:rectAccuracyText];
+    l = [[GCLabel alloc] initWithFrame:rectAccuracyText];
     l.text = @"Accuracy";
     l.textAlignment = NSTextAlignmentCenter;
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
-    accuracy = [[UILabel alloc] initWithFrame:rectAccuracy];
+    accuracy = [[GCLabel alloc] initWithFrame:rectAccuracy];
     accuracy.text = @"-";
     accuracy.textAlignment = NSTextAlignmentCenter;
     accuracy.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:accuracy];
 
-    l = [[UILabel alloc] initWithFrame:rectAltitudeText];
+    l = [[GCLabel alloc] initWithFrame:rectAltitudeText];
     l.text = @"Altitude";
     l.textAlignment = NSTextAlignmentCenter;
     l.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:l];
-    altitude = [[UILabel alloc] initWithFrame:rectAltitude];
+    altitude = [[GCLabel alloc] initWithFrame:rectAltitude];
     altitude.text = @"-";
     altitude.textAlignment = NSTextAlignmentCenter;
     altitude.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:altitude];
 
-    distance = [[UILabel alloc] initWithFrame:rectDistance];
+    distance = [[GCLabel alloc] initWithFrame:rectDistance];
     distance.text = @"-";
     distance.textAlignment = NSTextAlignmentCenter;
     distance.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:distance];
 
-    wpDescription = [[UILabel alloc] initWithFrame:rectDescription];
+    wpDescription = [[GCLabel alloc] initWithFrame:rectDescription];
     wpDescription.text = waypointManager.currentWaypoint.urlname;
     wpDescription.textAlignment = NSTextAlignmentCenter;
     wpDescription.font = [UIFont systemFontOfSize:FONTSIZE];
