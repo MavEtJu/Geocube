@@ -85,7 +85,7 @@
                 cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case 0: {   // Metric
-                    cell.textLabel.text = @"Metric";
+                    cell.textLabel.text = @"Use metric units";
 
                     distanceMetric = [[UISwitch alloc] initWithFrame:CGRectZero];
                     distanceMetric.on = myConfig.distanceMetric;
