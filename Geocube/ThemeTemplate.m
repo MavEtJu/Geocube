@@ -24,7 +24,7 @@
 @implementation ThemeTemplate
 
 @synthesize textColor, backgroundColor;
-@synthesize labelTextColor, labelBackgroundColor;
+@synthesize labelTextColor, labelTextColorDisabled, labelBackgroundColor;
 @synthesize viewBackgroundColor;
 @synthesize tableViewBackgroundColor;
 @synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;

@@ -173,31 +173,31 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.userInteractionEnabled = YES;
 
-        UIColor *tc = [UIColor blackColor];
+        UIColor *tc = currentTheme.textColor;
         switch (indexPath.row) {
             case 0: /* Description */
                 if ([groundspeak.short_desc isEqualToString:@""] == YES && [groundspeak.long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
                 //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint isEqualToString:@""] == YES)
                 if (groundspeak.hint == nil || [groundspeak.hint isEqualToString:@""] == YES || [groundspeak.hint isEqualToString:@" "] == YES) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 2: /* Personal note */
                 if ([dbPersonalNote dbGetByWaypointID:waypoint._id] == nil) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = YES;     // Be able to create one
                 }
                 break;
             case 3: { /* Field Note */
                 NSInteger c = [waypoint hasFieldNotes];
                 if (c == 0) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
@@ -206,7 +206,7 @@
             case 4: { /* Logs */
                 NSInteger c = [waypoint hasLogs];
                 if (c == 0) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 } else {
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
@@ -216,7 +216,7 @@
             case 5: { /* Attributes */
                 NSInteger c = [waypoint hasAttributes];
                 if (c == 0) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
@@ -225,7 +225,7 @@
             case 6: { /* Related Waypoints */
                 NSArray *wps = [waypoint hasWaypoints];
                 if ([wps count] <= 1) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = YES;     // Be able to create one
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)([wps count] - 1)];
@@ -234,7 +234,7 @@
             case 7: { /* Inventory */
                 NSInteger c = [waypoint hasInventory];
                 if (c == 0) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];
@@ -243,7 +243,7 @@
             case 8: { /* Images */
                 NSInteger c = [waypoint hasImages];
                 if (c == 0) {
-                    tc = [UIColor lightGrayColor];
+                    tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 } else
                     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", [waypointItems objectAtIndex:indexPath.row], (long)c];

@@ -24,6 +24,7 @@
     UIColor *textColor;
 
     UIColor *labelTextColor;
+    UIColor *labelTextColorDisabled;
     UIColor *labelBackgroundColor;
 
     UIColor *viewBackgroundColor;
@@ -41,6 +42,7 @@
 
 @property (readonly, nonatomic, retain) UIColor *labelBackgroundColor;
 @property (readonly, nonatomic, retain) UIColor *labelTextColor;
+@property (readonly, nonatomic, retain) UIColor *labelTextColorDisabled;
 
 @property (readonly, nonatomic, retain) UIColor *viewBackgroundColor;
 
