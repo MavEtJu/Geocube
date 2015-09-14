@@ -74,7 +74,7 @@
 {
     GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 

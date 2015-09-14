@@ -35,7 +35,7 @@
 
     CGRect rect;
     NSInteger y = cellHeight;
-    UILabel *l;
+    GCLabel *l;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -44,7 +44,7 @@
     }
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Direction is:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentCenter;

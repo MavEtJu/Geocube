@@ -58,7 +58,7 @@
         b.frame = rect;
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [b setTitle:t.type_full forState:UIControlStateNormal];
-        [b setTitleColor:t.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+        [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:b];
 
@@ -94,7 +94,7 @@
     [types enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
         if ([t.type_full isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             t.selected = !t.selected;
-            [b setTitleColor:t.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+            [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
             [self configUpdate];
             *stop = YES;

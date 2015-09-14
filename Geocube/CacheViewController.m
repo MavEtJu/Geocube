@@ -258,12 +258,11 @@
     // Cache commands
     if (indexPath.section == 2) {
         if (indexPath.row == 0 || indexPath.row == 1) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+            GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
             if (cell == nil)
                 cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
             cell.userInteractionEnabled = YES;
 
-            UIColor *tc = [UIColor blackColor];
             switch (indexPath.row) {
                 case 0:
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
@@ -273,25 +272,22 @@
                     break;
             }
             cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
-            cell.textLabel.textColor = tc;
             return cell;
         }
 
         if (indexPath.row == 2) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
+            GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
             if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DATA];
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.userInteractionEnabled = YES;
 
-            UIColor *tc = [UIColor blackColor];
             if (indexPath.row == 2) {
                 if (waypoint.url == nil)
                     cell.userInteractionEnabled = NO;
             }
 
             cell.textLabel.text = [actionItems objectAtIndex:indexPath.row];
-            cell.textLabel.textColor = tc;
             return cell;
         }
     }

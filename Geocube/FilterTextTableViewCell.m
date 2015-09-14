@@ -33,7 +33,7 @@
 
     CGRect rect;
     NSInteger y = cellHeight;
-    UILabel *l;
+    GCLabel *l;
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
@@ -42,7 +42,7 @@
     }
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Cache name:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
@@ -58,7 +58,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Owner:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
@@ -74,7 +74,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"State:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
@@ -90,7 +90,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Country:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
@@ -106,7 +106,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Description:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
@@ -122,7 +122,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[UILabel alloc] initWithFrame:rect];
+    l = [[GCLabel alloc] initWithFrame:rect];
     l.text = @"Logs:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;

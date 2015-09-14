@@ -53,7 +53,7 @@
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         [b setTitle:g.name forState:UIControlStateNormal];
-        [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+        [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:b];
 
@@ -93,7 +93,7 @@
     [groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
         if ([g.name isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
             g.selected = !g.selected;
-            [b setTitleColor:g.selected ? [UIColor darkTextColor] : [UIColor lightGrayColor] forState:UIControlStateNormal];
+            [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
             [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
             [self configUpdate];
             *stop = YES;

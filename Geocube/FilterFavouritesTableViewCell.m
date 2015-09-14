@@ -41,7 +41,7 @@
     }
 
     rect = CGRectMake(20, y, width - 40, 15);
-    sliderLabel = [[UILabel alloc] initWithFrame:rect];
+    sliderLabel = [[GCLabel alloc] initWithFrame:rect];
     sliderLabel.text = @"Favourites: at least 0";
     sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;

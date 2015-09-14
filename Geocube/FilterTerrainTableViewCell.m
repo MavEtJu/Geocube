@@ -41,7 +41,7 @@
     }
 
     rect = CGRectMake(20, y, width - 40, 15);
-    sliderLabel = [[UILabel alloc] initWithFrame:rect];
+    sliderLabel = [[GCLabel alloc] initWithFrame:rect];
     sliderLabel.text = @"Terrain: 1 - 5";
     sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;
@@ -110,7 +110,7 @@
     NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
     NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
 
-    sliderLabel.text = [NSString stringWithFormat:@"Difficulty: %@ - %@", minString, maxString];
+    sliderLabel.text = [NSString stringWithFormat:@"Terrain: %@ - %@", minString, maxString];
 }
 
 @end

@@ -21,7 +21,7 @@
 
 @interface FilterDifficultyTableViewCell : FilterTableViewCell {
     RangeSlider *slider;
-    UILabel *sliderLabel;
+    GCLabel *sliderLabel;
     float config_min, config_max;
 }
 
