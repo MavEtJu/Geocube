@@ -94,11 +94,12 @@
         cell = [[NoticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     dbNotice *n = [notices objectAtIndex:indexPath.row];
-    cell.noteLabel.text = n.note;
     cell.senderLabel.text = n.sender;
     cell.dateLabel.text = n.date;
     cell.seen = n.seen;
-    [cell.noteLabel sizeToFit];
+
+    [cell setNote:n.note];
+
     [cell sizeToFit];
     cell.userInteractionEnabled = YES;
 

@@ -24,11 +24,14 @@
     GCSmallLabel *senderLabel;
     GCSmallLabel *dateLabel;
     BOOL seen;
+    CGRect rectNote;
 }
 
 @property (nonatomic, retain) GCTextblock *noteLabel;
 @property (nonatomic, retain) GCSmallLabel *senderLabel;
 @property (nonatomic, retain) GCSmallLabel *dateLabel;
 @property (nonatomic) BOOL seen;
+
+- (void)setNote:(NSString *)noteString;
 
 @end

@@ -46,7 +46,7 @@
     NSInteger height_name = myConfig.GCSmallFont.lineHeight;
     CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
     CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
-    CGRect rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
+           rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
 
     // Sender
     senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
@@ -63,6 +63,14 @@
     [self.contentView addSubview:noteLabel];
     
     return self;
+}
+
+- (void)setNote:(NSString *)noteString
+{
+    noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    noteLabel.frame = rectNote;
+    noteLabel.text = noteString;
+    [noteLabel sizeToFit];
 }
 
 @end
