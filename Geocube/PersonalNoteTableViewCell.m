@@ -63,4 +63,11 @@
     return self;
 }
 
+- (void)changeTheme
+{
+    [themeManager changeThemeView:name];
+    [themeManager changeThemeView:log];
+    [super changeTheme];
+}
+
 @end

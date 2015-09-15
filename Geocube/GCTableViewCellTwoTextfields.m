@@ -40,9 +40,16 @@
 
     valueLabel = [[GCLabel alloc] initWithFrame:frame];
     valueLabel.textAlignment = NSTextAlignmentRight;
+    valueLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:valueLabel];
 
     return self;
+}
+
+- (void)changeTheme
+{
+    [fieldLabel changeTheme];
+    [super changeTheme];
 }
 
 @end
