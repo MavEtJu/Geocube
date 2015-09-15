@@ -24,11 +24,15 @@
     GCSmallLabel *datetime;
     GCSmallLabel *logger;
     GCTextblock *log;
+
+    CGRect rectLog;
 }
 
 @property (nonatomic, retain) UIImageView *logtype;
 @property (nonatomic, retain) GCSmallLabel *datetime;
 @property (nonatomic, retain) GCSmallLabel *logger;
 @property (nonatomic, retain) GCTextblock *log;
+
+- (void)setLogString:(NSString *)logString;
 
 @end

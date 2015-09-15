@@ -50,7 +50,7 @@
     CGRect rectImage = CGRectMake(BORDER, BORDER, IMAGE_WIDTH, height_name);
     CGRect rectDatetime = CGRectMake(BORDER + IMAGE_WIDTH + BORDER, BORDER, DATE_WIDTH, height_name);
     CGRect rectLogger = CGRectMake(BORDER + IMAGE_WIDTH + DATE_WIDTH, BORDER, width - 2 * BORDER - DATE_WIDTH - height_name, height_name);
-    CGRect rectLog = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 30);
+           rectLog = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 30);
 
     // Image
     logtype = [[UIImageView alloc] initWithFrame:rectImage];
@@ -74,6 +74,14 @@
     [self.contentView addSubview:log];
 
     return self;
+}
+
+- (void)setLogString:(NSString *)logString
+{
+    log.lineBreakMode = NSLineBreakByWordWrapping;
+    log.frame = rectLog;
+    log.text = logString;
+    [log sizeToFit];
 }
 
 @end
