@@ -73,4 +73,15 @@
     [noteLabel sizeToFit];
 }
 
+- (void)changeTheme
+{
+    senderLabel.backgroundColor = currentTheme.backgroundColor;
+    senderLabel.textColor = currentTheme.textColor;
+    dateLabel.backgroundColor = currentTheme.backgroundColor;
+    dateLabel.textColor = currentTheme.textColor;
+    noteLabel.backgroundColor = currentTheme.backgroundColor;
+    noteLabel.textColor = currentTheme.textColor;
+    [super changeTheme];
+}
+
 @end
