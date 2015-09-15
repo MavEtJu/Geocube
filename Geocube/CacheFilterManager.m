@@ -336,7 +336,8 @@
             __block BOOL rv = YES;
 
             if (cachename != nil && [cachename isEqualToString:@""] == NO &&
-                [wp.name localizedCaseInsensitiveContainsString:cachename] == NO) {
+                [wp.name localizedCaseInsensitiveContainsString:cachename] == NO &&
+                [wp.urlname localizedCaseInsensitiveContainsString:cachename] == NO) {
                 rv = NO;
             }
 

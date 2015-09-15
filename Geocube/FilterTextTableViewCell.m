@@ -43,7 +43,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = @"Cache name:";
+    l.text = @"Waypoint name:";
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
