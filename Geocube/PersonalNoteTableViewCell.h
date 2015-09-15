@@ -22,9 +22,12 @@
 @interface PersonalNoteTableViewCell : GCTableViewCell {
     GCTextblock *log;
     GCSmallLabel *name;
+    CGRect rectLog;
 }
 
 @property (nonatomic, retain) UILabel *log;
 @property (nonatomic, retain) UILabel *name;
+
+- (void)setLogString:(NSString *)logString;
 
 @end

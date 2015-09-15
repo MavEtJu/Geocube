@@ -79,8 +79,8 @@
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
 
     cell.name.text = pn.wp_name;
-    cell.log.text = pn.note;
-    [cell.log sizeToFit];
+
+    [cell setLogString:pn.note];
 
     CGRect f = cell.frame;
     f.size.height = cell.log.frame.size.height + cell.name.frame.size.height + 10;

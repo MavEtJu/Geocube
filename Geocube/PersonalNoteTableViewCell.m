@@ -44,7 +44,7 @@
 
     NSInteger height = myConfig.GCSmallFont.lineHeight;
     CGRect rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
-    CGRect rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
+           rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
 
     // Name
     name = [[GCSmallLabel alloc] initWithFrame:rectName];
@@ -68,6 +68,14 @@
     [themeManager changeThemeView:name];
     [themeManager changeThemeView:log];
     [super changeTheme];
+}
+
+- (void)setLogString:(NSString *)logString
+{
+    log.lineBreakMode = NSLineBreakByWordWrapping;
+    log.frame = rectLog;
+    log.text = logString;
+    [log sizeToFit];
 }
 
 @end
