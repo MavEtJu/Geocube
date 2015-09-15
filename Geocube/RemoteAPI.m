@@ -213,6 +213,15 @@
     return [self UserStatistics:account.accountname];
 }
 
+- (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
+{
+    NSObject *o = [in objectForKey:inKey];
+    if (o != nil) {
+        NSNumber *n = [NSNumber numberWithInteger:[[in valueForKey:inKey] integerValue]];
+        [out setValue:n forKey:outKey];
+    }
+}
+
 - (NSDictionary *)UserStatistics:(NSString *)username
 /* Returns:
  * waypoints_found
@@ -231,10 +240,10 @@
 
     if (account.protocol == ProtocolOKAPI) {
         NSDictionary *dict = [okapi services_users_byUsername:username];
-        [ret setValue:[dict valueForKey:@"caches_found"] forKey:@"waypoints_found"];
-        [ret setValue:[dict valueForKey:@"caches_notfound"] forKey:@"waypoints_notfound"];
-        [ret setValue:[dict valueForKey:@"caches_hidden"] forKey:@"waypoints_hidden"];
-        [ret setValue:[dict valueForKey:@"rcmds_given"] forKey:@"recommendations_given"];
+        [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
+        [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
+        [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
+        [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"rcmds_given"];
         return ret;
     }
 
@@ -243,29 +252,27 @@
 
         NSDictionary *d = [dict objectForKey:@"Profile"];
         d = [d objectForKey:@"User"];
-        [ret setValue:[d valueForKey:@"FindCount"] forKey:@"waypoints_found"];
-        [ret setValue:[d valueForKey:@"HideCount"] forKey:@"waypoints_hidden"];
+        [self getNumber:ret from:d outKey:@"waypoints_hidden" inKey:@"HideCount"];
+        [self getNumber:ret from:d outKey:@"waypoints_found" inKey:@"FindCount"];
 
         dict = [gs GetCacheIdsFavoritedByUser];
         d = [dict objectForKey:@"CacheCodes"];
-        NSNumber *n = [NSNumber numberWithUnsignedInteger:[d count]];
-        [ret setValue:n forKey:@"recommendations_given"];
+        if (d != nil) {
+            NSNumber *n = [NSNumber numberWithUnsignedInteger:[d count]];
+            [ret setValue:n forKey:@"recommendations_given"];
+        }
 
         return ret;
     }
 
     if (account.protocol == ProtocolGCA) {
         NSDictionary *dict = [gca cacher_statistic__finds:username];
-        NSNumber *found = [NSNumber numberWithInteger:[[dict valueForKey:@"waypoints_found"] integerValue]];
-        [ret setValue:found forKey:@"waypoints_found"];
+        [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"waypoints_found"];
 
         dict = [gca cacher_statistic__hides:username];
-        NSNumber *hidden = [NSNumber numberWithInteger:[[dict valueForKey:@"waypoints_hidden"] integerValue]];
-        NSNumber *rcmd_received = [NSNumber numberWithInteger:[[dict valueForKey:@"recommendations_received"] integerValue]];
-        NSNumber *rcmd_given = [NSNumber numberWithInteger:[[dict valueForKey:@"recommendations_given"] integerValue]];
-        [ret setValue:hidden forKey:@"waypoints_hidden"];
-        [ret setValue:rcmd_received forKey:@"recommendations_received"];
-        [ret setValue:rcmd_given forKey:@"recommendations_given"];
+        [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
+        [self getNumber:ret from:dict outKey:@"recommendatons_received" inKey:@"recommendatons_received"];
+        [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"recommendations_given"];
 
         return ret;
     }
