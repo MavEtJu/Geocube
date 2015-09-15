@@ -19,12 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface PersonalNoteTableViewCell : GCTableViewCell {
-    GCTextblock *log;
-    GCSmallLabel *name;
+#import "Geocube-Prefix.pch"
+
+@implementation GCScrollView
+
+- (void)changeTheme
+{
+    self.backgroundColor = currentTheme.tableViewBackgroundColor;
+
+    [themeManager changeThemeArray:[self subviews]];
 }
 
-@property (nonatomic, retain) UILabel *log;
-@property (nonatomic, retain) UILabel *name;
 
 @end

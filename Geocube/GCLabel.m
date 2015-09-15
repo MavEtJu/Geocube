@@ -26,12 +26,19 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    
+
     self.font = myConfig.GCLabelFont;
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
     self.backgroundColor = currentTheme.labelBackgroundColor;
     self.textColor = currentTheme.labelTextColor;
 
-    return self;
+    // [themeManager changeTheme:self.subviews];
 }
 
 - (void)bold:(BOOL)onoff

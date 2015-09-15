@@ -21,4 +21,6 @@
 
 @interface GCTableViewCell : UITableViewCell
 
+- (void)changeTheme;
+
 @end

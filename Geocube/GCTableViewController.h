@@ -31,4 +31,6 @@
 @property (nonatomic) NSInteger numberOfItemsInRow;
 @property (nonatomic, retain) DOPNavbarMenu *tab_menu;
 
+- (void)changeTheme;
+
 @end

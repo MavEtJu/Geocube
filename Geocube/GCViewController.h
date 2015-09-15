@@ -32,5 +32,6 @@
 @property (strong, nonatomic) DOPNavbarMenu *tab_menu;
 
 - (void)showCloseButton;
+- (void)changeTheme;
 
 @end

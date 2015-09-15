@@ -22,5 +22,6 @@
 @interface GCLabel : UILabel
 
 - (void)bold:(BOOL)onoff;
+- (void)changeTheme;
 
 @end

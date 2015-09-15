@@ -21,4 +21,6 @@
 
 @interface GCView : UIView
 
+- (void)changeTheme;
+
 @end

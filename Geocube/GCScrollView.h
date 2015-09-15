@@ -19,12 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface PersonalNoteTableViewCell : GCTableViewCell {
-    GCTextblock *log;
-    GCSmallLabel *name;
-}
+@interface GCScrollView : UIScrollView
 
-@property (nonatomic, retain) UILabel *log;
-@property (nonatomic, retain) UILabel *name;
+- (void)changeTheme;
 
 @end

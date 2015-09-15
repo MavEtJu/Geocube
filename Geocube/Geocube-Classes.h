@@ -66,6 +66,7 @@
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
+@class GCScrollView;
 @class GCSmallLabel;
 @class GCTableViewCell;
 @class GCTableViewCellKeyValue;

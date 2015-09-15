@@ -29,10 +29,17 @@
 
     self.font = myConfig.GCTextblockFont;
     self.numberOfLines = 0;
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
     self.textColor = currentTheme.labelTextColor;
     self.backgroundColor = currentTheme.labelBackgroundColor;
-    
-    return self;
+
+    // [themeManager changeTheme:self.subviews];
 }
 
 - (void)bold:(BOOL)onoff

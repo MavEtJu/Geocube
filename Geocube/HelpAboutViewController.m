@@ -53,7 +53,7 @@
     NSInteger y = 10;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    UIScrollView *contentView = [[UIScrollView alloc] initWithFrame:applicationFrame];
+    GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
     self.view = contentView;
 
     y += [self addText:y text:

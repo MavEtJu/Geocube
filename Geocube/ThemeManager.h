@@ -35,5 +35,8 @@ enum GCThemeType {
 @property (nonatomic, retain, readonly) NSArray *themeNames;
 
 - (void)setTheme:(NSInteger)nr;
+- (void)changeThemeView:(UIView *)v;
+- (void)changeThemeViewController:(UIViewController *)v;
+- (void)changeThemeArray:(NSArray *)vs;
 
 @end

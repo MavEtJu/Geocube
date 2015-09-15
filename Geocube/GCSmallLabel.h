@@ -22,5 +22,6 @@
 @interface GCSmallLabel : UILabel
 
 - (void)bold:(BOOL)onoff;
+- (void)changeTheme;
 
 @end

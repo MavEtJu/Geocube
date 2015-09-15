@@ -27,14 +27,20 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    // Make the text background colours transparent
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
     self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
     self.textLabel.textColor = currentTheme.labelTextColor;
     self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
     self.detailTextLabel.textColor = currentTheme.labelTextColor;
     self.detailTextLabel.backgroundColor = currentTheme.labelBackgroundColor;
 
-    return self;
+    [themeManager changeThemeArray:self.subviews];
 }
 
 

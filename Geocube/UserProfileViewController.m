@@ -38,7 +38,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    contentView = [[UIScrollView alloc] initWithFrame:applicationFrame];
+    contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
 
@@ -91,7 +91,7 @@
             return;
         }
 
-        UIView *v = [[UIView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
+        GCView *v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
         [contentView addSubview:v];
         [accountViews addObject:v];
         y += 1;
@@ -112,7 +112,7 @@
 
     /* Total */
     // Spacer
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(10, y, width - 20, 20)];
+    GCView *v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 20)];
     [contentView addSubview:v];
     y += v.frame.size.height;
 
@@ -122,7 +122,7 @@
     [contentView addSubview:l];
     y += l.frame.size.height;
 
-    v = [[UIView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
+    v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
     [accountViews addObject:v];
     [contentView addSubview:v];
     y += 1;
@@ -150,8 +150,8 @@
     GCLabel *l;
     NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
 
-    UIView *view = [accountViews objectAtIndex:idx];
-    for (UIView *subview in view.subviews) {
+    GCView *view = [accountViews objectAtIndex:idx];
+    for (GCView *subview in view.subviews) {
         [subview removeFromSuperview];
     }
 
@@ -210,7 +210,7 @@
 
     view.frame = CGRectMake(10, 0, width - 20, y);
     [self resizeContainer];
-    if (idx != idxTotal && [[accountViews objectAtIndex:idxTotal] isKindOfClass:[UIView class]] == YES) {
+    if (idx != idxTotal && [[accountViews objectAtIndex:idxTotal] isKindOfClass:[GCView class]] == YES) {
         NSDictionary *totals = [NSDictionary dictionaryWithObjects:@[
          [NSNumber numberWithInteger:totalFound],
          [NSNumber numberWithInteger:totalDNF],
@@ -232,7 +232,7 @@
 - (void)resizeContainer
 {
     NSInteger y = 0;
-    for (UIView *subview in contentView.subviews) {
+    for (GCView *subview in contentView.subviews) {
         subview.frame = CGRectMake(subview.frame.origin.x, y, subview.frame.size.width, subview.frame.size.height);
         y += subview.frame.size.height;
     }

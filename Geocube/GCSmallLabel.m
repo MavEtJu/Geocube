@@ -28,10 +28,17 @@
     self = [super initWithFrame:frame];
 
     self.font = myConfig.GCSmallFont;
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
     self.textColor = currentTheme.labelTextColor;
     self.backgroundColor = currentTheme.labelBackgroundColor;
-    
-    return self;
+
+    // [themeManager changeTheme:self.subviews];
 }
 
 - (void)bold:(BOOL)onoff

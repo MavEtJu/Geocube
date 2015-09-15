@@ -35,9 +35,18 @@
     closeButton = nil;
     hasCloseButton = NO;
 
-    self.tableView.backgroundColor = currentTheme.tableViewBackgroundColor;
+    [self changeTheme];
 
     return self;
+}
+
+- (void)changeTheme
+{
+    self.tableView.backgroundColor = currentTheme.tableViewBackgroundColor;
+
+    [themeManager changeThemeArray:self.tableView.visibleCells];
+
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -241,6 +241,7 @@
 		E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FE71B508BBE002527DA /* CacheLogsViewController.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D44471BA6A44800671FB9 /* ThemeManager.m */; };
+		E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D444A1BA6F6E800671FB9 /* GCScrollView.m */; };
 		E87E474A1B82A301005606A2 /* ImportSites.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E47491B82A301005606A2 /* ImportSites.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */; };
@@ -671,6 +672,8 @@
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87D44461BA6A44800671FB9 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		E87D44471BA6A44800671FB9 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		E87D44491BA6F6E800671FB9 /* GCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCScrollView.h; sourceTree = "<group>"; };
+		E87D444A1BA6F6E800671FB9 /* GCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCScrollView.m; sourceTree = "<group>"; };
 		E87E47481B82A301005606A2 /* ImportSites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSites.h; sourceTree = "<group>"; };
 		E87E47491B82A301005606A2 /* ImportSites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSites.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
@@ -1026,6 +1029,8 @@
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
 				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
+				E87D44491BA6F6E800671FB9 /* GCScrollView.h */,
+				E87D444A1BA6F6E800671FB9 /* GCScrollView.m */,
 				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
 				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
 				E847A58E1BA04AF400BEFE83 /* GCTextblock.h */,
@@ -2210,6 +2215,7 @@
 				E80AEEBE1BA670B200106F7F /* GCView.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
+				E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,

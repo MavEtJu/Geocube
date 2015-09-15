@@ -163,6 +163,18 @@
     return self;
 }
 
+- (void)changeTheme
+{
+    [name changeTheme];
+    [stateCountry changeTheme];
+    [distance changeTheme];
+    [bearing changeTheme];
+    [compass changeTheme];
+    [labelRatingD changeTheme];
+    [labelRatingT changeTheme];
+    [super changeTheme];
+}
+
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d size:(NSInteger)sz
 {
     imgRatingD.image = [imageLibrary getRating:d];

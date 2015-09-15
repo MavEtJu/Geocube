@@ -30,7 +30,7 @@
     {
         UILabel *tv = [[UILabel alloc] init];
         labelTextColor = tv.textColor;
-        labelTextColorDisabled = [UIColor lightTextColor];
+        labelTextColorDisabled = [UIColor darkGrayColor];
         labelBackgroundColor = tv.backgroundColor;
 
         textColor = tv.textColor;

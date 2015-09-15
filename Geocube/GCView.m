@@ -27,9 +27,16 @@
 {
     self = [super initWithFrame:frame];
 
-    self.backgroundColor = currentTheme.viewBackgroundColor;
+    [self changeTheme];
 
     return self;
+}
+
+- (void)changeTheme
+{
+    self.backgroundColor = currentTheme.viewBackgroundColor;
+
+    [themeManager changeThemeArray:self.subviews];
 }
 
 @end
