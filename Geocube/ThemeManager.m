@@ -33,7 +33,11 @@ ThemeManager *themeManager;
 {
     self = [super init];
 
-    themeNames = @[@"Default", @"Night", @"Geosphere"];
+    themeNames = @[
+                   @"Default day theme",
+                   @"Default Night theme",
+                   @"Geosphere"
+                  ];
 
     return self;
 }
