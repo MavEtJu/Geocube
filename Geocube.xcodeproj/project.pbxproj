@@ -1023,6 +1023,12 @@
 				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
 				E85760061B85DB5500F34483 /* GCTableViewCell.h */,
 				E85760071B85DB5500F34483 /* GCTableViewCell.m */,
+				E88037AC1B96D05A0053AD01 /* GCTableViewCellKeyValue.h */,
+				E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */,
+				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
+				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
+				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */,
+				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */,
 				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
 				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
 				E82FBB251B4613C20009AB6D /* GCViewController.h */,
@@ -1279,12 +1285,6 @@
 				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
-				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
-				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
-				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */,
-				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */,
-				E88037AC1B96D05A0053AD01 /* GCTableViewCellKeyValue.h */,
-				E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
