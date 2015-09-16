@@ -35,7 +35,7 @@ ThemeManager *themeManager;
 
     themeNames = @[
                    @"Default day theme",
-                   @"Default Night theme",
+                   @"Default night theme",
                    @"Geosphere"
                   ];
 
