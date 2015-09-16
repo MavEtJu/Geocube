@@ -60,13 +60,17 @@
     [self.contentView sizeToFit];
     [self.contentView addSubview:log];
 
+    [self changeTheme];
+
     return self;
 }
 
 - (void)changeTheme
 {
-    [themeManager changeThemeView:name];
-    [themeManager changeThemeView:log];
+    name.backgroundColor = currentTheme.backgroundColor;
+    name.textColor = currentTheme.textColor;
+    log.backgroundColor = currentTheme.backgroundColor;
+    log.textColor = currentTheme.textColor;
     [super changeTheme];
 }
 

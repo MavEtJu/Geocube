@@ -73,6 +73,8 @@
     log = [[GCTextblock alloc] initWithFrame:rectLog];
     [self.contentView addSubview:log];
 
+    [self changeTheme];
+
     return self;
 }
 
@@ -82,6 +84,17 @@
     log.frame = rectLog;
     log.text = logString;
     [log sizeToFit];
+}
+
+- (void)changeTheme
+{
+    datetime.backgroundColor = currentTheme.backgroundColor;
+    datetime.textColor = currentTheme.textColor;
+    logger.backgroundColor = currentTheme.backgroundColor;
+    logger.textColor = currentTheme.textColor;
+    log.backgroundColor = currentTheme.backgroundColor;
+    log.textColor = currentTheme.textColor;
+    [super changeTheme];
 }
 
 @end
