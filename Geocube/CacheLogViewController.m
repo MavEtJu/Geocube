@@ -275,6 +275,8 @@
     YIPopupTextView *tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
+//  tv.backgroundColor = currentTheme.backgroundColor;
+//  tv.textColor = currentTheme.textColor;
     tv.caretShiftGestureEnabled = YES;
     tv.text = note;
 
