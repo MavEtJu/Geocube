@@ -46,6 +46,15 @@
 
     self.imageView.frame = newImageView;
     self.textLabel.frame = newTextLabel;
+
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    self.textLabel.textColor = currentTheme.labelTextColor;
+    self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
+    [super changeTheme];
 }
 
 @end

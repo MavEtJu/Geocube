@@ -50,7 +50,18 @@
     valueLabel.font = font;
     [self.contentView addSubview:valueLabel];
 
+    [self changeTheme];
+
     return self;
+}
+
+- (void)changeTheme
+{
+    keyLabel.backgroundColor = currentTheme.backgroundColor;
+    keyLabel.textColor = currentTheme.textColor;
+    valueLabel.backgroundColor = currentTheme.backgroundColor;
+    valueLabel.textColor = currentTheme.textColor;
+    [super changeTheme];
 }
 
 @end
