@@ -113,7 +113,7 @@
         [bbvc loadURL:url];
         return YES;
     }
-    
+
     return NO;
 }
 

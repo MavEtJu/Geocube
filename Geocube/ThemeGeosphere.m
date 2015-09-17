@@ -26,7 +26,7 @@
 - (id)init
 {
     self = [super init];
-    
+
     tableViewBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
     viewBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];
     tableViewCellBackgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:218/255.0 alpha:1];

@@ -69,7 +69,7 @@
 - (void)configInit
 {
     [self configPrefix:@"direction"];
-    
+
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)
         fo.expanded = [s boolValue];

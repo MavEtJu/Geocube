@@ -227,7 +227,7 @@
         SET_VAR_TEXT(  15, placed_by);
         SET_VAR_INT(   16, waypoint_id);
         SET_VAR_INT(   17, _id);
-        
+
         DB_CHECK_OKAY;
         DB_FINISH;
     }

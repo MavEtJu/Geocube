@@ -95,7 +95,7 @@
         DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    
+
     return _id;
 }
 

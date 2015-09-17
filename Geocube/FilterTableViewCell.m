@@ -27,7 +27,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
-    
+
     [self configInit];
     [self header];
 

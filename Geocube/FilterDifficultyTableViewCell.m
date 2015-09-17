@@ -67,7 +67,7 @@
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
-    
+
     return self;
 }
 
@@ -76,7 +76,7 @@
 - (void)configInit
 {
     [self configPrefix:@"difficulty"];
-    
+
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)
         fo.expanded = [s boolValue];

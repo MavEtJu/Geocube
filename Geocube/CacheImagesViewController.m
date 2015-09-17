@@ -119,7 +119,7 @@
     cell.textLabel.text = img.name;
     cell.userInteractionEnabled = YES;
     cell.imageView.image = [img imageGet];
-    
+
     return cell;
 }
 

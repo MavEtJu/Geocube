@@ -96,7 +96,7 @@
         }
         DB_FINISH;
     }
-    
+
     return pn;
 }
 

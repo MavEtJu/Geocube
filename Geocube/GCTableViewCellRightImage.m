@@ -31,7 +31,7 @@
     CGRect oldTextLabel = self.textLabel.frame;
 
     /*
-     * Swap from 
+     * Swap from
      * +---+---------------+---+
      * | I | Label         | A |
      * +---+---------------+---+

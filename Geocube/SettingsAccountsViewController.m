@@ -169,7 +169,7 @@
 {
     NSMutableString *msg = [NSMutableString stringWithString:failure];
     [msg appendString:@" This means that you cannot obtain information for this account."];
-    
+
     if (error != nil)
         [msg appendFormat:@" (%@)", [error description] ];
 

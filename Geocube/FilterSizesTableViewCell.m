@@ -67,7 +67,7 @@
 
     [self.contentView sizeToFit];
     fo.cellHeight = height = y;
-    
+
     return self;
 }
 

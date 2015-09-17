@@ -86,7 +86,7 @@
     [buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDateLastLog];
     [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog ] element:buttonDateLastLog];
-    
+
     y += 20;
 
     [self.contentView sizeToFit];
@@ -100,7 +100,7 @@
 - (void)configInit
 {
     [self configPrefix:@"dates"];
-    
+
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)
         fo.expanded = [s boolValue];

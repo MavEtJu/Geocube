@@ -61,7 +61,7 @@
     // Note
     noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
     [self.contentView addSubview:noteLabel];
-    
+
     return self;
 }
 

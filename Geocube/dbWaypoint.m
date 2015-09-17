@@ -327,7 +327,7 @@
         SET_VAR_BOOL(15, highlight);
         SET_VAR_INT( 16, account_id);
         SET_VAR_INT( 17, _id);
-        
+
         DB_CHECK_OKAY;
         DB_FINISH;
     }
@@ -340,7 +340,7 @@
 
         SET_VAR_INT(1, groundspeak_id);
         SET_VAR_INT(2, _id);
-        
+
         DB_CHECK_OKAY;
         DB_FINISH;
     }

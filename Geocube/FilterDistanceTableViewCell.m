@@ -92,7 +92,7 @@
 - (void)configInit
 {
     [self configPrefix:@"distance"];
-    
+
     NSString *s = [self configGet:@"enabled"];
     if (s != nil)
         fo.expanded = [s boolValue];
