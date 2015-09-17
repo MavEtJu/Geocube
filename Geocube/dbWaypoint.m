@@ -234,6 +234,12 @@
     return wps;
 }
 
++ (NSArray *)dbAllIgnored
+{
+    NSArray *wps = [dbWaypoint dbAllXXX:@"ignored = 1"];
+    return wps;
+}
+
 + (NSArray *)dbAllInGroups:(NSArray *)groups
 {
     NSMutableString *where = [NSMutableString stringWithString:@""];

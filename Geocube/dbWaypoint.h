@@ -104,6 +104,7 @@ enum {
 + (NSArray *)dbAllFound;
 + (NSArray *)dbAllAttended;
 + (NSArray *)dbAllNotFound;
++ (NSArray *)dbAllIgnored;
 + (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 - (void)dbUpdateGroundspeak;

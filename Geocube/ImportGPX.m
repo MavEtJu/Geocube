@@ -105,6 +105,8 @@
     [[dbc Group_AllWaypoints_Attended] dbAddWaypoints:[dbWaypoint dbAllAttended]];
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
+    [[dbc Group_AllWaypoints_Ignored] dbEmpty];
+    [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
     [dbc loadWaypointData];
     [dbWaypoint dbUpdateLogStatus];
 
