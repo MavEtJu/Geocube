@@ -45,6 +45,7 @@
 
     NSInteger logStatus;
     BOOL highlight;
+    BOOL ignore;
 
     /* Not read from the database */
     CLLocationCoordinate2D coordinates;
@@ -80,6 +81,7 @@ enum {
 @property (nonatomic, retain) dbGroundspeak *groundspeak;
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL highlight;
+@property (nonatomic) BOOL ignore;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 

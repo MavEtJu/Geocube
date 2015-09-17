@@ -117,6 +117,10 @@
         [self performUpgrade_1_2];
         return;
     }
+    if (version == 2) {
+        [self performUpgrade_2_3];
+        return;
+    }
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
 }
 
@@ -164,6 +168,21 @@
 {
     NSArray *a = @[
     @"insert into symbols(symbol) values('*')"
+    ];
+
+    @synchronized(self.dbaccess) {
+        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+            DB_PREPARE(sql);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }];
+    }
+}
+
+- (void)performUpgrade_2_3
+{
+    NSArray *a = @[
+    @"alter table waypoints add column ignore bool"
     ];
 
     @synchronized(self.dbaccess) {

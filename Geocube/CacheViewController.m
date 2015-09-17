@@ -31,7 +31,7 @@
 {
     self = [super initWithStyle:style];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint", @"Ignore"]];
     hasCloseButton = canBeClosed;
 
     return self;
@@ -449,6 +449,9 @@
             return;
         case 2:
             [self refreshWaypoint];
+            return;
+        case 3:
+            waypoint.ignore = !waypoint.ignore;
             return;
     }
 

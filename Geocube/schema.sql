@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("version", "3");
 
 create table filters (
     id integer primary key,
@@ -31,6 +31,7 @@ insert into groups(name, usergroup) values("All Waypoints - Found", 0);
 insert into groups(name, usergroup) values("All Waypoints - Attended", 0);
 insert into groups(name, usergroup) values("All Waypoints - Not Found", 0);
 insert into groups(name, usergroup) values("All Waypoints - Manually entered", 0);
+insert into groups(name, usergroup) values("All Waypoints - Ignored", 0);
 insert into groups(name, usergroup) values("Last Import", 0);
 insert into groups(name, usergroup) values("Last Import - New", 0);
 insert into groups(name, usergroup) values("GCA - NSW", 1);
@@ -64,7 +65,8 @@ create table waypoints (
     account_id integer,			-- pointer to accounts(id)
 
     log_status integer,			-- 0 not logged, 1 DNF, 2 found
-    highlight bool
+    highlight bool,
+    ignore bool
 );
 create index waypoint_idx_name on waypoints(name);
 create index waypoint_idx_id on waypoints(id);

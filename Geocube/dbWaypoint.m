@@ -23,7 +23,7 @@
 
 @implementation dbWaypoint
 
-@synthesize groundspeak, groundspeak_id, name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type,  symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing, logStatus, highlight, account, account_id;
+@synthesize groundspeak, groundspeak_id, name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type,  symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing, logStatus, highlight, account, account_id, ignore;
 
 - (id)init:(NSId)__id
 {
@@ -55,6 +55,7 @@
     self.highlight = NO;
     self.account_id = 0;
     self.account = nil;
+    self.ignore = NO;
 
     return self;
 }
@@ -165,7 +166,7 @@
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id from waypoints wp"];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, groundspeak_id, urlname, log_status, highlight, account_id, ignore from waypoints wp"];
     if (where != nil) {
         [sql appendString:@" where "];
         [sql appendString:where];
@@ -194,6 +195,7 @@
             INT_FETCH( 14, wp.logStatus);
             BOOL_FETCH(15, wp.highlight);
             INT_FETCH( 16, wp.account_id);
+            BOOL_FETCH(17, wp.ignore);
 
             [wp finish];
             [wps addObject:wp];
@@ -279,7 +281,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id, log_status, highlight, account_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(name, description, lat, lon, lat_int, lon_int, date_placed, date_placed_epoch, url, type_id, symbol_id, urlname, groundspeak_id, log_status, highlight, account_id, ignore) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, wp.name);
         SET_VAR_TEXT( 2, wp.description);
@@ -297,6 +299,7 @@
         SET_VAR_INT( 14, wp.logStatus);
         SET_VAR_BOOL(15, wp.highlight);
         SET_VAR_INT( 16, wp.account_id);
+        SET_VAR_BOOL(17, wp.ignore);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -308,7 +311,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ?, log_status = ?, highlight = ?, account_id = ? where id = ?");
+        DB_PREPARE(@"update waypoints set name = ?, description = ?, lat = ?, lon = ?, lat_int = ?, lon_int  = ?, date_placed = ?, date_placed_epoch = ?, url = ?, type_id = ?, symbol_id = ?, groundspeak_id = ?, urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ? where id = ?");
 
         SET_VAR_TEXT( 1, name);
         SET_VAR_TEXT( 2, description);
@@ -326,7 +329,8 @@
         SET_VAR_INT( 14, logStatus);
         SET_VAR_BOOL(15, highlight);
         SET_VAR_INT( 16, account_id);
-        SET_VAR_INT( 17, _id);
+        SET_VAR_BOOL(17, ignore);
+        SET_VAR_INT( 18, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

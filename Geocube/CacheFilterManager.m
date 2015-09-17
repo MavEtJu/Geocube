@@ -212,6 +212,18 @@
         caches = after;
     }
 
+    /* Filter out ignored ones
+     */
+
+    after = [NSMutableArray arrayWithCapacity:200];
+    [clock clockShowAndReset:@"ignored"];
+
+    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        if (wp.ignore == NO)
+            [after addObject:wp];
+    }];
+    caches = after;
+
     /* Filter out dates
      */
     [self configPrefix:@"dates"];

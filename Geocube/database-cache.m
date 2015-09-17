@@ -24,7 +24,7 @@
 @implementation DatabaseCache
 
 @synthesize Accounts, Types, Groups, LogTypes, Containers, Attributes, Countries, States;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound, Symbol_Unknown;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound, Symbol_Unknown;
 
 
 - (id)init
@@ -53,6 +53,7 @@
     Group_AllWaypoints_Attended = nil;
     Group_AllWaypoints_NotFound = nil;
     Group_AllWaypoints_ManuallyAdded = nil;
+    Group_AllWaypoints_Ignored = nil;
     Group_LastImport = nil;
     Group_LastImportAdded = nil;
     Type_Unknown = nil;
@@ -80,6 +81,10 @@
             Group_AllWaypoints_ManuallyAdded = cg;
             return;
         }
+        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Ignored"] == YES) {
+            Group_AllWaypoints_Ignored = cg;
+            return;
+        }
         if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import"] == YES) {
             Group_LastImport = cg;
             return;
@@ -94,6 +99,7 @@
     NSAssert(Group_AllWaypoints_Attended != nil, @"Group_AllWaypoints_Attended");
     NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
     NSAssert(Group_AllWaypoints_ManuallyAdded != nil, @"Group_AllWaypoints_ManuallyAdded");
+    NSAssert(Group_AllWaypoints_Ignored != nil, @"Group_AllWaypoints_Ignored");
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 
