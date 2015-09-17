@@ -77,57 +77,48 @@ ThemeManager *themeManager;
 
 - (void)changeTheme_:(UIView *)v
 {
+    //NSLog(@"%@", [v class]);
     if ([v isKindOfClass:[GCTableViewController class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCTableViewController *v_ = (GCTableViewController *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCLabel class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCLabel *v_ = (GCLabel *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCSmallLabel class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCSmallLabel *v_ = (GCSmallLabel *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCScrollView class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCScrollView *v_ = (GCScrollView *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCTextblock class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCTextblock *v_ = (GCTextblock *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCTableViewCell class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCTableViewCell *v_ = (GCTableViewCell *)v;
         [v_ changeTheme];
         return;
     }
 
     if ([v isKindOfClass:[GCView class]] == YES) {
-        NSLog(@"%@", [v class]);
         GCView *v_ = (GCView *)v;
         [v_ changeTheme];
         return;
     }
-
-//    if ([v isKindOfClass:[UITableViewCellContentView class]] == YES) {
-//    }
 
     NSLog(@"%@ - not changedTheme: %@", [self class], [v class]);
 }
