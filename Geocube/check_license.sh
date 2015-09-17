@@ -20,3 +20,7 @@ grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
 echo 
+echo "Spaces at the end:"
+grep "  *$" *.m *.h
+
+echo
