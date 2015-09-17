@@ -240,6 +240,10 @@
 
     if (account.protocol == ProtocolOKAPI) {
         NSDictionary *dict = [okapi services_users_byUsername:username];
+
+        if (dict == nil)
+            return nil;
+
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
         [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
         [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
@@ -248,15 +252,18 @@
     }
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *dict = [gs GetYourUserProfile];
+        NSDictionary *dict1 = [gs GetYourUserProfile];
+        NSDictionary *dict2 = [gs GetCacheIdsFavoritedByUser];
 
-        NSDictionary *d = [dict objectForKey:@"Profile"];
+        if (dict1 == nil && dict2 == nil)
+            ret = nil;
+
+        NSDictionary *d = [dict1 objectForKey:@"Profile"];
         d = [d objectForKey:@"User"];
         [self getNumber:ret from:d outKey:@"waypoints_hidden" inKey:@"HideCount"];
         [self getNumber:ret from:d outKey:@"waypoints_found" inKey:@"FindCount"];
 
-        dict = [gs GetCacheIdsFavoritedByUser];
-        d = [dict objectForKey:@"CacheCodes"];
+        d = [dict2 objectForKey:@"CacheCodes"];
         if (d != nil) {
             NSNumber *n = [NSNumber numberWithUnsignedInteger:[d count]];
             [ret setValue:n forKey:@"recommendations_given"];
@@ -266,13 +273,16 @@
     }
 
     if (account.protocol == ProtocolGCA) {
-        NSDictionary *dict = [gca cacher_statistic__finds:username];
-        [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"waypoints_found"];
+        NSDictionary *dict1 = [gca cacher_statistic__finds:username];
+        NSDictionary *dict2 = [gca cacher_statistic__hides:username];
 
-        dict = [gca cacher_statistic__hides:username];
-        [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
-        [self getNumber:ret from:dict outKey:@"recommendatons_received" inKey:@"recommendatons_received"];
-        [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"recommendations_given"];
+        if ([dict1 count] == 0 && [dict2 count] == 0)
+            return nil;
+
+        [self getNumber:ret from:dict1 outKey:@"waypoints_found" inKey:@"waypoints_found"];
+        [self getNumber:ret from:dict2 outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
+        [self getNumber:ret from:dict2 outKey:@"recommendatons_received" inKey:@"recommendatons_received"];
+        [self getNumber:ret from:dict2 outKey:@"recommendations_given" inKey:@"recommendations_given"];
 
         return ret;
     }

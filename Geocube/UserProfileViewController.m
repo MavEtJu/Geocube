@@ -158,75 +158,84 @@
     NSInteger y = 0;
     NSInteger idxTotal = [accountViews count] - 1;
 
-    o = [d valueForKey:@"waypoints_found"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        if (idx != idxTotal)
-            [self updateTotal:&totalFound with:o];
+    if (d == nil) {
         l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:[NSString stringWithFormat:@"Found: %@", o]];
+        [l setText:@"No data"];
         [view addSubview:l];
         y += l.frame.size.height;
-    }
 
-    o = [d valueForKey:@"waypoints_notfound"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        if (idx != idxTotal)
-            [self updateTotal:&totalDNF with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
-        [view addSubview:l];
-        y += l.frame.size.height;
-    }
+    } else {
+        o = [d valueForKey:@"waypoints_found"];
+        if ([o isKindOfClass:[NSNumber class]] == YES) {
+            if (idx != idxTotal)
+                [self updateTotal:&totalFound with:o];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+            [l setText:[NSString stringWithFormat:@"Found: %@", o]];
+            [view addSubview:l];
+            y += l.frame.size.height;
+        }
 
-    o = [d valueForKey:@"waypoints_hidden"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        if (idx != idxTotal)
-            [self updateTotal:&totalHidden with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
-        [view addSubview:l];
-        y += l.frame.size.height;
-    }
+        o = [d valueForKey:@"waypoints_notfound"];
+        if ([o isKindOfClass:[NSNumber class]] == YES) {
+            if (idx != idxTotal)
+                [self updateTotal:&totalDNF with:o];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+            [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
+            [view addSubview:l];
+            y += l.frame.size.height;
+        }
 
-    o = [d valueForKey:@"recommendations_given"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        if (idx != idxTotal)
-            [self updateTotal:&totalRecommendationsGiven with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
-        [view addSubview:l];
-        y += l.frame.size.height;
-    }
+        o = [d valueForKey:@"waypoints_hidden"];
+        if ([o isKindOfClass:[NSNumber class]] == YES) {
+            if (idx != idxTotal)
+                [self updateTotal:&totalHidden with:o];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+            [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
+            [view addSubview:l];
+            y += l.frame.size.height;
+        }
 
-    o = [d valueForKey:@"recommendations_received"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        if (idx != idxTotal)
-            [self updateTotal:&totalRecommendationsReceived with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
-        [view addSubview:l];
-        y += l.frame.size.height;
+        o = [d valueForKey:@"recommendations_given"];
+        if ([o isKindOfClass:[NSNumber class]] == YES) {
+            if (idx != idxTotal)
+                [self updateTotal:&totalRecommendationsGiven with:o];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+            [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
+            [view addSubview:l];
+            y += l.frame.size.height;
+        }
+
+        o = [d valueForKey:@"recommendations_received"];
+        if ([o isKindOfClass:[NSNumber class]] == YES) {
+            if (idx != idxTotal)
+                [self updateTotal:&totalRecommendationsReceived with:o];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+            [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
+            [view addSubview:l];
+            y += l.frame.size.height;
+        }
+
+        if (idx != idxTotal && [[accountViews objectAtIndex:idxTotal] isKindOfClass:[GCView class]] == YES) {
+            NSDictionary *totals = [NSDictionary dictionaryWithObjects:@[
+             [NSNumber numberWithInteger:totalFound],
+             [NSNumber numberWithInteger:totalDNF],
+             [NSNumber numberWithInteger:totalHidden],
+             [NSNumber numberWithInteger:totalRecommendationsGiven],
+             [NSNumber numberWithInteger:totalRecommendationsReceived]
+            ] forKeys:@[
+              @"waypoints_found",
+              @"waypoints_notfound",
+              @"waypoints_hidden",
+              @"recommendations_given",
+              @"recommendations_received"
+            ]
+            ];
+            [self showStatistics:[accountViews count] -1 dict:totals];
+        }
     }
 
     view.frame = CGRectMake(10, 0, width - 20, y);
     [self resizeContainer];
-    if (idx != idxTotal && [[accountViews objectAtIndex:idxTotal] isKindOfClass:[GCView class]] == YES) {
-        NSDictionary *totals = [NSDictionary dictionaryWithObjects:@[
-         [NSNumber numberWithInteger:totalFound],
-         [NSNumber numberWithInteger:totalDNF],
-         [NSNumber numberWithInteger:totalHidden],
-         [NSNumber numberWithInteger:totalRecommendationsGiven],
-         [NSNumber numberWithInteger:totalRecommendationsReceived]
-        ] forKeys:@[
-          @"waypoints_found",
-          @"waypoints_notfound",
-          @"waypoints_hidden",
-          @"recommendations_given",
-          @"recommendations_received"
-        ]
-        ];
-        [self showStatistics:[accountViews count] -1 dict:totals];
-    }
 }
 
 - (void)resizeContainer
