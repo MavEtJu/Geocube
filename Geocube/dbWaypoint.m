@@ -377,6 +377,19 @@
     }
 }
 
+- (void)dbUpdateIgnore
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
+
+        SET_VAR_BOOL(1, self.ignore);
+        SET_VAR_INT( 2, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSString *)makeName:(NSString *)suffix
 {
 

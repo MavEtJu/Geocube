@@ -182,7 +182,9 @@
 - (void)performUpgrade_2_3
 {
     NSArray *a = @[
-    @"alter table waypoints add column ignore bool"
+    @"alter table waypoints add column ignore bool",
+    @"update waypoints set ignore = false",
+    @"insert into groups(name, usergroup) values('All Waypoints - Ignored', 0)"
     ];
 
     @synchronized(self.dbaccess) {

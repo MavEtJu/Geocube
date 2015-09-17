@@ -252,6 +252,19 @@
     }
 }
 
+- (void)dbRemoveWaypoint:(NSId)__id
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from group2waypoints where group_id = ? and waypoint_id = ?");
+
+        SET_VAR_INT(1, self._id);
+        SET_VAR_INT(2, __id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (void)dbAddWaypoints:(NSArray *)waypoints
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {

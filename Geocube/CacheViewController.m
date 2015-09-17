@@ -452,6 +452,12 @@
             return;
         case 3:
             waypoint.ignore = !waypoint.ignore;
+            [waypoint dbUpdateIgnore];
+            if (waypoint.ignore == YES) {
+                [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
+            } else {
+                [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
+            }
             return;
     }
 
