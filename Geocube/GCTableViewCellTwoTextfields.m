@@ -43,13 +43,21 @@
     valueLabel.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:valueLabel];
 
+    [self changeTheme];
+
     return self;
 }
 
 - (void)changeTheme
 {
+    /*
     [fieldLabel changeTheme];
+     */
     [super changeTheme];
+    [themeManager changeThemeArray:[self.contentView subviews]];
+
+    // Ugh hack because the frame of the value label and the field label overlap
+    valueLabel.backgroundColor = [UIColor clearColor];
 }
 
 @end

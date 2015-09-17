@@ -196,6 +196,14 @@
     [self.view addSubview:compassImageView];
     lineImageView = [[UIImageView alloc] initWithFrame:rectCompass];
     [self.view addSubview:lineImageView];
+
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [themeManager changeThemeArray:[self.view subviews]];
+    [super changeTheme];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -90,7 +90,7 @@
     /*
     r = rectSize;
     r.origin.x -= 10;
-    l = [[UILabel alloc] initWithFrame:r];
+    l = [[GCLabel alloc] initWithFrame:r];
     l.font = [UIFont systemFontOfSize:10.0];
     l.text = @"S";
     [self.contentView addSubview:l];

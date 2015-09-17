@@ -67,10 +67,9 @@
 
 - (void)changeTheme
 {
-    name.backgroundColor = currentTheme.backgroundColor;
-    name.textColor = currentTheme.textColor;
-    log.backgroundColor = currentTheme.backgroundColor;
-    log.textColor = currentTheme.textColor;
+    [name changeTheme];
+    [log changeTheme];
+
     [super changeTheme];
 }
 

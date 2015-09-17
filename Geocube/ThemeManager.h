@@ -30,10 +30,12 @@ enum GCThemeType {
 
 @interface ThemeManager : NSObject {
     NSArray *themeNames;
+    NSInteger themeNr;
 }
 
 @property (nonatomic, retain, readonly) NSArray *themeNames;
 
+- (NSInteger)currentTheme;
 - (void)setTheme:(NSInteger)nr;
 - (void)changeThemeView:(UIView *)v;
 - (void)changeThemeViewController:(UIViewController *)v;

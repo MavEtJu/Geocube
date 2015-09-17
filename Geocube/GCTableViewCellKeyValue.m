@@ -41,12 +41,12 @@
     CGRect rectValue = CGRectMake(frame.origin.x + 100, frame.origin.y, frame.size.width - 10 * 10, frame.size.height);
 
     // Name
-    keyLabel = [[UILabel alloc] initWithFrame:rectKey];
+    keyLabel = [[GCLabel alloc] initWithFrame:rectKey];
     keyLabel.font = font;
     valueLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:keyLabel];
 
-    valueLabel = [[UILabel alloc] initWithFrame:rectValue];
+    valueLabel = [[GCLabel alloc] initWithFrame:rectValue];
     valueLabel.font = font;
     [self.contentView addSubview:valueLabel];
 
@@ -57,10 +57,9 @@
 
 - (void)changeTheme
 {
-    keyLabel.backgroundColor = currentTheme.backgroundColor;
-    keyLabel.textColor = currentTheme.textColor;
-    valueLabel.backgroundColor = currentTheme.backgroundColor;
-    valueLabel.textColor = currentTheme.textColor;
+    [keyLabel changeTheme];
+    [valueLabel changeTheme];
+
     [super changeTheme];
 }
 

@@ -52,8 +52,10 @@
 
 - (void)changeTheme
 {
+    /*
     self.textLabel.textColor = currentTheme.labelTextColor;
     self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
+     */
     [super changeTheme];
 }
 

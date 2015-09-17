@@ -48,7 +48,7 @@
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
     CGRect rect;
-    UILabel *l;
+    GCLabel *l;
 
     rect = CGRectMake(20, 2, width - 40, cellHeight);
     l = [[GCLabel alloc] initWithFrame:rect];

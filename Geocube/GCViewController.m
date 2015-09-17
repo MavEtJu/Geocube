@@ -35,9 +35,13 @@
     hasCloseButton = NO;
     closeButton = nil;
 
-    [self changeTheme];
-
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self changeTheme];
 }
 
 - (void)changeTheme

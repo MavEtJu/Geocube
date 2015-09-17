@@ -160,6 +160,8 @@
     size.image = imgSize;
     [self.contentView addSubview:size];
 
+    [self changeTheme];
+
     return self;
 }
 
@@ -172,6 +174,7 @@
     [compass changeTheme];
     [labelRatingD changeTheme];
     [labelRatingT changeTheme];
+
     [super changeTheme];
 }
 

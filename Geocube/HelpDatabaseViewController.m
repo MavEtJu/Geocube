@@ -23,7 +23,7 @@
 
 @implementation HelpDatabaseViewController
 
-#define THISCELL @"HelpBaseViewController"
+#define THISCELL @"HelpDatabaseViewController"
 
 - (id)init
 {

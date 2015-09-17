@@ -25,16 +25,16 @@
     dbGroup *group;
     dbAccount *account;
 
-    UILabel *filenameLabel;
-    UILabel *newWaypointsLabel;
-    UILabel *totalWaypointsLabel;
-    UILabel *newLogsLabel;
-    UILabel *totalLogsLabel;
-    UILabel *newTravelbugsLabel;
-    UILabel *totalTravelbugsLabel;
-    UILabel *progressLabel;
-    UILabel *totalImagesLabel;
-    UILabel *queuedImagesLabel;
+    GCLabel *filenameLabel;
+    GCLabel *newWaypointsLabel;
+    GCLabel *totalWaypointsLabel;
+    GCLabel *newLogsLabel;
+    GCLabel *totalLogsLabel;
+    GCLabel *newTravelbugsLabel;
+    GCLabel *totalTravelbugsLabel;
+    GCLabel *progressLabel;
+    GCLabel *totalImagesLabel;
+    GCLabel *queuedImagesLabel;
 
     ImportGPX *imp;
 }

@@ -35,6 +35,7 @@
 - (void)changeTheme
 {
     self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+
     self.textLabel.textColor = currentTheme.labelTextColor;
     self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
     self.detailTextLabel.textColor = currentTheme.labelTextColor;

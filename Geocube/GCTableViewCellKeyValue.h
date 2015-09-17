@@ -20,12 +20,12 @@
  */
 
 @interface GCTableViewCellKeyValue : GCTableViewCell {
-    UILabel *keyLabel;
-    UILabel *valueLabel;
+    GCLabel *keyLabel;
+    GCLabel *valueLabel;
 }
 
-@property (nonatomic, retain) UILabel *keyLabel;
-@property (nonatomic, retain) UILabel *valueLabel;
+@property (nonatomic, retain) GCLabel *keyLabel;
+@property (nonatomic, retain) GCLabel *valueLabel;
 
 
 

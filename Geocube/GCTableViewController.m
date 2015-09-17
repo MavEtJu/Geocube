@@ -44,7 +44,14 @@
 {
     self.tableView.backgroundColor = currentTheme.tableViewBackgroundColor;
 
-    [themeManager changeThemeArray:self.tableView.visibleCells];
+    [themeManager changeThemeArray:[self.tableView visibleCells]];
+    for (UIView *v in [self.tableView subviews]) {
+        if ([v isKindOfClass:[UITableViewHeaderFooterView class]] == YES) {
+            UITableViewHeaderFooterView *tvhfv = (UITableViewHeaderFooterView *)v;
+            tvhfv.textLabel.backgroundColor = currentTheme.labelTextColor;
+            tvhfv.textLabel.textColor = currentTheme.labelBackgroundColor;
+        }
+    }
 
     [self.tableView reloadData];
 }

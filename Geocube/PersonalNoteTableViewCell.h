@@ -25,8 +25,8 @@
     CGRect rectLog;
 }
 
-@property (nonatomic, retain) UILabel *log;
-@property (nonatomic, retain) UILabel *name;
+@property (nonatomic, retain) GCTextblock *log;
+@property (nonatomic, retain) GCSmallLabel *name;
 
 - (void)setLogString:(NSString *)logString;
 

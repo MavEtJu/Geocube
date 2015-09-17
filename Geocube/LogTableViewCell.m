@@ -88,12 +88,10 @@
 
 - (void)changeTheme
 {
-    datetime.backgroundColor = currentTheme.backgroundColor;
-    datetime.textColor = currentTheme.textColor;
-    logger.backgroundColor = currentTheme.backgroundColor;
-    logger.textColor = currentTheme.textColor;
-    log.backgroundColor = currentTheme.backgroundColor;
-    log.textColor = currentTheme.textColor;
+    [datetime changeTheme];
+    [logger changeTheme];
+    [log changeTheme];
+
     [super changeTheme];
 }
 

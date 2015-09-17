@@ -42,8 +42,14 @@ ThemeManager *themeManager;
     return self;
 }
 
+- (NSInteger)currentTheme
+{
+    return themeNr;
+}
+
 - (void)setTheme:(NSInteger)nr
 {
+    themeNr = nr;
     switch (nr) {
         case 0:
             currentTheme = [[ThemeNormal alloc] init];

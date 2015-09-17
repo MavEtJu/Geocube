@@ -30,7 +30,7 @@
 - (id)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"Notes and Logs", @"Trackables", @"Groups", @"Browser", @"Files", @"User Profile", @"Notices", @"Settings", @"Help", nil];
+    items = [NSArray arrayWithObjects:@"Navigate", @"-Caches Online", @"Caches Offline", @"Notes and Logs", @"Trackables", @"Groups", @"Browser", @"Files", @"User Profile", @"Notices", @"Settings", @"Help", nil];
 
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];
@@ -113,6 +113,11 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
+
+    if (index == 1) {
+        [themeManager setTheme:1 - [themeManager currentTheme]];
+        return;
+    }
 
     NSLog(@"Switching to %ld", (long)index);
     [myConfig currentPageUpdate:index];
