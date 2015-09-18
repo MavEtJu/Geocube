@@ -183,7 +183,7 @@
 {
     NSArray *a = @[
     @"alter table waypoints add column ignore bool",
-    @"update waypoints set ignore = false",
+    @"update waypoints set ignore = 0",
     @"insert into groups(name, usergroup) values('All Waypoints - Ignored', 0)"
     ];
 
