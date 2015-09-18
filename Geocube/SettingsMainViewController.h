@@ -22,6 +22,8 @@
 @interface SettingsMainViewController : GCTableViewController {
     UISwitch *distanceMetric;
     UISwitch *themeGeosphere;
+    UISwitch *soundDirection;
+    UISwitch *soundDistance;
 
     NSArray *compassTypes;
 }

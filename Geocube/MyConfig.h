@@ -31,6 +31,9 @@
     NSInteger compassType;
     NSInteger themeType;
 
+    BOOL soundDirection;
+    BOOL soundDistance;
+
     UIFont *GCLabelFont;
     UIFont *GCSmallFont;
     UIFont *GCTextblockFont;
@@ -48,6 +51,9 @@
 @property (nonatomic) NSInteger compassType;
 @property (nonatomic) NSInteger themeType;
 
+@property (nonatomic) BOOL soundDirection;
+@property (nonatomic) BOOL soundDistance;
+
 @property (nonatomic, readonly, retain) UIFont *GCLabelFont;
 @property (nonatomic, readonly, retain) UIFont *GCSmallFont;
 @property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
@@ -60,5 +66,7 @@
 - (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)compassTypeUpdate:(NSInteger)value;
 - (void)themeTypeUpdate:(NSInteger)value;
+- (void)soundDirectionUpdate:(BOOL)value;
+- (void)soundDistanceUpdate:(BOOL)value;
 
 @end

@@ -41,7 +41,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 2;
+    return 3;
 }
 
 // Rows per section
@@ -51,6 +51,8 @@
         case 0: // Distance section
             return 1;
         case 1: // Theme section
+            return 2;
+        case 2: // Sounds section
             return 2;
     }
 
@@ -65,6 +67,8 @@
             return @"Distances";
         case 1:
             return @"Theme";
+        case 2:
+            return @"Sounds";
     }
 
     return nil;
@@ -115,6 +119,34 @@
             }
             break;
         }
+        case 2: {   // Sounds
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+            switch (indexPath.row) {
+                case 0: {   // soundDirection
+                    cell.textLabel.text = @"Enable sounds for direction";
+
+                    soundDirection = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    soundDirection.on = myConfig.soundDirection;
+                    [soundDirection addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = soundDirection;
+
+                    return cell;
+                }
+                case 1: {   // soundDistance
+                    cell.textLabel.text = @"Enable sounds for distance";
+
+                    soundDistance = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    soundDistance.on = myConfig.soundDistance;
+                    [soundDistance addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = soundDistance;
+
+                    return cell;
+                }
+            }
+            break;
+        }
     }
 
     return nil;
@@ -123,6 +155,17 @@
 - (void)updateDistanceMetric:(UISwitch *)s
 {
     [myConfig distanceMetricUpdate:s.on];
+}
+
+- (void)updateSoundDistance:(UISwitch *)s
+{
+    [myConfig soundDistanceUpdate:s.on];
+}
+
+- (void)updateSoundDirection:(UISwitch *)s
+{
+    [audioFeedback togglePlay:s.on];
+    [myConfig soundDirectionUpdate:s.on];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

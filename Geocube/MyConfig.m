@@ -23,10 +23,11 @@
 
 @implementation MyConfig
 
-@synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab;
 @synthesize lastImportGroup, lastImportSource;
 @synthesize compassType, themeType;
+@synthesize soundDirection, soundDistance;
+@synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 
 - (id)init
 {
@@ -61,6 +62,8 @@
     CHECK(@"lastimport_source", @"0");
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
+    CHECK(@"sound_direction", @"0");
+    CHECK(@"sound_distance", @"0");
 }
 
 - (void)loadValues
@@ -73,6 +76,8 @@
     lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
+    soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
+    soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -150,6 +155,18 @@
 {
     themeType = value;
     [self NSIntegerUpdate:@"theme_type" value:value];
+}
+
+- (void)soundDirectionUpdate:(BOOL)value
+{
+    soundDirection = value;
+    [self BOOLUpdate:@"sound_direction" value:value];
+}
+
+- (void)soundDistanceUpdate:(BOOL)value
+{
+    soundDistance = value;
+    [self BOOLUpdate:@"sound_distance" value:value];
 }
 
 @end
