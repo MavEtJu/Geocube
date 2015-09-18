@@ -90,6 +90,7 @@
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
 #import "MyConfig.h"
+#import "AudioFeedback.h"
 
 #import "GCLocationManager.h"
 #import "GCTableViewController.h"

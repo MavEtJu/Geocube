@@ -37,7 +37,6 @@
     altitude = nil;
 
     oldCompass = 0;
-    oldBearing = 0;
 
     self = [super init];
 
@@ -261,12 +260,15 @@
             lineImageView.image = lineImage;
             break;
     }
+
+    [audioFeedback togglePlay:YES];
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
+    [audioFeedback togglePlay:NO];
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
 }
@@ -283,6 +285,7 @@
     myLat.text = [c lat_degreesDecimalMinutes];
     myLon.text = [c lon_degreesDecimalMinutes];
 
+    /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f;
 
     CABasicAnimation *theAnimation;
@@ -294,22 +297,33 @@
     compassImageView.transform = CGAffineTransformMakeRotation(newCompass);
     oldCompass = newCompass;
 
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
+    float fBearing = bearing * M_PI / 180.0;
+
+    /* Draw the line */
     if (waypointManager.currentWaypoint == nil) {
         lineImageView.hidden = YES;
-        return;
+    } else {
+        lineImageView.hidden = NO;
+
+        theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        theAnimation.fromValue = [NSNumber numberWithFloat:fBearing];
+        theAnimation.toValue = [NSNumber numberWithFloat:fBearing];
+        theAnimation.duration = 0.5f;
+        [lineImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+        lineImageView.transform = CGAffineTransformMakeRotation(fBearing);
+
+        distance.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
-    lineImageView.hidden = NO;
 
-    float newBearing = ([Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction ) * M_PI / 180.0;
-    theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    theAnimation.fromValue = [NSNumber numberWithFloat:newBearing];
-    theAnimation.toValue = [NSNumber numberWithFloat:newBearing];
-    theAnimation.duration = 0.5f;
-    [lineImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-    lineImageView.transform = CGAffineTransformMakeRotation(newBearing);
-    oldBearing = newBearing;
-
-    distance.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+    if ([myConfig soundDirection] == YES) {
+        bearing = labs(bearing);
+        if (bearing > 180)
+            bearing = 360 - bearing;
+        NSInteger freq = (bearing < 10 ? 1000 : 700) - 2 * bearing;
+        NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
+        [audioFeedback setFrequency:freq];
+    }
 }
 
 @end

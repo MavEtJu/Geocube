@@ -48,7 +48,7 @@
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];
 
-    // Initialize the global menu
+    // Initialize imagesDownloader
     imagesDownloadManager = [[ImagesDownloadManager alloc] init];
 
     // Initialize and cache the database - after file manager
@@ -58,6 +58,10 @@
 
     // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
+
+    // Audio
+    audioFeedback = [[AudioFeedback alloc] init];
+    [audioFeedback togglePlay:[myConfig soundDirection]];
 
     // Initialize the theme - after myconfig
     themeManager = [[ThemeManager alloc] init];

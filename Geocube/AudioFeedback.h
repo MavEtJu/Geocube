@@ -19,35 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum GCCompassType {
-    COMPASS_REDONBLUECOMPASS = 0,
-    COMPASS_WHITEARROWONBLACK,
-    COMPASS_REDARROWONBLACK,
-    COMPASS_AIRPLANE
-};
-
-@interface CompassViewController : GCViewController<GCLocationManagerDelegate> {
-
-    UIImage *compassImage;
-    UIImageView *compassImageView;
-    UIImage *lineImage;
-    UIImageView *lineImageView;
-
-    UIImageView *wpIcon;
-    GCLabel *wpName;
-    GCLabel *wpDescription;
-    GCLabel *wpLat;
-    GCLabel *wpLon;
-    UIImageView *containerSize;
-    UIImageView *ratingD;
-    UIImageView *ratingT;
-    GCLabel *myLat;
-    GCLabel *myLon;
-    GCLabel *accuracy;
-    GCLabel *altitude;
-    GCLabel *distance;
-
-    float oldCompass;
+@interface AudioFeedback : NSObject {
+    double frequency;
+    double sampleRate;
+    double theta;
+    AudioComponentInstance toneUnit;
 }
 
+@property (nonatomic) double frequency;
+@property (nonatomic) double sampleRate;
+@property (nonatomic) double theta;
+
+- (void)togglePlay:(BOOL)on;
+- (void)setFrequency:(double)frequency;
+
 @end
+
+extern AudioFeedback *audioFeedback;

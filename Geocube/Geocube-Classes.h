@@ -23,6 +23,7 @@
 #define Geocube_Geocube_Classes_h
 
 @class AppDelegate;
+@class AudioFeedback;
 @class BrowserAccountsViewController;
 @class BrowserBrowserViewController;
 @class BrowserUserViewController;

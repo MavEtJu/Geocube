@@ -267,6 +267,7 @@
 		E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA71B78CE36003F4132 /* MyTools.m */; };
 		E8A7FAAB1B794E70003F4132 /* CacheImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAA1B794E70003F4132 /* CacheImagesViewController.m */; };
 		E8A7FAAE1B795AC3003F4132 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */; };
+		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
@@ -721,6 +722,8 @@
 		E8A7FAAA1B794E70003F4132 /* CacheImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheImagesViewController.m; sourceTree = "<group>"; };
 		E8A7FAAC1B795AC3003F4132 /* CacheImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheImageViewController.h; sourceTree = "<group>"; };
 		E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheImageViewController.m; sourceTree = "<group>"; };
+		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
+		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
 		E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserBrowserViewController.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
@@ -959,6 +962,8 @@
 				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
+				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
+				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -2216,6 +2221,7 @@
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */,
+				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
