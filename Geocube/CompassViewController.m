@@ -321,7 +321,7 @@
         if (bearing > 180)
             bearing = 360 - bearing;
         NSInteger freq = (bearing < 10 ? 1000 : 700) - 2 * bearing;
-        NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
+        //NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
         [audioFeedback setFrequency:freq];
     }
 }
