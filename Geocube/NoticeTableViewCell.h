@@ -23,13 +23,20 @@
     GCTextblock *noteLabel;
     GCSmallLabel *senderLabel;
     GCSmallLabel *dateLabel;
+
     BOOL seen;
+
     CGRect rectNote;
+    CGRect rectSender;
+    CGRect rectDate;
+
+    dbNotice *notice;
 }
 
 @property (nonatomic, retain) GCTextblock *noteLabel;
 @property (nonatomic, retain) GCSmallLabel *senderLabel;
 @property (nonatomic, retain) GCSmallLabel *dateLabel;
+@property (nonatomic, retain) dbNotice *notice;
 @property (nonatomic) BOOL seen;
 
 - (void)setNote:(NSString *)noteString;

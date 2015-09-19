@@ -23,12 +23,34 @@
 
 @implementation NoticeTableViewCell
 
-@synthesize noteLabel, senderLabel, dateLabel, seen;
+@synthesize noteLabel, senderLabel, dateLabel, seen, notice;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
+    [self calculateRects];
+
+    // Sender
+    senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
+    [senderLabel bold:YES];
+    [self.contentView addSubview:senderLabel];
+
+    // Date
+    dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
+    [dateLabel bold:YES];
+    [self.contentView addSubview:dateLabel];
+
+    // Note
+    noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
+    noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.contentView addSubview:noteLabel];
+
+    return self;
+}
+
+- (void)calculateRects
+{
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
 
@@ -44,30 +66,28 @@
 #define WIDTH_DATE 60
 
     NSInteger height_name = myConfig.GCSmallFont.lineHeight;
-    CGRect rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
-    CGRect rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
-           rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
+    rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
+    rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
+    rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
+}
 
-    // Sender
-    senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
-    [senderLabel bold:YES];
-    [self.contentView addSubview:senderLabel];
+- (void)calculateCellHeight
+{
+    notice.cellHeight = noteLabel.frame.size.height + senderLabel.frame.size.height + 10;
+}
 
-    // Date
-    dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
-    [dateLabel bold:YES];
-    [self.contentView addSubview:dateLabel];
-
-    // Note
-    noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
-    [self.contentView addSubview:noteLabel];
-
-    return self;
+- (void)viewWillTransitionToSize
+{
+    [self calculateRects];
+    dateLabel.frame = rectDate;
+    senderLabel.frame = rectSender;
+    noteLabel.frame = rectNote;
+    [noteLabel sizeToFit];
+    [self calculateCellHeight];
 }
 
 - (void)setNote:(NSString *)noteString
 {
-    noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
     noteLabel.frame = rectNote;
     noteLabel.text = noteString;
     [noteLabel sizeToFit];
