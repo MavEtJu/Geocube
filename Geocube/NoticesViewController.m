@@ -73,6 +73,18 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                    [self.tableView reloadData];
+                                 }
+    ];
+
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -99,13 +111,12 @@
     cell.seen = n.seen;
 
     [cell setNote:n.note];
-
-    [cell sizeToFit];
-    cell.userInteractionEnabled = YES;
-
     [cell.noteLabel bold:(n.seen == NO)];
 
-    n.cellHeight = cell.noteLabel.frame.size.height + cell.senderLabel.frame.size.height + 10;
+    cell.userInteractionEnabled = YES;
+    cell.notice = n;
+
+    [cell viewWillTransitionToSize];
 
     return cell;
 }
