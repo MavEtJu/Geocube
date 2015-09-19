@@ -54,7 +54,6 @@
                                      [self loadStatistics];
                                  }
      ];
-
 }
 
 - (void)loadStatistics
