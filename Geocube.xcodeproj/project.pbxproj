@@ -188,6 +188,7 @@
 		E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67F1B7024E40019F9D2 /* menu icon - close.png */; };
 		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
 		E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */; };
+		E843A4E51BAD3F9200C58F1F /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
 		E847A5851B9FDA1100BEFE83 /* type - cross dnf - 19x19.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5831B9FDA1100BEFE83 /* type - cross dnf - 19x19.png */; };
@@ -578,6 +579,7 @@
 		E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
 		E832E7DD1B8DB91A00A3CCF6 /* GeocachingAustralia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocachingAustralia.h; sourceTree = "<group>"; };
 		E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocachingAustralia.m; sourceTree = "<group>"; };
+		E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "images/GC - logo - 640x960.png"; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -993,6 +995,14 @@
 			name = Pages;
 			sourceTree = "<group>";
 		};
+		E843A4E31BAD3F7800C58F1F /* logos */ = {
+			isa = PBXGroup;
+			children = (
+				E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */,
+			);
+			name = logos;
+			sourceTree = "<group>";
+		};
 		E8575FF61B8466AA00F34483 /* YIPopupTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1372,6 +1382,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E843A4E31BAD3F7800C58F1F /* logos */,
 				E8611A981B8ABC8F00B9D7C3 /* Compass */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E867E83C1B53D61C00CB126A /* attributes */,
@@ -2034,6 +2045,7 @@
 				E847A58A1B9FDB3300BEFE83 /* type - disabled - 24x24.png in Resources */,
 				E807321C1B5F84B4007FDC29 /* attributes - 53.png in Resources */,
 				E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */,
+				E843A4E51BAD3F9200C58F1F /* GC - logo - 640x960.png in Resources */,
 				E807321D1B5F84B4007FDC29 /* attributes - 54.png in Resources */,
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
