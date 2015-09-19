@@ -27,6 +27,4 @@
 @property (nonatomic, retain) GCLabel *keyLabel;
 @property (nonatomic, retain) GCLabel *valueLabel;
 
-
-
 @end
