@@ -33,6 +33,8 @@
     UIBarButtonItem *button;
     id localMenuDelegate;
     UIButton *localMenuButton;
+
+    CGSize currentFrameSize;
 }
 
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
@@ -44,5 +46,6 @@
 - (void)didDismissMenu:(DOPNavbarMenu *)menu;
 - (void)didShowMenu:(DOPNavbarMenu *)menu;
 - (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)vc;
+- (void)transitionToSize:(CGSize)size;
 
 @end

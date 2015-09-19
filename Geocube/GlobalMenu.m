@@ -40,7 +40,19 @@
 
     numberOfItemsInRow = 3;
 
+    currentFrameSize = [UIScreen mainScreen].applicationFrame.size;
+
     return self;
+}
+
+- (void)transitionToSize:(CGSize)newSize
+{
+    if (newSize.width == currentFrameSize.width && newSize.height == currentFrameSize.height)
+        return;
+
+    currentFrameSize = newSize;
+    UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    localMenuButton.frame = CGRectMake(newSize.width - 2 - imgMenu.size.width, localMenuButton.frame.origin.y, localMenuButton.frame.size.width, localMenuButton.frame.size.height);
 }
 
 - (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
