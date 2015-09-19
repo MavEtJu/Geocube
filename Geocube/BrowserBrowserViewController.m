@@ -45,6 +45,18 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     CGRect frame = [[UIScreen mainScreen] applicationFrame];
+                                     webView.frame = frame;
+                                 }
+     ];
+}
+
 - (void)loadURL:(NSString *)urlString
 {
     urlHome = urlString;
