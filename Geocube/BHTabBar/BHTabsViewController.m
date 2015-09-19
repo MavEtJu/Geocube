@@ -198,4 +198,19 @@ enum { kTagTabBase = 100 };
   return YES;
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [menuGlobal transitionToSize:size];
+
+    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
+        [vc viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    }];
+
+}
+
 @end

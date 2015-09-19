@@ -89,6 +89,11 @@
     self.view.backgroundColor = currentTheme.viewBackgroundColor;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
 - (void)closePage:(UIButton *)b
 {
     [self.navigationController popViewControllerAnimated:YES];
