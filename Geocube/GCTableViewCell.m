@@ -44,5 +44,23 @@
     [themeManager changeThemeArray:self.subviews];
 }
 
+- (void)calculateRects
+{
+    /* Redraw the rectangles (again) based on the [UIScreen mainApplication] */
+}
+
+- (void)calculateCellHeight
+{
+    /* Add the size of all views together */
+}
+
+- (void)viewWillTransitionToSize
+{
+    /*
+    [self calculateRects:size];
+    [self calculateCellHeight];
+     */
+}
+
 
 @end

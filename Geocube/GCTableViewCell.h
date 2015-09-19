@@ -23,4 +23,6 @@
 
 - (void)changeTheme;
 
+- (void)viewWillTransitionToSize;
+
 @end
