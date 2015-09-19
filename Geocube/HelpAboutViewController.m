@@ -32,6 +32,17 @@
     return self;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self reloadTexts];
+                                 }
+     ];
+}
+
 - (NSInteger)addText:(NSInteger)y text:(NSString *)t
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
@@ -49,8 +60,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self reloadTexts];
+}
 
+- (void)reloadTexts
+{
     NSInteger y = 10;
+
+    // CLean up and write again.
+    for (GCView *subview in self.view.subviews) {
+        [subview removeFromSuperview];
+    }
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
