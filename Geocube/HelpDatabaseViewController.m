@@ -43,6 +43,17 @@
     [self.tableView reloadData];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self.tableView reloadData];
+                                 }
+     ];
+}
+
 - (void)reloadNumbers
 {
     NSMutableArray *vs = [NSMutableArray arrayWithCapacity:20];
@@ -151,6 +162,8 @@
         cell.valueLabel.text = c.value;
         cell.userInteractionEnabled = NO;
     }
+
+    [cell viewWillTransitionToSize];
 
     return cell;
 }

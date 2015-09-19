@@ -48,6 +48,19 @@
     return self;
 }
 
+- (void)viewWillTransitionToSize
+{
+    [super viewWillTransitionToSize];
+
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect labelFrame = fieldLabel.frame;
+
+    labelFrame.size.width = applicationFrame.size.width - 2 * 10;
+
+    fieldLabel.frame = labelFrame;
+    valueLabel.frame = labelFrame;
+}
+
 - (void)changeTheme
 {
     /*
