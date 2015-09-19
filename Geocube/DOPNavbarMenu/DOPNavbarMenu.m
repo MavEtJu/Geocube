@@ -34,7 +34,7 @@
 
 @end
 
-static NSInteger rowHeight = 100;
+static NSInteger rowHeight = 25;
 static CGFloat titleFontSize = 15.0;
 
 @interface DOPNavbarMenu ()
