@@ -40,7 +40,7 @@
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath;
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory;
 
-- (instancetype)initWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPath:(NSString *)path;
 @property (NS_NONATOMIC_IOSONLY, readonly) BOOL open;
 - (BOOL)writeFile:(NSString *)path;
 - (BOOL)writeFileAtPath:(NSString *)path withFileName:(NSString *)fileName;
