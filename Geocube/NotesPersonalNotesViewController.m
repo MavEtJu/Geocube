@@ -54,6 +54,17 @@
     [self.tableView reloadData];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self.tableView reloadData];
+                                 }
+     ];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -78,15 +89,19 @@
 
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
 
-    cell.name.text = pn.wp_name;
+    cell.nameLabel.text = pn.wp_name;
 
     [cell setLogString:pn.note];
 
     CGRect f = cell.frame;
-    f.size.height = cell.log.frame.size.height + cell.name.frame.size.height + 10;
+    f.size.height = cell.logLabel.frame.size.height + cell.nameLabel.frame.size.height + 10;
     cell.frame = f;
 
     pn.cellHeight = f.size.height;
+
+    cell.personalNote = pn;
+
+    [cell viewWillTransitionToSize];
 
     return cell;
 }
@@ -94,6 +109,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
+    if (pn == nil)
+        return 0;
     return pn.cellHeight;
 }
 

@@ -20,13 +20,17 @@
  */
 
 @interface PersonalNoteTableViewCell : GCTableViewCell {
-    GCTextblock *log;
-    GCSmallLabel *name;
+    GCTextblock *logLabel;
+    GCSmallLabel *nameLabel;
     CGRect rectLog;
+    CGRect rectName;
+
+    dbPersonalNote *personalNote;
 }
 
-@property (nonatomic, retain) GCTextblock *log;
-@property (nonatomic, retain) GCSmallLabel *name;
+@property (nonatomic, retain) GCTextblock *logLabel;
+@property (nonatomic, retain) GCSmallLabel *nameLabel;
+@property (nonatomic, retain) dbPersonalNote *personalNote;
 
 - (void)setLogString:(NSString *)logString;
 

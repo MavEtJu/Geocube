@@ -82,7 +82,6 @@
                                     [self.tableView reloadData];
                                  }
     ];
-
 }
 
 #pragma mark - TableViewController related functions

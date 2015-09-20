@@ -23,12 +23,36 @@
 
 @implementation PersonalNoteTableViewCell
 
-@synthesize log, name;
+@synthesize logLabel, nameLabel, personalNote;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
+    [self calculateRects];
+
+    // Name
+    nameLabel = [[GCSmallLabel alloc] initWithFrame:rectName];
+    [nameLabel bold:YES];
+    [self.contentView addSubview:nameLabel];
+
+    // Log
+    logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
+    logLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [logLabel sizeToFit];
+
+    self.contentView.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+
+    [self.contentView sizeToFit];
+    [self.contentView addSubview:logLabel];
+
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)calculateRects
+{
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
 
@@ -43,42 +67,37 @@
 #define BORDER 10
 
     NSInteger height = myConfig.GCSmallFont.lineHeight;
-    CGRect rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
-           rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
+    rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
+    rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
+}
 
-    // Name
-    name = [[GCSmallLabel alloc] initWithFrame:rectName];
-    [name bold:YES];
-    [self.contentView addSubview:name];
+- (void)calculateCellHeight
+{
+    personalNote.cellHeight = nameLabel.frame.size.height + logLabel.frame.size.height + 10;
+}
 
-    // Log
-    log = [[GCTextblock alloc] initWithFrame:rectLog];
-    [log sizeToFit];
-
-    self.contentView.backgroundColor = currentTheme.tableViewCellBackgroundColor;
-
-    [self.contentView sizeToFit];
-    [self.contentView addSubview:log];
-
-    [self changeTheme];
-
-    return self;
+- (void)viewWillTransitionToSize
+{
+    [self calculateRects];
+    nameLabel.frame = rectName;
+    logLabel.frame = rectLog;
+    [logLabel sizeToFit];
+    [self calculateCellHeight];
 }
 
 - (void)changeTheme
 {
-    [name changeTheme];
-    [log changeTheme];
+    [nameLabel changeTheme];
+    [logLabel changeTheme];
 
     [super changeTheme];
 }
 
 - (void)setLogString:(NSString *)logString
 {
-    log.lineBreakMode = NSLineBreakByWordWrapping;
-    log.frame = rectLog;
-    log.text = logString;
-    [log sizeToFit];
+    logLabel.frame = rectLog;
+    logLabel.text = logString;
+    [logLabel sizeToFit];
 }
 
 @end
