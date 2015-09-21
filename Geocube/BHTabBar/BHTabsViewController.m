@@ -74,7 +74,8 @@ enum { kTagTabBase = 100 };
   self.contentView = viewController.view;
   
   self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-  self.contentView.frame = CGRectMake(0, self.tabsContainerView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
+  // XXX This frame is the size of the view inside the tabbar. 2 * tabView.frame.size.height is not right, but close enough.
+  self.contentView.frame = CGRectMake(0, self.tabsContainerView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - 2 * tabView.frame.size.height);
   
   [self.view addSubview:self.contentView];
 
