@@ -215,10 +215,21 @@
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.lat_float lon:waypointManager.currentWaypoint.lon_float];
 
-    wpIcon.image = [imageLibrary getType:waypointManager.currentWaypoint];
-    containerSize.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
-    ratingD.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
-    ratingT.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
+    if (waypointManager.currentWaypoint == nil) {
+        wpIcon.hidden = YES;
+        containerSize.hidden = YES;
+        ratingD.hidden = YES;
+        ratingT.hidden = YES;
+    } else {
+        wpIcon.hidden = NO;
+        containerSize.hidden = NO;
+        ratingD.hidden = NO;
+        ratingT.hidden = NO;
+        wpIcon.image = [imageLibrary getType:waypointManager.currentWaypoint];
+        containerSize.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
+        ratingD.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
+        ratingT.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
+    }
 
     altitude.text = @"";
     accuracy.text = @"";
