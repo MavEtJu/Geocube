@@ -80,7 +80,7 @@
     UINavigationController *nav;
     UIViewController *vc;
 
-    tabBars = [[NSMutableArray alloc] initWithCapacity:5];
+    tabBars = [[NSMutableArray alloc] initWithCapacity:12];
 
 #define TABBARCONTROLLER(__controllers__) \
     tabBarController = [[UITabBarController alloc] init]; \
