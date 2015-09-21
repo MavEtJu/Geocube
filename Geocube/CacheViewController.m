@@ -68,6 +68,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self.tableView reloadData];
+                                 }
+     ];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
