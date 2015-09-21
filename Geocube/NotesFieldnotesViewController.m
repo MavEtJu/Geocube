@@ -97,18 +97,20 @@
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointLogged:wp._id] objectAtIndex:indexPath.row];
 
-    cell.datetime.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
-    cell.logger.text = l.logger.name;
-    cell.log.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.datetimeLabel.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
+    cell.loggerLabel.text = l.logger.name;
+    cell.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
     dbLogType *lt = [dbc LogType_get:l.logtype_id];
-    cell.logtype.image = [imageLibrary get:lt.icon];
+    cell.logtypeImage.image = [imageLibrary get:lt.icon];
 
     [cell setLogString:l.log];
     [cell.contentView sizeToFit];
     [cell setUserInteractionEnabled:NO];
 
+    cell.log = l;
+
     /* Save the height for later */
-    l.cellHeight = cell.logger.frame.size.height + cell.log.frame.size.height + 10;
+    [cell viewWillTransitionToSize];
     [logs addObject:l];
 
     return cell;

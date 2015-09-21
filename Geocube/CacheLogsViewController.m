@@ -61,6 +61,17 @@
     self.tableView.estimatedRowHeight = 44.0;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self.tableView reloadData];
+                                 }
+     ];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -84,17 +95,18 @@
     }
 
     dbLog *l = [logs objectAtIndex:indexPath.row];
-    cell.datetime.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
-    cell.logger.text = l.logger.name;
+    cell.datetimeLabel.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
+    cell.loggerLabel.text = l.logger.name;
     dbLogType *lt = [dbc LogType_get:l.logtype_id];
-    cell.logtype.image = [imageLibrary get:lt.icon];
+    cell.logtypeImage.image = [imageLibrary get:lt.icon];
 
     [cell setLogString:l.log];
     [cell.contentView sizeToFit];
     [cell setUserInteractionEnabled:NO];
 
-    /* Save the height for later */
-    l.cellHeight = cell.logger.frame.size.height + cell.log.frame.size.height + 10;
+    cell.log = l;
+    [cell viewWillTransitionToSize];
+
     return cell;
 }
 

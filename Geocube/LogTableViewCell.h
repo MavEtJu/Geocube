@@ -20,18 +20,24 @@
  */
 
 @interface LogTableViewCell : GCTableViewCell {
-    UIImageView *logtype;
-    GCSmallLabel *datetime;
-    GCSmallLabel *logger;
-    GCTextblock *log;
+    UIImageView *logtypeImage;
+    GCSmallLabel *datetimeLabel;
+    GCSmallLabel *loggerLabel;
+    GCTextblock *logLabel;
 
+    CGRect rectLogtype;
+    CGRect rectDatetime;
+    CGRect rectLogger;
     CGRect rectLog;
+
+    dbLog *log;
 }
 
-@property (nonatomic, retain) UIImageView *logtype;
-@property (nonatomic, retain) GCSmallLabel *datetime;
-@property (nonatomic, retain) GCSmallLabel *logger;
-@property (nonatomic, retain) GCTextblock *log;
+@property (nonatomic, retain) UIImageView *logtypeImage;
+@property (nonatomic, retain) GCSmallLabel *datetimeLabel;
+@property (nonatomic, retain) GCSmallLabel *loggerLabel;
+@property (nonatomic, retain) GCTextblock *logLabel;
+@property (nonatomic, retain) dbLog *log;
 
 - (void)setLogString:(NSString *)logString;
 
