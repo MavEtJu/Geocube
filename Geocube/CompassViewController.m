@@ -261,7 +261,10 @@
             break;
     }
 
-    [audioFeedback togglePlay:YES];
+    if ([myConfig soundDirection] == YES)
+        [audioFeedback togglePlay:YES];
+    else
+        [audioFeedback togglePlay:NO];
 }
 
 
