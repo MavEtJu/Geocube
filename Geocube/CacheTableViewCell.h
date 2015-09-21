@@ -23,15 +23,32 @@
     GCLabel *description;
     GCLabel *name;
     UIImageView *size;
-    GCLabel *labelRatingD, *labelRatingT;
-    UIImageView *imgRatingD, *imgRatingT;
-    GCLabel *favourites;
+    GCLabel *ratingDLabel, *ratingTLabel;
+    UIImageView *ratingDIV, *ratingTIV;
+    GCLabel *favouritesLabel;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
-    UIImageView *icon, *imgFavouritesIV;
+    UIImageView *icon, *favouritesIV;
     GCLabel *stateCountry;
     GCLabel *bearing;
     GCLabel *compass;
     GCLabel *distance;
+
+    dbWaypoint *waypoint;
+
+    CGRect rectIcon;
+    CGRect rectDescription;
+    CGRect rectName;
+    CGRect rectFavouritesLabel;
+    CGRect rectFavouritesIV;
+    CGRect rectSize;
+    CGRect rectRatingDIV;
+    CGRect rectRatingTIV;
+    CGRect rectRatingDLabel;
+    CGRect rectRatingTLabel;
+    CGRect rectBearing;
+    CGRect rectCompass;
+    CGRect rectStateCountry;
+    CGRect rectDistance;
 }
 
 @property (nonatomic, retain) GCLabel *description;

@@ -34,6 +34,17 @@
     return self;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self.tableView reloadData];
+                                 }
+     ];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -165,6 +176,8 @@
     cell.stateCountry.text = s;
 
     [cell showGroundspeak:(gs != nil)];
+
+    [cell viewWillTransitionToSize];
 
     return cell;
 }
