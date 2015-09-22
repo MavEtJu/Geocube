@@ -30,7 +30,7 @@
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
 @property (nonatomic, retain) NSMutableArray *currentWaypoints;
 
-- (id)init;
+- (instancetype)init;
 - (void)applyFilters:(CLLocationCoordinate2D)coords;
 - (NSString *)configGet:(NSString *)name;
 - (void)configPrefix:(NSString *)prefix;

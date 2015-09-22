@@ -44,7 +44,7 @@ enum {
     CLLocationCoordinate2D meLocation;
 }
 
-- (id)init:(NSInteger)type;
+- (instancetype)init:(NSInteger)type;
 - (void)refreshWaypointsData;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 //- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;

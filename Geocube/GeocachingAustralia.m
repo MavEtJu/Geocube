@@ -25,7 +25,7 @@
 
 @synthesize delegate, callback;
 
-- (id)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPI *)_remoteAPI
 {
     self = [super init];
 

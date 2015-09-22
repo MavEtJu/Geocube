@@ -29,7 +29,7 @@
 @synthesize soundDirection, soundDistance;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

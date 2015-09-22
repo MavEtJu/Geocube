@@ -25,7 +25,7 @@
 
 @synthesize altitude, accuracy, coords, direction, delegates;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

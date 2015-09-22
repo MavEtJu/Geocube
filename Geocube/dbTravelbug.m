@@ -25,7 +25,7 @@
 
 @synthesize name, ref, gc_id;
 
-- (id)init:(NSId)__id name:(NSString *)_name ref:(NSString *)_ref gc_id:(NSId)_gc_id
+- (instancetype)init:(NSId)__id name:(NSString *)_name ref:(NSString *)_ref gc_id:(NSId)_gc_id
 {
     self = [super init];
 

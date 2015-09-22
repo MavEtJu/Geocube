@@ -25,7 +25,7 @@
 
 #define THISCELL @"CacheLogViewControllerCell"
 
-- (id)init:(dbWaypoint *)_waypoint
+- (instancetype)init:(dbWaypoint *)_waypoint
 {
     self = [super init];
 

@@ -23,7 +23,7 @@
 
 @implementation ImportGPXViewController
 
-- (id)init:(NSString *)_filename group:(dbGroup *)_group account:(dbAccount *)_account
+- (instancetype)init:(NSString *)_filename group:(dbGroup *)_group account:(dbAccount *)_account
 {
     self = [super init];
 

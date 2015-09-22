@@ -31,6 +31,6 @@
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) BOOL selected;
 
-- (id)init:(NSId)_id size:(NSString *)size icon:(NSInteger)icon;
+- (instancetype)init:(NSId)_id size:(NSString *)size icon:(NSInteger)icon;
 
 @end

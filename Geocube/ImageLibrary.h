@@ -221,7 +221,7 @@ typedef enum {
     NSMutableDictionary *pinImages, *typeImages;
 };
 
-- (id)init;
+- (instancetype)init;
 - (UIImage *)get:(NSInteger)imgnum;
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;

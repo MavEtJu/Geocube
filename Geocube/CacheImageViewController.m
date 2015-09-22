@@ -25,7 +25,7 @@
 
 @synthesize delegate;
 
-- (id)init:(dbImage *)_img
+- (instancetype)init:(dbImage *)_img
 {
     self = [super init];
 

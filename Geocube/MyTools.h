@@ -48,7 +48,7 @@
 + (NSString *)niceTimeDifference:(NSInteger)i;
 + (NSString *)NiceDistance:(NSInteger)i;
 
-- (id)initClock:(NSString *)title;
+- (instancetype)initClock:(NSString *)title;
 - (void)clockShowAndReset;
 - (void)clockShowAndReset:(NSString *)title;
 - (void)clockEnable:(BOOL)yesno;

@@ -37,6 +37,6 @@
 
 @property (nonatomic) id delegate;
 
-- (id)init:(dbImage *)img;
+- (instancetype)init:(dbImage *)img;
 
 @end

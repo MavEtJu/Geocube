@@ -25,7 +25,7 @@
 
 @synthesize delegate;
 
-- (id)init:(dbGroup *)_group account:(dbAccount *)_account;
+- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 {
     self = [super init];
     delegate = nil;

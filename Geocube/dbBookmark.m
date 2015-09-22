@@ -25,7 +25,7 @@
 
 @synthesize url, name;
 
-- (id)init:(NSId)__id name:(NSString *)_name url:(NSString *)_url
+- (instancetype)init:(NSId)__id name:(NSString *)_name url:(NSString *)_url
 {
     self = [super init];
 

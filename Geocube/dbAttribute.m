@@ -25,7 +25,7 @@
 
 @synthesize icon, label, gc_id, _YesNo;
 
-- (id)init:(NSId)__id gc_id:(NSId)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
+- (instancetype)init:(NSId)__id gc_id:(NSId)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
 {
     self = [super init];
 

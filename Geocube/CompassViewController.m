@@ -23,7 +23,7 @@
 
 @implementation CompassViewController
 
-- (id)init
+- (instancetype)init
 {
     menuItems = nil;
 

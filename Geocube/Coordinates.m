@@ -23,14 +23,14 @@
 
 @implementation Coordinates
 
-- (id)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
+- (instancetype)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
 {
     self = [super init];
     coords.latitude = _lat;
     coords.longitude= _lon;
     return self;
 }
-- (id)init:(CLLocationCoordinate2D)_coords           // { -34.02787, 151.07357 }
+- (instancetype)init:(CLLocationCoordinate2D)_coords           // { -34.02787, 151.07357 }
 {
     self = [super init];
     coords.latitude = _coords.latitude;
@@ -223,7 +223,7 @@
     return 0;
 }
 
-- (id)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
+- (instancetype)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
 {
     self = [super init];
 

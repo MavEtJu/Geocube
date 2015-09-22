@@ -26,6 +26,6 @@
     dbPersonalNote *note;
 }
 
-- (id)init:(dbWaypoint *)waypoint;
+- (instancetype)init:(dbWaypoint *)waypoint;
 
 @end

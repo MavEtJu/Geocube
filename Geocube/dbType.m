@@ -25,7 +25,7 @@
 
 @synthesize type_major, type_minor, type_full, icon, pin, selected;
 
-- (id)init:(NSId)__id type_major:(NSString *)_type_major type_minor:(NSString *)_type_minor icon:(NSInteger)_icon pin:(NSInteger)_pin
+- (instancetype)init:(NSId)__id type_major:(NSString *)_type_major type_minor:(NSString *)_type_minor icon:(NSInteger)_icon pin:(NSInteger)_pin
 {
     self = [super init];
     _id = __id;

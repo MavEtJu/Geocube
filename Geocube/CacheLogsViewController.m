@@ -25,7 +25,7 @@
 
 @implementation CacheLogsViewController
 
-- (id)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)_wp
 {
     self = [super initWithStyle:UITableViewStylePlain];
     waypoint = _wp;
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (id)initMine:(dbWaypoint *)_wp
+- (instancetype)initMine:(dbWaypoint *)_wp
 {
     self = [self init:_wp];
 

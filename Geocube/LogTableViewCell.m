@@ -25,8 +25,7 @@
 
 @synthesize logtypeImage, datetimeLabel, loggerLabel, logLabel, log;
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 

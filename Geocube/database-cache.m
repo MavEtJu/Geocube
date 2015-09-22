@@ -27,7 +27,7 @@
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound, Symbol_Unknown;
 
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     [self loadWaypointData];

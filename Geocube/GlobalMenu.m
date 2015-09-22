@@ -27,7 +27,7 @@
 
 @synthesize parent_vc, previous_vc, localMenuDelegate, localMenuButton;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     items = [NSArray arrayWithObjects:@"Navigate", @"XCaches Online", @"Caches Offline", @"Notes and Logs", @"Trackables", @"Groups", @"Browser", @"Files", @"User Profile", @"Notices", @"Settings", @"Help", nil];

@@ -25,7 +25,7 @@
 
 @synthesize numberOfItemsInRow, tab_menu;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

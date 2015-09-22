@@ -25,7 +25,7 @@
 
 @synthesize token, delegate, callback;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

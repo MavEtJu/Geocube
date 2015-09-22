@@ -23,7 +23,7 @@
 
 @implementation CachePersonalNoteViewController
 
-- (id)init:(dbWaypoint *)_waypoint
+- (instancetype)init:(dbWaypoint *)_waypoint
 {
     self = [super init];
 

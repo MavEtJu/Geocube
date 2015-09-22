@@ -25,7 +25,7 @@
 
 @synthesize dbaccess, db;
 
-- (id)init
+- (instancetype)init
 {
     dbaccess = self;
     db = nil;

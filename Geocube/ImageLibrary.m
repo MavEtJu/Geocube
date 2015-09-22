@@ -23,7 +23,7 @@
 
 @implementation ImageLibrary
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);

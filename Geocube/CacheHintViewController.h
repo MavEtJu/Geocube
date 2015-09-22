@@ -25,6 +25,6 @@
     UIWebView *webview;
 }
 
-- (id)init:(dbWaypoint *)waypoint;
+- (instancetype)init:(dbWaypoint *)waypoint;
 
 @end

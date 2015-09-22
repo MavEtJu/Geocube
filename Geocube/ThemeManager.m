@@ -29,7 +29,7 @@ ThemeManager *themeManager;
 
 @synthesize themeNames;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

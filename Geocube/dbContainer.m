@@ -25,7 +25,7 @@
 
 @synthesize size, icon, selected;
 
-- (id)init:(NSId)__id size:(NSString *)_size icon:(NSInteger)_icon
+- (instancetype)init:(NSId)__id size:(NSString *)_size icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;

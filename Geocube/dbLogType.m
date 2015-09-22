@@ -25,7 +25,7 @@
 
 @synthesize logtype, icon;
 
-- (id)init:(NSId)__id logtype:(NSString *)_logtype icon:(NSInteger)_icon
+- (instancetype)init:(NSId)__id logtype:(NSString *)_logtype icon:(NSInteger)_icon
 {
     self = [super init];
     _id = __id;

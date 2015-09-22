@@ -29,7 +29,7 @@
 @synthesize tableViewBackgroundColor;
 @synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

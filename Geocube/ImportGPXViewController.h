@@ -39,6 +39,6 @@
     ImportGPX *imp;
 }
 
-- (id)init:(NSString *)filename group:(dbGroup *)group account:(dbAccount *)account;
+- (instancetype)init:(NSString *)filename group:(dbGroup *)group account:(dbAccount *)account;
 
 @end

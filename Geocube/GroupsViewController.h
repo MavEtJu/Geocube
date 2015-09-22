@@ -25,6 +25,6 @@
     BOOL showUsers;
 }
 
-- (id)init:(BOOL)showUsers;
+- (instancetype)init:(BOOL)showUsers;
 
 @end

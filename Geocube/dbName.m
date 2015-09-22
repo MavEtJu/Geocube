@@ -25,7 +25,7 @@
 
 @synthesize name, code, account_id, account;
 
-- (id)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code account:(dbAccount *)_account
+- (instancetype)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code account:(dbAccount *)_account
 {
     self = [super init];
 

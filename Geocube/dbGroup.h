@@ -27,7 +27,7 @@
     BOOL selected;
 }
 
-- (id)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
+- (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;

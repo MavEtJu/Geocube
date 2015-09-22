@@ -33,7 +33,7 @@
 
 @property (nonatomic) id delegate;
 
-- (id)init:(RemoteAPI *)remoteAPI;
+- (instancetype)init:(RemoteAPI *)remoteAPI;
 - (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)services_users_byUsername:(NSString *)username;

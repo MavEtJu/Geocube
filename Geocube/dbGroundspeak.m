@@ -25,7 +25,7 @@
 
 @synthesize rating_difficulty, rating_terrain, favourites, country, country_id, country_str, state, state_id, state_str, short_desc_html, short_desc, long_desc_html, long_desc, hint, container, container_str, container_id, archived, available, placed_by, owner_gsid, owner, owner_id, owner_str, waypoint_id;
 
-- (id)init:(NSId)__id
+- (instancetype)init:(NSId)__id
 {
     self = [super init];
     _id = __id;

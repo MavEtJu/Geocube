@@ -25,7 +25,7 @@
 
 @implementation GroupsViewController
 
-- (id)init:(BOOL)_showUsers
+- (instancetype)init:(BOOL)_showUsers
 {
     self = [super init];
     showUsers = _showUsers;

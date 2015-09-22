@@ -25,7 +25,7 @@
 
 #define THISCELL @"HelpDatabaseViewController"
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     menuItems = nil;

@@ -233,7 +233,7 @@
     return [NSString stringWithFormat:@"%ld year%@ ago", diff, diff == 1 ? @"" : @"s"];
 }
 
-- (id)initClock:(NSString *)_title
+- (instancetype)initClock:(NSString *)_title
 {
     self = [super init];
 

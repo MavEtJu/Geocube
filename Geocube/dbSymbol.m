@@ -25,7 +25,7 @@
 
 @synthesize symbol;
 
-- (id)init:(NSId)__id symbol:(NSString *)_symbol
+- (instancetype)init:(NSId)__id symbol:(NSString *)_symbol
 {
     self = [super init];
     _id = __id;

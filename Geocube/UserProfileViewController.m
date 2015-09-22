@@ -23,7 +23,7 @@
 
 @implementation UserProfileViewController
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

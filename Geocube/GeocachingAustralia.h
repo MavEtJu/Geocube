@@ -38,7 +38,7 @@
 @property (nonatomic) id delegate;
 @property (nonatomic, retain, readonly) NSString *callback;
 
-- (id)init:(RemoteAPI *)remoteAPI;
+- (instancetype)init:(RemoteAPI *)remoteAPI;
 - (NSArray *)logtypes:(NSString *)waypointType;
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 

@@ -31,7 +31,7 @@
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
-- (id)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
+- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 + (void)makeNameExist:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 + (NSId)dbCreate:(NSString *)name code:(NSString *)code account:(dbAccount *)account;
 - (NSId)dbCreate;

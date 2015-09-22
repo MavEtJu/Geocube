@@ -25,7 +25,7 @@
 
 @synthesize name, expanded, cellHeight, tvc;
 
-- (id)init:(NSString *)_name
+- (instancetype)init:(NSString *)_name
 {
     self = [super init];
 

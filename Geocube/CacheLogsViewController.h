@@ -25,7 +25,7 @@
     NSArray *logs;
 }
 
-- (id)init:(dbWaypoint *)waypoint;
-- (id)initMine:(dbWaypoint *)waypoint;
+- (instancetype)init:(dbWaypoint *)waypoint;
+- (instancetype)initMine:(dbWaypoint *)waypoint;
 
 @end

@@ -23,9 +23,9 @@
     CLLocationCoordinate2D coords;
 }
 
-- (id)init:(float)lat lon:(float)log;       // -34.02787 151.07357
-- (id)init:(CLLocationCoordinate2D)coor;    // { -34.02787, 151.07357 }
-- (id)initString:(NSString *)lat lon:(NSString *)lon;    // S 34 1.672, E 151 4.414
+- (instancetype)init:(float)lat lon:(float)log;       // -34.02787 151.07357
+- (instancetype)init:(CLLocationCoordinate2D)coor;    // { -34.02787, 151.07357 }
+- (instancetype)initString:(NSString *)lat lon:(NSString *)lon;    // S 34 1.672, E 151 4.414
 - (float)lat;
 - (float)lon;
 - (NSString *)lat_decimalDegreesSigned;     // -34.02787

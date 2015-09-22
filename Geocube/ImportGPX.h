@@ -62,7 +62,7 @@
 
 @property (nonatomic)id delegate;
 
-- (id)init:(dbGroup *)group account:(dbAccount *)account;
+- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;
 - (void)parseFile:(NSString *)filename;
 - (void)parseData:(NSData *)data;

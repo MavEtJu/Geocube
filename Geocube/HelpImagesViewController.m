@@ -33,7 +33,7 @@ enum {
 
 @implementation HelpImagesViewController
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     menuItems = nil;

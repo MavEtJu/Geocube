@@ -25,7 +25,7 @@
 
 @synthesize url, name, datafile;
 
-- (id)init:(NSString *)_url name:(NSString *)_name datafile:(NSString *)_datafile
+- (instancetype)init:(NSString *)_url name:(NSString *)_name datafile:(NSString *)_datafile
 {
     self = [super init];
 

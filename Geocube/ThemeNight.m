@@ -23,7 +23,7 @@
 
 @implementation ThemeNight
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

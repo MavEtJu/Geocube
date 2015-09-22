@@ -65,7 +65,7 @@ OSStatus RenderTone(
 
 @synthesize theta, frequency, sampleRate;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

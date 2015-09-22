@@ -25,7 +25,7 @@
 
 @synthesize key, value;
 
-- (id)init:(NSId)__id key:(NSString *)_key value:(NSString *)_value
+- (instancetype)init:(NSId)__id key:(NSString *)_key value:(NSString *)_value
 {
     self = [super init];
     _id = __id;

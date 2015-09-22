@@ -37,6 +37,6 @@
 @property (nonatomic) NSInteger pin;
 @property (nonatomic) BOOL selected;
 
-- (id)init:(NSId)_id type_major:(NSString *)type_major type_minor:(NSString *)type_minor icon:(NSInteger)icon pin:(NSInteger)pin;
+- (instancetype)init:(NSId)_id type_major:(NSString *)type_major type_minor:(NSString *)type_minor icon:(NSInteger)icon pin:(NSInteger)pin;
 
 @end

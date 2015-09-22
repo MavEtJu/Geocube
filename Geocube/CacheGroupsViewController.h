@@ -24,6 +24,6 @@
     dbWaypoint *waypoint;
 }
 
-- (id)init:(dbWaypoint *)waypoint;
+- (instancetype)init:(dbWaypoint *)waypoint;
 
 @end

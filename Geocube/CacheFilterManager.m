@@ -25,7 +25,7 @@
 
 @synthesize configPrefix, currentWaypoint, currentWaypoints;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

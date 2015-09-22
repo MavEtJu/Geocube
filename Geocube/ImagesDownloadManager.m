@@ -25,7 +25,7 @@
 
 @synthesize todo, activeDownload, imageConnection, delegate;
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

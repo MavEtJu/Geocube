@@ -35,7 +35,7 @@ NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
-- (id)init:(NSInteger)_type
+- (instancetype)init:(NSInteger)_type
 {
     self = [super init];
     waypointsArray = nil;

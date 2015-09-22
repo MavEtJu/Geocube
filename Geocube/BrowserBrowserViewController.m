@@ -23,7 +23,7 @@
 
 @implementation BrowserBrowserViewController
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

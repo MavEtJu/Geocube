@@ -25,7 +25,7 @@
 
 @implementation CachesOfflineListViewController
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

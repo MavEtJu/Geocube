@@ -36,7 +36,7 @@ enum ImageTypes {
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *datafile;
 
-- (id)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile;
+- (instancetype)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile;
 + (NSString *)createDataFilename:(NSString *)url;
 + (dbImage *)dbGetByURL:(NSString *)url;
 + (NSId)dbCreate:(dbImage *)img;

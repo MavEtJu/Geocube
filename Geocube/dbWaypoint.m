@@ -25,7 +25,7 @@
 
 @synthesize groundspeak, groundspeak_id, name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type,  symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing, logStatus, highlight, account, account_id, ignore;
 
-- (id)init:(NSId)__id
+- (instancetype)init:(NSId)__id
 {
     self = [super init];
     self._id = __id;

@@ -25,7 +25,7 @@
 
 #define THISCELL @"CacheAttributesViewController"
 
-- (id)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)_wp
 {
     self = [super init];
     waypoint = _wp;

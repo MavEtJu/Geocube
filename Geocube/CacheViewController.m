@@ -27,7 +27,7 @@
 
 @implementation CacheViewController
 
-- initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
+- (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
 {
     self = [super initWithStyle:style];
 

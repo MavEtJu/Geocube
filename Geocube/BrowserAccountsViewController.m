@@ -25,7 +25,7 @@
 
 #define THISCELL    @"BookmarksAccountsTableViewCell"
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

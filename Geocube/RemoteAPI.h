@@ -49,7 +49,7 @@
 @property (nonatomic, retain) NSString *clientMsg;
 @property (nonatomic, retain) NSError *clientError;
 
-- (id)init:(dbAccount*)account;
+- (instancetype)init:(dbAccount*)account;
 - (BOOL)Authenticate;
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsTrackables;

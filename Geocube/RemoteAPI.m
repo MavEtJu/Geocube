@@ -27,7 +27,7 @@
 @synthesize stats_found, stats_notfound;
 @synthesize clientError, clientMsg;
 
-- (id)init:(dbAccount *)_account;
+- (instancetype)init:(dbAccount *)_account;
 {
     self = [super init];
 

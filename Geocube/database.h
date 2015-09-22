@@ -35,7 +35,7 @@
 @property (nonatomic, retain)id dbaccess;
 @property (nonatomic)sqlite3 *db;
 
-- (id)init;
+- (instancetype)init;
 - (void)checkVersion;
 //- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 - (NSInteger)getDatabaseSize;

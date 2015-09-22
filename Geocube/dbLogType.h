@@ -27,6 +27,6 @@
 @property (nonatomic, retain) NSString *logtype;
 @property (nonatomic) NSInteger icon;
 
-- (id)init:(NSId)_id logtype:(NSString *)logtype icon:(NSInteger)icon;
+- (instancetype)init:(NSId)_id logtype:(NSString *)logtype icon:(NSInteger)icon;
 
 @end

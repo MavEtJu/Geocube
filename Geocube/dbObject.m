@@ -32,7 +32,7 @@ NEEDS_OVERLOADING(dbDelete);
 + (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
 + (NSInteger)dbCount { NEEDS_OVERLOADING_ASSERT; return -1; }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     finished = NO;
