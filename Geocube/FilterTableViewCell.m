@@ -43,27 +43,47 @@
     UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     f1 = cell.textLabel.font;
     f2 = cell.detailTextLabel.font;
-    cellHeight = cell.frame.size.height;
 
+    [self calculateCellHeights];
+    [self calculateRects];
+
+    labelHeader = [[GCLabel alloc] initWithFrame:rectHeader];
+    labelHeader.font = f1;
+    if (fo.expanded == YES)
+        labelHeader.text = [NSString stringWithFormat:@"Selected %@", fo.name];
+    else
+        labelHeader.text = [NSString stringWithFormat:@"Any %@", fo.name];
+    labelHeader.textAlignment = NSTextAlignmentCenter;
+
+    [self.contentView addSubview:labelHeader];
+    [self viewWillTransitionToSize];
+}
+
+- (void)viewWillTransitionToSize
+{
+    [super viewWillTransitionToSize];
+    [self calculateCellHeights];
+    [self calculateRects];
+    labelHeader.frame = rectHeader;
+}
+
+- (void)calculateRects
+{
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
-    CGRect rect;
-    GCLabel *l;
 
-    rect = CGRectMake(20, 2, width - 40, cellHeight);
-    l = [[GCLabel alloc] initWithFrame:rect];
-    l.font = f1;
-    if (fo.expanded == YES)
-        l.text = [NSString stringWithFormat:@"Selected %@", fo.name];
-    else
-        l.text = [NSString stringWithFormat:@"Any %@", fo.name];
-    l.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:l];
+    rectHeader = CGRectMake(20, 2, width - 40, cellHeight);
+}
+
+- (void)calculateCellHeights
+{
+    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    cellHeight = cell.frame.size.height;
 }
 
 - (NSInteger)cellHeight
 {
-    return height;
+    return cellHeight;
 }
 
 #pragma mark -- configuration

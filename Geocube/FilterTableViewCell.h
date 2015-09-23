@@ -20,13 +20,14 @@
  */
 
 @interface FilterTableViewCell : GCTableViewCell {
-    NSInteger height;
-
     UIFont *f1, *f2;
     NSInteger cellHeight, width;
 
     NSString *configPrefix;
     FilterObject *fo;
+
+    CGRect rectHeader;
+    GCLabel *labelHeader;
 }
 
 - (NSInteger)cellHeight;

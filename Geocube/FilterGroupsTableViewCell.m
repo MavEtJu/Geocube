@@ -35,7 +35,7 @@
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
-        fo.cellHeight = height = y;
+        fo.cellHeight = cellHeight = y;
         return self;
     }
 
@@ -61,9 +61,14 @@
     }];
 
     [self.contentView sizeToFit];
-    fo.cellHeight = height = y;
+    fo.cellHeight = cellHeight = y;
 
     return self;
+}
+
+- (void)viewWillTransitionToSize
+{
+    [super viewWillTransitionToSize];
 }
 
 #pragma mark -- configuration

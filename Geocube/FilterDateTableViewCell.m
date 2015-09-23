@@ -37,7 +37,7 @@
 
     if (fo.expanded == NO) {
         [self.contentView sizeToFit];
-        fo.cellHeight = height = y;
+        fo.cellHeight = cellHeight = y;
         return self;
     }
 
@@ -90,7 +90,7 @@
     y += 20;
 
     [self.contentView sizeToFit];
-    fo.cellHeight = height = y;
+    fo.cellHeight = cellHeight = y;
 
     return self;
 }
