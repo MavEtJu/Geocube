@@ -268,6 +268,7 @@
 		E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA71B78CE36003F4132 /* MyTools.m */; };
 		E8A7FAAB1B794E70003F4132 /* CacheImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAA1B794E70003F4132 /* CacheImagesViewController.m */; };
 		E8A7FAAE1B795AC3003F4132 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */; };
+		E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
@@ -724,6 +725,7 @@
 		E8A7FAAA1B794E70003F4132 /* CacheImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheImagesViewController.m; sourceTree = "<group>"; };
 		E8A7FAAC1B795AC3003F4132 /* CacheImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheImageViewController.h; sourceTree = "<group>"; };
 		E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheImageViewController.m; sourceTree = "<group>"; };
+		E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
@@ -998,6 +1000,7 @@
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */,
 				E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */,
 			);
 			name = logos;
@@ -2070,6 +2073,7 @@
 				E80732131B5F84B4007FDC29 /* attributes - 44.png in Resources */,
 				E80732EB1B60FBCA007FDC29 /* pinhead - purple - 15x15.png in Resources */,
 				E80732A51B5F857A007FDC29 /* map - pinhead purple - 15x15.png in Resources */,
+				E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */,
 				E80731F81B5F84B4007FDC29 /* attributes - 17.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
