@@ -44,7 +44,6 @@
     f1 = cell.textLabel.font;
     f2 = cell.detailTextLabel.font;
 
-    [self calculateCellHeights];
     [self calculateRects];
 
     labelHeader = [[GCLabel alloc] initWithFrame:rectHeader];
@@ -54,23 +53,22 @@
     else
         labelHeader.text = [NSString stringWithFormat:@"Any %@", fo.name];
     labelHeader.textAlignment = NSTextAlignmentCenter;
-
     [self.contentView addSubview:labelHeader];
-    [self viewWillTransitionToSize];
 }
 
 - (void)viewWillTransitionToSize
 {
-    [super viewWillTransitionToSize];
     [self calculateCellHeights];
     [self calculateRects];
     labelHeader.frame = rectHeader;
+    [self calculateCellHeights];
 }
 
 - (void)calculateRects
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
+    [self calculateCellHeights];
 
     rectHeader = CGRectMake(20, 2, width - 40, cellHeight);
 }
