@@ -25,178 +25,266 @@
 
 - (instancetype)init
 {
-    menuItems = nil;
-
-    wpIcon = nil;
-    wpName = nil;
-    wpLat = nil;
-    wpLon = nil;
-    myLat = nil;
-    myLon = nil;
-    accuracy = nil;
-    altitude = nil;
+    wpIconIV = nil;
+    wpNameLabel = nil;
+    wpLatLabel = nil;
+    wpLonLabel = nil;
+    myLatLabel = nil;
+    myLonLabel = nil;
+    accuracyLabel = nil;
+    altitudeLabel = nil;
 
     oldCompass = 0;
 
+    menuItems = nil;
+
     self = [super init];
+
+    menuItems = nil;
 
     return self;
 }
 
 - (void)viewDidLoad
 {
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     [self.view sizeToFit];
 
-    NSInteger width = applicationFrame.size.width;
-    NSInteger height = self.view.frame.size.height - 50;
-
-    /*
-     +------+-------+------+
-     |Icon  |GC Code| Size |
-     |      |Coordin|Rating|
-     +------+-------+------+
-     |       Distance      |
-     |                     |
-     |      Compass        |
-     |                     |
-     |                     |
-     |      Cache Name     |
-     +------+-------+------+
-     |Accura|My coor|Altitu|
-     |      |       |      |
-     +------+-------+------+
-     */
-
-#define HEIGHT  height / 18
-#define WIDTH  width / 3
-
-    UIFont *f = [UIFont systemFontOfSize:14];
-    NSInteger textHeight = f.lineHeight;
-
-    CGRect rectIcon = CGRectMake(WIDTH / 3, 0.5 * textHeight, WIDTH / 3, 2.5 * textHeight);
-    CGRect rectName = CGRectMake(WIDTH, 0 * textHeight, WIDTH, textHeight);
-    CGRect rectCoordLat = CGRectMake(WIDTH, 1.5 * textHeight, WIDTH, textHeight);
-    CGRect rectCoordLon = CGRectMake(WIDTH, 2.5 * textHeight, WIDTH, textHeight);
-    CGRect rectSize = CGRectMake(2 * WIDTH, 0 * textHeight, WIDTH, textHeight);
-    CGRect rectRatingD = CGRectMake(2 * WIDTH, 1.5 * textHeight, WIDTH, textHeight);
-    CGRect rectRatingT = CGRectMake(2 * WIDTH, 2.5 * textHeight, WIDTH, textHeight);
-
-    CGRect rectDistance = CGRectMake(0, 4 * textHeight, 3 * WIDTH, textHeight);
-    CGRect rectDescription = CGRectMake(0, height - 5 * textHeight, 3 * WIDTH, textHeight);
-    CGRect rectCompass = CGRectMake(0, 5 * textHeight, 3 * WIDTH, rectDescription.origin.y - rectDistance.origin.y);
-
-    CGRect rectAccuracyText = CGRectMake(0, height - 3.5 * textHeight, WIDTH, 1 * textHeight);
-    CGRect rectAccuracy = CGRectMake(0, height - 2 * textHeight, WIDTH, textHeight);
-    CGRect rectMyLatText = CGRectMake(WIDTH, height - 3.5 * textHeight, WIDTH, textHeight);
-    CGRect rectMyLat = CGRectMake(WIDTH, height - 2 * textHeight, WIDTH, textHeight);
-    CGRect rectMyLon = CGRectMake(WIDTH, height - 1 * textHeight, WIDTH, textHeight);
-    CGRect rectAltitudeText = CGRectMake(2 * WIDTH, height - 3.5 * textHeight, WIDTH, textHeight);
-    CGRect rectAltitude = CGRectMake(2 * WIDTH, height - 2 * textHeight, WIDTH, textHeight);
-
-    GCLabel *l;
-
-    wpIcon = [[UIImageView alloc] initWithFrame:rectIcon];
-    [self.view addSubview:wpIcon];
+    [self calculateRects];
 
 #define FONTSIZE    14
 
-    wpName = [[GCLabel alloc] initWithFrame:rectName];
-    wpName.textAlignment = NSTextAlignmentCenter;
-    wpName.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:wpName];
+    wpIconIV = [[UIImageView alloc] initWithFrame:rectIcon];
+    [self.view addSubview:wpIconIV];
 
-    wpLat = [[GCLabel alloc] initWithFrame:rectCoordLat];
-    wpLat.font = [UIFont systemFontOfSize:FONTSIZE];
-    wpLat.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:wpLat];
+    wpNameLabel = [[GCLabel alloc] initWithFrame:rectName];
+    wpNameLabel.textAlignment = NSTextAlignmentCenter;
+    wpNameLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:wpNameLabel];
 
-    wpLon = [[GCLabel alloc] initWithFrame:rectCoordLon];
-    wpLon.font = [UIFont systemFontOfSize:FONTSIZE];
-    wpLon.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:wpLon];
+    wpLatLabel = [[GCLabel alloc] initWithFrame:rectCoordLat];
+    wpLatLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    wpLatLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:wpLatLabel];
 
-    containerSize = [[UIImageView alloc] initWithFrame:rectSize];
-    containerSize.image = [imageLibrary get:ImageSize_NotChosen];
-    [self.view addSubview:containerSize];
+    wpLonLabel = [[GCLabel alloc] initWithFrame:rectCoordLon];
+    wpLonLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    wpLonLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:wpLonLabel];
 
-    ratingD = [[UIImageView alloc] initWithFrame:rectRatingD];
-    ratingD.image = [imageLibrary get:ImageCacheView_ratingBase];
-    [self.view addSubview:ratingD];
+    containerSizeIV = [[UIImageView alloc] initWithFrame:rectSize];
+    containerSizeIV.image = [imageLibrary get:ImageSize_NotChosen];
+    [self.view addSubview:containerSizeIV];
 
-    ratingT = [[UIImageView alloc] initWithFrame:rectRatingT];
-    ratingT.image = [imageLibrary get:ImageCacheView_ratingBase];
-    [self.view addSubview:ratingT];
+    ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingD];
+    ratingDIV.image = [imageLibrary get:ImageCacheView_ratingBase];
+    [self.view addSubview:ratingDIV];
 
-    l = [[GCLabel alloc] initWithFrame:rectMyLatText];
-    l.text = @"My location";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:l];
+    ratingTIV = [[UIImageView alloc] initWithFrame:rectRatingT];
+    ratingTIV.image = [imageLibrary get:ImageCacheView_ratingBase];
+    [self.view addSubview:ratingTIV];
 
-    myLat = [[GCLabel alloc] initWithFrame:rectMyLat];
-    myLat.text = @"-";
-    myLat.textAlignment = NSTextAlignmentCenter;
-    myLat.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:myLat];
+    myLocationLabel = [[GCLabel alloc] initWithFrame:rectMyLocation];
+    myLocationLabel.text = @"My location";
+    myLocationLabel.textAlignment = NSTextAlignmentCenter;
+    myLocationLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:myLocationLabel];
 
-    myLon = [[GCLabel alloc] initWithFrame:rectMyLon];
-    myLon.text = @"";
-    myLon.textAlignment = NSTextAlignmentCenter;
-    myLon.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:myLon];
+    myLatLabel = [[GCLabel alloc] initWithFrame:rectMyLat];
+    myLatLabel.text = @"-";
+    myLatLabel.textAlignment = NSTextAlignmentCenter;
+    myLatLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:myLatLabel];
 
-    l = [[GCLabel alloc] initWithFrame:rectAccuracyText];
-    l.text = @"Accuracy";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:l];
-    accuracy = [[GCLabel alloc] initWithFrame:rectAccuracy];
-    accuracy.text = @"-";
-    accuracy.textAlignment = NSTextAlignmentCenter;
-    accuracy.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:accuracy];
+    myLonLabel = [[GCLabel alloc] initWithFrame:rectMyLon];
+    myLonLabel.text = @"";
+    myLonLabel.textAlignment = NSTextAlignmentCenter;
+    myLonLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:myLonLabel];
 
-    l = [[GCLabel alloc] initWithFrame:rectAltitudeText];
-    l.text = @"Altitude";
-    l.textAlignment = NSTextAlignmentCenter;
-    l.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:l];
-    altitude = [[GCLabel alloc] initWithFrame:rectAltitude];
-    altitude.text = @"-";
-    altitude.textAlignment = NSTextAlignmentCenter;
-    altitude.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:altitude];
+    accuracyTextLabel = [[GCLabel alloc] initWithFrame:rectAccuracyText];
+    accuracyTextLabel.text = @"Accuracy";
+    accuracyTextLabel.textAlignment = NSTextAlignmentCenter;
+    accuracyTextLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:accuracyTextLabel];
+    accuracyLabel = [[GCLabel alloc] initWithFrame:rectAccuracy];
+    accuracyLabel.text = @"-";
+    accuracyLabel.textAlignment = NSTextAlignmentCenter;
+    accuracyLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:accuracyLabel];
 
-    distance = [[GCLabel alloc] initWithFrame:rectDistance];
-    distance.text = @"-";
-    distance.textAlignment = NSTextAlignmentCenter;
-    distance.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:distance];
+    altitudeTextLabel = [[GCLabel alloc] initWithFrame:rectAltitudeText];
+    altitudeTextLabel.text = @"Altitude";
+    altitudeTextLabel.textAlignment = NSTextAlignmentCenter;
+    altitudeTextLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:altitudeTextLabel];
+    altitudeLabel = [[GCLabel alloc] initWithFrame:rectAltitude];
+    altitudeLabel.text = @"-";
+    altitudeLabel.textAlignment = NSTextAlignmentCenter;
+    altitudeLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:altitudeLabel];
 
-    wpDescription = [[GCLabel alloc] initWithFrame:rectDescription];
-    wpDescription.text = waypointManager.currentWaypoint.urlname;
-    wpDescription.textAlignment = NSTextAlignmentCenter;
-    wpDescription.font = [UIFont systemFontOfSize:FONTSIZE];
-    [self.view addSubview:wpDescription];
+    distanceLabel = [[GCLabel alloc] initWithFrame:rectDistance];
+    distanceLabel.text = @"-";
+    distanceLabel.textAlignment = NSTextAlignmentCenter;
+    distanceLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:distanceLabel];
+
+    wpDescriptionLabel = [[GCLabel alloc] initWithFrame:rectDescription];
+    wpDescriptionLabel.text = waypointManager.currentWaypoint.urlname;
+    wpDescriptionLabel.textAlignment = NSTextAlignmentCenter;
+    wpDescriptionLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    [self.view addSubview:wpDescriptionLabel];
 
     if (rectCompass.size.height < rectCompass.size.width)
         rectCompass.size.width = rectCompass.size.height;
     else
         rectCompass.size.height = rectCompass.size.width;
     rectCompass.origin.x = (width - rectCompass.size.width) / 2;
-    compassImageView = [[UIImageView alloc] initWithFrame:rectCompass];
-    [self.view addSubview:compassImageView];
-    lineImageView = [[UIImageView alloc] initWithFrame:rectCompass];
-    [self.view addSubview:lineImageView];
+    compassIV = [[UIImageView alloc] initWithFrame:rectCompass];
+    [self.view addSubview:compassIV];
+    lineIV = [[UIImageView alloc] initWithFrame:rectCompass];
+    [self.view addSubview:lineIV];
 
     [self changeTheme];
+}
+
+- (void)calculateRects
+{
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    width = applicationFrame.size.width;
+    NSInteger height = self.view.frame.size.height - 50;
+    height = applicationFrame.size.height - 50;
+    NSLog(@"height: %ld", height);
+
+    UIFont *f = [UIFont systemFontOfSize:14];
+    NSInteger textHeight = f.lineHeight;
+
+    if (height > width) {
+        /*
+         +------+-------+------+
+         |Icon  |GC Code| Size |
+         |      |Coordin|Rating|
+         +------+-------+------+
+         |       Distance      |
+         |                     |
+         |      Compass        |
+         |                     |
+         |                     |
+         |      Cache Name     |
+         +------+-------+------+
+         |Accura|My coor|Altitu|
+         |      |       |      |
+         +------+-------+------+
+         */
+
+        NSInteger width3 = width / 3;
+
+        rectIcon = CGRectMake(width3 / 3, 0.5 * textHeight, width3 / 3, 2.5 * textHeight);
+        rectName = CGRectMake(width3, 0 * textHeight, width3, textHeight);
+        rectCoordLat = CGRectMake(width3, 1.5 * textHeight, width3, textHeight);
+        rectCoordLon = CGRectMake(width3, 2.5 * textHeight, width3, textHeight);
+        rectSize = CGRectMake(2 * width3, 0 * textHeight, width3, textHeight);
+        rectRatingD = CGRectMake(2 * width3, 1.5 * textHeight, width3, textHeight);
+        rectRatingT = CGRectMake(2 * width3, 2.5 * textHeight, width3, textHeight);
+
+        rectDistance = CGRectMake(0, 4 * textHeight, 3 * width3, textHeight);
+        rectDescription = CGRectMake(0, height - 5 * textHeight, 3 * width3, textHeight);
+        rectCompass = CGRectMake(0, 5 * textHeight, 3 * width3, rectDescription.origin.y - rectDistance.origin.y);
+        if (rectCompass.size.height < rectCompass.size.width)
+            rectCompass.size.width = rectCompass.size.height;
+        else
+            rectCompass.size.height = rectCompass.size.width;
+        rectCompass.origin.x = (width - rectCompass.size.width) / 2;
+
+        rectAccuracyText = CGRectMake(0, height - 3.5 * textHeight, width3, 1 * textHeight);
+        rectAccuracy = CGRectMake(0, height - 2 * textHeight, width3, textHeight);
+        rectMyLocation = CGRectMake(width3, height - 3.5 * textHeight, width3, textHeight);
+        rectMyLat = CGRectMake(width3, height - 2 * textHeight, width3, textHeight);
+        rectMyLon = CGRectMake(width3, height - 1 * textHeight, width3, textHeight);
+        rectAltitudeText = CGRectMake(2 * width3, height - 3.5 * textHeight, width3, textHeight);
+        rectAltitude = CGRectMake(2 * width3, height - 2 * textHeight, width3, textHeight);
+
+    } else {
+        /*
+         +---------+------------+-------+
+         | Coordin |  GC Code   | My coo|
+         |         |            |       |
+         | Icon    |  Compass   | Dista |
+         |         |            |       |
+         | Size    |            | Accur |
+         | Rating  | Cache Name | Altit |
+         +---------+------------+-------+
+         */
+
+        NSInteger width5 = width / 5;
+
+        rectName = CGRectMake(0, 0.5, width5, textHeight);
+        rectCoordLat = CGRectMake(0, 1.5 * textHeight, width5, textHeight);
+        rectCoordLon = CGRectMake(0, 2.5 * textHeight, width5, textHeight);
+        rectIcon = CGRectMake(0, height / 2 - 1.25 * textHeight, width5, 2.5 * textHeight);
+        rectSize = CGRectMake(0, height - 4 * textHeight, width5, textHeight);
+        rectRatingD = CGRectMake(0, height - 3 * textHeight, width5, textHeight);
+        rectRatingT = CGRectMake(0, height - 2 * textHeight, width5, textHeight);
+
+        rectDescription = CGRectMake(width5, height - 2 * textHeight, 3 * width5, textHeight);
+        rectCompass = CGRectMake(width5, 0, 3 * width5, height - 1.5 * textHeight);
+        if (rectCompass.size.height < rectCompass.size.width)
+            rectCompass.size.width = rectCompass.size.height;
+        else
+            rectCompass.size.height = rectCompass.size.width;
+        rectCompass.origin.x = (width - rectCompass.size.width) / 2;
+
+        rectMyLocation = CGRectMake(width - width5, 0, width5, textHeight);
+        rectMyLat = CGRectMake(width - width5, 1 * textHeight, width5, textHeight);
+        rectMyLon = CGRectMake(width - width5, 2 * textHeight, width5, textHeight);
+        rectDistance = CGRectMake(width - width5, height / 2 - textHeight, width5, textHeight);
+        rectAccuracyText = CGRectMake(width - width5, height - 5 * textHeight, width5, textHeight);
+        rectAccuracy = CGRectMake(width - width5, height - 4 * textHeight, width5, textHeight);
+        rectAltitudeText = CGRectMake(width - width5, height - 3 * textHeight, width5, textHeight);
+        rectAltitude = CGRectMake(width - width5, height - 2 * textHeight, width5, textHeight);
+    }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self calculateRects];
+
+                                     wpIconIV.frame = rectIcon;
+                                     wpNameLabel.frame = rectName;
+                                     wpLatLabel.frame = rectCoordLat;
+                                     wpLonLabel.frame = rectCoordLon;
+                                     containerSizeIV.frame = rectSize;
+                                     ratingDIV.frame = rectRatingD;
+                                     ratingTIV.frame = rectRatingT;
+
+                                     myLocationLabel.frame = rectMyLocation;
+                                     myLatLabel.frame = rectMyLat;
+                                     myLonLabel.frame = rectMyLon;
+
+                                     accuracyTextLabel.frame = rectAccuracyText;
+                                     accuracyLabel.frame = rectAccuracy;
+                                     altitudeTextLabel.frame = rectAltitudeText;
+                                     altitudeLabel.frame = rectAltitude;
+
+                                     distanceLabel.frame = rectDistance;
+                                     wpDescriptionLabel.frame = rectDescription;
+
+                                     compassIV.frame = rectCompass;
+                                     lineIV.frame = rectCompass;
+                                 }
+     ];
 }
 
 - (void)changeTheme
@@ -216,59 +304,59 @@
     Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.lat_float lon:waypointManager.currentWaypoint.lon_float];
 
     if (waypointManager.currentWaypoint == nil) {
-        wpIcon.hidden = YES;
-        containerSize.hidden = YES;
-        ratingD.hidden = YES;
-        ratingT.hidden = YES;
+        wpIconIV.hidden = YES;
+        containerSizeIV.hidden = YES;
+        ratingDIV.hidden = YES;
+        ratingTIV.hidden = YES;
     } else {
-        wpIcon.hidden = NO;
-        containerSize.hidden = NO;
-        ratingD.hidden = NO;
-        ratingT.hidden = NO;
-        wpIcon.image = [imageLibrary getType:waypointManager.currentWaypoint];
-        containerSize.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
-        ratingD.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
-        ratingT.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
+        wpIconIV.hidden = NO;
+        containerSizeIV.hidden = NO;
+        ratingDIV.hidden = NO;
+        ratingTIV.hidden = NO;
+        wpIconIV.image = [imageLibrary getType:waypointManager.currentWaypoint];
+        containerSizeIV.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
+        ratingDIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
+        ratingTIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
     }
 
-    altitude.text = @"";
-    accuracy.text = @"";
-    distance.text = @"";
+    altitudeLabel.text = @"";
+    accuracyLabel.text = @"";
+    distanceLabel.text = @"";
 
     if (waypointManager.currentWaypoint != nil) {
-        wpName.text = waypointManager.currentWaypoint.name;
-        wpDescription.text = waypointManager.currentWaypoint.urlname;
-        wpLat.text = [coords lat_degreesDecimalMinutes];
-        wpLon.text = [coords lon_degreesDecimalMinutes];
+        wpNameLabel.text = waypointManager.currentWaypoint.name;
+        wpDescriptionLabel.text = waypointManager.currentWaypoint.urlname;
+        wpLatLabel.text = [coords lat_degreesDecimalMinutes];
+        wpLonLabel.text = [coords lon_degreesDecimalMinutes];
     } else {
-        wpName.text = @"";
-        wpDescription.text = @"";
-        wpLat.text = @"";
-        wpLon.text = @"";
+        wpNameLabel.text = @"";
+        wpDescriptionLabel.text = @"";
+        wpLatLabel.text = @"";
+        wpLonLabel.text = @"";
     }
 
     // Update compass type
     switch (myConfig.compassType) {
         case COMPASS_REDONBLUECOMPASS:
             compassImage  = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
-            compassImageView.image = compassImage;
+            compassIV.image = compassImage;
             lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlueArrow];
-            lineImageView.image = lineImage;
+            lineIV.image = lineImage;
             break;
         case COMPASS_WHITEARROWONBLACK:
-            compassImageView.image = nil;
+            compassIV.image = nil;
             lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
-            lineImageView.image = lineImage;
+            lineIV.image = lineImage;
             break;
         case COMPASS_REDARROWONBLACK:
-            compassImageView.image = nil;
+            compassIV.image = nil;
             lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlack];
-            lineImageView.image = lineImage;
+            lineIV.image = lineImage;
             break;
         case COMPASS_AIRPLANE:
-            compassImageView.image = [imageLibrary get:ImageCompass_AirplaneCompass];
+            compassIV.image = [imageLibrary get:ImageCompass_AirplaneCompass];
             lineImage = [imageLibrary get:ImageCompass_AirplaneAirplane];
-            lineImageView.image = lineImage;
+            lineIV.image = lineImage;
             break;
     }
 
@@ -290,14 +378,14 @@
 /* Receive data from the location manager */
 - (void)updateData
 {
-    accuracy.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.accuracy]];
-    altitude.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.altitude]];
+    accuracyLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.accuracy]];
+    altitudeLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.altitude]];
 
 //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
-    myLat.text = [c lat_degreesDecimalMinutes];
-    myLon.text = [c lon_degreesDecimalMinutes];
+    myLatLabel.text = [c lat_degreesDecimalMinutes];
+    myLonLabel.text = [c lon_degreesDecimalMinutes];
 
     /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f;
@@ -307,8 +395,8 @@
     theAnimation.fromValue = [NSNumber numberWithFloat:newCompass];
     theAnimation.toValue = [NSNumber numberWithFloat:newCompass];
     theAnimation.duration = 0.5f;
-    [compassImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-    compassImageView.transform = CGAffineTransformMakeRotation(newCompass);
+    [compassIV.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+    compassIV.transform = CGAffineTransformMakeRotation(newCompass);
     oldCompass = newCompass;
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
@@ -316,18 +404,18 @@
 
     /* Draw the line */
     if (waypointManager.currentWaypoint == nil) {
-        lineImageView.hidden = YES;
+        lineIV.hidden = YES;
     } else {
-        lineImageView.hidden = NO;
+        lineIV.hidden = NO;
 
         theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
         theAnimation.fromValue = [NSNumber numberWithFloat:fBearing];
         theAnimation.toValue = [NSNumber numberWithFloat:fBearing];
         theAnimation.duration = 0.5f;
-        [lineImageView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-        lineImageView.transform = CGAffineTransformMakeRotation(fBearing);
+        [lineIV.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+        lineIV.transform = CGAffineTransformMakeRotation(fBearing);
 
-        distance.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+        distanceLabel.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
 
     if ([myConfig soundDirection] == YES) {

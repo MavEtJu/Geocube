@@ -29,23 +29,48 @@ enum GCCompassType {
 @interface CompassViewController : GCViewController<GCLocationManagerDelegate> {
 
     UIImage *compassImage;
-    UIImageView *compassImageView;
+    UIImageView *compassIV;
     UIImage *lineImage;
-    UIImageView *lineImageView;
+    UIImageView *lineIV;
 
-    UIImageView *wpIcon;
-    GCLabel *wpName;
-    GCLabel *wpDescription;
-    GCLabel *wpLat;
-    GCLabel *wpLon;
-    UIImageView *containerSize;
-    UIImageView *ratingD;
-    UIImageView *ratingT;
-    GCLabel *myLat;
-    GCLabel *myLon;
-    GCLabel *accuracy;
-    GCLabel *altitude;
-    GCLabel *distance;
+    UIImageView *wpIconIV;
+    GCLabel *wpNameLabel;
+    GCLabel *wpDescriptionLabel;
+    GCLabel *wpLatLabel;
+    GCLabel *wpLonLabel;
+    UIImageView *containerSizeIV;
+    UIImageView *ratingDIV;
+    UIImageView *ratingTIV;
+    GCLabel *myLocationLabel;
+    GCLabel *myLatLabel;
+    GCLabel *myLonLabel;
+    GCLabel *accuracyTextLabel;
+    GCLabel *accuracyLabel;
+    GCLabel *altitudeTextLabel;
+    GCLabel *altitudeLabel;
+    GCLabel *distanceLabel;
+
+    NSInteger width;
+
+    CGRect rectIcon;
+    CGRect rectName;
+    CGRect rectCoordLat;
+    CGRect rectCoordLon;
+    CGRect rectSize;
+    CGRect rectRatingD;
+    CGRect rectRatingT;
+
+    CGRect rectDistance;
+    CGRect rectDescription;
+    CGRect rectCompass;
+
+    CGRect rectAccuracyText;
+    CGRect rectAccuracy;
+    CGRect rectMyLocation;
+    CGRect rectMyLat;
+    CGRect rectMyLon;
+    CGRect rectAltitudeText;
+    CGRect rectAltitude;
 
     float oldCompass;
 }
