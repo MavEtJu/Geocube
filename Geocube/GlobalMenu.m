@@ -50,6 +50,7 @@
     if (newSize.width == currentFrameSize.width && newSize.height == currentFrameSize.height)
         return;
 
+    _global_menu = nil;
     currentFrameSize = newSize;
     UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
     localMenuButton.frame = CGRectMake(newSize.width - 2 - imgMenu.size.width, localMenuButton.frame.origin.y, localMenuButton.frame.size.width, localMenuButton.frame.size.height);
