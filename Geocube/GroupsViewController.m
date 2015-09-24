@@ -48,11 +48,6 @@
     [super viewWillAppear:animated];
     [self refreshGroupData];
     [self.tableView reloadData];
-
-    if (showUsers == YES)
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    else
-        self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)refreshGroupData

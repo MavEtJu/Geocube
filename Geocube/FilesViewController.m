@@ -64,7 +64,6 @@
     [super viewWillAppear:animated];
     [self refreshFileData];
     [self.tableView reloadData];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 

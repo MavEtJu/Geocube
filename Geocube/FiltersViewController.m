@@ -53,8 +53,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)viewDidLoad
