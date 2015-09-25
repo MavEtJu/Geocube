@@ -282,8 +282,12 @@
                                      distanceLabel.frame = rectDistance;
                                      wpDescriptionLabel.frame = rectDescription;
 
+                                     compassIV.transform = CGAffineTransformMakeRotation(0);
                                      compassIV.frame = rectCompass;
+                                     lineIV.transform = CGAffineTransformMakeRotation(0);
                                      lineIV.frame = rectCompass;
+
+                                     [self updateData];
                                  }
      ];
 }
@@ -391,12 +395,6 @@
     /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f;
 
-    CABasicAnimation *theAnimation;
-    theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    theAnimation.fromValue = [NSNumber numberWithFloat:newCompass];
-    theAnimation.toValue = [NSNumber numberWithFloat:newCompass];
-    theAnimation.duration = 0.5f;
-    [compassIV.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     compassIV.transform = CGAffineTransformMakeRotation(newCompass);
     oldCompass = newCompass;
 
@@ -409,13 +407,7 @@
     } else {
         lineIV.hidden = NO;
 
-        theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        theAnimation.fromValue = [NSNumber numberWithFloat:fBearing];
-        theAnimation.toValue = [NSNumber numberWithFloat:fBearing];
-        theAnimation.duration = 0.5f;
-        [lineIV.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
         lineIV.transform = CGAffineTransformMakeRotation(fBearing);
-
         distanceLabel.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
 
@@ -427,6 +419,7 @@
         //NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
         [audioFeedback setFrequency:freq];
     }
+
 }
 
 @end
