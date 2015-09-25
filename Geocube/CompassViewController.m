@@ -187,7 +187,8 @@
 
         NSInteger width3 = width / 3;
 
-        rectIcon = CGRectMake(width3 / 3, 0.5 * textHeight, width3 / 3, 2.5 * textHeight);
+        rectIcon = CGRectMake(width3 / 2 - wpIconIV.image.size.width, 3.5 * textHeight / 2 - wpIconIV
+                              .image.size.height, 2 * wpIconIV.image.size.width, 2 * wpIconIV.image.size.height);
         rectName = CGRectMake(width3, 0 * textHeight, width3, textHeight);
         rectCoordLat = CGRectMake(width3, 1.5 * textHeight, width3, textHeight);
         rectCoordLon = CGRectMake(width3, 2.5 * textHeight, width3, textHeight);
@@ -229,7 +230,7 @@
         rectName = CGRectMake(0, 0.5, width5, textHeight);
         rectCoordLat = CGRectMake(0, 1.5 * textHeight, width5, textHeight);
         rectCoordLon = CGRectMake(0, 2.5 * textHeight, width5, textHeight);
-        rectIcon = CGRectMake(0, height / 2 - 1.25 * textHeight, width5, 2.5 * textHeight);
+        rectIcon = CGRectMake(width5 / 2 - wpIconIV.image.size.width, height / 2 - wpIconIV.image.size.height, 2 * wpIconIV.image.size.width, 2 * wpIconIV.image.size.height);
         rectSize = CGRectMake(0, height - 4 * textHeight, width5, textHeight);
         rectRatingD = CGRectMake(0, height - 3 * textHeight, width5, textHeight);
         rectRatingT = CGRectMake(0, height - 2 * textHeight, width5, textHeight);
