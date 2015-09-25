@@ -236,7 +236,7 @@
 
 + (NSArray *)dbAllIgnored
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"ignored = 1"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"ignore = 1"];
     return wps;
 }
 
