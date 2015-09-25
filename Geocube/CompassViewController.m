@@ -261,35 +261,39 @@
     [coordinator animateAlongsideTransition:nil
                                  completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                      [self calculateRects];
-
-                                     wpIconIV.frame = rectIcon;
-                                     wpNameLabel.frame = rectName;
-                                     wpLatLabel.frame = rectCoordLat;
-                                     wpLonLabel.frame = rectCoordLon;
-                                     containerSizeIV.frame = rectSize;
-                                     ratingDIV.frame = rectRatingD;
-                                     ratingTIV.frame = rectRatingT;
-
-                                     myLocationLabel.frame = rectMyLocation;
-                                     myLatLabel.frame = rectMyLat;
-                                     myLonLabel.frame = rectMyLon;
-
-                                     accuracyTextLabel.frame = rectAccuracyText;
-                                     accuracyLabel.frame = rectAccuracy;
-                                     altitudeTextLabel.frame = rectAltitudeText;
-                                     altitudeLabel.frame = rectAltitude;
-
-                                     distanceLabel.frame = rectDistance;
-                                     wpDescriptionLabel.frame = rectDescription;
-
-                                     compassIV.transform = CGAffineTransformMakeRotation(0);
-                                     compassIV.frame = rectCompass;
-                                     lineIV.transform = CGAffineTransformMakeRotation(0);
-                                     lineIV.frame = rectCompass;
-
-                                     [self updateData];
+                                     [self viewWilltransitionToSize];
                                  }
      ];
+}
+
+- (void)viewWilltransitionToSize
+{
+    wpIconIV.frame = rectIcon;
+    wpNameLabel.frame = rectName;
+    wpLatLabel.frame = rectCoordLat;
+    wpLonLabel.frame = rectCoordLon;
+    containerSizeIV.frame = rectSize;
+    ratingDIV.frame = rectRatingD;
+    ratingTIV.frame = rectRatingT;
+
+    myLocationLabel.frame = rectMyLocation;
+    myLatLabel.frame = rectMyLat;
+    myLonLabel.frame = rectMyLon;
+
+    accuracyTextLabel.frame = rectAccuracyText;
+    accuracyLabel.frame = rectAccuracy;
+    altitudeTextLabel.frame = rectAltitudeText;
+    altitudeLabel.frame = rectAltitude;
+
+    distanceLabel.frame = rectDistance;
+    wpDescriptionLabel.frame = rectDescription;
+
+    compassIV.transform = CGAffineTransformMakeRotation(0);
+    compassIV.frame = rectCompass;
+    lineIV.transform = CGAffineTransformMakeRotation(0);
+    lineIV.frame = rectCompass;
+
+    [self updateData];
 }
 
 - (void)changeTheme
@@ -369,6 +373,9 @@
         [audioFeedback togglePlay:YES];
     else
         [audioFeedback togglePlay:NO];
+
+    [self calculateRects];
+    [self viewWilltransitionToSize];
 }
 
 
