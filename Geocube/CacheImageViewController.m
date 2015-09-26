@@ -62,19 +62,20 @@
     zoomedin = NO;
     [self zoominout];
 
+    [self.view setUserInteractionEnabled:YES];
+
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTaped:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
-    [imgview addGestureRecognizer:singleTap];
-    [imgview setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:singleTap];
 
-    UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
+    UISwipeGestureRecognizer *swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
     swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
-    [imgview addGestureRecognizer:swipeleft];
+    [self.view addGestureRecognizer:swipeleft];
 
-    UISwipeGestureRecognizer * swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
+    UISwipeGestureRecognizer *swiperight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
     swiperight.direction=UISwipeGestureRecognizerDirectionRight;
-    [imgview addGestureRecognizer:swiperight];
+    [self.view addGestureRecognizer:swiperight];
 
     [self showCloseButton];
 }
