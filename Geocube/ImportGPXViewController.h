@@ -36,6 +36,17 @@
     GCLabel *totalImagesLabel;
     GCLabel *queuedImagesLabel;
 
+    NSString *filenameString;
+    NSInteger newWaypointsValue;
+    NSInteger totalWaypointsValue;
+    NSInteger newLogsValue;
+    NSInteger totalLogsValue;
+    NSInteger newTravelbugsValue;
+    NSInteger totalTravelbugsValue;
+    NSInteger progressValue;
+    NSInteger totalImagesValue;
+    NSInteger queuedImagesValue;
+
     ImportGPX *imp;
 }
 

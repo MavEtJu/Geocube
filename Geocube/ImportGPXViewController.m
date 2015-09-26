@@ -62,124 +62,166 @@
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
 
-    NSInteger width = applicationFrame.size.width;
-    NSInteger margin = 10;
-    NSInteger labelOffset = margin;
-    NSInteger labelSize = 3 * width / 4 - 2 * margin;
-    NSInteger valueOffset = 3 * width / 4 + margin - myConfig.GCLabelFont.pointSize;
-    NSInteger valueSize = width / 4 - 2 * margin;
-    NSInteger height = myConfig.GCLabelFont.lineHeight;
-    NSInteger y = 0;
-    GCLabel *l;
-
-    filenameLabel = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
-    [filenameLabel setText:@"Import of ?"];
-    filenameLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:filenameLabel];
-    y += height;
-
-    // Progress label
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"Done:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    progressLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize + myConfig.GCLabelFont.pointSize, height)];
-    progressLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:progressLabel];
-    y += height;
-
-    // New waypoint counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"New waypoints imported:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    newWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    newWaypointsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:newWaypointsLabel];
-    y += height;
-
-    // Total waypoint counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"Total waypoints read:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    totalWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    totalWaypointsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:totalWaypointsLabel];
-    y += height;
-
-    // New travelbugs counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"New travelbugs imported:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    newTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    newTravelbugsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:newTravelbugsLabel];
-    y += height;
-
-    // Total travelbugs counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"Total travelbugs read:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    totalTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    totalTravelbugsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:totalTravelbugsLabel];
-    y += height;
-
-    // New logs counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"New logs imported:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    newLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    newLogsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:newLogsLabel];
-    y += height;
-
-    // Total logs counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"Total logs read:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    totalLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    totalLogsLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:totalLogsLabel];
-    y += height;
-
-    // Queued images counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"New images queued:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    queuedImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    queuedImagesLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:queuedImagesLabel];
-    y += height;
-
-    // Total images counter
-    l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-    l.text = @"Total images read:";
-    l.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:l];
-
-    totalImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-    totalImagesLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:totalImagesLabel];
-    y += height;
+    [self addOrResizeFields];
 
     imp = [[ImportGPX alloc] init:group account:account];
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self addOrResizeFields];
+                                 }
+     ];
+}
+
+- (void)addOrResizeFields
+{
+    @synchronized(self) {
+        for (GCView *subview in self.view.subviews) {
+            [subview removeFromSuperview];
+        }
+
+        NSInteger margin = 10;
+        NSInteger labelOffset;
+        NSInteger labelSize;
+        NSInteger valueOffset;
+        NSInteger valueSize;
+        NSInteger height = myConfig.GCLabelFont.lineHeight;
+
+        CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+        NSInteger width = applicationFrame.size.width;
+
+        if (applicationFrame.size.height > applicationFrame. size.width) {
+            labelOffset = margin;
+            labelSize = 3 * width / 4 - 2 * margin;
+            valueOffset = 3 * width / 4 + margin - myConfig.GCLabelFont.pointSize;
+            valueSize = width / 4 - 2 * margin;
+        } else {
+            labelOffset = margin;
+            labelSize = 2 * width / 4 - 2 * margin;
+            valueOffset = 2 * width / 4 + margin - myConfig.GCLabelFont.pointSize;
+            valueSize = width / 4 - 2 * margin;
+        }
+
+        NSInteger y = 0;
+        GCLabel *l;
+
+        filenameLabel = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
+        if (filenameString == nil)
+            [filenameLabel setText:@"Import of ?"];
+        else
+            [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filenameString]];
+        filenameLabel.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:filenameLabel];
+        y += 1.5 * height;
+
+        // Progress label
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Done:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        progressLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize + myConfig.GCLabelFont.pointSize, height)];
+        progressLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:progressLabel];
+        y += height;
+
+        // New waypoint counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"New waypoints imported:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        newWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        newWaypointsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:newWaypointsLabel];
+        y += height;
+
+        // Total waypoint counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Total waypoints read:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        totalWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        totalWaypointsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:totalWaypointsLabel];
+        y += height;
+
+        // New travelbugs counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"New travelbugs imported:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        newTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        newTravelbugsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:newTravelbugsLabel];
+        y += height;
+
+        // Total travelbugs counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Total travelbugs read:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        totalTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        totalTravelbugsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:totalTravelbugsLabel];
+        y += height;
+
+        // New logs counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"New logs imported:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        newLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        newLogsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:newLogsLabel];
+        y += height;
+
+        // Total logs counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Total logs read:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        totalLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        totalLogsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:totalLogsLabel];
+        y += height;
+
+        // Queued images counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"New images queued:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        queuedImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        queuedImagesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:queuedImagesLabel];
+        y += height;
+        
+        // Total images counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Total images read:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+        
+        totalImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        totalImagesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:totalImagesLabel];
+        y += height;
+
+        [self updateData];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -202,10 +244,12 @@
     @autoreleasepool {
         [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                filenameString = filename;
                 [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
             }];
             [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
-            progressLabel.text = @"100%";
+            progressValue = 100;
+            [self updateData];
             [waypointManager needsRefresh];
         }];
     }
@@ -218,22 +262,39 @@
 
 - (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        progressLabel.text = [NSString stringWithFormat:@"%@%%", [MyTools niceNumber:percentageRead]];
-        newWaypointsLabel.text = [MyTools niceNumber:newWaypointsCount];
-        totalWaypointsLabel.text = [MyTools niceNumber:totalWaypointsCount];
-        newLogsLabel.text = [MyTools niceNumber:newLogsCount];
-        totalLogsLabel.text = [MyTools niceNumber:totalLogsCount];
-        newTravelbugsLabel.text = [MyTools niceNumber:newTravelbugsCount];
-        totalTravelbugsLabel.text = [MyTools niceNumber:totalTravelbugsCount];
-        totalImagesLabel.text = [MyTools niceNumber:newImagesCount];
-    }];
+    @synchronized(self) {
+        progressValue = percentageRead;
+        newWaypointsValue = newWaypointsCount;
+        totalWaypointsValue = totalWaypointsCount;
+        newLogsValue = newLogsCount;
+        totalLogsValue = totalLogsCount;
+        newTravelbugsValue = newTravelbugsCount;
+        totalTravelbugsValue = totalTravelbugsCount;
+        totalImagesValue = newImagesCount;
+        [self updateData];
+    }
 }
 
 - (void)updateData:(NSInteger)queuedImages
 {
+    @synchronized(self) {
+        queuedImagesValue = queuedImages;
+        [self updateData];
+    }
+}
+
+- (void)updateData
+{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        queuedImagesLabel.text = [MyTools niceNumber:queuedImages];
+        progressLabel.text = [NSString stringWithFormat:@"%@%%", [MyTools niceNumber:progressValue]];
+        newWaypointsLabel.text = [MyTools niceNumber:newWaypointsValue];
+        totalWaypointsLabel.text = [MyTools niceNumber:totalImagesValue];
+        newLogsLabel.text = [MyTools niceNumber:newLogsValue];
+        totalLogsLabel.text = [MyTools niceNumber:totalImagesValue];
+        newTravelbugsLabel.text = [MyTools niceNumber:newTravelbugsValue];
+        totalTravelbugsLabel.text = [MyTools niceNumber:totalTravelbugsValue];
+        totalImagesLabel.text = [MyTools niceNumber:totalImagesValue];
+        queuedImagesLabel.text = [MyTools niceNumber:queuedImagesValue];
     }];
 }
 
