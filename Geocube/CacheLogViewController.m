@@ -115,7 +115,6 @@
                     fpSwitch.on = fp;
                     [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = fpSwitch;
-                    cell.userInteractionEnabled = NO;
                     break;
                 }
                 case 2:
@@ -136,7 +135,6 @@
                     fpSwitch.on = upload;
                     [fpSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = fpSwitch;
-                    cell.userInteractionEnabled = NO;
                     break;
                 }
                 case 1:
@@ -146,8 +144,6 @@
             break;
         }
     }
-
-    cell.userInteractionEnabled = YES;
 
     return cell;
 }
@@ -203,6 +199,7 @@
             break;
         }
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     return;
 }
 
