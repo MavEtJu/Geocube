@@ -35,9 +35,8 @@ insert into groups(name, usergroup) values("All Waypoints - Ignored", 0);
 insert into groups(name, usergroup) values("Last Import", 0);
 insert into groups(name, usergroup) values("Last Import - New", 0);
 insert into groups(name, usergroup) values("GCA - NSW", 1);
+insert into groups(name, usergroup) values("GC - NSW", 1);
 insert into groups(name, usergroup) values("GC - ACT", 1);
-insert into groups(name, usergroup) values("Waymarking - Caringbah", 1);
-insert into groups(name, usergroup) values("IOS Sim - FreeWay", 1);
 
 create table group2waypoints (
     id integer primary key,
