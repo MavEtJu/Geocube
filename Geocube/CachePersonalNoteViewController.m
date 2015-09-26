@@ -38,7 +38,7 @@
 
 - (void)loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
