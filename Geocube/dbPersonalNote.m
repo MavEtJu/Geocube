@@ -126,7 +126,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from personal_notes where id = ?");
 
-        SET_VAR_INT(0, _id);
+        SET_VAR_INT(1, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
