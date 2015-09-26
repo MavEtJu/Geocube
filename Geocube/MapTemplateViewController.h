@@ -47,6 +47,7 @@ enum {
 - (instancetype)init:(NSInteger)type;
 - (void)refreshWaypointsData;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
+- (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2;
 //- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;
 
 // To be implemented by inherited classes:

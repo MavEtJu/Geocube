@@ -150,6 +150,21 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     return [imageLibrary getPin:wp];
 }
 
+- (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2
+{
+    CLLocationDegrees left, right, top, bottom;
+
+    left = MIN(c1.latitude, c2.latitude);
+    right = MAX(c1.latitude, c2.latitude);
+    top = MAX(c1.longitude, c2.longitude);
+    bottom = MIN(c1.longitude, c2.longitude);
+
+    d1->latitude = left - (right - left) * 0.1;
+    d2->latitude = right + (right - left) * 0.1;
+    d1->longitude = top + (top - bottom) * 0.1;
+    d2->longitude = bottom - (top - bottom) * 0.1;
+}
+
 #pragma mark -- Menu related functions
 
 - (void)menuShowWhom:(NSInteger)whom
