@@ -39,7 +39,7 @@
     UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
 
     GCLabelFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
-    GCTextblockFont = [UIFont systemFontOfSize:tvc.detailTextLabel.font.pointSize];
+    GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
     GCSmallFont = [UIFont systemFontOfSize:11];
 
     return self;
