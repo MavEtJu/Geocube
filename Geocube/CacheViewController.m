@@ -352,6 +352,7 @@
         if (indexPath.row == 6) {    /* Waypoints */
             NSArray *wps = [waypoint hasWaypoints];
             if ([wps count] <= 1) {
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                 [self newWaypoint];
             } else {
                 UITableViewController *newController = [[CacheWaypointsViewController alloc] init:waypoint];
