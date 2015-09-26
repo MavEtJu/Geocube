@@ -84,6 +84,8 @@
 {
     @synchronized(self) {
         for (GCView *subview in self.view.subviews) {
+            if ([subview isKindOfClass:[GCCloseButton class]] == YES)
+                continue;
             [subview removeFromSuperview];
         }
 
@@ -208,13 +210,13 @@
         queuedImagesLabel.textAlignment = NSTextAlignmentRight;
         [self.view addSubview:queuedImagesLabel];
         y += height;
-        
+
         // Total images counter
         l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
         l.text = @"Total images read:";
         l.textAlignment = NSTextAlignmentRight;
         [self.view addSubview:l];
-        
+
         totalImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
         totalImagesLabel.textAlignment = NSTextAlignmentRight;
         [self.view addSubview:totalImagesLabel];

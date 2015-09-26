@@ -19,18 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewController : UITableViewController<DOPNavbarMenuDelegate, GlobalMenuDelegate> {
-    NSInteger numberOfItemsInRow;
-    DOPNavbarMenu *tab_menu;
-    NSMutableArray *menuItems;
+#import "Geocube-Prefix.pch"
 
-    BOOL hasCloseButton;
-    GCCloseButton *closeButton;
+@implementation GCCloseButton
+
++ (GCCloseButton *)buttonWithType:(UIButtonType)type
+{
+    GCCloseButton *b = [super buttonWithType:type];
+    UIImage *imgMenu = [imageLibrary get:ImageIcon_CloseButton];
+    b.frame = CGRectMake(0, 0, imgMenu.size.width, imgMenu.size.height);
+    [b setImage:imgMenu forState:UIControlStateNormal];
+    return b;
 }
-
-@property (nonatomic) NSInteger numberOfItemsInRow;
-@property (nonatomic, retain) DOPNavbarMenu *tab_menu;
-
-- (void)changeTheme;
 
 @end

@@ -62,6 +62,7 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
+@class GCCloseButton;
 @class GCLabel;
 @class GCLocationManager;
 @class GCMutableURLRequest;

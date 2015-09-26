@@ -25,7 +25,7 @@
     NSMutableArray *menuItems;
 
     BOOL hasCloseButton;
-    UIButton *closeButton;
+    GCCloseButton *closeButton;
 }
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;

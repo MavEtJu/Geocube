@@ -69,6 +69,8 @@
 
     // CLean up and write again.
     for (GCView *subview in self.view.subviews) {
+        if ([subview isKindOfClass:[GCCloseButton class]] == YES)
+            continue;
         [subview removeFromSuperview];
     }
 

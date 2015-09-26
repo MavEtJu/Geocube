@@ -59,6 +59,8 @@
 - (void)loadStatistics
 {
     for (UIView *subview in contentView.subviews) {
+        if ([subview isKindOfClass:[GCCloseButton class]] == YES)
+            continue;
         [subview removeFromSuperview];
     }
 
@@ -163,6 +165,8 @@
 
     GCView *view = [accountViews objectAtIndex:idx];
     for (GCView *subview in view.subviews) {
+        if ([subview isKindOfClass:[GCCloseButton class]] == YES)
+            continue;
         [subview removeFromSuperview];
     }
 

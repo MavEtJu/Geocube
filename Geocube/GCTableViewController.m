@@ -78,10 +78,7 @@
 
     // Add a close button to the view
     if (hasCloseButton == YES && closeButton == nil) {
-        UIImage *imgMenu = [imageLibrary get:ImageIcon_CloseButton];
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
-        b.frame = CGRectMake(0, 0, imgMenu.size.width, imgMenu.size.height);
-        [b setImage:imgMenu forState:UIControlStateNormal];
+        GCCloseButton *b = [GCCloseButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:b];
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         closeButton = b;

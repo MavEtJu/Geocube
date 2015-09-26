@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewController : UITableViewController<DOPNavbarMenuDelegate, GlobalMenuDelegate> {
-    NSInteger numberOfItemsInRow;
-    DOPNavbarMenu *tab_menu;
-    NSMutableArray *menuItems;
-
-    BOOL hasCloseButton;
-    GCCloseButton *closeButton;
-}
-
-@property (nonatomic) NSInteger numberOfItemsInRow;
-@property (nonatomic, retain) DOPNavbarMenu *tab_menu;
-
-- (void)changeTheme;
+@interface GCCloseButton : UIButton
 
 @end
