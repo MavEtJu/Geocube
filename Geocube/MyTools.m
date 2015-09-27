@@ -53,6 +53,20 @@
     return s;
 }
 
++ (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1
+{
+    struct timeval ret;
+
+    if (t0.tv_usec > t1.tv_usec) {
+        ret.tv_usec = 1000000 + t1.tv_usec - t0.tv_usec;
+        ret.tv_sec = t1.tv_sec - t0.tv_sec - 1;
+    } else {
+        ret.tv_usec = t1.tv_usec - t0.tv_usec;
+        ret.tv_sec = t1.tv_sec - t0.tv_sec;
+    }
+    return ret;
+}
+
 + (NSInteger)secondsSinceEpochWindows:(NSString *)datetime
 {
     // /Date(1413702000000-0700)/

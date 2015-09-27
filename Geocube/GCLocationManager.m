@@ -23,11 +23,14 @@
 
 @implementation GCLocationManager
 
-@synthesize altitude, accuracy, coords, direction, delegates;
+@synthesize altitude, accuracy, coords, direction, delegates, speed;
 
 - (instancetype)init
 {
     self = [super init];
+
+    coordsHistorical = [NSMutableArray arrayWithCapacity:10];
+    speed = 0;
 
     /* Initiate the location manager */
     _LM = [[CLLocationManager alloc] init];
@@ -84,10 +87,22 @@
 {
     altitude = manager.location.altitude;
     coords = newLocation.coordinate;
-
     accuracy = newLocation.horizontalAccuracy;
 
-//    NSLog(@"New coordinates: %@", [Coordinates NiceCoordinates:coords]);
+    struct timeval t;
+    gettimeofday(&t, NULL);
+    GCCoordsHistorical *ch = [[GCCoordsHistorical alloc] init];
+    ch.timeval = t;
+    ch.coord = newLocation.coordinate;
+    [coordsHistorical addObject:ch];
+    if ([coordsHistorical count] == 11)
+        [coordsHistorical removeObjectAtIndex:0];
+
+    GCCoordsHistorical *ch0 = [coordsHistorical objectAtIndex:0];
+
+    struct timeval td = [MyTools timevalDifference:ch0.timeval t1:ch.timeval];
+    if ([coordsHistorical count] == 10 && (td.tv_sec != 0 || td.tv_usec != 0))
+        speed = [Coordinates coordinates2distance:ch.coord to:ch0.coord] / (td.tv_sec + td.tv_usec / 1000000.0);
 
     [self updateDataDelegate];
 }
@@ -96,12 +111,15 @@
 {
     altitude = manager.location.altitude;
     coords = manager.location.coordinate;
-
     direction = newHeading.trueHeading;
-
-//    NSLog(@"New coordinates: %@", [Coordinates NiceCoordinates:coords]);
 
     [self updateDataDelegate];
 }
+
+@end
+
+@implementation GCCoordsHistorical
+
+@synthesize timeval, coord;
 
 @end

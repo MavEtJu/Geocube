@@ -33,6 +33,8 @@
 + (NSString *)FilesDir;
 + (NSString *)ImagesDir;
 
++ (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1;
+
 + (NSInteger)secondsSinceEpochWindows:(NSString *)datetime;
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
 + (NSString *)dateString:(NSInteger)seconds;

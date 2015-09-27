@@ -63,6 +63,7 @@
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
 @class GCCloseButton;
+@class GCCoordsHistorical;
 @class GCLabel;
 @class GCLocationManager;
 @class GCMutableURLRequest;

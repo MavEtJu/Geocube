@@ -32,9 +32,14 @@
     CLLocationDistance altitude;
     CLLocationDirection direction;
     CLLocationCoordinate2D coords;
+
+    CLLocationCoordinate2D t0;
+    NSMutableArray *coordsHistorical;
+    float speed;
 }
 
 @property (nonatomic, retain) NSMutableArray *delegates;
+@property (nonatomic) float speed;
 
 @property (nonatomic) CLLocationAccuracy accuracy;
 @property (nonatomic) CLLocationDistance altitude;
@@ -44,5 +49,15 @@
 - (void)startDelegation:(id)delegate isNavigating:(BOOL)isNavigating;
 - (void)stopDelegation:(id)delegate;
 - (void)updateDataDelegate;
+
+@end
+
+@interface GCCoordsHistorical : NSObject {
+    struct timeval timeval;
+    CLLocationCoordinate2D coord;
+}
+
+@property (nonatomic) struct timeval timeval;
+@property (nonatomic) CLLocationCoordinate2D coord;
 
 @end
