@@ -60,7 +60,7 @@ static const double kFeetPerMile = 5280.0;
 		}
 	}
 
-	return [[[LXMapScaleView alloc] initWithMapView:aMapView] autorelease];
+    return [[LXMapScaleView alloc] initWithMapView:aMapView];
 }
 
 
@@ -105,8 +105,7 @@ static const double kFeetPerMile = 5280.0;
 	zeroLabel.text = @"0";
 	zeroLabel.font = font;
 	[self addSubview:zeroLabel];
-	[zeroLabel release];
-	
+
 	maxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 10, 10)];
 	maxLabel.backgroundColor = [UIColor clearColor];
 	maxLabel.textColor = [UIColor whiteColor];
@@ -114,10 +113,9 @@ static const double kFeetPerMile = 5280.0;
 	maxLabel.shadowOffset = CGSizeMake(1, 1);
 	maxLabel.text = @"1";
 	maxLabel.font = font;
-	maxLabel.textAlignment = UITextAlignmentRight;
+	maxLabel.textAlignment = NSTextAlignmentRight;
 	[self addSubview:maxLabel];
-	[maxLabel release];
-	
+
 	unitLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 18, 10)];
 	unitLabel.backgroundColor = [UIColor clearColor];
 	unitLabel.textColor = [UIColor whiteColor];
@@ -126,7 +124,6 @@ static const double kFeetPerMile = 5280.0;
 	unitLabel.text = @"m";
 	unitLabel.font = font;
 	[self addSubview:unitLabel];
-	[unitLabel release];
 }
 
 
@@ -225,7 +222,7 @@ static const double kFeetPerMile = 5280.0;
 		}
 	}
 	
-	maxLabel.text = [NSString stringWithFormat:@"%d",maxValue];
+	maxLabel.text = [NSString stringWithFormat:@"%lu",maxValue];
 	unitLabel.text = unit;
 	
 	[self layoutSubviews];
