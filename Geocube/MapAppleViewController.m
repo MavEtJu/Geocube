@@ -34,6 +34,15 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
+    // here comes the interesting part
+    // get a handle to the map scale view of our mapView (by eventually installing one first)
+    mapScaleView = [LXMapScaleView mapScaleForMapView:mapView];
+
+    // adjust visual settings if necessary
+    mapScaleView.position = kLXMapScalePositionTopLeft;
+    mapScaleView.position = kLXMapScalePositionBottomLeft;
+    mapScaleView.style = kLXMapScaleStyleBar;
+
     self.view  = mapView;
 }
 
@@ -123,7 +132,34 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
 {
     CLLocationCoordinate2D t = coord;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, 1500, 1500);
+
+    /*
+     * 5000 |                              .
+     *      |                          ....
+     *      |                     .....
+     *      |                .....
+     *      |           .....
+     * 1000 |         ..
+     *      |      ...
+     *  100 |......
+     *    0 +----------------------------------------
+     *      0    2    10                 30
+     *
+     * Up to 2 m/s, walking speed, show 100 meters around.
+     * Up to 2 - 10 m/s, cycling speed, show between 100 and 1000 meters around.
+     * Up to 10 - 30 m/s, driving speed, show between 1000 and 5000 meters around
+     */
+
+    NSInteger span = 100;
+    if (LM.speed < 2) {
+        span = 100;
+    } else if (LM.speed < 10) {
+        span = 100 + (LM.speed - 2) * (1000 - 100) / (10 - 2);
+    } else {
+        span = 1000 + (LM.speed - 10) * (5000 - 1000) / (30 - 10);
+    }
+
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, span, span);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
     [mapView setRegion:adjustedRegion animated:NO];
 
@@ -238,6 +274,10 @@
 
     if (mapChangedFromUserInteraction)
         [super userInteraction];
+
+    // the map scale will retrieve the current state of the mapView it is attached to
+    // and update itself accordingly
+    [mapScaleView update];
 }
 
 @end
