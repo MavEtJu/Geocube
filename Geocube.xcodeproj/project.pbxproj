@@ -333,6 +333,7 @@
 		E8F570C51B40059F003F020C /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbConfig.m */; };
 		E8F570CB1B4008DD003F020C /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbType.m */; };
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
+		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; settings = {ASSET_TAGS = (); }; };
 		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -852,6 +853,8 @@
 		E8F570CA1B4008DD003F020C /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbType.m; sourceTree = "<group>"; };
 		E8F570CC1B40147E003F020C /* ImportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPX.h; sourceTree = "<group>"; };
 		E8F570CD1B40147E003F020C /* ImportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPX.m; sourceTree = "<group>"; };
+		E8F6BE741BB8C78F009EA037 /* LXMapScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXMapScaleView.h; path = LXMapScaleView/LXMapScaleView.h; sourceTree = "<group>"; };
+		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheWaypointsViewController.h; sourceTree = "<group>"; };
 		E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheWaypointsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1600,6 +1603,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8EAF43D1B591DEB0027AE6F /* BHTabBar */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
@@ -1767,6 +1771,15 @@
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 			);
 			name = Convertors;
+			sourceTree = "<group>";
+		};
+		E8F6BE731BB8C77A009EA037 /* LXMapScale */ = {
+			isa = PBXGroup;
+			children = (
+				E8F6BE741BB8C78F009EA037 /* LXMapScaleView.h */,
+				E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */,
+			);
+			name = LXMapScale;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2195,6 +2208,7 @@
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
+				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */,
 				E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,

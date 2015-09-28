@@ -43,6 +43,7 @@
 #import "BHTabsViewController.h"
 #import "DejalActivityView.h"
 #import "DOPNavbarMenu.h"
+#import "LXMapScaleView.h"
 #import "RangeSlider.h"
 #import "SSZipArchive.h"
 #import "XMLDictionary.h"
