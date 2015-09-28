@@ -34,12 +34,8 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
-    // here comes the interesting part
-    // get a handle to the map scale view of our mapView (by eventually installing one first)
+    /* Add the scale ruler */
     mapScaleView = [LXMapScaleView mapScaleForMapView:mapView];
-
-    // adjust visual settings if necessary
-    mapScaleView.position = kLXMapScalePositionTopLeft;
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
@@ -251,8 +247,7 @@
     if (mapChangedFromUserInteraction)
         [super userInteraction];
 
-    // the map scale will retrieve the current state of the mapView it is attached to
-    // and update itself accordingly
+    // Update the ruler
     [mapScaleView update];
 }
 
