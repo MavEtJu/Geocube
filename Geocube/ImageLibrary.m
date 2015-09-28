@@ -96,15 +96,15 @@
     [self add:@"map - pin stick - 35x42" index:ImageMap_pin];
     [self add:@"map - dnf stick - 35x42" index:ImageMap_dnf];
     [self add:@"map - found stick - 35x42" index:ImageMap_found];
-    [self add:@"pinhead - black - 15x15" index:ImageMap_pinheadBlack];
-    [self add:@"pinhead - brown - 15x15" index:ImageMap_pinheadBrown];
-    [self add:@"pinhead - green - 15x15" index:ImageMap_pinheadGreen];
-    [self add:@"pinhead - lightblue - 15x15" index:ImageMap_pinheadLightblue];
-    [self add:@"pinhead - purple - 15x15" index:ImageMap_pinheadPurple];
-    [self add:@"pinhead - red - 15x15" index:ImageMap_pinheadRed];
-    [self add:@"pinhead - white - 15x15" index:ImageMap_pinheadWhite];
-    [self add:@"pinhead - yellow - 15x15" index:ImageMap_pinheadYellow];
-    [self add:@"pinhead - pink - 15x15" index:ImageMap_pinheadPink];
+    [self addpinhead:ImageMap_pinheadBlack image:[self newPinHead:[UIColor blackColor]]];
+    [self addpinhead:ImageMap_pinheadBrown image:[self newPinHead:[UIColor brownColor]]];
+    [self addpinhead:ImageMap_pinheadGreen image:[self newPinHead:[UIColor greenColor]]];
+    [self addpinhead:ImageMap_pinheadLightblue image:[self newPinHead:[UIColor cyanColor]]];
+    [self addpinhead:ImageMap_pinheadPurple image:[self newPinHead:[UIColor purpleColor]]];
+    [self addpinhead:ImageMap_pinheadRed image:[self newPinHead:[UIColor redColor]]];
+    [self addpinhead:ImageMap_pinheadWhite image:[self newPinHead:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]]];
+    [self addpinhead:ImageMap_pinheadYellow image:[self newPinHead:[UIColor yellowColor]]];
+    [self addpinhead:ImageMap_pinheadPink image:[self newPinHead:[UIColor colorWithRed:0 green:1 blue:1 alpha:1]]];
 
     [self add:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
     [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
@@ -245,6 +245,12 @@
     }
     imgs[index] = img;
     names[index] = name;
+}
+
+- (void)addpinhead:(NSInteger)index image:(UIImage *)img
+{
+    imgs[index] = img;
+    names[index] = [NSString stringWithFormat:@"pinhead: %ld", index];
 }
 
 - (UIImage *)mergePinhead2:(UIImage *)bottom top:(NSInteger)top
@@ -482,6 +488,77 @@
 - (UIImage *)getType:(dbWaypoint *)wp
 {
     return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
+}
+
+
+- (UIImage *)newPinHead:(UIColor *)color
+{
+    UIGraphicsBeginImageContext(CGSizeMake(15, 15));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    /*
+     * .....xxxxx.....
+     * ...xxxxxxxxx...
+     * ..xxxxxxxxxxx..
+     * .xxxxxxxxxxxxx.
+     * .xxxxxxxxxxxxx.
+     * xxxxxxxxxxxxxxx
+     * xxxxxxxxxxxxxxx
+     * xxxxxxxxxxxxxxx
+     * xxxxxxxxxxxxxxx
+     * xxxxxxxxxxxxxxx
+     * .xxxxxxxxxxxxx.
+     * .xxxxxxxxxxxxx.
+     * ..xxxxxxxxxxx..
+     * ...xxxxxxxxx...
+     * .....xxxxx.....
+     */
+
+#define VLINE(y, x1, x2) \
+    CGContextSetLineWidth(context, 1); \
+    CGContextMoveToPoint(context, x1, y + 0.5); \
+    CGContextAddLineToPoint(context, x2 + 1, y + 0.5); \
+    CGContextStrokePath(context);
+#define DOT(x, y) \
+    VLINE(y, x, x);
+
+    CGContextSetStrokeColorWithColor(context, [color CGColor]);
+    VLINE( 0, 5,  9);
+    VLINE( 1, 3, 11);
+    VLINE( 2, 2, 12);
+    VLINE( 3, 1, 13);
+    VLINE( 4, 1, 13);
+    VLINE( 5, 0, 14);
+    VLINE( 6, 0, 14);
+    VLINE( 7, 0, 14);
+    VLINE( 8, 0, 14);
+    VLINE( 9, 0, 14);
+    VLINE(10, 1, 13);
+    VLINE(11, 1, 13);
+    VLINE(12, 2, 12);
+    VLINE(13, 3, 11);
+    VLINE(14, 5,  9);
+
+    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    VLINE( 3, 4, 5);
+    VLINE( 4, 3, 6);
+    VLINE( 5, 3, 6);
+    VLINE( 6, 4, 5);
+
+    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] CGColor]);
+    DOT( 3, 3);
+    DOT( 6, 3);
+    DOT( 6, 6);
+    DOT( 3, 6);
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    NSData * binaryImageData = UIImagePNGRepresentation(newImage);
+    [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
+    NSLog(@"%@", [MyTools DocumentRoot]);
+
+    return newImage;
 }
 
 @end

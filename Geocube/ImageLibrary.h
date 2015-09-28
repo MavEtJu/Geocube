@@ -231,5 +231,7 @@ typedef enum {
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 
+- (UIImage *)newPinHead:(UIColor *)color;
+
 
 @end
