@@ -149,25 +149,10 @@ typedef enum {
     ImageAttribute_TeamworkRequired,
     ImageAttribute_PartOfGeoTour,
 
-    ImageMap_pinheadBlack = 600,
-    ImageMap_pinheadBrown,
-    ImageMap_pinheadGreen,
-    ImageMap_pinheadLightblue,
-    ImageMap_pinheadPurple,
-    ImageMap_pinheadRed,
-    ImageMap_pinheadWhite,
-    ImageMap_pinheadYellow,
-    ImageMap_pinheadPink,
-
-    ImageMap_pinBlack,
-    ImageMap_pinBrown,
-    ImageMap_pinGreen,
-    ImageMap_pinLightblue,
-    ImageMap_pinPurple,
-    ImageMap_pinRed,
-    ImageMap_pinWhite,
-    ImageMap_pinYellow,
-    ImageMap_pinPink,
+    ImageMap_pinheadStart = 600,    // 600 - 630
+    ImageMap_pinheadEnd = 630,      // 600 - 630
+    ImageMap_pinStart = 631,        // 631 - 662
+    ImageMap_pinEnd = 662,          // 631 - 662
 
     /* Up to here: Do not reorder */
 

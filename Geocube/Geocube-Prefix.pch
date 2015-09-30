@@ -135,6 +135,7 @@
 #import "RemoteAPI.h"
 
 #import "SettingsAccountsViewController.h"
+#import "SettingsColoursViewController.h"
 #import "SettingsMainViewController.h"
 
 #import "NotesFieldnotesViewController.h"

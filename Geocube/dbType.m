@@ -23,23 +23,14 @@
 
 @implementation dbType
 
-@synthesize type_major, type_minor, type_full, icon, pin, selected;
-
-- (instancetype)init:(NSId)__id type_major:(NSString *)_type_major type_minor:(NSString *)_type_minor icon:(NSInteger)_icon pin:(NSInteger)_pin
-{
-    self = [super init];
-    _id = __id;
-    type_major = _type_major;
-    type_minor = _type_minor;
-    icon = _icon;
-    pin = _pin;
-    [self finish];
-    return self;
-}
+@synthesize type_major, type_minor, type_full, icon, pin, selected, pin_rgb, pin_rgb_default;
 
 - (void)finish
 {
     type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
+
+    if ([pin_rgb isEqualToString:@""] == YES)
+        pin_rgb = pin_rgb_default;
     [super finish];
 }
 
@@ -48,7 +39,7 @@
     NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, type_major, type_minor, icon, pin from types");
+        DB_PREPARE(@"select id, type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default from types");
 
         DB_WHILE_STEP {
             dbType *t = [[dbType alloc] init];;
@@ -57,6 +48,8 @@
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH( 3, t.icon);
             INT_FETCH( 4, t.pin);
+            TEXT_FETCH(5, t.pin_rgb);
+            TEXT_FETCH(6, t.pin_rgb_default);
             [t finish];
             [ts addObject:t];
         }

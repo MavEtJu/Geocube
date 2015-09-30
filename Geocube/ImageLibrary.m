@@ -96,15 +96,6 @@
     [self add:@"map - pin stick - 35x42" index:ImageMap_pin];
     [self add:@"map - dnf stick - 35x42" index:ImageMap_dnf];
     [self add:@"map - found stick - 35x42" index:ImageMap_found];
-    [self addpinhead:ImageMap_pinheadBlack image:[self newPinHead:[UIColor blackColor]]];
-    [self addpinhead:ImageMap_pinheadBrown image:[self newPinHead:[UIColor brownColor]]];
-    [self addpinhead:ImageMap_pinheadGreen image:[self newPinHead:[UIColor greenColor]]];
-    [self addpinhead:ImageMap_pinheadLightblue image:[self newPinHead:[UIColor cyanColor]]];
-    [self addpinhead:ImageMap_pinheadPurple image:[self newPinHead:[UIColor purpleColor]]];
-    [self addpinhead:ImageMap_pinheadRed image:[self newPinHead:[UIColor redColor]]];
-    [self addpinhead:ImageMap_pinheadWhite image:[self newPinHead:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]]];
-    [self addpinhead:ImageMap_pinheadYellow image:[self newPinHead:[UIColor yellowColor]]];
-    [self addpinhead:ImageMap_pinheadPink image:[self newPinHead:[UIColor colorWithRed:0 green:1 blue:1 alpha:1]]];
 
     [self add:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
     [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
@@ -200,7 +191,17 @@
     [self add:@"attributes - 66" index:ImageAttribute_TeamworkRequired];
     [self add:@"attributes - 67" index:ImageAttribute_PartOfGeoTour];
 
+    /* Create pinheads */
+    [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL * _Nonnull stop) {
+        float r, g, b;
+        [self RGBtoFloat:type.pin_rgb r:&r g:&g b:&b];
+        [self addpinhead:type.pin image:[self newPinHead:[UIColor colorWithRed:r green:g blue:b alpha:1]]];
+
+        [self mergePinhead:ImageMap_pin top:type.pin index:type.pin + ImageMap_pinheadEnd - ImageMap_pinheadStart];
+    }];
+
     /* Create pins */
+/*
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBlack index:ImageMap_pinBlack];
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBrown index:ImageMap_pinBrown];
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadGreen index:ImageMap_pinGreen];
@@ -210,6 +211,7 @@
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadWhite index:ImageMap_pinWhite];
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadYellow index:ImageMap_pinYellow];
     [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPink index:ImageMap_pinPink];
+ */
 
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
@@ -416,7 +418,7 @@
     if (highlight == YES)
         img = [self mergeHighlight:img top:ImageMap_pinOutlineHighlight];
 
-    img = [self mergePin:img top:imgnum + ImageMap_pinBlack - ImageMap_pinheadBlack];
+    img = [self mergePin:img top:imgnum + ImageMap_pinheadEnd - ImageMap_pinheadStart];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
@@ -490,6 +492,19 @@
     return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
 }
 
+- (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b
+{
+    unsigned int i;
+    NSScanner *s = [NSScanner scannerWithString:[rgb substringWithRange:NSMakeRange(0, 2)]];
+    [s scanHexInt:&i];
+    *r = i / 255.0;
+    s = [NSScanner scannerWithString:[rgb substringWithRange:NSMakeRange(2, 2)]];
+    [s scanHexInt:&i];
+    *g = i / 255.0;
+    s = [NSScanner scannerWithString:[rgb substringWithRange:NSMakeRange(4, 2)]];
+    [s scanHexInt:&i];
+    *b = i / 255.0;
+}
 
 - (UIImage *)newPinHead:(UIColor *)color
 {
@@ -556,7 +571,6 @@
 
     NSData * binaryImageData = UIImagePNGRepresentation(newImage);
     [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
-    NSLog(@"%@", [MyTools DocumentRoot]);
 
     return newImage;
 }

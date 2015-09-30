@@ -167,6 +167,7 @@
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
 		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
 		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
+		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
@@ -544,6 +545,8 @@
 		E807A5F71B8BC9CF00EBA187 /* OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAPI.m; sourceTree = "<group>"; };
 		E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveAPI.h; sourceTree = "<group>"; };
 		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
+		E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColoursViewController.h; sourceTree = "<group>"; };
+		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
 		E80AEEAF1BA5983A00106F7F /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNight.h; sourceTree = "<group>"; };
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
@@ -1448,6 +1451,8 @@
 				E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */,
 				E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */,
 				E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */,
+				E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */,
+				E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2235,6 +2240,7 @@
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
+				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,

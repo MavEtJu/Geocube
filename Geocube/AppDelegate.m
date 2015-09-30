@@ -306,6 +306,12 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
+    vc = [[SettingsColoursViewController alloc] init];
+    vc.title = @"Colours";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
 
     // Help tabs #11

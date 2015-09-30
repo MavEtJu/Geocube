@@ -19,26 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbType : dbObject {
-    NSString *type_major;
-    NSString *type_minor;
-    NSString *type_full;
-    NSInteger icon;
-    NSInteger pin;
-    NSString *pin_rgb;
-    NSString *pin_rgb_default;
+#import "Geocube-Prefix.pch"
 
-    /* Not read from the database */
-    BOOL selected;
-}
-
-@property (nonatomic, retain) NSString *type_minor;
-@property (nonatomic, retain) NSString *type_major;
-@property (nonatomic, retain) NSString *type_full;
-@property (nonatomic) NSInteger icon;
-@property (nonatomic) NSInteger pin;
-@property (nonatomic) BOOL selected;
-@property (nonatomic, retain) NSString *pin_rgb;
-@property (nonatomic, retain) NSString *pin_rgb_default;
+@implementation SettingsColoursViewController
 
 @end

@@ -66,6 +66,7 @@
 #define RC_SETTINGS 10
 #define    VC_SETTINGS_SETTINGS 0
 #define    VC_SETTINGS_ACCOUNTS 1
+#define    VC_SETTINGS_COLOURS 2
 #define RC_HELP 11
 #define    VC_HELP_ABOUT 0
 #define    VC_HELP_HELP 1

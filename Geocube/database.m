@@ -109,6 +109,7 @@
 
 - (void)performUpgrade:(NSInteger)version
 {
+    NSLog(@"performUpgrade: from version: %ld", (long)version);
     if (version == 0) {
         [self performUpgrade_0_1];
         return;
@@ -119,6 +120,10 @@
     }
     if (version == 2) {
         [self performUpgrade_2_3];
+        return;
+    }
+    if (version == 3) {
+        [self performUpgrade_3_4];
         return;
     }
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
@@ -196,6 +201,65 @@
     }
 }
 
+- (void)performUpgrade_3_4
+{
+    NSArray *a = @[
+    @"delete from types",
+    @"alter table types add column pin_rgb text",
+    @"alter table types add column pin_rgb_default text",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Benchmark', 100, 601, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'CITO', 101, 602, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Cache In Trash Out Event', 101, 603, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Earthcache', 102, 604, '', 'F0F0F0')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Event Cache', 103, 605, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Giga', 104, 606, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Giga-Event Cache', 104, 607, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'GroundspeakHQ', 105, 608, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Groundspeak HQ', 105, 609, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Groundspeak Block Party', 105, 610, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Letterbox Hybrid', 106, 611, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Maze', 107, 612, '', 'FF00FF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Mega', 108, 613, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Mega-Event Cache', 108, 614, '', 'FF66B2')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Multi-cache', 109, 615, '', 'FFFF00')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Mystery', 110, 616, '', 'FF00FF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Unknown (Mystery) Cache', 110, 617, '', 'FF00FF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Other', 111, 618, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Traditional Cache', 112, 619, '', '00FF00')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Unknown Cache', 113, 620, '', 'FF00FF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Virtual Cache', 114, 621, '', 'F0F0F0')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Waymark', 115, 622, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Webcam Cache', 116, 623, '', 'F0F0F0')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Wherigo Cache', 117, 624, '', '00FFFF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Wherigo Caches', 117, 625, '', '00FFFF')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Project APE Cache', 111, 626, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Locationless (Reverse) Cache', 111, 627, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'GPS Adventures Exhibit', 111, 628, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Lost and Found Event Caches', 111, 629, '', 'A52A2A')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', 'Groundspeak Lost and Found Celebration', 111, 630, '', 'A52A2A')",
+
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Final Location', 200, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Flag', 201, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Multi Stage', 202, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Parking Area', 203, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Physical Stage', 204, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Reference Point', 205, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Trailhead', 206, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', 'Virtual Stage', 207, 600, '', '000000')",
+
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Geocache', '*', 208, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', '*', 208, 600, '', '000000')",
+    @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('*', '*', 208, 600, '', '000000')"
+    ];
+
+    @synchronized(self.dbaccess) {
+        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+            DB_PREPARE(sql);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }];
+    }
+}
 
 
 @end
