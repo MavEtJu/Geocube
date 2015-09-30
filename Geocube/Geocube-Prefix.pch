@@ -44,9 +44,9 @@
 #import "DejalActivityView.h"
 #import "DOPNavbarMenu.h"
 #import "LXMapScaleView.h"
+#import "NKOColorPickerView.h"
 #import "RangeSlider.h"
 #import "SSZipArchive.h"
-#import "VBColorPicker.h"
 #import "XMLDictionary.h"
 #import "YIPopupTextView.h"
 
@@ -137,6 +137,7 @@
 
 #import "SettingsAccountsViewController.h"
 #import "SettingsColoursViewController.h"
+#import "SettingsColourViewController.h"
 #import "SettingsMainViewController.h"
 
 #import "NotesFieldnotesViewController.h"

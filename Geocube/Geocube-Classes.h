@@ -112,6 +112,7 @@
 @class PersonalNoteTableViewCell;
 @class RemoteAPI;
 @class SettingsAccountsViewController;
+@class SettingsColourViewController;
 @class SettingsColoursViewController;
 @class SettingsMainViewController;
 @class ThemeGeosphere;

@@ -23,4 +23,59 @@
 
 @implementation SettingsColoursViewController
 
+#define THISCELL @"SettingsColoursViewControllerCell"
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Reset"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    types = [NSMutableArray arrayWithArray:[dbc Types]];
+    [self.tableView reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [types count];
+}
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    if (cell == nil)
+        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+
+    dbType *t = [types objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", t.type_major, t.type_minor];
+    cell.imageView.image = [imageLibrary get:t.pin];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbType *t = [types objectAtIndex:indexPath.section];
+
+    UIViewController *newController = [[SettingsColourViewController alloc] init:t];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
+    return;
+}
+
+
+
+
 @end

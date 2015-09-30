@@ -168,7 +168,7 @@
 		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
 		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
 		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; settings = {ASSET_TAGS = (); }; };
-		E807A85B1BBBB72300AE3C1B /* VBColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */; settings = {ASSET_TAGS = (); }; };
+		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
@@ -261,6 +261,8 @@
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; settings = {ASSET_TAGS = (); }; };
+		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; settings = {ASSET_TAGS = (); }; };
 		E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */; };
 		E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BrowserUserViewController.m */; };
 		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
@@ -548,8 +550,8 @@
 		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
 		E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColoursViewController.h; sourceTree = "<group>"; };
 		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
-		E807A8591BBBB72300AE3C1B /* VBColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBColorPicker.h; path = VBColorPicker/VBColorPicker.h; sourceTree = "<group>"; };
-		E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBColorPicker.m; path = VBColorPicker/VBColorPicker.m; sourceTree = "<group>"; };
+		E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColourViewController.h; sourceTree = "<group>"; };
+		E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColourViewController.m; sourceTree = "<group>"; };
 		E80AEEAF1BA5983A00106F7F /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNight.h; sourceTree = "<group>"; };
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
@@ -715,6 +717,9 @@
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
+		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
+		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
 		E8A7FA931B77763F003F4132 /* BrowserAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserAccountsViewController.h; sourceTree = "<group>"; };
 		E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserAccountsViewController.m; sourceTree = "<group>"; };
 		E8A7FA961B77F7F7003F4132 /* BrowserUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserUserViewController.h; sourceTree = "<group>"; };
@@ -939,15 +944,6 @@
 				E80732FA1B633A74007FDC29 /* main.m */,
 			);
 			path = objects;
-			sourceTree = "<group>";
-		};
-		E807A8581BBBB6FC00AE3C1B /* VBColorPicker */ = {
-			isa = PBXGroup;
-			children = (
-				E807A8591BBBB72300AE3C1B /* VBColorPicker.h */,
-				E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */,
-			);
-			name = VBColorPicker;
 			sourceTree = "<group>";
 		};
 		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
@@ -1344,6 +1340,16 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */,
+				E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */,
+				E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */,
+			);
+			name = NKOColorPickerView;
+			sourceTree = "<group>";
+		};
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,6 +1471,8 @@
 				E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */,
 				E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */,
 				E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */,
+				E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */,
+				E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1620,6 +1628,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8EAF43D1B591DEB0027AE6F /* BHTabBar */,
@@ -1627,7 +1636,6 @@
 				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
-				E807A8581BBBB6FC00AE3C1B /* VBColorPicker */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
@@ -2011,6 +2019,7 @@
 				E80732431B5F84E8007FDC29 /* log - needsarchiving - 30x30.png in Resources */,
 				E807329C1B5F857A007FDC29 /* map - cross dnf - 15x15.png in Resources */,
 				E80732291B5F84B4007FDC29 /* attributes - 66.png in Resources */,
+				E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E80732D91B60FAB4007FDC29 /* ratings - star base 95x18.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
@@ -2211,7 +2220,6 @@
 				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
-				E807A85B1BBBB72300AE3C1B /* VBColorPicker.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
@@ -2249,6 +2257,7 @@
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
+				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
@@ -2310,6 +2319,7 @@
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
 				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */,
+				E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,

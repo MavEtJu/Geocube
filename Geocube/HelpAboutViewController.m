@@ -98,6 +98,9 @@
           @"DOPNavbarMenu: Copyright (c) 2015 Weizhou (https://github.com/dopcn/DOPNavbarMenu)"
           ];
     y += [self addText:y text:
+          @"NKOColorPickerView: Copyright (C) 2014 Carlos Vidal (https://github.com/nakiostudio/NKO-Color-Picker-View-iOS)"
+          ];
+    y += [self addText:y text:
           @"YIPopupTextView: Copyright (c) 2012 Yasuhiro Inami. All rights reserved. (https://github.com/inamiy/YIPopupTextView)"
           ];
     y += [self addText:y text:

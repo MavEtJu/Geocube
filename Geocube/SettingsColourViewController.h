@@ -19,8 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsColoursViewController : GCTableViewController {
-    NSMutableArray *types;
+@interface SettingsColourViewController : GCViewController {
+    dbType *type;
+    GCView *rect;
+    UIButton *chose;
 }
+
+- (instancetype)init:(dbType *)type;
 
 @end
