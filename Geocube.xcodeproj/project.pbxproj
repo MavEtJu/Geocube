@@ -168,6 +168,7 @@
 		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
 		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
 		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E807A85B1BBBB72300AE3C1B /* VBColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */; settings = {ASSET_TAGS = (); }; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
@@ -547,6 +548,8 @@
 		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
 		E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColoursViewController.h; sourceTree = "<group>"; };
 		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
+		E807A8591BBBB72300AE3C1B /* VBColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBColorPicker.h; path = VBColorPicker/VBColorPicker.h; sourceTree = "<group>"; };
+		E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBColorPicker.m; path = VBColorPicker/VBColorPicker.m; sourceTree = "<group>"; };
 		E80AEEAF1BA5983A00106F7F /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNight.h; sourceTree = "<group>"; };
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
@@ -936,6 +939,15 @@
 				E80732FA1B633A74007FDC29 /* main.m */,
 			);
 			path = objects;
+			sourceTree = "<group>";
+		};
+		E807A8581BBBB6FC00AE3C1B /* VBColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E807A8591BBBB72300AE3C1B /* VBColorPicker.h */,
+				E807A85A1BBBB72300AE3C1B /* VBColorPicker.m */,
+			);
+			name = VBColorPicker;
 			sourceTree = "<group>";
 		};
 		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
@@ -1615,6 +1627,7 @@
 				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E807A8581BBBB6FC00AE3C1B /* VBColorPicker */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
@@ -2198,6 +2211,7 @@
 				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
+				E807A85B1BBBB72300AE3C1B /* VBColorPicker.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,

@@ -46,6 +46,7 @@
 #import "LXMapScaleView.h"
 #import "RangeSlider.h"
 #import "SSZipArchive.h"
+#import "VBColorPicker.h"
 #import "XMLDictionary.h"
 #import "YIPopupTextView.h"
 
