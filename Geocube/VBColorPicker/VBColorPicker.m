@@ -34,8 +34,8 @@
 	CGContextRef    context = NULL;
 	CGColorSpaceRef colorSpace;
 	void *          bitmapData;
-	int             bitmapByteCount;
-	int             bitmapBytesPerRow;
+	size_t          bitmapByteCount;
+	size_t          bitmapBytesPerRow;
 	
 	// Get image width, height. We'll use the entire image.
 	size_t pixelsWide = CGImageGetWidth(inImage);
