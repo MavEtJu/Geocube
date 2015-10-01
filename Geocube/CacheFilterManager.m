@@ -32,20 +32,40 @@
     currentWaypoints = nil;
     currentWaypoint = nil;
     needsRefresh = YES;
-    lastCoordinates.latitude = 0;
-    lastCoordinates.longitude = 0;
+    lastCoordinates = CLLocationCoordinate2DMake(0, 0);
 
     if ([myConfig.currentWaypoint isEqualToString:@""] == NO)
         currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:myConfig.currentWaypoint]];
 
     [LM startDelegation:self isNavigating:NO];
 
+    delegates = [NSMutableArray arrayWithCapacity:5];
+
     return self;
+}
+
+- (void)startDelegation:(id)_delegate
+{
+    NSLog(@"CacheFilterManager: starting for %@", [_delegate class]);
+    if (_delegate != nil)
+        [delegates addObject:_delegate];
+}
+
+- (void)stopDelegation:(id)_delegate
+{
+    NSLog(@"CacheFilterManager: stopping for %@", [_delegate class]);
+    [delegates removeObject:_delegate];
+
+    NSLog(@"CacheFilterManager: stopping");
 }
 
 - (void)needsRefresh
 {
     needsRefresh = YES;
+
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        [delegate refreshWaypoints];
+    }];
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
@@ -507,9 +527,10 @@
 - (void)updateData
 {
     NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2f", [Coordinates NiceCoordinates:LM.coords], (long)LM.direction, LM.speed);
-    if ([Coordinates coordinates2distance:lastCoordinates to:LM.coords] > 1000)
-        needsRefresh = YES;
-    lastCoordinates = LM.coords;
+    if ([Coordinates coordinates2distance:lastCoordinates to:LM.coords] > 1000) {
+        [self needsRefresh];
+        lastCoordinates = LM.coords;
+    }
 }
 
 - (void)setCurrentWaypoint:(dbWaypoint *)wp

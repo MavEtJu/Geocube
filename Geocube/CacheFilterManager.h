@@ -19,11 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol CacheFilterManagerDelegate
+
+- (void)refreshWaypoints;
+
+@end
+
 @interface CacheFilterManager : NSObject<GCLocationManagerDelegate> {
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
     NSMutableArray *currentWaypoints;
     dbWaypoint *currentWaypoint;
+
+    NSMutableArray *delegates;
 }
 
 @property (nonatomic, retain, readonly) NSString *configPrefix;
@@ -37,6 +45,7 @@
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)needsRefresh;
 - (void)setCurrentWaypoint:(dbWaypoint *)wp;
-
+- (void)startDelegation:(id)_delegate;
+- (void)stopDelegation:(id)_delegate;
 
 @end

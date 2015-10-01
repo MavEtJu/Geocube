@@ -62,6 +62,7 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     [super viewWillAppear:animated];
     [self refreshWaypointsData:nil];
     [self placeMarkers];
+    [waypointManager startDelegation:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,10 +83,11 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
     [self removeMarkers];
+    [waypointManager stopDelegation:self];
     [super viewDidDisappear:animated];
 }
 
-/* Delegated from CLLocation */
+/* Delegated from GCLocationManager */
 - (void)updateData
 {
     meLocation = [LM coords];
@@ -97,6 +99,14 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     [self removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
         [self addLineMeToWaypoint];
+}
+
+/* Delegated from CacheFilterManager */
+- (void)refreshWaypoints
+{
+    [self refreshWaypointsData:nil];
+    [self removeMarkers];
+    [self placeMarkers];
 }
 
 

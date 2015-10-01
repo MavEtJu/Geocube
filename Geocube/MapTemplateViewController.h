@@ -34,7 +34,7 @@ enum {
     MAPTYPE_TERRAIN,
 };
 
-@interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate> {
+@interface MapTemplateViewController : GCViewController<GCLocationManagerDelegate, CacheFilterManagerDelegate> {
     NSArray *waypointsArray;
     NSInteger waypointCount;
 
