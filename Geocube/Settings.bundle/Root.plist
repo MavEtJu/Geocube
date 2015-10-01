@@ -14,9 +14,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>option_cleardatabase</string>
+			<string>option_resetpage</string>
 			<key>Title</key>
-			<string>Purge database</string>
+			<string>Reset page number</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -24,9 +24,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>option_resetpage</string>
+			<string>option_cleardatabase</string>
 			<key>Title</key>
-			<string>Reset page number</string>
+			<string>Purge whole database</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
