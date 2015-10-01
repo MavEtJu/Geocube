@@ -32,12 +32,13 @@
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset"]];
+
+    types = [NSMutableArray arrayWithArray:[dbc Types]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    types = [NSMutableArray arrayWithArray:[dbc Types]];
     [self.tableView reloadData];
 }
 
@@ -67,7 +68,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbType *t = [types objectAtIndex:indexPath.section];
+    dbType *t = [types objectAtIndex:indexPath.row];
 
     UIViewController *newController = [[SettingsColourViewController alloc] init:t];
     newController.edgesForExtendedLayout = UIRectEdgeNone;

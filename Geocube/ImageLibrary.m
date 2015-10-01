@@ -191,27 +191,13 @@
     [self add:@"attributes - 66" index:ImageAttribute_TeamworkRequired];
     [self add:@"attributes - 67" index:ImageAttribute_PartOfGeoTour];
 
-    /* Create pinheads */
+    /* Create pinheads and pins */
     [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL * _Nonnull stop) {
         float r, g, b;
-        [self RGBtoFloat:type.pin_rgb r:&r g:&g b:&b];
-        [self addpinhead:type.pin image:[self newPinHead:[UIColor colorWithRed:r green:g blue:b alpha:1]]];
-
-        [self mergePinhead:ImageMap_pin top:type.pin index:type.pin + ImageMap_pinheadEnd - ImageMap_pinheadStart];
+        [ImageLibrary RGBtoFloat:type.pin_rgb r:&r g:&g b:&b];
+        UIColor *pinColor = [UIColor colorWithRed:r green:g blue:b alpha:1];
+        [self recreatePin:type.pin color:pinColor];
     }];
-
-    /* Create pins */
-/*
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBlack index:ImageMap_pinBlack];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadBrown index:ImageMap_pinBrown];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadGreen index:ImageMap_pinGreen];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadLightblue index:ImageMap_pinLightblue];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPurple index:ImageMap_pinPurple];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadRed index:ImageMap_pinRed];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadWhite index:ImageMap_pinWhite];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadYellow index:ImageMap_pinYellow];
-    [self mergePinhead:ImageMap_pin top:ImageMap_pinheadPink index:ImageMap_pinPink];
- */
 
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
@@ -492,7 +478,13 @@
     return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
 }
 
-- (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b
+- (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor
+{
+    [self addpinhead:pin image:[self newPinHead:pinColor]];
+    [self mergePinhead:ImageMap_pin top:pin index:pin + ImageMap_pinheadEnd - ImageMap_pinheadStart];
+}
+
++ (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b
 {
     unsigned int i;
     NSScanner *s = [NSScanner scannerWithString:[rgb substringWithRange:NSMakeRange(0, 2)]];

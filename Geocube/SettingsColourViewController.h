@@ -21,8 +21,13 @@
 
 @interface SettingsColourViewController : GCViewController {
     dbType *type;
-    GCView *rect;
-    UIButton *chose;
+    UIButton *chose, *reset;
+    UIImageView *pin1;
+    UIColor *pinColor;
+    UIColor *chosenColor;
+    NSString *hexString;
+    UILabel *hexLabel;
+    NKOColorPickerView *colorPickerView;
 }
 
 - (instancetype)init:(dbType *)type;

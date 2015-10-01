@@ -41,4 +41,6 @@
 @property (nonatomic, retain) NSString *pin_rgb;
 @property (nonatomic, retain) NSString *pin_rgb_default;
 
+- (void)dbUpdatePin;
+
 @end

@@ -58,6 +58,18 @@
     return ts;
 }
 
+- (void)dbUpdatePin
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update types set pin_rgb = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.pin_rgb);
+        SET_VAR_INT( 2, self._id);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSInteger)dbCount
 {
     return [dbType dbCount:@"types"];

@@ -153,6 +153,7 @@ typedef enum {
     ImageMap_pinheadEnd = 630,      // 600 - 630
     ImageMap_pinStart = 631,        // 631 - 662
     ImageMap_pinEnd = 662,          // 631 - 662
+    ImageMap_pinEdit,
 
     /* Up to here: Do not reorder */
 
@@ -217,6 +218,8 @@ typedef enum {
 - (UIImage *)getRating:(float)rating;
 
 - (UIImage *)newPinHead:(UIColor *)color;
+- (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor;
++ (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b;
 
 
 @end

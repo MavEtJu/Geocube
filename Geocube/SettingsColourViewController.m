@@ -43,25 +43,78 @@
     GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:frame];
     self.view = contentView;
 
-    rect = [[GCView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 10)];
-    rect.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:rect];
-    y += 10;
-
-    NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
-        [rect setBackgroundColor:color];
-    };
-    NKOColorPickerView *colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:[UIColor blueColor] andDidChangeColorBlock:colorDidChangeBlock];
-    y += 340;
-    [self.view addSubview:colorPickerView];
-
-    chose = [UIButton buttonWithType:UIButtonTypeSystem];
-    chose.frame = CGRectMake(frame.size.width / 8, y, 3 * frame.size.width / 4, 20);
-    [chose setTitle:@"Chose this colour" forState:UIControlStateNormal];
-    [self.view addSubview:chose];
+    UILabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 20)];
+    l.text = type.type_full;
+    [self.view addSubview:l];
     y += 20;
 
+    /* Create pin data */
+    float r, g, b;
+    [ImageLibrary RGBtoFloat:type.pin_rgb r:&r g:&g b:&b];
+    pinColor = [UIColor colorWithRed:r green:g blue:b alpha:1];
+    [imageLibrary recreatePin:ImageMap_pinEdit color:pinColor];
+    chosenColor = pinColor;
+    hexString = type.pin_rgb;
+
+    NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
+        [imageLibrary recreatePin:ImageMap_pinEdit color:color];
+        pin1.image = [imageLibrary get:ImageMap_pinEdit];
+        chosenColor = color;
+
+        const CGFloat *vs = CGColorGetComponents(chosenColor.CGColor);
+        hexString = [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(vs[0] * 255), lround(vs[1] * 255), lround(vs[2] * 255)];
+        hexLabel.text = hexString;
+    };
+    colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:pinColor andDidChangeColorBlock:colorDidChangeBlock];
+    [colorPickerView setColor:pinColor];
+    [self.view addSubview:colorPickerView];
+    y += 340;
+
+    UIImage *img = [imageLibrary get:ImageMap_pinEdit];
+    pin1 = [[UIImageView alloc] initWithFrame:CGRectMake((15 + frame.size.width / 5 - img.size.width * 1.5) / 2, y, img.size.width * 1.5, img.size.height * 1.5)];
+    pin1.image = [imageLibrary get:ImageMap_pinEdit];
+    [self.view addSubview:pin1];
+
+    chose = [UIButton buttonWithType:UIButtonTypeSystem];
+    chose.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [chose setTitle:@"Chose this colour" forState:UIControlStateNormal];
+    [chose addTarget:self action:@selector(choseColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:chose];
+    y += 30;
+
+    hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
+    hexLabel.text = hexString;
+    hexLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:hexLabel];
+
+    reset = [UIButton buttonWithType:UIButtonTypeSystem];
+    reset.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [reset setTitle:@"Reset" forState:UIControlStateNormal];
+    [reset addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:reset];
+    y += 30;
+
     contentView.contentSize = CGSizeMake(frame.size.width, y);
+}
+
+- (void)choseColour
+{
+    const CGFloat *vs = CGColorGetComponents(chosenColor.CGColor);
+    hexString = [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(vs[0] * 255), lround(vs[1] * 255), lround(vs[2] * 255)];
+    type.pin_rgb = hexString;
+
+    [type dbUpdatePin];
+
+    [imageLibrary recreatePin:type.pin color:chosenColor];
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)resetColour
+{
+    [imageLibrary recreatePin:type.pin color:pinColor];
+    pin1.image = [imageLibrary get:ImageMap_pinEdit];
+    [colorPickerView setColor:pinColor];
 }
 
 @end
