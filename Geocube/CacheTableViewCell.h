@@ -66,5 +66,3 @@
 - (void)showGroundspeak:(BOOL)yesno;
 
 @end
-
-
