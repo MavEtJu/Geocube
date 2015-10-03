@@ -102,8 +102,20 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord
 {
-    GMSCameraUpdate *currentCam = [GMSCameraUpdate setTarget:coord zoom:15];
-    [mapView animateWithCameraUpdate:currentCam];
+    CLLocationCoordinate2D d1, d2;
+    NSInteger span = [self calculateSpan] / 2;
+
+    // Obtained from http://stackoverflow.com/questions/6224671/mkcoordinateregionmakewithdistance-equivalent-in-android
+    double latspan = span / 111325.0;
+    double longspan = span / 111325.0 * (1 / cos([Coordinates degrees2rad:coord.latitude]));
+
+    NSLog(@"span: %ld latspan: %f longspan: %f", span, latspan, longspan);
+
+    d1 = CLLocationCoordinate2DMake(coord.latitude - latspan, coord.longitude - longspan);
+    d2 = CLLocationCoordinate2DMake(coord.latitude + latspan, coord.longitude + longspan);
+
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
+    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
