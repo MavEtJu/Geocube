@@ -3,7 +3,7 @@
 echo "Licenses:"
 grep -c GNU *.[mh]  | grep -v 3$
 
-echo 
+echo
 echo "DB_PREPARE / DB_FINISH:"
 for fn in db*.m; do
 	p=$(grep -c DB_PREPARE $fn)
@@ -19,13 +19,12 @@ grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort
 grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
-echo 
+echo
 echo "Spaces at the end:"
 grep -n "[	 ]$" *.m *.h
 
-echo 
+echo
 echo "Empty lines at the end:"
 for i in *.m *.h; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
 
 echo
-
