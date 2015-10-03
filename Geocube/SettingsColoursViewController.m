@@ -76,7 +76,35 @@
     return;
 }
 
+#pragma mark - Local menu related functions
 
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0: // Reset
+            [self resetPinColours];
+            return;
+    }
+
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [av show];
+}
+
+- (void)resetPinColours
+{
+    [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL * _Nonnull stop) {
+        t.pin_rgb = @"";
+        [t dbUpdatePin];
+        [t finish];
+
+        float r, g, b;
+        [ImageLibrary RGBtoFloat:t.pin_rgb_default r:&r g:&g b:&b];
+        UIColor *pinColour = [UIColor colorWithRed:r green:g blue:b alpha:1];
+
+        [imageLibrary recreatePin:t.pin color:pinColour];
+    }];
+    [self.tableView reloadData];
+}
 
 
 @end
