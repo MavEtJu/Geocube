@@ -109,8 +109,6 @@
     double latspan = span / 111325.0;
     double longspan = span / 111325.0 * (1 / cos([Coordinates degrees2rad:coord.latitude]));
 
-    NSLog(@"span: %ld latspan: %f longspan: %f", span, latspan, longspan);
-
     d1 = CLLocationCoordinate2DMake(coord.latitude - latspan, coord.longitude - longspan);
     d2 = CLLocationCoordinate2DMake(coord.latitude + latspan, coord.longitude + longspan);
 
