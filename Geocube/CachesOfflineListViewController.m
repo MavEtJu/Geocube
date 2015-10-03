@@ -22,6 +22,7 @@
 #import "Geocube-Prefix.pch"
 
 #define THISCELL @"cachetableviewcell"
+#define THISCELL_HEADER @"cachetableviewcellHeader"
 
 @implementation CachesOfflineListViewController
 
@@ -52,6 +53,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
 
     /*
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -71,6 +73,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [waypointManager startDelegation:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,6 +86,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [waypointManager stopDelegation:self];
 }
 
 - (void)refreshCachesData
@@ -120,10 +124,10 @@
     [self.tableView reloadData];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+/* Delegated from CacheFilterManager */
+- (void)refreshWaypoints
+{
+    [self refreshCachesData:nil];
 }
 
 #pragma mark - TableViewController related functions
@@ -137,6 +141,13 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     return waypointCount;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (waypoints == nil)
+        return @"";
+    return [NSString stringWithFormat:@"%ld waypoints", [waypoints count]];
 }
 
 // Return a cell for the index path
