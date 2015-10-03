@@ -27,6 +27,7 @@
 
     NSInteger lastImportSource;
     NSInteger lastImportGroup;
+    NSInteger lastAddedGroup;
 
     NSInteger compassType;
     NSInteger themeType;
@@ -47,6 +48,7 @@
 
 @property (nonatomic) NSInteger lastImportSource;
 @property (nonatomic) NSInteger lastImportGroup;
+@property (nonatomic) NSInteger lastAddedGroup;
 
 @property (nonatomic) NSInteger compassType;
 @property (nonatomic) NSInteger themeType;
@@ -62,6 +64,7 @@
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
+- (void)lastAddedGroupUpdate:(NSInteger)value;
 - (void)lastImportGroupUpdate:(NSInteger)value;
 - (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)compassTypeUpdate:(NSInteger)value;

@@ -31,7 +31,7 @@
 {
     self = [super initWithStyle:style];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint", @"Ignore"]];
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint", @"Ignore", @"Add to group"]];
     hasCloseButton = canBeClosed;
 
     return self;
@@ -450,19 +450,18 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    // Add a waypoint
     switch (index) {
-        case 0:
+        case 0: // Add a waypoint
             [self newWaypoint];
             return;
-        case 1:
+        case 1: // Highlight waypoint
             waypoint.highlight = !waypoint.highlight;
             [waypoint dbUpdateHighlight];
             return;
-        case 2:
+        case 2: // Refresh waypoint from server
             [self refreshWaypoint];
             return;
-        case 3:
+        case 3: // Ignore this waypoint
             waypoint.ignore = !waypoint.ignore;
             [waypoint dbUpdateIgnore];
             if (waypoint.ignore == YES) {
@@ -471,10 +470,40 @@
                 [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
             }
             return;
+        case 4: // Add waypoint to a group
+            [self addToGroup];
+            return;
     }
 
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [av show];
+}
+
+- (void)addToGroup
+{
+    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+        if (cg.usergroup == 0)
+            return;
+        [groupNames addObject:cg.name];
+        [groups addObject:cg];
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
+        rows:groupNames
+        initialSelection:[myConfig lastAddedGroup]
+        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            [myConfig lastAddedGroupUpdate:selectedIndex];
+            dbGroup *group = [groups objectAtIndex:selectedIndex];
+            [group dbRemoveWaypoint:waypoint._id];
+            [group dbAddWaypoint:waypoint._id];
+        }
+        cancelBlock:^(ActionSheetStringPicker *picker) {
+            NSLog(@"Block Picker Canceled");
+        }
+        origin:self.tableView
+    ];
 }
 
 - (void)newWaypoint

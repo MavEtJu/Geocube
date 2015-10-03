@@ -24,7 +24,7 @@
 @implementation MyConfig
 
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab;
-@synthesize lastImportGroup, lastImportSource;
+@synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize compassType, themeType;
 @synthesize soundDirection, soundDistance;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
@@ -59,6 +59,7 @@
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
     CHECK(@"lastimport_group", @"0");
+    CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
@@ -74,6 +75,7 @@
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
     lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
     lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
+    lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
@@ -137,6 +139,12 @@
 {
     lastImportGroup = value;
     [self NSIntegerUpdate:@"lastimport_group" value:value];
+}
+
+- (void)lastAddedGroupUpdate:(NSInteger)value
+{
+    lastAddedGroup = value;
+    [self NSIntegerUpdate:@"lastadded_group" value:value];
 }
 
 - (void)lastImportSourceUpdate:(NSInteger)value
