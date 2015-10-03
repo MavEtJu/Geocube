@@ -187,6 +187,9 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     } else {
         span = 1000 + (LM.speed - 10) * (5000 - 1000) / (30 - 10);
     }
+    // Don't show silly things when moving too fast (most likely due to running other apps
+    if (span > 5000)
+        span = 5000;
     return span;
 }
 
