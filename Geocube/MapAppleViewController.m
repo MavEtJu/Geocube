@@ -141,7 +141,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
     CLLocationCoordinate2D d1, d2;
-    [self makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2];
+    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2];
 
     NSMutableArray *coords = [NSMutableArray arrayWithCapacity:2];
     MKPointAnnotation *annotation;
