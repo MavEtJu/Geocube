@@ -105,7 +105,7 @@
         [clock clockShowAndReset:@"dbAll"];
     }
 
-    NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], [caches count]);
+    NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[caches count]);
 
     /* Filter out cache types:
      * The filter selects out the caches which are of a certain type.
@@ -494,7 +494,7 @@
         caches = after;
     }
 
-    NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], [caches count]);
+    NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
     currentWaypoints = caches;
     needsRefresh = NO;
 }
@@ -533,7 +533,7 @@
         NSInteger filterDistanceM = [[self _configGet:@"distanceM"] integerValue] + 1000 * [[self _configGet:@"distanceKm"] integerValue];
         NSInteger realDistanceM = [Coordinates coordinates2distance:lastCoordinates to:LM.coords];
         if (realDistanceM > filterDistanceM / 4) {
-            NSLog(@"Updating filter: %ld - %ld", realDistanceM, filterDistanceM);
+            NSLog(@"Updating filter: %ld - %ld", (long)realDistanceM, (long)filterDistanceM);
             [self needsRefresh];
             lastCoordinates = LM.coords;
         }

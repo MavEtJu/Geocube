@@ -68,7 +68,7 @@ ThemeManager *themeManager;
     [_AppDelegate.tabBars enumerateObjectsUsingBlock:^(BHTabsViewController *btc, NSUInteger tidx, BOOL *stop) {
         [btc.viewControllers enumerateObjectsUsingBlock:^(UINavigationController *nvc, NSUInteger nvidx, BOOL *stop) {
             [nvc.viewControllers enumerateObjectsUsingBlock:^(GCViewController *vc, NSUInteger vcidx, BOOL *stop) {
-                NSLog(@"%ld %ld %ld", tidx, nvidx, vcidx);
+                NSLog(@"%ld %ld %ld", (unsigned long)tidx, (unsigned long)nvidx, (unsigned long)vcidx);
                 [vc changeTheme];
             }];
         }];

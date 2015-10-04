@@ -222,7 +222,7 @@ static const double kFeetPerMile = 5280.0;
 		}
 	}
 	
-	maxLabel.text = [NSString stringWithFormat:@"%lu",maxValue];
+	maxLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)maxValue];
 	unitLabel.text = unit;
 	
 	[self layoutSubviews];

@@ -162,7 +162,7 @@
     width = applicationFrame.size.width;
     NSInteger height = self.view.frame.size.height - 50;
     height = applicationFrame.size.height - 50;
-    NSLog(@"height: %ld", height);
+    NSLog(@"height: %ld", (long)height);
 
     UIFont *f = [UIFont systemFontOfSize:14];
     NSInteger textHeight = f.lineHeight;

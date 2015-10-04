@@ -147,7 +147,7 @@
 {
     if (waypoints == nil)
         return @"";
-    return [NSString stringWithFormat:@"%ld waypoints", [waypoints count]];
+    return [NSString stringWithFormat:@"%ld waypoints", (unsigned long)[waypoints count]];
 }
 
 // Return a cell for the index path

@@ -238,7 +238,7 @@
 - (void)addpinhead:(NSInteger)index image:(UIImage *)img
 {
     imgs[index] = img;
-    names[index] = [NSString stringWithFormat:@"pinhead: %ld", index];
+    names[index] = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
 }
 
 - (UIImage *)mergePinhead2:(UIImage *)bottom top:(NSInteger)top
@@ -357,7 +357,7 @@
     else
         [s appendString:@"h"];
 
-    [s appendFormat:@"%ld", imgnum];
+    [s appendFormat:@"%ld", (long)imgnum];
 
     if (disabled == YES)
         [s appendString:@"D"];
