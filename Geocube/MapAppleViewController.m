@@ -204,14 +204,14 @@
 
 - (void)addHistory
 {
-    CLLocationCoordinate2D coordinateArray[[history count]];
+    CLLocationCoordinate2D coordinateArray[[LM.coordsHistorical count]];
 
     NSInteger idx = 0;
-    for (MapHistoryObject *mho in history) {
+    for (GCCoordsHistorical *mho in LM.coordsHistorical) {
         coordinateArray[idx++] = mho.coord;
     }
 
-    lineHistory = [MKPolyline polylineWithCoordinates:coordinateArray count:[history count]];
+    lineHistory = [MKPolyline polylineWithCoordinates:coordinateArray count:[LM.coordsHistorical count]];
     [mapView addOverlay:lineHistory];
 }
 

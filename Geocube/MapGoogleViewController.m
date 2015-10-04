@@ -146,7 +146,7 @@
 {
     GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
 
-    [history enumerateObjectsUsingBlock:^(MapHistoryObject *mho, NSUInteger idx, BOOL * _Nonnull stop) {
+    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
         [pathMeToWaypoint addCoordinate:mho.coord];
     }];
 

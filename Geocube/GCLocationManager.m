@@ -23,13 +23,14 @@
 
 @implementation GCLocationManager
 
-@synthesize altitude, accuracy, coords, direction, delegates, speed;
+@synthesize altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
 
 - (instancetype)init
 {
     self = [super init];
 
-    coordsHistorical = [NSMutableArray arrayWithCapacity:10];
+    coordsHistorical = [NSMutableArray arrayWithCapacity:1000];
+    lastHistory = [NSDate date];
     speed = 0;
 
     /* Initiate the location manager */
@@ -54,6 +55,16 @@
         return;
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         [delegate updateData];
+    }];
+}
+
+- (void)updateHistoryDelegate
+{
+    if ([delegates count] == 0)
+        return;
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        if ([delegate respondsToSelector:@selector(updateHistory)])
+            [delegate updateHistory];
     }];
 }
 
@@ -85,26 +96,53 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    // Keep track of new values
     altitude = manager.location.altitude;
     coords = newLocation.coordinate;
     accuracy = newLocation.horizontalAccuracy;
 
-    struct timeval t;
-    gettimeofday(&t, NULL);
+    // If the location hasn't changed, don't do anything at all.
+    if ([coordsHistorical count] != 0) {
+        GCCoordsHistorical *chLast = [coordsHistorical objectAtIndex:[coordsHistorical count] - 1];
+        if (chLast.coord.longitude == newLocation.coordinate.longitude &&
+            chLast.coord.latitude == newLocation.coordinate.latitude) {
+            return;
+        }
+    }
+
+    // Keep a copy of the current data
+    NSDate *now = [NSDate date];
+    NSTimeInterval td = [now timeIntervalSince1970];
+
     GCCoordsHistorical *ch = [[GCCoordsHistorical alloc] init];
-    ch.timeval = t;
+    ch.when = td;
     ch.coord = newLocation.coordinate;
+
     [coordsHistorical addObject:ch];
-    if ([coordsHistorical count] == 11)
-        [coordsHistorical removeObjectAtIndex:0];
 
-    GCCoordsHistorical *ch0 = [coordsHistorical objectAtIndex:0];
+    // Calculate speed over the last ten units.
+    if ([coordsHistorical count] > 10) {
+        GCCoordsHistorical *ch0 = [coordsHistorical objectAtIndex:[coordsHistorical count] - 10];
+        td = ch.when - ch0.when;
+        float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
+        if (td != 0)
+            speed = distance / td;
+    }
 
-    struct timeval td = [MyTools timevalDifference:ch0.timeval t1:ch.timeval];
-    if ([coordsHistorical count] == 10 && (td.tv_sec != 0 || td.tv_usec != 0))
-        speed = [Coordinates coordinates2distance:ch.coord to:ch0.coord] / (td.tv_sec + td.tv_usec / 1000000.0);
-
+    // Send out the location and direction changes
     [self updateDataDelegate];
+
+    // Updatet the historical track.
+    // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
+    float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
+    td = ch.when - lastHistory.timeIntervalSince1970;
+    if (td > 5.0 || distance > 100.0) {
+        [self updateHistoryDelegate];
+        coordsHistoricalLast = ch.coord;
+        lastHistory = now;
+    }
+
+    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
@@ -120,6 +158,6 @@
 
 @implementation GCCoordsHistorical
 
-@synthesize timeval, coord;
+@synthesize when, coord;
 
 @end

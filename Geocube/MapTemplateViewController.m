@@ -46,9 +46,6 @@ NEEDS_OVERLOADING(addHistory)
     showType = _type; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
 
-    history = [NSMutableArray arrayWithCapacity:1000];
-    lastHistory = [NSDate date];
-
     return self;
 }
 
@@ -106,24 +103,12 @@ NEEDS_OVERLOADING(addHistory)
     [self removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
         [self addLineMeToWaypoint];
+}
 
-    // Keep track of historical locations
-    // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
-    NSDate *now = [NSDate date];
-    NSTimeInterval interval = [now timeIntervalSinceDate:lastHistory];
-    NSInteger distance = [Coordinates coordinates2distance:meLocation to:lastCoordinates];
-
-    if (interval > 5 || distance > 100) {
-        MapHistoryObject *o = [[MapHistoryObject alloc] init];
-        o.coord = meLocation;
-        o.when = [now timeIntervalSince1970];
-        lastHistory = now;
-        lastCoordinates = meLocation;
-
-        [history addObject:o];
-        [self removeHistory];
-        [self addHistory];
-    }
+- (void)updateHistory
+{
+    [self removeHistory];
+    [self addHistory];
 }
 
 /* Delegated from CacheFilterManager */
@@ -295,12 +280,5 @@ NEEDS_OVERLOADING(addHistory)
     }
 
 }
-
-@end
-
-
-@implementation MapHistoryObject
-
-@synthesize coord, when;
 
 @end

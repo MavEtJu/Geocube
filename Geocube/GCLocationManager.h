@@ -23,6 +23,9 @@
 
 - (void)updateData;
 
+@optional
+- (void)updateHistory;
+
 @end
 
 @interface GCLocationManager : NSObject<CLLocationManagerDelegate> {
@@ -33,8 +36,9 @@
     CLLocationDirection direction;
     CLLocationCoordinate2D coords;
 
-    CLLocationCoordinate2D t0;
     NSMutableArray *coordsHistorical;
+    NSDate *lastHistory;
+    CLLocationCoordinate2D coordsHistoricalLast;
     float speed;
 }
 
@@ -45,6 +49,7 @@
 @property (nonatomic) CLLocationDistance altitude;
 @property (nonatomic) CLLocationDirection direction;
 @property (nonatomic) CLLocationCoordinate2D coords;
+@property (nonatomic) NSMutableArray *coordsHistorical;
 
 - (void)startDelegation:(id)delegate isNavigating:(BOOL)isNavigating;
 - (void)stopDelegation:(id)delegate;
@@ -53,11 +58,11 @@
 @end
 
 @interface GCCoordsHistorical : NSObject {
-    struct timeval timeval;
+    NSTimeInterval when;
     CLLocationCoordinate2D coord;
 }
 
-@property (nonatomic) struct timeval timeval;
+@property (nonatomic) NSTimeInterval when;
 @property (nonatomic) CLLocationCoordinate2D coord;
 
 @end
