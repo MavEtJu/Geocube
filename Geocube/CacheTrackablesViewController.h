@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheTravelbugsViewController : GCTableViewController {
+@interface CacheTrackablesViewController : GCTableViewController {
     NSMutableArray *tbs;
     dbWaypoint *waypoint;
 }

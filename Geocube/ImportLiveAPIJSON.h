@@ -24,8 +24,8 @@
     NSInteger totalWaypointsCount;
     NSInteger newLogsCount;
     NSInteger totalLogsCount;
-    NSInteger newTravelbugsCount;
-    NSInteger totalTravelbugsCount;
+    NSInteger newTrackablesCount;
+    NSInteger totalTrackablesCount;
     NSUInteger percentageRead;
     NSUInteger totalLines;
     NSInteger newImagesCount;

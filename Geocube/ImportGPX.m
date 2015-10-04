@@ -35,8 +35,8 @@
     newLogsCount = 0;
     totalLogsCount = 0;
     percentageRead = 0;
-    newTravelbugsCount = 0;
-    totalTravelbugsCount = 0;
+    newTrackablesCount = 0;
+    totalTrackablesCount = 0;
     newImagesCount = 0;
 
     group = _group;
@@ -88,7 +88,7 @@
     index = 0;
     inItem = NO;
     inLog = NO;
-    inTravelbug = NO;
+    inTrackable = NO;
     logIdGCId = [dbLog dbAllIdGCId];
 
     @autoreleasepool {
@@ -148,7 +148,7 @@
             logs = [NSMutableArray arrayWithCapacity:20];
             attributesYES = [NSMutableArray arrayWithCapacity:20];
             attributesNO = [NSMutableArray arrayWithCapacity:20];
-            travelbugs = [NSMutableArray arrayWithCapacity:20];
+            trackables = [NSMutableArray arrayWithCapacity:20];
             currentGS = nil;
 
             inItem = YES;
@@ -194,11 +194,11 @@
         }
 
         if ([currentElement isEqualToString:@"groundspeak:travelbug"] == YES) {
-            currentTB = [[dbTravelbug alloc] init];
+            currentTB = [[dbTrackable alloc] init];
             [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
             [currentTB setRef:[attributeDict objectForKey:@"ref"]];
 
-            inTravelbug = YES;
+            inTrackable = YES;
             return;
         }
 
@@ -297,25 +297,25 @@
             [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
             [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
 
-            // Link travelbugs to cache
-            [dbTravelbug dbUnlinkAllFromWaypoint:currentWP._id];
-            [travelbugs enumerateObjectsUsingBlock:^(dbTravelbug *tb, NSUInteger idx, BOOL *stop) {
-                NSId _id = [dbTravelbug dbGetIdByGC:tb.gc_id];
+            // Link trackables to cache
+            [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
+            [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
+                NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
                 [tb finish];
                 if (_id == 0) {
-                    newTravelbugsCount++;
+                    newTrackablesCount++;
                     [tb dbCreate];
                 } else {
                     tb._id = _id;
                     [tb dbUpdate];
                 }
                 [tb dbLinkToWaypoint:currentWP._id];
-                totalTravelbugsCount++;
+                totalTrackablesCount++;
             }];
 
             inItem = NO;
             if (delegate != nil)
-                [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTravelbugsCount:newTravelbugsCount totalTravelbugsCount:totalTravelbugsCount newImagesCount:newImagesCount];
+                [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTrackablesCount:newTrackablesCount totalTrackablesCount:totalTrackablesCount newImagesCount:newImagesCount];
 
             goto bye;
         }
@@ -329,10 +329,10 @@
         }
 
         // Deal with the completion of the travelbug
-        if (index == 4 && inTravelbug == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
-            [travelbugs addObject:currentTB];
+        if (index == 4 && inTrackable == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
+            [trackables addObject:currentTB];
 
-            inTravelbug = NO;
+            inTrackable = NO;
             goto bye;
         }
 
@@ -345,7 +345,7 @@
         }
 
         // Deal with the data of the travelbug
-        if (inTravelbug == YES) {
+        if (inTrackable == YES) {
             if (index == 5) {
                 if ([elementName isEqualToString:@"groundspeak:name"] == YES) {
                     [currentTB setName:currentText];

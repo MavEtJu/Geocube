@@ -136,11 +136,11 @@
 }
 
 - (NSInteger)hasPersonalNotes {
-    return [dbTravelbug dbCountByWaypoint:_id];
+    return [dbTrackable dbCountByWaypoint:_id];
 }
 
 - (NSInteger)hasInventory {
-    return [dbTravelbug dbCountByWaypoint:_id];
+    return [dbTrackable dbCountByWaypoint:_id];
 }
 
 - (NSArray *)hasWaypoints

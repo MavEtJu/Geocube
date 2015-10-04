@@ -19,8 +19,22 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface TravelbugsViewController : GCTableViewController {
-    NSArray *tbs;
-}
+@interface dbTrackable : dbObject {
+    NSString *name;
+    NSString *ref;
+    NSId gc_id;
+};
+
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *ref;
+@property (nonatomic) NSId gc_id;
+
++ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
+- (void)dbLinkToWaypoint:(NSId)wp_id;
++ (NSId)dbGetIdByGC:(NSId)_gc_id;
++ (NSId)dbCreate:(dbTrackable *)tb;
+- (NSId)dbCreate;
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 
 @end

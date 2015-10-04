@@ -21,55 +21,64 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation TravelbugsViewController
+@implementation CacheTrackablesViewController
 
-#define THISCELL @"TravelbugsViewControllerCell"
+#define THISCELL @"CacheTrackablesViewController"
 
-- (void)viewDidLoad
+- (instancetype)init:(dbWaypoint *)_wp
 {
-    [super viewDidLoad];
+    self = [super init];
+    waypoint = _wp;
+
+    tbs = [NSMutableArray arrayWithCapacity:5];
+
+    [[dbTrackable dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
+        [tbs addObject:tb];
+    }];
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     menuItems = nil;
-}
+    hasCloseButton = YES;
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    tbs = [dbTravelbug dbAll];
-    [self.tableView reloadData];
+    return self;
 }
 
 #pragma mark - TableViewController related functions
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-// Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     return [tbs count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Trackables";
+}
+
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    if (cell == nil)
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    if (cell == nil) {
         cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
-    dbTravelbug *tb = [tbs objectAtIndex:indexPath.row];
+    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = tb.name;
     cell.detailTextLabel.text = tb.ref;
     cell.userInteractionEnabled = NO;
+    cell.imageView.image = nil;
 
     return cell;
 }
-
-#pragma mark - Local menu related functions
 
 @end

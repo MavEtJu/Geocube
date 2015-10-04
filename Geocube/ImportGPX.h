@@ -24,7 +24,7 @@
 
 @protocol ImportGPXDelegate
 
-- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount;
+- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount;
 
 @end
 
@@ -33,8 +33,8 @@
     NSInteger totalWaypointsCount;
     NSInteger newLogsCount;
     NSInteger totalLogsCount;
-    NSInteger newTravelbugsCount;
-    NSInteger totalTravelbugsCount;
+    NSInteger newTrackablesCount;
+    NSInteger totalTrackablesCount;
     NSUInteger percentageRead;
     NSUInteger totalLines;
     NSInteger newImagesCount;
@@ -46,16 +46,16 @@
     NSMutableDictionary *logIdGCId;
     NSMutableArray *attributesYES, *attributesNO;
     NSMutableArray *logs;
-    NSMutableArray *travelbugs;
+    NSMutableArray *trackables;
     NSInteger index;
-    NSInteger inItem, inLog, inTravelbug, inGroundspeak;
+    NSInteger inItem, inLog, inTrackable, inGroundspeak;
     NSMutableString *currentText;
     NSString *currentElement;
     NSString *gsOwnerNameId, *logFinderNameId;
     dbWaypoint *currentWP;
     dbGroundspeak *currentGS;
     dbLog *currentLog;
-    dbTravelbug *currentTB;
+    dbTrackable *currentTB;
 
     id delegate;
 }

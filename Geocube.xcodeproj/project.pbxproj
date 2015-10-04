@@ -176,12 +176,12 @@
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73791B53474C00F35528 /* MapAppleViewController.m */; };
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
-		E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTravelbug.m */; };
-		E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */; };
+		E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTrackable.m */; };
+		E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */; };
 		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
-		E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TravelbugsViewController.m */; };
+		E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
@@ -564,18 +564,18 @@
 		E80F73791B53474C00F35528 /* MapAppleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleViewController.m; sourceTree = "<group>"; };
 		E81304021B5C4EB1006DF300 /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSymbol.h; sourceTree = "<group>"; };
 		E81304031B5C4EB1006DF300 /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSymbol.m; sourceTree = "<group>"; };
-		E81304091B5D9B5E006DF300 /* dbTravelbug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTravelbug.h; sourceTree = "<group>"; };
-		E813040A1B5D9B5E006DF300 /* dbTravelbug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTravelbug.m; sourceTree = "<group>"; };
-		E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTravelbugsViewController.h; sourceTree = "<group>"; };
-		E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTravelbugsViewController.m; sourceTree = "<group>"; };
+		E81304091B5D9B5E006DF300 /* dbTrackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackable.h; sourceTree = "<group>"; };
+		E813040A1B5D9B5E006DF300 /* dbTrackable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrackable.m; sourceTree = "<group>"; };
+		E813040C1B5DA933006DF300 /* CacheTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTrackablesViewController.h; sourceTree = "<group>"; };
+		E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTrackablesViewController.m; sourceTree = "<group>"; };
 		E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
 		E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
 		E81D242F1B9BDB94001E6027 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
 		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
-		E820F2041B7DA451009FB999 /* TravelbugsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelbugsViewController.h; sourceTree = "<group>"; };
-		E820F2051B7DA451009FB999 /* TravelbugsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelbugsViewController.m; sourceTree = "<group>"; };
+		E820F2041B7DA451009FB999 /* TrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesViewController.h; sourceTree = "<group>"; };
+		E820F2051B7DA451009FB999 /* TrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
@@ -1006,8 +1006,8 @@
 				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
-				E820F2041B7DA451009FB999 /* TravelbugsViewController.h */,
-				E820F2051B7DA451009FB999 /* TravelbugsViewController.m */,
+				E820F2041B7DA451009FB999 /* TrackablesViewController.h */,
+				E820F2051B7DA451009FB999 /* TrackablesViewController.m */,
 				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
 				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
 			);
@@ -1260,8 +1260,8 @@
 				E8740FE71B508BBE002527DA /* CacheLogsViewController.m */,
 				E87E474E1B8301DE005606A2 /* CachePersonalNoteViewController.h */,
 				E87E474F1B8301DE005606A2 /* CachePersonalNoteViewController.m */,
-				E813040C1B5DA933006DF300 /* CacheTravelbugsViewController.h */,
-				E813040D1B5DA933006DF300 /* CacheTravelbugsViewController.m */,
+				E813040C1B5DA933006DF300 /* CacheTrackablesViewController.h */,
+				E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */,
 				E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */,
 				E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */,
 			);
@@ -1714,8 +1714,8 @@
 				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 				E81304021B5C4EB1006DF300 /* dbSymbol.h */,
 				E81304031B5C4EB1006DF300 /* dbSymbol.m */,
-				E81304091B5D9B5E006DF300 /* dbTravelbug.h */,
-				E813040A1B5D9B5E006DF300 /* dbTravelbug.m */,
+				E81304091B5D9B5E006DF300 /* dbTrackable.h */,
+				E813040A1B5D9B5E006DF300 /* dbTrackable.m */,
 				E8F570C91B4008DD003F020C /* dbType.h */,
 				E8F570CA1B4008DD003F020C /* dbType.m */,
 				E80732B41B5FA352007FDC29 /* dbWaypoint.h */,
@@ -2208,7 +2208,7 @@
 				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
-				E813040E1B5DA933006DF300 /* CacheTravelbugsViewController.m in Sources */,
+				E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
@@ -2241,7 +2241,7 @@
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
-				E813040B1B5D9B5E006DF300 /* dbTravelbug.m in Sources */,
+				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
@@ -2253,7 +2253,7 @@
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
-				E820F2061B7DA451009FB999 /* TravelbugsViewController.m in Sources */,
+				E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,

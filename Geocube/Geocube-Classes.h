@@ -39,7 +39,7 @@
 @class CacheLogsViewController;
 @class CachePersonalNoteViewController;
 @class CacheTableViewCell;
-@class CacheTravelbugsViewController;
+@class CacheTrackablesViewController;
 @class CacheViewController;
 @class CacheWaypointsViewController;
 @class CachesOfflineListViewController;
@@ -120,7 +120,7 @@
 @class ThemeNight;
 @class ThemeNormal;
 @class ThemeTemplate;
-@class TravelbugsViewController;
+@class TrackablesViewController;
 @class UserProfileViewController;
 @class database;
 @class dbAccount;
@@ -142,7 +142,7 @@
 @class dbPersonalNote;
 @class dbState;
 @class dbSymbol;
-@class dbTravelbug;
+@class dbTrackable;
 @class dbType;
 @class dbWaypoint;
 

@@ -361,8 +361,8 @@
             }
             return;
         }
-        if (indexPath.row == 7) {    /* Travelbugs */
-            UITableViewController *newController = [[CacheTravelbugsViewController alloc] init:waypoint];
+        if (indexPath.row == 7) {    /* Trackables */
+            UITableViewController *newController = [[CacheTrackablesViewController alloc] init:waypoint];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             [self.navigationController pushViewController:newController animated:YES];
             return;

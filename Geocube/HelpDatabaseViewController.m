@@ -96,8 +96,8 @@
     [vs addObject:[NSNumber numberWithInteger:[dbState dbCount]]];
     [fs addObject:@"Symbols"];
     [vs addObject:[NSNumber numberWithInteger:[dbSymbol dbCount]]];
-    [fs addObject:@"Travelbugs"];
-    [vs addObject:[NSNumber numberWithInteger:[dbTravelbug dbCount]]];
+    [fs addObject:@"Trackables"];
+    [vs addObject:[NSNumber numberWithInteger:[dbTrackable dbCount]]];
     [fs addObject:@"Types"];
     [vs addObject:[NSNumber numberWithInteger:[dbType dbCount]]];
     [fs addObject:@"Waypoints"];

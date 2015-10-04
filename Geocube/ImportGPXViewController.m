@@ -156,26 +156,26 @@
         [self.view addSubview:totalWaypointsLabel];
         y += height;
 
-        // New travelbugs counter
+        // New trackables counter
         l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-        l.text = @"New travelbugs imported:";
+        l.text = @"New trackables imported:";
         l.textAlignment = NSTextAlignmentRight;
         [self.view addSubview:l];
 
-        newTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-        newTravelbugsLabel.textAlignment = NSTextAlignmentRight;
-        [self.view addSubview:newTravelbugsLabel];
+        newTrackablesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        newTrackablesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:newTrackablesLabel];
         y += height;
 
-        // Total travelbugs counter
+        // Total trackables counter
         l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
-        l.text = @"Total travelbugs read:";
+        l.text = @"Total trackables read:";
         l.textAlignment = NSTextAlignmentRight;
         [self.view addSubview:l];
 
-        totalTravelbugsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
-        totalTravelbugsLabel.textAlignment = NSTextAlignmentRight;
-        [self.view addSubview:totalTravelbugsLabel];
+        totalTrackablesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        totalTrackablesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:totalTrackablesLabel];
         y += height;
 
         // New logs counter
@@ -262,7 +262,7 @@
     }];
 }
 
-- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTravelbugsCount:(NSInteger)newTravelbugsCount totalTravelbugsCount:(NSInteger)totalTravelbugsCount newImagesCount:(NSInteger)newImagesCount
+- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount
 {
     @synchronized(self) {
         progressValue = percentageRead;
@@ -270,8 +270,8 @@
         totalWaypointsValue = totalWaypointsCount;
         newLogsValue = newLogsCount;
         totalLogsValue = totalLogsCount;
-        newTravelbugsValue = newTravelbugsCount;
-        totalTravelbugsValue = totalTravelbugsCount;
+        newTrackablesValue = newTrackablesCount;
+        totalTrackablesValue = totalTrackablesCount;
         totalImagesValue = newImagesCount;
         [self updateData];
     }
@@ -293,8 +293,8 @@
         totalWaypointsLabel.text = [MyTools niceNumber:totalImagesValue];
         newLogsLabel.text = [MyTools niceNumber:newLogsValue];
         totalLogsLabel.text = [MyTools niceNumber:totalImagesValue];
-        newTravelbugsLabel.text = [MyTools niceNumber:newTravelbugsValue];
-        totalTravelbugsLabel.text = [MyTools niceNumber:totalTravelbugsValue];
+        newTrackablesLabel.text = [MyTools niceNumber:newTrackablesValue];
+        totalTrackablesLabel.text = [MyTools niceNumber:totalTrackablesValue];
         totalImagesLabel.text = [MyTools niceNumber:totalImagesValue];
         queuedImagesLabel.text = [MyTools niceNumber:queuedImagesValue];
     }];

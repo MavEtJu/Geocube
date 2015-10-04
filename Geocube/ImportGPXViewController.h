@@ -30,8 +30,8 @@
     GCLabel *totalWaypointsLabel;
     GCLabel *newLogsLabel;
     GCLabel *totalLogsLabel;
-    GCLabel *newTravelbugsLabel;
-    GCLabel *totalTravelbugsLabel;
+    GCLabel *newTrackablesLabel;
+    GCLabel *totalTrackablesLabel;
     GCLabel *progressLabel;
     GCLabel *totalImagesLabel;
     GCLabel *queuedImagesLabel;
@@ -41,8 +41,8 @@
     NSInteger totalWaypointsValue;
     NSInteger newLogsValue;
     NSInteger totalLogsValue;
-    NSInteger newTravelbugsValue;
-    NSInteger totalTravelbugsValue;
+    NSInteger newTrackablesValue;
+    NSInteger totalTrackablesValue;
     NSInteger progressValue;
     NSInteger totalImagesValue;
     NSInteger queuedImagesValue;

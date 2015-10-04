@@ -124,7 +124,7 @@
 - (NSInteger)hasImages { return 0; }
 
 - (NSInteger)hasInventory {
-    return [dbTravelbug dbCountByWaypoint:_id];
+    return [dbTrackable dbCountByWaypoint:_id];
 }
 
 + (NSInteger)dbCount

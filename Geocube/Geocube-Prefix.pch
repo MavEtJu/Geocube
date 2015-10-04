@@ -77,7 +77,7 @@
 #import "dbState.h"
 #import "dbSymbol.h"
 #import "dbType.h"
-#import "dbTravelbug.h"
+#import "dbTrackable.h"
 #import "dbWaypoint.h"
 
 #import "ThemeTemplate.h"
@@ -153,7 +153,7 @@
 #import "CacheLogViewController.h"
 #import "CacheLogsViewController.h"
 #import "CachePersonalNoteViewController.h"
-#import "CacheTravelbugsViewController.h"
+#import "CacheTrackablesViewController.h"
 #import "CacheViewController.h"
 #import "CacheWaypointsViewController.h"
 
@@ -183,7 +183,7 @@
 #import "FilesViewController.h"
 #import "GroupsViewController.h"
 #import "NullViewController.h"
-#import "TravelbugsViewController.h"
+#import "TrackablesViewController.h"
 #import "UserProfileViewController.h"
 
 #import "GCPointAnnotation.h"

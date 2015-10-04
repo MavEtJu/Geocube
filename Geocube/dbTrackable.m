@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation dbTravelbug
+@implementation dbTrackable
 
 @synthesize name, ref, gc_id;
 
@@ -90,7 +90,7 @@
         DB_PREPARE(@"select id, name, ref, gc_id from travelbugs");
 
         DB_WHILE_STEP {
-            dbTravelbug *tb = [[dbTravelbug alloc] init];
+            dbTrackable *tb = [[dbTrackable alloc] init];
             INT_FETCH(0, tb._id);
             TEXT_FETCH(1, tb.name);
             TEXT_FETCH(2, tb.ref);
@@ -104,7 +104,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbTravelbug dbCount:@"travelbugs"];
+    return [dbTrackable dbCount:@"travelbugs"];
 }
 
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
@@ -117,7 +117,7 @@
         SET_VAR_INT(1, wp_id);
 
         DB_WHILE_STEP {
-            dbTravelbug *tb = [[dbTravelbug alloc] init];;
+            dbTrackable *tb = [[dbTrackable alloc] init];;
             INT_FETCH(0, tb._id);
             TEXT_FETCH(1, tb.name);
             TEXT_FETCH(2, tb.ref);
@@ -148,10 +148,10 @@
 
 - (NSId)dbCreate
 {
-    return [dbTravelbug dbCreate:self];
+    return [dbTrackable dbCreate:self];
 }
 
-+ (NSId)dbCreate:(dbTravelbug *)tb
++ (NSId)dbCreate:(dbTrackable *)tb
 {
     NSId _id = 0;
 

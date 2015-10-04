@@ -33,8 +33,8 @@
     newLogsCount = 0;
     totalLogsCount = 0;
     percentageRead = 0;
-    newTravelbugsCount = 0;
-    totalTravelbugsCount = 0;
+    newTrackablesCount = 0;
+    totalTrackablesCount = 0;
     newImagesCount = 0;
 
     group = _group;
@@ -166,7 +166,7 @@
 
 - (void)parseTrackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
 {
-    [dbTravelbug dbUnlinkAllFromWaypoint:wp._id];
+    [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
     }];
@@ -259,14 +259,14 @@
      },
      */
 
-    dbTravelbug *tb = [[dbTravelbug alloc] init];
+    dbTrackable *tb = [[dbTrackable alloc] init];
     tb.name = [dict objectForKey:@"Name"];
     tb.gc_id = [[dict objectForKey:@"Id"] integerValue];
     tb.ref = [dict objectForKey:@"Code"];
 
-    NSId _id = [dbTravelbug dbGetIdByGC:tb.gc_id];
+    NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
-        [dbTravelbug dbCreate:tb];
+        [dbTrackable dbCreate:tb];
     } else {
         tb._id = _id;
         [tb dbUpdate];
