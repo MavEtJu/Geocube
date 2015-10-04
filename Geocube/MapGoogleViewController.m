@@ -142,6 +142,25 @@
     lineMeToWaypoint.map = nil;
 }
 
+- (void)addHistory
+{
+    GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
+
+    [history enumerateObjectsUsingBlock:^(MapHistoryObject *mho, NSUInteger idx, BOOL * _Nonnull stop) {
+        [pathMeToWaypoint addCoordinate:mho.coord];
+    }];
+
+    lineHistory = [GMSPolyline polylineWithPath:pathMeToWaypoint];
+    lineHistory.strokeWidth = 2.f;
+    lineHistory.strokeColor = [UIColor redColor];
+    lineHistory.map = mapView;
+}
+
+- (void)removeHistory
+{
+    lineHistory.map = nil;
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index

@@ -122,6 +122,17 @@
         return viewLineMeToWaypoint;
     }
 
+    if (overlay == lineHistory) {
+        if (viewLineHistory == nil) {
+            viewLineHistory = [[MKPolylineView alloc] initWithPolyline:lineHistory];
+            viewLineHistory.fillColor = [UIColor redColor];
+            viewLineHistory.strokeColor = [UIColor redColor];
+            viewLineHistory.lineWidth = 5;
+        }
+
+        return viewLineHistory;
+    }
+
     return nil;
 }
 
@@ -189,6 +200,26 @@
     [mapView removeOverlay:lineMeToWaypoint];
     viewLineMeToWaypoint = nil;
     lineMeToWaypoint = nil;
+}
+
+- (void)addHistory
+{
+    CLLocationCoordinate2D coordinateArray[[history count]];
+
+    NSInteger idx = 0;
+    for (MapHistoryObject *mho in history) {
+        coordinateArray[idx++] = mho.coord;
+    }
+
+    lineHistory = [MKPolyline polylineWithCoordinates:coordinateArray count:[history count]];
+    [mapView addOverlay:lineHistory];
+}
+
+- (void)removeHistory
+{
+    [mapView removeOverlay:lineHistory];
+    viewLineHistory= nil;
+    lineHistory= nil;
 }
 
 #pragma mark - Local menu related functions

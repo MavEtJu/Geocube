@@ -42,6 +42,10 @@ enum {
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
 
     CLLocationCoordinate2D meLocation;
+
+    NSMutableArray *history;
+    CLLocationCoordinate2D lastCoordinates;
+    NSDate *lastHistory;
 }
 
 - (instancetype)init:(NSInteger)type;
@@ -60,6 +64,8 @@ enum {
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)setMapType:(NSInteger)maptype;
+- (void)removeHistory;
+- (void)addHistory;
 
 // Menu related features
 - (void)menuShowWhom:(NSInteger)whom;
@@ -68,5 +74,15 @@ enum {
 // User related actions
 - (void)userInteraction;
 - (void)openWaypointView:(NSString *)name;
+
+@end
+
+@interface MapHistoryObject : NSObject {
+    CLLocationCoordinate2D coord;
+    NSTimeInterval when;
+}
+
+@property (nonatomic) CLLocationCoordinate2D coord;
+@property (nonatomic) NSTimeInterval when;
 
 @end

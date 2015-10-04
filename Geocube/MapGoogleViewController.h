@@ -27,6 +27,7 @@
     NSMutableArray *markers;
 
     GMSPolyline *lineMeToWaypoint;
+    GMSPolyline *lineHistory;
 }
 
 @end

@@ -28,6 +28,8 @@
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineView *viewLineMeToWaypoint;
+    MKPolyline *lineHistory;
+    MKPolylineView *viewLineHistory;
 }
 
 

@@ -34,6 +34,8 @@ NEEDS_OVERLOADING(addLineMeToWaypoint)
 NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
+NEEDS_OVERLOADING(removeHistory)
+NEEDS_OVERLOADING(addHistory)
 
 - (instancetype)init:(NSInteger)_type
 {
@@ -43,6 +45,9 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 
     showType = _type; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
+
+    history = [NSMutableArray arrayWithCapacity:1000];
+    lastHistory = [NSDate date];
 
     return self;
 }
@@ -91,6 +96,8 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 - (void)updateData
 {
     meLocation = [LM coords];
+
+    // Move the map around to match current location
     if (showWhom == SHOW_ME)
         [self moveCameraTo:meLocation];
     if (showWhom == SHOW_BOTH)
@@ -99,6 +106,24 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     [self removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
         [self addLineMeToWaypoint];
+
+    // Keep track of historical locations
+    // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
+    NSDate *now = [NSDate date];
+    NSTimeInterval interval = [now timeIntervalSinceDate:lastHistory];
+    NSInteger distance = [Coordinates coordinates2distance:meLocation to:lastCoordinates];
+
+    if (interval > 5 || distance > 100) {
+        MapHistoryObject *o = [[MapHistoryObject alloc] init];
+        o.coord = meLocation;
+        o.when = [now timeIntervalSince1970];
+        lastHistory = now;
+        lastCoordinates = meLocation;
+
+        [history addObject:o];
+        [self removeHistory];
+        [self addHistory];
+    }
 }
 
 /* Delegated from CacheFilterManager */
@@ -270,5 +295,12 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
     }
 
 }
+
+@end
+
+
+@implementation MapHistoryObject
+
+@synthesize coord, when;
 
 @end

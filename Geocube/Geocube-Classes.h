@@ -98,6 +98,7 @@
 @class LogTableViewCell;
 @class MapAppleViewController;
 @class MapGoogleViewController;
+@class MapHistoryObject;
 @class MapOSMViewController;
 @class MapTemplateViewController;
 @class MyConfig;
