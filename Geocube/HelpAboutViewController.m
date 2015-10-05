@@ -67,15 +67,15 @@
 {
     NSInteger y = 10;
 
-    // CLean up and write again.
+    // Clean up and write again.
     for (GCView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[GCCloseButton class]] == YES)
             continue;
         [subview removeFromSuperview];
     }
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:bounds];
     self.view = contentView;
 
     y += [self addText:y text:
