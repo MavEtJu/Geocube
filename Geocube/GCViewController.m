@@ -141,8 +141,19 @@
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you selected" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [av show];
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"You selected...."
+                               message:[NSString stringWithFormat:@"number %@", @(index + 1)]
+                               preferredStyle:UIAlertControllerStyleAlert
+                               ];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil
+                         ];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

@@ -195,8 +195,7 @@
         return;
     }
 
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"you picked" message:[NSString stringWithFormat:@"number %@", @(index+1)] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [av show];
+    [super didSelectedMenu:menu atIndex:index];
 }
 
 - (void)importPhoto
