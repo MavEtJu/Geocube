@@ -314,7 +314,7 @@
 
 + (NSString *)urlDecode:(NSString *)in
 {
-    return [in stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [in stringByRemovingPercentEncoding];
 }
 
 + (NSString *)tickEscape:(NSString *)in
