@@ -43,7 +43,7 @@
     GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:frame];
     self.view = contentView;
 
-    UILabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 20)];
+    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 20)];
     l.text = type.type_full;
     [self.view addSubview:l];
     y += 20;
