@@ -29,8 +29,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
     NSInteger height = [self cellHeight];
 
     imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];

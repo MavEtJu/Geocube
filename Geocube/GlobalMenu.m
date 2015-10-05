@@ -40,7 +40,7 @@
 
     numberOfItemsInRow = 3;
 
-    currentFrameSize = [UIScreen mainScreen].applicationFrame.size;
+    currentFrameSize = [[UIScreen mainScreen] applicationFrame].size;
 
     return self;
 }

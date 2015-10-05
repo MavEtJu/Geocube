@@ -64,8 +64,8 @@
         [subview removeFromSuperview];
     }
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    width = bounds.size.width;
     NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
     __block NSInteger y = 10;
 

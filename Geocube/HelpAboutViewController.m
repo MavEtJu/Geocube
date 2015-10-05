@@ -45,8 +45,8 @@
 
 - (NSInteger)addText:(NSInteger)y text:(NSString *)t
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    width = bounds.size.width;
     GCTextblock *l;
 
     CGRect rect = CGRectMake(10, y, width - 20, 0);

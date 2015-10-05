@@ -66,8 +66,8 @@
 
 - (void)calculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    width = bounds.size.width;
     [self calculateCellHeights];
 
     rectHeader = CGRectMake(20, 2, width - 40, cellHeight);

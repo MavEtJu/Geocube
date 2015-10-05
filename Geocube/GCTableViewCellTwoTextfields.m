@@ -52,10 +52,10 @@
 {
     [super viewWillTransitionToSize];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
     CGRect labelFrame = fieldLabel.frame;
 
-    labelFrame.size.width = applicationFrame.size.width - 2 * 10;
+    labelFrame.size.width = bounds.size.width - 2 * 10;
 
     fieldLabel.frame = labelFrame;
     valueLabel.frame = labelFrame;

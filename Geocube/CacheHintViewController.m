@@ -41,8 +41,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
     webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
 
     [webview loadHTMLString:[self makeHTMLString] baseURL:nil];

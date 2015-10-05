@@ -60,8 +60,8 @@
 
 - (void)calculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
 
     /*
      +---+------+-----------------+

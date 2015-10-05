@@ -96,10 +96,10 @@
         NSInteger valueSize;
         NSInteger height = myConfig.GCLabelFont.lineHeight;
 
-        CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-        NSInteger width = applicationFrame.size.width;
+        CGRect bounds = [[UIScreen mainScreen] bounds];
+        NSInteger width = bounds.size.width;
 
-        if (applicationFrame.size.height > applicationFrame. size.width) {
+        if (bounds.size.height > bounds.size.width) {
             labelOffset = margin;
             labelSize = 3 * width / 4 - 2 * margin;
             valueOffset = 3 * width / 4 + margin - myConfig.GCLabelFont.pointSize;
