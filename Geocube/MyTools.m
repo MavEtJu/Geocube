@@ -413,38 +413,16 @@
 - (void)toggleFlashLight:(BOOL)onoff
 {
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-
-    if (device.torchMode == AVCaptureTorchModeOff)
-    {
-        // Create an AV session
-        AVCaptureSession *session = [[AVCaptureSession alloc] init];
-
-        // Create device input and add to current session
-        AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error: nil];
-        [session addInput:input];
-
-        // Create video output and add to current session
-        AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-        [session addOutput:output];
-
-        // Start session configuration
-        [session beginConfiguration];
+    if ([device hasTorch]) {
         [device lockForConfiguration:nil];
-
-        // Set torch to on
-        [device setTorchMode:AVCaptureTorchModeOn];
-
+        if (device.torchMode == AVCaptureTorchModeOff) {
+            device.torchMode = AVCaptureTorchModeOn;
+            NSLog(@"Torch mode is on.");
+        } else {
+            device.torchMode = AVCaptureTorchModeOff;
+            NSLog(@"Torch mode is off.");
+        }
         [device unlockForConfiguration];
-        [session commitConfiguration];
-
-        // Start the session
-        [session startRunning];
-
-        // Keep the session around
-        AVSession = session;
-    } else {
-        [AVSession stopRunning];
-        AVSession = nil;
     }
 }
 

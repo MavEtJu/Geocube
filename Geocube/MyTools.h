@@ -26,8 +26,6 @@
     struct timeval clock;
     BOOL clockEnabled;
     NSString *clockTitle;
-
-    AVCaptureSession *AVSession;
 }
 
 + (NSString *)DocumentRoot;
