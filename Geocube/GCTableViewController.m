@@ -224,7 +224,7 @@
                          handler:nil
                          ];
     [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil]
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
