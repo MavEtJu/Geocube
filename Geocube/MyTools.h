@@ -26,6 +26,8 @@
     struct timeval clock;
     BOOL clockEnabled;
     NSString *clockTitle;
+
+    AVCaptureSession *AVSession;
 }
 
 + (NSString *)DocumentRoot;
@@ -61,6 +63,8 @@
 + (NSString *)JSONEscape:(NSString *)in;
 
 + (NSString *)checkCoordinate:(NSString *)text;
+
+- (void)toggleFlashLight:(BOOL)onoff;
 
 @end
 

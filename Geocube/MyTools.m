@@ -410,4 +410,42 @@
     return a;
 }
 
+- (void)toggleFlashLight:(BOOL)onoff
+{
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
+    if (device.torchMode == AVCaptureTorchModeOff)
+    {
+        // Create an AV session
+        AVCaptureSession *session = [[AVCaptureSession alloc] init];
+
+        // Create device input and add to current session
+        AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error: nil];
+        [session addInput:input];
+
+        // Create video output and add to current session
+        AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
+        [session addOutput:output];
+
+        // Start session configuration
+        [session beginConfiguration];
+        [device lockForConfiguration:nil];
+
+        // Set torch to on
+        [device setTorchMode:AVCaptureTorchModeOn];
+
+        [device unlockForConfiguration];
+        [session commitConfiguration];
+
+        // Start the session
+        [session startRunning];
+
+        // Keep the session around
+        AVSession = session;
+    } else {
+        [AVSession stopRunning];
+        AVSession = nil;
+    }
+}
+
 @end
