@@ -69,11 +69,11 @@
     singleTap.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:singleTap];
 
-    UISwipeGestureRecognizer *swipeleft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeleft:)];
+    UISwipeGestureRecognizer *swipeleft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
     swipeleft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeleft];
 
-    UISwipeGestureRecognizer *swiperight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiperight:)];
+    UISwipeGestureRecognizer *swiperight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
     swiperight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swiperight];
 
@@ -86,7 +86,7 @@
     }];
 }
 
-- (void)swipeleft:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
         dbImage *imgnew = [delegate swipeToLeft];
@@ -97,7 +97,7 @@
     }
 }
 
-- (void)swiperight:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
         dbImage *imgnew = [delegate swipeToRight];

@@ -146,7 +146,6 @@
 
 - (dbImage *)swipeToRight
 {
-    NSLog(@"SwipeToRight");
     if (currentIndexPath.row != 0) {
         dbImage *img = nil;
         currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row - 1 inSection:currentIndexPath.section];
@@ -162,7 +161,6 @@
 
 - (dbImage *)swipeToLeft
 {
-    NSLog(@"SwipeToLeft");
     NSInteger max = 0;
     switch (currentIndexPath.section) {
         case 0: max = [userImages count]; break;
