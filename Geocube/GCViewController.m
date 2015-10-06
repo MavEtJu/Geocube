@@ -96,6 +96,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (closeButton == nil)
+        return;
+
+    CGRect frame = closeButton.frame;
+    frame.origin.x = scrollView.contentOffset.x;
+    frame.origin.y = scrollView.contentOffset.y;
+    closeButton.frame = frame;
+
+    [self.view bringSubviewToFront:closeButton];
+}
+
 #pragma -- Local menu related functions
 
 - (DOPNavbarMenu *)tab_menu

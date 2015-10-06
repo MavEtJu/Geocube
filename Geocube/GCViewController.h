@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCViewController : UIViewController <GlobalMenuDelegate, DOPNavbarMenuDelegate> {
+@interface GCViewController : UIViewController <GlobalMenuDelegate, DOPNavbarMenuDelegate, UIScrollViewDelegate> {
     NSInteger numberOfItemsInRow;
     DOPNavbarMenu *tab_menu;
     NSMutableArray *menuItems;
