@@ -64,7 +64,7 @@
 
     [self.view setUserInteractionEnabled:YES];
 
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTaped:)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:singleTap];
@@ -80,7 +80,7 @@
     [self showCloseButton];
 }
 
-- (void)imageTaped:(UIGestureRecognizer *)gestureRecognizer {
+- (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer {
     [UIView animateWithDuration:0.5 animations:^(void){
         [self zoominout];
     }];
@@ -147,6 +147,7 @@
         float rx = (rh > rw) ? rh : rw;
         imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
     }
+    NSLog(@"%d,%d", imgview.frame.size.width, imgview.frame.size.height);
 
     sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
