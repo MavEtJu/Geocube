@@ -21,8 +21,8 @@
 
 @protocol CacheImageViewControllerDelegate
 
-- (dbImage *)swipeToLeft;
-- (dbImage *)swipeToRight;
+- (void)swipeToLeft;
+- (void)swipeToRight;
 
 @end
 
@@ -31,12 +31,19 @@
     UIScrollView *sv;
     UIImage *image;
     UIImageView *imgview;
+
+    CGRect imgViewRect;
+    GCLabel *labelCount;
+
     BOOL zoomedin;
     id delegate;
+
+    NSInteger totalImages, thisImage;
 }
 
 @property (nonatomic) id delegate;
 
-- (instancetype)init:(dbImage *)img;
+- (instancetype)init;
+- (void)setImage:(dbImage *)img idx:(NSInteger)thisImage totalImages:(NSInteger)totalImages;
 
 @end

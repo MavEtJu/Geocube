@@ -125,9 +125,17 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger max = 0;
     dbImage *img = nil;
 
     currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:indexPath.section];
+
+    switch (currentIndexPath.section) {
+        case 0: max = [userImages count]; break;
+        case 1: max = [cacheImages count]; break;
+        case 2: max = [logImages count]; break;
+    }
+
     switch (indexPath.section) {
         case 0: img = [userImages objectAtIndex:indexPath.row]; break;
         case 1: img = [cacheImages objectAtIndex:indexPath.row]; break;
@@ -137,15 +145,25 @@
     if (img == nil)
         return;
 
-    CacheImageViewController *newController = [[CacheImageViewController alloc] init:img];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.navigationController pushViewController:newController animated:YES];
-    newController.delegate = self;
+    ivc = [[CacheImageViewController alloc] init];
+    ivc.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:ivc animated:YES];
+    ivc.delegate = self;
+
+    [ivc setImage:img idx:indexPath.row + 1 totalImages:max];
     return;
 }
 
-- (dbImage *)swipeToRight
+- (void)swipeToRight
 {
+    NSInteger max = 0;
+
+    switch (currentIndexPath.section) {
+        case 0: max = [userImages count]; break;
+        case 1: max = [cacheImages count]; break;
+        case 2: max = [logImages count]; break;
+    }
+
     if (currentIndexPath.row != 0) {
         dbImage *img = nil;
         currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row - 1 inSection:currentIndexPath.section];
@@ -154,14 +172,14 @@
             case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
             case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
-        return img;
+        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
-    return nil;
 }
 
-- (dbImage *)swipeToLeft
+- (void)swipeToLeft
 {
     NSInteger max = 0;
+
     switch (currentIndexPath.section) {
         case 0: max = [userImages count]; break;
         case 1: max = [cacheImages count]; break;
@@ -176,9 +194,8 @@
             case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
             case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
-        return img;
+        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
-    return nil;
 }
 
 #pragma mark - Local menu related functions

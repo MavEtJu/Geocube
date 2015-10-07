@@ -86,7 +86,8 @@
     NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
-    UIViewController *newController = [[CacheImageViewController alloc] init:img];
+    CacheImageViewController *newController = [[CacheImageViewController alloc] init];
+    [newController setImage:img idx:0 totalImages:0];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
     return;

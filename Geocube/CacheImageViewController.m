@@ -25,11 +25,11 @@
 
 @synthesize delegate;
 
-- (instancetype)init:(dbImage *)_img
+- (instancetype)init
 {
     self = [super init];
 
-    img = _img;
+    img = nil;
     hasCloseButton = YES;
     menuItems = nil;
     image = nil;
@@ -44,6 +44,7 @@
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
+    sv.delegate = self;
     self.view = sv;
 
     [self loadImage];
@@ -52,15 +53,16 @@
 - (void)loadImage
 {
     [imgview removeFromSuperview];
+    [labelCount removeFromSuperview];
 
-    image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
-
-    imgview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    imgview.image = image;
+    imgview = [[UIImageView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:imgview];
 
-    zoomedin = NO;
-    [self zoominout];
+    labelCount = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelCount.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:labelCount];
+
+    [self zoominout:NO];
 
     [self.view setUserInteractionEnabled:YES];
 
@@ -77,48 +79,55 @@
     swiperight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swiperight];
 
+    [self calculateRects];
+    [self viewWillTransitionToSize];
     [self showCloseButton];
 }
 
 - (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
+
     [UIView animateWithDuration:0.5 animations:^(void){
-        [self zoominout];
+        [self zoominout:(!zoomedin)];
     }];
 }
 
 - (void)swipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
-        dbImage *imgnew = [delegate swipeToLeft];
-        if (imgnew != nil) {
-            img = imgnew;
-            [self loadImage];
-        }
+        [delegate swipeToLeft];
+        [self loadImage];
     }
 }
 
 - (void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
-        dbImage *imgnew = [delegate swipeToRight];
-        if (imgnew != nil) {
-            img = imgnew;
-            [self loadImage];
-        }
+        [delegate swipeToRight];
+        [self loadImage];
     }
 }
 
-- (void)zoominout
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [super scrollViewDidScroll:scrollView];
+
+    if (labelCount == nil)
+        return;
+
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+
+    CGRect frame = labelCount.frame;
+    frame.origin.y = scrollView.contentOffset.y;
+    frame.origin.x = scrollView.contentOffset.x + width - 100;
+    labelCount.frame = frame;
+    frame.origin.y = scrollView.contentOffset.y;
+}
+
+- (void)zoominout:(BOOL)inOut;
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-
-    if (zoomedin == YES) {
-        imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        sv.contentSize = image.size;
-        [self.view sizeToFit];
-        zoomedin = NO;
-        return;
-    }
 
     // Nothing to zoom in if the picture is small enough already.
     if (image.size.width < applicationFrame.size.width &&
@@ -128,6 +137,14 @@
         imgview.frame = CGRectMake((applicationFrame.size.width - image.size.width) / 2, (applicationFrame.size.height - image.size.height) / 2, image.size.width, image.size.height);
 
         sv.contentSize = imgview.frame.size;
+        [self.view sizeToFit];
+        zoomedin = NO;
+        return;
+    }
+
+    if (zoomedin == YES) {
+        imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        sv.contentSize = image.size;
         [self.view sizeToFit];
         zoomedin = NO;
         return;
@@ -147,11 +164,45 @@
         float rx = (rh > rw) ? rh : rw;
         imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
     }
-    NSLog(@"%d,%d", imgview.frame.size.width, imgview.frame.size.height);
 
     sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
     zoomedin = YES;
+}
+
+- (void)calculateRects
+{
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+    labelCount.frame = CGRectMake(width - 100, 0, 100, 15);
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self calculateRects];
+                                     [self viewWillTransitionToSize];
+                                 }
+     ];
+}
+
+- (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages
+{
+    img = _img;
+    thisImage = _thisImage;
+    totalImages = _totalImages;
+    [self viewWillTransitionToSize];
+}
+
+- (void)viewWillTransitionToSize
+{
+    labelCount.text = [NSString stringWithFormat:@"%ld / %ld", (long)thisImage, (long)totalImages];
+
+    image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
+    imgview.image = image;
 }
 
 @end

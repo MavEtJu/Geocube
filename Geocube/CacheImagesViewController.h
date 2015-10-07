@@ -26,6 +26,7 @@
     NSArray *cacheImages;
 
     NSIndexPath *currentIndexPath;
+    CacheImageViewController *ivc;
 }
 
 @property (nonatomic, retain) UIView *overlayView;
