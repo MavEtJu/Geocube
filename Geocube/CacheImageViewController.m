@@ -85,10 +85,18 @@
 }
 
 - (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer {
-    CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
 
+    if (zoomedIn) {
+        [UIView animateWithDuration:0.5 animations:^(void){
+            [self zoominout:(!zoomedIn)];
+        }];
+        return;
+    }
+
+    CGSize imgSize = imgview.frame.size;
+    CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
     [UIView animateWithDuration:0.5 animations:^(void){
-        [self zoominout:(!zoomedIn)];
+        [self zoominout:(!zoomedIn) centerX:touchPoint.x / imgSize.width centerY:touchPoint.y / imgSize.height];
     }];
 }
 
@@ -168,6 +176,57 @@
     sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
     zoomedIn = NO;
+}
+
+- (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX centerY:(CGFloat)centerY
+{
+    [self zoominout:zoomIn];
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
+    /*
+     *  +-------------------+
+     *  |                   |
+     *  | O+---+            |
+     *  |  |   |            |
+     *  |  | C |            |
+     *  |  |   |            |
+     *  |  +---+            |
+     *  |                   |
+     *  |                   |
+     *  +-------------------+
+     *
+     * xC = img.width * centerX
+     * yC = img.height * centerY
+     *
+     * xO = xC - view.width / 2
+     * yO = yC - view.height / 2
+     *
+     */
+
+    CGFloat xO, yO;
+
+    NSLog(@"img: %02f , %02f -- frame: %02f , %02f", imgview.frame.size.width, imgview.frame.size.height, applicationFrame.size.width, applicationFrame.size.height);
+
+    xO = imgview.frame.size.width * centerX - applicationFrame.size.width / 2;
+    yO = imgview.frame.size.height * centerY - applicationFrame.size.height / 2;
+    if (applicationFrame.size.height > imgview.frame.size.height) {
+        yO = 0;
+    } else if (applicationFrame.size.width > imgview.frame.size.width) {
+        xO = 0;
+    }
+    NSLog(@"xO: %02f , %02f", xO, yO);
+
+    if (xO > imgview.frame.size.width - applicationFrame.size.width)
+        xO = imgview.frame.size.width - applicationFrame.size.width;
+    if (yO > imgview.frame.size.height - applicationFrame.size.height)
+        yO = imgview.frame.size.height - applicationFrame.size.height;
+    if (xO < 0)
+        xO = 0;
+    if (yO < 0)
+        yO = 0;
+
+    NSLog(@"xO: %02f , %02f", xO, yO);
+    sv.contentOffset = CGPointMake(xO, yO);
 }
 
 - (void)calculateRects
