@@ -88,7 +88,7 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
 
     [UIView animateWithDuration:0.5 animations:^(void){
-        [self zoominout:(!zoomedin)];
+        [self zoominout:(!zoomedIn)];
     }];
 }
 
@@ -125,7 +125,7 @@
     frame.origin.y = scrollView.contentOffset.y;
 }
 
-- (void)zoominout:(BOOL)inOut;
+- (void)zoominout:(BOOL)zoomIn
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
@@ -138,15 +138,15 @@
 
         sv.contentSize = imgview.frame.size;
         [self.view sizeToFit];
-        zoomedin = NO;
+        zoomedIn = NO;
         return;
     }
 
-    if (zoomedin == YES) {
+    if (zoomIn == YES) {
         imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
         sv.contentSize = image.size;
         [self.view sizeToFit];
-        zoomedin = NO;
+        zoomedIn = YES;
         return;
     }
 
@@ -167,14 +167,16 @@
 
     sv.contentSize = imgview.frame.size;
     [self.view sizeToFit];
-    zoomedin = YES;
+    zoomedIn = NO;
 }
 
 - (void)calculateRects
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     NSInteger width = applicationFrame.size.width;
+
     labelCount.frame = CGRectMake(width - 100, 0, 100, 15);
+    [self zoominout:zoomedIn];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

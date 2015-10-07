@@ -35,7 +35,7 @@
     CGRect imgViewRect;
     GCLabel *labelCount;
 
-    BOOL zoomedin;
+    BOOL zoomedIn;
     id delegate;
 
     NSInteger totalImages, thisImage;
