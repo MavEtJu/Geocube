@@ -205,8 +205,6 @@
 
     CGFloat xO, yO;
 
-    NSLog(@"img: %02f , %02f -- frame: %02f , %02f", imgview.frame.size.width, imgview.frame.size.height, applicationFrame.size.width, applicationFrame.size.height);
-
     xO = imgview.frame.size.width * centerX - applicationFrame.size.width / 2;
     yO = imgview.frame.size.height * centerY - applicationFrame.size.height / 2;
     if (applicationFrame.size.height > imgview.frame.size.height) {
@@ -214,7 +212,6 @@
     } else if (applicationFrame.size.width > imgview.frame.size.width) {
         xO = 0;
     }
-    NSLog(@"xO: %02f , %02f", xO, yO);
 
     if (xO > imgview.frame.size.width - applicationFrame.size.width)
         xO = imgview.frame.size.width - applicationFrame.size.width;
@@ -225,7 +222,6 @@
     if (yO < 0)
         yO = 0;
 
-    NSLog(@"xO: %02f , %02f", xO, yO);
     sv.contentOffset = CGPointMake(xO, yO);
 }
 
