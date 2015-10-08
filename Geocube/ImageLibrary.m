@@ -505,58 +505,92 @@
 
     /*
      * .....xxxxx.....
-     * ...xxxxxxxxx...
-     * ..xxxxxxxxxxx..
-     * .xxxxxxxxxxxxx.
-     * .xxxxxxxxxxxxx.
-     * xxxxxxxxxxxxxxx
-     * xxxxxxxxxxxxxxx
-     * xxxxxxxxxxxxxxx
-     * xxxxxxxxxxxxxxx
-     * xxxxxxxxxxxxxxx
-     * .xxxxxxxxxxxxx.
-     * .xxxxxxxxxxxxx.
-     * ..xxxxxxxxxxx..
-     * ...xxxxxxxxx...
+     * ...xxXXXXXxx...
+     * ..xXXXXXXXXXx..
+     * .xXX,::,XXXXXx.
+     * .xXX::::XXXXXx.
+     * xXXX::::XXXXXXx
+     * xXXX'::'XXXXXXx
+     * xXXXXXXXXXXXXXx
+     * xXXXXXXXXXXXXXx
+     * xXXXXXXXXXXXXXx
+     * .xXXXXXXXXXXXx.
+     * .xXXXXXXXXXXXx.
+     * ..xXXXXXXXXXx..
+     * ...xxXXXXXxx...
      * .....xxxxx.....
      */
 
-#define VLINE(y, x1, x2) \
+#define VLINE(x, y1, y2) \
+    CGContextSetLineWidth(context, 1); \
+    CGContextMoveToPoint(context, x, y1 + 0.5); \
+    CGContextAddLineToPoint(context, x, y2 + 0.5); \
+    CGContextStrokePath(context);
+#define HLINE(y, x1, x2) \
     CGContextSetLineWidth(context, 1); \
     CGContextMoveToPoint(context, x1, y + 0.5); \
     CGContextAddLineToPoint(context, x2 + 1, y + 0.5); \
     CGContextStrokePath(context);
 #define DOT(x, y) \
-    VLINE(y, x, x);
+    HLINE(y, x, x);
 
+    const CGFloat *vs = CGColorGetComponents([color CGColor]);
+    CGFloat r = vs[0];
+    CGFloat g = vs[1];
+    CGFloat b = vs[2];
+
+    // Outer circle
+    for (NSInteger i = 0; i < 2; i++) {
+        if (i == 0)
+            CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+        else
+            CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:r green:g blue:b alpha:0.4] CGColor]);
+        HLINE( 0,  5,   9);     // Top
+        HLINE( 1,  3,   4);
+        DOT  ( 2,  2);
+        VLINE( 1,  3,   4);
+        VLINE( 0,  5,   9);     // Lefthand side
+        VLINE( 1, 10, 11);
+        DOT  ( 2, 12);
+        HLINE(13,  3,   4);
+        HLINE(14,  5,   9);     // Bottom
+        HLINE(13, 10,  11);
+        DOT  (12, 12);
+        VLINE(13, 10, 11);
+        VLINE(14,  5,  9);      // Righthand side
+        VLINE(13,  3,  4);
+        DOT  (12,  2);
+        HLINE( 1,  10, 11);
+    }
+
+    // Inner circle
     CGContextSetStrokeColorWithColor(context, [color CGColor]);
-    VLINE( 0, 5,  9);
-    VLINE( 1, 3, 11);
-    VLINE( 2, 2, 12);
-    VLINE( 3, 1, 13);
-    VLINE( 4, 1, 13);
-    VLINE( 5, 0, 14);
-    VLINE( 6, 0, 14);
-    VLINE( 7, 0, 14);
-    VLINE( 8, 0, 14);
-    VLINE( 9, 0, 14);
-    VLINE(10, 1, 13);
-    VLINE(11, 1, 13);
-    VLINE(12, 2, 12);
-    VLINE(13, 3, 11);
-    VLINE(14, 5,  9);
+    HLINE( 1, 5,  9);
+    HLINE( 2, 3, 11);
+    HLINE( 3, 2, 12);
+    HLINE( 4, 2, 12);
+    HLINE( 5, 1, 13);
+    HLINE( 6, 1, 13);
+    HLINE( 7, 1, 13);
+    HLINE( 8, 1, 13);
+    HLINE( 9, 1, 13);
+    HLINE(10, 2, 12);
+    HLINE(11, 2, 12);
+    HLINE(12, 3, 11);
+    HLINE(13, 5,  9);
 
+    // Little dot at the top left
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    VLINE( 3, 4, 5);
-    VLINE( 4, 3, 6);
-    VLINE( 5, 3, 6);
-    VLINE( 6, 4, 5);
+    HLINE( 3, 4, 5);
+    HLINE( 4, 3, 6);
+    HLINE( 5, 3, 6);
+    HLINE( 6, 4, 5);
 
     CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] CGColor]);
-    DOT( 3, 3);
-    DOT( 6, 3);
-    DOT( 6, 6);
-    DOT( 3, 6);
+    DOT  ( 3, 3);
+    DOT  ( 6, 3);
+    DOT  ( 6, 6);
+    DOT  ( 3, 6);
 
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
