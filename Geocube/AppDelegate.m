@@ -346,13 +346,13 @@
     // Keep track tabs #12
     controllers = [NSMutableArray array];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[KeepTrackCar alloc] init];
     vc.title = @"Car";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[NullViewController alloc] init];
+    vc = [[KeepTrackMe alloc] init];
     vc.title = @"Me";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
