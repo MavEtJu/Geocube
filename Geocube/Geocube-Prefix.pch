@@ -179,6 +179,9 @@
 #import "HelpDatabaseViewController.h"
 #import "HelpImagesViewController.h"
 
+#import "KeepTrackMe.h"
+#import "KeepTrackCar.h"
+
 #import "CachesOfflineListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"

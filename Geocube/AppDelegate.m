@@ -343,6 +343,23 @@
 
     TABBARCONTROLLER(controllers)
 
+    // Keep track tabs #12
+    controllers = [NSMutableArray array];
+
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Car";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    vc = [[NullViewController alloc] init];
+    vc.title = @"Me";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    TABBARCONTROLLER(controllers)
+
     // UIResponder.window = UIWIndow
     // UIWindow.rootViewController = UITabBarController
     // UITabBarController.viewControllers = [UIViewController ...]

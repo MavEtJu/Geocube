@@ -288,6 +288,8 @@
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
+		E8D7BA571BCA0DD0001B0805 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA5A1BCA0DE3001B0805 /* KeepTrackMe.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */; settings = {ASSET_TAGS = (); }; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -771,6 +773,10 @@
 		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
 		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
+		E8D7BA551BCA0DD0001B0805 /* KeepTrackCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackCar.h; sourceTree = "<group>"; };
+		E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackCar.m; sourceTree = "<group>"; };
+		E8D7BA581BCA0DE3001B0805 /* KeepTrackMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackMe.h; sourceTree = "<group>"; };
+		E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackMe.m; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
@@ -1462,6 +1468,17 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
+		E8D7BA541BCA0DA1001B0805 /* Keep Track */ = {
+			isa = PBXGroup;
+			children = (
+				E8D7BA551BCA0DD0001B0805 /* KeepTrackCar.h */,
+				E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */,
+				E8D7BA581BCA0DE3001B0805 /* KeepTrackMe.h */,
+				E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */,
+			);
+			name = "Keep Track";
+			sourceTree = "<group>";
+		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1765,6 +1782,7 @@
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E8A7FA921B777616003F4132 /* Browser */,
+				E8D7BA541BCA0DA1001B0805 /* Keep Track */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
@@ -2212,6 +2230,7 @@
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
+				E8D7BA571BCA0DD0001B0805 /* KeepTrackCar.m in Sources */,
 				E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
@@ -2276,6 +2295,7 @@
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
+				E8D7BA5A1BCA0DE3001B0805 /* KeepTrackMe.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
