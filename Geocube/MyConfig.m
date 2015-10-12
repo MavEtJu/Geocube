@@ -23,7 +23,7 @@
 
 @implementation MyConfig
 
-@synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab;
+@synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize compassType, themeType;
 @synthesize soundDirection, soundDistance;
@@ -58,6 +58,7 @@
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
+    CHECK(@"track_current", @"0");
     CHECK(@"lastimport_group", @"0");
     CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
@@ -73,6 +74,7 @@
     currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
+    currentTrack = [[dbConfig dbGetByKey:@"track_current"].value integerValue];
     lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
     lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
@@ -133,6 +135,12 @@
 {
     currentPageTab = value;
     [self NSIntegerUpdate:@"pagetab_current" value:value];
+}
+
+- (void)currentTrackUpdate:(NSInteger)value
+{
+    currentTrack = value;
+    [self NSIntegerUpdate:@"track_current" value:value];
 }
 
 - (void)lastImportGroupUpdate:(NSInteger)value
