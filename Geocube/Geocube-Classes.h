@@ -65,7 +65,6 @@
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCLabel;
-@class LocationManager;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
@@ -97,6 +96,7 @@
 @class KeepTrackCar;
 @class KeepTrackMe;
 @class LiveAPI;
+@class LocationManager;
 @class LogTableViewCell;
 @class MapAppleViewController;
 @class MapGoogleViewController;
