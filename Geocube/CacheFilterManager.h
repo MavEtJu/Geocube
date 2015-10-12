@@ -25,7 +25,7 @@
 
 @end
 
-@interface CacheFilterManager : NSObject<GCLocationManagerDelegate> {
+@interface CacheFilterManager : NSObject<LocationManagerDelegate> {
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
     NSMutableArray *currentWaypoints;

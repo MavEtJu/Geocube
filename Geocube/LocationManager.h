@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol GCLocationManagerDelegate
+@protocol LocationManagerDelegate
 
 - (void)updateData;
 
@@ -28,7 +28,7 @@
 
 @end
 
-@interface GCLocationManager : NSObject<CLLocationManagerDelegate> {
+@interface LocationManager : NSObject<CLLocationManagerDelegate> {
     CLLocationManager *_LM;
 
     CLLocationAccuracy accuracy;

@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@implementation GCLocationManager
+@implementation LocationManager
 
 @synthesize altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
 
@@ -70,7 +70,7 @@
 
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
-    NSLog(@"GCLocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
+    NSLog(@"LocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
     if (isNavigating == YES)
         _LM.desiredAccuracy = kCLLocationAccuracyBest;
     else
@@ -83,14 +83,14 @@
 
 - (void)stopDelegation:(id)_delegate
 {
-    NSLog(@"GCLocationManager: stopping for %@", [_delegate class]);
+    NSLog(@"LocationManager: stopping for %@", [_delegate class]);
     [delegates removeObject:_delegate];
 
     if ([delegates count] > 0)
         return;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
-    NSLog(@"GCLocationManager: stopping");
+    NSLog(@"LocationManager: stopping");
 }
 
 

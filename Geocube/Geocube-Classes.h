@@ -65,7 +65,7 @@
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCLabel;
-@class GCLocationManager;
+@class LocationManager;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;

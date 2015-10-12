@@ -39,7 +39,7 @@ extern ImagesDownloadManager *imagesDownloadManager;
 extern CacheFilterManager *waypointManager;
 
 // Location Manager
-extern GCLocationManager *LM;
+extern LocationManager *LM;
 
 // File manager
 extern NSFileManager *fm;

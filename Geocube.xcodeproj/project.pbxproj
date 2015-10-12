@@ -321,7 +321,7 @@
 		E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */; };
 		E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4471B591DFF0027AE6F /* BHTabView.m */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
-		E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4085B1B58A26300FBA858 /* GCLocationManager.m */; };
+		E8F4085C1B58A26300FBA858 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4085B1B58A26300FBA858 /* LocationManager.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
@@ -839,8 +839,8 @@
 		E8EAF4471B591DFF0027AE6F /* BHTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabView.m; path = BHTabBar/BHTabView.m; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
-		E8F4085A1B58A26300FBA858 /* GCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLocationManager.h; sourceTree = "<group>"; };
-		E8F4085B1B58A26300FBA858 /* GCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLocationManager.m; sourceTree = "<group>"; };
+		E8F4085A1B58A26300FBA858 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		E8F4085B1B58A26300FBA858 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -989,8 +989,8 @@
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
-				E8F4085A1B58A26300FBA858 /* GCLocationManager.h */,
-				E8F4085B1B58A26300FBA858 /* GCLocationManager.m */,
+				E8F4085A1B58A26300FBA858 /* LocationManager.h */,
+				E8F4085B1B58A26300FBA858 /* LocationManager.m */,
 				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
 				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
@@ -2267,7 +2267,7 @@
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */,
-				E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */,
+				E8F4085C1B58A26300FBA858 /* LocationManager.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,

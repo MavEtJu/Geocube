@@ -98,7 +98,7 @@
 #import "MyConfig.h"
 #import "AudioFeedback.h"
 
-#import "GCLocationManager.h"
+#import "LocationManager.h"
 #import "GCTableViewController.h"
 #import "GCURLRequest.h"
 #import "GCViewController.h"

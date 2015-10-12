@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackCar : GCViewController<GCLocationManagerDelegate> {
+@interface KeepTrackCar : GCViewController<LocationManagerDelegate> {
     CLLocationCoordinate2D coordsRecordedLocation;
 
     CGRect rectRecordedLocation;

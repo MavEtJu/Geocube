@@ -37,7 +37,7 @@ ImagesDownloadManager *imagesDownloadManager = nil;
 CacheFilterManager *waypointManager = nil;
 
 // Location Manager
-GCLocationManager *LM = nil;
+LocationManager *LM = nil;
 
 // File manager
 NSFileManager *fm = nil;

@@ -36,7 +36,7 @@
     fm = [[NSFileManager alloc] init];
 
     // Initialize the location mamager
-    LM = [[GCLocationManager alloc] init];
+    LM = [[LocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];
 
     // Initialize Google Maps

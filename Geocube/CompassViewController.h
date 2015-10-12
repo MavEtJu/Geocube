@@ -26,7 +26,7 @@ enum GCCompassType {
     COMPASS_AIRPLANE
 };
 
-@interface CompassViewController : GCViewController<GCLocationManagerDelegate> {
+@interface CompassViewController : GCViewController<LocationManagerDelegate> {
 
     UIImage *compassImage;
     UIImageView *compassIV;
