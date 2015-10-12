@@ -352,8 +352,8 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[KeepTrackMe alloc] init];
-    vc.title = @"Me";
+    vc = [[KeepTrackTracks alloc] init];
+    vc.title = @"Tracks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];

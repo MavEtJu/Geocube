@@ -289,7 +289,7 @@
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
 		E8D7BA571BCA0DD0001B0805 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA5A1BCA0DE3001B0805 /* KeepTrackMe.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA5A1BCA0DE3001B0805 /* KeepTrackTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA591BCA0DE3001B0805 /* KeepTrackTracks.m */; settings = {ASSET_TAGS = (); }; };
 		E8D7BA5D1BCB824A001B0805 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA5C1BCB824A001B0805 /* dbTrack.m */; settings = {ASSET_TAGS = (); }; };
 		E8D7BA601BCB8265001B0805 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA5F1BCB8265001B0805 /* dbTrackElement.m */; settings = {ASSET_TAGS = (); }; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
@@ -777,8 +777,8 @@
 		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E8D7BA551BCA0DD0001B0805 /* KeepTrackCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackCar.h; sourceTree = "<group>"; };
 		E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackCar.m; sourceTree = "<group>"; };
-		E8D7BA581BCA0DE3001B0805 /* KeepTrackMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackMe.h; sourceTree = "<group>"; };
-		E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackMe.m; sourceTree = "<group>"; };
+		E8D7BA581BCA0DE3001B0805 /* KeepTrackTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTracks.h; sourceTree = "<group>"; };
+		E8D7BA591BCA0DE3001B0805 /* KeepTrackTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracks.m; sourceTree = "<group>"; };
 		E8D7BA5B1BCB824A001B0805 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
 		E8D7BA5C1BCB824A001B0805 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
 		E8D7BA5E1BCB8265001B0805 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
@@ -1479,8 +1479,8 @@
 			children = (
 				E8D7BA551BCA0DD0001B0805 /* KeepTrackCar.h */,
 				E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */,
-				E8D7BA581BCA0DE3001B0805 /* KeepTrackMe.h */,
-				E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */,
+				E8D7BA581BCA0DE3001B0805 /* KeepTrackTracks.h */,
+				E8D7BA591BCA0DE3001B0805 /* KeepTrackTracks.m */,
 			);
 			name = "Keep Track";
 			sourceTree = "<group>";
@@ -2307,7 +2307,7 @@
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
-				E8D7BA5A1BCA0DE3001B0805 /* KeepTrackMe.m in Sources */,
+				E8D7BA5A1BCA0DE3001B0805 /* KeepTrackTracks.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,

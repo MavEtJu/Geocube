@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackMe : GCViewController
+#import "Geocube-Prefix.pch"
+
+@implementation KeepTrackTracks
 
 @end
