@@ -144,6 +144,8 @@
 @class dbPersonalNote;
 @class dbState;
 @class dbSymbol;
+@class dbTrack;
+@class dbTrackElement;
 @class dbTrackable;
 @class dbType;
 @class dbWaypoint;

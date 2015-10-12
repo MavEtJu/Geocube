@@ -79,6 +79,8 @@
 #import "dbState.h"
 #import "dbSymbol.h"
 #import "dbType.h"
+#import "dbTrack.h"
+#import "dbTrackElement.h"
 #import "dbTrackable.h"
 #import "dbWaypoint.h"
 

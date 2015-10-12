@@ -290,6 +290,8 @@
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
 		E8D7BA571BCA0DD0001B0805 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */; settings = {ASSET_TAGS = (); }; };
 		E8D7BA5A1BCA0DE3001B0805 /* KeepTrackMe.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA5D1BCB824A001B0805 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA5C1BCB824A001B0805 /* dbTrack.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA601BCB8265001B0805 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA5F1BCB8265001B0805 /* dbTrackElement.m */; settings = {ASSET_TAGS = (); }; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -777,6 +779,10 @@
 		E8D7BA561BCA0DD0001B0805 /* KeepTrackCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackCar.m; sourceTree = "<group>"; };
 		E8D7BA581BCA0DE3001B0805 /* KeepTrackMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackMe.h; sourceTree = "<group>"; };
 		E8D7BA591BCA0DE3001B0805 /* KeepTrackMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackMe.m; sourceTree = "<group>"; };
+		E8D7BA5B1BCB824A001B0805 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
+		E8D7BA5C1BCB824A001B0805 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
+		E8D7BA5E1BCB8265001B0805 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
+		E8D7BA5F1BCB8265001B0805 /* dbTrackElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrackElement.m; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
@@ -1733,6 +1739,10 @@
 				E81304031B5C4EB1006DF300 /* dbSymbol.m */,
 				E81304091B5D9B5E006DF300 /* dbTrackable.h */,
 				E813040A1B5D9B5E006DF300 /* dbTrackable.m */,
+				E8D7BA5B1BCB824A001B0805 /* dbTrack.h */,
+				E8D7BA5C1BCB824A001B0805 /* dbTrack.m */,
+				E8D7BA5E1BCB8265001B0805 /* dbTrackElement.h */,
+				E8D7BA5F1BCB8265001B0805 /* dbTrackElement.m */,
 				E8F570C91B4008DD003F020C /* dbType.h */,
 				E8F570CA1B4008DD003F020C /* dbType.m */,
 				E80732B41B5FA352007FDC29 /* dbWaypoint.h */,
@@ -2246,6 +2256,7 @@
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
+				E8D7BA5D1BCB824A001B0805 /* dbTrack.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
@@ -2262,6 +2273,7 @@
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
+				E8D7BA601BCB8265001B0805 /* dbTrackElement.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
 				E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */,
