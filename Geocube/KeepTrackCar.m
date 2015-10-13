@@ -23,6 +23,15 @@
 
 @implementation KeepTrackCar
 
+- (instancetype)init
+{
+    self = [super init];
+
+    menuItems = nil;
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
