@@ -94,6 +94,7 @@
 @class ImportNotices;
 @class ImportSites;
 @class KeepTrackCar;
+@class KeepTrackTrack;
 @class KeepTrackTracks;
 @class LiveAPI;
 @class LocationManager;

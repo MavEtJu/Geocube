@@ -23,4 +23,112 @@
 
 @implementation KeepTrackTracks
 
+#define THISCELL @"KeepTrackTracksCell"
+
+- (instancetype)init
+{
+    self = [super init];
+
+    menuItems = [NSMutableArray arrayWithArray:@[@"Add a track"]];
+
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+}
+
+#pragma mark - TableViewController related functions
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return 1;
+}
+
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tracks count];
+}
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    if (cell == nil)
+        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+
+    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+
+    cell.textLabel.text = t.name;
+    if (t.dateStop == 0)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now", [MyTools datetimePartDate:[MyTools dateString:t.dateStart]] ];
+    else
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [MyTools datetimePartDate:[MyTools dateString:t.dateStart]], [MyTools datetimePartDate:[MyTools dateString:t.dateStop]]];
+    cell.userInteractionEnabled = NO;
+
+    return cell;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0:
+            [self startNewTrack];
+            return;;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)startNewTrack
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Start a new track"
+                               message:@""
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = alert.textFields.firstObject;
+                             NSString *name = tf.text;
+
+                             NSLog(@"Creating new track '%@'", name);
+
+                             dbTrack *t = [[dbTrack alloc] init];
+                             t.name = name;
+                             t.dateStart = time(NULL);
+                             t.dateStop = 0;
+                             [t dbCreate];
+
+                             [tracks addObject:t];
+                             [myConfig currentTrackUpdate:t._id];
+                             [self.tableView reloadData];
+                         }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Name of the new track";
+        textField.text = [MyTools dateString:time(NULL)];
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 @end
