@@ -99,6 +99,9 @@ extern database *db;
     sqlite3_stmt *req; \
     if (sqlite3_prepare_v2(db.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
         DB_ASSERT_PREPARE;
+#define DB_PREPARE_CONTINUE(__s__) \
+    if (sqlite3_prepare_v2(db.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
+        DB_ASSERT_PREPARE;
 #define DB_FINISH \
     sqlite3_finalize(req);
 #define DB_GET_LAST_ID(__id__) \

@@ -126,6 +126,10 @@
         [self performUpgrade_3_4];
         return;
     }
+    if (version == 4) {
+        [self performUpgrade_4_5];
+        return;
+    }
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
 }
 
@@ -135,13 +139,32 @@
 
 #undef DB_PREPARE
 #define DB_PREPARE(__s__) \
-    sqlite3_stmt *req; \
     if (sqlite3_prepare_v2(self.db, [__s__ cStringUsingEncoding:NSUTF8StringEncoding], -1, &req, NULL) != SQLITE_OK) \
         DB_ASSERT_PREPARE;
 
 #undef DB_GET_LAST_ID
 #define DB_GET_LAST_ID(__id__) \
     __id__ = sqlite3_last_insert_rowid(self.db);
+
+- (void)performUpgrade_X_Y:(NSArray *)a
+{
+    @synchronized(self.dbaccess) {
+        __block sqlite3_stmt *req;
+
+        DB_PREPARE(@"begin");
+        DB_CHECK_OKAY;
+        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+            DB_PREPARE(sql);
+            if (sqlite3_step(req) != SQLITE_DONE) {
+                NSLog(@"Failure of '%@'", sql);
+                DB_ASSERT_STEP;
+            }
+        }];
+        DB_PREPARE(@"commit");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
 
 - (void)performUpgrade_0_1
 {
@@ -159,14 +182,7 @@
     @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Lost and Found Event Caches', 111, 601)",
     @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak Lost and Found Celebration', 111, 601)"
     ];
-
-    @synchronized(self.dbaccess) {
-        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
-            DB_PREPARE(sql);
-            DB_CHECK_OKAY;
-            DB_FINISH;
-        }];
-    }
+    [self performUpgrade_X_Y:a];
 }
 
 - (void)performUpgrade_1_2
@@ -174,14 +190,7 @@
     NSArray *a = @[
     @"insert into symbols(symbol) values('*')"
     ];
-
-    @synchronized(self.dbaccess) {
-        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
-            DB_PREPARE(sql);
-            DB_CHECK_OKAY;
-            DB_FINISH;
-        }];
-    }
+    [self performUpgrade_X_Y:a];
 }
 
 - (void)performUpgrade_2_3
@@ -191,14 +200,7 @@
     @"update waypoints set ignore = 0",
     @"insert into groups(name, usergroup) values('All Waypoints - Ignored', 0)"
     ];
-
-    @synchronized(self.dbaccess) {
-        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
-            DB_PREPARE(sql);
-            DB_CHECK_OKAY;
-            DB_FINISH;
-        }];
-    }
+    [self performUpgrade_X_Y:a];
 }
 
 - (void)performUpgrade_3_4
@@ -251,14 +253,19 @@
     @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('Waypoint', '*', 208, 600, '', '000000')",
     @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('*', '*', 208, 600, '', '000000')"
     ];
+    [self performUpgrade_X_Y:a];
+}
 
-    @synchronized(self.dbaccess) {
-        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
-            DB_PREPARE(sql);
-            DB_CHECK_OKAY;
-            DB_FINISH;
-        }];
-    }
+- (void)performUpgrade_4_5
+{
+    NSArray *a = @[
+    @"create table tracks ( id integer primary key, name text, startedon integer, stoppedon integer)",
+    @"create index tracks_idx_id on tracks(id)",
+    @"create table trackelements ( id integer primary key, track_id integer, lat_int integer, lon_int integer, height integer, timestamp integer)",
+    @"create index trackelements_idx_id on trackelements(id)",
+    @"create index trackelements_idx_trackid on trackelements(track_id)"
+    ];
+    [self performUpgrade_X_Y:a];
 }
 
 
