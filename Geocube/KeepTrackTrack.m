@@ -63,10 +63,16 @@
     labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
     [self.view addSubview:labelDate];
 
+    labelDistance = [[GCLabel alloc] initWithFrame:rectDistance];
+    labelDistance.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:labelDistance];
+
     ivTrackImage = [[UIImageView alloc] initWithFrame:rectTrackImage];
     ivTrackImage.backgroundColor = [UIColor redColor];
     ivTrackImage.image = [self createMap];
     [self.view addSubview:ivTrackImage];
+
+    labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools NiceDistance:distance]];
 
     [self viewWilltransitionToSize];
 }
@@ -87,6 +93,7 @@
 {
     labelName.frame = rectName;
     labelDate.frame = rectDate;
+    labelDistance.frame = rectDistance;
     ivTrackImage.frame = rectTrackImage;
 }
 
@@ -97,9 +104,10 @@
     NSInteger height = bounds.size.height;
     NSInteger height18 = bounds.size.height / 18;
 
-    rectName = CGRectMake(0, 0, width, height18);
-    rectDate = CGRectMake(0, height18, width, height18);
-    rectTrackImage = CGRectMake(0, 2 * height18, width, height - 4 * height18);
+    rectName = CGRectMake(0, 0 * height18, width, height18);
+    rectDate = CGRectMake(0, 1 * height18, width, height18);
+    rectDistance = CGRectMake(0, 2 * height18, width, height18);
+    rectTrackImage = CGRectMake(0, 3 * height18, width, height - 5 * height18);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -163,6 +171,7 @@
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         if (te_prev != nil) {
             LINE(te_prev.lon, te_prev.lat, te.lon, te.lat);
+            distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
         }
         te_prev = te;
     }];

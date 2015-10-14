@@ -21,13 +21,16 @@
 
 @interface KeepTrackTrack : GCViewController {
     dbTrack *track;
+    CGFloat distance;
 
     CGRect rectTrackImage;
     CGRect rectName;
     CGRect rectDate;
+    CGRect rectDistance;
 
     GCLabel *labelName;
     GCLabel *labelDate;
+    GCLabel *labelDistance;
     UIImageView *ivTrackImage;
 }
 
