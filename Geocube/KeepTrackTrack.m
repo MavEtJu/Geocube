@@ -69,9 +69,10 @@
 
     ivTrackImage = [[UIImageView alloc] initWithFrame:rectTrackImage];
     ivTrackImage.backgroundColor = [UIColor redColor];
-    ivTrackImage.image = [self createMap];
+    ivTrackImage.image = [self createMap:rectTrackImage];
     [self.view addSubview:ivTrackImage];
 
+    // Has to be done after the call to [self createMap]
     labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools NiceDistance:distance]];
 
     [self viewWilltransitionToSize];
@@ -95,6 +96,7 @@
     labelDate.frame = rectDate;
     labelDistance.frame = rectDistance;
     ivTrackImage.frame = rectTrackImage;
+    ivTrackImage.image = [self createMap:rectTrackImage];
 }
 
 - (void)calculateRects
@@ -116,7 +118,7 @@
     labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
 }
 
-- (UIImage *)createMap
+- (UIImage *)createMap:(CGRect)rect
 {
     UIImage *img = nil;
 
@@ -134,8 +136,9 @@
     x3 /= 1000000.0;
     y3 /= 1000000.0;
 
-#define X 360
-#define Y 360
+    NSInteger X = rect.size.width;
+    NSInteger Y = rect.size.height;
+
     UIGraphicsBeginImageContext(CGSizeMake(X, Y));
     CGContextRef context = UIGraphicsGetCurrentContext();
 
