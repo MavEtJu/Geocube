@@ -744,3 +744,4 @@ create table trackelements (
     timestamp integer
 );
 create index trackelements_idx_id on trackelements(id);
+create index trackelements_idx_trackid on trackelements(track_id);
