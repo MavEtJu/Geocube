@@ -561,9 +561,6 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-    NSData * binaryImageData = UIImagePNGRepresentation(newImage);
-    [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
-
     return newImage;
 }
 

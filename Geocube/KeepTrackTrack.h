@@ -31,4 +31,6 @@
     UIImageView *ivTrackImage;
 }
 
+- (void)showTrack:(dbTrack *)track;
+
 @end

@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+    if ([tracks count] == 0)
+        [self newTrack:@"First track"];
 }
 
 #pragma mark - TableViewController related functions
@@ -65,13 +67,22 @@
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
 
     cell.textLabel.text = t.name;
-    if (t.dateStop == 0)
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now", [MyTools datetimePartDate:[MyTools dateString:t.dateStart]] ];
-    else
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [MyTools datetimePartDate:[MyTools dateString:t.dateStart]], [MyTools datetimePartDate:[MyTools dateString:t.dateStop]]];
-    cell.userInteractionEnabled = NO;
+    cell.detailTextLabel.text = [MyTools datetimePartDate:[MyTools dateString:t.dateStart]];
+    cell.userInteractionEnabled = YES;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+    NSString *newTitle = t.name;
+
+    KeepTrackTrack *newController = [[KeepTrackTrack alloc] init];
+    [newController showTrack:t];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = newTitle;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 #pragma mark - Local menu related functions
@@ -103,15 +114,7 @@
                              NSString *name = tf.text;
 
                              NSLog(@"Creating new track '%@'", name);
-
-                             dbTrack *t = [[dbTrack alloc] init];
-                             t.name = name;
-                             t.dateStart = time(NULL);
-                             t.dateStop = 0;
-                             [t dbCreate];
-
-                             [tracks addObject:t];
-                             [myConfig currentTrackUpdate:t._id];
+                             [self newTrack:name];
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
@@ -127,8 +130,22 @@
         textField.placeholder = @"Name of the new track";
         textField.text = [MyTools dateString:time(NULL)];
     }];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (dbTrack *)newTrack:(NSString *)name
+{
+
+    dbTrack *t = [[dbTrack alloc] init];
+    t.name = name;
+    t.dateStart = time(NULL);
+    t.dateStop = 0;
+    [t dbCreate];
+
+    [tracks addObject:t];
+    [myConfig currentTrackUpdate:t._id];
+    return t;
 }
 
 @end

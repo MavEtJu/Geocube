@@ -45,4 +45,7 @@
 @property (nonatomic) NSInteger height;
 @property (nonatomic) NSInteger timestamp_epoch;
 
++ (void)addElement:(CLLocationCoordinate2D)coords height:(NSInteger)altitude;
++ (NSArray *)dbAllByTrack:(NSId)_track_id;
+
 @end

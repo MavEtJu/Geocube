@@ -30,7 +30,7 @@
     NSMutableArray *ts = [NSMutableArray arrayWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, startedon, stoppedon from tracks");
+        DB_PREPARE(@"select id, name, startedon, stoppedon from tracks order by startedon desc");
 
         DB_WHILE_STEP {
             dbTrack *t = [[dbTrack alloc] init];;

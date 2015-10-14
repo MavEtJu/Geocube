@@ -23,14 +23,20 @@
 
 @implementation KeepTrackTrack
 
-/*
+
 - (instancetype)init
 {
     self = [super init];
 
     menuItems = nil;
+    hasCloseButton = YES;
 
     return self;
+}
+
+- (void)showTrack:(dbTrack *)_track
+{
+    track = _track;
 }
 
 - (void)viewDidLoad
@@ -49,22 +55,17 @@
 
     labelName = [[GCLabel alloc] initWithFrame:rectName];
     labelName.textAlignment = NSTextAlignmentCenter;
-    labelName.text = selectedTrack.name;
+    labelName.text = track.name;
     [self.view addSubview:labelName];
 
     labelDate = [[GCLabel alloc] initWithFrame:rectDate];
     labelDate.textAlignment = NSTextAlignmentCenter;
-    if (selectedTrack.dateStart != 0) {
-        if (selectedTrack.dateStop == 0)
-            labelDate.text = [NSString stringWithFormat:@"%@ - now", [MyTools datetimePartDate:[MyTools dateString:selectedTrack.dateStart]]];
-        else
-            labelDate.text = [NSString stringWithFormat:@"%@ - %@", [MyTools datetimePartDate:[MyTools dateString:selectedTrack.dateStart]], [MyTools dateString:selectedTrack.dateStop]];
-    }
+    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
     [self.view addSubview:labelDate];
-
 
     ivTrackImage = [[UIImageView alloc] initWithFrame:rectTrackImage];
     ivTrackImage.backgroundColor = [UIColor redColor];
+    ivTrackImage.image = [self createMap];
     [self.view addSubview:ivTrackImage];
 
     [self viewWilltransitionToSize];
@@ -104,114 +105,75 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (selectedTrack.dateStop == 0)
-        labelDate.text = [NSString stringWithFormat:@"%@ - now", [MyTools datetimePartDate:[MyTools dateString:selectedTrack.dateStart]]];
-    else
-        labelDate.text = [NSString stringWithFormat:@"%@ - %@", [MyTools datetimePartDate:[MyTools dateString:selectedTrack.dateStart]], [MyTools dateString:selectedTrack.dateStop]];
+    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
 }
 
-#pragma mark - Local menu related functions
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (UIImage *)createMap
 {
-    switch (index) {
-        case 0:
-            [self startNewTrack];
-            return;;
-        case 1:
-            [self renameTrack];
-            return;
-        case 2:
-            [self selectTrack];
-            return;
-    }
+    UIImage *img = nil;
 
-    [super didSelectedMenu:menu atIndex:index];
-}
+    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
 
-- (void)startNewTrack
-{
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Start a new track"
-                               message:@""
-                               preferredStyle:UIAlertControllerStyleAlert];
+    __block CGFloat x0 = +180000000, x3 = -180000000, y0 = +180000000, y3 = -180000000;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        x0 = MIN(x0, te.lon_int);
+        x3 = MAX(x3, te.lon_int);
+        y0 = MIN(y0, te.lat_int);
+        y3 = MAX(y3, te.lat_int);
+    }];
+    x0 /= 1000000.0;
+    y0 /= 1000000.0;
+    x3 /= 1000000.0;
+    y3 /= 1000000.0;
 
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction *action) {
-                             //Do Some action
-                             UITextField *tf = alert.textFields.firstObject;
-                             NSString *name = tf.text;
+#define X 360
+#define Y 360
+    UIGraphicsBeginImageContext(CGSizeMake(X, Y));
+    CGContextRef context = UIGraphicsGetCurrentContext();
 
-                             NSLog(@"Creating new track '%@'", name);
+    // Black background
+    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, X, Y));
 
-                             dbTrack *t = [[dbTrack alloc] init];
-                             t.name = name;
-                             t.dateStart = time(NULL);
-                             t.dateStop = 0;
-                             [t dbCreate];
+#define MARGIN 10
+#define _X(x)     MARGIN + (x - x0) * ((X - 2 * MARGIN) / (x3 - x0))
+#define _Y(y) Y - MARGIN - (y - y0) * ((Y - 2 * MARGIN) / (y3 - y0))
+    /*
+     * +----------------------------------+
+     * |  .x0,y0                          |
+     * |       .x,y                       |
+     * |                                  |
+     * |               .x3,y3             |
+     * |                            .X,Y  |
+     * |                                  |
+     * +----------------------------------+
+     *
+     * scale: ratioX = X / (x3 - x0)
+     *        x' = (x - x0) * ratioX
+     */
 
-                             [tracks addObject:t];
-                             [myConfig currentTrackUpdate:t._id];
-                             selectedTrack = t;
-                             activeTrack = t;
-                             activeTrack_id = t._id;
+#define LINE(x1, y1, x2, y2) \
+    CGContextSetLineWidth(context, 1); \
+    CGContextMoveToPoint(context, _X(x1), _Y(y1) + 0.5); \
+    CGContextAddLineToPoint(context, _X(x2) + 1, _Y(y2) + 0.5); \
+    CGContextStrokePath(context);
 
-                             labelName.text = t.name;
-                             labelDate.text = [MyTools dateString:t.dateStart];
-                         }];
-    UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-
-    [alert addAction:ok];
-    [alert addAction:cancel];
-
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the new track";
-        textField.text = [MyTools dateString:time(NULL)];
+   CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+    __block dbTrackElement *te_prev = nil;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (te_prev != nil) {
+            LINE(te_prev.lon, te_prev.lat, te.lon, te.lat);
+        }
+        te_prev = te;
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    NSData * binaryImageData = UIImagePNGRepresentation(img);
+    [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
+
+    return img;
 }
-
-- (void)renameTrack
-{
-
-}
-
-- (void)selectTrack
-{
-    __block NSInteger _idx = 0;
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:[tracks count]];
-    [tracks enumerateObjectsUsingBlock:^(dbTrack *t, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (t._id == selectedTrack._id)
-            _idx = idx;
-        [as addObject:[NSString stringWithFormat:@"%@: %@", t.name, [MyTools dateString:t.dateStart]]];
-    }];
-
-
-    [ActionSheetStringPicker
-     showPickerWithTitle:@"Select a track"
-     rows:as
-     initialSelection:_idx
-     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, dbTrack *selectedValue) {
-         [tracks enumerateObjectsUsingBlock:^(dbTrack *t, NSUInteger idx, BOOL * _Nonnull stop) {
-             if (selectedIndex == idx) {
-                 selectedTrack = t;
-                 *stop = YES;
-             }
-         }];
-     }
-     cancelBlock:^(ActionSheetStringPicker *picker) {
-     }
-     origin:self.view
-     ];
-
-}
- */
 
 @end
