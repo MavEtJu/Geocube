@@ -288,6 +288,17 @@
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
+		E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4C1BC67CDC001B0805 /* CCHMapClusterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA381BC67CDC001B0805 /* CCHMapClusterController.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3A1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3D1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA401BC67CDC001B0805 /* CCHMapClusterOperation.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA421BC67CDC001B0805 /* CCHMapTree.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; settings = {ASSET_TAGS = (); }; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -771,6 +782,31 @@
 		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
 		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
+		E8D7BA301BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHCenterOfMassMapClusterer.h; path = CCHMapClusterController/CCHCenterOfMassMapClusterer.h; sourceTree = "<group>"; };
+		E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHCenterOfMassMapClusterer.m; path = CCHMapClusterController/CCHCenterOfMassMapClusterer.m; sourceTree = "<group>"; };
+		E8D7BA321BC67CDC001B0805 /* CCHFadeInOutMapAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHFadeInOutMapAnimator.h; path = CCHMapClusterController/CCHFadeInOutMapAnimator.h; sourceTree = "<group>"; };
+		E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHFadeInOutMapAnimator.m; path = CCHMapClusterController/CCHFadeInOutMapAnimator.m; sourceTree = "<group>"; };
+		E8D7BA341BC67CDC001B0805 /* CCHMapAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapAnimator.h; path = CCHMapClusterController/CCHMapAnimator.h; sourceTree = "<group>"; };
+		E8D7BA351BC67CDC001B0805 /* CCHMapClusterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterAnnotation.h; path = CCHMapClusterController/CCHMapClusterAnnotation.h; sourceTree = "<group>"; };
+		E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterAnnotation.m; path = CCHMapClusterController/CCHMapClusterAnnotation.m; sourceTree = "<group>"; };
+		E8D7BA371BC67CDC001B0805 /* CCHMapClusterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterController.h; path = CCHMapClusterController/CCHMapClusterController.h; sourceTree = "<group>"; };
+		E8D7BA381BC67CDC001B0805 /* CCHMapClusterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterController.m; path = CCHMapClusterController/CCHMapClusterController.m; sourceTree = "<group>"; };
+		E8D7BA391BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerDebugPolygon.h; path = CCHMapClusterController/CCHMapClusterControllerDebugPolygon.h; sourceTree = "<group>"; };
+		E8D7BA3A1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterControllerDebugPolygon.m; path = CCHMapClusterController/CCHMapClusterControllerDebugPolygon.m; sourceTree = "<group>"; };
+		E8D7BA3B1BC67CDC001B0805 /* CCHMapClusterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerDelegate.h; path = CCHMapClusterController/CCHMapClusterControllerDelegate.h; sourceTree = "<group>"; };
+		E8D7BA3C1BC67CDC001B0805 /* CCHMapClusterControllerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerUtils.h; path = CCHMapClusterController/CCHMapClusterControllerUtils.h; sourceTree = "<group>"; };
+		E8D7BA3D1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterControllerUtils.m; path = CCHMapClusterController/CCHMapClusterControllerUtils.m; sourceTree = "<group>"; };
+		E8D7BA3E1BC67CDC001B0805 /* CCHMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterer.h; path = CCHMapClusterController/CCHMapClusterer.h; sourceTree = "<group>"; };
+		E8D7BA3F1BC67CDC001B0805 /* CCHMapClusterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterOperation.h; path = CCHMapClusterController/CCHMapClusterOperation.h; sourceTree = "<group>"; };
+		E8D7BA401BC67CDC001B0805 /* CCHMapClusterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterOperation.m; path = CCHMapClusterController/CCHMapClusterOperation.m; sourceTree = "<group>"; };
+		E8D7BA411BC67CDC001B0805 /* CCHMapTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapTree.h; path = CCHMapClusterController/CCHMapTree.h; sourceTree = "<group>"; };
+		E8D7BA421BC67CDC001B0805 /* CCHMapTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapTree.m; path = CCHMapClusterController/CCHMapTree.m; sourceTree = "<group>"; };
+		E8D7BA431BC67CDC001B0805 /* CCHMapTreeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapTreeUtils.h; path = CCHMapClusterController/CCHMapTreeUtils.h; sourceTree = "<group>"; };
+		E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapTreeUtils.m; path = CCHMapClusterController/CCHMapTreeUtils.m; sourceTree = "<group>"; };
+		E8D7BA451BC67CDC001B0805 /* CCHMapViewDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapViewDelegateProxy.h; path = CCHMapClusterController/CCHMapViewDelegateProxy.h; sourceTree = "<group>"; };
+		E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapViewDelegateProxy.m; path = CCHMapClusterController/CCHMapViewDelegateProxy.m; sourceTree = "<group>"; };
+		E8D7BA471BC67CDC001B0805 /* CCHNearCenterMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHNearCenterMapClusterer.h; path = CCHMapClusterController/CCHNearCenterMapClusterer.h; sourceTree = "<group>"; };
+		E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHNearCenterMapClusterer.m; path = CCHMapClusterController/CCHNearCenterMapClusterer.m; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
@@ -1462,6 +1498,38 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
+		E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */ = {
+			isa = PBXGroup;
+			children = (
+				E8D7BA301BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.h */,
+				E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */,
+				E8D7BA321BC67CDC001B0805 /* CCHFadeInOutMapAnimator.h */,
+				E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */,
+				E8D7BA341BC67CDC001B0805 /* CCHMapAnimator.h */,
+				E8D7BA351BC67CDC001B0805 /* CCHMapClusterAnnotation.h */,
+				E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */,
+				E8D7BA371BC67CDC001B0805 /* CCHMapClusterController.h */,
+				E8D7BA381BC67CDC001B0805 /* CCHMapClusterController.m */,
+				E8D7BA391BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.h */,
+				E8D7BA3A1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m */,
+				E8D7BA3B1BC67CDC001B0805 /* CCHMapClusterControllerDelegate.h */,
+				E8D7BA3C1BC67CDC001B0805 /* CCHMapClusterControllerUtils.h */,
+				E8D7BA3D1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m */,
+				E8D7BA3E1BC67CDC001B0805 /* CCHMapClusterer.h */,
+				E8D7BA3F1BC67CDC001B0805 /* CCHMapClusterOperation.h */,
+				E8D7BA401BC67CDC001B0805 /* CCHMapClusterOperation.m */,
+				E8D7BA411BC67CDC001B0805 /* CCHMapTree.h */,
+				E8D7BA421BC67CDC001B0805 /* CCHMapTree.m */,
+				E8D7BA431BC67CDC001B0805 /* CCHMapTreeUtils.h */,
+				E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */,
+				E8D7BA451BC67CDC001B0805 /* CCHMapViewDelegateProxy.h */,
+				E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */,
+				E8D7BA471BC67CDC001B0805 /* CCHNearCenterMapClusterer.h */,
+				E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */,
+			);
+			name = CCHMapClusterController;
+			sourceTree = "<group>";
+		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,6 +1696,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
@@ -2186,6 +2255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E8CFFE1B658DC000CC741A /* FilterObject.m in Sources */,
+				E8D7BA4C1BC67CDC001B0805 /* CCHMapClusterController.m in Sources */,
+				E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */,
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */,
@@ -2198,8 +2269,10 @@
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
+				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
+				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E8A7FAAB1B794E70003F4132 /* CacheImagesViewController.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
@@ -2219,12 +2292,14 @@
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
+				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
+				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
 				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
@@ -2248,11 +2323,13 @@
 				E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
+				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
+				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
 				E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */,
 				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
@@ -2300,13 +2377,16 @@
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
+				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
 				E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
+				E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
+				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
