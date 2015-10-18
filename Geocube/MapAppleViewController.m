@@ -41,6 +41,7 @@
 
     mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
     mapClusterController.delegate = self;
+    mapClusterController.maxZoomLevelForClustering = 14;
 
     self.view  = mapView;
 }
