@@ -41,7 +41,7 @@
 
     mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
     mapClusterController.delegate = self;
-    mapClusterController.maxZoomLevelForClustering = 14;
+    mapClusterController.maxZoomLevelForClustering = 13;
 
     self.view  = mapView;
 }
@@ -167,16 +167,33 @@
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
-    NSString *unit = numAnnotations > 1 ? @"annotations" : @"annotation";
-    return [NSString stringWithFormat:@"%tu %@", numAnnotations, unit];
+    NSString *ret;
+
+    if (numAnnotations == 1) {
+        GCPointAnnotation *pa = [mapClusterAnnotation.annotations anyObject];
+        ret = pa.name;
+    } else {
+        ret = [NSString stringWithFormat:@"%tu waypoints", numAnnotations];
+    }
+    return ret;
 }
 
 - (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
     NSUInteger numAnnotations = MIN(mapClusterAnnotation.annotations.count, 5);
-    NSArray *annotations = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numAnnotations)];
-    NSArray *titles = [annotations valueForKey:@"title"];
-    return [titles componentsJoinedByString:@", "];
+    NSMutableString *ret;
+
+    if (numAnnotations == 1) {
+        GCPointAnnotation *pa = [mapClusterAnnotation.annotations anyObject];
+        ret = [NSMutableString stringWithString:pa.subtitle];
+    } else {
+        NSArray *annotations = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numAnnotations)];
+        NSArray *titles = [annotations valueForKey:@"title"];
+        ret = [NSMutableString stringWithString:[titles componentsJoinedByString:@", "]];
+        if (numAnnotations > 5)
+            [ret appendString:@"..."];
+    }
+    return ret;
 }
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
