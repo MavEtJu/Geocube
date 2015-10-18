@@ -39,6 +39,9 @@
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
+    mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
+    mapClusterController.delegate = self;
+
     self.view  = mapView;
 }
 
@@ -66,10 +69,10 @@
 
         [annotation setTitle:wp.name];
         [annotation setSubtitle:wp.urlname];
-        [mapView addAnnotation:annotation];
 
         [markers addObject:annotation];
     }];
+    [mapClusterController addAnnotations:markers withCompletionHandler:nil];
 }
 
 - (void)removeMarkers
@@ -78,6 +81,7 @@
         [mapView removeAnnotation:m];
         m = nil;
     }];
+    [mapClusterController removeAnnotations:markers withCompletionHandler:nil];
     markers = nil;
 }
 
@@ -88,25 +92,90 @@
     [super openWaypointView:ann.title];
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
 {
-    NSString *c = NSStringFromClass([annotation class]);
-    if ([c isEqualToString:@"GCPointAnnotation"] == NO)
-        return nil;
+    MKPinAnnotationView *av = (MKPinAnnotationView *)[mapView viewForAnnotation:mapClusterAnnotation];
 
-    GCPointAnnotation *a = annotation;
-    MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
+    if ([mapClusterAnnotation.annotations count] == 1) {
+        __block dbWaypoint *wp = nil;
+        [mapClusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
+            wp = [dbWaypoint dbGet:pa._id];
+        }];
+        av.image = [self waypointImage:wp];
 
-    dbWaypoint *wp = [dbWaypoint dbGet:a._id];
-    dropPin.image = [self waypointImage:wp];
+        UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
+        av.rightCalloutAccessoryView = disclosureButton;
+        av.canShowCallout = YES;
 
-    UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        av.image = [imageLibrary get:ImageIcon_CloseButton];
+    }
+}
 
-    dropPin.rightCalloutAccessoryView = disclosureButton;
-    dropPin.canShowCallout = YES;
+- (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[GCPointAnnotation class]] == YES) {
+        GCPointAnnotation *a = annotation;
+        MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
 
-    return dropPin;
+        dbWaypoint *wp = [dbWaypoint dbGet:a._id];
+        dropPin.image = [self waypointImage:wp];
+
+        UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+        dropPin.rightCalloutAccessoryView = disclosureButton;
+        dropPin.canShowCallout = YES;
+
+        return dropPin;
+    }
+
+    if ([annotation isKindOfClass:[CCHMapClusterAnnotation  class]] == YES) {
+        static NSString *identifier = @"identifier";
+        CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *)annotation;
+
+        MKAnnotationView *av = (MKAnnotationView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (av != nil) {
+            av.annotation = annotation;
+        } else {
+            av = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        }
+
+        if ([clusterAnnotation.annotations count] == 1) {
+            __block dbWaypoint *wp = nil;
+            [clusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
+                wp = [dbWaypoint dbGet:pa._id];
+            }];
+            av.image = [self waypointImage:wp];
+
+            UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
+            av.rightCalloutAccessoryView = disclosureButton;
+            av.canShowCallout = YES;
+        } else {
+            av.image = [imageLibrary get:ImageIcon_CloseButton];
+        }
+
+        return av;
+    }
+
+    return nil;
+}
+
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
+{
+    NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
+    NSString *unit = numAnnotations > 1 ? @"annotations" : @"annotation";
+    return [NSString stringWithFormat:@"%tu %@", numAnnotations, unit];
+}
+
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
+{
+    NSUInteger numAnnotations = MIN(mapClusterAnnotation.annotations.count, 5);
+    NSArray *annotations = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numAnnotations)];
+    NSArray *titles = [annotations valueForKey:@"title"];
+    return [titles componentsJoinedByString:@", "];
 }
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
