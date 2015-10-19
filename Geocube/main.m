@@ -49,7 +49,7 @@ MyConfig *myConfig = nil;
 AppDelegate *_AppDelegate;
 
 // Hardware models
-NSInteger hardwaremodel;
+NSInteger hardwaremodel = hardwareModelUnknown;
 
 int main(int argc, char * argv[])
 {
