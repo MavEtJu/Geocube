@@ -210,6 +210,7 @@ NEEDS_OVERLOADING(addHistory)
 - (void)menuShowWhom:(NSInteger)whom
 {
     showWhom = whom;
+    meLocation = [LM coords];
     if (whom == SHOW_ME)
         [self moveCameraTo:meLocation];
     if (whom == SHOW_CACHE && waypointManager.currentWaypoint != nil)

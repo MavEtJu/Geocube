@@ -36,7 +36,7 @@
     fm = [[NSFileManager alloc] init];
 
     // Initialize the location mamager
-    LM = [[GCLocationManager alloc] init];
+    LM = [[LocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];
 
     // Initialize Google Maps
@@ -107,9 +107,9 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    CacheViewController *cvc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
-    cvc.title = @"Target";
-    nav = [[UINavigationController alloc] initWithRootViewController:cvc];
+    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
+    vc.title = @"Target";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
@@ -337,6 +337,23 @@
 
     vc = [[HelpDatabaseViewController alloc] init];
     vc.title = @"DB";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    TABBARCONTROLLER(controllers)
+
+    // Keep track tabs #12
+    controllers = [NSMutableArray array];
+
+    vc = [[KeepTrackCar alloc] init];
+    vc.title = @"Car";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    vc = [[KeepTrackTracks alloc] init];
+    vc.title = @"Tracks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];

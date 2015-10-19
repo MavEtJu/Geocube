@@ -19,44 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_Geocube_h
-#define Geocube_Geocube_h
+@interface dbTrack : dbObject {
+    NSString *name;
+    NSInteger dateStart;
+    NSInteger dateStop;
+}
 
-// Global menu
-extern GlobalMenu *menuGlobal;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) NSInteger dateStart;
+@property (nonatomic) NSInteger dateStop;
 
-// Database handle
-extern database *dbe;
-extern DatabaseCache *dbc;
-
-// Images
-extern ImageLibrary *imageLibrary;
-
-// Images Download Manager
-extern ImagesDownloadManager *imagesDownloadManager;
-
-// Current dbWaypoint to navitate to
-extern CacheFilterManager *waypointManager;
-
-// Location Manager
-extern LocationManager *LM;
-
-// File manager
-extern NSFileManager *fm;
-
-// Configuration Manager
-extern MyConfig *myConfig;
-
-//
-extern AppDelegate *_AppDelegate;
-
-// Hardware models
-enum {
-    hardwareModelUnknown = 0,
-    hardwareModelIPod,
-    hardwareModelIPad,
-    hardwareModelIPhone
-};
-extern NSInteger hardwaremodel;
-
-#endif
+@end

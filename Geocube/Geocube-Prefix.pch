@@ -82,6 +82,8 @@
 #import "dbState.h"
 #import "dbSymbol.h"
 #import "dbType.h"
+#import "dbTrack.h"
+#import "dbTrackElement.h"
 #import "dbTrackable.h"
 #import "dbWaypoint.h"
 
@@ -99,7 +101,7 @@
 #import "MyConfig.h"
 #import "AudioFeedback.h"
 
-#import "GCLocationManager.h"
+#import "LocationManager.h"
 #import "GCTableViewController.h"
 #import "GCURLRequest.h"
 #import "GCViewController.h"
@@ -181,6 +183,10 @@
 #import "HelpAboutViewController.h"
 #import "HelpDatabaseViewController.h"
 #import "HelpImagesViewController.h"
+
+#import "KeepTrackCar.h"
+#import "KeepTrackTrack.h"
+#import "KeepTrackTracks.h"
 
 #import "CachesOfflineListViewController.h"
 #import "NoticesViewController.h"

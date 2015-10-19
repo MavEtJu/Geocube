@@ -65,7 +65,6 @@
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCLabel;
-@class GCLocationManager;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
@@ -94,7 +93,11 @@
 @class ImportLiveAPIJSON;
 @class ImportNotices;
 @class ImportSites;
+@class KeepTrackCar;
+@class KeepTrackTrack;
+@class KeepTrackTracks;
 @class LiveAPI;
+@class LocationManager;
 @class LogTableViewCell;
 @class MapAppleViewController;
 @class MapGoogleViewController;
@@ -142,6 +145,8 @@
 @class dbPersonalNote;
 @class dbState;
 @class dbSymbol;
+@class dbTrack;
+@class dbTrackElement;
 @class dbTrackable;
 @class dbType;
 @class dbWaypoint;

@@ -263,6 +263,12 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; settings = {ASSET_TAGS = (); }; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */; settings = {ASSET_TAGS = (); }; };
+		E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */; settings = {ASSET_TAGS = (); }; };
 		E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */; };
 		E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BrowserUserViewController.m */; };
 		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
@@ -328,7 +334,6 @@
 		E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */; };
 		E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4471B591DFF0027AE6F /* BHTabView.m */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
-		E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4085B1B58A26300FBA858 /* GCLocationManager.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
@@ -731,6 +736,18 @@
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
 		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
+		E8A4BEE21BD4B87D00BCA5A5 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "../../GC-carpark/Geocube/LocationManager.h"; sourceTree = "<group>"; };
+		E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "../../GC-carpark/Geocube/LocationManager.m"; sourceTree = "<group>"; };
+		E8A4BEE51BD4B8BE00BCA5A5 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
+		E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
+		E8A4BEE71BD4B8BE00BCA5A5 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
+		E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrackElement.m; sourceTree = "<group>"; };
+		E8A4BEEC1BD4B91000BCA5A5 /* KeepTrackCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackCar.h; sourceTree = "<group>"; };
+		E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackCar.m; sourceTree = "<group>"; };
+		E8A4BEEE1BD4B91000BCA5A5 /* KeepTrackTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTrack.h; sourceTree = "<group>"; };
+		E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTrack.m; sourceTree = "<group>"; };
+		E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTracks.h; sourceTree = "<group>"; };
+		E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracks.m; sourceTree = "<group>"; };
 		E8A7FA931B77763F003F4132 /* BrowserAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserAccountsViewController.h; sourceTree = "<group>"; };
 		E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserAccountsViewController.m; sourceTree = "<group>"; };
 		E8A7FA961B77F7F7003F4132 /* BrowserUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserUserViewController.h; sourceTree = "<group>"; };
@@ -863,8 +880,6 @@
 		E8EAF4471B591DFF0027AE6F /* BHTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabView.m; path = BHTabBar/BHTabView.m; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
-		E8F4085A1B58A26300FBA858 /* GCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLocationManager.h; sourceTree = "<group>"; };
-		E8F4085B1B58A26300FBA858 /* GCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLocationManager.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1013,8 +1028,8 @@
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
-				E8F4085A1B58A26300FBA858 /* GCLocationManager.h */,
-				E8F4085B1B58A26300FBA858 /* GCLocationManager.m */,
+				E8A4BEE21BD4B87D00BCA5A5 /* LocationManager.h */,
+				E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */,
 				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
 				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
@@ -1421,6 +1436,19 @@
 			name = map;
 			sourceTree = "<group>";
 		};
+		E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */ = {
+			isa = PBXGroup;
+			children = (
+				E8A4BEEC1BD4B91000BCA5A5 /* KeepTrackCar.h */,
+				E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */,
+				E8A4BEEE1BD4B91000BCA5A5 /* KeepTrackTrack.h */,
+				E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */,
+				E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */,
+				E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */,
+			);
+			name = "Keep Track";
+			sourceTree = "<group>";
+		};
 		E8A7FA921B777616003F4132 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1785,6 +1813,10 @@
 				E81304031B5C4EB1006DF300 /* dbSymbol.m */,
 				E81304091B5D9B5E006DF300 /* dbTrackable.h */,
 				E813040A1B5D9B5E006DF300 /* dbTrackable.m */,
+				E8A4BEE51BD4B8BE00BCA5A5 /* dbTrack.h */,
+				E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */,
+				E8A4BEE71BD4B8BE00BCA5A5 /* dbTrackElement.h */,
+				E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */,
 				E8F570C91B4008DD003F020C /* dbType.h */,
 				E8F570CA1B4008DD003F020C /* dbType.m */,
 				E80732B41B5FA352007FDC29 /* dbWaypoint.h */,
@@ -1838,6 +1870,7 @@
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
+				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2292,6 +2325,7 @@
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
+				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
@@ -2307,14 +2341,15 @@
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
+				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */,
-				E8F4085C1B58A26300FBA858 /* GCLocationManager.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
+				E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */,
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
@@ -2339,6 +2374,7 @@
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
+				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
 				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
@@ -2388,6 +2424,7 @@
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
+				E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
@@ -2409,6 +2446,7 @@
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
+				E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */,
 				E847A5931BA0524E00BEFE83 /* GCSmallLabel.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
