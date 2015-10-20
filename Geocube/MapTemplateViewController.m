@@ -72,6 +72,8 @@ NEEDS_OVERLOADING(addHistory)
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
     [LM startDelegation:self isNavigating:(showType == SHOW_ONECACHE)];
+    if (meLocation.longitude == 0 && meLocation.latitude == 0)
+        [self updateData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
