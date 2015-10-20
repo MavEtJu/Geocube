@@ -70,5 +70,6 @@ enum {
 // User related actions
 - (void)userInteraction;
 - (void)openWaypointView:(NSString *)name;
+- (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin;
 
 @end

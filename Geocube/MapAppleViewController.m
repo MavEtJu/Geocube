@@ -88,9 +88,18 @@
 
 - (void)mapCallOutPressed:(id)sender
 {
-    MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
-    NSLog(@"%@", ann.title);
-    [super openWaypointView:ann.title];
+    CCHMapClusterAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+    if ([ann.annotations count] == 1) {
+        MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+        NSLog(@"%@", ann.title);
+        [super openWaypointView:ann.title];
+    } else {
+        NSMutableArray *anns = [NSMutableArray arrayWithCapacity:[ann.annotations count]];
+        [ann.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
+            [anns addObject:pa.title];
+        }];
+        [super openWaypointsPicker:anns origin:self.view];
+    }
 }
 
 - (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation

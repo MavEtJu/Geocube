@@ -281,7 +281,32 @@ NEEDS_OVERLOADING(addHistory)
 
         return;
     }
+}
 
+- (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin
+{
+    NSLog(@"amount: %ld", [names count]);
+
+    NSMutableArray *descs = [NSMutableArray arrayWithCapacity:[names count]];
+    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSId _id = [dbWaypoint dbGetByName:name];
+        dbWaypoint *wp = [dbWaypoint dbGet:_id];
+
+        [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.urlname]];
+    }];
+
+    [ActionSheetStringPicker
+     showPickerWithTitle:@"Select a waypoint"
+     rows:descs
+     initialSelection:0
+     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
+         [self openWaypointView:[names objectAtIndex:selectedIndex]];
+     }
+     cancelBlock:^(ActionSheetStringPicker *picker) {
+         NSLog(@"Block Picker Canceled");
+     }
+     origin:origin
+     ];
 }
 
 @end
