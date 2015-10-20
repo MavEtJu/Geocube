@@ -213,6 +213,7 @@ typedef enum {
 - (UIImage *)getType:(dbWaypoint *)wp;
 - (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
 - (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+- (UIImage *)getSquareWithNumber:(NSInteger)num;
 
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;

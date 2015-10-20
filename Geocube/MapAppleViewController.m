@@ -110,7 +110,7 @@
         av.canShowCallout = YES;
 
     } else {
-        av.image = [imageLibrary get:ImageIcon_CloseButton];
+        av.image = [imageLibrary getSquareWithNumber:[mapClusterAnnotation.annotations count]];
     }
 }
 
@@ -155,7 +155,7 @@
             av.rightCalloutAccessoryView = disclosureButton;
             av.canShowCallout = YES;
         } else {
-            av.image = [imageLibrary get:ImageIcon_CloseButton];
+            av.image = [imageLibrary getSquareWithNumber:[clusterAnnotation.annotations count]];
         }
 
         return av;
