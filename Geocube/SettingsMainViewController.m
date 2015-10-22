@@ -41,19 +41,45 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 3;
+    return 4;
 }
+
+enum sections {
+    SECTION_DISTANCE = 0,
+    SECTION_THEME,
+    SECTION_SOUNDS,
+    SECTION_MAPS,
+    SECTION_MAX,
+
+    SECTION_DISTANCE_METRIC = 0,
+    SECTION_DISTANCE_MAX,
+
+    SECTION_THEME_THEME = 0,
+    SECTION_THEME_COMPASS,
+    SECTION_THEME_MAX,
+
+    SECTION_SOUNDS_DIRECTION = 0,
+    SECTION_SOUNDS_DISTANCE,
+    SECTION_SOUNDS_MAX,
+
+    SECTION_MAPS_CLUSTERS = 0,
+    SECTION_MAPS_ZOOMLEVEL,
+    SECTION_MAPS_MAX,
+
+};
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: // Distance section
-            return 1;
-        case 1: // Theme section
-            return 2;
-        case 2: // Sounds section
-            return 2;
+        case SECTION_DISTANCE: // Distance section
+            return SECTION_DISTANCE_MAX;
+        case SECTION_THEME: // Theme section
+            return SECTION_THEME_MAX;
+        case SECTION_SOUNDS: // Sounds section
+            return SECTION_SOUNDS_MAX;
+        case SECTION_MAPS: // Maps section
+            return SECTION_MAPS_MAX;
     }
 
     return 0;
@@ -63,12 +89,14 @@
 {
     /* Metric section */
     switch (section) {
-        case 0:
+        case SECTION_DISTANCE:
             return @"Distances";
-        case 1:
+        case SECTION_THEME:
             return @"Theme";
-        case 2:
+        case SECTION_SOUNDS:
             return @"Sounds";
+        case SECTION_MAPS:
+            return @"Maps";
     }
 
     return nil;
@@ -79,12 +107,12 @@
 {
 
     switch (indexPath.section) {
-        case 0: {   // Distance
+        case SECTION_DISTANCE: {   // Distance
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
                 cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
-                case 0: {   // Metric
+                case SECTION_DISTANCE_METRIC: {   // Metric
                     cell.textLabel.text = @"Use metric units";
 
                     distanceMetric = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -97,9 +125,9 @@
             }
             break;
         }
-        case 1: {   // Theme
+        case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
-                case 0: {   // Theme
+                case SECTION_THEME_THEME: {   // Theme
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
@@ -107,7 +135,7 @@
                     cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:[myConfig themeType]];
                     return cell;
                 }
-                case 1: {   // Compass type
+                case SECTION_THEME_COMPASS: {   // Compass type
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
@@ -119,12 +147,12 @@
             }
             break;
         }
-        case 2: {   // Sounds
+        case SECTION_SOUNDS: {   // Sounds
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
                 cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
-                case 0: {   // soundDirection
+                case SECTION_SOUNDS_DIRECTION: {   // soundDirection
                     cell.textLabel.text = @"Enable sounds for direction";
 
                     soundDirection = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -134,7 +162,7 @@
 
                     return cell;
                 }
-                case 1: {   // soundDistance
+                case SECTION_SOUNDS_DISTANCE: {   // soundDistance
                     cell.textLabel.text = @"Enable sounds for distance";
 
                     soundDistance = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -147,6 +175,35 @@
             }
             break;
         }
+        case SECTION_MAPS: {   // Maps
+            switch (indexPath.row) {
+                case SECTION_MAPS_CLUSTERS: {   // Enable
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
+                    cell.textLabel.text = @"Enable clusters";
+
+                    mapClustersEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    mapClustersEnable.on = myConfig.mapClustersEnable;
+                    [mapClustersEnable addTarget:self action:@selector(updateMapClustersEnable:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = mapClustersEnable;
+
+                    return cell;
+                }
+                case SECTION_MAPS_ZOOMLEVEL: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+                    cell.textLabel.text = @"Maxmimum zoom level for clustering";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
+
+                    return cell;
+                }
+            }
+            break;
+        }
+
     }
 
     return nil;
@@ -168,13 +225,23 @@
     [myConfig soundDirectionUpdate:s.on];
 }
 
+- (void)updateMapClustersEnable:(UISwitch *)s
+{
+    [myConfig mapClustersUpdateEnable:s.on];
+}
+
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {   // Theme
-        if (indexPath.row == 0)
+    if (indexPath.section == SECTION_THEME) {   // Theme
+        if (indexPath.row == SECTION_THEME_THEME)
             [self updateThemeTheme];
-        if (indexPath.row == 1)
+        if (indexPath.row == SECTION_THEME_COMPASS)
             [self updateThemeCompass];
+        return;
+    }
+    if (indexPath.section == SECTION_MAPS) {
+        if (indexPath.row == SECTION_MAPS_ZOOMLEVEL)
+            [self updateMapZoomLevel];
         return;
     }
 }
@@ -203,6 +270,22 @@
      ];
 }
 
+- (void)updateMapZoomLevel
+{
+    NSMutableArray *zoomLevels = [NSMutableArray arrayWithCapacity:2 * 19];
+    for (float f = 0; f < 19.2; f += 0.5) {
+        [zoomLevels addObject:[NSString stringWithFormat:@"%0.1f", f]];
+    }
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Zoom Level"
+                                            rows:zoomLevels
+                                initialSelection:[myConfig mapClustersZoomLevel] * 2
+                                          target:self
+                                   successAction:@selector(updateMapZoomLevelSuccess:element:)
+                                    cancelAction:@selector(updateMapZoomLevelCancel:)
+                                          origin:self.tableView
+     ];
+}
+
 - (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger i = [selectedIndex intValue];
@@ -211,6 +294,18 @@
 }
 
 - (void)updateThemeCompassCancel:(id)sender
+{
+    // nothing
+}
+
+- (void)updateMapZoomLevelSuccess:(NSNumber *)selectedIndex element:(id)element
+{
+    float f = [selectedIndex floatValue] / 2.0;
+    [myConfig mapClustersUpdateZoomLevel:f];
+    [self.tableView reloadData];
+}
+
+- (void)updateMapZoomLevelCancel:(id)sender
 {
     // nothing
 }

@@ -62,6 +62,7 @@ NEEDS_OVERLOADING(addHistory)
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self removeMarkers];
     [self refreshWaypointsData:nil];
     [self placeMarkers];
     [waypointManager startDelegation:self];

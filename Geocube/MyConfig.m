@@ -27,11 +27,14 @@
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize compassType, themeType;
 @synthesize soundDirection, soundDistance;
+@synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 
 - (instancetype)init
 {
     self = [super init];
+
+    delegates = [[NSMutableArray alloc] initWithCapacity:3];
 
     [self checkDefaults];
     [self loadValues];
@@ -43,6 +46,38 @@
     GCSmallFont = [UIFont systemFontOfSize:11];
 
     return self;
+}
+
+- (void)addDelegate:(id)destination
+{
+    __block BOOL alreadythere = NO;
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (delegate == destination) {
+            alreadythere = YES;
+            *stop = YES;
+        }
+    }];
+    if (alreadythere == YES)
+        return;
+    [delegates addObject:destination];
+    NSLog(@"%@: adding delegate to %@", [self class], [destination class]);
+}
+
+- (void)deleteDelegate:(id)destination;
+{
+    __block BOOL isthere = NO;
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (delegate == destination) {
+            isthere = YES;
+            *stop = YES;
+        }
+    }];
+    if (isthere == NO) {
+        NSLog(@"%@: delegate %@ not found for removal", [self class], [destination class]);
+        return;
+    }
+    [delegates removeObject:destination];
+    NSLog(@"%@: removing delegate %@", [self class], [destination class]);
 }
 
 - (void)checkDefaults
@@ -66,6 +101,8 @@
     CHECK(@"theme_type", @"0");
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
+    CHECK(@"map_clusters_enable", @"0");
+    CHECK(@"map_clusters_zoomlevel", @"12.5");
 }
 
 - (void)loadValues
@@ -82,6 +119,8 @@
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
     soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
+    mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
+    mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -92,6 +131,16 @@
     }
 }
 
+- (void)sendDelegatesMapClusters
+{
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [delegate changeMapClusters:mapClustersEnable zoomLevel:mapClustersZoomLevel];
+    }];
+}
+
+/*
+ * Updates-related meta functions
+ */
 - (void)BOOLUpdate:(NSString *)key value:(BOOL)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
@@ -106,12 +155,23 @@
     [c dbUpdate];
 }
 
+- (void)FloatUpdate:(NSString *)key value:(float)value
+{
+    dbConfig *c = [dbConfig dbGetByKey:key];
+    c.value = [NSString stringWithFormat:@"%f", value];
+    [c dbUpdate];
+}
+
 - (void)NSStringUpdate:(NSString *)key value:(NSString *)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = value;
     [c dbUpdate];
 }
+
+/*
+ * Updates-related functions
+ */
 
 - (void)distanceMetricUpdate:(BOOL)value
 {
@@ -183,6 +243,20 @@
 {
     soundDistance = value;
     [self BOOLUpdate:@"sound_distance" value:value];
+}
+
+- (void)mapClustersUpdateEnable:(BOOL)value
+{
+    mapClustersEnable = value;
+    [self BOOLUpdate:@"map_clusters_enable" value:value];
+    [self sendDelegatesMapClusters];
+}
+
+- (void)mapClustersUpdateZoomLevel:(float)value
+{
+    mapClustersZoomLevel = value;
+    [self FloatUpdate:@"map_clusters_zoomlevel" value:value];
+    [self sendDelegatesMapClusters];
 }
 
 @end

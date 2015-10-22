@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAppleViewController : MapTemplateViewController<MKMapViewDelegate, CCHMapClusterControllerDelegate> {
+@interface MapAppleViewController : MapTemplateViewController<MKMapViewDelegate, CCHMapClusterControllerDelegate, MyConfigChangedDelegate> {
     MKMapView *mapView;
     GCPointAnnotation *me;
     NSMutableArray *markers;

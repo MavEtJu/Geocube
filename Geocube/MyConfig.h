@@ -19,8 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol MyConfigChangedDelegate
+
+@optional - (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel;
+
+@end
+
 @interface MyConfig : NSObject {
+    NSMutableArray *delegates;
+
     BOOL distanceMetric;
+
     NSString *currentWaypoint;
     NSInteger currentPage;
     NSInteger currentPageTab;
@@ -36,6 +45,9 @@
 
     BOOL soundDirection;
     BOOL soundDistance;
+
+    BOOL mapClustersEnable;
+    float mapClustersZoomLevel;
 
     UIFont *GCLabelFont;
     UIFont *GCSmallFont;
@@ -60,9 +72,15 @@
 @property (nonatomic) BOOL soundDirection;
 @property (nonatomic) BOOL soundDistance;
 
+@property (nonatomic) BOOL mapClustersEnable;
+@property (nonatomic) float mapClustersZoomLevel;
+
 @property (nonatomic, readonly, retain) UIFont *GCLabelFont;
 @property (nonatomic, readonly, retain) UIFont *GCSmallFont;
 @property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
+
+- (void)addDelegate:(id)destination;
+- (void)deleteDelegate:(id)destination;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;
@@ -76,5 +94,7 @@
 - (void)themeTypeUpdate:(NSInteger)value;
 - (void)soundDirectionUpdate:(BOOL)value;
 - (void)soundDistanceUpdate:(BOOL)value;
+- (void)mapClustersUpdateEnable:(BOOL)value;
+- (void)mapClustersUpdateZoomLevel:(float)value;
 
 @end

@@ -24,8 +24,12 @@
     UISwitch *themeGeosphere;
     UISwitch *soundDirection;
     UISwitch *soundDistance;
+    UISwitch *mapClustersEnable;
+    float mapClustersZoomlevel;
 
     NSArray *compassTypes;
 }
+
+
 
 @end

@@ -23,6 +23,20 @@
 
 @implementation MapAppleViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.isMovingToParentViewController)
+        [myConfig addDelegate:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.isMovingFromParentViewController)
+        [myConfig deleteDelegate:self];
+    [super viewWillDisappear:animated];
+}
+
 - (void)initMenu
 {
     menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"XTerrain", @"Show target", @"Follow me", @"Show both"]];
@@ -39,9 +53,13 @@
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
+    /* Add the cluster controller */
     mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
     mapClusterController.delegate = self;
-    mapClusterController.maxZoomLevelForClustering = 13;
+    if (myConfig.mapClustersEnable == NO)
+        mapClusterController.maxZoomLevelForClustering = 0;
+    else
+        mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
 
     self.view  = mapView;
 }
@@ -375,6 +393,18 @@
 
     // Update the ruler
     [mapScaleView update];
+}
+
+#pragma mark -- delegation from MyConfig
+
+- (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel
+{
+    if (enable == NO)
+        mapClusterController.maxZoomLevelForClustering = 0;
+    else
+        mapClusterController.maxZoomLevelForClustering = zoomLevel;
+    [self removeMarkers];
+    [self placeMarkers];
 }
 
 @end
