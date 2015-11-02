@@ -368,13 +368,25 @@
     awp.url = [dict objectForKey:@"Url"];
     awp.urlname = [dict objectForKey:@"UrlName"];
 
-    awp.lat_float = [[dict objectForKey:@"Latitude"] floatValue];
-    awp.lat_int = [[dict objectForKey:@"Latitude"] floatValue] * 1000000;
-    awp.lat = [[dict objectForKey:@"Latitude"] stringValue];
+    if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
+        awp.lat_float = 0;
+        awp.lat_int = 0;
+        awp.lat = @"0";
+    } else {
+        awp.lat_float = [[dict objectForKey:@"Latitude"] floatValue];
+        awp.lat_int = awp.lat_float * 1000000;
+        awp.lat = [[dict objectForKey:@"Latitude"] stringValue];
+    }
 
-    awp.lon_float = [[dict objectForKey:@"Longitude"] floatValue];
-    awp.lon_int = [[dict objectForKey:@"Longitude"] floatValue] * 1000000;
-    awp.lon = [[dict objectForKey:@"Longitude"] stringValue];
+    if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
+        awp.lon_float = 0;
+        awp.lon_int = 0;
+        awp.lon = @"0";
+    } else {
+        awp.lon_float = [[dict objectForKey:@"Latitude"] floatValue];
+        awp.lon_int = awp.lon_float * 1000000;
+        awp.lon = [[dict objectForKey:@"Latitude"] stringValue];
+    }
 
     awp.date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCEnteredDate"]];
     awp.date_placed = [MyTools dateString:awp.date_placed_epoch];
