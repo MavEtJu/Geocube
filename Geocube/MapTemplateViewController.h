@@ -52,6 +52,7 @@ enum {
 
 // To be implemented by inherited classes:
 - (void)initMap;
+- (void)removeMap;
 - (void)initCamera;
 - (void)initMenu;
 - (void)placeMarkers;

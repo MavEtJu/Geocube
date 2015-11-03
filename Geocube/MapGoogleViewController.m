@@ -36,6 +36,11 @@
     self.view = mapView;
 }
 
+- (void)removeMap
+{
+    mapView = nil;
+}
+
 - (void)initCamera
 {
 }

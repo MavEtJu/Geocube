@@ -26,6 +26,7 @@
 NEEDS_OVERLOADING(initCamera)
 NEEDS_OVERLOADING(initMenu)
 NEEDS_OVERLOADING(initMap)
+NEEDS_OVERLOADING(removeMap)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
 NEEDS_OVERLOADING(placeMarkers)

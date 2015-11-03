@@ -64,6 +64,13 @@
     self.view  = mapView;
 }
 
+- (void)removeMap
+{
+    mapView = nil;
+    mapClusterController = nil;
+    mapScaleView = nil;
+}
+
 - (void)initCamera
 {
     /* Place camera on a view of 1500 x 1500 meters */
