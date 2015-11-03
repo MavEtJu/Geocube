@@ -286,7 +286,7 @@ NEEDS_OVERLOADING(addHistory)
 
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin
 {
-    NSLog(@"amount: %ld", [names count]);
+    NSLog(@"amount: %lu", (unsigned long)[names count]);
 
     NSMutableArray *descs = [NSMutableArray arrayWithCapacity:[names count]];
     [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
