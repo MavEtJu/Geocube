@@ -672,7 +672,7 @@
 
 
     UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
-    l.text = [NSString stringWithFormat:@"%ld", num];
+    l.text = [NSString stringWithFormat:@"%ld", (long)num];
     l.textAlignment = NSTextAlignmentCenter;
     [l.layer drawInContext:context];
 
