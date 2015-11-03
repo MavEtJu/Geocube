@@ -46,6 +46,7 @@
 @class CompassViewController;
 @class Coordinates;
 @class DatabaseCache;
+@class FilesICloudController;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;

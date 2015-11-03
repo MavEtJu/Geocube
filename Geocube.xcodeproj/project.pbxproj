@@ -355,6 +355,7 @@
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
 		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; settings = {ASSET_TAGS = (); }; };
 		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
+		E8FD61101BE8C4B000859A58 /* FilesICloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -919,6 +920,8 @@
 		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheWaypointsViewController.h; sourceTree = "<group>"; };
 		E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheWaypointsViewController.m; sourceTree = "<group>"; };
+		E8FD610E1BE8C4B000859A58 /* FilesICloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesICloudController.h; sourceTree = "<group>"; };
+		E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesICloudController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1047,8 +1050,6 @@
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
-				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
-				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
 				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
@@ -1866,6 +1867,7 @@
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E8A7FA921B777616003F4132 /* Browser */,
+				E8FD610D1BE8C46100859A58 /* Files */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
@@ -1908,6 +1910,17 @@
 				E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */,
 			);
 			name = LXMapScale;
+			sourceTree = "<group>";
+		};
+		E8FD610D1BE8C46100859A58 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
+				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
+				E8FD610E1BE8C4B000859A58 /* FilesICloudController.h */,
+				E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */,
+			);
+			name = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2010,6 +2023,9 @@
 								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -2405,6 +2421,7 @@
 				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
+				E8FD61101BE8C4B000859A58 /* FilesICloudController.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
@@ -2624,6 +2641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Geocube/Geocube.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2632,8 +2650,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
@@ -2645,6 +2664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Geocube/Geocube.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -2653,8 +2673,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};

@@ -267,6 +267,12 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
+    vc = [[FilesICloudController alloc] init];
+    vc.title = @"iCloud";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
 
     // User profile tabs #8

@@ -188,10 +188,12 @@
 #import "KeepTrackTrack.h"
 #import "KeepTrackTracks.h"
 
+#import "FilesICloudController.h"
+#import "FilesViewController.h"
+
 #import "CachesOfflineListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
-#import "FilesViewController.h"
 #import "GroupsViewController.h"
 #import "NullViewController.h"
 #import "TrackablesViewController.h"
