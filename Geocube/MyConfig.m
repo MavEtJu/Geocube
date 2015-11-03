@@ -155,6 +155,13 @@
     [c dbUpdate];
 }
 
+- (void)NSIdUpdate:(NSString *)key value:(NSId)value
+{
+    dbConfig *c = [dbConfig dbGetByKey:key];
+    c.value = [NSString stringWithFormat:@"%ld", (long)value];
+    [c dbUpdate];
+}
+
 - (void)FloatUpdate:(NSString *)key value:(float)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
@@ -197,10 +204,10 @@
     [self NSIntegerUpdate:@"pagetab_current" value:value];
 }
 
-- (void)currentTrackUpdate:(NSInteger)value
+- (void)currentTrackUpdate:(NSId)value
 {
     currentTrack = value;
-    [self NSIntegerUpdate:@"track_current" value:value];
+    [self NSIdUpdate:@"track_current" value:value];
 }
 
 - (void)lastImportGroupUpdate:(NSInteger)value
