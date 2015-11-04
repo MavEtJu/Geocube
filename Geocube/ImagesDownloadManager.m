@@ -44,6 +44,7 @@
     if (running == 0) {
         running = 10;
         [self performSelectorInBackground:@selector(run) withObject:nil];
+        NSLog(@"%@/starting", [self class]);
     }
     running = 10;
 }
@@ -61,8 +62,10 @@
                 imgToDownload = [todo objectAtIndex:0];
         }
         // After 10 attempts stop, enough for now
-        if (--running == 0)
+        if (--running == 0) {
+            NSLog(@"%@/stopping", [self class]);
             return;
+        }
 
         // Nothing to download, wait one second and try again.
         if (imgToDownload == nil) {
