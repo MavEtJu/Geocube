@@ -290,9 +290,9 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         progressLabel.text = [NSString stringWithFormat:@"%@%%", [MyTools niceNumber:progressValue]];
         newWaypointsLabel.text = [MyTools niceNumber:newWaypointsValue];
-        totalWaypointsLabel.text = [MyTools niceNumber:totalImagesValue];
+        totalWaypointsLabel.text = [MyTools niceNumber:totalWaypointsValue];
         newLogsLabel.text = [MyTools niceNumber:newLogsValue];
-        totalLogsLabel.text = [MyTools niceNumber:totalImagesValue];
+        totalLogsLabel.text = [MyTools niceNumber:totalLogsValue];
         newTrackablesLabel.text = [MyTools niceNumber:newTrackablesValue];
         totalTrackablesLabel.text = [MyTools niceNumber:totalTrackablesValue];
         totalImagesLabel.text = [MyTools niceNumber:totalImagesValue];
