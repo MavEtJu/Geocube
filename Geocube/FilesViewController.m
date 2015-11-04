@@ -386,7 +386,7 @@
     if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
         alert = [UIAlertController
                  alertControllerWithTitle:@"Download complete"
-                 message:@"You can find them in the Files menu."
+                 message:@"You can find the saved file in the Files menu."
                  preferredStyle:UIAlertControllerStyleAlert
                  ];
     } else {
