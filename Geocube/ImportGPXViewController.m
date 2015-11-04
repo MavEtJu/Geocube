@@ -262,7 +262,7 @@
     }];
 }
 
-- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount
+- (void)updateGPXImportData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount
 {
     @synchronized(self) {
         progressValue = percentageRead;
@@ -277,7 +277,7 @@
     }
 }
 
-- (void)updateData:(NSInteger)queuedImages
+- (void)updateQueuedImagesData:(NSInteger)queuedImages
 {
     @synchronized(self) {
         queuedImagesValue = queuedImages;

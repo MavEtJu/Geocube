@@ -315,7 +315,7 @@
 
             inItem = NO;
             if (delegate != nil)
-                [delegate updateData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTrackablesCount:newTrackablesCount totalTrackablesCount:totalTrackablesCount newImagesCount:newImagesCount];
+                [delegate updateGPXImportData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTrackablesCount:newTrackablesCount totalTrackablesCount:totalTrackablesCount newImagesCount:newImagesCount];
 
             goto bye;
         }

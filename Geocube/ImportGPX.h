@@ -24,7 +24,7 @@
 
 @protocol ImportGPXDelegate
 
-- (void)updateData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount;
+- (void)updateGPXImportData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount;
 
 @end
 

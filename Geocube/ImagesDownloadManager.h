@@ -21,7 +21,7 @@
 
 @protocol ImagesDownloadManagerDelegate
 
-- (void)updateData:(NSInteger)queuedImages;
+- (void)updateQueuedImagesData:(NSInteger)queuedImages;
 
 @end
 
