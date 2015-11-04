@@ -379,13 +379,14 @@
 {
     NSLog(@"didPickDocumentAtURL");
 
-    if ([url isFileReferenceURL] == NO)
-        return;
-
     NSError *error = nil;
     UIAlertController *alert;
-    NSURL *destinationURL = [NSURL URLWithString:[MyTools FilesDir]];
-    if ([fm copyItemAtURL:url toURL:destinationURL error:&error] == YES) {
+    NSURL *destinationName = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], [url lastPathComponent]]];
+
+    [fm removeItemAtURL:destinationName error:&error];
+
+    error = nil;
+    if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
         alert = [UIAlertController
                  alertControllerWithTitle:@"Download complete"
                  message:@"You can find them in the Files menu."

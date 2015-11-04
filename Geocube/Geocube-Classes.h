@@ -47,7 +47,6 @@
 @class Coordinates;
 @class DatabaseCache;
 @class FilesAirdropController;
-@class FilesICloudController;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;
