@@ -32,7 +32,7 @@
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
     [self refreshFileData];
 
-    menuItems = nil;
+    menuItems = [NSMutableArray arrayWithArray:@[@"iCloud", @"Airdrop"]];
 }
 
 - (void)refreshFileData
@@ -357,5 +357,73 @@
 }
 
 #pragma mark - Local menu related functions
+
+- (void)showICloud
+{
+    UIDocumentMenuViewController *importMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
+
+    importMenu.delegate = self;
+
+    [self presentViewController:importMenu animated:YES completion:nil];
+}
+
+- (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
+{
+    NSLog(@"didPickDocumentPicker");
+
+    documentPicker.delegate = self;
+    [self presentViewController:documentPicker animated:YES completion:nil];
+}
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
+{
+    NSLog(@"didPickDocumentAtURL");
+
+    if ([url isFileReferenceURL] == NO)
+        return;
+
+    NSError *error = nil;
+    UIAlertController *alert;
+    NSURL *destinationURL = [NSURL URLWithString:[MyTools FilesDir]];
+    if ([fm copyItemAtURL:url toURL:destinationURL error:&error] == YES) {
+        alert = [UIAlertController
+                 alertControllerWithTitle:@"Download complete"
+                 message:@"You can find them in the Files menu."
+                 preferredStyle:UIAlertControllerStyleAlert
+                 ];
+    } else {
+        alert = [UIAlertController
+                 alertControllerWithTitle:@"Download failed"
+                 message:[NSString stringWithFormat:@"Error message: %@", error]
+                 preferredStyle:UIAlertControllerStyleAlert
+                 ];
+    }
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil];
+
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void)showAirDrop
+{
+
+}
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0:
+            [self showICloud];
+            return;
+        case 1:
+            [self showAirDrop];
+            return;
+    }
+}
 
 @end

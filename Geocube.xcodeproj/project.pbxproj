@@ -305,6 +305,7 @@
 		E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */; settings = {ASSET_TAGS = (); }; };
 		E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */; settings = {ASSET_TAGS = (); }; };
 		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; settings = {ASSET_TAGS = (); }; };
+		E8DA53261BE95B8600BBE747 /* FilesAirdropController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */; settings = {ASSET_TAGS = (); }; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -825,6 +826,8 @@
 		E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapViewDelegateProxy.m; path = CCHMapClusterController/CCHMapViewDelegateProxy.m; sourceTree = "<group>"; };
 		E8D7BA471BC67CDC001B0805 /* CCHNearCenterMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHNearCenterMapClusterer.h; path = CCHMapClusterController/CCHNearCenterMapClusterer.h; sourceTree = "<group>"; };
 		E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHNearCenterMapClusterer.m; path = CCHMapClusterController/CCHNearCenterMapClusterer.m; sourceTree = "<group>"; };
+		E8DA53241BE95B8600BBE747 /* FilesAirdropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesAirdropController.h; sourceTree = "<group>"; };
+		E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesAirdropController.m; sourceTree = "<group>"; };
 		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
@@ -1919,6 +1922,8 @@
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
 				E8FD610E1BE8C4B000859A58 /* FilesICloudController.h */,
 				E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */,
+				E8DA53241BE95B8600BBE747 /* FilesAirdropController.h */,
+				E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -2446,6 +2451,7 @@
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
 				E88037AB1B96CD860053AD01 /* CacheLogViewController.m in Sources */,
+				E8DA53261BE95B8600BBE747 /* FilesAirdropController.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,

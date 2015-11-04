@@ -273,6 +273,12 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
+    vc = [[FilesAirdropController alloc] initThis];
+    vc.title = @"Airdrop";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
     TABBARCONTROLLER(controllers)
 
     // User profile tabs #8

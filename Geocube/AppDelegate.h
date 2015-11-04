@@ -61,6 +61,7 @@
 #define    VC_FILES_LOCALFILES 0
 #define    VC_FILES_DROPBOX 1
 #define    VC_FILES_ICLOUD 2
+#define    VC_FILES_AIRDROP 3
 #define RC_USERPROFILE 8
 #define RC_NOTICES 9
 #define    VC_NOTICES 0
