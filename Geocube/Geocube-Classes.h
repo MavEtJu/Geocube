@@ -46,8 +46,7 @@
 @class CompassViewController;
 @class Coordinates;
 @class DatabaseCache;
-@class FilesAirdropController;
-@class FilesDropboxController;
+@class FilesDropboxViewController;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;

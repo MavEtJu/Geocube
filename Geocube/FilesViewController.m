@@ -409,7 +409,14 @@
 
 - (void)showAirDrop
 {
-
+    NSString *text = @"Some text I want to share";
+    UIImage *image = [UIImage imageNamed:@"image.png"];
+    UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[text, image] applicationActivities:nil];
+    [activityViewController setCompletionWithItemsHandler:
+        ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+            NSLog(@"Foo");
+        } ];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
