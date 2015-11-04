@@ -47,6 +47,7 @@
 @class Coordinates;
 @class DatabaseCache;
 @class FilesAirdropController;
+@class FilesDropboxController;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;

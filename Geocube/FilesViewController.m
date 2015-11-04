@@ -369,23 +369,20 @@
 
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
 {
-    NSLog(@"didPickDocumentPicker");
-
     documentPicker.delegate = self;
     [self presentViewController:documentPicker animated:YES completion:nil];
 }
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
 {
-    NSLog(@"didPickDocumentAtURL");
-
     NSError *error = nil;
     UIAlertController *alert;
     NSURL *destinationName = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], [url lastPathComponent]]];
 
+    /* Remove this file is it already exists. Ignore the error. */
     [fm removeItemAtURL:destinationName error:&error];
-
     error = nil;
+
     if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
         alert = [UIAlertController
                  alertControllerWithTitle:@"Download complete"

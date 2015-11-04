@@ -189,6 +189,7 @@
 #import "KeepTrackTracks.h"
 
 #import "FilesAirdropController.h"
+#import "FilesDropboxViewController.h"
 #import "FilesViewController.h"
 
 #import "CachesOfflineListViewController.h"
