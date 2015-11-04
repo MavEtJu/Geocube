@@ -167,8 +167,8 @@
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
 		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
 		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
-		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; settings = {ASSET_TAGS = (); }; };
-		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; };
+		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
@@ -261,14 +261,14 @@
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
-		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; settings = {ASSET_TAGS = (); }; };
-		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */; settings = {ASSET_TAGS = (); }; };
-		E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */; settings = {ASSET_TAGS = (); }; };
+		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
+		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
+		E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */; };
+		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; };
+		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; };
+		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; };
+		E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */; };
+		E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */; };
 		E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */; };
 		E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BrowserUserViewController.m */; };
 		E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA9A1B77F8C5003F4132 /* dbBookmark.m */; };
@@ -278,8 +278,8 @@
 		E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA71B78CE36003F4132 /* MyTools.m */; };
 		E8A7FAAB1B794E70003F4132 /* CacheImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAA1B794E70003F4132 /* CacheImagesViewController.m */; };
 		E8A7FAAE1B795AC3003F4132 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */; };
-		E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
-		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; settings = {ASSET_TAGS = (); }; };
+		E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */; };
+		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
@@ -294,18 +294,18 @@
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
-		E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4C1BC67CDC001B0805 /* CCHMapClusterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA381BC67CDC001B0805 /* CCHMapClusterController.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3A1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3D1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA401BC67CDC001B0805 /* CCHMapClusterOperation.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA421BC67CDC001B0805 /* CCHMapTree.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */; settings = {ASSET_TAGS = (); }; };
-		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; settings = {ASSET_TAGS = (); }; };
-		E8DA53261BE95B8600BBE747 /* FilesAirdropController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */; settings = {ASSET_TAGS = (); }; };
+		E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */; };
+		E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */; };
+		E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */; };
+		E8D7BA4C1BC67CDC001B0805 /* CCHMapClusterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA381BC67CDC001B0805 /* CCHMapClusterController.m */; };
+		E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3A1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m */; };
+		E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA3D1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m */; };
+		E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA401BC67CDC001B0805 /* CCHMapClusterOperation.m */; };
+		E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA421BC67CDC001B0805 /* CCHMapTree.m */; };
+		E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */; };
+		E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */; };
+		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; };
+		E8DA53261BE95B8600BBE747 /* FilesAirdropController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
@@ -354,9 +354,8 @@
 		E8F570C51B40059F003F020C /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570C41B40059F003F020C /* dbConfig.m */; };
 		E8F570CB1B4008DD003F020C /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbType.m */; };
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
-		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; settings = {ASSET_TAGS = (); }; };
+		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; };
 		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
-		E8FD61101BE8C4B000859A58 /* FilesICloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -923,8 +922,6 @@
 		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheWaypointsViewController.h; sourceTree = "<group>"; };
 		E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheWaypointsViewController.m; sourceTree = "<group>"; };
-		E8FD610E1BE8C4B000859A58 /* FilesICloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesICloudController.h; sourceTree = "<group>"; };
-		E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesICloudController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1920,8 +1917,6 @@
 			children = (
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
-				E8FD610E1BE8C4B000859A58 /* FilesICloudController.h */,
-				E8FD610F1BE8C4B000859A58 /* FilesICloudController.m */,
 				E8DA53241BE95B8600BBE747 /* FilesAirdropController.h */,
 				E8DA53251BE95B8600BBE747 /* FilesAirdropController.m */,
 			);
@@ -2025,7 +2020,7 @@
 								enabled = 0;
 							};
 							com.apple.Maps.Mac = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -2426,7 +2421,6 @@
 				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
-				E8FD61101BE8C4B000859A58 /* FilesICloudController.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
@@ -2648,7 +2642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Geocube/Geocube.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2656,7 +2650,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube";
+				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
@@ -2671,7 +2665,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Geocube/Geocube.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2679,7 +2673,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube";
+				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
