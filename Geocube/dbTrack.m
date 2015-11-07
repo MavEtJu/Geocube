@@ -77,4 +77,9 @@
     }
 }
 
++ (NSInteger)dbCount
+{
+    return [dbWaypoint dbCount:@"tracks"];
+}
+
 @end

@@ -89,4 +89,9 @@
     [te dbCreate];
 }
 
++ (NSInteger)dbCount
+{
+    return [dbWaypoint dbCount:@"trackelements"];
+}
+
 @end
