@@ -51,6 +51,12 @@
     dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
     sqlite3_close(db);
 
+    // If the empty database version is 0, reinitialize.
+    if ([c_empty.value isEqualToString:@"0"] == YES) {
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"option_cleardatabase"];
+        [self checkAndCreateDatabase];
+    }
+
     // Determine version of the active database
     sqlite3_open([dbname UTF8String], &db);
     dbConfig *c_real = [dbConfig dbGetByKey:@"version"];
@@ -110,6 +116,7 @@
 - (void)performUpgrade:(NSInteger)version
 {
     NSLog(@"performUpgrade: from version: %ld", (long)version);
+    /*
     if (version == 0) {
         [self performUpgrade_0_1];
         return;
@@ -118,18 +125,7 @@
         [self performUpgrade_1_2];
         return;
     }
-    if (version == 2) {
-        [self performUpgrade_2_3];
-        return;
-    }
-    if (version == 3) {
-        [self performUpgrade_3_4];
-        return;
-    }
-    if (version == 4) {
-        [self performUpgrade_4_5];
-        return;
-    }
+    */
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
 }
 
