@@ -20,10 +20,8 @@
  */
 
 @interface dbWaypoint : dbObject {
+    /* Waypoint related data */
     NSString *name, *description, *url, *urlname;
-
-    NSId groundspeak_id;
-    dbGroundspeak *groundspeak;
 
     NSString *lat, *lon;
     NSInteger lat_int, lon_int;
@@ -40,12 +38,42 @@
     NSString *type_str;
     dbType *type;
 
+    /* Geocube relate data */
     NSId account_id;
     dbAccount *account;
 
     NSInteger logStatus;
     BOOL highlight;
     BOOL ignore;
+
+    /* Groundspeak related data */
+    float gs_rating_difficulty, gs_rating_terrain;
+    NSInteger gs_favourites;
+
+    BOOL gs_archived, gs_available;
+
+    NSString *gs_country_str;
+    NSId gs_country_id;
+    dbCountry *gs_country;
+
+    NSString *gs_state_str;
+    NSId gs_state_id;
+    dbState *gs_state;
+
+    BOOL gs_short_desc_html, gs_long_desc_html;
+    NSString *gs_short_desc, *gs_long_desc;
+    NSString *gs_hint;
+
+    NSString *gs_placed_by;
+
+    NSString *gs_owner_gsid;
+    NSString *gs_owner_str;
+    NSId gs_owner_id;
+    dbName *gs_owner;
+
+    NSId gs_container_id;
+    NSString *gs_container_str;
+    dbContainer *gs_container;
 
     /* Not read from the database */
     CLLocationCoordinate2D coordinates;
@@ -77,13 +105,37 @@ enum {
 @property (nonatomic) NSId type_id;
 @property (nonatomic, retain) NSString *type_str;
 @property (nonatomic, retain) dbType *type;
-@property (nonatomic) NSId groundspeak_id;
-@property (nonatomic, retain) dbGroundspeak *groundspeak;
+
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL highlight;
 @property (nonatomic) BOOL ignore;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
+
+@property (nonatomic) float gs_rating_difficulty;
+@property (nonatomic) float gs_rating_terrain;
+@property (nonatomic) NSInteger gs_favourites;
+@property (nonatomic) NSId gs_country_id;
+@property (nonatomic, retain) NSString *gs_country_str;
+@property (nonatomic, retain) dbCountry *gs_country;
+@property (nonatomic) NSId gs_state_id;
+@property (nonatomic, retain) NSString *gs_state_str;
+@property (nonatomic, retain) dbState *gs_state;
+@property (nonatomic) BOOL gs_short_desc_html;
+@property (nonatomic, retain) NSString *gs_short_desc;
+@property (nonatomic) BOOL gs_long_desc_html;
+@property (nonatomic, retain) NSString *gs_long_desc;
+@property (nonatomic, retain) NSString *gs_hint;
+@property (nonatomic) NSId gs_container_id;
+@property (nonatomic, retain) NSString *gs_container_str;
+@property (nonatomic, retain) dbContainer *gs_container;
+@property (nonatomic) BOOL gs_archived;
+@property (nonatomic) BOOL gs_available;
+@property (nonatomic, retain) NSString *gs_placed_by;
+@property (nonatomic, retain) NSString *gs_owner_str;
+@property (nonatomic, retain) NSString *gs_owner_gsid;
+@property (nonatomic) NSId gs_owner_id;
+@property (nonatomic, retain) dbName *gs_owner;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
@@ -107,7 +159,6 @@ enum {
 + (NSArray *)dbAllIgnored;
 + (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
-- (void)dbUpdateGroundspeak;
 + (void)dbUpdateLogStatus;
 - (void)dbUpdateHighlight;
 - (void)dbUpdateIgnore;

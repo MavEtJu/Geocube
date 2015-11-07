@@ -144,7 +144,6 @@
 		E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */; };
 		E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */; };
 		E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732B51B5FA352007FDC29 /* dbWaypoint.m */; };
-		E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */; };
 		E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BC1B5FB4CF007FDC29 /* dbName.m */; };
 		E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732BF1B5FB4DF007FDC29 /* dbCountry.m */; };
 		E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732C21B5FB4EA007FDC29 /* dbState.m */; };
@@ -533,8 +532,6 @@
 		E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 20x20.png"; path = "images/icons - target - 20x20.png"; sourceTree = "<group>"; };
 		E80732B41B5FA352007FDC29 /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypoint.h; sourceTree = "<group>"; };
 		E80732B51B5FA352007FDC29 /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypoint.m; sourceTree = "<group>"; };
-		E80732B81B5FB4C4007FDC29 /* dbGroundspeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroundspeak.h; sourceTree = "<group>"; };
-		E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroundspeak.m; sourceTree = "<group>"; };
 		E80732BB1B5FB4CF007FDC29 /* dbName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbName.h; sourceTree = "<group>"; };
 		E80732BC1B5FB4CF007FDC29 /* dbName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbName.m; sourceTree = "<group>"; };
 		E80732BE1B5FB4DF007FDC29 /* dbCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbCountry.h; sourceTree = "<group>"; };
@@ -1792,8 +1789,6 @@
 				E847A5811B9E875B00BEFE83 /* dbFileImport.m */,
 				E8045B841B68E9D100DD44CC /* dbFilter.h */,
 				E8045B851B68E9D100DD44CC /* dbFilter.m */,
-				E80732B81B5FB4C4007FDC29 /* dbGroundspeak.h */,
-				E80732B91B5FB4C4007FDC29 /* dbGroundspeak.m */,
 				E88FD8F11B4160A700D0CCE7 /* dbGroup.h */,
 				E88FD8F21B4160A700D0CCE7 /* dbGroup.m */,
 				E8A7FAA31B78A678003F4132 /* dbImage.h */,
@@ -2339,7 +2334,6 @@
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
-				E80732BA1B5FB4C4007FDC29 /* dbGroundspeak.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,

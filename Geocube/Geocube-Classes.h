@@ -135,7 +135,6 @@
 @class dbCountry;
 @class dbFileImport;
 @class dbFilter;
-@class dbGroundspeak;
 @class dbGroup;
 @class dbImage;
 @class dbLog;
