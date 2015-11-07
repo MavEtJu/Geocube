@@ -116,11 +116,11 @@
 - (void)performUpgrade:(NSInteger)version
 {
     NSLog(@"performUpgrade: from version: %ld", (long)version);
-    /*
     if (version == 0) {
         [self performUpgrade_0_1];
         return;
     }
+    /*
     if (version == 1) {
         [self performUpgrade_1_2];
         return;
@@ -165,18 +165,7 @@
 - (void)performUpgrade_0_1
 {
     NSArray *a = @[
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Cache In Trash Out Event', 101, 608)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Giga-Event Cache', 104, 608)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak HQ', 105, 600)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak Block Party', 105, 600)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Mega-Event Cache', 108, 608)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Unknown (Mystery) Cache', 110, 604)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Wherigo Caches', 117, 603)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Project APE Cache', 111, 601)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Locationless (Reverse) Cache', 111, 601)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'GPS Adventures Exhibit', 111, 601)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Lost and Found Event Caches', 111, 601)",
-    @"insert into types(type_major, type_minor, icon, pin) values('Geocache', 'Groundspeak Lost and Found Celebration', 111, 601)"
+        // Nothing
     ];
     [self performUpgrade_X_Y:a];
 }
