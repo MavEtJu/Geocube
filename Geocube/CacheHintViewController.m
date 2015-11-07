@@ -28,7 +28,6 @@
     self = [super init];
 
     waypoint = _wp;
-    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id waypoint:waypoint];
 
     hasCloseButton = YES;
     menuItems = nil;
@@ -52,7 +51,7 @@
 
 - (NSString *)makeHTMLString
 {
-    return [MyTools simpleHTML:groundspeak.hint];
+    return [MyTools simpleHTML:waypoint.gs_hint];
 }
 
 @end

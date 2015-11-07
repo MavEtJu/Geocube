@@ -149,28 +149,26 @@
             attributesYES = [NSMutableArray arrayWithCapacity:20];
             attributesNO = [NSMutableArray arrayWithCapacity:20];
             trackables = [NSMutableArray arrayWithCapacity:20];
-            currentGS = nil;
 
             inItem = YES;
             return;
         }
 
         if ([currentElement isEqualToString:@"groundspeak:cache"] == YES) {
-            currentGS = [[dbGroundspeak alloc] init];
-            [currentGS setArchived:[[attributeDict objectForKey:@"archived"] boolValue]];
-            [currentGS setAvailable:[[attributeDict objectForKey:@"available"] boolValue]];
+            [currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
+            [currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
 
             inGroundspeak = YES;
             return;
         }
 
         if ([currentElement isEqualToString:@"groundspeak:long_description"] == YES) {
-            [currentGS setLong_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+            [currentWP setGs_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
         if ([currentElement isEqualToString:@"groundspeak:short_description"] == YES) {
-            [currentGS setShort_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+            [currentWP setGs_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
@@ -189,7 +187,7 @@
         }
         if ([currentElement isEqualToString:@"groundspeak:owner"] == YES) {
             gsOwnerNameId = [attributeDict objectForKey:@"id"];
-            [currentGS setOwner_gsid:gsOwnerNameId];
+            [currentWP setGs_owner_gsid:gsOwnerNameId];
             return;
         }
 
@@ -228,7 +226,6 @@
         // Deal with the completion of the cache
         if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
             [currentWP finish];
-            [currentGS finish:currentWP];
 
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
@@ -237,27 +234,12 @@
                 [dbWaypoint dbCreate:currentWP];
                 newWaypointsCount++;
 
-                // Save the groundspeak related data
-                if (currentGS != nil) {
-                    [currentGS setWaypoint_id:currentWP._id];
-                    [dbGroundspeak dbCreate:currentGS];
-                    currentWP.groundspeak_id = currentGS._id;
-                    [currentWP dbUpdateGroundspeak];
-                }
-
                 // Update the group
                 [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
                 [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
                 [group dbAddWaypoint:currentWP._id];
             } else {
-                dbWaypoint *oldWP = [dbWaypoint dbGet:currentWP._id];
-                currentWP.groundspeak_id = oldWP.groundspeak_id;
                 [currentWP dbUpdate];
-
-                // Save the groundspeak data
-                currentGS.waypoint_id = currentWP._id;
-                currentGS._id = currentWP.groundspeak_id;
-                [currentGS dbUpdate];
 
                 // Update the group
                 if ([group dbContainsWaypoint:currentWP._id] == NO)
@@ -265,10 +247,10 @@
             }
             [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
 
-            if (currentGS != nil) {
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.long_desc type:IMAGETYPE_CACHE];
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentGS.short_desc type:IMAGETYPE_CACHE];
-            }
+            if (currentWP.gs_long_desc != nil)
+                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGETYPE_CACHE];
+            if (currentWP.gs_short_desc != nil)
+                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGETYPE_CACHE];
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
@@ -321,9 +303,6 @@
         }
 
         if (index == 2 && [currentElement isEqualToString:@"groundspeak:cache"] == YES) {
-            [currentGS finish];
-            // The saving of the data gets done when the waypoint is finished.
-
             inGroundspeak = NO;
             goto bye;
         }
@@ -423,46 +402,46 @@
             }
             if (index == 3 && currentText != nil) {
                 if ([elementName isEqualToString:@"groundspeak:difficulty"] == YES) {
-                    [currentGS setRating_difficulty:[currentText floatValue]];
+                    [currentWP setGs_rating_difficulty:[currentText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:terrain"] == YES) {
-                    [currentGS setRating_terrain:[currentText floatValue]];
+                    [currentWP setGs_rating_terrain:[currentText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:country"] == YES) {
                     [dbCountry makeNameExist:currentText];
-                    [currentGS setCountry_str:currentText];
+                    [currentWP setGs_country_str:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:state"] == YES) {
                     [dbState makeNameExist:currentText];
-                    [currentGS setState_str:currentText];
+                    [currentWP setGs_state_str:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:container"] == YES) {
-                    [currentGS setContainer_str:currentText];
+                    [currentWP setGs_container_str:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:short_description"] == YES) {
-                    [currentGS setShort_desc:currentText];
+                    [currentWP setGs_short_desc:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:long_description"] == YES) {
-                    [currentGS setLong_desc:currentText];
+                    [currentWP setGs_long_desc:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:encoded_hints"] == YES) {
-                    [currentGS setHint:currentText];
+                    [currentWP setGs_hint:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
                     [dbName makeNameExist:currentText code:gsOwnerNameId account:account];
-                    [currentGS setOwner_str:currentText];
+                    [currentWP setGs_owner_str:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:placed_by"] == YES) {
-                    [currentGS setPlaced_by:currentText];
+                    [currentWP setGs_placed_by:currentText];
                     goto bye;
                 }
                 goto bye;

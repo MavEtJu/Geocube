@@ -39,13 +39,7 @@
 
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
-    if (_wp == nil) {
-        waypoint = nil;
-        groundspeak = nil;
-    } else {
-        waypoint = _wp;
-        groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id waypoint:waypoint];
-    }
+    waypoint = _wp;
     [self.tableView reloadData];
 }
 
@@ -129,8 +123,8 @@
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if (groundspeak != nil && groundspeak.placed_by != nil && [groundspeak.placed_by isEqualToString:@""] == NO)
-        [s appendFormat:@"by %@", groundspeak.placed_by];
+    if (waypoint.gs_placed_by != nil && [waypoint.gs_placed_by isEqualToString:@""] == NO)
+        [s appendFormat:@"by %@", waypoint.gs_placed_by];
     if ([waypoint.date_placed isEqualToString:@""] == NO)
         [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
     l.text = s;
@@ -165,13 +159,13 @@
         Coordinates *c = [[Coordinates alloc] init:waypoint.lat_float lon:waypoint.lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
-        [cell setRatings:groundspeak.favourites terrain:groundspeak.rating_terrain difficulty:groundspeak.rating_difficulty];
+        [cell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
 
         cell.userInteractionEnabled = NO;
-        cell.size.image = [imageLibrary get:groundspeak.container.icon];
+        cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
         cell.icon.image = [imageLibrary getType:waypoint];
 
-        [cell showGroundspeak:(groundspeak != nil)];
+        //[cell showGroundspeak:(groundspeak != nil)]; Not sure yet
         return cell;
     }
 
@@ -187,14 +181,14 @@
         UIColor *tc = currentTheme.textColor;
         switch (indexPath.row) {
             case 0: /* Description */
-                if ([groundspeak.short_desc isEqualToString:@""] == YES && [groundspeak.long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
+                if ([waypoint.gs_short_desc isEqualToString:@""] == YES && [waypoint.gs_long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
                     tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 }
                 break;
             case 1: /* Hint */
                 //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint isEqualToString:@""] == YES)
-                if (groundspeak.hint == nil || [groundspeak.hint isEqualToString:@""] == YES || [groundspeak.hint isEqualToString:@" "] == YES) {
+                if (waypoint.gs_hint == nil || [waypoint.gs_hint isEqualToString:@""] == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
                     tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
                 }

@@ -431,7 +431,7 @@
 
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
-    return [self getPin:wp.type.pin found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
+    return [self getPin:wp.type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived) highlight:wp.highlight];
 }
 
 - (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
@@ -475,7 +475,7 @@
 
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.groundspeak == nil ? NO : (wp.groundspeak.available == NO)) archived:(wp.groundspeak == nil ? NO : wp.groundspeak.archived) highlight:wp.highlight];
+    return [self getType:wp.type.icon found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.highlight];
 }
 
 - (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor

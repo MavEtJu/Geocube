@@ -151,17 +151,17 @@
             after = caches;
         } else if (min == 0) {
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.groundspeak.favourites <= max)
+                if (wp.gs_favourites <= max)
                     [after addObject:wp];
             }];
         } else if (max == 100) {
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.groundspeak.favourites >= min)
+                if (wp.gs_favourites >= min)
                     [after addObject:wp];
             }];
         } else {
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.groundspeak.favourites >= min && wp.groundspeak.favourites <= max)
+                if (wp.gs_favourites >= min && wp.gs_favourites <= max)
                     [after addObject:wp];
             }];
         }
@@ -185,7 +185,7 @@
             if (c == nil || [c boolValue] == NO)
                 return;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.groundspeak.container_id == container._id)
+                if (wp.gs_container_id == container._id)
                     [after addObject:wp];
             }];
         }];
@@ -205,7 +205,7 @@
         float max = [[self _configGet:@"max"] floatValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (wp.groundspeak.rating_difficulty >= min && wp.groundspeak.rating_difficulty <= max)
+            if (wp.gs_rating_difficulty >= min && wp.gs_rating_difficulty <= max)
                 [after addObject:wp];
         }];
 
@@ -225,7 +225,7 @@
         float max = [[self _configGet:@"max"] floatValue];
 
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (wp.groundspeak.rating_terrain >= min && wp.groundspeak.rating_terrain <= max)
+            if (wp.gs_rating_terrain >= min && wp.gs_rating_terrain <= max)
                 [after addObject:wp];
         }];
 
@@ -375,15 +375,15 @@
 
             if (description != nil && [description isEqualToString:@""] == NO &&
                 [wp.description localizedCaseInsensitiveContainsString:description] == NO &&
-                [wp.groundspeak.long_desc localizedCaseInsensitiveContainsString:description] == NO &&
-                [wp.groundspeak.short_desc localizedCaseInsensitiveContainsString:description] == NO) {
+                [wp.gs_long_desc localizedCaseInsensitiveContainsString:description] == NO &&
+                [wp.gs_short_desc localizedCaseInsensitiveContainsString:description] == NO) {
                 rv = NO;
             }
 
             if (states != nil) {
                 __block BOOL matched = NO;
                 [states enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
-                    if (s._id == wp.groundspeak.state_id) {
+                    if (s._id == wp.gs_state_id) {
                         matched = YES;
                         *stop = YES;
                     }
@@ -395,7 +395,7 @@
             if (countries != nil) {
                 __block BOOL matched = NO;
                 [countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
-                    if (c._id == wp.groundspeak.country_id) {
+                    if (c._id == wp.gs_country_id) {
                         matched = YES;
                         *stop = YES;
                     }
@@ -407,7 +407,7 @@
             if (owners != nil) {
                 __block BOOL matched = NO;
                 [owners enumerateObjectsUsingBlock:^(dbName *o, NSUInteger idx, BOOL *stop) {
-                    if (o._id == wp.groundspeak.owner_id) {
+                    if (o._id == wp.gs_owner_id) {
                         matched = YES;
                         *stop = YES;
                     }

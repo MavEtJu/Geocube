@@ -68,7 +68,6 @@
 - (void)parseGeocache:(NSDictionary *)dict
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
-    dbGroundspeak *gs = [[dbGroundspeak alloc] init];
 
     // Waypoint object
     wp.name = [dict objectForKey:@"Code"];
@@ -94,47 +93,37 @@
     [wp finish];
 
     // Groundspeak object
-    gs.rating_difficulty = [[dict objectForKey:@"Difficulty"] floatValue];
-    gs.rating_terrain = [[dict objectForKey:@"Terrain"] floatValue];
-    gs.favourites = [[dict objectForKey:@"FavoritePoints"] integerValue];
-    gs.archived = [[dict objectForKey:@"Archived"] boolValue];
-    gs.available = [[dict objectForKey:@"Available"] boolValue];
+    wp.gs_rating_difficulty = [[dict objectForKey:@"Difficulty"] floatValue];
+    wp.gs_rating_terrain = [[dict objectForKey:@"Terrain"] floatValue];
+    wp.gs_favourites = [[dict objectForKey:@"FavoritePoints"] integerValue];
+    wp.gs_archived = [[dict objectForKey:@"Archived"] boolValue];
+    wp.gs_available = [[dict objectForKey:@"Available"] boolValue];
 
-    gs.country_str = [dict objectForKey:@"Country"];
-    gs.state_str = [dict objectForKey:@"State"];
+    wp.gs_country_str = [dict objectForKey:@"Country"];
+    wp.gs_state_str = [dict objectForKey:@"State"];
 
-    gs.short_desc_html = [[dict objectForKey:@"ShortDescriptionIsHtml"] boolValue];
-    gs.long_desc_html = [[dict objectForKey:@"LongDescriptionIsHtml"] boolValue];
-    gs.short_desc = [dict objectForKey:@"ShortDescription"];
-    gs.long_desc = [dict objectForKey:@"LongDescription"];
-    gs.hint = [dict objectForKey:@"EncodedHints"];
+    wp.gs_short_desc_html = [[dict objectForKey:@"ShortDescriptionIsHtml"] boolValue];
+    wp.gs_long_desc_html = [[dict objectForKey:@"LongDescriptionIsHtml"] boolValue];
+    wp.gs_short_desc = [dict objectForKey:@"ShortDescription"];
+    wp.gs_long_desc = [dict objectForKey:@"LongDescription"];
+    wp.gs_hint = [dict objectForKey:@"EncodedHints"];
 
-    gs.placed_by = [dict objectForKey:@"PlacedBy"];
+    wp.gs_placed_by = [dict objectForKey:@"PlacedBy"];
 
-    gs.owner_gsid = [[dict valueForKeyPath:@"Owner.Id"] stringValue];
-    gs.owner_str = [dict valueForKeyPath:@"Owner.UserName"];
+    wp.gs_owner_gsid = [[dict valueForKeyPath:@"Owner.Id"] stringValue];
+    wp.gs_owner_str = [dict valueForKeyPath:@"Owner.UserName"];
 
-    gs.container_str = [dict valueForKeyPath:@"ContainerType.ContainerTypeName"];
-    [gs finish:wp];
+    wp.gs_container_str = [dict valueForKeyPath:@"ContainerType.ContainerTypeName"];
 
     // Now see what we had and what we need to change
     NSId wpid = [dbWaypoint dbGetByName:wp.name];
     if (wpid == 0) {
         [dbWaypoint dbCreate:wp];
-        gs.waypoint_id = wp._id;
-        [gs dbCreate];
-        wp.groundspeak_id = gs._id;
-        [wp dbUpdateGroundspeak];
         [group dbAddWaypoint:wp._id];
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
-        dbGroundspeak *gsold = [dbGroundspeak dbGet:wpold.groundspeak_id waypoint:wpold];
         wp._id = wpold._id;
-        wp.groundspeak_id = gsold._id;
-        gs._id = gsold._id;
-        gs.waypoint_id = wp._id;
         [wp dbUpdate];
-        [gs dbUpdate];
     }
 
     NSString *personal_note = [dict objectForKey:@"GeocacheNote"];

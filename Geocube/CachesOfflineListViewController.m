@@ -160,7 +160,6 @@
     }
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
-    dbGroundspeak *gs = wp.groundspeak;
     cell.description.text = wp.urlname;
     cell.name.text = wp.name;
     cell.icon.image = [imageLibrary getType:wp];
@@ -169,7 +168,7 @@
     else
         cell.description.backgroundColor = [UIColor clearColor];
 
-    [cell setRatings:gs.favourites terrain:gs.rating_terrain difficulty:gs.rating_difficulty size:gs.container.icon];
+    [cell setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
@@ -177,16 +176,16 @@
     cell.distance.text = [MyTools NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (gs.state != nil)
-        [s appendFormat:@"%@", gs.state.name];
-    if (gs.country != nil) {
+    if (wp.gs_state != nil)
+        [s appendFormat:@"%@", wp.gs_state.name];
+    if (wp.gs_country != nil) {
          if ([s isEqualToString:@""] == NO)
              [s appendFormat:@", "];
-        [s appendFormat:@"%@", gs.country.code];
+        [s appendFormat:@"%@", wp.gs_country.code];
     }
     cell.stateCountry.text = s;
 
-    [cell showGroundspeak:(gs != nil)];
+    //[cell showGroundspeak:(gs != nil)]; Not yet sure
 
     [cell viewWillTransitionToSize];
 

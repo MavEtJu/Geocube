@@ -74,10 +74,10 @@
     [vs addObject:[NSNumber numberWithInteger:[dbCountry dbCount]]];
     [fs addObject:@"Containers"];
     [vs addObject:[NSNumber numberWithInteger:[dbContainer dbCount]]];
+    [fs addObject:@"FileImports"];
+    [vs addObject:[NSNumber numberWithInteger:[dbFileImport dbCount]]];
     [fs addObject:@"Filters"];
     [vs addObject:[NSNumber numberWithInteger:[dbFilter dbCount]]];
-    [fs addObject:@"Groundspeak"];
-    [vs addObject:[NSNumber numberWithInteger:[dbGroundspeak dbCount]]];
     [fs addObject:@"Groups"];
     [vs addObject:[NSNumber numberWithInteger:[dbGroup dbCount]]];
     [fs addObject:@"Images"];
@@ -98,6 +98,10 @@
     [vs addObject:[NSNumber numberWithInteger:[dbSymbol dbCount]]];
     [fs addObject:@"Trackables"];
     [vs addObject:[NSNumber numberWithInteger:[dbTrackable dbCount]]];
+    [fs addObject:@"TrackElements"];
+    [vs addObject:[NSNumber numberWithInteger:[dbTrackElement dbCount]]];
+    [fs addObject:@"Tracks"];
+    [vs addObject:[NSNumber numberWithInteger:[dbTrack dbCount]]];
     [fs addObject:@"Types"];
     [vs addObject:[NSNumber numberWithInteger:[dbType dbCount]]];
     [fs addObject:@"Waypoints"];

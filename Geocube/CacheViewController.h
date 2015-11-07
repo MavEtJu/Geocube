@@ -21,7 +21,6 @@
 
 @interface CacheViewController : GCTableViewController {
     dbWaypoint *waypoint;
-    dbGroundspeak *groundspeak;
 
     NSArray *waypointItems;
     NSArray *actionItems;

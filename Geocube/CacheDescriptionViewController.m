@@ -28,7 +28,6 @@
     self = [super init];
 
     waypoint = _wp;
-    groundspeak = [dbGroundspeak dbGet:_wp.groundspeak_id waypoint:waypoint];
 
     menuItems = nil;
     hasCloseButton = YES;
@@ -54,16 +53,16 @@
 {
     NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
 
-    if ([groundspeak.short_desc isEqualToString:@""] == NO) {
-        NSString *s = groundspeak.short_desc;
-        if (groundspeak.short_desc_html == NO)
+    if ([waypoint.gs_short_desc isEqualToString:@""] == NO) {
+        NSString *s = waypoint.gs_short_desc;
+        if (waypoint.gs_short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([groundspeak.long_desc isEqualToString:@""] == NO) {
-        NSString *s = groundspeak.long_desc;
-        if (groundspeak.long_desc_html == NO)
+    if ([waypoint.gs_long_desc isEqualToString:@""] == NO) {
+        NSString *s = waypoint.gs_long_desc;
+        if (waypoint.gs_long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }

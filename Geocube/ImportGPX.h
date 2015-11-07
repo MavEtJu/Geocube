@@ -53,7 +53,6 @@
     NSString *currentElement;
     NSString *gsOwnerNameId, *logFinderNameId;
     dbWaypoint *currentWP;
-    dbGroundspeak *currentGS;
     dbLog *currentLog;
     dbTrackable *currentTB;
 

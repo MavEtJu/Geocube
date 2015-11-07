@@ -323,9 +323,9 @@
         ratingDIV.hidden = NO;
         ratingTIV.hidden = NO;
         wpIconIV.image = [imageLibrary getType:waypointManager.currentWaypoint];
-        containerSizeIV.image = [imageLibrary get:waypointManager.currentWaypoint.groundspeak.container.icon];
-        ratingDIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_difficulty];
-        ratingTIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.groundspeak.rating_terrain];
+        containerSizeIV.image = [imageLibrary get:waypointManager.currentWaypoint.gs_container.icon];
+        ratingDIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.gs_rating_difficulty];
+        ratingTIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.gs_rating_terrain];
     }
 
     altitudeLabel.text = @"";
