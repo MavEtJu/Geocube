@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "5");
+insert into config(key, value) values("version", "0");
 
 create table filters (
     id integer primary key,
@@ -60,35 +60,31 @@ create table waypoints (
     urlname text,
     symbol_id integer,			-- pointer to symbols(id)
     type_id integer,			-- pointer to types(id)
-    groundspeak_id integer,		-- pointer to groundspeak(id)
     account_id integer,			-- pointer to accounts(id)
 
     log_status integer,			-- 0 not logged, 1 DNF, 2 found
     highlight bool,
-    ignore bool
+    ignore bool,
+
+    gs_enabled bool,
+    gs_archived bool,
+    gs_available bool,
+    gs_country_id integer,		-- pointer to countries(id)
+    gs_state_id integer,		-- pointer to states(id)
+    gs_rating_difficulty float,
+    gs_rating_terrain float,
+    gs_favourites integer,
+    gs_long_desc_html bool,
+    gs_long_desc text,
+    gs_short_desc_html bool,
+    gs_short_desc text,
+    gs_hint text,
+    gs_container_id integer,		-- pointer to containers(id)
+    gs_placed_by text,
+    gs_owner_id integer			-- pointer to names(id)
 );
 create index waypoint_idx_name on waypoints(name);
 create index waypoint_idx_id on waypoints(id);
-
-create table groundspeak (
-    id integer primary key,
-    waypoint_id integer,		-- pointer to waypoints(id)
-    archived bool,
-    available bool,
-    country_id integer,			-- pointer to countries(id)
-    state_id integer,			-- pointer to states(id)
-    rating_difficulty float,
-    rating_terrain float,
-    favourites integer,
-    long_desc_html bool,
-    long_desc text,
-    short_desc_html bool,
-    short_desc text,
-    hint text,
-    container_id integer,		-- pointer to containers(id)
-    placed_by text,
-    owner_id integer			-- pointer to names(id)
-);
 
 create table names (
     id integer primary key,
