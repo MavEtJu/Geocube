@@ -277,7 +277,6 @@
             INT_FETCH(   30, wp.gs_owner_id);
             TEXT_FETCH(  31, wp.gs_placed_by);
 
-            DB_FINISH;
             [wp finish];
             [wps addObject:wp];
         }
