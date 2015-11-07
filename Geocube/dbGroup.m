@@ -85,13 +85,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-
-    // Delete all groundspeaks records which are not longer in a waypoint
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"delete from groundspeak where id not in (select id from waypoints)");
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
 }
 
 - (void)dbEmpty
