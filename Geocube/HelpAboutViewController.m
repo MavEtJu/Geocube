@@ -89,7 +89,7 @@
           @"BHTabBar: Copyright (c) 2011 Fictorial LLC. (https://github.com/fictorial/BHTabBar)."
           ];
     y += [self addText:y text:
-          @"CMRangeSlider: Copyright (c) 2010 Charlie Mezak <charliemezak@gmail.com>  (https://github.com/cmezak/CMRangeSlider)."
+          @"CMRangeSlider: Copyright (c) 2010 Charlie Mezak <charliemezak@gmail.com> (https://github.com/cmezak/CMRangeSlider)."
           ];
     y += [self addText:y text:
           @"DejalActivityView: Includes 'DejalActivtyView' code from Dejal (http://www.dejal.com/developer/)."
