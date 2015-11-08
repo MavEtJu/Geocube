@@ -82,6 +82,7 @@
 
 - (void)placeMarkers
 {
+    NSLog(@"%@/placeMarkers", [self class]);
     // Creates a marker in the center of the map.
     markers = [NSMutableArray arrayWithCapacity:20];
     [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -103,6 +104,7 @@
 
 - (void)removeMarkers
 {
+    NSLog(@"%@/removeMarkers", [self class]);
     [markers enumerateObjectsUsingBlock:^(MKPointAnnotation *m, NSUInteger idx, BOOL *stop) {
         [mapView removeAnnotation:m];
         m = nil;
