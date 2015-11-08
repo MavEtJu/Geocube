@@ -61,7 +61,7 @@
     else
         mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
 
-    self.view  = mapView;
+    self.view = mapView;
 }
 
 - (void)removeMap
@@ -168,7 +168,7 @@
         return dropPin;
     }
 
-    if ([annotation isKindOfClass:[CCHMapClusterAnnotation  class]] == YES) {
+    if ([annotation isKindOfClass:[CCHMapClusterAnnotation class]] == YES) {
         static NSString *identifier = @"identifier";
         CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *)annotation;
 
