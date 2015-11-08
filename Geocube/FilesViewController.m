@@ -364,7 +364,8 @@
 
     importMenu.delegate = self;
 
-    [self presentViewController:importMenu animated:YES completion:nil];
+    [self.navigationController pushViewController:importMenu animated:YES];
+//    [self presentViewController:importMenu animated:YES completion:nil];
 }
 
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
@@ -416,7 +417,8 @@
         ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
             NSLog(@"Foo");
         } ];
-    [self presentViewController:activityViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:activityViewController animated:YES];
+//    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
