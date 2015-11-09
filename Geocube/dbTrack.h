@@ -19,11 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbTrack : dbObject {
-    NSString *name;
-    NSInteger dateStart;
-    NSInteger dateStop;
-}
+@interface dbTrack : dbObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSInteger dateStart;

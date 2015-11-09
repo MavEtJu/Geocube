@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbLogType ()
+{
+    NSString *logtype;
+    NSInteger icon;
+}
+
+@end
+
 @implementation dbLogType
 
 @synthesize logtype, icon;

@@ -21,6 +21,22 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbType ()
+{
+    NSString *type_major;
+    NSString *type_minor;
+    NSString *type_full;
+    NSInteger icon;
+    NSInteger pin;
+    NSString *pin_rgb;
+    NSString *pin_rgb_default;
+
+    /* Not read from the database */
+    BOOL selected;
+}
+
+@end
+
 @implementation dbType
 
 @synthesize type_major, type_minor, type_full, icon, pin, selected, pin_rgb, pin_rgb_default;

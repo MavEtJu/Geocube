@@ -19,43 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DatabaseCache : NSObject {
-    // In memory database information
-    NSMutableArray *Accounts;
-    NSArray *Types;
-    NSArray *Groups;
-    NSArray *LogTypes;
-    NSArray *Containers;
-    NSArray *Attributes;
-    NSMutableArray *Symbols;
-    NSMutableArray *Countries;
-    NSMutableArray *States;
-
-    // System Groups
-    dbGroup *Group_AllWaypoints;
-    dbGroup *Group_AllWaypoints_Found;
-    dbGroup *Group_AllWaypoints_NotFound;
-    dbGroup *Group_AllWaypoints_Attended;
-    dbGroup *Group_AllWaypoints_ManuallyAdded;
-    dbGroup *Group_AllWaypoints_Ignored;
-    dbGroup *Group_LastImport;
-    dbGroup *Group_LastImportAdded;
-
-    // Types
-    dbType *Type_Unknown;
-
-    // LogTypes
-    dbLogType *LogType_Unknown;
-    dbLogType *LogType_Found;
-    dbLogType *LogType_Attended;
-    dbLogType *LogType_NotFound;
-
-    // Container
-    dbContainer *Container_Unknown;
-
-    // Attribute
-    dbAttribute *Attribute_Unknown;
-}
+@interface DatabaseCache : NSObject
 
 @property (nonatomic, retain) NSArray *Accounts;
 @property (nonatomic, retain) NSArray *Types;

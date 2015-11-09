@@ -19,25 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbLog : dbObject {
-    NSId gc_id;
-    NSId waypoint_id;
-    dbWaypoint *waypoint;
-    NSId logtype_id;
-    NSString *logtype_string;
-    dbLogType *logtype;
-    NSString *datetime;
-    NSString *logger_gsid;
-    NSString *logger_str;
-    NSId logger_id;
-    dbName *logger;
-    BOOL needstobelogged;
-
-    NSString *log;
-
-    // Internal values
-    NSInteger cellHeight;
-}
+@interface dbLog : dbObject
 
 @property (nonatomic) NSId gc_id;
 @property (nonatomic) NSId waypoint_id;

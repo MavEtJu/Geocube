@@ -19,11 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbTrackable : dbObject {
-    NSString *name;
-    NSString *ref;
-    NSId gc_id;
-};
+@interface dbTrackable : dbObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *ref;

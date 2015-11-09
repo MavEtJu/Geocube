@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbConfig : dbObject {
-    NSString *key;
-    NSString *value;
-}
+@interface dbConfig : dbObject
 
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) NSString *value;

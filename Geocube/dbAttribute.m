@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbAttribute ()
+{
+    NSInteger icon;
+    NSId gc_id;
+    NSString *label;
+
+    // Internal stuff
+    BOOL _YesNo;
+}
+
+@end
+
 @implementation dbAttribute
 
 @synthesize icon, label, gc_id, _YesNo;

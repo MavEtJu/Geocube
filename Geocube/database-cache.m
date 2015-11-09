@@ -21,6 +21,47 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface DatabaseCache ()
+{
+    // In memory database information
+    NSMutableArray *Accounts;
+    NSArray *Types;
+    NSArray *Groups;
+    NSArray *LogTypes;
+    NSArray *Containers;
+    NSArray *Attributes;
+    NSMutableArray *Symbols;
+    NSMutableArray *Countries;
+    NSMutableArray *States;
+
+    // System Groups
+    dbGroup *Group_AllWaypoints;
+    dbGroup *Group_AllWaypoints_Found;
+    dbGroup *Group_AllWaypoints_NotFound;
+    dbGroup *Group_AllWaypoints_Attended;
+    dbGroup *Group_AllWaypoints_ManuallyAdded;
+    dbGroup *Group_AllWaypoints_Ignored;
+    dbGroup *Group_LastImport;
+    dbGroup *Group_LastImportAdded;
+
+    // Types
+    dbType *Type_Unknown;
+
+    // LogTypes
+    dbLogType *LogType_Unknown;
+    dbLogType *LogType_Found;
+    dbLogType *LogType_Attended;
+    dbLogType *LogType_NotFound;
+
+    // Container
+    dbContainer *Container_Unknown;
+
+    // Attribute
+    dbAttribute *Attribute_Unknown;
+}
+
+@end
+
 @implementation DatabaseCache
 
 @synthesize Accounts, Types, Groups, LogTypes, Containers, Attributes, Countries, States;

@@ -19,9 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbSymbol : dbObject {
-    NSString *symbol;
-}
+@interface dbSymbol : dbObject
 
 @property (nonatomic, retain) NSString *symbol;
 

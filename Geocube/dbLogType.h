@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbLogType : dbObject {
-    NSString *logtype;
-    NSInteger icon;
-}
+@interface dbLogType : dbObject
 
 @property (nonatomic, retain) NSString *logtype;
 @property (nonatomic) NSInteger icon;

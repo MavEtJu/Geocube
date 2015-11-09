@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbPersonalNote : dbObject {
-    NSId waypoint_id;
-    NSString *wp_name;
-    NSString *note;
-
-    // Calculated
-    NSInteger cellHeight;
-}
+@interface dbPersonalNote : dbObject
 
 @property (nonatomic) NSId waypoint_id;
 @property (nonatomic, retain) NSString *wp_name;

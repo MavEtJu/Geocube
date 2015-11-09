@@ -26,11 +26,7 @@
 #define	DB_NAME         @"database.db"
 
 
-@interface database : NSObject {
-    sqlite3 *db;
-    NSString *dbname, *dbempty;
-    id dbaccess;
-}
+@interface database : NSObject
 
 @property (nonatomic, retain)id dbaccess;
 @property (nonatomic)sqlite3 *db;

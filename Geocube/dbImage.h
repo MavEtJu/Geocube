@@ -26,11 +26,7 @@ enum ImageTypes {
     IMAGETYPE_USER = 3,
 };
 
-@interface dbImage : dbObject {
-    NSString *url;
-    NSString *name;
-    NSString *datafile;
-}
+@interface dbImage : dbObject
 
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *name;

@@ -19,19 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbTrackElement : dbObject {
-    NSId track_id;
-    dbTrack *track;
-
-    CLLocationCoordinate2D coords;
-    NSInteger lat_int;
-    CLLocationDegrees lat;
-    NSInteger lon_int;
-    CLLocationDegrees lon;
-
-    NSInteger height;
-    NSInteger timestamp_epoch;
-}
+@interface dbTrackElement : dbObject
 
 @property (nonatomic) NSId track_id;
 @property (nonatomic, retain) dbTrack *track;

@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbState : dbObject {
-    NSString *name;
-    NSString *code;
-}
+@interface dbState : dbObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *code;

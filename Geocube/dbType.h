@@ -19,18 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbType : dbObject {
-    NSString *type_major;
-    NSString *type_minor;
-    NSString *type_full;
-    NSInteger icon;
-    NSInteger pin;
-    NSString *pin_rgb;
-    NSString *pin_rgb_default;
-
-    /* Not read from the database */
-    BOOL selected;
-}
+@interface dbType : dbObject
 
 @property (nonatomic, retain) NSString *type_minor;
 @property (nonatomic, retain) NSString *type_major;

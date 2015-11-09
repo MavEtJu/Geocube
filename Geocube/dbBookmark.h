@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbBookmark : dbObject {
-    NSString *name;
-    NSString *url;
-}
+@interface dbBookmark : dbObject
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *url;

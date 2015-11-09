@@ -21,6 +21,12 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbObject ()
+{
+}
+
+@end
+
 @implementation dbObject
 
 @synthesize _id;

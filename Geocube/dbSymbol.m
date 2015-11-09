@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbSymbol ()
+{
+    NSString *symbol;
+}
+
+@end
+
 @implementation dbSymbol
 
 @synthesize symbol;

@@ -26,33 +26,7 @@ enum dbAccountProtocol {
     ProtocolGCA = 3
 };
 
-@interface dbAccount : dbObject {
-    NSString *site;
-    NSString *url_site;
-    NSString *url_queries;
-    NSString *accountname;
-    NSInteger protocol;
-    NSInteger geocube_id;
-    NSInteger revision;
-
-    NSString *gca_cookie_name;
-    NSString *gca_cookie_value;
-    NSString *gca_callback_url;
-    NSString *gca_autenticate_url;
-
-    NSString *oauth_consumer_public;
-    NSString *oauth_consumer_private;
-    NSString *oauth_token;
-    NSString *oauth_token_secret;
-    NSString *oauth_access_url;
-    NSString *oauth_authorize_url;
-    NSString *oauth_request_url;
-
-    // Not read from the database
-    BOOL canDoRemoteStuff;
-    RemoteAPI *remoteAPI;
-    NSInteger idx;
-}
+@interface dbAccount : dbObject
 
 @property (nonatomic, retain) NSString *site;
 @property (nonatomic, retain) NSString *url_site;

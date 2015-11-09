@@ -21,11 +21,7 @@
 
 #import "dbObject.h"
 
-@interface dbFileImport : dbObject {
-    NSString *filename;
-    NSInteger lastimport;
-    NSInteger filesize;
-}
+@interface dbFileImport : dbObject
 
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic) NSInteger lastimport;

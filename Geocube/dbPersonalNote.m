@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbPersonalNote ()
+{
+    NSId waypoint_id;
+    NSString *wp_name;
+    NSString *note;
+
+    // Calculated
+    NSInteger cellHeight;
+}
+
+@end
+
 @implementation dbPersonalNote
 
 @synthesize note, wp_name, waypoint_id, cellHeight;

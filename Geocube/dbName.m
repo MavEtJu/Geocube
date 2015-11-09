@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbName ()
+{
+    NSString *name;
+    NSString *code;
+    NSId account_id;
+    dbAccount *account;
+}
+
+@end
+
 @implementation dbName
 
 @synthesize name, code, account_id, account;

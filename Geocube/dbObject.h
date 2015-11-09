@@ -19,9 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbObject : NSObject {
+@interface dbObject : NSObject
+{
     NSId _id;
-
     BOOL finished;
 }
 

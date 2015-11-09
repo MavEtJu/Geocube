@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbConfig ()
+{
+    NSString *key;
+    NSString *value;
+}
+
+@end
+
 @implementation dbConfig
 
 @synthesize key, value;

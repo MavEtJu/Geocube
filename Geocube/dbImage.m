@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbImage ()
+{
+    NSString *url;
+    NSString *name;
+    NSString *datafile;
+}
+
+@end
+
 @implementation dbImage
 
 @synthesize url, name, datafile;

@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbTrackable ()
+{
+    NSString *name;
+    NSString *ref;
+    NSId gc_id;
+}
+
+@end
+
 @implementation dbTrackable
 
 @synthesize name, ref, gc_id;

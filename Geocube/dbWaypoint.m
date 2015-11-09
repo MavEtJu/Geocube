@@ -21,6 +21,71 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbWaypoint ()
+{
+    /* Waypoint related data */
+    NSString *name, *description, *url, *urlname;
+
+    NSString *lat, *lon;
+    NSInteger lat_int, lon_int;
+    float lat_float, lon_float;
+
+    NSString *date_placed;
+    NSInteger date_placed_epoch;
+
+    dbSymbol *symbol;
+    NSId symbol_id;
+    NSString *symbol_str;
+
+    NSId type_id;
+    NSString *type_str;
+    dbType *type;
+
+    /* Geocube related data */
+    NSId account_id;
+    dbAccount *account;
+
+    NSInteger logStatus;
+    BOOL highlight;
+    BOOL ignore;
+
+    /* Groundspeak related data */
+    float gs_rating_difficulty, gs_rating_terrain;
+    NSInteger gs_favourites;
+
+    BOOL gs_archived, gs_available;
+
+    NSString *gs_country_str;
+    NSId gs_country_id;
+    dbCountry *gs_country;
+
+    NSString *gs_state_str;
+    NSId gs_state_id;
+    dbState *gs_state;
+
+    BOOL gs_short_desc_html, gs_long_desc_html;
+    NSString *gs_short_desc, *gs_long_desc;
+    NSString *gs_hint;
+
+    NSString *gs_placed_by;
+
+    NSString *gs_owner_gsid;
+    NSString *gs_owner_str;
+    NSId gs_owner_id;
+    dbName *gs_owner;
+
+    NSId gs_container_id;
+    NSString *gs_container_str;
+    dbContainer *gs_container;
+
+    /* Not read from the database */
+    CLLocationCoordinate2D coordinates;
+    NSInteger calculatedDistance;
+    NSInteger calculatedBearing;
+}
+
+@end
+
 @implementation dbWaypoint
 
 @synthesize name, description, url, urlname, lat, lon, lat_int, lon_int, lat_float, lon_float, date_placed, date_placed_epoch, type_id, type_str, type, symbol_str, symbol_id, symbol, coordinates, calculatedDistance, calculatedBearing, logStatus, highlight, account, account_id, ignore;

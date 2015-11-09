@@ -19,16 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbNotice : dbObject {
-    NSString *note;
-    NSString *sender;
-    NSString *date;
-    NSInteger geocube_id;
-    BOOL seen;
-
-    // Not obtained from the database
-    NSInteger cellHeight;
-}
+@interface dbNotice : dbObject
 
 @property (nonatomic, retain) NSString *note;
 @property (nonatomic, retain) NSString *sender;

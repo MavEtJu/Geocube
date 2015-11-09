@@ -19,13 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbGroup: dbObject {
-    NSString *name;
-    BOOL usergroup;
-
-    /* Not read from the database */
-    BOOL selected;
-}
+@interface dbGroup : dbObject
 
 - (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
 

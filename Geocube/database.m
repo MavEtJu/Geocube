@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface database ()
+{
+    sqlite3 *db;
+    NSString *dbname, *dbempty;
+    id dbaccess;
+}
+
+@end
+
 @implementation database
 
 @synthesize dbaccess, db;

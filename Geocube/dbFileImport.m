@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbFileImport ()
+{
+    NSString *filename;
+    NSInteger lastimport;
+    NSInteger filesize;
+}
+
+@end
+
 @implementation dbFileImport
 
 @synthesize filename, filesize, lastimport;

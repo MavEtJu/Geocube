@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbAttribute : dbObject {
-    NSInteger icon;
-    NSId gc_id;
-    NSString *label;
-
-    // Internal stuff
-    BOOL _YesNo;
-}
+@interface dbAttribute : dbObject
 
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSId gc_id;

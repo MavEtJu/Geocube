@@ -21,6 +21,17 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbGroup ()
+{
+    NSString *name;
+    BOOL usergroup;
+
+    /* Not read from the database */
+    BOOL selected;
+}
+
+@end
+
 @implementation dbGroup
 
 @synthesize name, usergroup, selected;

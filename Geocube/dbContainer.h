@@ -19,13 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbContainer : dbObject {
-    NSString *size;
-    NSInteger icon;
-
-    /* Not read from the database */
-    BOOL selected;
-}
+@interface dbContainer : dbObject
 
 @property (nonatomic, retain) NSString *size;
 @property (nonatomic) NSInteger icon;
