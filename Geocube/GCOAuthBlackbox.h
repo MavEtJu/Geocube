@@ -47,33 +47,7 @@
  */
 
 
-@interface GCOAuthBlackbox : NSObject<UIWebViewDelegate> {
-    NSString *nonce;
-    NSString *timestamp;
-    NSString *consumerKey;
-    NSString *consumerSecret;
-    NSString *signatureMethod;
-    NSString *version;
-    NSString *callback;
-    NSString *signature;
-    NSString *token;
-    NSString *tokenSecret;
-    NSString *verifier;
-
-    NSString *URLRequestToken;
-    NSString *URLAuthorize;
-    NSString *URLAccessToken;
-
-    NSString *body;
-
-    NSURL *RequestTokenURL;
-    NSURL *AuthorizeURL;
-    NSURL *AccessTokenURL;
-
-    NSString *server;
-
-    id delegate;
-}
+@interface GCOAuthBlackbox : NSObject<UIWebViewDelegate>
 
 @property (nonatomic, retain, readonly) NSString *token;
 @property (nonatomic, retain, readonly) NSString *callback;

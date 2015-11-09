@@ -21,6 +21,37 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCOAuthBlackbox ()
+{
+    NSString *nonce;
+    NSString *timestamp;
+    NSString *consumerKey;
+    NSString *consumerSecret;
+    NSString *signatureMethod;
+    NSString *version;
+    NSString *callback;
+    NSString *signature;
+    NSString *token;
+    NSString *tokenSecret;
+    NSString *verifier;
+
+    NSString *URLRequestToken;
+    NSString *URLAuthorize;
+    NSString *URLAccessToken;
+
+    NSString *body;
+
+    NSURL *RequestTokenURL;
+    NSURL *AuthorizeURL;
+    NSURL *AccessTokenURL;
+
+    NSString *server;
+
+    id delegate;
+}
+
+@end
+
 @implementation GCOAuthBlackbox
 
 @synthesize token, delegate, callback;

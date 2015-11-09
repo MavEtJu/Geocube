@@ -25,16 +25,7 @@
 
 @end
 
-@interface LiveAPI : NSObject {
-    RemoteAPI *remoteAPI;
-    NSString *liveAPIPrefix;
-
-    NSMutableArray *GSLogTypesEvents;
-    NSMutableArray *GSLogTypesOthers;
-    NSMutableDictionary *GSLogTypes;
-
-    id delegate;
-}
+@interface LiveAPI : NSObject
 
 @property (nonatomic) id delegate;
 

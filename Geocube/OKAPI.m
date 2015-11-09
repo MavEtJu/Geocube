@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface OKAPI ()
+{
+    RemoteAPI *remoteAPI;
+    NSString *okapi_prefix;
+    id delegate;
+}
+
+@end
+
 @implementation OKAPI
 
 @synthesize delegate;

@@ -26,14 +26,7 @@
 
 @end
 
-@interface GeocachingAustralia : NSObject<NSURLConnectionDataDelegate> {
-    RemoteAPI *remoteAPI;
-    id delegate;
-    NSHTTPCookie *authCookie;
-    NSString *callback;
-
-    NSMutableDictionary *logtypes;
-}
+@interface GeocachingAustralia : NSObject <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id delegate;
 @property (nonatomic, retain, readonly) NSString *callback;

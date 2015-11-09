@@ -25,11 +25,7 @@
 
 @end
 
-@interface OKAPI : NSObject {
-    RemoteAPI *remoteAPI;
-    NSString *okapi_prefix;
-    id delegate;
-}
+@interface OKAPI : NSObject
 
 @property (nonatomic) id delegate;
 

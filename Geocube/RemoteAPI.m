@@ -21,6 +21,25 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface RemoteAPI ()
+{
+    GCOAuthBlackbox *oabb;
+
+    LiveAPI *gs;
+    OKAPI *okapi;
+    GeocachingAustralia *gca;
+
+    dbAccount *account;
+
+    NSInteger stats_found, stats_notfound;
+    id authenticationDelegate;
+
+    NSString *clientMsg;
+    NSError *clientError;
+}
+
+@end
+
 @implementation RemoteAPI
 
 @synthesize account, oabb, authenticationDelegate;

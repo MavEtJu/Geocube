@@ -21,6 +21,20 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface LiveAPI ()
+{
+    RemoteAPI *remoteAPI;
+    NSString *liveAPIPrefix;
+
+    NSMutableArray *GSLogTypesEvents;
+    NSMutableArray *GSLogTypesOthers;
+    NSMutableDictionary *GSLogTypes;
+
+    id delegate;
+}
+
+@end
+
 @implementation LiveAPI
 
 @synthesize delegate;

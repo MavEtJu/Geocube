@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GeocachingAustralia ()
+{
+    RemoteAPI *remoteAPI;
+    id delegate;
+    NSHTTPCookie *authCookie;
+    NSString *callback;
+
+    NSMutableDictionary *logtypes;
+}
+
+@end
+
 @implementation GeocachingAustralia
 
 @synthesize delegate, callback;

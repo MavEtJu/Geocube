@@ -26,21 +26,7 @@
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate> {
-    GCOAuthBlackbox *oabb;
-
-    LiveAPI *gs;
-    OKAPI *okapi;
-    GeocachingAustralia *gca;
-
-    dbAccount *account;
-
-    NSInteger stats_found, stats_notfound;
-    id authenticationDelegate;
-
-    NSString *clientMsg;
-    NSError *clientError;
-}
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate>
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
