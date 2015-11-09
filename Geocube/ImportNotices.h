@@ -19,16 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportNotices : NSObject<NSXMLParserDelegate> {
-    NSString *note;
-    NSString *sender;
-    NSString *date;
-    NSInteger geocube_id;
-
-    NSString *version;
-    NSString *revision;
-    NSMutableString *currentText;
-}
+@interface ImportNotices : NSObject<NSXMLParserDelegate>
 
 + (void)parse:(NSData *)data;
 

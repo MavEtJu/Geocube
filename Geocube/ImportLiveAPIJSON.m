@@ -21,6 +21,26 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImportLiveAPIJSON ()
+{
+    NSInteger newWaypointsCount;
+    NSInteger totalWaypointsCount;
+    NSInteger newLogsCount;
+    NSInteger totalLogsCount;
+    NSInteger newTrackablesCount;
+    NSInteger totalTrackablesCount;
+    NSUInteger percentageRead;
+    NSUInteger totalLines;
+    NSInteger newImagesCount;
+
+    dbGroup *group;
+    dbAccount *account;
+
+    id delegate;
+}
+
+@end
+
 @implementation ImportLiveAPIJSON
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;

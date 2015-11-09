@@ -21,6 +21,21 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImportSites ()
+{
+    NSString *version;
+    NSString *revision;
+    NSString *site_revision;
+    NSString *site_id;
+
+    dbAccount *account;
+
+    NSString *site;
+    NSMutableString *currentText;
+}
+
+@end
+
 @implementation ImportSites
 
 - (instancetype)init

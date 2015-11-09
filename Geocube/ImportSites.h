@@ -19,17 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportSites : NSObject<NSXMLParserDelegate> {
-    NSString *version;
-    NSString *revision;
-    NSString *site_revision;
-    NSString *site_id;
-
-    dbAccount *account;
-
-    NSString *site;
-    NSMutableString *currentText;
-}
+@interface ImportSites : NSObject <NSXMLParserDelegate>
 
 + (void)parse:(NSData *)data;
 

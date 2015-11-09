@@ -21,9 +21,29 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImagesDownloadManager ()
+{
+    NSMutableArray *todo;
+
+    dbImage *imgToDownload;
+
+    NSMutableData *activeDownload;
+    NSURLConnection *imageConnection;
+    NSURLConnection *conn;
+
+    NSInteger running;
+    id delegate;
+}
+
+- (void)start;
+
+@property (nonatomic, retain) NSMutableArray *todo;
+
+@end
+
 @implementation ImagesDownloadManager
 
-@synthesize todo, activeDownload, imageConnection, delegate;
+@synthesize todo, delegate;
 
 - (instancetype)init
 {

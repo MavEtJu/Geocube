@@ -21,6 +21,40 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImportGPX ()
+{
+    NSInteger newWaypointsCount;
+    NSInteger totalWaypointsCount;
+    NSInteger newLogsCount;
+    NSInteger totalLogsCount;
+    NSInteger newTrackablesCount;
+    NSInteger totalTrackablesCount;
+    NSUInteger percentageRead;
+    NSUInteger totalLines;
+    NSInteger newImagesCount;
+
+    NSArray *files;
+    dbGroup *group;
+    dbAccount *account;
+
+    NSMutableDictionary *logIdGCId;
+    NSMutableArray *attributesYES, *attributesNO;
+    NSMutableArray *logs;
+    NSMutableArray *trackables;
+    NSInteger index;
+    NSInteger inItem, inLog, inTrackable, inGroundspeak;
+    NSMutableString *currentText;
+    NSString *currentElement;
+    NSString *gsOwnerNameId, *logFinderNameId;
+    dbWaypoint *currentWP;
+    dbLog *currentLog;
+    dbTrackable *currentTB;
+
+    id delegate;
+}
+
+@end
+
 @implementation ImportGPX
 
 @synthesize delegate;

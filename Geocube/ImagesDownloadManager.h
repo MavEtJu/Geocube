@@ -25,26 +25,11 @@
 
 @end
 
-@interface ImagesDownloadManager : NSObject {
-    NSMutableArray *todo;
-
-    dbImage *imgToDownload;
-
-    NSMutableData *activeDownload;
-    NSURLConnection *imageConnection;
-    NSURLConnection *conn;
-
-    NSInteger running;
-    id delegate;
-}
+@interface ImagesDownloadManager : NSObject
 
 @property (nonatomic)id delegate;
-@property (nonatomic, retain) NSMutableArray *todo;
-@property (nonatomic, retain) NSMutableData *activeDownload;
-@property (nonatomic, retain) NSURLConnection *imageConnection;
 
 + (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
 + (void)addToQueue:(dbImage *)img;
-- (void)start;
 
 @end

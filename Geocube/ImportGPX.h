@@ -28,40 +28,12 @@
 
 @end
 
-@interface ImportGPX : NSObject <NSXMLParserDelegate> {
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
-    NSInteger newTrackablesCount;
-    NSInteger totalTrackablesCount;
-    NSUInteger percentageRead;
-    NSUInteger totalLines;
-    NSInteger newImagesCount;
+@interface ImportGPX : NSObject <NSXMLParserDelegate>
 
-    NSArray *files;
-    dbGroup *group;
-    dbAccount *account;
-
-    NSMutableDictionary *logIdGCId;
-    NSMutableArray *attributesYES, *attributesNO;
-    NSMutableArray *logs;
-    NSMutableArray *trackables;
-    NSInteger index;
-    NSInteger inItem, inLog, inTrackable, inGroundspeak;
-    NSMutableString *currentText;
-    NSString *currentElement;
-    NSString *gsOwnerNameId, *logFinderNameId;
-    dbWaypoint *currentWP;
-    dbLog *currentLog;
-    dbTrackable *currentTB;
-
-    id delegate;
-}
+- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 
 @property (nonatomic)id delegate;
 
-- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;
 - (void)parseFile:(NSString *)filename;
 - (void)parseData:(NSData *)data;

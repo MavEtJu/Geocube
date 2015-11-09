@@ -19,22 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportLiveAPIJSON : NSObject {
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
-    NSInteger newTrackablesCount;
-    NSInteger totalTrackablesCount;
-    NSUInteger percentageRead;
-    NSUInteger totalLines;
-    NSInteger newImagesCount;
-
-    dbGroup *group;
-    dbAccount *account;
-
-    id delegate;
-}
+@interface ImportLiveAPIJSON : NSObject
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;
