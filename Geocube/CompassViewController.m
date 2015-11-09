@@ -306,9 +306,6 @@
 {
     [super viewWillAppear:animated];
 
-    /* Start the location manager */
-    [LM startDelegation:self isNavigating:TRUE];
-
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.lat_float lon:waypointManager.currentWaypoint.lon_float];
 
@@ -376,6 +373,9 @@
 
     [self calculateRects];
     [self viewWilltransitionToSize];
+
+    /* Start the location manager */
+    [LM startDelegation:self isNavigating:TRUE];
 }
 
 
