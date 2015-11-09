@@ -263,7 +263,6 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
-		E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */; };
 		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; };
 		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; };
 		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; };
@@ -308,6 +307,7 @@
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
+		E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E88D911BF06D9500E90F8D /* LocationManager.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
 		E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF91B6588C600CC741A /* FiltersViewController.m */; };
 		E8E8CFFE1B658DC000CC741A /* FilterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFFD1B658DC000CC741A /* FilterObject.m */; };
@@ -736,8 +736,6 @@
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
 		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
-		E8A4BEE21BD4B87D00BCA5A5 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "../../GC-carpark/Geocube/LocationManager.h"; sourceTree = "<group>"; };
-		E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "../../GC-carpark/Geocube/LocationManager.m"; sourceTree = "<group>"; };
 		E8A4BEE51BD4B8BE00BCA5A5 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
 		E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
 		E8A4BEE71BD4B8BE00BCA5A5 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
@@ -830,6 +828,8 @@
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
+		E8E88D901BF06D9500E90F8D /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		E8E88D911BF06D9500E90F8D /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
 		E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsAccountsViewController.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1024,18 +1024,18 @@
 			children = (
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
+				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
+				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
+				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
+				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
-				E8A4BEE21BD4B87D00BCA5A5 /* LocationManager.h */,
-				E8A4BEE31BD4B87D00BCA5A5 /* LocationManager.m */,
-				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
-				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
+				E8E88D901BF06D9500E90F8D /* LocationManager.h */,
+				E8E88D911BF06D9500E90F8D /* LocationManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
-				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
-				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -2334,6 +2334,7 @@
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
+				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
@@ -2435,7 +2436,6 @@
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
-				E8A4BEE41BD4B87D00BCA5A5 /* LocationManager.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E8740FE21B4FDD1A002527DA /* CacheDescriptionViewController.m in Sources */,
