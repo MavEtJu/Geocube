@@ -77,8 +77,12 @@
         _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
-    if (_delegate != nil)
+    if (_delegate != nil) {
         [delegates addObject:_delegate];
+        [_delegate updateData];
+        if ([_delegate respondsToSelector:@selector(updateHistory)])
+            [_delegate updateHistory];
+    }
 }
 
 - (void)stopDelegation:(id)_delegate
