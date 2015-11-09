@@ -293,7 +293,7 @@
     lineIV.transform = CGAffineTransformMakeRotation(0);
     lineIV.frame = rectCompass;
 
-    [self updateData];
+    [self updateLocationManagerLocation];
 }
 
 - (void)changeTheme
@@ -388,7 +388,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateData
+- (void)updateLocationManagerLocation
 {
     accuracyLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.accuracy]];
     altitudeLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.altitude]];

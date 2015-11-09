@@ -524,7 +524,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateData
+- (void)updateLocationManagerLocation
 {
     // If a distance filter is enabled, and the current location is more than a quarter of the way that distance from the lastCoordinates, refresh the filter.
     [self configPrefix:@"distance"];

@@ -75,7 +75,7 @@ NEEDS_OVERLOADING(addHistory)
     [super viewDidAppear:animated];
     [LM startDelegation:self isNavigating:(showType == SHOW_ONECACHE)];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
-        [self updateData];
+        [self updateLocationManagerLocation];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -94,7 +94,7 @@ NEEDS_OVERLOADING(addHistory)
 }
 
 /* Delegated from GCLocationManager */
-- (void)updateData
+- (void)updateLocationManagerLocation
 {
     meLocation = [LM coords];
 
@@ -109,7 +109,7 @@ NEEDS_OVERLOADING(addHistory)
         [self addLineMeToWaypoint];
 }
 
-- (void)updateHistory
+- (void)updateLocationManagerHistory
 {
     [self removeHistory];
     [self addHistory];

@@ -21,10 +21,10 @@
 
 @protocol LocationManagerDelegate
 
-- (void)updateData;
+- (void)updateLocationManagerLocation;
 
 @optional
-- (void)updateHistory;
+- (void)updateLocationManagerHistory;
 
 @end
 

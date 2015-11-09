@@ -54,7 +54,7 @@
     if ([delegates count] == 0)
         return;
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
-        [delegate updateData];
+        [delegate updateLocationManagerLocation];
     }];
 }
 
@@ -63,8 +63,8 @@
     if ([delegates count] == 0)
         return;
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
-        if ([delegate respondsToSelector:@selector(updateHistory)])
-            [delegate updateHistory];
+        if ([delegate respondsToSelector:@selector(updateLocationManagerHistory)])
+            [delegate updateLocationManagerHistory];
     }];
 }
 
@@ -79,9 +79,9 @@
     [_LM startUpdatingLocation];
     if (_delegate != nil) {
         [delegates addObject:_delegate];
-        [_delegate updateData];
-        if ([_delegate respondsToSelector:@selector(updateHistory)])
-            [_delegate updateHistory];
+        [_delegate updateLocationManagerLocation];
+        if ([_delegate respondsToSelector:@selector(updateLocationManagerHistory)])
+            [_delegate updateLocationManagerHistory];
     }
 }
 

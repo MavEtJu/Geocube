@@ -94,7 +94,7 @@
         buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
-    [self updateData];
+    [self updateLocationManagerLocation];
 }
 
 - (void)calculateRects
@@ -157,7 +157,7 @@
     buttonSetAsTarget.frame = rectButtonSetAsTarget;
 }
 
-- (void)updateData
+- (void)updateLocationManagerLocation
 {
     labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
     labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
@@ -180,7 +180,7 @@
 - (void)remember:(UIButton *)b
 {
     coordsRecordedLocation = [LM coords];
-    [self updateData];
+    [self updateLocationManagerLocation];
 
     // Update waypoint
     dbWaypoint *waypoint;
