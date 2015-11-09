@@ -48,6 +48,11 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
+/*
+    mapView.showsCompass = YES;
+    mapView.showsScale = YES;
+ */
+
     /* Add the scale ruler */
     mapScaleView = [LXMapScaleView mapScaleForMapView:mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
