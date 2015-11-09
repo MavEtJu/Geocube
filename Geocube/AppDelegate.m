@@ -40,7 +40,8 @@
     [LM startDelegation:nil isNavigating:NO];
 
     // Initialize Google Maps
-    [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
+    // [GMSServices provideAPIKey:@"AIzaSyDBQPbKVG2MqNQaCKaLMuTaI_gcQrlWcGY"];
+    [GMSServices provideAPIKey:@"AIzaSyBAxFn_7XikiLcbM94kZBdwSytYjNVAoBY"];
 
     /* Create files directory */
     [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
