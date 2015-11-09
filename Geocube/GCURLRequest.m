@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCURLRequest ()
+
+@end
+
 @implementation GCURLRequest
 
 + (GCURLRequest *)requestWithURL:url
@@ -28,6 +32,10 @@
     // Stay out of the local cache as it sucks
     return [GCURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
 }
+
+@end
+
+@interface GCMutableURLRequest ()
 
 @end
 

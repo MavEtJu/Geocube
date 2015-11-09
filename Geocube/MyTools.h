@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_My_Tools_h
-#define Geocube_My_Tools_h
-
-@interface MyTools : NSObject {
-    struct timeval clock;
-    BOOL clockEnabled;
-    NSString *clockTitle;
-}
+@interface MyTools : NSObject
 
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
@@ -68,10 +61,7 @@
 
 typedef sqlite3_int64 NSId;
 
-
 #define NEEDS_OVERLOADING_ASSERT \
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
 #define NEEDS_OVERLOADING(__name__) \
     - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
-
-#endif

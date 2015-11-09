@@ -20,7 +20,9 @@
  */
 
 @interface GCURLRequest : NSURLRequest
+
 @end
 
 @interface GCMutableURLRequest : NSMutableURLRequest
+
 @end

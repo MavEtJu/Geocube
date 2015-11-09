@@ -22,6 +22,15 @@
 #import <sys/time.h>
 #import "Geocube-Prefix.pch"
 
+@interface MyTools ()
+{
+    struct timeval clock;
+    BOOL clockEnabled;
+    NSString *clockTitle;
+}
+
+@end
+
 @implementation MyTools
 
 // Returns the location where the app can read and write to files

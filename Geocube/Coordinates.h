@@ -19,9 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface Coordinates : NSObject {
-    CLLocationCoordinate2D coords;
-}
+@interface Coordinates : NSObject
 
 - (instancetype)init:(float)lat lon:(float)log;       // -34.02787 151.07357
 - (instancetype)init:(CLLocationCoordinate2D)coor;    // { -34.02787, 151.07357 }

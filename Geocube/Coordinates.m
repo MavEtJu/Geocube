@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface Coordinates ()
+{
+    CLLocationCoordinate2D coords;
+}
+
+@end
+
 @implementation Coordinates
 
 - (instancetype)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
