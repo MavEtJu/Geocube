@@ -134,7 +134,7 @@
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
     CHECK(@"map_clusters_enable", @"0");
-    CHECK(@"map_clusters_zoomlevel", @"12.5");
+    CHECK(@"map_clusters_zoomlevel", @"11.0");
 }
 
 - (void)loadValues
