@@ -19,19 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface LogTableViewCell : GCTableViewCell {
-    UIImageView *logtypeImage;
-    GCSmallLabel *datetimeLabel;
-    GCSmallLabel *loggerLabel;
-    GCTextblock *logLabel;
-
-    CGRect rectLogtype;
-    CGRect rectDatetime;
-    CGRect rectLogger;
-    CGRect rectLog;
-
-    dbLog *log;
-}
+@interface LogTableViewCell : GCTableViewCell
 
 @property (nonatomic, retain) UIImageView *logtypeImage;
 @property (nonatomic, retain) GCSmallLabel *datetimeLabel;

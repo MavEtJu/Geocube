@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface PersonalNoteTableViewCell ()
+{
+    GCTextblock *logLabel;
+    GCSmallLabel *nameLabel;
+    CGRect rectLog;
+    CGRect rectName;
+
+    dbPersonalNote *personalNote;
+}
+
+@end
+
 @implementation PersonalNoteTableViewCell
 
 @synthesize logLabel, nameLabel, personalNote;

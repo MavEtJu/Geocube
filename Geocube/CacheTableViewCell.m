@@ -21,6 +21,41 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheTableViewCell ()
+{
+    GCLabel *description;
+    GCLabel *name;
+    UIImageView *size;
+    GCLabel *ratingDLabel, *ratingTLabel;
+    UIImageView *ratingDIV, *ratingTIV;
+    GCLabel *favouritesLabel;
+    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
+    UIImageView *icon, *favouritesIV;
+    GCLabel *stateCountry;
+    GCLabel *bearing;
+    GCLabel *compass;
+    GCLabel *distance;
+
+    dbWaypoint *waypoint;
+
+    CGRect rectIcon;
+    CGRect rectDescription;
+    CGRect rectName;
+    CGRect rectFavouritesLabel;
+    CGRect rectFavouritesIV;
+    CGRect rectSize;
+    CGRect rectRatingDIV;
+    CGRect rectRatingTIV;
+    CGRect rectRatingDLabel;
+    CGRect rectRatingTLabel;
+    CGRect rectBearing;
+    CGRect rectCompass;
+    CGRect rectStateCountry;
+    CGRect rectDistance;
+}
+
+@end
+
 @implementation CacheTableViewCell
 
 @synthesize description, name, icon, stateCountry, bearing, compass, distance;

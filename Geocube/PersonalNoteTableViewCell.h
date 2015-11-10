@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface PersonalNoteTableViewCell : GCTableViewCell {
-    GCTextblock *logLabel;
-    GCSmallLabel *nameLabel;
-    CGRect rectLog;
-    CGRect rectName;
-
-    dbPersonalNote *personalNote;
-}
+@interface PersonalNoteTableViewCell : GCTableViewCell
 
 @property (nonatomic, retain) GCTextblock *logLabel;
 @property (nonatomic, retain) GCSmallLabel *nameLabel;

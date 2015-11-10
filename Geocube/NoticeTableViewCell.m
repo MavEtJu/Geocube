@@ -21,6 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface NoticeTableViewCell ()
+{
+    GCTextblock *noteLabel;
+    GCSmallLabel *senderLabel;
+    GCSmallLabel *dateLabel;
+
+    BOOL seen;
+
+    CGRect rectNote;
+    CGRect rectSender;
+    CGRect rectDate;
+
+    dbNotice *notice;
+}
+
+@end
+
 @implementation NoticeTableViewCell
 
 @synthesize noteLabel, senderLabel, dateLabel, seen, notice;

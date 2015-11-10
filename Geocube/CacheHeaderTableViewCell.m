@@ -21,6 +21,20 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheHeaderTableViewCell ()
+{
+    UIImageView *icon, *imgFavouritesIV;
+    GCLabel *lat, *lon;
+    UIImageView *size;
+    GCLabel *labelRatingD, *labelRatingT;
+    UIImageView *ratingD[5];
+    UIImageView *ratingT[5];
+    GCLabel *favourites;
+    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
+}
+
+@end
+
 @implementation CacheHeaderTableViewCell
 
 @synthesize icon, lat, lon, size, favourites;

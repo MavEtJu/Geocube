@@ -21,6 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface LogTableViewCell ()
+{
+    UIImageView *logtypeImage;
+    GCSmallLabel *datetimeLabel;
+    GCSmallLabel *loggerLabel;
+    GCTextblock *logLabel;
+
+    CGRect rectLogtype;
+    CGRect rectDatetime;
+    CGRect rectLogger;
+    CGRect rectLog;
+
+    dbLog *log;
+}
+
+@end
+
 @implementation LogTableViewCell
 
 @synthesize logtypeImage, datetimeLabel, loggerLabel, logLabel, log;

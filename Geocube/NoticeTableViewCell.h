@@ -19,19 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NoticeTableViewCell : GCTableViewCell {
-    GCTextblock *noteLabel;
-    GCSmallLabel *senderLabel;
-    GCSmallLabel *dateLabel;
-
-    BOOL seen;
-
-    CGRect rectNote;
-    CGRect rectSender;
-    CGRect rectDate;
-
-    dbNotice *notice;
-}
+@interface NoticeTableViewCell : GCTableViewCell
 
 @property (nonatomic, retain) GCTextblock *noteLabel;
 @property (nonatomic, retain) GCSmallLabel *senderLabel;
