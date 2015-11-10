@@ -19,12 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheViewController : GCTableViewController {
-    dbWaypoint *waypoint;
-
-    NSArray *waypointItems;
-    NSArray *actionItems;
-}
+@interface CacheViewController : GCTableViewController
 
 - (void)showWaypoint:(dbWaypoint *)wp;
 - (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed;

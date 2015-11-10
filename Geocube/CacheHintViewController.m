@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheHintViewController ()
+{
+    dbWaypoint *waypoint;
+    UIWebView *webview;
+}
+
+@end
+
 @implementation CacheHintViewController
 
 - (instancetype)init:(dbWaypoint *)_wp

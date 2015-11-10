@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheWaypointsViewController ()
+{
+    NSArray *wps;
+    dbWaypoint *waypoint;
+}
+
+@end
+
 #define THISCELL @"CacheWaypointsViewController"
 
 @implementation CacheWaypointsViewController

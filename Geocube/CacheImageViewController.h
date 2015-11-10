@@ -26,20 +26,7 @@
 
 @end
 
-@interface CacheImageViewController : GCViewController {
-    dbImage *img;
-    UIScrollView *sv;
-    UIImage *image;
-    UIImageView *imgview;
-
-    CGRect imgViewRect;
-    GCLabel *labelCount;
-
-    BOOL zoomedIn;
-    id delegate;
-
-    NSInteger totalImages, thisImage;
-}
+@interface CacheImageViewController : GCViewController
 
 @property (nonatomic) id delegate;
 

@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CachePersonalNoteViewController ()
+{
+    dbWaypoint *waypoint;
+    GCTextblock *l;
+    YIPopupTextView *tv;
+    dbPersonalNote *note;
+}
+
+@end
+
 @implementation CachePersonalNoteViewController
 
 - (instancetype)init:(dbWaypoint *)_waypoint

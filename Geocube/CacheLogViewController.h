@@ -19,13 +19,7 @@
 * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@interface CacheLogViewController : GCTableViewController<YIPopupTextViewDelegate> {
-    dbWaypoint *waypoint;
-    NSString *logtype;
-    NSString *note;
-    NSString *date;
-    BOOL fp, upload;
-}
+@interface CacheLogViewController : GCTableViewController <YIPopupTextViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

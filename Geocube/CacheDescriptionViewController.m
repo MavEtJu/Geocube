@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheDescriptionViewController ()
+{
+    dbWaypoint *waypoint;
+    UIWebView *webview;
+}
+
+@end
+
 @implementation CacheDescriptionViewController
 
 - (instancetype)init:(dbWaypoint *)_wp

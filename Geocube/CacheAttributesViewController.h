@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheAttributesViewController : GCTableViewController {
-    NSMutableArray *attrs;
-    dbWaypoint *waypoint;
-}
+@interface CacheAttributesViewController : GCTableViewController
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

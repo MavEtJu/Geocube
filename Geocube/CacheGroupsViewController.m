@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheGroupsViewController ()
+{
+    NSMutableArray *ugs, *sgs;
+    dbWaypoint *waypoint;
+}
+
+@end
+
 #define THISCELL @"CacheGroupsViewControllerCell"
 
 @implementation CacheGroupsViewController

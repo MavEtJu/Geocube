@@ -19,11 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheLogsViewController : GCTableViewController {
-    BOOL mineOnly;
-    dbWaypoint *waypoint;
-    NSArray *logs;
-}
+@interface CacheLogsViewController : GCTableViewController
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 - (instancetype)initMine:(dbWaypoint *)waypoint;

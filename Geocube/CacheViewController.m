@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheViewController ()
+{
+    dbWaypoint *waypoint;
+
+    NSArray *waypointItems;
+    NSArray *actionItems;
+}
+
+@end
+
 #define THISCELL_HEADER @"cachetablecell_header"
 #define THISCELL_DATA @"cachetablecell_data"
 #define THISCELL_ACTIONS @"cachetablecell_actions"

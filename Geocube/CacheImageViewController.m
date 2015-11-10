@@ -21,6 +21,24 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheImageViewController ()
+{
+    dbImage *img;
+    UIScrollView *sv;
+    UIImage *image;
+    UIImageView *imgview;
+
+    CGRect imgViewRect;
+    GCLabel *labelCount;
+
+    BOOL zoomedIn;
+    id delegate;
+
+    NSInteger totalImages, thisImage;
+}
+
+@end
+
 @implementation CacheImageViewController
 
 @synthesize delegate;

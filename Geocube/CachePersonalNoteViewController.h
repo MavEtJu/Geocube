@@ -19,12 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CachePersonalNoteViewController : GCViewController<YIPopupTextViewDelegate> {
-    dbWaypoint *waypoint;
-    GCTextblock *l;
-    YIPopupTextView *tv;
-    dbPersonalNote *note;
-}
+@interface CachePersonalNoteViewController : GCViewController <YIPopupTextViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

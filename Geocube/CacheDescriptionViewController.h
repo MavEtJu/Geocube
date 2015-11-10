@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheDescriptionViewController : GCViewController<UIScrollViewDelegate, UIWebViewDelegate> {
-    dbWaypoint *waypoint;
-    UIWebView *webview;
-}
+@interface CacheDescriptionViewController : GCViewController <UIScrollViewDelegate, UIWebViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

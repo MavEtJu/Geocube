@@ -21,6 +21,17 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheLogViewController ()
+{
+    dbWaypoint *waypoint;
+    NSString *logtype;
+    NSString *note;
+    NSString *date;
+    BOOL fp, upload;
+}
+
+@end
+
 @implementation CacheLogViewController
 
 #define THISCELL @"CacheLogViewControllerCell"

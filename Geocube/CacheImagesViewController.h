@@ -19,15 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheImagesViewController : GCTableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, CacheImageViewControllerDelegate> {
-    dbWaypoint *waypoint;
-    NSArray *userImages;
-    NSArray *logImages;
-    NSArray *cacheImages;
-
-    NSIndexPath *currentIndexPath;
-    CacheImageViewController *ivc;
-}
+@interface CacheImagesViewController : GCTableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, CacheImageViewControllerDelegate>
 
 @property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) UIImagePickerController *imagePickerController;

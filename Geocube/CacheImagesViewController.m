@@ -21,6 +21,19 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheImagesViewController ()
+{
+    dbWaypoint *waypoint;
+    NSArray *userImages;
+    NSArray *logImages;
+    NSArray *cacheImages;
+
+    NSIndexPath *currentIndexPath;
+    CacheImageViewController *ivc;
+}
+
+@end
+
 @implementation CacheImagesViewController
 
 @synthesize overlayView;

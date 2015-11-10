@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheLogsViewController ()
+{
+    BOOL mineOnly;
+    dbWaypoint *waypoint;
+    NSArray *logs;
+}
+
+@end
+
 #define THISCELL @"CacheLogsViewControllerCell"
 
 @implementation CacheLogsViewController
