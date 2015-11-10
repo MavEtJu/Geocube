@@ -21,6 +21,12 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCTableViewCell ()
+{
+}
+
+@end
+
 @implementation GCTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

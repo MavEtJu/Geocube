@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCTableViewCellRightImage ()
+
+@end
+
 @implementation GCTableViewCellRightImage
 
 - (void)layoutSubviews

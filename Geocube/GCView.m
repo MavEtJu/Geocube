@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCView ()
+
+@end
+
 @implementation GCView
 
 - (instancetype)initWithFrame:(CGRect)frame

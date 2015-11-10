@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCViewController ()
+{
+    NSInteger numberOfItemsInRow;
+    DOPNavbarMenu *tab_menu;
+    GCCloseButton *closeButton;
+}
+
+@end
+
 @implementation GCViewController
 
 @synthesize numberOfItemsInRow, tab_menu;

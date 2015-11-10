@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCSmallLabel ()
+
+@end
+
 @implementation GCSmallLabel
 
 - (instancetype)initWithFrame:(CGRect)frame

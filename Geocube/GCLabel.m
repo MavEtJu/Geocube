@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCLabel ()
+
+@end
+
 @implementation GCLabel
 
 - (instancetype)initWithFrame:(CGRect)frame

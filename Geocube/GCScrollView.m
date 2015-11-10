@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCScrollView ()
+
+@end
+
 @implementation GCScrollView
 
 - (void)changeTheme

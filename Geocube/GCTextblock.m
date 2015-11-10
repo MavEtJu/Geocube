@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCTextblock ()
+
+@end
+
 @implementation GCTextblock
 
 - (instancetype)initWithFrame:(CGRect)frame

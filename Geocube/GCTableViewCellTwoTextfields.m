@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCTableViewCellTwoTextfields ()
+{
+    GCLabel *fieldLabel;
+    GCLabel *valueLabel;
+}
+
+@end
+
 @implementation GCTableViewCellTwoTextfields
 
 @synthesize fieldLabel, valueLabel;

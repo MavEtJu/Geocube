@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCCloseButton ()
+
+@end
+
 @implementation GCCloseButton
 
 + (GCCloseButton *)buttonWithType:(UIButtonType)type

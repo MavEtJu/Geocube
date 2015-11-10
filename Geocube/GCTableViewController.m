@@ -21,9 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCTableViewController ()
+{
+    NSInteger numberOfItemsInRow;
+    DOPNavbarMenu *tab_menu;
+    GCCloseButton *closeButton;
+}
+
+@end
+
 @implementation GCTableViewController
 
-@synthesize numberOfItemsInRow, tab_menu;
+@synthesize numberOfItemsInRow, tab_menu, hasCloseButton, menuItems;
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {

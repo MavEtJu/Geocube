@@ -22,7 +22,6 @@
 @interface GCTableViewCell : UITableViewCell
 
 - (void)changeTheme;
-
 - (void)viewWillTransitionToSize;
 
 @end
