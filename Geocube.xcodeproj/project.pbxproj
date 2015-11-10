@@ -2663,7 +2663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos9.1;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
@@ -2686,7 +2686,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.Geocube.4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos9.1;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
