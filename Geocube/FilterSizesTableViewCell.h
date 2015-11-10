@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterSizesTableViewCell : FilterTableViewCell {
-    NSArray *containers;
-}
+@interface FilterSizesTableViewCell : FilterTableViewCell
 
 @end

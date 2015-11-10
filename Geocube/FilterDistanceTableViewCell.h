@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterDistanceTableViewCell : FilterTableViewCell {
-    UIButton *compareDistanceButton;
-    UIButton *distanceButton, *variationButton;
-    NSInteger compareDistance;
-
-    NSInteger distanceKm, distanceM;
-    NSInteger variationKm, variationM;
-}
+@interface FilterDistanceTableViewCell : FilterTableViewCell
 
 @end

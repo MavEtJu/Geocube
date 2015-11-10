@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterCategoryTableViewCell ()
+
+@end
+
 @implementation FilterCategoryTableViewCell
 
 @end

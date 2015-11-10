@@ -19,12 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterObject : NSObject {
-    BOOL expanded;
-    NSString *name;
-    NSInteger cellHeight;
-    UITableViewCell *tvc;
-}
+@interface FilterObject : NSObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL expanded;

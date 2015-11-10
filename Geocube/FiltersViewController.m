@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FiltersViewController ()
+{
+    NSMutableArray *filters;
+}
+
+@end
+
 #define THISCELL @"FilterViewControllerTableCells"
 #define THISCELL_GROUPS @"FilterViewControllerTableCellsGroups"
 #define THISCELL_CONTAINERS @"FilterViewControllerTableCellsHeader"

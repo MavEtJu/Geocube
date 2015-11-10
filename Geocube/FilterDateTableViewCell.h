@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterDateTableViewCell : FilterTableViewCell {
-    NSInteger comparePlaced, compareLastLog;
-    UIButton *buttonComparePlaced, *buttonCompareLastLog;
-    UIButton *buttonDatePlaced, *buttonDateLastLog;
-
-    ActionSheetDatePicker *asdp;
-    NSInteger epochPlaced, epochLastLog;
-}
+@interface FilterDateTableViewCell : FilterTableViewCell
 
 @end

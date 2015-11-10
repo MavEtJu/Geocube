@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterFavouritesTableViewCell : FilterTableViewCell {
-    RangeSlider *slider;
-    GCLabel *sliderLabel;
-    NSInteger config_min, config_max;
-}
+@interface FilterFavouritesTableViewCell : FilterTableViewCell
 
 @end

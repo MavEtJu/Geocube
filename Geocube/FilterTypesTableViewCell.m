@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterTypesTableViewCell ()
+{
+    NSArray *types;
+}
+
+@end
+
 @implementation FilterTypesTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterDirectionTableViewCell ()
+{
+    NSArray *directions;
+    NSInteger direction;
+    NSString *directionString;
+    UIButton *directionButton;
+}
+
+@end
+
 @implementation FilterDirectionTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

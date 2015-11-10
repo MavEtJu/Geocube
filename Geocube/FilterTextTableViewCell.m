@@ -21,6 +21,27 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterTextTableViewCell ()
+{
+    UIButton *bCacheName;
+    UIButton *bOwner;
+    UIButton *bPlacedBy;
+    UIButton *bState;
+    UIButton *bCountry;
+    UIButton *bDescription;
+    UIButton *bLogs;
+
+    NSString *cacheName;
+    NSString *owner;
+    NSString *placedBy;
+    NSString *state;
+    NSString *country;
+    NSString *description;
+    NSString *logs;
+}
+
+@end
+
 @implementation FilterTextTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

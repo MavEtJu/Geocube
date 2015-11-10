@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterDifficultyTableViewCell ()
+{
+    RangeSlider *slider;
+    GCLabel *sliderLabel;
+    float config_min, config_max;
+}
+
+@end
+
 @implementation FilterDifficultyTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

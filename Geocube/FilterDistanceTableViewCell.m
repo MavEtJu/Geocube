@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterDistanceTableViewCell ()
+{
+    UIButton *compareDistanceButton;
+    UIButton *distanceButton, *variationButton;
+    NSInteger compareDistance;
+
+    NSInteger distanceKm, distanceM;
+    NSInteger variationKm, variationM;
+}
+
+@end
+
 @implementation FilterDistanceTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

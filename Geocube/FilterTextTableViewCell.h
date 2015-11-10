@@ -19,22 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTextTableViewCell : FilterTableViewCell {
-    UIButton *bCacheName;
-    UIButton *bOwner;
-    UIButton *bPlacedBy;
-    UIButton *bState;
-    UIButton *bCountry;
-    UIButton *bDescription;
-    UIButton *bLogs;
-
-    NSString *cacheName;
-    NSString *owner;
-    NSString *placedBy;
-    NSString *state;
-    NSString *country;
-    NSString *description;
-    NSString *logs;
-}
+@interface FilterTextTableViewCell : FilterTableViewCell
 
 @end

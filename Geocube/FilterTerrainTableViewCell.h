@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTerrainTableViewCell : FilterTableViewCell {
-    RangeSlider *slider;
-    GCLabel *sliderLabel;
-    float config_min, config_max;
-}
+@interface FilterTerrainTableViewCell : FilterTableViewCell
 
 @end

@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterDateTableViewCell ()
+{
+    NSInteger comparePlaced, compareLastLog;
+    UIButton *buttonComparePlaced, *buttonCompareLastLog;
+    UIButton *buttonDatePlaced, *buttonDateLastLog;
+
+    ActionSheetDatePicker *asdp;
+    NSInteger epochPlaced, epochLastLog;
+}
+
+@end
+
 @implementation FilterDateTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

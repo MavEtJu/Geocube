@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTypesTableViewCell : FilterTableViewCell {
-    NSArray *types;
-}
+@interface FilterTypesTableViewCell : FilterTableViewCell
 
 @end

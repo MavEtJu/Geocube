@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterObject ()
+{
+    BOOL expanded;
+    NSString *name;
+    NSInteger cellHeight;
+    UITableViewCell *tvc;
+}
+
+@end
+
 @implementation FilterObject
 
 @synthesize name, expanded, cellHeight, tvc;

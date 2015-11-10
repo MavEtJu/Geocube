@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterDirectionTableViewCell : FilterTableViewCell {
-    NSArray *directions;
-    NSInteger direction;
-    NSString *directionString;
-    UIButton *directionButton;
-}
+@interface FilterDirectionTableViewCell : FilterTableViewCell
 
 @end

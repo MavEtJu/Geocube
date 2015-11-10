@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterSizesTableViewCell ()
+{
+    NSArray *containers;
+}
+
+@end
+
 @implementation FilterSizesTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

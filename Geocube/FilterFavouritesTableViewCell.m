@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilterFavouritesTableViewCell ()
+{
+    RangeSlider *slider;
+    GCLabel *sliderLabel;
+    NSInteger config_min, config_max;
+}
+
+@end
+
 @implementation FilterFavouritesTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo

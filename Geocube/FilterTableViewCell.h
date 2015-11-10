@@ -19,15 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterTableViewCell : GCTableViewCell {
-    UIFont *f1, *f2;
+@interface FilterTableViewCell : GCTableViewCell
+{
     NSInteger cellHeight, width;
-
-    NSString *configPrefix;
     FilterObject *fo;
-
-    CGRect rectHeader;
-    GCLabel *labelHeader;
+    UIFont *f2;
 }
 
 - (NSInteger)cellHeight;
