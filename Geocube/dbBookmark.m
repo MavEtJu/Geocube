@@ -21,7 +21,8 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface dbBookmark () {
+@interface dbBookmark ()
+{
     NSString *name;
     NSString *url;
 }

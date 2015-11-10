@@ -61,7 +61,8 @@ OSStatus RenderTone(
     return noErr;
 }
 
-@interface AudioFeedback () {
+@interface AudioFeedback ()
+{
     double frequency;
     double sampleRate;
     double theta;
