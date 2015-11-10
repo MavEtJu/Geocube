@@ -19,21 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAppleViewController : MapTemplateViewController<MKMapViewDelegate, CCHMapClusterControllerDelegate, MyConfigChangedDelegate> {
+@interface MapAppleViewController : MapTemplateViewController <MKMapViewDelegate, CCHMapClusterControllerDelegate, MyConfigChangedDelegate>
+{
     MKMapView *mapView;
-    GCPointAnnotation *me;
-    NSMutableArray *markers;
-
-    LXMapScaleView* mapScaleView;
-
-    MKPolyline *lineMeToWaypoint;
-    MKPolylineView *viewLineMeToWaypoint;
-    MKPolyline *lineHistory;
-    MKPolylineView *viewLineHistory;
-
-    CCHMapClusterController *mapClusterController;
 }
-
-//@property (nonatomic) CCHMapClusterController *mapClusterController;
 
 @end

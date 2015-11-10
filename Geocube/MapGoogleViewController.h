@@ -21,13 +21,6 @@
 
 @import GoogleMaps;
 
-@interface MapGoogleViewController : MapTemplateViewController<GMSMapViewDelegate> {
-    GMSMapView *mapView;
-    GMSMarker *me;
-    NSMutableArray *markers;
-
-    GMSPolyline *lineMeToWaypoint;
-    GMSPolyline *lineHistory;
-}
+@interface MapGoogleViewController : MapTemplateViewController <GMSMapViewDelegate>
 
 @end

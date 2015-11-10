@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCPointAnnotation : MKPointAnnotation {
-    NSId _id;
-    NSString *name;
-}
+@interface GCPointAnnotation : MKPointAnnotation
 
 @property (nonatomic) NSId _id;
 @property (nonatomic, retain) NSString *name;

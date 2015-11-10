@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GCPointAnnotation ()
+{
+    NSId _id;
+    NSString *name;
+}
+
+@end
+
 @implementation GCPointAnnotation
 
 @synthesize name, _id;

@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface MapOSMViewController ()
+
+@end
+
 @implementation MapOSMViewController
 
 - (void)initMenu

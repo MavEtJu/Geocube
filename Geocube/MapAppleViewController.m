@@ -21,6 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface MapAppleViewController ()
+{
+    GCPointAnnotation *me;
+    NSMutableArray *markers;
+
+    LXMapScaleView* mapScaleView;
+
+    MKPolyline *lineMeToWaypoint;
+    MKPolylineView *viewLineMeToWaypoint;
+    MKPolyline *lineHistory;
+    MKPolylineView *viewLineHistory;
+
+    CCHMapClusterController *mapClusterController;
+}
+
+@end
+
 @implementation MapAppleViewController
 
 - (void)viewWillAppear:(BOOL)animated

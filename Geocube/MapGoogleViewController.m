@@ -23,6 +23,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface MapGoogleViewController ()
+{
+    GMSMapView *mapView;
+    GMSMarker *me;
+    NSMutableArray *markers;
+
+    GMSPolyline *lineMeToWaypoint;
+    GMSPolyline *lineHistory;
+}
+
+@end
+
 @implementation MapGoogleViewController
 
 - (void)initMap
