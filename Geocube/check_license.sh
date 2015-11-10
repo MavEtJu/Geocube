@@ -28,3 +28,7 @@ echo "Empty lines at the end:"
 for i in *.m *.h; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
 
 echo
+echo "No space between parent class and delegates:"
+grep "@interface.*\w<" *.h 
+
+echo
