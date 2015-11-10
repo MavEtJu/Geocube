@@ -19,19 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BrowserBrowserViewController : GCViewController<UIWebViewDelegate> {
-    UIWebView *webView;
-
-    NSMutableData *receivedData;
-    //NSURLConnection *urlConnection;
-    NSString *suggestedFilename;
-    NSMutableURLRequest *req;
-    NSString *urlHome;
-
-    GCOAuthBlackbox *oabb;
-    GeocachingAustralia *gca;
-    NSInteger networkActivityIndicator;
-}
+@interface BrowserBrowserViewController : GCViewController<UIWebViewDelegate>
 
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;

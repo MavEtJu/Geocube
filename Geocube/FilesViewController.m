@@ -21,6 +21,17 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface FilesViewController ()
+{
+    NSMutableArray *filesNames;
+    NSMutableArray *filesSizes;
+    NSMutableArray *filesDates;
+    NSInteger filesCount;
+    NSArray *fileImports;
+}
+
+@end
+
 #define THISCELL @"FilesViewControllerCell"
 
 @implementation FilesViewController

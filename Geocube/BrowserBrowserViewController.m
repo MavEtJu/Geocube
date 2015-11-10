@@ -21,6 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface BrowserBrowserViewController ()
+{
+    UIWebView *webView;
+
+    NSMutableData *receivedData;
+    //NSURLConnection *urlConnection;
+    NSString *suggestedFilename;
+    NSMutableURLRequest *req;
+    NSString *urlHome;
+
+    GCOAuthBlackbox *oabb;
+    GeocachingAustralia *gca;
+    NSInteger networkActivityIndicator;
+}
+
+@end
+
 @implementation BrowserBrowserViewController
 
 - (instancetype)init

@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface BrowserAccountsViewController ()
+{
+    NSMutableArray *accounts;
+}
+
+@end
+
 @implementation BrowserAccountsViewController
 
 #define THISCELL    @"BookmarksAccountsTableViewCell"

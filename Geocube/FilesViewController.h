@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilesViewController : GCTableViewController <UIDocumentMenuDelegate, UIDocumentPickerDelegate> {
-    NSMutableArray *filesNames;
-    NSMutableArray *filesSizes;
-    NSMutableArray *filesDates;
-    NSInteger filesCount;
-    NSArray *fileImports;
-}
+@interface FilesViewController : GCTableViewController <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
 
 @end

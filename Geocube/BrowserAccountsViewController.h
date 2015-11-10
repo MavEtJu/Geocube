@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BrowserAccountsViewController : GCTableViewController {
-    NSMutableArray *accounts;
-}
+@interface BrowserAccountsViewController : GCTableViewController
 
 @end

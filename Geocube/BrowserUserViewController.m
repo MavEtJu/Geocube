@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface BrowserUserViewController ()
+{
+    NSArray *bms;
+}
+
+@end
+
 #define THISCELL @"BookmarksUserTableViewCell"
 
 @implementation BrowserUserViewController
