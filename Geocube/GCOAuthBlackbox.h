@@ -47,7 +47,7 @@
  */
 
 
-@interface GCOAuthBlackbox : NSObject<UIWebViewDelegate>
+@interface GCOAuthBlackbox : NSObject <UIWebViewDelegate>
 
 @property (nonatomic, retain, readonly) NSString *token;
 @property (nonatomic, retain, readonly) NSString *callback;
