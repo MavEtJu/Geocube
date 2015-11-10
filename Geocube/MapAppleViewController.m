@@ -26,7 +26,7 @@
     GCPointAnnotation *me;
     NSMutableArray *markers;
 
-    LXMapScaleView* mapScaleView;
+    LXMapScaleView *mapScaleView;
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineView *viewLineMeToWaypoint;
