@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ThemeNormal ()
+
+@end
+
 @implementation ThemeNormal
 
 - (instancetype)init

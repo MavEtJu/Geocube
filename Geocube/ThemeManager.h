@@ -28,10 +28,7 @@ enum GCThemeType {
     THEME_GEOSPHERE
 };
 
-@interface ThemeManager : NSObject {
-    NSArray *themeNames;
-    NSInteger themeNr;
-}
+@interface ThemeManager : NSObject
 
 @property (nonatomic, retain, readonly) NSArray *themeNames;
 

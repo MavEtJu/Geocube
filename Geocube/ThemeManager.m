@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ThemeManager ()
+{
+    NSArray *themeNames;
+    NSInteger themeNr;
+}
+
+@end
+
 // Current Theme
 ThemeTemplate *currentTheme;
 ThemeManager *themeManager;

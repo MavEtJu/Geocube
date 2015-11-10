@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ThemeTemplate ()
+
+@end
+
 @implementation ThemeTemplate
 
 @synthesize textColor, backgroundColor;

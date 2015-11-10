@@ -19,7 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeTemplate : NSObject {
+@interface ThemeTemplate : NSObject
+{
     UIColor *backgroundColor;
     UIColor *textColor;
 
@@ -30,7 +31,6 @@
     UIColor *viewBackgroundColor;
 
     UIColor *tableViewBackgroundColor;
-
     UIColor *tableViewCellBackgroundColor;
     BOOL tableViewCellGradient;
     UIColor *tableViewCellGradient1;
