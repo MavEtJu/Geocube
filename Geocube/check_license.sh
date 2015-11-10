@@ -32,3 +32,12 @@ echo "No space between parent class and delegates:"
 grep "@interface.*\w<" *.h 
 
 echo
+echo "Subclassing space-colon-space:"
+grep @interface *.h | grep -v "\w\s:\s\w"
+
+echo
+echo "No { after @interface:"
+grep @interface *.[mh] | grep \{
+
+
+echo
