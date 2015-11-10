@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsMainViewController : GCTableViewController {
-    UISwitch *distanceMetric;
-    UISwitch *themeGeosphere;
-    UISwitch *soundDirection;
-    UISwitch *soundDistance;
-    UISwitch *mapClustersEnable;
-    float mapClustersZoomlevel;
-
-    NSArray *compassTypes;
-}
-
-
+@interface SettingsMainViewController : GCTableViewController
 
 @end

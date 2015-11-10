@@ -21,6 +21,20 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface SettingsMainViewController ()
+{
+    UISwitch *distanceMetric;
+    UISwitch *themeGeosphere;
+    UISwitch *soundDirection;
+    UISwitch *soundDistance;
+    UISwitch *mapClustersEnable;
+    float mapClustersZoomlevel;
+
+    NSArray *compassTypes;
+}
+
+@end
+
 #define THISCELL_SUBTITLE @"SettingsMainViewControllerCellSubtitle"
 #define THISCELL_DEFAULT @"SettingsMainViewControllerCellDefault"
 

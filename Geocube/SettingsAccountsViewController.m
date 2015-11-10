@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface SettingsAccountsViewController ()
+{
+    NSArray *accounts;
+    NSInteger accountsCount;
+}
+
+@end
+
 #define THISCELL @"SettingsAccountsViewControllerCell"
 
 @implementation SettingsAccountsViewController

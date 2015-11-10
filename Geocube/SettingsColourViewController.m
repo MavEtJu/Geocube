@@ -21,6 +21,20 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface SettingsColourViewController ()
+{
+    dbType *type;
+    UIButton *chose, *reset;
+    UIImageView *pin1;
+    UIColor *pinColor;
+    UIColor *chosenColor;
+    NSString *hexString;
+    UILabel *hexLabel;
+    NKOColorPickerView *colorPickerView;
+}
+
+@end
+
 @implementation SettingsColourViewController
 
 - (instancetype)init:(dbType *)_type

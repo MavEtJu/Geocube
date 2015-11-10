@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface SettingsColoursViewController ()
+{
+    NSMutableArray *types;
+}
+
+@end
+
 @implementation SettingsColoursViewController
 
 #define THISCELL @"SettingsColoursViewControllerCell"

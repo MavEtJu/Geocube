@@ -19,16 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsColourViewController : GCViewController {
-    dbType *type;
-    UIButton *chose, *reset;
-    UIImageView *pin1;
-    UIColor *pinColor;
-    UIColor *chosenColor;
-    NSString *hexString;
-    UILabel *hexLabel;
-    NKOColorPickerView *colorPickerView;
-}
+@interface SettingsColourViewController : GCViewController
 
 - (instancetype)init:(dbType *)type;
 

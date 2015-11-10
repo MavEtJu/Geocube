@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsAccountsViewController : GCTableViewController <RemoteAPIAuthenticationDelegate> {
-    NSArray *accounts;
-    NSInteger accountsCount;
-}
+@interface SettingsAccountsViewController : GCTableViewController <RemoteAPIAuthenticationDelegate>
 
 @end
