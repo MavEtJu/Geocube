@@ -21,6 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface LocationManager ()
+{
+    CLLocationManager *_LM;
+
+    CLLocationAccuracy accuracy;
+    CLLocationDistance altitude;
+    CLLocationDirection direction;
+    CLLocationCoordinate2D coords;
+
+    NSMutableArray *coordsHistorical;
+    NSDate *lastHistory;
+    CLLocationCoordinate2D coordsHistoricalLast;
+    float speed;
+}
+
+@end
+
 @implementation LocationManager
 
 @synthesize altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
@@ -158,6 +175,14 @@
     direction = newHeading.trueHeading;
 
     [self updateDataDelegate];
+}
+
+@end
+
+@interface GCCoordsHistorical ()
+{
+    NSTimeInterval when;
+    CLLocationCoordinate2D coord;
 }
 
 @end

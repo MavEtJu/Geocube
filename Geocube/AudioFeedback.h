@@ -19,12 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface AudioFeedback : NSObject {
-    double frequency;
-    double sampleRate;
-    double theta;
-    AudioComponentInstance toneUnit;
-}
+@interface AudioFeedback : NSObject
 
 @property (nonatomic) double frequency;
 @property (nonatomic) double sampleRate;

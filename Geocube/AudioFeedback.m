@@ -61,6 +61,15 @@ OSStatus RenderTone(
     return noErr;
 }
 
+@interface AudioFeedback () {
+    double frequency;
+    double sampleRate;
+    double theta;
+    AudioComponentInstance toneUnit;
+}
+
+@end
+
 @implementation AudioFeedback
 
 @synthesize theta, frequency, sampleRate;

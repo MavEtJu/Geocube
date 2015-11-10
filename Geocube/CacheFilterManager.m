@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CacheFilterManager ()
+{
+    CLLocationCoordinate2D lastCoordinates;
+    BOOL needsRefresh;
+    NSMutableArray *currentWaypoints;
+    dbWaypoint *currentWaypoint;
+
+    NSMutableArray *delegates;
+}
+
+@end
+
 @implementation CacheFilterManager
 
 @synthesize configPrefix, currentWaypoint, currentWaypoints;

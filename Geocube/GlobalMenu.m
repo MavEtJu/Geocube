@@ -23,6 +23,21 @@
 
 #define MENU_STRING @"GC"
 
+@interface GlobalMenu ()
+{
+    NSArray *items;
+    DOPNavbarMenu *_global_menu;
+    NSInteger numberOfItemsInRow;
+    UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
+    UIBarButtonItem *button;
+    id localMenuDelegate;
+    UIButton *localMenuButton;
+
+    CGSize currentFrameSize;
+}
+
+@end
+
 @implementation GlobalMenu
 
 @synthesize parent_vc, previous_vc, localMenuDelegate, localMenuButton;

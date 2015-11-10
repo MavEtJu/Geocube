@@ -28,19 +28,7 @@
 
 @end
 
-@interface LocationManager : NSObject<CLLocationManagerDelegate> {
-    CLLocationManager *_LM;
-
-    CLLocationAccuracy accuracy;
-    CLLocationDistance altitude;
-    CLLocationDirection direction;
-    CLLocationCoordinate2D coords;
-
-    NSMutableArray *coordsHistorical;
-    NSDate *lastHistory;
-    CLLocationCoordinate2D coordsHistoricalLast;
-    float speed;
-}
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *delegates;
 @property (nonatomic) float speed;
@@ -57,10 +45,7 @@
 
 @end
 
-@interface GCCoordsHistorical : NSObject {
-    NSTimeInterval when;
-    CLLocationCoordinate2D coord;
-}
+@interface GCCoordsHistorical : NSObject
 
 @property (nonatomic) NSTimeInterval when;
 @property (nonatomic) CLLocationCoordinate2D coord;

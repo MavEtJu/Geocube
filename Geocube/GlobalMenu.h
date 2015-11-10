@@ -25,17 +25,7 @@
 
 @end
 
-@interface GlobalMenu : NSObject<DOPNavbarMenuDelegate> {
-    NSArray *items;
-    DOPNavbarMenu *_global_menu;
-    NSInteger numberOfItemsInRow;
-    UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
-    UIBarButtonItem *button;
-    id localMenuDelegate;
-    UIButton *localMenuButton;
-
-    CGSize currentFrameSize;
-}
+@interface GlobalMenu : NSObject <DOPNavbarMenuDelegate>
 
 @property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
 @property (nonatomic) id localMenuDelegate;

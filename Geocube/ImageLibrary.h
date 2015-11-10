@@ -200,12 +200,7 @@ typedef enum {
     ImageLibraryImagesMax
 } ImageLibraryImages;
 
-@interface ImageLibrary : NSObject {
-    UIImage *imgs[ImageLibraryImagesMax];
-    UIImage *ratingImages[11];
-    NSString *names[ImageLibraryImagesMax];
-    NSMutableDictionary *pinImages, *typeImages;
-};
+@interface ImageLibrary : NSObject
 
 - (instancetype)init;
 - (UIImage *)get:(NSInteger)imgnum;

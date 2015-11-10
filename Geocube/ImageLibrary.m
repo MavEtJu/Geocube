@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImageLibrary ()
+{
+    UIImage *imgs[ImageLibraryImagesMax];
+    UIImage *ratingImages[11];
+    NSString *names[ImageLibraryImagesMax];
+    NSMutableDictionary *pinImages, *typeImages;
+};
+
+@end
+
 @implementation ImageLibrary
 
 - (instancetype)init

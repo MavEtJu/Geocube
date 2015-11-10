@@ -19,16 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface AppDelegate : UIResponder <UITabBarControllerDelegate> {
-    NSMutableArray *tabBars;
-}
+@interface AppDelegate : UIResponder <UITabBarControllerDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) NSMutableArray *tabBars;
 @property (nonatomic) NSInteger currentTabBar;
 
 - (void)switchController:(NSInteger)idx;
-
 
 @end
 

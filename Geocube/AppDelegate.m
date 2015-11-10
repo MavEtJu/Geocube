@@ -23,6 +23,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface AppDelegate () {
+    NSMutableArray *tabBars;
+}
+
+@property (strong, nonatomic) UIWindow *window;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize tabBars, currentTabBar;

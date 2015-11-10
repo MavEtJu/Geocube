@@ -21,6 +21,38 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface MyConfig ()
+{
+    NSMutableArray *delegates;
+
+    BOOL distanceMetric;
+
+    NSString *currentWaypoint;
+    NSInteger currentPage;
+    NSInteger currentPageTab;
+
+    NSId currentTrack;
+
+    NSInteger lastImportSource;
+    NSInteger lastImportGroup;
+    NSInteger lastAddedGroup;
+
+    NSInteger compassType;
+    NSInteger themeType;
+
+    BOOL soundDirection;
+    BOOL soundDistance;
+
+    BOOL mapClustersEnable;
+    float mapClustersZoomLevel;
+
+    UIFont *GCLabelFont;
+    UIFont *GCSmallFont;
+    UIFont *GCTextblockFont;
+}
+
+@end
+
 @implementation MyConfig
 
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
