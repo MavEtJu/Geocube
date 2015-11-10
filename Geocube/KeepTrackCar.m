@@ -21,6 +21,31 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface KeepTrackCar ()
+{
+    CLLocationCoordinate2D coordsRecordedLocation;
+
+    CGRect rectRecordedLocation;
+    CGRect rectRecordedLocationCoordinates;
+    CGRect rectCurrentLocation;
+    CGRect rectCurrentLocationCoordinates;
+    CGRect rectDistance;
+    CGRect rectDirection;
+    CGRect rectButtonRemember;
+    CGRect rectButtonSetAsTarget;
+
+    GCLabel *labelRecordedLocation;
+    GCLabel *labelRecordedLocationCoordinates;
+    GCLabel *labelCurrentLocation;
+    GCLabel *labelCurrentLocationCoordinates;
+    GCLabel *labelDistance;
+    GCLabel *labelDirection;
+    UIButton *buttonRemember;
+    UIButton *buttonSetAsTarget;
+}
+
+@end
+
 @implementation KeepTrackCar
 
 - (instancetype)init

@@ -19,26 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackCar : GCViewController<LocationManagerDelegate> {
-    CLLocationCoordinate2D coordsRecordedLocation;
-
-    CGRect rectRecordedLocation;
-    CGRect rectRecordedLocationCoordinates;
-    CGRect rectCurrentLocation;
-    CGRect rectCurrentLocationCoordinates;
-    CGRect rectDistance;
-    CGRect rectDirection;
-    CGRect rectButtonRemember;
-    CGRect rectButtonSetAsTarget;
-
-    GCLabel *labelRecordedLocation;
-    GCLabel *labelRecordedLocationCoordinates;
-    GCLabel *labelCurrentLocation;
-    GCLabel *labelCurrentLocationCoordinates;
-    GCLabel *labelDistance;
-    GCLabel *labelDirection;
-    UIButton *buttonRemember;
-    UIButton *buttonSetAsTarget;
-}
+@interface KeepTrackCar : GCViewController <LocationManagerDelegate>
 
 @end

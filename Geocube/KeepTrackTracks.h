@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackTracks : GCTableViewController {
-    NSMutableArray *tracks;
-}
+@interface KeepTrackTracks : GCTableViewController
 
 @end

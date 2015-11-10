@@ -19,20 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackTrack : GCViewController {
-    dbTrack *track;
-    CGFloat distance;
-
-    CGRect rectTrackImage;
-    CGRect rectName;
-    CGRect rectDate;
-    CGRect rectDistance;
-
-    GCLabel *labelName;
-    GCLabel *labelDate;
-    GCLabel *labelDistance;
-    UIImageView *ivTrackImage;
-}
+@interface KeepTrackTrack : GCViewController
 
 - (void)showTrack:(dbTrack *)track;
 

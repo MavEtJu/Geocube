@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface KeepTrackTracks ()
+{
+    NSMutableArray *tracks;
+}
+
+@end
+
 @implementation KeepTrackTracks
 
 #define THISCELL @"KeepTrackTracksCell"
