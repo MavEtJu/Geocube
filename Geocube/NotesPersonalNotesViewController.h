@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesPersonalNotesViewController : GCTableViewController {
-    NSArray *pns;
-    NSMutableArray *notes;
-}
+@interface NotesPersonalNotesViewController : GCTableViewController
 
 @end

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface HelpDatabaseViewController : GCTableViewController {
-    NSArray *fields1;
-    NSArray *values1;
-    NSArray *config;
-}
+@interface HelpDatabaseViewController : GCTableViewController
 
 @end

@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface HelpDatabaseViewController ()
+{
+    NSArray *fields1;
+    NSArray *values1;
+    NSArray *config;
+}
+
+@end
+
 @implementation HelpDatabaseViewController
 
 #define THISCELL @"HelpDatabaseViewController"

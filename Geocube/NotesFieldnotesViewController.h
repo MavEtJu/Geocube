@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesFieldnotesViewController : GCTableViewController {
-    NSArray *waypointsWithLogs;
-    NSMutableArray *logs;
-}
+@interface NotesFieldnotesViewController : GCTableViewController
 
 @end

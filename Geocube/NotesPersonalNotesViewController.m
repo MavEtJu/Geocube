@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface NotesPersonalNotesViewController ()
+{
+    NSArray *pns;
+    NSMutableArray *notes;
+}
+
+@end
+
 @implementation NotesPersonalNotesViewController
 
 #define THISCELL @"NotesPersonalNotesViewcell"

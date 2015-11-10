@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface NotesImagesViewController ()
+{
+    NSArray *waypointsWithImages;
+}
+
+@end
+
 @implementation NotesImagesViewController
 
 #define THISCELL @"NotesImagesViewcell"

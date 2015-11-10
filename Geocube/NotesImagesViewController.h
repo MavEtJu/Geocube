@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesImagesViewController : GCTableViewController {
-    NSArray *waypointsWithImages;
-}
+@interface NotesImagesViewController : GCTableViewController
 
 @end

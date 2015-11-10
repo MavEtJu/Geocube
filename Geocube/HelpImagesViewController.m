@@ -21,6 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface HelpImagesViewController ()
+{
+    NSMutableArray *imgs;
+    NSMutableArray *names;
+    NSMutableArray *numbers;
+    NSInteger imgCount;
+}
+
+@end
+
 #define THISCELL @"HelpImagesCells"
 
 enum {

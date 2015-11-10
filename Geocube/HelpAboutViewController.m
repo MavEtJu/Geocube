@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface HelpAboutViewController ()
+{
+    NSInteger width;
+}
+
+@end
+
 @implementation HelpAboutViewController
 
 - (instancetype)init
