@@ -29,6 +29,8 @@
     GMSMarker *me;
     NSMutableArray *markers;
 
+    LXMapScaleView *mapScaleView;
+
     GMSPolyline *lineMeToWaypoint;
     GMSPolyline *lineHistory;
 }
@@ -45,12 +47,18 @@
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
 
+    mapScaleView = [LXMapScaleView mapScaleForGMSMapView:mapView];
+    mapScaleView.position = kLXMapScalePositionBottomLeft;
+    mapScaleView.style = kLXMapScaleStyleBar;
+    [mapScaleView update];
+
     self.view = mapView;
 }
 
 - (void)removeMap
 {
     mapView = nil;
+    mapScaleView = nil;
 }
 
 - (void)initCamera
@@ -131,6 +139,8 @@
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
     [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+
+    [mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
@@ -140,6 +150,8 @@
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
     [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+
+    [mapScaleView update];
 }
 
 - (void)addLineMeToWaypoint
@@ -216,6 +228,9 @@
 {
     if (gesture == YES)
         [super userInteraction];
+
+    // Update the ruler
+    [mapScaleView update];
 }
 
 @end

@@ -71,7 +71,7 @@
  */
 
     /* Add the scale ruler */
-    mapScaleView = [LXMapScaleView mapScaleForMapView:mapView];
+    mapScaleView = [LXMapScaleView mapScaleForAMSMapView:mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
