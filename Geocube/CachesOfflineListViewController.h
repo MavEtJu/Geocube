@@ -19,10 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, CacheFilterManagerDelegate> {
-    NSArray *waypoints;
-    NSInteger waypointCount;
-}
+@interface CachesOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, CacheFilterManagerDelegate>
 
 @property (strong, nonatomic) UISearchController *searchController;
 

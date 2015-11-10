@@ -21,6 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface CachesOfflineListViewController ()
+{
+    NSArray *waypoints;
+    NSInteger waypointCount;
+}
+
+@end
+
 #define THISCELL @"cachetableviewcell"
 #define THISCELL_HEADER @"cachetableviewcellHeader"
 

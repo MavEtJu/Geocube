@@ -21,6 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface UserProfileViewController ()
+{
+    UIScrollView *contentView;
+    NSMutableArray *accountViews;
+
+    NSInteger width;
+
+    NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
+}
+
+@end
+
 @implementation UserProfileViewController
 
 - (instancetype)init

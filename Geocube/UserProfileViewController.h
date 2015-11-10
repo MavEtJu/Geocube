@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface UserProfileViewController : GCViewController {
-    UIScrollView *contentView;
-    NSMutableArray *accountViews;
-
-    NSInteger width;
-
-    NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
-}
+@interface UserProfileViewController : GCViewController
 
 @end

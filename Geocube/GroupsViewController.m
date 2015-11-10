@@ -21,6 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface GroupsViewController ()
+{
+    NSInteger cgCount;
+    NSArray *cgs;
+    BOOL showUsers;
+}
+
+@end
+
 #define THISCELL @"GroupsViewControllerCell"
 
 @implementation GroupsViewController

@@ -26,53 +26,6 @@ enum GCCompassType {
     COMPASS_AIRPLANE
 };
 
-@interface CompassViewController : GCViewController<LocationManagerDelegate> {
-
-    UIImage *compassImage;
-    UIImageView *compassIV;
-    UIImage *lineImage;
-    UIImageView *lineIV;
-
-    UIImageView *wpIconIV;
-    GCLabel *wpNameLabel;
-    GCLabel *wpDescriptionLabel;
-    GCLabel *wpLatLabel;
-    GCLabel *wpLonLabel;
-    UIImageView *containerSizeIV;
-    UIImageView *ratingDIV;
-    UIImageView *ratingTIV;
-    GCLabel *myLocationLabel;
-    GCLabel *myLatLabel;
-    GCLabel *myLonLabel;
-    GCLabel *accuracyTextLabel;
-    GCLabel *accuracyLabel;
-    GCLabel *altitudeTextLabel;
-    GCLabel *altitudeLabel;
-    GCLabel *distanceLabel;
-
-    NSInteger width;
-
-    CGRect rectIcon;
-    CGRect rectName;
-    CGRect rectCoordLat;
-    CGRect rectCoordLon;
-    CGRect rectSize;
-    CGRect rectRatingD;
-    CGRect rectRatingT;
-
-    CGRect rectDistance;
-    CGRect rectDescription;
-    CGRect rectCompass;
-
-    CGRect rectAccuracyText;
-    CGRect rectAccuracy;
-    CGRect rectMyLocation;
-    CGRect rectMyLat;
-    CGRect rectMyLon;
-    CGRect rectAltitudeText;
-    CGRect rectAltitude;
-
-    float oldCompass;
-}
+@interface CompassViewController : GCViewController<LocationManagerDelegate>
 
 @end

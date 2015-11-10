@@ -21,6 +21,40 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImportGPXViewController ()
+{
+    NSMutableArray *filenames;
+    NSMutableArray *filenamesToBeRemoved;
+    dbGroup *group;
+    dbAccount *account;
+
+    GCLabel *filenameLabel;
+    GCLabel *newWaypointsLabel;
+    GCLabel *totalWaypointsLabel;
+    GCLabel *newLogsLabel;
+    GCLabel *totalLogsLabel;
+    GCLabel *newTrackablesLabel;
+    GCLabel *totalTrackablesLabel;
+    GCLabel *progressLabel;
+    GCLabel *totalImagesLabel;
+    GCLabel *queuedImagesLabel;
+
+    NSString *filenameString;
+    NSInteger newWaypointsValue;
+    NSInteger totalWaypointsValue;
+    NSInteger newLogsValue;
+    NSInteger totalLogsValue;
+    NSInteger newTrackablesValue;
+    NSInteger totalTrackablesValue;
+    NSInteger progressValue;
+    NSInteger totalImagesValue;
+    NSInteger queuedImagesValue;
+
+    ImportGPX *imp;
+}
+
+@end
+
 @implementation ImportGPXViewController
 
 - (instancetype)init:(NSString *)_filename group:(dbGroup *)_group account:(dbAccount *)_account

@@ -21,6 +21,10 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface NullViewController ()
+
+@end
+
 @implementation NullViewController
 
 - (void)viewDidLoad {

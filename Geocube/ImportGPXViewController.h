@@ -19,36 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPXViewController : GCViewController<ImportGPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate> {
-    NSMutableArray *filenames;
-    NSMutableArray *filenamesToBeRemoved;
-    dbGroup *group;
-    dbAccount *account;
-
-    GCLabel *filenameLabel;
-    GCLabel *newWaypointsLabel;
-    GCLabel *totalWaypointsLabel;
-    GCLabel *newLogsLabel;
-    GCLabel *totalLogsLabel;
-    GCLabel *newTrackablesLabel;
-    GCLabel *totalTrackablesLabel;
-    GCLabel *progressLabel;
-    GCLabel *totalImagesLabel;
-    GCLabel *queuedImagesLabel;
-
-    NSString *filenameString;
-    NSInteger newWaypointsValue;
-    NSInteger totalWaypointsValue;
-    NSInteger newLogsValue;
-    NSInteger totalLogsValue;
-    NSInteger newTrackablesValue;
-    NSInteger totalTrackablesValue;
-    NSInteger progressValue;
-    NSInteger totalImagesValue;
-    NSInteger queuedImagesValue;
-
-    ImportGPX *imp;
-}
+@interface ImportGPXViewController : GCViewController<ImportGPXDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
 
 - (instancetype)init:(NSString *)filename group:(dbGroup *)group account:(dbAccount *)account;
 

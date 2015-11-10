@@ -19,11 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GroupsViewController : GCTableViewController {
-    NSInteger cgCount;
-    NSArray *cgs;
-    BOOL showUsers;
-}
+@interface GroupsViewController : GCTableViewController
 
 - (instancetype)init:(BOOL)showUsers;
 

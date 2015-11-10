@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface TrackablesViewController : GCTableViewController {
-    NSArray *tbs;
-}
+@interface TrackablesViewController : GCTableViewController
 
 @end

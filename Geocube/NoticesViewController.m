@@ -21,6 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface NoticesViewController ()
+{
+    NSArray *notices;
+}
+
+@end
+
 @implementation NoticesViewController
 
 #define THISCELL @"NoticesViewControllerCell"
