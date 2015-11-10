@@ -6,6 +6,7 @@
 //
 
 #import "LXMapScaleView.h"
+#import "Coordinates.h"
 
 
 static const CGRect kDefaultViewRect = {{0,0},{160,30}};
@@ -19,7 +20,8 @@ static const double kFeetPerMile = 5280.0;
 
 @interface LXMapScaleView ()
 {
-	MKMapView* mapView;
+    GMSMapView *mapViewGMS;
+	MKMapView* mapViewAMS;
 	UILabel* zeroLabel;
 	UILabel* maxLabel;
 	UILabel* unitLabel;
@@ -43,9 +45,9 @@ static const double kFeetPerMile = 5280.0;
 
 
 // -----------------------------------------------------------------------------
-// LXMapScaleView::mapScaleForMapView:
+// LXMapScaleView::mapScaleForAMSMapView:
 // -----------------------------------------------------------------------------
-+ (LXMapScaleView*)mapScaleForMapView:(MKMapView*)aMapView
++ (LXMapScaleView*)mapScaleForAMSMapView:(MKMapView*)aMapView
 {
 	if ( !aMapView )
 	{
@@ -63,6 +65,27 @@ static const double kFeetPerMile = 5280.0;
     return [[LXMapScaleView alloc] initWithMapView:aMapView];
 }
 
+// -----------------------------------------------------------------------------
+// LXMapScaleView::mapScaleForGMSMapView:
+// -----------------------------------------------------------------------------
++ (LXMapScaleView*)mapScaleForGMSMapView:(GMSMapView*)aGMSMapView
+{
+	if ( !aGMSMapView )
+	{
+		return nil;
+	}
+	
+	for ( UIView* subview in aGMSMapView.subviews )
+	{
+		if ( [subview isKindOfClass:[LXMapScaleView class]] )
+		{
+			return (LXMapScaleView*)subview;
+		}
+	}
+
+    return [[LXMapScaleView alloc] initWithGMSMapView:aGMSMapView];
+}
+
 
 // -----------------------------------------------------------------------------
 // LXMapScaleView::initWithMapView:
@@ -75,7 +98,33 @@ static const double kFeetPerMile = 5280.0;
 		self.clipsToBounds = YES;
 		self.userInteractionEnabled = NO;
 		
-		mapView = aMapView;
+		mapViewAMS = aMapView;
+		metric = YES;
+		style = kLXMapScaleStyleBar;
+		position = kLXMapScalePositionBottomLeft;
+		padding = kDefaultPadding;
+		maxWidth = kDefaultViewRect.size.width;
+		
+		[self constructLabels];
+		
+		[aMapView addSubview:self];
+	}
+	
+	return self;
+}
+
+// -----------------------------------------------------------------------------
+// LXMapScaleView::initWithGMSMapView:
+// -----------------------------------------------------------------------------
+- (id)initWithGMSMapView:(GMSMapView*)aMapView
+{
+	if ( (self = [super initWithFrame:kDefaultViewRect]) )
+	{
+		self.opaque = NO;
+		self.clipsToBounds = YES;
+		self.userInteractionEnabled = NO;
+		
+		mapViewGMS = aMapView;
 		metric = YES;
 		style = kLXMapScaleStyleBar;
 		position = kLXMapScalePositionBottomLeft;
@@ -132,13 +181,25 @@ static const double kFeetPerMile = 5280.0;
 // -----------------------------------------------------------------------------
 - (void)update
 {
-	if ( !mapView || !mapView.bounds.size.width )
-	{
-		return;
-	}
-	
-	CLLocationDistance horizontalDistance = MKMetersPerMapPointAtLatitude(mapView.centerCoordinate.latitude);
-	float metersPerPixel = mapView.visibleMapRect.size.width * horizontalDistance / mapView.bounds.size.width;
+    if ( mapViewAMS == nil && mapViewGMS == nil)
+        return;
+    if ( mapViewAMS.bounds.size.width == 0 && mapViewGMS.bounds.size.width == 0)
+        return;
+
+    CLLocationDistance horizontalDistance;
+    float metersPerPixel = 0;
+
+    if (mapViewAMS != nil) {
+    	horizontalDistance = MKMetersPerMapPointAtLatitude(mapViewAMS.centerCoordinate.latitude);
+    	metersPerPixel = mapViewAMS.visibleMapRect.size.width * horizontalDistance / mapViewAMS.bounds.size.width;
+        NSLog(@"AMS: %f %f", horizontalDistance, metersPerPixel);
+    }
+    if (mapViewGMS != nil) {
+        GMSVisibleRegion region = [mapViewGMS.projection visibleRegion];
+        horizontalDistance = [Coordinates coordinates2distance:region.farLeft to:region.nearRight];
+        metersPerPixel = horizontalDistance / mapViewGMS.bounds.size.width;
+        NSLog(@"GMS: %f %f", horizontalDistance, metersPerPixel);
+    }
 	
 	CGFloat maxScaleWidth = maxWidth-40;
 	
@@ -332,7 +393,11 @@ static const double kFeetPerMile = 5280.0;
 								 unitLabelSize.width,
 								 unitLabelSize.height);
 	
-	CGSize mapSize = mapView.bounds.size;
+    CGSize mapSize = CGSizeMake(0, 0);
+    if (mapViewAMS != nil)
+    	mapSize = mapViewAMS.bounds.size;
+    if (mapViewGMS != nil)
+    	mapSize = mapViewGMS.bounds.size;
 	CGRect frame = self.bounds;
 	frame.size.width = CGRectGetMaxX(unitLabel.frame) - CGRectGetMinX(zeroLabel.frame);
 	
@@ -399,7 +464,7 @@ static const double kFeetPerMile = 5280.0;
 // -----------------------------------------------------------------------------
 - (void)drawRect:(CGRect)aRect
 {
-	if ( !mapView )
+	if ( !mapViewAMS && !mapViewGMS)
 	{
 		return;
 	}

@@ -5,6 +5,8 @@
 //  Copyright (c) 2012 LKXF. All rights reserved.
 //
 
+@import GoogleMaps;
+
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
@@ -84,7 +86,8 @@ typedef enum
  * \param aMapView The map view for which the scale view is to be returned.
  * \return A handle to the scale view. (Note that ownership is not passed!)
  */
-+ (LXMapScaleView*)mapScaleForMapView:(MKMapView*)aMapView;
++ (LXMapScaleView*)mapScaleForAMSMapView:(MKMapView*)aMapView;
++ (LXMapScaleView*)mapScaleForGMSMapView:(GMSMapView *)aMapView;
 
 
 /**
