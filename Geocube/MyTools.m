@@ -207,26 +207,34 @@
     return [NSString stringWithFormat:@"%ld Mb", (long)(i / (1024 * 1024))];
 }
 
-+ (NSString *)NiceDistance:(NSInteger)i
++ (NSString *)NiceDistance:(NSInteger)m
 {
     if (myConfig.distanceMetric == YES) {
-        if (i < 1000)
-            return [NSString stringWithFormat:@"%ld m", (long)i];
-        if (i < 10000)
-            return [NSString stringWithFormat:@"%0.2f km", i / 1000.0];
-        return [NSString stringWithFormat:@"%ld km", (long)i / 1000];
+        if (m < 1000)
+            return [NSString stringWithFormat:@"%ld m", (long)m];
+        if (m < 10000)
+            return [NSString stringWithFormat:@"%0.2f km", m / 1000.0];
+        return [NSString stringWithFormat:@"%ld km", (long)m / 1000];
     } else {
         /* Metric to imperial conversions
          * 1 mile is 1.6093 kilometers
          * 1 foot is 0.30480 meters
          */
-        if (i <= 161)   // 1/10th of a mile
-            return [NSString stringWithFormat:@"%ld feet", (long)(i / 0.30480)];
-        if (i <= 16093)   // 10 miles
-            return [NSString stringWithFormat:@"%0.2f miles", i / 1609.3];
-        return [NSString stringWithFormat:@"%ld miles", (long)(i / 1609.3)];
+        if (m <= 161)   // 1/10th of a mile
+            return [NSString stringWithFormat:@"%ld feet", (long)(m / 0.30480)];
+        if (m <= 16093)   // 10 miles
+            return [NSString stringWithFormat:@"%0.2f miles", m / 1609.3];
+        return [NSString stringWithFormat:@"%ld miles", (long)(m / 1609.3)];
     }
+}
 
++ (NSString *)NiceSpeed:(NSInteger)kmph
+{
+    if (myConfig.distanceMetric == YES) {
+        return [NSString stringWithFormat:@"%ld km/h", (long)kmph];
+    } else {
+        return [NSString stringWithFormat:@"%ld mph", (long)(kmph / 1.6093)];
+    }
 }
 
 + (NSString *)niceTimeDifference:(NSInteger)i
