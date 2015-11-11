@@ -29,6 +29,8 @@
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
 
     CLLocationCoordinate2D meLocation;
+
+    UILabel *distanceLabel;
 }
 
 @end
@@ -70,6 +72,13 @@ NEEDS_OVERLOADING(addHistory)
     [self initMenu];
     [self initMap];
     [self initCamera];
+
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+    NSInteger height = applicationFrame.size.height - 50;
+    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake( width - 250, height - 20, 250, 20)];
+    distanceLabel.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:distanceLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -119,6 +128,13 @@ NEEDS_OVERLOADING(addHistory)
     [self removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
         [self addLineMeToWaypoint];
+
+    if (waypointManager.currentWaypoint != nil) {
+        NSString *distance = [MyTools NiceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
+        distanceLabel.text = distance;
+    } else {
+        distanceLabel.text = @"";
+    }
 }
 
 - (void)updateLocationManagerHistory
