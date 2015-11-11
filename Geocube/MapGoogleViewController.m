@@ -181,7 +181,7 @@
 
     lineHistory = [GMSPolyline polylineWithPath:pathMeToWaypoint];
     lineHistory.strokeWidth = 2.f;
-    lineHistory.strokeColor = [UIColor redColor];
+    lineHistory.strokeColor = [UIColor colorWithRed:0 green:240.0/256.0 blue:240.0/256.0 alpha:1];
     lineHistory.map = mapView;
 }
 
