@@ -52,6 +52,14 @@
 @property (nonatomic, readonly, retain) UIFont *GCSmallFont;
 @property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
 
+@property (nonatomic) BOOL dynamicmapEnable;
+@property (nonatomic) NSInteger dynamicmapWalkingSpeed;
+@property (nonatomic) NSInteger dynamicmapWalkingDistance;
+@property (nonatomic) NSInteger dynamicmapCyclingSpeed;
+@property (nonatomic) NSInteger dynamicmapCyclingDistance;
+@property (nonatomic) NSInteger dynamicmapDrivingSpeed;
+@property (nonatomic) NSInteger dynamicmapDrivingDistance;
+
 - (void)addDelegate:(id)destination;
 - (void)deleteDelegate:(id)destination;
 
@@ -69,5 +77,12 @@
 - (void)soundDistanceUpdate:(BOOL)value;
 - (void)mapClustersUpdateEnable:(BOOL)value;
 - (void)mapClustersUpdateZoomLevel:(float)value;
+- (void)dynamicmapEnableUpdate:(BOOL)value;
+- (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value;
+- (void)dynamicmapWalkingDistanceUpdate:(NSInteger)value;
+- (void)dynamicmapCyclingSpeedUpdate:(NSInteger)value;
+- (void)dynamicmapCyclingDistanceUpdate:(NSInteger)value;
+- (void)dynamicmapDrivingSpeedUpdate:(NSInteger)value;
+- (void)dynamicmapDrivingDistanceUpdate:(NSInteger)value;
 
 @end

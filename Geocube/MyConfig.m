@@ -49,6 +49,14 @@
     UIFont *GCLabelFont;
     UIFont *GCSmallFont;
     UIFont *GCTextblockFont;
+
+    BOOL dynamicmapEnable;
+    NSInteger dynamicmapWalkingSpeed;
+    NSInteger dynamicmapWalkingDistance;
+    NSInteger dynamicmapCyclingSpeed;
+    NSInteger dynamicmapCyclingDistance;
+    NSInteger dynamicmapDrivingSpeed;
+    NSInteger dynamicmapDrivingDistance;
 }
 
 @end
@@ -61,6 +69,7 @@
 @synthesize soundDirection, soundDistance;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
+@synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 
 - (instancetype)init
 {
@@ -135,6 +144,14 @@
     CHECK(@"sound_distance", @"0");
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
+
+    CHECK(@"dynamicmap_enable", @"1");
+    CHECK(@"dynamicmap_speed_walking", @"7");
+    CHECK(@"dynamicmap_speed_cycling", @"40");
+    CHECK(@"dynamicmap_speed_driving", @"120");
+    CHECK(@"dynamicmap_distance_walking", @"100");
+    CHECK(@"dynamicmap_distance_cycling", @"1000");
+    CHECK(@"dynamicmap_distance_driving", @"5000");
 }
 
 - (void)loadValues
@@ -153,6 +170,13 @@
     soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
+    dynamicmapEnable = [[dbConfig dbGetByKey:@"dynamicmap_enable"].value boolValue];
+    dynamicmapWalkingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_walking"].value floatValue];
+    dynamicmapCyclingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_cycling"].value floatValue];
+    dynamicmapDrivingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_driving"].value floatValue];
+    dynamicmapWalkingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_walking"].value integerValue];
+    dynamicmapCyclingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_cycling"].value integerValue];
+    dynamicmapDrivingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_driving"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -229,7 +253,6 @@
     currentPage = value;
     [self NSIntegerUpdate:@"page_current" value:value];
 }
-
 - (void)currentPageTabUpdate:(NSInteger)value
 {
     currentPageTab = value;
@@ -247,13 +270,11 @@
     lastImportGroup = value;
     [self NSIntegerUpdate:@"lastimport_group" value:value];
 }
-
 - (void)lastAddedGroupUpdate:(NSInteger)value
 {
     lastAddedGroup = value;
     [self NSIntegerUpdate:@"lastadded_group" value:value];
 }
-
 - (void)lastImportSourceUpdate:(NSInteger)value
 {
     lastImportSource = value;
@@ -277,7 +298,6 @@
     soundDirection = value;
     [self BOOLUpdate:@"sound_direction" value:value];
 }
-
 - (void)soundDistanceUpdate:(BOOL)value
 {
     soundDistance = value;
@@ -290,12 +310,47 @@
     [self BOOLUpdate:@"map_clusters_enable" value:value];
     [self sendDelegatesMapClusters];
 }
-
 - (void)mapClustersUpdateZoomLevel:(float)value
 {
     mapClustersZoomLevel = value;
     [self FloatUpdate:@"map_clusters_zoomlevel" value:value];
     [self sendDelegatesMapClusters];
+}
+
+- (void)dynamicmapEnableUpdate:(BOOL)value
+{
+    dynamicmapEnable = value;
+    [self BOOLUpdate:@"dynamicmap_enable" value:value];
+}
+- (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value
+{
+    dynamicmapWalkingSpeed = value;
+    [self NSIntegerUpdate:@"dynamicmap_speed_walking" value:value];
+}
+- (void)dynamicmapWalkingDistanceUpdate:(NSInteger)value
+{
+    dynamicmapWalkingDistance = value;
+    [self NSIntegerUpdate:@"dynamicmap_distance_walking" value:value];
+}
+- (void)dynamicmapCyclingSpeedUpdate:(NSInteger)value
+{
+    dynamicmapCyclingSpeed = value;
+    [self NSIntegerUpdate:@"dynamicmap_speed_cycling" value:value];
+}
+- (void)dynamicmapCyclingDistanceUpdate:(NSInteger)value
+{
+    dynamicmapCyclingDistance = value;
+    [self NSIntegerUpdate:@"dynamicmap_distance_cycling" value:value];
+}
+- (void)dynamicmapDrivingSpeedUpdate:(NSInteger)value
+{
+    dynamicmapDrivingSpeed = value;
+    [self NSIntegerUpdate:@"dynamicmap_speed_driving" value:value];
+}
+- (void)dynamicmapDrivingDistanceUpdate:(NSInteger)value
+{
+    dynamicmapDrivingDistance = value;
+    [self NSIntegerUpdate:@"dynamicmap_distance_driving" value:value];
 }
 
 @end
