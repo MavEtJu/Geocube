@@ -42,7 +42,9 @@
 + (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)niceTimeDifference:(NSInteger)i;
 + (NSString *)NiceDistance:(NSInteger)m;
++ (NSString *)NiceDistance:(NSInteger)m isMetric:(BOOL)isMetric;
 + (NSString *)NiceSpeed:(NSInteger)kmph;
++ (NSString *)NiceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
 
 - (instancetype)initClock:(NSString *)title;
 - (void)clockShowAndReset;

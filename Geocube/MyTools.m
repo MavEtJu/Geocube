@@ -209,7 +209,12 @@
 
 + (NSString *)NiceDistance:(NSInteger)m
 {
-    if (myConfig.distanceMetric == YES) {
+    return [MyTools NiceDistance:m isMetric:myConfig.distanceMetric];
+}
+
++ (NSString *)NiceDistance:(NSInteger)m isMetric:(BOOL)isMetric
+{
+    if (isMetric == YES) {
         if (m < 1000)
             return [NSString stringWithFormat:@"%ld m", (long)m];
         if (m < 10000)
@@ -230,10 +235,18 @@
 
 + (NSString *)NiceSpeed:(NSInteger)kmph
 {
-    if (myConfig.distanceMetric == YES) {
+    return [MyTools NiceSpeed:kmph isMetric:myConfig.distanceMetric];
+}
+
++ (NSString *)NiceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric
+{
+    if (isMetric == YES) {
         return [NSString stringWithFormat:@"%ld km/h", (long)kmph];
     } else {
-        return [NSString stringWithFormat:@"%ld mph", (long)(kmph / 1.6093)];
+        if (kmph / 1.6093 < 10)
+            return [NSString stringWithFormat:@"%0.2f mph", (kmph / 1.6093)];
+        else
+            return [NSString stringWithFormat:@"%ld mph", (long)(kmph / 1.6093)];
     }
 }
 
