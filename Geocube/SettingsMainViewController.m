@@ -28,9 +28,24 @@
     UISwitch *soundDirection;
     UISwitch *soundDistance;
     UISwitch *mapClustersEnable;
+    UISwitch *dynamicmapEnable;
     float mapClustersZoomlevel;
 
     NSArray *compassTypes;
+
+    NSMutableArray *speedsWalkingMetric;
+    NSMutableArray *speedsCyclingMetric;
+    NSMutableArray *speedsDrivingMetric;
+    NSMutableArray *speedsWalking;
+    NSMutableArray *speedsCycling;
+    NSMutableArray *speedsDriving;
+
+    NSMutableArray *distancesWalkingMetric;
+    NSMutableArray *distancesCyclingMetric;
+    NSMutableArray *distancesDrivingMetric;
+    NSMutableArray *distancesWalking;
+    NSMutableArray *distancesCycling;
+    NSMutableArray *distancesDriving;
 }
 
 @end
@@ -49,13 +64,83 @@
     menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
+
+    [self calculateDynamicmapSpeedsDistances];
+}
+
+- (void)calculateDynamicmapSpeedsDistances
+{
+    speedsWalking = [NSMutableArray arrayWithCapacity:20];
+    speedsCycling = [NSMutableArray arrayWithCapacity:20];
+    speedsDriving = [NSMutableArray arrayWithCapacity:20];
+    speedsWalkingMetric = [NSMutableArray arrayWithCapacity:20];
+    speedsCyclingMetric = [NSMutableArray arrayWithCapacity:20];
+    speedsDrivingMetric = [NSMutableArray arrayWithCapacity:20];
+
+    distancesWalking = [NSMutableArray arrayWithCapacity:20];
+    distancesCycling = [NSMutableArray arrayWithCapacity:20];
+    distancesDriving = [NSMutableArray arrayWithCapacity:20];
+    distancesWalkingMetric = [NSMutableArray arrayWithCapacity:20];
+    distancesCyclingMetric = [NSMutableArray arrayWithCapacity:20];
+    distancesDrivingMetric = [NSMutableArray arrayWithCapacity:20];
+
+#define SPEED_WALKING_MIN   1
+#define SPEED_WALKING_MAX   10
+#define SPEED_WALKING_INC   1
+
+#define SPEED_CYCLING_MIN   10
+#define SPEED_CYCLING_MAX   50
+#define SPEED_CYCLING_INC   5
+
+#define SPEED_DRIVING_MIN   20
+#define SPEED_DRIVING_MAX   180
+#define SPEED_DRIVING_INC   10
+
+#define DISTANCE_WALKING_MIN    50
+#define DISTANCE_WALKING_MAX    500
+#define DISTANCE_WALKING_INC    50
+
+#define DISTANCE_CYCLING_MIN    100
+#define DISTANCE_CYCLING_MAX    2000
+#define DISTANCE_CYCLING_INC    100
+
+#define DISTANCE_DRIVING_MIN    250
+#define DISTANCE_DRIVING_MAX    5000
+#define DISTANCE_DRIVING_INC    250
+
+    for (NSInteger i = SPEED_WALKING_MIN; i <= SPEED_WALKING_MAX; i += SPEED_WALKING_INC) {
+        [speedsWalking addObject:[MyTools NiceSpeed:i]];
+        [speedsWalkingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+    for (NSInteger i = SPEED_CYCLING_MIN; i <= SPEED_CYCLING_MAX; i += SPEED_CYCLING_INC) {
+        [speedsCycling addObject:[MyTools NiceSpeed:i]];
+        [speedsCyclingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+    for (NSInteger i = SPEED_DRIVING_MIN; i <= SPEED_DRIVING_MAX; i += SPEED_DRIVING_INC) {
+        [speedsDriving addObject:[MyTools NiceSpeed:i]];
+        [speedsDrivingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+
+    for (NSInteger i = DISTANCE_WALKING_MIN; i <= DISTANCE_WALKING_MAX; i += DISTANCE_WALKING_INC) {
+        [distancesWalking addObject:[MyTools NiceDistance:i]];
+        [distancesWalkingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+    for (NSInteger i = DISTANCE_CYCLING_MIN; i <= DISTANCE_CYCLING_MAX; i += DISTANCE_CYCLING_INC) {
+        [distancesCycling addObject:[MyTools NiceDistance:i]];
+        [distancesCyclingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+    for (NSInteger i = DISTANCE_DRIVING_MIN; i <= DISTANCE_DRIVING_MAX; i += DISTANCE_DRIVING_INC) {
+        [distancesDriving addObject:[MyTools NiceDistance:i]];
+        [distancesDrivingMetric addObject:[NSNumber numberWithInteger:i]];
+    }
+
 }
 
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 4;
+    return 5;
 }
 
 enum sections {
@@ -63,6 +148,7 @@ enum sections {
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_MAPS,
+    SECTION_DYNAMICMAP,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -80,6 +166,14 @@ enum sections {
     SECTION_MAPS_ZOOMLEVEL,
     SECTION_MAPS_MAX,
 
+    SECTION_DYNAMICMAP_ENABLED = 0,
+    SECTION_DYNAMICMAP_SPEED_WALKING,
+    SECTION_DYNAMICMAP_SPEED_CYCLING,
+    SECTION_DYNAMICMAP_SPEED_DRIVING,
+    SECTION_DYNAMICMAP_DISTANCE_WALKING,
+    SECTION_DYNAMICMAP_DISTANCE_CYCLING,
+    SECTION_DYNAMICMAP_DISTANCE_DRIVING,
+    SECTION_DYNAMICMAP_MAX,
 };
 
 // Rows per section
@@ -94,6 +188,8 @@ enum sections {
             return SECTION_SOUNDS_MAX;
         case SECTION_MAPS: // Maps section
             return SECTION_MAPS_MAX;
+        case SECTION_DYNAMICMAP: // Maps section
+            return SECTION_DYNAMICMAP_MAX;
     }
 
     return 0;
@@ -111,6 +207,8 @@ enum sections {
             return @"Sounds";
         case SECTION_MAPS:
             return @"Maps";
+        case SECTION_DYNAMICMAP:
+            return @"Dynamic Maps";
     }
 
     return nil;
@@ -209,8 +307,89 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
-                    cell.textLabel.text = @"Maxmimum zoom level for clustering";
+
+                    cell.textLabel.text = @"Maximum zoom level for clustering";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
+
+                    return cell;
+                }
+            }
+            break;
+        }
+
+        case SECTION_DYNAMICMAP: {
+            switch (indexPath.row) {
+                case SECTION_DYNAMICMAP_ENABLED: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
+                    cell.textLabel.text = @"Enable dynamic maps";
+
+                    dynamicmapEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    dynamicmapEnable.on = myConfig.dynamicmapEnable;
+                    [dynamicmapEnable addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = dynamicmapEnable;
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_SPEED_WALKING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Maximum walking speed";
+                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapWalkingSpeed];
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_SPEED_CYCLING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Maximum cycling speed";
+                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapCyclingSpeed];
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_SPEED_DRIVING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Maximum driving speed";
+                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapDrivingSpeed];
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Walking zoom-out distance";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance]];
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_DISTANCE_CYCLING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Cycling zoom-out distance";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance], [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance]];
+
+                    return cell;
+                }
+                case SECTION_DYNAMICMAP_DISTANCE_DRIVING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Driving zoom-out distance";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance], [MyTools NiceDistance:myConfig.dynamicmapDrivingDistance]];
 
                     return cell;
                 }
@@ -223,9 +402,16 @@ enum sections {
     return nil;
 }
 
+- (void)updateDynamicmapEnable:(UISwitch *)s
+{
+    [myConfig dynamicmapEnableUpdate:s.on];
+}
+
 - (void)updateDistanceMetric:(UISwitch *)s
 {
     [myConfig distanceMetricUpdate:s.on];
+    [self calculateDynamicmapSpeedsDistances];
+    [self.tableView reloadData];
 }
 
 - (void)updateSoundDistance:(UISwitch *)s
@@ -246,19 +432,167 @@ enum sections {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == SECTION_THEME) {   // Theme
-        if (indexPath.row == SECTION_THEME_THEME)
-            [self updateThemeTheme];
-        if (indexPath.row == SECTION_THEME_COMPASS)
-            [self updateThemeCompass];
-        return;
-    }
-    if (indexPath.section == SECTION_MAPS) {
-        if (indexPath.row == SECTION_MAPS_ZOOMLEVEL)
-            [self updateMapZoomLevel];
-        return;
+    switch (indexPath.section) {
+        case SECTION_THEME:
+            switch (indexPath.row) {
+                case SECTION_THEME_THEME:
+                    [self updateThemeTheme];
+                    break;
+                case SECTION_THEME_COMPASS:
+                    [self updateThemeCompass];
+                    break;
+            }
+            return;
+        case SECTION_MAPS:
+            switch (indexPath.row) {
+                case SECTION_MAPS_ZOOMLEVEL:
+                    [self updateMapZoomLevel];
+                    break;
+            }
+            return;
+        case SECTION_DYNAMICMAP:
+            switch (indexPath.row) {
+                case SECTION_DYNAMICMAP_SPEED_WALKING:
+                case SECTION_DYNAMICMAP_SPEED_CYCLING:
+                case SECTION_DYNAMICMAP_SPEED_DRIVING:
+                    [self updateDynamicmapSpeed:indexPath.row];
+                    break;
+                case SECTION_DYNAMICMAP_DISTANCE_WALKING:
+                case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
+                case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
+                    [self updateDynamicmapDistance:indexPath.row];
+                    break;
+            }
+            return;
     }
 }
+
+- (void)updateDynamicmapSpeed:(NSInteger)row
+{
+    NSArray *speeds = nil;
+    NSString *title = nil;
+    NSString *currentSpeed = nil;
+    SEL successAction = nil;
+    switch (row) {
+        case SECTION_DYNAMICMAP_SPEED_WALKING:
+            speeds = speedsWalking;
+            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapWalkingSpeed];
+            title = @"Maximum walking speed";
+            successAction = @selector(updateDynamicmapSpeedWalking:element:);
+            break;
+        case SECTION_DYNAMICMAP_SPEED_CYCLING:
+            speeds = speedsCycling;
+            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapCyclingSpeed];
+            title = @"Maximum cycling speed";
+            successAction = @selector(updateDynamicmapSpeedCycling:element:);
+            break;
+        case SECTION_DYNAMICMAP_SPEED_DRIVING:
+            speeds = speedsDriving;
+            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapDrivingSpeed];
+            title = @"Maximum driving speed";
+            successAction = @selector(updateDynamicmapSpeedDriving:element:);
+            break;
+    }
+
+    __block NSInteger selectedSpeed = 0;
+    [speeds enumerateObjectsUsingBlock:^(NSString *speed, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([currentSpeed isEqualToString:speed] == YES) {
+            selectedSpeed = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:title
+                                            rows:speeds
+                                initialSelection:selectedSpeed
+                                          target:self
+                                   successAction:successAction
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateDynamicmapSpeedWalking:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapWalkingSpeedUpdate:[[speedsWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)updateDynamicmapSpeedCycling:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapCyclingSpeedUpdate:[[speedsCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)updateDynamicmapSpeedDriving:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapDrivingSpeedUpdate:[[speedsDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)updateDynamicmapDistance:(NSInteger)row
+{
+    NSArray *distances = nil;
+    NSString *title = nil;
+    NSString *currentDistance = nil;
+    SEL successAction = nil;
+    switch (row) {
+        case SECTION_DYNAMICMAP_DISTANCE_WALKING:
+            distances = distancesWalking;
+            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance];
+            title = @"Maximum walking distance";
+            successAction = @selector(updateDynamicmapDistanceWalking:element:);
+            break;
+        case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
+            distances = distancesCycling;
+            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance];
+            title = @"Maximum cycling distance";
+            successAction = @selector(updateDynamicmapDistanceCycling:element:);
+            break;
+        case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
+            distances = distancesDriving;
+            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapDrivingDistance];
+            title = @"Maximum driving distance";
+            successAction = @selector(updateDynamicmapDistanceDriving:element:);
+            break;
+    }
+
+    __block NSInteger selectedDistance = 0;
+    [distances enumerateObjectsUsingBlock:^(NSString *distance, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([currentDistance isEqualToString:distance] == YES) {
+            selectedDistance = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:title
+                                            rows:distances
+                                initialSelection:selectedDistance
+                                          target:self
+                                   successAction:successAction
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateDynamicmapDistanceWalking:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapWalkingDistanceUpdate:[[distancesWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)updateDynamicmapDistanceCycling:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapCyclingDistanceUpdate:[[distancesCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)updateDynamicmapDistanceDriving:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig dynamicmapDrivingDistanceUpdate:[[distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
 
 - (void)updateThemeTheme
 {
@@ -267,7 +601,7 @@ enum sections {
                                 initialSelection:myConfig.themeType
                                           target:self
                                    successAction:@selector(updateThemeThemeSuccess:element:)
-                                    cancelAction:@selector(updateThemeThemeCancel:)
+                                    cancelAction:@selector(updateCancel:)
                                           origin:self.tableView
      ];
 }
@@ -279,7 +613,7 @@ enum sections {
                                 initialSelection:myConfig.compassType
                                           target:self
                                    successAction:@selector(updateThemeCompassSuccess:element:)
-                                    cancelAction:@selector(updateThemeCompassCancel:)
+                                    cancelAction:@selector(updateCancel:)
                                           origin:self.tableView
      ];
 }
@@ -295,7 +629,7 @@ enum sections {
                                 initialSelection:[myConfig mapClustersZoomLevel] * 2
                                           target:self
                                    successAction:@selector(updateMapZoomLevelSuccess:element:)
-                                    cancelAction:@selector(updateMapZoomLevelCancel:)
+                                    cancelAction:@selector(updateCancel:)
                                           origin:self.tableView
      ];
 }
@@ -307,21 +641,11 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateThemeCompassCancel:(id)sender
-{
-    // nothing
-}
-
 - (void)updateMapZoomLevelSuccess:(NSNumber *)selectedIndex element:(id)element
 {
     float f = [selectedIndex floatValue] / 2.0;
     [myConfig mapClustersUpdateZoomLevel:f];
     [self.tableView reloadData];
-}
-
-- (void)updateMapZoomLevelCancel:(id)sender
-{
-    // nothing
 }
 
 - (void)updateThemeThemeSuccess:(NSNumber *)selectedIndex element:(id)element
@@ -334,7 +658,7 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateThemeThemeCancel:(id)sender
+- (void)updateCancel:(id)sender
 {
     // nothing
 }
