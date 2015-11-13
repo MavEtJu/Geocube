@@ -204,6 +204,10 @@ NEEDS_OVERLOADING(addHistory)
 
 - (NSInteger)calculateSpan
 {
+
+    if ([myConfig dynamicmapEnable] == NO)
+        return [myConfig dynamicmapWalkingDistance];
+
     /*
      * 5000 |                              .
      *      |                          ....
@@ -221,17 +225,26 @@ NEEDS_OVERLOADING(addHistory)
      * Up to 10 - 30 m/s, driving speed, show between 1000 and 5000 meters around
      */
 
-    NSInteger span = 100;
-    if (LM.speed < 2) {
-        span = 100;
-    } else if (LM.speed < 10) {
-        span = 100 + (LM.speed - 2) * (1000 - 100) / (10 - 2);
+    float dmWS = [myConfig dynamicmapWalkingSpeed] / 3.6;
+    float dmCS = [myConfig dynamicmapCyclingSpeed] / 3.6;
+    float dmDS = [myConfig dynamicmapDrivingSpeed] / 3.6;
+    float dmWD = [myConfig dynamicmapWalkingDistance];
+    float dmCD = [myConfig dynamicmapCyclingDistance];
+    float dmDD = [myConfig dynamicmapDrivingDistance];
+
+    NSInteger speed = LM.speed;
+
+    NSInteger span = 0;
+    if (speed < dmWS) {
+        span = dmWD;
+    } else if (speed < dmCS) {
+        span = dmWD + (speed - dmWS) * (dmCD - dmWD) / (dmCS - dmWS);
+    } else if (speed < dmDS) {
+        span = dmCD + (speed - dmCS) * (dmDD - dmCD) / (dmDS - dmCS);
     } else {
-        span = 1000 + (LM.speed - 10) * (5000 - 1000) / (30 - 10);
+        // Don't show silly things when moving too fast (most likely due to running other apps)
+        span = dmDD;
     }
-    // Don't show silly things when moving too fast (most likely due to running other apps
-    if (span > 5000)
-        span = 5000;
     return span;
 }
 
