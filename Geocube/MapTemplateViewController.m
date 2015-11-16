@@ -284,10 +284,10 @@ NEEDS_OVERLOADING(addHistory)
     // Find the right tab and the right navigation view controller
     BHTabsViewController *tb = nil;
     UINavigationController *nvc = nil;
-    if (_AppDelegate.currentTabBar == RC_CACHESOFFLINE) {
+    if (_AppDelegate.currentTabBar == RC_WAYPOINTS) {
         // Find the right tab and the right navigation view controller
-        tb = [_AppDelegate.tabBars objectAtIndex:RC_CACHESOFFLINE];
-        nvc = [tb.viewControllers objectAtIndex:VC_CACHESOFFLINE_LIST];
+        tb = [_AppDelegate.tabBars objectAtIndex:RC_WAYPOINTS];
+        nvc = [tb.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
 
         // Pick the right view controller
         CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
@@ -297,7 +297,7 @@ NEEDS_OVERLOADING(addHistory)
             [cvc.navigationController popViewControllerAnimated:NO];
 
         // Bring the right tab to the front.
-        [tb makeTabViewCurrent:VC_CACHESOFFLINE_LIST];
+        [tb makeTabViewCurrent:VC_WAYPOINTS_LIST];
 
         // And then push the CacheViewController on top of it
         CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];

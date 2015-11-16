@@ -90,7 +90,7 @@
     UINavigationController *nav;
     UIViewController *vc;
 
-    tabBars = [[NSMutableArray alloc] initWithCapacity:12];
+    tabBars = [[NSMutableArray alloc] initWithCapacity:RC_MAX];
 
 #define TABBARCONTROLLER(__controllers__) \
     tabBarController = [[UITabBarController alloc] init]; \
@@ -143,6 +143,7 @@
 
     TABBARCONTROLLER(controllers)
 
+    // Waypoints tabs #1
     controllers = [NSMutableArray array];
 
     vc = [[FiltersViewController alloc] init];
