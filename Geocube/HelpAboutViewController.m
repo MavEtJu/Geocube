@@ -89,6 +89,9 @@
     [self.tableView reloadData];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-string-concatenation"
+
 - (void)loadTexts
 {
     texts = @[@"This software uses the following 3rd party modules. My sincere thanks to all of the above for their generousity.",
@@ -153,6 +156,8 @@
               "(http://opengameart.org/content/completion-sound)",
           ];
 }
+
+#pragma clang diagnostic pop
 
 #pragma mark - TableViewController related functions
 
