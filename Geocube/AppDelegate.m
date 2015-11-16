@@ -143,17 +143,6 @@
 
     TABBARCONTROLLER(controllers)
 
-    // Caches Online tabs #1
-    controllers = [NSMutableArray array];
-
-    vc = [[NullViewController alloc] init];
-    vc.title = @"Caches Online";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    TABBARCONTROLLER(controllers)
-
     controllers = [NSMutableArray array];
 
     vc = [[FiltersViewController alloc] init];
@@ -182,6 +171,23 @@
 
     vc = [[MapOSMViewController alloc] init:SHOW_ALLCACHES];
     vc.title = @"OSM";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    TABBARCONTROLLER(controllers)
+
+    // Keep track tabs #2
+    controllers = [NSMutableArray array];
+
+    vc = [[KeepTrackCar alloc] init];
+    vc.title = @"Car";
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden = YES;
+    [controllers addObject:nav];
+
+    vc = [[KeepTrackTracks alloc] init];
+    vc.title = @"Tracks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
@@ -347,23 +353,6 @@
 
     vc = [[HelpDatabaseViewController alloc] init];
     vc.title = @"DB";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    TABBARCONTROLLER(controllers)
-
-    // Keep track tabs #12
-    controllers = [NSMutableArray array];
-
-    vc = [[KeepTrackCar alloc] init];
-    vc.title = @"Car";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[KeepTrackTracks alloc] init];
-    vc.title = @"Tracks";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
