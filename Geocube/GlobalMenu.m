@@ -142,11 +142,6 @@
 {
     // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
 
-    if (index == 1) {
-        [themeManager setTheme:1 - [themeManager currentTheme]];
-        return;
-    }
-
     NSLog(@"Switching to %ld", (long)index);
     [myConfig currentPageUpdate:index];
     [_AppDelegate switchController:index];
