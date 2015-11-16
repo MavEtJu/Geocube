@@ -73,12 +73,11 @@ NEEDS_OVERLOADING(addHistory)
     [self initMap];
     [self initCamera];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-    NSInteger height = applicationFrame.size.height - 50;
-    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake( width - 250, height - 20, 250, 20)];
+    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     distanceLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:distanceLabel];
+
+    [self recalculateRects];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +111,26 @@ NEEDS_OVERLOADING(addHistory)
     [self removeMarkers];
     [waypointManager stopDelegation:self];
     [super viewDidDisappear:animated];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     [self recalculateRects];
+                                 }
+     ];
+}
+
+- (void)recalculateRects
+{
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+    NSInteger height = applicationFrame.size.height - 50;
+
+    distanceLabel.frame = CGRectMake(width - 250, height - 40, 250, 20);
 }
 
 /* Delegated from GCLocationManager */
