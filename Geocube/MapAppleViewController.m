@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface MapAppleViewController ()
+@interface MapApple ()
 {
     GCPointAnnotation *me;
     NSMutableArray *markers;
@@ -38,47 +38,23 @@
 
 @end
 
-@implementation MapAppleViewController
+@implementation MapApple
 
-enum {
-    menuMap,
-    menuSatellite,
-    menuHybrid,
-    menuShowTarget,
-    menuFollowMe,
-    menuShowBoth,
-    menuMax
-};
-
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear
 {
-    [super viewWillAppear:animated];
-    if (self.isMovingToParentViewController)
+    if (self.mapvc.isMovingToParentViewController)
         [myConfig addDelegate:self];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear
 {
-    if (self.isMovingFromParentViewController)
+    if (self.mapvc.isMovingFromParentViewController)
         [myConfig deleteDelegate:self];
-    [super viewWillDisappear:animated];
-}
-
-- (void)initMenu
-{
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMap label:@"Map"];
-    [lmi addItem:menuSatellite label:@"Satellite"];
-    [lmi addItem:menuHybrid label:@"Hybrid"];
-    [lmi addItem:menuShowTarget label:@"Show target"];
-    [lmi addItem:menuFollowMe label:@"Follow me"];
-    [lmi addItem:menuShowBoth label:@"Show both"];
-    menuItems = [lmi makeMenu];
 }
 
 - (void)initMap
 {
-    mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
@@ -100,7 +76,7 @@ enum {
     else
         mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
 
-    self.view = mapView;
+    self.mapvc.view = mapView;
 }
 
 - (void)removeMap
@@ -124,7 +100,7 @@ enum {
     NSLog(@"%@/placeMarkers", [self class]);
     // Creates a marker in the center of the map.
     markers = [NSMutableArray arrayWithCapacity:20];
-    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         // Place a single pin
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = wp.coordinates;
@@ -164,7 +140,7 @@ enum {
         [ann.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
             [anns addObject:pa.title];
         }];
-        [super openWaypointsPicker:anns origin:self.view];
+        [super openWaypointsPicker:anns origin:self.mapvc.view];
     }
 }
 
@@ -384,41 +360,12 @@ enum {
     lineHistory= nil;
 }
 
-#pragma mark - Local menu related functions
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
-{
-    switch (index) {
-        case menuMap: /* Map view */
-            [super menuMapType:MAPTYPE_NORMAL];
-            return;
-        case menuSatellite: /* Satellite view */
-            [super menuMapType:MAPTYPE_SATELLITE];
-            return;
-        case menuHybrid: /* Hybrid view */
-            [super menuMapType:MAPTYPE_HYBRID];
-            return;
-
-        case menuShowTarget: /* Show cache */
-            [super menuShowWhom:SHOW_CACHE];
-            return;
-        case menuFollowMe: /* Show Me */
-            [super menuShowWhom:SHOW_ME];
-            return;
-        case menuShowBoth: /* Show Both */
-            [super menuShowWhom:SHOW_BOTH];
-            return;
-    }
-
-    [super didSelectedMenu:menu atIndex:index];
-}
-
 #pragma mark -- delegation from the map
 
 // From http://stackoverflow.com/questions/5556977/determine-if-mkmapview-was-dragged-moved moby
 - (BOOL)mapViewRegionDidChangeFromUserInteraction
 {
-    UIView *view = self.view.subviews.firstObject;
+    UIView *view = self.mapvc.view.subviews.firstObject;
     //  Look through gesture recognizers to determine whether this region change is from user interaction
     for(UIGestureRecognizer *recognizer in view.gestureRecognizers) {
         if(recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
@@ -434,7 +381,7 @@ enum {
     BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
 
     if (mapChangedFromUserInteraction)
-        [super userInteraction];
+        [mapvc userInteraction];
 
     // Update the ruler
     [mapScaleView update];

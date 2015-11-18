@@ -123,20 +123,8 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[MapGoogleViewController alloc] init:SHOW_ONECACHE];
-    vc.title = @"GMap";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[MapAppleViewController alloc] init:SHOW_ONECACHE];
-    vc.title = @"AMap";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[MapOSMViewController alloc] init:SHOW_ONECACHE];
-    vc.title = @"OSM";
+    vc = [[MapViewController alloc] init:SHOW_ONECACHE];
+    vc.title = @"Map";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
@@ -158,20 +146,8 @@
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];
 
-    vc = [[MapGoogleViewController alloc] init:SHOW_ALLCACHES];
-    vc.title = @"GMap";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[MapAppleViewController alloc] init:SHOW_ALLCACHES];
-    vc.title = @"AMap";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[MapOSMViewController alloc] init:SHOW_ALLCACHES];
-    vc.title = @"OSM";
+    vc = [[MapViewController alloc] init:SHOW_ALLCACHES];
+    vc.title = @"Map";
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     [controllers addObject:nav];

@@ -420,17 +420,9 @@ enum {
             CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
             [cvc showWaypoint:waypointManager.currentWaypoint];
 
-            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_GMAP];
-            MapGoogleViewController *mgv = [nvc.viewControllers objectAtIndex:0];
-            [mgv refreshWaypointsData];
-
-            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_AMAP];
-            MapAppleViewController *mav = [nvc.viewControllers objectAtIndex:0];
-            [mav refreshWaypointsData];
-
-            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP_OSM];
-            MapOSMViewController *mov = [nvc.viewControllers objectAtIndex:0];
-            [mov refreshWaypointsData];
+            nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
+            MapViewController *mvc = [nvc.viewControllers objectAtIndex:0];
+            [mvc refreshWaypointsData];
 
             [_AppDelegate switchController:RC_NAVIGATE];
             [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];

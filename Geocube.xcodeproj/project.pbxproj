@@ -190,6 +190,7 @@
 		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
 		E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */; };
 		E843A4E51BAD3F9200C58F1F /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */; };
+		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84652571BE9DD20004BEA2F /* FilesDropboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84652561BE9DD20004BEA2F /* FilesDropboxViewController.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
@@ -605,6 +606,8 @@
 		E832E7DD1B8DB91A00A3CCF6 /* GeocachingAustralia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocachingAustralia.h; sourceTree = "<group>"; };
 		E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocachingAustralia.m; sourceTree = "<group>"; };
 		E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "images/GC - logo - 640x960.png"; sourceTree = "<group>"; };
+		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E84652551BE9DD20004BEA2F /* FilesDropboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesDropboxViewController.h; sourceTree = "<group>"; };
 		E84652561BE9DD20004BEA2F /* FilesDropboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesDropboxViewController.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
@@ -1160,6 +1163,8 @@
 		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E84402B31BFA7D6000EFFD13 /* MapViewController.h */,
+				E84402B41BFA7D6000EFFD13 /* MapViewController.m */,
 				E8027BCE1B514956003FD5A6 /* MapGoogleViewController.h */,
 				E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */,
 				E80F73781B53474C00F35528 /* MapAppleViewController.h */,
@@ -1866,8 +1871,8 @@
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
-				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
+				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2399,6 +2404,7 @@
 				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
+				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,

@@ -19,52 +19,63 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum {
-    SHOW_ONECACHE = 1,
-    SHOW_ALLCACHES,
+//enum {
+//    SHOW_ONECACHE = 1,
+//    SHOW_ALLCACHES,
+//
+//    SHOW_NEITHER = 10,
+//    SHOW_CACHE,
+//    SHOW_ME,
+//    SHOW_BOTH,
+//
+//    MAPTYPE_NORMAL = 20,
+//    MAPTYPE_SATELLITE,
+//    MAPTYPE_HYBRID,
+//    MAPTYPE_TERRAIN,
+//
+//    MAPBRAND_GOOGLEMAPS = 30,
+//    MAPBRAND_APPLEMAPS,
+//    MAPBRAND_OPENSTREETMAPS,
+//};
 
-    SHOW_NEITHER = 10,
-    SHOW_CACHE,
-    SHOW_ME,
-    SHOW_BOTH,
-
-    MAPTYPE_NORMAL = 20,
-    MAPTYPE_SATELLITE,
-    MAPTYPE_HYBRID,
-    MAPTYPE_TERRAIN,
-};
-
-@interface MapTemplateViewController : GCViewController <LocationManagerDelegate, CacheFilterManagerDelegate>
+@interface MapTemplate : NSObject
 {
-    NSArray *waypointsArray;
+//    NSArray *waypointsArray;
+
+    MapViewController *mapvc;
 }
 
-- (instancetype)init:(NSInteger)type;
-- (void)refreshWaypointsData;
+@property (nonatomic, retain) MapViewController *mapvc;
+
+- (void)viewWillAppear;
+- (void)viewWillDisappear;
+- (void)viewDidAppear;
+- (void)viewDidDisappear;
+
+- (instancetype)init:(MapViewController *)mvc;
+//- (void)refreshWaypointsData;
+//- (void)refreshWaypointsData:(NSString *)searchString;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
 //- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;
 
 // To be implemented by inherited classes:
-- (void)initMap;
 - (void)removeMap;
+- (void)initMap;
 - (void)initCamera;
-- (void)initMenu;
 - (void)placeMarkers;
 - (void)removeMarkers;
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord;
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)setMapType:(NSInteger)maptype;
+- (void)addLineMeToWaypoint;
+- (void)removeLineMeToWaypoint;
 - (void)removeHistory;
 - (void)addHistory;
 
-// Menu related features
-- (void)menuShowWhom:(NSInteger)whom;
-- (void)menuMapType:(NSInteger)maptype;
-
 // User related actions
-- (void)userInteraction;
+//- (void)userInteraction;
 - (void)openWaypointView:(NSString *)name;
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin;
 

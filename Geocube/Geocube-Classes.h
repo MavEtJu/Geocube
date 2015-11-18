@@ -100,10 +100,11 @@
 @class LiveAPI;
 @class LocationManager;
 @class LogTableViewCell;
-@class MapAppleViewController;
-@class MapGoogleViewController;
-@class MapOSMViewController;
-@class MapTemplateViewController;
+@class MapApple;
+@class MapGoogle;
+@class MapOSM;
+@class MapTemplate;
+@class MapViewController;
 @class MyConfig;
 @class MyTools;
 @class NotesFieldnotesViewController;

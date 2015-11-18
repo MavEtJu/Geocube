@@ -203,6 +203,7 @@
 #import "MapAppleViewController.h"
 #import "MapGoogleViewController.h"
 #import "MapOSMViewController.h"
+#import "MapViewController.h"
 
 #endif
 

@@ -21,34 +21,14 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface MapOSMViewController ()
+@interface MapOSM ()
 
 @end
 
-@implementation MapOSMViewController
-
-enum {
-    menuMap,
-    menuShowTarget,
-    menuFollowMe,
-    menuShowBoth,
-    menuMax
-};
-
-- (void)initMenu
-{
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMap label:@"Map"];
-    [lmi addItem:menuShowTarget label:@"Show target"];
-    [lmi addItem:menuFollowMe label:@"Follow me"];
-    [lmi addItem:menuShowBoth label:@"Show both"];
-    menuItems = [lmi makeMenu];
-}
+@implementation MapOSM
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
     MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template];
@@ -65,27 +45,6 @@ enum {
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
     }
     return nil;
-}
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
-{
-    switch (index) {
-        case menuMap: /* Map view */
-            [super menuMapType:MAPTYPE_NORMAL];
-            return;
-
-        case menuShowTarget: /* Show cache */
-            [super menuShowWhom:SHOW_CACHE];
-            return;
-        case menuFollowMe: /* Show Me */
-            [super menuShowWhom:SHOW_ME];
-            return;
-        case menuShowBoth: /* Show Both */
-            [super menuShowWhom:SHOW_BOTH];
-            return;
-    }
-
-    [super didSelectedMenu:menu atIndex:index];
 }
 
 @end

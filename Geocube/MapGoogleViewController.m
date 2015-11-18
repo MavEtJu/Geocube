@@ -23,7 +23,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface MapGoogleViewController ()
+@interface MapGoogle ()
 {
     GMSMapView *mapView;
     GMSMarker *me;
@@ -37,7 +37,19 @@
 
 @end
 
-@implementation MapGoogleViewController
+@implementation MapGoogle
+
+- (void)viewWillAppear
+{
+    if (self.mapvc.isMovingToParentViewController)
+        [myConfig addDelegate:self];
+}
+
+- (void)viewWillDisappear
+{
+    if (self.mapvc.isMovingFromParentViewController)
+        [myConfig deleteDelegate:self];
+}
 
 - (void)initMap
 {
@@ -52,7 +64,7 @@
     mapScaleView.style = kLXMapScaleStyleBar;
     [mapScaleView update];
 
-    self.view = mapView;
+    self.mapvc.view = mapView;
 }
 
 - (void)removeMap
@@ -63,30 +75,6 @@
 
 - (void)initCamera
 {
-}
-
-enum {
-    menuMap,
-    menuSatellite,
-    menuHybrid,
-    menuTerrain,
-    menuShowTarget,
-    menuFollowMe,
-    menuShowBoth,
-    menuMax
-};
-
-- (void)initMenu
-{
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMap label:@"Map"];
-    [lmi addItem:menuSatellite label:@"Satellite"];
-    [lmi addItem:menuHybrid label:@"Hybrid"];
-    [lmi addItem:menuTerrain label:@"Terrain"];
-    [lmi addItem:menuShowTarget label:@"Show target"];
-    [lmi addItem:menuFollowMe label:@"Follow me"];
-    [lmi addItem:menuShowBoth label:@"Show both"];
-    menuItems = [lmi makeMenu];
 }
 
 - (void)removeMarkers
@@ -107,7 +95,7 @@ enum {
 
     // Add the new markers to the map
     markers = [NSMutableArray arrayWithCapacity:20];
-    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
         marker.title = wp.name;
@@ -209,44 +197,12 @@ enum {
     lineHistory.map = nil;
 }
 
-#pragma mark - Local menu related functions
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
-{
-    switch (index) {
-        case menuMap: /* Map view */
-            [super menuMapType:MAPTYPE_NORMAL];
-            return;
-        case menuSatellite: /* Satellite view */
-            [super menuMapType:MAPTYPE_SATELLITE];
-            return;
-        case menuHybrid: /* Hybrid view */
-            [super menuMapType:MAPTYPE_HYBRID];
-            return;
-        case menuTerrain: /* Terrain view */
-            [super menuMapType:MAPTYPE_TERRAIN];
-            return;
-
-        case menuShowTarget: /* Show cache */
-            [super menuShowWhom:SHOW_CACHE];
-            return;
-        case menuFollowMe: /* Show Me */
-            [super menuShowWhom:SHOW_ME];
-            return;
-        case menuShowBoth: /* Show Both */
-            [super menuShowWhom:SHOW_BOTH];
-            return;
-    }
-
-    [super didSelectedMenu:menu atIndex:index];
-}
-
 #pragma mark -- delegation from the map
 
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
 {
     if (gesture == YES)
-        [super userInteraction];
+        [mapvc userInteraction];
 
     // Update the ruler
     [mapScaleView update];

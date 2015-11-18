@@ -31,15 +31,11 @@
 #define RC_NAVIGATE 0
 #define    VC_NAVIGATE_COMPASS 0
 #define    VC_NAVIGATE_TARGET 1
-#define    VC_NAVIGATE_MAP_GMAP 2
-#define    VC_NAVIGATE_MAP_AMAP 3
-#define    VC_NAVIGATE_MAP_OSM 4
+#define    VC_NAVIGATE_MAP 2
 #define RC_WAYPOINTS 1
 #define    VC_WAYPOINTS_FILTERS 0
 #define    VC_WAYPOINTS_LIST 1
-#define    VC_WAYPOINTS_GMAP 2
-#define    VC_WAYPOINTS_AMAP 3
-#define    VC_WAYPOINTS_OSM 4
+#define    VC_WAYPOINTS_MAP 2
 #define RC_KEEPTRACK 2
 #define    VC_KEEPTRACK_CAR 0
 #define    VC_KEEPTRACK_TRACKS 1

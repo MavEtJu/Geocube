@@ -21,6 +21,6 @@
 
 @import GoogleMaps;
 
-@interface MapGoogleViewController : MapTemplateViewController <GMSMapViewDelegate>
+@interface MapGoogle : MapTemplate <GMSMapViewDelegate>
 
 @end
