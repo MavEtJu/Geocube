@@ -38,7 +38,7 @@
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"XEmpty"]];
+    menuItems = nil;
     self.numberOfItemsInRow = 3;
 
     hasCloseButton = NO;

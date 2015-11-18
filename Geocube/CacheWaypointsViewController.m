@@ -33,6 +33,11 @@
 
 @implementation CacheWaypointsViewController
 
+enum {
+    menuAddWaypoint,
+    menuMax
+};
+
 - (instancetype)init:(dbWaypoint *)_wp
 {
     self = [super init];
@@ -40,7 +45,10 @@
     waypoint = _wp;
     wps = [waypoint hasWaypoints];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
+    menuItems = [lmi makeMenu];
+
     hasCloseButton = YES;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
@@ -100,7 +108,7 @@
 {
     // Add a waypoint
     switch (index) {
-        case 0:
+        case menuAddWaypoint:
             [self newWaypoint];
             return;
     }

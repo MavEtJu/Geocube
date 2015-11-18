@@ -40,11 +40,18 @@
 
 #define THISCELL @"CacheImagesViewController"
 
+enum {
+    menuImportPhoto,
+    menuMax
+};
+
 - (instancetype)init:(dbWaypoint *)wp
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Import photo"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuImportPhoto label:@"Import photo"];
+    menuItems = [lmi makeMenu];
     hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -216,11 +223,11 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // Import a photo
-    if (index == 0) {
-        [self importPhoto];
-        [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//        [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
-        return;
+    switch (index) {
+        case menuImportPhoto:
+            [self importPhoto];
+            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

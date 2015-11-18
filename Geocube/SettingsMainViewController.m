@@ -55,13 +55,21 @@
 
 @implementation SettingsMainViewController
 
+enum {
+    menuResetToDefault,
+    menuMax
+};
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
-    menuItems = [NSMutableArray arrayWithArray:@[@"Reset to default"]];
+
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuResetToDefault label:@"Reset to default"];
+    menuItems = [lmi makeMenu];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
 
@@ -666,9 +674,10 @@ enum sections {
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    if (index == 0) {
-        [self resetValues];
-        return;
+    switch (index) {
+        case menuResetToDefault:
+            [self resetValues];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

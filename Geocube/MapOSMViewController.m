@@ -27,9 +27,22 @@
 
 @implementation MapOSMViewController
 
+enum {
+    menuMap,
+    menuShowTarget,
+    menuFollowMe,
+    menuShowBoth,
+    menuMax
+};
+
 - (void)initMenu
 {
-    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"XSatellite", @"XHybrid", @"XTerrain", @"Show target", @"Follow me", @"Show both"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuMap label:@"Map"];
+    [lmi addItem:menuShowTarget label:@"Show target"];
+    [lmi addItem:menuFollowMe label:@"Follow me"];
+    [lmi addItem:menuShowBoth label:@"Show both"];
+    menuItems = [lmi makeMenu];
 }
 
 - (void)viewDidLoad
@@ -52,6 +65,27 @@
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
     }
     return nil;
+}
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuMap: /* Map view */
+            [super menuMapType:MAPTYPE_NORMAL];
+            return;
+
+        case menuShowTarget: /* Show cache */
+            [super menuShowWhom:SHOW_CACHE];
+            return;
+        case menuFollowMe: /* Show Me */
+            [super menuShowWhom:SHOW_ME];
+            return;
+        case menuShowBoth: /* Show Both */
+            [super menuShowWhom:SHOW_BOTH];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
 }
 
 @end

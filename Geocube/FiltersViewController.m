@@ -34,11 +34,18 @@
 
 @implementation FiltersViewController
 
+enum {
+    menuSetDefaultValues,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Set default values"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuSetDefaultValues label:@"Set default values"];
+    menuItems = [lmi makeMenu];
 
     filters = [NSMutableArray arrayWithCapacity:10];
     [filters addObject:[FilterObject init:@"Group"]];
@@ -257,13 +264,14 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // Add a group
-    if (index == 0) {
-        [dbFilter dbAllClear];
-        [filters enumerateObjectsUsingBlock:^(FilterObject *fo, NSUInteger idx, BOOL *stop) {
-            fo.expanded = NO;
-        }];
-        [self.tableView reloadData];
-        return;
+    switch (index) {
+        case menuSetDefaultValues:
+            [dbFilter dbAllClear];
+            [filters enumerateObjectsUsingBlock:^(FilterObject *fo, NSUInteger idx, BOOL *stop) {
+                fo.expanded = NO;
+            }];
+            [self.tableView reloadData];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

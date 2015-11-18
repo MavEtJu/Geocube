@@ -32,11 +32,18 @@
 
 @implementation BrowserUserViewController
 
+enum {
+    menuAddBookmark,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add bookmark"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuAddBookmark label:@"Add bookmark"];
+    menuItems = [lmi makeMenu];
     bms = [dbBookmark dbAll];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
@@ -256,9 +263,10 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // Go back home
-    if (index == 0) {
-        [self addBookmark];
-        return;
+    switch (index) {
+        case menuAddBookmark:
+            [self addBookmark];
+            return;
     }
 }
 

@@ -40,11 +40,18 @@
 
 @implementation BrowserBrowserViewController
 
+enum {
+    menuGoHome,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Go home"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuGoHome label:@"Go home"];
+    menuItems = [lmi makeMenu];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;
@@ -302,9 +309,10 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     // Go back home
-    if (index == 0) {
-        [self loadURL:urlHome];
-        return;
+    switch (index) {
+        case menuGoHome:
+            [self loadURL:urlHome];
+            return;
     }
 }
 

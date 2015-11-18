@@ -34,6 +34,12 @@
 
 @implementation GroupsViewController
 
+enum {
+    menuEmptyGroups = 0,
+    menuAddAGroup,
+    menuMax
+};
+
 - (instancetype)init:(BOOL)_showUsers
 {
     self = [super init];
@@ -42,9 +48,12 @@
     [self refreshGroupData];
 
     // Local menu
-    if (showUsers == YES)
-        menuItems = [NSMutableArray arrayWithArray:@[@"Empty groups", @"Add a group"]];
-    else
+    if (showUsers == YES) {
+        LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+        [lmi addItem:menuEmptyGroups label:@"Empty groups"];
+        [lmi addItem:menuAddAGroup label:@"Add a group"];
+        menuItems = [lmi makeMenu];
+    } else
         menuItems = nil;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
@@ -247,13 +256,13 @@
 {
     // Add a group
     if (showUsers == YES) {
-        if (index == 0) {
-            [self emptyGroups];
-            return;
-        }
-        if (index == 1) {
-            [self newGroup];
-            return;
+        switch (index) {
+            case menuEmptyGroups:
+                [self emptyGroups];
+                return;
+            case menuAddAGroup:
+                [self newGroup];
+                return;
         }
     } else {
         if (index == 0) {

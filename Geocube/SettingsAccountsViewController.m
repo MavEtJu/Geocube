@@ -33,13 +33,21 @@
 
 @implementation SettingsAccountsViewController
 
+enum {
+    menuDownloadSiteInfo,
+    menuMax
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL];
-    menuItems = [NSMutableArray arrayWithArray:@[@"Download site info"]];
+
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuDownloadSiteInfo label:@"Download site info"];
+    menuItems = [lmi makeMenu];
 }
 
 - (void)refreshAccountData
@@ -229,9 +237,10 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    if (index == 0) {
-        [self downloadLicenses];
-        return;
+    switch (index) {
+        case menuDownloadSiteInfo:
+            [self downloadLicenses];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

@@ -35,11 +35,18 @@
 
 @implementation UserProfileViewController
 
+enum {
+    menuReload,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Reload"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuReload label:@"Reload"];
+    menuItems = [lmi makeMenu];
 
     return self;
 }
@@ -280,9 +287,10 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    if (index == 0) {      // Reload
-        [self loadStatistics];
-        return;
+    switch (index) {
+        case menuReload:
+            [self loadStatistics];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

@@ -37,11 +37,27 @@
 
 @implementation CacheViewController
 
+enum {
+    menuAddWaypoint = 0,
+    menuHighlight,
+    menuRefreshWaypoint,
+    menuIgnore,
+    menuAddToGroup,
+    menuMax
+};
+
 - (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
 {
     self = [super initWithStyle:style];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add waypoint", @"Highlight", @"Refresh waypoint", @"Ignore", @"Add to group"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
+    [lmi addItem:menuHighlight label:@"Highlight"];
+    [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
+    [lmi addItem:menuAddToGroup label:@"Add to group"];
+    [lmi addItem:menuIgnore label:@"Ignore"];
+    menuItems = [lmi makeMenu];
+
     hasCloseButton = canBeClosed;
 
     return self;
@@ -455,17 +471,17 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0: // Add a waypoint
+        case menuAddWaypoint: // Add a waypoint
             [self newWaypoint];
             return;
-        case 1: // Highlight waypoint
+        case menuHighlight: // Highlight waypoint
             waypoint.highlight = !waypoint.highlight;
             [waypoint dbUpdateHighlight];
             return;
-        case 2: // Refresh waypoint from server
+        case menuRefreshWaypoint: // Refresh waypoint from server
             [self refreshWaypoint];
             return;
-        case 3: // Ignore this waypoint
+        case menuIgnore: // Ignore this waypoint
             waypoint.ignore = !waypoint.ignore;
             [waypoint dbUpdateIgnore];
             if (waypoint.ignore == YES) {
@@ -474,7 +490,7 @@
                 [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
             }
             return;
-        case 4: // Add waypoint to a group
+        case menuAddToGroup: // Add waypoint to a group
             [self addToGroup];
             return;
     }

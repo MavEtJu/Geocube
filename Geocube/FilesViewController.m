@@ -36,6 +36,12 @@
 
 @implementation FilesViewController
 
+enum {
+    menuICloud,
+    menuAirdrop,
+    menuMax
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,7 +49,10 @@
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
     [self refreshFileData];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"iCloud", @"Airdrop"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuICloud label:@"iCloud"];
+    [lmi addItem:menuAirdrop label:@"Airdrop"];
+    menuItems = [lmi makeMenu];
 }
 
 - (void)refreshFileData
@@ -435,10 +444,10 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0:
+        case menuICloud:
             [self showICloud];
             return;
-        case 1:
+        case menuAirdrop:
             [self showAirDrop];
             return;
     }

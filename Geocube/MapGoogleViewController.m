@@ -65,9 +65,28 @@
 {
 }
 
+enum {
+    menuMap,
+    menuSatellite,
+    menuHybrid,
+    menuTerrain,
+    menuShowTarget,
+    menuFollowMe,
+    menuShowBoth,
+    menuMax
+};
+
 - (void)initMenu
 {
-    menuItems = [NSMutableArray arrayWithArray:@[@"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Follow me", @"Show both"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuMap label:@"Map"];
+    [lmi addItem:menuSatellite label:@"Satellite"];
+    [lmi addItem:menuHybrid label:@"Hybrid"];
+    [lmi addItem:menuTerrain label:@"Terrain"];
+    [lmi addItem:menuShowTarget label:@"Show target"];
+    [lmi addItem:menuFollowMe label:@"Follow me"];
+    [lmi addItem:menuShowBoth label:@"Show both"];
+    menuItems = [lmi makeMenu];
 }
 
 - (void)removeMarkers
@@ -195,26 +214,26 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0: /* Map view */
+        case menuMap: /* Map view */
             [super menuMapType:MAPTYPE_NORMAL];
             return;
-        case 1: /* Satellite view */
+        case menuSatellite: /* Satellite view */
             [super menuMapType:MAPTYPE_SATELLITE];
             return;
-        case 2: /* Hybrid view */
+        case menuHybrid: /* Hybrid view */
             [super menuMapType:MAPTYPE_HYBRID];
             return;
-        case 3: /* Terrain view */
+        case menuTerrain: /* Terrain view */
             [super menuMapType:MAPTYPE_TERRAIN];
             return;
 
-        case 4: /* Show cache */
+        case menuShowTarget: /* Show cache */
             [super menuShowWhom:SHOW_CACHE];
             return;
-        case 5: /* Show Me */
+        case menuFollowMe: /* Show Me */
             [super menuShowWhom:SHOW_ME];
             return;
-        case 6: /* Show Both */
+        case menuShowBoth: /* Show Both */
             [super menuShowWhom:SHOW_BOTH];
             return;
     }

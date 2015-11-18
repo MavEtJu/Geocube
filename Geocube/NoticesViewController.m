@@ -32,11 +32,18 @@
 
 #define THISCELL @"NoticesViewControllerCell"
 
+enum {
+    menuDownloadNotices,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Download notices"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuDownloadNotices label:@"Download notices"];
+    menuItems = [lmi makeMenu];
 
     [self.tableView registerClass:[NoticeTableViewCell class] forCellReuseIdentifier:THISCELL];
 
@@ -151,9 +158,10 @@
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    if (index == 0) {      // Reload
-        [self downloadNotices];
-        return;
+    switch (index) {
+        case menuDownloadNotices:
+            [self downloadNotices];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];

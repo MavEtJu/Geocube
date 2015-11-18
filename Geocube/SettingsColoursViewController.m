@@ -32,13 +32,21 @@
 
 #define THISCELL @"SettingsColoursViewControllerCell"
 
+enum {
+    menuReset,
+    menuMax
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
-    menuItems = [NSMutableArray arrayWithArray:@[@"Reset"]];
+
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuReset label:@"Reset"];
+    menuItems = [lmi makeMenu];
 
     types = [NSMutableArray arrayWithArray:[dbc Types]];
 }
@@ -88,7 +96,7 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0: // Reset
+        case menuReset: // Reset
             [self resetPinColours];
             return;
     }

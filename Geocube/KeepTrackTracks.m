@@ -32,11 +32,18 @@
 
 #define THISCELL @"KeepTrackTracksCell"
 
+enum {
+    menuAddATrack,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Add a track"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuAddATrack label:@"Add a track"];
+    menuItems = [lmi makeMenu];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
@@ -97,7 +104,7 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0:
+        case menuAddATrack:
             [self startNewTrack];
             return;;
     }
