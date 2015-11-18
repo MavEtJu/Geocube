@@ -57,17 +57,23 @@
 - (NSInteger)calculateSpan;
 
 // To be implemented by inherited classes:
-- (void)removeMap;
 - (void)initMap;
+- (void)removeMap;
+- (void)setMapType:(NSInteger)maptype;
+
 - (void)initCamera;
-- (void)placeMarkers;
-- (void)removeMarkers;
+- (void)removeCamera;
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord;
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
+
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
-- (void)setMapType:(NSInteger)maptype;
+
+- (void)placeMarkers;
+- (void)removeMarkers;
+
 - (void)addLineMeToWaypoint;
 - (void)removeLineMeToWaypoint;
+
 - (void)removeHistory;
 - (void)addHistory;
 

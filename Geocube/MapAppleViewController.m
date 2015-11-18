@@ -95,6 +95,10 @@
     [mapView setRegion:adjustedRegion animated:NO];
 }
 
+- (void)removeCamera
+{
+}
+
 - (void)placeMarkers
 {
     NSLog(@"%@/placeMarkers", [self class]);

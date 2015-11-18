@@ -77,6 +77,10 @@
 {
 }
 
+- (void)removeCamera
+{
+}
+
 - (void)removeMarkers
 {
     [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {

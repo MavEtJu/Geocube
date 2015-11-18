@@ -1,10 +1,23 @@
-//
-//  MapViewController.m
-//  Geocube
-//
-//  Created by Edwin Groothuis on 17/11/2015.
-//  Copyright © 2015 Edwin Groothuis. All rights reserved.
-//
+/*
+ * Geocube
+ * By Edwin Groothuis <geocube@mavetju.org>
+ * Copyright 2015 Edwin Groothuis
+ *
+ * This file is part of Geocube.
+ *
+ * Geocube is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Geocube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #import "Geocube-Prefix.pch"
 
@@ -232,7 +245,27 @@
 
 - (void)menuChangeMapbrand:(NSInteger)brand
 {
+    [map removeCamera];
+    [map removeMap];
 
+    switch (brand) {
+        case MAPBRAND_GOOGLEMAPS:
+            NSLog(@"Switching to Google Maps");
+            map = [[MapGoogle alloc] init:self];
+            break;;
+        case MAPBRAND_APPLEMAPS:
+            NSLog(@"Switching to Apple Maps");
+            map = [[MapApple alloc] init:self];
+            break;
+        case MAPBRAND_OPENSTREETMAPS:
+            NSLog(@"Switching to OpenStreet Maps");
+            map = [[MapOSM alloc] init:self];
+            break;
+    }
+
+    [map initMap];
+    [map initCamera];
+    [map viewDidAppear];
 }
 
 #pragma mark - Local menu related functions

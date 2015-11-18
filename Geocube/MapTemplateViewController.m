@@ -45,6 +45,7 @@ EMPTY_METHOD(viewDidAppear)
 EMPTY_METHOD(viewWillAppear)
 
 NEEDS_OVERLOADING(initCamera)
+NEEDS_OVERLOADING(removeCamera)
 NEEDS_OVERLOADING(initMap)
 NEEDS_OVERLOADING(removeMap)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord)
