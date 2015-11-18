@@ -53,11 +53,8 @@
 - (void)viewDidDisappear;
 
 - (instancetype)init:(MapViewController *)mvc;
-//- (void)refreshWaypointsData;
-//- (void)refreshWaypointsData:(NSString *)searchString;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
-//- (void)whichWaypointsToShow:(NSInteger)type whichWaypoint:(dbWaypoint *)wp;
 
 // To be implemented by inherited classes:
 - (void)removeMap;
@@ -75,7 +72,6 @@
 - (void)addHistory;
 
 // User related actions
-//- (void)userInteraction;
 - (void)openWaypointView:(NSString *)name;
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin;
 
