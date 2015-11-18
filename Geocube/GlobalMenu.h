@@ -39,3 +39,11 @@
 - (void)transitionToSize:(CGSize)size;
 
 @end
+
+@interface LocalMenuItems : NSObject
+
+- (instancetype)init:(NSInteger)max;
+- (void)addItem:(NSInteger)idx label:(NSString *)label;
+- (NSMutableArray *)makeMenu;
+
+@end

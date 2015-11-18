@@ -148,3 +148,56 @@
 }
 
 @end
+
+@interface LocalMenuItems ()
+{
+    NSMutableDictionary *makeMenuItems;
+    NSInteger makeMenuMax;
+}
+
+@end
+
+@implementation LocalMenuItems
+
+- (instancetype)init:(NSInteger)max
+{
+    self = [super init];
+
+    makeMenuItems = [[NSMutableDictionary alloc] initWithCapacity:max];
+    makeMenuMax = max;
+
+    return self;
+}
+
+- (void)addItem:(NSInteger)idx label:(NSString *)label
+{
+    NSString *key = [NSString stringWithFormat:@"%ld", idx];
+    __block BOOL found = NO;
+    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+        if ([key integerValue] == idx) {
+            found = YES;
+            *stop = YES;
+        }
+    }];
+    NSAssert1(found == NO, @"Menuitem %ld already found!", idx);
+    [makeMenuItems setValue:label forKey:key];
+}
+
+- (NSMutableArray *)makeMenu
+{
+    NSMutableArray *menuItems = [[NSMutableArray alloc] initWithCapacity:makeMenuMax];
+    for (NSInteger i = 0; i < makeMenuMax; i++) {
+        __block BOOL found = NO;
+        [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+            if ([key integerValue] == i) {
+                *stop = YES;
+                found = YES;
+                [menuItems addObject:obj];
+            }
+        }];
+        NSAssert1(found == YES, @"Menuitem %ld not found!", i);
+    }
+    return menuItems;
+}
+
+@end
