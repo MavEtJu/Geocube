@@ -245,6 +245,7 @@
 
 - (void)menuChangeMapbrand:(NSInteger)brand
 {
+    [map removeMarkers];
     [map removeCamera];
     [map removeMap];
 
@@ -265,7 +266,12 @@
 
     [map initMap];
     [map initCamera];
+
+    [self refreshWaypointsData:nil];
+    [map placeMarkers];
+
     [map viewDidAppear];
+    [self menuShowWhom:showWhom];
 }
 
 #pragma mark - Local menu related functions
