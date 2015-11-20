@@ -22,16 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface MapTemplate ()
-{
-//    MapViewController *mapvc;
-
-//    NSInteger waypointCount;
-
-//    NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
-//    NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
-
-//    CLLocationCoordinate2D meLocation;
-}
 
 @end
 

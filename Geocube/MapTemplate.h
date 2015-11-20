@@ -19,29 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//enum {
-//    SHOW_ONECACHE = 1,
-//    SHOW_ALLCACHES,
-//
-//    SHOW_NEITHER = 10,
-//    SHOW_CACHE,
-//    SHOW_ME,
-//    SHOW_BOTH,
-//
-//    MAPTYPE_NORMAL = 20,
-//    MAPTYPE_SATELLITE,
-//    MAPTYPE_HYBRID,
-//    MAPTYPE_TERRAIN,
-//
-//    MAPBRAND_GOOGLEMAPS = 30,
-//    MAPBRAND_APPLEMAPS,
-//    MAPBRAND_OPENSTREETMAPS,
-//};
-
 @interface MapTemplate : NSObject
 {
-//    NSArray *waypointsArray;
-
     MapViewController *mapvc;
 }
 
