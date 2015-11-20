@@ -22,21 +22,19 @@
 #import "Geocube-Prefix.pch"
 
 @interface MapOSM ()
-{
-    MKMapView *mapView;
-}
 
 @end
 
 @implementation MapOSM
 
-- (void)viewDidLoad
+- (void)mapViewDidLoad
 {
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
     MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:template];
     overlay.canReplaceMapContent = YES;
     [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
+
     mapView.delegate = self;
 }
 

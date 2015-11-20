@@ -47,10 +47,11 @@
 
 @property (nonatomic, retain) MapViewController *mapvc;
 
-- (void)viewWillAppear;
-- (void)viewWillDisappear;
-- (void)viewDidAppear;
-- (void)viewDidDisappear;
+- (void)mapViewWillAppear;
+- (void)mapViewWillDisappear;
+- (void)mapViewDidAppear;
+- (void)mapViewDidDisappear;
+- (void)mapViewDidLoad;
 
 - (instancetype)init:(MapViewController *)mvc;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;

@@ -72,7 +72,9 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [map initMap];
+    [map mapViewDidLoad];
     [map initCamera];
+    [map mapViewDidLoad];
 
     [self initDistanceLabel];
     [self recalculateRects];
@@ -81,7 +83,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [map viewWillAppear];
+    [map mapViewWillAppear];
     [map removeMarkers];
     [self refreshWaypointsData:nil];
     [map placeMarkers];
@@ -92,7 +94,7 @@
 {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
-    [map viewDidAppear];
+    [map mapViewDidAppear];
     [LM startDelegation:self isNavigating:(showType == SHOW_ONECACHE)];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
@@ -103,7 +105,7 @@
     NSLog(@"%@/viewWillDisappear", [self class]);
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
-    [map viewWillDisappear];
+    [map mapViewWillDisappear];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -112,7 +114,7 @@
     [map removeMarkers];
     [waypointManager stopDelegation:self];
     [super viewDidDisappear:animated];
-    [map viewDidDisappear];
+    [map mapViewDidDisappear];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -280,6 +282,7 @@
     }
 
     [map initMap];
+    [map mapViewDidLoad];
     [map initCamera];
 
     [self initDistanceLabel];
@@ -288,7 +291,7 @@
     [self refreshWaypointsData:nil];
     [map placeMarkers];
 
-    [map viewDidAppear];
+    [map mapViewDidAppear];
     [self menuShowWhom:showWhom];
 
     [self updateLocationManagerLocation];

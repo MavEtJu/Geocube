@@ -39,13 +39,13 @@
 
 @implementation MapGoogle
 
-- (void)viewWillAppear
+- (void)mapViewWillAppear
 {
     if (self.mapvc.isMovingToParentViewController)
         [myConfig addDelegate:self];
 }
 
-- (void)viewWillDisappear
+- (void)mapViewWillDisappear
 {
     if (self.mapvc.isMovingFromParentViewController)
         [myConfig deleteDelegate:self];

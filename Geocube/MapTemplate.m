@@ -39,10 +39,11 @@
 
 @synthesize mapvc;
 
-EMPTY_METHOD(viewDidDisappear)
-EMPTY_METHOD(viewWillDisappear)
-EMPTY_METHOD(viewDidAppear)
-EMPTY_METHOD(viewWillAppear)
+EMPTY_METHOD(mapViewDidDisappear)
+EMPTY_METHOD(mapViewWillDisappear)
+EMPTY_METHOD(mapViewDidAppear)
+EMPTY_METHOD(mapViewWillAppear)
+EMPTY_METHOD(mapViewDidLoad)
 
 NEEDS_OVERLOADING(initCamera)
 NEEDS_OVERLOADING(removeCamera)
