@@ -1163,16 +1163,16 @@
 		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E84402B31BFA7D6000EFFD13 /* MapViewController.h */,
+				E84402B41BFA7D6000EFFD13 /* MapViewController.m */,
+				E8D569FE1B54E35D001A0F8E /* MapTemplate.h */,
+				E8D569FF1B54E35D001A0F8E /* MapTemplate.m */,
 				E84402B61BFEABD600EFFD13 /* MapApple.h */,
 				E84402B71BFEABD600EFFD13 /* MapApple.m */,
 				E84402B81BFEABD600EFFD13 /* MapGoogle.h */,
 				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
 				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
 				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
-				E84402B31BFA7D6000EFFD13 /* MapViewController.h */,
-				E84402B41BFA7D6000EFFD13 /* MapViewController.m */,
-				E8D569FE1B54E35D001A0F8E /* MapTemplate.h */,
-				E8D569FF1B54E35D001A0F8E /* MapTemplate.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
 			);
