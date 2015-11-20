@@ -20,8 +20,5 @@
  */
 
 @interface MapApple : MapTemplate <MKMapViewDelegate, CCHMapClusterControllerDelegate, MyConfigChangedDelegate>
-{
-    MKMapView *mapView;
-}
 
 @end

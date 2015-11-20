@@ -59,12 +59,12 @@
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
 
+    mapvc.view = mapView;
+
     mapScaleView = [LXMapScaleView mapScaleForGMSMapView:mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
     [mapScaleView update];
-
-    self.mapvc.view = mapView;
 }
 
 - (void)removeMap

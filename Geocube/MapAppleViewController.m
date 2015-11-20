@@ -23,6 +23,8 @@
 
 @interface MapApple ()
 {
+    MKMapView *mapView;
+
     GCPointAnnotation *me;
     NSMutableArray *markers;
 
@@ -58,6 +60,8 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
+    mapvc.view = mapView;
+
 /*
     mapView.showsCompass = YES;
     mapView.showsScale = YES;
@@ -75,8 +79,6 @@
         mapClusterController.maxZoomLevelForClustering = 0;
     else
         mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
-
-    self.mapvc.view = mapView;
 }
 
 - (void)removeMap

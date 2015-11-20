@@ -22,6 +22,9 @@
 #import "Geocube-Prefix.pch"
 
 @interface MapOSM ()
+{
+    MKMapView *mapView;
+}
 
 @end
 

@@ -51,8 +51,8 @@
 {
     self = [super init];
 
-    map = [[MapGoogle alloc] init:self];
-//    map = [[MapApple alloc] init:self];
+//    map = [[MapGoogle alloc] init:self];
+    map = [[MapApple alloc] init:self];
 //    map = [[MapOSM alloc] init:self];
 
     menuItems = [NSMutableArray arrayWithArray:@[@"Google Maps", @"Apple Maps", @"OpenStreet\nMaps", @"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Follow me", @"Show both"]];
@@ -74,10 +74,7 @@
     [map initMap];
     [map initCamera];
 
-    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    distanceLabel.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:distanceLabel];
-
+    [self initDistanceLabel];
     [self recalculateRects];
 }
 
@@ -131,11 +128,24 @@
 
 - (void)recalculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-    NSInteger height = applicationFrame.size.height - 50;
+//    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+//    NSInteger width = applicationFrame.size.width;
+//    NSInteger height = applicationFrame.size.height - 50;
 
-    distanceLabel.frame = CGRectMake(width - 250, height - 40, 250, 20);
+    distanceLabel.frame = CGRectMake(3, 3, 250, 20);
+}
+
+- (void)initDistanceLabel
+{
+    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    //distanceLabel.textAlignment = NSTextAlignmentRight;
+    distanceLabel.text = @"Nothing yet";
+    [self.view addSubview:distanceLabel];
+}
+
+- (void)removeDistanceLabel
+{
+    distanceLabel = nil;
 }
 
 /* Delegated from GCLocationManager */
@@ -157,7 +167,7 @@
         NSString *distance = [MyTools NiceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
         distanceLabel.text = distance;
     } else {
-        distanceLabel.text = @"";
+        distanceLabel.text = @"-";
     }
 }
 
@@ -245,9 +255,14 @@
 
 - (void)menuChangeMapbrand:(NSInteger)brand
 {
+    [self removeDistanceLabel];
     [map removeMarkers];
     [map removeCamera];
     [map removeMap];
+
+    for (UIView* b in self.view.subviews) {
+        [b removeFromSuperview];
+    }
 
     switch (brand) {
         case MAPBRAND_GOOGLEMAPS:
@@ -267,11 +282,16 @@
     [map initMap];
     [map initCamera];
 
+    [self initDistanceLabel];
+    [self recalculateRects];
+
     [self refreshWaypointsData:nil];
     [map placeMarkers];
 
     [map viewDidAppear];
     [self menuShowWhom:showWhom];
+
+    [self updateLocationManagerLocation];
 }
 
 #pragma mark - Local menu related functions
