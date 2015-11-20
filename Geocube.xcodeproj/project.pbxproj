@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
-		E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* CacheFilterManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
@@ -173,7 +172,6 @@
 		E80F73731B530C4600F35528 /* ImportGPXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportGPXViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
-		E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73791B53474C00F35528 /* MapAppleViewController.m */; };
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTrackable.m */; };
 		E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */; };
@@ -191,6 +189,9 @@
 		E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */; };
 		E843A4E51BAD3F9200C58F1F /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
+		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
+		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
+		E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402BB1BFEABD600EFFD13 /* MapOSM.m */; };
 		E84652571BE9DD20004BEA2F /* FilesDropboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84652561BE9DD20004BEA2F /* FilesDropboxViewController.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
@@ -230,7 +231,6 @@
 		E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
-		E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E8361B534ED800CB126A /* MapOSMViewController.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
 		E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */; };
 		E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65611B4B243000E2ABFE /* CacheTableViewCell.m */; };
@@ -292,7 +292,7 @@
 		E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */; };
 		E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F21B54A108001A0F8E /* DistancePickerView.m */; };
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
-		E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */; };
+		E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplate.m */; };
 		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
 		E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */; };
 		E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */; };
@@ -393,8 +393,6 @@
 		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8027BCE1B514956003FD5A6 /* MapGoogleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGoogleViewController.h; sourceTree = "<group>"; };
-		E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGoogleViewController.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E8045B871B697A3B00DD44CC /* CacheFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFilterManager.h; sourceTree = "<group>"; };
@@ -575,8 +573,6 @@
 		E80F73721B530C4600F35528 /* ImportGPXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		E80F73781B53474C00F35528 /* MapAppleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAppleViewController.h; sourceTree = "<group>"; };
-		E80F73791B53474C00F35528 /* MapAppleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleViewController.m; sourceTree = "<group>"; };
 		E81304021B5C4EB1006DF300 /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSymbol.h; sourceTree = "<group>"; };
 		E81304031B5C4EB1006DF300 /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSymbol.m; sourceTree = "<group>"; };
 		E81304091B5D9B5E006DF300 /* dbTrackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackable.h; sourceTree = "<group>"; };
@@ -608,6 +604,12 @@
 		E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "images/GC - logo - 640x960.png"; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		E84402B61BFEABD600EFFD13 /* MapApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapApple.h; sourceTree = "<group>"; };
+		E84402B71BFEABD600EFFD13 /* MapApple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapApple.m; sourceTree = "<group>"; };
+		E84402B81BFEABD600EFFD13 /* MapGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGoogle.h; sourceTree = "<group>"; };
+		E84402B91BFEABD600EFFD13 /* MapGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGoogle.m; sourceTree = "<group>"; };
+		E84402BA1BFEABD600EFFD13 /* MapOSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOSM.h; sourceTree = "<group>"; };
+		E84402BB1BFEABD600EFFD13 /* MapOSM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOSM.m; sourceTree = "<group>"; };
 		E84652551BE9DD20004BEA2F /* FilesDropboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesDropboxViewController.h; sourceTree = "<group>"; };
 		E84652561BE9DD20004BEA2F /* FilesDropboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesDropboxViewController.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
@@ -674,8 +676,6 @@
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
 		E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheHeaderTableViewCell.m; sourceTree = "<group>"; };
-		E867E8351B534ED800CB126A /* MapOSMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOSMViewController.h; sourceTree = "<group>"; };
-		E867E8361B534ED800CB126A /* MapOSMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOSMViewController.m; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
 		E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineListViewController.h; sourceTree = "<group>"; };
@@ -796,8 +796,8 @@
 		E8D569F21B54A108001A0F8E /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = ActionSheetPicker/DistancePickerView.m; sourceTree = "<group>"; };
 		E8D569F31B54A108001A0F8E /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = ActionSheetPicker/SWActionSheet.h; sourceTree = "<group>"; };
 		E8D569F41B54A108001A0F8E /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
-		E8D569FE1B54E35D001A0F8E /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
-		E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
+		E8D569FE1B54E35D001A0F8E /* MapTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplate.h; sourceTree = "<group>"; };
+		E8D569FF1B54E35D001A0F8E /* MapTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplate.m; sourceTree = "<group>"; };
 		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E8D7BA301BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHCenterOfMassMapClusterer.h; path = CCHMapClusterController/CCHCenterOfMassMapClusterer.h; sourceTree = "<group>"; };
@@ -1163,16 +1163,16 @@
 		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E84402B61BFEABD600EFFD13 /* MapApple.h */,
+				E84402B71BFEABD600EFFD13 /* MapApple.m */,
+				E84402B81BFEABD600EFFD13 /* MapGoogle.h */,
+				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
+				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
+				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
 				E84402B31BFA7D6000EFFD13 /* MapViewController.h */,
 				E84402B41BFA7D6000EFFD13 /* MapViewController.m */,
-				E8027BCE1B514956003FD5A6 /* MapGoogleViewController.h */,
-				E8027BCF1B514956003FD5A6 /* MapGoogleViewController.m */,
-				E80F73781B53474C00F35528 /* MapAppleViewController.h */,
-				E80F73791B53474C00F35528 /* MapAppleViewController.m */,
-				E867E8351B534ED800CB126A /* MapOSMViewController.h */,
-				E867E8361B534ED800CB126A /* MapOSMViewController.m */,
-				E8D569FE1B54E35D001A0F8E /* MapTemplateViewController.h */,
-				E8D569FF1B54E35D001A0F8E /* MapTemplateViewController.m */,
+				E8D569FE1B54E35D001A0F8E /* MapTemplate.h */,
+				E8D569FF1B54E35D001A0F8E /* MapTemplate.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
 			);
@@ -2330,12 +2330,12 @@
 				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
 				E8A7FAAE1B795AC3003F4132 /* CacheImageViewController.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
-				E80F737A1B53474C00F35528 /* MapAppleViewController.m in Sources */,
 				E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */,
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
+				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
@@ -2343,13 +2343,12 @@
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
-				E8027BD01B514956003FD5A6 /* MapGoogleViewController.m in Sources */,
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
-				E8D56A001B54E35D001A0F8E /* MapTemplateViewController.m in Sources */,
+				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,
 				E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
@@ -2369,7 +2368,6 @@
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E88037A81B954F290053AD01 /* ImportNotices.m in Sources */,
-				E867E8371B534ED800CB126A /* MapOSMViewController.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
@@ -2442,6 +2440,7 @@
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
+				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
@@ -2454,6 +2453,7 @@
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
+				E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */,
 				E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,

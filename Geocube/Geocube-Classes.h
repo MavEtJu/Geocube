@@ -98,6 +98,7 @@
 @class KeepTrackTrack;
 @class KeepTrackTracks;
 @class LiveAPI;
+@class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;
 @class MapApple;

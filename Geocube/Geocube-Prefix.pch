@@ -199,10 +199,10 @@
 #import "UserProfileViewController.h"
 
 #import "GCPointAnnotation.h"
-#import "MapTemplateViewController.h"
-#import "MapAppleViewController.h"
-#import "MapGoogleViewController.h"
-#import "MapOSMViewController.h"
+#import "MapTemplate.h"
+#import "MapApple.h"
+#import "MapGoogle.h"
+#import "MapOSM.h"
 #import "MapViewController.h"
 
 #endif
