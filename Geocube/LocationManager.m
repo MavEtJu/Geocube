@@ -153,7 +153,7 @@
     // Send out the location and direction changes
     [self updateDataDelegate];
 
-    // Updatet the historical track.
+    // Update the historical track.
     // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
     float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
     td = ch.when - lastHistory.timeIntervalSince1970;
