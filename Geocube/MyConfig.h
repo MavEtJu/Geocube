@@ -39,6 +39,7 @@
 @property (nonatomic) NSInteger lastImportGroup;
 @property (nonatomic) NSInteger lastAddedGroup;
 
+@property (nonatomic) NSInteger mapBrand;
 @property (nonatomic) NSInteger compassType;
 @property (nonatomic) NSInteger themeType;
 
@@ -71,6 +72,7 @@
 - (void)lastAddedGroupUpdate:(NSInteger)value;
 - (void)lastImportGroupUpdate:(NSInteger)value;
 - (void)lastImportSourceUpdate:(NSInteger)value;
+- (void)mapBrandUpdate:(NSInteger)value;
 - (void)compassTypeUpdate:(NSInteger)value;
 - (void)themeTypeUpdate:(NSInteger)value;
 - (void)soundDirectionUpdate:(BOOL)value;

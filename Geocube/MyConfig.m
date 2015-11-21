@@ -39,6 +39,7 @@
 
     NSInteger compassType;
     NSInteger themeType;
+    NSInteger mapBrand;
 
     BOOL soundDirection;
     BOOL soundDistance;
@@ -65,7 +66,7 @@
 
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
-@synthesize compassType, themeType;
+@synthesize mapBrand, compassType, themeType;
 @synthesize soundDirection, soundDistance;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
@@ -138,6 +139,7 @@
     CHECK(@"lastimport_group", @"0");
     CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
+    CHECK(@"map_brand", @"30");
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
     CHECK(@"sound_direction", @"0");
@@ -164,6 +166,7 @@
     lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
     lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
+    mapBrand = [[dbConfig dbGetByKey:@"map_brand"].value integerValue];
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
@@ -281,12 +284,16 @@
     [self NSIntegerUpdate:@"lastimport_source" value:value];
 }
 
+- (void)mapBrandUpdate:(NSInteger)value
+{
+    mapBrand = value;
+    [self NSIntegerUpdate:@"map_brand" value:value];
+}
 - (void)compassTypeUpdate:(NSInteger)value
 {
     compassType = value;
     [self NSIntegerUpdate:@"compass_type" value:value];
 }
-
 - (void)themeTypeUpdate:(NSInteger)value
 {
     themeType = value;

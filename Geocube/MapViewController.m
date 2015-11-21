@@ -66,8 +66,18 @@ enum {
 {
     self = [super init];
 
-    map = [[MapGoogle alloc] init:self];
-    showBrand = MAPBRAND_GOOGLEMAPS;
+    showBrand = myConfig.mapBrand;
+    switch (showBrand) {
+        case MAPBRAND_GOOGLEMAPS:
+            map = [[MapGoogle alloc] init:self];
+            break;
+        case MAPBRAND_APPLEMAPS:
+            map = [[MapApple alloc] init:self];
+            break;
+        case MAPBRAND_OPENSTREETMAPS:
+            map = [[MapOSM alloc] init:self];
+            break;
+    }
 
     LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
     switch (showBrand) {
@@ -390,6 +400,7 @@ enum {
             break;
     }
     showBrand = brand;
+    [myConfig mapBrandUpdate:brand];
 
     [map initMap];
     [map mapViewDidLoad];
