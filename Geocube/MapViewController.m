@@ -24,10 +24,14 @@
 @interface MapViewController ()
 {
     MapTemplate *map;
+
     UILabel *distanceLabel;
+    UIButton *labelMap1;
+    UIButton *labelMap2;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
+    NSInteger showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
     CLLocationCoordinate2D meLocation;
 
@@ -41,6 +45,17 @@
 
 @synthesize waypointsArray;
 
+enum {
+    menuMap,
+    menuSatellite,
+    menuHybrid,
+    menuTerrain,
+    menuShowTarget,
+    menuFollowMe,
+    menuShowBoth,
+    menuMax
+};
+
 - (instancetype)init
 {
     NSAssert(FALSE, @"Don't call this one");
@@ -51,11 +66,34 @@
 {
     self = [super init];
 
-//    map = [[MapGoogle alloc] init:self];
-    map = [[MapApple alloc] init:self];
-//    map = [[MapOSM alloc] init:self];
+    map = [[MapGoogle alloc] init:self];
+    showBrand = MAPBRAND_GOOGLEMAPS;
 
-    menuItems = [NSMutableArray arrayWithArray:@[@"Google Maps", @"Apple Maps", @"OpenStreet\nMaps", @"Map", @"Satellite", @"Hybrid", @"Terrain", @"Show target", @"Follow me", @"Show both"]];
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    switch (showBrand) {
+        case MAPBRAND_GOOGLEMAPS:
+            [lmi addItem:menuMap label:@"Map"];
+            [lmi addItem:menuSatellite label:@"Satellite"];
+            [lmi addItem:menuHybrid label:@"Hybrid"];
+            [lmi addItem:menuTerrain label:@"Terrain"];
+            break;
+        case MAPBRAND_APPLEMAPS:
+            [lmi addItem:menuMap label:@"Map"];
+            [lmi addItem:menuSatellite label:@"Satellite"];
+            [lmi addItem:menuHybrid label:@"Hybrid"];
+            [lmi addItem:menuTerrain label:@"XTerrain"];
+            break;
+        case MAPBRAND_OPENSTREETMAPS:
+            [lmi addItem:menuMap label:@"Map"];
+            [lmi addItem:menuSatellite label:@"XSatellite"];
+            [lmi addItem:menuHybrid label:@"XHybrid"];
+            [lmi addItem:menuTerrain label:@"XTerrain"];
+            break;
+    }
+    [lmi addItem:menuShowTarget label:@"Show target"];
+    [lmi addItem:menuFollowMe label:@"Follow me"];
+    [lmi addItem:menuShowBoth label:@"Show both"];
+    menuItems = [lmi makeMenu];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
@@ -77,6 +115,7 @@
     [map mapViewDidLoad];
 
     [self initDistanceLabel];
+    [self initMapBrandsPicker];
     [self recalculateRects];
 }
 
@@ -130,11 +169,14 @@
 
 - (void)recalculateRects
 {
-//    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-//    NSInteger width = applicationFrame.size.width;
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
 //    NSInteger height = applicationFrame.size.height - 50;
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
+
+    labelMap1.frame = CGRectMake(width - 150 - 3, 3, 75 , 20);
+    labelMap2.frame = CGRectMake(width - 75 - 3, 3, 75 , 20);
 }
 
 - (void)initDistanceLabel
@@ -145,10 +187,77 @@
     [self.view addSubview:distanceLabel];
 }
 
+- (void)initMapBrandsPicker
+{
+    labelMap1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMap1.layer.borderWidth = 1;
+    labelMap1.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMap1 addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMap1.userInteractionEnabled = YES;
+    switch (showBrand) {
+        case MAPBRAND_GOOGLEMAPS:
+            [labelMap1 setTitle:@"Apple" forState:UIControlStateNormal];;
+            break;
+        case MAPBRAND_APPLEMAPS:
+        case MAPBRAND_OPENSTREETMAPS:
+            [labelMap1 setTitle:@"Google" forState:UIControlStateNormal];;
+            break;
+    }
+    [labelMap1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMap1];
+
+    labelMap2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMap2.layer.borderWidth = 1;
+    labelMap2.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMap2 addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMap2.userInteractionEnabled = YES;
+    switch (showBrand) {
+        case MAPBRAND_GOOGLEMAPS:
+        case MAPBRAND_APPLEMAPS:
+            [labelMap2 setTitle:@"OSM" forState:UIControlStateNormal];;
+            break;
+        case MAPBRAND_OPENSTREETMAPS:
+            [labelMap2 setTitle:@"Apple" forState:UIControlStateNormal];;
+            break;
+    }
+    [labelMap2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMap2];
+}
+
 - (void)removeDistanceLabel
 {
     distanceLabel = nil;
+    labelMap1 = nil;
+    labelMap2 = nil;
 }
+
+- (void)choseMapBrand:(UIButton *)button
+{
+    if (button == labelMap1) {
+        switch (showBrand) {
+            case MAPBRAND_GOOGLEMAPS:
+                [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
+                return;
+            case MAPBRAND_APPLEMAPS:
+            case MAPBRAND_OPENSTREETMAPS:
+                [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
+                return;
+        }
+    }
+    if (button == labelMap2) {
+        switch (showBrand) {
+            case MAPBRAND_GOOGLEMAPS:
+            case MAPBRAND_APPLEMAPS:
+                [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
+                return;
+            case MAPBRAND_OPENSTREETMAPS:
+                [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
+                return;
+        }
+    }
+}
+
+
 
 /* Delegated from GCLocationManager */
 - (void)updateLocationManagerLocation
@@ -280,12 +389,14 @@
             map = [[MapOSM alloc] init:self];
             break;
     }
+    showBrand = brand;
 
     [map initMap];
     [map mapViewDidLoad];
     [map initCamera];
 
     [self initDistanceLabel];
+    [self initMapBrandsPicker];
     [self recalculateRects];
 
     [self refreshWaypointsData:nil];
@@ -302,36 +413,26 @@
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case 0: /* Google maps */
-            [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
-            return;
-        case 1: /* Apple maps */
-            [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
-            return;
-        case 2: /* OpenStreet maps */
-            [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
-            return;
-
-        case 3: /* Map view */
+        case menuMap: /* Map view */
             [self menuMapType:MAPTYPE_NORMAL];
             return;
-        case 4: /* Satellite view */
+        case menuSatellite: /* Satellite view */
             [self menuMapType:MAPTYPE_SATELLITE];
             return;
-        case 5: /* Hybrid view */
+        case menuHybrid: /* Hybrid view */
             [self menuMapType:MAPTYPE_HYBRID];
             return;
-        case 6: /* Terrain view */
+        case menuTerrain: /* Terrain view */
             [self menuMapType:MAPTYPE_TERRAIN];
             return;
 
-        case 7: /* Show cache */
+        case menuShowTarget: /* Show cache */
             [self menuShowWhom:SHOW_CACHE];
             return;
-        case 8: /* Show Me */
+        case menuFollowMe: /* Show Me */
             [self menuShowWhom:SHOW_ME];
             return;
-        case 9: /* Show Both */
+        case menuShowBoth: /* Show Both */
             [self menuShowWhom:SHOW_BOTH];
             return;
     }
