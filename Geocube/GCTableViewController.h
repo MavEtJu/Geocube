@@ -31,5 +31,6 @@
 @property (nonatomic) BOOL hasCloseButton;
 
 - (void)changeTheme;
+- (void)refreshMenu;
 
 @end

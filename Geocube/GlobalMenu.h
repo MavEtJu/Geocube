@@ -45,5 +45,7 @@
 - (instancetype)init:(NSInteger)max;
 - (void)addItem:(NSInteger)idx label:(NSString *)label;
 - (NSMutableArray *)makeMenu;
+- (void)enableItem:(NSInteger)idx;
+- (void)disableItem:(NSInteger)idx;
 
 @end

@@ -32,7 +32,7 @@
 
 @implementation GCViewController
 
-@synthesize numberOfItemsInRow, tab_menu;
+@synthesize numberOfItemsInRow;
 
 - (instancetype)init
 {
@@ -144,6 +144,10 @@
     return tab_menu;
 }
 
+- (void)refreshMenu
+{
+    tab_menu = nil;
+}
 
 - (void)openLocalMenu:(id)sender
 {

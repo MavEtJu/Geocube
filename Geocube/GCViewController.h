@@ -26,9 +26,9 @@
 }
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
-@property (strong, nonatomic) DOPNavbarMenu *tab_menu;
 
 - (void)showCloseButton;
+- (void)refreshMenu;
 - (void)changeTheme;
 
 @end

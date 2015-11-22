@@ -183,6 +183,40 @@
     [makeMenuItems setValue:label forKey:key];
 }
 
+- (void)enableItem:(NSInteger)idx
+{
+    __block NSString *keyfound = nil;
+    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+        if ([key integerValue] == idx) {
+            keyfound = key;
+            *stop = YES;
+        }
+    }];
+    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", idx);
+    NSString *value = [makeMenuItems objectForKey:keyfound];
+    if ([[value substringToIndex:1] isEqualToString:@"X"] == YES) {
+        value = [value substringFromIndex:1];
+        [makeMenuItems setValue:value forKey:keyfound];
+    }
+}
+
+- (void)disableItem:(NSInteger)idx
+{
+    __block NSString *keyfound = nil;
+    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+        if ([key integerValue] == idx) {
+            keyfound = key;
+            *stop = YES;
+        }
+    }];
+    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", idx);
+    NSString *value = [makeMenuItems objectForKey:keyfound];
+    if ([[value substringToIndex:1] isEqualToString:@"X"] == NO) {
+        value = [NSString stringWithFormat:@"X%@", value];
+        [makeMenuItems setValue:value forKey:keyfound];
+    }
+}
+
 - (NSMutableArray *)makeMenu
 {
     NSMutableArray *menuItems = [[NSMutableArray alloc] initWithCapacity:makeMenuMax];

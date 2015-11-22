@@ -195,6 +195,10 @@
     return tab_menu;
 }
 
+- (void)refreshMenu
+{
+    self.tab_menu = nil;
+}
 
 - (void)openLocalMenu:(id)sender
 {
