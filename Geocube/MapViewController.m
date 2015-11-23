@@ -26,8 +26,9 @@
     MapTemplate *map;
 
     UILabel *distanceLabel;
-    UIButton *labelMap1;
-    UIButton *labelMap2;
+    UIButton *labelMapGoogle;
+    UIButton *labelMapApple;
+    UIButton *labelMapOSM;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
@@ -37,6 +38,8 @@
 
     NSInteger waypointCount;
     NSArray *waypointsArray;
+
+    LocalMenuItems *lmi;
 }
 
 @end
@@ -79,7 +82,7 @@ enum {
             break;
     }
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             [lmi addItem:menuMap label:@"Map"];
@@ -185,8 +188,9 @@ enum {
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
-    labelMap1.frame = CGRectMake(width - 150 - 3, 3, 75 , 20);
-    labelMap2.frame = CGRectMake(width - 75 - 3, 3, 75 , 20);
+    labelMapGoogle.frame = CGRectMake(width - 189 - 3, 3, 63 , 20);
+    labelMapApple.frame = CGRectMake(width - 126 - 3, 3, 63 , 20);
+    labelMapOSM.frame = CGRectMake(width - 63 - 3, 3, 63 , 20);
 }
 
 - (void)initDistanceLabel
@@ -199,74 +203,84 @@ enum {
 
 - (void)initMapBrandsPicker
 {
-    labelMap1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMap1.layer.borderWidth = 1;
-    labelMap1.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMap1 addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
-    labelMap1.userInteractionEnabled = YES;
-    switch (showBrand) {
-        case MAPBRAND_GOOGLEMAPS:
-            [labelMap1 setTitle:@"Apple" forState:UIControlStateNormal];;
-            break;
-        case MAPBRAND_APPLEMAPS:
-        case MAPBRAND_OPENSTREETMAPS:
-            [labelMap1 setTitle:@"Google" forState:UIControlStateNormal];;
-            break;
-    }
-    [labelMap1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.view addSubview:labelMap1];
+    labelMapGoogle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapGoogle.layer.borderWidth = 1;
+    labelMapGoogle.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapGoogle addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapGoogle.userInteractionEnabled = YES;
+    [labelMapGoogle setTitle:@"Google" forState:UIControlStateNormal];;
+    [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapGoogle];
 
-    labelMap2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMap2.layer.borderWidth = 1;
-    labelMap2.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMap2 addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
-    labelMap2.userInteractionEnabled = YES;
+    labelMapApple = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapApple.layer.borderWidth = 1;
+    labelMapApple.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapApple addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapApple.userInteractionEnabled = YES;
+    [labelMapApple setTitle:@"Apple" forState:UIControlStateNormal];;
+    [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapApple];
+
+    labelMapOSM = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapOSM.layer.borderWidth = 1;
+    labelMapOSM.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapOSM addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapOSM.userInteractionEnabled = YES;
+    [labelMapOSM setTitle:@"OSM" forState:UIControlStateNormal];;
+    [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapOSM];
+
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
+            [labelMapGoogle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapGoogle setBackgroundColor:[UIColor blackColor]];
+            [labelMapApple setBackgroundColor:[UIColor clearColor]];
+            [labelMapOSM setBackgroundColor:[UIColor clearColor]];
+            break;
         case MAPBRAND_APPLEMAPS:
-            [labelMap2 setTitle:@"OSM" forState:UIControlStateNormal];;
+            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapApple setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
+            [labelMapApple setBackgroundColor:[UIColor blackColor]];
+            [labelMapOSM setBackgroundColor:[UIColor clearColor]];
             break;
         case MAPBRAND_OPENSTREETMAPS:
-            [labelMap2 setTitle:@"Apple" forState:UIControlStateNormal];;
+            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [labelMapOSM setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
+            [labelMapApple setBackgroundColor:[UIColor clearColor]];
+            [labelMapOSM setBackgroundColor:[UIColor blackColor]];
             break;
     }
-    [labelMap2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.view addSubview:labelMap2];
 }
 
 - (void)removeDistanceLabel
 {
     distanceLabel = nil;
-    labelMap1 = nil;
-    labelMap2 = nil;
+    labelMapGoogle = nil;
+    labelMapApple = nil;
+    labelMapOSM = nil;
 }
 
 - (void)choseMapBrand:(UIButton *)button
 {
-    if (button == labelMap1) {
-        switch (showBrand) {
-            case MAPBRAND_GOOGLEMAPS:
-                [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
-                return;
-            case MAPBRAND_APPLEMAPS:
-            case MAPBRAND_OPENSTREETMAPS:
-                [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
-                return;
-        }
+    if (button == labelMapGoogle) {
+        [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
+        return;
     }
-    if (button == labelMap2) {
-        switch (showBrand) {
-            case MAPBRAND_GOOGLEMAPS:
-            case MAPBRAND_APPLEMAPS:
-                [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
-                return;
-            case MAPBRAND_OPENSTREETMAPS:
-                [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
-                return;
-        }
+    if (button == labelMapApple) {
+        [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
+        return;
+    }
+    if (button == labelMapOSM) {
+        [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
+        return;
     }
 }
-
 
 
 /* Delegated from GCLocationManager */
@@ -389,18 +403,33 @@ enum {
         case MAPBRAND_GOOGLEMAPS:
             NSLog(@"Switching to Google Maps");
             map = [[MapGoogle alloc] init:self];
+            [lmi enableItem:menuMap];
+            [lmi enableItem:menuSatellite];
+            [lmi enableItem:menuHybrid];
+            [lmi enableItem:menuTerrain];
             break;;
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];
+            [lmi enableItem:menuMap];
+            [lmi enableItem:menuSatellite];
+            [lmi enableItem:menuHybrid];
+            [lmi disableItem:menuTerrain];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
             map = [[MapOSM alloc] init:self];
+            [lmi enableItem:menuMap];
+            [lmi disableItem:menuSatellite];
+            [lmi disableItem:menuHybrid];
+            [lmi disableItem:menuTerrain];
             break;
     }
     showBrand = brand;
     [myConfig mapBrandUpdate:brand];
+
+    menuItems = [lmi makeMenu];
+    [self refreshMenu];
 
     [map initMap];
     [map mapViewDidLoad];
