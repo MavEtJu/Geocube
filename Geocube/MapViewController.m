@@ -49,13 +49,13 @@
 @synthesize waypointsArray;
 
 enum {
+    menuFollowMe,
+    menuShowBoth,
+    menuShowTarget,
     menuMap,
     menuSatellite,
     menuHybrid,
     menuTerrain,
-    menuShowTarget,
-    menuFollowMe,
-    menuShowBoth,
     menuMax
 };
 
@@ -83,6 +83,9 @@ enum {
     }
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuShowTarget label:@"Show target"];
+    [lmi addItem:menuFollowMe label:@"Follow me"];
+    [lmi addItem:menuShowBoth label:@"Show both"];
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             [lmi addItem:menuMap label:@"Map"];
@@ -103,9 +106,6 @@ enum {
             [lmi addItem:menuTerrain label:@"XTerrain"];
             break;
     }
-    [lmi addItem:menuShowTarget label:@"Show target"];
-    [lmi addItem:menuFollowMe label:@"Follow me"];
-    [lmi addItem:menuShowBoth label:@"Show both"];
     menuItems = [lmi makeMenu];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
