@@ -73,7 +73,7 @@ enum {
     menuItems = [lmi makeMenu];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
-    externalMapTypes = @[@"Apple Maps", @"Google Maps"];
+    externalMapTypes = @[@"Google Maps", @"Apple Maps"];
 
     [self calculateDynamicmapSpeedsDistances];
 }
@@ -262,7 +262,7 @@ enum sections {
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"External Maps";
-                    cell.detailTextLabel.text = [externalMapTypes objectAtIndex:myConfig.mapExternal - 40];
+                    cell.detailTextLabel.text = [externalMapTypes objectAtIndex:myConfig.mapExternal];
                     return cell;
                 }
             }
@@ -699,7 +699,7 @@ enum sections {
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
                                             rows:externalMapTypes
-                                initialSelection:myConfig.mapExternal - 40
+                                initialSelection:myConfig.mapExternal
                                           target:self
                                    successAction:@selector(updateAppsExternalMap:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -710,7 +710,7 @@ enum sections {
 - (void)updateAppsExternalMap:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger i = [selectedIndex intValue];
-    [myConfig mapExternalUpdate:i + 40];
+    [myConfig mapExternalUpdate:i];
     [self.tableView reloadData];
 }
 

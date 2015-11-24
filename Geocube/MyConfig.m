@@ -140,8 +140,8 @@
     CHECK(@"lastimport_group", @"0");
     CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
-    CHECK(@"map_external", @"40");
-    CHECK(@"map_brand", @"30");
+    CHECK(@"map_external", @"0");
+    CHECK(@"map_brand", @"0");
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
     CHECK(@"sound_direction", @"0");
