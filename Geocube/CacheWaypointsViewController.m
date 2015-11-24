@@ -120,7 +120,7 @@ enum {
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Add a related waypoint"
-                               message:@"Lattitude is north and south\nLongitude is east and west\nUse 3679 for the directional"
+                               message:@"Latitude is north and south\nLongitude is east and west\nUse 3679 for the directional"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -130,7 +130,7 @@ enum {
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *lat = tf.text;
-                             NSLog(@"Lattitude '%@'", lat);
+                             NSLog(@"Latitude '%@'", lat);
 
                              tf = [alert.textFields objectAtIndex:1];
                              NSString *lon = tf.text;
@@ -169,7 +169,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Lattitude (like S 12 34.567)";
+        textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         [textField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
     }];
