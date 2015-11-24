@@ -56,6 +56,7 @@ enum {
     menuSatellite,
     menuHybrid,
     menuTerrain,
+    menuDirections,
     menuMax
 };
 
@@ -106,6 +107,7 @@ enum {
             [lmi addItem:menuTerrain label:@"XTerrain"];
             break;
     }
+    [lmi addItem:menuDirections label:@"Directions"];
     menuItems = [lmi makeMenu];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
@@ -232,28 +234,28 @@ enum {
 
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
-            [labelMapGoogle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapGoogle setBackgroundColor:[UIColor blackColor]];
+            [labelMapGoogle setBackgroundColor:[UIColor grayColor]];
             [labelMapApple setBackgroundColor:[UIColor clearColor]];
             [labelMapOSM setBackgroundColor:[UIColor clearColor]];
             break;
         case MAPBRAND_APPLEMAPS:
             [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapApple setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
-            [labelMapApple setBackgroundColor:[UIColor blackColor]];
+            [labelMapApple setBackgroundColor:[UIColor grayColor]];
             [labelMapOSM setBackgroundColor:[UIColor clearColor]];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapOSM setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
             [labelMapApple setBackgroundColor:[UIColor clearColor]];
-            [labelMapOSM setBackgroundColor:[UIColor blackColor]];
+            [labelMapOSM setBackgroundColor:[UIColor grayColor]];
             break;
     }
 }
@@ -448,6 +450,43 @@ enum {
     [self updateLocationManagerLocation];
 }
 
+- (void)menuDirections
+{
+    if (myConfig.mapExternal == MAPEXTERNAL_APPLEMAPS) {
+        if (waypointManager.currentWaypoint == nil) {
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(LM.coords.latitude, LM.coords.longitude);
+
+            //create MKMapItem out of coordinates
+            MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+            MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+            if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
+                [destination openInMapsWithLaunchOptions:nil];
+            return;
+        }
+
+        if (waypointManager.currentWaypoint != nil) {
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.lat_float, waypointManager.currentWaypoint.lon_float);
+
+            //create MKMapItem out of coordinates
+            MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+            MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+            if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
+                [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
+        }
+        return;
+    }
+
+    if (myConfig.mapExternal == MAPBRAND_GOOGLEMAPS) {
+        if (waypointManager.currentWaypoint == nil) {
+            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        } else {
+            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", waypointManager.currentWaypoint.lat_float, waypointManager.currentWaypoint.lon_float];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+    }
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -475,10 +514,12 @@ enum {
         case menuShowBoth: /* Show Both */
             [self menuShowWhom:SHOW_BOTH];
             return;
+        case menuDirections:
+            [self menuDirections];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
 }
-
 
 @end
