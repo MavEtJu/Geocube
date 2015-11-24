@@ -32,6 +32,7 @@
     float mapClustersZoomlevel;
 
     NSArray *compassTypes;
+    NSArray *externalMapTypes;
 
     NSMutableArray *speedsWalkingMetric;
     NSMutableArray *speedsCyclingMetric;
@@ -72,6 +73,7 @@ enum {
     menuItems = [lmi makeMenu];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
+    externalMapTypes = @[@"Apple Maps", @"Google Maps"];
 
     [self calculateDynamicmapSpeedsDistances];
 }
@@ -153,6 +155,7 @@ enum {
 
 enum sections {
     SECTION_DISTANCE = 0,
+    SECTION_APPS,
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_MAPS,
@@ -174,6 +177,9 @@ enum sections {
     SECTION_MAPS_ZOOMLEVEL,
     SECTION_MAPS_MAX,
 
+    SECTION_APPS_EXTERNALMAP = 0,
+    SECTION_APPS_MAX,
+
     SECTION_DYNAMICMAP_ENABLED = 0,
     SECTION_DYNAMICMAP_SPEED_WALKING,
     SECTION_DYNAMICMAP_SPEED_CYCLING,
@@ -190,6 +196,8 @@ enum sections {
     switch (section) {
         case SECTION_DISTANCE: // Distance section
             return SECTION_DISTANCE_MAX;
+        case SECTION_APPS:
+            return SECTION_APPS_MAX;
         case SECTION_THEME: // Theme section
             return SECTION_THEME_MAX;
         case SECTION_SOUNDS: // Sounds section
@@ -209,6 +217,8 @@ enum sections {
     switch (section) {
         case SECTION_DISTANCE:
             return @"Distances";
+        case SECTION_APPS:
+            return @"External apps";
         case SECTION_THEME:
             return @"Theme";
         case SECTION_SOUNDS:
@@ -244,6 +254,18 @@ enum sections {
                 }
             }
             break;
+        }
+        case SECTION_APPS: {
+            switch (indexPath.row) {
+                case SECTION_APPS_EXTERNALMAP: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+                    cell.textLabel.text = @"External Maps";
+                    cell.detailTextLabel.text = [externalMapTypes objectAtIndex:myConfig.mapExternal - 40];
+                    return cell;
+                }
+            }
         }
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
@@ -448,6 +470,13 @@ enum sections {
                     break;
                 case SECTION_THEME_COMPASS:
                     [self updateThemeCompass];
+                    break;
+            }
+            return;
+        case SECTION_APPS:
+            switch (indexPath.row) {
+                case SECTION_APPS_EXTERNALMAP:
+                    [self updateAppsExternalMap];
                     break;
             }
             return;
@@ -663,6 +692,25 @@ enum sections {
     [self.tableView reloadData];
 
     [themeManager setTheme:i];
+    [self.tableView reloadData];
+}
+
+- (void)updateAppsExternalMap
+{
+    [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
+                                            rows:externalMapTypes
+                                initialSelection:myConfig.mapExternal - 40
+                                          target:self
+                                   successAction:@selector(updateAppsExternalMap:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateAppsExternalMap:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger i = [selectedIndex intValue];
+    [myConfig mapExternalUpdate:i + 40];
     [self.tableView reloadData];
 }
 
