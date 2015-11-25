@@ -30,7 +30,7 @@
 
 @implementation Coordinates
 
-- (instancetype)init:(float)_lat lon:(float)_lon       // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
 {
     self = [super init];
     coords.latitude = _lat;
@@ -97,11 +97,11 @@
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
-- (float)lat
+- (CLLocationDegrees)lat
 {
     return coords.latitude;
 }
-- (float)lon
+- (CLLocationDegrees)lon
 {
     return coords.longitude;
 }
@@ -117,12 +117,12 @@
 }
 
 
-+ (float)toRadians:(float)f
++ (CLLocationDegrees)toRadians:(CLLocationDegrees)f
 {
     return f * M_PI / 180;
 }
 
-+ (float)toDegrees:(float)f
++ (CLLocationDegrees)toDegrees:(CLLocationDegrees)f
 {
     return 180 * f / M_PI;
 }
@@ -158,7 +158,7 @@
 }
 
 
-+ (NSString *)bearing2compass:(NSInteger)bearing
++ (NSString *)bearing2compass:(CLLocationDegrees)bearing
 {
     NSString *point;
     switch ((int)((bearing + 11.25) / 22.5)) {
@@ -190,7 +190,19 @@
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
 }
 
-+ (float)degrees2rad:(NSInteger)d
++ (NSString *)NiceLatitude:(CLLocationDegrees)l
+{
+    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
+    return [co lat_degreesDecimalMinutes];
+}
+
++ (NSString *)NiceLongitude:(CLLocationDegrees)l
+{
+    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
+    return [co lon_degreesDecimalMinutes];
+}
+
++ (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d
 {
     return d * M_PI / 180.0;
 }

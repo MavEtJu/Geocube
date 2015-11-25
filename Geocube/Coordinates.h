@@ -21,11 +21,11 @@
 
 @interface Coordinates : NSObject
 
-- (instancetype)init:(float)lat lon:(float)log;       // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)lat lon:(CLLocationDegrees)log;       // -34.02787 151.07357
 - (instancetype)init:(CLLocationCoordinate2D)coor;    // { -34.02787, 151.07357 }
 - (instancetype)initString:(NSString *)lat lon:(NSString *)lon;    // S 34 1.672, E 151 4.414
-- (float)lat;
-- (float)lon;
+- (CLLocationDegrees)lat;
+- (CLLocationDegrees)lon;
 - (NSString *)lat_decimalDegreesSigned;     // -34.02787
 - (NSString *)lon_decimalDegreesSigned;     // 151.07357
 - (NSString *)lat_decimalDegreesCardinal;   // S 34.02787
@@ -39,9 +39,11 @@
 
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
-+ (NSString *)bearing2compass:(NSInteger)bearing;
++ (NSString *)bearing2compass:(CLLocationDegrees)bearing;
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
-+ (float)degrees2rad:(NSInteger)d;
++ (NSString *)NiceLatitude:(CLLocationDegrees)l;
++ (NSString *)NiceLongitude:(CLLocationDegrees)l;
++ (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2;
 
 @end
