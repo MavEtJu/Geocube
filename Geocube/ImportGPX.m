@@ -189,6 +189,7 @@
         }
 
         if ([currentElement isEqualToString:@"groundspeak:cache"] == YES) {
+            [currentWP setGs_hasdata:YES];
             [currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
             [currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
 

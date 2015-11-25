@@ -113,6 +113,7 @@
     [wp finish];
 
     // Groundspeak object
+    wp.gs_hasdata = YES;
     wp.gs_rating_difficulty = [[dict objectForKey:@"Difficulty"] floatValue];
     wp.gs_rating_terrain = [[dict objectForKey:@"Terrain"] floatValue];
     wp.gs_favourites = [[dict objectForKey:@"FavoritePoints"] integerValue];

@@ -129,12 +129,12 @@
         [self performUpgrade_0_1];
         return;
     }
-    /*
+
     if (version == 1) {
         [self performUpgrade_1_2];
         return;
     }
-    */
+
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
 }
 
@@ -182,23 +182,26 @@
 - (void)performUpgrade_1_2
 {
     NSArray *a = @[
-    @"insert into symbols(symbol) values('*')"
+    @"alter table waypoints add column gs_hasdata bool",
     ];
     [self performUpgrade_X_Y:a];
 }
 
 - (void)performUpgrade_2_3
 {
+    /*
     NSArray *a = @[
     @"alter table waypoints add column ignore bool",
     @"update waypoints set ignore = 0",
     @"insert into groups(name, usergroup) values('All Waypoints - Ignored', 0)"
     ];
     [self performUpgrade_X_Y:a];
+     */
 }
 
 - (void)performUpgrade_3_4
 {
+    /*
     NSArray *a = @[
     @"delete from types",
     @"alter table types add column pin_rgb text",
@@ -248,10 +251,12 @@
     @"insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values('*', '*', 208, 600, '', '000000')"
     ];
     [self performUpgrade_X_Y:a];
+     */
 }
 
 - (void)performUpgrade_4_5
 {
+    /*
     NSArray *a = @[
     @"create table tracks ( id integer primary key, name text, startedon integer, stoppedon integer)",
     @"create index tracks_idx_id on tracks(id)",
@@ -260,6 +265,7 @@
     @"create index trackelements_idx_trackid on trackelements(track_id)"
     ];
     [self performUpgrade_X_Y:a];
+    */
 }
 
 
