@@ -158,6 +158,7 @@ enum {
                              [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
 
                              [self.tableView reloadData];
+                             [waypointManager needsRefresh];
                          }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
