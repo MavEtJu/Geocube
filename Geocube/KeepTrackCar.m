@@ -154,8 +154,8 @@
     rectDistance = CGRectMake(0, 7 * height18, width, height18);
     rectDirection = CGRectMake(0, 8 * height18, width, height18);
 
-    rectButtonSetAsTarget = CGRectMake(0, height - 7 * height18, width, height18);
-    rectButtonRemember = CGRectMake(0, height - 5 * height18, width, height18);
+    rectButtonRemember = CGRectMake(0, height - 7 * height18, width, height18);
+    rectButtonSetAsTarget = CGRectMake(0, height - 5 * height18, width, height18);
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -186,8 +186,8 @@
 {
     labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
     labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
-    labelDistance.text = [MyTools NiceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]];
-    labelDirection.text = [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]];
+    labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools NiceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
+    labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
