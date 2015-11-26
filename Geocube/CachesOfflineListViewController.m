@@ -34,11 +34,18 @@
 
 @implementation CachesOfflineListViewController
 
+enum {
+    menuAddWaypoint,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    menuItems = nil;
+    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
+    menuItems = [lmi makeMenu];
 
     return self;
 }
@@ -227,6 +234,26 @@
     [self refreshCachesData:searchString];
     //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
     [self.tableView reloadData];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuAddWaypoint:
+            [self addWaypoint];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)addWaypoint
+{
+    CacheAddViewController *newController = [[CacheAddViewController alloc] init];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 @end

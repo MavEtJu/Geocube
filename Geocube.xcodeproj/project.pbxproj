@@ -237,6 +237,7 @@
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
+		E86FF7A51C05021B00750B58 /* CacheAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86FF7A41C05021B00750B58 /* CacheAddViewController.m */; };
 		E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740F9A1B4E3C6A002527DA /* CacheViewController.m */; };
 		E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FCC1B4E90EB002527DA /* dbLogType.m */; };
 		E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FDE1B4F87D2002527DA /* dbLog.m */; };
@@ -688,6 +689,8 @@
 		E86C65AB1B4D431100E2ABFE /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "database-cache.m"; sourceTree = "<group>"; };
 		E86C65AD1B4DCC6900E2ABFE /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObject.m; sourceTree = "<group>"; };
 		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
+		E86FF7A31C05021B00750B58 /* CacheAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheAddViewController.h; sourceTree = "<group>"; };
+		E86FF7A41C05021B00750B58 /* CacheAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheAddViewController.m; sourceTree = "<group>"; };
 		E8740F991B4E3C6A002527DA /* CacheViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheViewController.h; sourceTree = "<group>"; };
 		E8740F9A1B4E3C6A002527DA /* CacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheViewController.m; sourceTree = "<group>"; };
 		E8740FCB1B4E90EB002527DA /* dbLogType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogType.h; sourceTree = "<group>"; };
@@ -1048,6 +1051,8 @@
 			children = (
 				E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */,
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
+				E86FF7A31C05021B00750B58 /* CacheAddViewController.h */,
+				E86FF7A41C05021B00750B58 /* CacheAddViewController.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
@@ -2346,6 +2351,7 @@
 				E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */,
+				E86FF7A51C05021B00750B58 /* CacheAddViewController.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,

@@ -27,6 +27,7 @@
 @class BrowserAccountsViewController;
 @class BrowserBrowserViewController;
 @class BrowserUserViewController;
+@class CacheAddViewController;
 @class CacheAttributesViewController;
 @class CacheDescriptionViewController;
 @class CacheFilterManager;

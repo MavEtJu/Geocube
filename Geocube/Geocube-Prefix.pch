@@ -162,6 +162,7 @@
 #import "CacheTrackablesViewController.h"
 #import "CacheViewController.h"
 #import "CacheWaypointsViewController.h"
+#import "CacheAddViewController.h"
 
 #import "FilterObject.h"
 #import "FilterTableViewCell.h"
