@@ -461,7 +461,7 @@ enum {
         }
 
         if (waypointManager.currentWaypoint != nil) {
-            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.lat_float, waypointManager.currentWaypoint.lon_float);
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float);
 
             //create MKMapItem out of coordinates
             MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
@@ -477,7 +477,7 @@ enum {
             NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location"];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         } else {
-            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", waypointManager.currentWaypoint.lat_float, waypointManager.currentWaypoint.lon_float];
+            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         }
     }

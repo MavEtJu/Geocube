@@ -27,24 +27,24 @@ enum {
         LOGSTATUS_FOUND,
 };
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *description;
-@property (nonatomic, retain) NSString *url;
-@property (nonatomic, retain) NSString *urlname;
-@property (nonatomic, retain) NSString *lat;
-@property (nonatomic, retain) NSString *lon;
-@property (nonatomic) NSInteger lat_int;
-@property (nonatomic) NSInteger lon_int;
-@property (nonatomic) float lat_float;
-@property (nonatomic) float lon_float;
-@property (nonatomic, retain) NSString *date_placed;
-@property (nonatomic) NSInteger date_placed_epoch;
-@property (nonatomic) NSId symbol_id;
-@property (nonatomic, retain) NSString *symbol_str;
-@property (nonatomic, retain) dbSymbol *symbol;
-@property (nonatomic) NSId type_id;
-@property (nonatomic, retain) NSString *type_str;
-@property (nonatomic, retain) dbType *type;
+@property (nonatomic, retain) NSString *wpt_name;
+@property (nonatomic, retain) NSString *wpt_description;
+@property (nonatomic, retain) NSString *wpt_url;
+@property (nonatomic, retain) NSString *wpt_urlname;
+@property (nonatomic, retain) NSString *wpt_lat;
+@property (nonatomic, retain) NSString *wpt_lon;
+@property (nonatomic) NSInteger wpt_lat_int;
+@property (nonatomic) NSInteger wpt_lon_int;
+@property (nonatomic) float wpt_lat_float;
+@property (nonatomic) float wpt_lon_float;
+@property (nonatomic, retain) NSString *wpt_date_placed;
+@property (nonatomic) NSInteger wpt_date_placed_epoch;
+@property (nonatomic) NSId wpt_symbol_id;
+@property (nonatomic, retain) NSString *wpt_symbol_str;
+@property (nonatomic, retain) dbSymbol *wpt_symbol;
+@property (nonatomic) NSId wpt_type_id;
+@property (nonatomic, retain) NSString *wpt_type_str;
+@property (nonatomic, retain) dbType *wpt_type;
 
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL highlight;

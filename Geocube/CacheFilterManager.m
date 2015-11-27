@@ -135,7 +135,7 @@
             if (c == nil || [c boolValue] == NO)
                 return;
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.type_id == type._id)
+                if (wp.wpt_type_id == type._id)
                     [after addObject:wp];
             }];
         }];
@@ -271,17 +271,17 @@
 
         if (placedCompare == 0) {           // before
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.date_placed_epoch <= placedEpoch)
+                if (wp.wpt_date_placed_epoch <= placedEpoch)
                     [after addObject:wp];
             }];
         } else if (placedCompare == 1) {    // after
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.date_placed_epoch >= placedEpoch)
+                if (wp.wpt_date_placed_epoch >= placedEpoch)
                     [after addObject:wp];
             }];
         } else {                            // on
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.date_placed_epoch >= placedEpoch - 86400 && wp.date_placed_epoch <= placedEpoch + 86400)
+                if (wp.wpt_date_placed_epoch >= placedEpoch - 86400 && wp.wpt_date_placed_epoch <= placedEpoch + 86400)
                     [after addObject:wp];
             }];
         }
@@ -380,8 +380,8 @@
             __block BOOL rv = YES;
 
             if (cachename != nil && [cachename isEqualToString:@""] == NO &&
-                [wp.name localizedCaseInsensitiveContainsString:cachename] == NO &&
-                [wp.urlname localizedCaseInsensitiveContainsString:cachename] == NO) {
+                [wp.wpt_name localizedCaseInsensitiveContainsString:cachename] == NO &&
+                [wp.wpt_urlname localizedCaseInsensitiveContainsString:cachename] == NO) {
                 rv = NO;
             }
 
@@ -555,6 +555,6 @@
 - (void)setCurrentWaypoint:(dbWaypoint *)wp
 {
     currentWaypoint = wp;
-    [myConfig currentWaypointUpdate:wp.name];
+    [myConfig currentWaypointUpdate:wp.wpt_name];
 }
 @end

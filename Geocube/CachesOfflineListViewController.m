@@ -174,8 +174,8 @@ enum {
     }
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
-    cell.description.text = wp.urlname;
-    cell.name.text = wp.name;
+    cell.description.text = wp.wpt_urlname;
+    cell.name.text = wp.wpt_name;
     cell.icon.image = [imageLibrary getType:wp];
     if (wp.highlight == YES)
         cell.description.backgroundColor = [UIColor yellowColor];

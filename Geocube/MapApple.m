@@ -113,10 +113,10 @@
         [annotation setCoordinate:coord];
 
         annotation._id = wp._id;
-        annotation.name = wp.name;
+        annotation.name = wp.wpt_name;
 
-        [annotation setTitle:wp.name];
-        [annotation setSubtitle:wp.urlname];
+        [annotation setTitle:wp.wpt_name];
+        [annotation setSubtitle:wp.wpt_urlname];
 
         [markers addObject:annotation];
     }];

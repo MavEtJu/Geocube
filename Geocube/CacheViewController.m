@@ -148,7 +148,7 @@ enum {
     GCLabel *l;
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
-    l.text = waypoint.urlname;
+    l.text = waypoint.wpt_urlname;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
@@ -157,15 +157,15 @@ enum {
     NSMutableString *s = [NSMutableString stringWithString:@""];
     if (waypoint.gs_placed_by != nil && [waypoint.gs_placed_by isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", waypoint.gs_placed_by];
-    if ([waypoint.date_placed isEqualToString:@""] == NO)
-        [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.date_placed]];
+    if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
+        [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.wpt_date_placed]];
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
-    l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.name, waypoint.account.site];
+    l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:l];
@@ -188,7 +188,7 @@ enum {
     if (indexPath.section == 0) {
         CacheHeaderTableViewCell *cell = [[CacheHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        Coordinates *c = [[Coordinates alloc] init:waypoint.lat_float lon:waypoint.lon_float];
+        Coordinates *c = [[Coordinates alloc] init:waypoint.wpt_lat_float lon:waypoint.wpt_lon_float];
         cell.lat.text = [c lat_degreesDecimalMinutes];
         cell.lon.text = [c lon_degreesDecimalMinutes];
         [cell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
@@ -320,7 +320,7 @@ enum {
             cell.userInteractionEnabled = YES;
 
             if (indexPath.row == 2) {
-                if (waypoint.url == nil)
+                if (waypoint.wpt_url == nil)
                     cell.userInteractionEnabled = NO;
             }
 
@@ -411,7 +411,7 @@ enum {
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {   /* Set as target */
             if ([waypointManager currentWaypoint] != nil &&
-                [[waypointManager currentWaypoint].name isEqualToString:waypoint.name] == YES) {
+                [[waypointManager currentWaypoint].wpt_name isEqualToString:waypoint.wpt_name] == YES) {
                 [waypointManager setCurrentWaypoint:nil];
                 [self showWaypoint:nil];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -449,7 +449,7 @@ enum {
             BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
 
             [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
-            [bbvc loadURL:waypoint.url];
+            [bbvc loadURL:waypoint.wpt_url];
             return;
         }
 
@@ -547,18 +547,18 @@ enum {
                              c = [[Coordinates alloc] initString:lat lon:lon];
 
                              dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-                             wp.lat = [c lat_decimalDegreesSigned];
-                             wp.lon = [c lon_decimalDegreesSigned];
-                             wp.lat_int = [c lat] * 1000000;
-                             wp.lon_int = [c lon] * 1000000;
-                             wp.name = [dbWaypoint makeName:[waypoint.name substringFromIndex:2]];
-                             wp.description = wp.name;
-                             wp.date_placed_epoch = time(NULL);
-                             wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
-                             wp.url = nil;
-                             wp.urlname = wp.name;
-                             wp.symbol_id = 1;
-                             wp.type_id = [dbc Type_Unknown]._id;
+                             wp.wpt_lat = [c lat_decimalDegreesSigned];
+                             wp.wpt_lon = [c lon_decimalDegreesSigned];
+                             wp.wpt_lat_int = [c lat] * 1000000;
+                             wp.wpt_lon_int = [c lon] * 1000000;
+                             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+                             wp.wpt_description = wp.wpt_name;
+                             wp.wpt_date_placed_epoch = time(NULL);
+                             wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
+                             wp.wpt_url = nil;
+                             wp.wpt_urlname = wp.wpt_name;
+                             wp.wpt_symbol_id = 1;
+                             wp.wpt_type_id = [dbc Type_Unknown]._id;
                              [dbWaypoint dbCreate:wp];
 
                              [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];

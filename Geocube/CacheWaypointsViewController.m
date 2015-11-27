@@ -84,9 +84,9 @@ enum {
 
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = wp.urlname;
-    cell.detailTextLabel.text = wp.name;
-    cell.imageView.image = [imageLibrary get:wp.type.icon];
+    cell.textLabel.text = wp.wpt_urlname;
+    cell.detailTextLabel.text = wp.wpt_name;
+    cell.imageView.image = [imageLibrary get:wp.wpt_type.icon];
 
     return cell;
 }
@@ -139,18 +139,18 @@ enum {
                              c = [[Coordinates alloc] initString:lat lon:lon];
 
                              dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-                             wp.lat = [c lat_decimalDegreesSigned];
-                             wp.lon = [c lon_decimalDegreesSigned];
-                             wp.lat_int = [c lat] * 1000000;
-                             wp.lon_int = [c lon] * 1000000;
-                             wp.name = [dbWaypoint makeName:[waypoint.name substringFromIndex:2]];
-                             wp.description = wp.name;
-                             wp.date_placed_epoch = time(NULL);
-                             wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
-                             wp.url = nil;
-                             wp.urlname = wp.name;
-                             wp.symbol_id = 1;
-                             wp.type_id = [dbc Type_Unknown]._id;
+                             wp.wpt_lat = [c lat_decimalDegreesSigned];
+                             wp.wpt_lon = [c lon_decimalDegreesSigned];
+                             wp.wpt_lat_int = [c lat] * 1000000;
+                             wp.wpt_lon_int = [c lon] * 1000000;
+                             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+                             wp.wpt_description = wp.wpt_name;
+                             wp.wpt_date_placed_epoch = time(NULL);
+                             wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
+                             wp.wpt_url = nil;
+                             wp.wpt_urlname = wp.wpt_name;
+                             wp.wpt_symbol_id = 1;
+                             wp.wpt_type_id = [dbc Type_Unknown]._id;
                              [dbWaypoint dbCreate:wp];
 
                              [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];

@@ -102,8 +102,8 @@
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
-        marker.title = wp.name;
-        marker.snippet = wp.urlname;
+        marker.title = wp.wpt_name;
+        marker.snippet = wp.wpt_urlname;
         marker.map = mapView;
         marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
         marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);

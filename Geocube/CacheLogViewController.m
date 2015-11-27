@@ -220,9 +220,9 @@
     __block NSInteger selected;
 
     NSString *type = @"other";
-    if ([waypoint.type.type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
-        [waypoint.type.type_full isEqualToString:@"Geocache|Giga"] == YES ||
-        [waypoint.type.type_full isEqualToString:@"Geocache|Mega"] == YES)
+    if ([waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega"] == YES)
         type = @"event";
 
     [[waypoint.account.remoteAPI logtypes:type] enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {

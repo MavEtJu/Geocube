@@ -312,13 +312,13 @@
 - (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     if (account.protocol == ProtocolLiveAPI) {
-        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
+        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
     if (account.protocol == ProtocolOKAPI) {
-        return [okapi services_logs_submit:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
+        return [okapi services_logs_submit:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
     if (account.protocol == ProtocolGCA) {
-        return [gca my_log_new:logtype waypointName:waypoint.name dateLogged:dateLogged note:note favourite:favourite];
+        return [gca my_log_new:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
 
     return NO;
@@ -338,7 +338,7 @@
     }];
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs SearchForGeocaches:waypoint.name];
+        NSDictionary *json = [gs SearchForGeocaches:waypoint.wpt_name];
         /*
         NSString *s = [NSString stringWithFormat:@"%@/a.json", [MyTools DataDistributionDirectory]];
         NSData *data = [NSData dataWithContentsOfFile:s];
@@ -354,7 +354,7 @@
         return YES;
     }
     if (account.protocol == ProtocolOKAPI) {
-        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.name];
+        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
@@ -364,7 +364,7 @@
         return YES;
     }
     if (account.protocol == ProtocolGCA) {
-        NSString *gpx = [gca cache_gpx:waypoint.name];
+        NSString *gpx = [gca cache_gpx:waypoint.wpt_name];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];

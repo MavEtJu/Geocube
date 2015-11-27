@@ -173,8 +173,8 @@
 
         if ([currentElement isEqualToString:@"wpt"] == YES) {
             currentWP = [[dbWaypoint alloc] init];
-            [currentWP setLat:[attributeDict objectForKey:@"lat"]];
-            [currentWP setLon:[attributeDict objectForKey:@"lon"]];
+            [currentWP setWpt_lat:[attributeDict objectForKey:@"lat"]];
+            [currentWP setWpt_lon:[attributeDict objectForKey:@"lon"]];
 
             currentWP.account = account;
             currentWP.account_id = account._id;
@@ -263,7 +263,7 @@
             [currentWP finish];
 
             // Determine if it is a new waypoint or an existing one
-            currentWP._id = [dbWaypoint dbGetByName:currentWP.name];
+            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
             totalWaypointsCount++;
             if (currentWP._id == 0) {
                 [dbWaypoint dbCreate:currentWP];
@@ -399,23 +399,23 @@
         if (inItem == YES) {
             if (index == 2 && currentText != nil) {
                 if ([elementName isEqualToString:@"time"] == YES) {
-                    [currentWP setDate_placed:currentText];
+                    [currentWP setWpt_date_placed:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"name"] == YES) {
-                    [currentWP setName:currentText];
+                    [currentWP setWpt_name:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"desc"] == YES) {
-                    [currentWP setDescription:currentText];
+                    [currentWP setWpt_description:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"url"] == YES) {
-                    [currentWP setUrl:currentText];
+                    [currentWP setWpt_url:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"urlname"] == YES) {
-                    [currentWP setUrlname:currentText];
+                    [currentWP setWpt_urlname:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"sym"] == YES) {
@@ -424,13 +424,13 @@
                         NSId _id = [dbSymbol dbCreate:currentText];
                         [dbc Symbols_add:_id symbol:currentText];
                     }
-                    [currentWP setSymbol_str:currentText];
+                    [currentWP setWpt_symbol_str:currentText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
                     NSArray *as = [currentText componentsSeparatedByString:@"|"];
-                    [currentWP setType:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
-                    [currentWP setType_id:currentWP.type._id];
+                    [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
+                    [currentWP setWpt_type_id:currentWP.wpt_type._id];
                     goto bye;
                 }
                 goto bye;

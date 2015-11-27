@@ -139,7 +139,7 @@ NEEDS_OVERLOADING(addHistory)
         CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
         [newController showWaypoint:wp];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
-        newController.title = wp.name;
+        newController.title = wp.wpt_name;
         [cvc.navigationController pushViewController:newController animated:YES];
 
         return;
@@ -171,7 +171,7 @@ NEEDS_OVERLOADING(addHistory)
         NSId _id = [dbWaypoint dbGetByName:name];
         dbWaypoint *wp = [dbWaypoint dbGet:_id];
 
-        [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.urlname]];
+        [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.wpt_urlname]];
     }];
 
     [ActionSheetStringPicker

@@ -214,23 +214,23 @@
     if (wpid == 0) {
         waypoint = [[dbWaypoint alloc] init];
 
-        waypoint.name = @"MYCAR";
-        waypoint.description = @"Remembered location";
-        waypoint.urlname = @"Remembered location";
-        waypoint.type = [dbc Type_get_byname:@"Waypoint" minor:@"Final Location"];
-        waypoint.type_id = waypoint.type._id;
-        waypoint.symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
-        waypoint.symbol_id = waypoint.symbol._id;
+        waypoint.wpt_name = @"MYCAR";
+        waypoint.wpt_description = @"Remembered location";
+        waypoint.wpt_urlname = @"Remembered location";
+        waypoint.wpt_type = [dbc Type_get_byname:@"Waypoint" minor:@"Final Location"];
+        waypoint.wpt_type_id = waypoint.wpt_type._id;
+        waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
+        waypoint.wpt_symbol_id = waypoint.wpt_symbol._id;
         [dbWaypoint dbCreate:waypoint];
     } else {
         waypoint = [dbWaypoint dbGet:wpid];
     }
 
     waypoint.coordinates = coordsRecordedLocation;
-    waypoint.lon = [NSString stringWithFormat:@"%f", coordsRecordedLocation.longitude];
-    waypoint.lat = [NSString stringWithFormat:@"%f", coordsRecordedLocation.latitude];
+    waypoint.wpt_lon = [NSString stringWithFormat:@"%f", coordsRecordedLocation.longitude];
+    waypoint.wpt_lat = [NSString stringWithFormat:@"%f", coordsRecordedLocation.latitude];
 
-    waypoint.date_placed = [MyTools dateString:time(NULL)];
+    waypoint.wpt_date_placed = [MyTools dateString:time(NULL)];
 
     [waypoint finish];
     [waypoint dbUpdate];

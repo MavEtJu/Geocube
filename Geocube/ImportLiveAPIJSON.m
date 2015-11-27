@@ -90,24 +90,24 @@
     dbWaypoint *wp = [[dbWaypoint alloc] init];
 
     // Waypoint object
-    wp.name = [dict objectForKey:@"Code"];
-    wp.description = [dict objectForKey:@"Name"];
-    wp.url = [dict objectForKey:@"Url"];
-    wp.urlname = [dict objectForKey:@"Name"];
+    wp.wpt_name = [dict objectForKey:@"Code"];
+    wp.wpt_description = [dict objectForKey:@"Name"];
+    wp.wpt_url = [dict objectForKey:@"Url"];
+    wp.wpt_urlname = [dict objectForKey:@"Name"];
 
-    wp.lat_float = [[dict objectForKey:@"Latitude"] floatValue];
-    wp.lat_int = [[dict objectForKey:@"Latitude"] floatValue] * 1000000;
-    wp.lat = [[dict objectForKey:@"Latitude"] stringValue];
+    wp.wpt_lat_float = [[dict objectForKey:@"Latitude"] floatValue];
+    wp.wpt_lat_int = [[dict objectForKey:@"Latitude"] floatValue] * 1000000;
+    wp.wpt_lat = [[dict objectForKey:@"Latitude"] stringValue];
 
-    wp.lon_float = [[dict objectForKey:@"Longitude"] floatValue];
-    wp.lon_int = [[dict objectForKey:@"Longitude"] floatValue] * 1000000;
-    wp.lon = [[dict objectForKey:@"Longitude"] stringValue];
+    wp.wpt_lon_float = [[dict objectForKey:@"Longitude"] floatValue];
+    wp.wpt_lon_int = [[dict objectForKey:@"Longitude"] floatValue] * 1000000;
+    wp.wpt_lon = [[dict objectForKey:@"Longitude"] stringValue];
 
-    wp.date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCPlaceDate"]];
-    wp.date_placed = [MyTools dateString:wp.date_placed_epoch];
+    wp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCPlaceDate"]];
+    wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
 
-    wp.symbol_str = @"Geocache";
-    wp.type_str = [dict valueForKeyPath:@"CacheType.GeocacheTypeName"];
+    wp.wpt_symbol_str = @"Geocache";
+    wp.wpt_type_str = [dict valueForKeyPath:@"CacheType.GeocacheTypeName"];
 
     wp.account_id = account._id;
     [wp finish];
@@ -137,7 +137,7 @@
     wp.gs_container_str = [dict valueForKeyPath:@"ContainerType.ContainerTypeName"];
 
     // Now see what we had and what we need to change
-    NSId wpid = [dbWaypoint dbGetByName:wp.name];
+    NSId wpid = [dbWaypoint dbGetByName:wp.wpt_name];
     if (wpid == 0) {
         [dbWaypoint dbCreate:wp];
         [group dbAddWaypoint:wp._id];
@@ -148,7 +148,7 @@
     }
 
     NSString *personal_note = [dict objectForKey:@"GeocacheNote"];
-    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.name];
+    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
     if (pn != nil) {
         if (personal_note == nil || [personal_note isKindOfClass:[NSNull class]] == YES || [personal_note isEqualToString:@""] == YES) {
             [pn dbDelete];
@@ -160,7 +160,7 @@
     } else {
         if (personal_note != nil && [personal_note isKindOfClass:[NSNull class]] == NO && [personal_note isEqualToString:@""] == NO) {
             pn = [[dbPersonalNote alloc] init];
-            pn.wp_name = wp.name;
+            pn.wp_name = wp.wpt_name;
             pn.waypoint_id = wp._id;
             pn.note = personal_note;
             [pn dbCreate];
@@ -373,41 +373,41 @@
     dbWaypoint *awp = [[dbWaypoint alloc] init];
 
     // Waypoint object
-    awp.name = [dict objectForKey:@"Code"];
-    awp.description = [dict objectForKey:@"Description"];
-    awp.url = [dict objectForKey:@"Url"];
-    awp.urlname = [dict objectForKey:@"UrlName"];
+    awp.wpt_name = [dict objectForKey:@"Code"];
+    awp.wpt_description = [dict objectForKey:@"Description"];
+    awp.wpt_url = [dict objectForKey:@"Url"];
+    awp.wpt_urlname = [dict objectForKey:@"UrlName"];
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
-        awp.lat_float = 0;
-        awp.lat_int = 0;
-        awp.lat = @"0";
+        awp.wpt_lat_float = 0;
+        awp.wpt_lat_int = 0;
+        awp.wpt_lat = @"0";
     } else {
-        awp.lat_float = [[dict objectForKey:@"Latitude"] floatValue];
-        awp.lat_int = awp.lat_float * 1000000;
-        awp.lat = [[dict objectForKey:@"Latitude"] stringValue];
+        awp.wpt_lat_float = [[dict objectForKey:@"Latitude"] floatValue];
+        awp.wpt_lat_int = awp.wpt_lat_float * 1000000;
+        awp.wpt_lat = [[dict objectForKey:@"Latitude"] stringValue];
     }
 
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
-        awp.lon_float = 0;
-        awp.lon_int = 0;
-        awp.lon = @"0";
+        awp.wpt_lon_float = 0;
+        awp.wpt_lon_int = 0;
+        awp.wpt_lon = @"0";
     } else {
-        awp.lon_float = [[dict objectForKey:@"Latitude"] floatValue];
-        awp.lon_int = awp.lon_float * 1000000;
-        awp.lon = [[dict objectForKey:@"Latitude"] stringValue];
+        awp.wpt_lon_float = [[dict objectForKey:@"Latitude"] floatValue];
+        awp.wpt_lon_int = awp.wpt_lon_float * 1000000;
+        awp.wpt_lon = [[dict objectForKey:@"Latitude"] stringValue];
     }
 
-    awp.date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCEnteredDate"]];
-    awp.date_placed = [MyTools dateString:awp.date_placed_epoch];
+    awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCEnteredDate"]];
+    awp.wpt_date_placed = [MyTools dateString:awp.wpt_date_placed_epoch];
 
-    awp.symbol_str = [dict objectForKey:@"Name"];
-    awp.type_str = [dict objectForKey:@"Type"];
+    awp.wpt_symbol_str = [dict objectForKey:@"Name"];
+    awp.wpt_type_str = [dict objectForKey:@"Type"];
 
     awp.account_id = account._id;
     [awp finish];
 
-    NSId wpid = [dbWaypoint dbGetByName:awp.name];
+    NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpid == 0) {
         [dbWaypoint dbCreate:awp];
         [group dbAddWaypoint:awp._id];

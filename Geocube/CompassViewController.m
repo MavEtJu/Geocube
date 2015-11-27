@@ -187,7 +187,7 @@
     [self.view addSubview:distanceLabel];
 
     wpDescriptionLabel = [[GCLabel alloc] initWithFrame:rectDescription];
-    wpDescriptionLabel.text = waypointManager.currentWaypoint.urlname;
+    wpDescriptionLabel.text = waypointManager.currentWaypoint.wpt_urlname;
     wpDescriptionLabel.textAlignment = NSTextAlignmentCenter;
     wpDescriptionLabel.font = [UIFont systemFontOfSize:FONTSIZE];
     [self.view addSubview:wpDescriptionLabel];
@@ -356,7 +356,7 @@
     [super viewWillAppear:animated];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.lat_float lon:waypointManager.currentWaypoint.lon_float];
+    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_lat_float lon:waypointManager.currentWaypoint.wpt_lon_float];
 
     if (waypointManager.currentWaypoint == nil) {
         wpIconIV.hidden = YES;
@@ -379,8 +379,8 @@
     distanceLabel.text = @"";
 
     if (waypointManager.currentWaypoint != nil) {
-        wpNameLabel.text = waypointManager.currentWaypoint.name;
-        wpDescriptionLabel.text = waypointManager.currentWaypoint.urlname;
+        wpNameLabel.text = waypointManager.currentWaypoint.wpt_name;
+        wpDescriptionLabel.text = waypointManager.currentWaypoint.wpt_urlname;
         wpLatLabel.text = [coords lat_degreesDecimalMinutes];
         wpLonLabel.text = [coords lon_degreesDecimalMinutes];
     } else {

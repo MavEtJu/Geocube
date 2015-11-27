@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("version", "1");
 
 create table filters (
     id integer primary key,
@@ -48,20 +48,20 @@ create index group2waypoints_idx_waypoint_id on group2waypoints(waypoint_id);
 
 create table waypoints (
     id integer primary key,
-    lat text,
-    lon text,
-    lat_int integer,			-- lat times 1000 000 for now
-    lon_int integer,			-- lon times 1000 000 for now
-    name text,
-    description text,
-    date_placed string,
-    date_placed_epoch integer,
-    url text,
-    urlname text,
-    symbol_id integer,			-- pointer to symbols(id)
-    type_id integer,			-- pointer to types(id)
-    account_id integer,			-- pointer to accounts(id)
+    wpt_lat text,
+    wpt_lon text,
+    wpt_lat_int integer,		-- lat times 1000 000 for now
+    wpt_lon_int integer,		-- lon times 1000 000 for now
+    wpt_name text,
+    wpt_description text,
+    wpt_date_placed string,
+    wpt_date_placed_epoch integer,
+    wpt_url text,
+    wpt_urlname text,
+    wpt_symbol_id integer,		-- pointer to symbols(id)
+    wpt_type_id integer,		-- pointer to types(id)
 
+    account_id integer,			-- pointer to accounts(id)
     log_status integer,			-- 0 not logged, 1 DNF, 2 found
     highlight bool,
     ignore bool,
@@ -84,7 +84,7 @@ create table waypoints (
     gs_placed_by text,
     gs_owner_id integer			-- pointer to names(id)
 );
-create index waypoint_idx_name on waypoints(name);
+create index waypoint_idx_name on waypoints(wpt_name);
 create index waypoint_idx_id on waypoints(id);
 
 create table names (

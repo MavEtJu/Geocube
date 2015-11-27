@@ -104,7 +104,7 @@
         note = [[dbPersonalNote alloc] init];
         note.note = text;
         note.waypoint_id = waypoint._id;
-        note.wp_name = waypoint.name;
+        note.wp_name = waypoint.wpt_name;
         [note dbCreate];
     } else {
         note.note = text;
