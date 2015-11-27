@@ -21,13 +21,12 @@
 
 @interface GCTableViewController : UITableViewController <DOPNavbarMenuDelegate, GlobalMenuDelegate>
 {
-    NSMutableArray *menuItems;
+    LocalMenuItems *lmi;
     BOOL hasCloseButton;
 }
 
 @property (nonatomic) NSInteger numberOfItemsInRow;
 @property (nonatomic, retain) DOPNavbarMenu *tab_menu;
-@property (nonatomic, retain) NSMutableArray *menuItems;
 @property (nonatomic) BOOL hasCloseButton;
 
 - (void)changeTheme;

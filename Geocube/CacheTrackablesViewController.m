@@ -47,7 +47,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
-    menuItems = nil;
+    lmi = nil;
     hasCloseButton = YES;
 
     return self;

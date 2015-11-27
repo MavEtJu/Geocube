@@ -41,9 +41,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddATrack label:@"Start new track"];
-    menuItems = [lmi makeMenu];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 

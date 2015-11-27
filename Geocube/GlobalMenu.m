@@ -183,6 +183,20 @@
     [makeMenuItems setValue:label forKey:key];
 }
 
+- (void)changeItem:(NSInteger)idx label:(NSString *)label
+{
+    NSString *key = [NSString stringWithFormat:@"%ld", idx];
+    __block BOOL found = NO;
+    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+        if ([key integerValue] == idx) {
+            found = YES;
+            *stop = YES;
+        }
+    }];
+    NSAssert1(found == YES, @"Menuitem %ld not yet found!", idx);
+    [makeMenuItems setValue:label forKey:key];
+}
+
 - (void)enableItem:(NSInteger)idx
 {
     __block NSString *keyfound = nil;

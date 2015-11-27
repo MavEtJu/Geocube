@@ -52,7 +52,7 @@
 
     [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL];
     hasCloseButton = YES;
-    menuItems = nil;
+    lmi = nil;
 
     return self;
 }

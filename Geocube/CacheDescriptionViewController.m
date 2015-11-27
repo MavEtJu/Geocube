@@ -37,7 +37,7 @@
 
     waypoint = _wp;
 
-    menuItems = nil;
+    lmi = nil;
     hasCloseButton = YES;
 
     return self;

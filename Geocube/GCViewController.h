@@ -21,7 +21,7 @@
 
 @interface GCViewController : UIViewController <GlobalMenuDelegate, DOPNavbarMenuDelegate, UIScrollViewDelegate>
 {
-    NSMutableArray *menuItems;
+    LocalMenuItems *lmi;
     BOOL hasCloseButton;
 }
 

@@ -75,7 +75,7 @@
     group = _group;
     account = _account;
 
-    menuItems = nil;
+    lmi = nil;
     hasCloseButton = YES;
 
     return self;

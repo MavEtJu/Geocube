@@ -38,7 +38,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[PersonalNoteTableViewCell class] forCellReuseIdentifier:THISCELL];
-    menuItems = nil;
+    lmi = nil;
 
     pns = [dbPersonalNote dbAll];
 }

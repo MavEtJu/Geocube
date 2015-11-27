@@ -46,7 +46,7 @@ enum {
 {
     self = [super init];
 
-    menuItems = nil;
+    lmi = nil;
 
     code = @"MYxxxxx";
     name = @"A new name";

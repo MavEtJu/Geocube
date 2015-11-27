@@ -44,9 +44,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReload label:@"Reload"];
-    menuItems = [lmi makeMenu];
 
     return self;
 }

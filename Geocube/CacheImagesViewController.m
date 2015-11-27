@@ -49,9 +49,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuImportPhoto label:@"Import photo"];
-    menuItems = [lmi makeMenu];
     hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;

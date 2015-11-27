@@ -38,8 +38,6 @@
 
     NSInteger waypointCount;
     NSArray *waypointsArray;
-
-    LocalMenuItems *lmi;
 }
 
 @end
@@ -108,7 +106,6 @@ enum {
             break;
     }
     [lmi addItem:menuDirections label:@"Directions"];
-    menuItems = [lmi makeMenu];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
@@ -430,7 +427,6 @@ enum {
     showBrand = brand;
     [myConfig mapBrandUpdate:brand];
 
-    menuItems = [lmi makeMenu];
     [self refreshMenu];
 
     [map initMap];

@@ -44,9 +44,8 @@ enum {
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReset label:@"Reset"];
-    menuItems = [lmi makeMenu];
 
     types = [NSMutableArray arrayWithArray:[dbc Types]];
 }

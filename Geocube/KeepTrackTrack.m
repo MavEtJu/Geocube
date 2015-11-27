@@ -45,7 +45,7 @@
 {
     self = [super init];
 
-    menuItems = nil;
+    lmi = nil;
     hasCloseButton = YES;
 
     return self;

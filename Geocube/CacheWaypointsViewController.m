@@ -45,9 +45,8 @@ enum {
     waypoint = _wp;
     wps = [waypoint hasWaypoints];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
-    menuItems = [lmi makeMenu];
 
     hasCloseButton = YES;
 

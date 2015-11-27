@@ -50,13 +50,12 @@ enum {
 {
     self = [super initWithStyle:style];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
     [lmi addItem:menuHighlight label:@"Highlight"];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuIgnore label:@"Ignore"];
-    menuItems = [lmi makeMenu];
 
     hasCloseButton = canBeClosed;
 
@@ -66,6 +65,13 @@ enum {
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
     waypoint = _wp;
+
+    if (waypoint.highlight == YES) {
+        [lmi changeItem:menuHighlight label:@"Unhighlight"];
+    } else {
+        [lmi changeItem:menuHighlight label:@"Highlight"];
+    }
+
     [self.tableView reloadData];
 }
 

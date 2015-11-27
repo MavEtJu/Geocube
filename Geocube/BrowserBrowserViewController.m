@@ -49,9 +49,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuGoHome label:@"Go home"];
-    menuItems = [lmi makeMenu];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;

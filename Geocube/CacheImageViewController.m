@@ -49,7 +49,7 @@
 
     img = nil;
     hasCloseButton = YES;
-    menuItems = nil;
+    lmi = nil;
     image = nil;
     delegate = nil;
 

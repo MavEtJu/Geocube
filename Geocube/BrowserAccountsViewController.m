@@ -36,7 +36,7 @@
 {
     self = [super init];
 
-    menuItems = nil;
+    lmi = nil;
 
     return self;
 }

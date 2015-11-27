@@ -41,9 +41,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddBookmark label:@"Add bookmark"];
-    menuItems = [lmi makeMenu];
     bms = [dbBookmark dbAll];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];

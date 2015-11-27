@@ -37,7 +37,7 @@
 - (instancetype)init
 {
     self = [super init];
-    menuItems = nil;
+    lmi = nil;
 
     [self.tableView registerClass:[GCTableViewCellTwoTextfields class] forCellReuseIdentifier:THISCELL];
     [self reloadNumbers];

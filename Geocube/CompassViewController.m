@@ -76,6 +76,8 @@
 
 - (instancetype)init
 {
+    self = [super init];
+
     wpIconIV = nil;
     wpNameLabel = nil;
     wpLatLabel = nil;
@@ -87,11 +89,7 @@
 
     oldCompass = 0;
 
-    menuItems = nil;
-
-    self = [super init];
-
-    menuItems = nil;
+    lmi = nil;
 
     return self;
 }

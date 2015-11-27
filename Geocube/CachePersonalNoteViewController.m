@@ -38,7 +38,7 @@
     self = [super init];
 
     waypoint = _waypoint;
-    menuItems = nil;
+    lmi = nil;
     hasCloseButton = YES;
 
     note = [dbPersonalNote dbGetByWaypointID:waypoint._id];

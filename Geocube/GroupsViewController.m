@@ -49,12 +49,11 @@ enum {
 
     // Local menu
     if (showUsers == YES) {
-        LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+        lmi = [[LocalMenuItems alloc] init:menuMax];
         [lmi addItem:menuEmptyGroups label:@"Empty groups"];
         [lmi addItem:menuAddAGroup label:@"Add a group"];
-        menuItems = [lmi makeMenu];
     } else
-        menuItems = nil;
+        lmi = nil;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 

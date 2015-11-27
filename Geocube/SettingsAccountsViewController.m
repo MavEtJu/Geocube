@@ -45,9 +45,8 @@ enum {
 
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDownloadSiteInfo label:@"Download site info"];
-    menuItems = [lmi makeMenu];
 }
 
 - (void)refreshAccountData

@@ -41,9 +41,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDownloadNotices label:@"Download notices"];
-    menuItems = [lmi makeMenu];
 
     [self.tableView registerClass:[NoticeTableViewCell class] forCellReuseIdentifier:THISCELL];
 

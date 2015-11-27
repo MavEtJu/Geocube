@@ -42,7 +42,7 @@
     self = [super init];
 
     type = _type;
-    menuItems = nil;
+    lmi = nil;
 
     return self;
 }

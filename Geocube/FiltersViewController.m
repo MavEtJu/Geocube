@@ -43,9 +43,8 @@ enum {
 {
     self = [super init];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuSetDefaultValues label:@"Set default values"];
-    menuItems = [lmi makeMenu];
 
     filters = [NSMutableArray arrayWithCapacity:10];
     [filters addObject:[FilterObject init:@"Group"]];

@@ -38,7 +38,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
-    menuItems = nil;
+    lmi = nil;
 
     waypointsWithLogs = [dbWaypoint waypointsWithMyLogs];
 }

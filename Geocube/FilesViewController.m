@@ -49,10 +49,9 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
     [self refreshFileData];
 
-    LocalMenuItems *lmi = [[LocalMenuItems alloc] init:menuMax];
+    lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
     [lmi addItem:menuAirdrop label:@"Airdrop"];
-    menuItems = [lmi makeMenu];
 }
 
 - (void)refreshFileData

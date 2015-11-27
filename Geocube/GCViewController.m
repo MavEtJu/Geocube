@@ -38,7 +38,7 @@
 {
     self = [super init];
 
-    menuItems = nil;
+    lmi = nil;
     self.numberOfItemsInRow = 3;
 
     hasCloseButton = NO;
@@ -78,7 +78,7 @@
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
 
     // Deal with the local menu
-    if (menuItems == nil)
+    if (lmi == nil)
         menuGlobal.localMenuButton.hidden = YES;
     else
         menuGlobal.localMenuButton.hidden = NO;
@@ -125,7 +125,7 @@
     if (tab_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
 
-        [menuItems enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
+        [[lmi makeMenu] enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
             BOOL enabled = YES;
             if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
                 enabled = NO;

@@ -37,7 +37,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
-    menuItems = nil;
+    lmi = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -32,13 +32,13 @@
 
 @implementation GCTableViewController
 
-@synthesize numberOfItemsInRow, tab_menu, hasCloseButton, menuItems;
+@synthesize numberOfItemsInRow, tab_menu, hasCloseButton;
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
 
-    menuItems = nil;
+    lmi = nil;
     self.numberOfItemsInRow = 3;
 
     closeButton = nil;
@@ -79,7 +79,7 @@
     [super viewWillAppear:animated];
 
     // Deal with the local menu button
-    if (menuItems == nil)
+    if (lmi == nil)
         menuGlobal.localMenuButton.hidden = YES;
     else
         menuGlobal.localMenuButton.hidden = NO;
@@ -176,7 +176,7 @@
     if (tab_menu == nil) {
         NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
 
-        [menuItems enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
+        [[lmi makeMenu] enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
             BOOL enabled = YES;
             if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
                 enabled = NO;
@@ -204,7 +204,7 @@
 {
     // NSLog(@"GCTableViewController/openMenu: self:%p", self);
 
-    if (menuItems == nil)
+    if (lmi == nil)
         return;
 
     if (self.tab_menu.isOpen) {
