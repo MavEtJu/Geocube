@@ -171,7 +171,7 @@
 
 - (void)addItem:(NSInteger)idx label:(NSString *)label
 {
-    NSString *key = [NSString stringWithFormat:@"%ld", idx];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)idx];
     __block BOOL found = NO;
     [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
         if ([key integerValue] == idx) {
@@ -179,13 +179,13 @@
             *stop = YES;
         }
     }];
-    NSAssert1(found == NO, @"Menuitem %ld already found!", idx);
+    NSAssert1(found == NO, @"Menuitem %ld already found!", (long)idx);
     [makeMenuItems setValue:label forKey:key];
 }
 
 - (void)changeItem:(NSInteger)idx label:(NSString *)label
 {
-    NSString *key = [NSString stringWithFormat:@"%ld", idx];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)idx];
     __block BOOL found = NO;
     [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
         if ([key integerValue] == idx) {
@@ -193,7 +193,7 @@
             *stop = YES;
         }
     }];
-    NSAssert1(found == YES, @"Menuitem %ld not yet found!", idx);
+    NSAssert1(found == YES, @"Menuitem %ld not yet found!", (long)idx);
     [makeMenuItems setValue:label forKey:key];
 }
 
@@ -206,7 +206,7 @@
             *stop = YES;
         }
     }];
-    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", idx);
+    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", (long)idx);
     NSString *value = [makeMenuItems objectForKey:keyfound];
     if ([[value substringToIndex:1] isEqualToString:@"X"] == YES) {
         value = [value substringFromIndex:1];
@@ -223,7 +223,7 @@
             *stop = YES;
         }
     }];
-    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", idx);
+    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", (long)idx);
     NSString *value = [makeMenuItems objectForKey:keyfound];
     if ([[value substringToIndex:1] isEqualToString:@"X"] == NO) {
         value = [NSString stringWithFormat:@"X%@", value];
@@ -243,7 +243,7 @@
                 [menuItems addObject:obj];
             }
         }];
-        NSAssert1(found == YES, @"Menuitem %ld not found!", i);
+        NSAssert1(found == YES, @"Menuitem %ld not found!", (long)i);
     }
     return menuItems;
 }
