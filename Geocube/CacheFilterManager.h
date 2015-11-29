@@ -27,14 +27,12 @@
 
 @interface CacheFilterManager : NSObject <LocationManagerDelegate>
 
-@property (nonatomic, retain, readonly) NSString *configPrefix;
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
 @property (nonatomic, retain) NSMutableArray *currentWaypoints;
 
 - (instancetype)init;
 - (void)applyFilters:(CLLocationCoordinate2D)coords;
 - (NSString *)configGet:(NSString *)name;
-- (void)configPrefix:(NSString *)prefix;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)needsRefresh;
 - (void)setCurrentWaypoint:(dbWaypoint *)wp;
