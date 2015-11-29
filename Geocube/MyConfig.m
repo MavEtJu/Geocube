@@ -88,6 +88,8 @@
     GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
     GCSmallFont = [UIFont systemFontOfSize:11];
 
+    NSLog(@"%@ initialized", [self class]);
+
     return self;
 }
 
