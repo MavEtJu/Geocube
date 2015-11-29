@@ -372,14 +372,21 @@ enum {
 
 - (void)menuShowWhom:(NSInteger)whom
 {
-    showWhom = whom;
-    meLocation = [LM coords];
-    if (whom == SHOW_ME)
+    if (whom == SHOW_ME) {
+        showWhom = whom;
+        meLocation = [LM coords];
         [map moveCameraTo:meLocation];
-    if (whom == SHOW_CACHE && waypointManager.currentWaypoint != nil)
+    }
+    if (whom == SHOW_CACHE && waypointManager.currentWaypoint != nil) {
+        showWhom = whom;
+        meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates];
-    if (whom == SHOW_BOTH && waypointManager.currentWaypoint != nil)
+    }
+    if (whom == SHOW_BOTH && waypointManager.currentWaypoint != nil) {
+        showWhom = whom;
+        meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+    }
 }
 
 - (void)menuMapType:(NSInteger)maptype
