@@ -57,6 +57,8 @@
     _LM.headingFilter = 1;
     _LM.delegate = self;
 
+    coords = _LM.location.coordinate;
+
     delegates = [NSMutableArray arrayWithCapacity:5];
 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
