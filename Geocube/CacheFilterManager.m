@@ -525,10 +525,8 @@
 - (NSString *)configGet:(NSString *)_name
 {
     dbFilter *c = [dbFilter dbGetByKey:_name];
-    NSLog(@"%@ - configPrefix: %@", [self class], _name);
     if (c == nil)
         return nil;
-    NSLog(@"%@ - configPrefix: %@ - %@", [self class], _name, c.value);
     return c.value;
 }
 
