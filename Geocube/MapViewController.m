@@ -193,9 +193,9 @@ enum {
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
-    labelMapFollowMe.frame = CGRectMake(width - 189 - 3, 3, 63 , 20);
-    labelMapShowBoth.frame = CGRectMake(width - 126 - 3, 3, 63 , 20);
-    labelMapSeeTarget.frame = CGRectMake(width - 63 - 3, 3, 63 , 20);
+    labelMapFollowMe.frame = CGRectMake(width - 3 * 28 - 3, 3, 27 , 20);
+    labelMapShowBoth.frame = CGRectMake(width - 2 * 28 - 3, 3, 27 , 20);
+    labelMapSeeTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, 27 , 20);
 }
 
 - (void)initDistanceLabel
@@ -211,27 +211,30 @@ enum {
     labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapFollowMe.layer.borderWidth = 1;
     labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFollowMe addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapFollowMe addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
     labelMapFollowMe.userInteractionEnabled = YES;
-    [labelMapFollowMe setTitle:@"Me" forState:UIControlStateNormal];;
+    [labelMapFollowMe setImage:[imageLibrary get:ImageIcon_FollowMe] forState:UIControlStateNormal];
+//    [labelMapFollowMe setTitle:@"Me" forState:UIControlStateNormal];;
     [labelMapFollowMe setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFollowMe];
 
     labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapShowBoth.layer.borderWidth = 1;
     labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapShowBoth addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapShowBoth addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
     labelMapShowBoth.userInteractionEnabled = YES;
-    [labelMapShowBoth setTitle:@"Both" forState:UIControlStateNormal];;
+    [labelMapShowBoth setImage:[imageLibrary get:ImageIcon_ShowBoth] forState:UIControlStateNormal];
+//    [labelMapShowBoth setTitle:@"Both" forState:UIControlStateNormal];;
     [labelMapShowBoth setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:labelMapShowBoth];
 
     labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapSeeTarget.layer.borderWidth = 1;
     labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapSeeTarget addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapSeeTarget addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
     labelMapSeeTarget.userInteractionEnabled = YES;
-    [labelMapSeeTarget setTitle:@"Target" forState:UIControlStateNormal];;
+    [labelMapSeeTarget setImage:[imageLibrary get:ImageIcon_SeeTarget] forState:UIControlStateNormal];
+//    [labelMapSeeTarget setTitle:@"Target" forState:UIControlStateNormal];;
     [labelMapSeeTarget setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:labelMapSeeTarget];
 
@@ -262,7 +265,7 @@ enum {
     labelMapSeeTarget = nil;
 }
 
-- (void)choseMapBrand:(UIButton *)button
+- (void)chooseMapBrand:(UIButton *)button
 {
     if (button == labelMapFollowMe) {
         [self menuShowWhom:SHOW_FOLLOWME];

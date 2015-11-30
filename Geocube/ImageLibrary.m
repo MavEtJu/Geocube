@@ -125,6 +125,9 @@
     [self add:@"menu icon - global" index:ImageIcon_GlobalMenu];
     [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
     [self add:@"menu icon - close" index:ImageIcon_CloseButton];
+    [self add:@"menu icon - see target" index:ImageIcon_SeeTarget];
+    [self add:@"menu icon - show both" index:ImageIcon_ShowBoth];
+    [self add:@"menu icon - follow me" index:ImageIcon_FollowMe];
 
     [self add:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
     [self add:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];

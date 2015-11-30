@@ -189,6 +189,9 @@ typedef enum {
     ImageIcon_GlobalMenu,
     ImageIcon_LocalMenu,
     ImageIcon_CloseButton,
+    ImageIcon_ShowBoth,
+    ImageIcon_SeeTarget,
+    ImageIcon_FollowMe,
 
     ImageCompass_RedArrowOnBlueCompass,
     ImageCompass_RedArrowOnBlueArrow,

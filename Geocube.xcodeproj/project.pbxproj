@@ -175,6 +175,9 @@
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTrackable.m */; };
 		E813040E1B5DA933006DF300 /* CacheTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */; };
+		E8182F431C0C1BB4004AC534 /* menu icon - see target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F421C0C1BB4004AC534 /* menu icon - see target.png */; };
+		E8182F451C0C1FFE004AC534 /* menu icon - follow me.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */; };
+		E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F461C0C21BA004AC534 /* menu icon - show both.png */; };
 		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
@@ -580,6 +583,9 @@
 		E813040A1B5D9B5E006DF300 /* dbTrackable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrackable.m; sourceTree = "<group>"; };
 		E813040C1B5DA933006DF300 /* CacheTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTrackablesViewController.h; sourceTree = "<group>"; };
 		E813040D1B5DA933006DF300 /* CacheTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTrackablesViewController.m; sourceTree = "<group>"; };
+		E8182F421C0C1BB4004AC534 /* menu icon - see target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - see target.png"; path = "images/menu icon - see target.png"; sourceTree = "<group>"; };
+		E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - follow me.png"; path = "images/menu icon - follow me.png"; sourceTree = "<group>"; };
+		E8182F461C0C21BA004AC534 /* menu icon - show both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both.png"; path = "images/menu icon - show both.png"; sourceTree = "<group>"; };
 		E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
 		E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
@@ -1388,6 +1394,9 @@
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8182F461C0C21BA004AC534 /* menu icon - show both.png */,
+				E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */,
+				E8182F421C0C1BB4004AC534 /* menu icon - see target.png */,
 				E832E67F1B7024E40019F9D2 /* menu icon - close.png */,
 				E832E67B1B6F76E70019F9D2 /* menu icon - global.png */,
 				E832E67C1B6F76E70019F9D2 /* menu icon - local.png */,
@@ -2074,12 +2083,14 @@
 				E80732051B5F84B4007FDC29 /* attributes - 30.png in Resources */,
 				E80732121B5F84B4007FDC29 /* attributes - 43.png in Resources */,
 				E80732101B5F84B4007FDC29 /* attributes - 41.png in Resources */,
+				E8182F451C0C1FFE004AC534 /* menu icon - follow me.png in Resources */,
 				E80731F31B5F84B4007FDC29 /* attributes - 11.png in Resources */,
 				E8611A9D1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png in Resources */,
 				E80732751B5F852A007FDC29 /* waypoint - finish - 30x30.png in Resources */,
 				E807324B1B5F84E8007FDC29 /* log - willattend - 30x30.png in Resources */,
 				E80732241B5F84B4007FDC29 /* attributes - 61.png in Resources */,
 				E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */,
+				E8182F431C0C1BB4004AC534 /* menu icon - see target.png in Resources */,
 				E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */,
 				E80732E71B60FBCA007FDC29 /* pinhead - brown - 15x15.png in Resources */,
 				E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */,
@@ -2090,6 +2101,7 @@
 				E80731FD1B5F84B4007FDC29 /* attributes - 22.png in Resources */,
 				E80732041B5F84B4007FDC29 /* attributes - 29.png in Resources */,
 				E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */,
+				E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */,
 				E80732871B5F8561007FDC29 /* container - regular - 70x20.png in Resources */,
 				E80732161B5F84B4007FDC29 /* attributes - 47.png in Resources */,
 				E80731F51B5F84B4007FDC29 /* attributes - 13.png in Resources */,
