@@ -306,7 +306,7 @@ enum {
         NSString *distance = [MyTools NiceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
         distanceLabel.text = distance;
     } else {
-        distanceLabel.text = @"-";
+        distanceLabel.text = @"";
     }
 }
 
