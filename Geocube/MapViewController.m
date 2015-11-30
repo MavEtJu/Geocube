@@ -193,9 +193,13 @@ enum {
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
-    labelMapFollowMe.frame = CGRectMake(width - 3 * 28 - 3, 3, 27 , 20);
-    labelMapShowBoth.frame = CGRectMake(width - 2 * 28 - 3, 3, 27 , 20);
-    labelMapSeeTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, 27 , 20);
+    UIImage *img = [imageLibrary get:ImageIcon_FollowMe];
+    NSInteger imgwidth = img.size.width;
+    NSInteger imgheight = img.size.height;
+
+    labelMapFollowMe.frame = CGRectMake(width - 3 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapShowBoth.frame = CGRectMake(width - 2 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapSeeTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
 }
 
 - (void)initDistanceLabel
