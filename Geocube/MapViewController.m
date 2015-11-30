@@ -26,9 +26,9 @@
     MapTemplate *map;
 
     UILabel *distanceLabel;
-    UIButton *labelMapGoogle;
-    UIButton *labelMapApple;
-    UIButton *labelMapOSM;
+    UIButton *labelMapFollowMe;
+    UIButton *labelMapShowBoth;
+    UIButton *labelMapSeeTarget;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
@@ -47,15 +47,18 @@
 @synthesize waypointsArray;
 
 enum {
-    menuFollowMe,
-    menuShowBoth,
-    menuShowTarget,
+    menuMapGoogle,
+    menuMapApple,
+    menuMapOSM,
     menuMap,
     menuSatellite,
     menuHybrid,
     menuTerrain,
     menuDirections,
-    menuMax
+    menuMax,
+    menuFollowMe,
+    menuShowBoth,
+    menuShowTarget,
 };
 
 - (instancetype)init
@@ -82,9 +85,12 @@ enum {
     }
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuShowTarget label:@"Show target"];
-    [lmi addItem:menuFollowMe label:@"Follow me"];
-    [lmi addItem:menuShowBoth label:@"Show both"];
+    [lmi addItem:menuMapGoogle label:@"Google Maps"];
+    [lmi addItem:menuMapApple label:@"Apple Maps"];
+    [lmi addItem:menuMapOSM label:@"OSM"];
+    //[lmi addItem:menuShowTarget label:@"Show target"];
+    //[lmi addItem:menuFollowMe label:@"Follow me"];
+    //[lmi addItem:menuShowBoth label:@"Show both"];
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             [lmi addItem:menuMap label:@"Map"];
@@ -108,7 +114,7 @@ enum {
     [lmi addItem:menuDirections label:@"Directions"];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
-    showWhom = (showType == SHOW_ONECACHE) ? SHOW_BOTH : SHOW_ME;
+    showWhom = (showType == SHOW_ONECACHE) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
 
     waypointsArray = nil;
     waypointCount = 0;
@@ -127,7 +133,7 @@ enum {
     [map mapViewDidLoad];
 
     [self initDistanceLabel];
-    [self initMapBrandsPicker];
+    [self initMapIcons];
     [self recalculateRects];
 }
 
@@ -187,9 +193,9 @@ enum {
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
-    labelMapGoogle.frame = CGRectMake(width - 189 - 3, 3, 63 , 20);
-    labelMapApple.frame = CGRectMake(width - 126 - 3, 3, 63 , 20);
-    labelMapOSM.frame = CGRectMake(width - 63 - 3, 3, 63 , 20);
+    labelMapFollowMe.frame = CGRectMake(width - 189 - 3, 3, 63 , 20);
+    labelMapShowBoth.frame = CGRectMake(width - 126 - 3, 3, 63 , 20);
+    labelMapSeeTarget.frame = CGRectMake(width - 63 - 3, 3, 63 , 20);
 }
 
 - (void)initDistanceLabel
@@ -200,59 +206,50 @@ enum {
     [self.view addSubview:distanceLabel];
 }
 
-- (void)initMapBrandsPicker
+- (void)initMapIcons
 {
-    labelMapGoogle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapGoogle.layer.borderWidth = 1;
-    labelMapGoogle.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapGoogle addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
-    labelMapGoogle.userInteractionEnabled = YES;
-    [labelMapGoogle setTitle:@"Google" forState:UIControlStateNormal];;
-    [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.view addSubview:labelMapGoogle];
+    labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapFollowMe.layer.borderWidth = 1;
+    labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapFollowMe addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapFollowMe.userInteractionEnabled = YES;
+    [labelMapFollowMe setTitle:@"Me" forState:UIControlStateNormal];;
+    [labelMapFollowMe setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapFollowMe];
 
-    labelMapApple = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapApple.layer.borderWidth = 1;
-    labelMapApple.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapApple addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
-    labelMapApple.userInteractionEnabled = YES;
-    [labelMapApple setTitle:@"Apple" forState:UIControlStateNormal];;
-    [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.view addSubview:labelMapApple];
+    labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapShowBoth.layer.borderWidth = 1;
+    labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapShowBoth addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapShowBoth.userInteractionEnabled = YES;
+    [labelMapShowBoth setTitle:@"Both" forState:UIControlStateNormal];;
+    [labelMapShowBoth setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapShowBoth];
 
-    labelMapOSM = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapOSM.layer.borderWidth = 1;
-    labelMapOSM.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapOSM addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
-    labelMapOSM.userInteractionEnabled = YES;
-    [labelMapOSM setTitle:@"OSM" forState:UIControlStateNormal];;
-    [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.view addSubview:labelMapOSM];
+    labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapSeeTarget.layer.borderWidth = 1;
+    labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapSeeTarget addTarget:self action:@selector(choseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapSeeTarget.userInteractionEnabled = YES;
+    [labelMapSeeTarget setTitle:@"Target" forState:UIControlStateNormal];;
+    [labelMapSeeTarget setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapSeeTarget];
 
-    switch (showBrand) {
-        case MAPBRAND_GOOGLEMAPS:
-            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapGoogle setBackgroundColor:[UIColor grayColor]];
-            [labelMapApple setBackgroundColor:[UIColor clearColor]];
-            [labelMapOSM setBackgroundColor:[UIColor clearColor]];
+    switch (showWhom) {
+        case SHOW_FOLLOWME:
+            [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
+            [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+            [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
             break;
-        case MAPBRAND_APPLEMAPS:
-            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
-            [labelMapApple setBackgroundColor:[UIColor grayColor]];
-            [labelMapOSM setBackgroundColor:[UIColor clearColor]];
+        case SHOW_SHOWBOTH:
+            [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+            [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
+            [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
             break;
-        case MAPBRAND_OPENSTREETMAPS:
-            [labelMapGoogle setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapApple setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapOSM setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [labelMapGoogle setBackgroundColor:[UIColor clearColor]];
-            [labelMapApple setBackgroundColor:[UIColor clearColor]];
-            [labelMapOSM setBackgroundColor:[UIColor grayColor]];
+        case SHOW_SEETARGET:
+            [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+            [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+            [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
             break;
     }
 }
@@ -260,25 +257,26 @@ enum {
 - (void)removeDistanceLabel
 {
     distanceLabel = nil;
-    labelMapGoogle = nil;
-    labelMapApple = nil;
-    labelMapOSM = nil;
+    labelMapFollowMe = nil;
+    labelMapShowBoth = nil;
+    labelMapSeeTarget = nil;
 }
 
 - (void)choseMapBrand:(UIButton *)button
 {
-    if (button == labelMapGoogle) {
-        [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
+    if (button == labelMapFollowMe) {
+        [self menuShowWhom:SHOW_FOLLOWME];
         return;
     }
-    if (button == labelMapApple) {
-        [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
+    if (button == labelMapShowBoth) {
+        [self menuShowWhom:SHOW_SHOWBOTH];
         return;
     }
-    if (button == labelMapOSM) {
-        [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
+    if (button == labelMapSeeTarget) {
+        [self menuShowWhom:SHOW_SEETARGET];
         return;
     }
+
 }
 
 
@@ -288,9 +286,9 @@ enum {
     meLocation = [LM coords];
 
     // Move the map around to match current location
-    if (showWhom == SHOW_ME)
+    if (showWhom == SHOW_FOLLOWME)
         [map moveCameraTo:meLocation];
-    if (showWhom == SHOW_BOTH)
+    if (showWhom == SHOW_SHOWBOTH)
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
 
     [map removeLineMeToWaypoint];
@@ -368,24 +366,36 @@ enum {
 - (void)userInteraction
 {
     showWhom = SHOW_NEITHER;
+    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)menuShowWhom:(NSInteger)whom
 {
-    if (whom == SHOW_ME) {
+    if (whom == SHOW_FOLLOWME) {
         showWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:meLocation];
+        [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
+        [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+        [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
     }
-    if (whom == SHOW_CACHE && waypointManager.currentWaypoint != nil) {
+    if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         showWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates];
+        [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+        [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+        [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
-    if (whom == SHOW_BOTH && waypointManager.currentWaypoint != nil) {
+    if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         showWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+        [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+        [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
+        [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
     }
 }
 
@@ -441,7 +451,7 @@ enum {
     [map initCamera];
 
     [self initDistanceLabel];
-    [self initMapBrandsPicker];
+    [self initMapIcons];
     [self recalculateRects];
 
     [self refreshWaypointsData:nil];
@@ -509,16 +519,26 @@ enum {
             return;
 
         case menuShowTarget: /* Show cache */
-            [self menuShowWhom:SHOW_CACHE];
+            [self menuShowWhom:SHOW_SEETARGET];
             return;
         case menuFollowMe: /* Show Me */
-            [self menuShowWhom:SHOW_ME];
+            [self menuShowWhom:SHOW_FOLLOWME];
             return;
         case menuShowBoth: /* Show Both */
-            [self menuShowWhom:SHOW_BOTH];
+            [self menuShowWhom:SHOW_SHOWBOTH];
             return;
         case menuDirections:
             [self menuDirections];
+            return;
+
+        case menuMapGoogle:
+            [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
+            return;
+        case menuMapApple:
+            [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
+            return;
+        case menuMapOSM:
+            [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
             return;
     }
 
