@@ -192,13 +192,13 @@ static const double kFeetPerMile = 5280.0;
     if (mapViewAMS != nil) {
     	horizontalDistance = MKMetersPerMapPointAtLatitude(mapViewAMS.centerCoordinate.latitude);
     	metersPerPixel = mapViewAMS.visibleMapRect.size.width * horizontalDistance / mapViewAMS.bounds.size.width;
-        NSLog(@"AMS: %f %f", horizontalDistance, metersPerPixel);
+        // NSLog(@"AMS: %f %f", horizontalDistance, metersPerPixel);
     }
     if (mapViewGMS != nil) {
         GMSVisibleRegion region = [mapViewGMS.projection visibleRegion];
         horizontalDistance = [Coordinates coordinates2distance:region.farLeft to:region.nearRight];
         metersPerPixel = horizontalDistance / mapViewGMS.bounds.size.width;
-        NSLog(@"GMS: %f %f", horizontalDistance, metersPerPixel);
+        // NSLog(@"GMS: %f %f", horizontalDistance, metersPerPixel);
     }
 	
 	CGFloat maxScaleWidth = maxWidth-40;
