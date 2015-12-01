@@ -153,18 +153,18 @@
 {
     return;
 //        view.tintColor = [UIColor blackColor];
-        // Text Color
-        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-        [header.textLabel setBackgroundColor:[UIColor clearColor]];
-
-    //if (currentTheme.tableViewCell_gradient == YES) {
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = header.bounds;
-        gradient.colors = [NSArray arrayWithObjects:
-                           (id)[currentTheme.tableViewCellGradient1 CGColor],
-                           (id)[currentTheme.tableViewCellGradient2 CGColor],
-                           nil];
-        [header.layer insertSublayer:gradient atIndex:0];
+        // Text Colork
+//        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+//        [header.textLabel setBackgroundColor:[UIColor clearColor]];
+//
+//    //if (currentTheme.tableViewCell_gradient == YES) {
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//        gradient.frame = header.bounds;
+//        gradient.colors = [NSArray arrayWithObjects:
+//                           (id)[currentTheme.tableViewCellGradient1 CGColor],
+//                           (id)[currentTheme.tableViewCellGradient2 CGColor],
+//                           nil];
+//        [header.layer insertSublayer:gradient atIndex:0];
 //    }
 }
 
