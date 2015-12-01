@@ -178,6 +178,7 @@
 		E8182F431C0C1BB4004AC534 /* menu icon - see target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F421C0C1BB4004AC534 /* menu icon - see target.png */; };
 		E8182F451C0C1FFE004AC534 /* menu icon - follow me.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */; };
 		E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F461C0C21BA004AC534 /* menu icon - show both.png */; };
+		E8182F491C0D6EE7004AC534 /* menu icon - find me.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F481C0D6EE7004AC534 /* menu icon - find me.png */; };
 		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
@@ -586,6 +587,7 @@
 		E8182F421C0C1BB4004AC534 /* menu icon - see target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - see target.png"; path = "images/menu icon - see target.png"; sourceTree = "<group>"; };
 		E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - follow me.png"; path = "images/menu icon - follow me.png"; sourceTree = "<group>"; };
 		E8182F461C0C21BA004AC534 /* menu icon - show both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both.png"; path = "images/menu icon - show both.png"; sourceTree = "<group>"; };
+		E8182F481C0D6EE7004AC534 /* menu icon - find me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find me.png"; path = "images/menu icon - find me.png"; sourceTree = "<group>"; };
 		E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
 		E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
@@ -1394,6 +1396,7 @@
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8182F481C0D6EE7004AC534 /* menu icon - find me.png */,
 				E8182F461C0C21BA004AC534 /* menu icon - show both.png */,
 				E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */,
 				E8182F421C0C1BB4004AC534 /* menu icon - see target.png */,
@@ -2129,6 +2132,7 @@
 				E80732A11B5F857A007FDC29 /* map - pin stick - 35x42.png in Resources */,
 				E807320F1B5F84B4007FDC29 /* attributes - 40.png in Resources */,
 				E80732271B5F84B4007FDC29 /* attributes - 64.png in Resources */,
+				E8182F491C0D6EE7004AC534 /* menu icon - find me.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,

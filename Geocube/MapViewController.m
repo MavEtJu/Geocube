@@ -29,6 +29,7 @@
     UIButton *labelMapFollowMe;
     UIButton *labelMapShowBoth;
     UIButton *labelMapSeeTarget;
+    UIButton *labelMapFindMe;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
@@ -55,6 +56,7 @@ enum {
     menuHybrid,
     menuTerrain,
     menuDirections,
+    menuAutoZoom,
     menuMax,
     menuFollowMe,
     menuShowBoth,
@@ -112,6 +114,11 @@ enum {
             break;
     }
     [lmi addItem:menuDirections label:@"Directions"];
+    if (myConfig.dynamicmapEnable == YES) {
+        [lmi addItem:menuAutoZoom label:@"No AutoZoom"];
+    } else {
+        [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
+    }
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
@@ -209,6 +216,8 @@ enum {
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
+    labelMapFindMe.frame = CGRectMake(width - 4.5 * 28 - 3, 3, imgwidth , imgheight);
+
     labelMapFollowMe.frame = CGRectMake(width - 3 * 28 - 3, 3, imgwidth , imgheight);
     labelMapShowBoth.frame = CGRectMake(width - 2 * 28 - 3, 3, imgwidth , imgheight);
     labelMapSeeTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
@@ -254,6 +263,16 @@ enum {
 //  [labelMapSeeTarget setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:labelMapSeeTarget];
 
+    labelMapFindMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapFindMe.layer.borderWidth = 1;
+    labelMapFindMe.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapFindMe addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapFindMe.userInteractionEnabled = YES;
+    [labelMapFindMe setImage:[imageLibrary get:ImageIcon_FindMe] forState:UIControlStateNormal];
+//  [labelMapFindMe setTitle:@"Target" forState:UIControlStateNormal];;
+//  [labelMapFindMe setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapFindMe];
+
     switch (showWhom) {
         case SHOW_FOLLOWME:
             [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
@@ -279,6 +298,7 @@ enum {
     labelMapFollowMe = nil;
     labelMapShowBoth = nil;
     labelMapSeeTarget = nil;
+    labelMapFindMe = nil;
 }
 
 - (void)chooseMapBrand:(UIButton *)button
@@ -295,6 +315,10 @@ enum {
         [self menuShowWhom:SHOW_SEETARGET];
         return;
     }
+    if (button == labelMapFindMe) {
+        [self menuFindMe];
+        return;
+    }
 
 }
 
@@ -306,7 +330,7 @@ enum {
 
     // Move the map around to match current location
     if (showWhom == SHOW_FOLLOWME)
-        [map moveCameraTo:meLocation];
+        [map moveCameraTo:meLocation zoom:NO];
     if (showWhom == SHOW_SHOWBOTH)
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
 
@@ -395,7 +419,7 @@ enum {
     if (whom == SHOW_FOLLOWME) {
         showWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:meLocation];
+        [map moveCameraTo:meLocation zoom:NO];
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
@@ -403,7 +427,7 @@ enum {
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         showWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:waypointManager.currentWaypoint.coordinates];
+        [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
         [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
@@ -416,6 +440,12 @@ enum {
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
     }
+}
+
+- (void)menuFindMe
+{
+    meLocation = [LM coords];
+    [map moveCameraTo:meLocation zoom:YES];
 }
 
 - (void)menuMapType:(NSInteger)maptype
@@ -519,6 +549,16 @@ enum {
     }
 }
 
+- (void)menuAutoZoom
+{
+    myConfig.dynamicmapEnable = !myConfig.dynamicmapEnable;
+    if (myConfig.dynamicmapEnable == YES) {
+        [lmi changeItem:menuAutoZoom label:@"No AutoZoom"];
+    } else {
+        [lmi changeItem:menuAutoZoom label:@"AutoZoom"];
+    }
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -548,6 +588,9 @@ enum {
             return;
         case menuDirections:
             [self menuDirections];
+            return;
+        case menuAutoZoom:
+            [self menuAutoZoom];
             return;
 
         case menuMapGoogle:

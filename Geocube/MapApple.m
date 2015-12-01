@@ -280,15 +280,17 @@
     return nil;
 }
 
-- (void)moveCameraTo:(CLLocationCoordinate2D)coord
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
 {
     CLLocationCoordinate2D t = coord;
 
-    NSInteger span = [self calculateSpan];
+    if (zoom == YES) {
+        NSInteger span = [self calculateSpan];
 
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, span, span);
-    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-    [mapView setRegion:adjustedRegion animated:NO];
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, span, span);
+        MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+        [mapView setRegion:adjustedRegion animated:NO];
+    }
 
     [mapView setCenterCoordinate:t animated:YES];
 }
