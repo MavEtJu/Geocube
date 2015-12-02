@@ -31,7 +31,9 @@
 - (NSString *)lat_decimalDegreesCardinal;   // S 34.02787
 - (NSString *)lon_decimalDegreesCardinal;   // E 151.07357
 - (NSString *)lat_degreesDecimalMinutes;    // S 34° 1.672'
-- (NSString *)lon_degreesDecimalMinutes;    // E 151° 4.414
+- (NSString *)lon_degreesDecimalMinutes;    // E 151° 4.414'
+- (NSString *)lat_degreesDecimalMinutesSimple;    // S 34 1.672
+- (NSString *)lon_degreesDecimalMinutesSimple;    // E 151 4.414
 - (NSString *)lat_degreesMinutesSeconds;    // S 34° 01' 40"
 - (NSString *)lon_degreesMinutesSeconds;    // E 151° 04' 25"
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
@@ -41,8 +43,11 @@
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSString *)bearing2compass:(CLLocationDegrees)bearing;
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
++ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;
 + (NSString *)NiceLatitude:(CLLocationDegrees)l;
 + (NSString *)NiceLongitude:(CLLocationDegrees)l;
++ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l;
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2;
 

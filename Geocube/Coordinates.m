@@ -71,13 +71,29 @@
     float mins = modff(fabs(coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
-- (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414
+- (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
 {
     NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
     float dummy;
     int degrees = (int)fabs(coords.longitude);
     float mins = modff(fabs(coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
+}
+- (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
+{
+    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    float dummy;
+    int degrees = (int)fabs(coords.latitude);
+    float mins = modff(fabs(coords.latitude), &dummy);
+    return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
+}
+- (NSString *)lon_degreesDecimalMinutesSimple    // E 151 4.414
+{
+    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    float dummy;
+    int degrees = (int)fabs(coords.longitude);
+    float mins = modff(fabs(coords.longitude), &dummy);
+    return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {
@@ -190,16 +206,32 @@
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
 }
 
++ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c
+{
+    Coordinates *co = [[Coordinates alloc] init:c];
+    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesSimple], [co lon_degreesDecimalMinutesSimple]];
+}
+
 + (NSString *)NiceLatitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutes];
 }
-
 + (NSString *)NiceLongitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutes];
+}
+
++ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l
+{
+    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
+    return [co lat_degreesDecimalMinutesSimple];
+}
++ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l
+{
+    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
+    return [co lon_degreesDecimalMinutesSimple];
 }
 
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d
