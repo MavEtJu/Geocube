@@ -1053,6 +1053,8 @@
 				E8E88D911BF06D9500E90F8D /* LocationManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
+				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
+				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1064,8 +1066,6 @@
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
 				E86FF7A31C05021B00750B58 /* CacheAddViewController.h */,
 				E86FF7A41C05021B00750B58 /* CacheAddViewController.m */,
-				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
-				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,

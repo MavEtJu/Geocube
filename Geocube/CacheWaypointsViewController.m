@@ -182,8 +182,4 @@ enum {
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)editingChanged:(UITextField *)tf
-{
-}
-
 @end

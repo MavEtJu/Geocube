@@ -287,13 +287,4 @@ enum {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma -- textFieldEditing part
-
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    return YES;
-}
-
 @end
