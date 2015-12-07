@@ -98,6 +98,7 @@
 @class KeepTrackCar;
 @class KeepTrackTrack;
 @class KeepTrackTracks;
+@class KeyboardCoordinateView;
 @class LiveAPI;
 @class LocalMenuItems;
 @class LocationManager;

@@ -179,6 +179,7 @@
 		E8182F451C0C1FFE004AC534 /* menu icon - follow me.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */; };
 		E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F461C0C21BA004AC534 /* menu icon - show both.png */; };
 		E8182F491C0D6EE7004AC534 /* menu icon - find me.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F481C0D6EE7004AC534 /* menu icon - find me.png */; };
+		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
 		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
@@ -588,6 +589,8 @@
 		E8182F441C0C1FFE004AC534 /* menu icon - follow me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - follow me.png"; path = "images/menu icon - follow me.png"; sourceTree = "<group>"; };
 		E8182F461C0C21BA004AC534 /* menu icon - show both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both.png"; path = "images/menu icon - show both.png"; sourceTree = "<group>"; };
 		E8182F481C0D6EE7004AC534 /* menu icon - find me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find me.png"; path = "images/menu icon - find me.png"; sourceTree = "<group>"; };
+		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
+		E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
 		E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
 		E81D242E1B9BDB94001E6027 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
@@ -1061,6 +1064,8 @@
 				E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */,
 				E86FF7A31C05021B00750B58 /* CacheAddViewController.h */,
 				E86FF7A41C05021B00750B58 /* CacheAddViewController.m */,
+				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
+				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
 				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
 				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
@@ -2355,6 +2360,7 @@
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
+				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E8740FE81B508BBE002527DA /* CacheLogsViewController.m in Sources */,
 				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,

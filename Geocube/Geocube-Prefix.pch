@@ -59,6 +59,7 @@
 
 #import "Coordinates.h"
 #import "MyTools.h"
+#import "KeyboardCoordinateView.h"
 
 #import "database.h"
 #import "database-cache.h"
