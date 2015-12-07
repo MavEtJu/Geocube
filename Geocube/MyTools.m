@@ -365,79 +365,39 @@
     return [NSString stringWithString:s];
 }
 
-+ (NSString *)checkCoordinate:(NSString *)text
++ (BOOL)checkCoordinate:(NSString *)text
 {
     // Don't check empty strings
     if ([text isEqualToString:@""] == YES)
-        return text;
+        return YES;
 
-    // From now on things are working in three groups: Direction, first number, second number.
+    // As long as it matches any of these, it is fine:
+    // ^[NESW] ?
+    // ^[NESW] \d{1,3}º? ?
+    // ^[NESW] \d{1,3}º? ?\d{1,3}
+    // ^[NESW] \d{1,3}º? ?\d{1,3}\.
+    // ^[NESW] \d{1,3}º? ?\d{1,3}\.\d{1,3}
 
-    // Make sure we have three groups:
-    NSMutableArray *as = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
-    while ([as count] > 3)
-        [as removeObjectAtIndex:3];
-    NSString *a0 = [as objectAtIndex:0];
-    NSString *a1 = [as count] > 1 ? [as objectAtIndex:1] : nil;
-    NSString *a2 = [as count] > 2 ? [as objectAtIndex:2] : nil;
+    NSError *e = nil;
+    NSRegularExpression *r1 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] *$" options:0 error:&e];
+    NSRegularExpression *r2 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?$" options:0 error:&e];
+    NSRegularExpression *r3 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}$" options:0 error:&e];
+    NSRegularExpression *r4 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}\\.$" options:0 error:&e];
+    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}\\.\\d{1,3}$" options:0 error:&e];
 
-    // The first object should only be one character long
-    if ([a0 length] > 0) {
-        if ([a0 length] > 2)
-            a0 = [a0 substringToIndex:1];
+    NSRange range;
+    range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
+    range = [r4 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
+    range = [r3 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
+    range = [r2 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
+    range = [r1 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
 
-        if ([a0 isEqualToString:@"3"] == YES)
-            a0 = @"E";
-        if ([a0 isEqualToString:@"6"] == YES)
-            a0 = @"N";
-        if ([a0 isEqualToString:@"7"] == YES)
-            a0 = @"S";
-        if ([a0 isEqualToString:@"9"] == YES)
-            a0 = @"W";
-        if ([a0 isEqualToString:@"N"] == NO &&
-            [a0 isEqualToString:@"E"] == NO &&
-            [a0 isEqualToString:@"S"] == NO &&
-            [a0 isEqualToString:@"W"] == NO) {
-            a0 = nil;
-        }
-    }
-
-    if (a1 != nil && [a1 length] > 0) {
-        // If there is a non-digit character, split the string there.
-        NSCharacterSet *nonNumbers = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-        NSRange r = [a1 rangeOfCharacterFromSet:nonNumbers];
-        if (r.location != NSNotFound) {
-            a2 = [a1 substringFromIndex:r.location + 1];
-            a1 = [a1 substringToIndex:r.location];
-        }
-    }
-
-    if (a2 != nil && [a2 length] > 0) {
-        // First character should be a digit.
-        if ([[a2 substringToIndex:1] isEqualToString:@"."] == YES)
-            a2 = @"";
-
-        // Two periods? Throw away the rest.
-        NSArray *ws = [a2 componentsSeparatedByString:@"."];
-        if ([ws count] > 2)
-            a2 = [NSString stringWithFormat:@"%@.%@", [ws objectAtIndex:0], [ws objectAtIndex:1]];
-    }
-
-    NSMutableString *a = [NSMutableString stringWithString:@""];
-    if (a0 != nil) {
-        [a appendString:a0];
-        [a appendString:@" "];
-    }
-
-    if (a1 != nil)
-        [a appendString:a1];
-
-    if (a2 != nil) {
-        [a appendString:@" "];
-        [a appendString:a2];
-    }
-
-    return a;
+    return NO;
 }
 
 - (void)toggleFlashLight:(BOOL)onoff

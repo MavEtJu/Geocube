@@ -56,7 +56,7 @@
 + (NSString *)tickEscape:(NSString *)in;
 + (NSString *)JSONEscape:(NSString *)in;
 
-+ (NSString *)checkCoordinate:(NSString *)text;
++ (BOOL)checkCoordinate:(NSString *)text;
 
 - (void)toggleFlashLight:(BOOL)onoff;
 
