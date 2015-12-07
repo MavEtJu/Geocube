@@ -208,7 +208,7 @@ enum {
 {
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update waypoint"
-                               message:@"Latitude is north and south\nLongitude is east and west\nUse 3679 for the direction"
+                               message:@"Please enter the coordinates"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -241,16 +241,16 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLatitude:coords.latitude];
+        textField.text = [Coordinates NiceLatitudeForEditing:coords.latitude];
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
-        [textField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
+        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLongitude:coords.longitude];
+        textField.text = [Coordinates NiceLongitudeForEditing:coords.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
-        [textField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
+        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
     }];
 
     [self presentViewController:alert animated:YES completion:nil];
@@ -258,7 +258,6 @@ enum {
 
 - (void)editingChanged:(UITextField *)tf
 {
-    tf.text = [MyTools checkCoordinate:tf.text];
 }
 
 - (void)updateSubmit
@@ -286,6 +285,15 @@ enum {
     [waypointManager needsRefresh];
 
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma -- textFieldEditing part
+
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
 }
 
 @end

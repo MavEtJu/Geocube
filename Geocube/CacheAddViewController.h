@@ -19,6 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface CacheAddViewController : GCTableViewController
+@interface CacheAddViewController : GCTableViewController <UITextFieldDelegate>
 
 @end
