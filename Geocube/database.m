@@ -181,13 +181,11 @@
 
 - (void)performUpgrade_1_2
 {
-    /*
     NSArray *a = @[
-    @"alter table waypoints add column gs_hasdata bool",
-    @"update waypoints set gs_hasdata = (gs_rating_terrain != 0.0)",
+    @"alter table trackelements add column restart bool",
+    @"update trackelements set restart = 0",
     ];
     [self performUpgrade_X_Y:a];
-     */
 }
 
 - (void)performUpgrade_2_3

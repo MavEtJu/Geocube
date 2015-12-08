@@ -189,7 +189,7 @@
    CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (te_prev != nil) {
+        if (te_prev != nil && te.restart == NO) {
             LINE(te_prev.lon, te_prev.lat, te.lon, te.lat);
             distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
         }

@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "1");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,
@@ -738,7 +738,8 @@ create table trackelements (
     lat_int integer,		-- lat times 1000 000 for now
     lon_int integer, 		-- lon times 1000 000 for now
     height integer,
-    timestamp integer
+    timestamp integer,
+    restart bool
 );
 create index trackelements_idx_id on trackelements(id);
 create index trackelements_idx_trackid on trackelements(track_id);

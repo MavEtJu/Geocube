@@ -164,7 +164,7 @@
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (myConfig.currentTrack != 0)
-            [dbTrackElement addElement:coords height:altitude];
+            [dbTrackElement addElement:coords height:altitude restart:(td > 10.0 || distance > 200)];
     }
 
     NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);

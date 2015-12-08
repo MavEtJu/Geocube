@@ -34,13 +34,14 @@
 
     NSInteger height;
     NSInteger timestamp_epoch;
+    BOOL restart;
 }
 
 @end
 
 @implementation dbTrackElement
 
-@synthesize track_id, track, coords, lat_int, lat, lon_int, lon, height, timestamp_epoch;
+@synthesize track_id, track, coords, lat_int, lat, lon_int, lon, height, timestamp_epoch, restart;
 
 - (void)finish
 {
@@ -56,7 +57,7 @@
     NSMutableArray *tes = [NSMutableArray arrayWithCapacity:500];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, track_id, lat_int, lon_int, height, timestamp from trackelements where track_id = ? order by timestamp");
+        DB_PREPARE(@"select id, track_id, lat_int, lon_int, height, timestamp, restart from trackelements where track_id = ? order by timestamp");
 
         SET_VAR_INT(1, track_id);
 
@@ -68,6 +69,7 @@
             INT_FETCH( 3, te.lon_int);
             INT_FETCH( 4, te.height);
             INT_FETCH( 5, te.timestamp_epoch);
+            BOOL_FETCH(6, te.restart);
             [te finish];
             [tes addObject:te];
         }
@@ -79,13 +81,14 @@
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp) values(?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT( 1, track_id);
         SET_VAR_INT( 2, lat_int);
         SET_VAR_INT( 3, lon_int);
         SET_VAR_INT( 4, height);
         SET_VAR_INT( 5, timestamp_epoch);
+        SET_VAR_BOOL(6, restart);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -94,7 +97,7 @@
     return _id;
 }
 
-+ (void)addElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height
++ (void)addElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
 {
     dbTrackElement *te = [[dbTrackElement alloc] init];
     te.track_id = myConfig.currentTrack;
@@ -102,6 +105,7 @@
     te.lat_int = _coords.latitude * 1000000;
     te.lon_int = _coords.longitude * 1000000;
     te.timestamp_epoch = time(NULL);
+    te.restart = _restart;
     [te finish];
     [te dbCreate];
 }
