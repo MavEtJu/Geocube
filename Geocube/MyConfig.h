@@ -41,6 +41,8 @@
 
 @property (nonatomic) NSInteger mapExternal;
 @property (nonatomic) NSInteger mapBrand;
+@property (nonatomic) UIColor  *mapTrackColour;
+@property (nonatomic) UIColor  *mapDestinationColour;
 @property (nonatomic) NSInteger compassType;
 @property (nonatomic) NSInteger themeType;
 
@@ -75,6 +77,8 @@
 - (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)mapExternalUpdate:(NSInteger)value;
 - (void)mapBrandUpdate:(NSInteger)value;
+- (void)mapTrackColourUpdate:(NSString *)value;
+- (void)mapDestinationColourUpdate:(NSString *)value;
 - (void)compassTypeUpdate:(NSInteger)value;
 - (void)themeTypeUpdate:(NSInteger)value;
 - (void)soundDirectionUpdate:(BOOL)value;

@@ -39,6 +39,8 @@
 
     NSInteger mapExternal;
     NSInteger mapBrand;
+    UIColor *mapTrackColour;
+    UIColor *mapDestinationColour;
     NSInteger compassType;
     NSInteger themeType;
 
@@ -67,7 +69,7 @@
 
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
-@synthesize mapExternal, mapBrand, compassType, themeType;
+@synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType;
 @synthesize soundDirection, soundDistance;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
@@ -144,6 +146,8 @@
     CHECK(@"lastimport_source", @"0");
     CHECK(@"map_external", @"0");
     CHECK(@"map_brand", @"0");
+    CHECK(@"map_track_colour", @"00F0F0");
+    CHECK(@"map_destination_colour", @"FF0000");
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
     CHECK(@"sound_direction", @"0");
@@ -172,6 +176,8 @@
     lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
     mapExternal = [[dbConfig dbGetByKey:@"map_external"].value integerValue];
     mapBrand = [[dbConfig dbGetByKey:@"map_brand"].value integerValue];
+    mapTrackColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
+    mapDestinationColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
@@ -298,6 +304,16 @@
 {
     mapBrand = value;
     [self NSIntegerUpdate:@"map_brand" value:value];
+}
+- (void)mapTrackColourUpdate:(NSString *)value
+{
+    mapTrackColour = [ImageLibrary RGBtoColor:value];
+    [self NSStringUpdate:@"map_track_colour" value:value];
+}
+- (void)mapDestinationColourUpdate:(NSString *)value
+{
+    mapDestinationColour = [ImageLibrary RGBtoColor:value];
+    [self NSStringUpdate:@"map_destination_colour" value:value];
 }
 - (void)compassTypeUpdate:(NSInteger)value
 {
