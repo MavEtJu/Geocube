@@ -173,7 +173,7 @@
 
     lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];
     lineMeToWaypoint.strokeWidth = 2.f;
-    lineMeToWaypoint.strokeColor = [UIColor redColor];
+    lineMeToWaypoint.strokeColor = myConfig.mapDestinationColour;
     lineMeToWaypoint.map = mapView;
 }
 
@@ -192,7 +192,7 @@
 
     lineHistory = [GMSPolyline polylineWithPath:pathMeToWaypoint];
     lineHistory.strokeWidth = 2.f;
-    lineHistory.strokeColor = [UIColor colorWithRed:0 green:240.0/256.0 blue:240.0/256.0 alpha:1];
+    lineHistory.strokeColor = myConfig.mapDestinationColour;
     lineHistory.map = mapView;
 }
 
