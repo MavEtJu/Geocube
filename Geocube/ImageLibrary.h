@@ -220,6 +220,8 @@ typedef enum {
 - (UIImage *)newPinHead:(UIColor *)color;
 - (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor;
 + (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b;
++ (UIColor *)RGBtoColor:(NSString *)rgb;
++ (UIImage *)circleWithColour:(UIColor *)c;
 
 
 @end

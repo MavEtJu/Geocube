@@ -512,6 +512,13 @@
     *b = i / 255.0;
 }
 
++ (UIColor *)RGBtoColor:(NSString *)rgb
+{
+    float r, g, b;
+    [self RGBtoFloat:rgb r:&r g:&g b:&b];
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+}
+
 - (UIImage *)newPinHead:(UIColor *)color
 {
     UIGraphicsBeginImageContext(CGSizeMake(15, 15));
@@ -689,6 +696,66 @@
     l.text = [NSString stringWithFormat:@"%ld", (long)num];
     l.textAlignment = NSTextAlignmentCenter;
     [l.layer drawInContext:context];
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
+
++ (UIImage *)circleWithColour:(UIColor *)c
+{
+    NSInteger width = 25;
+    UIGraphicsBeginImageContext(CGSizeMake(width, 20));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    /*
+     *              1         2
+     *    0123456789012345678901234
+     *  0 .........xxxxxxx.........
+     *  1 ......xxx.......xxx......
+     *  2 ....xx.............xx....
+     *  3 ...x.................x...
+     *  4 ..x...................x..
+     *  5 .x.....................x.
+     *  6 .x.....................x.
+     *  7 x.......................x
+     *  8 x.......................x
+     *  9 x.......................x
+     * 10 x.......................x
+     *  1 x.......................x
+     *  2 x.......................x
+     *  3 .x.....................x.
+     *  4 .x.....................x.
+     *  5 ..x...................x..
+     *  6 ...x.................x...
+     *  7 ....xx.............xx....
+     *  8 ......xxx.......xxx......
+     *  9 .........xxxxxxx.........
+     */
+
+    CGContextSetStrokeColorWithColor(context, [c CGColor]);
+    NSInteger w = width - 1;
+    HLINE( 0,     9, w - 10);
+    HLINE( 1,     6, w -  7);
+    HLINE( 2,     4, w -  5);
+    HLINE( 3,     3, w -  4);
+    HLINE( 4,     2, w -  3);
+    HLINE( 5,     1, w -  2);
+    HLINE( 6,     1, w -  2);
+    HLINE( 7,     0, w -  1);
+    HLINE( 8,     0, w -  1);
+    HLINE( 9,     0, w -  1);
+    HLINE(10,     0, w -  1);
+    HLINE(11,     0, w -  1);
+    HLINE(12,     0, w -  1);
+    HLINE(13,     1, w -  2);
+    HLINE(14,     1, w -  2);
+    HLINE(15,     2, w -  3);
+    HLINE(16,     3, w -  4);
+    HLINE(17,     4, w -  5);
+    HLINE(18,     6, w -  7);
+    HLINE(19,     9, w - 10);
 
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
