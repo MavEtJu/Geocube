@@ -362,6 +362,7 @@
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
 		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; };
 		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
+		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -936,6 +937,8 @@
 		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E8F86DAC1B72B6CB0091F247 /* CacheWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheWaypointsViewController.h; sourceTree = "<group>"; };
 		E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheWaypointsViewController.m; sourceTree = "<group>"; };
+		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
+		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1588,6 +1591,8 @@
 			children = (
 				E88974BD1B6EC78900703E80 /* SettingsMainViewController.h */,
 				E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */,
+				E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */,
+				E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */,
 				E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */,
 				E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */,
 				E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */,
@@ -2460,6 +2465,7 @@
 				E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */,
 				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
+				E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,

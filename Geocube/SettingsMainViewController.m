@@ -27,6 +27,7 @@
     UISwitch *themeGeosphere;
     UISwitch *soundDirection;
     UISwitch *soundDistance;
+
     UISwitch *mapClustersEnable;
     UISwitch *dynamicmapEnable;
     float mapClustersZoomlevel;
@@ -147,16 +148,12 @@ enum {
 
 #pragma mark - TableViewController related functions
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
-{
-    return 5;
-}
-
 enum sections {
     SECTION_DISTANCE = 0,
     SECTION_APPS,
     SECTION_THEME,
     SECTION_SOUNDS,
+    SECTION_MAPCOLOURS,
     SECTION_MAPS,
     SECTION_DYNAMICMAP,
     SECTION_MAX,
@@ -176,6 +173,10 @@ enum sections {
     SECTION_MAPS_ZOOMLEVEL,
     SECTION_MAPS_MAX,
 
+    SECTION_MAPCOLOURS_TRACK = 0,
+    SECTION_MAPCOLOURS_DESTINATION,
+    SECTION_MAPCOLOURS_MAX,
+
     SECTION_APPS_EXTERNALMAP = 0,
     SECTION_APPS_MAX,
 
@@ -188,6 +189,11 @@ enum sections {
     SECTION_DYNAMICMAP_DISTANCE_DRIVING,
     SECTION_DYNAMICMAP_MAX,
 };
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return SECTION_MAX;
+}
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
@@ -205,6 +211,8 @@ enum sections {
             return SECTION_MAPS_MAX;
         case SECTION_DYNAMICMAP: // Maps section
             return SECTION_DYNAMICMAP_MAX;
+        case SECTION_MAPCOLOURS:
+            return SECTION_MAPCOLOURS_MAX;
     }
 
     return 0;
@@ -222,6 +230,8 @@ enum sections {
             return @"Theme";
         case SECTION_SOUNDS:
             return @"Sounds";
+        case SECTION_MAPCOLOURS:
+            return @"Map colours";
         case SECTION_MAPS:
             return @"Maps";
         case SECTION_DYNAMICMAP:
@@ -254,6 +264,7 @@ enum sections {
             }
             break;
         }
+
         case SECTION_APPS: {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP: {
@@ -266,6 +277,7 @@ enum sections {
                 }
             }
         }
+
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
                 case SECTION_THEME_THEME: {   // Theme
@@ -288,6 +300,7 @@ enum sections {
             }
             break;
         }
+
         case SECTION_SOUNDS: {   // Sounds
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
@@ -316,6 +329,33 @@ enum sections {
             }
             break;
         }
+
+        case SECTION_MAPCOLOURS: {
+            switch (indexPath.row) {
+                case SECTION_MAPCOLOURS_DESTINATION: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
+                    cell.textLabel.text = @"Destination line";
+                    cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapDestinationColour];
+
+                    return cell;
+                }
+                case SECTION_MAPCOLOURS_TRACK: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
+                    cell.textLabel.text = @"Track line";
+                    cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapTrackColour];
+
+                    return cell;
+                }
+            }
+            break;
+        }
+
         case SECTION_MAPS: {   // Maps
             switch (indexPath.row) {
                 case SECTION_MAPS_CLUSTERS: {   // Enable
@@ -498,6 +538,22 @@ enum sections {
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
                     [self updateDynamicmapDistance:indexPath.row];
                     break;
+            }
+            return;
+        case SECTION_MAPCOLOURS:
+            switch (indexPath.row) {
+                case SECTION_MAPCOLOURS_TRACK: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerTrack];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
+                case SECTION_MAPCOLOURS_DESTINATION: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerDestination];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
             }
             return;
     }

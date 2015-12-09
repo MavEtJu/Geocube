@@ -122,6 +122,7 @@
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;
 @class SettingsColoursViewController;
+@class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
 @class ThemeGeosphere;
 @class ThemeManager;

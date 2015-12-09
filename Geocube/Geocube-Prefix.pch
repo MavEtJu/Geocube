@@ -146,6 +146,7 @@
 #import "SettingsColoursViewController.h"
 #import "SettingsColourViewController.h"
 #import "SettingsMainViewController.h"
+#import "SettingsMainColorPickerViewController.h"
 
 #import "NotesFieldnotesViewController.h"
 #import "NotesImagesViewController.h"
