@@ -519,6 +519,13 @@
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
++ (NSString *)ColorToRGB:(UIColor *)c
+{
+    CGFloat r, g, b, a;
+    [c getRed:&r green:&g blue:&b alpha:&a];
+    return [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(255 * r), lround(255 * g), lround(255 * b)];
+}
+
 - (UIImage *)newPinHead:(UIColor *)color
 {
     UIGraphicsBeginImageContext(CGSizeMake(15, 15));
