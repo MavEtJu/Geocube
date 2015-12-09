@@ -74,11 +74,9 @@
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
         [imageLibrary recreatePin:ImageMap_pinEdit color:color];
         pin1.image = [imageLibrary get:ImageMap_pinEdit];
-        chosenColor = color;
-
-        const CGFloat *vs = CGColorGetComponents(chosenColor.CGColor);
-        hexString = [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(vs[0] * 255), lround(vs[1] * 255), lround(vs[2] * 255)];
+        hexString = [ImageLibrary ColorToRGB:color];
         hexLabel.text = hexString;
+        chosenColor = color;
     };
     colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:pinColor andDidChangeColorBlock:colorDidChangeBlock];
     [colorPickerView setColor:pinColor];
@@ -114,8 +112,7 @@
 
 - (void)choseColour
 {
-    const CGFloat *vs = CGColorGetComponents(chosenColor.CGColor);
-    hexString = [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(vs[0] * 255), lround(vs[1] * 255), lround(vs[2] * 255)];
+    hexString = [ImageLibrary ColorToRGB:chosenColor];
     type.pin_rgb = hexString;
 
     [type dbUpdatePin];
