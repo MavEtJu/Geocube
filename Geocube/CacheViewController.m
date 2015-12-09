@@ -71,6 +71,7 @@ enum {
     } else {
         [lmi changeItem:menuHighlight label:@"Highlight"];
     }
+    [self refreshMenu];
 
     [self.tableView reloadData];
 }
