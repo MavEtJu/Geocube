@@ -258,8 +258,8 @@
     if (overlay == lineMeToWaypoint) {
         if (viewLineMeToWaypoint == nil) {
             viewLineMeToWaypoint = [[MKPolylineView alloc] initWithPolyline:lineMeToWaypoint];
-            viewLineMeToWaypoint.fillColor = [UIColor redColor];
-            viewLineMeToWaypoint.strokeColor = [UIColor redColor];
+            viewLineMeToWaypoint.fillColor = myConfig.mapDestinationColour;
+            viewLineMeToWaypoint.strokeColor = myConfig.mapDestinationColour;
             viewLineMeToWaypoint.lineWidth = 5;
         }
 
@@ -269,8 +269,8 @@
     if (overlay == lineHistory) {
         if (viewLineHistory == nil) {
             viewLineHistory = [[MKPolylineView alloc] initWithPolyline:lineHistory];
-            viewLineHistory.fillColor = [UIColor redColor];
-            viewLineHistory.strokeColor = [UIColor colorWithRed:0 green:240.0/256.0 blue:240.0/256.0 alpha:1];
+            viewLineHistory.fillColor = myConfig.mapTrackColour;
+            viewLineHistory.strokeColor = myConfig.mapTrackColour;
             viewLineHistory.lineWidth = 5;
         }
 
