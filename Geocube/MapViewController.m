@@ -445,6 +445,10 @@ enum {
 - (void)menuFindMe
 {
     meLocation = [LM coords];
+    showWhom = SHOW_NEITHER;
+    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
     [map moveCameraTo:meLocation zoom:YES];
 }
 
@@ -557,6 +561,7 @@ enum {
     } else {
         [lmi changeItem:menuAutoZoom label:@"AutoZoom"];
     }
+    [self refreshMenu];
 }
 
 #pragma mark - Local menu related functions
