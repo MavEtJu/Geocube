@@ -136,20 +136,25 @@
     }
 }
 
-- (void)moveCameraTo:(CLLocationCoordinate2D)coord
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
 {
     CLLocationCoordinate2D d1, d2;
-    NSInteger span = [self calculateSpan] / 2;
 
-    // Obtained from http://stackoverflow.com/questions/6224671/mkcoordinateregionmakewithdistance-equivalent-in-android
-    double latspan = span / 111325.0;
-    double longspan = span / 111325.0 * (1 / cos([Coordinates degrees2rad:coord.latitude]));
+    if (zoom == YES) {
+        NSInteger span = [self calculateSpan] / 2;
 
-    d1 = CLLocationCoordinate2DMake(coord.latitude - latspan, coord.longitude - longspan);
-    d2 = CLLocationCoordinate2DMake(coord.latitude + latspan, coord.longitude + longspan);
+        // Obtained from http://stackoverflow.com/questions/6224671/mkcoordinateregionmakewithdistance-equivalent-in-android
+        double latspan = span / 111325.0;
+        double longspan = span / 111325.0 * (1 / cos([Coordinates degrees2rad:coord.latitude]));
 
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
-    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+        d1 = CLLocationCoordinate2DMake(coord.latitude - latspan, coord.longitude - longspan);
+        d2 = CLLocationCoordinate2DMake(coord.latitude + latspan, coord.longitude + longspan);
+
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
+        [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+    } else {
+        [mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord]];
+    }
 
     [mapScaleView update];
 }
