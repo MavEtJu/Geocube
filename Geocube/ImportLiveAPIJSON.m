@@ -60,7 +60,7 @@
     group = _group;
     account = _account;
 
-    NSLog(@"%@: Importing info %@", [self class], group.name);
+    NSLog(@"%@: Importing into %@", [self class], group.name);
 
     return self;
 }
