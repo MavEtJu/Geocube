@@ -193,6 +193,7 @@ typedef enum {
     ImageIcon_SeeTarget,
     ImageIcon_FollowMe,
     ImageIcon_FindMe,
+    ImageIcon_FindTarget,
 
     ImageCompass_RedArrowOnBlueCompass,
     ImageCompass_RedArrowOnBlueArrow,

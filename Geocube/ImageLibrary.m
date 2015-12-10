@@ -129,6 +129,7 @@
     [self add:@"menu icon - show both" index:ImageIcon_ShowBoth];
     [self add:@"menu icon - follow me" index:ImageIcon_FollowMe];
     [self add:@"menu icon - find me" index:ImageIcon_FindMe];
+    [self add:@"menu icon - find target" index:ImageIcon_FindTarget];
 
     [self add:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
     [self add:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
