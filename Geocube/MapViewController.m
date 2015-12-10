@@ -30,6 +30,7 @@
     UIButton *labelMapShowBoth;
     UIButton *labelMapSeeTarget;
     UIButton *labelMapFindMe;
+    UIButton *labelMapFindTarget;
 
     NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
     NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
@@ -168,11 +169,15 @@ enum {
         labelMapShowBoth.enabled = NO;
         labelMapSeeTarget.userInteractionEnabled = NO;
         labelMapSeeTarget.enabled = NO;
+        labelMapFindTarget.userInteractionEnabled = NO;
+        labelMapFindTarget.enabled = NO;
     } else {
         labelMapShowBoth.userInteractionEnabled = YES;
         labelMapShowBoth.enabled = YES;
         labelMapSeeTarget.userInteractionEnabled = YES;
         labelMapSeeTarget.enabled = YES;
+        labelMapFindTarget.userInteractionEnabled = YES;
+        labelMapFindTarget.enabled = YES;
     }
 }
 
@@ -216,12 +221,13 @@ enum {
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
-    labelMapFindMe.frame = CGRectMake(width - 5 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFindMe.frame = CGRectMake(width - 6 * 28 - 3, 3, imgwidth , imgheight);
 
-    labelMapFollowMe.frame = CGRectMake(width - 3.5 * 28 - 3, 3, imgwidth , imgheight);
-    labelMapShowBoth.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFollowMe.frame = CGRectMake(width - 4.5 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapShowBoth.frame = CGRectMake(width - 3.5 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapSeeTarget.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth , imgheight);
 
-    labelMapSeeTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
 }
 
 - (void)initDistanceLabel
@@ -274,24 +280,37 @@ enum {
 //  [labelMapFindMe setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindMe];
 
+    labelMapFindTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapFindTarget.layer.borderWidth = 1;
+    labelMapFindTarget.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapFindTarget addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    labelMapFindTarget.userInteractionEnabled = YES;
+    [labelMapFindTarget setImage:[imageLibrary get:ImageIcon_FindTarget] forState:UIControlStateNormal];
+//  [labelMapFindTarget setTitle:@"Target" forState:UIControlStateNormal];;
+//  [labelMapFindTarget setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapFindTarget];
+
     switch (showWhom) {
         case SHOW_FOLLOWME:
             [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
             [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
             [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
             [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
         case SHOW_SHOWBOTH:
             [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
             [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
             [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
             [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
         case SHOW_SEETARGET:
             [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
             [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
             [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
             [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
+            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
     }
 }
@@ -303,6 +322,7 @@ enum {
     labelMapShowBoth = nil;
     labelMapSeeTarget = nil;
     labelMapFindMe = nil;
+    labelMapFindTarget = nil;
 }
 
 - (void)chooseMapBrand:(UIButton *)button
@@ -321,6 +341,10 @@ enum {
     }
     if (button == labelMapFindMe) {
         [self menuFindMe];
+        return;
+    }
+    if (button == labelMapFindTarget) {
+        [self menuFindTarget];
         return;
     }
 
@@ -417,6 +441,7 @@ enum {
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
     [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+    [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)menuShowWhom:(NSInteger)whom
@@ -429,15 +454,17 @@ enum {
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         showWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
+        [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
         [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
         [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
+        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         showWhom = whom;
@@ -447,6 +474,7 @@ enum {
         [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
 }
 
@@ -458,7 +486,20 @@ enum {
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
     [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+    [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     [map moveCameraTo:meLocation zoom:YES];
+}
+
+- (void)menuFindTarget
+{
+    meLocation = [LM coords];
+    showWhom = SHOW_SEETARGET;
+    [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
+    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+    [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
+    [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
 }
 
 - (void)menuMapType:(NSInteger)maptype
