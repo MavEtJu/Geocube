@@ -98,14 +98,15 @@
 }
 
 + (NSDate *)dateFromISO8601String10:(NSString *)string {
-    if (string == nil) {
+    if (string == nil)
         return nil;
-    }
 
     struct tm tm;
     time_t t;
 
-    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
+    memset(&tm, '\0', sizeof(tm));
+
+    char *p = strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
     tm.tm_isdst = -1;
     t = mktime(&tm);
 
