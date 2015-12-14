@@ -180,6 +180,8 @@
                         *stop = YES;
                     }
                 }];
+                if (wpt_type == nil)
+                    wpt_type = [dbc Type_get_byname:@"Geocache" minor:@"*"];
             }
             wpt_type_id = wpt_type._id;
         }
