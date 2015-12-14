@@ -41,6 +41,8 @@ typedef enum {
     ImageTypes_Waymark,
     ImageTypes_WebcamCache,
     ImageTypes_WhereigoCache,
+    ImageTypes_Trigpoint,
+    ImageTypes_Moveable,
     ImageTypes_NFI,
 
     ImageWaypoints_FinalLocation = 200,
@@ -149,10 +151,11 @@ typedef enum {
     ImageAttribute_TeamworkRequired,
     ImageAttribute_PartOfGeoTour,
 
-    ImageMap_pinheadStart = 600,    // 600 - 630
-    ImageMap_pinheadEnd = 630,      // 600 - 630
-    ImageMap_pinStart = 631,        // 631 - 662
-    ImageMap_pinEnd = 662,          // 631 - 662
+#define PINS 32
+    ImageMap_pinheadStart = 600,            // 600 ...
+    ImageMap_pinheadEnd = 600 + PINS,       //       ... 632
+    ImageMap_pinStart = 600 + PINS + 1,     // 633 ...
+    ImageMap_pinEnd = 600 + 2 * PINS + 1,   //       ... 666
     ImageMap_pinEdit,
 
     /* Up to here: Do not reorder */

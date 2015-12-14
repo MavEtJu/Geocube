@@ -478,6 +478,9 @@ insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) v
 insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "GPS Adventures Exhibit", 111, 628, "", "A52A2A");
 insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Lost and Found Event Caches", 111, 629, "", "FFD0D0");
 insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 630, "", "FFD0D0");
+insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Moveable", 111, 631, "", "806060");
+insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "TrigPoint", 111, 632, "", "403030");
+-- When you add one here, don't forget to increase PINS in ImageLibrary.h
 
 insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Final Location", 200, 600, "", "000000");
 insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Flag", 201, 600, "", "000000");

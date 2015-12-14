@@ -56,6 +56,8 @@
     [self add:@"cache - waymark - 30x30" index:ImageTypes_Waymark];
     [self add:@"cache - webcam - 30x30" index:ImageTypes_WebcamCache];
     [self add:@"cache - whereigo - 30x30" index:ImageTypes_WhereigoCache];
+    [self add:@"cache - moveable - 30x30" index:ImageTypes_Moveable];
+    [self add:@"cache - trigpoint - 30x30" index:ImageTypes_Trigpoint];
 
     [self add:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self add:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
