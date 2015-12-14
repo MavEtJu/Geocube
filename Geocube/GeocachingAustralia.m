@@ -244,4 +244,22 @@
     return -1;
 }
 
+- (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/caches/gca.json?center=%f,%f&cacher=no", center.latitude, center.longitude];
+
+    NSArray *lines = [self loadPage:urlString];
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    return json;
+}
+
 @end

@@ -108,6 +108,7 @@
 
 #import "CacheFilterManager.h"
 
+#import "ImportGCAJSON.h"
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
 #import "ImportGPXViewController.h"

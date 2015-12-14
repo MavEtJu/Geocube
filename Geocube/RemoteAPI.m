@@ -393,4 +393,19 @@
     clientError = error;
 }
 
+- (BOOL)loadWaypoints:(CLLocationCoordinate2D)center
+{
+    if (account.protocol == ProtocolGCA) {
+        NSDictionary *json = [gca caches_gca:center];
+
+        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:nil account:account];
+        [i parseBefore];
+        [i parseData:json];
+        [i parseAfter];
+        return YES;
+    }
+
+    return NO;
+}
+
 @end

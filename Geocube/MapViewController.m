@@ -56,6 +56,7 @@ enum {
     menuSatellite,
     menuHybrid,
     menuTerrain,
+    menuLoadWaypoints,
     menuDirections,
     menuAutoZoom,
     menuMax,
@@ -114,6 +115,7 @@ enum {
             [lmi addItem:menuTerrain label:@"XTerrain"];
             break;
     }
+    [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
     [lmi addItem:menuDirections label:@"Directions"];
     if (myConfig.dynamicmapEnable == YES) {
         [lmi addItem:menuAutoZoom label:@"No AutoZoom"];
@@ -614,6 +616,14 @@ enum {
     [self refreshMenu];
 }
 
+- (void)menuLoadWaypoints
+{
+    NSArray *accounts = [dbc Accounts];
+    [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+        [account.remoteAPI loadWaypoints:meLocation];
+    }];
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -641,11 +651,15 @@ enum {
         case menuShowBoth: /* Show Both */
             [self menuShowWhom:SHOW_SHOWBOTH];
             return;
+
         case menuDirections:
             [self menuDirections];
             return;
         case menuAutoZoom:
             [self menuAutoZoom];
+            return;
+        case menuLoadWaypoints:
+            [self menuLoadWaypoints];
             return;
 
         case menuMapGoogle:

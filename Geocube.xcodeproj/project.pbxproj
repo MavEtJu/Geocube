@@ -286,6 +286,8 @@
 		E8A7FAAE1B795AC3003F4132 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAAD1B795AC3003F4132 /* CacheImageViewController.m */; };
 		E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */; };
 		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
+		E8B6F68F1C1ACFF900577088 /* cache - trigpoint - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */; };
+		E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
@@ -364,6 +366,7 @@
 		E8F86DAE1B72B6CB0091F247 /* CacheWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F86DAD1B72B6CB0091F247 /* CacheWaypointsViewController.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
+		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -786,6 +789,8 @@
 		E8A9934A1BB2AAB400714B90 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCloseButton.h; sourceTree = "<group>"; };
 		E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCloseButton.m; sourceTree = "<group>"; };
+		E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30.png"; path = "images/cache - trigpoint - 30x30.png"; sourceTree = "<group>"; };
+		E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30.png"; path = "images/cache - moveable - 30x30.png"; sourceTree = "<group>"; };
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
@@ -941,6 +946,8 @@
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
+		E8F9913F1C197ECC00D360F1 /* ImportGCAJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGCAJSON.h; sourceTree = "<group>"; };
+		E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGCAJSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1279,6 +1286,8 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
+				E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */,
 				E807324C1B5F850C007FDC29 /* cache - benchmark - 30x30.png */,
 				E807324D1B5F850C007FDC29 /* cache - cito - 30x30.png */,
 				E807324E1B5F850C007FDC29 /* cache - earth - 30x30.png */,
@@ -1703,9 +1712,9 @@
 				E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */,
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
-				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570B21B3FECDF003F020C /* Tools */,
 				E8F570A91B3FE52C003F020C /* Network */,
+				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570A81B3FE522003F020C /* Database */,
 				E8F570931B3F7EE1003F020C /* External modules */,
 				E8F570B61B3FF266003F020C /* GUI */,
@@ -1919,6 +1928,8 @@
 		E8F570BA1B3FFB7F003F020C /* Convertors */ = {
 			isa = PBXGroup;
 			children = (
+				E8F9913F1C197ECC00D360F1 /* ImportGCAJSON.h */,
+				E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */,
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
 				E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */,
@@ -2123,6 +2134,7 @@
 				E80731F51B5F84B4007FDC29 /* attributes - 13.png in Resources */,
 				E80731F41B5F84B4007FDC29 /* attributes - 12.png in Resources */,
 				E807323D1B5F84E8007FDC29 /* log - attended - 30x30.png in Resources */,
+				E8B6F68F1C1ACFF900577088 /* cache - trigpoint - 30x30.png in Resources */,
 				E807326A1B5F850C007FDC29 /* cache - virtual - 30x30.png in Resources */,
 				E807326B1B5F850C007FDC29 /* cache - waymark - 30x30.png in Resources */,
 				E80732781B5F852A007FDC29 /* waypoint - parking - 30x30.png in Resources */,
@@ -2155,6 +2167,7 @@
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
 				E80732E81B60FBCA007FDC29 /* pinhead - green - 15x15.png in Resources */,
 				E80732A41B5F857A007FDC29 /* map - pinhead pink - 15x15.png in Resources */,
+				E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */,
 				E807327A1B5F852A007FDC29 /* waypoint - trailhead - 30x30.png in Resources */,
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
 				E847A5861B9FDA1100BEFE83 /* type - tick found - 24x21.png in Resources */,
@@ -2512,6 +2525,7 @@
 				E87E47501B8301DE005606A2 /* CachePersonalNoteViewController.m in Sources */,
 				E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */,
 				E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */,
+				E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */,
 				E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,

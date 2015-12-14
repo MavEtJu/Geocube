@@ -90,6 +90,7 @@
 @class HelpImagesViewController;
 @class ImageLibrary;
 @class ImagesDownloadManager;
+@class ImportGCAJSON;
 @class ImportGPX;
 @class ImportGPXViewController;
 @class ImportLiveAPIJSON;

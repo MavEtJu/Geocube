@@ -45,5 +45,6 @@
 - (NSDictionary *)UserStatistics:(NSString *)username;
 - (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (BOOL)updateWaypoint:(dbWaypoint *)waypoint;
+- (BOOL)loadWaypoints:(CLLocationCoordinate2D)center;
 
 @end
