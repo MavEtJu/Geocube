@@ -106,7 +106,7 @@
 
     memset(&tm, '\0', sizeof(tm));
 
-    char *p = strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
     tm.tm_isdst = -1;
     t = mktime(&tm);
 
