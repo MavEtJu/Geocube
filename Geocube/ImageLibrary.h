@@ -151,15 +151,6 @@ typedef enum {
     ImageAttribute_TeamworkRequired,
     ImageAttribute_PartOfGeoTour,
 
-#define PINS 32
-    ImageMap_pinheadStart = 600,            // 600 ...
-    ImageMap_pinheadEnd = 600 + PINS,       //       ... 632
-    ImageMap_pinStart = 600 + PINS + 1,     // 633 ...
-    ImageMap_pinEnd = 600 + 2 * PINS + 1,   //       ... 666
-    ImageMap_pinEdit,
-
-    /* Up to here: Do not reorder */
-
     ImageLibraryImagesUnsorted = 700,
 
     ImageMap_pin,
@@ -214,15 +205,17 @@ typedef enum {
 - (UIImage *)get:(NSInteger)imgnum;
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;
-- (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
-- (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+
 - (UIImage *)getSquareWithNumber:(NSInteger)num;
 
 - (NSString *)getName:(NSInteger)imgnum;
 - (UIImage *)getRating:(float)rating;
 
-- (UIImage *)newPinHead:(UIColor *)color;
-- (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor;
++ (UIImage *)newPinHead:(UIColor *)color;
+
 + (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b;
 + (UIColor *)RGBtoColor:(NSString *)rgb;
 + (NSString *)ColorToRGB:(UIColor *)c;

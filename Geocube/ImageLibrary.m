@@ -38,183 +38,175 @@
     self = [super init];
     NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
 
-    [self add:@"cache - benchmark - 30x30" index:ImageTypes_Benchmark];
-    [self add:@"cache - cito - 30x30" index:ImageTypes_CITO];
-    [self add:@"cache - earth - 30x30" index:ImageTypes_EarthCache];
-    [self add:@"cache - event - 30x30" index:ImageTypes_Event];
-    [self add:@"cache - giga - 30x30" index:ImageTypes_Giga];
-    [self add:@"cache - groundspeak hq - 30x30" index:ImageTypes_GroundspeakHQ];
-    [self add:@"cache - letterbox - 30x30" index:ImageTypes_Letterbox];
-    [self add:@"cache - maze - 30x30" index:ImageTypes_Maze];
-    [self add:@"cache - mega - 30x30" index:ImageTypes_Mega];
-    [self add:@"cache - multi - 30x30" index:ImageTypes_MultiCache];
-    [self add:@"cache - mystery - 30x30" index:ImageTypes_Mystery];
-    [self add:@"cache - unknown - 30x30" index:ImageTypes_Other];
-    [self add:@"cache - traditional - 30x30" index:ImageTypes_TraditionalCache];
-    [self add:@"cache - unknown - 30x30" index:ImageTypes_UnknownCache];
-    [self add:@"cache - virtual - 30x30" index:ImageTypes_VirtualCache];
-    [self add:@"cache - waymark - 30x30" index:ImageTypes_Waymark];
-    [self add:@"cache - webcam - 30x30" index:ImageTypes_WebcamCache];
-    [self add:@"cache - whereigo - 30x30" index:ImageTypes_WhereigoCache];
-    [self add:@"cache - moveable - 30x30" index:ImageTypes_Moveable];
-    [self add:@"cache - trigpoint - 30x30" index:ImageTypes_Trigpoint];
+    [self addToLibrary:@"cache - benchmark - 30x30" index:ImageTypes_Benchmark];
+    [self addToLibrary:@"cache - cito - 30x30" index:ImageTypes_CITO];
+    [self addToLibrary:@"cache - earth - 30x30" index:ImageTypes_EarthCache];
+    [self addToLibrary:@"cache - event - 30x30" index:ImageTypes_Event];
+    [self addToLibrary:@"cache - giga - 30x30" index:ImageTypes_Giga];
+    [self addToLibrary:@"cache - groundspeak hq - 30x30" index:ImageTypes_GroundspeakHQ];
+    [self addToLibrary:@"cache - letterbox - 30x30" index:ImageTypes_Letterbox];
+    [self addToLibrary:@"cache - maze - 30x30" index:ImageTypes_Maze];
+    [self addToLibrary:@"cache - mega - 30x30" index:ImageTypes_Mega];
+    [self addToLibrary:@"cache - multi - 30x30" index:ImageTypes_MultiCache];
+    [self addToLibrary:@"cache - mystery - 30x30" index:ImageTypes_Mystery];
+    [self addToLibrary:@"cache - unknown - 30x30" index:ImageTypes_Other];
+    [self addToLibrary:@"cache - traditional - 30x30" index:ImageTypes_TraditionalCache];
+    [self addToLibrary:@"cache - unknown - 30x30" index:ImageTypes_UnknownCache];
+    [self addToLibrary:@"cache - virtual - 30x30" index:ImageTypes_VirtualCache];
+    [self addToLibrary:@"cache - waymark - 30x30" index:ImageTypes_Waymark];
+    [self addToLibrary:@"cache - webcam - 30x30" index:ImageTypes_WebcamCache];
+    [self addToLibrary:@"cache - whereigo - 30x30" index:ImageTypes_WhereigoCache];
+    [self addToLibrary:@"cache - moveable - 30x30" index:ImageTypes_Moveable];
+    [self addToLibrary:@"cache - trigpoint - 30x30" index:ImageTypes_Trigpoint];
 
-    [self add:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
-    [self add:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
-    [self add:@"waypoint - multi - 30x30" index:ImageWaypoints_MultiStage];
-    [self add:@"waypoint - parking - 30x30" index:ImageWaypoints_ParkingArea];
-    [self add:@"waypoint - flag - 30x30" index:ImageWaypoints_PhysicalStage];
-    [self add:@"waypoint - flag - 30x30" index:ImageWaypoints_ReferenceStage];
-    //[self add:@"waypoint - question - 30x30" index:ImageWaypoints_QuestionStage];
-    [self add:@"waypoint - trailhead - 30x30" index:ImageWaypoints_Trailhead];
-    [self add:@"waypoint - trailhead - 30x30" index:ImageWaypoints_VirtualStage];
+    [self addToLibrary:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
+    [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
+    [self addToLibrary:@"waypoint - multi - 30x30" index:ImageWaypoints_MultiStage];
+    [self addToLibrary:@"waypoint - parking - 30x30" index:ImageWaypoints_ParkingArea];
+    [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_PhysicalStage];
+    [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_ReferenceStage];
+    //[self addToLibrary:@"waypoint - question - 30x30" index:ImageWaypoints_QuestionStage];
+    [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_Trailhead];
+    [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_VirtualStage];
 
-    [self add:@"cache - unknown - 30x30" index:ImageTypes_NFI];
-    [self add:@"waypoint - unknown - 30x30" index:Imagewaypoints_NFI];
-    [self add:@"cache - unknown - 30x30" index:ImageNFI];
+    [self addToLibrary:@"cache - unknown - 30x30" index:ImageTypes_NFI];
+    [self addToLibrary:@"waypoint - unknown - 30x30" index:Imagewaypoints_NFI];
+    [self addToLibrary:@"cache - unknown - 30x30" index:ImageNFI];
 
-    [self add:@"log - didnotfind - 30x30" index:ImageLog_DidNotFind];
-    [self add:@"log - enabled - 30x30" index:ImageLog_Enabled];
-    [self add:@"log - found - 30x30" index:ImageLog_Found];
-    [self add:@"log - needsarchiving - 30x30" index:ImageLog_NeedsArchiving];
-    [self add:@"log - needsmaintenance - 30x30" index:ImageLog_NeedsMaintenance];
-    [self add:@"log - ownermaintenance - 30x30" index:ImageLog_OwnerMaintenance];
-    [self add:@"log - reviewernote - 30x30" index:ImageLog_ReviewerNote];
-    [self add:@"log - published - 30x30" index:ImageLog_Published];
-    [self add:@"log - archived - 30x30" index:ImageLog_Archived];
-    [self add:@"log - disabled - 18x18" index:ImageLog_Disabled];
-    [self add:@"log - unarchived - 30x30" index:ImageLog_Unarchived];
-    [self add:@"log - coordinates - 30x30" index:ImageLog_Coordinates];
-    [self add:@"log - unknown - 30x30" index:ImageLog_WebcamPhoto];
-    [self add:@"log - note - 30x30" index:ImageLog_Note];
-    [self add:@"log - attended - 30x30" index:ImageLog_Attended];
-    [self add:@"log - willattend - 30x30" index:ImageLog_WillAttend];
-    [self add:@"log - unknown - 30x30" index:ImageLog_Unknown];
+    [self addToLibrary:@"log - didnotfind - 30x30" index:ImageLog_DidNotFind];
+    [self addToLibrary:@"log - enabled - 30x30" index:ImageLog_Enabled];
+    [self addToLibrary:@"log - found - 30x30" index:ImageLog_Found];
+    [self addToLibrary:@"log - needsarchiving - 30x30" index:ImageLog_NeedsArchiving];
+    [self addToLibrary:@"log - needsmaintenance - 30x30" index:ImageLog_NeedsMaintenance];
+    [self addToLibrary:@"log - ownermaintenance - 30x30" index:ImageLog_OwnerMaintenance];
+    [self addToLibrary:@"log - reviewernote - 30x30" index:ImageLog_ReviewerNote];
+    [self addToLibrary:@"log - published - 30x30" index:ImageLog_Published];
+    [self addToLibrary:@"log - archived - 30x30" index:ImageLog_Archived];
+    [self addToLibrary:@"log - disabled - 18x18" index:ImageLog_Disabled];
+    [self addToLibrary:@"log - unarchived - 30x30" index:ImageLog_Unarchived];
+    [self addToLibrary:@"log - coordinates - 30x30" index:ImageLog_Coordinates];
+    [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_WebcamPhoto];
+    [self addToLibrary:@"log - note - 30x30" index:ImageLog_Note];
+    [self addToLibrary:@"log - attended - 30x30" index:ImageLog_Attended];
+    [self addToLibrary:@"log - willattend - 30x30" index:ImageLog_WillAttend];
+    [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_Unknown];
 
-    [self add:@"container - large - 70x20" index:ImageSize_Large];
-    [self add:@"container - micro - 70x20" index:ImageSize_Micro];
-    [self add:@"container - notchosen - 70x20" index:ImageSize_NotChosen];
-    [self add:@"container - other - 70x20" index:ImageSize_Other];
-    [self add:@"container - regular - 70x20" index:ImageSize_Regular];
-    [self add:@"container - small - 70x20" index:ImageSize_Small];
-    [self add:@"container - unknown - 70x20" index:ImageSize_Virtual];
+    [self addToLibrary:@"container - large - 70x20" index:ImageSize_Large];
+    [self addToLibrary:@"container - micro - 70x20" index:ImageSize_Micro];
+    [self addToLibrary:@"container - notchosen - 70x20" index:ImageSize_NotChosen];
+    [self addToLibrary:@"container - other - 70x20" index:ImageSize_Other];
+    [self addToLibrary:@"container - regular - 70x20" index:ImageSize_Regular];
+    [self addToLibrary:@"container - small - 70x20" index:ImageSize_Small];
+    [self addToLibrary:@"container - unknown - 70x20" index:ImageSize_Virtual];
 
-    [self add:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
-    [self add:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
-    [self add:@"ratings - star off 18x18" index:ImageCacheView_ratingOff];
-    [self add:@"ratings - star half 18x18" index:ImageCacheView_ratingHalf];
-    [self add:@"ratings - favourites 20x30" index:ImageCacheView_favourites];
+    [self addToLibrary:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
+    [self addToLibrary:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
+    [self addToLibrary:@"ratings - star off 18x18" index:ImageCacheView_ratingOff];
+    [self addToLibrary:@"ratings - star half 18x18" index:ImageCacheView_ratingHalf];
+    [self addToLibrary:@"ratings - favourites 20x30" index:ImageCacheView_favourites];
 
-    [self add:@"map - pin stick - 35x42" index:ImageMap_pin];
-    [self add:@"map - dnf stick - 35x42" index:ImageMap_dnf];
-    [self add:@"map - found stick - 35x42" index:ImageMap_found];
+    [self addToLibrary:@"map - pin stick - 35x42" index:ImageMap_pin];
+    [self addToLibrary:@"map - dnf stick - 35x42" index:ImageMap_dnf];
+    [self addToLibrary:@"map - found stick - 35x42" index:ImageMap_found];
 
-    [self add:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
-    [self add:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
-    [self add:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
-    [self add:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
-    [self add:@"map - highlight - 21x21" index:ImageMap_pinOutlineHighlight];
-    [self add:@"map - background - 35x42" index:ImageMap_background];
-    [self add:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
-    [self add:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
-    [self add:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
-    [self add:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
+    [self addToLibrary:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
+    [self addToLibrary:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
+    [self addToLibrary:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
+    [self addToLibrary:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
+    [self addToLibrary:@"map - highlight - 21x21" index:ImageMap_pinOutlineHighlight];
+    [self addToLibrary:@"map - background - 35x42" index:ImageMap_background];
+    [self addToLibrary:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
+    [self addToLibrary:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
+    [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
+    [self addToLibrary:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
 
-    [self add:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
-    [self add:@"icons - sad - 30x30" index:ImageIcon_Sad];
-    [self add:@"icons - target - 20x20" index:ImageIcon_Target];
+    [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
+    [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
+    [self addToLibrary:@"icons - target - 20x20" index:ImageIcon_Target];
 
-    [self add:@"menu icon - global" index:ImageIcon_GlobalMenu];
-    [self add:@"menu icon - local" index:ImageIcon_LocalMenu];
-    [self add:@"menu icon - close" index:ImageIcon_CloseButton];
-    [self add:@"menu icon - see target" index:ImageIcon_SeeTarget];
-    [self add:@"menu icon - show both" index:ImageIcon_ShowBoth];
-    [self add:@"menu icon - follow me" index:ImageIcon_FollowMe];
-    [self add:@"menu icon - find me" index:ImageIcon_FindMe];
-    [self add:@"menu icon - find target" index:ImageIcon_FindTarget];
+    [self addToLibrary:@"menu icon - global" index:ImageIcon_GlobalMenu];
+    [self addToLibrary:@"menu icon - local" index:ImageIcon_LocalMenu];
+    [self addToLibrary:@"menu icon - close" index:ImageIcon_CloseButton];
+    [self addToLibrary:@"menu icon - see target" index:ImageIcon_SeeTarget];
+    [self addToLibrary:@"menu icon - show both" index:ImageIcon_ShowBoth];
+    [self addToLibrary:@"menu icon - follow me" index:ImageIcon_FollowMe];
+    [self addToLibrary:@"menu icon - find me" index:ImageIcon_FindMe];
+    [self addToLibrary:@"menu icon - find target" index:ImageIcon_FindTarget];
 
-    [self add:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
-    [self add:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
-    [self add:@"compass - white arrow on black" index:ImageCompass_WhiteArrowOnBlack];
-    [self add:@"compass - red arrow on black" index:ImageCompass_RedArrowOnBlack];
-    [self add:@"compass - airplane - airplane" index:ImageCompass_AirplaneAirplane];
-    [self add:@"compass - airplane - compass" index:ImageCompass_AirplaneCompass];
+    [self addToLibrary:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
+    [self addToLibrary:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
+    [self addToLibrary:@"compass - white arrow on black" index:ImageCompass_WhiteArrowOnBlack];
+    [self addToLibrary:@"compass - red arrow on black" index:ImageCompass_RedArrowOnBlack];
+    [self addToLibrary:@"compass - airplane - airplane" index:ImageCompass_AirplaneAirplane];
+    [self addToLibrary:@"compass - airplane - compass" index:ImageCompass_AirplaneCompass];
 
-    [self add:@"attributes - unknown" index:ImageAttribute_Unknown];
-    [self add:@"attributes - 01" index:ImageAttribute_DogsAllowed];
-    [self add:@"attributes - 02" index:ImageAttribute_AccessOrParkingFee];
-    [self add:@"attributes - 03" index:ImageAttribute_RockClimbing];
-    [self add:@"attributes - 04" index:ImageAttribute_Boat];
-    [self add:@"attributes - 05" index:ImageAttribute_ScubaGear];
-    [self add:@"attributes - 06" index:ImageAttribute_RecommendedForKids];
-    [self add:@"attributes - 07" index:ImageAttribute_TakesLessThanAnHour];
-    [self add:@"attributes - 08" index:ImageAttribute_ScenicVIew];
-    [self add:@"attributes - 09" index:ImageAttribute_SignificantHike];
-    [self add:@"attributes - 10" index:ImageAttribute_DifficultClimbing];
-    [self add:@"attributes - 11" index:ImageAttribute_MayRequireWading];
-    [self add:@"attributes - 12" index:ImageAttribute_MayRequireSwimming];
-    [self add:@"attributes - 13" index:ImageAttribute_AvailableAtAllTimes];
-    [self add:@"attributes - 14" index:ImageAttribute_RecommendedAtNight];
-    [self add:@"attributes - 15" index:ImageAttribute_AvailableDuringWinter];
-    [self add:@"attributes - 17" index:ImageAttribute_PoisonPlants];
-    [self add:@"attributes - 18" index:ImageAttribute_DangerousAnimals];
-    [self add:@"attributes - 19" index:ImageAttribute_Ticks];
-    [self add:@"attributes - 20" index:ImageAttribute_AbandonedMines];
-    [self add:@"attributes - 21" index:ImageAttribute_CliffFallingRocks];
-    [self add:@"attributes - 22" index:ImageAttribute_Hunting];
-    [self add:@"attributes - 23" index:ImageAttribute_DangerousArea];
-    [self add:@"attributes - 24" index:ImageAttribute_WheelchairAccessible];
-    [self add:@"attributes - 25" index:ImageAttribute_ParkingAvailable];
-    [self add:@"attributes - 26" index:ImageAttribute_PublicTransportation];
-    [self add:@"attributes - 27" index:ImageAttribute_DrinkingWaterNearby];
-    [self add:@"attributes - 28" index:ImageAttribute_ToiletNearby];
-    [self add:@"attributes - 29" index:ImageAttribute_TelephoneNearby];
-    [self add:@"attributes - 30" index:ImageAttribute_PicnicTablesNearby];
-    [self add:@"attributes - 31" index:ImageAttribute_CampingArea];
-    [self add:@"attributes - 32" index:ImageAttribute_Bicycles];
-    [self add:@"attributes - 33" index:ImageAttribute_Motorcycles];
-    [self add:@"attributes - 34" index:ImageAttribute_Quads];
-    [self add:@"attributes - 35" index:ImageAttribute_OffRoadVehicles];
-    [self add:@"attributes - 36" index:ImageAttribute_Snowmobiles];
-    [self add:@"attributes - 37" index:ImageAttribute_Horses];
-    [self add:@"attributes - 38" index:ImageAttribute_Campfires];
-    [self add:@"attributes - 39" index:ImageAttribute_Thorns];
-    [self add:@"attributes - 40" index:ImageAttribute_StealthRequired];
-    [self add:@"attributes - 41" index:ImageAttribute_StrollerAccessible];
-    [self add:@"attributes - 42" index:ImageAttribute_NeedsMaintenance];
-    [self add:@"attributes - 43" index:ImageAttribute_WatchForLivestock];
-    [self add:@"attributes - 44" index:ImageAttribute_FlashlightRequired];
-    [self add:@"attributes - 45" index:ImageAttribute_LostAndFoundTour];
-    [self add:@"attributes - 46" index:ImageAttribute_TruckDriversRV];
-    [self add:@"attributes - 47" index:ImageAttribute_FieldPuzzle];
-    [self add:@"attributes - 48" index:ImageAttribute_UVTorchRequired];
-    [self add:@"attributes - 49" index:ImageAttribute_Snowshoes];
-    [self add:@"attributes - 50" index:ImageAttribute_CrossCountrySkies];
-    [self add:@"attributes - 51" index:ImageAttribute_LongHike];
-    [self add:@"attributes - 52" index:ImageAttribute_SpecialToolRequired];
-    [self add:@"attributes - 53" index:ImageAttribute_NightCache];
-    [self add:@"attributes - 54" index:ImageAttribute_ParkAndGrab];
-    [self add:@"attributes - 55" index:ImageAttribute_AbandonedStructure];
-    [self add:@"attributes - 56" index:ImageAttribute_ShortHike];
-    [self add:@"attributes - 57" index:ImageAttribute_MediumHike];
-    [self add:@"attributes - 58" index:ImageAttribute_FuelNearby];
-    [self add:@"attributes - 59" index:ImageAttribute_FoodNearby];
-    [self add:@"attributes - 60" index:ImageAttribute_WirelessBeacon];
-    [self add:@"attributes - 61" index:ImageAttribute_PartnershipCache];
-    [self add:@"attributes - 62" index:ImageAttribute_SeasonalAccess];
-    [self add:@"attributes - 63" index:ImageAttribute_TouristFriendly];
-    [self add:@"attributes - 64" index:ImageAttribute_TreeClimbing];
-    [self add:@"attributes - 65" index:ImageAttribute_FrontYard];
-    [self add:@"attributes - 66" index:ImageAttribute_TeamworkRequired];
-    [self add:@"attributes - 67" index:ImageAttribute_PartOfGeoTour];
-
-    /* Create pinheads and pins */
-    [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL * _Nonnull stop) {
-        float r, g, b;
-        [ImageLibrary RGBtoFloat:type.pin_rgb r:&r g:&g b:&b];
-        UIColor *pinColor = [UIColor colorWithRed:r green:g blue:b alpha:1];
-        [self recreatePin:type.pin color:pinColor];
-    }];
+    [self addToLibrary:@"attributes - unknown" index:ImageAttribute_Unknown];
+    [self addToLibrary:@"attributes - 01" index:ImageAttribute_DogsAllowed];
+    [self addToLibrary:@"attributes - 02" index:ImageAttribute_AccessOrParkingFee];
+    [self addToLibrary:@"attributes - 03" index:ImageAttribute_RockClimbing];
+    [self addToLibrary:@"attributes - 04" index:ImageAttribute_Boat];
+    [self addToLibrary:@"attributes - 05" index:ImageAttribute_ScubaGear];
+    [self addToLibrary:@"attributes - 06" index:ImageAttribute_RecommendedForKids];
+    [self addToLibrary:@"attributes - 07" index:ImageAttribute_TakesLessThanAnHour];
+    [self addToLibrary:@"attributes - 08" index:ImageAttribute_ScenicVIew];
+    [self addToLibrary:@"attributes - 09" index:ImageAttribute_SignificantHike];
+    [self addToLibrary:@"attributes - 10" index:ImageAttribute_DifficultClimbing];
+    [self addToLibrary:@"attributes - 11" index:ImageAttribute_MayRequireWading];
+    [self addToLibrary:@"attributes - 12" index:ImageAttribute_MayRequireSwimming];
+    [self addToLibrary:@"attributes - 13" index:ImageAttribute_AvailableAtAllTimes];
+    [self addToLibrary:@"attributes - 14" index:ImageAttribute_RecommendedAtNight];
+    [self addToLibrary:@"attributes - 15" index:ImageAttribute_AvailableDuringWinter];
+    [self addToLibrary:@"attributes - 17" index:ImageAttribute_PoisonPlants];
+    [self addToLibrary:@"attributes - 18" index:ImageAttribute_DangerousAnimals];
+    [self addToLibrary:@"attributes - 19" index:ImageAttribute_Ticks];
+    [self addToLibrary:@"attributes - 20" index:ImageAttribute_AbandonedMines];
+    [self addToLibrary:@"attributes - 21" index:ImageAttribute_CliffFallingRocks];
+    [self addToLibrary:@"attributes - 22" index:ImageAttribute_Hunting];
+    [self addToLibrary:@"attributes - 23" index:ImageAttribute_DangerousArea];
+    [self addToLibrary:@"attributes - 24" index:ImageAttribute_WheelchairAccessible];
+    [self addToLibrary:@"attributes - 25" index:ImageAttribute_ParkingAvailable];
+    [self addToLibrary:@"attributes - 26" index:ImageAttribute_PublicTransportation];
+    [self addToLibrary:@"attributes - 27" index:ImageAttribute_DrinkingWaterNearby];
+    [self addToLibrary:@"attributes - 28" index:ImageAttribute_ToiletNearby];
+    [self addToLibrary:@"attributes - 29" index:ImageAttribute_TelephoneNearby];
+    [self addToLibrary:@"attributes - 30" index:ImageAttribute_PicnicTablesNearby];
+    [self addToLibrary:@"attributes - 31" index:ImageAttribute_CampingArea];
+    [self addToLibrary:@"attributes - 32" index:ImageAttribute_Bicycles];
+    [self addToLibrary:@"attributes - 33" index:ImageAttribute_Motorcycles];
+    [self addToLibrary:@"attributes - 34" index:ImageAttribute_Quads];
+    [self addToLibrary:@"attributes - 35" index:ImageAttribute_OffRoadVehicles];
+    [self addToLibrary:@"attributes - 36" index:ImageAttribute_Snowmobiles];
+    [self addToLibrary:@"attributes - 37" index:ImageAttribute_Horses];
+    [self addToLibrary:@"attributes - 38" index:ImageAttribute_Campfires];
+    [self addToLibrary:@"attributes - 39" index:ImageAttribute_Thorns];
+    [self addToLibrary:@"attributes - 40" index:ImageAttribute_StealthRequired];
+    [self addToLibrary:@"attributes - 41" index:ImageAttribute_StrollerAccessible];
+    [self addToLibrary:@"attributes - 42" index:ImageAttribute_NeedsMaintenance];
+    [self addToLibrary:@"attributes - 43" index:ImageAttribute_WatchForLivestock];
+    [self addToLibrary:@"attributes - 44" index:ImageAttribute_FlashlightRequired];
+    [self addToLibrary:@"attributes - 45" index:ImageAttribute_LostAndFoundTour];
+    [self addToLibrary:@"attributes - 46" index:ImageAttribute_TruckDriversRV];
+    [self addToLibrary:@"attributes - 47" index:ImageAttribute_FieldPuzzle];
+    [self addToLibrary:@"attributes - 48" index:ImageAttribute_UVTorchRequired];
+    [self addToLibrary:@"attributes - 49" index:ImageAttribute_Snowshoes];
+    [self addToLibrary:@"attributes - 50" index:ImageAttribute_CrossCountrySkies];
+    [self addToLibrary:@"attributes - 51" index:ImageAttribute_LongHike];
+    [self addToLibrary:@"attributes - 52" index:ImageAttribute_SpecialToolRequired];
+    [self addToLibrary:@"attributes - 53" index:ImageAttribute_NightCache];
+    [self addToLibrary:@"attributes - 54" index:ImageAttribute_ParkAndGrab];
+    [self addToLibrary:@"attributes - 55" index:ImageAttribute_AbandonedStructure];
+    [self addToLibrary:@"attributes - 56" index:ImageAttribute_ShortHike];
+    [self addToLibrary:@"attributes - 57" index:ImageAttribute_MediumHike];
+    [self addToLibrary:@"attributes - 58" index:ImageAttribute_FuelNearby];
+    [self addToLibrary:@"attributes - 59" index:ImageAttribute_FoodNearby];
+    [self addToLibrary:@"attributes - 60" index:ImageAttribute_WirelessBeacon];
+    [self addToLibrary:@"attributes - 61" index:ImageAttribute_PartnershipCache];
+    [self addToLibrary:@"attributes - 62" index:ImageAttribute_SeasonalAccess];
+    [self addToLibrary:@"attributes - 63" index:ImageAttribute_TouristFriendly];
+    [self addToLibrary:@"attributes - 64" index:ImageAttribute_TreeClimbing];
+    [self addToLibrary:@"attributes - 65" index:ImageAttribute_FrontYard];
+    [self addToLibrary:@"attributes - 66" index:ImageAttribute_TeamworkRequired];
+    [self addToLibrary:@"attributes - 67" index:ImageAttribute_PartOfGeoTour];
 
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
@@ -236,11 +228,7 @@
     return self;
 }
 
-- (void)add:(NSString *)name index:(NSInteger)idx
-{
-    [self add2:idx name:name];
-}
-- (void)add2:(NSInteger)index name:(NSString *)name
+- (void)addToLibrary:(NSString *)name index:(NSInteger)idx
 {
     NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], name];
     UIImage *img = [[UIImage alloc] initWithContentsOfFile:s];
@@ -248,16 +236,40 @@
         NSLog(@"ImageLibrary: Image %@ not found", s);
         return;
     }
-    imgs[index] = img;
-    names[index] = name;
+    imgs[idx] = img;
+    names[idx] = name;
 }
 
+- (void)mergeRating:(NSInteger)index full:(NSInteger)full half:(NSInteger)half
+{
+    UIImage *out = [UIImage imageWithCGImage:[self get:ImageCacheView_ratingBase].CGImage];
+    NSInteger w = 19;
+    NSInteger h = 19;
+    for (NSInteger i = 0; i < full; i++) {
+        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingOn] andRect:CGRectMake(i * w, 0, w, h)];
+        out = [UIImage imageWithCGImage:_out.CGImage];
+    }
+
+    if (half == 1) {
+        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingHalf] andRect:CGRectMake(full * w, 0, w, h)];
+        out = [UIImage imageWithCGImage:_out.CGImage];
+    }
+
+    ratingImages[index] = [UIImage imageWithCGImage:out.CGImage];
+}
+
+// -------------------------------------------------------------
 - (void)addpinhead:(NSInteger)index image:(UIImage *)img
 {
     imgs[index] = img;
     names[index] = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
 }
 
+- (UIImage *)mergePinhead:(UIImage *)bottom topImg:(UIImage *)top
+{
+    UIImage *out = [self addImageToImage:bottom withImage2:top andRect:CGRectMake(3, 3, 15, 15)];
+    return out;
+}
 - (UIImage *)mergePinhead2:(UIImage *)bottom top:(NSInteger)top
 {
     UIImage *out = [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
@@ -292,9 +304,17 @@
     return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 21, 21)];
 }
 
+- (UIImage *)mergeStick:(UIImage *)bottom top:(NSInteger)top
+{
+    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 35, 42)];
+}
 - (UIImage *)mergePin:(UIImage *)bottom top:(NSInteger)top
 {
     return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 35, 42)];
+}
+- (UIImage *)mergePin:(UIImage *)bottom topImg:(UIImage *)top
+{
+    return [self addImageToImage:bottom withImage2:top andRect:CGRectMake(0, 0, 35, 42)];
 }
 
 - (UIImage *)mergeYYY:(UIImage *)bottom top:(NSInteger)top
@@ -308,24 +328,6 @@
 - (UIImage *)mergeArchived:(UIImage *)bottom top:(NSInteger)top
 {
     return [self mergeYYY:bottom top:top];
-}
-
-- (void)mergeRating:(NSInteger)index full:(NSInteger)full half:(NSInteger)half
-{
-    UIImage *out = [UIImage imageWithCGImage:[self get:ImageCacheView_ratingBase].CGImage];
-    NSInteger w = 19;
-    NSInteger h = 19;
-    for (NSInteger i = 0; i < full; i++) {
-        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingOn] andRect:CGRectMake(i * w, 0, w, h)];
-        out = [UIImage imageWithCGImage:_out.CGImage];
-    }
-
-    if (half == 1) {
-        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingHalf] andRect:CGRectMake(full * w, 0, w, h)];
-        out = [UIImage imageWithCGImage:_out.CGImage];
-    }
-
-    ratingImages[index] = [UIImage imageWithCGImage:out.CGImage];
 }
 
 - (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
@@ -365,7 +367,9 @@
     return ratingImages[(int)(2 * rating)];
 }
 
-- (NSString *)getPinTypeCode:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+// -----------------------------------------------------------
+
+- (NSString *)getPinTypeCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
     NSMutableString *s = [NSMutableString stringWithString:@""];
 
@@ -374,7 +378,7 @@
     else
         [s appendString:@"h"];
 
-    [s appendFormat:@"%ld", (long)imgnum];
+    [s appendFormat:@"-%ld-", (long)o._id];
 
     if (disabled == YES)
         [s appendString:@"D"];
@@ -401,27 +405,49 @@
     return s;
 }
 
-- (UIImage *)getPin:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+// -----------------------------------------------------------
+
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
-    NSString *s = [self getPinTypeCode:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+    NSString *s = [self getPinTypeCode:pin found:found disabled:disabled archived:archived highlight:highlight];
     UIImage *img = [pinImages valueForKey:s];
     if (img == nil) {
         NSLog(@"Creating pin %@s", s);
-        img = [self getPinImage:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight];
         [pinImages setObject:img forKey:s];
     }
 
     return img;
 }
 
-- (UIImage *)getPinImage:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getPin:(dbWaypoint *)wp
+{
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
+}
+
+- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
     UIImage *img = [imageLibrary get:ImageMap_background];
+
+    switch (found) {
+        case LOGSTATUS_NOTLOGGED:
+            // Do not overlay anything
+            img = [self mergeStick:img top:ImageMap_pin];
+            break;
+        case LOGSTATUS_NOTFOUND:
+            img = [self mergeStick:img top:ImageMap_dnf];
+            // Overlay the blue cross
+            break;
+        case LOGSTATUS_FOUND:
+            img = [self mergeStick:img top:ImageMap_found];
+            // Overlay the yellow tick
+            break;
+    }
 
     if (highlight == YES)
         img = [self mergeHighlight:img top:ImageMap_pinOutlineHighlight];
 
-    img = [self mergePin:img top:imgnum + ImageMap_pinheadEnd - ImageMap_pinheadStart];
+    img = [self mergePinhead:img topImg:pin.img];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
@@ -446,26 +472,23 @@
     return img;
 }
 
-- (UIImage *)getPin:(dbWaypoint *)wp
-{
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
-}
+// -----------------------------------------------------------
 
-- (UIImage *)getType:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
-    NSString *s = [self getPinTypeCode:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight];
     UIImage *img = [typeImages valueForKey:s];
     if (img == nil) {
-        img = [self getTypeImage:imgnum found:found disabled:disabled archived:archived highlight:highlight];
+        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight];
         [typeImages setObject:img forKey:s];
     }
 
     return img;
 }
 
-- (UIImage *)getTypeImage:(NSInteger)imgnum found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
-    UIImage *img = [imageLibrary get:imgnum];
+    UIImage *img = [imageLibrary get:type.icon];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_typeOutlineDisabled];
@@ -492,14 +515,12 @@
 
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [self getType:wp.wpt_type.icon found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
+    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
 }
 
-- (void)recreatePin:(NSInteger)pin color:(UIColor *)pinColor
-{
-    [self addpinhead:pin image:[self newPinHead:pinColor]];
-    [self mergePinhead:ImageMap_pin top:pin index:pin + ImageMap_pinheadEnd - ImageMap_pinheadStart];
-}
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
 
 + (void)RGBtoFloat:(NSString *)rgb r:(float *)r g:(float *)g b:(float *)b
 {
@@ -529,7 +550,7 @@
     return [NSString stringWithFormat:@"%02lX%02lX%02lX", lround(255 * r), lround(255 * g), lround(255 * b)];
 }
 
-- (UIImage *)newPinHead:(UIColor *)color
++ (UIImage *)newPinHead:(UIColor *)color
 {
     UIGraphicsBeginImageContext(CGSizeMake(15, 15));
     CGContextRef context = UIGraphicsGetCurrentContext();
