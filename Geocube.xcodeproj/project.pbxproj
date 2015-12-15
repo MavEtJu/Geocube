@@ -130,13 +130,6 @@
 		E807329F1B5F857A007FDC29 /* map - found stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E807328E1B5F857A007FDC29 /* map - found stick - 35x42.png */; };
 		E80732A01B5F857A007FDC29 /* map - own overlay - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E807328F1B5F857A007FDC29 /* map - own overlay - 18x18.png */; };
 		E80732A11B5F857A007FDC29 /* map - pin stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732901B5F857A007FDC29 /* map - pin stick - 35x42.png */; };
-		E80732A21B5F857A007FDC29 /* map - pinhead black - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732911B5F857A007FDC29 /* map - pinhead black - 15x15.png */; };
-		E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732921B5F857A007FDC29 /* map - pinhead green - 15x15.png */; };
-		E80732A41B5F857A007FDC29 /* map - pinhead pink - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732931B5F857A007FDC29 /* map - pinhead pink - 15x15.png */; };
-		E80732A51B5F857A007FDC29 /* map - pinhead purple - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732941B5F857A007FDC29 /* map - pinhead purple - 15x15.png */; };
-		E80732A61B5F857A007FDC29 /* map - pinhead red - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732951B5F857A007FDC29 /* map - pinhead red - 15x15.png */; };
-		E80732A71B5F857A007FDC29 /* map - pinhead white - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732961B5F857A007FDC29 /* map - pinhead white - 15x15.png */; };
-		E80732A81B5F857A007FDC29 /* map - pinhead yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732971B5F857A007FDC29 /* map - pinhead yellow - 15x15.png */; };
 		E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732981B5F857A007FDC29 /* map - tick found - 9x9.png */; };
 		E80732AA1B5F857A007FDC29 /* map - tick found - 17x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732991B5F857A007FDC29 /* map - tick found - 17x15.png */; };
 		E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */; };
@@ -151,15 +144,6 @@
 		E80732DA1B60FAB4007FDC29 /* ratings - star half 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */; };
 		E80732DB1B60FAB4007FDC29 /* ratings - star off 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D61B60FAB4007FDC29 /* ratings - star off 18x18.png */; };
 		E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */; };
-		E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */; };
-		E80732E71B60FBCA007FDC29 /* pinhead - brown - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */; };
-		E80732E81B60FBCA007FDC29 /* pinhead - green - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */; };
-		E80732E91B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */; };
-		E80732EA1B60FBCA007FDC29 /* pinhead - pink - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */; };
-		E80732EB1B60FBCA007FDC29 /* pinhead - purple - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */; };
-		E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */; };
-		E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */; };
-		E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */; };
 		E80732F31B626133007FDC29 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732F21B626133007FDC29 /* dbAccount.m */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
@@ -288,6 +272,7 @@
 		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
 		E8B6F68F1C1ACFF900577088 /* cache - trigpoint - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */; };
 		E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */; };
+		E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6F6931C1E8EF100577088 /* dbPin.m */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
@@ -528,13 +513,6 @@
 		E807328E1B5F857A007FDC29 /* map - found stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - found stick - 35x42.png"; path = "images/map - found stick - 35x42.png"; sourceTree = "<group>"; };
 		E807328F1B5F857A007FDC29 /* map - own overlay - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - own overlay - 18x18.png"; path = "images/map - own overlay - 18x18.png"; sourceTree = "<group>"; };
 		E80732901B5F857A007FDC29 /* map - pin stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pin stick - 35x42.png"; path = "images/map - pin stick - 35x42.png"; sourceTree = "<group>"; };
-		E80732911B5F857A007FDC29 /* map - pinhead black - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead black - 15x15.png"; path = "images/map - pinhead black - 15x15.png"; sourceTree = "<group>"; };
-		E80732921B5F857A007FDC29 /* map - pinhead green - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead green - 15x15.png"; path = "images/map - pinhead green - 15x15.png"; sourceTree = "<group>"; };
-		E80732931B5F857A007FDC29 /* map - pinhead pink - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead pink - 15x15.png"; path = "images/map - pinhead pink - 15x15.png"; sourceTree = "<group>"; };
-		E80732941B5F857A007FDC29 /* map - pinhead purple - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead purple - 15x15.png"; path = "images/map - pinhead purple - 15x15.png"; sourceTree = "<group>"; };
-		E80732951B5F857A007FDC29 /* map - pinhead red - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead red - 15x15.png"; path = "images/map - pinhead red - 15x15.png"; sourceTree = "<group>"; };
-		E80732961B5F857A007FDC29 /* map - pinhead white - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead white - 15x15.png"; path = "images/map - pinhead white - 15x15.png"; sourceTree = "<group>"; };
-		E80732971B5F857A007FDC29 /* map - pinhead yellow - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pinhead yellow - 15x15.png"; path = "images/map - pinhead yellow - 15x15.png"; sourceTree = "<group>"; };
 		E80732981B5F857A007FDC29 /* map - tick found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9.png"; path = "images/map - tick found - 9x9.png"; sourceTree = "<group>"; };
 		E80732991B5F857A007FDC29 /* map - tick found - 17x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 17x15.png"; path = "images/map - tick found - 17x15.png"; sourceTree = "<group>"; };
 		E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30.png"; path = "images/icons - sad - 30x30.png"; sourceTree = "<group>"; };
@@ -553,15 +531,6 @@
 		E80732D51B60FAB4007FDC29 /* ratings - star half 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star half 18x18.png"; path = "images/ratings - star half 18x18.png"; sourceTree = "<group>"; };
 		E80732D61B60FAB4007FDC29 /* ratings - star off 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star off 18x18.png"; path = "images/ratings - star off 18x18.png"; sourceTree = "<group>"; };
 		E80732D71B60FAB4007FDC29 /* ratings - star on 19x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - star on 19x18.png"; path = "images/ratings - star on 19x18.png"; sourceTree = "<group>"; };
-		E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - black - 15x15.png"; path = "images/pinhead - black - 15x15.png"; sourceTree = "<group>"; };
-		E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - brown - 15x15.png"; path = "images/pinhead - brown - 15x15.png"; sourceTree = "<group>"; };
-		E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - green - 15x15.png"; path = "images/pinhead - green - 15x15.png"; sourceTree = "<group>"; };
-		E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - lightblue - 15x15.png"; path = "images/pinhead - lightblue - 15x15.png"; sourceTree = "<group>"; };
-		E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - pink - 15x15.png"; path = "images/pinhead - pink - 15x15.png"; sourceTree = "<group>"; };
-		E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - purple - 15x15.png"; path = "images/pinhead - purple - 15x15.png"; sourceTree = "<group>"; };
-		E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - red - 15x15.png"; path = "images/pinhead - red - 15x15.png"; sourceTree = "<group>"; };
-		E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - white - 15x15.png"; path = "images/pinhead - white - 15x15.png"; sourceTree = "<group>"; };
-		E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pinhead - yellow - 15x15.png"; path = "images/pinhead - yellow - 15x15.png"; sourceTree = "<group>"; };
 		E80732F11B626133007FDC29 /* dbAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAccount.h; sourceTree = "<group>"; };
 		E80732F21B626133007FDC29 /* dbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAccount.m; sourceTree = "<group>"; };
 		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -791,6 +760,8 @@
 		E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCloseButton.m; sourceTree = "<group>"; };
 		E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30.png"; path = "images/cache - trigpoint - 30x30.png"; sourceTree = "<group>"; };
 		E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30.png"; path = "images/cache - moveable - 30x30.png"; sourceTree = "<group>"; };
+		E8B6F6921C1E8EF100577088 /* dbPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPin.h; sourceTree = "<group>"; };
+		E8B6F6931C1E8EF100577088 /* dbPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPin.m; sourceTree = "<group>"; };
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
@@ -1448,28 +1419,12 @@
 				E847A5941BA0DA1300BEFE83 /* map - highlight - 21x21.png */,
 				E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */,
 				E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */,
-				E80732DD1B60FBCA007FDC29 /* pinhead - black - 15x15.png */,
-				E80732DE1B60FBCA007FDC29 /* pinhead - brown - 15x15.png */,
-				E80732DF1B60FBCA007FDC29 /* pinhead - green - 15x15.png */,
-				E80732E01B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png */,
-				E80732E11B60FBCA007FDC29 /* pinhead - pink - 15x15.png */,
-				E80732E21B60FBCA007FDC29 /* pinhead - purple - 15x15.png */,
-				E80732E31B60FBCA007FDC29 /* pinhead - red - 15x15.png */,
-				E80732E41B60FBCA007FDC29 /* pinhead - white - 15x15.png */,
-				E80732E51B60FBCA007FDC29 /* pinhead - yellow - 15x15.png */,
 				E807328A1B5F857A007FDC29 /* map - cross dnf - 9x9.png */,
 				E807328B1B5F857A007FDC29 /* map - cross dnf - 15x15.png */,
 				E807328D1B5F857A007FDC29 /* map - dnf stick - 35x42.png */,
 				E807328E1B5F857A007FDC29 /* map - found stick - 35x42.png */,
 				E807328F1B5F857A007FDC29 /* map - own overlay - 18x18.png */,
 				E80732901B5F857A007FDC29 /* map - pin stick - 35x42.png */,
-				E80732911B5F857A007FDC29 /* map - pinhead black - 15x15.png */,
-				E80732921B5F857A007FDC29 /* map - pinhead green - 15x15.png */,
-				E80732931B5F857A007FDC29 /* map - pinhead pink - 15x15.png */,
-				E80732941B5F857A007FDC29 /* map - pinhead purple - 15x15.png */,
-				E80732951B5F857A007FDC29 /* map - pinhead red - 15x15.png */,
-				E80732961B5F857A007FDC29 /* map - pinhead white - 15x15.png */,
-				E80732971B5F857A007FDC29 /* map - pinhead yellow - 15x15.png */,
 				E80732981B5F857A007FDC29 /* map - tick found - 9x9.png */,
 				E80732991B5F857A007FDC29 /* map - tick found - 17x15.png */,
 			);
@@ -1847,6 +1802,8 @@
 				E88037A11B946D1F0053AD01 /* dbNotice.m */,
 				E8575FFD1B849BE600F34483 /* dbPersonalNote.h */,
 				E8575FFE1B849BE600F34483 /* dbPersonalNote.m */,
+				E8B6F6921C1E8EF100577088 /* dbPin.h */,
+				E8B6F6931C1E8EF100577088 /* dbPin.m */,
 				E80732C11B5FB4EA007FDC29 /* dbState.h */,
 				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 				E81304021B5C4EB1006DF300 /* dbSymbol.h */,
@@ -2119,7 +2076,6 @@
 				E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */,
 				E8182F431C0C1BB4004AC534 /* menu icon - see target.png in Resources */,
 				E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */,
-				E80732E71B60FBCA007FDC29 /* pinhead - brown - 15x15.png in Resources */,
 				E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */,
 				E80732D81B60FAB4007FDC29 /* ratings - favourites 20x30.png in Resources */,
 				E80732461B5F84E8007FDC29 /* log - ownermaintenance - 30x30.png in Resources */,
@@ -2145,7 +2101,6 @@
 				E80731F21B5F84B4007FDC29 /* attributes - 10.png in Resources */,
 				E807325D1B5F850C007FDC29 /* cache - benchmark - 30x30.png in Resources */,
 				E80732761B5F852A007FDC29 /* waypoint - flag - 30x30.png in Resources */,
-				E80732A31B5F857A007FDC29 /* map - pinhead green - 15x15.png in Resources */,
 				E807326C1B5F850C007FDC29 /* cache - webcam - 30x30.png in Resources */,
 				E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */,
 				E80732031B5F84B4007FDC29 /* attributes - 28.png in Resources */,
@@ -2163,10 +2118,7 @@
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
 				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
 				E80732851B5F8561007FDC29 /* container - notchosen - 70x20.png in Resources */,
-				E80732ED1B60FBCA007FDC29 /* pinhead - white - 15x15.png in Resources */,
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
-				E80732E81B60FBCA007FDC29 /* pinhead - green - 15x15.png in Resources */,
-				E80732A41B5F857A007FDC29 /* map - pinhead pink - 15x15.png in Resources */,
 				E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */,
 				E807327A1B5F852A007FDC29 /* waypoint - trailhead - 30x30.png in Resources */,
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
@@ -2200,7 +2152,6 @@
 				E80732621B5F850C007FDC29 /* cache - groundspeak hq - 30x30.png in Resources */,
 				E807321E1B5F84B4007FDC29 /* attributes - 55.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
-				E80732A71B5F857A007FDC29 /* map - pinhead white - 15x15.png in Resources */,
 				E80732651B5F850C007FDC29 /* cache - mega - 30x30.png in Resources */,
 				E80732281B5F84B4007FDC29 /* attributes - 65.png in Resources */,
 				E80732771B5F852A007FDC29 /* waypoint - multi - 30x30.png in Resources */,
@@ -2218,7 +2169,6 @@
 				E80732151B5F84B4007FDC29 /* attributes - 46.png in Resources */,
 				E80732AA1B5F857A007FDC29 /* map - tick found - 17x15.png in Resources */,
 				E80732601B5F850C007FDC29 /* cache - event - 30x30.png in Resources */,
-				E80732EE1B60FBCA007FDC29 /* pinhead - yellow - 15x15.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E80732141B5F84B4007FDC29 /* attributes - 45.png in Resources */,
 				E80732481B5F84E8007FDC29 /* log - reviewernote - 30x30.png in Resources */,
@@ -2228,13 +2178,10 @@
 				E80732A01B5F857A007FDC29 /* map - own overlay - 18x18.png in Resources */,
 				E807321B1B5F84B4007FDC29 /* attributes - 52.png in Resources */,
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
-				E80732A81B5F857A007FDC29 /* map - pinhead yellow - 15x15.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
-				E80732A21B5F857A007FDC29 /* map - pinhead black - 15x15.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,
 				E847A5951BA0DA1300BEFE83 /* map - highlight - 21x21.png in Resources */,
 				E80732211B5F84B4007FDC29 /* attributes - 58.png in Resources */,
-				E80732EA1B60FBCA007FDC29 /* pinhead - pink - 15x15.png in Resources */,
 				E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */,
 				E807322B1B5F84B4007FDC29 /* attributes - unknown.png in Resources */,
 				E80731F01B5F84B4007FDC29 /* attributes - 08.png in Resources */,
@@ -2245,15 +2192,12 @@
 				E80732251B5F84B4007FDC29 /* attributes - 62.png in Resources */,
 				E80732491B5F84E8007FDC29 /* log - unarchived - 30x30.png in Resources */,
 				E80732261B5F84B4007FDC29 /* attributes - 63.png in Resources */,
-				E80732E61B60FBCA007FDC29 /* pinhead - black - 15x15.png in Resources */,
-				E80732A61B5F857A007FDC29 /* map - pinhead red - 15x15.png in Resources */,
 				E897702F1BA39110000573FB /* Import Complete.wav in Resources */,
 				E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */,
 				E80732691B5F850C007FDC29 /* cache - unknown - 30x30.png in Resources */,
 				E847A5971BA0DB4500BEFE83 /* map - background - 35x42.png in Resources */,
 				E80731ED1B5F84B4007FDC29 /* attributes - 05.png in Resources */,
 				E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */,
-				E80732E91B60FBCA007FDC29 /* pinhead - lightblue - 15x15.png in Resources */,
 				E807320B1B5F84B4007FDC29 /* attributes - 36.png in Resources */,
 				E80732471B5F84E8007FDC29 /* log - published - 30x30.png in Resources */,
 				E807320D1B5F84B4007FDC29 /* attributes - 38.png in Resources */,
@@ -2265,7 +2209,6 @@
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
 				E8E8D0201B66E75900CC741A /* rangethumb.png in Resources */,
-				E80732EC1B60FBCA007FDC29 /* pinhead - red - 15x15.png in Resources */,
 				E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */,
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
@@ -2283,8 +2226,6 @@
 				E80732401B5F84E8007FDC29 /* log - disabled - 18x18.png in Resources */,
 				E80732111B5F84B4007FDC29 /* attributes - 42.png in Resources */,
 				E80732131B5F84B4007FDC29 /* attributes - 44.png in Resources */,
-				E80732EB1B60FBCA007FDC29 /* pinhead - purple - 15x15.png in Resources */,
-				E80732A51B5F857A007FDC29 /* map - pinhead purple - 15x15.png in Resources */,
 				E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */,
 				E80731F81B5F84B4007FDC29 /* attributes - 17.png in Resources */,
 			);
@@ -2493,6 +2434,7 @@
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
 				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
+				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
