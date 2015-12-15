@@ -181,11 +181,12 @@
 
 - (void)performUpgrade_1_2
 {
-    NSArray *a = @[
+/*    NSArray *a = @[
     @"alter table trackelements add column restart bool",
     @"update trackelements set restart = 0",
     ];
     [self performUpgrade_X_Y:a];
+ */
 }
 
 - (void)performUpgrade_2_3

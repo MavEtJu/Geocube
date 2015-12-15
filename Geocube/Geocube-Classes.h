@@ -149,6 +149,7 @@
 @class dbNotice;
 @class dbObject;
 @class dbPersonalNote;
+@class dbPin;
 @class dbState;
 @class dbSymbol;
 @class dbTrack;

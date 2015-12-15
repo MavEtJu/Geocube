@@ -22,6 +22,7 @@
 @interface DatabaseCache : NSObject
 
 @property (nonatomic, retain) NSArray *Accounts;
+@property (nonatomic, retain) NSArray *Pins;
 @property (nonatomic, retain) NSArray *Types;
 @property (nonatomic, retain) NSArray *Groups;
 @property (nonatomic, retain) NSArray *LogTypes;
@@ -44,6 +45,9 @@
 // Types
 @property (nonatomic, retain) dbType *Type_Unknown;
 
+// Pins
+@property (nonatomic, retain) dbPin *Pin_Unknown;
+
 // Symbols
 @property (nonatomic, retain) dbSymbol *Symbol_Unknown;
 
@@ -63,6 +67,8 @@
 
 - (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
 - (dbType *)Type_get:(NSId)_id;
+
+- (dbPin *)Pin_get:(NSId)_id;
 
 - (dbContainer *)Container_get_bysize:(NSString *)size;
 - (dbContainer *)Container_get:(NSId)_id;

@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("version", "1");
 
 create table filters (
     id integer primary key,
@@ -438,62 +438,92 @@ insert into symbols(symbol) values("Waymark");
 insert into symbols(symbol) values("Waymark Found");
 insert into symbols(symbol) values("*");
 
+create table pins (
+    id integer primary key,
+    description text,
+    rgb text,
+    rgb_default text
+);
+insert into pins(id, description, rgb, rgb_default) values(10, "Benchmark", "", "230FDC");
+insert into pins(id, description, rgb, rgb_default) values(11, "Event", "", "FFD0D0");
+insert into pins(id, description, rgb, rgb_default) values(12, "Earth Cache", "", "F0F0F0");
+insert into pins(id, description, rgb, rgb_default) values(13, "Letterbox Cache", "", "A52A2A");
+insert into pins(id, description, rgb, rgb_default) values(14, "Multi Cache", "", "F5F810");
+insert into pins(id, description, rgb, rgb_default) values(15, "Mystery Cache", "", "FF00FF");
+insert into pins(id, description, rgb, rgb_default) values(16, "Traditional Cache", "", "009C00");
+insert into pins(id, description, rgb, rgb_default) values(17, "Virtual Cache", "", "F0F0F0");
+insert into pins(id, description, rgb, rgb_default) values(18, "Webcam Cache", "", "F0F0F0");
+insert into pins(id, description, rgb, rgb_default) values(19, "Wherigo Cache", "", "00FFFF");
+insert into pins(id, description, rgb, rgb_default) values(20, "Locationless Cache", "", "A52A2A");
+insert into pins(id, description, rgb, rgb_default) values(21, "Moveable Cache", "", "806060");
+insert into pins(id, description, rgb, rgb_default) values(22, "Other Cache", "", "AAAAAA");
+insert into pins(id, description, rgb, rgb_default) values(23, "Waymark Cache", "", "806060");
+
+insert into pins(id, description, rgb, rgb_default) values(40, "Waypoint - Final Location", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(41, "Waypoint - Flag", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(42, "Waypoint - Multi Stage", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(43, "Waypoint - Parking Area", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(44, "Waypoint - Physical Stage", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(45, "Waypoint - Reference Point", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(46, "Waypoint - Trailhead", "", "000000");
+insert into pins(id, description, rgb, rgb_default) values(47, "Waypoint - Virtual Stage", "", "000000");
+
+insert into pins(id, description, rgb, rgb_default) values(99, "*", "", "A52A2A");
+
 create table types (
     id integer primary key,
     type_major text,
     type_minor text,
     icon integer,
-    pin integer,
-    pin_rgb text,
-    pin_rgb_default text
+    pin_id integer	-- points to pins(id)
 );
 create index types_idx_id on types(id);
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Benchmark", 100, 601, "", "230FDC");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "CITO", 101, 602, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Cache In Trash Out Event", 101, 603, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Earthcache", 102, 604, "", "F0F0F0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Event Cache", 103, 605, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Giga", 104, 606, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Giga-Event Cache", 104, 607, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "GroundspeakHQ", 105, 608, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Groundspeak HQ", 105, 609, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Groundspeak Block Party", 105, 610, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Letterbox Hybrid", 106, 611, "", "A52A2A");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Maze", 107, 612, "", "FF00FF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Mega", 108, 613, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Mega-Event Cache", 108, 614, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Multi-cache", 109, 615, "", "F5F810");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Mystery", 110, 616, "", "FF00FF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Unknown (Mystery) Cache", 110, 617, "", "FF00FF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Other", 111, 618, "", "A52A2A");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Traditional Cache", 112, 619, "", "009C00");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Unknown Cache", 113, 620, "", "FF00FF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Virtual Cache", 114, 621, "", "F0F0F0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Waymark", 115, 622, "", "230FDC");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Webcam Cache", 116, 623, "", "F0F0F0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Wherigo Cache", 117, 624, "", "00FFFF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Wherigo Caches", 117, 625, "", "00FFFF");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Project APE Cache", 111, 626, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Locationless (Reverse) Cache", 111, 627, "", "A52A2A");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "GPS Adventures Exhibit", 111, 628, "", "A52A2A");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Lost and Found Event Caches", 111, 629, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 630, "", "FFD0D0");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "Moveable", 111, 631, "", "806060");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "TrigPoint", 111, 632, "", "403030");
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Benchmark", 100, 10);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "CITO", 101, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Cache In Trash Out Event", 101, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Earthcache", 102, 12);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Event Cache", 103, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Giga", 104, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Giga-Event Cache", 104, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "GroundspeakHQ", 105, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Groundspeak HQ", 105, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Groundspeak Block Party", 105, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Letterbox Hybrid", 106, 13);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Maze", 107, 22);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Mega", 108, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Mega-Event Cache", 108, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Multi-cache", 109, 14);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Mystery", 110, 15);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Unknown (Mystery) Cache", 110, 15);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Other", 111, 22);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Traditional Cache", 112, 16);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Unknown Cache", 113, 22);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Virtual Cache", 114, 17);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Waymark", 115, 23);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Webcam Cache", 116, 18);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Wherigo Cache", 117, 19);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Wherigo Caches", 117, 19);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Project APE Cache", 111, 22);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Locationless (Reverse) Cache", 111, 20);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "GPS Adventures Exhibit", 111, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Lost and Found Event Caches", 111, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Moveable", 111, 21);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 111, 10);
 -- When you add one here, don't forget to increase PINS in ImageLibrary.h
 
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Final Location", 200, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Flag", 201, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Multi Stage", 202, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Parking Area", 203, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Physical Stage", 204, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Reference Point", 205, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Trailhead", 206, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "Virtual Stage", 207, 600, "", "000000");
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Final Location", 200, 40);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Flag", 201, 41);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Multi Stage", 202, 42);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Parking Area", 203, 43);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Physical Stage", 204, 44);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Reference Point", 205, 45);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Trailhead", 206, 46);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Virtual Stage", 207, 47);
 
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Geocache", "*", 208, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("Waypoint", "*", 208, 600, "", "000000");
-insert into types(type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default) values("*", "*", 208, 600, "", "000000");
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "*", 208, 99);
+insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "*", 208, 99);
+insert into types(type_major, type_minor, icon, pin_id) values("*", "*", 208, 99);
 
 create table log_types (
     id integer primary key,

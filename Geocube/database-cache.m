@@ -25,6 +25,7 @@
 {
     // In memory database information
     NSMutableArray *Accounts;
+    NSArray *Pins;
     NSArray *Types;
     NSArray *Groups;
     NSArray *LogTypes;
@@ -43,6 +44,9 @@
     dbGroup *Group_AllWaypoints_Ignored;
     dbGroup *Group_LastImport;
     dbGroup *Group_LastImportAdded;
+
+    // Pins
+    dbPin *Pin_Unknown;
 
     // Types
     dbType *Type_Unknown;
@@ -64,8 +68,10 @@
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Types, Groups, LogTypes, Containers, Attributes, Countries, States;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LastImport,Group_LastImportAdded, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbols, LogType_Found, LogType_Attended, LogType_NotFound, Symbol_Unknown;
+@synthesize Accounts, Pins, Types, Groups, LogTypes, Containers, Attributes, Countries, States, Symbols;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LastImport,Group_LastImportAdded;
+@synthesize Pin_Unknown, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
+@synthesize LogType_Found, LogType_Attended, LogType_NotFound;
 
 
 - (instancetype)init
@@ -80,6 +86,7 @@
 {
     Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
     Groups = [dbGroup dbAll];
+    Pins = [dbPin dbAll];
     Types = [dbType dbAll];
     Containers = [dbContainer dbAll];
     LogTypes = [dbLogType dbAll];
@@ -152,6 +159,14 @@
     }];
     NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
+    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+        if ([pt.description isEqualToString:@"*"] == YES) {
+            Pin_Unknown = pt;
+            *stop = YES;
+        }
+    }];
+    NSAssert(Pin_Unknown != nil, @"Pin_Unknown");
+
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
         if ([s.symbol isEqualToString:@"*"] == YES) {
             Symbol_Unknown = s;
@@ -220,6 +235,20 @@
     if (_ct == nil)
         return Type_Unknown;
     return _ct;
+}
+
+- (dbPin *)Pin_get:(NSId)_id
+{
+    __block dbPin *_pt = nil;
+    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+        if (pt._id == _id) {
+            _pt = pt;
+            *stop = YES;
+        }
+    }];
+    if (_pt == nil)
+        return Pin_Unknown;
+    return _pt;
 }
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
