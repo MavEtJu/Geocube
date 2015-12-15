@@ -27,9 +27,8 @@
     NSString *type_minor;
     NSString *type_full;
     NSInteger icon;
-    NSInteger pin;
-    NSString *pin_rgb;
-    NSString *pin_rgb_default;
+    NSId pin_id;
+    dbPin *pin;
 
     /* Not read from the database */
     BOOL selected;
@@ -39,14 +38,13 @@
 
 @implementation dbType
 
-@synthesize type_major, type_minor, type_full, icon, pin, selected, pin_rgb, pin_rgb_default;
+@synthesize type_major, type_minor, type_full, icon, pin_id, pin, selected;
 
 - (void)finish
 {
     type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
+    pin = [dbc Pin_get:pin_id];
 
-    if ([pin_rgb isEqualToString:@""] == YES)
-        pin_rgb = pin_rgb_default;
     [super finish];
 }
 
@@ -55,7 +53,7 @@
     NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, type_major, type_minor, icon, pin, pin_rgb, pin_rgb_default from types");
+        DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id from types");
 
         DB_WHILE_STEP {
             dbType *t = [[dbType alloc] init];;
@@ -63,27 +61,13 @@
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH( 3, t.icon);
-            INT_FETCH( 4, t.pin);
-            TEXT_FETCH(5, t.pin_rgb);
-            TEXT_FETCH(6, t.pin_rgb_default);
+            INT_FETCH( 4, t.pin_id);
             [t finish];
             [ts addObject:t];
         }
         DB_FINISH;
     }
     return ts;
-}
-
-- (void)dbUpdatePin
-{
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update types set pin_rgb = ? where id = ?");
-
-        SET_VAR_TEXT(1, self.pin_rgb);
-        SET_VAR_INT( 2, self._id);
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
 }
 
 + (NSInteger)dbCount

@@ -19,14 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbType : dbObject
+@interface dbPin : dbObject
 
-@property (nonatomic, retain) NSString *type_minor;
-@property (nonatomic, retain) NSString *type_major;
-@property (nonatomic, retain) NSString *type_full;
-@property (nonatomic) NSInteger icon;
-@property (nonatomic) NSId pin_id;
-@property (nonatomic) dbPin *pin;
-@property (nonatomic) BOOL selected;
+@property (nonatomic, retain) NSString *rgb;
+@property (nonatomic, retain) NSString *rgb_default;
+@property (nonatomic, retain) NSString *description;
+
+@property (nonatomic, retain) UIColor *colour;
+@property (nonatomic, retain) UIImage *img;
+
+- (void)dbUpdateRGB;
 
 @end
