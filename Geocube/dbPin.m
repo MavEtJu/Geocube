@@ -40,7 +40,7 @@
 
 - (void)finish
 {
-    if ([rgb isEqualToString:@""] == YES)
+    if (rgb == nil || [rgb isEqualToString:@""] == YES)
         rgb = rgb_default;
     colour = [ImageLibrary RGBtoColor:rgb];
     img = [ImageLibrary newPinHead:colour];
