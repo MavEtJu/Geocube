@@ -99,7 +99,7 @@
 
     choseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     choseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [choseButton setTitle:@"Chose this colour" forState:UIControlStateNormal];
+    [choseButton setTitle:@"Choose this colour" forState:UIControlStateNormal];
     [choseButton addTarget:self action:@selector(choseColour) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:choseButton];
     y += 30;

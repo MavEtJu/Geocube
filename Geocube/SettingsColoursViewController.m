@@ -23,7 +23,7 @@
 
 @interface SettingsColoursViewController ()
 {
-    NSMutableArray *types;
+    NSMutableArray *pins;
 }
 
 @end
@@ -47,7 +47,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReset label:@"Reset"];
 
-    types = [NSMutableArray arrayWithArray:[dbc Types]];
+    pins = [NSMutableArray arrayWithArray:[dbc Pins]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,7 +63,7 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [types count];
+    return [pins count];
 }
 
 // Return a cell for the index path
@@ -73,18 +73,18 @@ enum {
     if (cell == nil)
         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
-    dbType *t = [types objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", t.type_major, t.type_minor];
-    cell.imageView.image = [imageLibrary get:t.pin];
+    dbPin *p = [pins objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", p.description];
+    cell.imageView.image = p.img;
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbType *t = [types objectAtIndex:indexPath.row];
+    dbPin *p = [pins objectAtIndex:indexPath.row];
 
-    UIViewController *newController = [[SettingsColourViewController alloc] init:t];
+    UIViewController *newController = [[SettingsColourViewController alloc] init:p];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
     return;
@@ -105,16 +105,10 @@ enum {
 
 - (void)resetPinColours
 {
-    [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL * _Nonnull stop) {
-        t.pin_rgb = @"";
-        [t dbUpdatePin];
-        [t finish];
-
-        float r, g, b;
-        [ImageLibrary RGBtoFloat:t.pin_rgb_default r:&r g:&g b:&b];
-        UIColor *pinColour = [UIColor colorWithRed:r green:g blue:b alpha:1];
-
-        [imageLibrary recreatePin:t.pin color:pinColour];
+    [[dbc Pins] enumerateObjectsUsingBlock:^(dbPin *p, NSUInteger idx, BOOL * _Nonnull stop) {
+        p.rgb = @"";
+        [p dbUpdateRGB];
+        [p finish];
     }];
     [self.tableView reloadData];
 }

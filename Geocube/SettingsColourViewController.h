@@ -21,6 +21,6 @@
 
 @interface SettingsColourViewController : GCViewController
 
-- (instancetype)init:(dbType *)type;
+- (instancetype)init:(dbPin *)pin;
 
 @end
