@@ -25,4 +25,6 @@
 @property (nonatomic) NSInteger dateStart;
 @property (nonatomic) NSInteger dateStop;
 
++ (dbTrack *)dbGet:(NSId)id;
+
 @end

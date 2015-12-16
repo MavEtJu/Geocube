@@ -27,6 +27,7 @@
     UISwitch *themeGeosphere;
     UISwitch *soundDirection;
     UISwitch *soundDistance;
+    UISwitch *keeptrackAutoRotate;
 
     UISwitch *mapClustersEnable;
     UISwitch *dynamicmapEnable;
@@ -54,6 +55,7 @@
 
 #define THISCELL_SUBTITLE @"SettingsMainViewControllerCellSubtitle"
 #define THISCELL_DEFAULT @"SettingsMainViewControllerCellDefault"
+#define THISCELL_IMAGE @"SettingsMainViewControllerCellImage"
 
 @implementation SettingsMainViewController
 
@@ -68,6 +70,7 @@ enum {
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_IMAGE];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuResetToDefault label:@"Reset to default"];
@@ -156,6 +159,7 @@ enum sections {
     SECTION_MAPCOLOURS,
     SECTION_MAPS,
     SECTION_DYNAMICMAP,
+    SECTION_KEEPTRACK,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -188,6 +192,9 @@ enum sections {
     SECTION_DYNAMICMAP_DISTANCE_CYCLING,
     SECTION_DYNAMICMAP_DISTANCE_DRIVING,
     SECTION_DYNAMICMAP_MAX,
+
+    SECTION_KEEPTRACK_AUTOROTATE = 0,
+    SECTION_KEEPTRACK_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -213,6 +220,8 @@ enum sections {
             return SECTION_DYNAMICMAP_MAX;
         case SECTION_MAPCOLOURS:
             return SECTION_MAPCOLOURS_MAX;
+        case SECTION_KEEPTRACK:
+            return SECTION_KEEPTRACK_MAX;
     }
 
     return 0;
@@ -236,6 +245,8 @@ enum sections {
             return @"Maps";
         case SECTION_DYNAMICMAP:
             return @"Dynamic Maps";
+        case SECTION_KEEPTRACK:
+            return @"Keep track";
     }
 
     return nil;
@@ -333,9 +344,9 @@ enum sections {
         case SECTION_MAPCOLOURS: {
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_DESTINATION: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
                     if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_IMAGE];
 
                     cell.textLabel.text = @"Destination line";
                     cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapDestinationColour];
@@ -343,9 +354,9 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MAPCOLOURS_TRACK: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
                     if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_IMAGE];
 
                     cell.textLabel.text = @"Track line";
                     cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapTrackColour];
@@ -465,7 +476,24 @@ enum sections {
             }
             break;
         }
+        case SECTION_KEEPTRACK: {
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+            switch (indexPath.row) {
+                case SECTION_KEEPTRACK_AUTOROTATE: {
+                    cell.textLabel.text = @"Autorotate every day";
 
+                    keeptrackAutoRotate = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    keeptrackAutoRotate.on = myConfig.keeptrackAutoRotate;
+                    [keeptrackAutoRotate addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = keeptrackAutoRotate;
+
+                    return cell;
+                }
+            }
+            break;
+        }
     }
 
     return nil;
@@ -497,6 +525,11 @@ enum sections {
 - (void)updateMapClustersEnable:(UISwitch *)s
 {
     [myConfig mapClustersUpdateEnable:s.on];
+}
+
+- (void)updateKeeptrackAutoRotate:(UISwitch *)s
+{
+    [myConfig keeptrackAutoRotateUpdate:s.on];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

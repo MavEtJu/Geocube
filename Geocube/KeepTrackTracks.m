@@ -149,7 +149,6 @@ enum {
 
 - (dbTrack *)newTrack:(NSString *)name
 {
-
     dbTrack *t = [[dbTrack alloc] init];
     t.name = name;
     t.dateStart = time(NULL);
@@ -159,6 +158,23 @@ enum {
     [tracks addObject:t];
     [myConfig currentTrackUpdate:t._id];
     return t;
+}
+
++ (void)trackAutoRotate
+{
+    NSString *newdate = [[MyTools dateString:time(NULL)] substringToIndex:10];
+    dbTrack *track = [dbTrack dbGet:myConfig.currentTrack];
+    NSString *olddate = [[MyTools dateString:track.dateStart] substringToIndex:10];
+
+    if ([newdate isEqualToString:olddate] == NO) {
+        dbTrack *t = [[dbTrack alloc] init];
+        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateString:time(NULL)]];
+        t.dateStart = time(NULL);
+        t.dateStop = 0;
+        [t dbCreate];
+
+        [myConfig currentTrackUpdate:t._id];
+    }
 }
 
 @end

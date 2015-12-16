@@ -47,6 +47,8 @@
     BOOL soundDirection;
     BOOL soundDistance;
 
+    BOOL keeptrackAutoRotate;
+
     BOOL mapClustersEnable;
     float mapClustersZoomLevel;
 
@@ -70,7 +72,7 @@
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType;
-@synthesize soundDirection, soundDistance;
+@synthesize soundDirection, soundDistance, keeptrackAutoRotate;;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
@@ -152,6 +154,7 @@
     CHECK(@"theme_type", @"0");
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
+    CHECK(@"keeptrack_autorotate", @"1");
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
 
@@ -182,6 +185,7 @@
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
     soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
+    keeptrackAutoRotate = [[dbConfig dbGetByKey:@"keeptrack_autorotate"].value boolValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
     dynamicmapEnable = [[dbConfig dbGetByKey:@"dynamicmap_enable"].value boolValue];
@@ -335,6 +339,12 @@
 {
     soundDistance = value;
     [self BOOLUpdate:@"sound_distance" value:value];
+}
+
+- (void)keeptrackAutoRotateUpdate:(BOOL)value
+{
+    keeptrackAutoRotate = value;
+    [self BOOLUpdate:@"keeptrack_autorotate" value:value];
 }
 
 - (void)mapClustersUpdateEnable:(BOOL)value

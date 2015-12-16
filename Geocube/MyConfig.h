@@ -49,6 +49,8 @@
 @property (nonatomic) BOOL soundDirection;
 @property (nonatomic) BOOL soundDistance;
 
+@property (nonatomic) BOOL keeptrackAutoRotate;
+
 @property (nonatomic) BOOL mapClustersEnable;
 @property (nonatomic) float mapClustersZoomLevel;
 
@@ -83,6 +85,7 @@
 - (void)themeTypeUpdate:(NSInteger)value;
 - (void)soundDirectionUpdate:(BOOL)value;
 - (void)soundDistanceUpdate:(BOOL)value;
+- (void)keeptrackAutoRotateUpdate:(BOOL)value;
 - (void)mapClustersUpdateEnable:(BOOL)value;
 - (void)mapClustersUpdateZoomLevel:(float)value;
 - (void)dynamicmapEnableUpdate:(BOOL)value;

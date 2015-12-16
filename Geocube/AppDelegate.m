@@ -69,6 +69,9 @@
     // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
 
+    // Auto rotate the kept tracks
+    [KeepTrackTracks trackAutoRotate];
+
     // Audio
     audioFeedback = [[AudioFeedback alloc] init];
     [audioFeedback togglePlay:[myConfig soundDirection]];
