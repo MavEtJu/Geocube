@@ -24,7 +24,7 @@
 @interface SettingsMainColorPickerViewController ()
 {
     NSInteger type;
-    UIButton *choseButton, *resetButton;
+    UIButton *chooseButton, *resetButton;
     dbPin *dummyPin;
     UIColor *currentColour;
     UIImageView *previewColour;
@@ -97,11 +97,11 @@
     previewColour.image = img;
     [self.view addSubview:previewColour];
 
-    choseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    choseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [choseButton setTitle:@"Choose this colour" forState:UIControlStateNormal];
-    [choseButton addTarget:self action:@selector(choseColour) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:choseButton];
+    chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [chooseButton setTitle:@"Choose this colour" forState:UIControlStateNormal];
+    [chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:chooseButton];
     y += 30;
 
     hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
@@ -119,7 +119,7 @@
     contentView.contentSize = CGSizeMake(frame.size.width, y);
 }
 
-- (void)choseColour
+- (void)chooseColour
 {
     NSString *hexString = [ImageLibrary ColorToRGB:currentColour];
 
