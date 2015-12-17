@@ -115,6 +115,7 @@
     [self addToLibrary:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
     [self addToLibrary:@"map - highlight - 21x21" index:ImageMap_pinOutlineHighlight];
     [self addToLibrary:@"map - background - 35x42" index:ImageMap_background];
+    [self addToLibrary:@"map - own overlay - 18x18" index:ImageMap_pinOwner];
     [self addToLibrary:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
     [self addToLibrary:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
     [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
@@ -316,6 +317,10 @@
 {
     return [self addImageToImage:bottom withImage2:top andRect:CGRectMake(0, 0, 35, 42)];
 }
+- (UIImage *)mergeOwner:(UIImage *)bottom top:(NSInteger)top
+{
+    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
+}
 
 - (UIImage *)mergeYYY:(UIImage *)bottom top:(NSInteger)top
 {
@@ -369,7 +374,7 @@
 
 // -----------------------------------------------------------
 
-- (NSString *)getPinTypeCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (NSString *)getPinTypeCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
 {
     NSMutableString *s = [NSMutableString stringWithString:@""];
 
@@ -402,18 +407,23 @@
             break;
     }
 
+    if (owner == YES)
+        [s appendString:@"O"];
+    else
+        [s appendString:@"o"];
+
     return s;
 }
 
 // -----------------------------------------------------------
 
-- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
 {
-    NSString *s = [self getPinTypeCode:pin found:found disabled:disabled archived:archived highlight:highlight];
+    NSString *s = [self getPinTypeCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner];
     UIImage *img = [pinImages valueForKey:s];
     if (img == nil) {
         NSLog(@"Creating pin %@s", s);
-        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight];
+        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner];
         [pinImages setObject:img forKey:s];
     }
 
@@ -422,10 +432,10 @@
 
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight owner:NO];
 }
 
-- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
 {
     UIImage *img = [imageLibrary get:ImageMap_background];
 
@@ -455,6 +465,9 @@
     if (archived == YES)
         img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
 
+    if (owner == YES)
+        img = [self mergeOwner:img top:ImageMap_pinOwner];
+
     switch (found) {
         case LOGSTATUS_NOTLOGGED:
             // Do not overlay anything
@@ -476,7 +489,7 @@
 
 - (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
 {
-    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight];
+    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight owner:NO];
     UIImage *img = [typeImages valueForKey:s];
     if (img == nil) {
         img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight];
@@ -517,8 +530,6 @@
 {
     return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
 }
-
-// -----------------------------------------------------------
 
 // -----------------------------------------------------------
 
