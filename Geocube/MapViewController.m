@@ -101,18 +101,30 @@ enum {
             [lmi addItem:menuSatellite label:@"Satellite"];
             [lmi addItem:menuHybrid label:@"Hybrid"];
             [lmi addItem:menuTerrain label:@"Terrain"];
+
+            [lmi disableItem:menuMapGoogle];
+            [lmi enableItem:menuMapApple];
+            [lmi enableItem:menuMapOSM];
             break;
         case MAPBRAND_APPLEMAPS:
             [lmi addItem:menuMap label:@"Map"];
             [lmi addItem:menuSatellite label:@"Satellite"];
             [lmi addItem:menuHybrid label:@"Hybrid"];
             [lmi addItem:menuTerrain label:@"XTerrain"];
+
+            [lmi enableItem:menuMapGoogle];
+            [lmi disableItem:menuMapApple];
+            [lmi enableItem:menuMapOSM];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             [lmi addItem:menuMap label:@"Map"];
             [lmi addItem:menuSatellite label:@"XSatellite"];
             [lmi addItem:menuHybrid label:@"XHybrid"];
             [lmi addItem:menuTerrain label:@"XTerrain"];
+
+            [lmi enableItem:menuMapGoogle];
+            [lmi enableItem:menuMapApple];
+            [lmi disableItem:menuMapOSM];
             break;
     }
     [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
@@ -524,26 +536,41 @@ enum {
         case MAPBRAND_GOOGLEMAPS:
             NSLog(@"Switching to Google Maps");
             map = [[MapGoogle alloc] init:self];
+
             [lmi enableItem:menuMap];
             [lmi enableItem:menuSatellite];
             [lmi enableItem:menuHybrid];
             [lmi enableItem:menuTerrain];
+
+            [lmi disableItem:menuMapGoogle];
+            [lmi enableItem:menuMapApple];
+            [lmi enableItem:menuMapOSM];
             break;;
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];
+
             [lmi enableItem:menuMap];
             [lmi enableItem:menuSatellite];
             [lmi enableItem:menuHybrid];
             [lmi disableItem:menuTerrain];
+
+            [lmi enableItem:menuMapGoogle];
+            [lmi disableItem:menuMapApple];
+            [lmi enableItem:menuMapOSM];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
             map = [[MapOSM alloc] init:self];
+
             [lmi enableItem:menuMap];
             [lmi disableItem:menuSatellite];
             [lmi disableItem:menuHybrid];
             [lmi disableItem:menuTerrain];
+
+            [lmi enableItem:menuMapGoogle];
+            [lmi enableItem:menuMapApple];
+            [lmi disableItem:menuMapOSM];
             break;
     }
     showBrand = brand;
