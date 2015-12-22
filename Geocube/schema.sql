@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "1");
+insert into config(key, value) values("version", "2");
 
 create table filters (
     id integer primary key,
@@ -508,9 +508,8 @@ insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Loca
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "GPS Adventures Exhibit", 111, 11);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Lost and Found Event Caches", 111, 11);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 11);
-insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Moveable", 111, 21);
-insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 111, 10);
--- When you add one here, don't forget to increase PINS in ImageLibrary.h
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Moveable", 119, 21);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 118, 10);
 
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Final Location", 200, 40);
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Flag", 201, 41);
