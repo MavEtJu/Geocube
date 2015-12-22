@@ -52,6 +52,7 @@
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    contentView.delegate = self;
     self.view = contentView;
 
     GCLabel *l;
