@@ -72,10 +72,10 @@
             const char *attributesCString = property_getAttributes(property);
             NSString *attributesString = [[NSString alloc] initWithUTF8String:attributesCString];
             id value = [waypoint valueForKey:name];
-            NSLog(@"Property %@ attributes: %@ value: %@", name, attributesString, value);
+            // NSLog(@"Property %@ attributes: %@ value: %@", name, attributesString, value);
 
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(20, y, width, 20)];
-            l.text = [NSString stringWithFormat:@"Property %@ value: %@", name, value];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(1, y, width, 20)];
+            l.text = [NSString stringWithFormat:@"%@: %@", name, value];
             [contentView addSubview:l];
             y += 20;
         }
