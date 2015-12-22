@@ -162,6 +162,7 @@
 #import "CacheImagesViewController.h"
 #import "CacheLogViewController.h"
 #import "CacheLogsViewController.h"
+#import "CacheRawViewController.h"
 #import "CachePersonalNoteViewController.h"
 #import "CacheTrackablesViewController.h"
 #import "CacheViewController.h"

@@ -43,6 +43,7 @@ enum {
     menuRefreshWaypoint,
     menuIgnore,
     menuAddToGroup,
+    menuViewRaw,
     menuMax
 };
 
@@ -56,6 +57,7 @@ enum {
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuIgnore label:@"Ignore"];
+    [lmi addItem:menuViewRaw label:@"Raw data"];
 
     hasCloseButton = canBeClosed;
 
@@ -492,6 +494,9 @@ enum {
         case menuAddToGroup: // Add waypoint to a group
             [self addToGroup];
             return;
+        case menuViewRaw:
+            [self menuViewRaw];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
@@ -606,6 +611,13 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
+}
+
+- (void)menuViewRaw
+{
+    UIViewController *newController = [[CacheRawViewController alloc] init:waypoint];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 @end

@@ -254,6 +254,7 @@
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
+        return nil;
     }
 
     NSError *error = nil;
