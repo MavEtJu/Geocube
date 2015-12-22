@@ -54,8 +54,6 @@
      ];
 }
 
-
-
 - (NSInteger)addText:(NSInteger)y text:(NSString *)t
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
