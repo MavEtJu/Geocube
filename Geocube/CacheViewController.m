@@ -200,7 +200,6 @@ enum {
         cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
         cell.icon.image = [imageLibrary getType:waypoint];
 
-        //[cell showGroundspeak:(groundspeak != nil)]; Not sure yet
         return cell;
     }
 
@@ -222,7 +221,6 @@ enum {
                 }
                 break;
             case 1: /* Hint */
-                //                if (waypoint.groundspeak.hint ==b nil || [waypoint.groundspeak.hint isEqualToString:@""] == YES)
                 if (waypoint.gs_hint == nil || [waypoint.gs_hint isEqualToString:@""] == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
                     tc = currentTheme.labelTextColorDisabled;
                     cell.userInteractionEnabled = NO;
@@ -607,10 +605,11 @@ enum {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
     }];
     [waypoint.account.remoteAPI updateWaypoint:waypoint];
-    [self.tableView reloadData];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
+    waypoint = [dbWaypoint dbGet:waypoint._id];
+    [self.tableView reloadData];
 }
 
 - (void)menuViewRaw
