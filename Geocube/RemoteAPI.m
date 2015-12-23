@@ -351,6 +351,7 @@
         [imp parseDictionary:json];
         [imp parseAfter];
 
+        [waypointManager needsRefresh];
         return YES;
     }
     if (account.protocol == ProtocolOKAPI) {
@@ -361,6 +362,7 @@
         [imp parseString:gpx];
         [imp parseAfter];
 
+        [waypointManager needsRefresh];
         return YES;
     }
     if (account.protocol == ProtocolGCA) {
@@ -371,6 +373,7 @@
         [imp parseString:gpx];
         [imp parseAfter];
 
+        [waypointManager needsRefresh];
         return YES;
     }
 
