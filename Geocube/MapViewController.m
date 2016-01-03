@@ -257,7 +257,7 @@ enum {
     labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapFollowMe.layer.borderWidth = 1;
     labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFollowMe addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapFollowMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     labelMapFollowMe.userInteractionEnabled = YES;
     [labelMapFollowMe setImage:[imageLibrary get:ImageIcon_FollowMe] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFollowMe];
@@ -265,7 +265,7 @@ enum {
     labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapShowBoth.layer.borderWidth = 1;
     labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapShowBoth addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapShowBoth addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     labelMapShowBoth.userInteractionEnabled = YES;
     [labelMapShowBoth setImage:[imageLibrary get:ImageIcon_ShowBoth] forState:UIControlStateNormal];
     [self.view addSubview:labelMapShowBoth];
@@ -273,7 +273,7 @@ enum {
     labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapSeeTarget.layer.borderWidth = 1;
     labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapSeeTarget addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapSeeTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     labelMapSeeTarget.userInteractionEnabled = YES;
     [labelMapSeeTarget setImage:[imageLibrary get:ImageIcon_SeeTarget] forState:UIControlStateNormal];
     [self.view addSubview:labelMapSeeTarget];
@@ -281,7 +281,7 @@ enum {
     labelMapFindMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapFindMe.layer.borderWidth = 1;
     labelMapFindMe.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFindMe addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapFindMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     labelMapFindMe.userInteractionEnabled = YES;
     [labelMapFindMe setImage:[imageLibrary get:ImageIcon_FindMe] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindMe];
@@ -289,7 +289,7 @@ enum {
     labelMapFindTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapFindTarget.layer.borderWidth = 1;
     labelMapFindTarget.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFindTarget addTarget:self action:@selector(chooseMapBrand:) forControlEvents:UIControlEventTouchDown];
+    [labelMapFindTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     labelMapFindTarget.userInteractionEnabled = YES;
     [labelMapFindTarget setImage:[imageLibrary get:ImageIcon_FindTarget] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindTarget];
@@ -329,7 +329,7 @@ enum {
     labelMapFindTarget = nil;
 }
 
-- (void)chooseMapBrand:(UIButton *)button
+- (void)chooseMapFollow:(UIButton *)button
 {
     if (button == labelMapFollowMe) {
         [self menuShowWhom:SHOW_FOLLOWME];
