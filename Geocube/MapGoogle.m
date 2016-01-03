@@ -197,7 +197,7 @@
 
     lineHistory = [GMSPolyline polylineWithPath:pathMeToWaypoint];
     lineHistory.strokeWidth = 2.f;
-    lineHistory.strokeColor = myConfig.mapDestinationColour;
+    lineHistory.strokeColor = myConfig.mapTrackColour;
     lineHistory.map = mapView;
 }
 
