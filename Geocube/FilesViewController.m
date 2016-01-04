@@ -144,7 +144,6 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
         NSString *fn = [filesNames objectAtIndex:indexPath.row];
         [self fileDelete:fn];
     }
@@ -156,7 +155,7 @@ enum {
 
     UIAlertController *view= [UIAlertController
                               alertControllerWithTitle:fn
-                              message:@"Select you choice"
+                              message:@"Choose you action"
                               preferredStyle:UIAlertControllerStyleActionSheet];
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
@@ -164,9 +163,7 @@ enum {
     UIAlertAction *delete = [UIAlertAction
                              actionWithTitle:@"Delete"
                              style:UIAlertActionStyleDestructive
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
+                             handler:^(UIAlertAction * action) {
                                  [self fileDelete:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -176,9 +173,7 @@ enum {
         import = [UIAlertAction
                   actionWithTitle:@"Import"
                   style:UIAlertActionStyleDefault
-                  handler:^(UIAlertAction * action)
-                  {
-                      //Do some thing here
+                  handler:^(UIAlertAction * action) {
                       [self fileImport:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
@@ -188,9 +183,7 @@ enum {
         unzip = [UIAlertAction
                  actionWithTitle:@"Unzip"
                  style:UIAlertActionStyleDefault
-                 handler:^(UIAlertAction * action)
-                 {
-                     //Do some thing here
+                 handler:^(UIAlertAction * action) {
                      [self fileUnzip:fn];
                      [view dismissViewControllerAnimated:YES completion:nil];
                  }];
@@ -198,12 +191,31 @@ enum {
     UIAlertAction *rename = [UIAlertAction
                              actionWithTitle:@"Rename"
                              style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
+                             handler:^(UIAlertAction * action) {
                                  [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
+    UIAlertAction *uploadAirdrop = [UIAlertAction
+                                    actionWithTitle:@"Upload to Airdrop"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        [self uploadAirdrop:fn];
+                                        [view dismissViewControllerAnimated:YES completion:nil];
+                                    }];
+    UIAlertAction *uploadICloud = [UIAlertAction
+                                   actionWithTitle:@"Upload to iCloud"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       [self uploadICloud:fn];
+                                       [view dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+    UIAlertAction *uploadDropbox = [UIAlertAction
+                                    actionWithTitle:@"Upload to Dropbox"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        [self uploadDropbox:fn];
+                                        [view dismissViewControllerAnimated:YES completion:nil];
+                                    }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
@@ -230,9 +242,24 @@ enum {
     if (unzip != nil)
         [view addAction:unzip];
     [view addAction:rename];
+    [view addAction:uploadAirdrop];
+    [view addAction:uploadICloud];
+    [view addAction:uploadDropbox];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)uploadAirdrop:(NSString *)filename
+{
+}
+
+- (void)uploadICloud:(NSString *)filename
+{
+}
+
+- (void)uploadDropbox:(NSString *)filename
+{
 }
 
 - (void)fileDelete:(NSString *)filename
