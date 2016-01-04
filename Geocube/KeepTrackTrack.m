@@ -41,11 +41,21 @@
 
 @implementation KeepTrackTrack
 
+enum {
+    menuExportTrack,
+    menuDeleteTrack,
+
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    lmi = nil;
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuExportTrack label:@"Export track"];
+    [lmi addItem:menuDeleteTrack label:@"Delete track"];
+
     hasCloseButton = YES;
 
     return self;
@@ -203,6 +213,33 @@
     [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
 
     return img;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuDeleteTrack:
+            [self trackDelete];
+            return;
+        case menuExportTrack:
+            [self trackExport];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)trackDelete
+{
+    [dbTrackElement dbDeleteByTrack:track._id];
+    [track dbDelete];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)trackExport
+{
 }
 
 @end

@@ -57,6 +57,13 @@ enum {
         [self newTrack:@"First track"];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+    [self.tableView reloadData];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
