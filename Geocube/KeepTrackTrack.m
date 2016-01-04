@@ -240,6 +240,38 @@ enum {
 
 - (void)trackExport
 {
+    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSMutableString *o = [NSMutableString stringWithString:@""];
+    [o appendString:@"<?xml version=\"1.0\"?>\n"];
+    [o appendString:@"<gpx version=\"1.1\" creator=\"Geocube\">\n"];
+
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        [o appendFormat:@"<wpt lat=\"%f\" lon=\"%f\">\n", te.lat, te.lon];
+        [o appendFormat:@"<geoidheight>%ld</geoidheight>\n", (long)te.height];
+        [o appendString:@"</wpt>\n"];
+    }];
+
+    [o appendString:@"</gpx>\n"];
+
+    NSString *filename = [track.name stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    NSString *fullname = [NSString stringWithFormat:@"%@/export-%@", [MyTools FilesDir], filename];
+    NSError *error = nil;
+    [o writeToFile:fullname atomically:NO encoding:NSUTF8StringEncoding error:&error];
+    NSLog(@"Track written to %@, error %@", filename, error);
+
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Export complete"
+                               message:[NSString stringWithFormat:@"Exported %@. You can find them in the Files menu.", filename]
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:nil];
+
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
