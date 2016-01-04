@@ -61,6 +61,8 @@ enum {
 {
     [super viewWillAppear:animated];
     tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+    if ([tracks count] == 0)
+        [self newTrack:@"New track"];
     [self.tableView reloadData];
 }
 
@@ -112,7 +114,7 @@ enum {
     switch (index) {
         case menuAddATrack:
             [self startNewTrack];
-            return;;
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
