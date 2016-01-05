@@ -639,6 +639,7 @@ enum {
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         [account.remoteAPI loadWaypoints:meLocation];
     }];
+    [MyTools playSound:playSoundImportComplete];
 }
 
 #pragma mark - Local menu related functions
