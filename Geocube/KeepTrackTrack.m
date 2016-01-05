@@ -248,6 +248,7 @@ enum {
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         [o appendFormat:@"<wpt lat=\"%f\" lon=\"%f\">\n", te.lat, te.lon];
         [o appendFormat:@"<geoidheight>%ld</geoidheight>\n", (long)te.height];
+        [o appendFormat:@"<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
         [o appendString:@"</wpt>\n"];
     }];
 
