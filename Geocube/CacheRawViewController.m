@@ -69,8 +69,8 @@
         {
             objc_property_t property = propertyArray[i];
             NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
-            const char *attributesCString = property_getAttributes(property);
-            NSString *attributesString = [[NSString alloc] initWithUTF8String:attributesCString];
+            // const char *attributesCString = property_getAttributes(property);
+            // NSString *attributesString = [[NSString alloc] initWithUTF8String:attributesCString];
             id value = [waypoint valueForKey:name];
             // NSLog(@"Property %@ attributes: %@ value: %@", name, attributesString, value);
 
