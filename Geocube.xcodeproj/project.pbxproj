@@ -546,6 +546,7 @@
 		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
 		E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColourViewController.h; sourceTree = "<group>"; };
 		E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColourViewController.m; sourceTree = "<group>"; };
+		E808DC7E1C3A405200B8A572 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E80AEEAF1BA5983A00106F7F /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNight.h; sourceTree = "<group>"; };
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
@@ -1719,6 +1720,7 @@
 			children = (
 				E897702E1BA3910F000573FB /* Import Complete.wav */,
 				E8F570BD1B400137003F020C /* empty.db */,
+				E808DC7E1C3A405200B8A572 /* Location.gpx */,
 			);
 			name = "Data files";
 			sourceTree = "<group>";
