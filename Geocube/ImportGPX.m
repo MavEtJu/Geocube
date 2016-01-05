@@ -141,21 +141,9 @@
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
     [[dbc Group_AllWaypoints_Ignored] dbEmpty];
     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
+    [dbGroup cleanupAfterDelete];
     [dbc loadWaypointData];
     [dbWaypoint dbUpdateLogStatus];
-
-    /* Crappy way to do sound but will work for now */
-    NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: @"Import Complete"
-                                                withExtension: @"wav"];
-    CFURLRef        soundFileURLRef;
-    SystemSoundID   soundFileObject;
-
-    // Store the URL as a CFURLRef instance
-    soundFileURLRef = (__bridge CFURLRef) tapSound;
-
-    // Create a system sound object representing the sound file.
-    AudioServicesCreateSystemSoundID ( soundFileURLRef, &soundFileObject );
-    AudioServicesPlaySystemSound (soundFileObject);
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
