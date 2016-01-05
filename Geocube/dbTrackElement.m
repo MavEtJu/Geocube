@@ -115,4 +115,16 @@
     return [dbWaypoint dbCount:@"trackelements"];
 }
 
++ (void)dbDeleteByTrack:(NSId)trackId
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from trackelements where track_id = ?");
+
+        SET_VAR_INT(1, trackId);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

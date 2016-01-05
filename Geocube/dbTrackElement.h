@@ -36,5 +36,6 @@
 
 + (void)addElement:(CLLocationCoordinate2D)coords height:(NSInteger)altitude restart:(BOOL)restart;
 + (NSArray *)dbAllByTrack:(NSId)_track_id;
++ (void)dbDeleteByTrack:(NSId)trackId;
 
 @end

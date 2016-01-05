@@ -112,4 +112,16 @@
     return [dbWaypoint dbCount:@"tracks"];
 }
 
+- (void)dbDelete
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from tracks where id = ?");
+
+        SET_VAR_INT(1, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end
