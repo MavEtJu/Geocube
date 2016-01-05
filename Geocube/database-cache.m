@@ -42,6 +42,7 @@
     dbGroup *Group_AllWaypoints_Attended;
     dbGroup *Group_AllWaypoints_ManuallyAdded;
     dbGroup *Group_AllWaypoints_Ignored;
+    dbGroup *Group_LiveImport;
     dbGroup *Group_LastImport;
     dbGroup *Group_LastImportAdded;
 
@@ -69,7 +70,7 @@
 @implementation DatabaseCache
 
 @synthesize Accounts, Pins, Types, Groups, LogTypes, Containers, Attributes, Countries, States, Symbols;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LastImport,Group_LastImportAdded;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded;
 @synthesize Pin_Unknown, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 @synthesize LogType_Found, LogType_Attended, LogType_NotFound;
 
@@ -109,35 +110,39 @@
     LogType_Unknown = nil;
 
     [Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints"] == YES) {
             Group_AllWaypoints = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Attended"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Attended"] == YES) {
             Group_AllWaypoints_Attended = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
             Group_AllWaypoints_Found = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Not Found"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Not Found"] == YES) {
             Group_AllWaypoints_NotFound = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Manually entered"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Manually entered"] == YES) {
             Group_AllWaypoints_ManuallyAdded = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"All Waypoints - Ignored"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Ignored"] == YES) {
             Group_AllWaypoints_Ignored = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import"] == YES) {
+        if (cg.usergroup == YES && [cg.name isEqualToString:@"Live Import"] == YES) {
+            Group_LiveImport = cg;
+            return;
+        }
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"Last Import"] == YES) {
             Group_LastImport = cg;
             return;
         }
-        if (cg.usergroup == 0 && [cg.name isEqualToString:@"Last Import - New"] == YES) {
+        if (cg.usergroup == NO && [cg.name isEqualToString:@"Last Import - New"] == YES) {
             Group_LastImportAdded = cg;
             return;
         }
@@ -148,6 +153,7 @@
     NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
     NSAssert(Group_AllWaypoints_ManuallyAdded != nil, @"Group_AllWaypoints_ManuallyAdded");
     NSAssert(Group_AllWaypoints_Ignored != nil, @"Group_AllWaypoints_Ignored");
+    NSAssert(Group_LiveImport != nil, @"Group_LiveImport");
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 

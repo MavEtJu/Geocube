@@ -39,6 +39,7 @@
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_Attended;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_ManuallyAdded;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_Ignored;
+@property (nonatomic, retain) dbGroup *Group_LiveImport;
 @property (nonatomic, retain) dbGroup *Group_LastImport;
 @property (nonatomic, retain) dbGroup *Group_LastImportAdded;
 

@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "2");
+insert into config(key, value) values("version", "3");
 
 create table filters (
     id integer primary key,
@@ -22,21 +22,23 @@ create index filters_idx_key on filters(key);
 
 create table groups (
     id integer primary key,
-    usergroup integer,
+    usergroup bool,
+    deletable bool,
     name text
 );
 create index groups_idx_id on groups(id);
-insert into groups(name, usergroup) values("All Waypoints", 0);
-insert into groups(name, usergroup) values("All Waypoints - Found", 0);
-insert into groups(name, usergroup) values("All Waypoints - Attended", 0);
-insert into groups(name, usergroup) values("All Waypoints - Not Found", 0);
-insert into groups(name, usergroup) values("All Waypoints - Manually entered", 0);
-insert into groups(name, usergroup) values("All Waypoints - Ignored", 0);
-insert into groups(name, usergroup) values("Last Import", 0);
-insert into groups(name, usergroup) values("Last Import - New", 0);
-insert into groups(name, usergroup) values("GCA - NSW", 1);
-insert into groups(name, usergroup) values("GC - NSW", 1);
-insert into groups(name, usergroup) values("GC - ACT", 1);
+insert into groups(name, usergroup, deletable) values("All Waypoints", 0, 0);
+insert into groups(name, usergroup, deletable) values("All Waypoints - Found", 0, 0);
+insert into groups(name, usergroup, deletable) values("All Waypoints - Attended", 0, 0);
+insert into groups(name, usergroup, deletable) values("All Waypoints - Not Found", 0, 0);
+insert into groups(name, usergroup, deletable) values("All Waypoints - Manually entered", 0, 0);
+insert into groups(name, usergroup, deletable) values("All Waypoints - Ignored", 0, 0);
+insert into groups(name, usergroup, deletable) values("Last Import", 0, 0);
+insert into groups(name, usergroup, deletable) values("Last Import - New", 0, 0);
+insert into groups(name, usergroup, deletable) values("Live Imported", 1, 0);
+insert into groups(name, usergroup, deletable) values("GCA - NSW", 1, 1);
+insert into groups(name, usergroup, deletable) values("GC - NSW", 1, 1);
+insert into groups(name, usergroup, deletable) values("GC - ACT", 1, 1);
 
 create table group2waypoints (
     id integer primary key,

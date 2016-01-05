@@ -129,9 +129,12 @@
         [self performUpgrade_0_1];
         return;
     }
-
     if (version == 1) {
         [self performUpgrade_1_2];
+        return;
+    }
+    if (version == 2) {
+        [self performUpgrade_2_3];
         return;
     }
 
@@ -190,14 +193,12 @@
 
 - (void)performUpgrade_2_3
 {
-    /*
     NSArray *a = @[
-    @"alter table waypoints add column ignore bool",
-    @"update waypoints set ignore = 0",
-    @"insert into groups(name, usergroup) values('All Waypoints - Ignored', 0)"
+    @"alter table groups add column deletable bool",
+    @"update groups set deletable = usergroup",
+    @"insert into groups(name, usergroup, deletable) values('Live Import', 1, 0)"
     ];
     [self performUpgrade_X_Y:a];
-     */
 }
 
 - (void)performUpgrade_3_4

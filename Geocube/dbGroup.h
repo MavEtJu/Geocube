@@ -25,6 +25,7 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
+@property (nonatomic) BOOL deletable;
 @property (nonatomic) BOOL selected;
 
 - (void)dbEmpty;
@@ -39,6 +40,6 @@
 - (BOOL)dbContainsWaypoint:(NSId)c_id;
 - (NSInteger)dbCountWaypoints;
 + (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;
-
++ (void)cleanupAfterDelete;
 
 @end

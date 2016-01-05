@@ -25,6 +25,7 @@
 {
     NSString *name;
     BOOL usergroup;
+    BOOL deletable;
 
     /* Not read from the database */
     BOOL selected;
@@ -34,14 +35,15 @@
 
 @implementation dbGroup
 
-@synthesize name, usergroup, selected;
+@synthesize name, usergroup, selected, deletable;
 
-- (instancetype)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup
+- (instancetype)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup deletable:(BOOL)_deletable
 {
     self = [super init];
     _id = __id;
     name = _name;
     usergroup = _usergroup;
+    deletable = _deletable;
     [self finish];
     return self;
 }
@@ -108,8 +110,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-
-    [dbGroup cleanupAfterDelete];
 }
 
 
@@ -118,14 +118,15 @@
     dbGroup *cg;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, usergroup from groups where name = ?");
+        DB_PREPARE(@"select id, name, usergroup, deletable from groups where name = ?");
 
         SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
             INT_FETCH( 0, cg._id);
             TEXT_FETCH(1, cg.name);
-            INT_FETCH( 2, cg.usergroup);
+            BOOL_FETCH(2, cg.usergroup);
+            BOOL_FETCH(3, cg.deletable)
         }
         DB_FINISH;
     }
@@ -137,13 +138,14 @@
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, usergroup from groups");
+        DB_PREPARE(@"select id, name, usergroup, deletable from groups");
 
         DB_WHILE_STEP {
             dbGroup *cg = [[dbGroup alloc] init];
             INT_FETCH( 0, cg._id);
             TEXT_FETCH(1, cg.name);
-            INT_FETCH( 2, cg.usergroup);
+            BOOL_FETCH(2, cg.usergroup);
+            BOOL_FETCH(3, cg.deletable);
             [cgs addObject:cg];
         }
         DB_FINISH;
@@ -199,7 +201,7 @@
     NSId _id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into groups(name, usergroup) values(?, ?)");
+        DB_PREPARE(@"insert into groups(name, usergroup, deletable) values(?, ?, 1)");
 
         SET_VAR_TEXT(1, _name);
         SET_VAR_BOOL(2, _usergroup);
@@ -226,8 +228,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-
-    [dbGroup cleanupAfterDelete];
 }
 
 - (void)dbUpdateName:(NSString *)newname

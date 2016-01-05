@@ -176,8 +176,10 @@ enum {
     popPresenter.sourceRect = rectToUse;
 
     [view addAction:empty];
-    [view addAction:rename];
-    [view addAction:delete];
+    if (cg.deletable == YES) {
+        [view addAction:rename];
+        [view addAction:delete];
+    }
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -206,6 +208,7 @@ enum {
 - (void)groupDelete:(dbGroup *)cg
 {
     [cg dbDelete];
+    [dbGroup cleanupAfterDelete];
     [waypointManager needsRefresh];
     [dbc loadWaypointData];
     [self refreshGroupData];
