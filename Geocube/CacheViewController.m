@@ -610,6 +610,7 @@ enum {
      }];
     waypoint = [dbWaypoint dbGet:waypoint._id];
     [self.tableView reloadData];
+    [MyTools playSound:playSoundImportComplete];
 }
 
 - (void)menuViewRaw
