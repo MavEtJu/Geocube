@@ -21,6 +21,11 @@
 
 @interface MyTools : NSObject
 
+enum {
+    playSoundImportComplete,
+    playSoundMax
+};
+
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
@@ -59,6 +64,8 @@
 + (BOOL)checkCoordinate:(NSString *)text;
 
 - (void)toggleFlashLight:(BOOL)onoff;
+
++ (void)playSound:(NSInteger)reason;
 
 @end
 

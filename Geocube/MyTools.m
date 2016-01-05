@@ -417,4 +417,28 @@
     }
 }
 
++ (void)playSoundFile:(NSString *)filename extension:(NSString *)extension
+{
+    /* Crappy way to do sound but will work for now */
+    NSURL *tapSound = [[NSBundle mainBundle] URLForResource:filename withExtension:extension];
+    CFURLRef        soundFileURLRef;
+    SystemSoundID   soundFileObject;
+
+    // Store the URL as a CFURLRef instance
+    soundFileURLRef = (__bridge CFURLRef)tapSound;
+
+    // Create a system sound object representing the sound file.
+    AudioServicesCreateSystemSoundID(soundFileURLRef, &soundFileObject );
+    AudioServicesPlaySystemSound(soundFileObject);
+}
+
++ (void)playSound:(NSInteger)reason
+{
+    switch (reason) {
+        case playSoundImportComplete:
+            [MyTools playSoundFile:@"Import Completed" extension:@"wav"];
+            break;
+    }
+}
+
 @end
