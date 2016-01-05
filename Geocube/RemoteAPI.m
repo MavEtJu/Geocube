@@ -326,16 +326,8 @@
 
 - (BOOL)updateWaypoint:(dbWaypoint *)waypoint
 {
-    NSArray *groups = [dbGroup dbAllByWaypoint:waypoint._id];
     dbAccount *a = waypoint.account;
-
-    __block dbGroup *g = nil;
-    [groups enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
-        if (group.usergroup == YES) {
-            g = group;
-            *stop = YES;
-        }
-    }];
+    dbGroup *g = dbc.Group_LiveImport;
 
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs SearchForGeocaches:waypoint.wpt_name];
@@ -401,10 +393,18 @@
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca caches_gca:center];
 
-        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:nil account:account];
+        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
         [i parseBefore];
         [i parseData:json];
         [i parseAfter];
+
+        [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSId wpId = [dbWaypoint dbGetByName:wpname];
+            dbWaypoint *wp = [dbWaypoint dbGet:wpId];
+            [self updateWaypoint:wp];
+        }];
+
+        [waypointManager needsRefresh];
         return YES;
     }
 

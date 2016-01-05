@@ -87,6 +87,7 @@
     NSLog(@"%@: Parsing initializing", [self class]);
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
+    [dbGroup cleanupAfterDelete];
 }
 
 - (void)parseFile:(NSString *)filename

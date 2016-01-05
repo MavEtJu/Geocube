@@ -25,11 +25,15 @@
 {
     dbAccount *account;
     dbGroup *group;
+
+    NSMutableArray *namesImported;
 }
 
 @end
 
 @implementation ImportGCAJSON
+
+@synthesize namesImported;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
@@ -46,6 +50,7 @@
 - (void)parseBefore
 {
     NSLog(@"%@: Parsing initializing", [self class]);
+    namesImported = [NSMutableArray arrayWithCapacity:50];
 }
 
 - (void)parseData:(NSDictionary *)dict
@@ -142,6 +147,9 @@
     wp.gs_container_str = [dict objectForKey:@"container_text"];
     wp.gs_hint = [dict objectForKey:@"hints"];
 
+    wp.account = account;
+    wp.account_id = account._id;
+
     if (wp.wpt_symbol_str == nil)
         wp.wpt_symbol_str = @"Geocache";
 
@@ -150,10 +158,15 @@
     if (old == 0) {
         NSLog(@"%@: Creating %@", [self class], wpname);
         [dbWaypoint dbCreate:wp];
+        [group dbAddWaypoint:wp._id];
     } else {
         NSLog(@"%@: Updating %@", [self class], wpname);
         [wp dbUpdate];
+        if ([group dbContainsWaypoint:wp._id] == NO)
+            [group dbAddWaypoint:wp._id];
     }
+
+    [namesImported addObject:wpname];
 }
 
 - (void)parseAfter

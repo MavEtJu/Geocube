@@ -21,6 +21,8 @@
 
 @interface ImportGCAJSON : NSObject
 
+@property (nonatomic, retain) NSMutableArray *namesImported;
+
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 
 - (void)parseBefore;
