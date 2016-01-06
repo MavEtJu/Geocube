@@ -37,6 +37,7 @@
     GCLabel *totalTrackablesLabel;
     GCLabel *progressLabel;
     GCLabel *totalImagesLabel;
+    GCLabel *downloadedImagesLabel;
     GCLabel *queuedImagesLabel;
 
     NSString *filenameString;
@@ -48,6 +49,7 @@
     NSInteger totalTrackablesValue;
     NSInteger progressValue;
     NSInteger totalImagesValue;
+    NSInteger downloadedImagesValue;
     NSInteger queuedImagesValue;
 
     ImportGPX *imp;
@@ -245,6 +247,17 @@
         [self.view addSubview:queuedImagesLabel];
         y += height;
 
+        // Downloaded images counter
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Total images imported:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        downloadedImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        downloadedImagesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:downloadedImagesLabel];
+        y += height;
+
         // Total images counter
         l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
         l.text = @"Total images read:";
@@ -311,10 +324,11 @@
     }
 }
 
-- (void)updateQueuedImagesData:(NSInteger)queuedImages
+- (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
 {
     @synchronized(self) {
         queuedImagesValue = queuedImages;
+        downloadedImagesValue = downloadedImages;
         [self updateData];
     }
 }
@@ -331,6 +345,7 @@
         totalTrackablesLabel.text = [MyTools niceNumber:totalTrackablesValue];
         totalImagesLabel.text = [MyTools niceNumber:totalImagesValue];
         queuedImagesLabel.text = [MyTools niceNumber:queuedImagesValue];
+        downloadedImagesLabel.text = [MyTools niceNumber:downloadedImagesValue];
     }];
 }
 

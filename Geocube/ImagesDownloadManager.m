@@ -24,6 +24,7 @@
 @interface ImagesDownloadManager ()
 {
     NSMutableArray *todo;
+    NSInteger downloaded;
 
     dbImage *imgToDownload;
 
@@ -54,6 +55,7 @@
     todo = [NSMutableArray arrayWithCapacity:20];
 
     running = 0;
+    downloaded = 0;
     delegate = nil;
 
     return self;
@@ -77,7 +79,7 @@
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[todo count]);
         @synchronized (imagesDownloadManager) {
             if (delegate != nil)
-                [delegate updateQueuedImagesData:[todo count]];
+                [delegate updateQueuedImagesData:[todo count] downloadedImages:downloaded];
             if ([todo count] != 0)
                 imgToDownload = [todo objectAtIndex:0];
         }
@@ -123,6 +125,7 @@
         @synchronized (imagesDownloadManager) {
             [todo removeObjectAtIndex:0];
         }
+        downloaded++;
     }
 }
 
