@@ -394,9 +394,9 @@
         NSDictionary *json = [gca caches_gca:center];
 
         ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
-        [i parseBefore];
-        [i parseData:json];
-        [i parseAfter];
+        [i parseBefore_cache];
+        [i parseData_cache:json];
+        [i parseAfter_cache];
 
         [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
             NSId wpId = [dbWaypoint dbGetByName:wpname];

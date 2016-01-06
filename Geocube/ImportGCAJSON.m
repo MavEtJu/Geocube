@@ -47,13 +47,13 @@
     return self;
 }
 
-- (void)parseBefore
+- (void)parseBefore_cache
 {
     NSLog(@"%@: Parsing initializing", [self class]);
     namesImported = [NSMutableArray arrayWithCapacity:50];
 }
 
-- (void)parseData:(NSDictionary *)dict
+- (void)parseData_cache:(NSDictionary *)dict
 {
     NSLog(@"%@: Parsing data", [self class]);
 
@@ -69,6 +69,11 @@
 
     [self parseGeocaches:[dict objectForKey:@"geocaches"]];
     [waypointManager needsRefresh];
+}
+
+- (void)parseAfter_cache
+{
+    NSLog(@"%@: Parsing done", [self class]);
 }
 
 - (void)parseGeocaches:(NSArray *)as
@@ -167,11 +172,6 @@
     }
 
     [namesImported addObject:wpname];
-}
-
-- (void)parseAfter
-{
-    NSLog(@"%@: Parsing done", [self class]);
 }
 
 @end

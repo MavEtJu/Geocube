@@ -25,8 +25,8 @@
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 
-- (void)parseBefore;
-- (void)parseData:(NSDictionary *)data;
-- (void)parseAfter;
+- (void)parseBefore_cache;
+- (void)parseData_cache:(NSDictionary *)data;
+- (void)parseAfter_cache;
 
 @end
