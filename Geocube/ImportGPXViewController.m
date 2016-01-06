@@ -21,6 +21,8 @@
 
 #import "Geocube-Prefix.pch"
 
+#define MAXHISTORY  10
+
 @interface ImportGPXViewController ()
 {
     NSMutableArray *filenames;
@@ -40,6 +42,12 @@
     GCLabel *downloadedImagesLabel;
     GCLabel *queuedImagesLabel;
 
+    GCLabel *prevtotalWaypointsLabel;
+    GCLabel *prevtotalLogsLabel;
+    GCLabel *prevtotalTrackablesLabel;
+    GCLabel *prevtotalImagesLabel;
+    GCLabel *prevdownloadedImagesLabel;
+
     NSString *filenameString;
     NSInteger newWaypointsValue;
     NSInteger totalWaypointsValue;
@@ -51,6 +59,13 @@
     NSInteger totalImagesValue;
     NSInteger downloadedImagesValue;
     NSInteger queuedImagesValue;
+
+    time_t prevpolls[MAXHISTORY], prevpoll;
+    NSInteger prevtotalWaypointsValue[MAXHISTORY];
+    NSInteger prevtotalLogsValue[MAXHISTORY];
+    NSInteger prevtotalTrackablesValue[MAXHISTORY];
+    NSInteger prevtotalImagesValue[MAXHISTORY];
+    NSInteger prevdownloadedImagesValue[MAXHISTORY];
 
     ImportGPX *imp;
 }
@@ -76,6 +91,16 @@
 
     group = _group;
     account = _account;
+
+    prevpoll = time(NULL);
+    for (NSInteger i = 0; i < MAXHISTORY; i++) {
+        prevpolls[i] = prevpoll;
+        prevdownloadedImagesValue[i] = 0;
+        prevtotalImagesValue[i] = 0;
+        prevtotalLogsValue[i] = 0;
+        prevtotalTrackablesValue[i] = 0;
+        prevtotalWaypointsValue[i] = 0;
+    }
 
     lmi = nil;
     hasCloseButton = YES;
@@ -269,6 +294,69 @@
         [self.view addSubview:totalImagesLabel];
         y += height;
 
+        y += height;
+
+        // Waypoints per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Waypoints/s:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        prevtotalWaypointsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        prevtotalWaypointsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:prevtotalWaypointsLabel];
+        y += height;
+
+        // Logs per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Logs/s:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        prevtotalLogsLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        prevtotalLogsLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:prevtotalLogsLabel];
+        y += height;
+
+        // Trackables per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Trackables/s:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        prevtotalTrackablesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        prevtotalTrackablesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:prevtotalTrackablesLabel];
+        y += height;
+
+        // Images per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Images/s:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        prevtotalImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        prevtotalImagesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:prevtotalImagesLabel];
+        y += height;
+
+        // Downloaded images per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"Images downloaded/s:";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
+        prevdownloadedImagesLabel = [[GCLabel alloc] initWithFrame:CGRectMake(valueOffset, y, valueSize, height)];
+        prevdownloadedImagesLabel.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:prevdownloadedImagesLabel];
+        y += height;
+
+        // Downloaded images per second
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, labelSize, height)];
+        l.text = @"(10 second average)";
+        l.textAlignment = NSTextAlignmentRight;
+        [self.view addSubview:l];
+
         [self updateData];
     }
 }
@@ -324,6 +412,8 @@
     }
 }
 
+
+
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
 {
     @synchronized(self) {
@@ -346,6 +436,36 @@
         totalImagesLabel.text = [MyTools niceNumber:totalImagesValue];
         queuedImagesLabel.text = [MyTools niceNumber:queuedImagesValue];
         downloadedImagesLabel.text = [MyTools niceNumber:downloadedImagesValue];
+
+        if (time(NULL) - prevpoll > 0) {
+            for (NSInteger i = 0; i < MAXHISTORY - 1; i++) {
+                prevdownloadedImagesValue[i] = prevdownloadedImagesValue[i + 1];
+                prevtotalImagesValue[i] = prevtotalImagesValue[i + 1];
+                prevtotalLogsValue[i] = prevtotalLogsValue[i + 1];
+                prevtotalTrackablesValue[i] = prevtotalTrackablesValue[i + 1];
+                prevtotalWaypointsValue[i] = prevtotalWaypointsValue[i + 1];
+
+                prevpolls[i] = prevpolls[i + 1];
+            }
+            prevdownloadedImagesValue[MAXHISTORY - 1] = downloadedImagesValue;
+            prevtotalImagesValue[MAXHISTORY - 1] = totalImagesValue;
+            prevtotalLogsValue[MAXHISTORY - 1] = totalLogsValue;
+            prevtotalTrackablesValue[MAXHISTORY - 1] = totalTrackablesValue;
+            prevtotalWaypointsValue[MAXHISTORY - 1] = totalWaypointsValue;
+
+            prevpoll = time(NULL);
+            prevpolls[MAXHISTORY - 1] = prevpoll;
+
+            double deltaT = prevpolls[MAXHISTORY - 1] - prevpolls[0];
+#define DISPLAY(__a__, __b__) \
+            __a__.text = [NSString stringWithFormat:@"%0.2f", (__b__[MAXHISTORY - 1] - __b__[0]) / deltaT]
+
+            DISPLAY(prevdownloadedImagesLabel, prevdownloadedImagesValue);
+            DISPLAY(prevtotalImagesLabel, prevtotalImagesValue);
+            DISPLAY(prevtotalLogsLabel, prevtotalLogsValue);
+            DISPLAY(prevtotalTrackablesLabel, prevtotalTrackablesValue);
+            DISPLAY(prevtotalWaypointsLabel, prevtotalWaypointsValue);
+        }
     }];
 }
 
