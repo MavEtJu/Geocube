@@ -21,7 +21,7 @@
 
 @interface dbGroup : dbObject
 
-- (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup;
+- (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup deletable:(BOOL)deletable;
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
