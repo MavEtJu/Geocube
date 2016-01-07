@@ -221,6 +221,7 @@
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
+		E86A42531C3E673A0022396B /* log - moved - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86A42521C3E673A0022396B /* log - moved - 30x30.png */; };
 		E86C655C1B49EC5C00E2ABFE /* CachesOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */; };
 		E86C65621B4B243000E2ABFE /* CacheTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65611B4B243000E2ABFE /* CacheTableViewCell.m */; };
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
@@ -666,6 +667,7 @@
 		E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheHeaderTableViewCell.m; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
+		E86A42521C3E673A0022396B /* log - moved - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - moved - 30x30.png"; path = "images/log - moved - 30x30.png"; sourceTree = "<group>"; };
 		E86C655A1B49EC5C00E2ABFE /* CachesOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachesOfflineListViewController.h; sourceTree = "<group>"; };
 		E86C655B1B49EC5C00E2ABFE /* CachesOfflineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachesOfflineListViewController.m; sourceTree = "<group>"; };
 		E86C65601B4B243000E2ABFE /* CacheTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTableViewCell.h; sourceTree = "<group>"; };
@@ -1334,6 +1336,7 @@
 		E8740FA31B4E86BB002527DA /* logs */ = {
 			isa = PBXGroup;
 			children = (
+				E86A42521C3E673A0022396B /* log - moved - 30x30.png */,
 				E807322C1B5F84E8007FDC29 /* log - archived - 30x30.png */,
 				E807322D1B5F84E8007FDC29 /* log - attended - 30x30.png */,
 				E807322E1B5F84E8007FDC29 /* log - coordinates - 30x30.png */,
@@ -2147,6 +2150,7 @@
 				E80732291B5F84B4007FDC29 /* attributes - 66.png in Resources */,
 				E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
+				E86A42531C3E673A0022396B /* log - moved - 30x30.png in Resources */,
 				E80732D91B60FAB4007FDC29 /* ratings - star base 95x18.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E80732171B5F84B4007FDC29 /* attributes - 48.png in Resources */,
