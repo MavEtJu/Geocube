@@ -90,6 +90,7 @@
     [self addToLibrary:@"log - attended - 30x30" index:ImageLog_Attended];
     [self addToLibrary:@"log - willattend - 30x30" index:ImageLog_WillAttend];
     [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_Unknown];
+    [self addToLibrary:@"log - moved - 30x30" index:ImageLog_Moved];
 
     [self addToLibrary:@"container - large - 70x20" index:ImageSize_Large];
     [self addToLibrary:@"container - micro - 70x20" index:ImageSize_Micro];

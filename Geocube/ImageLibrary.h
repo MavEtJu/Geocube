@@ -73,6 +73,7 @@ typedef enum {
     ImageLog_Attended,
     ImageLog_WillAttend,
     ImageLog_Unknown,
+    ImageLog_Moved,
 
     ImageSize_Large = 450,
     ImageSize_Micro,
