@@ -163,10 +163,6 @@
 
     // Adjust cache types
     if (wpt_type == nil) {
-        if (wpt_type_id != 0) {
-            wpt_type = [dbc Type_get:wpt_type_id];
-            wpt_type_str = wpt_type.type_full;
-        }
         if (wpt_type_str != nil) {
             NSArray *as = [wpt_type_str componentsSeparatedByString:@"|"];
             if ([as count] == 2) {
@@ -185,17 +181,21 @@
             }
             wpt_type_id = wpt_type._id;
         }
+        if (wpt_type_id != 0) {
+            wpt_type = [dbc Type_get:wpt_type_id];
+            wpt_type_str = wpt_type.type_full;
+        }
     }
 
     // Adjust cache symbol
     if (wpt_symbol == nil) {
-        if (wpt_symbol_id != 0) {
-            wpt_symbol = [dbc Symbol_get:wpt_symbol_id];
-            wpt_symbol_str = wpt_symbol.symbol;
-        }
         if (wpt_symbol_str != nil) {
             wpt_symbol = [dbc Symbol_get_bysymbol:wpt_symbol_str];
             wpt_symbol_id = wpt_symbol._id;
+        }
+        if (wpt_symbol_id != 0) {
+            wpt_symbol = [dbc Symbol_get:wpt_symbol_id];
+            wpt_symbol_str = wpt_symbol.symbol;
         }
     }
 
@@ -206,21 +206,17 @@
 
     // Adjust container size
     if (gs_container == nil) {
-        if (gs_container_id != 0) {
-            gs_container = [dbc Container_get:gs_container_id];
-            gs_container_str = gs_container.size;
-        }
         if (gs_container_str != nil) {
             gs_container = [dbc Container_get_bysize:gs_container_str];
             gs_container_id = gs_container._id;
         }
+        if (gs_container_id != 0) {
+            gs_container = [dbc Container_get:gs_container_id];
+            gs_container_str = gs_container.size;
+        }
     }
 
     if (gs_owner == nil) {
-        if (gs_owner_id != 0) {
-            gs_owner = [dbName dbGet:gs_owner_id];
-            gs_owner_str = gs_owner.name;
-        }
         if (gs_owner_str != nil) {
             if (gs_owner_gsid == nil)
                 gs_owner = [dbName dbGetByName:gs_owner_str account:self.account];
@@ -228,27 +224,31 @@
                 gs_owner = [dbName dbGetByNameCode:gs_owner_str code:gs_owner_gsid account:self.account];
             gs_owner_id = gs_owner._id;
         }
+        if (gs_owner_id != 0) {
+            gs_owner = [dbName dbGet:gs_owner_id];
+            gs_owner_str = gs_owner.name;
+        }
     }
 
     if (gs_state == nil) {
-        if (gs_state_id != 0) {
-            gs_state = [dbc State_get:gs_state_id];
-            gs_state_str = gs_state.name;
-        }
         if (gs_state_str != nil) {
             gs_state = [dbc State_get_byName:gs_state_str];
             gs_state_id = gs_state._id;
         }
+        if (gs_state_id != 0) {
+            gs_state = [dbc State_get:gs_state_id];
+            gs_state_str = gs_state.name;
+        }
     }
 
     if (gs_country == nil) {
-        if (gs_country_id != 0) {
-            gs_country = [dbc Country_get:gs_country_id];
-            gs_country_str = gs_country.name;
-        }
         if (gs_country_str != nil) {
             gs_country = [dbc Country_get_byName:gs_country_str];
             gs_country_id = gs_country._id;
+        }
+        if (gs_country_id != 0) {
+            gs_country = [dbc Country_get:gs_country_id];
+            gs_country_str = gs_country.name;
         }
     }
 
