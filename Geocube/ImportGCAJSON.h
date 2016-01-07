@@ -29,4 +29,8 @@
 - (void)parseData_cache:(NSDictionary *)data;
 - (void)parseAfter_cache;
 
+- (void)parseBefore_logs;
+- (void)parseData_logs:(NSDictionary *)data;
+- (void)parseAfter_logs;
+
 @end

@@ -49,13 +49,13 @@
 
 - (void)parseBefore_cache
 {
-    NSLog(@"%@: Parsing initializing", [self class]);
+    NSLog(@"%@/parseBefore_cache: Parsing initializing", [self class]);
     namesImported = [NSMutableArray arrayWithCapacity:50];
 }
 
 - (void)parseData_cache:(NSDictionary *)dict
 {
-    NSLog(@"%@: Parsing data", [self class]);
+    NSLog(@"%@/parseData_cache: Parsing data", [self class]);
 
     /*
      {
@@ -73,7 +73,7 @@
 
 - (void)parseAfter_cache
 {
-    NSLog(@"%@: Parsing done", [self class]);
+    NSLog(@"%@/parseAfter_cache: Parsing done", [self class]);
 }
 
 - (void)parseGeocaches:(NSArray *)as
@@ -134,22 +134,28 @@
     wp.wpt_lat = [[coords objectForKey:@"lat"] stringValue];
     wp.wpt_lon = [[coords objectForKey:@"lon"] stringValue];
     wp.wpt_type_str = [dict objectForKey:@"type"];
+    wp.wpt_type = nil;
     wp.gs_state_str = [dict objectForKey:@"state"];
+    wp.gs_state = nil;
     wp.gs_placed_by = [dict objectForKey:@"placedby"];
     wp.gs_short_desc = [dict objectForKey:@"short_description"];
     wp.gs_short_desc_html = YES;
     wp.wpt_urlname = [dict objectForKey:@"name"];
     wp.gs_country_str = [dict objectForKey:@"country"];
+    wp.gs_country = nil;
     wp.gs_archived = [[dict objectForKey:@"archived"] isEqualToString:@"t"];
     wp.gs_available = [[dict objectForKey:@"available"] isEqualToString:@"t"];
     wp.gs_rating_difficulty = [[dict objectForKey:@"difficulty"] floatValue];
     wp.wpt_name = [dict objectForKey:@"waypoint"];
     wp.wpt_type_str = [dict objectForKey:@"type_text"];
+    wp.wpt_type = nil;
     wp.wpt_date_placed = [dict objectForKey:@"hidden"];
     wp.gs_long_desc = [dict objectForKey:@"long_description"];
     wp.gs_long_desc_html = YES;
     wp.gs_owner_str = [dict objectForKey:@"owner"];
+    wp.gs_owner = nil;
     wp.gs_container_str = [dict objectForKey:@"container_text"];
+    wp.gs_container = nil;
     wp.gs_hint = [dict objectForKey:@"hints"];
 
     wp.account = account;
@@ -172,6 +178,59 @@
     }
 
     [namesImported addObject:wpname];
+}
+
+- (void)parseBefore_logs
+{
+    NSLog(@"%@/parseBefore_logs: Parsing initializing", [self class]);
+}
+
+- (void)parseData_logs:(NSDictionary *)data
+{
+    NSLog(@"%@/parseData_logs: Parsing data", [self class]);
+    /*
+     actionstatus = 1;
+     datetime = "2016-01-06T21:26:18Z";
+     logs =     (
+     );
+     msg = Logs
+     */
+
+    [self parseLogs:[data objectForKey:@"logs"]];
+}
+
+- (void)parseAfter_logs
+{
+    NSLog(@"%@/parseAfter_logs: Parsing done", [self class]);
+}
+
+- (void)parseLogs:(NSArray *)as
+{
+    [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseLog:d];
+    }];
+}
+
+- (void)parseLog:(NSDictionary *)dict
+{
+    dbLog *t = [[dbLog alloc] init:0];
+
+    t.waypoint_id = [dbWaypoint dbGetByName:[dict objectForKey:@"cache"]];
+    t.gc_id = [[dict objectForKey:@"id"] integerValue];
+    t.logtype_string = [dict objectForKey:@"type"];
+    t.datetime = [NSString stringWithFormat:@"%@T00:00:00", [dict objectForKey:@"date"]];
+    t.logger_str = [dict objectForKey:@"cacher"];
+    t.log = [dict objectForKey:@"text"];
+    t.needstobelogged = NO;
+    [t finish];
+
+    NSId _id = [dbLog dbGetIdByGC:t.gc_id account:account];
+    if (_id == 0) {
+        [dbLog dbCreate:t];
+    } else {
+        t._id = _id;
+        [t dbUpdate];
+    }
 }
 
 @end
