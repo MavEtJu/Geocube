@@ -499,6 +499,7 @@ insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Myst
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Unknown (Mystery) Cache", 110, 15);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Other", 111, 22);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Traditional Cache", 112, 16);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Traditional", 112, 16);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Unknown Cache", 113, 22);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Virtual Cache", 114, 17);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Waymark", 115, 23);
@@ -512,6 +513,7 @@ insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Lost
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Groundspeak Lost and Found Celebration", 111, 11);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Moveable", 119, 21);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 118, 10);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Virtual", 114, 17);
 
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Final Location", 200, 40);
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Flag", 201, 41);

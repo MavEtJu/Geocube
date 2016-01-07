@@ -208,7 +208,9 @@
 - (void)performUpgrade_3_4
 {
     NSArray *a = @[
-    @"insert into log_types(logtype, icon) values('Moved', 417);"
+    @"insert into log_types(logtype, icon) values('Moved', 417)",
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Virtual', 114, 17)",
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Traditional', 112, 16)",
     ];
     [self performUpgrade_X_Y:a];
 }
