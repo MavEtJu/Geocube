@@ -21,7 +21,7 @@
 
 @interface dbLog : dbObject
 
-@property (nonatomic) NSId gc_id;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic) NSId waypoint_id;
 @property (nonatomic, retain) dbWaypoint *waypoint;
 @property (nonatomic) NSId logtype_id;
@@ -42,7 +42,7 @@
 - (instancetype)init:(NSId)__id gc_id:(NSId)gc_id waypoint_id:(NSId)wp_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged;
 - (instancetype)init:(NSId)gc_id;
 
-+ (NSId)dbGetIdByGC:(NSId)gc_id account:(dbAccount *)account;
++ (NSId)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;
 + (NSMutableDictionary *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;

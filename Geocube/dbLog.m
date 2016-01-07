@@ -23,7 +23,7 @@
 
 @interface dbLog ()
 {
-    NSId gc_id;
+    NSInteger gc_id;
     NSId waypoint_id;
     dbWaypoint *waypoint;
     NSId logtype_id;
@@ -107,7 +107,7 @@
 }
 
 
-+ (NSId)dbGetIdByGC:(NSId)_gc_id account:(dbAccount *)account
++ (NSId)dbGetIdByGC:(NSInteger)_gc_id account:(dbAccount *)account
 {
     NSId _id = 0;
 
