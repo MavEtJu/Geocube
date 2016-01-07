@@ -263,4 +263,24 @@
     return json;
 }
 
+- (NSDictionary *)logs_cache:(NSString *)wpname
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/logs/cache/%@.json", wpname];
+
+    NSArray *lines = [self loadPage:urlString];
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    return json;
+
+}
+
 @end
