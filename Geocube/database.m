@@ -208,7 +208,7 @@
 - (void)performUpgrade_3_4
 {
     NSArray *a = @[
-    @"insert into log_types(logtype, icon) values('Moved', 418);"
+    @"insert into log_types(logtype, icon) values('Moved', 417);"
     ];
     [self performUpgrade_X_Y:a];
 }

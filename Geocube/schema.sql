@@ -549,7 +549,7 @@ insert into log_types(logtype, icon) values("Attended", 414);
 insert into log_types(logtype, icon) values("Will Attend", 415);
 insert into log_types(logtype, icon) values("Unknown", 416);
 insert into log_types(logtype, icon) values("Comment", 413);
-insert into log_types(logtype, icon) values("Moved", 418);
+insert into log_types(logtype, icon) values("Moved", 417);
 
 create table logs (
     id integer primary key,
