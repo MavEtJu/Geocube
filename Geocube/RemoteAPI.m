@@ -399,9 +399,10 @@
         [i parseAfter_cache];
 
         [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSId wpId = [dbWaypoint dbGetByName:wpname];
-            dbWaypoint *wp = [dbWaypoint dbGet:wpId];
-            [self updateWaypoint:wp];
+            NSDictionary *json = [gca logs_cache:wpname];
+            [i parseBefore_logs];
+            [i parseData_logs:json];
+            [i parseAfter_logs];
         }];
 
         [waypointManager needsRefresh];
