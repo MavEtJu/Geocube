@@ -36,6 +36,6 @@
 - (NSDictionary *)GetCacheIdsFavoritedByUser;
 - (NSDictionary *)GetGeocacheDataTypes;
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-- (NSDictionary *)SearchForGeocaches:(NSString *)wpname;
+- (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname;
 
 @end

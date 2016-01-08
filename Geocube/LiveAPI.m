@@ -282,7 +282,7 @@
     return [log_id integerValue];
 }
 
-- (NSDictionary *)SearchForGeocaches:(NSString *)wpname
+- (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname
 {
     NSLog(@"SearchForGeocaches");
 

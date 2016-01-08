@@ -330,7 +330,7 @@
     dbGroup *g = dbc.Group_LiveImport;
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs SearchForGeocaches:waypoint.wpt_name];
+        NSDictionary *json = [gs SearchForGeocaches_waypointname:waypoint.wpt_name];
         /*
         NSString *s = [NSString stringWithFormat:@"%@/a.json", [MyTools DataDistributionDirectory]];
         NSData *data = [NSData dataWithContentsOfFile:s];
