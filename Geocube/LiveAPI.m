@@ -284,7 +284,7 @@
 
 - (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname
 {
-    NSLog(@"SearchForGeocaches");
+    NSLog(@"SearchForGeocaches_waypointname");
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
 
@@ -296,17 +296,29 @@
      *          "GC3NZDM"
      *      ]
      *      },
-     *      "GeocacheLogCount": 20,
-     *      "IsLite": false,
-     *      "MaxPerPage": 20,
-     *      "TrackableLogCount": 1
-     *  }
+     *  "GeocacheLogCount": 20,
+     *  "IsLite": false,
+     *  "MaxPerPage": 20,
+     *  "TrackableLogCount": 1
+     * }
      */
-    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":{\"CacheCodes\":[\"%@\"]},\"GeocacheLogCount\":20,\"IsLite\":false,\"MaxPerPage\":20,\"TrackableLogCount\":1}", remoteAPI.oabb.token, wpname];
-    urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
+
+    NSArray *cachecode = @[wpname];
+    NSDictionary *cachecodes = [NSDictionary dictionaryWithObject:cachecode forKey:@"CacheCodes"];
+    [_dict setValue:cachecodes forKey:@"CacheCode"];
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
 
     NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
+    error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
