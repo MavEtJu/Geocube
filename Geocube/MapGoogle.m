@@ -206,6 +206,12 @@
     lineHistory.map = nil;
 }
 
+- (CLLocationCoordinate2D)currentCenter
+{
+    CGPoint point = mapView.center;
+    return [mapView.projection coordinateForPoint:point];
+}
+
 #pragma mark -- delegation from the map
 
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture

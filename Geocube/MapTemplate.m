@@ -49,6 +49,7 @@ NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 NEEDS_OVERLOADING(removeHistory)
 NEEDS_OVERLOADING(addHistory)
+- (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
 
 - (instancetype)init:(MapViewController *)mvc
 {

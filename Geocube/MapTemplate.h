@@ -57,6 +57,8 @@
 - (void)removeHistory;
 - (void)addHistory;
 
+- (CLLocationCoordinate2D)currentCenter;
+
 // User related actions
 - (void)openWaypointView:(NSString *)name;
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin;

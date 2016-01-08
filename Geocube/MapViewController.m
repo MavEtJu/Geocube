@@ -637,7 +637,7 @@ enum {
 {
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
-        [account.remoteAPI loadWaypoints:meLocation];
+        [account.remoteAPI loadWaypoints:[map currentCenter]];
     }];
     [MyTools playSound:playSoundImportComplete];
 }
