@@ -331,13 +331,6 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs SearchForGeocaches_waypointname:waypoint.wpt_name];
-        /*
-        NSString *s = [NSString stringWithFormat:@"%@/a.json", [MyTools DataDistributionDirectory]];
-        NSData *data = [NSData dataWithContentsOfFile:s];
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-         */
-
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
         [imp parseBefore];
         [imp parseDictionary:json];
