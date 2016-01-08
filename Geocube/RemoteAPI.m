@@ -405,9 +405,11 @@
             [i parseAfter_logs];
         }];
 
+        [dbWaypoint dbUpdateLogStatus];
         [waypointManager needsRefresh];
         return YES;
     }
+
 
     return NO;
 }
