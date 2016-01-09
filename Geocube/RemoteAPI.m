@@ -385,8 +385,6 @@
 {
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca caches_gca:center];
-        return YES;
-
         ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
         [i parseBefore_cache];
         [i parseData_cache:json];
