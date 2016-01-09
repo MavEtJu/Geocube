@@ -385,6 +385,7 @@
 {
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca caches_gca:center];
+        return YES;
 
         ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
         [i parseBefore_cache];
@@ -397,6 +398,28 @@
             [i parseData_logs:json];
             [i parseAfter_logs];
         }];
+
+        [dbWaypoint dbUpdateLogStatus];
+        [waypointManager needsRefresh];
+        return YES;
+    }
+
+    if (account.protocol == ProtocolLiveAPI) {
+        NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
+
+        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
+        NSInteger done = 0;
+        if (total != 0) {
+            do {
+                ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:dbc.Group_LiveImport account:account];
+                [imp parseBefore];
+                [imp parseDictionary:json];
+                [imp parseAfter];
+
+                done += 20;
+                json = [gs GetMoreGeocaches:done];
+            } while (done < total);
+        }
 
         [dbWaypoint dbUpdateLogStatus];
         [waypointManager needsRefresh];

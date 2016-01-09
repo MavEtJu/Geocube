@@ -313,6 +313,108 @@
     NSArray *cachecode = @[wpname];
     NSDictionary *cachecodes = [NSDictionary dictionaryWithObject:cachecode forKey:@"CacheCodes"];
     [_dict setValue:cachecodes forKey:@"CacheCode"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
+
+- (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center
+{
+    NSLog(@"SearchForGeocaches_pointradius");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
+
+    /*
+     * {
+     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
+     *  "PointRadius":{
+     *      DistanceInMeters":9223372036854775807,
+     *      Point":{
+     *          Latitude":1.26743233E+15,
+     *          Longitude":1.26743233E+15
+     *      },
+     *  },
+     *  "GeocacheLogCount": 20,
+     *  "IsLite": false,
+     *  "MaxPerPage": 20,
+     *  "TrackableLogCount": 1
+     * }
+     */
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
+
+    NSDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:20];
+    [dd setValue:[NSNumber numberWithFloat:5000] forKey:@"DistanceInMeters"];
+
+    NSDictionary *p = [NSMutableDictionary dictionaryWithCapacity:20];
+    [p setValue:[NSNumber numberWithFloat:center.latitude] forKey:@"Latitude"];
+    [p setValue:[NSNumber numberWithFloat:center.longitude] forKey:@"Longitude"];
+    [dd setValue:p forKey:@"Point"];
+    [_dict setValue:dd forKey:@"PointRadius"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return json;
+}
+
+- (NSDictionary *)GetMoreGeocaches:(NSInteger)offset
+{
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
+
+    /*
+     * {
+     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
+     *  "GeocacheLogCount": 20,
+     *  "IsLite": false,
+     *  "MaxPerPage": 20,
+     *  "TrackableLogCount": 1
+     *  "StartIndex":2147483647,
+     * }
+     */
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
+    [_dict setValue:[NSNumber numberWithInteger:offset] forKey:@"StartIndex"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsSummaryOnly"];
+
     NSError *error = nil;
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
