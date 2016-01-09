@@ -128,7 +128,9 @@
     wp.gs_long_desc_html = [[dict objectForKey:@"LongDescriptionIsHtml"] boolValue];
     wp.gs_short_desc = [dict objectForKey:@"ShortDescription"];
     wp.gs_long_desc = [dict objectForKey:@"LongDescription"];
-    wp.gs_hint = [dict objectForKey:@"EncodedHints"];
+    wp.gs_hint = [dict objectForKey:@"EncoodedHints"];
+    if ([wp.gs_hint isKindOfClass:[NSNull class]] == TRUE)
+        wp.gs_hint = @"";
 
     wp.gs_placed_by = [dict objectForKey:@"PlacedBy"];
 
