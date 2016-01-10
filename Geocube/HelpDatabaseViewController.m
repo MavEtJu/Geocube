@@ -136,20 +136,24 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-        return @"Database count";
-    if (section == 1)
-        return @"Configuration";
+    switch (section) {
+        case 0:
+            return @"Database count";
+        case 1:
+            return @"Configuration";
+    }
     return nil;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return [fields1 count];
-    if (section == 1)
-        return [config count];
+    switch (section) {
+        case 0:
+            return [fields1 count];
+        case 1:
+            return [config count];
+    }
     return 0;
 }
 
