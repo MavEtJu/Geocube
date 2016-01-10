@@ -302,6 +302,7 @@
 		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; };
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
+		E8DD39531C40AFB500407705 /* MapCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DD39521C40AFB500407705 /* MapCache.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E88D911BF06D9500E90F8D /* LocationManager.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
@@ -827,6 +828,8 @@
 		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
+		E8DD39511C40AFB500407705 /* MapCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCache.h; sourceTree = "<group>"; };
+		E8DD39521C40AFB500407705 /* MapCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCache.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
 		E8E88D901BF06D9500E90F8D /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -1180,6 +1183,8 @@
 				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
 				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
 				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
+				E8DD39511C40AFB500407705 /* MapCache.h */,
+				E8DD39521C40AFB500407705 /* MapCache.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
 			);
@@ -2458,6 +2463,7 @@
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
+				E8DD39531C40AFB500407705 /* MapCache.m in Sources */,
 				E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */,
 				E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,

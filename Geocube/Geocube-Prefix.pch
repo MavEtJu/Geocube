@@ -208,6 +208,7 @@
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"
+#import "MapCache.h"
 #import "MapOSM.h"
 #import "MapViewController.h"
 
