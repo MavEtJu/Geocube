@@ -43,6 +43,31 @@
     return p;
 }
 
++ (void)cleanupCache
+{
+    NSString *prefix = [MapCache createPrefix:@""];
+    NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:prefix];
+    NSString *filename;
+    NSError *error;
+    time_t now = time(NULL);
+    NSTimeInterval maxtime = myConfig.mapcacheMaxAge * 86400;
+
+    /* Clean up objects older than N days */
+    NSInteger checked = 0, deleted = 0;
+    while ((filename = [dirEnum nextObject]) != nil) {
+        NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
+        NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
+        NSDate *date = [dict objectForKey:@"NSFileCreationDate"];
+        if ([date timeIntervalSince1970] - now > maxtime) {
+            NSLog(@"%@ - Removing %@", [self class], filename);
+            [fm removeItemAtPath:fullfilename error:&error];
+            deleted++;
+        }
+        checked++;
+    }
+    NSLog(@"%@ - Checked %ld tiles, deleted %ld tiles", [self class], checked, deleted);
+}
+
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)_prefix
 {
     self = [super initWithURLTemplate:template];
@@ -65,6 +90,13 @@
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
     NSString *cachefile = [NSString stringWithFormat:@"%@/tile_%ld_%ld_%ld", prefix, (long)path.z, (long)path.y, (long)path.x];
+
+    if (myConfig.mapcacheEnable == NO) {
+        [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
+            result(tileData, error);
+        }];
+        return;
+    }
 
     if ([fm fileExistsAtPath:cachefile] == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {

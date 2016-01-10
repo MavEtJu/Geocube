@@ -69,6 +69,9 @@
     // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
 
+    // Clean the map cache - after myconfig
+    [MapCache cleanupCache];
+
     // Auto rotate the kept tracks
     [KeepTrackTracks trackAutoRotate];
 
