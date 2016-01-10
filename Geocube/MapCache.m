@@ -52,23 +52,21 @@
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
     NSString *cachefile = [NSString stringWithFormat:@"%@/tile_%ld_%ld_%ld", prefix, (long)path.z, (long)path.y, (long)path.x];
-    __block NSData *d;
-    __block NSError *e = nil;
 
     if ([fm fileExistsAtPath:cachefile] == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
-            [tileData writeToFile:cachefile atomically:NO];
-            d = [NSData dataWithData:tileData];
-            e = error;
-            NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+            if (error == nil) {
+                [tileData writeToFile:cachefile atomically:NO];
+                NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+            }
             result(tileData, error);
         }];
         return;
     }
 
-    d = [NSData dataWithContentsOfFile:cachefile];
+    __block NSData *d = [NSData dataWithContentsOfFile:cachefile];
     NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
-    result(d, e);
+    result(d, nil);
 }
 
 @end
