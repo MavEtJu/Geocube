@@ -49,6 +49,12 @@
     NSMutableArray *distancesWalking;
     NSMutableArray *distancesCycling;
     NSMutableArray *distancesDriving;
+
+    UISwitch *mapcacheEnable;
+    NSInteger mapcacheMaxAge;
+    NSInteger mapcacheMaxSize;
+    NSArray *mapcacheMaxAgeValues;
+    NSArray *mapcacheMaxSizeValues;
 }
 
 @end
@@ -79,6 +85,28 @@ enum {
     externalMapTypes = @[@"Google Maps", @"Apple Maps"];
 
     [self calculateDynamicmapSpeedsDistances];
+    [self calculateMapcache];
+}
+
+- (void)calculateMapcache
+{
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    for (NSInteger i = 0; i < 7; i++) {
+        [as addObject:[NSString stringWithFormat:@"%ld day%@", i, i == 1 ? @"" : @"s"]];
+    }
+    for (NSInteger i = 7; i < 8 * 7; i += 7) {
+        [as addObject:[NSString stringWithFormat:@"%ld days (%ld week%@)", i, i / 7, (i / 7) == 1 ? @"" : @"s"]];
+    }
+    for (NSInteger i = 30; i < 13 * 30; i += 30) {
+        [as addObject:[NSString stringWithFormat:@"%ld days (%ld month%@)", i, i / 30, (i / 30) == 1 ? @"" : @"s"]];
+    }
+    mapcacheMaxAgeValues = [NSArray arrayWithArray:as];
+
+    as = [NSMutableArray arrayWithCapacity:20];
+    for (NSInteger i = 0; i < 40; i++) {
+        [as addObject:[NSString stringWithFormat:@"%ld Mb", i * 25]];
+    }
+    mapcacheMaxSizeValues = [NSArray arrayWithArray:as];
 }
 
 - (void)calculateDynamicmapSpeedsDistances
@@ -158,6 +186,7 @@ enum sections {
     SECTION_SOUNDS,
     SECTION_MAPCOLOURS,
     SECTION_MAPS,
+    SECTION_MAPCACHE,
     SECTION_DYNAMICMAP,
     SECTION_KEEPTRACK,
     SECTION_MAX,
@@ -183,6 +212,11 @@ enum sections {
 
     SECTION_APPS_EXTERNALMAP = 0,
     SECTION_APPS_MAX,
+
+    SECTION_MAPCACHE_ENABLED = 0,
+    SECTION_MAPCACHE_MAXAGE,
+    SECTION_MAPCACHE_MAXSIZE,
+    SECTION_MAPCACHE_MAX,
 
     SECTION_DYNAMICMAP_ENABLED = 0,
     SECTION_DYNAMICMAP_SPEED_WALKING,
@@ -222,6 +256,8 @@ enum sections {
             return SECTION_MAPCOLOURS_MAX;
         case SECTION_KEEPTRACK:
             return SECTION_KEEPTRACK_MAX;
+        case SECTION_MAPCACHE:
+            return SECTION_MAPCACHE_MAX;
     }
 
     return 0;
@@ -247,6 +283,8 @@ enum sections {
             return @"Dynamic Maps";
         case SECTION_KEEPTRACK:
             return @"Keep track";
+        case SECTION_MAPCACHE:
+            return @"Map cache";
     }
 
     return nil;
@@ -476,6 +514,7 @@ enum sections {
             }
             break;
         }
+
         case SECTION_KEEPTRACK: {
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
@@ -494,9 +533,54 @@ enum sections {
             }
             break;
         }
+
+        case SECTION_MAPCACHE: {
+            switch (indexPath.row) {
+                case SECTION_MAPCACHE_ENABLED: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
+                    cell.textLabel.text = @"Enable map cache";
+
+                    mapcacheEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    mapcacheEnable.on = myConfig.mapcacheEnable;
+                    [mapcacheEnable addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = mapcacheEnable;
+
+                    return cell;
+                }
+                case SECTION_MAPCACHE_MAXAGE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Maximum age for objects in cache";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", myConfig.mapcacheMaxAge];
+
+                    return cell;
+                }
+                case SECTION_MAPCACHE_MAXSIZE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    cell.textLabel.text = @"Maximum size for the cache";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", myConfig.mapcacheMaxSize];
+
+                    return cell;
+                }
+            }
+            break;
+        }
     }
 
     return nil;
+}
+
+- (void)updateMapcacheEnable:(UISwitch *)s
+{
+    [myConfig mapcacheEnableUpdate:s.on];
 }
 
 - (void)updateDynamicmapEnable:(UISwitch *)s
@@ -538,24 +622,24 @@ enum sections {
         case SECTION_THEME:
             switch (indexPath.row) {
                 case SECTION_THEME_THEME:
-                    [self updateThemeTheme];
+                    [self changeThemeTheme];
                     break;
                 case SECTION_THEME_COMPASS:
-                    [self updateThemeCompass];
+                    [self changeThemeCompass];
                     break;
             }
             return;
         case SECTION_APPS:
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP:
-                    [self updateAppsExternalMap];
+                    [self changeAppsExternalMap];
                     break;
             }
             return;
         case SECTION_MAPS:
             switch (indexPath.row) {
                 case SECTION_MAPS_ZOOMLEVEL:
-                    [self updateMapZoomLevel];
+                    [self changeMapZoomLevel];
                     break;
             }
             return;
@@ -564,12 +648,12 @@ enum sections {
                 case SECTION_DYNAMICMAP_SPEED_WALKING:
                 case SECTION_DYNAMICMAP_SPEED_CYCLING:
                 case SECTION_DYNAMICMAP_SPEED_DRIVING:
-                    [self updateDynamicmapSpeed:indexPath.row];
+                    [self changeDynamicmapSpeed:indexPath.row];
                     break;
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING:
                 case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
-                    [self updateDynamicmapDistance:indexPath.row];
+                    [self changeDynamicmapDistance:indexPath.row];
                     break;
             }
             return;
@@ -589,10 +673,23 @@ enum sections {
                 }
             }
             return;
+
+        case SECTION_MAPCACHE:
+            switch (indexPath.row) {
+                case SECTION_MAPCACHE_MAXAGE:
+                    [self changeMapCacheMaxAge];
+                    break;
+                case SECTION_MAPCACHE_MAXSIZE:
+                    [self changeMapCacheMaxSize];
+                    break;
+            }
+            return;
     }
 }
 
-- (void)updateDynamicmapSpeed:(NSInteger)row
+/* ********************************************************************************* */
+
+- (void)changeDynamicmapSpeed:(NSInteger)row
 {
     NSArray *speeds = nil;
     NSString *title = nil;
@@ -655,7 +752,7 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateDynamicmapDistance:(NSInteger)row
+- (void)changeDynamicmapDistance:(NSInteger)row
 {
     NSArray *distances = nil;
     NSString *title = nil;
@@ -718,8 +815,62 @@ enum sections {
     [self.tableView reloadData];
 }
 
+/* ********************************************************************************* */
 
-- (void)updateThemeTheme
+- (void)updateMapcacheMaxAge:(NSNumber *)selectedIndex element:(NSString *)element
+{
+    [myConfig mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)changeMapCacheMaxAge
+{
+    __block NSInteger currentChoice = 14;   // 30 days
+    [mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([s integerValue] == myConfig.mapcacheMaxAge) {
+            currentChoice = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Maximum age for objects in the map cache"
+                                            rows:mapcacheMaxAgeValues
+                                initialSelection:currentChoice
+                                          target:self
+                                   successAction:@selector(updateMapcacheMaxAge:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapcacheMaxSize:(NSNumber *)selectedIndex element:(NSString *)element
+{
+    [myConfig mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)changeMapCacheMaxSize
+{    __block NSInteger currentChoice = 10;   // 250 Mb
+    [mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([s integerValue] == myConfig.mapcacheMaxSize) {
+            currentChoice = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Maximum size for the map cache"
+                                            rows:mapcacheMaxSizeValues
+                                initialSelection:currentChoice
+                                          target:self
+                                   successAction:@selector(updateMapcacheMaxSize:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeThemeTheme
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select theme"
                                             rows:[themeManager themeNames]
@@ -731,7 +882,17 @@ enum sections {
      ];
 }
 
-- (void)updateThemeCompass
+- (void)updateThemeThemeSuccess:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger i = [selectedIndex intValue];
+    [myConfig themeTypeUpdate:i];
+    [self.tableView reloadData];
+
+    [themeManager setTheme:i];
+    [self.tableView reloadData];
+}
+
+- (void)changeThemeCompass
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select Compass"
                                             rows:compassTypes
@@ -743,7 +904,16 @@ enum sections {
      ];
 }
 
-- (void)updateMapZoomLevel
+- (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger i = [selectedIndex intValue];
+    [myConfig compassTypeUpdate:i];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeMapZoomLevel
 {
     NSMutableArray *zoomLevels = [NSMutableArray arrayWithCapacity:2 * 19];
     for (float f = 0; f < 19.2; f += 0.5) {
@@ -759,13 +929,6 @@ enum sections {
      ];
 }
 
-- (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger i = [selectedIndex intValue];
-    [myConfig compassTypeUpdate:i];
-    [self.tableView reloadData];
-}
-
 - (void)updateMapZoomLevelSuccess:(NSNumber *)selectedIndex element:(id)element
 {
     float f = [selectedIndex floatValue] / 2.0;
@@ -773,17 +936,9 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateThemeThemeSuccess:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger i = [selectedIndex intValue];
-    [myConfig themeTypeUpdate:i];
-    [self.tableView reloadData];
+/* ********************************************************************************* */
 
-    [themeManager setTheme:i];
-    [self.tableView reloadData];
-}
-
-- (void)updateAppsExternalMap
+- (void)changeAppsExternalMap
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
                                             rows:externalMapTypes

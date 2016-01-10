@@ -63,6 +63,10 @@
     NSInteger dynamicmapCyclingDistance;
     NSInteger dynamicmapDrivingSpeed;
     NSInteger dynamicmapDrivingDistance;
+
+    BOOL mapcacheEnable;
+    NSInteger mapcacheMaxSize;
+    NSInteger mapcacheMaxAge;
 }
 
 @end
@@ -76,6 +80,7 @@
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
+@synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
 
 - (instancetype)init
 {
@@ -165,6 +170,10 @@
     CHECK(@"dynamicmap_distance_walking", @"100");
     CHECK(@"dynamicmap_distance_cycling", @"1000");
     CHECK(@"dynamicmap_distance_driving", @"5000");
+
+    CHECK(@"mapcache_enable", @"1");
+    CHECK(@"mapcache_maxsize", @"250");
+    CHECK(@"mapcache_maxage", @"30");
 }
 
 - (void)loadValues
@@ -195,6 +204,9 @@
     dynamicmapWalkingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_walking"].value integerValue];
     dynamicmapCyclingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_cycling"].value integerValue];
     dynamicmapDrivingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_driving"].value integerValue];
+    mapcacheEnable = [[dbConfig dbGetByKey:@"mapcache_enable"].value boolValue];
+    mapcacheMaxAge = [[dbConfig dbGetByKey:@"mapcache_maxage"].value integerValue];
+    mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -396,4 +408,19 @@
     [self NSIntegerUpdate:@"dynamicmap_distance_driving" value:value];
 }
 
+- (void)mapcacheEnableUpdate:(BOOL)value
+{
+    mapcacheEnable = value;
+    [self BOOLUpdate:@"mapcache_enable" value:value];
+}
+- (void)mapcacheMaxSizeUpdate:(NSInteger)value
+{
+    mapcacheMaxSize = value;
+    [self NSIntegerUpdate:@"mapcache_maxsize" value:value];
+}
+- (void)mapcacheMaxAgeUpdate:(NSInteger)value
+{
+    mapcacheMaxAge = value;
+    [self NSIntegerUpdate:@"mapcache_maxage" value:value];
+}
 @end
