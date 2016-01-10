@@ -94,7 +94,7 @@ enum {
     for (NSInteger i = 0; i < 7; i++) {
         [as addObject:[NSString stringWithFormat:@"%ld day%@", i, i == 1 ? @"" : @"s"]];
     }
-    for (NSInteger i = 7; i < 8 * 7; i += 7) {
+    for (NSInteger i = 7; i < 9 * 7; i += 7) {
         [as addObject:[NSString stringWithFormat:@"%ld days (%ld week%@)", i, i / 7, (i / 7) == 1 ? @"" : @"s"]];
     }
     for (NSInteger i = 30; i < 13 * 30; i += 30) {
