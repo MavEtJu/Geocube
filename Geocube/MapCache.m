@@ -25,20 +25,33 @@
 {
     NSString *shortprefix;
     NSString *prefix;
+
+    NSInteger hits, misses, saves;
 }
 
 @end
 
 @implementation MapCache
 
+@synthesize hits, misses, saves;
+
++ (NSString *)createPrefix:(NSString *)_prefix;
+{
+    NSString *p = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
+    if ([fm fileExistsAtPath:p] == NO)
+        [fm createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
+    return p;
+}
+
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)_prefix
 {
     self = [super initWithURLTemplate:template];
 
     shortprefix = _prefix;
-    prefix = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
-    if ([fm fileExistsAtPath:prefix] == NO)
-        [fm createDirectoryAtPath:prefix withIntermediateDirectories:YES attributes:nil error:nil];
+    prefix = [MapCache createPrefix:_prefix];
+    hits = 0;
+    misses = 0;
+    saves = 0;
 
     return self;
 }
@@ -58,7 +71,9 @@
             if (error == nil) {
                 [tileData writeToFile:cachefile atomically:NO];
                 NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+                saves++;
             }
+            misses++;
             result(tileData, error);
         }];
         return;
@@ -66,6 +81,7 @@
 
     __block NSData *d = [NSData dataWithContentsOfFile:cachefile];
     NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+    hits++;
     result(d, nil);
 }
 
