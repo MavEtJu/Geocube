@@ -90,12 +90,14 @@
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
     NSLog(@"LocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
+
     if (isNavigating == YES)
         _LM.desiredAccuracy = kCLLocationAccuracyBest;
     else
         _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
+
     if (_delegate != nil) {
         [delegates addObject:_delegate];
         [_delegate updateLocationManagerLocation];
