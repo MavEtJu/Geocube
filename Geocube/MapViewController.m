@@ -76,6 +76,9 @@ enum {
     self = [super init];
 
     showBrand = myConfig.mapBrand;
+    if (showBrand == MAPBRAND_GOOGLEMAPS && (myConfig.keyGMS ==nil || [myConfig.keyGMS isEqualToString:@""] == YES))
+        showBrand = MAPBRAND_APPLEMAPS;
+
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             map = [[MapGoogle alloc] init:self];
@@ -134,6 +137,9 @@ enum {
     } else {
         [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
     }
+
+    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+        [lmi disableItem:menuMapGoogle];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONECACHE) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
@@ -565,6 +571,9 @@ enum {
     }
     showBrand = brand;
     [myConfig mapBrandUpdate:brand];
+
+    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+        [lmi disableItem:menuMapGoogle];
 
     [self refreshMenu];
 

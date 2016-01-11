@@ -31,6 +31,7 @@
 {
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
+    // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
     MKTileOverlay *overlay = [[MapCache alloc] initWithURLTemplate:template prefix:@"OSM"];
     overlay.canReplaceMapContent = YES;
     [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];

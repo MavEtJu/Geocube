@@ -30,6 +30,8 @@
 
     dbAccount *account;
 
+    NSString *key;
+
     NSString *site;
     NSMutableString *currentText;
 }
@@ -47,6 +49,8 @@
 
     site = nil;
     account = nil;
+
+    key = nil;
 
     return self;
 }
@@ -77,6 +81,47 @@
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
+
+    if ([elementName isEqualToString:@"config"] == YES) {
+        version = [attributeDict objectForKey:@"version"];
+        revision = [attributeDict objectForKey:@"revision"];
+
+        dbConfig *currevision = [dbConfig dbGetByKey:@"config_revision"];
+        if (currevision == nil) {
+            currevision = [[dbConfig alloc] init];
+            currevision.key = @"config_revision";
+            currevision.value = @"0";
+            [currevision dbCreate];
+        }
+
+        // Just store it.
+        if ([currevision.value isEqualToString:revision] == NO) {
+            currevision.value = revision;
+            [currevision dbUpdate];
+        }
+        return;
+    }
+
+    if ([elementName isEqualToString:@"keys"] == YES) {
+        version = [attributeDict objectForKey:@"version"];
+        revision = [attributeDict objectForKey:@"revision"];
+
+        dbConfig *currevision = [dbConfig dbGetByKey:@"keys_revision"];
+        if (currevision == nil) {
+            currevision = [[dbConfig alloc] init];
+            currevision.key = @"keys_revision";
+            currevision.value = @"0";
+            [currevision dbCreate];
+        }
+
+        // Just store it.
+        if ([currevision.value isEqualToString:revision] == NO) {
+            currevision.value = revision;
+            [currevision dbUpdate];
+        }
+        return;
+    }
+
     if ([elementName isEqualToString:@"sites"] == YES) {
         version = [attributeDict objectForKey:@"version"];
         revision = [attributeDict objectForKey:@"revision"];
@@ -107,6 +152,11 @@
         account.geocube_id = [site_id integerValue];
         account.revision = [site_revision integerValue];
         account.site = site;
+        return;
+    }
+
+    if ([elementName isEqualToString:@"key"] == YES) {
+        site = [attributeDict objectForKey:@"site"];
         return;
     }
 }
@@ -165,6 +215,19 @@
         if ([protocol isEqualToString:@"LiveAPI"] == YES)
             account.protocol = ProtocolLiveAPI;
 
+        goto bye;
+    }
+
+    if ([elementName isEqualToString:@"key"] == YES) {
+        NSString *k = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([site isEqualToString:@"googlemaps"] == YES) {
+            [myConfig keyGMSUpdate:k];
+            goto bye;
+        }
+        if ([site isEqualToString:@"mapbox"] == YES) {
+            [myConfig keyMapboxUpdate:k];
+            goto bye;
+        }
         goto bye;
     }
 

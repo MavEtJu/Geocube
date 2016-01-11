@@ -27,8 +27,7 @@
 
 @interface MyConfig : NSObject
 
-@property (nonatomic, readonly) BOOL distanceMetric;
-
+// System settings
 @property (nonatomic, readonly, retain) NSString *currentWaypoint;
 @property (nonatomic, readonly) NSInteger currentPage;
 @property (nonatomic, readonly) NSInteger currentPageTab;
@@ -38,6 +37,12 @@
 @property (nonatomic, readonly) NSInteger lastImportSource;
 @property (nonatomic, readonly) NSInteger lastImportGroup;
 @property (nonatomic, readonly) NSInteger lastAddedGroup;
+
+@property (nonatomic, readonly) NSString *keyGMS;
+@property (nonatomic, readonly) NSString *keyMapbox;
+
+// User settings
+@property (nonatomic, readonly) BOOL distanceMetric;
 
 @property (nonatomic, readonly) NSInteger mapExternal;
 @property (nonatomic, readonly) NSInteger mapBrand;
@@ -72,6 +77,9 @@
 
 - (void)addDelegate:(id)destination;
 - (void)deleteDelegate:(id)destination;
+
+- (void)keyGMSUpdate:(NSString *)value;
+- (void)keyMapboxUpdate:(NSString *)value;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;

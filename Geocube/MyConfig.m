@@ -27,6 +27,9 @@
 
     BOOL distanceMetric;
 
+    NSString *keyGMS;
+    NSString *keyMapbox;
+
     NSString *currentWaypoint;
     NSInteger currentPage;
     NSInteger currentPageTab;
@@ -73,6 +76,7 @@
 
 @implementation MyConfig
 
+@synthesize keyGMS, keyMapbox;
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType;
@@ -151,15 +155,23 @@
     CHECK(@"lastimport_group", @"0");
     CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
+
+    CHECK(@"key_gms", @"");
+    CHECK(@"key_mapbox", @"");
+
     CHECK(@"map_external", @"0");
     CHECK(@"map_brand", @"0");
     CHECK(@"map_track_colour", @"00F0F0");
     CHECK(@"map_destination_colour", @"FF0000");
+
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
+
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
+
     CHECK(@"keeptrack_autorotate", @"1");
+
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
 
@@ -207,6 +219,8 @@
     mapcacheEnable = [[dbConfig dbGetByKey:@"mapcache_enable"].value boolValue];
     mapcacheMaxAge = [[dbConfig dbGetByKey:@"mapcache_maxage"].value integerValue];
     mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
+    keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
+    keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -423,4 +437,16 @@
     mapcacheMaxAge = value;
     [self NSIntegerUpdate:@"mapcache_maxage" value:value];
 }
+
+- (void)keyGMSUpdate:(NSString *)value
+{
+    keyGMS = value;
+    [self NSStringUpdate:@"key_gms" value:value];
+}
+- (void)keyMapboxUpdate:(NSString *)value
+{
+    keyMapbox = value;
+    [self NSStringUpdate:@"key_mapbox" value:value];
+}
+
 @end
