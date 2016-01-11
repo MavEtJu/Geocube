@@ -209,8 +209,7 @@
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
-    NSInteger height = self.view.frame.size.height - 50;
-    height = applicationFrame.size.height - 50;
+    NSInteger height = applicationFrame.size.height - 50;
     NSLog(@"height: %ld", (long)height);
 
     UIFont *f = [UIFont systemFontOfSize:14];
