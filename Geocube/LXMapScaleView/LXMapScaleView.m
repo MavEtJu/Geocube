@@ -381,7 +381,10 @@ static const double kFeetPerMile = 5280.0;
 // -----------------------------------------------------------------------------
 - (void)layoutSubviews
 {
-	CGSize maxLabelSize = [maxLabel.text sizeWithFont:maxLabel.font];
+    CGSize size = [maxLabel.text sizeWithAttributes: @{NSFontAttributeName:maxLabel.font}];
+    CGSize maxLabelSize = CGSizeMake(ceilf(size.width), ceilf(size.height));
+	// Original: CGSize maxLabelSize = [maxLabel.text sizeWithFont:maxLabel.font];
+
 	maxLabel.frame = CGRectMake(zeroLabel.frame.size.width/2.0f+1+scaleWidth+1 - (maxLabelSize.width+1)/2.0f,
 								0, 
 								maxLabelSize.width+1,
