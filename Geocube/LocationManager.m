@@ -30,6 +30,8 @@
     CLLocationDirection direction;
     CLLocationCoordinate2D coords;
 
+    BOOL useGPS;
+
     NSMutableArray *coordsHistorical;
     NSDate *lastHistory;
     CLLocationCoordinate2D coordsHistoricalLast;
@@ -40,7 +42,7 @@
 
 @implementation LocationManager
 
-@synthesize altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
+@synthesize useGPS, altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
 
 - (instancetype)init
 {
@@ -65,11 +67,17 @@
         [_LM requestWhenInUseAuthorization];
     }
 
+    useGPS = YES;
+
     return self;
 }
 
 - (void)updateDataDelegate
 {
+    // Disable updates when not needed.
+    if (useGPS == NO)
+        return;
+
     if ([delegates count] == 0)
         return;
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
@@ -179,6 +187,18 @@
     direction = newHeading.trueHeading;
 
     [self updateDataDelegate];
+}
+
+- (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords
+{
+    if (_useGPS == YES) {
+        useGPS = YES;
+        [self updateDataDelegate];
+    } else {
+        coords = newcoords;
+        [self updateDataDelegate];
+        useGPS = NO;
+    }
 }
 
 @end

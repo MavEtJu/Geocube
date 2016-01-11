@@ -37,6 +37,7 @@
     NSInteger showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
     CLLocationCoordinate2D meLocation;
+    BOOL useGPS;
 
     NSInteger waypointCount;
     NSArray *waypointsArray;
@@ -59,6 +60,7 @@ enum {
     menuLoadWaypoints,
     menuDirections,
     menuAutoZoom,
+    menuRecenter,
     menuMax,
     menuFollowMe,
     menuShowBoth,
@@ -137,6 +139,9 @@ enum {
     } else {
         [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
     }
+
+    useGPS = YES;
+    [lmi addItem:menuRecenter label:@"Recenter"];
 
     if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
@@ -364,6 +369,9 @@ enum {
 /* Delegated from GCLocationManager */
 - (void)updateLocationManagerLocation
 {
+    if (useGPS == NO)
+        return;
+
     meLocation = [LM coords];
 
     // Move the map around to match current location
@@ -651,6 +659,24 @@ enum {
     [MyTools playSound:playSoundImportComplete];
 }
 
+- (void)menuRecenter
+{
+    if (useGPS == NO) {
+        [lmi changeItem:menuRecenter label:@"Recenter"];
+        useGPS = YES;
+        [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
+    } else {
+        [lmi changeItem:menuRecenter label:@"Use GPS"];
+        useGPS = NO;
+        [LM useGPS:NO coordinates:[map currentCenter]];
+    }
+    [self refreshMenu];
+
+    meLocation = [map currentCenter];
+    showWhom = SHOW_NEITHER;
+    [waypointManager needsRefresh];
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -697,6 +723,10 @@ enum {
             return;
         case menuMapOSM:
             [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
+            return;
+
+        case menuRecenter:
+            [self menuRecenter];
             return;
     }
 
