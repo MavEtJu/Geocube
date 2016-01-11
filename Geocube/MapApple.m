@@ -368,6 +368,11 @@
     lineHistory= nil;
 }
 
+- (CLLocationCoordinate2D)currentCenter
+{
+    return [mapView centerCoordinate];
+}
+
 #pragma mark -- delegation from the map
 
 // From http://stackoverflow.com/questions/5556977/determine-if-mkmapview-was-dragged-moved moby
