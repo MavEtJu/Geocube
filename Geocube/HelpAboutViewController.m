@@ -195,7 +195,6 @@
 
     NSNumber *n = [heights objectAtIndex:indexPath.row];
     if (n == nil) {
-        NSLog(@"foo: %ld", indexPath.row);
         return 10;
     }
     h = [n floatValue];

@@ -107,7 +107,7 @@
             break;
    }
 
-    NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], checked, totalFileSize / (1024 * 1024), deletedAge, deletedSize);
+    NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], (long)checked, (long)totalFileSize / (1024 * 1024), (long)deletedAge, (long)deletedSize);
 }
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)_prefix
@@ -144,7 +144,7 @@
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             if (error == nil) {
                 [tileData writeToFile:cachefile atomically:NO];
-                NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+                NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
                 saves++;
             }
             misses++;
@@ -154,7 +154,7 @@
     }
 
     __block NSData *d = [NSData dataWithContentsOfFile:cachefile];
-    NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, path.z, path.y, path.x);
+    NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
     hits++;
     result(d, nil);
 }

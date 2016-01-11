@@ -87,7 +87,7 @@
     for (NSInteger i = 0; i < 10; i++) {
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = CGRectMake(100 + i * 20, y, 20, 20);
-        [b setTitle:[NSString stringWithFormat:@"%ld", i] forState:UIControlStateNormal];
+        [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:b];
         value[i] = b;
@@ -164,7 +164,7 @@
     NSString *new = nil;
     for (NSInteger i = 0; i < 10; i++) {
         if (value[i] == b) {
-            new = [NSString stringWithFormat:@"%ld", i];
+            new = [NSString stringWithFormat:@"%ld", (long)i];
             break;
         }
     }

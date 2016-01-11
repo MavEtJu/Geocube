@@ -181,7 +181,7 @@
     }];
     NSAssert1(found == NO, @"Menuitem %ld already found!", (long)idx);
 
-    NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, makeMenuMax);
+    NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
     [makeMenuItems setValue:label forKey:key];
 }
 

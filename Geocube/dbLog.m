@@ -23,7 +23,7 @@
 
 @interface dbLog ()
 {
-    NSInteger gc_id;
+    NSInteger gc_id;    // This is an NSInteger, not an NSId
     NSId waypoint_id;
     dbWaypoint *waypoint;
     NSId logtype_id;
@@ -48,7 +48,7 @@
 
 @synthesize gc_id, waypoint, waypoint_id, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
 
-- (instancetype)init:(NSId)_gc_id
+- (instancetype)init:(NSInteger)_gc_id
 {
     self = [super init];
     gc_id = _gc_id;
@@ -56,7 +56,7 @@
     return self;
 }
 
-- (instancetype)init:(NSId)__id gc_id:(NSId)_gc_id waypoint_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)_needstobelogged
+- (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id waypoint_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)_needstobelogged
 {
     self = [super init];
     _id = __id;

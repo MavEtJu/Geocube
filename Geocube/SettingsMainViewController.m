@@ -92,19 +92,19 @@ enum {
 {
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 0; i < 7; i++) {
-        [as addObject:[NSString stringWithFormat:@"%ld day%@", i, i == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld day%@", (long)i, i == 1 ? @"" : @"s"]];
     }
     for (NSInteger i = 7; i < 9 * 7; i += 7) {
-        [as addObject:[NSString stringWithFormat:@"%ld days (%ld week%@)", i, i / 7, (i / 7) == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld days (%ld week%@)", (long)i, (long)i / 7, (i / 7) == 1 ? @"" : @"s"]];
     }
     for (NSInteger i = 30; i < 13 * 30; i += 30) {
-        [as addObject:[NSString stringWithFormat:@"%ld days (%ld month%@)", i, i / 30, (i / 30) == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld days (%ld month%@)", (long)i, (long)i / 30, (i / 30) == 1 ? @"" : @"s"]];
     }
     mapcacheMaxAgeValues = [NSArray arrayWithArray:as];
 
     as = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 0; i < 40; i++) {
-        [as addObject:[NSString stringWithFormat:@"%ld Mb", i * 25]];
+        [as addObject:[NSString stringWithFormat:@"%ld Mb", (long)i * 25]];
     }
     mapcacheMaxSizeValues = [NSArray arrayWithArray:as];
 }
@@ -556,7 +556,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum age for objects in cache";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", myConfig.mapcacheMaxAge];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)myConfig.mapcacheMaxAge];
 
                     return cell;
                 }
@@ -566,7 +566,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum size for the cache";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", myConfig.mapcacheMaxSize];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)myConfig.mapcacheMaxSize];
 
                     return cell;
                 }
