@@ -49,23 +49,65 @@
     NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:prefix];
     NSString *filename;
     NSError *error;
-    time_t now = time(NULL);
+    NSTimeInterval now = time(NULL);
     NSTimeInterval maxtime = myConfig.mapcacheMaxAge * 86400;
+    NSTimeInterval oldest = now;
+    NSInteger totalFileSize = 0;
+    NSInteger filesize;
+    NSInteger checked = 0, deletedAge = 0, deletedSize = 0;;
 
     /* Clean up objects older than N days */
-    NSInteger checked = 0, deleted = 0;
     while ((filename = [dirEnum nextObject]) != nil) {
         NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
         NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
-        NSDate *date = [dict objectForKey:@"NSFileCreationDate"];
+        NSDate *date = [dict objectForKey:NSFileCreationDate];
+
+        if ([[dict objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+            continue;
+
+        checked++;
         if ([date timeIntervalSince1970] - now > maxtime) {
             NSLog(@"%@ - Removing %@", [self class], filename);
             [fm removeItemAtPath:fullfilename error:&error];
-            deleted++;
+            deletedAge++;
+            continue;
         }
-        checked++;
+
+        oldest = MIN([date timeIntervalSince1970], oldest);
+
+        filesize = [[dict objectForKey:NSFileSize] integerValue];
+        totalFileSize += filesize;
     }
-    NSLog(@"%@ - Checked %ld tiles, deleted %ld tiles", [self class], checked, deleted);
+
+    /* Clean up objects if size is more than N */
+    while (totalFileSize > myConfig.mapcacheMaxSize * 1024 * 1024) {
+        NSInteger found = 0;
+        oldest += 86400;
+
+        dirEnum = [fm enumeratorAtPath:prefix];
+        while ((filename = [dirEnum nextObject]) != nil) {
+            NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
+            NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
+
+            if ([[dict objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+                continue;
+
+            found++;
+            if ([[dict objectForKey:NSFileCreationDate ] timeIntervalSince1970] < oldest) {
+                NSLog(@"%@ - Removing %@", [self class], filename);
+                [fm removeItemAtPath:fullfilename error:&error];
+                deletedSize++;
+                totalFileSize -= [[dict objectForKey:@"NSFileSize"] integerValue];
+                continue;
+            }
+        }
+
+        // If there are no files left, stop it.
+        if (found == 0)
+            break;
+   }
+
+    NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], checked, totalFileSize / (1024 * 1024), deletedAge, deletedSize);
 }
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)_prefix
