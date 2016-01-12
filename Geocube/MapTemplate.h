@@ -41,7 +41,7 @@
 - (void)removeMap;
 - (void)setMapType:(NSInteger)maptype;
 
-- (void)initCamera;
+- (void)initCamera:(CLLocationCoordinate2D)coords;
 - (void)removeCamera;
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom;
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;

@@ -73,7 +73,7 @@
     mapScaleView = nil;
 }
 
-- (void)initCamera
+- (void)initCamera:(CLLocationCoordinate2D)coords
 {
 }
 

@@ -88,11 +88,10 @@
     mapScaleView = nil;
 }
 
-- (void)initCamera
+- (void)initCamera:(CLLocationCoordinate2D)coords
 {
     /* Place camera on a view of 1500 x 1500 meters */
-    CLLocationCoordinate2D noLocation = {0, 0};
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 1500, 1500);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coords, 1500, 1500);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
     [mapView setRegion:adjustedRegion animated:NO];
 }

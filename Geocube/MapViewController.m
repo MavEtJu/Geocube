@@ -162,7 +162,7 @@ enum {
 
     [map initMap];
     [map mapViewDidLoad];
-    [map initCamera];
+    [map initCamera:LM.coords];
     [map mapViewDidLoad];
 
     [self initDistanceLabel];
@@ -587,7 +587,7 @@ enum {
 
     [map initMap];
     [map mapViewDidLoad];
-    [map initCamera];
+    [map initCamera:LM.coords];
 
     [self initDistanceLabel];
     [self initMapIcons];

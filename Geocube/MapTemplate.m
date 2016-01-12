@@ -35,7 +35,7 @@ EMPTY_METHOD(mapViewDidAppear)
 EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
 
-NEEDS_OVERLOADING(initCamera)
+NEEDS_OVERLOADING(initCamera:(CLLocationCoordinate2D)coords)
 NEEDS_OVERLOADING(removeCamera)
 NEEDS_OVERLOADING(initMap)
 NEEDS_OVERLOADING(removeMap)
