@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapCache : MKTileOverlay
+@interface MapAppleCache : MKTileOverlay
 
 @property (nonatomic, readonly) NSInteger hits;
 @property (nonatomic, readonly) NSInteger misses;

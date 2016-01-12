@@ -106,7 +106,7 @@
 @class LocationManager;
 @class LogTableViewCell;
 @class MapApple;
-@class MapCache;
+@class MapAppleCache;
 @class MapGoogle;
 @class MapOSM;
 @class MapTemplate;

@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface MapCache ()
+@interface MapAppleCache ()
 {
     NSString *shortprefix;
     NSString *prefix;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation MapCache
+@implementation MapAppleCache
 
 @synthesize hits, misses, saves;
 
@@ -45,7 +45,7 @@
 
 + (void)cleanupCache
 {
-    NSString *prefix = [MapCache createPrefix:@""];
+    NSString *prefix = [MapAppleCache createPrefix:@""];
     NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:prefix];
     NSString *filename;
     NSError *error;
@@ -115,7 +115,7 @@
     self = [super initWithURLTemplate:template];
 
     shortprefix = _prefix;
-    prefix = [MapCache createPrefix:_prefix];
+    prefix = [MapAppleCache createPrefix:_prefix];
     hits = 0;
     misses = 0;
     saves = 0;

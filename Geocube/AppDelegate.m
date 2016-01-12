@@ -69,7 +69,7 @@
     [GMSServices provideAPIKey:myConfig.keyGMS];
 
     // Clean the map cache - after myconfig
-    [MapCache cleanupCache];
+    [MapAppleCache cleanupCache];
 
     // Auto rotate the kept tracks
     [KeepTrackTracks trackAutoRotate];
