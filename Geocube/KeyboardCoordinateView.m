@@ -40,7 +40,7 @@
 
 - (instancetype)initWithIsLatitude:(BOOL)_isLatitude
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 100, 50)];
+    self = [super initWithFrame:CGRectMake(0, 0, 100, 100)];
 
     isLatitude = _isLatitude;
 
@@ -55,74 +55,84 @@
 
     if (isLatitude == YES) {
         dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirNorth.frame = CGRectMake(0, y, 100, 20);
+        dirNorth.frame = CGRectMake(0, y, 100, 40);
         [dirNorth setTitle:@"North" forState:UIControlStateNormal];
         [dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirNorth];
-        y += 24;
+        y += 48;
 
         dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirSouth.frame = CGRectMake(0, y, 100, 20);
+        dirSouth.frame = CGRectMake(0, y, 100, 40);
         [dirSouth setTitle:@"South" forState:UIControlStateNormal];
         [dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirSouth];
-        y += 24;
+        y += 48;
     } else {
         dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirEast.frame = CGRectMake(0, y, 100, 20);
+        dirEast.frame = CGRectMake(0, y, 100, 40);
         [dirEast setTitle:@"East" forState:UIControlStateNormal];
         [dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirEast];
-        y += 24;
+        y += 48;
 
         dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirWest.frame = CGRectMake(0, y, 100, 20);
+        dirWest.frame = CGRectMake(0, y, 100, 40);
         [dirWest setTitle:@"West" forState:UIControlStateNormal];
         [dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirWest];
-        y += 24;
+        y += 48;
     }
 
     y = 3;
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 5; i++) {
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = CGRectMake(100 + i * 20, y, 20, 20);
+        b.frame = CGRectMake(100 + i * 30, y, 20, 40);
+        [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
+        [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:b];
+        value[i] = b;
+    }
+    y += 24;
+
+    for (NSInteger i = 5; i < 10; i++) {
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        b.frame = CGRectMake(100 + (i - 5) * 30, y, 20, 40);
         [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:b];
         value[i] = b;
     }
 
-    NSInteger x = 120;
+    NSInteger x = 100;
     y += 24;
 
     buttonSpace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonSpace.frame = CGRectMake(x, y, 40, 20);
+    buttonSpace.frame = CGRectMake(x, y, 40, 40);
     [buttonSpace setTitle:@"_" forState:UIControlStateNormal];
     [buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonSpace];
-    x += 40;
+    x += 30;
 
     buttonDot = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDot.frame = CGRectMake(x, y, 40, 20);
+    buttonDot.frame = CGRectMake(x, y, 40, 40);
     [buttonDot setTitle:@"." forState:UIControlStateNormal];
     [buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonDot];
-    x += 40;
+    x += 30;
 
     buttonDegree = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDegree.frame = CGRectMake(x, y, 40, 20);
+    buttonDegree.frame = CGRectMake(x, y, 40, 40);
     [buttonDegree setTitle:@"°" forState:UIControlStateNormal];
     [buttonDegree addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonDegree];
-    x += 40;
+    x += 30;
 
     buttonBackspace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonBackspace.frame = CGRectMake(x, y, 40, 20);
+    buttonBackspace.frame = CGRectMake(x, y, 40, 40);
     [buttonBackspace setTitle:@"⌫" forState:UIControlStateNormal];
     [buttonBackspace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonBackspace];
-    x += 40;
+    x += 30;
 
     [self addObservers];
 
@@ -137,17 +147,22 @@
     NSString *new = nil;
 
     if (b == dirNorth)
-        new = @"N";
+        new = @"N ";
     if (b == dirEast)
-        new = @"E";
+        new = @"E ";
     if (b == dirSouth)
-        new = @"S";
+        new = @"S ";
     if (b == dirWest)
-        new = @"W";
+        new = @"W ";
 
     UITextPosition *firstTP = [self.targetTextInput beginningOfDocument];
 
-    UITextRange *firstCharacterRange = [self.targetTextInput textRangeFromPosition:firstTP toPosition:[self.targetTextInput positionFromPosition:firstTP offset:1]];
+    UITextRange *firstCharacterRange;
+    if ([self.targetTextInput.text length] > 1) {
+        firstCharacterRange = [self.targetTextInput textRangeFromPosition:firstTP toPosition:[self.targetTextInput positionFromPosition:firstTP offset:2]];
+    } else {
+        firstCharacterRange = [self.targetTextInput textRangeFromPosition:firstTP toPosition:[self.targetTextInput positionFromPosition:firstTP offset:1]];
+    }
 
     [self textInput:self.targetTextInput replaceTextAtTextRange:firstCharacterRange withString:new];
 }
@@ -188,7 +203,7 @@
     if (b == buttonDot)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
     if (b == buttonDegree)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"°"];
+        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"° "];
 
     if (b == buttonBackspace) {
         if (selectedTextRange.empty == YES && selectedTextRange.start != 0) {
