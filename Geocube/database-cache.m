@@ -34,6 +34,7 @@
     NSMutableArray *Symbols;
     NSMutableArray *Countries;
     NSMutableArray *States;
+    NSMutableDictionary *Names;
 
     // System Groups
     dbGroup *Group_AllWaypoints;
@@ -212,6 +213,9 @@
     }];
     NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
 
+    [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *name, NSUInteger idx, BOOL * _Nonnull stop) {
+        [Names setObject:name forKey:[NSNumber numberWithLongLong:name._id]];
+    }];
 }
 
 - (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor
@@ -480,6 +484,19 @@
         }
     }];
     return _a;
+}
+
+- (dbName *)Name_get:(NSId)_id
+{
+    NSNumber *n = [NSNumber numberWithLongLong:_id];
+    dbName *name = [Names objectForKey:n];
+    return name;
+}
+
+- (void)Name_add:(dbName *)name
+{
+    NSNumber *n = [NSNumber numberWithLongLong:name._id];
+    [Names setObject:name forKey:n];
 }
 
 @end

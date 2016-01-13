@@ -186,6 +186,10 @@
         DB_FINISH;
     }
 
+    // Keep a copy in the cache
+    dbName *n = [[dbName alloc] init:_id name:name code:code account:account];
+    [dbc Name_add:n];
+
     return _id;
 }
 

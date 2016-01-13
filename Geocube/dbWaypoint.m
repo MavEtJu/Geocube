@@ -225,7 +225,7 @@
             gs_owner_id = gs_owner._id;
         }
         if (gs_owner_id != 0) {
-            gs_owner = [dbName dbGet:gs_owner_id];
+            gs_owner = [dbc Name_get:gs_owner_id];
             gs_owner_str = gs_owner.name;
         }
     }

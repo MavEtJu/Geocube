@@ -35,7 +35,7 @@ insert into groups(name, usergroup, deletable) values("All Waypoints - Manually 
 insert into groups(name, usergroup, deletable) values("All Waypoints - Ignored", 0, 0);
 insert into groups(name, usergroup, deletable) values("Last Import", 0, 0);
 insert into groups(name, usergroup, deletable) values("Last Import - New", 0, 0);
-insert into groups(name, usergroup, deletable) values("Live Imported", 1, 0);
+insert into groups(name, usergroup, deletable) values("Live Import", 1, 0);
 insert into groups(name, usergroup, deletable) values("GCA - NSW", 1, 1);
 insert into groups(name, usergroup, deletable) values("GC - NSW", 1, 1);
 insert into groups(name, usergroup, deletable) values("GC - ACT", 1, 1);
