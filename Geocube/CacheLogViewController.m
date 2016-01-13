@@ -334,6 +334,8 @@
     // Do not upload, save it locally for later
     if (upload == NO) {
         [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
+        waypoint.logStatus = LOGSTATUS_FOUND;
+        [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }

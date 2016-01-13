@@ -544,6 +544,17 @@
     }
 }
 
+- (void)dbUpdateLogStatus
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set log_status = ? where id = ?");
+        SET_VAR_INT(1, self.logStatus);
+        SET_VAR_INT(2, self._id);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (void)dbUpdateHighlight
 {
     @synchronized(db.dbaccess) {

@@ -101,6 +101,7 @@ enum {
 + (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 + (void)dbUpdateLogStatus;
+- (void)dbUpdateLogStatus;
 - (void)dbUpdateHighlight;
 - (void)dbUpdateIgnore;
 + (NSString *)makeName:(NSString *)suffix;
