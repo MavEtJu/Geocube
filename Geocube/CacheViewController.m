@@ -88,7 +88,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 
     waypointItems = @[@"Description", @"Hint", @"Personal Note", @"Field Notes", @"Logs", @"Attributes", @"Additional Waypoints", @"Inventory", @"Images", @"Group Members"];
-    actionItems = @[@"Set as target", @"Mark as found", @"Open in browser"];
+    actionItems = @[@"Set as target", @"Log this waypoint", @"Open in browser"];
 }
 
 - (void)didReceiveMemoryWarning
