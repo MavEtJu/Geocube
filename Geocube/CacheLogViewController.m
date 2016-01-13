@@ -314,6 +314,16 @@
 
 - (void)submitLog
 {
+    // Do not upload, save it locally for later
+    if (upload == NO) {
+        [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
+        waypoint.logStatus = LOGSTATUS_FOUND;
+        [waypoint dbUpdateLogStatus];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+
+    // Check length
     if ([note length] == 0) {
         UIAlertController *alert= [UIAlertController
                                    alertControllerWithTitle:@"Please fill in the comment"
@@ -328,15 +338,6 @@
                              ];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-
-    // Do not upload, save it locally for later
-    if (upload == NO) {
-        [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
-        waypoint.logStatus = LOGSTATUS_FOUND;
-        [waypoint dbUpdateLogStatus];
-        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
 
