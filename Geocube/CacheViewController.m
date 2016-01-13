@@ -150,10 +150,15 @@ enum {
     GCView *headerView = [[GCView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
     GCLabel *l;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 14)];
+    UIColor *backgroundColor = [UIColor clearColor];
+    if (waypoint.highlight == YES)
+       backgroundColor = [UIColor yellowColor];
+
+    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 15)];
     l.text = waypoint.wpt_urlname;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
+    l.backgroundColor = backgroundColor;
     [headerView addSubview:l];
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
@@ -165,12 +170,14 @@ enum {
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
+    l.backgroundColor = backgroundColor;
     [headerView addSubview:l];
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
     l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
+    l.backgroundColor = backgroundColor;
     [headerView addSubview:l];
 
     return headerView;
@@ -476,6 +483,7 @@ enum {
         case menuHighlight: // Highlight waypoint
             waypoint.highlight = !waypoint.highlight;
             [waypoint dbUpdateHighlight];
+            [self.tableView reloadData];
             return;
         case menuRefreshWaypoint: // Refresh waypoint from server
             [self refreshWaypoint];
