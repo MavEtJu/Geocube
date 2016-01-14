@@ -115,8 +115,7 @@ NEEDS_OVERLOADING(addHistory)
 
 - (void)openWaypointView:(NSString *)name
 {
-    NSId _id = [dbWaypoint dbGetByName:name];
-    dbWaypoint *wp = [dbWaypoint dbGet:_id];
+    dbWaypoint *wp = [waypointManager waypoint_byName:name];
 
     // Find the right tab and the right navigation view controller
     BHTabsViewController *tb = nil;
@@ -169,8 +168,7 @@ NEEDS_OVERLOADING(addHistory)
 
     NSMutableArray *descs = [NSMutableArray arrayWithCapacity:[names count]];
     [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSId _id = [dbWaypoint dbGetByName:name];
-        dbWaypoint *wp = [dbWaypoint dbGet:_id];
+        dbWaypoint *wp = [waypointManager waypoint_byName:name];
 
         [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.wpt_urlname]];
     }];

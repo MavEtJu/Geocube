@@ -557,4 +557,29 @@
     currentWaypoint = wp;
     [myConfig currentWaypointUpdate:wp.wpt_name];
 }
+
+- (dbWaypoint *)waypoint_byId:(NSId)_id
+{
+    __block dbWaypoint *cwp = nil;
+    [currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (wp._id == _id) {
+            cwp = wp;
+            *stop = YES;
+        }
+    }];
+    return cwp;
+}
+
+- (dbWaypoint *)waypoint_byName:(NSString *)name
+{
+    __block dbWaypoint *cwp = nil;
+    [currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([wp.wpt_name isEqualToString:name] == YES) {
+            cwp = wp;
+            *stop = YES;
+        }
+    }];
+    return cwp;
+}
+
 @end

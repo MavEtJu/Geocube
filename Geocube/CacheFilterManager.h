@@ -39,4 +39,7 @@
 - (void)startDelegation:(id)_delegate;
 - (void)stopDelegation:(id)_delegate;
 
+- (dbWaypoint *)waypoint_byId:(NSId)id;
+- (dbWaypoint *)waypoint_byName:(NSString *)name;
+
 @end

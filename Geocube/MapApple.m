@@ -156,7 +156,7 @@
     if ([mapClusterAnnotation.annotations count] == 1) {
         __block dbWaypoint *wp = nil;
         [mapClusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
-            wp = [dbWaypoint dbGet:pa._id];
+            wp = [waypointManager waypoint_byId:pa._id];
         }];
         av.image = [self waypointImage:wp];
 
@@ -176,7 +176,7 @@
         GCPointAnnotation *a = annotation;
         MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
 
-        dbWaypoint *wp = [dbWaypoint dbGet:a._id];
+        dbWaypoint *wp = [waypointManager waypoint_byId:a._id];
         dropPin.image = [self waypointImage:wp];
 
         UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -202,7 +202,7 @@
         if ([clusterAnnotation.annotations count] == 1) {
             __block dbWaypoint *wp = nil;
             [clusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
-                wp = [dbWaypoint dbGet:pa._id];
+                wp = [waypointManager waypoint_byId:pa._id];
             }];
             av.image = [self waypointImage:wp];
 
