@@ -496,6 +496,7 @@ enum {
             } else {
                 [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
             }
+            [self.tableView reloadData];
             return;
         case menuAddToGroup: // Add waypoint to a group
             [self addToGroup];
