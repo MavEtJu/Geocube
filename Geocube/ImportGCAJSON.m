@@ -217,6 +217,18 @@
 
 - (void)parseLog:(NSDictionary *)dict
 {
+    /*
+     {
+     cache = GA4338;
+     cacher = ziggiau;
+     coords = "";
+     date = "2015-08-05";
+     icon = "icon_flat_sm_found.png";
+     id = 11713450;
+     text = "In an effort to get some GCA finds under my belt, I finally found my first traditional one and the first in this series, almost 3 years to the day since the FTF of this cache. Knew where I had to look but still made things more difficult than I needed to for such an easy find.";
+     type = "Found it";
+     }
+     */
     dbLog *t = [[dbLog alloc] init:0];
     NSString *dummy;
 
