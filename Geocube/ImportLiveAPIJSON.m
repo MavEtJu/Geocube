@@ -88,6 +88,102 @@
 }
 - (void)parseGeocache:(NSDictionary *)dict
 {
+    /*
+     {
+         AccountID = 14593989;
+         AdditionalWaypoints =     (
+         );
+         Archived = 0;
+         Attributes =     (
+         );
+         Available = 1;
+         CacheType =     {
+             Description = "";
+             GeocacheTypeId = 2;
+             GeocacheTypeName = "Traditional Cache";
+             ImageURL = "http://www.geocaching.com/images/wpttypes/2.gif";
+             IsContainer = 0;
+             IsGrandfathered = "<null>";
+             ParentTypeId = 0;
+             UserCount = "<null>";
+         };
+         CanCacheBeFavorited = 1;
+         Code = GC664B5;
+         ContainerType =     {
+             ContainerTypeId = 8;
+             ContainerTypeName = Small;
+             Order = 30;
+         };
+         Country = Australia;
+         CountryID = 3;
+         CurrentDetailsCount = 107;
+         DateCreated = "/Date(1446274800000-0700)/";
+         DateLastUpdate = "/Date(1453114880103-0800)/";
+         DateLastVisited = "/Date(1453147200000-0800)/";
+         Difficulty = 2;
+         EncodedHints = "don't get too stumped over this one";
+         FavoritePoints = 0;
+         FoundDate = "<null>";
+         FoundDateOfFoundByUser = "<null>";
+         GUID = "4950dde1-1688-4f3b-a817-181b19af47d5";
+         GeocacheLogs =     (
+         );
+         GeocacheNote = "<null>";
+         HasbeenFavoritedbyUser = 0;
+         HasbeenFoundbyUser = 0;
+         ID = 5312942;
+         ImageCount = 0;
+         Images =     (
+         );
+         IsLocked = 0;
+         IsPremium = 0;
+         IsPublished = 1;
+         IsRecommended = 0;
+         Latitude = "-33.960117";
+         LongDescription = "<p>The co-ordinates are wrong!! accidentally out in the wrong co-ordinate, the correct one is S33 57.607 E150 56.343, there is also a temp image in images to help you out!! Nice, quick hide in a rural area\U00a0</p>
+         \n<p>The geocache is a small Tupperware container\U00a0</p>
+         \n<p>This was our first placing of our own geocache, hope it's not too easy or hard\U00a0</p>
+         \n<p>\U00a0</p>
+         \n
+         \n";
+         LongDescriptionIsHtml = 1;
+         Longitude = "150.93905";
+         MaxDetailCount = 6000;
+         Name = "Australis I ";
+         Owner =     {
+             AvatarUrl = "http://www.geocaching.com/images/default_avatar.jpg";
+             FindCount = 16;
+             GalleryImageCount = "<null>";
+             HideCount = 1;
+             HomeCoordinates = "<null>";
+             Id = 14593989;
+             IsAdmin = 0;
+             MemberType =         {
+                 MemberTypeId = 1;
+                 MemberTypeName = Basic;
+             };
+             PublicGuid = "d9cab948-5a62-46c2-9e6b-4be86a3fd083";
+             UserName = imaemily27;
+         };
+         PlacedBy = imaemily27;
+         PublishDateUtc = "/Date(1446509220000-0800)/";
+         ShortDescription = "
+         \n";
+         ShortDescriptionIsHtml = 1;
+         StagesCount = 0;
+         State = "New South Wales";
+         StateID = 52;
+         Terrain = "1.5";
+         TrackableCount = 0;
+         Trackables =     (
+         );
+         UTCPlaceDate = "/Date(1446274800000-0700)/";
+         UpgradeMessage = "<null>";
+         Url = "http://coord.info/GC664B5";
+         UserWaypoints =     (
+         );
+     }
+     */
     dbWaypoint *wp = [[dbWaypoint alloc] init];
 
     // Waypoint object
