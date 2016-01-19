@@ -77,3 +77,62 @@ typedef sqlite3_int64 NSId;
     - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
+
+// JSON related safety functions
+#define DICT_NSSTRING_KEY(__dict__, __a__, __key__) { \
+    NSString *__b__ = [__dict__ objectForKey:__key__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @""; \
+    if ([__b__ isKindOfClass:[NSNumber class]] == YES) { \
+        __a__ = [(NSNumber *)__b__ stringValue]; \
+    } else \
+        __a__ = __b__; \
+    }
+#define DICT_NSSTRING_PATH(__dict__, __a__, __path__) { \
+    NSString *__b__ = [__dict__ valueForKeyPath:__path__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @""; \
+    if ([__b__ isKindOfClass:[NSNumber class]] == YES) \
+        __a__ = [(NSNumber *)__b__ stringValue]; \
+    else \
+        __a__ = __b__; \
+    }
+
+#define DICT_FLOAT_KEY(__dict__, __a__, __key__) { \
+    NSString *__b__ = [__dict__ objectForKey:__key__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  floatValue]; \
+    }
+#define DICT_FLOAT_PATH(__dict__, __a__, __path__) { \
+    __b__ = [__dict__ valueForKeyPath:__path__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  floatValue]; \
+    }
+
+#define DICT_INTEGER_KEY(__dict__, __a__, __key__) { \
+    NSString *__b__ = [__dict__ objectForKey:__key__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  integerValue]; \
+    }
+#define DICT_INTEGER_PATH(__dict__, __a__, __path__) { \
+    __b__ = [__dict__ valueForKeyPath:__path__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  integerValue]; \
+    }
+
+#define DICT_BOOL_KEY(__dict__, __a__, __key__) { \
+    NSString *__b__ = [dict objectForKey:__key__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  boolValue]; \
+    }
+#define DICT_BOOL_PATH(__dict__, __a__, __path__) { \
+    __b__ = [dict valueForKeyPath:__path__]; \
+    if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
+        __b__ = @"0"; \
+    __a__ = [__b__  boolValue]; \
+    }

@@ -90,61 +90,55 @@
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
 
-#define ASSIGN_KEY(__a__, __key__) \
-    __a__ = [dict objectForKey:__key__]; \
-    if ([__a__ isKindOfClass:[NSNull class]] == TRUE) \
-        __a__ = @"";
-#define ASSIGN_PATH(__a__, __path__) \
-    __a__ = [dict valueForKeyPath:__path__]; \
-    if ([__a__ isKindOfClass:[NSNull class]] == TRUE) \
-        __a__ = @"";
-
     // Waypoint object
-    ASSIGN_KEY(wp.wpt_name, @"Code");
-    ASSIGN_KEY(wp.wpt_description, @"Name");
-    ASSIGN_KEY(wp.wpt_url, @"Url");
-    ASSIGN_KEY(wp.wpt_urlname, @"Name");
+    DICT_NSSTRING_KEY(dict, wp.wpt_name, @"Code");
+    DICT_NSSTRING_KEY(dict, wp.wpt_description, @"Name");
+    DICT_NSSTRING_KEY(dict, wp.wpt_url, @"Url");
+    DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"Name");
 
-    wp.wpt_lat_float = [[dict objectForKey:@"Latitude"] floatValue];
-    wp.wpt_lat_int = [[dict objectForKey:@"Latitude"] floatValue] * 1000000;
-    wp.wpt_lat = [[dict objectForKey:@"Latitude"] stringValue];
+    DICT_FLOAT_KEY(dict, wp.wpt_lat_float, @"Latitude");
+    wp.wpt_lat_int = wp.wpt_lat_float * 1000000;
+    wp.wpt_lat = [NSString stringWithFormat:@"%f", wp.wpt_lat_float];
 
-    wp.wpt_lon_float = [[dict objectForKey:@"Longitude"] floatValue];
-    wp.wpt_lon_int = [[dict objectForKey:@"Longitude"] floatValue] * 1000000;
-    wp.wpt_lon = [[dict objectForKey:@"Longitude"] stringValue];
+    DICT_FLOAT_KEY(dict, wp.wpt_lon_float, @"Longitude");
+    wp.wpt_lon_int = wp.wpt_lon_float * 1000000;
+    wp.wpt_lon = [NSString stringWithFormat:@"%f", wp.wpt_lon_float];
 
-    wp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCPlaceDate"]];
+    NSString *dummy;
+    DICT_NSSTRING_PATH(dict, dummy, @"UTCPlaceDate");
+    wp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:dummy];
     wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
 
     wp.wpt_symbol_str = @"Geocache";
-    ASSIGN_PATH(wp.wpt_type_str, @"CacheType.GeocacheTypeName");
+    DICT_NSSTRING_PATH(dict, wp.wpt_type_str, @"CacheType.GeocacheTypeName");
 
     wp.account_id = account._id;
     [wp finish];
 
     // Groundspeak object
     wp.gs_hasdata = YES;
-    wp.gs_rating_difficulty = [[dict objectForKey:@"Difficulty"] floatValue];
-    wp.gs_rating_terrain = [[dict objectForKey:@"Terrain"] floatValue];
-    wp.gs_favourites = [[dict objectForKey:@"FavoritePoints"] integerValue];
-    wp.gs_archived = [[dict objectForKey:@"Archived"] boolValue];
-    wp.gs_available = [[dict objectForKey:@"Available"] boolValue];
+    DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"Difficulty");
+    DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"Terrain");
+    DICT_FLOAT_KEY(dict, wp.gs_favourites, @"FavoritePoints");
+    DICT_BOOL_KEY(dict, wp.gs_archived, @"Archived");
+    DICT_BOOL_KEY(dict, wp.gs_available, @"Available");
 
-    ASSIGN_KEY(wp.gs_country_str, @"Country");
-    ASSIGN_KEY(wp.gs_state_str, @"State");
+    DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"Country");
+    DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"State");
 
-    wp.gs_short_desc_html = [[dict objectForKey:@"ShortDescriptionIsHtml"] boolValue];
-    wp.gs_long_desc_html = [[dict objectForKey:@"LongDescriptionIsHtml"] boolValue];
-    ASSIGN_KEY(wp.gs_short_desc, @"ShortDescription");
-    ASSIGN_KEY(wp.gs_long_desc, @"LongDescription");
-    ASSIGN_KEY(wp.gs_hint, @"EncoodedHints");
+    DICT_BOOL_KEY(dict, wp.gs_short_desc_html, @"ShortDescriptionIsHtml");
+    DICT_BOOL_KEY(dict, wp.gs_long_desc_html, @"LongDescriptionIsHtml");
+    DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"ShortDescription");
+    DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"LongDescription");
+    DICT_NSSTRING_KEY(dict, wp.gs_hint, @"EncoodedHints");
 
-    ASSIGN_KEY(wp.gs_placed_by, @"PlacedBy");
+    DICT_NSSTRING_KEY(dict, wp.gs_placed_by, @"PlacedBy");
 
-    wp.gs_owner_gsid = [[dict valueForKeyPath:@"Owner.Id"] stringValue];
-    ASSIGN_PATH(wp.gs_owner_str, @"Owner.UserName");
+    DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
+    DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
+    DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"Owner.UserName");
 
-    ASSIGN_PATH(wp.gs_container_str, @"ContainerType.ContainerTypeName");
+    DICT_NSSTRING_PATH(dict, wp.gs_container_str, @"ContainerType.ContainerTypeName");
 
     // Now see what we had and what we need to change
     NSId wpid = [dbWaypoint dbGetByName:wp.wpt_name];
@@ -157,10 +151,11 @@
         [wp dbUpdate];
     }
 
-    NSString *personal_note = [dict objectForKey:@"GeocacheNote"];
+    NSString *personal_note;
+    DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
     if (pn != nil) {
-        if (personal_note == nil || [personal_note isKindOfClass:[NSNull class]] == YES || [personal_note isEqualToString:@""] == YES) {
+        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
             [pn dbDelete];
             pn = nil;
         } else {
@@ -168,7 +163,7 @@
             [pn dbUpdate];
         }
     } else {
-        if (personal_note != nil && [personal_note isKindOfClass:[NSNull class]] == NO && [personal_note isEqualToString:@""] == NO) {
+        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
             pn = [[dbPersonalNote alloc] init];
             pn.wp_name = wp.wpt_name;
             pn.waypoint_id = wp._id;
@@ -280,9 +275,9 @@
      */
 
     dbTrackable *tb = [[dbTrackable alloc] init];
-    ASSIGN_KEY(tb.name, @"Name");
-    tb.gc_id = [[dict objectForKey:@"Id"] integerValue];
-    ASSIGN_KEY(tb.ref, @"Code");
+    DICT_NSSTRING_KEY(dict, tb.name, @"Name");
+    DICT_INTEGER_KEY(dict, tb.gc_id, @"Id");
+    DICT_NSSTRING_KEY(dict, tb.ref, @"Code");
 
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
@@ -318,8 +313,8 @@
 
     NSString *url;
     NSString *name;
-    ASSIGN_KEY(url, @"Url");
-    ASSIGN_KEY(name, @"Name");
+    DICT_NSSTRING_KEY(dict, url, @"Url");
+    DICT_NSSTRING_KEY(dict, name, @"Name");
     NSString *df = [dbImage createDataFilename:url];
 
     dbImage *img = [dbImage dbGetByURL:url];
@@ -349,9 +344,11 @@
         "IsOn": true
      },
      */
-    NSInteger gc_id = [[dict objectForKey:@"AttributeTypeID"] integerValue];
+    NSInteger gc_id;
+    DICT_INTEGER_KEY(dict, gc_id, @"AttributeTypeID");
     dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
-    BOOL yesNo = [[dict objectForKey:@"IsON"] boolValue];
+    BOOL yesNo;
+    DICT_BOOL_KEY(dict, yesNo, @"IsON");
     [a dbLinkToWaypoint:wp._id YesNo:yesNo];
 }
 
@@ -385,19 +382,19 @@
     dbWaypoint *awp = [[dbWaypoint alloc] init];
 
     // Waypoint object
-    ASSIGN_KEY(awp.wpt_name, @"Code");
-    ASSIGN_KEY(awp.wpt_description, @"Description");
-    ASSIGN_KEY(awp.wpt_url, @"Url");
-    ASSIGN_KEY(awp.wpt_urlname, @"UrlName");
+    DICT_NSSTRING_KEY(dict, awp.wpt_name, @"Code");
+    DICT_NSSTRING_KEY(dict, awp.wpt_description, @"Description");
+    DICT_NSSTRING_KEY(dict, awp.wpt_url, @"Url");
+    DICT_NSSTRING_KEY(dict, awp.wpt_urlname, @"UrlName");
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lat_float = 0;
         awp.wpt_lat_int = 0;
         awp.wpt_lat = @"0";
     } else {
-        awp.wpt_lat_float = [[dict objectForKey:@"Latitude"] floatValue];
+        DICT_FLOAT_KEY(dict, awp.wpt_lat_float, @"Latitude");
         awp.wpt_lat_int = awp.wpt_lat_float * 1000000;
-        awp.wpt_lat = [[dict objectForKey:@"Latitude"] stringValue];
+        awp.wpt_lat = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
     }
 
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
@@ -405,16 +402,18 @@
         awp.wpt_lon_int = 0;
         awp.wpt_lon = @"0";
     } else {
-        awp.wpt_lon_float = [[dict objectForKey:@"Latitude"] floatValue];
+        DICT_FLOAT_KEY(dict, awp.wpt_lon_float, @"Longitude");
         awp.wpt_lon_int = awp.wpt_lon_float * 1000000;
-        awp.wpt_lon = [[dict objectForKey:@"Latitude"] stringValue];
+        awp.wpt_lon = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
     }
 
-    awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCEnteredDate"]];
+    NSString *dummy;
+    DICT_NSSTRING_KEY(dict, dummy, @"UTCEnteredDate");
+    awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochWindows:dummy];
     awp.wpt_date_placed = [MyTools dateString:awp.wpt_date_placed_epoch];
 
-    ASSIGN_KEY(awp.wpt_symbol_str, @"Name");
-    ASSIGN_KEY(awp.wpt_type_str, @"Type");
+    DICT_NSSTRING_KEY(dict, awp.wpt_symbol_str, @"Name");
+    DICT_NSSTRING_KEY(dict, awp.wpt_type_str, @"Type");
 
     awp.account_id = account._id;
     [awp finish];
@@ -484,18 +483,20 @@
 
     dbLog *l = [[dbLog alloc] init];
     l.waypoint_id = wp._id;
-    l.gc_id = [[dict objectForKey:@"ID"] integerValue];
-    l.datetime_epoch = [MyTools secondsSinceEpochWindows:[dict objectForKey:@"UTCCreateDate"]];
+    DICT_INTEGER_KEY(dict, l.gc_id, @"ID");
+    NSString *dummy;
+    DICT_NSSTRING_KEY(dict, dummy, @"UTCCreateDate");
+    l.datetime_epoch = [MyTools secondsSinceEpochWindows:dummy];
     l.datetime = [MyTools dateString:l.datetime_epoch];
     l.needstobelogged = NO;
-    ASSIGN_KEY(l.log, @"LogText");
-    ASSIGN_PATH(l.logtype_string, @"LogType.WptLogTypeName");
+    DICT_NSSTRING_KEY(dict, l.log, @"LogText");
+    DICT_NSSTRING_PATH(dict, l.logtype_string, @"LogType.WptLogTypeName");
 
     dbName *name = [[dbName alloc] init];
-    ASSIGN_PATH(name.name, @"Finder.UserName");
+    DICT_NSSTRING_PATH(dict, name.name, @"Finder.UserName");
     name.account_id = wp.account_id;
     name.account = wp.account;
-    name.code = [[dict valueForKeyPath:@"Finder.Id"] stringValue];
+    DICT_NSSTRING_PATH(dict, name.code, @"Finder.Id");
     [name finish];
     dbName *n = [dbName dbGetByNameCode:name.name code:name.code account:wp.account];
     if (n != nil) {
