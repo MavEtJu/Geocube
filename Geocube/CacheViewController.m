@@ -42,6 +42,8 @@ enum {
     menuHighlight,
     menuRefreshWaypoint,
     menuIgnore,
+    menuMarkFound,
+    menuInProgress,
     menuAddToGroup,
     menuViewRaw,
     menuMax
@@ -54,6 +56,8 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
     [lmi addItem:menuHighlight label:@"Highlight"];
+    [lmi addItem:menuMarkFound label:@"Mark Found"];
+    [lmi addItem:menuInProgress label:@"In Progress"];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuIgnore label:@"Ignore"];
@@ -503,6 +507,16 @@ enum {
             return;
         case menuViewRaw:
             [self menuViewRaw];
+            return;
+        case menuInProgress:
+            waypoint.inprogress = !waypoint.inprogress;
+            [waypoint dbUpdateInProgress];
+            [self.tableView reloadData];
+            return;
+        case menuMarkFound:
+            waypoint.markedfound = !waypoint.markedfound;
+            [waypoint dbUpdateMarkedFound];
+            [self.tableView reloadData];
             return;
     }
 

@@ -49,6 +49,8 @@ enum {
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL highlight;
 @property (nonatomic) BOOL ignore;
+@property (nonatomic) BOOL markedfound;
+@property (nonatomic) BOOL inprogress;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
@@ -104,6 +106,8 @@ enum {
 - (void)dbUpdateLogStatus;
 - (void)dbUpdateHighlight;
 - (void)dbUpdateIgnore;
+- (void)dbUpdateMarkedFound;
+- (void)dbUpdateInProgress;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;

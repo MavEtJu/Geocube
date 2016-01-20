@@ -141,6 +141,10 @@
         [self performUpgrade_3_4];
         return;
     }
+    if (version == 4) {
+        [self performUpgrade_4_5];
+        return;
+    }
 
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
 }
@@ -217,17 +221,13 @@
 
 - (void)performUpgrade_4_5
 {
-    /*
     NSArray *a = @[
-    @"create table tracks ( id integer primary key, name text, startedon integer, stoppedon integer)",
-    @"create index tracks_idx_id on tracks(id)",
-    @"create table trackelements ( id integer primary key, track_id integer, lat_int integer, lon_int integer, height integer, timestamp integer)",
-    @"create index trackelements_idx_id on trackelements(id)",
-    @"create index trackelements_idx_trackid on trackelements(track_id)"
+    @"alter table waypoints add column markedfound bool",
+    @"alter table waypoints add column inprogress bool",
+    @"update waypoints set markedfound = 0",
+    @"update waypoints set inprogress = 0",
     ];
     [self performUpgrade_X_Y:a];
-    */
 }
-
 
 @end
