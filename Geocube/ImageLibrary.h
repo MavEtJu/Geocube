@@ -163,6 +163,8 @@ typedef enum {
     ImageMap_pinOutlineHighlight,
 
     ImageMap_pinCrossDNF,
+    ImageMap_pinMarkedFound,
+    ImageMap_pinInProgress,
     ImageMap_pinTickFound,
     ImageMap_pinOwner,
     ImageMap_pinOutlineDisabled,
@@ -208,8 +210,8 @@ typedef enum {
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;
 
-- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner;
-- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight;
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress;
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress;
 
 - (UIImage *)getSquareWithNumber:(NSInteger)num;
 

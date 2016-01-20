@@ -112,11 +112,13 @@
 
     [self addToLibrary:@"map - cross dnf - 9x9" index:ImageMap_pinCrossDNF];
     [self addToLibrary:@"map - tick found - 9x9" index:ImageMap_pinTickFound];
+    [self addToLibrary:@"map - marked found - 9x9" index:ImageMap_pinMarkedFound];
     [self addToLibrary:@"map - disabled - 15x15" index:ImageMap_pinOutlineDisabled];
     [self addToLibrary:@"map - archived - 15x15" index:ImageMap_pinOutlineArchived];
     [self addToLibrary:@"map - highlight - 21x21" index:ImageMap_pinOutlineHighlight];
     [self addToLibrary:@"map - background - 35x42" index:ImageMap_background];
     [self addToLibrary:@"map - own overlay - 18x18" index:ImageMap_pinOwner];
+    [self addToLibrary:@"map - in progress - 18x18" index:ImageMap_pinInProgress];
     [self addToLibrary:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
     [self addToLibrary:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
     [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
@@ -375,7 +377,7 @@
 
 // -----------------------------------------------------------
 
-- (NSString *)getPinTypeCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
+- (NSString *)getPinTypeCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
 {
     NSMutableString *s = [NSMutableString stringWithString:@""];
 
@@ -413,18 +415,28 @@
     else
         [s appendString:@"o"];
 
+    if (markedFound == YES)
+        [s appendString:@"M"];
+    else
+        [s appendString:@"m"];
+
+    if (inProgress == YES)
+        [s appendString:@"I"];
+    else
+        [s appendString:@"i"];
+
     return s;
 }
 
 // -----------------------------------------------------------
 
-- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
 {
-    NSString *s = [self getPinTypeCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner];
+    NSString *s = [self getPinTypeCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress];
     UIImage *img = [pinImages valueForKey:s];
     if (img == nil) {
         NSLog(@"Creating pin %@s", s);
-        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner];
+        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress];
         [pinImages setObject:img forKey:s];
     }
 
@@ -433,10 +445,10 @@
 
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight owner:NO];
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight owner:NO markedFound:wp.markedfound inProgress:wp.inprogress];
 }
 
-- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner
+- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
 {
     UIImage *img = [imageLibrary get:ImageMap_background];
 
@@ -469,38 +481,46 @@
     if (owner == YES)
         img = [self mergeOwner:img top:ImageMap_pinOwner];
 
-    switch (found) {
-        case LOGSTATUS_NOTLOGGED:
-            // Do not overlay anything
-            break;
-        case LOGSTATUS_NOTFOUND:
-            img = [self mergeFound:img top:ImageMap_pinCrossDNF];
-            // Overlay the blue cross
-            break;
-        case LOGSTATUS_FOUND:
-            img = [self mergeFound:img top:ImageMap_pinTickFound];
-            // Overlay the yellow tick
-            break;
+    if (markedFound == YES) {
+        img = [self mergeFound:img top:ImageMap_pinMarkedFound];
+    } else {
+        switch (found) {
+            case LOGSTATUS_NOTLOGGED:
+                // Do not overlay anything
+                break;
+            case LOGSTATUS_NOTFOUND:
+                img = [self mergeFound:img top:ImageMap_pinCrossDNF];
+                // Overlay the blue cross
+                break;
+            case LOGSTATUS_FOUND:
+                img = [self mergeFound:img top:ImageMap_pinTickFound];
+                // Overlay the yellow tick
+                break;
+        }
     }
+
+    if (inProgress == YES)
+        img = [self mergeOwner:img top:ImageMap_pinInProgress];
+
 
     return img;
 }
 
 // -----------------------------------------------------------
 
-- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
 {
-    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight owner:NO];
+    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight owner:NO markedFound:markedFound inProgress:inProgress];
     UIImage *img = [typeImages valueForKey:s];
     if (img == nil) {
-        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight];
+        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight markedFound:markedFound inProgress:inProgress];
         [typeImages setObject:img forKey:s];
     }
 
     return img;
 }
 
-- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight
+- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
 {
     UIImage *img = [imageLibrary get:type.icon];
 
@@ -529,7 +549,7 @@
 
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight];
+    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.highlight markedFound:wp.markedfound inProgress:wp.inprogress];
 }
 
 // -----------------------------------------------------------
