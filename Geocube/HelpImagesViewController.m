@@ -34,8 +34,8 @@
 #define THISCELL @"HelpImagesCells"
 
 enum {
-    IMAGES_PINS_EACH = 0,
-    IMAGES_TYPES_EACH,
+    IMAGES_TYPES_EACH = 0,
+    IMAGES_PINS_EACH,
     IMAGES_PINS_ALL,
     IMAGES_TYPES_ALL,
     IMAGES_RATING,
@@ -103,7 +103,7 @@ enum {
     if (section == IMAGES_PINS_EACH)
         return 21;
     if (section == IMAGES_TYPES_EACH)
-        return 0;
+        return 18;
     if (section == IMAGES_RATING)
         return 11;
     if (section == IMAGES_IMAGES)
@@ -229,6 +229,98 @@ enum {
             case 20:
                 cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES];
                 cell.textLabel.text = @"Pin - Not Found - In Progress";
+                break;
+
+        }
+        return cell;
+    }
+
+    if (indexPath.section == IMAGES_TYPES_EACH) {
+        NSArray *types = [dbc Types];
+        dbType *type = [types objectAtIndex:0];
+
+        switch (indexPath.row) {
+            case 0:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Logged";
+                break;
+            case 1:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Found";
+                break;
+            case 2:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Found";
+                break;
+
+            case 3:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Logged - Disabled";
+                break;
+            case 4:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Found - Disabled";
+                break;
+            case 5:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Found - Disabled";
+                break;
+
+            case 6:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Logged - Archived";
+                break;
+            case 7:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Found - Archived";
+                break;
+            case 8:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Found - Archived";
+                break;
+
+            case 9:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Logged - Highlight";
+                break;
+            case 10:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Found - Highlight";
+                break;
+            case 11:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Type - Not Found - Highlight";
+                break;
+
+            case 12:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO];
+                cell.textLabel.text = @"Type - Not Logged - Marked Found";
+                break;
+            case 13:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO];
+                cell.textLabel.text = @"Type - Found - Marked Found";
+                break;
+            case 14:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO];
+                cell.textLabel.text = @"Type - Not Found - Marked Found";
+                break;
+
+            case 15:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES];
+                cell.textLabel.text = @"Type - Not Logged - In Progress";
+                break;
+            case 16:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES];
+                cell.textLabel.text = @"Type - Found - In Progress";
+                break;
+            case 17:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES];
+                cell.textLabel.text = @"Type - Not Found - In Progress";
+                break;
+
+            default:
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO];
+                cell.textLabel.text = @"Default";
                 break;
 
         }

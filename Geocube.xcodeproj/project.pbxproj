@@ -178,6 +178,8 @@
 		E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */; };
 		E833B7241C4F739800B9FB45 /* map - marked found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7231C4F739800B9FB45 /* map - marked found - 9x9.png */; };
 		E833B7281C4F7E8500B9FB45 /* map - in progress - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */; };
+		E833B72A1C4FA7D600B9FB45 /* type - marked found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */; };
+		E833B72E1C4FAA0300B9FB45 /* type - in progress - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */; };
 		E843A4E51BAD3F9200C58F1F /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
@@ -595,6 +597,8 @@
 		E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocachingAustralia.m; sourceTree = "<group>"; };
 		E833B7231C4F739800B9FB45 /* map - marked found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - marked found - 9x9.png"; path = "images/map - marked found - 9x9.png"; sourceTree = "<group>"; };
 		E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - in progress - 18x18.png"; path = "images/map - in progress - 18x18.png"; sourceTree = "<group>"; };
+		E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - marked found - 24x21.png"; path = "images/type - marked found - 24x21.png"; sourceTree = "<group>"; };
+		E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - in progress - 24x24.png"; path = "images/type - in progress - 24x24.png"; sourceTree = "<group>"; };
 		E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "images/GC - logo - 640x960.png"; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -1369,6 +1373,8 @@
 		E8740FCE1B4E9D49002527DA /* containers */ = {
 			isa = PBXGroup;
 			children = (
+				E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */,
+				E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */,
 				E847A5871B9FDB3300BEFE83 /* type - archived - 24x24.png */,
 				E847A5881B9FDB3300BEFE83 /* type - disabled - 24x24.png */,
 				E847A5831B9FDA1100BEFE83 /* type - cross dnf - 19x19.png */,
@@ -2151,6 +2157,7 @@
 				E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */,
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
 				E80731F61B5F84B4007FDC29 /* attributes - 14.png in Resources */,
+				E833B72E1C4FAA0300B9FB45 /* type - in progress - 24x24.png in Resources */,
 				E8611A9E1B8AF6DC00B9D7C3 /* compass - airplane - compass.png in Resources */,
 				E807327B1B5F852A007FDC29 /* waypoint - unknown - 30x30.png in Resources */,
 				E807329E1B5F857A007FDC29 /* map - dnf stick - 35x42.png in Resources */,
@@ -2248,6 +2255,7 @@
 				E80731F11B5F84B4007FDC29 /* attributes - 09.png in Resources */,
 				E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */,
 				E80732401B5F84E8007FDC29 /* log - disabled - 18x18.png in Resources */,
+				E833B72A1C4FA7D600B9FB45 /* type - marked found - 24x21.png in Resources */,
 				E80732111B5F84B4007FDC29 /* attributes - 42.png in Resources */,
 				E80732131B5F84B4007FDC29 /* attributes - 44.png in Resources */,
 				E8A9934B1BB2AAB400714B90 /* Default-568h@2x.png in Resources */,

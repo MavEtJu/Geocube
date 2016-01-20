@@ -121,8 +121,10 @@
     [self addToLibrary:@"map - in progress - 18x18" index:ImageMap_pinInProgress];
     [self addToLibrary:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
     [self addToLibrary:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
+    [self addToLibrary:@"type - marked found - 24x21" index:ImageMap_typeMarkedFound];
     [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
     [self addToLibrary:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
+    [self addToLibrary:@"type - in progress - 24x24" index:ImageMap_typeInProgress];
 
     [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -530,19 +532,26 @@
     if (archived == YES)
         img = [self mergeArchived:img top:ImageMap_typeOutlineArchived];
 
-    switch (found) {
-        case LOGSTATUS_NOTLOGGED:
-            // Do not overlay anything
-            break;
-        case LOGSTATUS_NOTFOUND:
-            img = [self mergeFound:img top:ImageMap_typeCrossDNF];
-            // Overlay the blue cross
-            break;
-        case LOGSTATUS_FOUND:
-            img = [self mergeFound:img top:ImageMap_typeTickFound];
-            // Overlay the yellow tick
-            break;
+    if (markedFound == YES) {
+        img = [self mergeFound:img top:ImageMap_typeMarkedFound];
+    } else {
+        switch (found) {
+            case LOGSTATUS_NOTLOGGED:
+                // Do not overlay anything
+                break;
+            case LOGSTATUS_NOTFOUND:
+                img = [self mergeFound:img top:ImageMap_typeCrossDNF];
+                // Overlay the blue cross
+                break;
+            case LOGSTATUS_FOUND:
+                img = [self mergeFound:img top:ImageMap_typeTickFound];
+                // Overlay the yellow tick
+                break;
+        }
     }
+
+    if (inProgress == YES)
+        img = [self mergeArchived:img top:ImageMap_typeInProgress];
 
     return img;
 }

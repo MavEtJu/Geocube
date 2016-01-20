@@ -170,6 +170,8 @@ typedef enum {
     ImageMap_pinOutlineDisabled,
     ImageMap_pinOutlineArchived,
     ImageMap_typeCrossDNF,
+    ImageMap_typeMarkedFound,
+    ImageMap_typeInProgress,
     ImageMap_typeTickFound,
     ImageMap_typeOutlineDisabled,
     ImageMap_typeOutlineArchived,
