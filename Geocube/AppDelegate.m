@@ -297,61 +297,61 @@
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 TABBARCONTROLLER(controllers)
                 break;
 
             case RC_SETTINGS:
                 controllers = [NSMutableArray array];
-                
+
                 vc = [[SettingsMainViewController alloc] init];
                 vc.title = @"Settings";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 vc = [[SettingsAccountsViewController alloc] init];
                 vc.title = @"Accounts";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 vc = [[SettingsColoursViewController alloc] init];
                 vc.title = @"Colours";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 TABBARCONTROLLER(controllers)
                 break;
 
             case RC_HELP:
                 controllers = [NSMutableArray array];
-                
+
                 vc = [[HelpAboutViewController alloc] init];
                 vc.title = @"About";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 vc = [[NullViewController alloc] init];
                 vc.title = @"Help";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 vc = [[HelpImagesViewController alloc] init];
                 vc.title = @"Images";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 vc = [[HelpDatabaseViewController alloc] init];
                 vc.title = @"DB";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
-                
+
                 TABBARCONTROLLER(controllers)
                 break;
 
