@@ -23,20 +23,20 @@
 
 @interface ListViewController ()
 {
-    NSArray *entries;
+    NSArray *waypoints;
 }
 
 @end
 
 @implementation ListViewController
 
-#define THISCELL @"LISTVIEWCONTROLLER"
+#define THISCELL @"CacheTableViewCell"
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
 
     lmi = nil;
 }
@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    entries = [dbWaypoint dbAllByFlag:flag];
+    waypoints = [dbWaypoint dbAllByFlag:flag];
     [self.tableView reloadData];
 }
 
@@ -58,23 +58,66 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [entries count];
+    return [waypoints count];
 }
 
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    if (cell == nil)
-        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+    CacheTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    if (cell == nil) {
+        cell = [[CacheTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
-    dbWaypoint *wp = [entries objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    cell.description.text = wp.wpt_urlname;
+    cell.name.text = wp.wpt_name;
+    cell.icon.image = [imageLibrary getType:wp];
+    if (wp.highlight == YES)
+        cell.description.backgroundColor = [UIColor yellowColor];
+    else
+        cell.description.backgroundColor = [UIColor clearColor];
 
-    cell.textLabel.text = wp.wpt_urlname;
-    cell.detailTextLabel.text = wp.wpt_name;
-    cell.userInteractionEnabled = NO;
+    [cell setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
+
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
+    cell.compass.text = [Coordinates bearing2compass:bearing];
+    cell.distance.text = [MyTools NiceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+
+    NSMutableString *s = [NSMutableString stringWithFormat:@""];
+    if (wp.gs_state != nil)
+        [s appendFormat:@"%@", wp.gs_state.name];
+    if (wp.gs_country != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        [s appendFormat:@"%@", wp.gs_country.code];
+    }
+    cell.stateCountry.text = s;
+
+    //[cell showGroundspeak:(gs != nil)]; Not yet sure
+
+    [cell viewWillTransitionToSize];
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [CacheTableViewCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    NSString *newTitle = wp.description;
+
+    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+    [newController showWaypoint:wp];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = newTitle;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 #pragma mark - Local menu related functions
