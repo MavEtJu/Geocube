@@ -212,6 +212,12 @@
 #import "MapOSM.h"
 #import "MapViewController.h"
 
+#import "ListViewController.h"
+#import "FoundListViewController.h"
+#import "HighlightListViewController.h"
+#import "IgnoredListViewController.h"
+#import "InProgressListViewController.h"
+
 #endif
 
 #endif

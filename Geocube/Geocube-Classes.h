@@ -65,6 +65,7 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
+@class FoundListViewController;
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCLabel;
@@ -89,6 +90,8 @@
 @class HelpAboutViewController;
 @class HelpDatabaseViewController;
 @class HelpImagesViewController;
+@class HighlightListViewController;
+@class IgnoredListViewController;
 @class ImageLibrary;
 @class ImagesDownloadManager;
 @class ImportGCAJSON;
@@ -97,10 +100,12 @@
 @class ImportLiveAPIJSON;
 @class ImportNotices;
 @class ImportSites;
+@class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackTrack;
 @class KeepTrackTracks;
 @class KeyboardCoordinateView;
+@class ListViewController;
 @class LiveAPI;
 @class LocalMenuItems;
 @class LocationManager;

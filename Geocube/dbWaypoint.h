@@ -22,9 +22,18 @@
 @interface dbWaypoint : dbObject
 
 enum {
-        LOGSTATUS_NOTLOGGED,
-        LOGSTATUS_NOTFOUND,
-        LOGSTATUS_FOUND,
+    LOGSTATUS_NOTLOGGED,
+    LOGSTATUS_NOTFOUND,
+    LOGSTATUS_FOUND,
+};
+
+enum {
+    FLAGS_NONE = 0,
+    FLAGS_HIGHLIGHTED,
+    FLAGS_IGNORED,
+    FLAGS_MARKEDFOUND,
+    FLAGS_INPROGRESS,
+    FLAGS_MAX,
 };
 
 @property (nonatomic, retain) NSString *wpt_name;
@@ -112,5 +121,6 @@ enum {
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;
 + (NSArray *)waypointsWithMyLogs;
++ (NSArray *)dbAllByFlag:(NSInteger)flag;
 
 @end

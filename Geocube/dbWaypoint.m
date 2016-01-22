@@ -650,4 +650,25 @@
     return wps;
 }
 
++ (NSArray *)dbAllByFlag:(NSInteger)flag
+{
+    NSArray *wps = nil;
+
+    switch (flag) {
+        case FLAGS_HIGHLIGHTED:
+            wps = [dbWaypoint dbAllXXX:@"highlight = 1"];
+            break;
+        case FLAGS_IGNORED:
+            wps = [dbWaypoint dbAllXXX:@"ignore = 1"];
+            break;
+        case FLAGS_INPROGRESS:
+            wps = [dbWaypoint dbAllXXX:@"inprogress = 1"];
+            break;
+        case FLAGS_MARKEDFOUND:
+            wps = [dbWaypoint dbAllXXX:@"markedfound = 1"];
+            break;
+    }
+    return wps;
+}
+
 @end
