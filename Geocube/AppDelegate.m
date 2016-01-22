@@ -113,233 +113,283 @@
         [tabBars addObject:tbc]; \
     }
 
-    // Navigate tabs #0
-    controllers = [NSMutableArray array];
+    for (NSInteger i = 0; i < RC_MAX; i++) {
+        switch (i) {
+            case RC_NAVIGATE:
+                controllers = [NSMutableArray array];
 
-    vc = [[CompassViewController alloc] init];
-    vc.title = @"Compass";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[CompassViewController alloc] init];
+                vc.title = @"Compass";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
-    vc.title = @"Target";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
+                vc.title = @"Target";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[MapViewController alloc] init:SHOW_ONECACHE];
-    vc.title = @"Map";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[MapViewController alloc] init:SHOW_ONECACHE];
+                vc.title = @"Map";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Waypoints tabs #1
-    controllers = [NSMutableArray array];
+            case RC_WAYPOINTS:
+                controllers = [NSMutableArray array];
 
-    vc = [[FiltersViewController alloc] init];
-    vc.title = @"Filters";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[FiltersViewController alloc] init];
+                vc.title = @"Filters";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[CachesOfflineListViewController alloc] init];
-    vc.title = @"List";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[CachesOfflineListViewController alloc] init];
+                vc.title = @"List";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[MapViewController alloc] init:SHOW_ALLCACHES];
-    vc.title = @"Map";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[MapViewController alloc] init:SHOW_ALLCACHES];
+                vc.title = @"Map";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Keep track tabs #2
-    controllers = [NSMutableArray array];
+            case RC_KEEPTRACK:
+                controllers = [NSMutableArray array];
 
-    vc = [[KeepTrackCar alloc] init];
-    vc.title = @"Car";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[KeepTrackCar alloc] init];
+                vc.title = @"Car";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[KeepTrackTracks alloc] init];
-    vc.title = @"Tracks";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[KeepTrackTracks alloc] init];
+                vc.title = @"Tracks";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Notes and logs tabs #3
-    controllers = [NSMutableArray array];
+            case RC_NOTESANDLOGS:
+                controllers = [NSMutableArray array];
 
-    vc = [[NotesPersonalNotesViewController alloc] init];
-    vc.title = @"Personal";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NotesPersonalNotesViewController alloc] init];
+                vc.title = @"Personal";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[NotesFieldnotesViewController alloc] init];
-    vc.title = @"Field";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NotesFieldnotesViewController alloc] init];
+                vc.title = @"Field";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[NotesImagesViewController alloc] init];
-    vc.title = @"Images";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NotesImagesViewController alloc] init];
+                vc.title = @"Images";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Trackables logs #4
-    controllers = [NSMutableArray array];
+            case RC_TRACKABLES:
+                controllers = [NSMutableArray array];
 
-    vc = [[TrackablesViewController alloc] init];
-    vc.title = @"Trackables";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[TrackablesViewController alloc] init];
+                vc.title = @"Trackables";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Groups Root Controllers #5
-    controllers = [NSMutableArray array];
+            case RC_GROUPS:
+                controllers = [NSMutableArray array];
 
-    vc = [[GroupsViewController alloc] init:YES];
-    vc.title = @"User Groups";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[GroupsViewController alloc] init:YES];
+                vc.title = @"User Groups";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[GroupsViewController alloc] init:NO];
-    vc.title = @"System Groups";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[GroupsViewController alloc] init:NO];
+                vc.title = @"System Groups";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Browser tabs #6
-    controllers = [NSMutableArray array];
+            case RC_BROWSER:
+                controllers = [NSMutableArray array];
 
-    vc = [[BrowserUserViewController alloc] init];
-    vc.title = @"User";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[BrowserUserViewController alloc] init];
+                vc.title = @"User";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[BrowserAccountsViewController alloc] init];
-    vc.title = @"Queries";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[BrowserAccountsViewController alloc] init];
+                vc.title = @"Queries";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[BrowserBrowserViewController alloc] init];
-    vc.title = @"Browser";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[BrowserBrowserViewController alloc] init];
+                vc.title = @"Browser";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Files RootController #7
-    controllers = [NSMutableArray array];
+            case RC_FILES:
+                controllers = [NSMutableArray array];
 
-    vc = [[FilesViewController alloc] init];
-    vc.title = @"Local Files";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[FilesViewController alloc] init];
+                vc.title = @"Local Files";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[FilesDropboxViewController alloc] init];
-    vc.title = @"Dropbox";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[FilesDropboxViewController alloc] init];
+                vc.title = @"Dropbox";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // User profile tabs #8
-    controllers = [NSMutableArray array];
+            case RC_USERPROFILE:
+                controllers = [NSMutableArray array];
 
-    vc = [[UserProfileViewController alloc] init];
-    vc.title = @"User Profile";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[UserProfileViewController alloc] init];
+                vc.title = @"User Profile";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Notices tabs #9
-    controllers = [NSMutableArray array];
+            case RC_NOTICES:
+                controllers = [NSMutableArray array];
 
-    vc = [[NoticesViewController alloc] init];
-    vc.title = @"Notices";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NoticesViewController alloc] init];
+                vc.title = @"Notices";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                TABBARCONTROLLER(controllers)
+                break;
 
-    TABBARCONTROLLER(controllers)
+            case RC_SETTINGS:
+                controllers = [NSMutableArray array];
+                
+                vc = [[SettingsMainViewController alloc] init];
+                vc.title = @"Settings";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                vc = [[SettingsAccountsViewController alloc] init];
+                vc.title = @"Accounts";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                vc = [[SettingsColoursViewController alloc] init];
+                vc.title = @"Colours";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                TABBARCONTROLLER(controllers)
+                break;
 
-    // Settings tabs #10
-    controllers = [NSMutableArray array];
+            case RC_HELP:
+                controllers = [NSMutableArray array];
+                
+                vc = [[HelpAboutViewController alloc] init];
+                vc.title = @"About";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                vc = [[NullViewController alloc] init];
+                vc.title = @"Help";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                vc = [[HelpImagesViewController alloc] init];
+                vc.title = @"Images";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                vc = [[HelpDatabaseViewController alloc] init];
+                vc.title = @"DB";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+                
+                TABBARCONTROLLER(controllers)
+                break;
 
-    vc = [[SettingsMainViewController alloc] init];
-    vc.title = @"Settings";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+            case RC_LISTS:
+                controllers = [NSMutableArray array];
 
-    vc = [[SettingsAccountsViewController alloc] init];
-    vc.title = @"Accounts";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NullViewController alloc] init];
+                vc.title = @"Ignored";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[SettingsColoursViewController alloc] init];
-    vc.title = @"Colours";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                vc = [[NullViewController alloc] init];
+                vc.title = @"Highlight";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    TABBARCONTROLLER(controllers)
+                vc = [[NullViewController alloc] init];
+                vc.title = @"Found";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    // Help tabs #11
-    controllers = [NSMutableArray array];
+                vc = [[NullViewController alloc] init];
+                vc.title = @"In Progress";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
 
-    vc = [[HelpAboutViewController alloc] init];
-    vc.title = @"About";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+                TABBARCONTROLLER(controllers)
+                break;
 
-    vc = [[NullViewController alloc] init];
-    vc.title = @"Help";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
+            default:
+                NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 
-    vc = [[HelpImagesViewController alloc] init];
-    vc.title = @"Images";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    vc = [[HelpDatabaseViewController alloc] init];
-    vc.title = @"DB";
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    [controllers addObject:nav];
-
-    TABBARCONTROLLER(controllers)
+        }
+    }
 
     // UIResponder.window = UIWIndow
     // UIWindow.rootViewController = UITabBarController

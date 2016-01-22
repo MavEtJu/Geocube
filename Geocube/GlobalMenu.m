@@ -25,7 +25,7 @@
 
 @interface GlobalMenu ()
 {
-    NSArray *items;
+    NSMutableArray *items;
     DOPNavbarMenu *_global_menu;
     NSInteger numberOfItemsInRow;
     UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
@@ -45,7 +45,31 @@
 - (instancetype)init
 {
     self = [super init];
-    items = [NSArray arrayWithObjects:@"Navigate", @"Waypoints", @"Keep Track", @"Notes + Logs", @"Trackables", @"Groups", @"Browser", @"Files", @"User Profile", @"Notices", @"Settings", @"Help", nil];
+
+#define MATCH(__i__, __s__) \
+    case __i__: [items addObject:__s__]; \
+    break;
+
+    items = [NSMutableArray arrayWithCapacity:RC_MAX];
+    for (NSInteger i = 0; i < RC_MAX; i++) {
+        switch (i) {
+            MATCH(RC_NAVIGATE, @"Navigate");
+            MATCH(RC_WAYPOINTS, @"Waypoints");
+            MATCH(RC_KEEPTRACK, @"Keep Track");
+            MATCH(RC_NOTESANDLOGS, @"Notes + Logs");
+            MATCH(RC_TRACKABLES, @"Trackables");
+            MATCH(RC_GROUPS, @"Groups");
+            MATCH(RC_BROWSER, @"Browser");
+            MATCH(RC_FILES, @"Files");
+            MATCH(RC_USERPROFILE, @"User Profile");
+            MATCH(RC_NOTICES, @"Notices");
+            MATCH(RC_SETTINGS, @"Settings");
+            MATCH(RC_HELP, @"Help");
+            MATCH(RC_LISTS, @"Lists");
+            default:
+                NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
+        }
+    }
 
     //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
     //    UIImage *img = [UIImage imageNamed:imgfile];
