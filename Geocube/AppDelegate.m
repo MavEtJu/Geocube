@@ -359,7 +359,7 @@
     if (db == nil) {
         [self switchController:RC_NOTICES];
         currentTab = [tabBars objectAtIndex:RC_NOTICES];
-        cpt = VC_NOTICES;
+        cpt = VC_NOTICES_NOTICES;
         [currentTab makeTabViewCurrent:cpt];
         [NoticesViewController AccountsNeedToBeInitialized];
     }
