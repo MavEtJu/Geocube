@@ -202,6 +202,7 @@
 		E84D6FC61C52367B0000A6A0 /* HighlightListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC51C52367B0000A6A0 /* HighlightListViewController.m */; };
 		E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC81C5236930000A6A0 /* FoundListViewController.m */; };
 		E84D6FCC1C5236A00000A6A0 /* InProgressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */; };
+		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -642,6 +643,8 @@
 		E84D6FC81C5236930000A6A0 /* FoundListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoundListViewController.m; sourceTree = "<group>"; };
 		E84D6FCA1C5236A00000A6A0 /* InProgressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InProgressListViewController.h; sourceTree = "<group>"; };
 		E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InProgressListViewController.m; sourceTree = "<group>"; };
+		E84D6FCD1C531CD30000A6A0 /* FilterFlagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterFlagsTableViewCell.h; sourceTree = "<group>"; };
+		E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterFlagsTableViewCell.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1649,6 +1652,8 @@
 				E8E8D0221B67208800CC741A /* FilterDistanceTableViewCell.m */,
 				E8E8D00E1B66521600CC741A /* FilterFavouritesTableViewCell.h */,
 				E8E8D00F1B66521600CC741A /* FilterFavouritesTableViewCell.m */,
+				E84D6FCD1C531CD30000A6A0 /* FilterFlagsTableViewCell.h */,
+				E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */,
 				E8E8D0021B65F77B00CC741A /* FilterGroupsTableViewCell.h */,
 				E8E8D0031B65F77B00CC741A /* FilterGroupsTableViewCell.m */,
 				E8E8D0301B67212000CC741A /* FilterOthersTableViewCell.h */,
@@ -2471,6 +2476,7 @@
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
+				E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */,
 				E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E87E474A1B82A301005606A2 /* ImportSites.m in Sources */,

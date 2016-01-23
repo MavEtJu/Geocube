@@ -55,6 +55,7 @@
 @class FilterDirectionTableViewCell;
 @class FilterDistanceTableViewCell;
 @class FilterFavouritesTableViewCell;
+@class FilterFlagsTableViewCell;
 @class FilterGroupsTableViewCell;
 @class FilterObject;
 @class FilterOthersTableViewCell;

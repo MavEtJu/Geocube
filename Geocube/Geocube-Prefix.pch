@@ -177,6 +177,7 @@
 #import "FilterDirectionTableViewCell.h"
 #import "FilterDistanceTableViewCell.h"
 #import "FilterFavouritesTableViewCell.h"
+#import "FilterFlagsTableViewCell.h"
 #import "FilterGroupsTableViewCell.h"
 #import "FilterOthersTableViewCell.h"
 #import "FilterSizesTableViewCell.h"
