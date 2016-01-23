@@ -102,7 +102,7 @@ enum {
         valueLogStatus = [c integerValue];
 
     for (NSInteger i = 0; i < flagMax; i++) {
-        CGRect rect = CGRectMake(20, y, width - 40, 15);
+        CGRect rect = CGRectMake(20, y, width - 40, 20);
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
@@ -135,7 +135,7 @@ enum {
                 buttonLogStatus = b;
                 break;
         }
-        y += 15;
+        y += 20;
     };
 
     [self.contentView sizeToFit];
