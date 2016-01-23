@@ -161,7 +161,8 @@ enum {
 {
     if (waypoints == nil)
         return @"";
-    return [NSString stringWithFormat:@"%ld waypoints", (unsigned long)[waypoints count]];
+    NSInteger c = [waypoints count];
+    return [NSString stringWithFormat:@"%ld waypoint%@", (unsigned long)c, c == 1 ? @"" : @"s"];
 }
 
 // Return a cell for the index path
