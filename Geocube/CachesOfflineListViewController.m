@@ -178,7 +178,7 @@ enum {
     cell.description.text = wp.wpt_urlname;
     cell.name.text = wp.wpt_name;
     cell.icon.image = [imageLibrary getType:wp];
-    if (wp.highlight == YES)
+    if (wp.flag_highlight == YES)
         cell.description.backgroundColor = [UIColor yellowColor];
     else
         cell.description.backgroundColor = [UIColor clearColor];

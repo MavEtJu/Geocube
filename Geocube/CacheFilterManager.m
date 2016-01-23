@@ -257,7 +257,7 @@
 
         NSLog(@"%@ - Filtering ignored", [self class]);
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (wp.ignore == NO)
+            if (wp.flag_ignore == NO)
                 [after addObject:wp];
         }];
         caches = after;

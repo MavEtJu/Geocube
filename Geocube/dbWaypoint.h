@@ -56,10 +56,10 @@ enum {
 @property (nonatomic, retain) dbType *wpt_type;
 
 @property (nonatomic) NSInteger logStatus;
-@property (nonatomic) BOOL highlight;
-@property (nonatomic) BOOL ignore;
-@property (nonatomic) BOOL markedfound;
-@property (nonatomic) BOOL inprogress;
+@property (nonatomic) BOOL flag_highlight;
+@property (nonatomic) BOOL flag_ignore;
+@property (nonatomic) BOOL flag_markedfound;
+@property (nonatomic) BOOL flag_inprogress;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 

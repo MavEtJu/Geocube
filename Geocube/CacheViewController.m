@@ -72,7 +72,7 @@ enum {
 {
     waypoint = _wp;
 
-    if (waypoint.highlight == YES) {
+    if (waypoint.flag_highlight == YES) {
         [lmi changeItem:menuHighlight label:@"Unhighlight"];
     } else {
         [lmi changeItem:menuHighlight label:@"Highlight"];
@@ -155,7 +155,7 @@ enum {
     GCLabel *l;
 
     UIColor *backgroundColor = [UIColor clearColor];
-    if (waypoint.highlight == YES)
+    if (waypoint.flag_highlight == YES)
        backgroundColor = [UIColor yellowColor];
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 15)];
@@ -485,7 +485,7 @@ enum {
             [self newWaypoint];
             return;
         case menuHighlight: // Highlight waypoint
-            waypoint.highlight = !waypoint.highlight;
+            waypoint.flag_highlight = !waypoint.flag_highlight;
             [waypoint dbUpdateHighlight];
             [self.tableView reloadData];
             return;
@@ -493,9 +493,9 @@ enum {
             [self refreshWaypoint];
             return;
         case menuIgnore: // Ignore this waypoint
-            waypoint.ignore = !waypoint.ignore;
+            waypoint.flag_ignore = !waypoint.flag_ignore;
             [waypoint dbUpdateIgnore];
-            if (waypoint.ignore == YES) {
+            if (waypoint.flag_ignore == YES) {
                 [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
             } else {
                 [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
@@ -509,12 +509,12 @@ enum {
             [self menuViewRaw];
             return;
         case menuInProgress:
-            waypoint.inprogress = !waypoint.inprogress;
+            waypoint.flag_inprogress = !waypoint.flag_inprogress;
             [waypoint dbUpdateInProgress];
             [self.tableView reloadData];
             return;
         case menuMarkFound:
-            waypoint.markedfound = !waypoint.markedfound;
+            waypoint.flag_markedfound = !waypoint.flag_markedfound;
             [waypoint dbUpdateMarkedFound];
             [self.tableView reloadData];
             return;

@@ -46,10 +46,10 @@
     dbAccount *account;
 
     NSInteger logStatus;
-    BOOL highlight;
-    BOOL ignore;
-    BOOL inprogress;
-    BOOL markedfound;
+    BOOL flag_highlight;
+    BOOL flag_ignore;
+    BOOL flag_inprogress;
+    BOOL flag_markedfound;
 
     /* Groundspeak related data */
     BOOL gs_hasdata;
@@ -93,7 +93,7 @@
 @implementation dbWaypoint
 
 @synthesize wpt_name, wpt_description, wpt_url, wpt_urlname, wpt_lat, wpt_lon, wpt_date_placed, wpt_type_str, wpt_symbol_str, wpt_lat_int, wpt_lon_int, wpt_lat_float, wpt_lon_float, wpt_date_placed_epoch, wpt_type_id, wpt_type, wpt_symbol_id, wpt_symbol;
-@synthesize coordinates, calculatedDistance, calculatedBearing, logStatus, highlight, account, account_id, ignore, markedfound, inprogress;
+@synthesize coordinates, calculatedDistance, calculatedBearing, logStatus, flag_highlight, account, account_id, flag_ignore, flag_markedfound, flag_inprogress;
 @synthesize gs_hasdata, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_country, gs_country_id, gs_country_str, gs_state, gs_state_id, gs_state_str, gs_short_desc_html, gs_short_desc, gs_long_desc_html, gs_long_desc, gs_hint, gs_container, gs_container_str, gs_container_id, gs_archived, gs_available, gs_placed_by, gs_owner_gsid, gs_owner, gs_owner_id, gs_owner_str;
 
 - (instancetype)init:(NSId)__id
@@ -143,10 +143,12 @@
     self.coordinates = CLLocationCoordinate2DMake(0, 0);
     self.calculatedDistance = 0;
     self.logStatus = LOGSTATUS_NOTLOGGED;
-    self.highlight = NO;
     self.account_id = 0;
     self.account = nil;
-    self.ignore = NO;
+    self.flag_highlight = NO;
+    self.flag_ignore = NO;
+    self.flag_inprogress = NO;
+    self.flag_markedfound = NO;
 
     return self;
 }
@@ -331,9 +333,9 @@
             TEXT_FETCH(  12, wp.wpt_urlname);
 
             INT_FETCH(   13, wp.logStatus);
-            BOOL_FETCH(  14, wp.highlight);
+            BOOL_FETCH(  14, wp.flag_highlight);
             INT_FETCH(   15, wp.account_id);
-            BOOL_FETCH(  16, wp.ignore);
+            BOOL_FETCH(  16, wp.flag_ignore);
 
             INT_FETCH(   17, wp.gs_country_id);
             INT_FETCH(   18, wp.gs_state_id);
@@ -352,8 +354,8 @@
             TEXT_FETCH(  31, wp.gs_placed_by);
             BOOL_FETCH(  32, wp.gs_hasdata);
 
-            BOOL_FETCH(  33, wp.markedfound);
-            BOOL_FETCH(  34, wp.inprogress);
+            BOOL_FETCH(  33, wp.flag_markedfound);
+            BOOL_FETCH(  34, wp.flag_inprogress);
 
             [wp finish];
             [wps addObject:wp];
@@ -460,9 +462,9 @@
         SET_VAR_TEXT(  12, wp.wpt_urlname);
 
         SET_VAR_INT(   13, wp.logStatus);
-        SET_VAR_BOOL(  14, wp.highlight);
+        SET_VAR_BOOL(  14, wp.flag_highlight);
         SET_VAR_INT(   15, wp.account_id);
-        SET_VAR_BOOL(  16, wp.ignore);
+        SET_VAR_BOOL(  16, wp.flag_ignore);
 
         SET_VAR_INT(   17, wp.gs_country_id);
         SET_VAR_INT(   18, wp.gs_state_id);
@@ -481,8 +483,8 @@
         SET_VAR_TEXT(  31, wp.gs_placed_by);
         SET_VAR_BOOL(  32, wp.gs_hasdata);
 
-        SET_VAR_BOOL(  33, wp.markedfound);
-        SET_VAR_BOOL(  34, wp.inprogress);
+        SET_VAR_BOOL(  33, wp.flag_markedfound);
+        SET_VAR_BOOL(  34, wp.flag_inprogress);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -510,9 +512,9 @@
         SET_VAR_TEXT(  12, wpt_urlname);
 
         SET_VAR_INT(   13, logStatus);
-        SET_VAR_BOOL(  14, highlight);
+        SET_VAR_BOOL(  14, flag_highlight);
         SET_VAR_INT(   15, account_id);
-        SET_VAR_BOOL(  16, ignore);
+        SET_VAR_BOOL(  16, flag_ignore);
 
         SET_VAR_INT(   17, gs_country_id);
         SET_VAR_INT(   18, gs_state_id);
@@ -531,8 +533,8 @@
         SET_VAR_TEXT(  31, gs_placed_by);
         SET_VAR_BOOL(  32, gs_hasdata);
 
-        SET_VAR_BOOL(  33, markedfound);
-        SET_VAR_BOOL(  34, inprogress);
+        SET_VAR_BOOL(  33, flag_markedfound);
+        SET_VAR_BOOL(  34, flag_inprogress);
 
         SET_VAR_INT(   35, _id);
 
@@ -571,7 +573,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
 
-        SET_VAR_BOOL(1, self.highlight);
+        SET_VAR_BOOL(1, self.flag_highlight);
         SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
@@ -584,7 +586,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
 
-        SET_VAR_BOOL(1, self.ignore);
+        SET_VAR_BOOL(1, self.flag_ignore);
         SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
@@ -597,7 +599,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set markedfound = ? where id = ?");
 
-        SET_VAR_BOOL(1, self.markedfound);
+        SET_VAR_BOOL(1, self.flag_markedfound);
         SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
@@ -610,7 +612,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set inprogress = ? where id = ?");
 
-        SET_VAR_BOOL(1, self.inprogress);
+        SET_VAR_BOOL(1, self.flag_inprogress);
         SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
