@@ -33,4 +33,12 @@
     flag = FLAGS_HIGHLIGHTED;
 }
 
+- (void)clearFlag
+{
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.highlight = NO;
+        [wp dbUpdateHighlight];
+    }];
+}
+
 @end

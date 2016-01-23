@@ -33,4 +33,12 @@
     flag = FLAGS_INPROGRESS;
 }
 
+- (void)clearFlag
+{
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.inprogress = NO;
+        [wp dbUpdateInProgress];
+    }];
+}
+
 @end

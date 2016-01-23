@@ -22,23 +22,37 @@
 #import "Geocube-Prefix.pch"
 
 @interface ListViewController ()
-{
-    NSArray *waypoints;
-}
 
 @end
 
 @implementation ListViewController
 
+enum {
+    menuClearFlags,
+    menuReloadWaypoints,
+    menuMax
+};
+
 #define THISCELL @"CacheTableViewCell"
+
+NEEDS_OVERLOADING(clearFlag)
+
+- (instancetype)init
+{
+    self = [super init];
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuClearFlags label:@"Clear list"];
+    [lmi addItem:menuReloadWaypoints label:@"Reload Waypoints"];
+
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
-
-    lmi = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,6 +63,14 @@
 }
 
 #pragma mark - TableViewController related functions
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (waypoints == nil)
+        return @"";
+    NSInteger c = [waypoints count];
+    return [NSString stringWithFormat:@"%ld waypoint%@", (unsigned long)c, c == 1 ? @"" : @"s"];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
@@ -96,8 +118,6 @@
     }
     cell.stateCountry.text = s;
 
-    //[cell showGroundspeak:(gs != nil)]; Not yet sure
-
     [cell viewWillTransitionToSize];
 
     return cell;
@@ -121,5 +141,33 @@
 }
 
 #pragma mark - Local menu related functions
+
+- (void)menuClearFlags
+{
+    [self clearFlag];
+
+    waypoints = @[];
+    [self.tableView reloadData];
+
+    [waypointManager needsRefresh];
+}
+
+- (void)menuReloadWaypoints
+{
+}
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuClearFlags:
+            [self menuClearFlags];
+            return;
+        case menuReloadWaypoints:
+            [self menuReloadWaypoints];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
 
 @end

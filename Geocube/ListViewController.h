@@ -22,6 +22,9 @@
 @interface ListViewController : GCTableViewController
 {
     NSInteger flag;
+    NSArray *waypoints;
 }
+
+- (void)clearFlag;
 
 @end
