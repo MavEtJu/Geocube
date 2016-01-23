@@ -82,9 +82,10 @@
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
 {
-    /* Do not unnecessary go through this */
     @synchronized(self) {
         NSLog(@"%@: coordinates %@", [self class], [Coordinates NiceCoordinates:coords]);
+
+        /* Do not unnecessary go through this */
         if (needsRefresh != YES)
             return;
 
@@ -452,7 +453,7 @@
         NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:coords]);
         [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
-            wp.calculatedBearing = [Coordinates coordinates2distance:coords to:wp.coordinates];
+            wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:wp.coordinates];
         }];
 
         /* Filter by distance */
