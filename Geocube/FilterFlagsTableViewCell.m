@@ -27,21 +27,33 @@
     UIButton *buttonMarkedAsFound;
     UIButton *buttonIgnored;
     UIButton *buttonInProgress;
+    UIButton *buttonLogStatus;
 
     NSInteger valueHighlighted;
     NSInteger valueMarkedAsFound;
     NSInteger valueIgnored;
     NSInteger valueInProgress;
+    NSInteger valueLogStatus;
 
     NSArray *valuesHighlighted;
     NSArray *valuesMarkedAsFound;
     NSArray *valuesIgnored;
     NSArray *valuesInProgress;
+    NSArray *valuesLogStatus;
 }
 
 @end
 
 @implementation FilterFlagsTableViewCell
+
+enum {
+    flagHighlighted,
+    flagMarkedAsFound,
+    flagIgnored,
+    flagInProgress,
+    flagLogStatus,
+    flagMax
+};
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {
@@ -65,26 +77,31 @@
     valueMarkedAsFound = 0;
     valueIgnored = 0;
     valueInProgress = 0;
+    valueLogStatus = 0;
 
     valuesHighlighted = @[@"Highlighted", @"Highlighted", @"Not highlighted"];
     valuesMarkedAsFound = @[@"Marked as Found", @"Marked as Found", @"Not marked as found"];
     valuesIgnored = @[@"Ignored", @"Ignored", @"Not ignored"];
     valuesInProgress = @[@"In progress", @"In progress", @"Not in progress"];
+    valuesLogStatus = @[@"Not logged", @"Not logged", @"Did Not Find", @"Found"];
 
-    c = [self configGet:@"flags_highlighted"];
+    c = [self configGet:@"highlighted"];
     if (c != nil)
         valueHighlighted = [c integerValue];
-    c = [self configGet:@"flags_markedfound"];
+    c = [self configGet:@"markedfound"];
     if (c != nil)
         valueMarkedAsFound = [c integerValue];
-    c = [self configGet:@"flags_ignored"];
+    c = [self configGet:@"ignored"];
     if (c != nil)
         valueIgnored = [c integerValue];
-    c = [self configGet:@"flags_inprogress"];
+    c = [self configGet:@"inprogress"];
     if (c != nil)
         valueInProgress = [c integerValue];
+    c = [self configGet:@"logstatus"];
+    if (c != nil)
+        valueLogStatus = [c integerValue];
 
-    for (NSInteger i = 0; i < 4; i++) {
+    for (NSInteger i = 0; i < flagMax; i++) {
         CGRect rect = CGRectMake(20, y, width - 40, 15);
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
@@ -92,25 +109,30 @@
         [self.contentView addSubview:b];
 
         switch (i) {
-            case 0:
+            case flagHighlighted:
                 [b setTitle:[valuesHighlighted objectAtIndex:valueHighlighted] forState:UIControlStateNormal];
                 [b setTitleColor:(valueHighlighted != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
                 buttonHighlighted = b;
                 break;
-            case 1:
+            case flagMarkedAsFound:
                 [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];
                 [b setTitleColor:(valueMarkedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
                 buttonMarkedAsFound = b;
                 break;
-            case 2:
+            case flagIgnored:
                 [b setTitle:[valuesIgnored objectAtIndex:valueIgnored] forState:UIControlStateNormal];
                 [b setTitleColor:(valueIgnored != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
                 buttonIgnored = b;
                 break;
-            case 3:
+            case flagInProgress:
                 [b setTitle:[valuesInProgress objectAtIndex:valueInProgress] forState:UIControlStateNormal];
                 [b setTitleColor:(valueInProgress != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
                 buttonInProgress = b;
+                break;
+            case flagLogStatus:
+                [b setTitle:[valuesLogStatus objectAtIndex:valueLogStatus] forState:UIControlStateNormal];
+                [b setTitleColor:(valueLogStatus != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+                buttonLogStatus = b;
                 break;
         }
         y += 15;
@@ -156,7 +178,7 @@
         valueMarkedAsFound = (valueMarkedAsFound + 1) % 3;
         [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];
         [b setTitleColor:(valueMarkedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"flags_markedfound" value:[NSString stringWithFormat:@"%ld", (long)valueMarkedAsFound]];
+        [self configSet:@"markedfound" value:[NSString stringWithFormat:@"%ld", (long)valueMarkedAsFound]];
         [self configUpdate];
         return;
     }
@@ -165,7 +187,7 @@
         valueIgnored = (valueIgnored + 1) % 3;
         [b setTitle:[valuesIgnored objectAtIndex:valueIgnored] forState:UIControlStateNormal];
         [b setTitleColor:(valueIgnored != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"flags_ignored" value:[NSString stringWithFormat:@"%ld", (long)valueIgnored]];
+        [self configSet:@"ignored" value:[NSString stringWithFormat:@"%ld", (long)valueIgnored]];
         [self configUpdate];
         return;
     }
@@ -174,7 +196,7 @@
         valueHighlighted = (valueHighlighted + 1) % 3;
         [b setTitle:[valuesHighlighted objectAtIndex:valueHighlighted] forState:UIControlStateNormal];
         [b setTitleColor:(valueHighlighted != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"flags_highlighted" value:[NSString stringWithFormat:@"%ld", (long)valueHighlighted]];
+        [self configSet:@"highlighted" value:[NSString stringWithFormat:@"%ld", (long)valueHighlighted]];
         [self configUpdate];
         return;
     }
@@ -183,7 +205,16 @@
         valueInProgress = (valueInProgress + 1) % 3;
         [b setTitle:[valuesInProgress objectAtIndex:valueInProgress] forState:UIControlStateNormal];
         [b setTitleColor:(valueInProgress != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"flags_inprogress" value:[NSString stringWithFormat:@"%ld", (long)valueInProgress]];
+        [self configSet:@"inprogress" value:[NSString stringWithFormat:@"%ld", (long)valueInProgress]];
+        [self configUpdate];
+        return;
+    }
+
+    if (b == buttonLogStatus) {
+        valueLogStatus = (valueLogStatus + 1) % 4;
+        [b setTitle:[valuesLogStatus objectAtIndex:valueLogStatus] forState:UIControlStateNormal];
+        [b setTitleColor:(valueLogStatus != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [self configSet:@"logstatus" value:[NSString stringWithFormat:@"%ld", (long)valueLogStatus]];
         [self configUpdate];
         return;
     }

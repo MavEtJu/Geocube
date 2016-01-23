@@ -250,19 +250,6 @@
         }
         NSLog(@"%@: Number of waypoints after filtering terrain: %ld", [self class], (unsigned long)[caches count]);
 
-        /* Filter out ignored ones
-         */
-
-        after = [NSMutableArray arrayWithCapacity:200];
-        [clock clockShowAndReset:@"ignored"];
-
-        NSLog(@"%@ - Filtering ignored", [self class]);
-        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (wp.flag_ignore == NO)
-                [after addObject:wp];
-        }];
-        caches = after;
-
         /* Filter out dates
          */
         after = [NSMutableArray arrayWithCapacity:200];
@@ -446,6 +433,54 @@
                     [after addObject:wp];
             }];
 
+            caches = after;
+        }
+
+        /* Filter by flags */
+        after = [NSMutableArray arrayWithCapacity:200];
+        [clock clockShowAndReset:@"flags"];
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+
+        c = [self configGet:@"flags_enabled"];
+        if (c != nil && [c boolValue] == YES) {
+            NSInteger flagHighlight = [[self configGet:@"flags_highlighted"] integerValue];
+            NSInteger flagInProgress = [[self configGet:@"flags_inprogress"] integerValue];
+            NSInteger flagIgnored = [[self configGet:@"flags_ignored"] integerValue];
+            NSInteger flagMarkedFound = [[self configGet:@"flags_markedfound"] integerValue];
+            NSInteger flagLogStatus = [[self configGet:@"flags_logstatus"] integerValue];
+
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                BOOL keep = YES;
+
+                if (keep == YES && flagHighlight != 0)
+                    keep = (wp.flag_highlight == NO && flagHighlight == 2) || (wp.flag_highlight == YES && flagHighlight == 1);
+                if (keep == YES && flagInProgress != 0)
+                    keep = (wp.flag_inprogress == NO && flagInProgress == 2) || (wp.flag_inprogress == YES && flagInProgress == 1);
+                if (keep == YES && flagIgnored != 0)
+                    keep = (wp.flag_ignore == NO && flagIgnored == 2) || (wp.flag_ignore == YES && flagIgnored == 1);
+                if (keep == YES && flagMarkedFound != 0)
+                    keep = (wp.flag_markedfound == NO && flagMarkedFound == 2) || (wp.flag_markedfound == YES && flagMarkedFound == 1);
+                if (keep == YES && flagLogStatus != 0)
+                    keep = (wp.logStatus == LOGSTATUS_FOUND && flagLogStatus == 3) || (wp.logStatus == LOGSTATUS_NOTFOUND && flagLogStatus == 2) || (wp.logStatus == LOGSTATUS_NOTLOGGED && flagLogStatus == 1);
+
+                if (keep == YES)
+                    [after addObject:wp];
+            }];
+
+            caches = after;
+        } else {
+
+            /* Filter out ignored ones
+             */
+
+            after = [NSMutableArray arrayWithCapacity:200];
+            [clock clockShowAndReset:@"ignored"];
+
+            NSLog(@"%@ - Filtering ignored", [self class]);
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.flag_ignore == NO)
+                    [after addObject:wp];
+            }];
             caches = after;
         }
 
