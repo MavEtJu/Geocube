@@ -209,8 +209,8 @@ enum {
     img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-    NSData * binaryImageData = UIImagePNGRepresentation(img);
-    [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
+    // NSData * binaryImageData = UIImagePNGRepresentation(img);
+    // [binaryImageData writeToFile:[[MyTools DocumentRoot] stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
 
     return img;
 }
