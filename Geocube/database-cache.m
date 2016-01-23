@@ -213,6 +213,7 @@
     }];
     NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
 
+    Names = [NSMutableDictionary dictionaryWithCapacity:200];
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *name, NSUInteger idx, BOOL * _Nonnull stop) {
         [Names setObject:name forKey:[NSNumber numberWithLongLong:name._id]];
     }];
