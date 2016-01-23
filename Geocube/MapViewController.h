@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapViewController : GCViewController <LocationManagerDelegate, CacheFilterManagerDelegate>
+@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
 
 enum {
     SHOW_ONECACHE = 1,

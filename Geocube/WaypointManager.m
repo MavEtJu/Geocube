@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface CacheFilterManager ()
+@interface WaypointManager ()
 {
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation CacheFilterManager
+@implementation WaypointManager
 
 @synthesize currentWaypoint, currentWaypoints;
 

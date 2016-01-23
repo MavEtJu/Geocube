@@ -34,7 +34,7 @@ ImageLibrary *imageLibrary = nil;
 ImagesDownloadManager *imagesDownloadManager = nil;
 
 // Current dbCache to navigate to
-CacheFilterManager *waypointManager = nil;
+WaypointManager *waypointManager = nil;
 
 // Location Manager
 LocationManager *LM = nil;

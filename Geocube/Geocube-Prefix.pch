@@ -107,7 +107,7 @@
 #import "GCURLRequest.h"
 #import "GCViewController.h"
 
-#import "CacheFilterManager.h"
+#import "WaypointManager.h"
 
 #import "ImportGCAJSON.h"
 #import "ImportGPX.h"

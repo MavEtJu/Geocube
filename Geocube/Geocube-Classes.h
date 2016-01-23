@@ -30,7 +30,6 @@
 @class CacheAddViewController;
 @class CacheAttributesViewController;
 @class CacheDescriptionViewController;
-@class CacheFilterManager;
 @class CacheGroupsViewController;
 @class CacheHeaderTableViewCell;
 @class CacheHintViewController;
@@ -139,6 +138,7 @@
 @class ThemeTemplate;
 @class TrackablesViewController;
 @class UserProfileViewController;
+@class WaypointManager;
 @class database;
 @class dbAccount;
 @class dbAttribute;

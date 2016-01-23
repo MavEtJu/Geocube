@@ -36,7 +36,7 @@ extern ImageLibrary *imageLibrary;
 extern ImagesDownloadManager *imagesDownloadManager;
 
 // Current dbWaypoint to navitate to
-extern CacheFilterManager *waypointManager;
+extern WaypointManager *waypointManager;
 
 // Location Manager
 extern LocationManager *LM;

@@ -83,7 +83,7 @@
     [themeManager setTheme:myConfig.themeType];
 
     // Waypoint Manager - after myConfig, LM, db
-    waypointManager = [[CacheFilterManager alloc] init];
+    waypointManager = [[WaypointManager alloc] init];
     [dbc loadWaypointData];
 
     // Initialize the image library

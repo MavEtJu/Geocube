@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
-		E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* CacheFilterManager.m */; };
+		E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* WaypointManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
 		E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A71B5F84B4007FDC29 /* attributes - 02.png */; };
 		E80731EB1B5F84B4007FDC29 /* attributes - 03.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A81B5F84B4007FDC29 /* attributes - 03.png */; };
@@ -403,8 +403,8 @@
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
-		E8045B871B697A3B00DD44CC /* CacheFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFilterManager.h; sourceTree = "<group>"; };
-		E8045B881B697A3B00DD44CC /* CacheFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheFilterManager.m; sourceTree = "<group>"; };
+		E8045B871B697A3B00DD44CC /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
+		E8045B881B697A3B00DD44CC /* WaypointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointManager.m; sourceTree = "<group>"; };
 		E80731A61B5F84B4007FDC29 /* attributes - 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 01.png"; path = "images/attributes - 01.png"; sourceTree = "<group>"; };
 		E80731A71B5F84B4007FDC29 /* attributes - 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 02.png"; path = "images/attributes - 02.png"; sourceTree = "<group>"; };
 		E80731A81B5F84B4007FDC29 /* attributes - 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 03.png"; path = "images/attributes - 03.png"; sourceTree = "<group>"; };
@@ -1058,18 +1058,18 @@
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
-				E8045B871B697A3B00DD44CC /* CacheFilterManager.h */,
-				E8045B881B697A3B00DD44CC /* CacheFilterManager.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
+				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
+				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 				E8E88D901BF06D9500E90F8D /* LocationManager.h */,
 				E8E88D911BF06D9500E90F8D /* LocationManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
-				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
-				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
+				E8045B871B697A3B00DD44CC /* WaypointManager.h */,
+				E8045B881B697A3B00DD44CC /* WaypointManager.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -2445,7 +2445,7 @@
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8740FE51B4FFB46002527DA /* CacheHintViewController.m in Sources */,
-				E8045B891B697A3B00DD44CC /* CacheFilterManager.m in Sources */,
+				E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,

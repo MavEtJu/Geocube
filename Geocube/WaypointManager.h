@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol CacheFilterManagerDelegate
+@protocol WaypointManagerDelegate
 
 - (void)refreshWaypoints;
 
 @end
 
-@interface CacheFilterManager : NSObject <LocationManagerDelegate>
+@interface WaypointManager : NSObject <LocationManagerDelegate>
 
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
 @property (nonatomic, retain) NSMutableArray *currentWaypoints;
