@@ -447,7 +447,15 @@
 
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.flag_highlight owner:NO markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
+    __block BOOL owner = NO;
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a._id == wp.account_id && a.accountname_id == wp.gs_owner_id) {
+            *stop = YES;
+            owner = YES;
+        }
+    }];
+
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
 }
 
 - (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
