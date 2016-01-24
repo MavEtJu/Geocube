@@ -139,9 +139,11 @@
             [self performUpgrade_4_5];
         case 5:
             [self performUpgrade_5_6];
-    }
 
-    NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
+            return;
+        default:
+            NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
+    }
 }
 
 #undef DB_ASSERT
@@ -229,7 +231,7 @@
 {
     NSArray *a = @[
     @"alter table accounts add column name_id integer",
-    @"update accounts set named_id = 0",
+    @"update accounts set name_id = 0",
     ];
     [self performUpgrade_X_Y:a];
 }
