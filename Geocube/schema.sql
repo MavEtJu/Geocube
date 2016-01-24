@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "5");
+insert into config(key, value) values("version", "6");
 
 create table filters (
     id integer primary key,
@@ -720,6 +720,7 @@ create table accounts (
     url_site text,
     url_queries text,
     accountname text,
+    name_id integer,			-- points to names(id)
     protocol integer,	-- 0 none, 1 groundspeak, 2 okapi, 3 GCA
 
     gca_cookie_name text,

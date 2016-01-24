@@ -229,7 +229,7 @@
 
 - (NSDictionary *)UserStatistics
 {
-    return [self UserStatistics:account.accountname];
+    return [self UserStatistics:account.accountname_string];
 }
 
 - (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey

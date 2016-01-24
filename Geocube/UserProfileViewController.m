@@ -98,7 +98,7 @@ enum {
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
 
-        if (a.accountname == nil || [a.accountname length] == 0) {
+        if (a.accountname_string == nil || [a.accountname_string length] == 0) {
             [accountViews addObject:@""];
             return;
         }

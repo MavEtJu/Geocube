@@ -115,8 +115,8 @@ enum {
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
-    cell.detailTextLabel.text = a.accountname;
-    if (a.accountname == nil || [a.accountname isEqualToString:@""] == YES)
+    cell.detailTextLabel.text = a.accountname_string;
+    if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
         cell.imageView.image = [imageLibrary get:ImageIcon_Target];
     else {
         if (a.canDoRemoteStuff == YES)
@@ -145,7 +145,9 @@ enum {
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *username = tf.text;
 
-                             account.accountname = username;
+                             account.accountname_string = username;
+                             account.accountname = nil;
+                             [account finish];
                              [account dbUpdateAccount];
 
                              [self.tableView reloadData];
@@ -173,7 +175,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = account.accountname;
+        textField.text = account.accountname_string;
         textField.placeholder = @"Username";
     }];
 

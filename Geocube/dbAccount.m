@@ -26,7 +26,9 @@
     NSString *site;
     NSString *url_site;
     NSString *url_queries;
-    NSString *accountname;
+    NSString *accountname_string;
+    NSId accountname_id;
+    dbName *accountname;
     NSInteger protocol;
     NSInteger geocube_id;
     NSInteger revision;
@@ -54,13 +56,25 @@
 
 @implementation dbAccount
 
-@synthesize site, url_site, accountname, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, canDoRemoteStuff, idx;
+@synthesize site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, canDoRemoteStuff, idx;
 
 - (void)finish
 {
     remoteAPI = [[RemoteAPI alloc] init:self];
     canDoRemoteStuff = 0;
     finished = YES;
+
+    dbName *n = [dbName dbGetByName:accountname_string account:self];
+    if (n == nil) {
+        n = [[dbName alloc] init];
+        n.name = self.accountname_string;
+        n.code = nil;
+        n.account_id = self._id;
+        [n dbCreate];
+    }
+    accountname = n;
+    accountname_id = n._id;
+
     [self checkRemoteAccess];
 }
 
@@ -102,7 +116,7 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value from accounts where id = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
@@ -111,7 +125,7 @@
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
-            TEXT_FETCH( 4, a.accountname);
+            TEXT_FETCH( 4, a.accountname_string);
             INT_FETCH(  5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
@@ -126,6 +140,7 @@
             INT_FETCH( 16, a.geocube_id);
             INT_FETCH( 17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
+            INT_FETCH (19, a.accountname_id);
             [a finish];
         }
         DB_FINISH;
@@ -138,7 +153,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value from accounts");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
@@ -146,7 +161,7 @@
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
-            TEXT_FETCH( 4, a.accountname);
+            TEXT_FETCH( 4, a.accountname_string);
             INT_FETCH(  5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
@@ -161,6 +176,7 @@
             INT_FETCH( 16, a.geocube_id);
             INT_FETCH( 17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
+            INT_FETCH( 19, a.accountname_id);
             [a finish];
             [ss addObject:a];
         }
@@ -179,12 +195,12 @@
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
-        SET_VAR_TEXT( 4, self.accountname);
+        SET_VAR_TEXT( 4, self.accountname_string);
         SET_VAR_INT(  5, self.protocol);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
@@ -199,6 +215,7 @@
         SET_VAR_INT( 16, self.geocube_id);
         SET_VAR_INT( 17, self.revision);
         SET_VAR_TEXT(18, self.gca_cookie_value);
+        SET_VAR_INT( 19, self.accountname_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -211,12 +228,12 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ? where id = ?");
+        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
-        SET_VAR_TEXT( 4, self.accountname);
+        SET_VAR_TEXT( 4, self.accountname_string);
         SET_VAR_INT(  5, self.protocol);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
@@ -231,7 +248,8 @@
         SET_VAR_INT( 16, self.geocube_id);
         SET_VAR_INT( 17, self.revision);
         SET_VAR_TEXT(18, self.gca_cookie_value);
-        SET_VAR_INT( 19, self._id);
+        SET_VAR_INT( 19, self.accountname_id);
+        SET_VAR_INT( 20, self._id);
 
         DB_CHECK_OKAY;
 
@@ -243,9 +261,10 @@
 - (void)dbUpdateAccount
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set accountname = ? where id = ?");
+        DB_PREPARE(@"update accounts set accountname = ?, name_id = ? where id = ?");
 
-        SET_VAR_TEXT(1, self.accountname);
+        SET_VAR_TEXT(1, self.accountname_string);
+        SET_VAR_INT( 2, self.accountname_id);
         SET_VAR_INT( 2, self._id);
 
         DB_CHECK_OKAY;
@@ -304,7 +323,7 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value from accounts where site = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id from accounts where site = ?");
         SET_VAR_TEXT(1, site);
 
         DB_IF_STEP {
@@ -313,7 +332,7 @@
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
-            TEXT_FETCH( 4, a.accountname);
+            TEXT_FETCH( 4, a.accountname_string);
             INT_FETCH(  5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
@@ -328,6 +347,7 @@
             INT_FETCH( 16, a.geocube_id);
             INT_FETCH( 17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
+            INT_FETCH( 19, a.accountname_id);
             [a finish];
         }
         DB_FINISH;

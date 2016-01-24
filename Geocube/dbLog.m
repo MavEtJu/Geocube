@@ -332,7 +332,7 @@
     log.logtype = lt;
     log.logtype_string = lt.logtype;
 
-    dbName *name = [dbName dbGetByName:waypoint.account.accountname account:waypoint.account];
+    dbName *name = waypoint.account.accountname;
     log.logger = name;
     log.logger_id = name._id;
     log.logger_gsid = name.code;
