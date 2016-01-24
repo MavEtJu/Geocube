@@ -77,10 +77,10 @@
         NSLog(@"Empty database is newer, upgrading");
         sqlite3_open([dbname UTF8String], &db);
 
-        for (NSInteger version = [c_real.value integerValue]; version < [c_empty.value integerValue]; version++) {
-            NSLog(@"Upgrading from %ld", (long)version);
-            [self performUpgrade:version];
-        }
+        NSInteger version = [c_real.value integerValue];
+        NSLog(@"Upgrading from %ld", (long)version);
+        [self performUpgrade:version];
+
         c_real.value = c_empty.value;
         [c_real dbUpdate];
 
@@ -125,25 +125,20 @@
 - (void)performUpgrade:(NSInteger)version
 {
     NSLog(@"performUpgrade: from version: %ld", (long)version);
-    if (version == 0) {
-        [self performUpgrade_0_1];
-        return;
-    }
-    if (version == 1) {
-        [self performUpgrade_1_2];
-        return;
-    }
-    if (version == 2) {
-        [self performUpgrade_2_3];
-        return;
-    }
-    if (version == 3) {
-        [self performUpgrade_3_4];
-        return;
-    }
-    if (version == 4) {
-        [self performUpgrade_4_5];
-        return;
+    switch (version) {
+        case 0:
+            [self performUpgrade_0_1];
+            /* All fall-through */
+        case 1:
+            [self performUpgrade_1_2];
+        case 2:
+            [self performUpgrade_2_3];
+        case 3:
+            [self performUpgrade_3_4];
+        case 4:
+            [self performUpgrade_4_5];
+        case 5:
+            [self performUpgrade_5_6];
     }
 
     NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
@@ -226,6 +221,15 @@
     @"alter table waypoints add column inprogress bool",
     @"update waypoints set markedfound = 0",
     @"update waypoints set inprogress = 0",
+    ];
+    [self performUpgrade_X_Y:a];
+}
+
+- (void)performUpgrade_5_6
+{
+    NSArray *a = @[
+    @"alter table accounts add column name_id integer",
+    @"update accounts set named_id = 0",
     ];
     [self performUpgrade_X_Y:a];
 }
