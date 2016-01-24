@@ -447,6 +447,7 @@
             NSInteger flagInProgress = [[self configGet:@"flags_inprogress"] integerValue];
             NSInteger flagIgnored = [[self configGet:@"flags_ignored"] integerValue];
             NSInteger flagMarkedFound = [[self configGet:@"flags_markedfound"] integerValue];
+            NSInteger flagMine = [[self configGet:@"flags_owner"] integerValue];
             NSInteger flagLogStatus = [[self configGet:@"flags_logstatus"] integerValue];
 
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -460,6 +461,8 @@
                     keep = (wp.flag_ignore == NO && flagIgnored == 2) || (wp.flag_ignore == YES && flagIgnored == 1);
                 if (keep == YES && flagMarkedFound != 0)
                     keep = (wp.flag_markedfound == NO && flagMarkedFound == 2) || (wp.flag_markedfound == YES && flagMarkedFound == 1);
+                if (keep == YES && flagMine != 0)
+                    keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == 2) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == 1);
                 if (keep == YES && flagLogStatus != 0)
                     keep = (wp.logStatus == LOGSTATUS_FOUND && flagLogStatus == 3) || (wp.logStatus == LOGSTATUS_NOTFOUND && flagLogStatus == 2) || (wp.logStatus == LOGSTATUS_NOTLOGGED && flagLogStatus == 1);
 

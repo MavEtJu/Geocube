@@ -28,18 +28,21 @@
     UIButton *buttonIgnored;
     UIButton *buttonInProgress;
     UIButton *buttonLogStatus;
+    UIButton *buttonOwner;
 
     NSInteger valueHighlighted;
     NSInteger valueMarkedAsFound;
     NSInteger valueIgnored;
     NSInteger valueInProgress;
     NSInteger valueLogStatus;
+    NSInteger valueOwner;
 
     NSArray *valuesHighlighted;
     NSArray *valuesMarkedAsFound;
     NSArray *valuesIgnored;
     NSArray *valuesInProgress;
     NSArray *valuesLogStatus;
+    NSArray *valuesOwner;
 }
 
 @end
@@ -52,6 +55,7 @@ enum {
     flagIgnored,
     flagInProgress,
     flagLogStatus,
+    flagOwner,
     flagMax
 };
 
@@ -84,6 +88,7 @@ enum {
     valuesIgnored = @[@"Ignored", @"Ignored", @"Not ignored"];
     valuesInProgress = @[@"In progress", @"In progress", @"Not in progress"];
     valuesLogStatus = @[@"Not logged", @"Not logged", @"Did Not Find", @"Found"];
+    valuesOwner = @[@"Mine", @"Mine", @"Not mine"];
 
     c = [self configGet:@"highlighted"];
     if (c != nil)
@@ -100,6 +105,9 @@ enum {
     c = [self configGet:@"logstatus"];
     if (c != nil)
         valueLogStatus = [c integerValue];
+    c = [self configGet:@"owner"];
+    if (c != nil)
+        valueOwner = [c integerValue];
 
     for (NSInteger i = 0; i < flagMax; i++) {
         CGRect rect = CGRectMake(20, y, width - 40, 20);
@@ -133,6 +141,11 @@ enum {
                 [b setTitle:[valuesLogStatus objectAtIndex:valueLogStatus] forState:UIControlStateNormal];
                 [b setTitleColor:(valueLogStatus != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
                 buttonLogStatus = b;
+                break;
+            case flagOwner:
+                [b setTitle:[valuesOwner objectAtIndex:valueOwner] forState:UIControlStateNormal];
+                [b setTitleColor:(valueOwner != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+                buttonOwner = b;
                 break;
         }
         y += 20;
@@ -175,7 +188,7 @@ enum {
 {
 
     if (b == buttonMarkedAsFound) {
-        valueMarkedAsFound = (valueMarkedAsFound + 1) % 3;
+        valueMarkedAsFound = (valueMarkedAsFound + 1) % [valuesMarkedAsFound count];
         [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];
         [b setTitleColor:(valueMarkedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [self configSet:@"markedfound" value:[NSString stringWithFormat:@"%ld", (long)valueMarkedAsFound]];
@@ -184,7 +197,7 @@ enum {
     }
 
     if (b == buttonIgnored) {
-        valueIgnored = (valueIgnored + 1) % 3;
+        valueIgnored = (valueIgnored + 1) % [valuesIgnored count];
         [b setTitle:[valuesIgnored objectAtIndex:valueIgnored] forState:UIControlStateNormal];
         [b setTitleColor:(valueIgnored != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [self configSet:@"ignored" value:[NSString stringWithFormat:@"%ld", (long)valueIgnored]];
@@ -193,7 +206,7 @@ enum {
     }
 
     if (b == buttonHighlighted) {
-        valueHighlighted = (valueHighlighted + 1) % 3;
+        valueHighlighted = (valueHighlighted + 1) % [valuesHighlighted count];
         [b setTitle:[valuesHighlighted objectAtIndex:valueHighlighted] forState:UIControlStateNormal];
         [b setTitleColor:(valueHighlighted != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [self configSet:@"highlighted" value:[NSString stringWithFormat:@"%ld", (long)valueHighlighted]];
@@ -202,7 +215,7 @@ enum {
     }
 
     if (b == buttonInProgress) {
-        valueInProgress = (valueInProgress + 1) % 3;
+        valueInProgress = (valueInProgress + 1) % [valuesInProgress count];
         [b setTitle:[valuesInProgress objectAtIndex:valueInProgress] forState:UIControlStateNormal];
         [b setTitleColor:(valueInProgress != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [self configSet:@"inprogress" value:[NSString stringWithFormat:@"%ld", (long)valueInProgress]];
@@ -211,10 +224,19 @@ enum {
     }
 
     if (b == buttonLogStatus) {
-        valueLogStatus = (valueLogStatus + 1) % 4;
+        valueLogStatus = (valueLogStatus + 1) % [valuesLogStatus count];
         [b setTitle:[valuesLogStatus objectAtIndex:valueLogStatus] forState:UIControlStateNormal];
         [b setTitleColor:(valueLogStatus != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [self configSet:@"logstatus" value:[NSString stringWithFormat:@"%ld", (long)valueLogStatus]];
+        [self configUpdate];
+        return;
+    }
+
+    if (b == buttonOwner) {
+        valueOwner = (valueOwner + 1) % [valuesOwner count];
+        [b setTitle:[valuesOwner objectAtIndex:valueOwner] forState:UIControlStateNormal];
+        [b setTitleColor:(valueOwner != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [self configSet:@"owner" value:[NSString stringWithFormat:@"%ld", (long)valueOwner]];
         [self configUpdate];
         return;
     }
