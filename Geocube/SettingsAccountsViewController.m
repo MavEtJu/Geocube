@@ -146,8 +146,15 @@ enum {
                              NSString *username = tf.text;
 
                              account.accountname_string = username;
-                             account.accountname = nil;
-                             [account finish];
+
+                             dbName *n = [dbName dbGetByName:username account:account];
+                             if (n == nil) {
+                                 n = [[dbName alloc] init:0 name:username code:nil account:account];
+                                 [n dbCreate];
+                             }
+
+                             account.accountname = n;
+                             account.accountname_id = n._id;
                              [account dbUpdateAccount];
 
                              [self.tableView reloadData];

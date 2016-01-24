@@ -64,14 +64,8 @@
     canDoRemoteStuff = 0;
     finished = YES;
 
+    /* Even if it is nil.... */
     dbName *n = [dbName dbGetByName:accountname_string account:self];
-    if (n == nil) {
-        n = [[dbName alloc] init];
-        n.name = self.accountname_string;
-        n.code = nil;
-        n.account_id = self._id;
-        [n dbCreate];
-    }
     accountname = n;
     accountname_id = n._id;
 
@@ -265,7 +259,7 @@
 
         SET_VAR_TEXT(1, self.accountname_string);
         SET_VAR_INT( 2, self.accountname_id);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT( 3, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
