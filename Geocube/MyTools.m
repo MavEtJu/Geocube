@@ -296,8 +296,9 @@
 
 - (void)clockShowAndReset:(NSString *)title
 {
-    struct timeval now, diff;
-    gettimeofday(&now, NULL);
+    struct timeval now1, now, diff;
+    gettimeofday(&now1, NULL);
+    now = now1;
     if (now.tv_usec < clock.tv_usec) {
         now.tv_sec--;
         now.tv_usec += 1000000;
@@ -305,7 +306,7 @@
     diff.tv_usec = now.tv_usec - clock.tv_usec;
     diff.tv_sec = now.tv_sec - clock.tv_sec;
 
-    clock = now;
+    clock = now1;
     if (clockEnabled == NO)
         return;
 
@@ -436,7 +437,7 @@
 {
     switch (reason) {
         case playSoundImportComplete:
-            [MyTools playSoundFile:@"Import Completed" extension:@"wav"];
+            [MyTools playSoundFile:@"Import Complete" extension:@"wav"];
             break;
     }
 }
