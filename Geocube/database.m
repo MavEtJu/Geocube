@@ -139,6 +139,8 @@
             [self performUpgrade_4_5];
         case 5:
             [self performUpgrade_5_6];
+        case 6:
+            [self performUpgrade_6_7];
 
             return;
         default:
@@ -232,6 +234,14 @@
     NSArray *a = @[
     @"alter table accounts add column name_id integer",
     @"update accounts set name_id = 0",
+    ];
+    [self performUpgrade_X_Y:a];
+}
+
+- (void)performUpgrade_6_7
+{
+    NSArray *a = @[
+    @"create index logs_idx_gc_id on logs(gc_id)",
     ];
     [self performUpgrade_X_Y:a];
 }

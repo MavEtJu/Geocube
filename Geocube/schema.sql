@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "6");
+insert into config(key, value) values("version", "7");
 
 create table filters (
     id integer primary key,
@@ -567,6 +567,7 @@ create table logs (
     log text
 );
 create index logs_idx_id on logs(id);
+create index logs_idx_gc_id on logs(gc_id);
 create index logs_idx_waypoint_id on logs(waypoint_id);
 
 create table containers (
