@@ -604,9 +604,8 @@
     [l finish];
 
     NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
-    if (l_id == 0) {
+    if (l_id == 0)
         [l dbCreate];
-    }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
 }
