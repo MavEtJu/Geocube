@@ -127,20 +127,20 @@
     NSLog(@"performUpgrade: from version: %ld", (long)version);
     switch (version) {
         case 0:
-            [self performUpgrade_0_1];
+            [self performUpgrade_1];
             /* All fall-through */
         case 1:
-            [self performUpgrade_1_2];
+            [self performUpgrade_2];
         case 2:
-            [self performUpgrade_2_3];
+            [self performUpgrade_3];
         case 3:
-            [self performUpgrade_3_4];
+            [self performUpgrade_4];
         case 4:
-            [self performUpgrade_4_5];
+            [self performUpgrade_5];
         case 5:
-            [self performUpgrade_5_6];
+            [self performUpgrade_6];
         case 6:
-            [self performUpgrade_6_7];
+            [self performUpgrade_7];
 
             return;
         default:
@@ -161,7 +161,7 @@
 #define DB_GET_LAST_ID(__id__) \
     __id__ = sqlite3_last_insert_rowid(self.db);
 
-- (void)performUpgrade_X_Y:(NSArray *)a
+- (void)performUpgrade_X:(NSArray *)a
 {
     @synchronized(self.dbaccess) {
         __block sqlite3_stmt *req;
@@ -181,44 +181,44 @@
     }
 }
 
-- (void)performUpgrade_0_1
+- (void)performUpgrade_1
 {
     NSArray *a = @[
         // Nothing
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_1_2
+- (void)performUpgrade_2
 {
     NSArray *a = @[
     @"update types set icon = 118 where id = 32",
     @"update types set icon = 119 where id = 31",
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_2_3
+- (void)performUpgrade_3
 {
     NSArray *a = @[
     @"alter table groups add column deletable bool",
     @"update groups set deletable = usergroup",
     @"insert into groups(name, usergroup, deletable) values('Live Import', 1, 0)"
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_3_4
+- (void)performUpgrade_4
 {
     NSArray *a = @[
     @"insert into log_types(logtype, icon) values('Moved', 417)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Virtual', 114, 17)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Traditional', 112, 16)",
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_4_5
+- (void)performUpgrade_5
 {
     NSArray *a = @[
     @"alter table waypoints add column markedfound bool",
@@ -226,24 +226,24 @@
     @"update waypoints set markedfound = 0",
     @"update waypoints set inprogress = 0",
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_5_6
+- (void)performUpgrade_6
 {
     NSArray *a = @[
     @"alter table accounts add column name_id integer",
     @"update accounts set name_id = 0",
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
-- (void)performUpgrade_6_7
+- (void)performUpgrade_7
 {
     NSArray *a = @[
     @"create index logs_idx_gc_id on logs(gc_id)",
     ];
-    [self performUpgrade_X_Y:a];
+    [self performUpgrade_X:a];
 }
 
 @end
