@@ -267,7 +267,7 @@ enum {
 
     }
 
-    NSAssert1(FALSE, @"Unknown filter: %ld", indexPath.row);
+    NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
 
     return nil;
 }
