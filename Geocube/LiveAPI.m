@@ -265,6 +265,8 @@
      *      "UpdatedLongitude":1.26743233E+15
      * }
      */
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
     NSInteger gslogtype;
     NSTimeInterval date;
 
@@ -278,7 +280,6 @@
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     date = [todayDate timeIntervalSince1970];
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:20];
     [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [dict setValue:waypointName forKey:@"CacheCode"];
     [dict setValue:[NSNumber numberWithLong:gslogtype] forKey:@"WptLogTypeId"];
