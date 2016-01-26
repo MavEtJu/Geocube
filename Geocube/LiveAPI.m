@@ -114,6 +114,25 @@
     return req;
 }
 
+- (BOOL)checkStatus:(NSDictionary *)dict
+{
+    dict = [dict valueForKey:@"Status"];
+    if (dict == nil)
+        return NO;
+    NSNumber *n = [dict valueForKey:@"StatusCode"];
+    if (n == nil)
+        return NO;
+    if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
+        remoteAPI.account.oauth_token = @"";
+        [remoteAPI.account dbUpdateOAuthToken];
+        return NO;
+    }
+
+    return YES;
+}
+
+/**************************************************************************/
+
 - (NSDictionary *)GetYourUserProfile
 {
     NSLog(@"GetYourUserProfile");
@@ -165,6 +184,9 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
     return json;
 }
 
@@ -186,6 +208,9 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
     return json;
 }
 
@@ -207,6 +232,8 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
 
     /* Get the following:
      * For events: Write note, Will Attend, Attended, Announcement
@@ -304,7 +331,10 @@
 
     if (error != nil || response.statusCode != 200)
         return 0;
+
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return 0;
 
     NSDictionary *log = [json objectForKey:@"Log"];
     NSNumber *log_id = [log objectForKey:@"ID"];
@@ -359,6 +389,9 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
     return json;
 }
 
@@ -417,6 +450,9 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
     return json;
 }
 
@@ -460,6 +496,9 @@
         return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
     return json;
 }
 
