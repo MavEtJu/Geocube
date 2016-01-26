@@ -134,11 +134,27 @@
      *    }
      * }
      */
-    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"ProfileOptions\":{\"PublicProfileData\":\"true\",\"EmailData\":\"true\"},\"DeviceInfo\":{ \"ApplicationSoftwareVersion\":\"1.2.3.4\",\"DeviceOperatingSystem\":\"2.3.4.5\",\"DeviceUniqueId\":\"42\"}}", remoteAPI.oabb.token];
-    urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+
+    NSDictionary *_d = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_d setValue:@"1.2.3.4" forKey:@"ApplicationSoftwareVersion"];
+    [_d setValue:@"2.3.4.5" forKey:@"DeviceOperatingSystem"];
+    [_d setValue:@"42" forKey:@"DeviceUniqueId"];
+    [_dict setValue:_d forKey:@"DeviceInfo"];
+
+    _d = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_d setValue:@"true" forKey:@"FavoritePointsData"];
+    [_d setValue:@"true" forKey:@"PublicProfileData"];
+    [_dict setValue:_d forKey:@"ProfileOptions"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
 
     NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
+    error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
@@ -262,11 +278,23 @@
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     date = [todayDate timeIntervalSince1970];
 
-    NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, (long)gslogtype, (long)date, [MyTools JSONEscape:note], (favourite == YES) ? @"true" : @"false"];
-    urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [dict setValue:waypointName forKey:@"CacheCode"];
+    [dict setValue:[NSNumber numberWithLong:gslogtype] forKey:@"WptLogTypeId"];
+    [dict setValue:[NSNumber numberWithLong:1000 * date] forKey:@"UTCDateLogged"];
+    [dict setValue:[MyTools JSONEscape:note] forKey:@"Note"];
+    [dict setValue:((favourite == YES) ? @"true" : @"false") forKey:@"FavoriteThisCache"];
+    [dict setValue:[NSNumber numberWithBool:NO] forKey:@"EncryptLogText"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+    //NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, (long)gslogtype, (long)date, [MyTools JSONEscape:note], (favourite == YES) ? @"true" : @"false"];
+    //urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
 
     NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
+    error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
