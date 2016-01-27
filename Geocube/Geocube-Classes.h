@@ -126,6 +126,8 @@
 @class NullViewController;
 @class OKAPI;
 @class PersonalNoteTableViewCell;
+@class QueriesGCAViewController;
+@class QueriesGroundspeakViewController;
 @class RemoteAPI;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;

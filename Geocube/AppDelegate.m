@@ -385,6 +385,24 @@
                 TABBARCONTROLLER(controllers)
                 break;
 
+            case RC_QUERIES:
+                controllers = [NSMutableArray array];
+
+                vc = [[QueriesGroundspeakViewController alloc] init];
+                vc.title = @"Groundspeak";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[QueriesGCAViewController alloc] init];
+                vc.title = @"GCA";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                TABBARCONTROLLER(controllers)
+                break;
+
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 

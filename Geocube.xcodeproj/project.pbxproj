@@ -203,6 +203,8 @@
 		E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC81C5236930000A6A0 /* FoundListViewController.m */; };
 		E84D6FCC1C5236A00000A6A0 /* InProgressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */; };
 		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
+		E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */; };
+		E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -645,6 +647,10 @@
 		E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InProgressListViewController.m; sourceTree = "<group>"; };
 		E84D6FCD1C531CD30000A6A0 /* FilterFlagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterFlagsTableViewCell.h; sourceTree = "<group>"; };
 		E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterFlagsTableViewCell.m; sourceTree = "<group>"; };
+		E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGroundspeakViewController.h; sourceTree = "<group>"; };
+		E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGroundspeakViewController.m; sourceTree = "<group>"; };
+		E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGCAViewController.h; sourceTree = "<group>"; };
+		E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGCAViewController.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1126,6 +1132,17 @@
 				E843A4E41BAD3F9200C58F1F /* GC - logo - 640x960.png */,
 			);
 			name = logos;
+			sourceTree = "<group>";
+		};
+		E84D6FD01C5826140000A6A0 /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */,
+				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
+				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
+				E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */,
+			);
+			name = Queries;
 			sourceTree = "<group>";
 		};
 		E8575FF61B8466AA00F34483 /* YIPopupTextView */ = {
@@ -1928,6 +1945,7 @@
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E833B72F1C522E8D00B9FB45 /* Lists */,
 				E8A7FA921B777616003F4132 /* Browser */,
+				E84D6FD01C5826140000A6A0 /* Queries */,
 				E8FD610D1BE8C46100859A58 /* Files */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Cache Viewing */,
@@ -2435,6 +2453,7 @@
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
+				E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
@@ -2487,6 +2506,7 @@
 				E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
+				E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,

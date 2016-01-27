@@ -213,6 +213,9 @@
 #import "MapOSM.h"
 #import "MapViewController.h"
 
+#import "QueriesGroundspeakViewController.h"
+#import "QueriesGCAViewController.h"
+
 #import "ListViewController.h"
 #import "FoundListViewController.h"
 #import "HighlightListViewController.h"
