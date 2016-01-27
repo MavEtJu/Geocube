@@ -424,8 +424,38 @@
         return YES;
     }
 
-
     return NO;
+}
+
+- (NSArray *)listQueries
+/* Returns: array of dicts of
+ * - Name
+ * - Id
+ * - DateTime
+ * - Size
+ */
+{
+    if (account.protocol == ProtocolLiveAPI) {
+        NSDictionary *json = [gs GetPocketQueryList];
+
+        NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+
+        NSArray *pqs = [json objectForKey:@"PocketQueryList"];
+        [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
+
+            [d setValue:[pq objectForKey:@"Name"] forKey:@"Name"];
+            [d setValue:[pq objectForKey:@"GUID"] forKey:@"Id"];
+            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
+            [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"Size"];
+
+            [as addObject:d];
+        }];
+
+        return as;
+    }
+
+    return nil;
 }
 
 @end

@@ -22,29 +22,112 @@
 #import "Geocube-Prefix.pch"
 
 @interface QueriesGroundspeakViewController ()
+{
+    NSArray *pqs;
+}
 
 @end
 
 @implementation QueriesGroundspeakViewController
 
+enum {
+    menuReload,
+    menuMax
+};
+
+#define THISCELL @"QueriesGroundspeakTableCells"
+
+- (instancetype)init
+{
+    self = [super init];
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuReload label:@"Reload"];
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+
+    pqs = nil;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if (pqs == nil)
+        [self reloadPQs];
 }
 
-/*
-#pragma mark - Navigation
+- (void)reloadPQs
+{
+    pqs = nil;
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.protocol == ProtocolLiveAPI) {
+            pqs = [a.remoteAPI listQueries];
+            *stop = YES;
+            return;
+        }
+    }];
 }
-*/
+
+#pragma mark - TableViewController related functions
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (pqs == nil)
+        return @"";
+    NSInteger c = [pqs count];
+    return [NSString stringWithFormat:@"%ld Pocket Quer%@", (unsigned long)c, c == 1 ? @"y" : @"ies"];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return 1;
+}
+
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [pqs count];
+}
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    if (cell == nil) {
+        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+
+    NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
+    cell.textLabel.text = [pq objectForKey:@"Name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
+
+    return cell;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuReload:
+            [self reloadPQs];
+            [self.tableView reloadData];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
+
+
 
 @end

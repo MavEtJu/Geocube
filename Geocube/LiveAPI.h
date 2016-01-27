@@ -39,5 +39,6 @@
 - (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname;
 - (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
 - (NSDictionary *)GetMoreGeocaches:(NSInteger)offset;
+- (NSDictionary *)GetPocketQueryList;
 
 @end

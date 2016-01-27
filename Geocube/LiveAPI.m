@@ -502,4 +502,28 @@
     return json;
 }
 
+- (NSDictionary *)GetPocketQueryList
+{
+    NSLog(@"GetPocketQueryList");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO)
+        return nil;
+
+    return json;
+}
+
 @end
