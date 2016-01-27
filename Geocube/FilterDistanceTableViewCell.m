@@ -190,16 +190,16 @@
     if (e == distanceButton) {
         distanceM = su.integerValue;
         distanceKm = bu.integerValue;
-        [distanceButton setTitle:[MyTools NiceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateNormal];
-        [distanceButton setTitle:[MyTools NiceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateSelected];
+        [distanceButton setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateNormal];
+        [distanceButton setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateSelected];
         [self configUpdate];
         return;
     }
     if (e == variationButton) {
         variationM = su.integerValue;
         variationKm = bu.integerValue;
-        [variationButton setTitle:[MyTools NiceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateNormal];
-        [variationButton setTitle:[MyTools NiceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateSelected];
+        [variationButton setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateNormal];
+        [variationButton setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateSelected];
         [self configUpdate];
         return;
     }

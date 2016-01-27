@@ -100,7 +100,7 @@ enum {
     [self.view addSubview:ivTrackImage];
 
     // Has to be done after the call to [self createMap]
-    labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools NiceDistance:distance]];
+    labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools niceDistance:distance]];
 
     [self viewWilltransitionToSize];
 }

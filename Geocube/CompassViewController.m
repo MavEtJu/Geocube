@@ -438,8 +438,8 @@
 /* Receive data from the location manager */
 - (void)updateLocationManagerLocation
 {
-    accuracyLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.accuracy]];
-    altitudeLabel.text = [NSString stringWithFormat:@"%@", [MyTools NiceDistance:LM.altitude]];
+    accuracyLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:LM.accuracy]];
+    altitudeLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:LM.altitude]];
 
 //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
@@ -463,7 +463,7 @@
         lineIV.hidden = NO;
 
         lineIV.transform = CGAffineTransformMakeRotation(fBearing);
-        distanceLabel.text = [MyTools NiceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+        distanceLabel.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
 
     if ([myConfig soundDirection] == YES) {

@@ -385,7 +385,7 @@ enum {
         [map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
-        NSString *distance = [MyTools NiceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
+        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
         distanceLabel.text = distance;
     } else {
         distanceLabel.text = @"";

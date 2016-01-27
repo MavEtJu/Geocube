@@ -46,10 +46,10 @@ enum {
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)niceTimeDifference:(NSInteger)i;
-+ (NSString *)NiceDistance:(NSInteger)m;
-+ (NSString *)NiceDistance:(NSInteger)m isMetric:(BOOL)isMetric;
-+ (NSString *)NiceSpeed:(NSInteger)kmph;
-+ (NSString *)NiceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
++ (NSString *)niceDistance:(NSInteger)m;
++ (NSString *)niceDistance:(NSInteger)m isMetric:(BOOL)isMetric;
++ (NSString *)niceSpeed:(NSInteger)kmph;
++ (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
 
 - (instancetype)initClock:(NSString *)title;
 - (void)clockShowAndReset;

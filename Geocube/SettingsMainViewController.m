@@ -150,28 +150,28 @@ enum {
 #define DISTANCE_DRIVING_INC    250
 
     for (NSInteger i = SPEED_WALKING_MIN; i <= SPEED_WALKING_MAX; i += SPEED_WALKING_INC) {
-        [speedsWalking addObject:[MyTools NiceSpeed:i]];
+        [speedsWalking addObject:[MyTools niceSpeed:i]];
         [speedsWalkingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = SPEED_CYCLING_MIN; i <= SPEED_CYCLING_MAX; i += SPEED_CYCLING_INC) {
-        [speedsCycling addObject:[MyTools NiceSpeed:i]];
+        [speedsCycling addObject:[MyTools niceSpeed:i]];
         [speedsCyclingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = SPEED_DRIVING_MIN; i <= SPEED_DRIVING_MAX; i += SPEED_DRIVING_INC) {
-        [speedsDriving addObject:[MyTools NiceSpeed:i]];
+        [speedsDriving addObject:[MyTools niceSpeed:i]];
         [speedsDrivingMetric addObject:[NSNumber numberWithInteger:i]];
     }
 
     for (NSInteger i = DISTANCE_WALKING_MIN; i <= DISTANCE_WALKING_MAX; i += DISTANCE_WALKING_INC) {
-        [distancesWalking addObject:[MyTools NiceDistance:i]];
+        [distancesWalking addObject:[MyTools niceDistance:i]];
         [distancesWalkingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = DISTANCE_CYCLING_MIN; i <= DISTANCE_CYCLING_MAX; i += DISTANCE_CYCLING_INC) {
-        [distancesCycling addObject:[MyTools NiceDistance:i]];
+        [distancesCycling addObject:[MyTools niceDistance:i]];
         [distancesCyclingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = DISTANCE_DRIVING_MIN; i <= DISTANCE_DRIVING_MAX; i += DISTANCE_DRIVING_INC) {
-        [distancesDriving addObject:[MyTools NiceDistance:i]];
+        [distancesDriving addObject:[MyTools niceDistance:i]];
         [distancesDrivingMetric addObject:[NSNumber numberWithInteger:i]];
     }
 
@@ -457,7 +457,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum walking speed";
-                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapWalkingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapWalkingSpeed];
 
                     return cell;
                 }
@@ -467,7 +467,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum cycling speed";
-                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapCyclingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapCyclingSpeed];
 
                     return cell;
                 }
@@ -477,7 +477,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum driving speed";
-                    cell.detailTextLabel.text = [MyTools NiceSpeed:myConfig.dynamicmapDrivingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapDrivingSpeed];
 
                     return cell;
                 }
@@ -487,7 +487,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Walking zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance]];
 
                     return cell;
                 }
@@ -497,7 +497,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Cycling zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance], [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance], [MyTools niceDistance:myConfig.dynamicmapCyclingDistance]];
 
                     return cell;
                 }
@@ -507,7 +507,7 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Driving zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance], [MyTools NiceDistance:myConfig.dynamicmapDrivingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapCyclingDistance], [MyTools niceDistance:myConfig.dynamicmapDrivingDistance]];
 
                     return cell;
                 }
@@ -698,19 +698,19 @@ enum sections {
     switch (row) {
         case SECTION_DYNAMICMAP_SPEED_WALKING:
             speeds = speedsWalking;
-            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapWalkingSpeed];
+            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapWalkingSpeed];
             title = @"Maximum walking speed";
             successAction = @selector(updateDynamicmapSpeedWalking:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_CYCLING:
             speeds = speedsCycling;
-            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapCyclingSpeed];
+            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapCyclingSpeed];
             title = @"Maximum cycling speed";
             successAction = @selector(updateDynamicmapSpeedCycling:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_DRIVING:
             speeds = speedsDriving;
-            currentSpeed = [MyTools NiceSpeed:myConfig.dynamicmapDrivingSpeed];
+            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapDrivingSpeed];
             title = @"Maximum driving speed";
             successAction = @selector(updateDynamicmapSpeedDriving:element:);
             break;
@@ -761,19 +761,19 @@ enum sections {
     switch (row) {
         case SECTION_DYNAMICMAP_DISTANCE_WALKING:
             distances = distancesWalking;
-            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapWalkingDistance];
+            currentDistance = [MyTools niceDistance:myConfig.dynamicmapWalkingDistance];
             title = @"Maximum walking distance";
             successAction = @selector(updateDynamicmapDistanceWalking:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
             distances = distancesCycling;
-            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapCyclingDistance];
+            currentDistance = [MyTools niceDistance:myConfig.dynamicmapCyclingDistance];
             title = @"Maximum cycling distance";
             successAction = @selector(updateDynamicmapDistanceCycling:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
             distances = distancesDriving;
-            currentDistance = [MyTools NiceDistance:myConfig.dynamicmapDrivingDistance];
+            currentDistance = [MyTools niceDistance:myConfig.dynamicmapDrivingDistance];
             title = @"Maximum driving distance";
             successAction = @selector(updateDynamicmapDistanceDriving:element:);
             break;
