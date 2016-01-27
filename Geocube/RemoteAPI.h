@@ -26,7 +26,15 @@
 
 @end
 
+@protocol RemoteAPIQueriesDownloadProgressDelegate
+
+- (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max;
+
+@end
+
 @interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate>
+
+@property (nonatomic, retain) id delegateQueries;
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;

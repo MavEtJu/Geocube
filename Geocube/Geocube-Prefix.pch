@@ -197,6 +197,9 @@
 #import "FilesDropboxViewController.h"
 #import "FilesViewController.h"
 
+#import "QueriesGroundspeakViewController.h"
+#import "QueriesGCAViewController.h"
+
 #import "CachesOfflineListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
@@ -212,9 +215,6 @@
 #import "MapAppleCache.h"
 #import "MapOSM.h"
 #import "MapViewController.h"
-
-#import "QueriesGroundspeakViewController.h"
-#import "QueriesGCAViewController.h"
 
 #import "ListViewController.h"
 #import "FoundListViewController.h"

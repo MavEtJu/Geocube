@@ -473,6 +473,8 @@
         NSInteger max = 0;
         NSInteger offset = 0;
         NSInteger increase = 25;
+
+        [self.delegateQueries remoteAPIQueriesDownloadUpdate:0 max:0];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
             NSDictionary *json = [gs GetFullPocketQueryData:_id startItem:offset numItems:increase];
@@ -485,6 +487,7 @@
 
             offset += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
+            [self.delegateQueries remoteAPIQueriesDownloadUpdate:offset max:max];
         } while (offset < max);
 
         [result setObject:geocaches forKey:@"Geocaches"];

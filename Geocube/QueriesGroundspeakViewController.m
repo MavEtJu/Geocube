@@ -127,9 +127,10 @@ enum {
 - (void)runRetrieveQuery:(NSDictionary *)pq
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Pocket Query"];
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Pocket Query\n0 / 0"];
     }];
 
+    account.remoteAPI.delegateQueries = self;
     NSDictionary *d = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"]];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -137,6 +138,13 @@ enum {
     }];
     [self.tableView reloadData];
     [MyTools playSound:playSoundImportComplete];
+}
+
+- (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading Pocket Query\n%ld / %ld", offset, max];
+    }];
 }
 
 #pragma mark - Local menu related functions
