@@ -458,4 +458,41 @@
     return nil;
 }
 
+- (NSDictionary *)retrieveQuery:(NSString *)_id
+{
+    if (account.protocol == ProtocolLiveAPI) {
+//        NSDictionary *json = [gs GetPocketQueryZippedFile:_id];
+//        NSString *s = [json objectForKey:@"ZippedFile"];
+//        NSData *d = [[NSData alloc] initWithBase64EncodedString:s options:0];
+//        [d writeToFile:[NSString stringWithFormat:@"%@/foo", [MyTools FilesDir]] atomically:NO];
+//        return nil;
+
+        NSMutableDictionary *result = nil;
+        NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];;
+
+        NSInteger max = 0;
+        NSInteger offset = 0;
+        NSInteger increase = 25;
+        do {
+            NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
+            NSDictionary *json = [gs GetFullPocketQueryData:_id startItem:offset numItems:increase];
+
+            if (json != nil) {
+                if (result == nil)
+                    result = [NSMutableDictionary dictionaryWithDictionary:json];
+                [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+            }
+
+            offset += increase;
+            max = [[json objectForKey:@"PQCount"] integerValue];
+        } while (offset < max);
+
+        [result setObject:geocaches forKey:@"Geocaches"];
+
+        return result;
+    }
+
+    return nil;
+}
+
 @end

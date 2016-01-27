@@ -24,6 +24,7 @@
 @interface QueriesGroundspeakViewController ()
 {
     NSArray *pqs;
+    dbAccount *account;
 }
 
 @end
@@ -67,10 +68,12 @@ enum {
 - (void)reloadPQs
 {
     pqs = nil;
+    account = nil;
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == ProtocolLiveAPI) {
             pqs = [a.remoteAPI listQueries];
+            account = a;
             *stop = YES;
             return;
         }
@@ -112,6 +115,28 @@ enum {
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
+    [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
+    return;
+}
+
+- (void)runRetrieveQuery:(NSDictionary *)pq
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Pocket Query"];
+    }];
+
+    NSDictionary *d = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"]];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+    [self.tableView reloadData];
+    [MyTools playSound:playSoundImportComplete];
 }
 
 #pragma mark - Local menu related functions

@@ -40,5 +40,7 @@
 - (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
 - (NSDictionary *)GetMoreGeocaches:(NSInteger)offset;
 - (NSDictionary *)GetPocketQueryList;
+- (NSDictionary *)GetPocketQueryZippedFile:(NSString *)guid;
+- (NSDictionary *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
 
 @end
