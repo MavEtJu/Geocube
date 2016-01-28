@@ -218,7 +218,6 @@
     DICT_NSSTRING_PATH(dict, wp.wpt_type_str, @"CacheType.GeocacheTypeName");
 
     wp.account_id = account._id;
-    [wp finish];
 
     // Groundspeak object
     wp.gs_hasdata = YES;
@@ -245,7 +244,14 @@
 
     DICT_NSSTRING_PATH(dict, wp.gs_container_str, @"ContainerType.ContainerTypeName");
 
+    /* "FoundDate": "/Date(1439017200000-0700)/", */
+    DICT_NSSTRING_KEY(dict, dummy, @"FoundDate");
+    wp.gs_date_found = 0;
+    if ([dummy isEqualToString:@""] == NO)
+        wp.gs_date_found = [[dummy substringWithRange:NSMakeRange(6, 10)] integerValue];
+
     // Now see what we had and what we need to change
+    [wp finish];
     if (wp._id == 0) {
         [dbWaypoint dbCreate:wp];
     } else {
