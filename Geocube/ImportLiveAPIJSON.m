@@ -184,7 +184,16 @@
          );
      }
      */
-    dbWaypoint *wp = [[dbWaypoint alloc] init];
+
+    NSString *wpt_name = nil;
+    DICT_NSSTRING_KEY(dict, wpt_name, @"Code");
+
+    dbWaypoint *wp = nil;
+    NSId _id = [dbWaypoint dbGetByName:wpt_name];
+    if (_id != 0)
+        wp = [dbWaypoint dbGet:_id];
+    else
+        wp = [[dbWaypoint alloc] init];
 
     // Waypoint object
     DICT_NSSTRING_KEY(dict, wp.wpt_name, @"Code");
@@ -237,15 +246,15 @@
     DICT_NSSTRING_PATH(dict, wp.gs_container_str, @"ContainerType.ContainerTypeName");
 
     // Now see what we had and what we need to change
-    NSId wpid = [dbWaypoint dbGetByName:wp.wpt_name];
-    if (wpid == 0) {
+    if (wp._id == 0) {
         [dbWaypoint dbCreate:wp];
-        [group dbAddWaypoint:wp._id];
     } else {
-        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
+        dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
         wp._id = wpold._id;
         [wp dbUpdate];
     }
+    if ([group dbContainsWaypoint:wp._id] == NO)
+        [group dbAddWaypoint:wp._id];
 
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
