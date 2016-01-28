@@ -176,16 +176,21 @@
     error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -200,16 +205,21 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -224,16 +234,21 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     /* Get the following:
      * For events: Write note, Will Attend, Attended, Announcement
@@ -325,16 +340,21 @@
     error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return 0;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return 0;
+    }
 
     NSDictionary *log = [json objectForKey:@"Log"];
     NSNumber *log_id = [log objectForKey:@"ID"];
@@ -381,16 +401,21 @@
     error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -442,16 +467,21 @@
     error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -488,16 +518,21 @@
     error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -512,16 +547,21 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -537,16 +577,21 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
@@ -562,16 +607,21 @@
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
 
-    if (error != nil || response.statusCode != 200)
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO)
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
         return nil;
+    }
 
     return json;
 }
