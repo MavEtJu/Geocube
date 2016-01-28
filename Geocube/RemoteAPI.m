@@ -458,9 +458,11 @@
     return nil;
 }
 
-- (NSDictionary *)retrieveQuery:(NSString *)_id
+- (BOOL)retrieveQuery:(NSString *)_id group:(dbGroup *)group
 {
+
     if (account.protocol == ProtocolLiveAPI) {
+
 //        NSDictionary *json = [gs GetPocketQueryZippedFile:_id];
 //        NSString *s = [json objectForKey:@"ZippedFile"];
 //        NSData *d = [[NSData alloc] initWithBase64EncodedString:s options:0];
@@ -492,10 +494,16 @@
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
-        return result;
+        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:group account:account];
+        [imp parseBefore];
+        [imp parseDictionary:result];
+        [imp parseAfter];
+
+        [waypointManager needsRefresh];
+        return YES;
     }
 
-    return nil;
+    return NO;
 }
 
 @end

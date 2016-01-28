@@ -58,6 +58,6 @@
 - (BOOL)loadWaypoints:(CLLocationCoordinate2D)center;
 
 - (NSArray *)listQueries;
-- (NSDictionary *)retrieveQuery:(NSString *)_id;
+- (BOOL)retrieveQuery:(NSString *)_id group:(dbGroup *)group;
 
 @end
