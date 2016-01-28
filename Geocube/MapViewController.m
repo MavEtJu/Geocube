@@ -652,11 +652,24 @@ enum {
 
 - (void)menuLoadWaypoints
 {
+    [self performSelectorInBackground:@selector(runLoadWaypoints) withObject:nil];
+}
+
+- (void)runLoadWaypoints
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
+    }];
+
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         [account.remoteAPI loadWaypoints:[map currentCenter]];
     }];
     [MyTools playSound:playSoundImportComplete];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
 }
 
 - (void)menuRecenter
