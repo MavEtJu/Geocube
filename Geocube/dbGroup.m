@@ -133,6 +133,26 @@
     return cg;
 }
 
++ (dbGroup *)dbGet:(NSId)_id
+{
+    dbGroup *cg;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, name, usergroup, deletable from groups where id = ?");
+
+        SET_VAR_INT(1, _id);
+
+        DB_IF_STEP {
+            INT_FETCH( 0, cg._id);
+            TEXT_FETCH(1, cg.name);
+            BOOL_FETCH(2, cg.usergroup);
+            BOOL_FETCH(3, cg.deletable)
+        }
+        DB_FINISH;
+    }
+    return cg;
+}
+
 + (NSMutableArray *)dbAll
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
