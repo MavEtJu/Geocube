@@ -61,8 +61,10 @@ enum {
 {
     [super viewWillAppear:animated];
 
-    if (pqs == nil)
-        [self reloadPQs];
+    if (pqs == nil) {
+        pqs = @[];
+        [self performSelectorInBackground:@selector(reloadPQs) withObject:nil];
+    }
 }
 
 - (void)reloadPQs
@@ -70,14 +72,22 @@ enum {
     pqs = nil;
     account = nil;
 
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Pocket Query List"];
+    }];
+
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == ProtocolLiveAPI) {
             pqs = [a.remoteAPI listQueries];
             account = a;
             *stop = YES;
-            return;
         }
     }];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableViewController related functions
@@ -87,7 +97,7 @@ enum {
     if (pqs == nil)
         return @"";
     NSInteger c = [pqs count];
-    return [NSString stringWithFormat:@"%ld Pocket Quer%@", (unsigned long)c, c == 1 ? @"y" : @"ies"];
+    return [NSString stringWithFormat:@"%ld Available Pocket Quer%@", (unsigned long)c, c == 1 ? @"y" : @"ies"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -153,8 +163,7 @@ enum {
 {
     switch (index) {
         case menuReload:
-            [self reloadPQs];
-            [self.tableView reloadData];
+            [self performSelectorInBackground:@selector(reloadPQs) withObject:nil];
             return;
     }
 
