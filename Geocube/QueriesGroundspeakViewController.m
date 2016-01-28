@@ -140,8 +140,22 @@ enum {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Pocket Query\n0 / 0"];
     }];
 
+    __block dbGroup *group = nil;
+    NSString *name = [pq objectForKey:@"Name"];
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([g.name isEqualToString:name] == YES) {
+            group = g;
+            *stop = YES;
+        }
+    }];
+    if (group == nil) {
+        NSId _id = [dbGroup dbCreate:name isUser:YES];
+        [dbc loadWaypointData];
+        group = [dbGroup dbGet:_id];
+    }
+
     account.remoteAPI.delegateQueries = self;
-    NSDictionary *d = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"]];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
