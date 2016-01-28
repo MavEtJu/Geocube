@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "7");
+insert into config(key, value) values("version", "8");
 
 create table filters (
     id integer primary key,
@@ -78,6 +78,7 @@ create table waypoints (
     gs_state_id integer,		-- pointer to states(id)
     gs_rating_difficulty float,
     gs_rating_terrain float,
+    gs_date_found integer,
     gs_favourites integer,
     gs_long_desc_html bool,
     gs_long_desc text,

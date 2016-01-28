@@ -122,10 +122,10 @@
     return [n integerValue];
 }
 
-- (void)performUpgrade:(NSInteger)version
+- (void)performUpgrade:(NSInteger)fromVersion
 {
-    NSLog(@"performUpgrade: from version: %ld", (long)version);
-    switch (version) {
+    NSLog(@"performUpgrade: from version: %ld", (long)fromVersion);
+    switch (fromVersion) {
         case 0:
             [self performUpgrade_1];
             /* All fall-through */
@@ -141,10 +141,12 @@
             [self performUpgrade_6];
         case 6:
             [self performUpgrade_7];
+        case 7:
+            [self performUpgrade_8];
 
             return;
         default:
-            NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)version);
+            NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)fromVersion);
     }
 }
 
@@ -242,6 +244,15 @@
 {
     NSArray *a = @[
     @"create index logs_idx_gc_id on logs(gc_id)",
+    ];
+    [self performUpgrade_X:a];
+}
+
+- (void)performUpgrade_8
+{
+    NSArray *a = @[
+    @"alter table waypoints add column gs_date_found integer",
+    @"update waypoints set gs_date_found = 0",
     ];
     [self performUpgrade_X:a];
 }

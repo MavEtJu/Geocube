@@ -88,6 +88,7 @@ enum {
 @property (nonatomic, retain) NSString *gs_owner_gsid;
 @property (nonatomic) NSId gs_owner_id;
 @property (nonatomic, retain) dbName *gs_owner;
+@property (nonatomic) NSInteger gs_date_found;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
