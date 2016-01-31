@@ -32,9 +32,17 @@
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate>
+@protocol RemoteAPILoadWaypointDownloadProgressDelegate
+
+- (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count;
+- (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count;
+
+@end
+
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate, ImportGCAJSONDelegate>
 
 @property (nonatomic, retain) id delegateQueries;
+@property (nonatomic, retain) id delegateLoadWaypoints;
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;

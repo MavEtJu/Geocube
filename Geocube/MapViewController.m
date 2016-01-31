@@ -41,6 +41,9 @@
 
     NSInteger waypointCount;
     NSArray *waypointsArray;
+
+    NSInteger loadWaypointsCountWaypoints;
+    NSInteger loadWaypointsCountLogs;
 }
 
 @end
@@ -654,17 +657,34 @@ enum {
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
+    loadWaypointsCountWaypoints = 0;
+    loadWaypointsCountLogs = 0;
     [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
 }
 
+- (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count
+{
+    loadWaypointsCountWaypoints = count;
+    [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded %ld caches.\nLoaded %ld logs.", @"me", loadWaypointsCountWaypoints, loadWaypointsCountLogs]];
+}
+
+- (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count
+{
+    loadWaypointsCountLogs = count;
+    [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded %ld caches.\nLoaded %ld logs.", @"me", loadWaypointsCountWaypoints, loadWaypointsCountLogs]];
+}
+
+
 - (void)runLoadWaypoints:(dbWaypoint *)wp
 {
-    [map startActivityViewer:@"Load waypoints for Groundspeak Geocaching.com\n"]; // Currently the longest name
+    [map startActivityViewer:@"Load waypoints for Groundspeak Geocaching.com.\nLoaded 0 caches.\nLoaded 0 logs."]; // Currently the longest name
 
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
-        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@", account.site]];
+        account.remoteAPI.delegateLoadWaypoints = self;
+        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded 0 caches.\nLoaded 0 logs.", account.site]];
         [account.remoteAPI loadWaypoints:wp.coordinates];
+        account.remoteAPI.delegateLoadWaypoints = nil;
     }];
     [MyTools playSound:playSoundImportComplete];
 

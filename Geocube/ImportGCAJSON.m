@@ -33,7 +33,7 @@
 
 @implementation ImportGCAJSON
 
-@synthesize namesImported;
+@synthesize namesImported, delegate;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
@@ -80,6 +80,7 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
+        [delegate updateGCAJSONImportDataWaypoints];
     }];
 }
 
@@ -212,6 +213,7 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
+        [delegate updateGCAJSONImportDataLogs];
     }];
 }
 

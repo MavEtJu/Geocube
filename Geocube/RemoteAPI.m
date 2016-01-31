@@ -36,13 +36,15 @@
 
     NSString *clientMsg;
     NSError *clientError;
+
+    NSInteger loadWaypointsLogs, loadWaypointsWaypoints;
 }
 
 @end
 
 @implementation RemoteAPI
 
-@synthesize account, oabb, authenticationDelegate;
+@synthesize account, oabb, authenticationDelegate, delegateLoadWaypoints;
 @synthesize stats_found, stats_notfound;
 @synthesize clientError, clientMsg;
 
@@ -381,11 +383,29 @@
     clientError = error;
 }
 
+- (void)updateGCAJSONImportDataWaypoints
+{
+    loadWaypointsWaypoints++;
+    if (delegateLoadWaypoints != nil)
+        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
+}
+
+- (void)updateGCAJSONImportDataLogs
+{
+    loadWaypointsLogs++;
+    if (delegateLoadWaypoints != nil)
+        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
+}
+
 - (BOOL)loadWaypoints:(CLLocationCoordinate2D)center
 {
+    loadWaypointsLogs = 0;
+    loadWaypointsWaypoints = 0;
+
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca caches_gca:center];
         ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
+        i.delegate = self;
         [i parseBefore_cache];
         [i parseData_cache:json];
         [i parseAfter_cache];
