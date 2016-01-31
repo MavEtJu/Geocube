@@ -62,12 +62,10 @@
     coords = _LM.location.coordinate;
 
     delegates = [NSMutableArray arrayWithCapacity:5];
-
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        [_LM requestWhenInUseAuthorization];
-    }
-
     useGPS = YES;
+
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+        [_LM requestWhenInUseAuthorization];
 
     return self;
 }
@@ -129,6 +127,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    if (useGPS == NO)
+        return;
+
     // Keep track of new values
     altitude = manager.location.altitude;
     coords = newLocation.coordinate;
@@ -182,9 +183,14 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
+    if (useGPS == NO)
+        return;
+
     altitude = manager.location.altitude;
     coords = manager.location.coordinate;
     direction = newHeading.trueHeading;
+
+    // NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
 
     [self updateDataDelegate];
 }
@@ -196,6 +202,7 @@
         [self updateDataDelegate];
     } else {
         coords = newcoords;
+        // First tell the others, then disable.
         [self updateDataDelegate];
         useGPS = NO;
     }
