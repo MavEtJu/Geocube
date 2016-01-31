@@ -425,6 +425,7 @@
     NSLog(@"SearchForGeocaches_pointradius");
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
+    [urlRequest setTimeoutInterval:120];
 
     /*
      * {
@@ -489,6 +490,7 @@
 - (NSDictionary *)GetMoreGeocaches:(NSInteger)offset
 {
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
+    [urlRequest setTimeoutInterval:120];
 
     /*
      * {

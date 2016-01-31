@@ -19,7 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol ImportLiveAPIJSONDelegate
+
+- (void)updateLiveAPIJSONImportDataWaypoints;
+- (void)updateLiveAPIJSONImportDataLogs;
+
+@end
+
 @interface ImportLiveAPIJSON : NSObject
+
+@property (nonatomic, retain) id delegate;
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;

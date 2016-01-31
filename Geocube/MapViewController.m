@@ -43,7 +43,9 @@
     NSArray *waypointsArray;
 
     NSInteger loadWaypointsCountWaypoints;
+    NSInteger loadWaypointsTotalWaypoints;
     NSInteger loadWaypointsCountLogs;
+    NSString *loadWaypointsCountSitename;
 }
 
 @end
@@ -665,15 +667,34 @@ enum {
 - (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count
 {
     loadWaypointsCountWaypoints = count;
-    [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded %ld caches.\nLoaded %ld logs.", @"me", loadWaypointsCountWaypoints, loadWaypointsCountLogs]];
+    [self updateActivityViewerImportWaypoints];
 }
 
 - (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count
 {
     loadWaypointsCountLogs = count;
-    [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded %ld caches.\nLoaded %ld logs.", @"me", loadWaypointsCountWaypoints, loadWaypointsCountLogs]];
+    [self updateActivityViewerImportWaypoints];
 }
 
+- (void)remoteAPILoadWaypointsImportWaypointsTotal:(NSInteger)count
+{
+    loadWaypointsTotalWaypoints = count;
+    [self updateActivityViewerImportWaypoints];
+}
+
+- (void)updateActivityViewerImportWaypoints
+{
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+
+    if (loadWaypointsCountSitename != nil)
+        [s appendFormat:@"Load waypoints for %@.\n", loadWaypointsCountSitename];
+    if (loadWaypointsTotalWaypoints != 0)
+        [s appendFormat:@"Loaded %ld / %ld waypoints.\n", loadWaypointsCountWaypoints, loadWaypointsTotalWaypoints];
+    else
+        [s appendFormat:@"Loaded %ld waypoints.\n", loadWaypointsCountWaypoints];
+    [s appendFormat:@"Loaded %ld logs.\n", loadWaypointsCountLogs];
+    [map updateActivityViewer:s];
+}
 
 - (void)runLoadWaypoints:(dbWaypoint *)wp
 {
@@ -682,7 +703,8 @@ enum {
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         account.remoteAPI.delegateLoadWaypoints = self;
-        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded 0 caches.\nLoaded 0 logs.", account.site]];
+        loadWaypointsCountSitename = account.site;
+        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded 0 caches.\nLoaded 0 logs.", loadWaypointsCountSitename]];
         [account.remoteAPI loadWaypoints:wp.coordinates];
         account.remoteAPI.delegateLoadWaypoints = nil;
     }];

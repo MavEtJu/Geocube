@@ -80,7 +80,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
-        [delegate updateGCAJSONImportDataWaypoints];
+        if (delegate != nil)
+            [delegate updateGCAJSONImportDataWaypoints];
     }];
 }
 
@@ -213,7 +214,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
-        [delegate updateGCAJSONImportDataLogs];
+        if (delegate != nil)
+            [delegate updateGCAJSONImportDataLogs];
     }];
 }
 

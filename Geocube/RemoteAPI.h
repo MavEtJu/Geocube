@@ -36,10 +36,11 @@
 
 - (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count;
 - (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count;
+- (void)remoteAPILoadWaypointsImportWaypointsTotal:(NSInteger)count;
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate, ImportGCAJSONDelegate>
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate, ImportGCAJSONDelegate, ImportLiveAPIJSONDelegate>
 
 @property (nonatomic, retain) id delegateQueries;
 @property (nonatomic, retain) id delegateLoadWaypoints;

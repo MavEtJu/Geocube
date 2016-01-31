@@ -397,10 +397,25 @@
         [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
 }
 
+- (void)updateLiveAPIJSONImportDataWaypoints
+{
+    loadWaypointsWaypoints++;
+    if (delegateLoadWaypoints != nil)
+        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
+}
+
+- (void)updateLiveAPIJSONImportDataLogs
+{
+    loadWaypointsLogs++;
+    if (delegateLoadWaypoints != nil)
+        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
+}
+
 - (BOOL)loadWaypoints:(CLLocationCoordinate2D)center
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
+    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca caches_gca:center];
@@ -426,10 +441,13 @@
         NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
 
         NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
+        if (delegateLoadWaypoints != nil)
+            [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:total];
         NSInteger done = 0;
         if (total != 0) {
             do {
                 ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:dbc.Group_LiveImport account:account];
+                imp.delegate = self;
                 [imp parseBefore];
                 [imp parseDictionary:json];
                 [imp parseAfter];

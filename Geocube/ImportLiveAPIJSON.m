@@ -43,6 +43,8 @@
 
 @implementation ImportLiveAPIJSON
 
+@synthesize delegate;
+
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 {
     self = [super init];
@@ -83,6 +85,8 @@
 - (void)parseGeocaches:(NSArray *)as
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        if (delegate != nil)
+            [delegate updateLiveAPIJSONImportDataWaypoints];
         [self parseGeocache:d];
     }];
 }
@@ -543,6 +547,8 @@
 - (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
 {
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        if (delegate != nil)
+            [delegate updateLiveAPIJSONImportDataLogs];
         [self parseLog:d waypoint:wp];
     }];
 }
