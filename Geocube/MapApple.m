@@ -54,6 +54,20 @@
         [myConfig deleteDelegate:self];
 }
 
+- (void)startActivityViewer:(NSString *)text
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:mapView withLabel:@"Refresh waypoint"];
+    }];
+}
+
+- (void)stopActivityViewer
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+}
+
 - (void)initMap
 {
     mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];

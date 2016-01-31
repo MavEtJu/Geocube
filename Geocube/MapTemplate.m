@@ -35,6 +35,8 @@ EMPTY_METHOD(mapViewDidAppear)
 EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
 
+NEEDS_OVERLOADING(startActivityViewer:(NSString *)text)
+NEEDS_OVERLOADING(stopActivityViewer)
 NEEDS_OVERLOADING(initCamera:(CLLocationCoordinate2D)coords)
 NEEDS_OVERLOADING(removeCamera)
 NEEDS_OVERLOADING(initMap)
@@ -58,6 +60,13 @@ NEEDS_OVERLOADING(addHistory)
     mapvc = mvc;
 
     return self;
+}
+
+- (void)updateActivityViewer:(NSString *)s
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = s;
+    }];
 }
 
 - (UIImage *)waypointImage:(dbWaypoint *)wp

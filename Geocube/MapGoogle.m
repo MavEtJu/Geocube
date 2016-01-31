@@ -51,6 +51,20 @@
         [myConfig deleteDelegate:self];
 }
 
+- (void)startActivityViewer:(NSString *)text
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:mapView withLabel:text];
+    }];
+}
+
+- (void)stopActivityViewer
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+}
+
 - (void)initMap
 {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:LM.coords zoom:15];

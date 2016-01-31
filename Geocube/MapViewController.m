@@ -652,24 +652,23 @@ enum {
 
 - (void)menuLoadWaypoints
 {
-    [self performSelectorInBackground:@selector(runLoadWaypoints) withObject:nil];
+    dbWaypoint *wp = [[dbWaypoint alloc] init];
+    wp.coordinates = [map currentCenter];
+    [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
 }
 
-- (void)runLoadWaypoints
+- (void)runLoadWaypoints:(dbWaypoint *)wp
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
-    }];
+    [map startActivityViewer:@"Load waypoints for Groundspeak Geocaching.com\n"]; // Currently the longest name
 
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
-        [account.remoteAPI loadWaypoints:[map currentCenter]];
+        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@", account.site]];
+        [account.remoteAPI loadWaypoints:wp.coordinates];
     }];
     [MyTools playSound:playSoundImportComplete];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:NO];
-    }];
+    [map stopActivityViewer];
 }
 
 - (void)menuRecenter

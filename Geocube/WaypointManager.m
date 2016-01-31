@@ -76,7 +76,10 @@
     needsRefresh = YES;
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
-        [delegate refreshWaypoints];
+        // Doing this via the main queue because Google Map Service insists on it.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [delegate refreshWaypoints];
+        });
     }];
 }
 
