@@ -145,8 +145,11 @@ enum {
         [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
     }
 
-    useGPS = YES;
-    [lmi addItem:menuRecenter label:@"Recenter"];
+    useGPS = LM.useGPS;
+    if (useGPS == YES)
+        [lmi addItem:menuRecenter label:@"Recenter"];
+    else
+        [lmi addItem:menuRecenter label:@"Use GPS"];
 
     if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
@@ -178,12 +181,20 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    useGPS = LM.useGPS;
+    if (useGPS == YES)
+        [lmi changeItem:menuRecenter label:@"Recenter"];
+    else
+        [lmi changeItem:menuRecenter label:@"Use GPS"];
+
     [map mapViewWillAppear];
     [map removeMarkers];
     [self refreshWaypointsData:nil];
     [map placeMarkers];
     [waypointManager startDelegation:self];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
