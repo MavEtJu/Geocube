@@ -66,6 +66,7 @@ enum {
     menuDirections,
     menuAutoZoom,
     menuRecenter,
+    menuUseGPS,
     menuMax,
     menuFollowMe,
     menuShowBoth,
@@ -146,10 +147,12 @@ enum {
     }
 
     useGPS = LM.useGPS;
+    [lmi addItem:menuRecenter label:@"Recenter"];
+    [lmi addItem:menuUseGPS label:@"Use GPS"];
     if (useGPS == YES)
-        [lmi addItem:menuRecenter label:@"Recenter"];
+        [lmi disableItem:menuUseGPS];
     else
-        [lmi addItem:menuRecenter label:@"Use GPS"];
+        [lmi disableItem:menuUseGPS];
 
     if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
@@ -184,9 +187,9 @@ enum {
 
     useGPS = LM.useGPS;
     if (useGPS == YES)
-        [lmi changeItem:menuRecenter label:@"Recenter"];
+        [lmi disableItem:menuUseGPS];
     else
-        [lmi changeItem:menuRecenter label:@"Use GPS"];
+        [lmi enableItem:menuUseGPS];
 
     [map mapViewWillAppear];
     [map removeMarkers];
@@ -726,16 +729,24 @@ enum {
 
 - (void)menuRecenter
 {
-    if (useGPS == NO) {
-        [lmi changeItem:menuRecenter label:@"Recenter"];
-        useGPS = YES;
-        [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
-    } else {
-        [lmi changeItem:menuRecenter label:@"Use GPS"];
-        useGPS = NO;
-        [LM useGPS:NO coordinates:[map currentCenter]];
-    }
+    [lmi enableItem:menuUseGPS];
     [self refreshMenu];
+
+    useGPS = NO;
+    [LM useGPS:NO coordinates:[map currentCenter]];
+
+    meLocation = [map currentCenter];
+    showWhom = SHOW_NEITHER;
+    [waypointManager needsRefresh];
+}
+
+- (void)menuUseGPS
+{
+    [lmi disableItem:menuUseGPS];
+    [self refreshMenu];
+
+    useGPS = YES;
+    [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
 
     meLocation = [map currentCenter];
     showWhom = SHOW_NEITHER;
@@ -792,6 +803,9 @@ enum {
 
         case menuRecenter:
             [self menuRecenter];
+            return;
+        case menuUseGPS:
+            [self menuUseGPS];
             return;
     }
 
