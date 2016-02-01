@@ -238,7 +238,7 @@
     DICT_BOOL_KEY(dict, wp.gs_long_desc_html, @"LongDescriptionIsHtml");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"ShortDescription");
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"LongDescription");
-    DICT_NSSTRING_KEY(dict, wp.gs_hint, @"EncoodedHints");
+    DICT_NSSTRING_KEY(dict, wp.gs_hint, @"EncodedHints");
 
     DICT_NSSTRING_KEY(dict, wp.gs_placed_by, @"PlacedBy");
 
