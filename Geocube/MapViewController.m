@@ -394,6 +394,8 @@ enum {
     meLocation = [LM coords];
 
     // Move the map around to match current location
+    if (showWhom == SHOW_FOLLOWMEZOOM)
+        [map moveCameraTo:meLocation zoom:YES];
     if (showWhom == SHOW_FOLLOWME)
         [map moveCameraTo:meLocation zoom:NO];
     if (showWhom == SHOW_SHOWBOTH)
@@ -518,7 +520,7 @@ enum {
 - (void)menuFindMe
 {
     meLocation = [LM coords];
-    showWhom = SHOW_NEITHER;
+    showWhom = SHOW_FOLLOWMEZOOM;
     [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
