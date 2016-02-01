@@ -26,6 +26,7 @@
     dbTrack *track;
     CGFloat distance;
 
+    CGRect rectHeightImage;
     CGRect rectTrackImage;
     CGRect rectName;
     CGRect rectDate;
@@ -35,6 +36,7 @@
     GCLabel *labelDate;
     GCLabel *labelDistance;
     UIImageView *ivTrackImage;
+    UIImageView *ivHeightImage;
 }
 
 @end
@@ -96,8 +98,13 @@ enum {
 
     ivTrackImage = [[UIImageView alloc] initWithFrame:rectTrackImage];
     ivTrackImage.backgroundColor = [UIColor redColor];
-    ivTrackImage.image = [self createMap:rectTrackImage];
+    ivTrackImage.image = [self createTrackMap:rectTrackImage];
     [self.view addSubview:ivTrackImage];
+
+    ivHeightImage = [[UIImageView alloc] initWithFrame:rectHeightImage];
+    ivHeightImage.backgroundColor = [UIColor clearColor];
+    ivHeightImage.image = [self createHeightMap:rectHeightImage];
+    [self.view addSubview:ivHeightImage];
 
     // Has to be done after the call to [self createMap]
     labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools niceDistance:distance]];
@@ -123,7 +130,9 @@ enum {
     labelDate.frame = rectDate;
     labelDistance.frame = rectDistance;
     ivTrackImage.frame = rectTrackImage;
-    ivTrackImage.image = [self createMap:rectTrackImage];
+    ivTrackImage.image = [self createTrackMap:rectTrackImage];
+    ivHeightImage.frame = rectHeightImage;
+    ivHeightImage.image = [self createHeightMap:rectHeightImage];
 }
 
 - (void)calculateRects
@@ -136,7 +145,8 @@ enum {
     rectName = CGRectMake(0, 0 * height18, width, height18);
     rectDate = CGRectMake(0, 1 * height18, width, height18);
     rectDistance = CGRectMake(0, 2 * height18, width, height18);
-    rectTrackImage = CGRectMake(0, 3 * height18, width, height - 5 * height18);
+    rectTrackImage = CGRectMake(0, 3 * height18, width, height - 6 * height18);
+    rectHeightImage = CGRectMake(0, height - 3 * height18, width, 1 * height18);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -145,7 +155,71 @@ enum {
     labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
 }
 
-- (UIImage *)createMap:(CGRect)rect
+- (UIImage *)createHeightMap:(CGRect)rect
+{
+    UIImage *img = nil;
+
+    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+
+    __block CGFloat ymin = +100000, ymax = -100000;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        ymin = MIN(ymin, te.height);
+        ymax = MAX(ymax, te.height);
+    }];
+    ymin = MIN(0, ymin);
+
+    if (ymax == ymin)
+        return nil;
+    if (ymax < ymin)
+        return nil;
+
+    NSInteger elements = [tes count];
+    NSInteger X = rect.size.width;
+    NSInteger Y = rect.size.height;
+
+    UIGraphicsBeginImageContext(CGSizeMake(X, Y));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    // Black background
+    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, X, Y));
+
+    /*
+
+    |
+    |    ...
+    |  |||||||,.
+    |.||||||||||||
+    +-------------------------
+     */
+
+#define MARGIN 10
+#define _XH(x) \
+    MARGIN + (X - 2 * MARGIN) * (x) / elements
+#define _YH(y) \
+    Y * (y) / (ymax - ymin)
+#define LINEHEIGHT(x, y) \
+    CGContextSetLineWidth(context, 1); \
+    CGContextMoveToPoint(context, _XH(x), Y); \
+    CGContextAddLineToPoint(context, _XH(x), Y - _YH(y) + 0.5); \
+    CGContextStrokePath(context);
+
+   CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+    __block dbTrackElement *te_prev = nil;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (te_prev != nil && te.restart == NO) {
+            LINEHEIGHT(idx, te.height);
+        }
+        te_prev = te;
+    }];
+
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return img;
+}
+
+- (UIImage *)createTrackMap:(CGRect)rect
 {
     UIImage *img = nil;
 
@@ -174,8 +248,8 @@ enum {
     CGContextFillRect(context, CGRectMake(0, 0, X, Y));
 
 #define MARGIN 10
-#define _X(x)     MARGIN + (x - x0) * ((X - 2 * MARGIN) / (x3 - x0))
-#define _Y(y) Y - MARGIN - (y - y0) * ((Y - 2 * MARGIN) / (y3 - y0))
+#define _XTRACK(x)     MARGIN + (x - x0) * ((X - 2 * MARGIN) / (x3 - x0))
+#define _YTRACK(y) Y - MARGIN - (y - y0) * ((Y - 2 * MARGIN) / (y3 - y0))
     /*
      * +----------------------------------+
      * |  .x0,y0                          |
@@ -190,17 +264,17 @@ enum {
      *        x' = (x - x0) * ratioX
      */
 
-#define LINE(x1, y1, x2, y2) \
+#define LINETRACK(x1, y1, x2, y2) \
     CGContextSetLineWidth(context, 1); \
-    CGContextMoveToPoint(context, _X(x1), _Y(y1) + 0.5); \
-    CGContextAddLineToPoint(context, _X(x2) + 1, _Y(y2) + 0.5); \
+    CGContextMoveToPoint(context, _XTRACK(x1), _YTRACK(y1) + 0.5); \
+    CGContextAddLineToPoint(context, _XTRACK(x2) + 1, _YTRACK(y2) + 0.5); \
     CGContextStrokePath(context);
 
    CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         if (te_prev != nil && te.restart == NO) {
-            LINE(te_prev.lon, te_prev.lat, te.lon, te.lat);
+            LINETRACK(te_prev.lon, te_prev.lat, te.lon, te.lat);
             distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
         }
         te_prev = te;
