@@ -191,6 +191,7 @@
 #import "HelpImagesViewController.h"
 
 #import "KeepTrackCar.h"
+#import "KeepTrackHeightScroller.h"
 #import "KeepTrackTrack.h"
 #import "KeepTrackTracks.h"
 

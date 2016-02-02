@@ -37,6 +37,8 @@
     GCLabel *labelDistance;
     UIImageView *ivTrackImage;
     UIImageView *ivHeightImage;
+
+    UITapGestureRecognizer *ivHeightTap;
 }
 
 @end
@@ -101,8 +103,11 @@ enum {
     ivTrackImage.image = [self createTrackMap:rectTrackImage];
     [self.view addSubview:ivTrackImage];
 
+    ivHeightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ivHeightTapMethod)];
     ivHeightImage = [[UIImageView alloc] initWithFrame:rectHeightImage];
     ivHeightImage.backgroundColor = [UIColor clearColor];
+    [ivHeightImage setUserInteractionEnabled:YES];
+    [ivHeightImage addGestureRecognizer:ivHeightTap];
     ivHeightImage.image = [self createHeightMap:rectHeightImage];
     [self.view addSubview:ivHeightImage];
 
@@ -153,6 +158,15 @@ enum {
 {
     [super viewDidAppear:animated];
     labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
+}
+
+- (void)ivHeightTapMethod
+{
+    KeepTrackHeightScroller *newController = [[KeepTrackHeightScroller alloc] init];
+    [newController showTrack:track];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = @"";
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 - (UIImage *)createHeightMap:(CGRect)rect

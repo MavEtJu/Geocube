@@ -230,6 +230,7 @@
 		E8611AA01B8B215E00B9D7C3 /* compass - red arrow on black.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A9F1B8B215E00B9D7C3 /* compass - red arrow on black.png */; };
 		E8611AA31B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA11B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png */; };
 		E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */; };
+		E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */; };
 		E862F7C31B50C134007C3470 /* CacheGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */; };
 		E862F7C61B50CC0B007C3470 /* CacheHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E862F7C51B50CC0B007C3470 /* CacheHeaderTableViewCell.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
@@ -694,6 +695,8 @@
 		E8611A9F1B8B215E00B9D7C3 /* compass - red arrow on black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red arrow on black.png"; path = "images/compass - red arrow on black.png"; sourceTree = "<group>"; };
 		E8611AA11B8B25C500B9D7C3 /* compass - red on blue compass - arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red on blue compass - arrow.png"; path = "images/compass - red on blue compass - arrow.png"; sourceTree = "<group>"; };
 		E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - red on blue compass - compass.png"; path = "images/compass - red on blue compass - compass.png"; sourceTree = "<group>"; };
+		E8620E0D1C607C1100D8AE77 /* KeepTrackHeightScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackHeightScroller.h; sourceTree = "<group>"; };
+		E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackHeightScroller.m; sourceTree = "<group>"; };
 		E862F7C11B50C134007C3470 /* CacheGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheGroupsViewController.h; sourceTree = "<group>"; };
 		E862F7C21B50C134007C3470 /* CacheGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheGroupsViewController.m; sourceTree = "<group>"; };
 		E862F7C41B50CC0B007C3470 /* CacheHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -1514,6 +1517,8 @@
 			children = (
 				E8A4BEEC1BD4B91000BCA5A5 /* KeepTrackCar.h */,
 				E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */,
+				E8620E0D1C607C1100D8AE77 /* KeepTrackHeightScroller.h */,
+				E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */,
 				E8A4BEEE1BD4B91000BCA5A5 /* KeepTrackTrack.h */,
 				E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */,
 				E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */,
@@ -2496,6 +2501,7 @@
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
 				E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */,
+				E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */,
 				E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E87E474A1B82A301005606A2 /* ImportSites.m in Sources */,

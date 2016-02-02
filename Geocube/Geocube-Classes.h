@@ -102,6 +102,7 @@
 @class ImportSites;
 @class InProgressListViewController;
 @class KeepTrackCar;
+@class KeepTrackHeightScroller;
 @class KeepTrackTrack;
 @class KeepTrackTracks;
 @class KeyboardCoordinateView;
