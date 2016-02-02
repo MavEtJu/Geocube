@@ -120,6 +120,8 @@ enum {
 {
     NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
 
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
     __block CGFloat ymin = +100000, ymax = -100000;
     __block CGFloat xmin = time(NULL) + 86400, xmax = 0;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -137,7 +139,7 @@ enum {
 
     NSInteger elements = [tes count];
     NSInteger X = 86400 / 10;
-    NSInteger Y = ymax;
+    NSInteger Y = applicationFrame.size.height - 50;
 
     UIGraphicsBeginImageContext(CGSizeMake(X, Y));
     CGContextRef context = UIGraphicsGetCurrentContext();
