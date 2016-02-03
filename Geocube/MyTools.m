@@ -132,6 +132,14 @@
     return [dateFormatter stringFromDate:date];
 }
 
++ (NSString *)timeString:(NSInteger)seconds
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSString *)datetimePartDate:(NSString *)datetime {
     return [datetime substringToIndex:10];
 }
