@@ -102,8 +102,8 @@
     [self showCloseButton];
 }
 
-- (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer {
-
+- (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer
+{
     if (zoomedIn) {
         [UIView animateWithDuration:0.5 animations:^(void){
             [self zoominout:(!zoomedIn)];
