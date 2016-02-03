@@ -24,12 +24,16 @@
 @interface KeepTrackHeightScroller ()
 {
     dbTrack *track;
+    NSArray *tes;
+    NSArray *timestamps;
 
     UIScrollView *sv;
     UIImage *image;
     UIImageView *imgview;
+    UILabel *labelTimeStart, *labelTimeStop;
 
     BOOL zoomedIn;
+    NSInteger centeredX;
     id delegate;
 }
 
@@ -63,6 +67,7 @@ enum {
 - (void)showTrack:(dbTrack *)_track
 {
     track = _track;
+    tes = [dbTrackElement dbAllByTrack:track._id];
 }
 
 - (void)viewDidLoad
@@ -70,11 +75,21 @@ enum {
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
     sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
     sv.delegate = self;
     self.view = sv;
 
     [self loadImage];
+
+    labelTimeStart = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 200, 20)];
+    labelTimeStart.text = @"00:00:00";
+    [sv addSubview:labelTimeStart];
+    labelTimeStop = [[UILabel alloc] initWithFrame:CGRectMake(width - 200, 20, 200, 20)];
+    labelTimeStop.text = @"00:00:00";
+    labelTimeStop.textAlignment = NSTextAlignmentRight;
+    [sv addSubview:labelTimeStop];
+    [self updateLabelTime:0];
 }
 
 - (void)loadImage
@@ -84,7 +99,7 @@ enum {
     imgview = [[UIImageView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:imgview];
 
-    [self zoominout:NO];
+    [self zoominout:YES centerX:0];
 
     [self.view setUserInteractionEnabled:YES];
 
@@ -100,25 +115,24 @@ enum {
     [self showCloseButton];
 }
 
-- (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer {
-
+- (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer
+{
     if (zoomedIn) {
+        CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
+        CGSize imgSize = imgview.frame.size;
         [UIView animateWithDuration:0.5 animations:^(void){
-            [self zoominout:(!zoomedIn)];
+            [self zoominout:(!zoomedIn) centerX:touchPoint.x / imgSize.width];
         }];
         return;
     }
 
-    CGSize imgSize = imgview.frame.size;
-    CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
     [UIView animateWithDuration:0.5 animations:^(void){
-        [self zoominout:(!zoomedIn) centerX:touchPoint.x / imgSize.width centerY:touchPoint.y / imgSize.height];
+        [self zoominout:(!zoomedIn) centerX:0];
     }];
 }
 
 - (void)createHeightMap
 {
-    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
@@ -127,9 +141,9 @@ enum {
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         ymin = MIN(ymin, te.height);
         ymax = MAX(ymax, te.height);
-        xmin = MIN(xmin, te.timestamp_epoch);
-        xmax = MAX(xmax, te.timestamp_epoch);
     }];
+    xmin = 0;
+    xmax = [tes count];
     ymin = MIN(0, ymin);
 
     if (ymax == ymin)
@@ -137,9 +151,17 @@ enum {
     if (ymax < ymin)
         return;
 
-    NSInteger elements = [tes count];
-    NSInteger X = 86400 / 10;
+    NSInteger X = xmax;
     NSInteger Y = applicationFrame.size.height - 50;
+
+    __block NSInteger steps = 0;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (te.restart)
+            steps++;
+    }];
+    X += steps;
+
+    NSLog(@"ymin,ymax=%0.2f,%0.2f xmin,xmax=%0.2f,%0.2f X,Y=%ld,%ld step=%ld", ymin, ymax, xmin, xmax, X, Y, steps);
 
     UIGraphicsBeginImageContext(CGSizeMake(X, Y));
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -158,124 +180,100 @@ enum {
      */
 
 #define MARGIN 10
-#define _XH(x) \
-    MARGIN + (X - 2 * MARGIN) * (x) / elements
-#define _YH(y) \
+#define _X(x) \
+    MARGIN + (X - 2 * MARGIN) * (x) / X
+#define _Y(y) \
     Y * (y) / (ymax - ymin)
-#define LINEHEIGHT(x, y) \
+#define LINE(x, y) \
     CGContextSetLineWidth(context, 1); \
-    CGContextMoveToPoint(context, _XH(x), Y); \
-    CGContextAddLineToPoint(context, _XH(x), Y - _YH(y) + 0.5); \
+    CGContextMoveToPoint(context, _X(x), Y + 0.5); \
+    CGContextAddLineToPoint(context, _X(x), Y - _Y(y) + 0.5); \
     CGContextStrokePath(context);
 
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:X];
+
+    /* Draw lines */
     CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
-    __block dbTrackElement *te_prev = nil;
+    __block NSInteger stepcounter = 0;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (te_prev != nil && te.restart == NO) {
-            LINEHEIGHT(idx, te.height);
+        if (te.restart) {
+            stepcounter++;
+            [as addObject:[NSNumber numberWithInteger:te.timestamp_epoch]];
         }
-        te_prev = te;
+        [as addObject:[NSNumber numberWithInteger:te.timestamp_epoch]];
+        LINE(idx + stepcounter, te.height);
     }];
+    timestamps = as;
 
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    NSString *f = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], @"foo.png"];
+    [UIImagePNGRepresentation(image) writeToFile:f atomically:YES];
+    NSLog(@"%@", f);
 }
 
-- (void)zoominout:(BOOL)zoomIn
+- (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX
 {
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
 
-    // Nothing to zoom in if the picture is small enough already.
-    if (image.size.width < applicationFrame.size.width &&
-        image.size.height < applicationFrame.size.height) {
-
-        // Center around the middle of the screen
-        imgview.frame = CGRectMake((applicationFrame.size.width - image.size.width) / 2, (applicationFrame.size.height - image.size.height) / 2, image.size.width, image.size.height);
-
+    if (zoomIn == YES) {
+        imgview.frame = CGRectMake(0, 0, applicationFrame.size.width, applicationFrame.size.height - 50);
         sv.contentSize = imgview.frame.size;
         [self.view sizeToFit];
-        zoomedIn = NO;
-        return;
-    }
-
-    if (zoomIn == YES) {
-        imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        sv.contentSize = image.size;
-        [self.view sizeToFit];
         zoomedIn = YES;
+        [self updateLabelTime:0];
         return;
     }
 
-    // Adjust the picture according to the ration of the width and the height
-    float rw = 1.0 * image.size.width / applicationFrame.size.width;
-    float rh = 1.0 * image.size.height / applicationFrame.size.height;
-
-    if (rw < 1.0 && rh >= 1.0) {
-        imgview.frame = CGRectMake(0, 0, image.size.width / rh, image.size.height / rh);
-    }
-    if (rh < 1.0 && rw >= 1.0) {
-        imgview.frame = CGRectMake(0, 0, image.size.width / rw, image.size.height / rw);
-    }
-    if (rh >= 1.0 && rw >= 1.0) {
-        float rx = (rh > rw) ? rh : rw;
-        imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
-    }
-
+    imgview.frame = CGRectMake(0, 0, image.size.width, applicationFrame.size.height - 50);
     sv.contentSize = imgview.frame.size;
+    sv.contentOffset = CGPointMake(centerX * image.size.width, 0);
     [self.view sizeToFit];
+    centeredX = centerX;
     zoomedIn = NO;
 }
 
-- (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX centerY:(CGFloat)centerY
+- (void)updateLabelTime:(NSInteger)idx
 {
-    [self zoominout:zoomIn];
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
 
-    /*
-     *  +-------------------+
-     *  |                   |
-     *  | O+---+            |
-     *  |  |   |            |
-     *  |  | C |            |
-     *  |  |   |            |
-     *  |  +---+            |
-     *  |                   |
-     *  |                   |
-     *  +-------------------+
-     *
-     * xC = img.width * centerX
-     * yC = img.height * centerY
-     *
-     * xO = xC - view.width / 2
-     * yO = yC - view.height / 2
-     *
-     */
-
-    CGFloat xO, yO;
-
-    xO = imgview.frame.size.width * centerX - applicationFrame.size.width / 2;
-    yO = imgview.frame.size.height * centerY - applicationFrame.size.height / 2;
-    if (applicationFrame.size.height > imgview.frame.size.height) {
-        yO = 0;
-    } else if (applicationFrame.size.width > imgview.frame.size.width) {
-        xO = 0;
+    if (idx < 0)
+        idx = 0;
+    if (idx + width >= [timestamps count]) {
+        idx = [timestamps count] - width - 1;
+        if (idx < 0) {
+            idx = 0;
+            width = [timestamps count] - 1;
+        }
     }
 
-    if (xO > imgview.frame.size.width - applicationFrame.size.width)
-        xO = imgview.frame.size.width - applicationFrame.size.width;
-    if (yO > imgview.frame.size.height - applicationFrame.size.height)
-        yO = imgview.frame.size.height - applicationFrame.size.height;
-    if (xO < 0)
-        xO = 0;
-    if (yO < 0)
-        yO = 0;
+    labelTimeStart.text = [MyTools timeString:[[timestamps objectAtIndex:idx] integerValue]];
+    labelTimeStop.text = [MyTools timeString:[[timestamps objectAtIndex:idx + width] integerValue]];
+}
 
-    sv.contentOffset = CGPointMake(xO, yO);
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [super scrollViewDidScroll:scrollView];
+
+    CGRect frame = labelTimeStart.frame;
+    frame.origin.x = scrollView.contentOffset.x;
+    labelTimeStart.frame = frame;
+
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    NSInteger width = applicationFrame.size.width;
+    frame = labelTimeStop.frame;
+    frame.origin.x = scrollView.contentOffset.x + width - 200;
+    labelTimeStop.frame = frame;
+
+    [self.view bringSubviewToFront:labelTimeStart];
+    [self.view bringSubviewToFront:labelTimeStop];
+    [self updateLabelTime:scrollView.contentOffset.x];
 }
 
 - (void)calculateRects
 {
-    [self zoominout:zoomedIn];
+    [self zoominout:zoomedIn centerX:centeredX];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

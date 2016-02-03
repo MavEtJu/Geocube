@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackHeightScroller : GCViewController
+@interface KeepTrackHeightScroller : GCViewController <UIScrollViewDelegate>
 
 - (void)showTrack:(dbTrack *)track;
 
