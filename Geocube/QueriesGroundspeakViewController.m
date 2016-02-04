@@ -77,7 +77,7 @@ enum {
     }];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol == ProtocolLiveAPI) {
+        if (a.protocol == ProtocolLiveAPI && a.canDoRemoteStuff == YES) {
             pqs = [a.remoteAPI listQueries];
             account = a;
             *stop = YES;
