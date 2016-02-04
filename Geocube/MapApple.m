@@ -31,9 +31,9 @@
     LXMapScaleView *mapScaleView;
 
     MKPolyline *lineMeToWaypoint;
-    MKPolylineView *viewLineMeToWaypoint;
+    MKPolylineRenderer *viewLineMeToWaypoint;
     MKPolyline *lineHistory;
-    MKPolylineView *viewLineHistory;
+    MKPolylineRenderer *viewLineHistory;
 
     CCHMapClusterController *mapClusterController;
 }
@@ -266,11 +266,11 @@
     return ret;
 }
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if (overlay == lineMeToWaypoint) {
         if (viewLineMeToWaypoint == nil) {
-            viewLineMeToWaypoint = [[MKPolylineView alloc] initWithPolyline:lineMeToWaypoint];
+            viewLineMeToWaypoint = [[MKPolylineRenderer alloc] initWithPolyline:lineMeToWaypoint];
             viewLineMeToWaypoint.fillColor = myConfig.mapDestinationColour;
             viewLineMeToWaypoint.strokeColor = myConfig.mapDestinationColour;
             viewLineMeToWaypoint.lineWidth = 5;
@@ -281,7 +281,7 @@
 
     if (overlay == lineHistory) {
         if (viewLineHistory == nil) {
-            viewLineHistory = [[MKPolylineView alloc] initWithPolyline:lineHistory];
+            viewLineHistory = [[MKPolylineRenderer alloc] initWithPolyline:lineHistory];
             viewLineHistory.fillColor = myConfig.mapTrackColour;
             viewLineHistory.strokeColor = myConfig.mapTrackColour;
             viewLineHistory.lineWidth = 5;
