@@ -22,6 +22,9 @@
 #import "Geocube-Prefix.pch"
 
 @interface MapOSM ()
+{
+    MKTileOverlay *overlay;
+}
 
 @end
 
@@ -31,8 +34,9 @@
 {
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
+
     // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
-    MKTileOverlay *overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:@"OSM"];
+    overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:@"OSM"];
     overlay.canReplaceMapContent = YES;
     [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
 
@@ -41,14 +45,12 @@
 
 
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
-- (MKOverlayRenderer *)mapView:(MKMapView *)mv rendererForOverlay:(id)overlay
+- (MKOverlayRenderer *)mapView:(MKMapView *)mv rendererForOverlay:(id)ol
 {
-    [super mapView:mv rendererForOverlay:overlay];
-
-    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
+    if (ol == overlay) {
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
     }
-    return nil;
+    return [super mapView:mv rendererForOverlay:ol];
 }
 
 @end
