@@ -117,6 +117,7 @@
 
 #pragma mark - Map view proxied delegate methods
 
+/*
 #if TARGET_OS_IPHONE
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
@@ -138,6 +139,7 @@
     return view;
 }
 #else
+ */
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     MKOverlayRenderer *renderer;
@@ -150,13 +152,13 @@
     // Default return value for debug polygons
     if (renderer == nil && [overlay isKindOfClass:CCHMapClusterControllerDebugPolygon.class]) {
         MKPolygonRenderer *polygonRenderer = [[MKPolygonRenderer alloc] initWithPolygon:(MKPolygon *)overlay];
-        polygonRenderer.strokeColor = [NSColor.blueColor colorWithAlphaComponent:0.7];
+        polygonRenderer.strokeColor = [UIColor.blueColor colorWithAlphaComponent:0.7];
         polygonRenderer.lineWidth = 1;
         renderer = polygonRenderer;
     }
     
     return renderer;
 }
-#endif
+//#endif
 
 @end
