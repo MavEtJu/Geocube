@@ -93,7 +93,9 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    }];
     [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
 }
 
@@ -106,7 +108,9 @@ enum {
 - (void)refreshCachesData
 {
     [self refreshCachesData:nil];
-    [DejalBezelActivityView removeView];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeView];
+    }];
 }
 
 - (void)refreshCachesData:(NSString *)searchString
