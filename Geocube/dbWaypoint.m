@@ -557,7 +557,7 @@
         DB_FINISH;
     }
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set log_status = 2 where id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Found it' or logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))");
+        DB_PREPARE(@"update waypoints set log_status = 2 where gs_date_found != 0 or (id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Found it' or logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
