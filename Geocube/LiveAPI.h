@@ -29,9 +29,6 @@
 
 @property (nonatomic) id delegate;
 
-- (instancetype)init:(RemoteAPI *)remoteAPI;
-- (NSArray *)logtypes:(NSString *)waypointType;
-
 - (NSDictionary *)GetYourUserProfile;
 - (NSDictionary *)GetCacheIdsFavoritedByUser;
 - (NSDictionary *)GetGeocacheDataTypes;

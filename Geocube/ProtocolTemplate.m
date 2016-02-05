@@ -31,5 +31,7 @@ NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
 NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
 NEEDS_OVERLOADING_BOOL(commentSupportsRating)
 NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
+- (instancetype)init:(RemoteAPI *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
+- (NSArray *)logtypes:(NSString *)waypointType { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end

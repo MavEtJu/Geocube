@@ -25,5 +25,7 @@
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsRating;
 - (BOOL)commentSupportsTrackables;
+- (instancetype)init:(RemoteAPI *)remoteAPI;
+- (NSArray *)logtypes:(NSString *)waypointType;
 
 @end
