@@ -127,6 +127,7 @@
 @class NullViewController;
 @class OKAPI;
 @class PersonalNoteTableViewCell;
+@class ProtocolTemplate;
 @class QueriesGCAViewController;
 @class QueriesGroundspeakViewController;
 @class RemoteAPI;

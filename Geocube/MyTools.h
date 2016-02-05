@@ -76,6 +76,8 @@ typedef sqlite3_int64 NSId;
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
 #define NEEDS_OVERLOADING(__name__) \
     - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
+#define NEEDS_OVERLOADING_BOOL(__name__) \
+    - (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
 

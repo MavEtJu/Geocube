@@ -56,6 +56,8 @@
 - (BOOL)Authenticate;
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsTrackables;
+- (BOOL)commentSupportsFavouritePoint;
+- (BOOL)commentSupportsRating;
 - (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)UserStatistics;

@@ -80,6 +80,23 @@
     return self;
 }
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return NO;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return YES;
+}
+- (BOOL)commentSupportsRating
+{
+    return YES;
+}
+- (BOOL)commentSupportsTrackables
+{
+    return NO;
+}
+
 - (NSArray *)logtypes:(NSString *)waypointType
 {
     return [logtypes allKeys];

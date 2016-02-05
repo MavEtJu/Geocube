@@ -25,7 +25,7 @@
 
 @end
 
-@interface LiveAPI : NSObject
+@interface LiveAPI : ProtocolTemplate
 
 @property (nonatomic) id delegate;
 

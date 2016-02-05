@@ -28,6 +28,7 @@
     LiveAPI *gs;
     OKAPI *okapi;
     GeocachingAustralia *gca;
+    ProtocolTemplate *protocol;
 
     dbAccount *account;
 
@@ -67,14 +68,17 @@
         case ProtocolLiveAPI:
             gs = [[LiveAPI alloc] init:self];
             gs.delegate = self;
+            protocol = gs;
             break;
         case ProtocolOKAPI:
             okapi = [[OKAPI alloc] init:self];
             okapi.delegate = self;
+            protocol = okapi;
             break;
         case ProtocolGCA:
             gca = [[GeocachingAustralia alloc] init:self];
             gca.delegate = self;
+            protocol = gca;
             break;
     }
     return self;
@@ -192,28 +196,22 @@
 
 - (BOOL)commentSupportsPhotos
 {
-    switch (account.protocol) {
-        case ProtocolLiveAPI:
-            return YES;
-        case ProtocolOKAPI:
-            return NO;
-        case ProtocolGCA:
-            return NO;
-    }
-    return NO;
+    return [protocol commentSupportsPhotos];
 }
 
 - (BOOL)commentSupportsTrackables
 {
-    switch (account.protocol) {
-        case ProtocolLiveAPI:
-            return YES;
-        case ProtocolOKAPI:
-            return NO;
-        case ProtocolGCA:
-            return NO;
-    }
-    return NO;
+    return [protocol commentSupportsTrackables];
+}
+
+- (BOOL)commentSupportsRating
+{
+    return [protocol commentSupportsRating];
+}
+
+- (BOOL)commentSupportsFavouritePoint
+{
+    return [protocol commentSupportsFavouritePoint];
 }
 
 - (NSArray *)logtypes:(NSString *)waypointType

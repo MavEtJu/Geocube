@@ -44,6 +44,23 @@
     return self;
 }
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return NO;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return NO;
+}
+- (BOOL)commentSupportsRating
+{
+    return NO;
+}
+- (BOOL)commentSupportsTrackables
+{
+    return NO;
+}
+
 - (NSArray *)logtypes:(NSString *)waypointType
 {
     if ([waypointType isEqualToString:@"event"] == YES)

@@ -26,7 +26,7 @@
 
 @end
 
-@interface GeocachingAustralia : NSObject <NSURLConnectionDataDelegate>
+@interface GeocachingAustralia : ProtocolTemplate <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id delegate;
 @property (nonatomic, retain, readonly) NSString *callback;

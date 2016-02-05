@@ -19,22 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol OKAPIDelegate
+#import "Geocube-Prefix.pch"
 
-- (void)alertError:(NSString *)msg error:(NSError *)error;
+@interface ProtocolTemplate ()
 
 @end
 
-@interface OKAPI : ProtocolTemplate
+@implementation ProtocolTemplate
 
-@property (nonatomic) id delegate;
-
-- (instancetype)init:(RemoteAPI *)remoteAPI;
-- (NSArray *)logtypes:(NSString *)waypointType;
-
-- (NSDictionary *)services_users_byUsername:(NSString *)username;
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname;
-
+NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
+NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
+NEEDS_OVERLOADING_BOOL(commentSupportsRating)
+NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
 
 @end

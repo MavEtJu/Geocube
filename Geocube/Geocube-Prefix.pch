@@ -139,6 +139,7 @@
 #import "BrowserUserViewController.h"
 
 #import "GCOAuthBlackbox.h"
+#import "ProtocolTemplate.h"
 #import "GeocachingAustralia.h"
 #import "LiveAPI.h"
 #import "OKAPI.h"

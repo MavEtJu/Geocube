@@ -52,6 +52,23 @@
     return self;
 }
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return YES;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return YES;
+}
+- (BOOL)commentSupportsRating
+{
+    return NO;
+}
+- (BOOL)commentSupportsTrackables
+{
+    return YES;
+}
+
 - (NSArray *)logtypes:(NSString *)waypointType
 {
 
