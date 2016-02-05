@@ -34,6 +34,28 @@
 
 @implementation CacheLogViewController
 
+enum {
+    SECTION_LOGDETAILS,
+    SECTION_EXTRADETAILS,
+    SECTION_SUBMIT,
+    SECTION_MAX,
+
+    SECTION_LOGDETAILS_TYPE = 0,
+    SECTION_LOGDETAILS_DATE,
+    SECTION_LOGDETAILS_COMMENT,
+    SECTION_LOGDETAILS_MAX,
+
+    SECTION_EXTRADETAILS_PHOTO = 0,
+    SECTION_EXTRADETAILS_FAVOURITE,
+    SECTION_EXTRADETAILS_RANKING,
+    SECTION_EXTRADETAILS_TRACKABLE,
+    SECTION_EXTRADETAILS_MAX,
+
+    SECTION_SUBMIT_UPLOAD = 0,
+    SECTION_SUBMIT_SUBMIT,
+    SECTION_SUBMIT_MAX,
+};
+
 #define THISCELL @"CacheLogViewControllerCell"
 
 - (instancetype)init:(dbWaypoint *)_waypoint
@@ -60,15 +82,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return SECTION_MAX;
 }
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return 3;
-        case 1: return 3;
-        case 2: return 2;
+        case SECTION_EXTRADETAILS: return SECTION_EXTRADETAILS_MAX;
+        case SECTION_LOGDETAILS: return SECTION_LOGDETAILS_MAX;
+        case SECTION_SUBMIT: return SECTION_SUBMIT_MAX;
     }
     return 0;
 }
@@ -76,9 +98,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return @"Log details";
-        case 1: return @"Extra details";
-        case 2: return @"Submit";
+        case SECTION_LOGDETAILS: return @"Log details";
+        case SECTION_EXTRADETAILS: return @"Extra details";
+        case SECTION_SUBMIT: return @"Submit";
     }
     return @"???";
 }
@@ -94,41 +116,46 @@
     cell.userInteractionEnabled = YES;
 
     switch (indexPath.section) {
-        case 0: {
+        case SECTION_LOGDETAILS: {
             switch (indexPath.row) {
-                case 0:
+                case SECTION_LOGDETAILS_TYPE:
                     cell.keyLabel.text = @"Type";
                     cell.valueLabel.text = logtype;
                     break;
-                case 1:
+                case SECTION_LOGDETAILS_DATE:
                     cell.keyLabel.text = @"Date";
                     cell.valueLabel.text = date;
                     break;
-                case 2:
+                case SECTION_LOGDETAILS_COMMENT:
                     cell.keyLabel.text = @"Comment";
                     cell.valueLabel.text = note;
                     break;
             }
             break;
         }
-        case 1: {
+        case SECTION_EXTRADETAILS: {
             switch (indexPath.row) {
-                case 0:
+                case SECTION_EXTRADETAILS_PHOTO:
                     cell.keyLabel.text = @"Photo";
                     if ([waypoint.account.remoteAPI commentSupportsPhotos] == NO) {
                         cell.userInteractionEnabled = NO;
                         cell.keyLabel.textColor = [UIColor lightGrayColor];
                     }
                     break;
-                case 1: {
+                case SECTION_EXTRADETAILS_FAVOURITE: {
                     cell.keyLabel.text = @"Favourite Point";
                     UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
                     fpSwitch.on = fp;
-                    [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = fpSwitch;
+                    if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
+                        cell.userInteractionEnabled = NO;
+                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                    } else {
+                        [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                    }
                     break;
                 }
-                case 2:
+                case SECTION_EXTRADETAILS_TRACKABLE:
                     cell.keyLabel.text = @"Trackable";
                     if ([waypoint.account.remoteAPI commentSupportsTrackables] == NO) {
                         cell.userInteractionEnabled = NO;
@@ -138,9 +165,9 @@
             }
             break;
         }
-        case 2: {
+        case SECTION_SUBMIT: {
             switch (indexPath.row) {
-                case 0: {
+                case SECTION_SUBMIT_UPLOAD: {
                     cell.keyLabel.text = @"Upload";
                     UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
                     fpSwitch.on = upload;
@@ -148,7 +175,7 @@
                     cell.accessoryView = fpSwitch;
                     break;
                 }
-                case 1:
+                case SECTION_SUBMIT_SUBMIT:
                     cell.keyLabel.text = @"Submit!";
                     break;
             }
@@ -173,37 +200,37 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 0: {
+        case SECTION_LOGDETAILS: {
             switch (indexPath.row) {
-                case 0:
+                case SECTION_LOGDETAILS_TYPE:
                     [self changeType];
                     break;
-                case 1:
+                case SECTION_LOGDETAILS_DATE:
                     [self changeDate];
                     break;
-                case 2:
+                case SECTION_LOGDETAILS_COMMENT:
                     [self changeNote];
                     break;
             }
             break;
         }
-        case 1: {
+        case SECTION_EXTRADETAILS: {
             switch (indexPath.row) {
-                case 0:
+                case SECTION_EXTRADETAILS_PHOTO:
                     [self changePhoto];
                     break;
-                case 1:
+                case SECTION_EXTRADETAILS_FAVOURITE:
                     [self changeFP];
                     break;
-                case 2:
+                case SECTION_EXTRADETAILS_TRACKABLE:
                     [self changeTrackable];
                     break;
             }
             break;
         }
-        case 2: {
+        case SECTION_SUBMIT: {
             switch (indexPath.row) {
-                case 1:
+                case SECTION_SUBMIT_SUBMIT:
                     [self submitLog];
                     break;
             }
