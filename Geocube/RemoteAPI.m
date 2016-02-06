@@ -469,6 +469,7 @@
  * - Id
  * - DateTime
  * - Size
+ * - Count
  */
 {
     if (account.protocol == ProtocolLiveAPI) {

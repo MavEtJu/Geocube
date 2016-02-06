@@ -122,8 +122,7 @@ enum {
 
     NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
     cell.textLabel.text = [pq objectForKey:@"Name"];
-    if ([pq objectForKey:@"Size"] != nil)
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ waypoints", [MyTools niceNumber:[[pq objectForKey:@"Count"] integerValue]]];
 
     return cell;
 }

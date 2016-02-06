@@ -191,12 +191,13 @@
     NSArray *lines = [self loadPage:urlString];
 
     NSError *e;
-    NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"<td.*queryid='(\\d+)'>(.*?)</td>" options:0 error:&e];
+    NSRegularExpression *r1 = [NSRegularExpression regularExpressionWithPattern:@"<td.*queryid='(\\d+)'>(.*?)</td>" options:0 error:&e];
+    NSRegularExpression *r2 = [NSRegularExpression regularExpressionWithPattern:@"Number of matching caches: (\\d+)"options:0 error:&e];
 
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
 
     [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSArray *matches = [r matchesInString:l options:0 range:NSMakeRange(0, [l length])];
+        NSArray *matches = [r1 matchesInString:l options:0 range:NSMakeRange(0, [l length])];
         for (NSTextCheckingResult *match in matches) {
             NSRange rangeId = [match rangeAtIndex:1];
             NSRange rangeName = [match rangeAtIndex:2];
@@ -204,14 +205,27 @@
             NSString *_id = [l substringWithRange:rangeId];
             NSString *name = [l substringWithRange:rangeName];
 
+            __block NSString *count = nil;
+
             NSLog(@"%@ - %@", _id, name);
+
+            NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/count/%@", _id];
+            NSArray *lines = [self loadPage:urlString];
+            [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *matches = [r2 matchesInString:l options:0 range:NSMakeRange(0, [l length])];
+                for (NSTextCheckingResult *match in matches) {
+                    NSRange countRange = [match rangeAtIndex:1];
+                    count = [l substringWithRange:countRange];
+                }
+            }];
 
             NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:2];
             [d setObject:_id forKey:@"Id"];
             [d setObject:name forKey:@"Name"];
+            if (count != nil)
+                [d setObject:count forKey:@"Count"];
             [as addObject:d];
         }
-
     }];
 
     return as;
