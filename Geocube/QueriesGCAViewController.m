@@ -22,29 +22,167 @@
 #import "Geocube-Prefix.pch"
 
 @interface QueriesGCAViewController ()
+{
+    NSArray *pqs;
+    dbAccount *account;
+}
 
 @end
 
 @implementation QueriesGCAViewController
 
+enum {
+    menuReload,
+    menuMax
+};
+
+#define THISCELL @"QueriesGCATableCells"
+
+- (instancetype)init
+{
+    self = [super init];
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuReload label:@"Reload"];
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+
+    pqs = nil;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if (pqs == nil) {
+        pqs = @[];
+        [self performSelectorInBackground:@selector(reloadPQs) withObject:nil];
+    }
 }
 
-/*
-#pragma mark - Navigation
+- (void)reloadPQs
+{
+    pqs = nil;
+    account = nil;
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Query List"];
+    }];
+
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.protocol == ProtocolGCA && a.canDoRemoteStuff == YES) {
+            pqs = [a.remoteAPI listQueries];
+            account = a;
+            *stop = YES;
+        }
+    }];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+    [self.tableView reloadData];
 }
-*/
+
+#pragma mark - TableViewController related functions
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (pqs == nil)
+        return @"";
+    NSInteger c = [pqs count];
+    return [NSString stringWithFormat:@"%ld Available Quer%@", (unsigned long)c, c == 1 ? @"y" : @"ies"];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return 1;
+}
+
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [pqs count];
+}
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    if (cell == nil) {
+        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+
+    NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
+    cell.textLabel.text = [pq objectForKey:@"Name"];
+    if ([pq objectForKey:@"Size"] != nil)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
+    [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
+    return;
+}
+
+- (void)runRetrieveQuery:(NSDictionary *)pq
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Loading Query\n0 / 0"];
+    }];
+
+    __block dbGroup *group = nil;
+    NSString *name = [pq objectForKey:@"Name"];
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([g.name isEqualToString:name] == YES) {
+            group = g;
+            *stop = YES;
+        }
+    }];
+    if (group == nil) {
+        NSId _id = [dbGroup dbCreate:name isUser:YES];
+        [dbc loadWaypointData];
+        group = [dbGroup dbGet:_id];
+    }
+
+    account.remoteAPI.delegateQueries = self;
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+    [self.tableView reloadData];
+    [MyTools playSound:playSoundImportComplete];
+}
+
+- (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading Query\n%ld / %ld", offset, max];
+    }];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    switch (index) {
+        case menuReload:
+            [self performSelectorInBackground:@selector(reloadPQs) withObject:nil];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
 
 @end
