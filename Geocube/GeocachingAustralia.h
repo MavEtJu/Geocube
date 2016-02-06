@@ -33,6 +33,7 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
+- (NSArray *)my_query;
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name;
 - (NSString *)cache_gpx:(NSString *)wpname;

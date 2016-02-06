@@ -183,6 +183,40 @@
     return value;
 }
 
+// ------------------------------------------------
+
+- (NSArray *)my_query
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query"];
+    NSArray *lines = [self loadPage:urlString];
+
+    NSError *e;
+    NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"<td.*queryid='(\\d+)'>(.*?)</td>" options:0 error:&e];
+
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+
+    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *matches = [r matchesInString:l options:0 range:NSMakeRange(0, [l length])];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange rangeId = [match rangeAtIndex:1];
+            NSRange rangeName = [match rangeAtIndex:2];
+
+            NSString *_id = [l substringWithRange:rangeId];
+            NSString *name = [l substringWithRange:rangeName];
+
+            NSLog(@"%@ - %@", _id, name);
+
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:2];
+            [d setObject:_id forKey:@"Id"];
+            [d setObject:name forKey:@"Name"];
+            [as addObject:d];
+        }
+
+    }];
+
+    return as;
+}
+
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name
 {
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlEncode:name]];

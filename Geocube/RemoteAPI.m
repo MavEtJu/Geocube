@@ -491,6 +491,14 @@
         return as;
     }
 
+    if (account.protocol == ProtocolGCA) {
+        NSArray *as = [gca my_query];
+        if (as == nil || [as count] == 0)
+            return nil;
+
+        return as;
+    }
+
     return nil;
 }
 
