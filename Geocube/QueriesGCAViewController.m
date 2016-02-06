@@ -122,7 +122,8 @@ enum {
 
     NSDictionary *pq = [pqs objectAtIndex:indexPath.row];
     cell.textLabel.text = [pq objectForKey:@"Name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ waypoints", [MyTools niceNumber:[[pq objectForKey:@"Count"] integerValue]]];
+    NSInteger count = [[pq objectForKey:@"Count" ] integerValue];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
 
     return cell;
 }
