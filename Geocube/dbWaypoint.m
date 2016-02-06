@@ -289,7 +289,7 @@
 - (NSArray *)hasWaypoints
 {
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
-    NSString *name, *namesuffix, *thisnameprefix;
+    NSString *namesuffix, *thisnameprefix;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ?")
