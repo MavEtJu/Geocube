@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesGroundspeakViewController : QueriesTemplateViewController
+@interface QueriesTemplateViewController : GCTableViewController <RemoteAPIQueriesDownloadProgressDelegate>
+
+@property (nonatomic, retain) NSString *queryString;
+@property (nonatomic, retain) NSString *queriesString;
+
+- (void)reloadQueries;
+- (void)reloadQueries:(NSInteger)protocol;
 
 @end

@@ -266,6 +266,7 @@
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
+		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
@@ -766,6 +767,8 @@
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
+		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
+		E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTemplateViewController.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
@@ -1147,6 +1150,8 @@
 				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
 				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
 				E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */,
+				E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */,
+				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
 			);
 			name = Queries;
 			sourceTree = "<group>";
@@ -2497,6 +2502,7 @@
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
+				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,

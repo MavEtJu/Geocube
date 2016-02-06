@@ -130,6 +130,7 @@
 @class ProtocolTemplate;
 @class QueriesGCAViewController;
 @class QueriesGroundspeakViewController;
+@class QueriesTemplateViewController;
 @class RemoteAPI;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;

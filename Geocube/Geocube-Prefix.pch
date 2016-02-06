@@ -199,6 +199,7 @@
 #import "FilesDropboxViewController.h"
 #import "FilesViewController.h"
 
+#import "QueriesTemplateViewController.h"
 #import "QueriesGroundspeakViewController.h"
 #import "QueriesGCAViewController.h"
 
