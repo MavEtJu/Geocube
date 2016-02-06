@@ -119,6 +119,8 @@
         "owner" : "richary",
         "container" : "R",
         "container_text" : "Regular",
+        "found": "y",
+        "datefound": "2015-12-02",
         "hints" : "",
         "icon" : "cacheicon_moveable.png",
         "rating" : 4
@@ -163,6 +165,7 @@
     DICT_NSSTRING_KEY(dict, wp.gs_container_str, @"container_text");
     wp.gs_container = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_hint, @"hints");
+    DICT_INTEGER_KEY(dict, wp.gs_date_found, @"datefound");
 
     wp.account = account;
     wp.account_id = account._id;
