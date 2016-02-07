@@ -444,6 +444,24 @@
     return NO;
 }
 
++ (BOOL)isMobileNetworkWorking
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    [reachability stopNotifier];
+
+    switch (status) {
+        case NotReachable:
+            return NO;
+        case ReachableViaWiFi:
+            return NO;
+        case ReachableViaWWAN:
+            return YES;
+    }
+    return NO;
+}
+
 + (BOOL)isAnyNetworkWorking
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];

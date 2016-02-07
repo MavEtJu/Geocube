@@ -66,6 +66,7 @@ enum {
 
 - (void)toggleFlashLight:(BOOL)onoff;
 + (BOOL)isWifiNetworkWorking;
++ (BOOL)isMobileNetworkWorking;
 + (BOOL)isAnyNetworkWorking;
 
 + (void)playSound:(NSInteger)reason;
