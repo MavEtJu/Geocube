@@ -34,6 +34,12 @@
 
 #define THISCELL @"HelpDatabaseViewController"
 
+enum {
+    SECTION_DBCOUNT = 0,
+    SECTION_CONFIGURATION,
+    SECTION_MAX
+};
+
 - (instancetype)init
 {
     self = [super init];
@@ -131,15 +137,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 2;
+    return SECTION_MAX;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
+        case SECTION_DBCOUNT:
             return @"Database count";
-        case 1:
+        case SECTION_CONFIGURATION:
             return @"Configuration";
     }
     return nil;
@@ -149,9 +155,9 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
+        case SECTION_DBCOUNT:
             return [fields1 count];
-        case 1:
+        case SECTION_CONFIGURATION:
             return [config count];
     }
     return 0;
@@ -164,20 +170,24 @@
     if (cell == nil)
         cell = [[GCTableViewCellTwoTextfields alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
-    if (indexPath.section == 0) {
-        cell.fieldLabel.text = [fields1 objectAtIndex:indexPath.row];
-        NSObject *o = [values1 objectAtIndex:indexPath.row];
-        if ([o isKindOfClass:[NSNumber class]] == YES)
-            cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
-        else
-            cell.valueLabel.text = [values1 objectAtIndex:indexPath.row];
-        cell.userInteractionEnabled = NO;
-    }
-    if (indexPath.section == 1) {
-        dbConfig *c = [config objectAtIndex:indexPath.row];
-        cell.fieldLabel.text = c.key;
-        cell.valueLabel.text = c.value;
-        cell.userInteractionEnabled = NO;
+    switch (indexPath.section) {
+        case SECTION_DBCOUNT: {
+            cell.fieldLabel.text = [fields1 objectAtIndex:indexPath.row];
+            NSObject *o = [values1 objectAtIndex:indexPath.row];
+            if ([o isKindOfClass:[NSNumber class]] == YES)
+                cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
+            else
+                cell.valueLabel.text = [values1 objectAtIndex:indexPath.row];
+            cell.userInteractionEnabled = NO;
+            break;
+        }
+        case SECTION_CONFIGURATION: {
+            dbConfig *c = [config objectAtIndex:indexPath.row];
+            cell.fieldLabel.text = c.key;
+            cell.valueLabel.text = c.value;
+            cell.userInteractionEnabled = NO;
+            break;
+        }
     }
 
     [cell viewWillTransitionToSize];
