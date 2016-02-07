@@ -1081,6 +1081,8 @@
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
 				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
+				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
 				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
@@ -2006,8 +2008,6 @@
 				E88037A71B954F290053AD01 /* ImportNotices.m */,
 				E87E47481B82A301005606A2 /* ImportSites.h */,
 				E87E47491B82A301005606A2 /* ImportSites.m */,
-				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
-				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 			);
 			name = Convertors;
 			sourceTree = "<group>";
