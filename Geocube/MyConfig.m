@@ -24,52 +24,6 @@
 @interface MyConfig ()
 {
     NSMutableArray *delegates;
-
-    BOOL distanceMetric;
-
-    NSString *keyGMS;
-    NSString *keyMapbox;
-
-    NSString *currentWaypoint;
-    NSInteger currentPage;
-    NSInteger currentPageTab;
-
-    NSId currentTrack;
-
-    NSInteger lastImportSource;
-    NSInteger lastImportGroup;
-    NSInteger lastAddedGroup;
-
-    NSInteger mapExternal;
-    NSInteger mapBrand;
-    UIColor *mapTrackColour;
-    UIColor *mapDestinationColour;
-    NSInteger compassType;
-    NSInteger themeType;
-
-    BOOL soundDirection;
-    BOOL soundDistance;
-
-    BOOL keeptrackAutoRotate;
-
-    BOOL mapClustersEnable;
-    float mapClustersZoomLevel;
-
-    UIFont *GCLabelFont;
-    UIFont *GCSmallFont;
-    UIFont *GCTextblockFont;
-
-    BOOL dynamicmapEnable;
-    NSInteger dynamicmapWalkingSpeed;
-    NSInteger dynamicmapWalkingDistance;
-    NSInteger dynamicmapCyclingSpeed;
-    NSInteger dynamicmapCyclingDistance;
-    NSInteger dynamicmapDrivingSpeed;
-    NSInteger dynamicmapDrivingDistance;
-
-    BOOL mapcacheEnable;
-    NSInteger mapcacheMaxSize;
-    NSInteger mapcacheMaxAge;
 }
 
 @end
