@@ -426,7 +426,7 @@
     }
 }
 
-+ (BOOL)isWifiNetworkWorking
++ (BOOL)hasWifiNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
@@ -444,7 +444,7 @@
     return NO;
 }
 
-+ (BOOL)isMobileNetworkWorking
++ (BOOL)hasMobileNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
@@ -462,7 +462,7 @@
     return NO;
 }
 
-+ (BOOL)isAnyNetworkWorking
++ (BOOL)hasAnyNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
