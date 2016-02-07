@@ -181,7 +181,7 @@ enum {
         [view addAction:delete];
     }
     [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -249,7 +249,7 @@ enum {
         textField.placeholder = cg.name;
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -311,7 +311,7 @@ enum {
         textField.placeholder = @"Name of the new group";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 @end

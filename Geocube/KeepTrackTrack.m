@@ -348,19 +348,7 @@ enum {
     [o writeToFile:fullname atomically:NO encoding:NSUTF8StringEncoding error:&error];
     NSLog(@"Track written to %@, error %@", filename, error);
 
-
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Export complete"
-                               message:[NSString stringWithFormat:@"Exported %@. You can find them in the Files menu.", filename]
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:nil];
-
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
+    [MyTools messageBox:self header:@"Export complete" text:[NSString stringWithFormat:@"Exported %@. You can find them in the Files menu.", filename]];
 }
 
 @end

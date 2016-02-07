@@ -674,7 +674,7 @@ enum {
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)refreshWaypoint

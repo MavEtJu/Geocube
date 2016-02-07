@@ -360,19 +360,7 @@ enum {
 
     // Check length
     if ([note length] == 0) {
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Please fill in the comment"
-                                   message:@"Even TFTC is better than nothing at all"
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
-
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                             ];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Please fill in the comment" text:@"Even TFTC is better than nothing at all."];
         return;
     }
 
@@ -382,19 +370,8 @@ enum {
     if (gc_id == -1) {
         [self.navigationController popViewControllerAnimated:YES];
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Submission successful"
-                                   message:@"However, because of the system used the logs are not directly updated. Select the 'refresh waypoint' options from the menu here to refresh it."
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
+        [MyTools messageBox:self.parentViewController header:@"Submission successful" text:@"However, because of the system used the logs are not directly updated. Select the 'refresh waypoint' options from the menu here to refresh it."];
 
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                             ];
-        [alert addAction:ok];
-        [self.parentViewController presentViewController:alert animated:YES completion:nil];
         return;
     }
 
@@ -412,20 +389,7 @@ enum {
     if (waypoint.account.remoteAPI.clientError != nil)
         [s appendFormat:@" (%@)", waypoint.account.remoteAPI.clientError];
 
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Submission failed"
-                               message:s
-                               preferredStyle:UIAlertControllerStyleAlert
-                               ];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:nil
-                         ];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
-
+    [MyTools messageBox:self header:@"Submission failed" text:s];
 }
 
 

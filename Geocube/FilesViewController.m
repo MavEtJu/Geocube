@@ -246,7 +246,7 @@ enum {
     [view addAction:uploadICloud];
     [view addAction:uploadDropbox];
     [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -399,7 +399,7 @@ enum {
         textField.placeholder = filename;
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Local menu related functions
@@ -417,7 +417,7 @@ enum {
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
 {
     documentPicker.delegate = self;
-    [self presentViewController:documentPicker animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:documentPicker animated:YES completion:nil];
 }
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
@@ -450,7 +450,7 @@ enum {
                          handler:nil];
 
     [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 

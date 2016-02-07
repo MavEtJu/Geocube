@@ -225,19 +225,7 @@
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"You selected...."
-                               message:[NSString stringWithFormat:@"number %@", @(index + 1)]
-                               preferredStyle:UIAlertControllerStyleAlert
-                               ];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:nil
-                         ];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
+    [MyTools messageBox:self header:@"You selected..." text:[NSString stringWithFormat:@"number %@", @(index + 1)]];
 }
 
 

@@ -244,18 +244,7 @@ enum {
 
     NSLog(@"Error for WEBVIEW: %@", [error description]);
 
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Failed to download"
-                               message:[error description]
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:nil];
-
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
+    [MyTools messageBox:self header:@"Failed to download" text:[error description]];
     [self showActivity:NO];
 }
 
@@ -285,18 +274,7 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Download complete"
-                                   message:[NSString stringWithFormat:@"Downloaded %@. You can find them in the Files menu.", [MyTools niceFileSize:length]]
-                                   preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil];
-
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@. You can find them in the Files menu.", [MyTools niceFileSize:length]]];
     }];
 
     receivedData = nil;

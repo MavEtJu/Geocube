@@ -260,7 +260,7 @@ enum {
     imagePickerController.delegate = self;
 
     self.imagePickerController = imagePickerController;
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 - (void)finishAndUpdate

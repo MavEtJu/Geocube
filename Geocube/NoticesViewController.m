@@ -83,7 +83,7 @@ enum {
 
     [alert addAction:import];
     [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -179,19 +179,8 @@ enum {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         [ImportNotices parse:data];
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Notices Download"
-                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
+        [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]];
 
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                             ];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
         notices = [dbNotice dbAll];
         [self.tableView reloadData];
     } else {
@@ -204,19 +193,7 @@ enum {
             err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
         }
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Notices download"
-                                   message:[NSString stringWithFormat:@"Failed to download: %@", err]
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
-
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                             ];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
     }
 }
 

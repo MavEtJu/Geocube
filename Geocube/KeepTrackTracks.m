@@ -153,7 +153,7 @@ enum {
         textField.text = [MyTools dateString:time(NULL)];
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (dbTrack *)newTrack:(NSString *)name

@@ -164,7 +164,7 @@ enum {
     [view addAction:edit];
     [view addAction:delete];
     [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -210,7 +210,7 @@ enum {
         textField.placeholder = @"URL";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Local menu related functions
@@ -256,7 +256,7 @@ enum {
         textField.placeholder = @"URL";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index

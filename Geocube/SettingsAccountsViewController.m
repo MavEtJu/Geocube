@@ -90,7 +90,7 @@ enum {
 
     [alert addAction:import];
     [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - TableViewController related functions
@@ -186,7 +186,7 @@ enum {
         textField.placeholder = @"Username";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)remoteAPI:(RemoteAPI *)api failure:(NSString *)failure error:(NSError *)error
@@ -198,20 +198,8 @@ enum {
         [msg appendFormat:@" (%@)", [error description] ];
 
     NSLog(@"failure: %@", msg);
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Authentication failed"
-                               message:msg
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action) {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                         }];
-
-    [alert addAction:ok];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Authentication failed" text:msg];
     }];
 
     [self refreshAccountData];
@@ -255,19 +243,8 @@ enum {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         [ImportSites parse:data];
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Site information download"
-                                   message:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
+        [MyTools messageBox:self header:@"Site information download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]];
 
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                            ];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
         [dbc AccountsReload];
         [self refreshAccountData];
         [self.tableView reloadData];
@@ -281,19 +258,7 @@ enum {
             err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
         }
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Site Information Download"
-                                   message:[NSString stringWithFormat:@"Failed to download: %@", err]
-                                   preferredStyle:UIAlertControllerStyleAlert
-                                   ];
-
-        UIAlertAction *ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:nil
-                            ];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Site Information Download" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
     }
 }
 

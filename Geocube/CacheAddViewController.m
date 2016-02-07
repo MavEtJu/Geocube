@@ -166,7 +166,7 @@ enum {
         textField.placeholder = @"Waypoint code";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)updateName
@@ -201,7 +201,7 @@ enum {
         textField.placeholder = @"Waypoint name";
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)updateCoords
@@ -253,7 +253,7 @@ enum {
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
     }];
 
-    [self presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)editingChanged:(UITextField *)tf

@@ -236,7 +236,7 @@
     }];
 
     UIViewController* activeVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    [activeVC presentViewController:alert animated:YES completion:nil];
+    [ALERT_VC_RVC(activeVC) presentViewController:alert animated:YES completion:nil];
 }
 
 @end
