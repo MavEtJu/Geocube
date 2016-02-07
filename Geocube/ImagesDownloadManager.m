@@ -107,6 +107,7 @@
             }
             continue;
         }
+
         NSLog(@"%@/run: Downloading %@", [self class], imgToDownload.url);
 
         // Send a synchronous request
@@ -204,10 +205,13 @@
             [img dbLinkToWaypoint:wp_id type:type];
 
         if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
-            @synchronized(imagesDownloadManager) {
-                NSLog(@"%@/parse: Queue for downloading", [self class]);
-                [imagesDownloadManager.todo addObject:img];
-                [imagesDownloadManager start];
+            // Make sure we are allowed to download images immediately
+            if (myConfig.downloadLogImages == YES) {
+
+                // Do not download anything unless Wifi is required and available
+                if (myConfig.downloadLogImagesOverWifiOnly == YES && [MyTools hasWifiNetwork] == YES)
+                    continue;
+                [ImagesDownloadManager addToQueue:img];
             }
         }
 
