@@ -38,6 +38,13 @@
 
 @synthesize overlayView;
 
+enum {
+    SECTION_USER = 0,
+    SECTION_WAYPOINT,
+    SECTION_LOG,
+    SECTION_MAX
+};
+
 #define THISCELL @"CacheImagesViewController"
 
 enum {
@@ -70,15 +77,15 @@ enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return SECTION_MAX;
 }
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return [userImages count];
-        case 1: return [cacheImages count];
-        case 2: return [logImages count];
+        case SECTION_USER: return [userImages count];
+        case SECTION_WAYPOINT: return [cacheImages count];
+        case SECTION_LOG: return [logImages count];
     }
     return 0;
 }
@@ -86,9 +93,9 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return @"User Images";
-        case 1: return @"Waypoint Images";
-        case 2: return @"Log Images";
+        case SECTION_USER: return @"User Images";
+        case SECTION_WAYPOINT: return @"Waypoint Images";
+        case SECTION_LOG: return @"Log Images";
     }
     return @"Images???";
 }
@@ -96,7 +103,7 @@ enum {
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return YES if you want the specified item to be editable.
-    if (indexPath.section == 0)
+    if (indexPath.section == SECTION_USER)
         return YES;
     return NO;
 }
@@ -105,7 +112,7 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (indexPath.section != 0)
+        if (indexPath.section != SECTION_USER)
             return;
         dbImage *img = [userImages objectAtIndex:indexPath.row];
 
@@ -127,9 +134,9 @@ enum {
 
     dbImage *img;
     switch (indexPath.section) {
-        case 0: img = [userImages objectAtIndex:indexPath.row]; break;
-        case 1: img = [cacheImages objectAtIndex:indexPath.row]; break;
-        case 2: img = [logImages objectAtIndex:indexPath.row]; break;
+        case SECTION_USER: img = [userImages objectAtIndex:indexPath.row]; break;
+        case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:indexPath.row]; break;
+        case SECTION_LOG: img = [logImages objectAtIndex:indexPath.row]; break;
     }
 
     if (img == nil)
@@ -150,15 +157,15 @@ enum {
     currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:indexPath.section];
 
     switch (currentIndexPath.section) {
-        case 0: max = [userImages count]; break;
-        case 1: max = [cacheImages count]; break;
-        case 2: max = [logImages count]; break;
+        case SECTION_USER: max = [userImages count]; break;
+        case SECTION_WAYPOINT: max = [cacheImages count]; break;
+        case SECTION_LOG: max = [logImages count]; break;
     }
 
     switch (indexPath.section) {
-        case 0: img = [userImages objectAtIndex:indexPath.row]; break;
-        case 1: img = [cacheImages objectAtIndex:indexPath.row]; break;
-        case 2: img = [logImages objectAtIndex:indexPath.row]; break;
+        case SECTION_USER: img = [userImages objectAtIndex:indexPath.row]; break;
+        case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:indexPath.row]; break;
+        case SECTION_LOG: img = [logImages objectAtIndex:indexPath.row]; break;
     }
 
     if (img == nil)
@@ -178,18 +185,18 @@ enum {
     NSInteger max = 0;
 
     switch (currentIndexPath.section) {
-        case 0: max = [userImages count]; break;
-        case 1: max = [cacheImages count]; break;
-        case 2: max = [logImages count]; break;
+        case SECTION_USER: max = [userImages count]; break;
+        case SECTION_WAYPOINT: max = [cacheImages count]; break;
+        case SECTION_LOG: max = [logImages count]; break;
     }
 
     if (currentIndexPath.row != 0) {
         dbImage *img = nil;
         currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row - 1 inSection:currentIndexPath.section];
         switch (currentIndexPath.section) {
-            case 0: img = [userImages objectAtIndex:currentIndexPath.row]; break;
-            case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
-            case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_USER: img = [userImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
         [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
@@ -200,18 +207,18 @@ enum {
     NSInteger max = 0;
 
     switch (currentIndexPath.section) {
-        case 0: max = [userImages count]; break;
-        case 1: max = [cacheImages count]; break;
-        case 2: max = [logImages count]; break;
+        case SECTION_USER: max = [userImages count]; break;
+        case SECTION_WAYPOINT: max = [cacheImages count]; break;
+        case SECTION_LOG: max = [logImages count]; break;
     }
 
     if (currentIndexPath.row != max - 1) {
         dbImage *img = nil;
         currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row + 1 inSection:currentIndexPath.section];
         switch (currentIndexPath.section) {
-            case 0: img = [userImages objectAtIndex:currentIndexPath.row]; break;
-            case 1: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
-            case 2: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_USER: img = [userImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
+            case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
         [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
