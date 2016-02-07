@@ -189,7 +189,7 @@
     CHECK(@"mapcache_maxage", @"30");
 
     CHECK(@"download_log_images", @"1");
-    CHECK(@"download_log_queriesoverwifionly", @"1");
+    CHECK(@"download_queries_overwifionly", @"1");
 }
 
 - (void)loadValues
@@ -226,7 +226,7 @@
     keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
     keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
     downloadLogImages = [dbConfig dbGetByKey:@"download_log_images"].value;
-    downloadLogImages = [dbConfig dbGetByKey:@"download_log_queriesoverwifionly"].value;
+    downloadLogImages = [dbConfig dbGetByKey:@"download_queries_overwifionly"].value;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -464,7 +464,7 @@
 - (void)downloadQueriesOverWifiOnly:(BOOL)value;
 {
     downloadQueriesOverWifiOnly = value;
-    [self BOOLUpdate:@"download_log_queriesoverwifionly" value:value];
+    [self BOOLUpdate:@"download_queries_overwifionly" value:value];
 }
 
 @end
