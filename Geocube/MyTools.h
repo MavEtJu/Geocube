@@ -65,6 +65,8 @@ enum {
 + (BOOL)checkCoordinate:(NSString *)text;
 
 - (void)toggleFlashLight:(BOOL)onoff;
++ (BOOL)isWifiNetworkWorking;
++ (BOOL)isAnyNetworkWorking;
 
 + (void)playSound:(NSInteger)reason;
 

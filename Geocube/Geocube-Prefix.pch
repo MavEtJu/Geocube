@@ -51,6 +51,7 @@
 #import "LXMapScaleView.h"
 #import "NKOColorPickerView.h"
 #import "RangeSlider.h"
+#import "Reachability.h"
 #import "SSZipArchive.h"
 #import "XMLDictionary.h"
 #import "YIPopupTextView.h"

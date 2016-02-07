@@ -131,6 +131,7 @@
 @class QueriesGCAViewController;
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
+@class Reachability;
 @class RemoteAPI;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;

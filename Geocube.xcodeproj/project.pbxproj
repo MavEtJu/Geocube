@@ -267,6 +267,7 @@
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
+		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
@@ -769,6 +770,8 @@
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
 		E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTemplateViewController.m; sourceTree = "<group>"; };
+		E89580231C66E44900282177 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
+		E89580241C66E44900282177 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
@@ -1489,6 +1492,15 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		E895801F1C66E39500282177 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				E89580231C66E44900282177 /* Reachability.h */,
+				E89580241C66E44900282177 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1815,6 +1827,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E895801F1C66E39500282177 /* Reachability */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8EAF43D1B591DEB0027AE6F /* BHTabBar */,
@@ -2565,6 +2578,7 @@
 				E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */,
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
+				E89580251C66E44900282177 /* Reachability.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,

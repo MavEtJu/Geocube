@@ -426,6 +426,42 @@
     }
 }
 
++ (BOOL)isWifiNetworkWorking
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    [reachability stopNotifier];
+
+    switch (status) {
+        case NotReachable:
+            return NO;
+        case ReachableViaWiFi:
+            return YES;
+        case ReachableViaWWAN:
+            return NO;
+    }
+    return NO;
+}
+
++ (BOOL)isAnyNetworkWorking
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    [reachability stopNotifier];
+
+    switch (status) {
+        case NotReachable:
+            return NO;
+        case ReachableViaWiFi:
+            return YES;
+        case ReachableViaWWAN:
+            return YES;
+    }
+    return NO;
+}
+
 + (void)playSoundFile:(NSString *)filename extension:(NSString *)extension
 {
     /* Crappy way to do sound but will work for now */
