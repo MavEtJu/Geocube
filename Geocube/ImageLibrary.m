@@ -455,7 +455,7 @@
         }
     }];
 
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
 }
 
 - (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress
@@ -566,7 +566,7 @@
 
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_hasdata == YES && wp.gs_available == NO) archived:(wp.gs_hasdata == YES && wp.gs_archived == YES) highlight:wp.flag_highlight markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
+    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress];
 }
 
 // -----------------------------------------------------------

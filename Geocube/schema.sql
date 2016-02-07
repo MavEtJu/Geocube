@@ -70,7 +70,6 @@ create table waypoints (
     markedfound bool,
     inprogress bool,
 
-    gs_hasdata bool,
     gs_enabled bool,
     gs_archived bool,
     gs_available bool,

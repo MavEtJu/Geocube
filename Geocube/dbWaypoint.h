@@ -63,7 +63,6 @@ enum {
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
-@property (nonatomic) BOOL gs_hasdata;
 @property (nonatomic) float gs_rating_difficulty;
 @property (nonatomic) float gs_rating_terrain;
 @property (nonatomic) NSInteger gs_favourites;

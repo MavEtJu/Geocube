@@ -224,7 +224,7 @@
     wp.account_id = account._id;
 
     // Groundspeak object
-    wp.gs_hasdata = YES;
+//  wp.gs_hasdata = YES;
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"Difficulty");
     DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"Terrain");
     DICT_FLOAT_KEY(dict, wp.gs_favourites, @"FavoritePoints");
