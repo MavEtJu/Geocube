@@ -47,7 +47,7 @@ enum {
 
     SECTION_EXTRADETAILS_PHOTO = 0,
     SECTION_EXTRADETAILS_FAVOURITE,
-    SECTION_EXTRADETAILS_RANKING,
+    SECTION_EXTRADETAILS_RATING,
     SECTION_EXTRADETAILS_TRACKABLE,
     SECTION_EXTRADETAILS_MAX,
 
@@ -152,6 +152,14 @@ enum {
                         cell.keyLabel.textColor = [UIColor lightGrayColor];
                     } else {
                         [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                    }
+                    break;
+                }
+                case SECTION_EXTRADETAILS_RATING: {
+                    cell.keyLabel.text = @"Rating";
+                    if ([waypoint.account.remoteAPI commentSupportsRating] == NO) {
+                        cell.userInteractionEnabled = NO;
+                        cell.keyLabel.textColor = [UIColor lightGrayColor];
                     }
                     break;
                 }
