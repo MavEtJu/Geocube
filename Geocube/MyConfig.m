@@ -39,7 +39,7 @@
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
-@synthesize downloadLogImages, downloadQueriesOverWifiOnly;
+@synthesize downloadLogImages, downloadLogImagesOverWifiOnly, downloadQueriesOverWifiOnly;
 
 - (instancetype)init
 {
@@ -143,6 +143,7 @@
     CHECK(@"mapcache_maxage", @"30");
 
     CHECK(@"download_log_images", @"1");
+    CHECK(@"download_log_images_overwifionly", @"1");
     CHECK(@"download_queries_overwifionly", @"1");
 }
 
@@ -179,8 +180,9 @@
     mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
     keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
     keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
-    downloadLogImages = [dbConfig dbGetByKey:@"download_log_images"].value;
-    downloadLogImages = [dbConfig dbGetByKey:@"download_queries_overwifionly"].value;
+    downloadLogImages = [[dbConfig dbGetByKey:@"download_log_images"].value boolValue];
+    downloadLogImagesOverWifiOnly = [[dbConfig dbGetByKey:@"download_log_images_overwifionly"].value boolValue];
+    downloadLogImages = [[dbConfig dbGetByKey:@"download_queries_overwifionly"].value boolValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -415,7 +417,13 @@
     [self BOOLUpdate:@"download_log_images" value:value];
 }
 
-- (void)downloadQueriesOverWifiOnly:(BOOL)value;
+- (void)downloadLogImagesOverWifiOnlyUpdate:(BOOL)value
+{
+    downloadLogImagesOverWifiOnly = value;
+    [self BOOLUpdate:@"download_log_images_overwifionly" value:value];
+}
+
+- (void)downloadQueriesOverWifiOnlyUpdate:(BOOL)value;
 {
     downloadQueriesOverWifiOnly = value;
     [self BOOLUpdate:@"download_queries_overwifionly" value:value];

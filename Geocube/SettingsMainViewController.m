@@ -55,6 +55,10 @@
     NSInteger mapcacheMaxSize;
     NSArray *mapcacheMaxAgeValues;
     NSArray *mapcacheMaxSizeValues;
+
+    UISwitch *downloadLogImages;
+    UISwitch *downloadLogImagesOverWifiOnly;
+    UISwitch *downloadQueriesWifiOnly;
 }
 
 @end
@@ -182,6 +186,7 @@ enum {
 enum sections {
     SECTION_DISTANCE = 0,
     SECTION_APPS,
+    SECTION_DOWNLOADS,
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_MAPCOLOURS,
@@ -229,6 +234,11 @@ enum sections {
 
     SECTION_KEEPTRACK_AUTOROTATE = 0,
     SECTION_KEEPTRACK_MAX,
+
+    SECTION_DOWNLOADS_LOG_IMAGES = 0,
+    SECTION_DOWNLOADS_LOG_IMAGES_OVERWIFIONLY,
+    SECTION_DOWNLOADS_QUERIES_OVERWIFIONLY,
+    SECTION_DOWNLOADS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -258,6 +268,8 @@ enum sections {
             return SECTION_KEEPTRACK_MAX;
         case SECTION_MAPCACHE:
             return SECTION_MAPCACHE_MAX;
+        case SECTION_DOWNLOADS:
+            return SECTION_DOWNLOADS_MAX;
     }
 
     return 0;
@@ -285,6 +297,8 @@ enum sections {
             return @"Keep track";
         case SECTION_MAPCACHE:
             return @"Map cache";
+        case SECTION_DOWNLOADS:
+            return @"Download options";
     }
 
     return nil;
@@ -573,9 +587,64 @@ enum sections {
             }
             break;
         }
+
+        case SECTION_DOWNLOADS: {
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            if (cell == nil)
+                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+            switch (indexPath.row) {
+                case SECTION_DOWNLOADS_LOG_IMAGES: {
+                    cell.textLabel.text = @"Download user images from logs";
+
+                    downloadLogImages = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadLogImages.on = myConfig.downloadLogImages;
+                    [downloadLogImages addTarget:self action:@selector(updateDownloadLogImages:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadLogImages;
+
+                    return cell;
+                }
+                case SECTION_DOWNLOADS_LOG_IMAGES_OVERWIFIONLY: {
+                    cell.textLabel.text = @"Download user images from logs over Wi-Fi only";
+
+                    downloadQueriesWifiOnly = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadQueriesWifiOnly.on = myConfig.downloadLogImages;
+                    [downloadQueriesWifiOnly addTarget:self action:@selector(updateDownloadLogImagesOverWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadQueriesWifiOnly;
+
+                    return cell;
+                }
+                case SECTION_DOWNLOADS_QUERIES_OVERWIFIONLY: {
+                    cell.textLabel.text = @"Download batch queries over Wi-Fi only";
+
+                    downloadQueriesWifiOnly = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadQueriesWifiOnly.on = myConfig.downloadQueriesOverWifiOnly;
+                    [downloadQueriesWifiOnly addTarget:self action:@selector(updateDownloadQueriesWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadQueriesWifiOnly;
+
+                    return cell;
+                }
+            }
+            break;
+        }
+
     }
 
     return nil;
+}
+
+- (void)updateDownloadLogImages:(UISwitch *)s
+{
+    [myConfig downloadLogImagesUpdate:s.on];
+}
+
+- (void)updateDownloadLogImagesOverWifiOnly:(UISwitch *)s
+{
+    [myConfig downloadLogImagesOverWifiOnlyUpdate:s.on];
+}
+
+- (void)updateDownloadQueriesWifiOnly:(UISwitch *)s
+{
+    [myConfig downloadQueriesOverWifiOnlyUpdate:s.on];
 }
 
 - (void)updateMapcacheEnable:(UISwitch *)s
