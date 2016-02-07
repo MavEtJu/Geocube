@@ -504,4 +504,22 @@
     }
 }
 
++ (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:header
+                               message:text
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *close = [UIAlertAction
+                            actionWithTitle:@"Close"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction *action) {
+                                [alert dismissViewControllerAnimated:YES completion:nil];
+                            }];
+
+    [alert addAction:close];
+    [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+}
+
 @end

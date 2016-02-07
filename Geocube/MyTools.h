@@ -70,6 +70,7 @@ enum {
 + (BOOL)hasAnyNetwork;
 
 + (void)playSound:(NSInteger)reason;
++ (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
 
 @end
 
@@ -142,3 +143,6 @@ typedef sqlite3_int64 NSId;
         __b__ = @"0"; \
     __a__ = [__b__  boolValue]; \
     }
+
+// UIAlertController related macro
+#define ALERT_VC_RVC(__vc__) __vc__.view.window.rootViewController
