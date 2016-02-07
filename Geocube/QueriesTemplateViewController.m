@@ -91,7 +91,9 @@ NEEDS_OVERLOADING(reloadQueries)
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
     }];
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - TableViewController related functions
@@ -139,6 +141,11 @@ NEEDS_OVERLOADING(reloadQueries)
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (myConfig.downloadQueriesOverWifiOnly == YES && [MyTools hasWifiNetwork] == NO) {
+        [MyTools messageBox:self header:@"Failure" text:[NSString stringWithFormat:@"Your settings don't allow download of %@ if Wi-Fi is not available", self.queriesString]];
+        return;
+    }
+
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
     return;
@@ -170,7 +177,9 @@ NEEDS_OVERLOADING(reloadQueries)
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
     }];
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
     [MyTools playSound:playSoundImportComplete];
 }
 
