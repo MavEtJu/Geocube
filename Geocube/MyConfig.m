@@ -85,6 +85,7 @@
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
+@synthesize downloadLogImages, downloadQueriesOverWifiOnly;
 
 - (instancetype)init
 {
@@ -186,6 +187,9 @@
     CHECK(@"mapcache_enable", @"1");
     CHECK(@"mapcache_maxsize", @"250");
     CHECK(@"mapcache_maxage", @"30");
+
+    CHECK(@"download_log_images", @"1");
+    CHECK(@"download_log_queriesoverwifionly", @"1");
 }
 
 - (void)loadValues
@@ -221,6 +225,8 @@
     mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
     keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
     keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
+    downloadLogImages = [dbConfig dbGetByKey:@"download_log_images"].value;
+    downloadLogImages = [dbConfig dbGetByKey:@"download_log_queriesoverwifionly"].value;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -447,6 +453,18 @@
 {
     keyMapbox = value;
     [self NSStringUpdate:@"key_mapbox" value:value];
+}
+
+- (void)downloadLogImagesUpdate:(BOOL)value
+{
+    downloadLogImages = value;
+    [self BOOLUpdate:@"download_log_images" value:value];
+}
+
+- (void)downloadQueriesOverWifiOnly:(BOOL)value;
+{
+    downloadQueriesOverWifiOnly = value;
+    [self BOOLUpdate:@"download_log_queriesoverwifionly" value:value];
 }
 
 @end
