@@ -507,13 +507,6 @@
 {
 
     if (account.protocol == ProtocolLiveAPI) {
-
-//        NSDictionary *json = [gs GetPocketQueryZippedFile:_id];
-//        NSString *s = [json objectForKey:@"ZippedFile"];
-//        NSData *d = [[NSData alloc] initWithBase64EncodedString:s options:0];
-//        [d writeToFile:[NSString stringWithFormat:@"%@/foo", [MyTools FilesDir]] atomically:NO];
-//        return nil;
-
         NSMutableDictionary *result = nil;
         NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];;
 
@@ -545,6 +538,19 @@
         [imp parseAfter];
 
         [waypointManager needsRefresh];
+        return YES;
+    }
+
+    if (account.protocol == ProtocolGCA) {
+        NSDictionary *json = [gca my_query_json:_id];
+
+        ImportGCAJSON *imp = [[ImportGCAJSON alloc] init:group account:account];
+        [imp parseBefore_cache];
+        [imp parseData_cache:json];
+        [imp parseAfter_cache];
+
+        [waypointManager needsRefresh];
+
         return YES;
     }
 

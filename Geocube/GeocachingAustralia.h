@@ -40,5 +40,7 @@
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center;
 - (NSDictionary *)logs_cache:(NSString *)wpname;
+- (NSDictionary *)my_query_json:(NSString *)queryname;
+- (NSDictionary *)my_query_gpx:(NSString *)queryname;
 
 @end
