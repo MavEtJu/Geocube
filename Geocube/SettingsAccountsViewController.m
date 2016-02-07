@@ -220,20 +220,8 @@ enum {
 
 - (void)remoteAPI:(RemoteAPI *)api success:(NSString *)success;
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Authentication successful"
-                               message:@"Yay!"
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action) {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                         }];
-
-    [alert addAction:ok];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self presentViewController:alert animated:YES completion:nil];
+        [MyTools messageBox:self header:@"Authentication sucessful" text:@"Yay!"];
     }];
 
     [self refreshAccountData];
