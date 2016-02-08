@@ -11,7 +11,7 @@ create index config_idx_key on config(key);
 --insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
 insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "8");
+insert into config(key, value) values("version", "9");
 
 create table filters (
     id integer primary key,
@@ -516,6 +516,7 @@ insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Grou
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Moveable", 119, 21);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 118, 10);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Virtual", 114, 17);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "History", 120, 17);
 
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Final Location", 200, 40);
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Flag", 201, 41);

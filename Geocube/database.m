@@ -143,6 +143,8 @@
             [self performUpgrade_7];
         case 7:
             [self performUpgrade_8];
+        case 8:
+            [self performUpgrade_9];
 
             return;
         default:
@@ -253,6 +255,14 @@
     NSArray *a = @[
     @"alter table waypoints add column gs_date_found integer",
     @"update waypoints set gs_date_found = 0",
+    ];
+    [self performUpgrade_X:a];
+}
+
+- (void)performUpgrade_9
+{
+    NSArray *a = @[
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'History', 120, 17)",
     ];
     [self performUpgrade_X:a];
 }
