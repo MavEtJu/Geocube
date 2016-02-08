@@ -351,12 +351,17 @@
         return YES;
     }
     if (account.protocol == ProtocolGCA) {
-        NSString *gpx = [gca cache__gpx:waypoint.wpt_name];
+        NSDictionary *json = [gca cache__json:waypoint.wpt_name];
+        ImportGCAJSON *imp = [[ImportGCAJSON alloc] init:g account:a];
+        [imp parseBefore_cache];
+        [imp parseData_cache:json];
+        [imp parseAfter_cache];
 
-        ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
-        [imp parseBefore];
-        [imp parseString:gpx];
-        [imp parseAfter];
+        json = [gca logs_cache:waypoint.wpt_name];
+        imp = [[ImportGCAJSON alloc] init:g account:a];
+        [imp parseBefore_logs];
+        [imp parseData_logs:json];
+        [imp parseAfter_logs];
 
         [waypointManager needsRefresh];
         return YES;

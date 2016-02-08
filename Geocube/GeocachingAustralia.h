@@ -37,6 +37,7 @@
 - (NSDictionary *)cacher_statistic__finds:(NSString *)name;
 - (NSDictionary *)cacher_statistic__hides:(NSString *)name;
 - (NSString *)cache__gpx:(NSString *)wpname;
+- (NSDictionary *)cache__json:(NSString *)wpname;
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center;
 - (NSDictionary *)logs_cache:(NSString *)wpname;

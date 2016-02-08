@@ -280,6 +280,26 @@
     return [lines componentsJoinedByString:@""];
 }
 
+- (NSDictionary *)cache__json:(NSString *)wpname
+{
+    NSLog(@"cache__json");
+
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.json", [MyTools urlEncode:wpname]];
+    NSArray *lines = [self loadPage:urlString];
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    return json;
+}
+
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
     NSLog(@"my_log_new");
