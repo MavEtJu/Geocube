@@ -692,7 +692,9 @@ enum {
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
     waypoint = [dbWaypoint dbGet:waypoint._id];
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
     [MyTools playSound:playSoundImportComplete];
 }
 
