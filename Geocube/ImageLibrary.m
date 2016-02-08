@@ -58,6 +58,7 @@
     [self addToLibrary:@"cache - whereigo - 30x30" index:ImageTypes_WhereigoCache];
     [self addToLibrary:@"cache - moveable - 30x30" index:ImageTypes_Moveable];
     [self addToLibrary:@"cache - trigpoint - 30x30" index:ImageTypes_Trigpoint];
+    [self addToLibrary:@"cache - history - 30x30" index:ImageTypes_History];
 
     [self addToLibrary:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];

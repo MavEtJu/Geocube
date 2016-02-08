@@ -43,6 +43,7 @@ typedef enum {
     ImageTypes_WhereigoCache,
     ImageTypes_Trigpoint,
     ImageTypes_Moveable,
+    ImageTypes_History,
     ImageTypes_NFI,
 
     ImageWaypoints_FinalLocation = 200,
