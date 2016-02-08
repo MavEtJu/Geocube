@@ -131,7 +131,7 @@
 {
     NSLog(@"performUpgrade: from version: %ld", (long)fromVersion);
     [self upgradeInit];
-    for (NSInteger i = fromVersion; i <= toVersion; i++) {
+    for (NSInteger i = fromVersion + 1; i <= toVersion; i++) {
         [self upgradePerform:i];
     }
 }
@@ -151,7 +151,8 @@
 
 - (void)upgradePerform:(NSInteger)version
 {
-    if (version >= [upgradeSteps count])
+    NSLog(@"upgradePerform: to version: %ld", (long)version);
+    if (version > [upgradeSteps count])
         NSAssert1(false, @"performUpgrade: Unknown destination version: %ld", (long)version);
 
     @synchronized(self.dbaccess) {
@@ -174,8 +175,16 @@
 
 - (void)upgradeInit
 {
-    // Version 1
+    upgradeSteps = [NSMutableArray arrayWithCapacity:10];
+
+    // Version 0
     NSArray *a = @[
+        // Nothing
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 1
+    a = @[
         // Nothing
     ];
     [upgradeSteps addObject:a];
