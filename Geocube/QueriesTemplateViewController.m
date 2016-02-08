@@ -141,7 +141,7 @@ NEEDS_OVERLOADING(reloadQueries)
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (myConfig.downloadQueriesOverWifiOnly == YES && [MyTools hasWifiNetwork] == NO) {
+    if (myConfig.downloadQueriesMobile == NO && [MyTools hasWifiNetwork] == NO) {
         [MyTools messageBox:self header:@"Failure" text:[NSString stringWithFormat:@"Your settings don't allow download of %@ if Wi-Fi is not available", self.queriesString]];
         return;
     }

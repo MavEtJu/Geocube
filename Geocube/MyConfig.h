@@ -76,8 +76,8 @@
 @property (nonatomic, readonly) NSInteger mapcacheMaxSize;
 
 @property (nonatomic, readonly) BOOL downloadLogImages;
-@property (nonatomic, readonly) BOOL downloadLogImagesOverWifiOnly;
-@property (nonatomic, readonly) BOOL downloadQueriesOverWifiOnly;
+@property (nonatomic, readonly) BOOL downloadLogImagesMobile;
+@property (nonatomic, readonly) BOOL downloadQueriesMobile;
 
 - (void)addDelegate:(id)destination;
 - (void)deleteDelegate:(id)destination;
@@ -115,7 +115,7 @@
 - (void)mapcacheMaxAgeUpdate:(NSInteger)value;
 - (void)mapcacheMaxSizeUpdate:(NSInteger)value;
 - (void)downloadLogImagesUpdate:(BOOL)value;
-- (void)downloadLogImagesOverWifiOnlyUpdate:(BOOL)value;
-- (void)downloadQueriesOverWifiOnlyUpdate:(BOOL)value;
+- (void)downloadLogImagesMobileUpdate:(BOOL)value;
+- (void)downloadQueriesMobileUpdate:(BOOL)value;
 
 @end

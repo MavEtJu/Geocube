@@ -57,8 +57,8 @@
     NSArray *mapcacheMaxSizeValues;
 
     UISwitch *downloadLogImages;
-    UISwitch *downloadLogImagesOverWifiOnly;
-    UISwitch *downloadQueriesWifiOnly;
+    UISwitch *downloadLogImagesMobile;
+    UISwitch *downloadQueriesMobile;
 }
 
 @end
@@ -186,7 +186,7 @@ enum {
 enum sections {
     SECTION_DISTANCE = 0,
     SECTION_APPS,
-    SECTION_DOWNLOADS,
+    SECTION_IMPORTS,
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_MAPCOLOURS,
@@ -235,10 +235,10 @@ enum sections {
     SECTION_KEEPTRACK_AUTOROTATE = 0,
     SECTION_KEEPTRACK_MAX,
 
-    SECTION_DOWNLOADS_LOG_IMAGES = 0,
-    SECTION_DOWNLOADS_LOG_IMAGES_OVERWIFIONLY,
-    SECTION_DOWNLOADS_QUERIES_OVERWIFIONLY,
-    SECTION_DOWNLOADS_MAX,
+    SECTION_IMPORTS_LOG_IMAGES = 0,
+    SECTION_IMPORTS_LOG_IMAGES_MOBILE,
+    SECTION_IMPORTS_QUERIES_MOBILE,
+    SECTION_IMPORTS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -268,8 +268,8 @@ enum sections {
             return SECTION_KEEPTRACK_MAX;
         case SECTION_MAPCACHE:
             return SECTION_MAPCACHE_MAX;
-        case SECTION_DOWNLOADS:
-            return SECTION_DOWNLOADS_MAX;
+        case SECTION_IMPORTS:
+            return SECTION_IMPORTS_MAX;
     }
 
     return 0;
@@ -297,8 +297,8 @@ enum sections {
             return @"Keep track";
         case SECTION_MAPCACHE:
             return @"Map cache";
-        case SECTION_DOWNLOADS:
-            return @"Download options";
+        case SECTION_IMPORTS:
+            return @"Import options";
     }
 
     return nil;
@@ -588,12 +588,12 @@ enum sections {
             break;
         }
 
-        case SECTION_DOWNLOADS: {
+        case SECTION_IMPORTS: {
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
             if (cell == nil)
                 cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
-                case SECTION_DOWNLOADS_LOG_IMAGES: {
+                case SECTION_IMPORTS_LOG_IMAGES: {
                     cell.textLabel.text = @"Download user images from logs";
 
                     downloadLogImages = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -603,23 +603,23 @@ enum sections {
 
                     return cell;
                 }
-                case SECTION_DOWNLOADS_LOG_IMAGES_OVERWIFIONLY: {
-                    cell.textLabel.text = @"Download user images from logs over Wi-Fi only";
+                case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
+                    cell.textLabel.text = @"Download user images from logs over mobile data";
 
-                    downloadQueriesWifiOnly = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    downloadQueriesWifiOnly.on = myConfig.downloadLogImages;
-                    [downloadQueriesWifiOnly addTarget:self action:@selector(updateDownloadLogImagesOverWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = downloadQueriesWifiOnly;
+                    downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadQueriesMobile.on = myConfig.downloadLogImagesMobile;
+                    [downloadQueriesMobile addTarget:self action:@selector(updateDownloadLogImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadQueriesMobile;
 
                     return cell;
                 }
-                case SECTION_DOWNLOADS_QUERIES_OVERWIFIONLY: {
-                    cell.textLabel.text = @"Download batch queries over Wi-Fi only";
+                case SECTION_IMPORTS_QUERIES_MOBILE: {
+                    cell.textLabel.text = @"Download batch queries over mobile data";
 
-                    downloadQueriesWifiOnly = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    downloadQueriesWifiOnly.on = myConfig.downloadQueriesOverWifiOnly;
-                    [downloadQueriesWifiOnly addTarget:self action:@selector(updateDownloadQueriesWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = downloadQueriesWifiOnly;
+                    downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadQueriesMobile.on = myConfig.downloadQueriesMobile;
+                    [downloadQueriesMobile addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadQueriesMobile;
 
                     return cell;
                 }
@@ -637,14 +637,14 @@ enum sections {
     [myConfig downloadLogImagesUpdate:s.on];
 }
 
-- (void)updateDownloadLogImagesOverWifiOnly:(UISwitch *)s
+- (void)updateDownloadLogImagesMobile:(UISwitch *)s
 {
-    [myConfig downloadLogImagesOverWifiOnlyUpdate:s.on];
+    [myConfig downloadLogImagesMobileUpdate:s.on];
 }
 
-- (void)updateDownloadQueriesWifiOnly:(UISwitch *)s
+- (void)updateDownloadQueriesMobile:(UISwitch *)s
 {
-    [myConfig downloadQueriesOverWifiOnlyUpdate:s.on];
+    [myConfig downloadQueriesMobileUpdate:s.on];
 }
 
 - (void)updateMapcacheEnable:(UISwitch *)s
