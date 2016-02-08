@@ -351,7 +351,7 @@
         return YES;
     }
     if (account.protocol == ProtocolGCA) {
-        NSString *gpx = [gca cache_gpx:waypoint.wpt_name];
+        NSString *gpx = [gca cache__gpx:waypoint.wpt_name];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
