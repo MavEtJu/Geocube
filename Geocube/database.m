@@ -26,6 +26,8 @@
     sqlite3 *db;
     NSString *dbname, *dbempty;
     id dbaccess;
+
+    NSMutableArray *upgradeSteps;
 }
 
 @end
@@ -36,8 +38,11 @@
 
 - (instancetype)init
 {
+    self = [super init];
+
     dbaccess = self;
     db = nil;
+
     return self;
 }
 
@@ -79,7 +84,7 @@
 
         NSInteger version = [c_real.value integerValue];
         NSLog(@"Upgrading from %ld", (long)version);
-        [self performUpgrade:version];
+        [self performUpgrade:version to:[c_empty.value integerValue]];
 
         c_real.value = c_empty.value;
         [c_real dbUpdate];
@@ -122,35 +127,12 @@
     return [n integerValue];
 }
 
-- (void)performUpgrade:(NSInteger)fromVersion
+- (void)performUpgrade:(NSInteger)fromVersion to:(NSInteger)toVersion
 {
     NSLog(@"performUpgrade: from version: %ld", (long)fromVersion);
-    switch (fromVersion) {
-        case 0:
-            [self performUpgrade_1];
-            /* All fall-through */
-        case 1:
-            [self performUpgrade_2];
-        case 2:
-            [self performUpgrade_3];
-        case 3:
-            [self performUpgrade_4];
-        case 4:
-            [self performUpgrade_5];
-        case 5:
-            [self performUpgrade_6];
-        case 6:
-            [self performUpgrade_7];
-        case 7:
-            [self performUpgrade_8];
-        case 8:
-            [self performUpgrade_9];
-        case 9:
-            [self performUpgrade_10];
-
-            return;
-        default:
-            NSAssert1(false, @"performUpgrade: Unknown source version: %ld", (long)fromVersion);
+    [self upgradeInit];
+    for (NSInteger i = fromVersion; i <= toVersion; i++) {
+        [self upgradePerform:i];
     }
 }
 
@@ -167,14 +149,17 @@
 #define DB_GET_LAST_ID(__id__) \
     __id__ = sqlite3_last_insert_rowid(self.db);
 
-- (void)performUpgrade_X:(NSArray *)a
+- (void)upgradePerform:(NSInteger)version
 {
+    if (version >= [upgradeSteps count])
+        NSAssert1(false, @"performUpgrade: Unknown destination version: %ld", (long)version);
+
     @synchronized(self.dbaccess) {
         __block sqlite3_stmt *req;
 
         DB_PREPARE(@"begin");
         DB_CHECK_OKAY;
-        [a enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+        [[upgradeSteps objectAtIndex:version] enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
             DB_PREPARE(sql);
             if (sqlite3_step(req) != SQLITE_DONE) {
                 NSLog(@"Failure of '%@'", sql);
@@ -187,98 +172,81 @@
     }
 }
 
-- (void)performUpgrade_1
+- (void)upgradeInit
 {
+    // Version 1
     NSArray *a = @[
         // Nothing
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_2
-{
-    NSArray *a = @[
+    // Version 2
+    a = @[
     @"update types set icon = 118 where id = 32",
     @"update types set icon = 119 where id = 31",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_3
-{
-    NSArray *a = @[
+    // Version 3
+    a = @[
     @"alter table groups add column deletable bool",
     @"update groups set deletable = usergroup",
     @"insert into groups(name, usergroup, deletable) values('Live Import', 1, 0)"
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_4
-{
-    NSArray *a = @[
+    // Version 4
+    a = @[
     @"insert into log_types(logtype, icon) values('Moved', 417)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Virtual', 114, 17)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Traditional', 112, 16)",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_5
-{
-    NSArray *a = @[
+    // Version 5
+    a = @[
     @"alter table waypoints add column markedfound bool",
     @"alter table waypoints add column inprogress bool",
     @"update waypoints set markedfound = 0",
     @"update waypoints set inprogress = 0",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_6
-{
-    NSArray *a = @[
+    // Version 6
+    a = @[
     @"alter table accounts add column name_id integer",
     @"update accounts set name_id = 0",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_7
-{
-    NSArray *a = @[
+    // Version 7
+    a = @[
     @"create index logs_idx_gc_id on logs(gc_id)",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_8
-{
-    NSArray *a = @[
+    // Version 8
+    a = @[
     @"alter table waypoints add column gs_date_found integer",
     @"update waypoints set gs_date_found = 0",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_9
-{
-    NSArray *a = @[
+    // Version 9
+    a = @[
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'History', 120, 17)",
     ];
-    [self performUpgrade_X:a];
-}
+    [upgradeSteps addObject:a];
 
-- (void)performUpgrade_10
-{
-    NSArray *a = @[
+    // Version 10
+    a = @[
     @"insert into log_types(logtype, icon) values('Published', 407)",
     @"insert into log_types(logtype, icon) values('Did not find it', 400)",
     @"insert into log_types(logtype, icon) values('Noted', 413)",
     @"insert into log_types(logtype, icon) values('Maintained', 405)",
     @"insert into log_types(logtype, icon) values('Needs maintenance', 404)"
     ];
-    [self performUpgrade_X:a];
+    [upgradeSteps addObject:a];
 }
 
 @end
