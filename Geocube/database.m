@@ -145,6 +145,8 @@
             [self performUpgrade_8];
         case 8:
             [self performUpgrade_9];
+        case 9:
+            [self performUpgrade_10];
 
             return;
         default:
@@ -263,6 +265,18 @@
 {
     NSArray *a = @[
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'History', 120, 17)",
+    ];
+    [self performUpgrade_X:a];
+}
+
+- (void)performUpgrade_10
+{
+    NSArray *a = @[
+    @"insert into log_types(logtype, icon) values('Published', 407)",
+    @"insert into log_types(logtype, icon) values('Did not find it', 400)",
+    @"insert into log_types(logtype, icon) values('Noted', 413)",
+    @"insert into log_types(logtype, icon) values('Maintained', 405)",
+    @"insert into log_types(logtype, icon) values('Needs maintenance', 404)"
     ];
     [self performUpgrade_X:a];
 }
