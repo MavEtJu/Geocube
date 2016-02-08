@@ -300,7 +300,7 @@
 
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
 {
-    NSLog(@"CreateFieldNoteAndPublish");
+    NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateFieldNoteAndPublish" method:@"POST"];
 
@@ -380,7 +380,7 @@
 
 - (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname
 {
-    NSLog(@"SearchForGeocaches_waypointname");
+    NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
 
@@ -439,7 +439,7 @@
 
 - (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center
 {
-    NSLog(@"SearchForGeocaches_pointradius");
+    NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
     [urlRequest setTimeoutInterval:120];
@@ -506,6 +506,7 @@
 
 - (NSDictionary *)GetMoreGeocaches:(NSInteger)offset
 {
+    NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
     [urlRequest setTimeoutInterval:120];
 
@@ -587,7 +588,7 @@
 
 - (NSDictionary *)GetPocketQueryZippedFile:(NSString *)guid
 {
-    NSLog(@"GetPocketQueryZippedFile");
+    NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@", [MyTools urlEncode:remoteAPI.oabb.token], guid]];
     [urlRequest setTimeoutInterval:1000];
@@ -617,7 +618,7 @@
 
 - (NSDictionary *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems
 {
-    NSLog(@"GetFullPocketQueryData");
+    NSLog(@"GetFullPocketQueryData:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, startItem, numItems]];
     [urlRequest setTimeoutInterval:1000];
