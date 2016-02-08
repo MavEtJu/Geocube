@@ -292,26 +292,27 @@
 - (NSArray *)hasWaypoints
 {
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
-    NSString *namesuffix, *thisnameprefix;
+    NSString *namesuffix, *nameprefix, *prefix;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ?")
 
         namesuffix = [self.wpt_name substringFromIndex:2];
+        nameprefix = [self.wpt_name substringToIndex:2];
         NSString *sql = [NSString stringWithFormat:@"%%%@", namesuffix];
         SET_VAR_TEXT(1, sql);
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, __id);
             TEXT_FETCH_AND_ASSIGN(1, name);
 
-            thisnameprefix = [name substringToIndex:2];
+            prefix = [name substringToIndex:2];
 
             if ([name isEqualToString:self.wpt_name] == YES) {
                 [wps addObject:[dbWaypoint dbGet:__id]];
-            } else if ([thisnameprefix isEqualToString:@"GA"] == YES || // Geocaching Australia
-                       [thisnameprefix isEqualToString:@"GC"] == YES || // Groundspeak Geocaching.com
-                       [thisnameprefix isEqualToString:@"TP"] == YES || // Trigpoint
-                       [thisnameprefix isEqualToString:@"OC"] == YES) { // OpenCaching
+            } else if (([prefix isEqualToString:@"GA"] == YES && [nameprefix isEqualToString:@"GA"] == YES) || // Geocaching Australia
+                       ([prefix isEqualToString:@"GC"] == YES && [nameprefix isEqualToString:@"GC"] == YES) || // Groundspeak Geocaching.com
+                       ([prefix isEqualToString:@"TP"] == YES && [nameprefix isEqualToString:@"TP"] == YES) || // Trigpoint
+                       ([prefix isEqualToString:@"OC"] == YES && [nameprefix isEqualToString:@"OC"] == YES)) { // OpenCaching
                 // Nothing!
             } else {
                 [wps addObject:[dbWaypoint dbGet:__id]];
