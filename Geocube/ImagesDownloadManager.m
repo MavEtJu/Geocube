@@ -209,7 +209,7 @@
             if (myConfig.downloadLogImages == YES) {
 
                 // Do not download anything unless Wifi is required and available
-                if (myConfig.downloadLogImagesMobile == NO && [MyTools hasWifiNetwork] == YES)
+                if (myConfig.downloadLogImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
                     continue;
                 [ImagesDownloadManager addToQueue:img];
             }
