@@ -594,7 +594,7 @@ enum sections {
                 cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
             switch (indexPath.row) {
                 case SECTION_IMPORTS_LOG_IMAGES: {
-                    cell.textLabel.text = @"Download user images from logs";
+                    cell.textLabel.text = @"Download logged images";
 
                     downloadLogImages = [[UISwitch alloc] initWithFrame:CGRectZero];
                     downloadLogImages.on = myConfig.downloadLogImages;
@@ -604,7 +604,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
-                    cell.textLabel.text = @"Download user images from logs over mobile data";
+                    cell.textLabel.text = @"Download logged images over mobile data";
 
                     downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
                     downloadQueriesMobile.on = myConfig.downloadLogImagesMobile;
