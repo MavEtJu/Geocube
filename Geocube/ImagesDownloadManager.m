@@ -205,14 +205,7 @@
             [img dbLinkToWaypoint:wp_id type:type];
 
         if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
-            // Make sure we are allowed to download images immediately
-            if (myConfig.downloadLogImages == YES) {
-
-                // Do not download anything unless Wifi is required and available
-                if (myConfig.downloadLogImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
-                    continue;
-                [ImagesDownloadManager addToQueue:img];
-            }
+            [ImagesDownloadManager addToQueueImmediately:img];
         }
 
         found++;
@@ -222,6 +215,19 @@
 }
 
 + (void)addToQueue:(dbImage *)img
+{
+    // Do not download anything if disabled.
+    if (myConfig.downloadLogImages == NO)
+        return;
+
+    // Do not download anything unless Wifi is required and available.
+    if (myConfig.downloadLogImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
+        return;
+
+    [self addToQueueImmediately:img];
+}
+
++ (void)addToQueueImmediately:(dbImage *)img
 {
     @synchronized(imagesDownloadManager) {
         NSLog(@"%@/parse: Queue for downloading", [self class]);
