@@ -49,6 +49,7 @@ enum {
 
 enum {
     menuImportPhoto,
+    menuDownloadImages,
     menuMax
 };
 
@@ -58,6 +59,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuImportPhoto label:@"Import photo"];
+    [lmi addItem:menuDownloadImages label:@"Download photos"];
     hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -237,10 +239,37 @@ enum {
             [self importPhoto];
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             return;
+        case menuDownloadImages:
+            [self downloadImages];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
 }
+
+- (void)downloadImages
+{
+    [imagesDownloadManager addDelegate:self];
+    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        [ImagesDownloadManager addToQueueImmediately:img];
+    }];
+    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        [ImagesDownloadManager addToQueueImmediately:img];
+    }];
+    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        [ImagesDownloadManager addToQueueImmediately:img];
+    }];
+}
+
+- (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    if (queuedImages == 0)
+        [imagesDownloadManager removeDelegate:self];
+}
+
 
 - (void)importPhoto
 {

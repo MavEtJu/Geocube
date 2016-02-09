@@ -33,7 +33,7 @@
     NSURLConnection *conn;
 
     NSInteger running;
-    id delegate;
+    NSMutableArray *delegates;
 }
 
 - (void)start;
@@ -44,7 +44,7 @@
 
 @implementation ImagesDownloadManager
 
-@synthesize todo, delegate;
+@synthesize todo;
 
 - (instancetype)init
 {
@@ -56,9 +56,43 @@
 
     running = 0;
     downloaded = 0;
-    delegate = nil;
+    delegates = [NSMutableArray arrayWithCapacity:2];
 
     return self;
+}
+
+- (void)addDelegate:(id)_delegate
+{
+    __block BOOL found = NO;
+    [delegates enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (_delegate == obj) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES) {
+        NSLog(@"%@: not adding duplicate delegate", [self class]);
+        return;
+    }
+    [delegates addObject:_delegate];
+    NSLog(@"%@: adding delegate", [self class]);
+}
+
+- (void)removeDelegate:(id)_delegate
+{
+    __block BOOL found = NO;
+    [delegates enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (_delegate == obj) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES) {
+        [delegates removeObject:_delegate];
+        NSLog(@"%@: removed delegate", [self class]);
+        return;
+    }
+    NSLog(@"%@: not removing unknown delegate", [self class]);
 }
 
 - (void)start
@@ -78,8 +112,9 @@
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[todo count]);
         @synchronized (imagesDownloadManager) {
-            if (delegate != nil)
-                [delegate updateQueuedImagesData:[todo count] downloadedImages:downloaded];
+            [delegates enumerateObjectsUsingBlock:^(id  _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
+                [d updateQueuedImagesData:[todo count] downloadedImages:downloaded];
+            }];
             if ([todo count] != 0)
                 imgToDownload = [todo objectAtIndex:0];
         }

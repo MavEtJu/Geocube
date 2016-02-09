@@ -365,14 +365,14 @@
 {
     [super viewDidAppear:animated];
     imp.delegate = self;
-    imagesDownloadManager.delegate = self;
+    [imagesDownloadManager addDelegate:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     imp.delegate = nil;
-    imagesDownloadManager.delegate = nil;
+    [imagesDownloadManager removeDelegate:self];
 }
 
 - (void)run

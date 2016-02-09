@@ -27,9 +27,10 @@
 
 @interface ImagesDownloadManager : NSObject
 
-@property (nonatomic)id delegate;
-
 + (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
 + (void)addToQueue:(dbImage *)img;
++ (void)addToQueueImmediately:(dbImage *)img;
+- (void)addDelegate:(id)_delegate;
+- (void)removeDelegate:(id)_delegate;
 
 @end
