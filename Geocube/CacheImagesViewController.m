@@ -146,6 +146,9 @@ enum {
     cell.userInteractionEnabled = YES;
     cell.imageView.image = [img imageGet];
 
+    if (cell.imageView.image == nil)
+        cell.imageView.image = [imageLibrary get:Image_NoImageFile];
+
     return cell;
 }
 

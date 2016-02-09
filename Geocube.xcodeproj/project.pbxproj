@@ -270,6 +270,7 @@
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E89580291C6818C100282177 /* cache - history - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E89580281C6818C100282177 /* cache - history - 30x30.png */; };
+		E895802B1C69BD1D00282177 /* image - no image - 32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = E895802A1C69BD1D00282177 /* image - no image - 32x32.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
@@ -776,6 +777,7 @@
 		E89580241C66E44900282177 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E89580281C6818C100282177 /* cache - history - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30.png"; path = "images/cache - history - 30x30.png"; sourceTree = "<group>"; };
+		E895802A1C69BD1D00282177 /* image - no image - 32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - no image - 32x32.png"; path = "images/image - no image - 32x32.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
@@ -1583,6 +1585,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E895802A1C69BD1D00282177 /* image - no image - 32x32.png */,
 				E843A4E31BAD3F7800C58F1F /* logos */,
 				E8611A981B8ABC8F00B9D7C3 /* Compass */,
 				E887201C1B5EF5F300994BE0 /* icons */,
@@ -2342,6 +2345,7 @@
 				E80732831B5F8561007FDC29 /* container - large - 70x20.png in Resources */,
 				E80732001B5F84B4007FDC29 /* attributes - 25.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
+				E895802B1C69BD1D00282177 /* image - no image - 32x32.png in Resources */,
 				E80732611B5F850C007FDC29 /* cache - giga - 30x30.png in Resources */,
 				E80731F11B5F84B4007FDC29 /* attributes - 09.png in Resources */,
 				E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */,

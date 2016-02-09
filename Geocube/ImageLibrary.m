@@ -215,6 +215,8 @@
     [self addToLibrary:@"attributes - 66" index:ImageAttribute_TeamworkRequired];
     [self addToLibrary:@"attributes - 67" index:ImageAttribute_PartOfGeoTour];
 
+    [self addToLibrary:@"image - no image - 32x32" index:Image_NoImageFile];
+
     /* Make ratings images */
     [self mergeRating:0 full:0 half:0];
     [self mergeRating:1 full:0 half:1];
