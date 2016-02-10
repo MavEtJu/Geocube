@@ -135,7 +135,7 @@
 
         // It could be that multiple entries for the same URL is here.
         // If so, only download the first one.
-        if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile ]] == YES) {
+        if ([imgToDownload imageHasBeenDowloaded] == YES) {
             NSLog(@"%@/run: Already found %@", [self class], imgToDownload.datafile);
             @synchronized (imagesDownloadManager) {
                 [todo removeObjectAtIndex:0];
@@ -239,9 +239,8 @@
         if ([img dbLinkedtoWaypoint:wp_id] == NO)
             [img dbLinkToWaypoint:wp_id type:type];
 
-        if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]] == NO) {
+        if ([img imageHasBeenDowloaded] == NO)
             [ImagesDownloadManager addToQueueImmediately:img];
-        }
 
         found++;
     } while (next != nil);
