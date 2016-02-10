@@ -79,10 +79,10 @@
         version = [attributeDict objectForKey:@"version"];
         revision = [attributeDict objectForKey:@"revision"];
 
-        dbConfig *currevision = [dbConfig dbGetByKey:@"notices_revision"];
+        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_NOTICES];
         if (currevision == nil) {
             currevision = [[dbConfig alloc] init];
-            currevision.key = @"notices_revision";
+            currevision.key = KEY_REVISION_NOTICES;
             currevision.value = @"0";
             [currevision dbCreate];
         }

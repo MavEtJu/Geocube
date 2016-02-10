@@ -86,15 +86,14 @@
         version = [attributeDict objectForKey:@"version"];
         revision = [attributeDict objectForKey:@"revision"];
 
-        dbConfig *currevision = [dbConfig dbGetByKey:@"config_revision"];
+        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_CONFIG];
         if (currevision == nil) {
             currevision = [[dbConfig alloc] init];
-            currevision.key = @"config_revision";
+            currevision.key = KEY_REVISION_CONFIG;
             currevision.value = @"0";
             [currevision dbCreate];
         }
 
-        // Just store it.
         if ([currevision.value isEqualToString:revision] == NO) {
             currevision.value = revision;
             [currevision dbUpdate];
@@ -106,10 +105,10 @@
         version = [attributeDict objectForKey:@"version"];
         revision = [attributeDict objectForKey:@"revision"];
 
-        dbConfig *currevision = [dbConfig dbGetByKey:@"keys_revision"];
+        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_KEYS];
         if (currevision == nil) {
             currevision = [[dbConfig alloc] init];
-            currevision.key = @"keys_revision";
+            currevision.key = KEY_REVISION_KEYS;
             currevision.value = @"0";
             [currevision dbCreate];
         }
@@ -126,10 +125,10 @@
         version = [attributeDict objectForKey:@"version"];
         revision = [attributeDict objectForKey:@"revision"];
 
-        dbConfig *currevision = [dbConfig dbGetByKey:@"sites_revision"];
+        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_SITES];
         if (currevision == nil) {
             currevision = [[dbConfig alloc] init];
-            currevision.key = @"sites_revision";
+            currevision.key = KEY_REVISION_SITES;
             currevision.value = @"0";
             [currevision dbCreate];
         }

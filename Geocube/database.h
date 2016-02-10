@@ -24,6 +24,7 @@
 
 #define	DB_EMPTY		@"empty.db"
 #define	DB_NAME         @"database.db"
+#define KEY_VERSION_DB  @"version"
 
 
 @interface database : NSObject

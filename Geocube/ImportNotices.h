@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define KEY_REVISION_NOTICES @"notices_revision"
+
 @interface ImportNotices : NSObject <NSXMLParserDelegate>
 
 + (void)parse:(NSData *)data;

@@ -62,7 +62,7 @@
 
     // Determine version of the distribution database
     sqlite3_open([dbempty UTF8String], &db);
-    dbConfig *c_empty = [dbConfig dbGetByKey:@"version"];
+    dbConfig *c_empty = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(db);
 
     // If the empty database version is 0, reinitialize.
@@ -73,7 +73,7 @@
 
     // Determine version of the active database
     sqlite3_open([dbname UTF8String], &db);
-    dbConfig *c_real = [dbConfig dbGetByKey:@"version"];
+    dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(db);
 
     // If the active version is different from the distribution version, then reinitialize.

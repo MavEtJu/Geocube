@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define KEY_REVISION_CONFIG  @"config_revision"
+#define KEY_REVISION_SITES   @"sites_revision"
+#define KEY_REVISION_KEYS    @"keys_revision"
+
 @interface ImportSites : NSObject <NSXMLParserDelegate>
 
 + (void)parse:(NSData *)data;
