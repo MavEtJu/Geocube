@@ -75,6 +75,65 @@ enum {
     return self;
 }
 
+#pragma mark - Functions for downloading of images
+
+- (void)downloadImage:(dbImage *)img
+{
+    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading image"];
+    [imagesDownloadManager addDelegate:self];
+    [ImagesDownloadManager addToQueueImmediately:img];
+}
+
+- (void)downloadImages
+{
+    __block NSInteger i = 0;
+    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading images\nDownloaded 1/1\nPending"];
+
+    [imagesDownloadManager addDelegate:self];
+    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        if ([img imageHasBeenDowloaded] == NO) {
+            [ImagesDownloadManager addToQueueImmediately:img];
+            i++;
+        }
+    }];
+    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        if ([img imageHasBeenDowloaded] == NO) {
+            [ImagesDownloadManager addToQueueImmediately:img];
+            i++;
+        }
+    }];
+    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        if ([img imageHasBeenDowloaded] == NO) {
+            [ImagesDownloadManager addToQueueImmediately:img];
+            i++;
+        }
+    }];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nScheduled %ld\n   ", i];
+    }];
+}
+
+- (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+
+    if (queuedImages != 0) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", downloadedImages, queuedImages];
+        }];
+    }
+
+    if (queuedImages == 0) {
+        [imagesDownloadManager removeDelegate:self];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView removeViewAnimated:YES];
+        }];
+    }
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -146,10 +205,12 @@ enum {
 
     cell.textLabel.text = img.name;
     cell.userInteractionEnabled = YES;
-    cell.imageView.image = [img imageGet];
 
-    if (cell.imageView.image == nil)
+    if ([img imageHasBeenDowloaded] == YES) {
+        cell.imageView.image = [img imageGet];
+    } else {
         cell.imageView.image = [imageLibrary get:Image_NoImageFile];
+    }
 
     return cell;
 }
@@ -203,6 +264,7 @@ enum {
             case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
             case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
+
         [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
 }
@@ -225,6 +287,7 @@ enum {
             case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
             case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
+
         [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
     }
 }
@@ -246,30 +309,6 @@ enum {
 
     [super didSelectedMenu:menu atIndex:index];
 }
-
-- (void)downloadImages
-{
-    [imagesDownloadManager addDelegate:self];
-    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        [ImagesDownloadManager addToQueueImmediately:img];
-    }];
-    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        [ImagesDownloadManager addToQueueImmediately:img];
-    }];
-    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        [ImagesDownloadManager addToQueueImmediately:img];
-    }];
-}
-
-- (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    if (queuedImages == 0)
-        [imagesDownloadManager removeDelegate:self];
-}
-
 
 - (void)importPhoto
 {
