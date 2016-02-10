@@ -186,7 +186,7 @@ NEEDS_OVERLOADING(reloadQueries)
 - (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading %@\n%ld / %ld", queryString, offset, max];
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading %@\n%ld / %ld", queryString, (long)offset, (long)max];
     }];
 }
 

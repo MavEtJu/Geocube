@@ -161,7 +161,7 @@ enum {
     }];
     X += steps;
 
-    NSLog(@"ymin,ymax=%0.2f,%0.2f xmin,xmax=%0.2f,%0.2f X,Y=%ld,%ld step=%ld", ymin, ymax, xmin, xmax, X, Y, steps);
+    NSLog(@"ymin,ymax=%0.2f,%0.2f xmin,xmax=%0.2f,%0.2f X,Y=%ld,%ld step=%ld", ymin, ymax, xmin, xmax, (long)X, (long)Y, (long)steps);
 
     UIGraphicsBeginImageContext(CGSizeMake(X, Y));
     CGContextRef context = UIGraphicsGetCurrentContext();

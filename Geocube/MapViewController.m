@@ -705,10 +705,10 @@ enum {
     if (loadWaypointsCountSitename != nil)
         [s appendFormat:@"Load waypoints for %@.\n", loadWaypointsCountSitename];
     if (loadWaypointsTotalWaypoints != 0)
-        [s appendFormat:@"Loaded %ld / %ld waypoints.\n", loadWaypointsCountWaypoints, loadWaypointsTotalWaypoints];
+        [s appendFormat:@"Loaded %ld / %ld waypoints.\n", (long)loadWaypointsCountWaypoints, (long)loadWaypointsTotalWaypoints];
     else
-        [s appendFormat:@"Loaded %ld waypoints.\n", loadWaypointsCountWaypoints];
-    [s appendFormat:@"Loaded %ld logs.\n", loadWaypointsCountLogs];
+        [s appendFormat:@"Loaded %ld waypoints.\n", (long)loadWaypointsCountWaypoints];
+    [s appendFormat:@"Loaded %ld logs.\n", (long)loadWaypointsCountLogs];
     [map updateActivityViewer:s];
 }
 

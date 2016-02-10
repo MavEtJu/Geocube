@@ -620,7 +620,7 @@
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, startItem, numItems]];
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
     [urlRequest setTimeoutInterval:1000];
 
     NSHTTPURLResponse *response = nil;

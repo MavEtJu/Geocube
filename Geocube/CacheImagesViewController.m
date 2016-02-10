@@ -110,7 +110,7 @@ enum {
     }];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nScheduled %ld\n   ", i];
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nScheduled %ld\n   ", (long)i];
     }];
 }
 
@@ -122,7 +122,7 @@ enum {
 
     if (queuedImages != 0) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", downloadedImages, queuedImages];
+            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages];
         }];
     }
 
