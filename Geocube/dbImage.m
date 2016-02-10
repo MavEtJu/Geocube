@@ -242,4 +242,9 @@
     }
 }
 
+- (BOOL)imageHasBeenDowloaded
+{
+    return [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile]];
+}
+
 @end
