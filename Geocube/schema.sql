@@ -7,11 +7,9 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
---insert into config(key, value) values("url_sites", "http://localhost:8001/geocube_sites.txt");
---insert into config(key, value) values("url_notices", "http://localhost:8001/geocube_notices.txt");
-insert into config(key, value) values("url_sites", "http://mavviemac:8001/geocube_sites.txt");
-insert into config(key, value) values("url_notices", "http://mavviemac:8001/geocube_notices.txt");
-insert into config(key, value) values("version", "10");
+insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.txt");
+insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.txt");
+insert into config(key, value) values("version", "11");
 
 create table filters (
     id integer primary key,

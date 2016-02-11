@@ -256,6 +256,13 @@
     @"insert into log_types(logtype, icon) values('Needs maintenance', 404)"
     ];
     [upgradeSteps addObject:a];
+
+    // Version 11
+    a = @[
+    @"update config set value='https://geocube.mavetju.org/geocube_sites.txt' where key='url_sites'",
+    @"update config set value='https://geocube.mavetju.org/geocube_notices.txt' where key='url_notices'",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 @end
