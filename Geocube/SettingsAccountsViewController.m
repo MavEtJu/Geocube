@@ -163,13 +163,15 @@ enum {
                              [account.remoteAPI Authenticate];
                          }];
 
-    UIAlertAction *forget = [UIAlertAction
-                             actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 [account dbClearAuthentication];
-                                 [self refreshAccountData];
-                                 [self.tableView reloadData];
-                             }];
+    UIAlertAction *forget = nil;
+    if (account.accountname_string != nil && [account.accountname_string length] != 0)
+        forget = [UIAlertAction
+                  actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
+                  handler:^(UIAlertAction * action) {
+                      [account dbClearAuthentication];
+                      [self refreshAccountData];
+                      [self.tableView reloadData];
+                  }];
 
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -178,7 +180,8 @@ enum {
                              }];
 
     [alert addAction:ok];
-    [alert addAction:forget];
+    if (forget != nil)
+        [alert addAction:forget];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
