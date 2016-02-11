@@ -46,6 +46,8 @@
     NSInteger loadWaypointsTotalWaypoints;
     NSInteger loadWaypointsCountLogs;
     NSString *loadWaypointsCountSitename;
+
+    BOOL hasGMS;
 }
 
 @end
@@ -83,8 +85,13 @@ enum {
 {
     self = [super init];
 
+    // Disable GoogleMaps if there is no key
+    hasGMS = YES;
+    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+        hasGMS = NO;
+
     showBrand = myConfig.mapBrand;
-    if (showBrand == MAPBRAND_GOOGLEMAPS && (myConfig.keyGMS ==nil || [myConfig.keyGMS isEqualToString:@""] == YES))
+    if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
         showBrand = MAPBRAND_APPLEMAPS;
 
     switch (showBrand) {
@@ -185,6 +192,17 @@ enum {
 {
     [super viewWillAppear:animated];
 
+    // Appear GoogleMaps if it came back
+    if (hasGMS == NO) {
+        if (myConfig.keyGMS != nil && [myConfig.keyGMS isEqualToString:@""] == NO) {
+            hasGMS = YES;
+            [lmi enableItem:menuMapGoogle];
+            [GMSServices provideAPIKey:myConfig.keyGMS];
+            [self refreshMenu];
+        }
+    }
+
+    // Enable GPS Menu?
     useGPS = LM.useGPS;
     if (useGPS == YES)
         [lmi disableItem:menuUseGPS];
