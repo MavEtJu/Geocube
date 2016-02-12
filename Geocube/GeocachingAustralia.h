@@ -42,7 +42,7 @@
 - (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center;
 - (NSDictionary *)logs_cache:(NSString *)wpname;
 - (NSDictionary *)my_query_json:(NSString *)queryname;
-- (NSDictionary *)my_query_gpx:(NSString *)queryname;
+- (NSString *)my_query_gpx:(NSString *)queryname;
 - (NSInteger)my_query_count:(NSString *)queryname;
 - (NSDictionary *)my_query_list__json;
 

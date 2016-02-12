@@ -429,25 +429,14 @@
     return json;
 }
 
-- (NSDictionary *)my_query_gpx:(NSString *)queryname
+- (NSString *)my_query_gpx:(NSString *)queryname
 {
     NSLog(@"my_query_gpx");
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
 
     NSArray *lines = [self loadPage:urlString];
-    NSString *S = [lines componentsJoinedByString:@""];
-    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
-
-    if (data == nil) {
-        NSLog(@"%@ - No data returned", [self class]);
-        return nil;
-    }
-
-    NSError *error = nil;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-
-    return json;
+    return [lines componentsJoinedByString:@""];
 }
 
 - (NSInteger)my_query_count:(NSString *)queryname
