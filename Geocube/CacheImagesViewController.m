@@ -371,11 +371,12 @@ enum {
     [self.tableView reloadData];
 
     [self finishAndUpdate];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
