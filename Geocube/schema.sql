@@ -9,7 +9,7 @@ create table config (
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.txt");
-insert into config(key, value) values("version", "11");
+insert into config(key, value) values("version", "12");
 
 create table filters (
     id integer primary key,
@@ -765,6 +765,14 @@ create index notices_idx_id on notices(id);
 create table file_imports (
     id integer primary key,
     filename text,
+    filesize integer,
+    last_import_epoch integer
+);
+
+create table query_imports (
+    id integer primary key,
+    account_id integer,		-- points to accounts(id)
+    name text,
     filesize integer,
     last_import_epoch integer
 );

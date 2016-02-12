@@ -19,12 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbFileImport : dbObject
+@interface dbQueryImport : dbObject
 
-@property (nonatomic, retain) NSString *filename;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSInteger lastimport;
 @property (nonatomic) NSInteger filesize;
+@property (nonatomic) NSId account_id;
+@property (nonatomic, retain) dbAccount *account;
 
-+ (NSId)dbCreate:(dbFileImport *)fi;
++ (NSId)dbCreate:(dbQueryImport *)qi;
 
 @end

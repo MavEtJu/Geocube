@@ -295,6 +295,7 @@
 		E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6F6931C1E8EF100577088 /* dbPin.m */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
+		E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */; };
 		E8CB995F1C289E02004CADD5 /* CacheRawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB995E1C289E02004CADD5 /* CacheRawViewController.m */; };
 		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569DE1B5468C5001A0F8E /* CacheAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569DD1B5468C5001A0F8E /* CacheAttributesViewController.m */; };
@@ -821,6 +822,8 @@
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
 		E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserBrowserViewController.m; sourceTree = "<group>"; };
+		E8C5BB4B1C6DF12F006222D5 /* dbQueryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbQueryImport.h; sourceTree = "<group>"; };
+		E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbQueryImport.m; sourceTree = "<group>"; };
 		E8CB995D1C289E02004CADD5 /* CacheRawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheRawViewController.h; sourceTree = "<group>"; };
 		E8CB995E1C289E02004CADD5 /* CacheRawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheRawViewController.m; sourceTree = "<group>"; };
 		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
@@ -1922,6 +1925,8 @@
 				E8575FFE1B849BE600F34483 /* dbPersonalNote.m */,
 				E8B6F6921C1E8EF100577088 /* dbPin.h */,
 				E8B6F6931C1E8EF100577088 /* dbPin.m */,
+				E8C5BB4B1C6DF12F006222D5 /* dbQueryImport.h */,
+				E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */,
 				E80732C11B5FB4EA007FDC29 /* dbState.h */,
 				E80732C21B5FB4EA007FDC29 /* dbState.m */,
 				E81304021B5C4EB1006DF300 /* dbSymbol.h */,
@@ -2531,6 +2536,7 @@
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
+				E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */,
 				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* CacheViewController.m in Sources */,

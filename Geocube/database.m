@@ -263,6 +263,13 @@
     @"update config set value='https://geocube.mavetju.org/geocube_notices.txt' where key='url_notices'",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 12
+    a = @[
+    @"create table query_imports (id integer primary key, account_id integer, name text, filesize integer, last_import_epoch integer)",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end

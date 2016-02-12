@@ -107,6 +107,8 @@ enum {
     [vs addObject:[NSNumber numberWithInteger:[dbNotice dbCount]]];
     [fs addObject:@"Personal Notes"];
     [vs addObject:[NSNumber numberWithInteger:[dbPersonalNote dbCount]]];
+    [fs addObject:@"QueryImports"];
+    [vs addObject:[NSNumber numberWithInteger:[dbQueryImport dbCount]]];
     [fs addObject:@"States"];
     [vs addObject:[NSNumber numberWithInteger:[dbState dbCount]]];
     [fs addObject:@"Symbols"];

@@ -34,7 +34,6 @@
 
 @synthesize filename, filesize, lastimport;
 
-
 + (NSId)dbCreate:(dbFileImport *)fi
 {
     NSId _id = 0;

@@ -163,6 +163,7 @@
 @class dbObject;
 @class dbPersonalNote;
 @class dbPin;
+@class dbQueryImport;
 @class dbState;
 @class dbSymbol;
 @class dbTrack;
