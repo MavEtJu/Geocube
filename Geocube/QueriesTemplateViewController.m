@@ -25,6 +25,7 @@
 {
     NSArray *qs;
     dbAccount *account;
+    NSArray *qis;
 }
 
 @end
@@ -67,6 +68,7 @@ enum {
         qs = @[];
         [self performSelectorInBackground:@selector(reloadQueries) withObject:nil];
     }
+    qis = [dbQueryImport dbAll];
 }
 
 NEEDS_OVERLOADING(reloadQueries)
@@ -127,19 +129,23 @@ NEEDS_OVERLOADING(reloadQueries)
     }
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
-    cell.textLabel.text = [pq objectForKey:@"Name"];
+    NSString *name = [pq objectForKey:@"Name"];
+    cell.textLabel.text = name;
 
+    NSInteger size = 0;
     NSMutableString *detail = [NSMutableString stringWithString:@""];
     if ([pq objectForKey:@"Count"] != nil) {
         NSInteger count = [[pq objectForKey:@"Count" ] integerValue];
         if ([detail isEqualToString:@""] == NO)
             [detail appendString:@" - "];
+        size = count;
         [detail appendFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
     }
     if ([pq objectForKey:@"Size"] != nil) {
         if ([detail isEqualToString:@""] == NO)
             [detail appendString:@" - "];
-        [detail appendString:[MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
+        size = [[pq objectForKey:@"Size"] integerValue];
+        [detail appendString:[MyTools niceFileSize:size]];
     }
     if ([pq objectForKey:@"DateTime"] != nil) {
         if ([detail isEqualToString:@""] == NO)
@@ -147,6 +153,17 @@ NEEDS_OVERLOADING(reloadQueries)
         NSString *date = [MyTools dateString:[[pq objectForKey:@"DateTime"] integerValue]];
         [detail appendString:date];
     }
+
+    [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (qi.account_id == account._id &&
+            [qi.name isEqualToString:name] == YES &&
+            qi.filesize == size) {
+            if ([detail isEqualToString:@""] == NO)
+                [detail appendString:@" - "];
+            [detail appendFormat:@"Last import on %@", [MyTools dateString:qi.lastimport]];
+            *stop = YES;
+        }
+    }];
 
     cell.detailTextLabel.text = detail;
 
@@ -162,6 +179,31 @@ NEEDS_OVERLOADING(reloadQueries)
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
+
+    __block dbQueryImport *foundqi = nil;
+    [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (qi.account_id == account._id &&
+            [qi.name isEqualToString:[pq objectForKey:@"Name"]] == YES &&
+            qi.filesize == [[pq objectForKey:@"Size"] integerValue]) {
+            foundqi = qi;
+            *stop = YES;
+        }
+    }];
+
+    if (foundqi == nil) {
+        dbQueryImport *qi = [[dbQueryImport alloc] init];
+        qi.filesize = [[pq objectForKey:@"Size"] integerValue];
+        qi.name = [pq objectForKey:@"Name"];
+        qi.account = account;
+        qi.account_id = account._id;
+        qi.lastimport = time(NULL);
+        [dbQueryImport dbCreate:qi];
+    } else {
+        foundqi.lastimport = time(NULL);
+        [foundqi dbUpdate];
+    }
+    qis = [dbQueryImport dbAll];
+
     return;
 }
 

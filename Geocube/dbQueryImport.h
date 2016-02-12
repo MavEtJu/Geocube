@@ -28,5 +28,6 @@
 @property (nonatomic, retain) dbAccount *account;
 
 + (NSId)dbCreate:(dbQueryImport *)qi;
+- (void)dbUpdate;
 
 @end
