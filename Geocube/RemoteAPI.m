@@ -500,6 +500,7 @@
             [d setValue:[pq objectForKey:@"GUID"] forKey:@"Id"];
             [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
             [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"Size"];
+            [d setValue:[pq objectForKey:@"PQCount"] forKey:@"Count"];
 
             [as addObject:d];
         }];
