@@ -479,7 +479,6 @@
 {
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs GetPocketQueryList];
-
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
 
         NSArray *pqs = [json objectForKey:@"PocketQueryList"];
@@ -498,9 +497,19 @@
     }
 
     if (account.protocol == ProtocolGCA) {
-        NSArray *as = [gca my_query];
-        if (as == nil || [as count] == 0)
-            return nil;
+        NSDictionary *json = [gca my_query_list__json];
+        NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+
+        NSArray *pqs = [json objectForKey:@"queries"];
+        [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
+
+            [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
+            [d setValue:[pq objectForKey:@"queryid"] forKey:@"Id"];
+            [d setValue:[NSNumber numberWithInteger:[gca my_query_count:[pq objectForKey:@"queryid"]]] forKey:@"Count"];
+
+            [as addObject:d];
+        }];
 
         return as;
     }

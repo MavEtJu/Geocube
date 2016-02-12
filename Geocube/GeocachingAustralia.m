@@ -185,9 +185,30 @@
 
 // ------------------------------------------------
 
+- (NSDictionary *)my_query_list__json
+{
+    NSLog(@"my_query_list__json");
+
+    NSString *urlString = @"http://geocaching.com.au/my/query/list.json";
+    NSArray *lines = [self loadPage:urlString];
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    return json;
+}
+
 - (NSArray *)my_query
 {
     NSLog(@"my_query");
+    // Obsolete, do not use aymore
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query"];
     NSArray *lines = [self loadPage:urlString];
@@ -427,6 +448,31 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
+}
+
+- (NSInteger)my_query_count:(NSString *)queryname
+{
+    NSLog(@"my_query_count:%@", queryname);
+
+    __block NSInteger ret = -1;
+
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/count/%@", queryname];
+
+    NSArray *lines = [self loadPage:urlString];
+
+    NSError *e = nil;
+    NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"Number of matching caches: (\\d+)"options:0 error:&e];
+
+    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *matches = [r matchesInString:l options:0 range:NSMakeRange(0, [l length])];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange countRange = [match rangeAtIndex:1];
+            ret = [[l substringWithRange:countRange] integerValue];
+            *stop = YES;
+        }
+    }];
+
+    return ret;
 }
 
 @end
