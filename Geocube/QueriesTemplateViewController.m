@@ -128,13 +128,27 @@ NEEDS_OVERLOADING(reloadQueries)
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     cell.textLabel.text = [pq objectForKey:@"Name"];
+
+    NSMutableString *detail = [NSMutableString stringWithString:@""];
     if ([pq objectForKey:@"Count"] != nil) {
         NSInteger count = [[pq objectForKey:@"Count" ] integerValue];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
+        if ([detail isEqualToString:@""] == NO)
+            [detail appendString:@" - "];
+        [detail appendFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
     }
     if ([pq objectForKey:@"Size"] != nil) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
+        if ([detail isEqualToString:@""] == NO)
+            [detail appendString:@" - "];
+        [detail appendString:[MyTools niceFileSize:[[pq objectForKey:@"Size"] integerValue]]];
     }
+    if ([pq objectForKey:@"DateTime"] != nil) {
+        if ([detail isEqualToString:@""] == NO)
+            [detail appendString:@" - "];
+        NSString *date = [MyTools dateString:[[pq objectForKey:@"DateTime"] integerValue]];
+        [detail appendString:date];
+    }
+
+    cell.detailTextLabel.text = detail;
 
     return cell;
 }
