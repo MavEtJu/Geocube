@@ -108,7 +108,7 @@ enum {
 
     dbGroup *cg = [cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg dbCountWaypoints]];
 
     return cell;
 }
