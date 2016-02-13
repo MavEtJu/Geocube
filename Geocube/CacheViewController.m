@@ -111,6 +111,13 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
+    // Restore
+    if (hasCloseButton == NO) {
+        NSId __id = [dbWaypoint dbGetByName:myConfig.currentWaypoint];
+        dbWaypoint *wp = [dbWaypoint dbGet:__id];
+        [self showWaypoint:wp];
+    }
+
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
