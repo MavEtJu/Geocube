@@ -546,6 +546,7 @@
         NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];;
 
         NSInteger max = 0;
+        NSInteger tried = 0;
         NSInteger offset = 0;
         NSInteger increase = 25;
 
@@ -554,16 +555,19 @@
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
             NSDictionary *json = [gs GetFullPocketQueryData:_id startItem:offset numItems:increase];
 
+            NSInteger found = 0;
             if (json != nil) {
                 if (result == nil)
                     result = [NSMutableDictionary dictionaryWithDictionary:json];
                 [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+                found += [[json objectForKey:@"Geocaches"] count];
             }
 
-            offset += increase;
+            offset += found;
+            tried += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
             [self.delegateQueries remoteAPIQueriesDownloadUpdate:offset max:max];
-        } while (offset < max);
+        } while (tried < max);
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
