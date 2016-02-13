@@ -123,6 +123,7 @@
         SET_VAR_TEXT(1, name);
 
         DB_IF_STEP {
+            cg = [[dbGroup alloc] init];
             INT_FETCH( 0, cg._id);
             TEXT_FETCH(1, cg.name);
             BOOL_FETCH(2, cg.usergroup);
@@ -143,6 +144,7 @@
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
+            cg = [[dbGroup alloc] init];
             INT_FETCH( 0, cg._id);
             TEXT_FETCH(1, cg.name);
             BOOL_FETCH(2, cg.usergroup);
