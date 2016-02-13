@@ -24,6 +24,6 @@
 @property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 
-- (instancetype)init:(dbWaypoint *)wp;
+- (instancetype)init:(dbWaypoint *)wp table:(UITableView *)table;
 
 @end

@@ -30,6 +30,7 @@
 
     NSIndexPath *currentIndexPath;
     CacheImageViewController *ivc;
+    UITableView *parentTable;
 }
 
 @end
@@ -53,9 +54,10 @@ enum {
     menuMax
 };
 
-- (instancetype)init:(dbWaypoint *)wp
+- (instancetype)init:(dbWaypoint *)wp table:(UITableView *)table
 {
     self = [super init];
+    parentTable = table;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuImportPhoto label:@"Import photo"];
@@ -181,6 +183,7 @@ enum {
 
         userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
         [self.tableView reloadData];
+        [parentTable reloadData];
     }
 }
 
@@ -369,6 +372,7 @@ enum {
 
     userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
     [self.tableView reloadData];
+    [parentTable reloadData];
 
     [self finishAndUpdate];
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -377,6 +381,7 @@ enum {
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    [parentTable reloadData];
 }
 
 @end

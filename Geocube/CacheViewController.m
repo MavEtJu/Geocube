@@ -463,7 +463,7 @@ enum {
                 }
 
                 case WAYPOINT_DATA_IMAGES: {
-                    UITableViewController *newController = [[CacheImagesViewController alloc] init:waypoint];
+                    UITableViewController *newController = [[CacheImagesViewController alloc] init:waypoint table:self.tableView];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
                     return;
