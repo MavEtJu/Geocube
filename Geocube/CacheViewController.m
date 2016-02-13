@@ -112,11 +112,8 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     // Restore
-    if (hasCloseButton == NO) {
-        NSId __id = [dbWaypoint dbGetByName:myConfig.currentWaypoint];
-        dbWaypoint *wp = [dbWaypoint dbGet:__id];
-        [self showWaypoint:wp];
-    }
+    if (hasCloseButton == NO)
+        [self showWaypoint:waypointManager.currentWaypoint];
 
     [self.tableView registerClass:[CacheHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
