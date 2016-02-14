@@ -25,6 +25,6 @@
     NSArray *waypoints;
 }
 
-- (void)clearFlag;
+- (void)clearFlags;
 
 @end

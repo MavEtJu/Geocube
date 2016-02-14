@@ -35,7 +35,7 @@ enum {
 
 #define THISCELL @"CacheTableViewCell"
 
-NEEDS_OVERLOADING(clearFlag)
+NEEDS_OVERLOADING(clearFlags)
 
 - (instancetype)init
 {
@@ -144,7 +144,7 @@ NEEDS_OVERLOADING(clearFlag)
 
 - (void)menuClearFlags
 {
-    [self clearFlag];
+    [self clearFlags];
 
     waypoints = @[];
     [self.tableView reloadData];

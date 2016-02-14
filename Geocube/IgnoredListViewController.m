@@ -33,7 +33,7 @@
     flag = FLAGS_IGNORED;
 }
 
-- (void)clearFlag
+- (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.flag_ignore = NO;

@@ -33,7 +33,7 @@
     flag = FLAGS_INPROGRESS;
 }
 
-- (void)clearFlag
+- (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.flag_inprogress = NO;
