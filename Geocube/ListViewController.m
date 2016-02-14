@@ -145,15 +145,38 @@ NEEDS_OVERLOADING(clearFlags)
 - (void)menuClearFlags
 {
     [self clearFlags];
-
     waypoints = @[];
     [self.tableView reloadData];
-
     [waypointManager needsRefresh];
 }
 
 - (void)menuReloadWaypoints
 {
+    [self performSelectorInBackground:@selector(runReloadWaypoints) withObject:nil];
+}
+
+- (void)runReloadWaypoints
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", [waypoints count]]];
+    }];
+
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", idx + 1, [waypoints count]];
+        }];
+        [wp.account.remoteAPI updateWaypoint:wp];
+    }];
+    waypoints = [dbWaypoint dbAllByFlag:flag];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    [waypointManager needsRefresh];
+    [MyTools playSound:playSoundImportComplete];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
