@@ -180,6 +180,7 @@ NEEDS_OVERLOADING(reloadQueries)
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
 
+    // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
         if (qi.account_id == account._id &&
