@@ -40,6 +40,7 @@
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
 @synthesize downloadLogImages, downloadLogImagesMobile, downloadQueriesMobile;
+@synthesize mapSearchMaximumDistanceGS, mapSearchMaximumNumberGCA;
 
 - (instancetype)init
 {
@@ -145,6 +146,9 @@
     CHECK(@"download_log_images", @"1");
     CHECK(@"download_log_images_mobile", @"0");
     CHECK(@"download_queries_mobile", @"0");
+
+    CHECK(@"mapsearchmaximum_distancegs", @"5000");
+    CHECK(@"mapsearchmaximum_numbergca", @"50");
 }
 
 - (void)loadValues
@@ -183,6 +187,8 @@
     downloadLogImages = [[dbConfig dbGetByKey:@"download_log_images"].value boolValue];
     downloadLogImagesMobile = [[dbConfig dbGetByKey:@"download_log_images_mobile"].value boolValue];
     downloadQueriesMobile = [[dbConfig dbGetByKey:@"download_queries_mobile"].value boolValue];
+    mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
+    mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -427,6 +433,17 @@
 {
     downloadQueriesMobile = value;
     [self BOOLUpdate:@"download_queries_mobile" value:value];
+}
+
+- (void)mapSearchMaximumNumberGCA:(NSInteger)value
+{
+    mapSearchMaximumNumberGCA = value;
+    [self NSIntegerUpdate:@"mapsearchmaximum_numbergca" value:value];
+}
+- (void)mapSearchMaximumDistanceGS:(NSInteger)value
+{
+    mapSearchMaximumDistanceGS = value;
+    [self NSIntegerUpdate:@"mapsearchmaximum_distancegs" value:value];
 }
 
 @end
