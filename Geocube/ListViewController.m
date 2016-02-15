@@ -52,7 +52,7 @@ NEEDS_OVERLOADING(clearFlags)
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[CacheTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,9 +86,9 @@ NEEDS_OVERLOADING(clearFlags)
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CacheTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     if (cell == nil) {
-        cell = [[CacheTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
@@ -125,7 +125,7 @@ NEEDS_OVERLOADING(clearFlags)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [CacheTableViewCell cellHeight];
+    return [WaypointTableViewCell cellHeight];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,7 +133,7 @@ NEEDS_OVERLOADING(clearFlags)
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
-    CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+    WaypointViewController *newController = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
     [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;

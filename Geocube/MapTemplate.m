@@ -135,7 +135,7 @@ NEEDS_OVERLOADING(addHistory)
         nvc = [tb.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
 
         // Pick the right view controller
-        CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+        WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
 
         // Make sure there is nothing extra on it
         while ([cvc.navigationController.viewControllers count] != 1)
@@ -145,11 +145,11 @@ NEEDS_OVERLOADING(addHistory)
         [tb makeTabViewCurrent:VC_WAYPOINTS_LIST];
 
         // And then push the CacheViewController on top of it
-        CacheViewController *newController = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+        WaypointViewController *newController = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
         [newController showWaypoint:wp];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = wp.wpt_name;
-        [cvc.navigationController pushViewController:newController animated:YES];
+        [nvc.navigationController pushViewController:newController animated:YES];
 
         return;
     }
@@ -159,7 +159,7 @@ NEEDS_OVERLOADING(addHistory)
         nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
 
         // Pick the right view controller
-        CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+        WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
 
         // Make sure there is nothing extra on it
         [cvc showWaypoint:waypointManager.currentWaypoint];

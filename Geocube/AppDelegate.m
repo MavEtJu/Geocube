@@ -124,7 +124,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[CacheViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
+                vc = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
                 vc.title = @"Target";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
@@ -148,7 +148,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[CachesOfflineListViewController alloc] init];
+                vc = [[WaypointsOfflineListViewController alloc] init];
                 vc.title = @"List";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;

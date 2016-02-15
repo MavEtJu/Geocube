@@ -249,7 +249,7 @@
 
     BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
-    CacheViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+    WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
     [cvc showWaypoint:waypointManager.currentWaypoint];
 
     nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
