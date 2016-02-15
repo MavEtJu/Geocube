@@ -469,7 +469,7 @@
     [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
 
     NSDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:20];
-    [dd setValue:[NSNumber numberWithFloat:5000] forKey:@"DistanceInMeters"];
+    [dd setValue:[NSNumber numberWithFloat:myConfig.mapSearchMaximumDistanceGS] forKey:@"DistanceInMeters"];
 
     NSDictionary *p = [NSMutableDictionary dictionaryWithCapacity:20];
     [p setValue:[NSNumber numberWithFloat:center.latitude] forKey:@"Latitude"];
