@@ -77,8 +77,8 @@ NEEDS_OVERLOADING(addHistory)
 - (NSInteger)calculateSpan
 {
 
-    if ([myConfig dynamicmapEnable] == NO)
-        return [myConfig dynamicmapWalkingDistance];
+    if (myConfig.dynamicmapEnable == NO)
+        return myConfig.dynamicmapWalkingDistance;
 
     /*
      * 5000 |                              .
@@ -97,12 +97,12 @@ NEEDS_OVERLOADING(addHistory)
      * Up to 10 - 30 m/s, driving speed, show between 1000 and 5000 meters around
      */
 
-    float dmWS = [myConfig dynamicmapWalkingSpeed] / 3.6;
-    float dmCS = [myConfig dynamicmapCyclingSpeed] / 3.6;
-    float dmDS = [myConfig dynamicmapDrivingSpeed] / 3.6;
-    float dmWD = [myConfig dynamicmapWalkingDistance];
-    float dmCD = [myConfig dynamicmapCyclingDistance];
-    float dmDD = [myConfig dynamicmapDrivingDistance];
+    float dmWS = myConfig.dynamicmapWalkingSpeed / 3.6;
+    float dmCS = myConfig.dynamicmapCyclingSpeed / 3.6;
+    float dmDS = myConfig.dynamicmapDrivingSpeed / 3.6;
+    float dmWD = myConfig.dynamicmapWalkingDistance;
+    float dmCD = myConfig.dynamicmapCyclingDistance;
+    float dmDD = myConfig.dynamicmapDrivingDistance;
 
     NSInteger speed = LM.speed;
 
@@ -149,7 +149,7 @@ NEEDS_OVERLOADING(addHistory)
         [newController showWaypoint:wp];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = wp.wpt_name;
-        [nvc.navigationController pushViewController:newController animated:YES];
+        [cvc.navigationController pushViewController:newController animated:YES];
 
         return;
     }

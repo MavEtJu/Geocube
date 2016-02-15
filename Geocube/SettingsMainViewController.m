@@ -357,7 +357,7 @@ enum sections {
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"Theme";
-                    cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:[myConfig themeType]];
+                    cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:myConfig.themeType];
                     return cell;
                 }
                 case SECTION_THEME_COMPASS: {   // Compass type
@@ -365,7 +365,7 @@ enum sections {
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"Compass type";
-                    cell.detailTextLabel.text = [compassTypes objectAtIndex:[myConfig compassType]];
+                    cell.detailTextLabel.text = [compassTypes objectAtIndex:myConfig.compassType];
                     return cell;
                 }
 
@@ -1079,7 +1079,7 @@ enum sections {
     }
     [ActionSheetStringPicker showPickerWithTitle:@"Select Zoom Level"
                                             rows:zoomLevels
-                                initialSelection:[myConfig mapClustersZoomLevel] * 2
+                                initialSelection:myConfig.mapClustersZoomLevel * 2
                                           target:self
                                    successAction:@selector(updateMapZoomLevelSuccess:element:)
                                     cancelAction:@selector(updateCancel:)

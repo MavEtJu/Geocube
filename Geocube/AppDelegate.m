@@ -76,7 +76,7 @@
 
     // Audio
     audioFeedback = [[AudioFeedback alloc] init];
-    [audioFeedback togglePlay:[myConfig soundDirection]];
+    [audioFeedback togglePlay:myConfig.soundDirection];
 
     // Initialize the theme - after myconfig
     themeManager = [[ThemeManager alloc] init];
@@ -413,11 +413,11 @@
     // UIWindow.rootViewController = UITabBarController
     // UITabBarController.viewControllers = [UIViewController ...]
 
-    [self switchController:[myConfig currentPage]];
-    BHTabsViewController *currentTab = [tabBars objectAtIndex:[myConfig currentPage]];
+    [self switchController:myConfig.currentPage];
+    BHTabsViewController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
-    NSInteger cpt = [myConfig currentPageTab];
+    NSInteger cpt = myConfig.currentPageTab;
 
     [self.window makeKeyAndVisible];
     [currentTab makeTabViewCurrent:cpt];

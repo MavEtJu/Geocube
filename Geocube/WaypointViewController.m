@@ -600,7 +600,7 @@ enum {
 
     [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
         rows:groupNames
-        initialSelection:[myConfig lastAddedGroup]
+        initialSelection:myConfig.lastAddedGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [myConfig lastAddedGroupUpdate:selectedIndex];
             dbGroup *group = [groups objectAtIndex:selectedIndex];

@@ -301,7 +301,7 @@ enum {
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select a Group"
         rows:groupNames
-        initialSelection:[myConfig lastImportGroup]
+        initialSelection:myConfig.lastImportGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [myConfig lastImportGroupUpdate:selectedIndex];
             [self fileImport2:row group:[groups objectAtIndex:selectedIndex] view:tablecell];
@@ -327,7 +327,7 @@ enum {
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select the source"
         rows:accountNames
-        initialSelection:[myConfig lastImportSource]
+        initialSelection:myConfig.lastImportSource
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [myConfig lastImportSourceUpdate:selectedIndex];
             __block NSString *filename = [filesNames objectAtIndex:row];
