@@ -22,8 +22,8 @@
 @interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate, RemoteAPILoadWaypointDownloadProgressDelegate>
 
 enum {
-    SHOW_ONECACHE = 1,
-    SHOW_ALLCACHES,
+    SHOW_ONEWAYPOINT = 1,
+    SHOW_ALLWAYPOINTS,
 
     SHOW_NEITHER = 0,
     SHOW_SEETARGET,

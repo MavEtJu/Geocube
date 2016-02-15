@@ -192,7 +192,7 @@
     }
 }
 
-- (void)dbUpdateCache:(NSId)c_id;
+- (void)dbUpdateWaypoint:(NSId)c_id;
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set waypoint_id = ? where id = ?");

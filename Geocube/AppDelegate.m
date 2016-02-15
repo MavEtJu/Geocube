@@ -130,7 +130,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[MapViewController alloc] init:SHOW_ONECACHE];
+                vc = [[MapViewController alloc] init:SHOW_ONEWAYPOINT];
                 vc.title = @"Map";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
@@ -154,7 +154,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[MapViewController alloc] init:SHOW_ALLCACHES];
+                vc = [[MapViewController alloc] init:SHOW_ALLWAYPOINTS];
                 vc.title = @"Map";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;

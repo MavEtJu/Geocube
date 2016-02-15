@@ -165,7 +165,7 @@ enum {
         [lmi disableItem:menuMapGoogle];
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
-    showWhom = (showType == SHOW_ONECACHE) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
+    showWhom = (showType == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
 
     waypointsArray = nil;
     waypointCount = 0;
@@ -222,7 +222,7 @@ enum {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
     [map mapViewDidAppear];
-    [LM startDelegation:self isNavigating:(showType == SHOW_ONECACHE)];
+    [LM startDelegation:self isNavigating:(showType == SHOW_ONEWAYPOINT)];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
 
@@ -449,7 +449,7 @@ enum {
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     [waypointManager applyFilters:LM.coords];
 
-    if (showType == SHOW_ONECACHE) {
+    if (showType == SHOW_ONEWAYPOINT) {
         if (waypointManager.currentWaypoint != nil) {
             waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
             waypointsArray = @[waypointManager.currentWaypoint];
@@ -461,7 +461,7 @@ enum {
         return;
     }
 
-    if (showType == SHOW_ALLCACHES) {
+    if (showType == SHOW_ALLWAYPOINTS) {
         [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
                 return;
