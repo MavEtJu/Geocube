@@ -190,6 +190,7 @@ enum sections {
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_MAPCOLOURS,
+    SECTION_MAPSEARCHMAXIMUM,
     SECTION_MAPS,
     SECTION_MAPCACHE,
     SECTION_DYNAMICMAP,
@@ -222,6 +223,10 @@ enum sections {
     SECTION_MAPCACHE_MAXAGE,
     SECTION_MAPCACHE_MAXSIZE,
     SECTION_MAPCACHE_MAX,
+
+    SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS = 0,
+    SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA,
+    SECTION_MAPSEARCHMAXIMUM_MAX,
 
     SECTION_DYNAMICMAP_ENABLED = 0,
     SECTION_DYNAMICMAP_SPEED_WALKING,
@@ -270,6 +275,8 @@ enum sections {
             return SECTION_MAPCACHE_MAX;
         case SECTION_IMPORTS:
             return SECTION_IMPORTS_MAX;
+        case SECTION_MAPSEARCHMAXIMUM:
+            return SECTION_MAPSEARCHMAXIMUM_MAX;
     }
 
     return 0;
@@ -299,6 +306,8 @@ enum sections {
             return @"Map cache";
         case SECTION_IMPORTS:
             return @"Import options";
+        case SECTION_MAPSEARCHMAXIMUM:
+            return @"Map search maximums";
     }
 
     return nil;
@@ -443,6 +452,28 @@ enum sections {
                     cell.textLabel.text = @"Maximum zoom level for clustering";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
 
+                    return cell;
+                }
+            }
+            break;
+        }
+
+        case SECTION_MAPSEARCHMAXIMUM: {
+            switch (indexPath.row) {
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+                    cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
+                    cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceGS];
+                    return cell;
+                }
+                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+                    cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", myConfig.mapSearchMaximumNumberGCA];
                     return cell;
                 }
             }
@@ -702,6 +733,16 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
+                    break;
+            }
+            return;
+        case SECTION_MAPSEARCHMAXIMUM:
+            switch (indexPath.row) {
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
+                    [self changeMapSearchMaximumDistanceGS];
+                    break;
+                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
+                    [self changeMapSearchMaximumNumberGCA];
                     break;
             }
             return;
@@ -977,6 +1018,54 @@ enum sections {
 {
     NSInteger i = [selectedIndex intValue];
     [myConfig compassTypeUpdate:i];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeMapSearchMaximumDistanceGS
+{
+    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    for (NSInteger d = 250; d < 10000; d += 250) {
+        [distances addObject:[MyTools niceDistance:d]];
+    }
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+                                            rows:distances
+                                initialSelection:(myConfig.mapSearchMaximumDistanceGS / 250) - 1
+                                          target:self
+                                   successAction:@selector(updateMapSearchMaximumDistanceGS:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapSearchMaximumDistanceGS:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
+    [myConfig mapSearchMaximumDistanceGS:d];
+    [self.tableView reloadData];
+}
+
+- (void)changeMapSearchMaximumNumberGCA
+{
+    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    for (NSInteger d = 10; d < 200; d += 10) {
+        [distances addObject:[NSNumber numberWithInteger:d]];
+    }
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Waypoints"
+                                            rows:distances
+                                initialSelection:(myConfig.mapSearchMaximumNumberGCA / 10) - 1
+                                          target:self
+                                   successAction:@selector(updateMapSearchMaximumNumberGCA:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapSearchMaximumNumberGCA:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger d = (1 + [selectedIndex integerValue]) * 10;
+    [myConfig mapSearchMaximumNumberGCA:d];
     [self.tableView reloadData];
 }
 
