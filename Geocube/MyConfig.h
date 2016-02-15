@@ -79,8 +79,8 @@
 @property (nonatomic, readonly) BOOL downloadLogImagesMobile;
 @property (nonatomic, readonly) BOOL downloadQueriesMobile;
 
-@property (nonatomic, readonly) BOOL mapSearchMaximumNumberGCA;
-@property (nonatomic, readonly) BOOL mapSearchMaximumDistanceGS;
+@property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
+@property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
 
 - (void)addDelegate:(id)destination;
 - (void)deleteDelegate:(id)destination;
