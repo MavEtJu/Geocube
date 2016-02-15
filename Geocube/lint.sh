@@ -39,5 +39,21 @@ echo
 echo "No { after @interface:"
 grep @interface *.[mh] | grep \{
 
+echo
+echo "MyConfig:"
+a=$(grep -c 'CHECK.@' MyConfig.m)
+b=$(grep -c 'self .*Update:.*value:value' MyConfig.m)
+c=$(grep -c 'dbConfig dbGetByKey:@"' MyConfig.m)
+if [ $a -ne $b -o $b -ne $c ]; then
+	echo "CHECK: $a"
+	echo "dbConfig dbGetByKey: $c"
+	echo "self .*Update:.*value:value: $b"
+fi
+for w in $(grep 'CHECK.@' MyConfig.m | sed -e 's/",.*//' -e 's/.*"//'); do
+	if [ $(grep -cw $w MyConfig.m) -ne 3 ]; then
+		echo "Incomplete: $w"
+	fi
+done
+
 
 echo
