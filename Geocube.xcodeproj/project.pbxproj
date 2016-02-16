@@ -1394,6 +1394,8 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
+				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
+				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
 				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
 				E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */,
 				E8C5BB521C719EB1006222D5 /* WaypointDescriptionViewController.h */,
@@ -1418,8 +1420,6 @@
 				E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */,
 				E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */,
 				E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */,
-				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
-				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
 			);
 			name = "Waypoint Viewing";
 			sourceTree = "<group>";
