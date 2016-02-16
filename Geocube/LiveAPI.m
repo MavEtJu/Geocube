@@ -342,10 +342,11 @@
     [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [dict setValue:waypointName forKey:@"CacheCode"];
     [dict setValue:[NSNumber numberWithLong:gslogtype] forKey:@"WptLogTypeId"];
-    [dict setValue:[NSNumber numberWithLong:1000 * date] forKey:@"UTCDateLogged"];
+    [dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
     [dict setValue:[MyTools JSONEscape:note] forKey:@"Note"];
     [dict setValue:((favourite == YES) ? @"true" : @"false") forKey:@"FavoriteThisCache"];
     [dict setValue:[NSNumber numberWithBool:NO] forKey:@"EncryptLogText"];
+    [dict setValue:@"true" forKey:@"PromoteToLog"];
 
     NSError *error = nil;
     NSData *body = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
