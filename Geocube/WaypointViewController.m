@@ -173,10 +173,10 @@ enum {
     return nil;
 }
 
-- (GCView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section != WAYPOINT_HEADER)
-        return nil;
+        return [super tableView:tableView viewForHeaderInSection:section];
 
     NSInteger width = tableView.bounds.size.width;
 
