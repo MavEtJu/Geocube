@@ -40,7 +40,7 @@
 
 - (instancetype)initWithIsLatitude:(BOOL)_isLatitude
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 100, 100)];
+    self = [super initWithFrame:CGRectMake(0, 0, 100, 160)];
 
     isLatitude = _isLatitude;
 
@@ -55,48 +55,48 @@
 
     if (isLatitude == YES) {
         dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirNorth.frame = CGRectMake(0, y, 100, 40);
+        dirNorth.frame = CGRectMake(0, y, 100, 80);
         [dirNorth setTitle:@"North" forState:UIControlStateNormal];
         [dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirNorth];
-        y += 48;
+        y += 80;
 
         dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirSouth.frame = CGRectMake(0, y, 100, 40);
+        dirSouth.frame = CGRectMake(0, y, 100, 80);
         [dirSouth setTitle:@"South" forState:UIControlStateNormal];
         [dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirSouth];
-        y += 48;
+        y += 80;
     } else {
         dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirEast.frame = CGRectMake(0, y, 100, 40);
+        dirEast.frame = CGRectMake(0, y, 100, 80);
         [dirEast setTitle:@"East" forState:UIControlStateNormal];
         [dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirEast];
-        y += 48;
+        y += 80;
 
         dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirWest.frame = CGRectMake(0, y, 100, 40);
+        dirWest.frame = CGRectMake(0, y, 100, 80);
         [dirWest setTitle:@"West" forState:UIControlStateNormal];
         [dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirWest];
-        y += 48;
+        y += 80;
     }
 
-    y = 3;
+    y = 6;
     for (NSInteger i = 0; i < 5; i++) {
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = CGRectMake(100 + i * 30, y, 20, 40);
-        [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
+        b.frame = CGRectMake(100 + i * 40, y, 40, 48);
+        [b setTitle:[NSString stringWithFormat:@"%lu", (long)i] forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:b];
         value[i] = b;
     }
-    y += 24;
+    y += 48;
 
     for (NSInteger i = 5; i < 10; i++) {
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = CGRectMake(100 + (i - 5) * 30, y, 20, 40);
+        b.frame = CGRectMake(100 + (i - 5) * 40, y, 40, 48);
         [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:b];
@@ -104,35 +104,35 @@
     }
 
     NSInteger x = 100;
-    y += 24;
+    y += 48;
 
     buttonSpace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonSpace.frame = CGRectMake(x, y, 40, 40);
+    buttonSpace.frame = CGRectMake(x, y, 40, 48);
     [buttonSpace setTitle:@"_" forState:UIControlStateNormal];
     [buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonSpace];
-    x += 30;
+    x += 45;
 
     buttonDot = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDot.frame = CGRectMake(x, y, 40, 40);
+    buttonDot.frame = CGRectMake(x, y, 40, 48);
     [buttonDot setTitle:@"." forState:UIControlStateNormal];
     [buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonDot];
-    x += 30;
+    x += 45;
 
     buttonDegree = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDegree.frame = CGRectMake(x, y, 40, 40);
+    buttonDegree.frame = CGRectMake(x, y, 40, 48);
     [buttonDegree setTitle:@"°" forState:UIControlStateNormal];
     [buttonDegree addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonDegree];
-    x += 30;
+    x += 45;
 
     buttonBackspace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonBackspace.frame = CGRectMake(x, y, 40, 40);
+    buttonBackspace.frame = CGRectMake(x, y, 40, 48);
     [buttonBackspace setTitle:@"⌫" forState:UIControlStateNormal];
     [buttonBackspace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:buttonBackspace];
-    x += 30;
+    x += 45;
 
     [self addObservers];
 
