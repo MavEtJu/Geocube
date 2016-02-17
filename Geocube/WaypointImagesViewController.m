@@ -64,6 +64,12 @@ enum {
     [lmi addItem:menuImportPhoto label:@"Import photo"];
     [lmi addItem:menuMakePhoto label:@"Make photo"];
     [lmi addItem:menuDownloadImages label:@"Download photos"];
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
+        [lmi disableItem:menuImportPhoto];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
+        [lmi disableItem:menuMakePhoto];
+
     hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
