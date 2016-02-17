@@ -50,6 +50,7 @@ enum {
 
 enum {
     menuImportPhoto,
+    menuMakePhoto,
     menuDownloadImages,
     menuMax
 };
@@ -61,6 +62,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuImportPhoto label:@"Import photo"];
+    [lmi addItem:menuMakePhoto label:@"Make photo"];
     [lmi addItem:menuDownloadImages label:@"Download photos"];
     hasCloseButton = YES;
 
@@ -302,39 +304,23 @@ enum {
     // Import a photo
     switch (index) {
         case menuImportPhoto:
-            [self importPhoto];
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             return;
         case menuDownloadImages:
             [self downloadImages];
+            return;
+        case menuMakePhoto:
+            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
             return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
 }
 
-- (void)importPhoto
-{
- //   UIImagePickerController *imgpicker = [UIImagePickerController pic];
-}
-
 #pragma mark - Camera import related functions
-
 
 - (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
 {
-    /*
-    if (self.imageView.isAnimating)
-    {
-        [self.imageView stopAnimating];
-    }
-
-    if (self.capturedImages.count > 0)
-    {
-        [self.capturedImages removeAllObjects];
-    }
-     */
-
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     imagePickerController.sourceType = sourceType;
@@ -353,22 +339,36 @@ enum {
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    NSURL *imgURL = [info valueForKey:UIImagePickerControllerReferenceURL];
-    NSString *imgtag = imgURL.absoluteString;
+    dbImage *img = nil;
 
-    dbImage *img = [dbImage dbGetByURL:imgtag];
-    NSString *datafile = [dbImage createDataFilename:imgtag];
-    if (img == nil) {
-        img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
-        [dbImage dbCreate:img];
+    NSURL *imgURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+    if (imgURL != nil) {
+        // From Library.
+        NSString *imgtag = imgURL.absoluteString;
+        img = [dbImage dbGetByURL:imgtag];
+        NSString *datafile = [dbImage createDataFilename:imgtag];
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
+
+        if (img == nil) {
+            img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
+            [dbImage dbCreate:img];
+        } else {
+            NSLog(@"%@/parse: Image already seen", [self class]);
+        }
     } else {
-        //NSLog(@"%@/parse: Image already seen", [self class]);
+        // From camera
+        NSDictionary *exif = [info objectForKey:@"UIImagePickerControllerMediaMetadata"];
+        exif = [exif objectForKey:@"{Exif}"];
+        NSString *datecreated = [exif objectForKey:@"DateTimeOriginal"];
+        NSString *datafile = [dbImage createDataFilename:datecreated];
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
+        img = [[dbImage alloc] init:datecreated name:[dbImage filename:datecreated] datafile:datafile];
+        [dbImage dbCreate:img];
     }
 
     if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
         [img dbLinkToWaypoint:waypoint._id type:IMAGETYPE_USER];
 
-    [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
 
     userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
     [self.tableView reloadData];
