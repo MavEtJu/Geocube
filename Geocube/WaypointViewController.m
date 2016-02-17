@@ -236,6 +236,12 @@ enum {
             cell.lon.text = [c lon_degreesDecimalMinutes];
             [cell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
 
+            NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates];
+            cell.beardis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
+                                 [Coordinates coordinates2bearing:waypoint.coordinates to:LM.coords],
+                                 [Coordinates bearing2compass:bearing],
+                                 [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
+
             cell.userInteractionEnabled = NO;
             cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
             cell.icon.image = [imageLibrary getType:waypoint];

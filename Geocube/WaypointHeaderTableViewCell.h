@@ -25,6 +25,7 @@
 @property (nonatomic, retain)UIImageView *size;
 @property (nonatomic, retain)GCLabel *lat;
 @property (nonatomic, retain)GCLabel *lon;
+@property (nonatomic, retain)GCLabel *beardis;
 @property (nonatomic, retain)GCLabel *favourites;
 
 + (NSInteger)cellHeight;

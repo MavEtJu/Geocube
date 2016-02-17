@@ -37,7 +37,7 @@
 
 @implementation WaypointHeaderTableViewCell
 
-@synthesize icon, lat, lon, size, favourites;
+@synthesize icon, lat, lon, beardis, size, favourites;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -60,7 +60,8 @@
      +---+--------------+-----+---+  Size
      | Lat              | D XXXXX |  Difficulty
      | Lon              | T XXXXX |  Terrain
-     +------------------+---------+  Favourites
+     | BearDis          |         |  Favourites
+     +------------------+---------+
      */
 #define BORDER 1
 #define ICON_WIDTH 30
@@ -71,6 +72,7 @@
 #define STAR_HEIGHT 18
 #define LAT_HEIGHT 10
 #define LON_HEIGHT 10
+#define BEARDIS_HEIGHT 10
 
 #define N 5
     CGRect rectIcon = CGRectMake(BORDER + N, BORDER, ICON_WIDTH - N, ICON_HEIGHT);
@@ -78,8 +80,9 @@
     CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT - N, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LON_HEIGHT);
+    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LON_HEIGHT);
+    CGRect rectBearDis = CGRectMake(BORDER + N, height - BORDER - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, BEARDIS_HEIGHT);
 
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
@@ -157,6 +160,11 @@
     lat.font = [UIFont systemFontOfSize:10.0];
     [self.contentView addSubview:lat];
 
+    // BearDis
+    beardis = [[GCLabel alloc] initWithFrame:rectBearDis];
+    beardis.font = [UIFont systemFontOfSize:10.0];
+    [self.contentView addSubview:beardis];
+
     return self;
 }
 
@@ -184,12 +192,12 @@
 
 + (NSInteger)cellHeight
 {
-    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT;
+    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT;
 }
 
 - (NSInteger)cellHeight
 {
-    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT;
+    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT;
 }
 
 - (void)showGroundspeak:(BOOL)yesno
