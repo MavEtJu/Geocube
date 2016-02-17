@@ -338,7 +338,7 @@ enum {
                     NSInteger c = [waypoint hasImages];
                     if (c == 0) {
                         tc = currentTheme.labelTextColorDisabled;
-                        cell.userInteractionEnabled = NO;
+                        cell.userInteractionEnabled = YES;  // Be able to create one
                     } else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)",cell.textLabel.text, (long)c];
                     break;
