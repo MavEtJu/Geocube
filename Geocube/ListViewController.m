@@ -163,7 +163,7 @@ NEEDS_OVERLOADING(clearFlags)
 
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", idx + 1, (unsigned long)[waypoints count]];
+            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]];
         }];
         [wp.account.remoteAPI updateWaypoint:wp];
     }];
