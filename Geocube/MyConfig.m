@@ -33,7 +33,7 @@
 @synthesize keyGMS, keyMapbox;
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
-@synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType;
+@synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
 @synthesize soundDirection, soundDistance, keeptrackAutoRotate;;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
@@ -122,6 +122,8 @@
 
     CHECK(@"compass_type", @"0");
     CHECK(@"theme_type", @"0");
+    NSString *s = [NSString stringWithFormat:@"%ld", (long)(UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight)];
+    CHECK(@"orientations_allowed", s);
 
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
@@ -167,6 +169,7 @@
     mapDestinationColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
     compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
     themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
+    orientationsAllowed = [[dbConfig dbGetByKey:@"orientations_allowed"].value integerValue];
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
     soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
     keeptrackAutoRotate = [[dbConfig dbGetByKey:@"keeptrack_autorotate"].value boolValue];
@@ -323,6 +326,11 @@
     themeType = value;
     [self NSIntegerUpdate:@"theme_type" value:value];
 }
+- (void)orientationsAllowedUpdate:(NSInteger)value
+{
+    orientationsAllowed = value;
+    [self NSIntegerUpdate:@"orientations_allowed" value:value];
+}
 
 - (void)soundDirectionUpdate:(BOOL)value
 {
@@ -435,12 +443,12 @@
     [self BOOLUpdate:@"download_queries_mobile" value:value];
 }
 
-- (void)mapSearchMaximumNumberGCA:(NSInteger)value
+- (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value
 {
     mapSearchMaximumNumberGCA = value;
     [self NSIntegerUpdate:@"mapsearchmaximum_numbergca" value:value];
 }
-- (void)mapSearchMaximumDistanceGS:(NSInteger)value
+- (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value
 {
     mapSearchMaximumDistanceGS = value;
     [self NSIntegerUpdate:@"mapsearchmaximum_distancegs" value:value];

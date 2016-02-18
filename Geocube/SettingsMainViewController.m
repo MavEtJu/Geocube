@@ -1042,7 +1042,7 @@ enum sections {
 - (void)updateMapSearchMaximumDistanceGS:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [myConfig mapSearchMaximumDistanceGS:d];
+    [myConfig mapSearchMaximumDistanceGSUpdate:d];
     [self.tableView reloadData];
 }
 
@@ -1065,7 +1065,7 @@ enum sections {
 - (void)updateMapSearchMaximumNumberGCA:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 10;
-    [myConfig mapSearchMaximumNumberGCA:d];
+    [myConfig mapSearchMaximumNumberGCAUpdate:d];
     [self.tableView reloadData];
 }
 

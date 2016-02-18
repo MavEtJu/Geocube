@@ -82,6 +82,11 @@
 @property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
 
+// Bitmask of:
+// UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
+// UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
+@property (nonatomic, readonly) NSInteger orientationsAllowed;
+
 - (void)addDelegate:(id)destination;
 - (void)deleteDelegate:(id)destination;
 
@@ -120,7 +125,8 @@
 - (void)downloadLogImagesUpdate:(BOOL)value;
 - (void)downloadLogImagesMobileUpdate:(BOOL)value;
 - (void)downloadQueriesMobileUpdate:(BOOL)value;
-- (void)mapSearchMaximumNumberGCA:(NSInteger)value;
-- (void)mapSearchMaximumDistanceGS:(NSInteger)value;
+- (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
+- (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;
+- (void)orientationsAllowedUpdate:(NSInteger)value;
 
 @end
