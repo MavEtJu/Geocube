@@ -29,7 +29,6 @@
 @end
 
 enum {
-
     RC_NAVIGATE = 0,
     RC_WAYPOINTS,
     RC_KEEPTRACK,
