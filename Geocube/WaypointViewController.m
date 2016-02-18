@@ -238,7 +238,7 @@ enum {
 
             NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates];
             cell.beardis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                                 [Coordinates coordinates2bearing:waypoint.coordinates to:LM.coords],
+                                 (long)[Coordinates coordinates2bearing:waypoint.coordinates to:LM.coords],
                                  [Coordinates bearing2compass:bearing],
                                  [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
 

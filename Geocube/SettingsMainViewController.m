@@ -473,7 +473,7 @@ enum sections {
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", myConfig.mapSearchMaximumNumberGCA];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)myConfig.mapSearchMaximumNumberGCA];
                     return cell;
                 }
             }
