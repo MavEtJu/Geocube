@@ -25,6 +25,7 @@
 {
     UISwitch *distanceMetric;
     UISwitch *themeGeosphere;
+    UISwitch *orientationPortrait, *orientationPortraitUpsideDown, *orientationLandscapeLeft, *orientationLandscapeRight;
     UISwitch *soundDirection;
     UISwitch *soundDistance;
     UISwitch *keeptrackAutoRotate;
@@ -35,6 +36,9 @@
 
     NSArray *compassTypes;
     NSArray *externalMapTypes;
+
+    NSArray *orientationStrings;
+    NSArray *orientationValues;
 
     NSMutableArray *speedsWalkingMetric;
     NSMutableArray *speedsCyclingMetric;
@@ -90,6 +94,26 @@ enum {
 
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
+
+    orientationStrings = @[
+                           @"Portrait",
+                           @"Portrait UpsideDown",
+                           @"LandscapeLeft Portrait LandscapeRight",
+                           @"LandscapeLeft Portrait UpsideDown LandscapeRight",
+                           @"LandscapeRight",
+                           @"LandscapeLeft",
+                           @"LandscapeLeft LandscapeRight",
+                           ];
+    orientationValues = @[
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeRight],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft],
+        [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
+        ];
+
 }
 
 - (void)calculateMapcache
@@ -202,6 +226,7 @@ enum sections {
 
     SECTION_THEME_THEME = 0,
     SECTION_THEME_COMPASS,
+    SECTION_THEME_ORIENTATIONS,
     SECTION_THEME_MAX,
 
     SECTION_SOUNDS_DIRECTION = 0,
@@ -366,6 +391,37 @@ enum sections {
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"Compass type";
                     cell.detailTextLabel.text = [compassTypes objectAtIndex:myConfig.compassType];
+                    return cell;
+                }
+                case SECTION_THEME_ORIENTATIONS: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    if (cell == nil)
+                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
+                    NSMutableString *s = [NSMutableString stringWithString:@""];
+                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
+                        if ([s isEqualToString:@""] == NO)
+                            [s appendString:@", "];
+                        [s appendString:@"Portrait"];
+                    }
+                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
+                        if ([s isEqualToString:@""] == NO)
+                            [s appendString:@", "];
+                        [s appendString:@"Upside Down"];
+                    }
+                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
+                        if ([s isEqualToString:@""] == NO)
+                            [s appendString:@", "];
+                        [s appendString:@"Landscape Left"];
+                    }
+                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
+                        if ([s isEqualToString:@""] == NO)
+                            [s appendString:@", "];
+                        [s appendString:@"Landscape Right"];
+                    }
+
+                    cell.textLabel.text = @"Orientations allowed";
+                    cell.detailTextLabel.text = s;
                     return cell;
                 }
 
@@ -727,6 +783,9 @@ enum sections {
                 case SECTION_THEME_COMPASS:
                     [self changeThemeCompass];
                     break;
+                case SECTION_THEME_ORIENTATIONS:
+                    [self changeThemeOrientations];
+                    break;
             }
             return;
         case SECTION_APPS:
@@ -1020,6 +1079,33 @@ enum sections {
     [myConfig compassTypeUpdate:i];
     [self.tableView reloadData];
 }
+
+- (void)changeThemeOrientations
+{
+    __block NSInteger orientationIndex = 0;
+    [orientationValues enumerateObjectsUsingBlock:^(NSNumber *n, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([n integerValue] == myConfig.orientationsAllowed) {
+            orientationIndex = idx;
+            *stop = YES;
+        }
+    }];
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Orientations"
+                                            rows:orientationStrings
+                                initialSelection:orientationIndex
+                                          target:self
+                                   successAction:@selector(updateThemeOrientations:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateThemeOrientations:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger d = [[orientationValues objectAtIndex:[selectedIndex integerValue]] integerValue];
+    [myConfig orientationsAllowedUpdate:d];
+    [self.tableView reloadData];
+}
+
 
 /* ********************************************************************************* */
 
