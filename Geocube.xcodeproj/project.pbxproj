@@ -216,7 +216,7 @@
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
 		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
-		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
+		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */; };
@@ -682,7 +682,7 @@
 		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
 		E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+DOPExtension.m"; path = "DOPNavbarMenu/UIView+DOPExtension.m"; sourceTree = "<group>"; };
 		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
-		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\U001b\U001b\U001b\U001bGlobalMenu.m"; sourceTree = "<group>"; };
+		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
@@ -1089,7 +1089,7 @@
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
 				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
-				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
@@ -2580,7 +2580,7 @@
 				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,
-				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
+				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
