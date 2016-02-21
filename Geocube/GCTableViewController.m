@@ -96,6 +96,10 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
+    if (tab_menu != nil)
+        [tab_menu removeFromSuperview];
+    tab_menu = nil;
+
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
