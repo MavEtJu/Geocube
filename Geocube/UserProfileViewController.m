@@ -164,7 +164,11 @@ enum {
 - (void)runStatistics:(dbAccount *)a
 {
     NSDictionary *d = [a.remoteAPI UserStatistics];
-    [self showStatistics:a.idx dict:d];
+    @synchronized(self) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self showStatistics:a.idx dict:d];
+        }];
+    }
 }
 
 - (void)updateTotal:(NSInteger *)i with:(NSObject *)o
@@ -263,7 +267,7 @@ enum {
               @"recommendations_received"
             ]
             ];
-            [self showStatistics:[accountViews count] -1 dict:totals];
+            [self showStatistics:[accountViews count] - 1 dict:totals];
         }
     }
 
