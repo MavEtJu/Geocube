@@ -105,10 +105,11 @@
     tabBarController.delegate = self; \
     [tabBars addObject:tabBarController];
 #undef TABBARCONTROLLER
-#define TABBARCONTROLLER(__controllers__) { \
+#define TABBARCONTROLLER(index, __controllers__) { \
         BHTabsViewController *tbc = \
             [[BHTabsViewController alloc] \
-            initWithViewControllers:__controllers__ \
+            initWithViewControllers:index \
+            viewControllers:__controllers__ \
             style:[BHTabStyle defaultStyle]]; \
         [tabBars addObject:tbc]; \
     }
@@ -136,7 +137,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_NAVIGATE, controllers)
                 break;
 
             case RC_WAYPOINTS:
@@ -160,7 +161,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_WAYPOINTS, controllers)
                 break;
 
             case RC_KEEPTRACK:
@@ -178,7 +179,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;
 
             case RC_NOTESANDLOGS:
@@ -202,7 +203,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_NOTESANDLOGS, controllers)
                 break;
 
             case RC_TRACKABLES:
@@ -214,7 +215,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_TRACKABLES, controllers)
                 break;
 
             case RC_GROUPS:
@@ -232,7 +233,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_GROUPS, controllers)
                 break;
 
             case RC_BROWSER:
@@ -256,7 +257,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_BROWSER, controllers)
                 break;
 
             case RC_FILES:
@@ -274,7 +275,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_FILES, controllers)
                 break;
 
             case RC_USERPROFILE:
@@ -286,7 +287,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_USERPROFILE, controllers)
                 break;
 
             case RC_NOTICES:
@@ -298,7 +299,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_NOTICES, controllers)
                 break;
 
             case RC_SETTINGS:
@@ -322,7 +323,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_SETTINGS, controllers)
                 break;
 
             case RC_HELP:
@@ -352,7 +353,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_HELP, controllers)
                 break;
 
             case RC_LISTS:
@@ -382,7 +383,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_LISTS, controllers)
                 break;
 
             case RC_QUERIES:
@@ -400,7 +401,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(controllers)
+                TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
 
             default:

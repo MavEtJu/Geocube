@@ -14,14 +14,15 @@ enum { kTagTabBase = 100 };
 @property (nonatomic, assign, readwrite) UIView *contentView;
 @property (nonatomic, retain) BHTabsView *tabsContainerView;
 @property (nonatomic, retain) BHTabsFooterView *footerView;
+@property (nonatomic) NSInteger tabNumber, tabIndex;
 
 @end
 
 @implementation BHTabsViewController
 
-@synthesize delegate, style, viewControllers, contentView, tabsContainerView, footerView;
+@synthesize delegate, style, viewControllers, contentView, tabsContainerView, footerView, tabNumber, tabIndex;
 
-- (id)initWithViewControllers:(NSArray *)theViewControllers
+- (id)initWithViewControllers:(NSInteger)tabNr viewControllers:(NSArray *)theViewControllers
                         style:(BHTabStyle *)theStyle {
 
   self = [super initWithNibName:nil bundle:nil];
@@ -29,6 +30,8 @@ enum { kTagTabBase = 100 };
   if (self) {
     self.viewControllers = theViewControllers;
     self.style = theStyle;
+    tabNumber = tabNr;
+      tabIndex = 0;
   }
 
   return self;
@@ -88,6 +91,7 @@ enum { kTagTabBase = 100 };
 {
     if (idx < 0 || idx >= [self.tabsContainerView.tabViews count])
         idx = 0;
+    tabIndex = idx;
     [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:idx]];
 }
 
@@ -136,20 +140,20 @@ enum { kTagTabBase = 100 };
   NSMutableArray *allTabViews = [NSMutableArray arrayWithCapacity:[self.viewControllers count]];
 
   for (UIViewController *viewController in self.viewControllers) {
-    NSUInteger tabIndex = [allTabViews count];
+    NSUInteger idx = [allTabViews count];
 
     // The selected tab's bottom-most edge should overlap the top shadow of the tab bar under it.
 
-    CGRect tabFrame = CGRectMake(tabIndex * tabWidth,
+    CGRect tabFrame = CGRectMake(idx * tabWidth,
                                  self.style.tabsViewHeight - self.style.tabHeight - self.style.tabBarHeight,
                                  tabWidth,
                                  self.style.tabHeight);
 
-    if (tabIndex > 0)
-      tabFrame.origin.x -= tabIndex * overlap;
+    if (idx > 0)
+      tabFrame.origin.x -= idx * overlap;
 
     BHTabView *tabView = [[BHTabView alloc] initWithFrame:tabFrame title:viewController.title];
-    tabView.tag = kTagTabBase + tabIndex;
+    tabView.tag = kTagTabBase + idx;
     tabView.titleLabel.font = self.style.unselectedTitleFont;
     tabView.delegate = self;
 
