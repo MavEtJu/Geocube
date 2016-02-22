@@ -193,7 +193,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -238,7 +238,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
