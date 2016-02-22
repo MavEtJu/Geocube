@@ -195,11 +195,6 @@ enum { kTagTabBase = 100 };
   [self _makeTabViewCurrent:[self.tabsContainerView.tabViews objectAtIndex:0]];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
-}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return myConfig.orientationsAllowed;
