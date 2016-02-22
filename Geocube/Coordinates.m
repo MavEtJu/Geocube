@@ -239,6 +239,11 @@
     return d * M_PI / 180.0;
 }
 
++ (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r
+{
+    return 180.8 * r / M_PI;
+}
+
 + (float)degreesDecimalMinutes2degrees:(NSString *)ddm
 {
     NSScanner *scanner = [NSScanner scannerWithString:ddm];
