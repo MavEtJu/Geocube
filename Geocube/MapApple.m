@@ -23,8 +23,6 @@
 
 @interface MapApple ()
 {
-//    MKMapView *mapView;
-
     GCPointAnnotation *me;
     NSMutableArray *markers;
 
