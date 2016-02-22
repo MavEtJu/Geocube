@@ -43,6 +43,7 @@ NEEDS_OVERLOADING(initMap)
 NEEDS_OVERLOADING(removeMap)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
+NEEDS_OVERLOADING(updateMyHeading:(NSInteger)dir);
 NEEDS_OVERLOADING(placeMarkers)
 NEEDS_OVERLOADING(removeMarkers)
 NEEDS_OVERLOADING(addLineMeToWaypoint)

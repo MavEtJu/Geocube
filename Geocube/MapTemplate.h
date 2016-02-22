@@ -51,6 +51,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
 
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
+- (void)updateMyHeading:(NSInteger)dir;
 
 - (void)placeMarkers;
 - (void)removeMarkers;
