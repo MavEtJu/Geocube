@@ -402,7 +402,7 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Local menu related functions
+#pragma mark - iCloud related functions
 
 - (void)showICloud
 {
@@ -410,14 +410,19 @@ enum {
 
     importMenu.delegate = self;
 
-    [self.navigationController pushViewController:importMenu animated:YES];
-//    [self presentViewController:importMenu animated:YES completion:nil];
+//    [self.navigationController pushViewController:importMenu animated:YES];
+  [self presentViewController:importMenu animated:YES completion:nil];
 }
 
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
 {
     documentPicker.delegate = self;
     [ALERT_VC_RVC(self) presentViewController:documentPicker animated:YES completion:nil];
+}
+
+- (void)documentMenuWasCancelled:(UIDocumentMenuViewController *)documentMenu
+{
+    NSLog(@"Foo");
 }
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
@@ -436,6 +441,8 @@ enum {
                  message:@"You can find the saved file in the Files menu."
                  preferredStyle:UIAlertControllerStyleAlert
                  ];
+        [self refreshFileData];
+        [self.tableView reloadData];
     } else {
         alert = [UIAlertController
                  alertControllerWithTitle:@"Download failed"
@@ -453,6 +460,7 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - Airdrop related functions
 
 - (void)showAirDrop
 {
@@ -466,6 +474,8 @@ enum {
     [self.navigationController pushViewController:activityViewController animated:YES];
 //    [self presentViewController:activityViewController animated:YES completion:nil];
 }
+
+#pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
