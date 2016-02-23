@@ -62,10 +62,11 @@ enum {
     filesNames = [NSMutableArray arrayWithCapacity:20];
     filesDates = [NSMutableArray arrayWithCapacity:20];
     filesSizes = [NSMutableArray arrayWithCapacity:20];
-    filesCount = [files count];
 
     [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
         NSDictionary *a = [fm attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
+        if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+            return;
         [filesNames addObject:file];
         NSNumber *s = [a objectForKey:NSFileSize];
         [filesSizes addObject:s];
@@ -74,6 +75,7 @@ enum {
     }];
 
     fileImports = [dbFileImport dbAll];
+    filesCount = [filesNames count];
 
     [self refreshControl];
 }
@@ -465,7 +467,7 @@ enum {
 - (void)showAirDrop
 {
     NSString *text = @"Some text I want to share";
-    UIImage *image = [UIImage imageNamed:@"image.png"];
+    UIImage *image = [imageLibrary get:ImageAttribute_AbandonedMines];
     UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[text, image] applicationActivities:nil];
     [activityViewController setCompletionWithItemsHandler:
         ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
