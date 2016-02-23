@@ -38,7 +38,6 @@
 
 enum {
     menuICloud,
-    menuAirdrop,
     menuMax
 };
 
@@ -51,7 +50,6 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
-    [lmi addItem:menuAirdrop label:@"Airdrop"];
 }
 
 - (void)refreshFileData
@@ -462,21 +460,6 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Airdrop related functions
-
-- (void)showAirDrop
-{
-    NSString *text = @"Some text I want to share";
-    UIImage *image = [imageLibrary get:ImageAttribute_AbandonedMines];
-    UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[text, image] applicationActivities:nil];
-    [activityViewController setCompletionWithItemsHandler:
-        ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-            NSLog(@"Foo");
-        } ];
-    [self.navigationController pushViewController:activityViewController animated:YES];
-//    [self presentViewController:activityViewController animated:YES completion:nil];
-}
-
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -484,9 +467,6 @@ enum {
     switch (index) {
         case menuICloud:
             [self showICloud];
-            return;
-        case menuAirdrop:
-            [self showAirDrop];
             return;
     }
 }
