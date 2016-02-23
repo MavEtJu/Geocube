@@ -43,6 +43,7 @@
 	<array>
 		<string>MKDirectionsModeBike</string>
 		<string>MKDirectionsModeCar</string>
+		<string>MKDirectionsModePedestrian</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
