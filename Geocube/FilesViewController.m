@@ -196,7 +196,7 @@ enum {
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *uploadAirdrop = [UIAlertAction
-                                    actionWithTitle:@"Upload to Airdrop"
+                                    actionWithTitle:@"Upload with Airdrop"
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
                                         [self uploadAirdrop:fn];
@@ -209,13 +209,6 @@ enum {
                                        [self uploadICloud:fn];
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                    }];
-    UIAlertAction *uploadDropbox = [UIAlertAction
-                                    actionWithTitle:@"Upload to Dropbox"
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action) {
-                                        [self uploadDropbox:fn];
-                                        [view dismissViewControllerAnimated:YES completion:nil];
-                                    }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
@@ -244,7 +237,6 @@ enum {
     [view addAction:rename];
     [view addAction:uploadAirdrop];
     [view addAction:uploadICloud];
-    [view addAction:uploadDropbox];
     [view addAction:cancel];
     [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -252,13 +244,26 @@ enum {
 
 - (void)uploadAirdrop:(NSString *)filename
 {
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
+        NSArray *objectsToShare = @[url];
+
+        UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+
+        // Exclude all activities except AirDrop.
+        NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                        UIActivityTypePostToWeibo,
+                                        UIActivityTypeMessage, UIActivityTypeMail,
+                                        UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                        UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+                                        UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                        UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+        controller.excludedActivityTypes = excludedActivities;
+
+        // Present the controller
+        [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)uploadICloud:(NSString *)filename
-{
-}
-
-- (void)uploadDropbox:(NSString *)filename
 {
 }
 
