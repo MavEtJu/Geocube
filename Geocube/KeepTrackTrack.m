@@ -329,17 +329,35 @@ enum {
 - (void)trackExport
 {
     NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+    dbTrackElement *te = [tes objectAtIndex:0];
+    __block BOOL inSegment = NO;
+
     NSMutableString *o = [NSMutableString stringWithString:@""];
-    [o appendString:@"<?xml version=\"1.0\"?>\n"];
+    [o appendString:@"<?xml version=\"1.1\" encoding=\"UTF-8\" ?>\n"];
     [o appendString:@"<gpx version=\"1.1\" creator=\"Geocube\">\n"];
+    [o appendString:@"\t<metadata>\n"];
+    [o appendFormat:@"\t\t<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
+    [o appendString:@"\t</metadata>\n"];
+    [o appendString:@"\t<trk>\n"];
+    [o appendFormat:@"\t\t<name>%@</name>\n", track.name];
 
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
-        [o appendFormat:@"<wpt lat=\"%f\" lon=\"%f\">\n", te.lat, te.lon];
-        [o appendFormat:@"<geoidheight>%ld</geoidheight>\n", (long)te.height];
-        [o appendFormat:@"<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
-        [o appendString:@"</wpt>\n"];
+        if (te.restart == YES) {
+            if (inSegment == NO) {
+                [o appendString:@"\t\t<trkseg>\n"];
+                inSegment = YES;
+            } else {
+                [o appendString:@"\t\t</trkseg><trkseg>\n"];
+            }
+        }
+        [o appendFormat:@"\t\t\t<trkpt lat=\"%f\" lon=\"%f\">\n", te.lat, te.lon];
+        [o appendFormat:@"\t\t\t\t<ele>%ld</ele>\n", (long)te.height];
+        [o appendFormat:@"\t\t\t\t<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
+        [o appendString:@"\t\t\t</trkpt>\n"];
     }];
 
+    [o appendString:@"\t\t</trkseg>\n"];
+    [o appendString:@"\t</trk>\n"];
     [o appendString:@"</gpx>\n"];
 
     NSString *filename = [track.name stringByReplacingOccurrencesOfString:@" " withString:@"_"];
@@ -349,7 +367,7 @@ enum {
     NSString *fullname = [NSString stringWithFormat:@"%@/export-%@.gpx", [MyTools FilesDir], filename];
     NSError *error = nil;
     [o writeToFile:fullname atomically:NO encoding:NSUTF8StringEncoding error:&error];
-    NSLog(@"Track written to %@, error %@", filename, error);
+    NSLog(@"Track written to %@, error %@", fullname, error);
 
     [MyTools messageBox:self header:@"Export complete" text:[NSString stringWithFormat:@"Exported %@. You can find them in the Files menu.", filename]];
 }
