@@ -250,6 +250,19 @@
 		E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */; };
 		E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */; };
 		E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144001C7D832200940820 /* GC - logo - 640x960.png */; };
+		E881440A1C7DB8CA00940820 /* GC - logo - 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */; };
+		E881440B1C7DB8CA00940820 /* GC - logo - 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */; };
+		E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */; };
+		E881440D1C7DB8CA00940820 /* GC - logo - 144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */; };
+		E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */; };
+		E881440F1C7DB8CA00940820 /* GC - logo - 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */; };
+		E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */; };
+		E88144131C7DB96000940820 /* GC - logo - 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144111C7DB96000940820 /* GC - logo - 40x40.png */; };
+		E88144141C7DB96000940820 /* GC - logo - 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144121C7DB96000940820 /* GC - logo - 80x80.png */; };
+		E88144181C7DBA5800940820 /* GC - logo - 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144151C7DBA5800940820 /* GC - logo - 29x29.png */; };
+		E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144161C7DBA5800940820 /* GC - logo - 58x58.png */; };
+		E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144171C7DBA5800940820 /* GC - logo - 87x87.png */; };
+		E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -741,6 +754,19 @@
 		E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellKeyValue.m; sourceTree = "<group>"; };
 		E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x1136.png"; path = "icons/GC - logo - 640x1136.png"; sourceTree = "<group>"; };
 		E88144001C7D832200940820 /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "icons/GC - logo - 640x960.png"; sourceTree = "<group>"; };
+		E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 76x76.png"; path = "icons/GC - logo - 76x76.png"; sourceTree = "<group>"; };
+		E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 120x120.png"; path = "icons/GC - logo - 120x120.png"; sourceTree = "<group>"; };
+		E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 135x135.png"; path = "icons/GC - logo - 135x135.png"; sourceTree = "<group>"; };
+		E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 144x144.png"; path = "icons/GC - logo - 144x144.png"; sourceTree = "<group>"; };
+		E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 152x152.png"; path = "icons/GC - logo - 152x152.png"; sourceTree = "<group>"; };
+		E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 180x180.png"; path = "icons/GC - logo - 180x180.png"; sourceTree = "<group>"; };
+		E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "icons/GC - logo - 512x512.png"; sourceTree = "<group>"; };
+		E88144111C7DB96000940820 /* GC - logo - 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 40x40.png"; path = "icons/GC - logo - 40x40.png"; sourceTree = "<group>"; };
+		E88144121C7DB96000940820 /* GC - logo - 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 80x80.png"; path = "icons/GC - logo - 80x80.png"; sourceTree = "<group>"; };
+		E88144151C7DBA5800940820 /* GC - logo - 29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 29x29.png"; path = "icons/GC - logo - 29x29.png"; sourceTree = "<group>"; };
+		E88144161C7DBA5800940820 /* GC - logo - 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 58x58.png"; path = "icons/GC - logo - 58x58.png"; sourceTree = "<group>"; };
+		E88144171C7DBA5800940820 /* GC - logo - 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 87x87.png"; path = "icons/GC - logo - 87x87.png"; sourceTree = "<group>"; };
+		E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 167x167.png"; path = "icons/GC - logo - 167x167.png"; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -1151,6 +1177,19 @@
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				E88144151C7DBA5800940820 /* GC - logo - 29x29.png */,
+				E88144161C7DBA5800940820 /* GC - logo - 58x58.png */,
+				E88144171C7DBA5800940820 /* GC - logo - 87x87.png */,
+				E88144111C7DB96000940820 /* GC - logo - 40x40.png */,
+				E88144121C7DB96000940820 /* GC - logo - 80x80.png */,
+				E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */,
+				E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */,
+				E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */,
+				E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */,
+				E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */,
+				E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */,
+				E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */,
+				E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */,
 				E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */,
 				E88144001C7D832200940820 /* GC - logo - 640x960.png */,
 			);
@@ -2191,6 +2230,7 @@
 				E80731FF1B5F84B4007FDC29 /* attributes - 24.png in Resources */,
 				E80732051B5F84B4007FDC29 /* attributes - 30.png in Resources */,
 				E80732121B5F84B4007FDC29 /* attributes - 43.png in Resources */,
+				E88144131C7DB96000940820 /* GC - logo - 40x40.png in Resources */,
 				E80732101B5F84B4007FDC29 /* attributes - 41.png in Resources */,
 				E8182F451C0C1FFE004AC534 /* menu icon - follow me.png in Resources */,
 				E80731F31B5F84B4007FDC29 /* attributes - 11.png in Resources */,
@@ -2229,6 +2269,7 @@
 				E80732761B5F852A007FDC29 /* waypoint - flag - 30x30.png in Resources */,
 				E807326C1B5F850C007FDC29 /* cache - webcam - 30x30.png in Resources */,
 				E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */,
+				E881440D1C7DB8CA00940820 /* GC - logo - 144x144.png in Resources */,
 				E80732031B5F84B4007FDC29 /* attributes - 28.png in Resources */,
 				E80732091B5F84B4007FDC29 /* attributes - 34.png in Resources */,
 				E80732061B5F84B4007FDC29 /* attributes - 31.png in Resources */,
@@ -2247,9 +2288,12 @@
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
 				E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */,
 				E807327A1B5F852A007FDC29 /* waypoint - trailhead - 30x30.png in Resources */,
+				E881440B1C7DB8CA00940820 /* GC - logo - 120x120.png in Resources */,
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
 				E847A5861B9FDA1100BEFE83 /* type - tick found - 24x21.png in Resources */,
 				E80732181B5F84B4007FDC29 /* attributes - 49.png in Resources */,
+				E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */,
+				E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */,
 				E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */,
 				E80732071B5F84B4007FDC29 /* attributes - 32.png in Resources */,
 				E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */,
@@ -2283,6 +2327,7 @@
 				E807321E1B5F84B4007FDC29 /* attributes - 55.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E80732651B5F850C007FDC29 /* cache - mega - 30x30.png in Resources */,
+				E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */,
 				E80732281B5F84B4007FDC29 /* attributes - 65.png in Resources */,
 				E80732771B5F852A007FDC29 /* waypoint - multi - 30x30.png in Resources */,
 				E8611AA01B8B215E00B9D7C3 /* compass - red arrow on black.png in Resources */,
@@ -2296,12 +2341,15 @@
 				E8E8D01D1B66E75900CC741A /* fillrange.png in Resources */,
 				E80732421B5F84E8007FDC29 /* log - found - 30x30.png in Resources */,
 				E80732631B5F850C007FDC29 /* cache - letterbox - 30x30.png in Resources */,
+				E88144181C7DBA5800940820 /* GC - logo - 29x29.png in Resources */,
 				E80732151B5F84B4007FDC29 /* attributes - 46.png in Resources */,
 				E80732AA1B5F857A007FDC29 /* map - tick found - 17x15.png in Resources */,
 				E80732601B5F850C007FDC29 /* cache - event - 30x30.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E80732141B5F84B4007FDC29 /* attributes - 45.png in Resources */,
+				E881440A1C7DB8CA00940820 /* GC - logo - 76x76.png in Resources */,
 				E80732481B5F84E8007FDC29 /* log - reviewernote - 30x30.png in Resources */,
+				E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */,
 				E80732231B5F84B4007FDC29 /* attributes - 60.png in Resources */,
 				E80732861B5F8561007FDC29 /* container - other - 70x20.png in Resources */,
 				E80731FC1B5F84B4007FDC29 /* attributes - 21.png in Resources */,
@@ -2310,11 +2358,14 @@
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,
+				E88144141C7DB96000940820 /* GC - logo - 80x80.png in Resources */,
 				E847A5951BA0DA1300BEFE83 /* map - highlight - 21x21.png in Resources */,
 				E80732211B5F84B4007FDC29 /* attributes - 58.png in Resources */,
 				E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */,
 				E807322B1B5F84B4007FDC29 /* attributes - unknown.png in Resources */,
+				E881440F1C7DB8CA00940820 /* GC - logo - 180x180.png in Resources */,
 				E80731F01B5F84B4007FDC29 /* attributes - 08.png in Resources */,
+				E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */,
 				E807323F1B5F84E8007FDC29 /* log - didnotfind - 30x30.png in Resources */,
 				E80731FB1B5F84B4007FDC29 /* attributes - 20.png in Resources */,
 				E80732891B5F8561007FDC29 /* container - unknown - 70x20.png in Resources */,
@@ -2350,6 +2401,7 @@
 				E80731FA1B5F84B4007FDC29 /* attributes - 19.png in Resources */,
 				E80732831B5F8561007FDC29 /* container - large - 70x20.png in Resources */,
 				E80732001B5F84B4007FDC29 /* attributes - 25.png in Resources */,
+				E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E895802B1C69BD1D00282177 /* image - no image - 32x32.png in Resources */,
 				E80732611B5F850C007FDC29 /* cache - giga - 30x30.png in Resources */,
