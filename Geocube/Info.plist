@@ -28,27 +28,26 @@
 				<string>com.pkware.zip-archive</string>
 			</array>
 		</dict>
-              <dict>
-                        <key>CFBundleTypeName</key>
-                        <string>GPX File</string>
-                        <key>LSHandlerRank</key>
-                        <string>Alternate</string>
-                        <key>LSItemContentTypes</key>
-                        <array>
-                                <string>org.mavetju.geocube.gpx</string>
-                        </array>
-                </dict>
-              <dict>
-                        <key>CFBundleTypeName</key>
-                        <string>Geocube data file</string>
-                        <key>LSHandlerRank</key>
-                        <string>Alternate</string>
-                        <key>LSItemContentTypes</key>
-                        <array>
-                                <string>org.mavetju.geocube.file</string>
-                        </array>
-                </dict>
-
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>GPX File</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.mavetju.geocube.gpx</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Geocube data file</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.mavetju.geocube.file</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -114,45 +113,43 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-       <key>UTImportedTypeDeclarations</key>
-        <array>
-                <dict>
-                        <key>UTTypeConformsTo</key>
-                        <array>
-                                <string>public.data</string>
-                        </array>
-                        <key>UTTypeDescription</key>
-                        <string>Geocube File</string>
-                        <key>UTTypeIdentifier</key>
-                        <string>org.mavetju.geocube.file</string>
-                        <key>UTTypeTagSpecification</key>
-                        <dict>
-                                <key>public.filename-extension</key>
-                                <string>geocube</string>
-                                <key>public.mime-type</key>
-                                <string>application/octet-stream</string>
-                        </dict>
-                </dict>
-                <dict>
-                        <key>UTTypeConformsTo</key>
-                        <array>
-                                <string>public.data</string>
-                                <string>public.xml</string>
-                        </array>
-                        <key>UTTypeDescription</key>
-                        <string>GPX File</string>
-                        <key>UTTypeIdentifier</key>
-                        <string>org.mavetju.geocube.gpx</string>
-                        <key>UTTypeTagSpecification</key>
-                        <dict>
-                                <key>public.filename-extension</key>
-                                <array>
-                                        <string>gpx</string>
-                                </array>
-                                <key>public.mime-type</key>
-                                <string>application/octet-stream</string>
-                        </dict>
-                </dict>
-        </array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Geocube File</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.mavetju.geocube.file</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>geocube</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>GPX File</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.mavetju.geocube.gpx</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>gpx</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/octet-stream</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
