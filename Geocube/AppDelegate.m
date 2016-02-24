@@ -89,6 +89,9 @@
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
+    // Import files from iTunes
+    [self itunesImport];
+
     // Initialize the tabbar controllers
 
     NSMutableArray *controllers;
@@ -441,6 +444,30 @@
     currentTabBar = idx;
     self.window.rootViewController = [tabBars objectAtIndex:idx];
     [self.window makeKeyAndVisible];
+}
+
+- (void)itunesImport
+{
+    NSArray *files = [fm contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
+
+    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+        /*
+         * Do not move directories.
+         * Do not move database.
+         */
+        NSString *fromFile = [NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], file];
+        NSDictionary *a = [fm attributesOfItemAtPath:fromFile error:nil];
+        if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+            return;
+        if ([file isEqualToString:@"database.db"] == YES)
+            return;
+
+        // Move this file into the files directory
+        NSString *toFile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file];
+        [fm removeItemAtPath:toFile error:nil];
+        [fm moveItemAtPath:fromFile toPath:toFile error:nil];
+        NSLog(@"Importing from iTunes: %@", file);
+    }];
 }
 
 
