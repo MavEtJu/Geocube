@@ -470,6 +470,21 @@
     }];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSLog(@"import");
+
+    NSArray *as = [url pathComponents];
+    NSString *file = [as objectAtIndex:[as count] - 1];
+
+    NSString *fromFile = [NSString stringWithFormat:@"%@/Inbox/%@", [MyTools DocumentRoot], file];
+    NSString *toFile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file];
+    [fm removeItemAtPath:toFile error:nil];
+    [fm moveItemAtPath:fromFile toPath:toFile error:nil];
+    NSLog(@"Importing from AirDrop or attachment: %@", file);
+
+    return YES;
+}
 
 - (void)doThings:(id)s {}
 
