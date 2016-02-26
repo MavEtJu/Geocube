@@ -486,8 +486,6 @@
     return YES;
 }
 
-- (void)doThings:(id)s {}
-
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     NSLog(@"%@ - %@ - memory warning", [application class], [self class]);
