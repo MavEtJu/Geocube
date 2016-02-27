@@ -263,6 +263,7 @@
 		E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144161C7DBA5800940820 /* GC - logo - 58x58.png */; };
 		E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144171C7DBA5800940820 /* GC - logo - 87x87.png */; };
 		E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */; };
+		E881441F1C82663D00940820 /* DNFListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E881441E1C82663D00940820 /* DNFListViewController.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -767,6 +768,8 @@
 		E88144161C7DBA5800940820 /* GC - logo - 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 58x58.png"; path = "icons/GC - logo - 58x58.png"; sourceTree = "<group>"; };
 		E88144171C7DBA5800940820 /* GC - logo - 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 87x87.png"; path = "icons/GC - logo - 87x87.png"; sourceTree = "<group>"; };
 		E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 167x167.png"; path = "icons/GC - logo - 167x167.png"; sourceTree = "<group>"; };
+		E881441D1C82663D00940820 /* DNFListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNFListViewController.h; sourceTree = "<group>"; };
+		E881441E1C82663D00940820 /* DNFListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNFListViewController.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -1162,6 +1165,8 @@
 			children = (
 				E833B7301C522EA600B9FB45 /* ListViewController.h */,
 				E833B7311C522EA600B9FB45 /* ListViewController.m */,
+				E881441D1C82663D00940820 /* DNFListViewController.h */,
+				E881441E1C82663D00940820 /* DNFListViewController.m */,
 				E84D6FC71C5236930000A6A0 /* FoundListViewController.h */,
 				E84D6FC81C5236930000A6A0 /* FoundListViewController.m */,
 				E84D6FC41C52367B0000A6A0 /* HighlightListViewController.h */,
@@ -2653,6 +2658,7 @@
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8C5BB701C719EB1006222D5 /* WaypointDescriptionViewController.m in Sources */,
 				E89580251C66E44900282177 /* Reachability.m in Sources */,
+				E881441F1C82663D00940820 /* DNFListViewController.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,

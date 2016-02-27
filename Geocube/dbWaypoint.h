@@ -33,6 +33,7 @@ enum {
     FLAGS_IGNORED,
     FLAGS_MARKEDFOUND,
     FLAGS_INPROGRESS,
+    FLAGS_MARKEDDNF,
     FLAGS_MAX,
 };
 
@@ -60,6 +61,7 @@ enum {
 @property (nonatomic) BOOL flag_ignore;
 @property (nonatomic) BOOL flag_markedfound;
 @property (nonatomic) BOOL flag_inprogress;
+@property (nonatomic) BOOL flag_dnf;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
@@ -117,6 +119,7 @@ enum {
 - (void)dbUpdateIgnore;
 - (void)dbUpdateMarkedFound;
 - (void)dbUpdateInProgress;
+- (void)dbUpdateMarkedDNF;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;

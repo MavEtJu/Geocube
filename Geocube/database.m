@@ -270,6 +270,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 13
+    a = @[
+    @"alter table waypoints add column dnfed bool",
+    @"update waypoints set dnfed = 0",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end

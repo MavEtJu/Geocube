@@ -68,6 +68,7 @@ enum {
     menuIgnore,
     menuMarkFound,
     menuInProgress,
+    menuMarkDNF,
     menuAddToGroup,
     menuViewRaw,
     menuMax
@@ -82,6 +83,7 @@ enum {
     [lmi addItem:menuHighlight label:@"Highlight"];
     [lmi addItem:menuMarkFound label:@"Mark Found"];
     [lmi addItem:menuInProgress label:@"In Progress"];
+    [lmi addItem:menuMarkDNF label:@"Mark DNF"];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuIgnore label:@"Ignore"];
@@ -586,6 +588,11 @@ enum {
         case menuMarkFound:
             waypoint.flag_markedfound = !waypoint.flag_markedfound;
             [waypoint dbUpdateMarkedFound];
+            [self.tableView reloadData];
+            return;
+        case menuMarkDNF:
+            waypoint.flag_dnf = !waypoint.flag_dnf;
+            [waypoint dbUpdateMarkedDNF];
             [self.tableView reloadData];
             return;
     }

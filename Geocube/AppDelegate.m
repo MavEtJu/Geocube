@@ -380,6 +380,12 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
+                vc = [[DNFListViewController alloc] init];
+                vc.title = @"DNF";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
                 vc = [[InProgressListViewController alloc] init];
                 vc.title = @"In Progress";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];

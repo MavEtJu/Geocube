@@ -9,7 +9,7 @@ create table config (
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.txt");
 insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.txt");
-insert into config(key, value) values("version", "12");
+insert into config(key, value) values("version", "13");
 
 create table filters (
     id integer primary key,
@@ -67,6 +67,7 @@ create table waypoints (
     ignore bool,
     markedfound bool,
     inprogress bool,
+    dnfed bool,
 
     gs_enabled bool,
     gs_archived bool,

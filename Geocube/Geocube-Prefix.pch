@@ -222,6 +222,7 @@
 #import "MapViewController.h"
 
 #import "ListViewController.h"
+#import "DNFListViewController.h"
 #import "FoundListViewController.h"
 #import "HighlightListViewController.h"
 #import "IgnoredListViewController.h"

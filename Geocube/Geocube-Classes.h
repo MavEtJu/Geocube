@@ -29,6 +29,7 @@
 @class BrowserUserViewController;
 @class CompassViewController;
 @class Coordinates;
+@class DNFListViewController;
 @class DatabaseCache;
 @class FilesDropboxViewController;
 @class FilesViewController;
