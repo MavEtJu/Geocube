@@ -43,13 +43,21 @@
 
 @synthesize delegate;
 
+enum {
+    menuUploadAirdrop,
+    menuUploadICloud,
+    menuMax,
+};
+
 - (instancetype)init
 {
     self = [super init];
 
     img = nil;
     hasCloseButton = YES;
-    lmi = nil;
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuUploadAirdrop label:@"Airdrop"];
+    [lmi addItem:menuUploadICloud label:@"iCloud"];
     image = nil;
     delegate = nil;
 
@@ -278,6 +286,48 @@
 
     image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
     imgview.image = image;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+{
+    // Import a photo
+    switch (index) {
+        case menuUploadAirdrop:
+            [self uploadAirdrop];
+            return;
+        case menuUploadICloud:
+            [self uploadICloud];
+            return;
+    }
+
+    [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)uploadAirdrop
+{
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
+    NSArray *objectsToShare = @[url];
+
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+
+    // Exclude all activities except AirDrop.
+    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                    UIActivityTypePostToWeibo,
+                                    UIActivityTypeMessage, UIActivityTypeMail,
+                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAssignToContact,
+                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    controller.excludedActivityTypes = excludedActivities;
+
+    // Present the controller
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)uploadICloud
+{
 }
 
 @end
