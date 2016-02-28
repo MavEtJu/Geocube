@@ -28,6 +28,8 @@
     NSMutableArray *filesDates;
     NSInteger filesCount;
     NSArray *fileImports;
+
+    NSInteger currentICloud;
 }
 
 @end
@@ -41,6 +43,13 @@ enum {
     menuMax
 };
 
+enum {
+    iCloudNone = 0,
+    iCloudUpload,
+    iCloudDownload,
+    iCloudMax,
+};
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +59,8 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
+
+    currentICloud = iCloudNone;
 }
 
 - (void)refreshFileData
@@ -263,10 +274,6 @@ enum {
         [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (void)uploadICloud:(NSString *)filename
-{
-}
-
 - (void)fileDelete:(NSString *)filename
 {
     NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
@@ -409,14 +416,21 @@ enum {
 
 #pragma mark - iCloud related functions
 
+- (void)uploadICloud:(NSString *)filename
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], filename]];
+    UIDocumentMenuViewController *exportICloudMenu = [[UIDocumentMenuViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
+    exportICloudMenu.delegate = self;
+    currentICloud = iCloudUpload;
+    [ALERT_VC_RVC(self) presentViewController:exportICloudMenu animated:YES completion:nil];
+}
+
 - (void)showICloud
 {
-    UIDocumentMenuViewController *importMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
-
-    importMenu.delegate = self;
-
-//    [self.navigationController pushViewController:importMenu animated:YES];
-  [self presentViewController:importMenu animated:YES completion:nil];
+    UIDocumentMenuViewController *importICloudMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
+    importICloudMenu.delegate = self;
+    currentICloud = iCloudDownload;
+    [ALERT_VC_RVC(self) presentViewController:importICloudMenu animated:YES completion:nil];
 }
 
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
@@ -428,41 +442,34 @@ enum {
 - (void)documentMenuWasCancelled:(UIDocumentMenuViewController *)documentMenu
 {
     NSLog(@"Foo");
+    currentICloud = iCloudNone;
 }
 
 - (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
 {
-    NSError *error = nil;
-    UIAlertController *alert;
-    NSURL *destinationName = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], [url lastPathComponent]]];
+    if (currentICloud == iCloudDownload) {
+        NSError *error = nil;
+        NSURL *destinationName = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], [url lastPathComponent]]];
 
-    /* Remove this file is it already exists. Ignore the error. */
-    [fm removeItemAtURL:destinationName error:&error];
-    error = nil;
+        /* Remove this file is it already exists. Ignore the error. */
+        [fm removeItemAtURL:destinationName error:&error];
+        error = nil;
 
-    if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
-        alert = [UIAlertController
-                 alertControllerWithTitle:@"Download complete"
-                 message:@"You can find the saved file in the Files menu."
-                 preferredStyle:UIAlertControllerStyleAlert
-                 ];
-        [self refreshFileData];
-        [self.tableView reloadData];
-    } else {
-        alert = [UIAlertController
-                 alertControllerWithTitle:@"Download failed"
-                 message:[NSString stringWithFormat:@"Error message: %@", error]
-                 preferredStyle:UIAlertControllerStyleAlert
-                 ];
+        if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
+            [MyTools messageBox:self header:@"Download complete" text:@"You can find the saved file in the Files menu"];
+            [self refreshFileData];
+            [self.tableView reloadData];
+        } else {
+            [MyTools messageBox:self header:@"Download failed" text:[NSString stringWithFormat:@"Error message: %@", error]];
+        }
+        currentICloud = iCloudNone;
     }
 
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:nil];
+    if (currentICloud == iCloudUpload) {
+        [MyTools messageBox:self header:@"Upload complete" text:@"Your other iCloud devices should be seeing this file now"];
+        currentICloud = iCloudNone;
+    }
 
-    [alert addAction:ok];
-    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Local menu related functions
