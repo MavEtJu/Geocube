@@ -73,6 +73,7 @@ enum {
 
 + (void)playSound:(NSInteger)reason;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
++ (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error;
 
 @end
 

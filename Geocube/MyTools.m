@@ -522,6 +522,24 @@
     [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
 }
 
++ (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:header
+                               message:[NSString stringWithFormat:@"%@\nError: %@", text, error]
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *close = [UIAlertAction
+                            actionWithTitle:@"Close"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction *action) {
+                                [alert dismissViewControllerAnimated:YES completion:nil];
+                            }];
+
+    [alert addAction:close];
+    [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+}
+
 
 // Obtained from https://forums.developer.apple.com/thread/11519
 + (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
