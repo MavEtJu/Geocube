@@ -264,6 +264,7 @@
 		E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144171C7DBA5800940820 /* GC - logo - 87x87.png */; };
 		E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */; };
 		E881441F1C82663D00940820 /* DNFListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E881441E1C82663D00940820 /* DNFListViewController.m */; };
+		E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E88144211C840C5400940820 /* IOSFileTransfers.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
@@ -770,6 +771,8 @@
 		E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 167x167.png"; path = "icons/GC - logo - 167x167.png"; sourceTree = "<group>"; };
 		E881441D1C82663D00940820 /* DNFListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNFListViewController.h; sourceTree = "<group>"; };
 		E881441E1C82663D00940820 /* DNFListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNFListViewController.m; sourceTree = "<group>"; };
+		E88144201C840C5400940820 /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSFileTransfers.h; sourceTree = "<group>"; };
+		E88144211C840C5400940820 /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSFileTransfers.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
 		E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - archived - 15x15.png"; path = "images/map - archived - 15x15.png"; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* MyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConfig.h; sourceTree = "<group>"; };
@@ -1992,6 +1995,8 @@
 		E8F570A91B3FE52C003F020C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E88144201C840C5400940820 /* IOSFileTransfers.h */,
+				E88144211C840C5400940820 /* IOSFileTransfers.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
 				E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */,
@@ -2627,6 +2632,7 @@
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
+				E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,

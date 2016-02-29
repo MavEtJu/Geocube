@@ -19,6 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilesViewController : GCTableViewController <IOSFileTransfersDelegate>
+@protocol IOSFileTransfersDelegate
+
+- (void)refreshFilelist;
+
+@end
+
+@interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
+{
+    id delegate;
+}
+
+@property (nonatomic, retain)id delegate;
+
+- (void)cleanupITunes;
+- (void)uploadAirdrop:(NSString *)path vc:(UIViewController *)vc;
+- (void)uploadICloud:(NSString *)path vc:(UIViewController *)vc;
+- (void)downloadICloud:(UIViewController *)vc;
+- (void)importAirdropAttachment:(NSURL *)url;
 
 @end

@@ -28,8 +28,6 @@
     NSMutableArray *filesDates;
     NSInteger filesCount;
     NSArray *fileImports;
-
-    NSInteger currentICloud;
 }
 
 @end
@@ -43,13 +41,6 @@ enum {
     menuMax
 };
 
-enum {
-    iCloudNone = 0,
-    iCloudUpload,
-    iCloudDownload,
-    iCloudMax,
-};
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,10 +48,11 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
     [self refreshFileData];
 
+    // Make sure we get told when a new file is here
+    IOSFTM.delegate = self;
+
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
-
-    currentICloud = iCloudNone;
 }
 
 - (void)refreshFileData
@@ -92,6 +84,12 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refreshFileData];
+    [self.tableView reloadData];
+}
+
+- (void)refreshFilelist
+{
     [self refreshFileData];
     [self.tableView reloadData];
 }
@@ -255,23 +253,12 @@ enum {
 
 - (void)uploadAirdrop:(NSString *)filename
 {
-        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
-        NSArray *objectsToShare = @[url];
+    [IOSFTM uploadAirdrop:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] vc:self];
+}
 
-        UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-
-        // Exclude all activities except AirDrop.
-        NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
-                                        UIActivityTypePostToWeibo,
-                                        UIActivityTypeMessage, UIActivityTypeMail,
-                                        UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                                        UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
-                                        UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                                        UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
-        controller.excludedActivityTypes = excludedActivities;
-
-        // Present the controller
-        [self presentViewController:controller animated:YES completion:nil];
+- (void)uploadICloud:(NSString *)filename
+{
+    [IOSFTM uploadICloud:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] vc:self];
 }
 
 - (void)fileDelete:(NSString *)filename
@@ -414,71 +401,13 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - iCloud related functions
-
-- (void)uploadICloud:(NSString *)filename
-{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], filename]];
-    UIDocumentMenuViewController *exportICloudMenu = [[UIDocumentMenuViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
-    exportICloudMenu.delegate = self;
-    currentICloud = iCloudUpload;
-    [ALERT_VC_RVC(self) presentViewController:exportICloudMenu animated:YES completion:nil];
-}
-
-- (void)showICloud
-{
-    UIDocumentMenuViewController *importICloudMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
-    importICloudMenu.delegate = self;
-    currentICloud = iCloudDownload;
-    [ALERT_VC_RVC(self) presentViewController:importICloudMenu animated:YES completion:nil];
-}
-
-- (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
-{
-    documentPicker.delegate = self;
-    [ALERT_VC_RVC(self) presentViewController:documentPicker animated:YES completion:nil];
-}
-
-- (void)documentMenuWasCancelled:(UIDocumentMenuViewController *)documentMenu
-{
-    NSLog(@"Foo");
-    currentICloud = iCloudNone;
-}
-
-- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
-{
-    if (currentICloud == iCloudDownload) {
-        NSError *error = nil;
-        NSURL *destinationName = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@/%@", [MyTools FilesDir], [url lastPathComponent]]];
-
-        /* Remove this file is it already exists. Ignore the error. */
-        [fm removeItemAtURL:destinationName error:&error];
-        error = nil;
-
-        if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
-            [MyTools messageBox:self header:@"Download complete" text:@"You can find the saved file in the Files menu"];
-            [self refreshFileData];
-            [self.tableView reloadData];
-        } else {
-            [MyTools messageBox:self header:@"Download failed" text:[NSString stringWithFormat:@"Error message: %@", error]];
-        }
-        currentICloud = iCloudNone;
-    }
-
-    if (currentICloud == iCloudUpload) {
-        [MyTools messageBox:self header:@"Upload complete" text:@"Your other iCloud devices should be seeing this file now"];
-        currentICloud = iCloudNone;
-    }
-
-}
-
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
         case menuICloud:
-            [self showICloud];
+            [IOSFTM downloadICloud:self];
             return;
     }
 }

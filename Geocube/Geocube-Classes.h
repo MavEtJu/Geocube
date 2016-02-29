@@ -75,6 +75,7 @@
 @class HelpDatabaseViewController;
 @class HelpImagesViewController;
 @class HighlightListViewController;
+@class IOSFileTransfers;
 @class IgnoredListViewController;
 @class ImageLibrary;
 @class ImagesDownloadManager;

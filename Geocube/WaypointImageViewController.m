@@ -307,27 +307,14 @@ enum {
 
 - (void)uploadAirdrop
 {
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
-    NSArray *objectsToShare = @[url];
-
-    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-
-    // Exclude all activities except AirDrop.
-    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
-                                    UIActivityTypePostToWeibo,
-                                    UIActivityTypeMessage, UIActivityTypeMail,
-                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                                    UIActivityTypeAssignToContact,
-                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
-    controller.excludedActivityTypes = excludedActivities;
-
-    // Present the controller
-    [self presentViewController:controller animated:YES completion:nil];
+    NSString *filename = [NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile];
+    [IOSFTM uploadAirdrop:filename vc:self];
 }
 
 - (void)uploadICloud
 {
+    NSString *filename = [NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile];
+    [IOSFTM uploadICloud:filename vc:self];
 }
 
 @end

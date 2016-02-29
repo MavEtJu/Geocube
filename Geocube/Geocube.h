@@ -44,6 +44,9 @@ extern LocationManager *LM;
 // File manager
 extern NSFileManager *fm;
 
+// IOS FileTransfer Manager
+extern IOSFileTransfers *IOSFTM;
+
 // Configuration Manager
 extern MyConfig *myConfig;
 

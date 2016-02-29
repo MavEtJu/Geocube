@@ -42,6 +42,9 @@ LocationManager *LM = nil;
 // File manager
 NSFileManager *fm = nil;
 
+// IOS File Transfer Manager
+IOSFileTransfers *IOSFTM;
+
 // Configuration manager
 MyConfig *myConfig = nil;
 

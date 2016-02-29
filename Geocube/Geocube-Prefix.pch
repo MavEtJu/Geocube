@@ -146,6 +146,7 @@
 #import "LiveAPI.h"
 #import "OKAPI.h"
 #import "RemoteAPI.h"
+#import "IOSFileTransfers.h"
 
 #import "SettingsAccountsViewController.h"
 #import "SettingsColoursViewController.h"
