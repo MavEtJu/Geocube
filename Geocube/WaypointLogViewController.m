@@ -370,7 +370,7 @@ enum {
     if (gc_id == -1) {
         [self.navigationController popViewControllerAnimated:YES];
 
-        [MyTools messageBox:self.parentViewController header:@"Submission successful" text:@"However, because of the system used the logs are not directly updated. Select the 'refresh waypoint' options from the menu here to refresh it."];
+        [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"However, because of the system used the logs are not directly updated. Select the 'refresh waypoint' options from the menu here to refresh it."];
 
         return;
     }
@@ -380,16 +380,15 @@ enum {
         dbLog *log = [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
         log.gc_id = gc_id;
         [log dbUpdate];
+
+        [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"This waypoint has been now successfully logged."];
+
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
 
     // Unsuccessful
-    NSMutableString *s = [NSMutableString stringWithFormat:@"Unable to submit the note: %@", waypoint.account.remoteAPI.clientMsg];
-    if (waypoint.account.remoteAPI.clientError != nil)
-        [s appendFormat:@" (%@)", waypoint.account.remoteAPI.clientError];
-
-    [MyTools messageBox:self header:@"Submission failed" text:s];
+    [MyTools messageBox:self header:@"Log failed" text:@"This waypoint has not been submitted yet." error:waypoint.account.lastError];
 }
 
 
