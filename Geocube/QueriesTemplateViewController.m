@@ -82,13 +82,25 @@ NEEDS_OVERLOADING(reloadQueries)
         [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@ List", queryString]];
     }];
 
+    __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol == protocol && a.canDoRemoteStuff == YES) {
-            qs = [a.remoteAPI listQueries];
+        if (a.protocol == protocol) {
             account = a;
+            if (a.canDoRemoteStuff == YES) {
+                qs = [a.remoteAPI listQueries];
+                if (qs == nil)
+                    failure = YES;
+            } else {
+                failure = YES;
+                if (account.lastError == nil)
+                    account.lastError = @"Account is currently not active";
+            }
             *stop = YES;
         }
     }];
+
+    if (failure == YES)
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.lastError];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
@@ -228,8 +240,12 @@ NEEDS_OVERLOADING(reloadQueries)
         group = [dbGroup dbGet:_id];
     }
 
+    __block BOOL failure = NO;
     account.remoteAPI.delegateQueries = self;
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+    if ([account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group] == NO) {
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+        failure = YES;
+    }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
@@ -237,7 +253,8 @@ NEEDS_OVERLOADING(reloadQueries)
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    [MyTools playSound:playSoundImportComplete];
+    if (failure == NO)
+        [MyTools playSound:playSoundImportComplete];
 }
 
 - (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
