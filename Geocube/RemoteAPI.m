@@ -214,6 +214,11 @@
     return [protocol commentSupportsFavouritePoint];
 }
 
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return [protocol waypointSupportsPersonalNotes];
+}
+
 - (NSArray *)logtypes:(NSString *)waypointType
 {
     switch (account.protocol) {
@@ -478,6 +483,18 @@
 
         [dbWaypoint dbUpdateLogStatus];
         [waypointManager needsRefresh];
+        return YES;
+    }
+
+    return NO;
+}
+
+- (BOOL)updatePersonalNote:(dbPersonalNote *)note
+{
+    if (account.protocol == ProtocolLiveAPI) {
+        NSDictionary *json = [gs UpdateCacheNote:note.wp_name text:note.note];
+        if (json == nil)
+            return NO;
         return YES;
     }
 

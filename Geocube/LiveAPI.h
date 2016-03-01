@@ -39,5 +39,6 @@
 - (NSDictionary *)GetPocketQueryList;
 - (NSDictionary *)GetPocketQueryZippedFile:(NSString *)guid;
 - (NSDictionary *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
+- (NSDictionary *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
 
 @end

@@ -54,6 +54,7 @@
 
 - (instancetype)init:(dbAccount*)account;
 - (BOOL)Authenticate;
+- (BOOL)waypointSupportsPersonalNotes;
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsTrackables;
 - (BOOL)commentSupportsFavouritePoint;
@@ -67,6 +68,8 @@
 
 - (BOOL)updateWaypoint:(dbWaypoint *)waypoint;
 - (BOOL)loadWaypoints:(CLLocationCoordinate2D)center;
+
+- (BOOL)updatePersonalNote:(dbPersonalNote *)note;
 
 - (NSArray *)listQueries;
 - (BOOL)retrieveQuery:(NSString *)_id group:(dbGroup *)group;

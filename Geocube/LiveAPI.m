@@ -68,6 +68,10 @@
 {
     return YES;
 }
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return YES;
+}
 
 - (NSArray *)logtypes:(NSString *)waypointType
 {
@@ -138,6 +142,11 @@
         [remoteAPI.account disableRemoteAccess:@"No values returned."];
         return NO;
     }
+    return [self checkStatusCode:dict];
+}
+
+- (BOOL)checkStatusCode:(NSDictionary *)dict
+{
     NSNumber *n = [dict valueForKey:@"StatusCode"];
     if (n == nil) {
         [remoteAPI.account disableRemoteAccess:@"No status code given."];
@@ -650,6 +659,46 @@
     }
 
     return json;
+}
+
+- (NSDictionary *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text
+{
+    NSLog(@"UpdateCacheNote:%@", wpt_name);
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"UpdateCacheNote" method:@"POST"];
+
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:wpt_name forKey:@"CacheCode"];
+    [_dict setValue:text forKey:@"Note"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatusCode:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    return json;
+
 }
 
 @end

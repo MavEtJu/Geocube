@@ -96,6 +96,10 @@
 {
     return NO;
 }
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return NO;
+}
 
 - (NSArray *)logtypes:(NSString *)waypointType
 {

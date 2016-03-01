@@ -117,6 +117,12 @@ enum {
         note.note = text;
         [note dbUpdate];
     }
+
+    if ([waypoint.account.remoteAPI waypointSupportsPersonalNotes] == YES) {
+        if ([waypoint.account.remoteAPI updatePersonalNote:note] == NO) {
+            [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.lastError];
+        }
+    }
 }
 
 #pragma mark - Local menu related functions
