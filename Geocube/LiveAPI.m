@@ -698,7 +698,6 @@
     }
 
     return json;
-
 }
 
 @end
