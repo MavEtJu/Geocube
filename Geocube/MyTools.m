@@ -519,7 +519,9 @@
                             }];
 
     [alert addAction:close];
-    [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+    }];
 }
 
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error
@@ -537,7 +539,9 @@
                             }];
 
     [alert addAction:close];
-    [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+    }];
 }
 
 
