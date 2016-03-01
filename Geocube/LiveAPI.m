@@ -134,14 +134,19 @@
 - (BOOL)checkStatus:(NSDictionary *)dict
 {
     dict = [dict valueForKey:@"Status"];
-    if (dict == nil)
+    if (dict == nil) {
+        [remoteAPI.account disableRemoteAccess:@"No values returned."];
         return NO;
+    }
     NSNumber *n = [dict valueForKey:@"StatusCode"];
-    if (n == nil)
+    if (n == nil) {
+        [remoteAPI.account disableRemoteAccess:@"No status code given."];
         return NO;
+    }
     if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
-        remoteAPI.account.oauth_token = @"";
-        [remoteAPI.account dbUpdateOAuthToken];
+        [remoteAPI.account disableRemoteAccess:[NSString stringWithFormat:@"StatusCode %@: %@", [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]]];
+        //remoteAPI.account.oauth_token = @"";
+        //[remoteAPI.account dbUpdateOAuthToken];
         return NO;
     }
 

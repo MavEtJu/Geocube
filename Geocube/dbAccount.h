@@ -51,7 +51,8 @@ enum dbAccountProtocol {
 @property (nonatomic, retain) NSString *gca_callback_url;
 @property (nonatomic, retain) NSString *gca_authenticate_url;
 
-@property (nonatomic) BOOL canDoRemoteStuff;
+@property (nonatomic, readonly) BOOL canDoRemoteStuff;
+@property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
 @property (nonatomic) NSInteger idx;
 
@@ -62,5 +63,7 @@ enum dbAccountProtocol {
 - (void)dbUpdateCookieValue;
 + (dbAccount *)dbGetBySite:(NSString *)site;
 - (void)dbClearAuthentication;
+- (void)disableRemoteAccess:(NSString *)reason;
+- (void)enableRemoteAccess;
 
 @end

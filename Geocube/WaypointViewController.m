@@ -704,15 +704,20 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
     }];
-    [waypoint.account.remoteAPI updateWaypoint:waypoint];
+    BOOL success = [waypoint.account.remoteAPI updateWaypoint:waypoint];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
-    waypoint = [dbWaypoint dbGet:waypoint._id];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    [MyTools playSound:playSoundImportComplete];
+
+    if (success == YES) {
+        waypoint = [dbWaypoint dbGet:waypoint._id];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        [MyTools playSound:playSoundImportComplete];
+        return;
+    }
+    [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.lastError];
 }
 
 - (void)menuViewRaw

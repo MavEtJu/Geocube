@@ -331,6 +331,9 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs SearchForGeocaches_waypointname:waypoint.wpt_name];
+        if (json == nil)
+            return NO;
+
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
         [imp parseBefore];
         [imp parseDictionary:json];
@@ -453,6 +456,8 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
+        if (json == nil)
+            return NO;
 
         NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
         if (delegateLoadWaypoints != nil)
@@ -490,6 +495,9 @@
 {
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [gs GetPocketQueryList];
+        if (json == nil)
+            return nil;
+
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
 
         NSArray *pqs = [json objectForKey:@"PocketQueryList"];
@@ -554,6 +562,8 @@
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
             NSDictionary *json = [gs GetFullPocketQueryData:_id startItem:offset numItems:increase];
+            if (json == nil)
+                break;
 
             NSInteger found = 0;
             if (json != nil) {
