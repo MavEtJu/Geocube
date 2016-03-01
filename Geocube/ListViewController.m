@@ -161,12 +161,20 @@ NEEDS_OVERLOADING(clearFlags)
         [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[waypoints count]]];
     }];
 
+    __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]];
         }];
-        [wp.account.remoteAPI updateWaypoint:wp];
+        if ([wp.account.remoteAPI updateWaypoint:wp] == NO) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
+                failure = YES;
+            }];
+            *stop = YES;
+        }
     }];
+
     waypoints = [dbWaypoint dbAllByFlag:flag];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -176,7 +184,9 @@ NEEDS_OVERLOADING(clearFlags)
         [self.tableView reloadData];
     });
     [waypointManager needsRefresh];
-    [MyTools playSound:playSoundImportComplete];
+
+    if (failure == NO)
+        [MyTools playSound:playSoundImportComplete];
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
