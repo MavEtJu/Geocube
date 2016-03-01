@@ -739,7 +739,9 @@ enum {
         account.remoteAPI.delegateLoadWaypoints = self;
         loadWaypointsCountSitename = account.site;
         [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded 0 caches.\nLoaded 0 logs.", loadWaypointsCountSitename]];
-        [account.remoteAPI loadWaypoints:wp.coordinates];
+        if ([account.remoteAPI loadWaypoints:wp.coordinates] == NO) {
+            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
+        }
         account.remoteAPI.delegateLoadWaypoints = nil;
     }];
     [MyTools playSound:playSoundImportComplete];
