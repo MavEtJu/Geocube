@@ -69,6 +69,7 @@ enum {
     menuAutoZoom,
     menuRecenter,
     menuUseGPS,
+    menuRemoveTarget,
     menuMax,
     menuFollowMe,
     menuShowBoth,
@@ -147,6 +148,11 @@ enum {
     }
     [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
     [lmi addItem:menuDirections label:@"Directions"];
+
+    [lmi addItem:menuRemoveTarget label:@"Remove Target"];
+    if (waypointManager.currentWaypoint == nil)
+        [lmi disableItem:menuRemoveTarget];
+
     if (myConfig.dynamicmapEnable == YES) {
         [lmi addItem:menuAutoZoom label:@"No AutoZoom"];
     } else {
@@ -208,6 +214,12 @@ enum {
         [lmi disableItem:menuUseGPS];
     else
         [lmi enableItem:menuUseGPS];
+
+    // Enable Remove Target menu only if there is a target
+    if (waypointManager.currentWaypoint == nil)
+        [lmi disableItem:menuRemoveTarget];
+    else
+        [lmi enableItem:menuRemoveTarget];
 
     [map mapViewWillAppear];
     [map removeMarkers];
@@ -775,6 +787,12 @@ enum {
     [waypointManager needsRefresh];
 }
 
+- (void)menuRemoveTarget
+{
+    [lmi disableItem:menuRemoveTarget];
+    [waypointManager setCurrentWaypoint:nil];
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
@@ -828,6 +846,10 @@ enum {
             return;
         case menuUseGPS:
             [self menuUseGPS];
+            return;
+
+        case menuRemoveTarget:
+            [self menuRemoveTarget];
             return;
     }
 
