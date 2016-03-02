@@ -83,6 +83,11 @@
     }];
 }
 
+- (BOOL)doesNeedARefresh
+{
+    return needsRefresh;
+}
+
 - (void)applyFilters:(CLLocationCoordinate2D)coords
 {
     @synchronized(self) {

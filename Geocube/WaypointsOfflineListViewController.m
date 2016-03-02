@@ -93,10 +93,15 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
-    }];
-    [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
+    if ([waypointManager doesNeedARefresh] == YES) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+        }];
+        [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
+    } else {
+        waypoints = [self resortCachesData:waypoints];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -127,7 +132,22 @@ enum {
         [_wps addObject:wp];
     }];
 
-    waypoints = [_wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
+    waypoints = [self resortCachesData:_wps];
+
+    waypointCount = [waypoints count];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+- (NSArray *)resortCachesData:(NSArray *)wps
+{
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+    }];
+
+    wps = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
         if (obj1.calculatedDistance > obj2.calculatedDistance) {
             return (NSComparisonResult)NSOrderedDescending;
         }
@@ -138,10 +158,7 @@ enum {
         return (NSComparisonResult)NSOrderedSame;
     }];
 
-    waypointCount = [waypoints count];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+    return wps;
 }
 
 /* Delegated from CacheFilterManager */

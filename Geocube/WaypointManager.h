@@ -35,6 +35,7 @@
 - (NSString *)configGet:(NSString *)name;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)needsRefresh;
+- (BOOL)doesNeedARefresh;
 - (void)setCurrentWaypoint:(dbWaypoint *)wp;
 - (void)startDelegation:(id)_delegate;
 - (void)stopDelegation:(id)_delegate;
