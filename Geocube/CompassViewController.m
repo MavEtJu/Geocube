@@ -392,7 +392,7 @@
     // Update compass type
     switch (myConfig.compassType) {
         case COMPASS_REDONBLUECOMPASS:
-            compassImage  = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
+            compassImage = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
             compassIV.image = compassImage;
             lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlueArrow];
             lineIV.image = lineImage;

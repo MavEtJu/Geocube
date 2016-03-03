@@ -661,7 +661,7 @@ enum {
 
             //create MKMapItem out of coordinates
             MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
-            MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+            MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
             if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
                 [destination openInMapsWithLaunchOptions:nil];
             return;
@@ -672,7 +672,7 @@ enum {
 
             //create MKMapItem out of coordinates
             MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
-            MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+            MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
             if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
                 [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
         }

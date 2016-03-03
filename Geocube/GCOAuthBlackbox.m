@@ -433,7 +433,7 @@
     NSString *key = sk;
     NSString *data = pre;
 
-    const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cKey = [key cStringUsingEncoding:NSASCIIStringEncoding];
     const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
 
     char cHMAC[CC_SHA1_DIGEST_LENGTH];
