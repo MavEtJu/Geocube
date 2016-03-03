@@ -277,6 +277,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 14
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.geocube' where key = 'url_notices'",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end
