@@ -21,6 +21,102 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface ImportGeocube ()
+{
+
+}
+
+@end
+
+@implementation ImportGeocube
+
++ (BOOL)parse:(NSData *)data
+{
+    ImportGeocube *ig = [[ImportGeocube alloc] init];
+    [ig parse:data];
+
+    return YES;
+}
+
+- (BOOL)parse:(NSData *)XMLdata
+{
+    NSError *error;
+
+    NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:XMLdata error:&error];
+    if (xmlDictionary == nil)
+        return NO;
+
+    if ([xmlDictionary objectForKey:@"notices"] != nil)
+        return [self parseNotices:[xmlDictionary objectForKey:@"notices"]];
+
+    if ([xmlDictionary objectForKey:@"sites"] != nil)
+        return [self parseSites:xmlDictionary];
+
+    return NO;
+}
+
+- (BOOL)parseNotices:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_NOTICES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_NOTICES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *notices = [dict objectForKey:@"notice"];
+    [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *geocube_id = [notice objectForKey:@"id"];
+
+        NSString *note = [[notice objectForKey:@"note"] objectForKey:@"text"];
+        note = [note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        NSString *sender = [[notice objectForKey:@"sender"] objectForKey:@"text"];
+        sender = [sender stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        NSString *date = [[notice objectForKey:@"date"] objectForKey:@"text"];
+        date = [date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        dbNotice *n = [dbNotice dbGetByGCId:[geocube_id integerValue]];
+        if (n == nil) {
+            n = [[dbNotice alloc] init];
+            n.geocube_id = [geocube_id integerValue];;
+            n.seen = NO;
+            n.sender = sender;
+            n.date = date;
+            n.note = note;
+            [n dbCreate];
+        } else {
+            n.sender = sender;
+            n.date = date;
+            n.note = note;
+            [n dbUpdate];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseSites:(NSDictionary *)sites
+{
+    return NO;
+}
+
+
+@end
+
+#ifdef NOTDEF
+#import "Geocube-Prefix.pch"
+
 @interface ImportSites ()
 {
     NSString *version;
@@ -254,3 +350,5 @@ bye:
 }
 
 @end
+
+#endif

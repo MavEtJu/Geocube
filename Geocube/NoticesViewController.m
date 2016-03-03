@@ -175,11 +175,12 @@ enum {
     NSError *error = nil;
     NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
-    if (error == nil && response.statusCode == 200) {
+    if (data != nil && error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
-        [ImportNotices parse:data];
-
-        [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]];
+        if ([ImportGeocube parse:data] == YES)
+            [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]];
+        else
+            [MyTools messageBox:self header:@"Notices download" text:@"There was a failure in parsing the downloaded notices file"];
 
         notices = [dbNotice dbAll];
         [self.tableView reloadData];

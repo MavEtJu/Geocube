@@ -244,7 +244,7 @@ enum {
 
     if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
-        [ImportSites parse:data];
+        [ImportGeocube parse:data];
 
         [MyTools messageBox:self header:@"Site information download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]];
 

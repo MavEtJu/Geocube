@@ -54,6 +54,7 @@
 #import "Reachability.h"
 #import "SSZipArchive.h"
 #import "XMLDictionary.h"
+#import "XMLReader.h"
 #import "YIPopupTextView.h"
 
 #import "Geocube-Classes.h"
@@ -115,8 +116,7 @@
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
 #import "ImportGPXViewController.h"
-#import "ImportSites.h"
-#import "ImportNotices.h"
+#import "ImportGeocube.h"
 
 #import "GCCloseBUtton.h"
 #import "GCLabel.h"
