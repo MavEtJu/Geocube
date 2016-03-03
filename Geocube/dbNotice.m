@@ -108,10 +108,13 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update notices set seen = ? where id = ?");
+        DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ? where id = ?");
 
         SET_VAR_BOOL(1, self.seen);
-        SET_VAR_INT (2, self._id);
+        SET_VAR_TEXT(2, self.date);
+        SET_VAR_TEXT(3, self.sender);
+        SET_VAR_TEXT(4, self.note);
+        SET_VAR_INT (5, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
