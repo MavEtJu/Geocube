@@ -22,9 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface ImportGeocube ()
-{
-
-}
 
 @end
 
@@ -41,18 +38,24 @@
 - (BOOL)parse:(NSData *)XMLdata
 {
     NSError *error;
+    NSDictionary *d;
+    BOOL okay = YES;
 
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:XMLdata error:&error];
     if (xmlDictionary == nil)
         return NO;
 
-    if ([xmlDictionary objectForKey:@"notices"] != nil)
-        return [self parseNotices:[xmlDictionary objectForKey:@"notices"]];
+    if ((d = [xmlDictionary objectForKey:@"notices"]) != nil)
+        okay |= [self parseNotices:d];
 
-    if ([xmlDictionary objectForKey:@"sites"] != nil)
-        return [self parseSites:xmlDictionary];
+    if ((d = [xmlDictionary objectForKey:@"config"]) != nil)
+        xmlDictionary = d;
+    if ((d = [xmlDictionary objectForKey:@"sites"]) != nil)
+        okay |= [self parseSites:d];
+    if ((d = [xmlDictionary objectForKey:@"keys"]) != nil)
+        okay |= [self parseKeys:d];
 
-    return NO;
+    return okay;
 }
 
 - (BOOL)parseNotices:(NSDictionary *)dict
@@ -67,7 +70,6 @@
         currevision.value = @"0";
         [currevision dbCreate];
     }
-
     if ([currevision.value isEqualToString:revision] == NO) {
         currevision.value = revision;
         [currevision dbUpdate];
@@ -77,14 +79,13 @@
     [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
 
-        NSString *note = [[notice objectForKey:@"note"] objectForKey:@"text"];
-        note = [note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+#define KEY(__dict__, __var__, __key__) \
+    NSString *__var__ = [[__dict__ objectForKey:__key__] objectForKey:@"text"]; \
+    __var__ = [__var__ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-        NSString *sender = [[notice objectForKey:@"sender"] objectForKey:@"text"];
-        sender = [sender stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-        NSString *date = [[notice objectForKey:@"date"] objectForKey:@"text"];
-        date = [date stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        KEY(notice, note, @"note");
+        KEY(notice, sender, @"sender");
+        KEY(notice, date, @"date");
 
         dbNotice *n = [dbNotice dbGetByGCId:[geocube_id integerValue]];
         if (n == nil) {
@@ -106,249 +107,122 @@
     return YES;
 }
 
-- (BOOL)parseSites:(NSDictionary *)sites
+- (BOOL)parseSites:(NSDictionary *)dict
 {
-    return NO;
-}
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
 
-
-@end
-
-#ifdef NOTDEF
-#import "Geocube-Prefix.pch"
-
-@interface ImportSites ()
-{
-    NSString *version;
-    NSString *revision;
-    NSString *site_revision;
-    NSString *site_id;
-
-    dbAccount *account;
-
-    NSString *key;
-
-    NSString *site;
-    NSMutableString *currentText;
-}
-
-@end
-
-@implementation ImportSites
-
-- (instancetype)init
-{
-    self = [super init];
-
-    version = nil;
-    revision = nil;
-
-    site = nil;
-    account = nil;
-
-    key = nil;
-
-    return self;
-}
-
-+ (void)parse:(NSData *)data
-{
-    ImportSites *il = [[ImportSites alloc] init];
-    [il parse:data];
-}
-
-- (void)parse:(NSData *)data
-{
-    NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
-
-    [rssParser setDelegate:self];
-    [rssParser setShouldProcessNamespaces:NO];
-    [rssParser setShouldReportNamespacePrefixes:NO];
-    [rssParser setShouldResolveExternalEntities:NO];
-
-    [rssParser parse];
-}
-
-- (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    NSString * errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
-    NSLog(@"Error parsing XML: %@", errorString);
-}
-
-- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-
-    if ([elementName isEqualToString:@"config"] == YES) {
-        version = [attributeDict objectForKey:@"version"];
-        revision = [attributeDict objectForKey:@"revision"];
-
-        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_CONFIG];
-        if (currevision == nil) {
-            currevision = [[dbConfig alloc] init];
-            currevision.key = KEY_REVISION_CONFIG;
-            currevision.value = @"0";
-            [currevision dbCreate];
-        }
-
-        if ([currevision.value isEqualToString:revision] == NO) {
-            currevision.value = revision;
-            [currevision dbUpdate];
-        }
-        return;
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_SITES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_SITES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
     }
 
-    if ([elementName isEqualToString:@"keys"] == YES) {
-        version = [attributeDict objectForKey:@"version"];
-        revision = [attributeDict objectForKey:@"revision"];
+    NSArray *sites = [dict objectForKey:@"site"];
+    [sites enumerateObjectsUsingBlock:^(NSDictionary *site, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *_id = [site objectForKey:@"id"];
+        NSString *revision = [site objectForKey:@"revision"];
+        NSString *_site = [site objectForKey:@"site"];
 
-        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_KEYS];
-        if (currevision == nil) {
-            currevision = [[dbConfig alloc] init];
-            currevision.key = KEY_REVISION_KEYS;
-            currevision.value = @"0";
-            [currevision dbCreate];
-        }
+        KEY(site, gca_authenticate_url, @"gca_authenticate_url");
+        KEY(site, gca_callback_url, @"gca_callback_url");
+        KEY(site, gca_cookie, @"gca_cookie");
 
-        // Just store it.
-        if ([currevision.value isEqualToString:revision] == NO) {
-            currevision.value = revision;
-            [currevision dbUpdate];
-        }
-        return;
-    }
+        KEY(site, oauth_key_private, @"oauth_key_private");
+        KEY(site, oauth_key_public, @"oauth_key_public");
+        KEY(site, oauth_url_access, @"oauth_url_access");
+        KEY(site, oauth_url_authorize, @"oauth_url_authorize");
+        KEY(site, oauth_url_request, @"oauth_url_request");
 
-    if ([elementName isEqualToString:@"sites"] == YES) {
-        version = [attributeDict objectForKey:@"version"];
-        revision = [attributeDict objectForKey:@"revision"];
+        KEY(site, protocol, @"protocol");
+        KEY(site, url_queries, @"queries");
+        KEY(site, url_website, @"website");
 
-        dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_SITES];
-        if (currevision == nil) {
-            currevision = [[dbConfig alloc] init];
-            currevision.key = KEY_REVISION_SITES;
-            currevision.value = @"0";
-            [currevision dbCreate];
-        }
-
-        // Just store it.
-        if ([currevision.value isEqualToString:revision] == NO) {
-            currevision.value = revision;
-            [currevision dbUpdate];
-        }
-        return;
-    }
-
-    if ([elementName isEqualToString:@"site"] == YES) {
-        site = [attributeDict objectForKey:@"site"];
-        site_id = [attributeDict objectForKey:@"id"];
-        site_revision = [attributeDict objectForKey:@"revision"];
-        account = [dbAccount dbGetBySite:site];
-        if (account == nil)
-            account = [[dbAccount alloc] init];
-        account.geocube_id = [site_id integerValue];
-        account.revision = [site_revision integerValue];
-        account.site = site;
-        return;
-    }
-
-    if ([elementName isEqualToString:@"key"] == YES) {
-        site = [attributeDict objectForKey:@"site"];
-        return;
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:@"website"] == YES) {
-        account.url_site = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"queries"] == YES) {
-        account.url_queries = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-
-    if ([elementName isEqualToString:@"oauth_key_private"] == YES) {
-        account.oauth_consumer_private = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"oauth_key_public"] == YES) {
-        account.oauth_consumer_public = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"oauth_url_request"] == YES) {
-        account.oauth_request_url = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"oauth_url_authorize"] == YES) {
-        account.oauth_authorize_url = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"oauth_url_access"] == YES) {
-        account.oauth_access_url = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-
-    if ([elementName isEqualToString:@"gca_cookie"] == YES) {
-        account.gca_cookie_name = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"gca_authenticate_url"] == YES) {
-        account.gca_authenticate_url = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"gca_callback_url"] == YES) {
-        account.gca_callback_url = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        goto bye;
-    }
-    if ([elementName isEqualToString:@"protocol"] == YES) {
-        NSString *protocol = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        account.protocol = ProtocolNone;
+        NSInteger protocol_id = ProtocolNone;
         if ([protocol isEqualToString:@"OKAPI"] == YES)
-            account.protocol = ProtocolOKAPI;
+            protocol_id = ProtocolOKAPI;
         if ([protocol isEqualToString:@"GCA"] == YES)
-            account.protocol = ProtocolGCA;
+            protocol_id = ProtocolGCA;
         if ([protocol isEqualToString:@"LiveAPI"] == YES)
-            account.protocol = ProtocolLiveAPI;
+            protocol_id = ProtocolLiveAPI;
 
-        goto bye;
+        dbAccount *a = [dbAccount dbGetBySite:_site];
+        if (a == nil) {
+            a = [[dbAccount alloc] init];
+            a.site = _site;
+            a.url_site = url_website;
+            a.url_queries = url_queries;
+            a.protocol = protocol_id;
+            a.oauth_consumer_public = oauth_key_public;
+            a.oauth_consumer_private = oauth_key_private;
+            a.oauth_request_url = oauth_url_request;
+            a.oauth_authorize_url = oauth_url_authorize;
+            a.oauth_access_url = oauth_url_access;
+            a.gca_cookie_name = gca_cookie;
+            a.gca_authenticate_url = gca_authenticate_url;
+            a.gca_callback_url = gca_callback_url;
+            a.geocube_id = [_id integerValue];
+            a.revision = [revision integerValue];
+            [a dbCreate];
+        } else {
+            a.url_site = url_website;
+            a.url_queries = url_queries;
+            a.protocol = protocol_id;
+            a.oauth_consumer_public = oauth_key_public;
+            a.oauth_consumer_private = oauth_key_private;
+            a.oauth_request_url = oauth_url_request;
+            a.oauth_authorize_url = oauth_url_authorize;
+            a.oauth_access_url = oauth_url_access;
+            a.gca_cookie_name = gca_cookie;
+            a.gca_authenticate_url = gca_authenticate_url;
+            a.gca_callback_url = gca_callback_url;
+            a.geocube_id = [_id integerValue];
+            a.revision = [revision integerValue];
+            [a dbUpdate];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseKeys:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_KEYS];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_KEYS;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
     }
 
-    if ([elementName isEqualToString:@"key"] == YES) {
-        NSString *k = [currentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSArray *keys = [dict objectForKey:@"key"];
+    [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *site = [key objectForKey:@"site"];
+        NSString *text = [key objectForKey:@"text"];
+        text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
         if ([site isEqualToString:@"googlemaps"] == YES) {
-            [myConfig keyGMSUpdate:k];
-            goto bye;
+            [myConfig keyGMSUpdate:text];
         }
         if ([site isEqualToString:@"mapbox"] == YES) {
-            [myConfig keyMapboxUpdate:k];
-            goto bye;
+            [myConfig keyMapboxUpdate:text];
         }
-        goto bye;
-    }
+    }];
 
-    if ([elementName isEqualToString:@"site"] == YES) {
-        if (account._id == 0)
-            [account dbCreate];
-        else
-            [account dbUpdate];
-
-        goto bye;
-    }
-
-bye:
-    currentText = nil;
-}
-
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if (string == nil)
-        return;
-    if (currentText == nil)
-        currentText = [[NSMutableString alloc] initWithString:string];
-    else
-        [currentText appendString:string];
+    return YES;
 }
 
 @end
-
-#endif
