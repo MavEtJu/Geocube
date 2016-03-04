@@ -82,8 +82,8 @@
 @class ImportGCAJSON;
 @class ImportGPX;
 @class ImportGPXViewController;
-@class ImportLiveAPIJSON;
 @class ImportGeocube;
+@class ImportLiveAPIJSON;
 @class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;
