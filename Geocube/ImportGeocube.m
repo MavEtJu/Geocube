@@ -125,6 +125,8 @@
     }
 
     NSArray *sites = [dict objectForKey:@"site"];
+    if ([sites isKindOfClass:[NSDictionary class]] == YES)
+        sites = @[sites];
     [sites enumerateObjectsUsingBlock:^(NSDictionary *site, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *_id = [site objectForKey:@"id"];
         NSString *revision = [site objectForKey:@"revision"];
