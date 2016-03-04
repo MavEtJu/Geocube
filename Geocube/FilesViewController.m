@@ -178,7 +178,8 @@ enum {
                              }];
     UIAlertAction *import = nil;
     if ([[fn pathExtension] isEqualToString:@"gpx"] == YES ||
-        [[fn pathExtension] isEqualToString:@"zip"] == YES) {
+        [[fn pathExtension] isEqualToString:@"zip"] == YES ||
+        [[fn pathExtension] isEqualToString:@"geocube"] == YES) {
         import = [UIAlertAction
                   actionWithTitle:@"Import"
                   style:UIAlertActionStyleDefault
@@ -283,10 +284,16 @@ enum {
 
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
-    //    UIViewController *newController = [[ImportGPXViewController alloc] init:filename];
-    //    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    //    newController.title = @"Import";
-    //    [self.navigationController pushViewController:newController animated:YES];
+    NSString *fn = [filesNames objectAtIndex:row];
+    if ([[fn pathExtension] isEqualToString:@"geocube"] == YES) {
+        NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
+        if ([ImportGeocube parse:data] == NO) {
+            [MyTools messageBox:self header:@"Import failed" text:[NSString stringWithFormat:@"There was a problem importing the file %@.", fn]];
+        } else {
+            [MyTools messageBox:self header:@"Import successful" text:@"The import was successful."];
+        };
+        return;
+    }
 
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
