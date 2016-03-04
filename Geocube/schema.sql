@@ -9,7 +9,7 @@ create table config (
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.geocube");
 insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.geocube");
-insert into config(key, value) values("version", "14");
+insert into config(key, value) values("version", "15");
 
 create table filters (
     id integer primary key,
@@ -721,6 +721,7 @@ create table accounts (
     id integer primary key,
     geocube_id integer,
     revision integer,
+    enabled bool,
 
     site text,
     url_site text,

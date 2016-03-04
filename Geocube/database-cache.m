@@ -465,6 +465,7 @@
                 oldAccount.url_queries = newAccount.url_queries;
                 oldAccount.accountname = newAccount.accountname;
                 oldAccount.protocol = newAccount.protocol;
+                oldAccount.enabled = newAccount.enabled;
 
                 *stop = YES;
                 found = YES;

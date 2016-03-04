@@ -185,6 +185,7 @@ typedef enum {
 
     ImageIcon_Smiley,
     ImageIcon_Sad,
+    ImageIcon_Dead,
     ImageIcon_Target,
 
     ImageIcon_GlobalMenu,

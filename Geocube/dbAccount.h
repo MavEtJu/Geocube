@@ -37,6 +37,7 @@ enum dbAccountProtocol {
 @property (nonatomic) NSInteger protocol;
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger revision;
+@property (nonatomic) BOOL enabled;
 
 @property (nonatomic, retain) NSString *oauth_consumer_public;
 @property (nonatomic, retain) NSString *oauth_consumer_private;

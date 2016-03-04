@@ -284,6 +284,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 15
+    a = @[
+    @"alter table accounts add column enabled bool",
+    @"update accounts set enabled = 1",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end

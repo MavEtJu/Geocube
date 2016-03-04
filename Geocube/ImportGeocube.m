@@ -131,6 +131,7 @@
         NSString *_id = [site objectForKey:@"id"];
         NSString *revision = [site objectForKey:@"revision"];
         NSString *_site = [site objectForKey:@"site"];
+        NSString *enabled = [site objectForKey:@"enabled"];
 
         KEY(site, gca_authenticate_url, @"gca_authenticate_url");
         KEY(site, gca_callback_url, @"gca_callback_url");
@@ -154,10 +155,15 @@
         if ([protocol isEqualToString:@"LiveAPI"] == YES)
             protocol_id = ProtocolLiveAPI;
 
+        BOOL enabledBool = NO;
+        if ([enabled isEqualToString:@"YES"] == YES)
+            enabledBool = YES;
+
         dbAccount *a = [dbAccount dbGetBySite:_site];
         if (a == nil) {
             a = [[dbAccount alloc] init];
             a.site = _site;
+            a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
             a.protocol = protocol_id;
@@ -173,6 +179,7 @@
             a.revision = [revision integerValue];
             [a dbCreate];
         } else {
+            a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
             a.protocol = protocol_id;

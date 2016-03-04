@@ -270,6 +270,7 @@
 		E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* MyConfig.m */; };
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
+		E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E890516C1C8993CF00220986 /* icons - dead - 30x30.png */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -781,6 +782,7 @@
 		E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainViewController.m; sourceTree = "<group>"; };
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
+		E890516C1C8993CF00220986 /* icons - dead - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30.png"; path = "images/icons - dead - 30x30.png"; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -1544,6 +1546,7 @@
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				E890516C1C8993CF00220986 /* icons - dead - 30x30.png */,
 				E8F9913D1C19518600D360F1 /* menu icon - find target.png */,
 				E8182F481C0D6EE7004AC534 /* menu icon - find me.png */,
 				E8182F461C0C21BA004AC534 /* menu icon - show both.png */,
@@ -2316,6 +2319,7 @@
 				E80732071B5F84B4007FDC29 /* attributes - 32.png in Resources */,
 				E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */,
 				E89580291C6818C100282177 /* cache - history - 30x30.png in Resources */,
+				E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */,
 				E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */,
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
 				E80731F61B5F84B4007FDC29 /* attributes - 14.png in Resources */,

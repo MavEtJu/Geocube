@@ -129,6 +129,7 @@
 
     [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
+    [self addToLibrary:@"icons - dead - 30x30" index:ImageIcon_Dead];
     [self addToLibrary:@"icons - target - 20x20" index:ImageIcon_Target];
 
     [self addToLibrary:@"menu icon - global" index:ImageIcon_GlobalMenu];

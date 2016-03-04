@@ -116,13 +116,19 @@ enum {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
     cell.detailTextLabel.text = a.accountname_string;
-    if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
-        cell.imageView.image = [imageLibrary get:ImageIcon_Target];
-    else {
-        if (a.canDoRemoteStuff == YES)
-            cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
-        else
-            cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
+    if (a.enabled == NO) {
+        cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
+        cell.userInteractionEnabled = NO;
+    } else {
+        if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES) {
+            cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+        } else {
+            if (a.canDoRemoteStuff == YES)
+                cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+            else
+                cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
+        }
+        cell.userInteractionEnabled = YES;
     }
 
     return cell;
