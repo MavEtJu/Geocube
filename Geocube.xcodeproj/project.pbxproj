@@ -272,6 +272,7 @@
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E890516C1C8993CF00220986 /* icons - dead - 30x30.png */; };
 		E89051701C8A46D800220986 /* dbExternalMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E890516F1C8A46D800220986 /* dbExternalMap.m */; };
+		E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -786,6 +787,8 @@
 		E890516C1C8993CF00220986 /* icons - dead - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30.png"; path = "images/icons - dead - 30x30.png"; sourceTree = "<group>"; };
 		E890516E1C8A46D800220986 /* dbExternalMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbExternalMap.h; sourceTree = "<group>"; };
 		E890516F1C8A46D800220986 /* dbExternalMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbExternalMap.m; sourceTree = "<group>"; };
+		E89051711C8ACEFA00220986 /* WaypointLogImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogImagesViewController.h; sourceTree = "<group>"; };
+		E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogImagesViewController.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -1455,6 +1458,8 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
+				E89051751C8AE1B600220986 /* Logging */,
+				E89051741C8AE1AE00220986 /* Images */,
 				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
 				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
 				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
@@ -1465,14 +1470,8 @@
 				E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */,
 				E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */,
 				E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */,
-				E8C5BB5A1C719EB1006222D5 /* WaypointImagesViewController.h */,
-				E8C5BB5B1C719EB1006222D5 /* WaypointImagesViewController.m */,
-				E8C5BB5C1C719EB1006222D5 /* WaypointImageViewController.h */,
-				E8C5BB5D1C719EB1006222D5 /* WaypointImageViewController.m */,
 				E8C5BB5E1C719EB1006222D5 /* WaypointLogsViewController.h */,
 				E8C5BB5F1C719EB1006222D5 /* WaypointLogsViewController.m */,
-				E8C5BB601C719EB1006222D5 /* WaypointLogViewController.h */,
-				E8C5BB611C719EB1006222D5 /* WaypointLogViewController.m */,
 				E8C5BB621C719EB1006222D5 /* WaypointPersonalNoteViewController.h */,
 				E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */,
 				E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */,
@@ -1564,6 +1563,28 @@
 				E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		E89051741C8AE1AE00220986 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E8C5BB5A1C719EB1006222D5 /* WaypointImagesViewController.h */,
+				E8C5BB5B1C719EB1006222D5 /* WaypointImagesViewController.m */,
+				E8C5BB5C1C719EB1006222D5 /* WaypointImageViewController.h */,
+				E8C5BB5D1C719EB1006222D5 /* WaypointImageViewController.m */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		E89051751C8AE1B600220986 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				E8C5BB601C719EB1006222D5 /* WaypointLogViewController.h */,
+				E8C5BB611C719EB1006222D5 /* WaypointLogViewController.m */,
+				E89051711C8ACEFA00220986 /* WaypointLogImagesViewController.h */,
+				E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */,
+			);
+			name = Logging;
 			sourceTree = "<group>";
 		};
 		E895801F1C66E39500282177 /* Reachability */ = {
@@ -2538,6 +2559,7 @@
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
+				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* IgnoredListViewController.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,

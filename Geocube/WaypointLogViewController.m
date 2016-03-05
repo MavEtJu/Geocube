@@ -27,6 +27,11 @@
     NSString *logtype;
     NSString *note;
     NSString *date;
+
+    dbImage *image;
+    NSString *imageCaption;
+    NSString *imageLongText;
+
     BOOL fp, upload;
 }
 
@@ -56,7 +61,8 @@ enum {
     SECTION_SUBMIT_MAX,
 };
 
-#define THISCELL @"CacheLogViewControllerCell"
+#define THISCELL_ALL @"CacheLogViewControllerCellAll"
+#define THISCELL_PHOTO @"CacheLogViewControllerCellPhoto"
 
 - (instancetype)init:(dbWaypoint *)_waypoint
 {
@@ -66,13 +72,15 @@ enum {
     logtype = @"Found it";
     fp = NO;
     upload = YES;
+    image = nil;
 
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     date = [dateFormatter stringFromDate:d];
 
-    [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL_ALL];
+    [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_PHOTO];
     hasCloseButton = YES;
     lmi = nil;
 
@@ -108,9 +116,9 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellKeyValue *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCellKeyValue *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
     if (cell == nil) {
-        cell = [[GCTableViewCellKeyValue alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCellKeyValue alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ALL];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.userInteractionEnabled = YES;
@@ -135,13 +143,21 @@ enum {
         }
         case SECTION_EXTRADETAILS: {
             switch (indexPath.row) {
-                case SECTION_EXTRADETAILS_PHOTO:
-                    cell.keyLabel.text = @"Photo";
+                case SECTION_EXTRADETAILS_PHOTO: {
+                    cell = nil;
+                    GCTableViewCellRightImage *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_PHOTO];
+                    c.textLabel.text = @"Photo";
+                    if (image != nil)
+                        c.imageView.image = image.imageGet;
+                    else
+                        c.imageView.image = [imageLibrary get:Image_NoImageFile];
                     if ([waypoint.account.remoteAPI commentSupportsPhotos] == NO) {
-                        cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                        c.userInteractionEnabled = NO;
+                        c.textLabel.textColor = [UIColor lightGrayColor];
                     }
-                    break;
+                    // Only place to return because the return format has changed.
+                    return c;
+                }
                 case SECTION_EXTRADETAILS_FAVOURITE: {
                     cell.keyLabel.text = @"Favourite Point";
                     UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -321,6 +337,7 @@ enum {
 //  tv.backgroundColor = currentTheme.backgroundColor;
 //  tv.textColor = currentTheme.textColor;
     tv.caretShiftGestureEnabled = YES;
+    tv.maxCount = 4000;
     tv.text = note;
 
     [tv showInViewController:self];
@@ -334,9 +351,21 @@ enum {
     [self.tableView reloadData];
 }
 
+- (void)imageSelected:(dbImage *)img caption:(NSString *)caption longtext:(NSString *)longtext;
+{
+    image = img;
+    imageCaption = caption;
+    imageLongText = longtext;
+    [self.tableView reloadData];
+}
 
 - (void)changePhoto
 {
+    WaypointLogImagesViewController *newController = [[WaypointLogImagesViewController alloc] init:waypoint table:self.tableView];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.delegate = self;
+    [self.navigationController pushViewController:newController animated:YES];
+    return;
 }
 
 - (void)changeFP

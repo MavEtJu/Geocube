@@ -136,6 +136,7 @@
 @class WaypointHintViewController;
 @class WaypointImageViewController;
 @class WaypointImagesViewController;
+@class WaypointLogImagesViewController;
 @class WaypointLogViewController;
 @class WaypointLogsViewController;
 @class WaypointManager;
