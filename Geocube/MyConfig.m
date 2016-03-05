@@ -115,7 +115,7 @@
     CHECK(@"key_gms", @"");
     CHECK(@"key_mapbox", @"");
 
-    CHECK(@"map_external", @"0");
+    CHECK(@"map_external", @"1");
     CHECK(@"map_brand", @"0");
     CHECK(@"map_track_colour", @"00F0F0");
     CHECK(@"map_destination_colour", @"FF0000");

@@ -653,41 +653,98 @@ enum {
     [self updateLocationManagerLocation];
 }
 
+- (NSString *)translateURLType:(dbExternalMapURL *)url
+{
+    /*
+     *	Types:
+     * 0: Handled internally.
+     * 1: Do not provide any coordinates.
+     * 2: Do provide coordinates for current location.
+     * 3: Do provide coordinates for destination.
+     * 4: Do provide coordinates for current location and destination.
+     * 5: Do provide coordinates for destination and current location.
+     */
+
+    NSString *urlString = nil;
+
+    switch (url.type) {
+        case 0:
+            // Not dealt with here
+            break;
+        case 1:
+            urlString = url.url;
+            break;
+        case 2:
+            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude];
+            break;
+        case 3:
+             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
+            break;
+        case 4:
+            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
+            break;
+        case 5:
+            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float,  LM.coords.latitude, LM.coords.longitude];
+            break;
+    }
+
+    return urlString;
+}
+
 - (void)menuDirections
 {
-    if (myConfig.mapExternal == MAPEXTERNAL_APPLEMAPS) {
-        if (waypointManager.currentWaypoint == nil) {
-            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(LM.coords.latitude, LM.coords.longitude);
+    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (em.geocube_id != myConfig.mapExternal)
+            return;
 
-            //create MKMapItem out of coordinates
-            MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
-            MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
-            if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
-                [destination openInMapsWithLaunchOptions:nil];
+        *stop = YES;
+
+        NSLog(@"Opening %@ for external navigation", em.name);
+
+        NSArray *urls = [dbExternalMapURL dbAllByExternalMap:em._id];
+        __block dbExternalMapURL *urlCurrent = nil;
+        __block dbExternalMapURL *urlDestination = nil;
+
+        [urls enumerateObjectsUsingBlock:^(dbExternalMapURL *url, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([url.model isEqualToString:@"current"] == YES)
+                urlCurrent = url;
+            if ([url.model isEqualToString:@"directions"] == YES)
+                urlDestination = url;
+        }];
+
+        if (waypointManager.currentWaypoint == nil) {
+            if (urlCurrent.type == 0) {
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(LM.coords.latitude, LM.coords.longitude);
+
+                //create MKMapItem out of coordinates
+                MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+                MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
+                if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
+                    [destination openInMapsWithLaunchOptions:nil];
+                return;
+            }
+            NSString *url = [self translateURLType:urlCurrent];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
             return;
         }
 
         if (waypointManager.currentWaypoint != nil) {
-            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float);
+            if (urlDestination.type == 0) {
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float);
 
-            //create MKMapItem out of coordinates
-            MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
-            MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
-            if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
-                [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
-        }
-        return;
-    }
+                //create MKMapItem out of coordinates
+                MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+                MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:placeMark];
+                if ([destination respondsToSelector:@selector(openInMapsWithLaunchOptions:)] == YES)
+                    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving}];
+                return;
+            }
 
-    if (myConfig.mapExternal == MAPBRAND_GOOGLEMAPS) {
-        if (waypointManager.currentWaypoint == nil) {
-            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location"];
+            NSString *url = [self translateURLType:urlDestination];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        } else {
-            NSString* url = [NSString stringWithFormat: @"http://maps.google.com/maps?saddr=Current+Location&daddr=%f,%f", waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            return;
         }
-    }
+    }];
 }
 
 - (void)menuAutoZoom

@@ -39,9 +39,6 @@ enum {
     MAPBRAND_GOOGLEMAPS = 0,
     MAPBRAND_APPLEMAPS,
     MAPBRAND_OPENSTREETMAPS,
-
-    MAPEXTERNAL_GOOGLEMAPS = 0,
-    MAPEXTERNAL_APPLEMAPS,
 };
 
 @property (nonatomic, retain) NSArray *waypointsArray;

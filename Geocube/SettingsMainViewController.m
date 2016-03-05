@@ -90,7 +90,12 @@ enum {
     [lmi addItem:menuResetToDefault label:@"Reset to default"];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
-    externalMapTypes = @[@"Google Maps", @"Apple Maps"];
+
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+        [as addObject:em.name];
+    }];
+    externalMapTypes = as;
 
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
@@ -369,7 +374,15 @@ enum sections {
                     if (cell == nil)
                         cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
                     cell.textLabel.text = @"External Maps";
-                    cell.detailTextLabel.text = [externalMapTypes objectAtIndex:myConfig.mapExternal];
+
+                    __block NSString *name = nil;
+                    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (em.geocube_id == myConfig.mapExternal) {
+                            name = em.name;
+                            *stop = YES;
+                        }
+                    }];
+                    cell.detailTextLabel.text = name;
                     return cell;
                 }
             }
@@ -1184,9 +1197,18 @@ enum sections {
 
 - (void)changeAppsExternalMap
 {
+    NSArray *maps = [dbExternalMap dbAll];
+    __block NSInteger initial = 0;
+    [maps enumerateObjectsUsingBlock:^(dbExternalMap *map, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (map.geocube_id == myConfig.mapExternal) {
+            initial = idx;
+            *stop = YES;
+        }
+    }];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
                                             rows:externalMapTypes
-                                initialSelection:myConfig.mapExternal
+                                initialSelection:initial
                                           target:self
                                    successAction:@selector(updateAppsExternalMap:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1196,8 +1218,9 @@ enum sections {
 
 - (void)updateAppsExternalMap:(NSNumber *)selectedIndex element:(id)element
 {
-    NSInteger i = [selectedIndex intValue];
-    [myConfig mapExternalUpdate:i];
+    NSArray *maps = [dbExternalMap dbAll];
+    dbExternalMap *map = [maps objectAtIndex:[selectedIndex integerValue]];
+    [myConfig mapExternalUpdate:map.geocube_id];
     [self.tableView reloadData];
 }
 

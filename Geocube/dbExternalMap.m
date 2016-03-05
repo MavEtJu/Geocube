@@ -70,7 +70,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps");
+        DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps order by geocube_id");
 
         DB_WHILE_STEP {
             dbExternalMap *em = [[dbExternalMap alloc] init];
@@ -169,6 +169,8 @@
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, externalmap_id, model, type, url from externalmap_urls where externalmap_id = ?");
+
+        SET_VAR_INT(1, map_id);
 
         DB_WHILE_STEP {
             dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];

@@ -292,7 +292,6 @@
             [emu dbCreate];
         }];
 
-
     }];
 
     return YES;
