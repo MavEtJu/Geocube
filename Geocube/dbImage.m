@@ -54,9 +54,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
 
-        SET_VAR_TEXT( 1, img.url);
-        SET_VAR_TEXT( 2, img.datafile);
-        SET_VAR_TEXT( 3, img.name);
+        SET_VAR_TEXT(1, img.url);
+        SET_VAR_TEXT(2, img.datafile);
+        SET_VAR_TEXT(3, img.name);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -75,10 +75,10 @@
 
         DB_WHILE_STEP {
             dbImage *i = [[dbImage alloc] init];;
-            INT_FETCH(  0, i._id);
-            TEXT_FETCH( 1, i.url);
-            TEXT_FETCH( 2, i.datafile);
-            TEXT_FETCH( 3, i.name);
+            INT_FETCH (0, i._id);
+            TEXT_FETCH(1, i.url);
+            TEXT_FETCH(2, i.datafile);
+            TEXT_FETCH(3, i.name);
             [i finish];
             [is addObject:i];
         }
@@ -104,10 +104,10 @@
 
         DB_WHILE_STEP {
             dbImage *i = [[dbImage alloc] init];;
-            INT_FETCH(  0, i._id);
-            TEXT_FETCH( 1, i.url);
-            TEXT_FETCH( 2, i.datafile);
-            TEXT_FETCH( 3, i.name);
+            INT_FETCH (0, i._id);
+            TEXT_FETCH(1, i.url);
+            TEXT_FETCH(2, i.datafile);
+            TEXT_FETCH(3, i.name);
             [i finish];
             [is addObject:i];
         }
@@ -145,7 +145,7 @@
         SET_VAR_TEXT(1, url);
         DB_IF_STEP {
             img = [[dbImage alloc] init];
-            INT_FETCH(0, img._id);
+            INT_FETCH (0, img._id);
             TEXT_FETCH(1, img.url);
             TEXT_FETCH(2, img.datafile);
             TEXT_FETCH(3, img.name);

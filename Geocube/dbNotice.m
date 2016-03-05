@@ -66,7 +66,7 @@
 
         DB_WHILE_STEP {
             dbNotice *n = [[dbNotice alloc] init];
-            INT_FETCH( 0, n._id);
+            INT_FETCH (0, n._id);
             TEXT_FETCH(1, n.note);
             TEXT_FETCH(2, n.sender);
             TEXT_FETCH(3, n.date);
@@ -92,7 +92,7 @@
 
         DB_IF_STEP {
             n = [[dbNotice alloc] init];
-            INT_FETCH( 0, n._id);
+            INT_FETCH (0, n._id);
             TEXT_FETCH(1, n.note);
             TEXT_FETCH(2, n.sender);
             TEXT_FETCH(3, n.date);

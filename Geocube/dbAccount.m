@@ -130,12 +130,12 @@
 
         DB_IF_STEP {
             a = [[dbAccount alloc] init];
-            INT_FETCH(  0, a._id);
+            INT_FETCH ( 0, a._id);
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH(  5, a.protocol);
+            INT_FETCH ( 5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);
@@ -146,8 +146,8 @@
             TEXT_FETCH(13, a.gca_cookie_name);
             TEXT_FETCH(14, a.gca_authenticate_url);
             TEXT_FETCH(15, a.gca_callback_url);
-            INT_FETCH( 16, a.geocube_id);
-            INT_FETCH( 17, a.revision);
+            INT_FETCH (16, a.geocube_id);
+            INT_FETCH (17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
             INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
@@ -167,12 +167,12 @@
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
-            INT_FETCH(  0, a._id);
+            INT_FETCH ( 0, a._id);
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH(  5, a.protocol);
+            INT_FETCH ( 5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);
@@ -183,10 +183,10 @@
             TEXT_FETCH(13, a.gca_cookie_name);
             TEXT_FETCH(14, a.gca_authenticate_url);
             TEXT_FETCH(15, a.gca_callback_url);
-            INT_FETCH( 16, a.geocube_id);
-            INT_FETCH( 17, a.revision);
+            INT_FETCH (16, a.geocube_id);
+            INT_FETCH (17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
-            INT_FETCH( 19, a.accountname_id);
+            INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
             [a finish];
             [ss addObject:a];
@@ -212,7 +212,7 @@
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
         SET_VAR_TEXT( 4, self.accountname_string);
-        SET_VAR_INT(  5, self.protocol);
+        SET_VAR_INT ( 5, self.protocol);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
         SET_VAR_TEXT( 8, self.oauth_token);
@@ -223,10 +223,10 @@
         SET_VAR_TEXT(13, self.gca_cookie_name);
         SET_VAR_TEXT(14, self.gca_authenticate_url);
         SET_VAR_TEXT(15, self.gca_callback_url);
-        SET_VAR_INT( 16, self.geocube_id);
-        SET_VAR_INT( 17, self.revision);
+        SET_VAR_INT (16, self.geocube_id);
+        SET_VAR_INT (17, self.revision);
         SET_VAR_TEXT(18, self.gca_cookie_value);
-        SET_VAR_INT( 19, self.accountname_id);
+        SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
 
         DB_CHECK_OKAY;
@@ -246,7 +246,7 @@
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
         SET_VAR_TEXT( 4, self.accountname_string);
-        SET_VAR_INT(  5, self.protocol);
+        SET_VAR_INT ( 5, self.protocol);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
         SET_VAR_TEXT( 8, self.oauth_token);
@@ -257,12 +257,12 @@
         SET_VAR_TEXT(13, self.gca_cookie_name);
         SET_VAR_TEXT(14, self.gca_authenticate_url);
         SET_VAR_TEXT(15, self.gca_callback_url);
-        SET_VAR_INT( 16, self.geocube_id);
-        SET_VAR_INT( 17, self.revision);
+        SET_VAR_INT (16, self.geocube_id);
+        SET_VAR_INT (17, self.revision);
         SET_VAR_TEXT(18, self.gca_cookie_value);
-        SET_VAR_INT( 19, self.accountname_id);
+        SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
-        SET_VAR_INT( 21, self._id);
+        SET_VAR_INT (21, self._id);
 
         DB_CHECK_OKAY;
 
@@ -295,7 +295,7 @@
         SET_VAR_TEXT(3, self.oauth_request_url);
         SET_VAR_TEXT(4, self.oauth_authorize_url);
         SET_VAR_TEXT(5, self.oauth_access_url);
-        SET_VAR_INT( 6, self._id);
+        SET_VAR_INT (6, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -309,7 +309,7 @@
 
         SET_VAR_TEXT(1, self.oauth_token);
         SET_VAR_TEXT(2, self.oauth_token_secret);
-        SET_VAR_INT( 3, self._id);
+        SET_VAR_INT (3, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -341,12 +341,12 @@
 
         DB_IF_STEP {
             a = [[dbAccount alloc] init];
-            INT_FETCH(  0, a._id);
+            INT_FETCH ( 0, a._id);
             TEXT_FETCH( 1, a.site);
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH(  5, a.protocol);
+            INT_FETCH ( 5, a.protocol);
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);
@@ -357,10 +357,10 @@
             TEXT_FETCH(13, a.gca_cookie_name);
             TEXT_FETCH(14, a.gca_authenticate_url);
             TEXT_FETCH(15, a.gca_callback_url);
-            INT_FETCH( 16, a.geocube_id);
-            INT_FETCH( 17, a.revision);
+            INT_FETCH (16, a.geocube_id);
+            INT_FETCH (17, a.revision);
             TEXT_FETCH(18, a.gca_cookie_value);
-            INT_FETCH( 19, a.accountname_id);
+            INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
             [a finish];
         }

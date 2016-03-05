@@ -43,10 +43,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into query_imports(account_id, name, filesize, last_import_epoch) values(?, ?, ?, ?)");
 
-        SET_VAR_INT( 1, qi.account_id);
+        SET_VAR_INT (1, qi.account_id);
         SET_VAR_TEXT(2, qi.name);
-        SET_VAR_INT( 3, qi.filesize);
-        SET_VAR_INT( 4, qi.lastimport);
+        SET_VAR_INT (3, qi.filesize);
+        SET_VAR_INT (4, qi.lastimport);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -61,11 +61,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update query_imports set account_id = ?, name = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
-        SET_VAR_INT( 1, account_id);
+        SET_VAR_INT (1, account_id);
         SET_VAR_TEXT(2, name);
-        SET_VAR_INT( 3, filesize);
-        SET_VAR_INT( 4, lastimport);
-        SET_VAR_INT( 5, _id);
+        SET_VAR_INT (3, filesize);
+        SET_VAR_INT (4, lastimport);
+        SET_VAR_INT (5, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -81,11 +81,11 @@
 
         DB_WHILE_STEP {
             dbQueryImport *qi = [[dbQueryImport alloc] init];;
-            INT_FETCH( 0, qi._id);
-            INT_FETCH( 1, qi.account_id);
+            INT_FETCH (0, qi._id);
+            INT_FETCH (1, qi.account_id);
             TEXT_FETCH(2, qi.name);
-            INT_FETCH( 3, qi.filesize);
-            INT_FETCH( 4, qi.lastimport);
+            INT_FETCH (3, qi.filesize);
+            INT_FETCH (4, qi.lastimport);
             [qi finish];
             [qis addObject:qi];
         }

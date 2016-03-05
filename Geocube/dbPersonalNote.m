@@ -42,7 +42,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into personal_notes(waypoint_id, wp_name, note) values(?, ?, ?)");
 
-        SET_VAR_INT( 1, waypoint_id);
+        SET_VAR_INT (1, waypoint_id);
         SET_VAR_TEXT(2, wp_name);
         SET_VAR_TEXT(3, note);
 
@@ -58,10 +58,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update personal_notes set waypoint_id = ?, wp_name = ?, note = ? where id = ?");
 
-        SET_VAR_INT( 1, waypoint_id);
+        SET_VAR_INT (1, waypoint_id);
         SET_VAR_TEXT(2, wp_name);
         SET_VAR_TEXT(3, note);
-        SET_VAR_INT( 4, _id);
+        SET_VAR_INT (4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -79,8 +79,8 @@
 
         DB_IF_STEP {
             pn = [[dbPersonalNote alloc] init];
-            INT_FETCH( 0, pn._id);
-            INT_FETCH( 1, pn.waypoint_id);
+            INT_FETCH (0, pn._id);
+            INT_FETCH (1, pn.waypoint_id);
             TEXT_FETCH(2, pn.wp_name);
             TEXT_FETCH(3, pn.note);
         }
@@ -101,8 +101,8 @@
 
         DB_IF_STEP {
             pn = [[dbPersonalNote alloc] init];
-            INT_FETCH( 0, pn._id);
-            INT_FETCH( 1, pn.waypoint_id);
+            INT_FETCH (0, pn._id);
+            INT_FETCH (1, pn.waypoint_id);
             TEXT_FETCH(2, pn.wp_name);
             TEXT_FETCH(3, pn.note);
         }
@@ -121,8 +121,8 @@
 
         DB_WHILE_STEP {
             dbPersonalNote *pn = [[dbPersonalNote alloc] init];
-            INT_FETCH( 0, pn._id);
-            INT_FETCH( 1, pn.waypoint_id);
+            INT_FETCH (0, pn._id);
+            INT_FETCH (1, pn.waypoint_id);
             TEXT_FETCH(2, pn.wp_name);
             TEXT_FETCH(3, pn.note);
             [ss addObject:pn];

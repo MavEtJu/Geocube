@@ -66,10 +66,10 @@
 
         DB_WHILE_STEP {
             dbName *s = [[dbName alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, s.account_id);
+            INT_FETCH (3, s.account_id);
             [s finish];
             [ss addObject:s];
         }
@@ -89,10 +89,10 @@
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, s.account_id);
+            INT_FETCH (3, s.account_id);
             [s finish];
         }
         DB_FINISH;
@@ -109,11 +109,11 @@
 
         SET_VAR_TEXT(1, name);
         SET_VAR_TEXT(2, code);
-        SET_VAR_INT( 3, account._id);
+        SET_VAR_INT (3, account._id);
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
-            INT_FETCH(0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
             INT_FETCH( 3, s.account_id);
@@ -136,10 +136,10 @@
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
-            INT_FETCH(0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, s.account_id);
+            INT_FETCH (3, s.account_id);
             [s finish];
         }
         DB_FINISH;
@@ -159,10 +159,10 @@
 
         DB_IF_STEP {
             s = [[dbName alloc] init];
-            INT_FETCH(0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, s.account_id);
+            INT_FETCH (3, s.account_id);
             [s finish];
         }
         DB_FINISH;
@@ -179,7 +179,7 @@
 
         SET_VAR_TEXT(1, name);
         SET_VAR_TEXT(2, code);
-        SET_VAR_INT( 3, account._id);
+        SET_VAR_INT (3, account._id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -206,7 +206,7 @@
         DB_PREPARE(@"update names set name = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

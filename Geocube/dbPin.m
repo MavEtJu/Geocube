@@ -54,7 +54,7 @@
         DB_PREPARE(@"update pins set rgb = ? where id = ?");
 
         SET_VAR_TEXT(1, self.rgb);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
         DB_CHECK_OKAY;
         DB_FINISH;
     }
@@ -72,7 +72,7 @@
 
         DB_WHILE_STEP {
             dbPin *p = [[dbPin alloc] init];;
-            INT_FETCH( 0, p._id);
+            INT_FETCH (0, p._id);
             TEXT_FETCH(1, p.description);
             TEXT_FETCH(2, p.rgb);
             TEXT_FETCH(3, p.rgb_default);

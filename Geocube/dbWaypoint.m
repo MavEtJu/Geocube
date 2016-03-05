@@ -304,7 +304,7 @@
         NSString *sql = [NSString stringWithFormat:@"%%%@", namesuffix];
         SET_VAR_TEXT(1, sql);
         DB_WHILE_STEP {
-            INT_FETCH_AND_ASSIGN( 0, __id);
+            INT_FETCH_AND_ASSIGN (0, __id);
             TEXT_FETCH_AND_ASSIGN(1, name);
 
             prefix = [name substringToIndex:2];
@@ -343,44 +343,44 @@
             INT_FETCH_AND_ASSIGN( 0, _id);
             wp = [[dbWaypoint alloc] init:_id];
 
-            TEXT_FETCH(   1, wp.wpt_name);
-            TEXT_FETCH(   2, wp.wpt_description);
-            TEXT_FETCH(   3, wp.wpt_lat);
-            TEXT_FETCH(   4, wp.wpt_lon);
-            INT_FETCH(    5, wp.wpt_lat_int);
-            INT_FETCH(    6, wp.wpt_lon_int);
-            TEXT_FETCH(   7, wp.wpt_date_placed);
-            INT_FETCH(    8, wp.wpt_date_placed_epoch);
-            TEXT_FETCH(   9, wp.wpt_url);
-            INT_FETCH(   10, wp.wpt_type_id);
-            INT_FETCH(   11, wp.wpt_symbol_id);
-            TEXT_FETCH(  12, wp.wpt_urlname);
+            TEXT_FETCH  ( 1, wp.wpt_name);
+            TEXT_FETCH  ( 2, wp.wpt_description);
+            TEXT_FETCH  ( 3, wp.wpt_lat);
+            TEXT_FETCH  ( 4, wp.wpt_lon);
+            INT_FETCH   ( 5, wp.wpt_lat_int);
+            INT_FETCH   ( 6, wp.wpt_lon_int);
+            TEXT_FETCH  ( 7, wp.wpt_date_placed);
+            INT_FETCH   ( 8, wp.wpt_date_placed_epoch);
+            TEXT_FETCH  ( 9, wp.wpt_url);
+            INT_FETCH   (10, wp.wpt_type_id);
+            INT_FETCH   (11, wp.wpt_symbol_id);
+            TEXT_FETCH  (12, wp.wpt_urlname);
 
-            INT_FETCH(   13, wp.logStatus);
-            BOOL_FETCH(  14, wp.flag_highlight);
-            INT_FETCH(   15, wp.account_id);
-            BOOL_FETCH(  16, wp.flag_ignore);
+            INT_FETCH   (13, wp.logStatus);
+            BOOL_FETCH  (14, wp.flag_highlight);
+            INT_FETCH   (15, wp.account_id);
+            BOOL_FETCH  (16, wp.flag_ignore);
 
-            INT_FETCH(   17, wp.gs_country_id);
-            INT_FETCH(   18, wp.gs_state_id);
+            INT_FETCH   (17, wp.gs_country_id);
+            INT_FETCH   (18, wp.gs_state_id);
             DOUBLE_FETCH(19, wp.gs_rating_difficulty);
             DOUBLE_FETCH(20, wp.gs_rating_terrain);
-            INT_FETCH(   21, wp.gs_favourites);
-            BOOL_FETCH(  22, wp.gs_long_desc_html);
-            TEXT_FETCH(  23, wp.gs_long_desc);
-            BOOL_FETCH(  24, wp.gs_short_desc_html);
-            TEXT_FETCH(  25, wp.gs_short_desc);
-            TEXT_FETCH(  26, wp.gs_hint);
-            INT_FETCH(   27, wp.gs_container_id);
-            BOOL_FETCH(  28, wp.gs_archived);
-            BOOL_FETCH(  29, wp.gs_available);
-            INT_FETCH(   30, wp.gs_owner_id);
-            TEXT_FETCH(  31, wp.gs_placed_by);
+            INT_FETCH   (21, wp.gs_favourites);
+            BOOL_FETCH  (22, wp.gs_long_desc_html);
+            TEXT_FETCH  (23, wp.gs_long_desc);
+            BOOL_FETCH  (24, wp.gs_short_desc_html);
+            TEXT_FETCH  (25, wp.gs_short_desc);
+            TEXT_FETCH  (26, wp.gs_hint);
+            INT_FETCH   (27, wp.gs_container_id);
+            BOOL_FETCH  (28, wp.gs_archived);
+            BOOL_FETCH  (29, wp.gs_available);
+            INT_FETCH   (30, wp.gs_owner_id);
+            TEXT_FETCH  (31, wp.gs_placed_by);
 
-            BOOL_FETCH(  32, wp.flag_markedfound);
-            BOOL_FETCH(  33, wp.flag_inprogress);
-            INT_FETCH(   34, wp.gs_date_found);
-            BOOL_FETCH(  35, wp.flag_dnf);
+            BOOL_FETCH  (32, wp.flag_markedfound);
+            BOOL_FETCH  (33, wp.flag_inprogress);
+            INT_FETCH   (34, wp.gs_date_found);
+            BOOL_FETCH  (35, wp.flag_dnf);
 
             [wp finish];
             [wps addObject:wp];
@@ -473,44 +473,44 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT(   1, wp.wpt_name);
-        SET_VAR_TEXT(   2, wp.wpt_description);
-        SET_VAR_TEXT(   3, wp.wpt_lat);
-        SET_VAR_TEXT(   4, wp.wpt_lon);
-        SET_VAR_INT(    5, wp.wpt_lat_int);
-        SET_VAR_INT(    6, wp.wpt_lon_int);
-        SET_VAR_TEXT(   7, wp.wpt_date_placed);
-        SET_VAR_INT(    8, wp.wpt_date_placed_epoch);
-        SET_VAR_TEXT(   9, wp.wpt_url);
-        SET_VAR_INT(   10, wp.wpt_type_id);
-        SET_VAR_INT(   11, wp.wpt_symbol_id);
-        SET_VAR_TEXT(  12, wp.wpt_urlname);
+        SET_VAR_TEXT  ( 1, wp.wpt_name);
+        SET_VAR_TEXT  ( 2, wp.wpt_description);
+        SET_VAR_TEXT  ( 3, wp.wpt_lat);
+        SET_VAR_TEXT  ( 4, wp.wpt_lon);
+        SET_VAR_INT   ( 5, wp.wpt_lat_int);
+        SET_VAR_INT   ( 6, wp.wpt_lon_int);
+        SET_VAR_TEXT  ( 7, wp.wpt_date_placed);
+        SET_VAR_INT   ( 8, wp.wpt_date_placed_epoch);
+        SET_VAR_TEXT  ( 9, wp.wpt_url);
+        SET_VAR_INT   (10, wp.wpt_type_id);
+        SET_VAR_INT   (11, wp.wpt_symbol_id);
+        SET_VAR_TEXT  (12, wp.wpt_urlname);
 
-        SET_VAR_INT(   13, wp.logStatus);
-        SET_VAR_BOOL(  14, wp.flag_highlight);
-        SET_VAR_INT(   15, wp.account_id);
-        SET_VAR_BOOL(  16, wp.flag_ignore);
+        SET_VAR_INT   (13, wp.logStatus);
+        SET_VAR_BOOL  (14, wp.flag_highlight);
+        SET_VAR_INT   (15, wp.account_id);
+        SET_VAR_BOOL  (16, wp.flag_ignore);
 
-        SET_VAR_INT(   17, wp.gs_country_id);
-        SET_VAR_INT(   18, wp.gs_state_id);
+        SET_VAR_INT   (17, wp.gs_country_id);
+        SET_VAR_INT   (18, wp.gs_state_id);
         SET_VAR_DOUBLE(19, wp.gs_rating_difficulty);
         SET_VAR_DOUBLE(20, wp.gs_rating_terrain);
-        SET_VAR_INT(   21, wp.gs_favourites);
-        SET_VAR_BOOL(  22, wp.gs_long_desc_html);
-        SET_VAR_TEXT(  23, wp.gs_long_desc);
-        SET_VAR_BOOL(  24, wp.gs_short_desc_html);
-        SET_VAR_TEXT(  25, wp.gs_short_desc);
-        SET_VAR_TEXT(  26, wp.gs_hint);
-        SET_VAR_INT(   27, wp.gs_container_id);
-        SET_VAR_BOOL(  28, wp.gs_archived);
-        SET_VAR_BOOL(  29, wp.gs_available);
-        SET_VAR_INT(   30, wp.gs_owner_id);
-        SET_VAR_TEXT(  31, wp.gs_placed_by);
+        SET_VAR_INT   (21, wp.gs_favourites);
+        SET_VAR_BOOL  (22, wp.gs_long_desc_html);
+        SET_VAR_TEXT  (23, wp.gs_long_desc);
+        SET_VAR_BOOL  (24, wp.gs_short_desc_html);
+        SET_VAR_TEXT  (25, wp.gs_short_desc);
+        SET_VAR_TEXT  (26, wp.gs_hint);
+        SET_VAR_INT   (27, wp.gs_container_id);
+        SET_VAR_BOOL  (28, wp.gs_archived);
+        SET_VAR_BOOL  (29, wp.gs_available);
+        SET_VAR_INT   (30, wp.gs_owner_id);
+        SET_VAR_TEXT  (31, wp.gs_placed_by);
 
-        SET_VAR_BOOL(  32, wp.flag_markedfound);
-        SET_VAR_BOOL(  33, wp.flag_inprogress);
-        SET_VAR_INT(   34, wp.gs_date_found);
-        SET_VAR_BOOL(  35, wp.flag_dnf);
+        SET_VAR_BOOL  (32, wp.flag_markedfound);
+        SET_VAR_BOOL  (33, wp.flag_inprogress);
+        SET_VAR_INT   (34, wp.gs_date_found);
+        SET_VAR_BOOL  (35, wp.flag_dnf);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -524,46 +524,46 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_lat_int = ?, wpt_lon_int = ?, wpt_date_placed = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ? where id = ?");
 
-        SET_VAR_TEXT(   1, wpt_name);
-        SET_VAR_TEXT(   2, wpt_description);
-        SET_VAR_TEXT(   3, wpt_lat);
-        SET_VAR_TEXT(   4, wpt_lon);
-        SET_VAR_INT(    5, wpt_lat_int);
-        SET_VAR_INT(    6, wpt_lon_int);
-        SET_VAR_TEXT(   7, wpt_date_placed);
-        SET_VAR_INT(    8, wpt_date_placed_epoch);
-        SET_VAR_TEXT(   9, wpt_url);
-        SET_VAR_INT(   10, wpt_type_id);
-        SET_VAR_INT(   11, wpt_symbol_id);
-        SET_VAR_TEXT(  12, wpt_urlname);
+        SET_VAR_TEXT  ( 1, wpt_name);
+        SET_VAR_TEXT  ( 2, wpt_description);
+        SET_VAR_TEXT  ( 3, wpt_lat);
+        SET_VAR_TEXT  ( 4, wpt_lon);
+        SET_VAR_INT   ( 5, wpt_lat_int);
+        SET_VAR_INT   ( 6, wpt_lon_int);
+        SET_VAR_TEXT  ( 7, wpt_date_placed);
+        SET_VAR_INT   ( 8, wpt_date_placed_epoch);
+        SET_VAR_TEXT  ( 9, wpt_url);
+        SET_VAR_INT   (10, wpt_type_id);
+        SET_VAR_INT   (11, wpt_symbol_id);
+        SET_VAR_TEXT  (12, wpt_urlname);
 
-        SET_VAR_INT(   13, logStatus);
-        SET_VAR_BOOL(  14, flag_highlight);
-        SET_VAR_INT(   15, account_id);
-        SET_VAR_BOOL(  16, flag_ignore);
+        SET_VAR_INT   (13, logStatus);
+        SET_VAR_BOOL  (14, flag_highlight);
+        SET_VAR_INT   (15, account_id);
+        SET_VAR_BOOL  (16, flag_ignore);
 
-        SET_VAR_INT(   17, gs_country_id);
-        SET_VAR_INT(   18, gs_state_id);
+        SET_VAR_INT   (17, gs_country_id);
+        SET_VAR_INT   (18, gs_state_id);
         SET_VAR_DOUBLE(19, gs_rating_difficulty);
         SET_VAR_DOUBLE(20, gs_rating_terrain);
-        SET_VAR_INT(   21, gs_favourites);
-        SET_VAR_BOOL(  22, gs_long_desc_html);
-        SET_VAR_TEXT(  23, gs_long_desc);
-        SET_VAR_BOOL(  24, gs_short_desc_html);
-        SET_VAR_TEXT(  25, gs_short_desc);
-        SET_VAR_TEXT(  26, gs_hint);
-        SET_VAR_INT(   27, gs_container_id);
-        SET_VAR_BOOL(  28, gs_archived);
-        SET_VAR_BOOL(  29, gs_available);
-        SET_VAR_INT(   30, gs_owner_id);
-        SET_VAR_TEXT(  31, gs_placed_by);
+        SET_VAR_INT   (21, gs_favourites);
+        SET_VAR_BOOL  (22, gs_long_desc_html);
+        SET_VAR_TEXT  (23, gs_long_desc);
+        SET_VAR_BOOL  (24, gs_short_desc_html);
+        SET_VAR_TEXT  (25, gs_short_desc);
+        SET_VAR_TEXT  (26, gs_hint);
+        SET_VAR_INT   (27, gs_container_id);
+        SET_VAR_BOOL  (28, gs_archived);
+        SET_VAR_BOOL  (29, gs_available);
+        SET_VAR_INT   (30, gs_owner_id);
+        SET_VAR_TEXT  (31, gs_placed_by);
 
-        SET_VAR_BOOL(  32, flag_markedfound);
-        SET_VAR_BOOL(  33, flag_inprogress);
-        SET_VAR_INT(   34, gs_date_found);
-        SET_VAR_BOOL(  35, flag_dnf);
+        SET_VAR_BOOL  (32, flag_markedfound);
+        SET_VAR_BOOL  (33, flag_inprogress);
+        SET_VAR_INT   (34, gs_date_found);
+        SET_VAR_BOOL  (35, flag_dnf);
 
-        SET_VAR_INT(   36, _id);
+        SET_VAR_INT   (36, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -601,7 +601,7 @@
         DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_highlight);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -614,7 +614,7 @@
         DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_ignore);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -627,7 +627,7 @@
         DB_PREPARE(@"update waypoints set markedfound = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_markedfound);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -640,7 +640,7 @@
         DB_PREPARE(@"update waypoints set dnfed = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_dnf);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -653,7 +653,7 @@
         DB_PREPARE(@"update waypoints set inprogress = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_inprogress);
-        SET_VAR_INT( 2, self._id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

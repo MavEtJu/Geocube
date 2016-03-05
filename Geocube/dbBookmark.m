@@ -56,7 +56,7 @@
 
         DB_IF_STEP {
             a = [[dbBookmark alloc] init];
-            INT_FETCH( 0, a._id);
+            INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.name);
             TEXT_FETCH(2, a.url);
         }
@@ -74,7 +74,7 @@
 
         DB_WHILE_STEP {
             dbBookmark *a = [[dbBookmark alloc] init];
-            INT_FETCH( 0, a._id);
+            INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.name);
             TEXT_FETCH( 2, a.url);
             [ss addObject:a];
@@ -113,7 +113,7 @@
 
         SET_VAR_TEXT(1, name);
         SET_VAR_TEXT(2, url);
-        SET_VAR_INT(3, _id);
+        SET_VAR_INT (3, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

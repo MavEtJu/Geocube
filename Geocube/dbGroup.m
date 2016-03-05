@@ -124,7 +124,7 @@
 
         DB_IF_STEP {
             cg = [[dbGroup alloc] init];
-            INT_FETCH( 0, cg._id);
+            INT_FETCH (0, cg._id);
             TEXT_FETCH(1, cg.name);
             BOOL_FETCH(2, cg.usergroup);
             BOOL_FETCH(3, cg.deletable)
@@ -145,7 +145,7 @@
 
         DB_IF_STEP {
             cg = [[dbGroup alloc] init];
-            INT_FETCH( 0, cg._id);
+            INT_FETCH (0, cg._id);
             TEXT_FETCH(1, cg.name);
             BOOL_FETCH(2, cg.usergroup);
             BOOL_FETCH(3, cg.deletable)
@@ -164,7 +164,7 @@
 
         DB_WHILE_STEP {
             dbGroup *cg = [[dbGroup alloc] init];
-            INT_FETCH( 0, cg._id);
+            INT_FETCH (0, cg._id);
             TEXT_FETCH(1, cg.name);
             BOOL_FETCH(2, cg.usergroup);
             BOOL_FETCH(3, cg.deletable);
@@ -258,7 +258,7 @@
         DB_PREPARE(@"update groups set name = ? where id = ?");
 
         SET_VAR_TEXT(1, newname);
-        SET_VAR_INT( 2, _id);
+        SET_VAR_INT (2, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

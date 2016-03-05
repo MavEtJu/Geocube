@@ -44,10 +44,10 @@
 
         DB_WHILE_STEP {
             t = [[dbTrack alloc] init];;
-            INT_FETCH( 0, t._id);
+            INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.name);
-            INT_FETCH( 2, t.dateStart);
-            INT_FETCH( 3, t.dateStop);
+            INT_FETCH (2, t.dateStart);
+            INT_FETCH (3, t.dateStop);
             [t finish];
         }
         DB_FINISH;
@@ -64,10 +64,10 @@
 
         DB_WHILE_STEP {
             dbTrack *t = [[dbTrack alloc] init];;
-            INT_FETCH( 0, t._id);
+            INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.name);
-            INT_FETCH( 2, t.dateStart);
-            INT_FETCH( 3, t.dateStop);
+            INT_FETCH (2, t.dateStart);
+            INT_FETCH (3, t.dateStop);
             [t finish];
             [ts addObject:t];
         }
@@ -82,8 +82,8 @@
         DB_PREPARE(@"insert into tracks(name, startedon, stoppedon) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, name);
-        SET_VAR_INT( 2, dateStart);
-        SET_VAR_INT( 3, dateStop);
+        SET_VAR_INT (2, dateStart);
+        SET_VAR_INT (3, dateStop);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -98,9 +98,9 @@
         DB_PREPARE(@"update tracks set name = ?, startedon = ?, stoppedon = ? where id = ?");
 
         SET_VAR_TEXT(1, name);
-        SET_VAR_INT( 2, dateStart);
-        SET_VAR_INT( 3, dateStop);
-        SET_VAR_INT( 4, _id);
+        SET_VAR_INT (2, dateStart);
+        SET_VAR_INT (3, dateStop);
+        SET_VAR_INT (4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

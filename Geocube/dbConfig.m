@@ -54,7 +54,7 @@
 
         DB_IF_STEP {
             c = [[dbConfig alloc] init];
-            INT_FETCH( 0, c._id);
+            INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.key);
             TEXT_FETCH(2, c.value);
         }
@@ -73,7 +73,7 @@
 
         DB_WHILE_STEP {
             dbConfig *c = [[dbConfig alloc] init];
-            INT_FETCH( 0, c._id);
+            INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.key);
             TEXT_FETCH(2, c.value);
 

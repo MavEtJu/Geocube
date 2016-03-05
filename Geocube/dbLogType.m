@@ -52,9 +52,9 @@
 
         DB_WHILE_STEP {
             dbLogType *lt = [[dbLogType alloc] init];
-            INT_FETCH( 0, lt._id);
+            INT_FETCH (0, lt._id);
             TEXT_FETCH(1, lt.logtype);
-            INT_FETCH( 2, lt.icon);
+            INT_FETCH (2, lt.icon);
             [lts addObject:lt];
         }
         DB_FINISH;

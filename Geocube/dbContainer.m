@@ -55,9 +55,9 @@
 
         DB_WHILE_STEP {
             dbContainer *c = [[dbContainer alloc] init];
-            INT_FETCH( 0, c._id);
+            INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.size);
-            INT_FETCH( 2, c.icon);
+            INT_FETCH (2, c.icon);
             [ss addObject:c];
         }
         DB_FINISH;

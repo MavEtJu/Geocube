@@ -42,8 +42,8 @@
         DB_PREPARE(@"insert into file_imports(filename, filesize, last_import_epoch) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, fi.filename);
-        SET_VAR_INT( 2, fi.filesize);
-        SET_VAR_INT( 3, fi.lastimport);
+        SET_VAR_INT (2, fi.filesize);
+        SET_VAR_INT (3, fi.lastimport);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -59,9 +59,9 @@
         DB_PREPARE(@"update file_imports set filename = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
         SET_VAR_TEXT(1, filename);
-        SET_VAR_INT( 2, filesize);
-        SET_VAR_INT( 3, lastimport);
-        SET_VAR_INT( 4, _id);
+        SET_VAR_INT (2, filesize);
+        SET_VAR_INT (3, lastimport);
+        SET_VAR_INT (4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -77,10 +77,10 @@
 
         DB_WHILE_STEP {
             dbFileImport *i = [[dbFileImport alloc] init];;
-            INT_FETCH( 0, i._id);
+            INT_FETCH (0, i._id);
             TEXT_FETCH(1, i.filename);
-            INT_FETCH( 2, i.filesize);
-            INT_FETCH( 3, i.lastimport);
+            INT_FETCH (2, i.filesize);
+            INT_FETCH (3, i.lastimport);
             [i finish];
             [is addObject:i];
         }

@@ -57,11 +57,11 @@
 
         DB_WHILE_STEP {
             dbType *t = [[dbType alloc] init];;
-            INT_FETCH( 0, t._id);
+            INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);
-            INT_FETCH( 3, t.icon);
-            INT_FETCH( 4, t.pin_id);
+            INT_FETCH (3, t.icon);
+            INT_FETCH (4, t.pin_id);
             [t finish];
             [ts addObject:t];
         }

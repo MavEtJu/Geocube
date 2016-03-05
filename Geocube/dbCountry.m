@@ -54,7 +54,7 @@
 
         DB_WHILE_STEP {
             dbCountry *c = [[dbCountry alloc] init];;
-            INT_FETCH( 0, c._id);
+            INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.name);
             TEXT_FETCH(2, c.code);
             [ss addObject:c];
@@ -80,7 +80,7 @@
 
         DB_IF_STEP {
             c = [[dbCountry alloc] init];
-            INT_FETCH(0, c._id);
+            INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.name);
             TEXT_FETCH(2, c.code);
         }

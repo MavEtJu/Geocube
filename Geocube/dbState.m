@@ -54,7 +54,7 @@
 
         DB_WHILE_STEP {
             dbState *s = [[dbState alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
             [ss addObject:s];
@@ -80,7 +80,7 @@
 
         DB_IF_STEP {
             s = [[dbState alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
         }

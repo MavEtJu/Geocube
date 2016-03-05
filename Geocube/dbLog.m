@@ -155,13 +155,13 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT( 1, log.waypoint_id);
-        SET_VAR_INT( 2, log.logtype_id);
+        SET_VAR_INT (1, log.waypoint_id);
+        SET_VAR_INT (2, log.logtype_id);
         SET_VAR_TEXT(3, log.datetime);
-        SET_VAR_INT( 4, log.datetime_epoch);
-        SET_VAR_INT( 5, log.logger_id);
+        SET_VAR_INT (4, log.datetime_epoch);
+        SET_VAR_INT (5, log.logger_id);
         SET_VAR_TEXT(6, log.log);
-        SET_VAR_INT( 7, log.gc_id);
+        SET_VAR_INT (7, log.gc_id);
         SET_VAR_BOOL(8, log.needstobelogged);
 
         DB_CHECK_OKAY;
@@ -177,14 +177,14 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log_type_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
 
-        SET_VAR_INT( 1, logtype_id);
-        SET_VAR_INT( 2, waypoint_id);
+        SET_VAR_INT (1, logtype_id);
+        SET_VAR_INT (2, waypoint_id);
         SET_VAR_TEXT(3, datetime);
-        SET_VAR_INT( 4, datetime_epoch);
-        SET_VAR_INT( 5, logger_id);
+        SET_VAR_INT (4, datetime_epoch);
+        SET_VAR_INT (5, logger_id);
         SET_VAR_TEXT(6, log);
-        SET_VAR_INT( 7, gc_id);
-        SET_VAR_INT( 8, _id);
+        SET_VAR_INT (7, gc_id);
+        SET_VAR_INT (8, _id);
         SET_VAR_BOOL(9, needstobelogged);
 
         DB_CHECK_OKAY;
@@ -211,7 +211,7 @@
         DB_PREPARE(@"update logs set log = ? where id = ?");
 
         SET_VAR_TEXT(1, log);
-        SET_VAR_INT( 2, _id);
+        SET_VAR_INT (2, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -247,13 +247,13 @@
 
         DB_WHILE_STEP {
             dbLog *l = [[dbLog alloc] init];;
-            INT_FETCH( 0, l._id);
-            INT_FETCH( 1, l.gc_id);
-            INT_FETCH( 2, l.waypoint_id);
-            INT_FETCH( 3, l.logtype_id);
+            INT_FETCH (0, l._id);
+            INT_FETCH (1, l.gc_id);
+            INT_FETCH (2, l.waypoint_id);
+            INT_FETCH (3, l.logtype_id);
             TEXT_FETCH(4, l.datetime);
             //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
-            INT_FETCH( 6, l.logger_id);
+            INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
             [l finish];
@@ -275,13 +275,13 @@
 
         DB_WHILE_STEP {
             dbLog *l = [[dbLog alloc] init];;
-            INT_FETCH( 0, l._id);
-            INT_FETCH( 1, l.gc_id);
-            INT_FETCH( 2, l.waypoint_id);
-            INT_FETCH( 3, l.logtype_id);
+            INT_FETCH (0, l._id);
+            INT_FETCH (1, l.gc_id);
+            INT_FETCH (2, l.waypoint_id);
+            INT_FETCH (3, l.logtype_id);
             TEXT_FETCH(4, l.datetime);
             //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
-            INT_FETCH( 6, l.logger_id);
+            INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
             [l finish];
@@ -299,7 +299,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from logs where waypoint_id = ? and log like ?");
 
-        SET_VAR_INT(1, wp._id);
+        SET_VAR_INT( 1, wp._id);
         NSString *s = [NSString stringWithFormat:@"%%%@%%", string];
         SET_VAR_TEXT(2, s);
 

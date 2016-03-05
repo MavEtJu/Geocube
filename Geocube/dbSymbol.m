@@ -50,7 +50,7 @@
 
         DB_WHILE_STEP {
             dbSymbol *s = [[dbSymbol alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.symbol);
             [ss addObject:s];
         }
@@ -75,7 +75,7 @@
 
         DB_IF_STEP {
             s = [[dbSymbol alloc] init];
-            INT_FETCH( 0, s._id);
+            INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.symbol);
         }
         DB_FINISH;

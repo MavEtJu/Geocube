@@ -63,12 +63,12 @@
 
         DB_WHILE_STEP {
             dbTrackElement *te = [[dbTrackElement alloc] init];;
-            INT_FETCH( 0, te._id);
-            INT_FETCH( 1, te.track_id);
-            INT_FETCH( 2, te.lat_int);
-            INT_FETCH( 3, te.lon_int);
-            INT_FETCH( 4, te.height);
-            INT_FETCH( 5, te.timestamp_epoch);
+            INT_FETCH (0, te._id);
+            INT_FETCH (1, te.track_id);
+            INT_FETCH (2, te.lat_int);
+            INT_FETCH (3, te.lon_int);
+            INT_FETCH (4, te.height);
+            INT_FETCH (5, te.timestamp_epoch);
             BOOL_FETCH(6, te.restart);
             [te finish];
             [tes addObject:te];
@@ -83,11 +83,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT( 1, track_id);
-        SET_VAR_INT( 2, lat_int);
-        SET_VAR_INT( 3, lon_int);
-        SET_VAR_INT( 4, height);
-        SET_VAR_INT( 5, timestamp_epoch);
+        SET_VAR_INT (1, track_id);
+        SET_VAR_INT (2, lat_int);
+        SET_VAR_INT (3, lon_int);
+        SET_VAR_INT (4, height);
+        SET_VAR_INT (5, timestamp_epoch);
         SET_VAR_BOOL(6, restart);
 
         DB_CHECK_OKAY;

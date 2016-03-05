@@ -55,10 +55,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update externalmaps set geocube_id = ?, enabled = ?, name = ? where id = ?");
 
-        SET_VAR_INT( 1, _geocube_id);
+        SET_VAR_INT (1, _geocube_id);
         SET_VAR_BOOL(2, _enabled);
         SET_VAR_TEXT(3, _name);
-        SET_VAR_INT( 4, _id);
+        SET_VAR_INT (4, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -74,8 +74,8 @@
 
         DB_WHILE_STEP {
             dbExternalMap *em = [[dbExternalMap alloc] init];
-            INT_FETCH( 0, em._id);
-            INT_FETCH( 1, em.geocube_id);
+            INT_FETCH (0, em._id);
+            INT_FETCH (1, em.geocube_id);
             BOOL_FETCH(2, em.enabled);
             TEXT_FETCH(3, em.name);
             [ss addObject:em];
@@ -96,8 +96,8 @@
 
         DB_WHILE_STEP {
             em = [[dbExternalMap alloc] init];
-            INT_FETCH( 0, em._id);
-            INT_FETCH( 1, em.geocube_id);
+            INT_FETCH (0, em._id);
+            INT_FETCH (1, em.geocube_id);
             BOOL_FETCH(2, em.enabled);
             TEXT_FETCH(3, em.name);
             break;

@@ -59,10 +59,10 @@
 
         DB_WHILE_STEP {
             dbAttribute *a = [[dbAttribute alloc] init];
-            INT_FETCH( 0, a._id);
+            INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.label);
-            INT_FETCH( 2, a.gc_id);
-            INT_FETCH( 3, a.icon);
+            INT_FETCH (2, a.gc_id);
+            INT_FETCH (3, a.icon);
             [ss addObject:a];
         }
         DB_FINISH;
@@ -84,7 +84,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from attribute2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT( 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -97,8 +97,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values(?, ?, ?)");
 
-        SET_VAR_INT( 1, _id);
-        SET_VAR_INT( 2, wp_id);
+        SET_VAR_INT (1, _id);
+        SET_VAR_INT (2, wp_id);
         SET_VAR_BOOL(3, YesNo);
 
         DB_CHECK_OKAY;
@@ -132,10 +132,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select count(id) from attribute2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT( 1, wp_id);
+        SET_VAR_INT(1, wp_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN( 0, c);
+            INT_FETCH_AND_ASSIGN(0, c);
             count = c;
         }
         DB_FINISH;
@@ -154,10 +154,10 @@
 
         DB_WHILE_STEP {
             dbAttribute *a = [[dbAttribute alloc] init];
-            INT_FETCH( 0, a._id);
+            INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.label);
-            INT_FETCH( 2, a.icon);
-            INT_FETCH( 3, a.gc_id);
+            INT_FETCH (2, a.icon);
+            INT_FETCH (3, a.gc_id);
             [ss addObject:a];
         }
         DB_FINISH;
