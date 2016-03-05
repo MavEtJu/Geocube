@@ -158,6 +158,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>waze</string>
+		<string>mapswithme</string>
 	</array>
 </dict>
 </plist>
