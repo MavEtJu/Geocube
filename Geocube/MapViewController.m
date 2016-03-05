@@ -712,6 +712,8 @@ enum {
                 urlDestination = url;
         }];
 
+        NSURL *url = nil;
+
         if (waypointManager.currentWaypoint == nil) {
             if (urlCurrent.type == 0) {
                 CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(LM.coords.latitude, LM.coords.longitude);
@@ -723,9 +725,8 @@ enum {
                     [destination openInMapsWithLaunchOptions:nil];
                 return;
             }
-            NSString *url = [self translateURLType:urlCurrent];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-            return;
+            NSString *urlString = [self translateURLType:urlCurrent];
+            url = [NSURL URLWithString:urlString];
         }
 
         if (waypointManager.currentWaypoint != nil) {
@@ -740,10 +741,17 @@ enum {
                 return;
             }
 
-            NSString *url = [self translateURLType:urlDestination];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            NSString *urlString = [self translateURLType:urlDestination];
+            url = [NSURL URLWithString:urlString];
+        }
+
+        if ([[UIApplication sharedApplication] canOpenURL:url] == NO) {
+            [MyTools messageBox:self header:@"Open external application" text:[NSString stringWithFormat:@"Unable to open the %@ application: URL not recognized", em.name]];
             return;
         }
+
+        [[UIApplication sharedApplication] openURL:url];
+        return;
     }];
 }
 
