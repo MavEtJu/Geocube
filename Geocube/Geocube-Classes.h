@@ -155,6 +155,7 @@
 @class dbContainer;
 @class dbCountry;
 @class dbExternalMap;
+@class dbExternalMapURL;
 @class dbFileImport;
 @class dbFilter;
 @class dbGroup;
