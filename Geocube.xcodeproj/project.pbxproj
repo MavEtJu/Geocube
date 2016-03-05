@@ -271,6 +271,7 @@
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
 		E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E890516C1C8993CF00220986 /* icons - dead - 30x30.png */; };
+		E89051701C8A46D800220986 /* dbExternalMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E890516F1C8A46D800220986 /* dbExternalMap.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -783,6 +784,8 @@
 		E88FD8F11B4160A700D0CCE7 /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbGroup.h; sourceTree = "<group>"; };
 		E88FD8F21B4160A700D0CCE7 /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbGroup.m; sourceTree = "<group>"; };
 		E890516C1C8993CF00220986 /* icons - dead - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30.png"; path = "images/icons - dead - 30x30.png"; sourceTree = "<group>"; };
+		E890516E1C8A46D800220986 /* dbExternalMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbExternalMap.h; sourceTree = "<group>"; };
+		E890516F1C8A46D800220986 /* dbExternalMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbExternalMap.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -1965,6 +1968,8 @@
 				E80732BF1B5FB4DF007FDC29 /* dbCountry.m */,
 				E82840F31B510AE10055EE59 /* dbContainer.h */,
 				E82840F41B510AE10055EE59 /* dbContainer.m */,
+				E890516E1C8A46D800220986 /* dbExternalMap.h */,
+				E890516F1C8A46D800220986 /* dbExternalMap.m */,
 				E847A5801B9E875B00BEFE83 /* dbFileImport.h */,
 				E847A5811B9E875B00BEFE83 /* dbFileImport.m */,
 				E8045B841B68E9D100DD44CC /* dbFilter.h */,
@@ -2681,6 +2686,7 @@
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
+				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,

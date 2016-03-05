@@ -153,6 +153,7 @@
 @class dbConfig;
 @class dbContainer;
 @class dbCountry;
+@class dbExternalMap;
 @class dbFileImport;
 @class dbFilter;
 @class dbGroup;

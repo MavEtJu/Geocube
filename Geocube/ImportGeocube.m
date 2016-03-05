@@ -54,6 +54,8 @@
         okay |= [self parseSites:d];
     if ((d = [xmlDictionary objectForKey:@"keys"]) != nil)
         okay |= [self parseKeys:d];
+    if ((d = [xmlDictionary objectForKey:@"externalmaps"]) != nil)
+        okay |= [self parseExternalMaps:d];
 
     return okay;
 }
@@ -232,6 +234,69 @@
     }];
 
     return YES;
+}
+
+- (BOOL)parseExternalMaps:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_EXTERNALMAPS];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_EXTERNALMAPS;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *keys = [dict objectForKey:@"externalmap"];
+    [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger gc_id = [[key objectForKey:@"id"] integerValue];
+        NSString *enabled = [key objectForKey:@"enabled"];
+        KEY(key, name, @"name");
+
+        BOOL enabled_bool = NO;
+        if ([enabled isEqualToString:@"YES"] == YES)
+            enabled_bool = YES;
+
+        dbExternalMap *em = [dbExternalMap dbGetByGeocubeID:gc_id];
+        if (em == nil) {
+            em = [[dbExternalMap alloc] init];
+            em.name = name;
+            em.geocube_id = gc_id;
+            em.enabled = enabled_bool;
+            em._id = [em dbCreate];
+        } else {
+            em.name = name;
+            em.enabled = enabled_bool;
+            [em dbUpdate];
+        }
+        [dbExternalMapURL dbDeleteByExternalMap:em._id];
+
+        NSArray *urls = [key objectForKey:@"url"];
+        [urls enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *model = [dict objectForKey:@"model"];
+            NSInteger type = [[dict objectForKey:@"type"] integerValue];
+            NSString *url = [dict objectForKey:@"text"];
+            url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+            dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];
+            emu.model = model;
+            emu.externalMap_id = em._id;
+            emu.url = url;
+            emu.type = type;
+            [emu dbCreate];
+        }];
+
+
+    }];
+
+    return YES;
+
 }
 
 @end

@@ -89,6 +89,10 @@ enum {
     [vs addObject:[NSNumber numberWithInteger:[dbCountry dbCount]]];
     [fs addObject:@"Containers"];
     [vs addObject:[NSNumber numberWithInteger:[dbContainer dbCount]]];
+    [fs addObject:@"ExternalMaps"];
+    [vs addObject:[NSNumber numberWithInteger:[dbExternalMap dbCount]]];
+    [fs addObject:@"ExternalMapURLs"];
+    [vs addObject:[NSNumber numberWithInteger:[dbExternalMapURL dbCount]]];
     [fs addObject:@"FileImports"];
     [vs addObject:[NSNumber numberWithInteger:[dbFileImport dbCount]]];
     [fs addObject:@"Filters"];

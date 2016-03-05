@@ -79,7 +79,7 @@ enum {
                              actionWithTitle:@"Import"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
-                                 [self downloadLicenses];
+                                 [self downloadFiles];
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
@@ -232,16 +232,22 @@ enum {
 {
     switch (index) {
         case menuDownloadSiteInfo:
-            [self downloadLicenses];
+            [self downloadFiles];
             return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
 }
 
-- (void)downloadLicenses
+- (void)downloadFiles
 {
-    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_sites"] value]];
+    [self downloadFile:@"url_sites" header:@"Site information download" revision:@"sites_revision"];
+    [self downloadFile:@"url_externalmaps" header:@"External maps download" revision:@"externalmaps_revision"];
+}
+
+- (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
+{
+    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
@@ -252,7 +258,7 @@ enum {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         [ImportGeocube parse:data];
 
-        [MyTools messageBox:self header:@"Site information download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"sites_revision"] value]]];
+        [MyTools messageBox:self header:header text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:key_revision] value]]];
 
         [dbc AccountsReload];
         [self refreshAccountData];
@@ -267,7 +273,7 @@ enum {
             err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
         }
 
-        [MyTools messageBox:self header:@"Site Information Download" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+        [MyTools messageBox:self header:header text:[NSString stringWithFormat:@"Failed to download: %@", err]];
     }
 }
 

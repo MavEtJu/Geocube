@@ -19,14 +19,25 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGeocube : NSObject
+@interface dbExternalMap : dbObject
 
-#define KEY_REVISION_NOTICES @"notices_revision"
-#define KEY_REVISION_CONFIG  @"config_revision"
-#define KEY_REVISION_SITES   @"sites_revision"
-#define KEY_REVISION_KEYS    @"keys_revision"
-#define KEY_REVISION_EXTERNALMAPS    @"externalmaps_revision"
+@property (nonatomic) NSInteger geocube_id;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic, retain) NSString *name;
 
-+ (BOOL)parse:(NSData *)data;
++ (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id;
+
+@end
+
+@interface dbExternalMapURL : dbObject
+
+@property (nonatomic) NSId externalMap_id;
+@property (nonatomic, retain) dbExternalMap *externalMap;
+@property (nonatomic, retain) NSString *model;
+@property (nonatomic) NSInteger type;
+@property (nonatomic, retain) NSString *url;
+
++ (NSArray *)dbAllByExternalMap:(NSId)map_id;
++ (void)dbDeleteByExternalMap:(NSId)map_id;
 
 @end

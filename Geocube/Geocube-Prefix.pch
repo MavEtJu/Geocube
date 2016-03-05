@@ -72,6 +72,7 @@
 #import "dbConfig.h"
 #import "dbContainer.h"
 #import "dbCountry.h"
+#import "dbExternalMap.h"
 #import "dbFileImport.h"
 #import "dbFilter.h"
 #import "dbGroup.h"

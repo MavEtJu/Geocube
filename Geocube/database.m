@@ -291,6 +291,14 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 16
+    a = @[
+    @"create table externalmaps ( id integer primary key, geocube_id integer, enabled bool, name text)",
+    @"create table externalmap_urls ( id integer primary key, externalmap_id integer, model text, type integer, url text)",
+    @"insert into config(key, value) values('url_externalmaps', 'https://geocube.mavetju.org/geocube_externalmaps.geocube')",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end

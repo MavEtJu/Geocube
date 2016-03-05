@@ -9,7 +9,8 @@ create table config (
 create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.geocube");
 insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.geocube");
-insert into config(key, value) values("version", "15");
+insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.geocube");
+insert into config(key, value) values("version", "16");
 
 create table filters (
     id integer primary key,
@@ -798,3 +799,17 @@ create table trackelements (
 );
 create index trackelements_idx_id on trackelements(id);
 create index trackelements_idx_trackid on trackelements(track_id);
+
+create table externalmaps (
+    id integer primary key,
+    geocube_id integer,
+    enabled bool,
+    name text
+);
+create table externalmap_urls (
+    id integer primary key,
+    externalmap_id integer,
+    model text,
+    type integer,
+    url text
+);
