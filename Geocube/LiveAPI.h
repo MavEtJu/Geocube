@@ -32,7 +32,7 @@
 - (NSDictionary *)GetYourUserProfile;
 - (NSDictionary *)GetCacheIdsFavoritedByUser;
 - (NSDictionary *)GetGeocacheDataTypes;
-- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;
 - (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname;
 - (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
 - (NSDictionary *)GetMoreGeocaches:(NSInteger)offset;

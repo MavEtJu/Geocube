@@ -312,11 +312,12 @@
     return json;
 }
 
-- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateFieldNoteAndPublish" method:@"POST"];
+    [urlRequest setTimeoutInterval:120];
 
     /*
      * {
@@ -342,6 +343,20 @@
 
     NSInteger gslogtype;
     NSTimeInterval date;
+
+    NSMutableDictionary *imageDict = nil;
+    if (imageData != nil) {
+        imageDict = [NSMutableDictionary dictionaryWithCapacity:20];
+        [imageDict setValue:imageCaption forKey:@"FileCaption"];
+        [imageDict setValue:imageDescription forKey:@"FileDescription"];
+        [imageDict setValue:imageFilename forKey:@"FileName"];
+
+        NSData *b = [imageData base64EncodedDataWithOptions:0];
+        NSString *bs = [[NSString alloc] initWithData:b encoding:NSASCIIStringEncoding];
+        [imageDict setValue:bs forKey:@"base64ImageData"];
+
+        [dict setValue:imageDict forKey:@"ImageData"];
+    }
 
     if (GSLogTypesEvents == nil)
         [self GetGeocacheDataTypes];

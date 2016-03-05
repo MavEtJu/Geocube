@@ -393,7 +393,7 @@ enum {
         return;
     }
 
-    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp];
+    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText];
 
     // Successful but not log id returned
     if (gc_id == -1) {
