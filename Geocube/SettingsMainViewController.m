@@ -91,12 +91,6 @@ enum {
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
-    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:em.name];
-    }];
-    externalMapTypes = as;
-
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
 
@@ -118,7 +112,18 @@ enum {
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
         ];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+        [as addObject:em.name];
+    }];
+    externalMapTypes = as;
+    [self.tableView reloadData];
 }
 
 - (void)calculateMapcache
