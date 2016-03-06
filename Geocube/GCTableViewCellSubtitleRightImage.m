@@ -21,15 +21,15 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface GCTableViewCellRightImage ()
+@interface GCTableViewCellSubtitleRightImage ()
 
 @end
 
-@implementation GCTableViewCellRightImage
+@implementation GCTableViewCellSubtitleRightImage
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)ri
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ri];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ri];
     return self;
 }
 
@@ -37,8 +37,11 @@
 {
     [super layoutSubviews];
 
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+
     CGRect oldImageView = self.imageView.frame;
     CGRect oldTextLabel = self.textLabel.frame;
+    CGRect oldDetailTextLabel = self.detailTextLabel.frame;
 
     /*
      * Swap from
@@ -51,11 +54,15 @@
      * +---------------+---+---+
      */
 
-    CGRect newImageView = CGRectMake(oldTextLabel.origin.x + oldTextLabel.size.width - oldImageView.size.width, oldImageView.origin.y, oldImageView.size.width, oldImageView.size.height);
+    CGRect newImageView = CGRectMake(applicationFrame.size.width - oldImageView.size.width - oldImageView.origin.x, oldImageView.origin.y, oldImageView.size.width, oldImageView.size.height);
     CGRect newTextLabel = CGRectMake(oldImageView.origin.x, oldTextLabel.origin.y, oldTextLabel.size.width, oldTextLabel.size.height);
+    CGRect newDetailTextLabel = CGRectMake(oldImageView.origin.x, oldDetailTextLabel.origin.y, oldDetailTextLabel.size.width, oldDetailTextLabel.size.height);
+
+    //return;
 
     self.imageView.frame = newImageView;
     self.textLabel.frame = newTextLabel;
+    self.detailTextLabel.frame = newDetailTextLabel;
 
     [self changeTheme];
 }
@@ -63,8 +70,8 @@
 - (void)changeTheme
 {
     /*
-    self.textLabel.textColor = currentTheme.labelTextColor;
-    self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
+     self.textLabel.textColor = currentTheme.labelTextColor;
+     self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
      */
     [super changeTheme];
 }

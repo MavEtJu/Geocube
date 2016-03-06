@@ -43,7 +43,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellSubtitleRightImage class] forCellReuseIdentifier:THISCELL];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDownloadSiteInfo label:@"Download site info"];
@@ -109,16 +109,16 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellSubtitleRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
     if (cell == nil)
-        cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
+        cell = [[GCTableViewCellSubtitleRightImage alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
     cell.detailTextLabel.text = a.accountname_string;
+    cell.userInteractionEnabled = YES;
     if (a.enabled == NO) {
         cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
-        cell.userInteractionEnabled = NO;
     } else {
         if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES) {
             cell.imageView.image = [imageLibrary get:ImageIcon_Target];
@@ -128,7 +128,6 @@ enum {
             else
                 cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
         }
-        cell.userInteractionEnabled = YES;
     }
 
     return cell;
@@ -165,6 +164,9 @@ enum {
 
                              [self.tableView reloadData];
 
+                             if (account.enabled == NO)
+                                 return;
+
                              account.remoteAPI.authenticationDelegate = self;
                              [account.remoteAPI Authenticate];
                          }];
@@ -174,6 +176,10 @@ enum {
         forget = [UIAlertAction
                   actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
                   handler:^(UIAlertAction * action) {
+                      account.accountname_string = nil;
+                      account.accountname_id = 0;
+                      account.accountname = nil;
+                      [account dbUpdateAccount];
                       [account dbClearAuthentication];
                       [self refreshAccountData];
                       [self.tableView reloadData];

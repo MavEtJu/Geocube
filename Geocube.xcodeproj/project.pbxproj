@@ -273,6 +273,7 @@
 		E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E890516C1C8993CF00220986 /* icons - dead - 30x30.png */; };
 		E89051701C8A46D800220986 /* dbExternalMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E890516F1C8A46D800220986 /* dbExternalMap.m */; };
 		E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */; };
+		E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -789,6 +790,8 @@
 		E890516F1C8A46D800220986 /* dbExternalMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbExternalMap.m; sourceTree = "<group>"; };
 		E89051711C8ACEFA00220986 /* WaypointLogImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogImagesViewController.h; sourceTree = "<group>"; };
 		E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogImagesViewController.m; sourceTree = "<group>"; };
+		E89051761C8C281B00220986 /* GCTableViewCellSubtitleRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellSubtitleRightImage.h; sourceTree = "<group>"; };
+		E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSubtitleRightImage.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -1273,6 +1276,8 @@
 				E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */,
 				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
 				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
+				E89051761C8C281B00220986 /* GCTableViewCellSubtitleRightImage.h */,
+				E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */,
 				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.h */,
 				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m */,
 				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
@@ -2596,6 +2601,7 @@
 				E82990461C87A36200504421 /* ImportGeocube.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
 				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
+				E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */,
 				E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,

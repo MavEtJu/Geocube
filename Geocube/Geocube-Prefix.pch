@@ -125,6 +125,7 @@
 #import "GCScrollView.h"
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
+#import "GCTableViewCellSubtitleRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellTwoTextfields.h"
 #import "GCTableViewCellKeyValue.h"

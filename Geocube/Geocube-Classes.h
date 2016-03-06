@@ -61,6 +61,7 @@
 @class GCTableViewCell;
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
+@class GCTableViewCellSubtitleRightImage;
 @class GCTableViewCellTwoTextfields;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
