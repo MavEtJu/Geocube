@@ -90,10 +90,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersonalNoteTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    if (cell == nil) {
-        cell = [[PersonalNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
 

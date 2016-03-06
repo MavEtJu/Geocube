@@ -82,10 +82,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    if (cell == nil) {
-        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     NSEnumerator *e;
     if (indexPath.section == 0)

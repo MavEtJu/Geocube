@@ -70,8 +70,6 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    if (cell == nil)
-        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL];
 
     dbPin *p = [pins objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", p.description];

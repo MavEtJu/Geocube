@@ -132,8 +132,6 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-    if (cell == nil)
-        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
 
     if (indexPath.section == IMAGES_PINS_EACH) {
         NSArray *pins = [dbc Pins];

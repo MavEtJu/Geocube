@@ -135,10 +135,7 @@ NEEDS_OVERLOADING(reloadQueries)
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    if (cell == nil) {
-        cell = [[GCTableViewCellWithSubtitle alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     NSString *name = [pq objectForKey:@"Name"];

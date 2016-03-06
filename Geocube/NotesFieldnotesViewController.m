@@ -97,10 +97,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    if (cell == nil) {
-        cell = [[LogTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointLogged:wp._id] objectAtIndex:indexPath.row];

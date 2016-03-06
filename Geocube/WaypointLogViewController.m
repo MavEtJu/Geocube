@@ -117,10 +117,7 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GCTableViewCellKeyValue *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
-    if (cell == nil) {
-        cell = [[GCTableViewCellKeyValue alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ALL];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.userInteractionEnabled = YES;
 
     switch (indexPath.section) {

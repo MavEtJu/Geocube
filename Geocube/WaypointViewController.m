@@ -253,8 +253,6 @@ enum {
 
         case WAYPOINT_DATA: {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DATA];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.userInteractionEnabled = YES;
 
@@ -366,8 +364,6 @@ enum {
             switch (indexPath.row) {
                 case WAYPOINT_ACTIONS_SETASTARGET: {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
                     cell.textLabel.text = @"Set as target";
@@ -376,8 +372,6 @@ enum {
 
                 case WAYPOINT_ACTIONS_LOGTHISWAYPOINT: {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCellRightImage alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
                     cell.textLabel.text = @"Log this waypoint";
@@ -386,8 +380,6 @@ enum {
 
                 case WAYPOINT_ACTIONS_OPENINBROWSER: {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_ACTIONS];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     cell.userInteractionEnabled = YES;
 

@@ -355,8 +355,7 @@ enum sections {
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
             switch (indexPath.row) {
                 case SECTION_DISTANCE_METRIC: {   // Metric
                     cell.textLabel.text = @"Use metric units";
@@ -376,8 +375,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
                     cell.textLabel.text = @"External Maps";
 
                     __block NSString *name = nil;
@@ -397,24 +395,20 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_THEME_THEME: {   // Theme
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
                     cell.textLabel.text = @"Theme";
                     cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:myConfig.themeType];
                     return cell;
                 }
                 case SECTION_THEME_COMPASS: {   // Compass type
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
                     cell.textLabel.text = @"Compass type";
                     cell.detailTextLabel.text = [compassTypes objectAtIndex:myConfig.compassType];
                     return cell;
                 }
                 case SECTION_THEME_ORIENTATIONS: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     NSMutableString *s = [NSMutableString stringWithString:@""];
                     if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
@@ -449,8 +443,7 @@ enum sections {
 
         case SECTION_SOUNDS: {   // Sounds
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
             switch (indexPath.row) {
                 case SECTION_SOUNDS_DIRECTION: {   // soundDirection
                     cell.textLabel.text = @"Enable sounds for direction";
@@ -480,8 +473,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_DESTINATION: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_IMAGE];
 
                     cell.textLabel.text = @"Destination line";
                     cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapDestinationColour];
@@ -490,8 +481,6 @@ enum sections {
                 }
                 case SECTION_MAPCOLOURS_TRACK: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_IMAGE];
 
                     cell.textLabel.text = @"Track line";
                     cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapTrackColour];
@@ -506,8 +495,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPS_CLUSTERS: {   // Enable
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
 
                     cell.textLabel.text = @"Enable clusters";
 
@@ -520,8 +507,6 @@ enum sections {
                 }
                 case SECTION_MAPS_ZOOMLEVEL: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum zoom level for clustering";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
@@ -536,16 +521,14 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
                     cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceGS];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
+
                     cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)myConfig.mapSearchMaximumNumberGCA];
                     return cell;
@@ -558,8 +541,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_DYNAMICMAP_ENABLED: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
 
                     cell.textLabel.text = @"Enable dynamic maps";
 
@@ -572,8 +553,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_SPEED_WALKING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum walking speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapWalkingSpeed];
@@ -582,8 +561,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_SPEED_CYCLING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum cycling speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapCyclingSpeed];
@@ -592,8 +569,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_SPEED_DRIVING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum driving speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapDrivingSpeed];
@@ -602,8 +577,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Walking zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance]];
@@ -612,8 +585,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_CYCLING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Cycling zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance], [MyTools niceDistance:myConfig.dynamicmapCyclingDistance]];
@@ -622,8 +593,6 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Driving zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapCyclingDistance], [MyTools niceDistance:myConfig.dynamicmapDrivingDistance]];
@@ -636,8 +605,7 @@ enum sections {
 
         case SECTION_KEEPTRACK: {
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
             switch (indexPath.row) {
                 case SECTION_KEEPTRACK_AUTOROTATE: {
                     cell.textLabel.text = @"Autorotate every day";
@@ -657,8 +625,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPCACHE_ENABLED: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
 
                     cell.textLabel.text = @"Enable map cache";
 
@@ -671,8 +637,6 @@ enum sections {
                 }
                 case SECTION_MAPCACHE_MAXAGE: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum age for objects in cache";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)myConfig.mapcacheMaxAge];
@@ -681,8 +645,6 @@ enum sections {
                 }
                 case SECTION_MAPCACHE_MAXSIZE: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-                    if (cell == nil)
-                        cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:THISCELL_SUBTITLE];
 
                     cell.textLabel.text = @"Maximum size for the cache";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)myConfig.mapcacheMaxSize];
@@ -695,8 +657,7 @@ enum sections {
 
         case SECTION_IMPORTS: {
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-            if (cell == nil)
-                cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_DEFAULT];
+
             switch (indexPath.row) {
                 case SECTION_IMPORTS_LOG_IMAGES: {
                     cell.textLabel.text = @"Download logged images";
