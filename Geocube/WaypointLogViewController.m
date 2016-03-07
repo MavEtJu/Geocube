@@ -117,7 +117,8 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GCTableViewCellKeyValue *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellStyleDefault;
+    cell.accessoryView = nil;
     cell.userInteractionEnabled = YES;
 
     switch (indexPath.section) {
@@ -190,14 +191,26 @@ enum {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_UPLOAD: {
                     cell.keyLabel.text = @"Upload";
-                    UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    fpSwitch.on = upload;
-                    [fpSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = fpSwitch;
+                    UISwitch *uploadSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    if (waypoint.account.canDoRemoteStuff == YES) {
+                        uploadSwitch.on = upload;
+                        [self updateUploadSwitch:uploadSwitch];
+                        [uploadSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                        cell.userInteractionEnabled = YES;
+                    } else {
+                        uploadSwitch.on = NO;
+                        [self updateFPSwitch:uploadSwitch];
+                        cell.userInteractionEnabled = NO;
+                    }
+                    [self updateUploadSwitch:uploadSwitch];
+                    cell.accessoryView = uploadSwitch;
                     break;
                 }
                 case SECTION_SUBMIT_SUBMIT:
-                    cell.keyLabel.text = @"Submit!";
+                    if (waypoint.account.canDoRemoteStuff == YES)
+                        cell.keyLabel.text = @"Submit";
+                    else
+                        cell.keyLabel.text = @"Save";
                     break;
             }
             break;
@@ -407,7 +420,7 @@ enum {
         log.gc_id = gc_id;
         [log dbUpdate];
 
-        [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"This waypoint has been now successfully logged."];
+        [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"This waypoint has been successfully logged."];
 
         [self.navigationController popViewControllerAnimated:YES];
         return;

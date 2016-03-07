@@ -77,6 +77,11 @@
 
 - (void)checkRemoteAccess
 {
+    if (enabled == NO) {
+        [self disableRemoteAccess:@"Not enabled"];
+        return;
+    }
+
     switch (protocol) {
         case ProtocolOKAPI:
         case ProtocolLiveAPI:

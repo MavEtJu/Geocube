@@ -549,6 +549,10 @@ enum {
             [self newWaypoint];
             return;
         case menuHighlight: // Highlight waypoint
+            if (waypoint.flag_highlight)
+                [self addLog:@"Unmarked as Highlight"];
+            else
+                [self addLog:@"Marked as Highlight"];
             waypoint.flag_highlight = !waypoint.flag_highlight;
             [waypoint dbUpdateHighlight];
             [self.tableView reloadData];
@@ -557,6 +561,10 @@ enum {
             [self refreshWaypoint];
             return;
         case menuIgnore: // Ignore this waypoint
+            if (waypoint.flag_ignore)
+                [self addLog:@"Unmarked as Ignored"];
+            else
+                [self addLog:@"Marked as Ignored"];
             waypoint.flag_ignore = !waypoint.flag_ignore;
             [waypoint dbUpdateIgnore];
             if (waypoint.flag_ignore == YES) {
@@ -573,16 +581,28 @@ enum {
             [self menuViewRaw];
             return;
         case menuInProgress:
+            if (waypoint.flag_inprogress)
+                [self addLog:@"Unmarked as In Progress"];
+            else
+                [self addLog:@"Marked as In Progress"];
             waypoint.flag_inprogress = !waypoint.flag_inprogress;
             [waypoint dbUpdateInProgress];
             [self.tableView reloadData];
             return;
         case menuMarkFound:
+            if (waypoint.flag_markedfound)
+                [self addLog:@"Unmarked as Found"];
+            else
+                [self addLog:@"Marked as Found"];
             waypoint.flag_markedfound = !waypoint.flag_markedfound;
             [waypoint dbUpdateMarkedFound];
             [self.tableView reloadData];
             return;
         case menuMarkDNF:
+            if (waypoint.flag_dnf)
+                [self addLog:@"Unmarked as DNF"];
+            else
+                [self addLog:@"Marked as DNF"];
             waypoint.flag_dnf = !waypoint.flag_dnf;
             [waypoint dbUpdateMarkedDNF];
             [self.tableView reloadData];
@@ -590,6 +610,12 @@ enum {
     }
 
     [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)addLog:(NSString *)text
+{
+    NSString *date = [MyTools dateString:time(NULL)];
+    [dbLog CreateLogNote:@"Write note" waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
 }
 
 - (void)addToGroup
