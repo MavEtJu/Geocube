@@ -107,7 +107,7 @@ enum {
 
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Photo details"
-                               message:@"Edit the photo caption"
+                               message:@"Edit the photo caption and description"
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -134,10 +134,14 @@ enum {
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Caption";
         textField.keyboardType = UIKeyboardTypeDefault;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        textField.autocorrectionType = UITextAutocorrectionTypeYes;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Long descritption";
         textField.keyboardType = UIKeyboardTypeDefault;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        textField.autocorrectionType = UITextAutocorrectionTypeYes;
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
