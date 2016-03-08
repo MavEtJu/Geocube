@@ -135,7 +135,7 @@
     return lines;
 }
 
-- (NSArray *)postPage:(NSString *)baseUrl params:(NSDictionary *)params
+- (NSArray *)postPageForm:(NSString *)baseUrl params:(NSDictionary *)params
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -151,6 +151,49 @@
     [req setHTTPMethod:@"POST"];
     [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:req returningResponse:&response error:&error];
+
+    if (data == nil || response.statusCode != 200)
+        return nil;
+
+    NSArray *lines = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+    return lines;
+}
+
+- (NSArray *)postPageMultiForm:(NSString *)baseUrl params:(NSDictionary *)params
+{
+    NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    GCMutableURLRequest *req = [GCMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    NSString *boundary = @"YOUR_BOUNDARY_STRING";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [req addValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+    NSMutableData *body = [NSMutableData data];
+
+    [[params allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        if ([key isEqualToString:@"uploaded"] == YES) {
+            [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploaded\"; filename=\"photo.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[NSData dataWithData:[params objectForKey:@"uploaded"]]];
+
+            return;
+        }
+
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n%@", key, [params objectForKey:key]] dataUsingEncoding:NSUTF8StringEncoding]];
+    }];
+
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [req setHTTPBody:body];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
@@ -356,7 +399,7 @@
     [ps setValue:@"" forKey:@"cacher"];
     [ps setValue:@"Log" forKey:@"button"];
 
-    NSArray *lines = [self postPage:urlString params:ps];
+    NSArray *lines = [self postPageForm:urlString params:ps];
 
     __block BOOL found = NO;
     [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
@@ -367,6 +410,26 @@
     }];
     if (found == NO)
         return 0;
+    return -1;
+}
+
+- (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description
+{
+    NSLog(@"my_gallery_cache_add");
+
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/gallery/cache/add/%@", [MyTools urlEncode:wpname]];
+
+    NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithCapacity:5];
+    [ps setValue:data forKey:@"uploaded"];
+    [ps setValue:wpname forKey:@"cache"];
+    [ps setValue:caption forKey:@"caption"];
+    [ps setValue:@"Team MavEtJu" forKey:@"cacher"];
+    [ps setValue:description forKey:@"description"];
+    [ps setValue:@"" forKey:@"log_number"];
+    [ps setValue:@"" forKey:@"swaggie"];
+    [ps setValue:@"Save Image" forKey:@"button"];
+
+    [self postPageMultiForm:urlString params:ps];
     return -1;
 }
 

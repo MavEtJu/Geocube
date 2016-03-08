@@ -41,6 +41,7 @@
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center;
 - (NSDictionary *)logs_cache:(NSString *)wpname;
+- (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description;
 - (NSDictionary *)my_query_json:(NSString *)queryname;
 - (NSString *)my_query_gpx:(NSString *)queryname;
 - (NSInteger)my_query_count:(NSString *)queryname;
