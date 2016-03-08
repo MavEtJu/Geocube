@@ -164,7 +164,7 @@
     return lines;
 }
 
-- (NSArray *)postPageMultiForm:(NSString *)baseUrl params:(NSDictionary *)params
+- (NSArray *)postPageMultiForm:(NSString *)baseUrl dataField:(NSString *)dataField params:(NSDictionary *)params
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -178,11 +178,11 @@
     NSMutableData *body = [NSMutableData data];
 
     [[params allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-        if ([key isEqualToString:@"uploaded"] == YES) {
+        if ([key isEqualToString:dataField] == YES) {
             [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploaded\"; filename=\"photo.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"photo.jpg\"\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
             [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-            [body appendData:[NSData dataWithData:[params objectForKey:@"uploaded"]]];
+            [body appendData:[NSData dataWithData:[params objectForKey:key]]];
 
             return;
         }
@@ -423,13 +423,13 @@
     [ps setValue:data forKey:@"uploaded"];
     [ps setValue:wpname forKey:@"cache"];
     [ps setValue:caption forKey:@"caption"];
-    [ps setValue:@"Team MavEtJu" forKey:@"cacher"];
+    [ps setValue:@"" forKey:@"cacher"];
     [ps setValue:description forKey:@"description"];
     [ps setValue:@"" forKey:@"log_number"];
     [ps setValue:@"" forKey:@"swaggie"];
     [ps setValue:@"Save Image" forKey:@"button"];
 
-    [self postPageMultiForm:urlString params:ps];
+    [self postPageMultiForm:urlString dataField:@"uploaded" params:ps];
     return -1;
 }
 
