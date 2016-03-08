@@ -327,6 +327,8 @@
         return [okapi services_logs_submit:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
     if (account.protocol == ProtocolGCA) {
+        if (image != nil)
+            [gca my_gallery_cache_add:waypoint.wpt_name data:imgdata caption:imageCaption description:imageDescription];
         return [gca my_log_new:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
 
