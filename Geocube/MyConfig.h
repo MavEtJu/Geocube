@@ -75,8 +75,9 @@
 @property (nonatomic, readonly) NSInteger mapcacheMaxAge;
 @property (nonatomic, readonly) NSInteger mapcacheMaxSize;
 
-@property (nonatomic, readonly) BOOL downloadLogImages;
-@property (nonatomic, readonly) BOOL downloadLogImagesMobile;
+@property (nonatomic, readonly) BOOL downloadImagesLogs;
+@property (nonatomic, readonly) BOOL downloadImagesWaypoints;
+@property (nonatomic, readonly) BOOL downloadImagesMobile;
 @property (nonatomic, readonly) BOOL downloadQueriesMobile;
 
 @property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
@@ -122,8 +123,9 @@
 - (void)mapcacheEnableUpdate:(BOOL)value;
 - (void)mapcacheMaxAgeUpdate:(NSInteger)value;
 - (void)mapcacheMaxSizeUpdate:(NSInteger)value;
-- (void)downloadLogImagesUpdate:(BOOL)value;
-- (void)downloadLogImagesMobileUpdate:(BOOL)value;
+- (void)downloadImagesLogsUpdate:(BOOL)value;
+- (void)downloadImagesWaypointsUpdate:(BOOL)value;
+- (void)downloadImagesMobileUpdate:(BOOL)value;
 - (void)downloadQueriesMobileUpdate:(BOOL)value;
 - (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
 - (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;

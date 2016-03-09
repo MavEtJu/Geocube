@@ -60,8 +60,9 @@
     NSArray *mapcacheMaxAgeValues;
     NSArray *mapcacheMaxSizeValues;
 
-    UISwitch *downloadLogImages;
-    UISwitch *downloadLogImagesMobile;
+    UISwitch *downloadImagesWaypoints;
+    UISwitch *downloadImagesLogs;
+    UISwitch *downloadImagesMobile;
     UISwitch *downloadQueriesMobile;
 }
 
@@ -275,7 +276,8 @@ enum sections {
     SECTION_KEEPTRACK_AUTOROTATE = 0,
     SECTION_KEEPTRACK_MAX,
 
-    SECTION_IMPORTS_LOG_IMAGES = 0,
+    SECTION_IMPORTS_IMAGES_WAYPOINT = 0,
+    SECTION_IMPORTS_IMAGES_LOGS,
     SECTION_IMPORTS_LOG_IMAGES_MOBILE,
     SECTION_IMPORTS_QUERIES_MOBILE,
     SECTION_IMPORTS_MAX,
@@ -659,23 +661,33 @@ enum sections {
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
 
             switch (indexPath.row) {
-                case SECTION_IMPORTS_LOG_IMAGES: {
-                    cell.textLabel.text = @"Download logged images";
+                case SECTION_IMPORTS_IMAGES_WAYPOINT: {
+                    cell.textLabel.text = @"Download waypoint images";
 
-                    downloadLogImages = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    downloadLogImages.on = myConfig.downloadLogImages;
-                    [downloadLogImages addTarget:self action:@selector(updateDownloadLogImages:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = downloadLogImages;
+                    downloadImagesWaypoints = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesWaypoints.on = myConfig.downloadImagesWaypoints;
+                    [downloadImagesWaypoints addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadImagesWaypoints;
+
+                    return cell;
+                }
+                case SECTION_IMPORTS_IMAGES_LOGS: {
+                    cell.textLabel.text = @"Download log images";
+
+                    downloadImagesLogs = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesLogs.on = myConfig.downloadImagesLogs;
+                    [downloadImagesLogs addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadImagesLogs;
 
                     return cell;
                 }
                 case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
                     cell.textLabel.text = @"Download logged images over mobile data";
 
-                    downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    downloadQueriesMobile.on = myConfig.downloadLogImagesMobile;
-                    [downloadQueriesMobile addTarget:self action:@selector(updateDownloadLogImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = downloadQueriesMobile;
+                    downloadImagesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesMobile.on = myConfig.downloadImagesMobile;
+                    [downloadImagesMobile addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = downloadImagesMobile;
 
                     return cell;
                 }
@@ -698,14 +710,19 @@ enum sections {
     return nil;
 }
 
-- (void)updateDownloadLogImages:(UISwitch *)s
+- (void)updateDownloadImagesLogs:(UISwitch *)s
 {
-    [myConfig downloadLogImagesUpdate:s.on];
+    [myConfig downloadImagesLogsUpdate:s.on];
 }
 
-- (void)updateDownloadLogImagesMobile:(UISwitch *)s
+- (void)updateDownloadImagesWaypoints:(UISwitch *)s
 {
-    [myConfig downloadLogImagesMobileUpdate:s.on];
+    [myConfig downloadImagesWaypointsUpdate:s.on];
+}
+
+- (void)updateDownloadImagesMobile:(UISwitch *)s
+{
+    [myConfig downloadImagesMobileUpdate:s.on];
 }
 
 - (void)updateDownloadQueriesMobile:(UISwitch *)s

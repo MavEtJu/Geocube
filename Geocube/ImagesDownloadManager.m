@@ -239,8 +239,13 @@
         if ([img dbLinkedtoWaypoint:wp_id] == NO)
             [img dbLinkToWaypoint:wp_id type:type];
 
-        if ([img imageHasBeenDowloaded] == NO)
+        if ([img imageHasBeenDowloaded] == NO) {
+            // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
+            if (type != IMAGETYPE_CACHE && myConfig.downloadImagesLogs == NO)
+                return 0;
+
             [ImagesDownloadManager addToQueueImmediately:img];
+        }
 
         found++;
     } while (next != nil);
@@ -250,12 +255,12 @@
 
 + (void)addToQueue:(dbImage *)img
 {
-    // Do not download anything if disabled.
-    if (myConfig.downloadLogImages == NO)
+    // Do not download images if disabled.
+    if (myConfig.downloadImagesLogs == NO)
         return;
 
     // Do not download anything unless Wifi is required and available.
-    if (myConfig.downloadLogImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
+    if (myConfig.downloadImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
         return;
 
     [self addToQueueImmediately:img];

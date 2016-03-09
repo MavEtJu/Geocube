@@ -39,7 +39,7 @@
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
-@synthesize downloadLogImages, downloadLogImagesMobile, downloadQueriesMobile;
+@synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumNumberGCA;
 
 - (instancetype)init
@@ -145,8 +145,9 @@
     CHECK(@"mapcache_maxsize", @"250");
     CHECK(@"mapcache_maxage", @"30");
 
-    CHECK(@"download_log_images", @"1");
-    CHECK(@"download_log_images_mobile", @"0");
+    CHECK(@"download_images_logs", @"0");
+    CHECK(@"download_images_waypoints", @"1");
+    CHECK(@"download_images_mobile", @"0");
     CHECK(@"download_queries_mobile", @"0");
 
     CHECK(@"mapsearchmaximum_distancegs", @"5000");
@@ -187,8 +188,9 @@
     mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
     keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
     keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
-    downloadLogImages = [[dbConfig dbGetByKey:@"download_log_images"].value boolValue];
-    downloadLogImagesMobile = [[dbConfig dbGetByKey:@"download_log_images_mobile"].value boolValue];
+    downloadImagesLogs = [[dbConfig dbGetByKey:@"download_images_logs"].value boolValue];
+    downloadImagesWaypoints = [[dbConfig dbGetByKey:@"download_images_waypoints"].value boolValue];
+    downloadImagesMobile = [[dbConfig dbGetByKey:@"download_images_mobile"].value boolValue];
     downloadQueriesMobile = [[dbConfig dbGetByKey:@"download_queries_mobile"].value boolValue];
     mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
@@ -425,16 +427,22 @@
     [self NSStringUpdate:@"key_mapbox" value:value];
 }
 
-- (void)downloadLogImagesUpdate:(BOOL)value
+- (void)downloadImagesLogsUpdate:(BOOL)value
 {
-    downloadLogImages = value;
-    [self BOOLUpdate:@"download_log_images" value:value];
+    downloadImagesLogs = value;
+    [self BOOLUpdate:@"download_images_logs" value:value];
 }
 
-- (void)downloadLogImagesMobileUpdate:(BOOL)value
+- (void)downloadImagesWaypointsUpdate:(BOOL)value
 {
-    downloadLogImagesMobile = value;
-    [self BOOLUpdate:@"download_log_images_mobile" value:value];
+    downloadImagesWaypoints = value;
+    [self BOOLUpdate:@"download_images_waypoints" value:value];
+}
+
+- (void)downloadImagesMobileUpdate:(BOOL)value
+{
+    downloadImagesMobile = value;
+    [self BOOLUpdate:@"download_images_mobile" value:value];
 }
 
 - (void)downloadQueriesMobileUpdate:(BOOL)value;
