@@ -245,7 +245,11 @@
     @autoreleasepool {
         index--;
 
-        [currentText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
+        NSMutableString *cleanText = nil;
+        if (currentText != nil) {
+            cleanText = [NSMutableString stringWithString:currentText];
+            [cleanText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
+        }
 
         // Deal with the completion of the cache
         if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
@@ -351,7 +355,7 @@
         if (inTrackable == YES) {
             if (index == 5) {
                 if ([elementName isEqualToString:@"groundspeak:name"] == YES) {
-                    [currentTB setName:currentText];
+                    [currentTB setName:cleanText];
                     goto bye;
                 }
                 goto bye;
@@ -363,20 +367,20 @@
         if (inLog == YES) {
             if (index == 5) {
                 if ([elementName isEqualToString:@"groundspeak:date"] == YES) {
-                    [currentLog setDatetime:currentText];
+                    [currentLog setDatetime:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
-                    [currentLog setLogtype_string:currentText];
+                    [currentLog setLogtype_string:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
-                    [dbName makeNameExist:currentText code:logFinderNameId account:account];
-                    [currentLog setLogger_str:currentText];
+                    [dbName makeNameExist:cleanText code:logFinderNameId account:account];
+                    [currentLog setLogger_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:text"] == YES) {
-                    [currentLog setLog:currentText];
+                    [currentLog setLog:currentText]; // Can contain newlines
                     goto bye;
                 }
                 goto bye;
@@ -386,86 +390,86 @@
 
         // Deal with the data of the cache. Always the last one!
         if (inItem == YES) {
-            if (index == 2 && currentText != nil) {
+            if (index == 2 && cleanText != nil) {
                 if ([elementName isEqualToString:@"time"] == YES) {
-                    [currentWP setWpt_date_placed:currentText];
+                    [currentWP setWpt_date_placed:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"name"] == YES) {
-                    [currentWP setWpt_name:currentText];
+                    [currentWP setWpt_name:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"desc"] == YES) {
-                    [currentWP setWpt_description:currentText];
+                    [currentWP setWpt_description:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"url"] == YES) {
-                    [currentWP setWpt_url:currentText];
+                    [currentWP setWpt_url:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"urlname"] == YES) {
-                    [currentWP setWpt_urlname:currentText];
+                    [currentWP setWpt_urlname:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"sym"] == YES) {
-                    if ([dbc Symbol_get_bysymbol:currentText] == nil) {
-                        NSLog(@"Adding symbol '%@'", currentText);
-                        NSId _id = [dbSymbol dbCreate:currentText];
-                        [dbc Symbols_add:_id symbol:currentText];
+                    if ([dbc Symbol_get_bysymbol:cleanText] == nil) {
+                        NSLog(@"Adding symbol '%@'", cleanText);
+                        NSId _id = [dbSymbol dbCreate:cleanText];
+                        [dbc Symbols_add:_id symbol:cleanText];
                     }
-                    [currentWP setWpt_symbol_str:currentText];
+                    [currentWP setWpt_symbol_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    NSArray *as = [currentText componentsSeparatedByString:@"|"];
+                    NSArray *as = [cleanText componentsSeparatedByString:@"|"];
                     [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
                     [currentWP setWpt_type_id:currentWP.wpt_type._id];
                     goto bye;
                 }
                 goto bye;
             }
-            if (index == 3 && currentText != nil) {
+            if (index == 3 && cleanText != nil) {
                 if ([elementName isEqualToString:@"groundspeak:difficulty"] == YES) {
-                    [currentWP setGs_rating_difficulty:[currentText floatValue]];
+                    [currentWP setGs_rating_difficulty:[cleanText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:terrain"] == YES) {
-                    [currentWP setGs_rating_terrain:[currentText floatValue]];
+                    [currentWP setGs_rating_terrain:[cleanText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:country"] == YES) {
-                    [dbCountry makeNameExist:currentText];
-                    [currentWP setGs_country_str:currentText];
+                    [dbCountry makeNameExist:cleanText];
+                    [currentWP setGs_country_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:state"] == YES) {
-                    [dbState makeNameExist:currentText];
-                    [currentWP setGs_state_str:currentText];
+                    [dbState makeNameExist:cleanText];
+                    [currentWP setGs_state_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:container"] == YES) {
-                    [currentWP setGs_container_str:currentText];
+                    [currentWP setGs_container_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:short_description"] == YES) {
-                    [currentWP setGs_short_desc:currentText];
+                    [currentWP setGs_short_desc:currentText]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:long_description"] == YES) {
-                    [currentWP setGs_long_desc:currentText];
+                    [currentWP setGs_long_desc:currentText]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:encoded_hints"] == YES) {
-                    [currentWP setGs_hint:currentText];
+                    [currentWP setGs_hint:currentText]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
-                    [dbName makeNameExist:currentText code:gsOwnerNameId account:account];
-                    [currentWP setGs_owner_str:currentText];
+                    [dbName makeNameExist:cleanText code:gsOwnerNameId account:account];
+                    [currentWP setGs_owner_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:placed_by"] == YES) {
-                    [currentWP setGs_placed_by:currentText];
+                    [currentWP setGs_placed_by:cleanText];
                     goto bye;
                 }
                 goto bye;
