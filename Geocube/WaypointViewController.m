@@ -122,6 +122,16 @@ enum {
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if ([waypoint.account canDoRemoteStuff] == NO)
+        [lmi disableItem:menuRefreshWaypoint];
+    else
+        [lmi enableItem:menuRefreshWaypoint];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
