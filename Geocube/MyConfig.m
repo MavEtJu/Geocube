@@ -41,6 +41,7 @@
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumNumberGCA;
+@synthesize downloadTimeoutQuery, downloadTimeoutSimple;
 
 - (instancetype)init
 {
@@ -149,6 +150,8 @@
     CHECK(@"download_images_waypoints", @"1");
     CHECK(@"download_images_mobile", @"0");
     CHECK(@"download_queries_mobile", @"0");
+    CHECK(@"download_timeout_query", @"600");
+    CHECK(@"download_timeout_simple", @"120");
 
     CHECK(@"mapsearchmaximum_distancegs", @"5000");
     CHECK(@"mapsearchmaximum_numbergca", @"50");
@@ -192,6 +195,8 @@
     downloadImagesWaypoints = [[dbConfig dbGetByKey:@"download_images_waypoints"].value boolValue];
     downloadImagesMobile = [[dbConfig dbGetByKey:@"download_images_mobile"].value boolValue];
     downloadQueriesMobile = [[dbConfig dbGetByKey:@"download_queries_mobile"].value boolValue];
+    downloadTimeoutSimple = [[dbConfig dbGetByKey:@"download_timeout_simple"].value integerValue];
+    downloadTimeoutQuery = [[dbConfig dbGetByKey:@"download_timeout_query"].value integerValue];
     mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
 
@@ -449,6 +454,16 @@
 {
     downloadQueriesMobile = value;
     [self BOOLUpdate:@"download_queries_mobile" value:value];
+}
+- (void)downloadTimeoutSimpleUpdate:(NSInteger)value
+{
+    downloadTimeoutSimple = value;
+    [self NSIntegerUpdate:@"download_timeout_simple" value:value];
+}
+- (void)downloadTimeoutQueryUpdate:(NSInteger)value
+{
+    downloadTimeoutQuery = value;
+    [self NSIntegerUpdate:@"download_timeout_query" value:value];
 }
 
 - (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value

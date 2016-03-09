@@ -64,6 +64,8 @@
     UISwitch *downloadImagesLogs;
     UISwitch *downloadImagesMobile;
     UISwitch *downloadQueriesMobile;
+    NSMutableArray *downloadSimpleTimeouts;
+    NSMutableArray *downloadQueryTimeouts;
 }
 
 @end
@@ -113,6 +115,15 @@ enum {
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
         ];
+
+    downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
+    for (NSInteger i = 30; i < 600; i += 30) {
+        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", i]];
+    }
+    downloadQueryTimeouts = [NSMutableArray arrayWithCapacity:20];
+    for (NSInteger i = 60; i < 1200; i += 30) {
+        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", i]];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -276,7 +287,9 @@ enum sections {
     SECTION_KEEPTRACK_AUTOROTATE = 0,
     SECTION_KEEPTRACK_MAX,
 
-    SECTION_IMPORTS_IMAGES_WAYPOINT = 0,
+    SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
+    SECTION_IMPORTS_TIMEOUT_QUERY,
+    SECTION_IMPORTS_IMAGES_WAYPOINT,
     SECTION_IMPORTS_IMAGES_LOGS,
     SECTION_IMPORTS_LOG_IMAGES_MOBILE,
     SECTION_IMPORTS_QUERIES_MOBILE,
@@ -658,10 +671,25 @@ enum sections {
         }
 
         case SECTION_IMPORTS: {
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-
             switch (indexPath.row) {
+                case SECTION_IMPORTS_TIMEOUT_SIMPLE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Timeout for simple HTTP requests";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)myConfig.downloadTimeoutSimple];
+
+                    return cell;
+                }
+                case SECTION_IMPORTS_TIMEOUT_QUERY: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Timeout for big HTTP requests";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)myConfig.downloadTimeoutQuery];
+
+                    return cell;
+                }
                 case SECTION_IMPORTS_IMAGES_WAYPOINT: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download waypoint images";
 
                     downloadImagesWaypoints = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -672,6 +700,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_IMAGES_LOGS: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download log images";
 
                     downloadImagesLogs = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -682,6 +711,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download logged images over mobile data";
 
                     downloadImagesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -692,6 +722,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_QUERIES_MOBILE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download batch queries over mobile data";
 
                     downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -849,6 +880,17 @@ enum sections {
                     break;
             }
             return;
+
+        case SECTION_IMPORTS:
+            switch (indexPath.row) {
+                case SECTION_IMPORTS_TIMEOUT_SIMPLE:
+                    [self changeImportsSimpleTimeout];
+                    break;
+                case SECTION_IMPORTS_TIMEOUT_QUERY:
+                    [self changeImportsQueryTimeout];
+                    break;
+            }
+            return;
     }
 }
 
@@ -977,6 +1019,60 @@ enum sections {
 - (void)updateDynamicmapDistanceDriving:(NSNumber *)selectedIndex element:(id)element
 {
     [myConfig dynamicmapDrivingDistanceUpdate:[[distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeImportsQueryTimeout
+{
+    __block NSInteger currentChoice = 10;   // 600 seconds
+    [downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([s integerValue] == myConfig.downloadTimeoutQuery) {
+            currentChoice = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for big HTTP requests"
+                                            rows:downloadQueryTimeouts
+                                initialSelection:currentChoice
+                                          target:self
+                                   successAction:@selector(updateDownloadQueryTimeout:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateDownloadQueryTimeout:(NSNumber *)selectedIndex element:(NSString *)element
+{
+    [myConfig downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [self.tableView reloadData];
+}
+
+- (void)changeImportsSimpleTimeout
+{
+    __block NSInteger currentChoice = 4;   // 120 seconds
+    [downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([s integerValue] == myConfig.downloadTimeoutSimple) {
+            currentChoice = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for simple HTTP requests"
+                                            rows:downloadSimpleTimeouts
+                                initialSelection:currentChoice
+                                          target:self
+                                   successAction:@selector(updateDownloadSimpleTimeout:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateDownloadSimpleTimeout:(NSNumber *)selectedIndex element:(NSString *)element
+{
+    [myConfig downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 

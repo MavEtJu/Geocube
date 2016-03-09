@@ -79,6 +79,8 @@
 @property (nonatomic, readonly) BOOL downloadImagesWaypoints;
 @property (nonatomic, readonly) BOOL downloadImagesMobile;
 @property (nonatomic, readonly) BOOL downloadQueriesMobile;
+@property (nonatomic, readonly) NSInteger downloadTimeoutSimple;
+@property (nonatomic, readonly) NSInteger downloadTimeoutQuery;
 
 @property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
@@ -127,6 +129,8 @@
 - (void)downloadImagesWaypointsUpdate:(BOOL)value;
 - (void)downloadImagesMobileUpdate:(BOOL)value;
 - (void)downloadQueriesMobileUpdate:(BOOL)value;
+- (void)downloadTimeoutSimpleUpdate:(NSInteger)value;
+- (void)downloadTimeoutQueryUpdate:(NSInteger)value;
 - (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
 - (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;
 - (void)orientationsAllowedUpdate:(NSInteger)value;

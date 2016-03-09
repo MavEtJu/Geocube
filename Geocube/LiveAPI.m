@@ -317,7 +317,7 @@
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateFieldNoteAndPublish" method:@"POST"];
-    [urlRequest setTimeoutInterval:120];
+    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutSimple];
 
     /*
      * {
@@ -472,7 +472,7 @@
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
-    [urlRequest setTimeoutInterval:120];
+    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
 
     /*
      * {
@@ -538,7 +538,7 @@
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
-    [urlRequest setTimeoutInterval:120];
+    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
 
     /*
      * {
@@ -621,7 +621,7 @@
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@", [MyTools urlEncode:remoteAPI.oabb.token], guid]];
-    [urlRequest setTimeoutInterval:1000];
+    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
@@ -651,7 +651,7 @@
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
-    [urlRequest setTimeoutInterval:1000];
+    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutSimple];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
