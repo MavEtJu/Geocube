@@ -25,6 +25,7 @@
 {
     NSString *shortprefix;
     NSString *prefix;
+    NSDate *now;
 
     NSInteger hits, misses, saves;
 }
@@ -60,7 +61,7 @@
     while ((filename = [dirEnum nextObject]) != nil) {
         NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
         NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
-        NSDate *date = [dict objectForKey:NSFileCreationDate];
+        NSDate *date = [dict objectForKey:NSFileModificationDate];
 
         if ([[dict objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             continue;
@@ -93,7 +94,7 @@
                 continue;
 
             found++;
-            if ([[dict objectForKey:NSFileCreationDate ] timeIntervalSince1970] < oldest) {
+            if ([[dict objectForKey:NSFileModificationDate ] timeIntervalSince1970] < oldest) {
                 NSLog(@"%@ - Removing %@", [self class], filename);
                 [fm removeItemAtPath:fullfilename error:&error];
                 deletedSize++;
@@ -119,6 +120,7 @@
     hits = 0;
     misses = 0;
     saves = 0;
+    now = [NSDate date];    // Just give them all todays date
 
     return self;
 }
@@ -141,6 +143,11 @@
     }
 
     if ([fm fileExistsAtPath:cachefile] == NO) {
+        NSError *err = nil;
+
+        NSDictionary *modificationDateAttr = [NSDictionary dictionaryWithObjectsAndKeys:now, NSFileModificationDate, nil];
+        [fm setAttributes:modificationDateAttr ofItemAtPath:cachefile error:&err];
+
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             if (error == nil) {
                 [tileData writeToFile:cachefile atomically:NO];
