@@ -229,17 +229,20 @@
         if (m < 10000)
             return [NSString stringWithFormat:@"%0.2f km", m / 1000.0];
         return [NSString stringWithFormat:@"%ld km", (long)m / 1000];
-    } else {
-        /* Metric to imperial conversions
-         * 1 mile is 1.6093 kilometers
-         * 1 foot is 0.30480 meters
-         */
-        if (m <= 161)   // 1/10th of a mile
-            return [NSString stringWithFormat:@"%ld feet", (long)(m / 0.30480)];
-        if (m <= 16093)   // 10 miles
-            return [NSString stringWithFormat:@"%0.2f miles", m / 1609.3];
-        return [NSString stringWithFormat:@"%ld miles", (long)(m / 1609.3)];
     }
+
+    /* Metric to imperial conversions
+     * 1 mile is 1.6093 kilometers
+     * 1 foot is 0.30480 meters
+     *
+     * From Darryl Wattenberg:
+     * The norm is for miles down to 0.1 then switch to feet. The few apps that use yards get ridiculed for it.
+     */
+    if (m <= 161)   // 1/10th of a mile
+        return [NSString stringWithFormat:@"%ld feet", (long)(m / 0.30480)];
+    if (m <= 16093)   // 10 miles
+        return [NSString stringWithFormat:@"%0.2f miles", m / 1609.3];
+    return [NSString stringWithFormat:@"%ld miles", (long)(m / 1609.3)];
 }
 
 + (NSString *)niceSpeed:(NSInteger)kmph
