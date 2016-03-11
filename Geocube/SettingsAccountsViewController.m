@@ -51,7 +51,33 @@ enum {
 
 - (void)refreshAccountData
 {
-    accounts = [dbc Accounts];
+    /*
+     * First show the accounts which are enabled and have an username.
+     * First show the accounts which are not enabled and have an username.
+     * Then show the accounts which are enabled and do not have an username.
+     * Then show the accounts which are not enabled and do not have an username.
+     */
+    NSArray *as = [dbc Accounts];
+    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[as count]];
+
+    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.enabled == YES && (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO))
+            [bs addObject:a];
+    }];
+    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.enabled == NO && (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO))
+            [bs addObject:a];
+    }];
+    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.enabled == YES && (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES))
+            [bs addObject:a];
+    }];
+    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.enabled == NO && (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES))
+            [bs addObject:a];
+    }];
+
+    accounts = bs;
     accountsCount = [accounts count];
     [self.tableView reloadData];
 }
@@ -160,6 +186,7 @@ enum {
                              account.accountname_id = n._id;
                              [account dbUpdateAccount];
 
+                             [self refreshAccountData];
                              [self.tableView reloadData];
 
                              if (account.enabled == NO)
