@@ -10,7 +10,7 @@ create index config_idx_key on config(key);
 insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.geocube");
 insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.geocube");
 insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.geocube");
-insert into config(key, value) values("version", "16");
+insert into config(key, value) values("version", "17");
 
 create table filters (
     id integer primary key,
@@ -517,6 +517,10 @@ insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Move
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "TrigPoint", 118, 10);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Virtual", 114, 17);
 insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "History", 120, 17);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Multistep Traditional cache", 112, 16);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Multistep Virtual cache", 114, 17);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Contest", 103, 11);
+insert into types(type_major, type_minor, icon, pin_id) values("Geocache", "Event", 103, 11);
 
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Final Location", 200, 40);
 insert into types(type_major, type_minor, icon, pin_id) values("Waypoint", "Flag", 201, 41);

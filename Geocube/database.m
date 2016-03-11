@@ -299,6 +299,15 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 17
+    a = @[
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Multistep Traditional cache', 112, 16)",
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Multistep Virtual cache', 114, 17)",
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Contest', 103, 11)",
+    @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Event', 103, 11)",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end
