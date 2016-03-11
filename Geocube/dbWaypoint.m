@@ -312,9 +312,18 @@
             if ([name isEqualToString:self.wpt_name] == YES) {
                 [wps addObject:[dbWaypoint dbGet:__id]];
             } else if (([prefix isEqualToString:@"GA"] == YES && [nameprefix isEqualToString:@"GA"] == YES) || // Geocaching Australia
+                       ([prefix isEqualToString:@"TP"] == YES && [nameprefix isEqualToString:@"TP"] == YES) || // Geocaching Australia Trigpoint
                        ([prefix isEqualToString:@"GC"] == YES && [nameprefix isEqualToString:@"GC"] == YES) || // Groundspeak Geocaching.com
-                       ([prefix isEqualToString:@"TP"] == YES && [nameprefix isEqualToString:@"TP"] == YES) || // Trigpoint
-                       ([prefix isEqualToString:@"OC"] == YES && [nameprefix isEqualToString:@"OC"] == YES)) { // OpenCaching
+                       ([prefix isEqualToString:@"VI"] == YES && [nameprefix isEqualToString:@"VI"] == YES) || // Geocaching.su virtual
+                       ([prefix isEqualToString:@"TR"] == YES && [nameprefix isEqualToString:@"TR"] == YES) || // Geocaching.su traditional
+                       ([prefix isEqualToString:@"MS"] == YES && [nameprefix isEqualToString:@"MS"] == YES) || // Geocaching.su multistep
+                       ([prefix isEqualToString:@"OB"] == YES && [nameprefix isEqualToString:@"OB"] == YES) || // OpenCaching NL
+                       ([prefix isEqualToString:@"OP"] == YES && [nameprefix isEqualToString:@"OP"] == YES) || // OpenCaching PL
+                       ([prefix isEqualToString:@"OK"] == YES && [nameprefix isEqualToString:@"OK"] == YES) || // OpenCaching UK
+                       ([prefix isEqualToString:@"OU"] == YES && [nameprefix isEqualToString:@"OU"] == YES) || // OpenCaching US
+                       ([prefix isEqualToString:@"OR"] == YES && [nameprefix isEqualToString:@"OR"] == YES) || // OpenCaching RO
+                       ([prefix isEqualToString:@"OZ"] == YES && [nameprefix isEqualToString:@"OZ"] == YES) || // OpenCaching CZ
+                       ([prefix isEqualToString:@"OC"] == YES && [nameprefix isEqualToString:@"OC"] == YES)) { // OpenCaching DE/FR/IT
                 // Nothing!
             } else {
                 [wps addObject:[dbWaypoint dbGet:__id]];
