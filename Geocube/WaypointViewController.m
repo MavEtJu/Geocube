@@ -63,12 +63,8 @@ enum {
 
 enum {
     menuAddWaypoint = 0,
-    menuHighlight,
     menuRefreshWaypoint,
-    menuIgnore,
-    menuMarkFound,
-    menuInProgress,
-    menuMarkDNF,
+    menuMarkAs,
     menuAddToGroup,
     menuViewRaw,
     menuMax
@@ -80,13 +76,9 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
-    [lmi addItem:menuHighlight label:@"Highlight"];
-    [lmi addItem:menuMarkFound label:@"Mark Found"];
-    [lmi addItem:menuInProgress label:@"In Progress"];
-    [lmi addItem:menuMarkDNF label:@"Mark DNF"];
+    [lmi addItem:menuMarkAs label:@"Mark as..."];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
-    [lmi addItem:menuIgnore label:@"Ignore"];
     [lmi addItem:menuViewRaw label:@"Raw data"];
 
     hasCloseButton = canBeClosed;
@@ -97,13 +89,6 @@ enum {
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
     waypoint = _wp;
-
-    if (waypoint.flag_highlight == YES) {
-        [lmi changeItem:menuHighlight label:@"Unhighlight"];
-    } else {
-        [lmi changeItem:menuHighlight label:@"Highlight"];
-    }
-    [self refreshMenu];
 
     [self.tableView reloadData];
 }
@@ -558,15 +543,6 @@ enum {
         case menuAddWaypoint: // Add a waypoint
             [self newWaypoint];
             return;
-        case menuHighlight: // Highlight waypoint
-            if (waypoint.flag_highlight)
-                [self addLog:@"Unmarked as Highlight"];
-            else
-                [self addLog:@"Marked as Highlight"];
-            waypoint.flag_highlight = !waypoint.flag_highlight;
-            [waypoint dbUpdateHighlight];
-            [self.tableView reloadData];
-            return;
         case menuRefreshWaypoint: // Refresh waypoint from server
             [self refreshWaypoint];
             return;
@@ -576,66 +552,107 @@ enum {
         case menuViewRaw:
             [self menuViewRaw];
             return;
-        case menuIgnore: // Ignore this waypoint
-            if (waypoint.flag_ignore) {
-                [self addLog:@"Unmarked as Ignored"];
-                [lmi changeItem:menuIgnore label:@"Mark as Ignored"];
-            } else {
-                [self addLog:@"Marked as Ignored"];
-                [lmi changeItem:menuIgnore label:@"Unmark as Ignored"];
-            }
-            waypoint.flag_ignore = !waypoint.flag_ignore;
-            [waypoint dbUpdateIgnore];
-            if (waypoint.flag_ignore == YES) {
-                [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
-            } else {
-                [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
-            }
-            [self.tableView reloadData];
-            [self refreshMenu];
-            return;
-        case menuInProgress:
-            if (waypoint.flag_inprogress) {
-                [self addLog:@"Unmarked as In Progress"];
-                [lmi changeItem:menuInProgress label:@"Mark as In Progress"];
-            } else {
-                [self addLog:@"Marked as In Progress"];
-                [lmi changeItem:menuInProgress label:@"Mark as In Progress"];
-            }
-            waypoint.flag_inprogress = !waypoint.flag_inprogress;
-            [waypoint dbUpdateInProgress];
-            [self.tableView reloadData];
-            [self refreshMenu];
-            return;
-        case menuMarkFound:
-            if (waypoint.flag_markedfound) {
-                [self addLog:@"Unmarked as Found"];
-                [lmi changeItem:menuMarkFound label:@"Mark as Found"];
-            } else {
-                [self addLog:@"Marked as Found"];
-                [lmi changeItem:menuMarkFound label:@"Unmark as Found"];
-            }
-            waypoint.flag_markedfound = !waypoint.flag_markedfound;
-            [waypoint dbUpdateMarkedFound];
-            [self.tableView reloadData];
-            [self refreshMenu];
-            return;
-        case menuMarkDNF:
-            if (waypoint.flag_dnf) {
-                [self addLog:@"Unmarked as DNF"];
-                [lmi changeItem:menuMarkDNF label:@"Mark as DNF"];
-            } else {
-                [self addLog:@"Marked as DNF"];
-                [lmi changeItem:menuMarkDNF label:@"Unmark as DNF"];
-            }
-            waypoint.flag_dnf = !waypoint.flag_dnf;
-            [waypoint dbUpdateMarkedDNF];
-            [self.tableView reloadData];
-            [self refreshMenu];
+        case menuMarkAs:
+            [self menuMarkAs];
             return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
+}
+
+- (void)menuMarkAs
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Waypoint flags"
+                               message:@"Mark as..."
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *dnf = [UIAlertAction
+                          actionWithTitle:(waypoint.flag_dnf == YES) ? @"not DNF" : @"DNF"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction *action) {
+                              if (waypoint.flag_dnf)
+                                  [self addLog:@"Unmarked as DNF"];
+                              else
+                                  [self addLog:@"Marked as DNF"];
+                              waypoint.flag_dnf = !waypoint.flag_dnf;
+                              [waypoint dbUpdateMarkedDNF];
+                              [waypointManager needsRefresh];
+                              [self.tableView reloadData];
+                          }];
+    UIAlertAction *found = [UIAlertAction
+                            actionWithTitle:(waypoint.flag_markedfound == YES) ? @"not found" : @"found"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction *action) {
+                                if (waypoint.flag_ignore)
+                                    [self addLog:@"Unmarked as Found"];
+                                else
+                                    [self addLog:@"Marked as Found"];
+                                waypoint.flag_markedfound = !waypoint.flag_markedfound;
+                                [waypoint dbUpdateMarkedFound];
+                                [waypointManager needsRefresh];
+                                [self.tableView reloadData];
+                            }];
+    UIAlertAction *ignore = [UIAlertAction
+                             actionWithTitle:(waypoint.flag_ignore == YES) ? @"not ignored" : @"ignored"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 if (waypoint.flag_ignore)
+                                     [self addLog:@"Unmarked as Ignored"];
+                                 else
+                                     [self addLog:@"Marked as Ignored"];
+                                 waypoint.flag_ignore = !waypoint.flag_ignore;
+                                 [waypoint dbUpdateIgnore];
+                                 [waypointManager needsRefresh];
+                                 [self.tableView reloadData];
+
+                                 if (waypoint.flag_ignore == YES) {
+                                     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
+                                 } else {
+                                     [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
+                                 }
+                             }];
+    UIAlertAction *inprogress = [UIAlertAction
+                                 actionWithTitle:(waypoint.flag_inprogress == YES) ? @"not in progress" : @"in progress"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     if (waypoint.flag_inprogress)
+                                         [self addLog:@"Unmarked as In Progress"];
+                                     else
+                                         [self addLog:@"Marked as In Progress"];
+                                     waypoint.flag_inprogress = !waypoint.flag_inprogress;
+                                     [waypoint dbUpdateInProgress];
+                                     [waypointManager needsRefresh];
+                                     [self.tableView reloadData];
+                                 }];
+    UIAlertAction *highlight = [UIAlertAction
+                                actionWithTitle:(waypoint.flag_highlight == YES) ? @"not highlighted" : @"highlighted"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction *action) {
+                                    if (waypoint.flag_highlight)
+                                        [self addLog:@"Unmarked as Highlighted"];
+                                    else
+                                        [self addLog:@"Marked as Highlighted"];
+                                    waypoint.flag_highlight = !waypoint.flag_highlight;
+                                    [waypoint dbUpdateHighlight];
+                                    [waypointManager needsRefresh];
+                                    [self.tableView reloadData];
+                                }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:found];
+    [alert addAction:dnf];
+    [alert addAction:ignore];
+    [alert addAction:inprogress];
+    [alert addAction:highlight];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)addLog:(NSString *)text
