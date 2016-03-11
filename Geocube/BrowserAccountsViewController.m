@@ -53,7 +53,8 @@
     [super viewWillAppear:animated];
     accounts = [NSMutableArray arrayWithCapacity:20];
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO)
+        if (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO &&
+            a.url_queries != nil && [a.url_queries isEqualToString:@""] == NO)
             [accounts addObject:a];
     }];
     [self.tableView reloadData];
