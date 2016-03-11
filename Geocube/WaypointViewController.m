@@ -570,11 +570,20 @@ enum {
         case menuRefreshWaypoint: // Refresh waypoint from server
             [self refreshWaypoint];
             return;
+        case menuAddToGroup: // Add waypoint to a group
+            [self addToGroup];
+            return;
+        case menuViewRaw:
+            [self menuViewRaw];
+            return;
         case menuIgnore: // Ignore this waypoint
-            if (waypoint.flag_ignore)
+            if (waypoint.flag_ignore) {
                 [self addLog:@"Unmarked as Ignored"];
-            else
+                [lmi changeItem:menuIgnore label:@"Mark as Ignored"];
+            } else {
                 [self addLog:@"Marked as Ignored"];
+                [lmi changeItem:menuIgnore label:@"Unmark as Ignored"];
+            }
             waypoint.flag_ignore = !waypoint.flag_ignore;
             [waypoint dbUpdateIgnore];
             if (waypoint.flag_ignore == YES) {
@@ -583,39 +592,46 @@ enum {
                 [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
             }
             [self.tableView reloadData];
-            return;
-        case menuAddToGroup: // Add waypoint to a group
-            [self addToGroup];
-            return;
-        case menuViewRaw:
-            [self menuViewRaw];
+            [self refreshMenu];
             return;
         case menuInProgress:
-            if (waypoint.flag_inprogress)
+            if (waypoint.flag_inprogress) {
                 [self addLog:@"Unmarked as In Progress"];
-            else
+                [lmi changeItem:menuInProgress label:@"Mark as In Progress"];
+            } else {
                 [self addLog:@"Marked as In Progress"];
+                [lmi changeItem:menuInProgress label:@"Mark as In Progress"];
+            }
             waypoint.flag_inprogress = !waypoint.flag_inprogress;
             [waypoint dbUpdateInProgress];
             [self.tableView reloadData];
+            [self refreshMenu];
             return;
         case menuMarkFound:
-            if (waypoint.flag_markedfound)
+            if (waypoint.flag_markedfound) {
                 [self addLog:@"Unmarked as Found"];
-            else
+                [lmi changeItem:menuMarkFound label:@"Mark as Found"];
+            } else {
                 [self addLog:@"Marked as Found"];
+                [lmi changeItem:menuMarkFound label:@"Unmark as Found"];
+            }
             waypoint.flag_markedfound = !waypoint.flag_markedfound;
             [waypoint dbUpdateMarkedFound];
             [self.tableView reloadData];
+            [self refreshMenu];
             return;
         case menuMarkDNF:
-            if (waypoint.flag_dnf)
+            if (waypoint.flag_dnf) {
                 [self addLog:@"Unmarked as DNF"];
-            else
+                [lmi changeItem:menuMarkDNF label:@"Mark as DNF"];
+            } else {
                 [self addLog:@"Marked as DNF"];
+                [lmi changeItem:menuMarkDNF label:@"Unmark as DNF"];
+            }
             waypoint.flag_dnf = !waypoint.flag_dnf;
             [waypoint dbUpdateMarkedDNF];
             [self.tableView reloadData];
+            [self refreshMenu];
             return;
     }
 
