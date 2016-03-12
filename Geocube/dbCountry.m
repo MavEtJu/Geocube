@@ -116,4 +116,18 @@
     }
 }
 
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update countries set name = ?, code = ? where id = ?");
+
+        SET_VAR_TEXT(1, name);
+        SET_VAR_TEXT(2, code);
+        SET_VAR_INT (3, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

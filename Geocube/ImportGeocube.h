@@ -21,12 +21,14 @@
 
 @interface ImportGeocube : NSObject
 
-#define KEY_REVISION_NOTICES @"notices_revision"
-#define KEY_REVISION_CONFIG  @"config_revision"
-#define KEY_REVISION_SITES   @"sites_revision"
-#define KEY_REVISION_KEYS    @"keys_revision"
-#define KEY_REVISION_ATTRIBUTES    @"attributes_revision"
-#define KEY_REVISION_EXTERNALMAPS    @"externalmaps_revision"
+#define KEY_REVISION_NOTICES        @"notices_revision"
+#define KEY_REVISION_CONFIG         @"config_revision"
+#define KEY_REVISION_SITES          @"sites_revision"
+#define KEY_REVISION_KEYS           @"keys_revision"
+#define KEY_REVISION_ATTRIBUTES     @"attributes_revision"
+#define KEY_REVISION_COUNTRIES      @"countries_revision"
+#define KEY_REVISION_STATES         @"states_revision"
+#define KEY_REVISION_EXTERNALMAPS   @"externalmaps_revision"
 
 + (BOOL)parse:(NSData *)data;
 

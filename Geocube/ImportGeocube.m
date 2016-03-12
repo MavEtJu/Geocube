@@ -58,6 +58,10 @@
         okay |= [self parseExternalMaps:d];
     if ((d = [xmlDictionary objectForKey:@"attributes"]) != nil)
         okay |= [self parseAttributes:d];
+    if ((d = [xmlDictionary objectForKey:@"countries"]) != nil)
+        okay |= [self parseCountries:d];
+    if ((d = [xmlDictionary objectForKey:@"states"]) != nil)
+        okay |= [self parseStates:d];
 
     return okay;
 }
@@ -339,5 +343,84 @@
 
     return YES;
 }
+
+- (BOOL)parseStates:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_STATES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_STATES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *states = [dict objectForKey:@"state"];
+    [states enumerateObjectsUsingBlock:^(NSDictionary *state, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *abbr = [state objectForKey:@"abbr"];
+        NSString *name = [state objectForKey:@"name"];
+
+        dbState *s = [dbc State_get_byName:name];
+        if (s != nil) {
+            s.code = abbr;
+            s.name = name;
+            [s dbUpdate];
+        } else {
+            s = [[dbState alloc] init];
+            s.code = abbr;
+            s.name = name;
+            [s dbCreate];
+            [dbc State_add:s];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseCountries:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_COUNTRIES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_COUNTRIES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *countries = [dict objectForKey:@"country"];
+    [countries enumerateObjectsUsingBlock:^(NSDictionary *country, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *abbr = [country objectForKey:@"abbr"];
+        NSString *name = [country objectForKey:@"name"];
+
+        dbCountry *c = [dbc Country_get_byName:name];
+        if (c != nil) {
+            c.code = abbr;
+            c.name = name;
+            [c dbUpdate];
+        } else {
+            c = [[dbCountry alloc] init];
+            c.code = abbr;
+            c.name = name;
+            [c dbCreate];
+            [dbc Country_add:c];
+        }
+    }];
+
+    return YES;
+}
+
 
 @end

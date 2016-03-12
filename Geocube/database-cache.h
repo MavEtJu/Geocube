@@ -88,12 +88,12 @@
 - (void)Attribute_add:(dbAttribute *)attr;
 
 - (dbCountry *)Country_get_byName:(NSString *)name;
-- (void)Country_add:(dbCountry *)country;
 - (dbCountry *)Country_get:(NSId)_id;
+- (void)Country_add:(dbCountry *)country;
 
 - (dbState *)State_get_byName:(NSString *)name;
-- (void)State_add:(dbState *)state;
 - (dbState *)State_get:(NSId)_id;
+- (void)State_add:(dbState *)state;
 
 - (void)AccountsReload;
 - (dbAccount *)Account_get:(NSId)_id;
