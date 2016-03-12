@@ -62,6 +62,12 @@
         okay |= [self parseCountries:d];
     if ((d = [xmlDictionary objectForKey:@"states"]) != nil)
         okay |= [self parseStates:d];
+    if ((d = [xmlDictionary objectForKey:@"logtypes"]) != nil)
+        okay |= [self parseLogtypes:d];
+//    if ((d = [xmlDictionary objectForKey:@"types"]) != nil)
+//        okay |= [self parseTypes:d];
+//    if ((d = [xmlDictionary objectForKey:@"pins"]) != nil)
+//        okay |= [self parsePins:d];
 
     return okay;
 }
@@ -416,6 +422,45 @@
             c.name = name;
             [c dbCreate];
             [dbc Country_add:c];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseLogtypes:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_LOGTYPES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_LOGTYPES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *logtypes = [dict objectForKey:@"logtype"];
+    [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *type = [logtype objectForKey:@"type"];
+        NSInteger icon = [[logtype objectForKey:@"icon"] integerValue];
+
+        dbLogType *lt = [dbc LogType_get_bytype:type];
+        if (lt != nil) {
+            lt.logtype = type;
+            lt.icon = icon;
+            [lt dbUpdate];
+        } else {
+            lt = [[dbLogType alloc] init];
+            lt.logtype = type;
+            lt.icon = icon;
+            [lt dbCreate];
+            [dbc LogType_add:lt];
         }
     }];
 

@@ -62,6 +62,36 @@
     return lts;
 }
 
+- (NSId)dbCreate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into logtypes(logtype, icon) values(?, ?)");
+
+        SET_VAR_TEXT(1, logtype);
+        SET_VAR_INT (2, icon);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(_id);
+        DB_FINISH;
+    }
+
+    return _id;
+}
+
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update logtypes set logtype = ?, icon = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.logtype);
+        SET_VAR_INT (2, self.icon);
+        SET_VAR_INT (3, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSInteger)dbCount
 {
     return [dbLogType dbCount:@"log_types"];

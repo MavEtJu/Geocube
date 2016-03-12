@@ -320,6 +320,13 @@
     return _lt;
 }
 
+- (void)LogType_add:(dbLogType *)logtype
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:LogTypes];
+    [as addObject:logtype];
+    LogTypes = as;
+}
+
 - (dbGroup *)Group_get:(NSId)_id
 {
     __block dbGroup *_g = nil;

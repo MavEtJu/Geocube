@@ -317,6 +317,14 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 19
+    a = @[
+    @"insert into config(key, value) values('url_logtypes', 'https://geocube.mavetju.org/geocube_logtypes.geocube')",
+    @"insert into config(key, value) values('url_types', 'https://geocube.mavetju.org/geocube_types.geocube')",
+    @"insert into config(key, value) values('url_pins', 'https://geocube.mavetju.org/geocube_pins.geocube')",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end

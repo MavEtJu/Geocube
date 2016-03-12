@@ -80,6 +80,7 @@
 
 - (dbLogType *)LogType_get_bytype:(NSString *)type;
 - (dbLogType *)LogType_get:(NSId)_id;
+- (void)LogType_add:(dbLogType *)logtype;
 
 - (dbGroup *)Group_get:(NSId)_id;
 

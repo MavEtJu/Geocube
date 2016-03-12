@@ -29,6 +29,9 @@
 #define KEY_REVISION_COUNTRIES      @"countries_revision"
 #define KEY_REVISION_STATES         @"states_revision"
 #define KEY_REVISION_EXTERNALMAPS   @"externalmaps_revision"
+#define KEY_REVISION_LOGTYPES       @"logtypes_revision"
+#define KEY_REVISION_TYPES          @"types_revision"
+#define KEY_REVISION_PINS           @"pins_revision"
 
 + (BOOL)parse:(NSData *)data;
 

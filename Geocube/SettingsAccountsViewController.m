@@ -278,6 +278,9 @@ enum {
     [self downloadFile:@"url_countries" header:@"Countries download" revision:@"countries_revision"];
     [self downloadFile:@"url_states" header:@"States download" revision:@"states_revision"];
     [self downloadFile:@"url_keys" header:@"Keys download" revision:@"keys_revision"];
+    [self downloadFile:@"url_logtypes" header:@"Logtypes download" revision:@"logtypes_revision"];
+    [self downloadFile:@"url_types" header:@"Types download" revision:@"types_revision"];
+    [self downloadFile:@"url_pins" header:@"Pins download" revision:@"pins_revision"];
 }
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
