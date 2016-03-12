@@ -56,6 +56,8 @@
         okay |= [self parseKeys:d];
     if ((d = [xmlDictionary objectForKey:@"externalmaps"]) != nil)
         okay |= [self parseExternalMaps:d];
+    if ((d = [xmlDictionary objectForKey:@"attributes"]) != nil)
+        okay |= [self parseAttributes:d];
 
     return okay;
 }
@@ -295,7 +297,47 @@
     }];
 
     return YES;
+}
 
+- (BOOL)parseAttributes:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_ATTRIBUTES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_ATTRIBUTES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *attrs = [dict objectForKey:@"attribute"];
+    [attrs enumerateObjectsUsingBlock:^(NSDictionary *attr, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger gc_id = [[attr objectForKey:@"gc_id"] integerValue];
+        NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
+        NSString *label = [attr objectForKey:@"label"];
+
+        dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
+        if (a != nil) {
+            a.label = label;
+            a.icon = icon;
+            [a dbUpdate];
+        } else {
+            a = [[dbAttribute alloc] init];
+            a.gc_id = gc_id;
+            a.label = label;
+            a.icon = icon;
+            [a dbCreate];
+            [dbc Attribute_add:a];
+        }
+    }];
+
+    return YES;
 }
 
 @end

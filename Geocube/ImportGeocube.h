@@ -25,6 +25,7 @@
 #define KEY_REVISION_CONFIG  @"config_revision"
 #define KEY_REVISION_SITES   @"sites_revision"
 #define KEY_REVISION_KEYS    @"keys_revision"
+#define KEY_REVISION_ATTRIBUTES    @"attributes_revision"
 #define KEY_REVISION_EXTERNALMAPS    @"externalmaps_revision"
 
 + (BOOL)parse:(NSData *)data;

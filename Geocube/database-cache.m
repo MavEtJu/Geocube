@@ -380,6 +380,13 @@
     return _a;
 }
 
+- (void)Attribute_add:(dbAttribute *)attr
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:Attributes];
+    [as addObject:attr];
+    Attributes = as;
+}
+
 - (dbCountry *)Country_get_byName:(NSString *)name
 {
     __block dbCountry *_c = nil;

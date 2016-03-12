@@ -85,6 +85,7 @@
 
 - (dbAttribute *)Attribute_get:(NSId)_id;
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;
+- (void)Attribute_add:(dbAttribute *)attr;
 
 - (dbCountry *)Country_get_byName:(NSString *)name;
 - (void)Country_add:(dbCountry *)country;

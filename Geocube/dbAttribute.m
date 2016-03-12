@@ -70,6 +70,39 @@
     return ss;
 }
 
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update attributes set label = ?, icon = ? where id = ?");
+
+        SET_VAR_TEXT(1 ,label);
+        SET_VAR_INT (2, icon);
+        SET_VAR_INT (3, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
+- (NSId)dbCreate
+{
+    NSId __id;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into attributes(label, gc_id, icon) values(?, ?, ?)");
+
+        SET_VAR_TEXT(1, label);
+        SET_VAR_INT (2, gc_id);
+        SET_VAR_INT (3, icon);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(__id);
+        _id = __id;
+        DB_FINISH;
+    }
+    return _id;
+}
+
 + (NSInteger)dbCount
 {
     return [dbAttribute dbCount:@"attributes"];
