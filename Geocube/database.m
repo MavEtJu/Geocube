@@ -308,6 +308,15 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 18
+    a = @[
+    @"insert into config(key, value) values('url_countries', 'https://geocube.mavetju.org/geocube_externalmaps.geocube')",
+    @"insert into config(key, value) values('url_states', 'https://geocube.mavetju.org/geocube_externalmaps.geocube')",
+    @"insert into config(key, value) values('url_attributes', 'https://geocube.mavetju.org/geocube_externalmaps.geocube')",
+    @"insert into config(key, value) values('url_keys', 'https://geocube.mavetju.org/geocube_keys.geocube')",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 @end
