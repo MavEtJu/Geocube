@@ -17,7 +17,8 @@ insert into config(key, value) values("url_keys", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_logtypes", "https://geocube.mavetju.org/geocube_logtypes.geocube");
 insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
-insert into config(key, value) values("version", "19");
+insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
+insert into config(key, value) values("version", "20");
 
 create table filters (
     id integer primary key,
@@ -235,14 +236,11 @@ create index travelbugs_idx_id on travelbugs(id);
 
 create table bookmarks (
     id integer primary key,
+    import_id integer,
     url text,
     name text
 );
 create index bookmarks_idx_id on bookmarks(id);
-insert into bookmarks(name, url) values("Localhost:8000", "http://127.0.0.1:8000/");
-insert into bookmarks(name, url) values("MavvieMac:8000", "http://mavviemac:8000/");
-insert into bookmarks(name, url) values("Geocaching.com - Pocket Queries", "https://www.geocaching.com/pocket/");
-insert into bookmarks(name, url) values("Geocaching Australia - Queries", "http://www.geocaching.com.au/my/query/");
 
 create table travelbug2waypoint (
     id integer primary key,

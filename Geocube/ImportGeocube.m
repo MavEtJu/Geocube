@@ -68,6 +68,8 @@
         okay |= [self parseTypes:d];
     if ((d = [xmlDictionary objectForKey:@"pins"]) != nil)
         okay |= [self parsePins:d];
+    if ((d = [xmlDictionary objectForKey:@"bookmarks"]) != nil)
+        okay |= [self parseBookmarks:d];
 
     return okay;
 }
@@ -548,6 +550,48 @@
             p.rgb = @"";
             [p dbCreate];
             [dbc Pin_add:p];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseBookmarks:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_BOOKMARKS];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_BOOKMARKS;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *bookmarks = [dict objectForKey:@"bookmark"];
+    [bookmarks enumerateObjectsUsingBlock:^(NSDictionary *bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *description = [bookmark objectForKey:@"description"];
+        NSString *url = [bookmark objectForKey:@"url"];
+        NSInteger import_id = [[bookmark objectForKey:@"id"] integerValue];
+
+        dbBookmark *bm = [dbBookmark dbGetByImport:import_id];
+        if (bm != nil) {
+            bm.name = description;
+            bm.url = url;
+            bm.import_id = import_id;
+            [bm finish];
+            [bm dbUpdate];
+        } else {
+            bm = [[dbBookmark alloc] init];
+            bm.name = description;
+            bm.url = url;
+            bm.import_id = import_id;
+            [dbBookmark dbCreate:bm];
         }
     }];
 

@@ -281,6 +281,7 @@ enum {
     [self downloadFile:@"url_logtypes" header:@"Logtypes download" revision:@"logtypes_revision"];
     [self downloadFile:@"url_types" header:@"Types download" revision:@"types_revision"];
     [self downloadFile:@"url_pins" header:@"Pins download" revision:@"pins_revision"];
+    [self downloadFile:@"url_bookmarks" header:@"Bookmarks download" revision:@"bookmarks_revision"];
 }
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision

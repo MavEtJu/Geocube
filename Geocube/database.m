@@ -325,6 +325,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 20
+    a = @[
+    @"alter table bookmarks add column import_id integer",
+    @"delete from bookmarks",
+    @"insert into config(key, value) values('url_bookmarks', 'https://geocube.mavetju.org/geocube_bookmarks.geocube')",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 @end

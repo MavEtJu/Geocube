@@ -43,11 +43,16 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddBookmark label:@"Add bookmark"];
-    bms = [dbBookmark dbAll];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    bms = [dbBookmark dbAll];
 }
 
 #pragma mark - TableViewController related functions
