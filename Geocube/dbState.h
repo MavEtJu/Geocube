@@ -28,5 +28,6 @@
 + (NSArray *)dbAll;
 + (void)makeNameExist:(NSString *)name;
 + (dbState *)dbGet:(NSId)_id;
++ (NSId)dbCreate:(NSString *)name code:(NSString *)code;
 
 @end

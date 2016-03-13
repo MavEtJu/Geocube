@@ -68,8 +68,10 @@
 
 - (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
 - (dbType *)Type_get:(NSId)_id;
+- (void)Type_add:(dbType *)type;
 
 - (dbPin *)Pin_get:(NSId)_id;
+- (void)Pin_add:(dbPin *)pin;
 
 - (dbContainer *)Container_get_bysize:(NSString *)size;
 - (dbContainer *)Container_get:(NSId)_id;

@@ -164,7 +164,8 @@
             *stop = YES;
         }
     }];
-    NSAssert(Type_Unknown != nil, @"Type_Unknown");
+    if ([Types count] != 0)
+        NSAssert(Type_Unknown != nil, @"Type_Unknown");
 
     [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if ([pt.description isEqualToString:@"*"] == YES) {
@@ -172,7 +173,8 @@
             *stop = YES;
         }
     }];
-    NSAssert(Pin_Unknown != nil, @"Pin_Unknown");
+    if ([Pins count] != 0)
+        NSAssert(Pin_Unknown != nil, @"Pin_Unknown");
 
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
         if ([s.symbol isEqualToString:@"*"] == YES) {
@@ -180,7 +182,8 @@
             *stop = YES;
         }
     }];
-    NSAssert(Symbol_Unknown != nil, @"Symbol_Unknown");
+    if ([Symbols count] != 0)
+        NSAssert(Symbol_Unknown != nil, @"Symbol_Unknown");
 
     [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
         if ([lt.logtype isEqualToString:@"Unknown"] == YES) {
@@ -200,10 +203,12 @@
             return;
         }
     }];
-    NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
-    NSAssert(LogType_Attended != nil, @"LogType_Attended");
-    NSAssert(LogType_NotFound != nil, @"LogType_NotFound");
-    NSAssert(LogType_Found != nil, @"LogType_Found");
+    if ([LogTypes count] != 0) {
+        NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
+        NSAssert(LogType_Attended != nil, @"LogType_Attended");
+        NSAssert(LogType_NotFound != nil, @"LogType_NotFound");
+        NSAssert(LogType_Found != nil, @"LogType_Found");
+    }
 
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if ([a.label isEqualToString:@"Unknown"] == YES) {
@@ -211,7 +216,8 @@
             *stop = YES;
         }
     }];
-    NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
+    if ([Attributes count] != 0)
+        NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
 
     Names = [NSMutableDictionary dictionaryWithCapacity:200];
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *name, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -248,6 +254,13 @@
     return _ct;
 }
 
+- (void)Type_add:(dbType *)type
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:Types];
+    [as addObject:type];
+    Types = as;
+}
+
 - (dbPin *)Pin_get:(NSId)_id
 {
     __block dbPin *_pt = nil;
@@ -260,6 +273,13 @@
     if (_pt == nil)
         return Pin_Unknown;
     return _pt;
+}
+
+- (void)Pin_add:(dbPin *)pin
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:Pins];
+    [as addObject:pin];
+    Pins = as;
 }
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol

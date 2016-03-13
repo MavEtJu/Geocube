@@ -70,6 +70,43 @@
     return ts;
 }
 
+- (NSId)dbCreate
+{
+    NSId __id;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id) values(?, ?, ?, ?)");
+
+        SET_VAR_TEXT(1, type_major);
+        SET_VAR_TEXT(2, type_minor);
+        SET_VAR_INT (3, icon);
+        SET_VAR_INT (4, pin_id);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(__id);
+        DB_FINISH;
+    }
+
+    _id = __id;
+    return __id;
+}
+
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ? where id = ?");
+
+        SET_VAR_TEXT(1, type_major);
+        SET_VAR_TEXT(2, type_minor);
+        SET_VAR_INT (3, icon);
+        SET_VAR_INT (4, pin_id);
+        SET_VAR_INT (5, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSInteger)dbCount
 {
     return [dbType dbCount:@"types"];

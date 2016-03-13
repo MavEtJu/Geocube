@@ -64,10 +64,10 @@
         okay |= [self parseStates:d];
     if ((d = [xmlDictionary objectForKey:@"logtypes"]) != nil)
         okay |= [self parseLogtypes:d];
-//    if ((d = [xmlDictionary objectForKey:@"types"]) != nil)
-//        okay |= [self parseTypes:d];
-//    if ((d = [xmlDictionary objectForKey:@"pins"]) != nil)
-//        okay |= [self parsePins:d];
+    if ((d = [xmlDictionary objectForKey:@"types"]) != nil)
+        okay |= [self parseTypes:d];
+    if ((d = [xmlDictionary objectForKey:@"pins"]) != nil)
+        okay |= [self parsePins:d];
 
     return okay;
 }
@@ -378,10 +378,8 @@
             s.name = name;
             [s dbUpdate];
         } else {
-            s = [[dbState alloc] init];
-            s.code = abbr;
-            s.name = name;
-            [s dbCreate];
+            NSId _id = [dbState dbCreate:name code:abbr];
+            s = [dbState dbGet:_id];
             [dbc State_add:s];
         }
     }];
@@ -417,10 +415,8 @@
             c.name = name;
             [c dbUpdate];
         } else {
-            c = [[dbCountry alloc] init];
-            c.code = abbr;
-            c.name = name;
-            [c dbCreate];
+            NSId _id = [dbCountry dbCreate:name code:abbr];
+            c = [dbCountry dbGet:_id];
             [dbc Country_add:c];
         }
     }];
@@ -467,5 +463,95 @@
     return YES;
 }
 
+- (BOOL)parseTypes:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_TYPES];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_TYPES;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *types = [dict objectForKey:@"type"];
+    [types enumerateObjectsUsingBlock:^(NSDictionary *type, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *major = [type objectForKey:@"major"];
+        NSString *minor = [type objectForKey:@"minor"];
+        NSInteger icon = [[type objectForKey:@"icon"] integerValue];
+        NSInteger pin = [[type objectForKey:@"pin"] integerValue];
+
+        dbType *t = [dbc Type_get_byname:major minor:minor];
+        if (t != nil) {
+            t.type_major = major;
+            t.type_minor = minor;
+            t.icon = icon;
+            t.pin_id = pin;
+            [t finish];
+            [t dbUpdate];
+        } else {
+            t = [[dbType alloc] init];
+            t.type_major = major;
+            t.type_minor = minor;
+            t.icon = icon;
+            t.pin_id = pin;
+            [t finish];
+            [t dbCreate];
+            [dbc Type_add:t];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parsePins:(NSDictionary *)dict
+{
+    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSString *revision = [dict objectForKey:@"revision"];
+
+    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_PINS];
+    if (currevision == nil) {
+        currevision = [[dbConfig alloc] init];
+        currevision.key = KEY_REVISION_PINS;
+        currevision.value = @"0";
+        [currevision dbCreate];
+    }
+    if ([currevision.value isEqualToString:revision] == NO) {
+        currevision.value = revision;
+        [currevision dbUpdate];
+    }
+
+    NSArray *pins = [dict objectForKey:@"pin"];
+    [pins enumerateObjectsUsingBlock:^(NSDictionary *pin, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *description = [pin objectForKey:@"description"];
+        NSString *rgb = [pin objectForKey:@"rgb"];
+        NSInteger _id = [[pin objectForKey:@"id"] integerValue];
+
+        dbPin *p = [dbc Pin_get:_id];
+        if (p != nil) {
+            p.description = description;
+            p._id = _id;
+            p.rgb_default = rgb;
+            [p finish];
+            [p dbUpdate];
+        } else {
+            p = [[dbPin alloc] init];
+            p.description = description;
+            p._id = _id;
+            p.rgb_default = rgb;
+            p.rgb = @"";
+            [p dbCreate];
+            [dbc Pin_add:p];
+        }
+    }];
+
+    return YES;
+}
 
 @end

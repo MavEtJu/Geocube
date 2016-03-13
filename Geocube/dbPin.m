@@ -84,6 +84,41 @@
     return ps;
 }
 
+- (NSId)dbCreate
+{
+    NSId __id;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"insert into pins(id, description, rgb, rgb_default) values(?, ?, ?, ?)");
+
+        SET_VAR_INT (1, _id);
+        SET_VAR_TEXT(2, description);
+        SET_VAR_TEXT(3, @"");
+        SET_VAR_TEXT(4, rgb_default);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(__id);
+        DB_FINISH;
+    }
+
+    _id = __id;
+    return __id;
+}
+
+- (void)dbUpdate
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update pins set description = ?, rgb_default = ? where id = ?");
+
+        SET_VAR_TEXT(1, description);
+        SET_VAR_TEXT(2, rgb_default);
+        SET_VAR_INT (3, _id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSInteger)dbCount
 {
     return [dbPin dbCount:@"pins"];
