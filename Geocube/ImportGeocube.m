@@ -138,7 +138,7 @@
 
 - (BOOL)parseSites:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES] == NO)
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_SITES] == NO)
         return NO;
 
     NSArray *sites = [dict objectForKey:@"site"];
