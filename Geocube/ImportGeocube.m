@@ -74,15 +74,18 @@
     return okay;
 }
 
-- (BOOL)parseNotices:(NSDictionary *)dict
+- (BOOL)checkVersion:(NSDictionary *)dict version:(NSInteger)knownVersion revisionKey:(NSString *)revkey
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
+    NSNumber *version = [dict objectForKey:@"version"];
     NSString *revision = [dict objectForKey:@"revision"];
 
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_NOTICES];
+    if ([version integerValue] > knownVersion)
+        return NO;
+
+    dbConfig *currevision = [dbConfig dbGetByKey:revkey];
     if (currevision == nil) {
         currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_NOTICES;
+        currevision.key = revkey;
         currevision.value = @"0";
         [currevision dbCreate];
     }
@@ -90,6 +93,14 @@
         currevision.value = revision;
         [currevision dbUpdate];
     }
+
+    return YES;
+}
+
+- (BOOL)parseNotices:(NSDictionary *)dict
+{
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES])
+        return NO;
 
     NSArray *notices = [dict objectForKey:@"notice"];
     [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -125,20 +136,8 @@
 
 - (BOOL)parseSites:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_SITES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_SITES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES])
+        return NO;
 
     NSArray *sites = [dict objectForKey:@"site"];
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
@@ -218,20 +217,8 @@
 
 - (BOOL)parseKeys:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_KEYS];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_KEYS;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_KEYS])
+        return NO;
 
     NSArray *keys = [dict objectForKey:@"key"];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -252,20 +239,8 @@
 
 - (BOOL)parseExternalMaps:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_EXTERNALMAPS];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_EXTERNALMAPS;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_EXTERNALMAPS])
+        return NO;
 
     NSArray *keys = [dict objectForKey:@"externalmap"];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -313,20 +288,8 @@
 
 - (BOOL)parseAttributes:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_ATTRIBUTES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_ATTRIBUTES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_ATTRIBUTES])
+        return NO;
 
     NSArray *attrs = [dict objectForKey:@"attribute"];
     [attrs enumerateObjectsUsingBlock:^(NSDictionary *attr, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -354,20 +317,8 @@
 
 - (BOOL)parseStates:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_STATES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_STATES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_STATES])
+        return NO;
 
     NSArray *states = [dict objectForKey:@"state"];
     [states enumerateObjectsUsingBlock:^(NSDictionary *state, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -391,20 +342,8 @@
 
 - (BOOL)parseCountries:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_COUNTRIES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_COUNTRIES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_COUNTRIES])
+        return NO;
 
     NSArray *countries = [dict objectForKey:@"country"];
     [countries enumerateObjectsUsingBlock:^(NSDictionary *country, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -428,20 +367,8 @@
 
 - (BOOL)parseLogtypes:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_LOGTYPES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_LOGTYPES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGTYPES])
+        return NO;
 
     NSArray *logtypes = [dict objectForKey:@"logtype"];
     [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -467,20 +394,8 @@
 
 - (BOOL)parseTypes:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_TYPES];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_TYPES;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_TYPES])
+        return NO;
 
     NSArray *types = [dict objectForKey:@"type"];
     [types enumerateObjectsUsingBlock:^(NSDictionary *type, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -514,20 +429,8 @@
 
 - (BOOL)parsePins:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_PINS];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_PINS;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_PINS])
+        return NO;
 
     NSArray *pins = [dict objectForKey:@"pin"];
     [pins enumerateObjectsUsingBlock:^(NSDictionary *pin, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -558,20 +461,8 @@
 
 - (BOOL)parseBookmarks:(NSDictionary *)dict
 {
-    //NSNumber *version = [dict objectForKey:@"version"];   // Ignored for now
-    NSString *revision = [dict objectForKey:@"revision"];
-
-    dbConfig *currevision = [dbConfig dbGetByKey:KEY_REVISION_BOOKMARKS];
-    if (currevision == nil) {
-        currevision = [[dbConfig alloc] init];
-        currevision.key = KEY_REVISION_BOOKMARKS;
-        currevision.value = @"0";
-        [currevision dbCreate];
-    }
-    if ([currevision.value isEqualToString:revision] == NO) {
-        currevision.value = revision;
-        [currevision dbUpdate];
-    }
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_BOOKMARKS])
+        return NO;
 
     NSArray *bookmarks = [dict objectForKey:@"bookmark"];
     [bookmarks enumerateObjectsUsingBlock:^(NSDictionary *bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
