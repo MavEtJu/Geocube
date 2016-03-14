@@ -195,6 +195,7 @@
 
 #import "HelpAboutViewController.h"
 #import "HelpDatabaseViewController.h"
+#import "HelpHelpViewController.h"
 #import "HelpImagesViewController.h"
 
 #import "KeepTrackCar.h"

@@ -74,6 +74,7 @@
 @class GroupsViewController;
 @class HelpAboutViewController;
 @class HelpDatabaseViewController;
+@class HelpHelpViewController;
 @class HelpImagesViewController;
 @class HighlightListViewController;
 @class IOSFileTransfers;
