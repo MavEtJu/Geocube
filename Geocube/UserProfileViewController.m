@@ -98,10 +98,10 @@ enum {
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
 
-        if (a.accountname_string == nil || [a.accountname_string length] == 0) {
-            [accountViews addObject:@""];
+        // If there is nothing, do not show.
+        if (a.accountname_string == nil || [a.accountname_string length] == 0)
             return;
-        }
+
         count++;
 
         GCLabel *l;
@@ -111,6 +111,16 @@ enum {
         [l setText:a.site];
         [contentView addSubview:l];
         y += 15;
+
+        if (a.enabled == NO) {
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, 0)];
+            [l setText:@"Remote API is not enabled for this account."];
+            l.numberOfLines = 0;
+            [l sizeToFit];
+            [contentView addSubview:l];
+            y += l.frame.size.height;
+            return;
+        }
 
         if (a.canDoRemoteStuff == NO) {
             l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, 0)];
