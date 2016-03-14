@@ -80,7 +80,7 @@
     NSString *revision = [dict objectForKey:@"revision"];
 
     if ([version integerValue] > knownVersion) {
-        NSLog(@"For %@: version retrieved was %@, while known version is %ld", revkey, version, knownVersion);
+        NSLog(@"For %@: version retrieved was %@, while known version is %ld", revkey, version, (long)knownVersion);
         return NO;
     }
 

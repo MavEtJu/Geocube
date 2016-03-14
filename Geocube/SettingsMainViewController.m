@@ -118,11 +118,11 @@ enum {
 
     downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 30; i < 600; i += 30) {
-        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", i]];
+        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", (long)i]];
     }
     downloadQueryTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 60; i < 1200; i += 30) {
-        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", i]];
+        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", (long)i]];
     }
 }
 
