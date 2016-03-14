@@ -70,17 +70,16 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.sports</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>waze</string>
+		<string>mapswithme</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MKDirectionsApplicationSupportedModes</key>
-	<array>
-		<string>MKDirectionsModeBike</string>
-		<string>MKDirectionsModeCar</string>
-		<string>MKDirectionsModePedestrian</string>
-	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -90,6 +89,8 @@
 	<string>After all, you are looking for the location of the waypoint!</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchImageFile</key>
 	<string>GC - logo - 640x960.png</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -99,8 +100,6 @@
 		<string>location-services</string>
 		<string>armv7</string>
 	</array>
-	<key>UIFileSharingEnabled</key>
-	<true/>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -154,11 +153,6 @@
 				<string>application/octet-stream</string>
 			</dict>
 		</dict>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>waze</string>
-		<string>mapswithme</string>
 	</array>
 </dict>
 </plist>
