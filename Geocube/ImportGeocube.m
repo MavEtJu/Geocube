@@ -79,8 +79,10 @@
     NSNumber *version = [dict objectForKey:@"version"];
     NSString *revision = [dict objectForKey:@"revision"];
 
-    if ([version integerValue] > knownVersion)
+    if ([version integerValue] > knownVersion) {
+        NSLog(@"For %@: version retrieved was %@, while known version is %ld", revkey, version, knownVersion);
         return NO;
+    }
 
     dbConfig *currevision = [dbConfig dbGetByKey:revkey];
     if (currevision == nil) {
@@ -99,7 +101,7 @@
 
 - (BOOL)parseNotices:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES] == NO)
         return NO;
 
     NSArray *notices = [dict objectForKey:@"notice"];
@@ -136,7 +138,7 @@
 
 - (BOOL)parseSites:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_NOTICES] == NO)
         return NO;
 
     NSArray *sites = [dict objectForKey:@"site"];
@@ -217,7 +219,7 @@
 
 - (BOOL)parseKeys:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_KEYS])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_KEYS] == NO)
         return NO;
 
     NSArray *keys = [dict objectForKey:@"key"];
@@ -239,7 +241,7 @@
 
 - (BOOL)parseExternalMaps:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_EXTERNALMAPS])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_EXTERNALMAPS] == NO)
         return NO;
 
     NSArray *keys = [dict objectForKey:@"externalmap"];
@@ -288,7 +290,7 @@
 
 - (BOOL)parseAttributes:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_ATTRIBUTES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_ATTRIBUTES] == NO)
         return NO;
 
     NSArray *attrs = [dict objectForKey:@"attribute"];
@@ -317,7 +319,7 @@
 
 - (BOOL)parseStates:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_STATES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_STATES] == NO)
         return NO;
 
     NSArray *states = [dict objectForKey:@"state"];
@@ -342,7 +344,7 @@
 
 - (BOOL)parseCountries:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_COUNTRIES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_COUNTRIES] == NO)
         return NO;
 
     NSArray *countries = [dict objectForKey:@"country"];
@@ -367,7 +369,7 @@
 
 - (BOOL)parseLogtypes:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGTYPES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGTYPES] == NO)
         return NO;
 
     NSArray *logtypes = [dict objectForKey:@"logtype"];
@@ -394,7 +396,7 @@
 
 - (BOOL)parseTypes:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_TYPES])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_TYPES] == NO)
         return NO;
 
     NSArray *types = [dict objectForKey:@"type"];
@@ -429,7 +431,7 @@
 
 - (BOOL)parsePins:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_PINS])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_PINS] == NO)
         return NO;
 
     NSArray *pins = [dict objectForKey:@"pin"];
@@ -461,7 +463,7 @@
 
 - (BOOL)parseBookmarks:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_BOOKMARKS])
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_BOOKMARKS] == NO)
         return NO;
 
     NSArray *bookmarks = [dict objectForKey:@"bookmark"];
