@@ -37,11 +37,11 @@
     UILabel *t = [[UILabel alloc] initWithFrame:(CGRectMake(10, y, width, 20))];
     t.numberOfLines = 0;
     t.lineBreakMode = NSLineBreakByWordWrapping;
-    t.font = [UIFont systemFontOfSize:myConfig.GCLabelFont.pointSize];
+    t.font = [UIFont systemFontOfSize:myConfig.GCTextblockFont.pointSize];
     t.text = @"For further help:\n"
               "- The website https://geocube.mavetju.org/\n"
-              "- Follow me on Twitter @geocubecaching\n"
-              "- Checkout on Facebook: Geocube geocaching\n"
+              "- Follow me on Twitter @GeocubeCaching\n"
+              "- Checkout on Facebook: Geocube Geocaching\n"
               "- Email: geocube@mavetju.org\n";
 
     [t sizeToFit];
