@@ -34,7 +34,7 @@
 @implementation SettingsAccountsViewController
 
 enum {
-    menuDownloadSiteInfo,
+    menuUpdate,
     menuMax
 };
 
@@ -46,7 +46,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCellSubtitleRightImage class] forCellReuseIdentifier:THISCELL];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuDownloadSiteInfo label:@"Download site info"];
+    [lmi addItem:menuUpdate label:@"Update config"];
 }
 
 - (void)refreshAccountData
@@ -264,7 +264,7 @@ enum {
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case menuDownloadSiteInfo:
+        case menuUpdate:
             [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
             return;
     }
