@@ -79,7 +79,9 @@ enum {
 
     accounts = bs;
     accountsCount = [accounts count];
-    [self.tableView reloadData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -263,7 +265,7 @@ enum {
 {
     switch (index) {
         case menuDownloadSiteInfo:
-            [self downloadFiles];
+            [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
             return;
     }
 
@@ -272,6 +274,10 @@ enum {
 
 - (void)downloadFiles
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
+    }];
+
     [self downloadFile:@"url_sites" header:@"Site information download" revision:@"sites_revision"];
     [self downloadFile:@"url_externalmaps" header:@"External maps download" revision:@"externalmaps_revision"];
     [self downloadFile:@"url_attributes" header:@"Attributes download" revision:@"attributes_revision"];
@@ -282,10 +288,22 @@ enum {
     [self downloadFile:@"url_types" header:@"Types download" revision:@"types_revision"];
     [self downloadFile:@"url_pins" header:@"Pins download" revision:@"pins_revision"];
     [self downloadFile:@"url_bookmarks" header:@"Bookmarks download" revision:@"bookmarks_revision"];
+
+    [dbc AccountsReload];
+    [self refreshAccountData];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
 {
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"%@", header];
+    }];
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
@@ -296,12 +314,6 @@ enum {
     if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         [ImportGeocube parse:data];
-
-        [MyTools messageBox:self header:header text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:key_revision] value]]];
-
-        [dbc AccountsReload];
-        [self refreshAccountData];
-        [self.tableView reloadData];
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
 
