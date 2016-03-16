@@ -278,16 +278,16 @@ enum {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
     }];
 
-    [self downloadFile:@"url_sites" header:@"Site information download" revision:@"sites_revision"];
-    [self downloadFile:@"url_externalmaps" header:@"External maps download" revision:@"externalmaps_revision"];
-    [self downloadFile:@"url_attributes" header:@"Attributes download" revision:@"attributes_revision"];
-    [self downloadFile:@"url_countries" header:@"Countries download" revision:@"countries_revision"];
-    [self downloadFile:@"url_states" header:@"States download" revision:@"states_revision"];
-    [self downloadFile:@"url_keys" header:@"Keys download" revision:@"keys_revision"];
-    [self downloadFile:@"url_logtypes" header:@"Logtypes download" revision:@"logtypes_revision"];
-    [self downloadFile:@"url_types" header:@"Types download" revision:@"types_revision"];
-    [self downloadFile:@"url_pins" header:@"Pins download" revision:@"pins_revision"];
-    [self downloadFile:@"url_bookmarks" header:@"Bookmarks download" revision:@"bookmarks_revision"];
+    [self downloadFile:@"url_sites" header:@"site information" revision:@"sites_revision"];
+    [self downloadFile:@"url_externalmaps" header:@"external maps" revision:@"externalmaps_revision"];
+    [self downloadFile:@"url_attributes" header:@"attributes" revision:@"attributes_revision"];
+    [self downloadFile:@"url_countries" header:@"countries" revision:@"countries_revision"];
+    [self downloadFile:@"url_states" header:@"states" revision:@"states_revision"];
+    [self downloadFile:@"url_keys" header:@"keys" revision:@"keys_revision"];
+    [self downloadFile:@"url_logtypes" header:@"logtypes" revision:@"logtypes_revision"];
+    [self downloadFile:@"url_types" header:@"types" revision:@"types_revision"];
+    [self downloadFile:@"url_pins" header:@"pins" revision:@"pins_revision"];
+    [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:@"bookmarks_revision"];
 
     [dbc AccountsReload];
     [self refreshAccountData];
@@ -302,7 +302,7 @@ enum {
 {
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"%@", header];
+        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading %@", header];
     }];
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
