@@ -135,9 +135,9 @@ enum {
     waypoints = [self resortCachesData:_wps];
 
     waypointCount = [waypoints count];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
-    });
+    }];
 }
 
 - (NSArray *)resortCachesData:(NSArray *)wps

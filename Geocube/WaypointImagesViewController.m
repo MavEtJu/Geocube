@@ -126,9 +126,9 @@ enum {
 
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
-    });
+    }];
 
     if (queuedImages != 0) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

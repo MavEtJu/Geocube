@@ -771,9 +771,9 @@ enum {
 
     if (success == YES) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
-        dispatch_async(dispatch_get_main_queue(), ^{
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.tableView reloadData];
-        });
+        }];
         [MyTools playSound:playSoundImportComplete];
         return;
     }

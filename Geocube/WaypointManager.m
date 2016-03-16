@@ -77,9 +77,9 @@
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
-        dispatch_async(dispatch_get_main_queue(), ^{
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [delegate refreshWaypoints];
-        });
+        }];
     }];
 }
 

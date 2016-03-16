@@ -104,10 +104,8 @@ NEEDS_OVERLOADING(reloadQueries)
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
-    }];
-    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-    });
+    }];
 }
 
 #pragma mark - TableViewController related functions
@@ -246,10 +244,8 @@ NEEDS_OVERLOADING(reloadQueries)
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
-    }];
-    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-    });
+    }];
     if (failure == NO)
         [MyTools playSound:playSoundImportComplete];
 }
