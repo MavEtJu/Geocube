@@ -62,8 +62,7 @@ enum {
 @implementation WaypointViewController
 
 enum {
-    menuAddWaypoint = 0,
-    menuRefreshWaypoint,
+    menuRefreshWaypoint = 0,
     menuMarkAs,
     menuAddToGroup,
     menuViewRaw,
@@ -75,7 +74,6 @@ enum {
     self = [super initWithStyle:style];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
     [lmi addItem:menuMarkAs label:@"Mark as..."];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
@@ -539,9 +537,6 @@ enum {
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
     switch (index) {
-        case menuAddWaypoint: // Add a waypoint
-            [self newWaypoint];
-            return;
         case menuRefreshWaypoint: // Refresh waypoint from server
             [self refreshWaypoint];
             return;
