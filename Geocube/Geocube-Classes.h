@@ -31,7 +31,6 @@
 @class Coordinates;
 @class DNFListViewController;
 @class DatabaseCache;
-@class FilesDropboxViewController;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;

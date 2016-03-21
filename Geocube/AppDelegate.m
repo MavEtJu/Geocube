@@ -272,12 +272,6 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[FilesDropboxViewController alloc] init];
-                vc.title = @"Dropbox";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
                 TABBARCONTROLLER(RC_FILES, controllers)
                 break;
 
