@@ -282,6 +282,7 @@ enum {
 
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
+    // If the suffix is .geocube, import it as a Geocube datafile
     NSString *fn = [filesNames objectAtIndex:row];
     if ([[fn pathExtension] isEqualToString:@"geocube"] == YES) {
         NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
@@ -293,6 +294,33 @@ enum {
         return;
     }
 
+    // Pre-requisites
+    __block BOOL groupsOkay = NO;
+    __block BOOL accountsOkay = NO;
+
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+        if (cg.usergroup == 0)
+            return;
+        groupsOkay = YES;
+        *stop = YES;
+    }];
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.accountname == nil)
+            return;
+        accountsOkay = YES;
+        *stop = YES;
+    }];
+
+    if (groupsOkay == NO) {
+        [MyTools messageBox:self header:@"Prerequisite failed" text:@"Make sure there are user groups defined. Go to Groups -> User Groups and add a group."];
+        return;
+    }
+    if (accountsOkay == NO) {
+        [MyTools messageBox:self header:@"Prerequisite failed" text:@"Make sure that you have at least have defined one user account. Go to Settings -> Accounts and define an username."];
+        return;
+    }
+
+    // Show all user groups.
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
