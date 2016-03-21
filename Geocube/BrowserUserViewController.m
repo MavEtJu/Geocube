@@ -53,6 +53,7 @@ enum {
 {
     [super viewWillAppear:animated];
     bms = [dbBookmark dbAll];
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableViewController related functions
