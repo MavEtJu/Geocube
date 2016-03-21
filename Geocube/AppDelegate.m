@@ -356,12 +356,6 @@
             case RC_LISTS:
                 controllers = [NSMutableArray array];
 
-                vc = [[IgnoredListViewController alloc] init];
-                vc.title = @"Ignored";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
                 vc = [[HighlightListViewController alloc] init];
                 vc.title = @"Highlight";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -382,6 +376,12 @@
 
                 vc = [[InProgressListViewController alloc] init];
                 vc.title = @"In Progress";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[IgnoredListViewController alloc] init];
+                vc.title = @"Ignored";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
