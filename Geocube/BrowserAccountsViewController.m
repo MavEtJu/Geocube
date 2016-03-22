@@ -98,6 +98,7 @@
 
     BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
     [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
+    [bbvc clearScreen];
     [bbvc loadURL:a.url_queries];
 }
 
