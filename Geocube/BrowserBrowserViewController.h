@@ -21,6 +21,7 @@
 
 @interface BrowserBrowserViewController : GCViewController <UIWebViewDelegate>
 
+- (void)clearScreen;
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;
 - (void)prepare_oauth:(GCOAuthBlackbox *)oabb;

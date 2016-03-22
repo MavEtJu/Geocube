@@ -63,11 +63,6 @@ enum {
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -80,8 +75,16 @@ enum {
      ];
 }
 
+- (void)clearScreen
+{
+    [webView loadHTMLString:@"" baseURL:nil];
+}
+
 - (void)loadURL:(NSString *)urlString
 {
+    // Clear
+    [self clearScreen];
+
     urlHome = urlString;
     NSURL *url = [NSURL URLWithString:urlHome];
     GCURLRequest *request = [GCURLRequest requestWithURL:url];
@@ -240,20 +243,20 @@ enum {
     }];
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    if ([error code] != NSURLErrorCancelled) {
+        NSLog(@"Error for WEBVIEW: %@", [error description]);
 
-    NSLog(@"Error for WEBVIEW: %@", [error description]);
-
-    [MyTools messageBox:self header:@"Failed to download" text:[error description]];
-    [self showActivity:NO];
+        [MyTools messageBox:self header:@"Failed to download" text:[error description]];
+        [self showActivity:NO];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self showActivity:-1];
 }
-
-
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)_data
 {
