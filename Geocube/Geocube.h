@@ -50,6 +50,9 @@ extern IOSFileTransfers *IOSFTM;
 // Configuration Manager
 extern MyConfig *myConfig;
 
+// Webbrowser
+extern BrowserBrowserViewController *bbvc;
+
 //
 extern AppDelegate *_AppDelegate;
 

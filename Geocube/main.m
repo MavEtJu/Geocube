@@ -48,6 +48,9 @@ IOSFileTransfers *IOSFTM;
 // Configuration manager
 MyConfig *myConfig = nil;
 
+// Webbrowser
+BrowserBrowserViewController *bbvc = nil;
+
 //
 AppDelegate *_AppDelegate;
 
