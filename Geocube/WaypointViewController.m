@@ -512,9 +512,6 @@ enum {
                 case WAYPOINT_ACTIONS_OPENINBROWSER: {
                     [_AppDelegate switchController:RC_BROWSER];
                     BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-                    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-                    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
-
                     [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
                     [bbvc loadURL:waypoint.wpt_url];
                     return;

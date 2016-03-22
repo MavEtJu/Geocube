@@ -111,11 +111,8 @@
 
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
 
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-        BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
-
         [_AppDelegate switchController:RC_BROWSER];
+        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
         [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_oauth:oabb];
         [bbvc loadURL:url];
@@ -126,13 +123,10 @@
         // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
         NSString *url = account.gca_authenticate_url;
 
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-        UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-        BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
-
         gca.delegate = self;
 
         [_AppDelegate switchController:RC_BROWSER];
+        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
         [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_gca:gca];
         [bbvc loadURL:url];
@@ -147,10 +141,8 @@
     account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [account dbUpdateCookieValue];
 
-    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
     [bbvc prepare_gca:nil];
+    [bbvc clearScreen];
 
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
@@ -165,10 +157,8 @@
     [account dbUpdateOAuthToken];
     //oabb = nil;
 
-    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
     [bbvc prepare_oauth:nil];
+    [bbvc clearScreen];
 
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
@@ -184,10 +174,8 @@
     [account dbUpdateOAuthToken];
     oabb = nil;
 
-    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-    BrowserBrowserViewController *bbvc = [nvc.viewControllers objectAtIndex:0];
     [bbvc prepare_oauth:nil];
+    [bbvc clearScreen];
 
     [_AppDelegate switchController:RC_SETTINGS];
     if (authenticationDelegate)
