@@ -426,6 +426,10 @@
     [self.window makeKeyAndVisible];
     [currentTab makeTabViewCurrent:cpt];
 
+    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    bbvc = [nvc.viewControllers objectAtIndex:0];
+
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
     if (db == nil) {
