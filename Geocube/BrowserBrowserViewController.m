@@ -236,7 +236,7 @@ enum {
             suggestedFilename = response.suggestedFilename;
             [webView stopLoading];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading data for %@\n", suggestedFilename]];
+                [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading data for %@      ", suggestedFilename]];
             }];
             *stop = YES;
         }
