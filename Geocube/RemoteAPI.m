@@ -112,7 +112,6 @@
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
 
         [_AppDelegate switchController:RC_BROWSER];
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
         [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_oauth:oabb];
         [bbvc loadURL:url];
@@ -126,7 +125,6 @@
         gca.delegate = self;
 
         [_AppDelegate switchController:RC_BROWSER];
-        BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
         [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
         [bbvc prepare_gca:gca];
         [bbvc loadURL:url];

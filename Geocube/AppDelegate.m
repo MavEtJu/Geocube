@@ -426,7 +426,7 @@
     [self.window makeKeyAndVisible];
     [currentTab makeTabViewCurrent:cpt];
 
-    BHTabsViewController *btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
     UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
     bbvc = [nvc.viewControllers objectAtIndex:0];
 
