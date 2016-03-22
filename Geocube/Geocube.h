@@ -51,6 +51,7 @@ extern IOSFileTransfers *IOSFTM;
 extern MyConfig *myConfig;
 
 // Webbrowser
+extern BHTabsViewController *btc;
 extern BrowserBrowserViewController *bbvc;
 
 //
