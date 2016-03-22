@@ -116,7 +116,7 @@
 #import "ImportGCAJSON.h"
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
-#import "ImportGPXViewController.h"
+#import "ImportGPXJSONViewController.h"
 #import "ImportGeocube.h"
 
 #import "GCCloseBUtton.h"
