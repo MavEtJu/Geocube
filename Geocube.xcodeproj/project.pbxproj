@@ -1146,8 +1146,6 @@
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
-				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
-				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 				E8E88D901BF06D9500E90F8D /* LocationManager.h */,
 				E8E88D911BF06D9500E90F8D /* LocationManager.m */,
 				E88974BA1B6EBF9500703E80 /* MyConfig.h */,
@@ -1161,24 +1159,10 @@
 		E82FBB2C1B4613F10009AB6D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
-				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
-				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
-				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
 				E80F73711B530C4600F35528 /* ImportGPXViewController.h */,
 				E80F73721B530C4600F35528 /* ImportGPXViewController.m */,
-				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
-				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
 				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
 				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
-				E820F2041B7DA451009FB999 /* TrackablesViewController.h */,
-				E820F2051B7DA451009FB999 /* TrackablesViewController.m */,
-				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
-				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
-				E8C5BB4E1C719EB1006222D5 /* WaypointAddViewController.h */,
-				E8C5BB4F1C719EB1006222D5 /* WaypointAddViewController.m */,
-				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
-				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -1235,6 +1219,98 @@
 				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
 			);
 			name = Queries;
+			sourceTree = "<group>";
+		};
+		E857078A1CA1E67200467CE0 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
+				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
+			);
+			name = Groups;
+			sourceTree = "<group>";
+		};
+		E857078B1CA1E68600467CE0 /* Notices */ = {
+			isa = PBXGroup;
+			children = (
+				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
+				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
+			);
+			name = Notices;
+			sourceTree = "<group>";
+		};
+		E857078C1CA1E68F00467CE0 /* Trackables */ = {
+			isa = PBXGroup;
+			children = (
+				E820F2041B7DA451009FB999 /* TrackablesViewController.h */,
+				E820F2051B7DA451009FB999 /* TrackablesViewController.m */,
+			);
+			name = Trackables;
+			sourceTree = "<group>";
+		};
+		E857078D1CA1E6A200467CE0 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
+				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
+			);
+			name = "User Profile";
+			sourceTree = "<group>";
+		};
+		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
+			isa = PBXGroup;
+			children = (
+				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
+			);
+			name = Waypoints;
+			sourceTree = "<group>";
+		};
+		E857078F1CA1E77B00467CE0 /* Navigate */ = {
+			isa = PBXGroup;
+			children = (
+				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
+				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
+			);
+			name = Navigate;
+			sourceTree = "<group>";
+		};
+		E85707901CA1E7AC00467CE0 /* Waypoint Add */ = {
+			isa = PBXGroup;
+			children = (
+				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
+				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
+				E8C5BB4E1C719EB1006222D5 /* WaypointAddViewController.h */,
+				E8C5BB4F1C719EB1006222D5 /* WaypointAddViewController.m */,
+			);
+			name = "Waypoint Add";
+			sourceTree = "<group>";
+		};
+		E85707911CA1E7CE00467CE0 /* Single Waypoint */ = {
+			isa = PBXGroup;
+			children = (
+				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
+				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
+				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
+				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
+				E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */,
+				E8C5BB521C719EB1006222D5 /* WaypointDescriptionViewController.h */,
+				E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */,
+				E8C5BB541C719EB1006222D5 /* WaypointGroupsViewController.h */,
+				E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */,
+				E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */,
+				E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */,
+				E8C5BB5E1C719EB1006222D5 /* WaypointLogsViewController.h */,
+				E8C5BB5F1C719EB1006222D5 /* WaypointLogsViewController.m */,
+				E8C5BB621C719EB1006222D5 /* WaypointPersonalNoteViewController.h */,
+				E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */,
+				E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */,
+				E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */,
+				E8C5BB6A1C719EB1006222D5 /* WaypointTrackablesViewController.h */,
+				E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */,
+				E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */,
+				E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */,
+			);
+			name = "Single Waypoint";
 			sourceTree = "<group>";
 		};
 		E8575FF61B8466AA00F34483 /* YIPopupTextView */ = {
@@ -1463,28 +1539,11 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
+				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
+				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
 				E89051751C8AE1B600220986 /* Logging */,
 				E89051741C8AE1AE00220986 /* Images */,
-				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
-				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
-				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
-				E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */,
-				E8C5BB521C719EB1006222D5 /* WaypointDescriptionViewController.h */,
-				E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */,
-				E8C5BB541C719EB1006222D5 /* WaypointGroupsViewController.h */,
-				E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */,
-				E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */,
-				E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */,
-				E8C5BB5E1C719EB1006222D5 /* WaypointLogsViewController.h */,
-				E8C5BB5F1C719EB1006222D5 /* WaypointLogsViewController.m */,
-				E8C5BB621C719EB1006222D5 /* WaypointPersonalNoteViewController.h */,
-				E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */,
-				E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */,
-				E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */,
-				E8C5BB6A1C719EB1006222D5 /* WaypointTrackablesViewController.h */,
-				E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */,
-				E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */,
-				E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */,
+				E85707911CA1E7CE00467CE0 /* Single Waypoint */,
 			);
 			name = "Waypoint Viewing";
 			sourceTree = "<group>";
@@ -2080,17 +2139,22 @@
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
 				E82FBB2C1B4613F10009AB6D /* Pages */,
-				E82002261B7B1B8F009AE50F /* Notes and logs */,
-				E8A7FA9C1B784065003F4132 /* Help */,
-				E833B72F1C522E8D00B9FB45 /* Lists */,
-				E8A7FA921B777616003F4132 /* Browser */,
-				E84D6FD01C5826140000A6A0 /* Queries */,
-				E8FD610D1BE8C46100859A58 /* Files */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
-				E8E8CFE91B639A0400CC741A /* Settings */,
+				E857078F1CA1E77B00467CE0 /* Navigate */,
+				E857078E1CA1E6FE00467CE0 /* Waypoints */,
 				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
-				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
+				E82002261B7B1B8F009AE50F /* Notes and logs */,
+				E857078C1CA1E68F00467CE0 /* Trackables */,
+				E857078A1CA1E67200467CE0 /* Groups */,
+				E833B72F1C522E8D00B9FB45 /* Lists */,
+				E84D6FD01C5826140000A6A0 /* Queries */,
+				E8FD610D1BE8C46100859A58 /* Files */,
+				E857078D1CA1E6A200467CE0 /* User Profile */,
+				E8A7FA921B777616003F4132 /* Browser */,
+				E857078B1CA1E68600467CE0 /* Notices */,
+				E8E8CFE91B639A0400CC741A /* Settings */,
+				E8A7FA9C1B784065003F4132 /* Help */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
