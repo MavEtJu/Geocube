@@ -19,11 +19,56 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol ImporterDelegate
+
+- (void)importerDelegateUpdate;
+
+@end
+
 @interface Importer : NSObject
 {
     id delegate;
+
+    NSInteger newWaypointsCount;
+    NSInteger totalWaypointsCount;
+
+    NSInteger newLogsCount;
+    NSInteger totalLogsCount;
+
+    NSInteger newTrackablesCount;
+    NSInteger totalTrackablesCount;
+
+    NSUInteger percentageRead;
+    NSUInteger totalLines;
+
+    NSInteger newImagesCount;
+
+    dbAccount *account;
+    dbGroup *group;
 }
 
 @property (nonatomic, retain) id delegate;
+@property (nonatomic, readonly) NSInteger newWaypointsCount;
+@property (nonatomic, readonly) NSInteger totalWaypointsCount;
+@property (nonatomic, readonly) NSInteger newLogsCount;
+@property (nonatomic, readonly) NSInteger totalLogsCount;
+@property (nonatomic, readonly) NSInteger newTrackablesCount;
+@property (nonatomic, readonly) NSInteger totalTrackablesCount;
+@property (nonatomic, readonly) NSUInteger percentageRead;
+@property (nonatomic, readonly) NSUInteger totalLines;
+@property (nonatomic, readonly) NSInteger newImagesCount;
+
+@property (nonatomic, retain) dbGroup *group;
+@property (nonatomic, retain) dbAccount *account;
+
+- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
+
+- (void)updateDelegates;
+- (void)parseBefore;
+- (void)parseAfter;
+- (void)parseFile:(NSString *)filename;
+- (void)parseData:(NSData *)data;
+- (void)parseString:(NSString *)data;
+- (void)parseDictionary:(NSDictionary *)dict;
 
 @end

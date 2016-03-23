@@ -67,27 +67,16 @@
     NSInteger prevtotalImagesValue[MAXHISTORY];
     NSInteger prevdownloadedImagesValue[MAXHISTORY];
 
-    ImportGPX *imp;
+    Importer *imp;
 }
 
 @end
 
 @implementation ImportGPXViewController
 
-- (instancetype)init:(NSString *)_filename group:(dbGroup *)_group account:(dbAccount *)_account
+- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
     self = [super init];
-
-    filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
-    filenames = [NSMutableArray arrayWithCapacity:1];
-    if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
-        [filenames addObject:_filename];
-    }
-    if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
-        NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
-        NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
-        [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
-    }
 
     group = _group;
     account = _account;
@@ -124,8 +113,37 @@
     self.view = contentView;
 
     [self addOrResizeFields];
+}
 
-    imp = [[ImportGPX alloc] init:group account:account];
+NEEDS_OVERLOADING(run:(NSInteger)_type data:(NSData *)_data);
+- (void)run:(NSInteger)_type filename:(NSString *)_filename
+{
+    filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
+    filenames = [NSMutableArray arrayWithCapacity:1];
+    if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
+        [filenames addObject:_filename];
+    }
+    if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
+        NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
+        NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
+        [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+    }
+
+    switch (_type) {
+        case IMPORT_GPX:
+            imp = [[ImportGPX alloc] init:group account:account];
+            break;
+        case IMPORT_GCA_JSON:
+            imp = [[ImportGCAJSON alloc] init:group account:account];
+            break;
+        case IMPORT_LIVEAPI_JSON:
+            imp = [[ImportLiveAPIJSON alloc] init:group account:account];
+            break;
+        default:
+            NSAssert1(NO, @"Unknown type: %ld", (long)_type);
+            break;
+    }
+    imp.delegate = self;
 
     [self performSelectorInBackground:@selector(run) withObject:nil];
 }
@@ -397,17 +415,17 @@
     }];
 }
 
-- (void)updateGPXJSONImportData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount
+- (void)importerDelegateUpdate
 {
     @synchronized(self) {
-        progressValue = percentageRead;
-        newWaypointsValue = newWaypointsCount;
-        totalWaypointsValue = totalWaypointsCount;
-        newLogsValue = newLogsCount;
-        totalLogsValue = totalLogsCount;
-        newTrackablesValue = newTrackablesCount;
-        totalTrackablesValue = totalTrackablesCount;
-        totalImagesValue = newImagesCount;
+        progressValue = imp.percentageRead;
+        newWaypointsValue = imp.newWaypointsCount;
+        totalWaypointsValue = imp.totalWaypointsCount;
+        newLogsValue = imp.newLogsCount;
+        totalLogsValue = imp.totalLogsCount;
+        newTrackablesValue = imp.newTrackablesCount;
+        totalTrackablesValue = imp.totalTrackablesCount;
+        totalImagesValue = imp.newImagesCount;
         [self updateData];
     }
 }

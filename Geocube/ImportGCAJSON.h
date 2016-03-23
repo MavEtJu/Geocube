@@ -30,8 +30,6 @@
 
 @property (nonatomic, retain) NSMutableArray *namesImported;
 
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
-
 - (void)parseBefore_cache;
 - (void)parseData_cache:(NSDictionary *)data;
 - (void)parseAfter_cache;

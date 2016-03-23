@@ -19,20 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImportGPXJSONDelegate
-
-- (void)updateGPXJSONImportData:(NSInteger)percentageRead newWaypointsCount:(NSInteger)newWaypointsCount totalWaypointsCount:(NSInteger)totalWaypointsCount newLogsCount:(NSInteger)newLogsCount totalLogsCount:(NSInteger)totalLogsCount newTrackablesCount:(NSInteger)newTrackablesCount totalTrackablesCount:(NSInteger)totalTrackablesCount newImagesCount:(NSInteger)newImagesCount;
-
-@end
-
 @interface ImportGPX : Importer <NSXMLParserDelegate>
 
-- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
-
-- (void)parseBefore;
 - (void)parseFile:(NSString *)filename;
 - (void)parseData:(NSData *)data;
 - (void)parseString:(NSString *)data;
-- (void)parseAfter;
 
 @end

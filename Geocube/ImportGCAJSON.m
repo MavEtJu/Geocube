@@ -23,9 +23,6 @@
 
 @interface ImportGCAJSON ()
 {
-    dbAccount *account;
-    dbGroup *group;
-
     NSMutableArray *namesImported;
 }
 
@@ -34,18 +31,6 @@
 @implementation ImportGCAJSON
 
 @synthesize namesImported;
-
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
-{
-    self = [super init];
-
-    group = _group;
-    account = _account;
-
-    NSLog(@"%@: Importing into %@", [self class], group.name);
-
-    return self;
-}
 
 - (void)parseBefore_cache
 {

@@ -23,19 +23,7 @@
 
 @interface ImportGPX ()
 {
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
-    NSInteger newTrackablesCount;
-    NSInteger totalTrackablesCount;
-    NSUInteger percentageRead;
-    NSUInteger totalLines;
-    NSInteger newImagesCount;
-
     NSArray *files;
-    dbGroup *group;
-    dbAccount *account;
 
     NSMutableDictionary *logIdGCId;
     NSMutableArray *attributesYES, *attributesNO;
@@ -54,37 +42,6 @@
 @end
 
 @implementation ImportGPX
-
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
-{
-    self = [super init];
-    delegate = nil;
-
-    newWaypointsCount = 0;
-    totalWaypointsCount = 0;
-    newLogsCount = 0;
-    totalLogsCount = 0;
-    percentageRead = 0;
-    newTrackablesCount = 0;
-    totalTrackablesCount = 0;
-    newImagesCount = 0;
-
-    group = _group;
-    account = _account;
-
-    NSLog(@"%@: Importing info %@", [self class], group.name);
-
-
-    return self;
-}
-
-- (void)parseBefore
-{
-    NSLog(@"%@: Parsing initializing", [self class]);
-    [dbc.Group_LastImport dbEmpty];
-    [dbc.Group_LastImportAdded dbEmpty];
-    [dbGroup cleanupAfterDelete];
-}
 
 - (void)parseFile:(NSString *)filename
 {
@@ -125,22 +82,6 @@
     @autoreleasepool {
         [rssParser parse];
     }
-}
-
-- (void)parseAfter
-{
-    NSLog(@"%@: Parsing done", [self class]);
-    [[dbc Group_AllWaypoints_Found] dbEmpty];
-    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
-    [[dbc Group_AllWaypoints_Attended] dbEmpty];
-    [[dbc Group_AllWaypoints_Attended] dbAddWaypoints:[dbWaypoint dbAllAttended]];
-    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
-    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
-    [[dbc Group_AllWaypoints_Ignored] dbEmpty];
-    [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
-    [dbGroup cleanupAfterDelete];
-    [dbc loadWaypointData];
-    [dbWaypoint dbUpdateLogStatus];
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -320,8 +261,7 @@
             }];
 
             inItem = NO;
-            if (delegate != nil)
-                [delegate updateGPXJSONImportData:percentageRead newWaypointsCount:newWaypointsCount totalWaypointsCount:totalWaypointsCount newLogsCount:newLogsCount totalLogsCount:totalLogsCount newTrackablesCount:newTrackablesCount totalTrackablesCount:totalTrackablesCount newImagesCount:newImagesCount];
+            [self updateDelegates];
 
             goto bye;
         }

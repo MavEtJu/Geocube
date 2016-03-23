@@ -19,8 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPXViewController : GCViewController <ImportGPXJSONDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
+@interface ImportGPXViewController : GCViewController <ImporterDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
 
-- (instancetype)init:(NSString *)filename group:(dbGroup *)group account:(dbAccount *)account;
+enum {
+    IMPORT_GPX = 0,
+    IMPORT_LIVEAPI_JSON,
+    IMPORT_GCA_JSON,
+    IMPORT_OC_JSON
+};
+
+- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
+- (void)run:(NSInteger)type filename:(NSString *)filename;
+- (void)run:(NSInteger)type data:(NSData *)data;
 
 @end

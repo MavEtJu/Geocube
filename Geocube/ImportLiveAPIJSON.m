@@ -32,36 +32,11 @@
     NSUInteger percentageRead;
     NSUInteger totalLines;
     NSInteger newImagesCount;
-
-    dbGroup *group;
-    dbAccount *account;
 }
 
 @end
 
 @implementation ImportLiveAPIJSON
-
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
-{
-    self = [super init];
-    delegate = nil;
-
-    newWaypointsCount = 0;
-    totalWaypointsCount = 0;
-    newLogsCount = 0;
-    totalLogsCount = 0;
-    percentageRead = 0;
-    newTrackablesCount = 0;
-    totalTrackablesCount = 0;
-    newImagesCount = 0;
-
-    group = _group;
-    account = _account;
-
-    NSLog(@"%@: Importing into %@", [self class], group.name);
-
-    return self;
-}
 
 - (void)parseBefore
 {

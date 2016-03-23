@@ -28,9 +28,4 @@
 
 @interface ImportLiveAPIJSON : Importer
 
-- (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
-- (void)parseBefore;
-- (void)parseDictionary:(NSDictionary *)dict;
-- (void)parseAfter;
-
 @end
