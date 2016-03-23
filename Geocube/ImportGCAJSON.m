@@ -33,7 +33,7 @@
 
 @implementation ImportGCAJSON
 
-@synthesize namesImported, delegate;
+@synthesize namesImported;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {

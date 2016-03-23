@@ -25,11 +25,9 @@
 
 @end
 
-@interface ImportGPX : NSObject <NSXMLParserDelegate>
+@interface ImportGPX : Importer <NSXMLParserDelegate>
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
-
-@property (nonatomic)id delegate;
 
 - (void)parseBefore;
 - (void)parseFile:(NSString *)filename;

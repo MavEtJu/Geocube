@@ -19,25 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImportGCAJSONDelegate
+@interface Importer : NSObject
+{
+    id delegate;
+}
 
-- (void)updateGCAJSONImportDataWaypoints;
-- (void)updateGCAJSONImportDataLogs;
-
-@end
-
-@interface ImportGCAJSON : Importer
-
-@property (nonatomic, retain) NSMutableArray *namesImported;
-
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
-
-- (void)parseBefore_cache;
-- (void)parseData_cache:(NSDictionary *)data;
-- (void)parseAfter_cache;
-
-- (void)parseBefore_logs;
-- (void)parseData_logs:(NSDictionary *)data;
-- (void)parseAfter_logs;
+@property (nonatomic, retain) id delegate;
 
 @end

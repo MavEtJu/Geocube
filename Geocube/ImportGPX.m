@@ -49,15 +49,11 @@
     dbWaypoint *currentWP;
     dbLog *currentLog;
     dbTrackable *currentTB;
-
-    id delegate;
 }
 
 @end
 
 @implementation ImportGPX
-
-@synthesize delegate;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 {

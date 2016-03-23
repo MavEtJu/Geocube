@@ -26,9 +26,7 @@
 
 @end
 
-@interface ImportLiveAPIJSON : NSObject
-
-@property (nonatomic, retain) id delegate;
+@interface ImportLiveAPIJSON : Importer
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 - (void)parseBefore;

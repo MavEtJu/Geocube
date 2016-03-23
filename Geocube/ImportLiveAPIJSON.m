@@ -35,15 +35,11 @@
 
     dbGroup *group;
     dbAccount *account;
-
-    id delegate;
 }
 
 @end
 
 @implementation ImportLiveAPIJSON
-
-@synthesize delegate;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
 {

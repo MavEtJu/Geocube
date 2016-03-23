@@ -204,6 +204,7 @@
 		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
 		E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */; };
 		E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */; };
+		E85707941CA1EE0F00467CE0 /* Importer.m in Sources */ = {isa = PBXBuildFile; fileRef = E85707931CA1EE0F00467CE0 /* Importer.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
@@ -677,6 +678,8 @@
 		E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGroundspeakViewController.m; sourceTree = "<group>"; };
 		E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGCAViewController.h; sourceTree = "<group>"; };
 		E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGCAViewController.m; sourceTree = "<group>"; };
+		E85707921CA1EE0F00467CE0 /* Importer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Importer.h; sourceTree = "<group>"; };
+		E85707931CA1EE0F00467CE0 /* Importer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Importer.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E8575FF81B8466D900F34483 /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E8575FF91B8466D900F34483 /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -2179,6 +2182,8 @@
 				E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */,
 				E82990441C87A36200504421 /* ImportGeocube.h */,
 				E82990451C87A36200504421 /* ImportGeocube.m */,
+				E85707921CA1EE0F00467CE0 /* Importer.h */,
+				E85707931CA1EE0F00467CE0 /* Importer.m */,
 			);
 			name = Convertors;
 			sourceTree = "<group>";
@@ -2630,6 +2635,7 @@
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
+				E85707941CA1EE0F00467CE0 /* Importer.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* IgnoredListViewController.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
