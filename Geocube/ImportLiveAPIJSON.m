@@ -22,17 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface ImportLiveAPIJSON ()
-{
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
-    NSInteger newTrackablesCount;
-    NSInteger totalTrackablesCount;
-    NSUInteger percentageRead;
-    NSUInteger totalLines;
-    NSInteger newImagesCount;
-}
 
 @end
 
@@ -56,9 +45,9 @@
 - (void)parseGeocaches:(NSArray *)as
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
-        if (delegate != nil)
-            [delegate updateLiveAPIJSONImportDataWaypoints];
         [self parseGeocache:d];
+        totalWaypointsCount++;
+        [self updateDelegates];
     }];
 }
 - (void)parseGeocache:(NSDictionary *)dict
@@ -228,6 +217,7 @@
     // Now see what we had and what we need to change
     [wp finish];
     if (wp._id == 0) {
+        newWaypointsCount++;
         [dbWaypoint dbCreate:wp];
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
@@ -270,6 +260,7 @@
     [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
+        totalTrackablesCount++;
     }];
 }
 
@@ -368,6 +359,7 @@
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
         [dbTrackable dbCreate:tb];
+        newTrackablesCount++;
     } else {
         tb._id = _id;
         [tb dbUpdate];
@@ -442,6 +434,7 @@
 {
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
+        totalWaypointsCount++;
     }];
 }
 
@@ -508,6 +501,7 @@
     if (wpid == 0) {
         [dbWaypoint dbCreate:awp];
         [group dbAddWaypoint:awp._id];
+        newWaypointsCount++;
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
@@ -518,9 +512,9 @@
 - (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
 {
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
-        if (delegate != nil)
-            [delegate updateLiveAPIJSONImportDataLogs];
         [self parseLog:d waypoint:wp];
+        totalLogsCount++;
+        [self updateDelegates];
     }];
 }
 
@@ -596,8 +590,10 @@
     [l finish];
 
     NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
-    if (l_id == 0)
+    if (l_id == 0) {
+        newLogsCount++;
         [l dbCreate];
+    }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
 }

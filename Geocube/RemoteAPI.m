@@ -411,20 +411,6 @@
         [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
 }
 
-- (void)updateLiveAPIJSONImportDataWaypoints
-{
-    loadWaypointsWaypoints++;
-    if (delegateLoadWaypoints != nil)
-        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
-}
-
-- (void)updateLiveAPIJSONImportDataLogs
-{
-    loadWaypointsLogs++;
-    if (delegateLoadWaypoints != nil)
-        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
-}
-
 - (BOOL)loadWaypoints:(CLLocationCoordinate2D)center
 {
     loadWaypointsLogs = 0;
@@ -555,7 +541,7 @@
     return nil;
 }
 
-- (BOOL)retrieveQuery:(NSString *)_id group:(dbGroup *)group
+- (NSObject *)retrieveQuery:(NSString *)_id group:(dbGroup *)group
 {
 
     if (account.protocol == ProtocolLiveAPI) {
@@ -590,13 +576,7 @@
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
-        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:group account:account];
-        [imp parseBefore];
-        [imp parseDictionary:result];
-        [imp parseAfter];
-
-        [waypointManager needsRefresh];
-        return YES;
+        return result;
     }
 
     if (account.protocol == ProtocolGCA) {
@@ -613,17 +593,10 @@
 
         NSString *gpx = [gca my_query_gpx:_id];
 
-        ImportGPX *imp = [[ImportGPX alloc] init:group account:account];
-        [imp parseBefore];
-        [imp parseString:gpx];
-        [imp parseAfter];
-
-        [waypointManager needsRefresh];
-
-        return YES;
+        return gpx;
     }
 
-    return NO;
+    return nil;
 }
 
 @end

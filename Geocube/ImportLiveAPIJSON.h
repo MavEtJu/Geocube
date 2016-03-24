@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImportLiveAPIJSONDelegate
-
-- (void)updateLiveAPIJSONImportDataWaypoints;
-- (void)updateLiveAPIJSONImportDataLogs;
-
-@end
-
 @interface ImportLiveAPIJSON : Importer
 
 @end

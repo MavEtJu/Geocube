@@ -51,5 +51,22 @@ enum {
     [self reloadQueries:ProtocolGCA];
 }
 
+- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
+{
+    NSString *d = (NSString *)query;
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        ImportViewController *newController = [[ImportViewController alloc] init:group account:account];
+        newController.edgesForExtendedLayout = UIRectEdgeNone;
+        newController.title = @"Import";
+        [self.navigationController pushViewController:newController animated:YES];
+        [newController run:IMPORT_GPX_STRING data:d];
+    }];
+
+    [waypointManager needsRefresh];
+
+    return YES;
+}
+
 
 @end

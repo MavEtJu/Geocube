@@ -24,7 +24,6 @@
 @interface QueriesTemplateViewController ()
 {
     NSArray *qs;
-    dbAccount *account;
     NSArray *qis;
 }
 
@@ -32,7 +31,7 @@
 
 @implementation QueriesTemplateViewController
 
-@synthesize queriesString, queryString;
+@synthesize queriesString, queryString, account;
 
 enum {
     menuReload,
@@ -72,6 +71,7 @@ enum {
 }
 
 NEEDS_OVERLOADING(reloadQueries)
+NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group)
 
 - (void)reloadQueries:(NSInteger)protocol
 {
@@ -237,9 +237,13 @@ NEEDS_OVERLOADING(reloadQueries)
 
     __block BOOL failure = NO;
     account.remoteAPI.delegateQueries = self;
-    if ([account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group] == NO) {
+
+    NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+    if (ret == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
         failure = YES;
+    } else {
+        [self parseRetrievedQuery:ret group:group];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

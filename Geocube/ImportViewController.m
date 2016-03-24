@@ -23,8 +23,9 @@
 
 #define MAXHISTORY  10
 
-@interface ImportGPXViewController ()
+@interface ImportViewController ()
 {
+    NSInteger importType;
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
     dbGroup *group;
@@ -72,7 +73,7 @@
 
 @end
 
-@implementation ImportGPXViewController
+@implementation ImportViewController
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
@@ -80,6 +81,7 @@
 
     group = _group;
     account = _account;
+    importType = IMPORT_NONE;
 
     prevpoll = time(NULL);
     for (NSInteger i = 0; i < MAXHISTORY; i++) {
@@ -115,22 +117,27 @@
     [self addOrResizeFields];
 }
 
-NEEDS_OVERLOADING(run:(NSInteger)_type data:(NSData *)_data);
-- (void)run:(NSInteger)_type filename:(NSString *)_filename
+- (void)run:(NSInteger)_type data:(NSObject *)data;
 {
-    filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
-    filenames = [NSMutableArray arrayWithCapacity:1];
-    if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
-        [filenames addObject:_filename];
-    }
-    if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
-        NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
-        NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
-        [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+    importType = _type;
+
+    if (importType == IMPORT_GPX_FILE) {
+        NSString *_filename = (NSString *)data;
+        filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
+        filenames = [NSMutableArray arrayWithCapacity:1];
+        if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
+            [filenames addObject:_filename];
+        }
+        if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
+            NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
+            NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
+            [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+        }
     }
 
-    switch (_type) {
-        case IMPORT_GPX:
+    switch (importType) {
+        case IMPORT_GPX_FILE:
+        case IMPORT_GPX_STRING:
             imp = [[ImportGPX alloc] init:group account:account];
             break;
         case IMPORT_GCA_JSON:
@@ -145,7 +152,7 @@ NEEDS_OVERLOADING(run:(NSInteger)_type data:(NSData *)_data);
     }
     imp.delegate = self;
 
-    [self performSelectorInBackground:@selector(run) withObject:nil];
+    [self performSelectorInBackground:@selector(run:) withObject:data];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -393,20 +400,40 @@ NEEDS_OVERLOADING(run:(NSInteger)_type data:(NSData *)_data);
     [imagesDownloadManager removeDelegate:self];
 }
 
-- (void)run
+- (void)run:(NSObject *)data
 {
     [imp parseBefore];
+
     @autoreleasepool {
-        [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                filenameString = filename;
-                [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
-            }];
-            [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
-            progressValue = 100;
-            [self updateData];
-            [waypointManager needsRefresh];
-        }];
+        switch (importType) {
+            case IMPORT_GPX_FILE: {
+                [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        filenameString = filename;
+                        [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
+                    }];
+                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
+                    progressValue = 100;
+                    [self updateData];
+                    [waypointManager needsRefresh];
+                }];
+                break;
+            }
+            case IMPORT_GPX_STRING: {
+                [imp parseString:(NSString *)data];
+                progressValue = 100;
+                [self updateData];
+                break;
+            }
+            case IMPORT_LIVEAPI_JSON: {
+                [imp parseDictionary:(NSDictionary *)data];
+                progressValue = 100;
+                [self updateData];
+                break;
+            }
+            default:
+                NSAssert1(NO, @"No such importType: %ld", (long)importType);
+        }
     }
     [imp parseAfter];
 

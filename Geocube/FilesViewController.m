@@ -364,11 +364,11 @@ enum {
             [myConfig lastImportSourceUpdate:selectedIndex];
             __block NSString *filename = [filesNames objectAtIndex:row];
             __block NSNumber *filesize = [filesSizes objectAtIndex:row];
-            ImportGPXViewController *newController = [[ImportGPXViewController alloc] init:group account:[accounts objectAtIndex:selectedIndex]];
+            ImportViewController *newController = [[ImportViewController alloc] init:group account:[accounts objectAtIndex:selectedIndex]];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
             [self.navigationController pushViewController:newController animated:YES];
-            [newController run:IMPORT_GPX filename:filename];
+            [newController run:IMPORT_GPX_FILE data:filename];
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {

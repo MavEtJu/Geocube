@@ -40,7 +40,7 @@
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate, ImportGCAJSONDelegate, ImportLiveAPIJSONDelegate>
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate, ImportGCAJSONDelegate>
 
 @property (nonatomic, retain) id delegateQueries;
 @property (nonatomic, retain) id delegateLoadWaypoints;
@@ -72,6 +72,6 @@
 - (BOOL)updatePersonalNote:(dbPersonalNote *)note;
 
 - (NSArray *)listQueries;
-- (BOOL)retrieveQuery:(NSString *)_id group:(dbGroup *)group;
+- (NSObject *)retrieveQuery:(NSString *)_id group:(dbGroup *)group;
 
 @end

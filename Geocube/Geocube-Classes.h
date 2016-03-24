@@ -82,9 +82,9 @@
 @class ImagesDownloadManager;
 @class ImportGCAJSON;
 @class ImportGPX;
-@class ImportGPXViewController;
 @class ImportGeocube;
 @class ImportLiveAPIJSON;
+@class ImportViewController;
 @class Importer;
 @class InProgressListViewController;
 @class KeepTrackCar;
