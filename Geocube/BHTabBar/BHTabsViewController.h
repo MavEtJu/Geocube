@@ -21,7 +21,7 @@
 
 @interface BHTabsViewController : UIViewController <BHTabViewDelegate> {
   NSArray *viewControllers;
-  UIView *contentView;
+  __unsafe_unretained UIView *contentView;
   BHTabsView *tabsContainerView;
   BHTabsFooterView *footerView;
   BHTabStyle *tabStyle;
