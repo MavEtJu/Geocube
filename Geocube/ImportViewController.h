@@ -30,7 +30,8 @@ enum {
     IMPORT_OC_JSON
 };
 
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account;
+- (instancetype)init;
+- (void)setGroupAccount:(dbGroup *)_group account:(dbAccount *)_account;
 - (void)run:(NSInteger)type data:(NSObject *)data;
 
 @end

@@ -75,13 +75,13 @@
 
 @implementation ImportViewController
 
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
+- (instancetype)init
 {
     self = [super init];
 
-    group = _group;
-    account = _account;
     importType = IMPORT_NONE;
+    group = nil;
+    account = nil;
 
     prevpoll = time(NULL);
     for (NSInteger i = 0; i < MAXHISTORY; i++) {
@@ -97,6 +97,12 @@
     hasCloseButton = YES;
 
     return self;
+}
+
+- (void)setGroupAccount:(dbGroup *)_group account:(dbAccount *)_account
+{
+    group = _group;
+    account = _account;
 }
 
 - (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
@@ -120,6 +126,9 @@
 - (void)run:(NSInteger)_type data:(NSObject *)data;
 {
     importType = _type;
+
+    NSAssert(group != nil, @"group should be initialized");
+    NSAssert(account != nil, @"account should be initialized");
 
     if (importType == IMPORT_GPX_FILE) {
         NSString *_filename = (NSString *)data;
