@@ -34,17 +34,17 @@
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
 - (NSArray *)my_query;
-- (NSDictionary *)cacher_statistic__finds:(NSString *)name;
-- (NSDictionary *)cacher_statistic__hides:(NSString *)name;
-- (NSString *)cache__gpx:(NSString *)wpname;
-- (NSDictionary *)cache__json:(NSString *)wpname;
+- (NSDictionaryGCA *)cacher_statistic__finds:(NSString *)name;
+- (NSDictionaryGCA *)cacher_statistic__hides:(NSString *)name;
+- (NSStringGPX *)cache__gpx:(NSString *)wpname;
+- (NSDictionaryGCA *)cache__json:(NSString *)wpname;
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-- (NSDictionary *)caches_gca:(CLLocationCoordinate2D)center;
-- (NSDictionary *)logs_cache:(NSString *)wpname;
+- (NSDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center;
+- (NSDictionaryGCA *)logs_cache:(NSString *)wpname;
 - (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description;
-- (NSDictionary *)my_query_json:(NSString *)queryname;
-- (NSString *)my_query_gpx:(NSString *)queryname;
+- (NSDictionaryGCA *)my_query_json:(NSString *)queryname;
+- (NSStringGPX *)my_query_gpx:(NSString *)queryname;
 - (NSInteger)my_query_count:(NSString *)queryname;
-- (NSDictionary *)my_query_list__json;
+- (NSDictionaryGCA *)my_query_list__json;
 
 @end
