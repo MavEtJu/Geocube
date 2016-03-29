@@ -108,7 +108,7 @@
     return req;
 }
 
-- (NSDictionary *)services_users_byUsername:(NSString *)username
+- (NSDictionaryOC *)services_users_byUsername:(NSString *)username
 {
     NSLog(@"services_users_byUsername");
 
@@ -133,7 +133,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryOC *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     return json;
 }
 
