@@ -164,7 +164,7 @@
 
 /**************************************************************************/
 
-- (NSDictionary *)GetYourUserProfile
+- (NSDictionaryLiveAPI *)GetYourUserProfile
 {
     NSLog(@"GetYourUserProfile");
 
@@ -215,7 +215,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -226,7 +226,7 @@
     return json;
 }
 
-- (NSDictionary *)GetCacheIdsFavoritedByUser
+- (NSDictionaryLiveAPI *)GetCacheIdsFavoritedByUser
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
@@ -244,7 +244,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -255,7 +255,7 @@
     return json;
 }
 
-- (NSDictionary *)GetGeocacheDataTypes
+- (NSDictionaryLiveAPI *)GetGeocacheDataTypes
 {
     NSLog(@"GetGeocacheDataTypes");
 
@@ -273,7 +273,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -408,7 +408,7 @@
     return [log_id integerValue];
 }
 
-- (NSDictionary *)SearchForGeocaches_waypointname:(NSString *)wpname
+- (NSDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname
 {
     NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
@@ -456,7 +456,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -467,7 +467,7 @@
     return json;
 }
 
-- (NSDictionary *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center
+- (NSDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center
 {
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
@@ -523,7 +523,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -534,7 +534,7 @@
     return json;
 }
 
-- (NSDictionary *)GetMoreGeocaches:(NSInteger)offset
+- (NSDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
@@ -576,7 +576,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -587,7 +587,7 @@
     return json;
 }
 
-- (NSDictionary *)GetPocketQueryList
+- (NSDictionaryLiveAPI *)GetPocketQueryList
 {
     NSLog(@"GetPocketQueryList");
 
@@ -605,7 +605,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -616,7 +616,7 @@
     return json;
 }
 
-- (NSDictionary *)GetPocketQueryZippedFile:(NSString *)guid
+- (NSDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid
 {
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
@@ -635,7 +635,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -646,7 +646,7 @@
     return json;
 }
 
-- (NSDictionary *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems
+- (NSDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
@@ -665,7 +665,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -676,7 +676,7 @@
     return json;
 }
 
-- (NSDictionary *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text
+- (NSDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text
 {
     NSLog(@"UpdateCacheNote:%@", wpt_name);
 
@@ -704,7 +704,7 @@
         return nil;
     }
 
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([self checkStatusCode:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
