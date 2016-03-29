@@ -371,7 +371,7 @@
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
-        [imp parseString:gpx];
+        [imp parseString:[gpx description]];
         [imp parseAfter];
 
         [waypointManager needsRefresh];

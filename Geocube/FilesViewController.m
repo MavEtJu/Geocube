@@ -369,7 +369,8 @@ enum {
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
             [self.navigationController pushViewController:newController animated:YES];
-            [newController run:IMPORT_GPX_FILE data:filename];
+            NSStringFilename *sfn = [[NSStringFilename alloc] initWithString:filename];
+            [newController run:sfn];
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {

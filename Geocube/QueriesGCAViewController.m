@@ -53,7 +53,7 @@ enum {
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    NSString *d = (NSString *)query;
+    NSStringGPX *d = (NSStringGPX *)query;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         ImportViewController *newController = [[ImportViewController alloc] init];
@@ -61,13 +61,12 @@ enum {
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = @"Import";
         [self.navigationController pushViewController:newController animated:YES];
-        [newController run:IMPORT_GPX_STRING data:d];
+        [newController run:d];
     }];
 
     [waypointManager needsRefresh];
 
     return YES;
 }
-
 
 @end

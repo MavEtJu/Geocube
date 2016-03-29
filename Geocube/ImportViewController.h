@@ -21,17 +21,8 @@
 
 @interface ImportViewController : GCViewController <ImporterDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
 
-enum {
-    IMPORT_NONE = 0,
-    IMPORT_GPX_FILE,
-    IMPORT_GPX_STRING,
-    IMPORT_LIVEAPI_JSON,
-    IMPORT_GCA_JSON,
-    IMPORT_OC_JSON
-};
-
 - (instancetype)init;
 - (void)setGroupAccount:(dbGroup *)_group account:(dbAccount *)_account;
-- (void)run:(NSInteger)type data:(NSObject *)data;
+- (void)run:(NSObject *)data;
 
 @end

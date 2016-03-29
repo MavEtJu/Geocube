@@ -44,7 +44,7 @@
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    NSDictionary *d = (NSDictionary *)query;
+    NSDictionaryLiveAPI *d = (NSDictionaryLiveAPI *)query;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         ImportViewController *newController = [[ImportViewController alloc] init];
@@ -52,7 +52,7 @@
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = @"Import";
         [self.navigationController pushViewController:newController animated:YES];
-        [newController run:IMPORT_LIVEAPI_JSON data:d];
+        [newController run:d];
     }];
 
     [waypointManager needsRefresh];

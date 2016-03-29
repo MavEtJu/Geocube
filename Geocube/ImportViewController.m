@@ -25,7 +25,6 @@
 
 @interface ImportViewController ()
 {
-    NSInteger importType;
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
     dbGroup *group;
@@ -79,7 +78,6 @@
 {
     self = [super init];
 
-    importType = IMPORT_NONE;
     group = nil;
     account = nil;
 
@@ -123,15 +121,13 @@
     [self addOrResizeFields];
 }
 
-- (void)run:(NSInteger)_type data:(NSObject *)data;
+- (void)run:(NSObject *)data;
 {
-    importType = _type;
-
     NSAssert(group != nil, @"group should be initialized");
     NSAssert(account != nil, @"account should be initialized");
 
-    if (importType == IMPORT_GPX_FILE) {
-        NSString *_filename = (NSString *)data;
+    if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+        NSString *_filename = [data description];
         filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
         filenames = [NSMutableArray arrayWithCapacity:1];
         if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
@@ -144,25 +140,20 @@
         }
     }
 
-    switch (importType) {
-        case IMPORT_GPX_FILE:
-        case IMPORT_GPX_STRING:
-            imp = [[ImportGPX alloc] init:group account:account];
-            break;
-        case IMPORT_GCA_JSON:
-            imp = [[ImportGCAJSON alloc] init:group account:account];
-            break;
-        case IMPORT_LIVEAPI_JSON:
-            imp = [[ImportLiveAPIJSON alloc] init:group account:account];
-            break;
-        default:
-            NSAssert1(NO, @"Unknown type: %ld", (long)_type);
-            break;
+    if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+        imp = [[ImportGPX alloc] init:group account:account];
+    } else if ([data isKindOfClass:[NSDictionaryGCA class]] == YES) {
+        imp = [[ImportGCAJSON alloc] init:group account:account];
+    } else if ([data isKindOfClass:[NSDictionaryLiveAPI class]] == YES) {
+        imp = [[ImportLiveAPIJSON alloc] init:group account:account];
+    } else {
+        NSAssert1(NO, @"Unknown data class: %@", [data class]);
     }
     imp.delegate = self;
 
-    [self performSelectorInBackground:@selector(run:) withObject:data];
+    [self performSelectorInBackground:@selector(runImporter:) withObject:data];
 }
+
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
@@ -409,39 +400,32 @@
     [imagesDownloadManager removeDelegate:self];
 }
 
-- (void)run:(NSObject *)data
+- (void)runImporter:(NSObject *)data
 {
     [imp parseBefore];
 
     @autoreleasepool {
-        switch (importType) {
-            case IMPORT_GPX_FILE: {
-                [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        filenameString = filename;
-                        [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
-                    }];
-                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
-                    progressValue = 100;
-                    [self updateData];
-                    [waypointManager needsRefresh];
+        if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+            [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    filenameString = filename;
+                    [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
                 }];
-                break;
-            }
-            case IMPORT_GPX_STRING: {
-                [imp parseString:(NSString *)data];
+                [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
                 progressValue = 100;
                 [self updateData];
-                break;
-            }
-            case IMPORT_LIVEAPI_JSON: {
-                [imp parseDictionary:(NSDictionary *)data];
-                progressValue = 100;
-                [self updateData];
-                break;
-            }
-            default:
-                NSAssert1(NO, @"No such importType: %ld", (long)importType);
+                [waypointManager needsRefresh];
+            }];
+        } else if ([data isKindOfClass:[NSStringGPX class]] == YES) {
+            [imp parseString:(NSString *)data];
+            progressValue = 100;
+            [self updateData];
+        } else if ([data isKindOfClass:[NSDictionaryLiveAPI class]] == YES) {
+            [imp parseDictionary:(NSDictionary *)data];
+            progressValue = 100;
+            [self updateData];
+        } else {
+            NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }
     }
     [imp parseAfter];
