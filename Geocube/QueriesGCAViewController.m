@@ -56,7 +56,8 @@ enum {
     NSString *d = (NSString *)query;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        ImportViewController *newController = [[ImportViewController alloc] init:group account:account];
+        ImportViewController *newController = [[ImportViewController alloc] init];
+        [newController setGroupAccount:group account:account];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = @"Import";
         [self.navigationController pushViewController:newController animated:YES];
