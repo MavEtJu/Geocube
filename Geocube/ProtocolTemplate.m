@@ -36,3 +36,38 @@ NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
 - (NSArray *)logtypes:(NSString *)waypointType { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end
+
+@implementation NSStringFilename
+- (instancetype)initWithString:(NSString *)s
+{
+    self = [super init];
+    sfn = [NSMutableString stringWithString:s];
+    return self;
+}
+- (NSString *)description
+{
+    return sfn;
+}
+@end
+
+@implementation NSStringGPX
+- (instancetype)initWithString:(NSString *)s
+{
+    self = [super init];
+    sg = [NSMutableString stringWithString:s];
+    return self;
+}
+- (NSString *)description
+{
+    return sg;
+}
+@end
+
+@implementation NSDictionaryGCA
+@end
+
+@implementation NSDictionaryLiveAPI
+@end
+
+@implementation NSDictionaryOC
+@end

@@ -19,6 +19,29 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@interface NSStringGPX : NSString
+{
+    NSMutableString *sg;
+}
+- (instancetype)initWithString:(NSString *)s;
+@end
+
+@interface NSStringFilename : NSString
+{
+    NSMutableString *sfn;
+}
+- (instancetype)initWithString:(NSString *)s;
+@end
+
+@interface NSDictionaryGCA : NSDictionary
+@end
+
+@interface NSDictionaryLiveAPI : NSDictionary
+@end
+
+@interface NSDictionaryOC : NSDictionary
+@end
+
 @interface ProtocolTemplate : NSObject
 
 - (BOOL)commentSupportsFavouritePoint;
