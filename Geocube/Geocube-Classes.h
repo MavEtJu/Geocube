@@ -105,6 +105,11 @@
 @class MapViewController;
 @class MyConfig;
 @class MyTools;
+@class NSDictionaryGCA;
+@class NSDictionaryLiveAPI;
+@class NSDictionaryOC;
+@class NSStringFilename;
+@class NSStringGPX;
 @class NotesFieldnotesViewController;
 @class NotesImagesViewController;
 @class NotesPersonalNotesViewController;
