@@ -20,23 +20,19 @@
  */
 
 @interface NSStringGPX : NSString
-{
-    NSMutableString *sg;
-}
 - (instancetype)initWithString:(NSString *)s;
 @end
 
 @interface NSStringFilename : NSString
-{
-    NSMutableString *sfn;
-}
 - (instancetype)initWithString:(NSString *)s;
 @end
 
 @interface NSDictionaryGCA : NSDictionary
+- (instancetype)initWithDictionary:(NSObject *)otherDictionary;
 @end
 
 @interface NSDictionaryLiveAPI : NSDictionary
+- (instancetype)initWithDictionary:(NSObject *)otherDictionary;
 @end
 
 @interface NSDictionaryOC : NSDictionary

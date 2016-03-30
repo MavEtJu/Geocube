@@ -44,7 +44,7 @@
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    NSDictionaryLiveAPI *d = (NSDictionaryLiveAPI *)query;
+    NSDictionaryLiveAPI *d = [[NSDictionaryLiveAPI alloc] initWithDictionary:query];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         ImportViewController *newController = [[ImportViewController alloc] init];

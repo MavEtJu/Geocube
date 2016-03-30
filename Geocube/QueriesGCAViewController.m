@@ -22,10 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface QueriesGCAViewController ()
-{
-    NSArray *pqs;
-    dbAccount *account;
-}
 
 @end
 

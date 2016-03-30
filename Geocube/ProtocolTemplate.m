@@ -38,6 +38,9 @@ NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
 @end
 
 @implementation NSStringFilename
+{
+    NSMutableString *sfn;
+}
 - (instancetype)initWithString:(NSString *)s
 {
     self = [super init];
@@ -51,6 +54,9 @@ NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
 @end
 
 @implementation NSStringGPX
+{
+    NSMutableString *sg;
+}
 - (instancetype)initWithString:(NSString *)s
 {
     self = [super init];
@@ -61,12 +67,44 @@ NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
 {
     return sg;
 }
+- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding
+{
+    return [sg dataUsingEncoding:encoding];
+}
 @end
 
 @implementation NSDictionaryGCA
+{
+    NSDictionary *d;
+}
+- (instancetype)initWithDictionary:(NSDictionary *)otherDictionary
+{
+    self = [super self];
+    d = [NSDictionary dictionaryWithDictionary:otherDictionary];
+    return self;
+}
+- (NSObject *)objectForKey:(NSString *)aKey
+{
+    return [d objectForKey:aKey];
+}
+
 @end
 
 @implementation NSDictionaryLiveAPI
+{
+    NSDictionary *d;
+}
+- (instancetype)initWithDictionary:(NSDictionary *)otherDictionary
+{
+    self = [super self];
+    d = [NSDictionary dictionaryWithDictionary:otherDictionary];
+    return self;
+}
+- (NSObject *)objectForKey:(NSString *)aKey
+{
+    return [d objectForKey:aKey];
+}
+
 @end
 
 @implementation NSDictionaryOC

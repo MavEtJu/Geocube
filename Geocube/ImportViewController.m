@@ -140,7 +140,8 @@
         }
     }
 
-    if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+    if ([data isKindOfClass:[NSStringFilename class]] == YES ||
+        [data isKindOfClass:[NSStringGPX class]] == YES) {
         imp = [[ImportGPX alloc] init:group account:account];
     } else if ([data isKindOfClass:[NSDictionaryGCA class]] == YES) {
         imp = [[ImportGCAJSON alloc] init:group account:account];
