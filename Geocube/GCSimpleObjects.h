@@ -19,20 +19,25 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
-@interface ProtocolTemplate ()
-
+@interface GCStringObject : NSString
+- (instancetype)initWithString:(NSString *)s;
 @end
 
-@implementation ProtocolTemplate
+@interface GCStringGPX : GCStringObject
+@end
 
-NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
-NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
-NEEDS_OVERLOADING_BOOL(commentSupportsRating)
-NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
-NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
-- (instancetype)init:(RemoteAPI *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
-- (NSArray *)logtypes:(NSString *)waypointType { NEEDS_OVERLOADING_ASSERT; return nil; }
+@interface GCStringFilename : GCStringObject
+@end
 
+@interface GCDictionaryObject : NSDictionary
+- (instancetype)initWithDictionary:(NSObject *)otherDictionary;
+@end
+
+@interface GCDictionaryGCA : GCDictionaryObject
+@end
+
+@interface GCDictionaryLiveAPI : GCDictionaryObject
+@end
+
+@interface GCDictionaryOC : GCDictionaryObject
 @end

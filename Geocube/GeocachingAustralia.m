@@ -232,7 +232,7 @@
 
 // ------------------------------------------------
 
-- (NSDictionaryGCA *)my_query_list__json
+- (GCDictionaryGCA *)my_query_list__json
 {
     NSLog(@"my_query_list__json");
 
@@ -247,7 +247,7 @@
     }
 
     NSError *error = nil;
-    NSDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
 }
@@ -301,7 +301,7 @@
     return as;
 }
 
-- (NSDictionaryGCA *)cacher_statistic__finds:(NSString *)name
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name
 {
     NSLog(@"cacher_statistics__finds");
 
@@ -313,10 +313,10 @@
     if (value != nil)
         [ret setValue:value forKey:@"waypoints_found"];
 
-    return [NSDictionaryGCA dictionaryWithDictionary:ret];
+    return [GCDictionaryGCA dictionaryWithDictionary:ret];
 }
 
-- (NSDictionaryGCA *)cacher_statistic__hides:(NSString *)name
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name
 {
     NSLog(@"cacher_statistics__hides");
 
@@ -336,19 +336,19 @@
     if (value != nil)
         [ret setValue:value forKey:@"recommendations_given"];
 
-    return [NSDictionaryGCA dictionaryWithDictionary:ret];
+    return [GCDictionaryGCA dictionaryWithDictionary:ret];
 }
 
-- (NSStringGPX *)cache__gpx:(NSString *)wpname
+- (GCStringGPX *)cache__gpx:(NSString *)wpname
 {
     NSLog(@"cache__gpx");
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
     NSArray *lines = [self loadPage:urlString];
-    return [NSStringGPX stringWithString:[lines componentsJoinedByString:@""]];
+    return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
 }
 
-- (NSDictionaryGCA *)cache__json:(NSString *)wpname
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname
 {
     NSLog(@"cache__json");
 
@@ -363,7 +363,7 @@
     }
 
     NSError *error = nil;
-    NSDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
 }
@@ -433,7 +433,7 @@
     return -1;
 }
 
-- (NSDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center
+- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center
 {
     NSLog(@"caches_gca");
 
@@ -449,12 +449,12 @@
     }
 
     NSError *error = nil;
-    NSDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
 }
 
-- (NSDictionaryGCA *)logs_cache:(NSString *)wpname
+- (GCDictionaryGCA *)logs_cache:(NSString *)wpname
 {
     NSLog(@"logs_cache");
 
@@ -470,12 +470,12 @@
     }
 
     NSError *error = nil;
-    NSDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
 }
 
-- (NSDictionaryGCA *)my_query_json:(NSString *)queryname
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname
 {
     NSLog(@"my_query_json");
 
@@ -491,19 +491,19 @@
     }
 
     NSError *error = nil;
-    NSDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     return json;
 }
 
-- (NSStringGPX *)my_query_gpx:(NSString *)queryname
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname
 {
     NSLog(@"my_query_gpx");
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
 
     NSArray *lines = [self loadPage:urlString];
-    return [NSStringGPX stringWithString:[lines componentsJoinedByString:@""]];
+    return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
 }
 
 - (NSInteger)my_query_count:(NSString *)queryname

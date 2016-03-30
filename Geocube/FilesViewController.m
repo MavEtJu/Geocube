@@ -369,7 +369,7 @@ enum {
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
             [self.navigationController pushViewController:newController animated:YES];
-            NSStringFilename *sfn = [[NSStringFilename alloc] initWithString:filename];
+            GCStringFilename *sfn = [[GCStringFilename alloc] initWithString:filename];
             [newController run:sfn];
 
             __block dbFileImport *fi = nil;

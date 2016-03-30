@@ -29,16 +29,16 @@
 
 @property (nonatomic) id delegate;
 
-- (NSDictionaryLiveAPI *)GetYourUserProfile;
-- (NSDictionaryLiveAPI *)GetCacheIdsFavoritedByUser;
-- (NSDictionaryLiveAPI *)GetGeocacheDataTypes;
+- (GCDictionaryLiveAPI *)GetYourUserProfile;
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser;
+- (GCDictionaryLiveAPI *)GetGeocacheDataTypes;
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;
-- (NSDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname;
-- (NSDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
-- (NSDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset;
-- (NSDictionaryLiveAPI *)GetPocketQueryList;
-- (NSDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid;
-- (NSDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
-- (NSDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
+- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset;
+- (GCDictionaryLiveAPI *)GetPocketQueryList;
+- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid;
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
+- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
 
 @end

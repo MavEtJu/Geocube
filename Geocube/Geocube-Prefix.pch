@@ -113,6 +113,7 @@
 
 #import "WaypointManager.h"
 
+#import "GCSimpleObjects.h"
 #import "Importer.h"
 #import "ImportGCAJSON.h"
 #import "ImportGPX.h"

@@ -49,7 +49,7 @@ enum {
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    NSStringGPX *d = (NSStringGPX *)query;
+    GCStringGPX *d = (GCStringGPX *)query;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         ImportViewController *newController = [[ImportViewController alloc] init];

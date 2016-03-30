@@ -126,7 +126,7 @@
     NSAssert(group != nil, @"group should be initialized");
     NSAssert(account != nil, @"account should be initialized");
 
-    if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+    if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
         filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
         filenames = [NSMutableArray arrayWithCapacity:1];
@@ -140,12 +140,12 @@
         }
     }
 
-    if ([data isKindOfClass:[NSStringFilename class]] == YES ||
-        [data isKindOfClass:[NSStringGPX class]] == YES) {
+    if ([data isKindOfClass:[GCStringFilename class]] == YES ||
+        [data isKindOfClass:[GCStringGPX class]] == YES) {
         imp = [[ImportGPX alloc] init:group account:account];
-    } else if ([data isKindOfClass:[NSDictionaryGCA class]] == YES) {
+    } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
         imp = [[ImportGCAJSON alloc] init:group account:account];
-    } else if ([data isKindOfClass:[NSDictionaryLiveAPI class]] == YES) {
+    } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
         imp = [[ImportLiveAPIJSON alloc] init:group account:account];
     } else {
         NSAssert1(NO, @"Unknown data class: %@", [data class]);
@@ -406,7 +406,7 @@
     [imp parseBefore];
 
     @autoreleasepool {
-        if ([data isKindOfClass:[NSStringFilename class]] == YES) {
+        if ([data isKindOfClass:[GCStringFilename class]] == YES) {
             [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     filenameString = filename;
@@ -417,11 +417,11 @@
                 [self updateData];
                 [waypointManager needsRefresh];
             }];
-        } else if ([data isKindOfClass:[NSStringGPX class]] == YES) {
+        } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
             [imp parseString:(NSString *)data];
             progressValue = 100;
             [self updateData];
-        } else if ([data isKindOfClass:[NSDictionaryLiveAPI class]] == YES) {
+        } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
             [imp parseDictionary:(NSDictionary *)data];
             progressValue = 100;
             [self updateData];
