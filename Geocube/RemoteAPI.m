@@ -411,60 +411,60 @@
         [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
 }
 
-- (BOOL)loadWaypoints:(CLLocationCoordinate2D)center
+- (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
-    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
+//    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
-        NSDictionary *json = [gca caches_gca:center];
-        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
-        i.delegate = self;
-        [i parseBefore_cache];
-        [i parseData_cache:json];
-        [i parseAfter_cache];
-
-        [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *json = [gca logs_cache:wpname];
-            [i parseBefore_logs];
-            [i parseData_logs:json];
-            [i parseAfter_logs];
-        }];
-
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefresh];
-        return YES;
+        GCDictionaryGCA *json = [[GCDictionaryGCA alloc] initWithDictionary:[gca caches_gca:center]];
+//        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
+//        i.delegate = self;
+//        [i parseBefore_cache];
+//        [i parseData_cache:json];
+//        [i parseAfter_cache];
+//
+//        [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
+//            NSDictionary *json = [gca logs_cache:wpname];
+//            [i parseBefore_logs];
+//            [i parseData_logs:json];
+//            [i parseAfter_logs];
+//        }];
+//
+//        [dbWaypoint dbUpdateLogStatus];
+//        [waypointManager needsRefresh];
+        return json;
     }
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
+        GCDictionaryLiveAPI *json = [[GCDictionaryLiveAPI alloc] initWithDictionary:[gs SearchForGeocaches_pointradius:center]];
         if (json == nil)
-            return NO;
+            return nil;
 
-        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
-        if (delegateLoadWaypoints != nil)
-            [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:total];
-        NSInteger done = 0;
-        if (total != 0) {
-            do {
-                ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:dbc.Group_LiveImport account:account];
-                imp.delegate = self;
-                [imp parseBefore];
-                [imp parseDictionary:json];
-                [imp parseAfter];
-
-                done += 20;
-                json = [gs GetMoreGeocaches:done];
-            } while (done < total);
-        }
-
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefresh];
-        return YES;
+//        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
+//        if (delegateLoadWaypoints != nil)
+//            [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:total];
+//        NSInteger done = 0;
+//        if (total != 0) {
+//            do {
+//                ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:dbc.Group_LiveImport account:account];
+//                imp.delegate = self;
+//                [imp parseBefore];
+//                [imp parseDictionary:json];
+//                [imp parseAfter];
+//
+//                done += 20;
+//                json = [gs GetMoreGeocaches:done];
+//            } while (done < total);
+//        }
+//
+//        [dbWaypoint dbUpdateLogStatus];
+//        [waypointManager needsRefresh];
+        return json;
     }
 
-    return NO;
+    return nil;
 }
 
 - (BOOL)updatePersonalNote:(dbPersonalNote *)note

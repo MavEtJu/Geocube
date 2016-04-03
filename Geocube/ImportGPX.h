@@ -21,8 +21,4 @@
 
 @interface ImportGPX : Importer <NSXMLParserDelegate>
 
-- (void)parseFile:(NSString *)filename;
-- (void)parseData:(NSData *)data;
-- (void)parseString:(NSString *)data;
-
 @end

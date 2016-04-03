@@ -42,12 +42,9 @@
     NSInteger waypointCount;
     NSArray *waypointsArray;
 
-    NSInteger loadWaypointsCountWaypoints;
-    NSInteger loadWaypointsTotalWaypoints;
-    NSInteger loadWaypointsCountLogs;
-    NSString *loadWaypointsCountSitename;
-
     BOOL hasGMS;
+
+    ImportViewController *ivc;
 }
 
 @end
@@ -770,56 +767,30 @@ enum {
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
-    loadWaypointsCountWaypoints = 0;
-    loadWaypointsCountLogs = 0;
+
+    ivc = [[ImportViewController alloc] init];
+    ivc.edgesForExtendedLayout = UIRectEdgeNone;
+    ivc.title = @"Import";
+    [self.navigationController pushViewController:ivc animated:YES];
+
     [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
-}
-
-- (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count
-{
-    loadWaypointsCountWaypoints = count;
-    [self updateActivityViewerImportWaypoints];
-}
-
-- (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count
-{
-    loadWaypointsCountLogs = count;
-    [self updateActivityViewerImportWaypoints];
-}
-
-- (void)remoteAPILoadWaypointsImportWaypointsTotal:(NSInteger)count
-{
-    loadWaypointsTotalWaypoints = count;
-    [self updateActivityViewerImportWaypoints];
-}
-
-- (void)updateActivityViewerImportWaypoints
-{
-    NSMutableString *s = [NSMutableString stringWithString:@""];
-
-    if (loadWaypointsCountSitename != nil)
-        [s appendFormat:@"Load waypoints for %@.\n", loadWaypointsCountSitename];
-    if (loadWaypointsTotalWaypoints != 0)
-        [s appendFormat:@"Loaded %ld / %ld waypoints.\n", (long)loadWaypointsCountWaypoints, (long)loadWaypointsTotalWaypoints];
-    else
-        [s appendFormat:@"Loaded %ld waypoints.\n", (long)loadWaypointsCountWaypoints];
-    [s appendFormat:@"Loaded %ld logs.\n", (long)loadWaypointsCountLogs];
-    [map updateActivityViewer:s];
 }
 
 - (void)runLoadWaypoints:(dbWaypoint *)wp
 {
-    [map startActivityViewer:@"Load waypoints for Groundspeak Geocaching.com.\nLoaded 0 caches.\nLoaded 0 logs."]; // Currently the longest name
-
     NSArray *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         account.remoteAPI.delegateLoadWaypoints = self;
-        loadWaypointsCountSitename = account.site;
-        [map updateActivityViewer:[NSString stringWithFormat:@"Load waypoints for %@.\nLoaded 0 caches.\nLoaded 0 logs.", loadWaypointsCountSitename]];
-        if ([account.remoteAPI loadWaypoints:wp.coordinates] == NO) {
-            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
-        }
+        [ivc setGroupAccount:dbc.Group_LiveImport account:account];
+        NSObject *d = [account.remoteAPI loadWaypoints:wp.coordinates];
         account.remoteAPI.delegateLoadWaypoints = nil;
+
+        if (d == nil) {
+            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
+            return;
+        }
+
+        [ivc run:d];
     }];
     [MyTools playSound:playSoundImportComplete];
 

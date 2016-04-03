@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate, RemoteAPILoadWaypointDownloadProgressDelegate>
+@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
 
 enum {
     SHOW_ONEWAYPOINT = 1,

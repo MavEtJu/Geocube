@@ -425,6 +425,9 @@
             [imp parseDictionary:(NSDictionary *)data];
             progressValue = 100;
             [self updateData];
+        } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
+            [imp parseDictionary:(NSDictionary *)data];
+            progressValue = 100;
         } else {
             NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }
