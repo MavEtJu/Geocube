@@ -69,6 +69,8 @@
 	<array>
 		<string>waze</string>
 		<string>mapswithme</string>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
