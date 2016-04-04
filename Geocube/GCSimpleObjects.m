@@ -68,6 +68,11 @@
     return [d objectForKey:aKey];
 }
 
+- (NSUInteger)count
+{
+    return [d count];
+}
+
 @end
 
 /*****************************************/
