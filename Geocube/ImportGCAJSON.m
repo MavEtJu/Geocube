@@ -32,6 +32,18 @@
 
 @synthesize namesImported;
 
+- (void)parseDictionary:(GCDictionaryGCA *)dict
+{
+    if ([dict objectForKey:@"geocaches"] != nil) {
+        [self parseBefore_cache];
+        [self parseData_cache:dict];
+        [self parseAfter_cache];
+        return;
+    }
+    NSAssert1(NO, @"Unknown dictionary in %@", [dict class]);
+    return;
+}
+
 - (void)parseBefore_cache
 {
     NSLog(@"%@/parseBefore_cache: Parsing initializing", [self class]);
@@ -65,8 +77,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
-        if (delegate != nil)
-            [delegate updateGCAJSONImportDataWaypoints];
+//        if (delegate != nil)
+//            [delegate updateGCAJSONImportDataWaypoints];
     }];
 }
 
@@ -202,8 +214,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
-        if (delegate != nil)
-            [delegate updateGCAJSONImportDataLogs];
+//        if (delegate != nil)
+//            [delegate updateGCAJSONImportDataLogs];
     }];
 }
 
