@@ -35,6 +35,16 @@
     return self;
 }
 
+- (NSUInteger)length
+{
+    return [sfn length];
+}
+
+- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding
+{
+    return [sfn dataUsingEncoding:encoding];
+}
+
 - (NSString *)description
 {
     return sfn;
