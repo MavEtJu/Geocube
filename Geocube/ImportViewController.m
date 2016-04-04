@@ -202,10 +202,7 @@
         GCLabel *l;
 
         filenameLabel = [[GCLabel alloc] initWithFrame:CGRectMake(labelOffset, y, width - 2 * margin, height)];
-        if (filenameString == nil)
-            [filenameLabel setText:@"Import of ?"];
-        else
-            [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filenameString]];
+        [filenameLabel setText:@"Import of ..."];
         filenameLabel.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:filenameLabel];
         y += 1.5 * height;
@@ -409,8 +406,8 @@
         if ([data isKindOfClass:[GCStringFilename class]] == YES) {
             [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    filenameString = filename;
-                    [filenameLabel setText:[NSString stringWithFormat:@"Import of %@", filename]];
+                    filenameString = [NSString stringWithFormat:@"Import of %@", filename];
+                    [filenameLabel setText:filenameString];
                 }];
                 [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
                 progressValue = 100;
@@ -418,14 +415,26 @@
                 [waypointManager needsRefresh];
             }];
         } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                filenameString = [NSString stringWithFormat:@"Import of GPX string"];
+                [filenameLabel setText:filenameString];
+            }];
             [imp parseString:(NSString *)data];
             progressValue = 100;
             [self updateData];
         } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                filenameString = [NSString stringWithFormat:@"Import of LiveAPI data"];
+                [filenameLabel setText:filenameString];
+            }];
             [imp parseDictionary:(NSDictionary *)data];
             progressValue = 100;
             [self updateData];
         } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                filenameString = [NSString stringWithFormat:@"Import of Geocaching Australia data"];
+                [filenameLabel setText:filenameString];
+            }];
             [imp parseDictionary:(NSDictionary *)data];
             progressValue = 100;
         } else {
