@@ -19,23 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImportGCAJSONDelegate
-
-- (void)updateGCAJSONImportDataWaypoints;
-- (void)updateGCAJSONImportDataLogs;
-
-@end
+//@protocol ImportGCAJSONDelegate
+//
+//- (void)updateGCAJSONImportDataWaypoints;
+//- (void)updateGCAJSONImportDataLogs;
+//
+//@end
 
 @interface ImportGCAJSON : Importer
 
 @property (nonatomic, retain) NSMutableArray *namesImported;
 
-- (void)parseBefore_cache;
-- (void)parseData_cache:(NSDictionary *)data;
-- (void)parseAfter_cache;
-
-- (void)parseBefore_logs;
-- (void)parseData_logs:(NSDictionary *)data;
-- (void)parseAfter_logs;
+//- (void)parseBefore_cache;
+//- (void)parseData_cache:(NSDictionary *)data;
+//- (void)parseAfter_cache;
+//
+//- (void)parseBefore_logs;
+//- (void)parseData_logs:(NSDictionary *)data;
+//- (void)parseAfter_logs;
 
 @end
