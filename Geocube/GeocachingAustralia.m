@@ -449,9 +449,10 @@
     }
 
     NSError *error = nil;
-    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryGCA *gcajson = [[GCDictionaryGCA alloc] initWithDictionary:json];
 
-    return json;
+    return gcajson;
 }
 
 - (GCDictionaryGCA *)logs_cache:(NSString *)wpname
