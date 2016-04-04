@@ -77,8 +77,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
-//        if (delegate != nil)
-//            [delegate updateGCAJSONImportDataWaypoints];
+        totalWaypointsCount++;
+        [self updateDelegates];
     }];
 }
 
@@ -214,8 +214,8 @@
 {
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
-//        if (delegate != nil)
-//            [delegate updateGCAJSONImportDataLogs];
+        totalLogsCount++;
+        [self updateDelegates];
     }];
 }
 
