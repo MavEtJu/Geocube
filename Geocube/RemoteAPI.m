@@ -397,19 +397,19 @@
     clientError = error;
 }
 
-- (void)updateGCAJSONImportDataWaypoints
-{
-    loadWaypointsWaypoints++;
-    if (delegateLoadWaypoints != nil)
-        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
-}
-
-- (void)updateGCAJSONImportDataLogs
-{
-    loadWaypointsLogs++;
-    if (delegateLoadWaypoints != nil)
-        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
-}
+//- (void)updateGCAJSONImportDataWaypoints
+//{
+//    loadWaypointsWaypoints++;
+//    if (delegateLoadWaypoints != nil)
+//        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
+//}
+//
+//- (void)updateGCAJSONImportDataLogs
+//{
+//    loadWaypointsLogs++;
+//    if (delegateLoadWaypoints != nil)
+//        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
+//}
 
 - (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center
 {
@@ -418,7 +418,7 @@
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
-        GCDictionaryGCA *json = [[GCDictionaryGCA alloc] initWithDictionary:[gca caches_gca:center]];
+        GCDictionaryGCA *json = [gca caches_gca:center];
 //        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
 //        i.delegate = self;
 //        [i parseBefore_cache];
