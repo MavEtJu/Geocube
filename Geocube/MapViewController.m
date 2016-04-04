@@ -794,7 +794,7 @@ enum {
     }];
     [MyTools playSound:playSoundImportComplete];
 
-    [map stopActivityViewer];
+    [waypointManager needsRefresh];
 }
 
 - (void)menuRecenter
