@@ -782,8 +782,17 @@ enum {
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         account.remoteAPI.delegateLoadWaypoints = self;
         [ivc setGroupAccount:dbc.Group_LiveImport account:account];
+
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView activityViewForView:ivc.view withLabel:[NSString stringWithFormat:@"Loading for %@", account.site]];
+        }];
+
         NSObject *d = [account.remoteAPI loadWaypoints:wp.coordinates];
         account.remoteAPI.delegateLoadWaypoints = nil;
+
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView removeViewAnimated:NO];
+        }];
 
         if (d == nil) {
             [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
