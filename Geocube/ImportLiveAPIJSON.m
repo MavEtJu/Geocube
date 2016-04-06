@@ -217,9 +217,11 @@
     // Now see what we had and what we need to change
     [wp finish];
     if (wp._id == 0) {
+        NSLog(@"%@: Creating %@", [self class], wp.wpt_name);
         newWaypointsCount++;
         [dbWaypoint dbCreate:wp];
     } else {
+        NSLog(@"%@: Updating %@", [self class], wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
         wp._id = wpold._id;
         [wp dbUpdate];
