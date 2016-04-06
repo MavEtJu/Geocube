@@ -524,7 +524,6 @@
     if (inProgress == YES)
         img = [self mergeOwner:img top:ImageMap_pinInProgress];
 
-
     return img;
 }
 
