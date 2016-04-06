@@ -803,6 +803,7 @@ enum {
     }];
     [MyTools playSound:playSoundImportComplete];
 
+    [dbWaypoint dbUpdateLogStatus];
     [waypointManager needsRefresh];
 }
 

@@ -397,20 +397,6 @@
     clientError = error;
 }
 
-//- (void)updateGCAJSONImportDataWaypoints
-//{
-//    loadWaypointsWaypoints++;
-//    if (delegateLoadWaypoints != nil)
-//        [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointCount:loadWaypointsWaypoints];
-//}
-//
-//- (void)updateGCAJSONImportDataLogs
-//{
-//    loadWaypointsLogs++;
-//    if (delegateLoadWaypoints != nil)
-//        [delegateLoadWaypoints remoteAPILoadWaypointsImportLogsCount:loadWaypointsLogs];
-//}
-
 - (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center
 {
     loadWaypointsLogs = 0;
@@ -418,50 +404,48 @@
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
-        GCDictionaryGCA *json = [gca caches_gca:center];
-//        ImportGCAJSON *i = [[ImportGCAJSON alloc] init:dbc.Group_LiveImport account:account];
-//        i.delegate = self;
-//        [i parseBefore_cache];
-//        [i parseData_cache:json];
-//        [i parseAfter_cache];
-//
-//        [i.namesImported enumerateObjectsUsingBlock:^(NSString *wpname, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSDictionary *json = [gca logs_cache:wpname];
-//            [i parseBefore_logs];
-//            [i parseData_logs:json];
-//            [i parseAfter_logs];
-//        }];
-//
-//        [dbWaypoint dbUpdateLogStatus];
-//        [waypointManager needsRefresh];
-        return json;
+        GCDictionaryGCA *wps = [gca caches_gca:center];
+        NSMutableArray *logs = [NSMutableArray arrayWithCapacity:50];
+
+        NSArray *ws = [wps objectForKey:@"geocaches"];
+        [ws enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *wpname = [wp objectForKey:@"waypoint"];
+            NSDictionary *ls = [gca logs_cache:wpname];
+            NSArray *lss = [ls objectForKey:@"logs"];
+            [lss enumerateObjectsUsingBlock:^(NSDictionary *l, NSUInteger idx, BOOL * _Nonnull stop) {
+                [logs addObject:l];
+            }];
+        }];
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
+        [d setObject:wps forKey:@"geocaches1"];
+        [d setObject:logs forKey:@"logs"];
+        GCDictionaryGCA *gcajson = [[GCDictionaryGCA alloc] initWithDictionary:d];
+        return gcajson;
     }
 
     if (account.protocol == ProtocolLiveAPI) {
-        GCDictionaryLiveAPI *json = [[GCDictionaryLiveAPI alloc] initWithDictionary:[gs SearchForGeocaches_pointradius:center]];
+        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
+        NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
         if (json == nil)
             return nil;
 
-//        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];;
-//        if (delegateLoadWaypoints != nil)
-//            [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:total];
-//        NSInteger done = 0;
-//        if (total != 0) {
-//            do {
-//                ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:dbc.Group_LiveImport account:account];
-//                imp.delegate = self;
-//                [imp parseBefore];
-//                [imp parseDictionary:json];
-//                [imp parseAfter];
-//
-//                done += 20;
-//                json = [gs GetMoreGeocaches:done];
-//            } while (done < total);
-//        }
-//
-//        [dbWaypoint dbUpdateLogStatus];
-//        [waypointManager needsRefresh];
-        return json;
+        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];
+        NSInteger done = 0;
+        if (total != 0) {
+            [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+            do {
+                done += 20;
+                json = [gs GetMoreGeocaches:done];
+                if ([json objectForKey:@"Geocaches"] != nil)
+                    [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+            } while (done < total);
+        }
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
+        [d setObject:wps forKey:@"Geocaches"];
+        GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
+        return livejson;
     }
 
     return nil;

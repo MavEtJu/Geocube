@@ -22,35 +22,41 @@
 #import "Geocube-Prefix.pch"
 
 @interface ImportGCAJSON ()
-{
-    NSMutableArray *namesImported;
-}
 
 @end
 
 @implementation ImportGCAJSON
 
-@synthesize namesImported;
-
 - (void)parseDictionary:(GCDictionaryGCA *)dict
 {
-    if ([dict objectForKey:@"geocaches"] != nil) {
-        [self parseBefore_cache];
-        [self parseData_cache:dict];
-        [self parseAfter_cache];
-        return;
+    if ([dict objectForKey:@"geocaches1"] != nil) {
+        [self parseBefore_caches];
+        [self parseData_caches:[dict objectForKey:@"geocaches1"]];
+        [self parseAfter_caches];
     }
-    NSAssert1(NO, @"Unknown dictionary in %@", [dict class]);
-    return;
+    if ([dict objectForKey:@"geocaches"] != nil) {
+        [self parseBefore_caches];
+        [self parseData_caches:dict];
+        [self parseAfter_caches];
+    }
+    if ([dict objectForKey:@"logs1"] != nil) {
+        [self parseBefore_logs];
+        [self parseData_logs:[dict objectForKey:@"logs1"]];
+        [self parseAfter_logs];
+    }
+    if ([dict objectForKey:@"logs"] != nil) {
+        [self parseBefore_logs];
+        [self parseData_logs:dict];
+        [self parseAfter_logs];
+    }
 }
 
-- (void)parseBefore_cache
+- (void)parseBefore_caches
 {
-    NSLog(@"%@/parseBefore_cache: Parsing initializing", [self class]);
-    namesImported = [NSMutableArray arrayWithCapacity:50];
+    NSLog(@"%@/parseBefore_caches: Parsing initializing", [self class]);
 }
 
-- (void)parseData_cache:(NSDictionary *)dict
+- (void)parseData_caches:(NSDictionary *)dict
 {
     NSLog(@"%@/parseData_cache: Parsing data", [self class]);
 
@@ -68,9 +74,9 @@
     [waypointManager needsRefresh];
 }
 
-- (void)parseAfter_cache
+- (void)parseAfter_caches
 {
-    NSLog(@"%@/parseAfter_cache: Parsing done", [self class]);
+    NSLog(@"%@/parseAfter_caches: Parsing done", [self class]);
 }
 
 - (void)parseGeocaches:(NSArray *)as
@@ -182,8 +188,6 @@
         if ([group dbContainsWaypoint:wp._id] == NO)
             [group dbAddWaypoint:wp._id];
     }
-
-    [namesImported addObject:wpname];
 }
 
 - (void)parseBefore_logs
