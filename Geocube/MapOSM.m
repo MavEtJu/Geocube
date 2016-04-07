@@ -24,11 +24,22 @@
 @interface MapOSM ()
 {
     MKTileOverlay *overlay;
+    UILabel *creditsLabel;
 }
 
 @end
 
 @implementation MapOSM
+
+- (void)initMap
+{
+    [super initMap];
+
+    /* Credits label for OSM */
+    creditsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    creditsLabel.text = @"© OpenStreetMap";
+    [self.mapvc.view addSubview:creditsLabel];
+}
 
 - (void)mapViewDidLoad
 {
