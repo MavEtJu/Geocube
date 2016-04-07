@@ -74,11 +74,6 @@
 
     mapvc.view = mapView;
 
-/*
-    mapView.showsCompass = YES;
-    mapView.showsScale = YES;
- */
-
     /* Add the scale ruler */
     mapScaleView = [LXMapScaleView mapScaleForAMSMapView:mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
