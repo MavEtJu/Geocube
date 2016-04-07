@@ -92,7 +92,11 @@
 
 - (void)loadTexts
 {
-    texts = @[@"This software uses the following 3rd party modules. My sincere thanks to all of the above for their generousity.",
+    texts = @[@"This software uses the following 3rd party modules and data. My sincere thanks to all of the above for their generousity.",
+
+              @"OpenStreetMap maps\n"
+              "© OpenStreetMap contributors\n"
+              "The data used for the OpenStreetMap map is available under the Open Database License. For the map tiles, the cartography is licensed as CC BY-SA. See http://openstreetmap.org/copyright for more details.",
 
               @"ActionSheetPicker: Copyright (c) 2011, Tim Cinel\n"
               "(https://github.com/skywinder/ActionSheetPicker-3.0)\n"
