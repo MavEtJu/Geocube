@@ -304,7 +304,6 @@ enum {
 - (void)initDistanceLabel
 {
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    //distanceLabel.textAlignment = NSTextAlignmentRight;
     distanceLabel.text = @"Nothing yet";
     [self.view addSubview:distanceLabel];
 }
