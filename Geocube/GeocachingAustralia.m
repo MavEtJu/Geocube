@@ -313,7 +313,7 @@
     if (value != nil)
         [ret setValue:value forKey:@"waypoints_found"];
 
-    return [GCDictionaryGCA dictionaryWithDictionary:ret];
+    return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
 - (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name
@@ -336,7 +336,7 @@
     if (value != nil)
         [ret setValue:value forKey:@"recommendations_given"];
 
-    return [GCDictionaryGCA dictionaryWithDictionary:ret];
+    return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
 - (GCStringGPX *)cache__gpx:(NSString *)wpname
@@ -365,7 +365,7 @@
     NSError *error = nil;
     GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
-    return json;
+    return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
@@ -471,9 +471,8 @@
     }
 
     NSError *error = nil;
-    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-
-    return json;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
 - (GCDictionaryGCA *)my_query_json:(NSString *)queryname
@@ -492,9 +491,9 @@
     }
 
     NSError *error = nil;
-    GCDictionaryGCA *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
-    return json;
+    return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname
