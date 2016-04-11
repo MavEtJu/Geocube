@@ -92,61 +92,54 @@ enum {
     if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
         showBrand = MAPBRAND_APPLEMAPS;
 
-    switch (showBrand) {
-        case MAPBRAND_GOOGLEMAPS:
-            map = [[MapGoogle alloc] init:self];
-            break;
-        case MAPBRAND_APPLEMAPS:
-            map = [[MapApple alloc] init:self];
-            break;
-        case MAPBRAND_OPENSTREETMAPS:
-            map = [[MapOSM alloc] init:self];
-            break;
-    }
-
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuMapGoogle label:@"Google Maps"];
     [lmi addItem:menuMapApple label:@"Apple Maps"];
     [lmi addItem:menuMapOSM label:@"OSM"];
-    //[lmi addItem:menuShowTarget label:@"Show target"];
-    //[lmi addItem:menuFollowMe label:@"Follow me"];
-    //[lmi addItem:menuShowBoth label:@"Show both"];
+
+    [lmi addItem:menuMap label:@"Map"];
+    [lmi addItem:menuSatellite label:@"Satellite"];
+    [lmi addItem:menuHybrid label:@"Hybrid"];
+    [lmi addItem:menuTerrain label:@"Terrain"];
+
+    [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
+    [lmi addItem:menuDirections label:@"Directions"];
+    [lmi addItem:menuRemoveTarget label:@"Remove Target"];
+    [lmi addItem:menuRecenter label:@"Recenter"];
+    [lmi addItem:menuUseGPS label:@"Use GPS"];
+
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
-            [lmi addItem:menuMap label:@"Map"];
-            [lmi addItem:menuSatellite label:@"Satellite"];
-            [lmi addItem:menuHybrid label:@"Hybrid"];
-            [lmi addItem:menuTerrain label:@"Terrain"];
-
+            map = [[MapGoogle alloc] init:self];
             [lmi disableItem:menuMapGoogle];
             [lmi enableItem:menuMapApple];
             [lmi enableItem:menuMapOSM];
             break;
         case MAPBRAND_APPLEMAPS:
-            [lmi addItem:menuMap label:@"Map"];
-            [lmi addItem:menuSatellite label:@"Satellite"];
-            [lmi addItem:menuHybrid label:@"Hybrid"];
-            [lmi addItem:menuTerrain label:@"XTerrain"];
-
+            map = [[MapApple alloc] init:self];
             [lmi enableItem:menuMapGoogle];
             [lmi disableItem:menuMapApple];
             [lmi enableItem:menuMapOSM];
             break;
         case MAPBRAND_OPENSTREETMAPS:
-            [lmi addItem:menuMap label:@"Map"];
-            [lmi addItem:menuSatellite label:@"XSatellite"];
-            [lmi addItem:menuHybrid label:@"XHybrid"];
-            [lmi addItem:menuTerrain label:@"XTerrain"];
-
+            map = [[MapOSM alloc] init:self];
             [lmi enableItem:menuMapGoogle];
             [lmi enableItem:menuMapApple];
             [lmi disableItem:menuMapOSM];
             break;
     }
-    [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
-    [lmi addItem:menuDirections label:@"Directions"];
 
-    [lmi addItem:menuRemoveTarget label:@"Remove Target"];
+    // Various map view options
+    if ([map mapHasViewMap] == FALSE)
+        [lmi disableItem:menuMap];
+    if ([map mapHasViewSatellite] == FALSE)
+        [lmi disableItem:menuSatellite];
+    if ([map mapHasViewHybrid] == FALSE)
+        [lmi disableItem:menuHybrid];
+    if ([map mapHasViewTerrain] == FALSE)
+        [lmi disableItem:menuTerrain];
+
+
     if (waypointManager.currentWaypoint == nil)
         [lmi disableItem:menuRemoveTarget];
 
@@ -157,8 +150,6 @@ enum {
     }
 
     useGPS = LM.useGPS;
-    [lmi addItem:menuRecenter label:@"Recenter"];
-    [lmi addItem:menuUseGPS label:@"Use GPS"];
     if (useGPS == YES)
         [lmi disableItem:menuUseGPS];
     else

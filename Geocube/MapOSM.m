@@ -31,6 +31,26 @@
 
 @implementation MapOSM
 
+- (BOOL)mapHasViewMap
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewSatellite
+{
+    return NO;
+}
+
+- (BOOL)mapHasViewHybrid
+{
+    return NO;
+}
+
+- (BOOL)mapHasViewTerrain;
+{
+    return NO;
+}
+
 - (void)initMap
 {
     [super initMap];

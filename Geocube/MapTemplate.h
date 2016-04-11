@@ -41,6 +41,12 @@
 - (NSInteger)calculateSpan;
 
 // To be implemented by inherited classes:
+
+- (BOOL)mapHasViewMap;
+- (BOOL)mapHasViewSatellite;
+- (BOOL)mapHasViewHybrid;
+- (BOOL)mapHasViewTerrain;
+
 - (void)initMap;
 - (void)removeMap;
 - (void)setMapType:(NSInteger)maptype;

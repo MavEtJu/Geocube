@@ -39,6 +39,26 @@
 
 @implementation MapGoogle
 
+- (BOOL)mapHasViewMap
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewSatellite
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewHybrid
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewTerrain;
+{
+    return YES;
+}
+
 - (void)mapViewWillAppear
 {
     if (self.mapvc.isMovingToParentViewController)

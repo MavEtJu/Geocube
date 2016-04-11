@@ -53,6 +53,10 @@ NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 NEEDS_OVERLOADING(removeHistory)
 NEEDS_OVERLOADING(addHistory)
 - (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
+NEEDS_OVERLOADING_BOOL(mapHasViewMap);
+NEEDS_OVERLOADING_BOOL(mapHasViewSatellite);
+NEEDS_OVERLOADING_BOOL(mapHasViewHybrid);
+NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
 
 - (instancetype)init:(MapViewController *)mvc
 {

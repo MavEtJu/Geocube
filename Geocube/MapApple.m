@@ -40,6 +40,27 @@
 
 @implementation MapApple
 
+- (BOOL)mapHasViewMap
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewSatellite
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewHybrid
+{
+    return YES;
+}
+
+- (BOOL)mapHasViewTerrain;
+{
+    return NO;
+}
+
+
 - (void)mapViewWillAppear
 {
     if (self.mapvc.isMovingToParentViewController)
