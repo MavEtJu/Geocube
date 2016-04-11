@@ -64,6 +64,9 @@ enum {
 enum {
     menuRefreshWaypoint = 0,
     menuMarkAs,
+    menuSetAsTarget,
+    menuLogThisWaypoint,
+    menuOpenInBrowser,
     menuAddToGroup,
     menuViewRaw,
     menuMax
@@ -78,6 +81,9 @@ enum {
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuViewRaw label:@"Raw data"];
+    [lmi addItem:menuSetAsTarget label:@"Set target"];
+    [lmi addItem:menuLogThisWaypoint label:@"Log waypoint"];
+    [lmi addItem:menuOpenInBrowser label:@"Open browser"];
 
     hasCloseButton = canBeClosed;
 
@@ -476,45 +482,17 @@ enum {
 
         case WAYPOINT_ACTIONS:
             switch (indexPath.row) {
-                case WAYPOINT_ACTIONS_SETASTARGET: {
-                    if ([waypointManager currentWaypoint] != nil &&
-                        [[waypointManager currentWaypoint].wpt_name isEqualToString:waypoint.wpt_name] == YES) {
-                        [waypointManager setCurrentWaypoint:nil];
-                        [self showWaypoint:nil];
-                        [self.navigationController popViewControllerAnimated:YES];
-                        return;
-                    }
-
-                    [waypointManager setCurrentWaypoint:waypoint];
-                    [self.tableView reloadData];
-
-                    BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
-                    UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
-                    WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
-                    [cvc showWaypoint:waypointManager.currentWaypoint];
-
-                    nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
-                    MapViewController *mvc = [nvc.viewControllers objectAtIndex:0];
-                    [mvc refreshWaypointsData];
-
-                    [_AppDelegate switchController:RC_NAVIGATE];
-                    [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
+                case WAYPOINT_ACTIONS_SETASTARGET:
+                    [self menuSetAsTarget];
                     return;
-                }
 
-                case WAYPOINT_ACTIONS_LOGTHISWAYPOINT: {
-                    UIViewController *newController = [[WaypointLogViewController alloc] init:waypoint];
-                    newController.edgesForExtendedLayout = UIRectEdgeNone;
-                    [self.navigationController pushViewController:newController animated:YES];
+                case WAYPOINT_ACTIONS_LOGTHISWAYPOINT:
+                    [self menuLogThisWaypoint];
                     return;
-                }
 
-                case WAYPOINT_ACTIONS_OPENINBROWSER: {
-                    [_AppDelegate switchController:RC_BROWSER];
-                    [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
-                    [bbvc loadURL:waypoint.wpt_url];
+                case WAYPOINT_ACTIONS_OPENINBROWSER:
+                    [self menuOpenInBrowser];
                     return;
-                }
             }
 
             return;
@@ -545,10 +523,60 @@ enum {
         case menuMarkAs:
             [self menuMarkAs];
             return;
+        case menuOpenInBrowser:
+            [self menuOpenInBrowser];
+            return;
+        case menuLogThisWaypoint:
+            [self menuLogThisWaypoint];
+            return;
+        case menuSetAsTarget:
+            [self menuSetAsTarget];
+            return;
     }
 
     [super didSelectedMenu:menu atIndex:index];
 }
+
+- (void)menuOpenInBrowser
+{
+    [_AppDelegate switchController:RC_BROWSER];
+    [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
+    [bbvc loadURL:waypoint.wpt_url];
+}
+
+- (void)menuLogThisWaypoint
+{
+    UIViewController *newController = [[WaypointLogViewController alloc] init:waypoint];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
+- (void)menuSetAsTarget
+{
+    if ([waypointManager currentWaypoint] != nil &&
+        [[waypointManager currentWaypoint].wpt_name isEqualToString:waypoint.wpt_name] == YES) {
+        [waypointManager setCurrentWaypoint:nil];
+        [self showWaypoint:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+
+    [waypointManager setCurrentWaypoint:waypoint];
+    [self.tableView reloadData];
+
+    BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+    UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
+    WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+    [cvc showWaypoint:waypointManager.currentWaypoint];
+
+    nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
+    MapViewController *mvc = [nvc.viewControllers objectAtIndex:0];
+    [mvc refreshWaypointsData];
+
+    [_AppDelegate switchController:RC_NAVIGATE];
+    [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
+}
+
 
 - (void)menuMarkAs
 {
