@@ -558,7 +558,7 @@ enum {
                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *dnf = [UIAlertAction
-                          actionWithTitle:(waypoint.flag_dnf == YES) ? @"not DNF" : @"DNF"
+                          actionWithTitle:(waypoint.flag_dnf == YES) ? @"Remove mark as DNF" : @"Mark as DNF"
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
                               if (waypoint.flag_dnf)
@@ -571,7 +571,7 @@ enum {
                               [self.tableView reloadData];
                           }];
     UIAlertAction *found = [UIAlertAction
-                            actionWithTitle:(waypoint.flag_markedfound == YES) ? @"Not found" : @"Found"
+                            actionWithTitle:(waypoint.flag_markedfound == YES) ? @"Remove mark as Found" : @"Mark as Found"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
                                 if (waypoint.flag_ignore)
@@ -584,7 +584,7 @@ enum {
                                 [self.tableView reloadData];
                             }];
     UIAlertAction *ignore = [UIAlertAction
-                             actionWithTitle:(waypoint.flag_ignore == YES) ? @"Not ignored" : @"Ignored"
+                             actionWithTitle:(waypoint.flag_ignore == YES) ? @"Remove mark as Ignored" : @"Mark as Ignored"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  if (waypoint.flag_ignore)
@@ -603,7 +603,7 @@ enum {
                                  }
                              }];
     UIAlertAction *inprogress = [UIAlertAction
-                                 actionWithTitle:(waypoint.flag_inprogress == YES) ? @"Not in progress" : @"In progress"
+                                 actionWithTitle:(waypoint.flag_inprogress == YES) ? @"Remove mark as In Progress" : @"Mark as In Progress"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      if (waypoint.flag_inprogress)
@@ -616,7 +616,7 @@ enum {
                                      [self.tableView reloadData];
                                  }];
     UIAlertAction *highlight = [UIAlertAction
-                                actionWithTitle:(waypoint.flag_highlight == YES) ? @"Not highlighted" : @"Highlighted"
+                                actionWithTitle:(waypoint.flag_highlight == YES) ? @"Remove mark as highlighted" : @"Mark as Highlighted"
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction *action) {
                                     if (waypoint.flag_highlight)
