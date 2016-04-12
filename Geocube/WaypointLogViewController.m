@@ -203,20 +203,17 @@ enum {
                     UISwitch *uploadSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
                     if (waypoint.account.canDoRemoteStuff == YES) {
                         uploadSwitch.on = upload;
-                        [self updateUploadSwitch:uploadSwitch];
                         [uploadSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
                         cell.userInteractionEnabled = YES;
                     } else {
                         uploadSwitch.on = NO;
-                        [self updateFPSwitch:uploadSwitch];
                         cell.userInteractionEnabled = NO;
                     }
-                    [self updateUploadSwitch:uploadSwitch];
                     cell.accessoryView = uploadSwitch;
                     break;
                 }
                 case SECTION_SUBMIT_SUBMIT:
-                    if (waypoint.account.canDoRemoteStuff == YES)
+                    if (waypoint.account.canDoRemoteStuff == YES && upload == YES)
                         cell.keyLabel.text = @"Submit";
                     else
                         cell.keyLabel.text = @"Save";
@@ -237,6 +234,7 @@ enum {
 - (void)updateUploadSwitch:(UISwitch *)s
 {
     upload = s.on;
+    [self.tableView reloadData];
 }
 
 
@@ -353,8 +351,6 @@ enum {
     YIPopupTextView *tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
-//  tv.backgroundColor = currentTheme.backgroundColor;
-//  tv.textColor = currentTheme.textColor;
     tv.caretShiftGestureEnabled = YES;
     tv.maxCount = 4000;
     tv.text = note;
@@ -407,7 +403,6 @@ enum {
      }
      origin:self.view
      ];
-
 }
 
 - (void)changeTrackable
