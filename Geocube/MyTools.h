@@ -85,6 +85,8 @@ typedef sqlite3_int64 NSId;
     - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
 #define NEEDS_OVERLOADING_BOOL(__name__) \
     - (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
+#define NEEDS_OVERLOADING_NSRANGE(__name__) \
+    - (NSRange) __name__ { NEEDS_OVERLOADING_ASSERT; return NSMakeRange(0, 0); }
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
 

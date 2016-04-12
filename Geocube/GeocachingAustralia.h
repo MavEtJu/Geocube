@@ -38,7 +38,7 @@
 - (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name;
 - (GCStringGPX *)cache__gpx:(NSString *)wpname;
 - (GCDictionaryGCA *)cache__json:(NSString *)wpname;
-- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
+- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating;
 - (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center;
 - (GCDictionaryGCA *)logs_cache:(NSString *)wpname;
 - (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description;

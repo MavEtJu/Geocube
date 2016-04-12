@@ -195,6 +195,11 @@
     return [protocol commentSupportsRating];
 }
 
+- (NSRange)commentSupportsRatingRange
+{
+    return [protocol commentSupportsRatingRange];
+}
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return [protocol commentSupportsFavouritePoint];
@@ -300,7 +305,7 @@
     return nil;
 }
 
-- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -315,7 +320,7 @@
     if (account.protocol == ProtocolGCA) {
         if (image != nil)
             [gca my_gallery_cache_add:waypoint.wpt_name data:imgdata caption:imageCaption description:imageDescription];
-        return [gca my_log_new:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
+        return [gca my_log_new:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating];
     }
 
     return NO;

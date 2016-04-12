@@ -92,6 +92,10 @@
 {
     return YES;
 }
+- (NSRange)commentSupportsRatingRange
+{
+    return NSMakeRange(1, 5);
+}
 - (BOOL)commentSupportsTrackables
 {
     return NO;
@@ -368,7 +372,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating
 {
     NSLog(@"my_log_new");
 
@@ -383,10 +387,7 @@
     }];
     [ps setValue:note forKey:@"text"];
 
-    if (favourite == YES)
-        [ps setValue:@"5" forKey:@"Overall Experience"];
-    else
-        [ps setValue:@"2" forKey:@"Overall Experience"];
+    [ps setValue:[NSString stringWithFormat:@"%ld", rating] forKey:@"Overall Experience"];
 
     [ps setValue:[dateLogged substringWithRange:NSMakeRange(0, 4)] forKey:@"gca_date_selector_year"];
     [ps setValue:[dateLogged substringWithRange:NSMakeRange(5, 2)] forKey:@"gca_date_selector_month"];

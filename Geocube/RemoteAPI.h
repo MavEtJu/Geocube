@@ -59,12 +59,13 @@
 - (BOOL)commentSupportsTrackables;
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsRating;
+- (NSRange)commentSupportsRatingRange;
 - (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
 
-- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription;
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating;
 
 - (BOOL)updateWaypoint:(dbWaypoint *)waypoint;
 - (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center;

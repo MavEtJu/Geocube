@@ -24,6 +24,7 @@
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsRating;
+- (NSRange)commentSupportsRatingRange;
 - (BOOL)commentSupportsTrackables;
 - (BOOL)waypointSupportsPersonalNotes;
 - (instancetype)init:(RemoteAPI *)remoteAPI;

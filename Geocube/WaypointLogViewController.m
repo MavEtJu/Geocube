@@ -32,6 +32,7 @@
     NSString *imageCaption;
     NSString *imageLongText;
 
+    NSInteger ratingSelected;
     BOOL fp, upload;
 }
 
@@ -73,6 +74,7 @@ enum {
     fp = NO;
     upload = YES;
     image = nil;
+    ratingSelected = 3;
 
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
@@ -120,6 +122,10 @@ enum {
     cell.accessoryType = UITableViewCellStyleDefault;
     cell.accessoryView = nil;
     cell.userInteractionEnabled = YES;
+    cell.keyLabel.text = @"";
+    cell.valueLabel.text = @"";
+    cell.keyLabel.textColor = [UIColor blackColor];
+    cell.valueLabel.textColor = [UIColor blackColor];
 
     switch (indexPath.section) {
         case SECTION_LOGDETAILS: {
@@ -174,6 +180,8 @@ enum {
                     if ([waypoint.account.remoteAPI commentSupportsRating] == NO) {
                         cell.userInteractionEnabled = NO;
                         cell.keyLabel.textColor = [UIColor lightGrayColor];
+                    } else {
+                        cell.valueLabel.text = [NSString stringWithFormat:@"%ld", ratingSelected];
                     }
                     break;
                 }
@@ -253,11 +261,11 @@ enum {
                 case SECTION_EXTRADETAILS_PHOTO:
                     [self changePhoto];
                     break;
-                case SECTION_EXTRADETAILS_FAVOURITE:
-                    [self changeFP];
-                    break;
                 case SECTION_EXTRADETAILS_TRACKABLE:
                     [self changeTrackable];
+                    break;
+                case SECTION_EXTRADETAILS_RATING:
+                    [self changeRating];
                     break;
             }
             break;
@@ -378,8 +386,27 @@ enum {
     return;
 }
 
-- (void)changeFP
+- (void)changeRating
 {
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:5];
+    NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
+    for (NSInteger i = r.location; i <= r.length; i++) {
+        [as addObject:[NSNumber numberWithInteger:i]];
+    }
+
+    [ActionSheetStringPicker
+     showPickerWithTitle:@"Select a Rating"
+     rows:as
+     initialSelection:ratingSelected - 1
+     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+         ratingSelected = selectedIndex + 1;
+         [self.tableView reloadData];
+     }
+     cancelBlock:^(ActionSheetStringPicker *picker) {
+     }
+     origin:self.view
+     ];
+
 }
 
 - (void)changeTrackable
@@ -403,7 +430,7 @@ enum {
         return;
     }
 
-    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText];
+    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected];
 
     // Successful but not log id returned
     if (gc_id == -1) {
