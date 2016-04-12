@@ -420,6 +420,7 @@ enum {
                     UIViewController *newController = [[WaypointPersonalNoteViewController alloc] init:waypoint];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
+                    [self.tableView reloadData];
                     return;
                 }
 
