@@ -51,11 +51,12 @@
     // Name
     keyLabel = [[GCLabel alloc] initWithFrame:rectKey];
     keyLabel.font = font;
-    valueLabel.textAlignment = NSTextAlignmentRight;
+    keyLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:keyLabel];
 
     valueLabel = [[GCLabel alloc] initWithFrame:rectValue];
     valueLabel.font = font;
+    valueLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:valueLabel];
 
     [self changeTheme];
