@@ -75,7 +75,6 @@
 
 - (NSArray *)logtypes:(NSString *)waypointType
 {
-
     if (GSLogTypesEvents == nil)
         [self GetGeocacheDataTypes];
 
@@ -101,6 +100,7 @@
             }
         }];
     }];
+
     return rs;
 }
 

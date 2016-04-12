@@ -212,15 +212,7 @@
 
 - (NSArray *)logtypes:(NSString *)waypointType
 {
-    switch (account.protocol) {
-        case ProtocolLiveAPI:
-            return [gs logtypes:waypointType];
-        case ProtocolOKAPI:
-            return [okapi logtypes:waypointType];
-        case ProtocolGCA:
-            return [gca logtypes:waypointType];
-    }
-    return nil;
+    return [protocol logtypes:waypointType];
 }
 
 - (NSDictionary *)UserStatistics
