@@ -44,6 +44,7 @@ enum {
 
     waypoint = _waypoint;
     hasCloseButton = YES;
+    self.delegateWaypoint = nil;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
@@ -123,6 +124,8 @@ enum {
             [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.lastError];
         }
     }
+    if (self.delegateWaypoint != nil)
+        [self.delegateWaypoint refreshView];
 }
 
 #pragma mark - Local menu related functions

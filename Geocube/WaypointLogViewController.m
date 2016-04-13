@@ -75,6 +75,7 @@ enum {
     upload = YES;
     image = nil;
     ratingSelected = 3;
+    self.delegateWaypoint = nil;
 
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
@@ -273,6 +274,8 @@ enum {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_SUBMIT:
                     [self submitLog];
+                    if (self.delegateWaypoint != nil)
+                        [self.delegateWaypoint refreshView];
                     break;
             }
             break;

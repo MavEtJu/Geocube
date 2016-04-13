@@ -23,4 +23,6 @@
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 
+@property (nonatomic, retain) id delegateWaypoint;
+
 @end

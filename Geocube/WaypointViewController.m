@@ -138,6 +138,13 @@ enum {
      ];
 }
 
+#pragma mark - Delegates
+
+-  (void)refreshView
+{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -417,10 +424,10 @@ enum {
                 }
 
                 case WAYPOINT_DATA_PERSONALNOTE: {
-                    UIViewController *newController = [[WaypointPersonalNoteViewController alloc] init:waypoint];
+                    WaypointPersonalNoteViewController *newController = [[WaypointPersonalNoteViewController alloc] init:waypoint];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    newController.delegateWaypoint = self;
                     [self.navigationController pushViewController:newController animated:YES];
-                    [self.tableView reloadData];
                     return;
                 }
 
@@ -466,8 +473,9 @@ enum {
                 }
 
                 case WAYPOINT_DATA_IMAGES: {
-                    UITableViewController *newController = [[WaypointImagesViewController alloc] init:waypoint table:self.tableView];
+                    WaypointImagesViewController *newController = [[WaypointImagesViewController alloc] init:waypoint];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    newController.delegateWaypoint = self;
                     [self.navigationController pushViewController:newController animated:YES];
                     return;
                 }
@@ -547,8 +555,9 @@ enum {
 
 - (void)menuLogThisWaypoint
 {
-    UIViewController *newController = [[WaypointLogViewController alloc] init:waypoint];
+    WaypointLogViewController *newController = [[WaypointLogViewController alloc] init:waypoint];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.delegateWaypoint = self;
     [self.navigationController pushViewController:newController animated:YES];
 }
 
