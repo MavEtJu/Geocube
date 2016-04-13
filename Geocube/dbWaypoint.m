@@ -669,6 +669,18 @@
     }
 }
 
+- (void)dbDelete
+{
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"delete from waypoints where id = ?");
+
+        SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSString *)makeName:(NSString *)suffix
 {
 
