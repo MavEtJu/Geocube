@@ -48,6 +48,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
 
+    self.delegateWaypoint = nil;
     hasCloseButton = YES;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
@@ -97,6 +98,20 @@ enum {
     [cvc showWaypoint:wp];
     return;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [wp dbDelete];
+        wps = [waypoint hasWaypoints];
+        [self.tableView reloadData];
+        if (self.delegateWaypoint != nil)
+            [self.delegateWaypoint refreshView];
+    }
+}
+
 
 #pragma mark - Local menu related functions
 
@@ -155,6 +170,8 @@ enum {
 
                              [self.tableView reloadData];
                              [waypointManager needsRefresh];
+                             if (self.delegateWaypoint != nil)
+                                 [self.delegateWaypoint refreshView];
                          }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault

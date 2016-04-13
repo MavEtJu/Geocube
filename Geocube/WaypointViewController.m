@@ -458,8 +458,9 @@ enum {
                         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                         [self newWaypoint];
                     } else {
-                        UITableViewController *newController = [[WaypointWaypointsViewController alloc] init:waypoint];
+                        WaypointWaypointsViewController *newController = [[WaypointWaypointsViewController alloc] init:waypoint];
                         newController.edgesForExtendedLayout = UIRectEdgeNone;
+                        newController.delegateWaypoint = self;
                         [self.navigationController pushViewController:newController animated:YES];
                     }
                     return;
