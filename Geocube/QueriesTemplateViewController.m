@@ -221,6 +221,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@\n0 / 0", queryString]];
     }];
 
+    // Find the group to import to
     __block dbGroup *group = nil;
     NSString *name = [pq objectForKey:@"Name"];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -238,6 +239,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     __block BOOL failure = NO;
     account.remoteAPI.delegateQueries = self;
 
+    // Download the query
     NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
     if (ret == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
