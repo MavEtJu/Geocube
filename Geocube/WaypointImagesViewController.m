@@ -366,11 +366,12 @@ enum {
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
         img = [[dbImage alloc] init:datecreated name:[dbImage filename:datecreated] datafile:datafile];
         [dbImage dbCreate:img];
+
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 
     if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
         [img dbLinkToWaypoint:waypoint._id type:IMAGETYPE_USER];
-
 
     userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
     [self.tableView reloadData];
@@ -386,6 +387,11 @@ enum {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint refreshView];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    // do what you need to do after saving
 }
 
 @end
