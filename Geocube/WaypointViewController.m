@@ -453,16 +453,10 @@ enum {
                 }
 
                 case WAYPOINT_DATA_ADDITIONALWAYPOINTS: {
-                    NSArray *wps = [waypoint hasWaypoints];
-                    if ([wps count] <= 1) {
-                        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-                        [self newWaypoint];
-                    } else {
-                        WaypointWaypointsViewController *newController = [[WaypointWaypointsViewController alloc] init:waypoint];
-                        newController.edgesForExtendedLayout = UIRectEdgeNone;
-                        newController.delegateWaypoint = self;
-                        [self.navigationController pushViewController:newController animated:YES];
-                    }
+                    WaypointWaypointsViewController *newController = [[WaypointWaypointsViewController alloc] init:waypoint];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    newController.delegateWaypoint = self;
+                    [self.navigationController pushViewController:newController animated:YES];
                     return;
                 }
 
@@ -715,73 +709,6 @@ enum {
         }
         origin:self.tableView
     ];
-}
-
-- (void)newWaypoint
-{
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Add a related waypoint"
-                               message:@"Enter the coordinates"
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction *action) {
-                             //Do Some action
-                             UITextField *tf = [alert.textFields objectAtIndex:0];
-                             NSString *lat = tf.text;
-                             NSLog(@"Latitude '%@'", lat);
-
-                             tf = [alert.textFields objectAtIndex:1];
-                             NSString *lon = tf.text;
-                             NSLog(@"Longitude '%@'", lon);
-
-                             Coordinates *c;
-                             c = [[Coordinates alloc] initString:lat lon:lon];
-
-                             dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-                             wp.wpt_lat = [c lat_decimalDegreesSigned];
-                             wp.wpt_lon = [c lon_decimalDegreesSigned];
-                             wp.wpt_lat_int = [c lat] * 1000000;
-                             wp.wpt_lon_int = [c lon] * 1000000;
-                             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
-                             wp.wpt_description = wp.wpt_name;
-                             wp.wpt_date_placed_epoch = time(NULL);
-                             wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
-                             wp.wpt_url = nil;
-                             wp.wpt_urlname = wp.wpt_name;
-                             wp.wpt_symbol_id = 1;
-                             wp.wpt_type_id = [dbc Type_Unknown]._id;
-                             [dbWaypoint dbCreate:wp];
-
-                             [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
-                             [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
-
-                             [waypointManager needsRefresh];
-                             [self.tableView reloadData];
-                         }];
-    UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-
-    [alert addAction:ok];
-    [alert addAction:cancel];
-
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Latitude (like S 12 34.567)";
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-    }];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Longitude (like E 23 45.678)";
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-    }];
-
-    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)refreshWaypoint
