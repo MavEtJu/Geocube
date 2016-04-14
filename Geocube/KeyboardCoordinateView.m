@@ -264,8 +264,7 @@
             NSMutableString *s = [NSMutableString stringWithString:[textInput text]];
             [s replaceCharactersInRange:[self rangeForTextRange:textRange] withString:string];
 
-            if ([MyTools checkCoordinate:s] == YES)
-                [textInput replaceRange:textRange withText:string];
+            [textInput replaceRange:textRange withText:string];
         }
     }
 }
