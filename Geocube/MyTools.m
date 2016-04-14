@@ -380,34 +380,14 @@
 
 + (BOOL)checkCoordinate:(NSString *)text
 {
-    // Don't check empty strings
-    if ([text isEqualToString:@""] == YES)
-        return YES;
-
     // As long as it matches any of these, it is fine:
-    // ^[NESW] ?
-    // ^[NESW] \d{1,3}º? ?
-    // ^[NESW] \d{1,3}º? ?\d{1,3}
-    // ^[NESW] \d{1,3}º? ?\d{1,3}\.
-    // ^[NESW] \d{1,3}º? ?\d{1,3}\.\d{1,3}
+    // ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3}
 
     NSError *e = nil;
-    NSRegularExpression *r1 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] *$" options:0 error:&e];
-    NSRegularExpression *r2 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?$" options:0 error:&e];
-    NSRegularExpression *r3 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}$" options:0 error:&e];
-    NSRegularExpression *r4 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}\\.$" options:0 error:&e];
     NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}\\.\\d{1,3}$" options:0 error:&e];
 
     NSRange range;
     range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
-    range = [r4 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
-    range = [r3 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
-    range = [r2 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
-    range = [r1 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
     if (range.location == 0) return YES;
 
     return NO;
