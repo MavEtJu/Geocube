@@ -113,7 +113,7 @@ enum {
         y += 15;
 
         if (a.enabled == NO) {
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, 0)];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(10 + width / 8, y, 7 * width / 8, 0)];
             [l setText:@"Remote API is not enabled for this account."];
             l.numberOfLines = 0;
             [l sizeToFit];
@@ -123,7 +123,7 @@ enum {
         }
 
         if (a.canDoRemoteStuff == NO) {
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, 0)];
+            l = [[GCLabel alloc] initWithFrame:CGRectMake(10 + width / 8, y, 7 * width / 8, 0)];
             [l setText:@"Remote API is not available for this account, please check the settings."];
             l.numberOfLines = 0;
             [l sizeToFit];
