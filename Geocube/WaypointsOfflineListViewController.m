@@ -25,6 +25,9 @@
 {
     NSArray *waypoints;
     NSInteger waypointCount;
+
+    BOOL needsRefresh;
+    BOOL isVisible;
 }
 
 @end
@@ -69,6 +72,10 @@ enum {
     [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
 
+    isVisible = NO;
+    needsRefresh = YES;
+    [waypointManager startDelegation:self];
+
     /*
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -87,13 +94,18 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [waypointManager startDelegation:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    isVisible = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([waypointManager doesNeedARefresh] == YES) {
+    if (needsRefresh == YES) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
         }];
@@ -102,12 +114,8 @@ enum {
         waypoints = [self resortCachesData:waypoints];
         [self.tableView reloadData];
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [waypointManager stopDelegation:self];
+    needsRefresh = NO;
+    isVisible = YES;
 }
 
 - (void)refreshCachesData
@@ -161,10 +169,12 @@ enum {
     return wps;
 }
 
-/* Delegated from CacheFilterManager */
+/* Delegated from WaypointManager */
 - (void)refreshWaypoints
 {
-    [self refreshCachesData:nil];
+    needsRefresh = YES;
+    if (isVisible == YES)
+        [self refreshCachesData:nil];
 }
 
 #pragma mark - TableViewController related functions

@@ -40,6 +40,7 @@
 - (instancetype)init
 {
     self = [super init];
+    NSLog(@"%@: starting", [self class]);
 
     currentWaypoints = nil;
     currentWaypoint = nil;
@@ -77,15 +78,11 @@
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
-	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSLog(@"%@: refreshing %@", [self class], [delegate class]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [delegate refreshWaypoints];
         }];
     }];
-}
-
-- (BOOL)doesNeedARefresh
-{
-    return needsRefresh;
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
@@ -97,7 +94,6 @@
         if (needsRefresh != YES)
             return;
 
-//      CacheFilterManager *filter = [[CacheFilterManager alloc] init];
         NSMutableArray *caches;
         NSMutableArray *after;
         MyTools *clock = [[MyTools alloc] initClock:@"filter"];

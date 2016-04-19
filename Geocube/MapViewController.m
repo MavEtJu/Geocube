@@ -44,6 +44,9 @@
 
     BOOL hasGMS;
 
+    BOOL isVisible;
+    BOOL needsRefresh;
+
     ImportViewController *ivc;
 }
 
@@ -180,6 +183,10 @@ enum {
     [self initDistanceLabel];
     [self initMapIcons];
     [self recalculateRects];
+
+    needsRefresh = YES;
+    isVisible = NO;
+    [waypointManager startDelegation:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -213,7 +220,6 @@ enum {
     [map removeMarkers];
     [self refreshWaypointsData:nil];
     [map placeMarkers];
-    [waypointManager startDelegation:self];
 }
 
 
@@ -241,6 +247,14 @@ enum {
         labelMapFindTarget.userInteractionEnabled = YES;
         labelMapFindTarget.enabled = YES;
     }
+
+    isVisible = YES;
+    if (needsRefresh == YES) {
+        [self refreshWaypointsData:nil];
+        [map removeMarkers];
+        [map placeMarkers];
+        needsRefresh = NO;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -249,13 +263,13 @@ enum {
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
     [map mapViewWillDisappear];
+    isVisible = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
     [map removeMarkers];
-    [waypointManager stopDelegation:self];
     [super viewDidDisappear:animated];
     [map mapViewDidDisappear];
 }
@@ -438,9 +452,13 @@ enum {
 
 - (void)refreshWaypoints
 {
-    [self refreshWaypointsData:nil];
-    [map removeMarkers];
-    [map placeMarkers];
+    needsRefresh = YES;
+    if (isVisible == YES) {
+        [self refreshWaypointsData:nil];
+        [map removeMarkers];
+        [map placeMarkers];
+        needsRefresh = NO;
+    }
 }
 
 - (void)refreshWaypointsData:(NSString *)searchString
