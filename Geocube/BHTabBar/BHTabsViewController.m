@@ -207,12 +207,16 @@ enum { kTagTabBase = 100 };
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [_AppDelegate resizeControllers:size coordinator:coordinator];
+}
+
+- (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
     [menuGlobal transitionToSize:size];
 
     [viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
         [vc viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     }];
-
 }
 
 @end

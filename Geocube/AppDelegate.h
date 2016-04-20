@@ -25,6 +25,7 @@
 @property (nonatomic) NSInteger currentTabBar;
 
 - (void)switchController:(NSInteger)idx;
+- (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
 
 @end
 

@@ -38,5 +38,6 @@
               viewControllers:(NSArray *)viewControllers
                         style:(BHTabStyle *)style;
 - (void)makeTabViewCurrent:(NSInteger)idx;
+- (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
 
 @end

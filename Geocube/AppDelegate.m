@@ -454,6 +454,13 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [tabBars enumerateObjectsUsingBlock:^(BHTabsViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
+        [vc resizeController:size coordinator:coordinator];
+    }];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     NSLog(@"import");
