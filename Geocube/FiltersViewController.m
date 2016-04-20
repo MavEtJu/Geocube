@@ -279,6 +279,7 @@ enum {
     FilterTableViewCell *ftvc = (FilterTableViewCell *)fo.tvc;
     [ftvc configUpdate];
     [aTableView reloadData];
+    [waypointManager needsRefresh];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
