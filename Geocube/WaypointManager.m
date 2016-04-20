@@ -575,7 +575,7 @@
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    needsRefresh = YES;
+    [waypointManager needsRefresh];
     [dbFilter dbUpdateOrInsert:_name value:_value];
 }
 
