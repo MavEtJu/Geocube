@@ -44,7 +44,7 @@
 
     currentWaypoints = nil;
     currentWaypoint = nil;
-    needsRefresh = YES;
+    needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DMake(0, 0);
 
     if ([myConfig.currentWaypoint isEqualToString:@""] == NO)
@@ -74,15 +74,17 @@
 
 - (void)needsRefresh
 {
-    needsRefresh = YES;
+    if (needsRefresh == NO) {
+        needsRefresh = YES;
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
-        // Doing this via the main queue because Google Map Service insists on it.
-        NSLog(@"%@: refreshing %@", [self class], [delegate class]);
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [delegate refreshWaypoints];
+        [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+            // Doing this via the main queue because Google Map Service insists on it.
+            NSLog(@"%@: refreshing #%ld: %@", [self class], idx, [delegate class]);
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [delegate refreshWaypoints];
+            }];
         }];
-    }];
+    }
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
