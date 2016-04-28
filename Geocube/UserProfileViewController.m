@@ -25,10 +25,9 @@
 {
     UIScrollView *contentView;
     NSMutableArray *accountViews;
-
-    NSInteger width;
-
-    NSInteger totalFound, totalDNF, totalHidden, totalRecommendationsGiven, totalRecommendationsReceived;
+    NSMutableArray *accountDictionaries;
+    GCView *totalView;
+    NSMutableDictionary *totalDictionary;
 }
 
 @end
@@ -47,6 +46,9 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReload label:@"Reload"];
 
+    accountViews = nil;
+    totalView = nil;
+
     return self;
 }
 
@@ -60,241 +62,196 @@ enum {
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
 
-    [self loadStatistics];
+    accountDictionaries = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
+    accountViews = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
+
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        GCView *v = [[GCView alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:v];
+        [accountViews addObject:v];
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+        [d setObject:@"Not yet polled" forKey:@"status"];
+        [accountDictionaries addObject:d];
+
+        if (a.enabled == NO)
+            [d setObject:@"No remote API available" forKey:@"status"];
+    }];
+
+    totalView = [[GCView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:totalView];
+
+    totalDictionary = [NSMutableDictionary dictionary];
+
+    [self showAccounts];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+- (void)showAccounts
 {
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
 
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self loadStatistics];
-                                 }
-     ];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
+
+    __block NSInteger y = 0;
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        GCView *v = [accountViews objectAtIndex:idx];
+        NSDictionary *d = [accountDictionaries objectAtIndex:idx];
+
+        if (a.accountname == nil) {
+            v.frame = CGRectZero;
+        } else {
+            [self showAccount:a.site view:v dict:d];
+            v.frame = CGRectMake(0, y, width, v.frame.size.height);
+            y += v.frame.size.height;
+        }
+
+    }];
+
+    y += 10;
+    [self showAccount:@"Totals" view:totalView dict:totalDictionary];
+    totalView.frame = CGRectMake(0, y, width, totalView.frame.size.height);
+    y += totalView.frame.size.height;
+
+    contentView.contentSize = CGSizeMake(width, y);
+}
+
+- (void)showAccount:(NSString *)site view:(GCView *)v dict:(NSDictionary *)d
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    NSInteger y = 0;
+    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
+
+    [v.subviews enumerateObjectsUsingBlock:^(UIView *cv, NSUInteger idx, BOOL * _Nonnull stop) {
+        [cv removeFromSuperview];
+    }];
+
+    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
+    l.text = site;
+    [v addSubview:l];
+    y += l.frame.size.height;
+
+    NSObject *o = [d objectForKey:@"status"];
+    if ([o isKindOfClass:[NSString class]] == YES) {
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l.text = [NSString stringWithFormat:@"%@", o];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    o = [d valueForKey:@"waypoints_found"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        [self updateTotal:@"waypoints_found" with:o];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        [l setText:[NSString stringWithFormat:@"Found: %@", o]];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    o = [d valueForKey:@"waypoints_notfound"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        [self updateTotal:@"waypoints_notfound" with:o];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    o = [d valueForKey:@"waypoints_hidden"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        [self updateTotal:@"waypoints_hidden" with:o];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    o = [d valueForKey:@"recommendations_given"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        [self updateTotal:@"recommendations_given" with:o];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    o = [d valueForKey:@"recommendations_received"];
+    if ([o isKindOfClass:[NSNumber class]] == YES) {
+        [self updateTotal:@"recommendations_received" with:o];
+        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
+        [v addSubview:l];
+        y += l.frame.size.height;
+    }
+
+    v.frame = CGRectMake(0, 0, width, y);
+}
+
+- (void)updateTotal:(NSString *)key with:(NSObject *)_value
+{
+    if ([_value isKindOfClass:[NSNumber class]] == NO)
+        return;
+    NSNumber *value = (NSNumber *)_value;
+    NSNumber *n = [totalDictionary objectForKey:key];
+    NSAssert1(n != nil, @"updateTotal: key %@ does not exist", key);
+
+    NSInteger i = [n integerValue];
+    i += [value integerValue];
+
+    [totalDictionary setObject:[NSNumber numberWithInteger:i] forKey:key];
 }
 
 - (void)loadStatistics
 {
-    for (UIView *subview in contentView.subviews) {
-        if ([subview isKindOfClass:[GCCloseButton class]] == YES)
-            continue;
-        [subview removeFromSuperview];
-    }
-
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    width = bounds.size.width;
-    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
-    __block NSInteger y = 10;
-
-    totalFound = 0;
-    totalDNF = 0;
-    totalHidden = 0;
-    totalRecommendationsGiven = 0;
-    totalRecommendationsReceived = 0;
-
-    accountViews = [NSMutableArray arrayWithCapacity:[dbc.Accounts count] + 1];
     __block NSInteger count = 0;
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
 
         // If there is nothing, do not show.
-        if (a.accountname_string == nil || [a.accountname_string length] == 0)
+        if (a.accountname == nil)
             return;
 
         count++;
 
-        GCLabel *l;
-
-        /* Site name */
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
-        [l setText:a.site];
-        [contentView addSubview:l];
-        y += 15;
-
         if (a.enabled == NO) {
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(10 + width / 8, y, 7 * width / 8, 0)];
-            [l setText:@"Remote API is not enabled for this account."];
-            l.numberOfLines = 0;
-            [l sizeToFit];
-            [contentView addSubview:l];
-            y += l.frame.size.height;
+            [d setObject:@"Remote API is not enabled" forKey:@"status"];
             return;
         }
 
         if (a.canDoRemoteStuff == NO) {
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(10 + width / 8, y, 7 * width / 8, 0)];
-            [l setText:@"Remote API is not available for this account, please check the settings."];
-            l.numberOfLines = 0;
-            [l sizeToFit];
-            [contentView addSubview:l];
-            y += l.frame.size.height;
+            [d setObject:@"Remote API is not available" forKey:@"status"];
             return;
         }
 
-        GCView *v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
-        [contentView addSubview:v];
-        [accountViews addObject:v];
-        y += 1;
-
-        a.idx = idx;
         [self performSelectorInBackground:@selector(runStatistics:) withObject:a];
+        [d setObject:@"Polling..." forKey:@"status"];
     }];
-
-    if (count == 0) {
-        GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
-        l.text = @"No accounts are configured yet. As such no information is available is here yet.";
-        l.numberOfLines = 0;
-        [l sizeToFit];
-        [contentView addSubview:l];
-        y += l.frame.size.height;
-        return;
-    }
-
-    /* Total */
-    // Spacer
-    GCView *v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 20)];
-    [contentView addSubview:v];
-    y += v.frame.size.height;
-
-    // Header
-    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
-    [l setText:@"Total"];
-    [contentView addSubview:l];
-    y += l.frame.size.height;
-
-    v = [[GCView alloc] initWithFrame:CGRectMake(10, y, width - 20, 0)];
-    [accountViews addObject:v];
-    [contentView addSubview:v];
-    y += 1;
-
-    [contentView setContentSize:CGSizeMake(width, y)];
+    [self showAccounts];
 }
 
 - (void)runStatistics:(dbAccount *)a
 {
     NSDictionary *d = [a.remoteAPI UserStatistics];
-    @synchronized(self) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self showStatistics:a.idx dict:d];
-        }];
-    }
+
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *aa, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a == aa) {
+            NSMutableDictionary *dd = [accountDictionaries objectAtIndex:idx];
+            [d enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSObject *obj, BOOL *stop) {
+                [dd setObject:obj forKey:key];
+            }];
+            [dd removeObjectForKey:@"status"];
+            *stop = YES;
+        }
+    }];
+
+    [self showAccounts];
 }
-
-- (void)updateTotal:(NSInteger *)i with:(NSObject *)o
-{
-    NSNumber *number = (NSNumber *)o;
-    @synchronized(self) {
-        *i += [number integerValue];
-    }
-}
-
-- (void)showStatistics:(NSInteger)idx dict:(NSDictionary *)d
-{
-    NSObject *o;
-    GCLabel *l;
-    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
-
-    GCView *view = [accountViews objectAtIndex:idx];
-    for (GCView *subview in view.subviews) {
-        if ([subview isKindOfClass:[GCCloseButton class]] == YES)
-            continue;
-        [subview removeFromSuperview];
-    }
-
-    NSInteger y = 0;
-    NSInteger idxTotal = [accountViews count] - 1;
-
-    if (d == nil) {
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-        [l setText:@"No data"];
-        [view addSubview:l];
-        y += l.frame.size.height;
-
-    } else {
-        o = [d valueForKey:@"waypoints_found"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            if (idx != idxTotal)
-                [self updateTotal:&totalFound with:o];
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-            [l setText:[NSString stringWithFormat:@"Found: %@", o]];
-            [view addSubview:l];
-            y += l.frame.size.height;
-        }
-
-        o = [d valueForKey:@"waypoints_notfound"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            if (idx != idxTotal)
-                [self updateTotal:&totalDNF with:o];
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-            [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
-            [view addSubview:l];
-            y += l.frame.size.height;
-        }
-
-        o = [d valueForKey:@"waypoints_hidden"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            if (idx != idxTotal)
-                [self updateTotal:&totalHidden with:o];
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-            [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
-            [view addSubview:l];
-            y += l.frame.size.height;
-        }
-
-        o = [d valueForKey:@"recommendations_given"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            if (idx != idxTotal)
-                [self updateTotal:&totalRecommendationsGiven with:o];
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-            [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
-            [view addSubview:l];
-            y += l.frame.size.height;
-        }
-
-        o = [d valueForKey:@"recommendations_received"];
-        if ([o isKindOfClass:[NSNumber class]] == YES) {
-            if (idx != idxTotal)
-                [self updateTotal:&totalRecommendationsReceived with:o];
-            l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
-            [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
-            [view addSubview:l];
-            y += l.frame.size.height;
-        }
-
-        if (idx != idxTotal && [[accountViews objectAtIndex:idxTotal] isKindOfClass:[GCView class]] == YES) {
-            NSDictionary *totals = [NSDictionary dictionaryWithObjects:@[
-             [NSNumber numberWithInteger:totalFound],
-             [NSNumber numberWithInteger:totalDNF],
-             [NSNumber numberWithInteger:totalHidden],
-             [NSNumber numberWithInteger:totalRecommendationsGiven],
-             [NSNumber numberWithInteger:totalRecommendationsReceived]
-            ] forKeys:@[
-              @"waypoints_found",
-              @"waypoints_notfound",
-              @"waypoints_hidden",
-              @"recommendations_given",
-              @"recommendations_received"
-            ]
-            ];
-            [self showStatistics:[accountViews count] - 1 dict:totals];
-        }
-    }
-
-    view.frame = CGRectMake(10, 0, width - 20, y);
-    [self resizeContainer];
-}
-
-- (void)resizeContainer
-{
-    NSInteger y = 0;
-    for (GCView *subview in contentView.subviews) {
-        subview.frame = CGRectMake(subview.frame.origin.x, y, subview.frame.size.width, subview.frame.size.height);
-        y += subview.frame.size.height;
-    }
-    [contentView setContentSize:CGSizeMake(width, y)];
-}
-
 
 #pragma mark - Local menu related functions
 
