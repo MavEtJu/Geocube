@@ -55,7 +55,7 @@ enum dbAccountProtocol {
 @property (nonatomic, readonly) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
-@property (nonatomic) NSInteger idx;
+//@property (nonatomic) NSInteger idx;    // Used in UserProfileViewController.m
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
