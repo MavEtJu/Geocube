@@ -28,6 +28,8 @@
     NSMutableArray *accountDictionaries;
     GCView *totalView;
     NSMutableDictionary *totalDictionary;
+
+    BOOL hasbeenstarted;
 }
 
 @end
@@ -48,6 +50,8 @@ enum {
 
     accountViews = nil;
     totalView = nil;
+
+    hasbeenstarted = NO;
 
     return self;
 }
@@ -84,6 +88,15 @@ enum {
     totalDictionary = [NSMutableDictionary dictionary];
 
     [self showAccounts];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (hasbeenstarted == NO) {
+        hasbeenstarted = YES;
+        [self loadStatistics];
+    }
 }
 
 - (void)showAccounts
