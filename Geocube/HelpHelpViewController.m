@@ -32,9 +32,9 @@
 
     NSInteger y = 10;
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width - 20;
+    NSInteger width = applicationFrame.size.width;
 
-    UILabel *t = [[UILabel alloc] initWithFrame:(CGRectMake(10, y, width, 20))];
+    UILabel *t = [[UILabel alloc] initWithFrame:(CGRectMake(10, y, width - 20, 0))];
     t.numberOfLines = 0;
     t.lineBreakMode = NSLineBreakByWordWrapping;
     t.font = [UIFont systemFontOfSize:myConfig.GCTextblockFont.pointSize];
@@ -45,6 +45,7 @@
               "- Email: geocube@mavetju.org\n";
 
     [t sizeToFit];
+    t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     [self.view addSubview:t];
 }
