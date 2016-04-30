@@ -203,8 +203,6 @@
     [self.view addSubview:lineIV];
 
     [self changeTheme];
-
-    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)calculateRects
