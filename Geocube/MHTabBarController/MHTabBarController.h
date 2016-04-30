@@ -20,6 +20,8 @@
  * THE SOFTWARE.
  */
 
+#import <UIKit/UIKit.h>
+
 @protocol MHTabBarControllerDelegate;
 
 /*
@@ -36,6 +38,9 @@
 - (void)setSelectedIndex:(NSUInteger)index animated:(BOOL)animated;
 - (void)setSelectedViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
+// XX Temporary to make things compile
+- (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
+
 @end
 
 /*
@@ -46,3 +51,4 @@
 - (BOOL)mh_tabBarController:(MHTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index;
 - (void)mh_tabBarController:(MHTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index;
 @end
+

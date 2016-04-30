@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-#import "MHTabBarController.h"
+#import "Geocube-prefix.pch"
 
 static const NSInteger TagOffset = 1000;
 
@@ -52,6 +52,8 @@ static const NSInteger TagOffset = 1000;
 	[self.view addSubview:indicatorImageView];
 
 	[self reloadTabButtons];
+
+    [self addMenus];
 }
 
 - (void)viewWillLayoutSubviews
@@ -164,7 +166,8 @@ static const NSInteger TagOffset = 1000;
 
 - (void)setViewControllers:(NSArray *)newViewControllers
 {
-	NSAssert([newViewControllers count] >= 2, @"MHTabBarController requires at least two view controllers");
+//  XXX see what this does do
+//	NSAssert([newViewControllers count] >= 2, @"MHTabBarController requires at least two view controllers");
 
 	UIViewController *oldSelectedViewController = self.selectedViewController;
 
@@ -205,7 +208,9 @@ static const NSInteger TagOffset = 1000;
 
 - (void)setSelectedIndex:(NSUInteger)newSelectedIndex animated:(BOOL)animated
 {
-	NSAssert(newSelectedIndex < [self.viewControllers count], @"View controller index out of bounds");
+	// NSAssert(newSelectedIndex < [self.viewControllers count], @"View controller index out of bounds");
+    if (newSelectedIndex >= [self.viewControllers count])
+        newSelectedIndex = 0;
 
 	if ([self.delegate respondsToSelector:@selector(mh_tabBarController:shouldSelectViewController:atIndex:)])
 	{
@@ -357,6 +362,52 @@ static const NSInteger TagOffset = 1000;
 - (CGFloat)tabBarHeight
 {
 	return 44.0f;
+}
+
+// ---------------- Added ----
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return myConfig.orientationsAllowed;
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [_AppDelegate resizeControllers:size coordinator:coordinator];
+}
+
+- (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [menuGlobal transitionToSize:size];
+
+//    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
+//        [vc viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//    }];
+}
+
+- (void)addMenus
+{
+    /***** Global Menu ****/
+    UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame = CGRectMake(2, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    b.backgroundColor = [UIColor redColor];
+    [b setImage:imgMenu forState:UIControlStateNormal];
+    [self.view addSubview:b];
+    [b addTarget:menuGlobal action:@selector(openGlobalMenu:) forControlEvents:UIControlEventTouchDown];
+    /***** Global Menu ****/
+
+    /***** Local Menu ****/
+    imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    b = [UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame = CGRectMake(self.view.bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    b.backgroundColor = [UIColor redColor];
+    [b setImage:imgMenu forState:UIControlStateNormal];
+    [self.view addSubview:b];
+    [b addTarget:menuGlobal action:@selector(openLocalMenu:) forControlEvents:UIControlEventTouchDown];
+    menuGlobal.localMenuButton = b;
+    /***** Global Menu ****/
 }
 
 @end

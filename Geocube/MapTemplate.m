@@ -132,7 +132,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
     dbWaypoint *wp = [waypointManager waypoint_byName:name];
 
     // Find the right tab and the right navigation view controller
-    BHTabsViewController *tb = nil;
+    MHTabBarController *tb = nil;
     UINavigationController *nvc = nil;
     if (_AppDelegate.currentTabBar == RC_WAYPOINTS) {
         // Find the right tab and the right navigation view controller
@@ -147,7 +147,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
             [cvc.navigationController popViewControllerAnimated:NO];
 
         // Bring the right tab to the front.
-        [tb makeTabViewCurrent:VC_WAYPOINTS_LIST];
+        [tb setSelectedIndex:VC_WAYPOINTS_LIST animated:YES];
 
         // And then push the CacheViewController on top of it
         WaypointViewController *newController = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
@@ -170,7 +170,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
         [cvc showWaypoint:waypointManager.currentWaypoint];
 
         // Bring the right tab to the front.
-        [tb makeTabViewCurrent:VC_NAVIGATE_TARGET];
+        [tb setSelectedIndex:VC_NAVIGATE_TARGET animated:YES];
 
         return;
     }

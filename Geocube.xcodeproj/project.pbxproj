@@ -285,6 +285,13 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
+		E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B01CD33BC600170D61 /* MHTabBarActiveTab.png */; };
+		E8A3B0B91CD33BC600170D61 /* MHTabBarActiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B11CD33BC600170D61 /* MHTabBarActiveTab@2x.png */; };
+		E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3B0B31CD33BC600170D61 /* MHTabBarController.m */; };
+		E8A3B0BB1CD33BC600170D61 /* MHTabBarInactiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B41CD33BC600170D61 /* MHTabBarInactiveTab.png */; };
+		E8A3B0BC1CD33BC600170D61 /* MHTabBarInactiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */; };
+		E8A3B0BD1CD33BC600170D61 /* MHTabBarIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */; };
+		E8A3B0BE1CD33BC600170D61 /* MHTabBarIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */; };
 		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; };
 		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; };
 		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; };
@@ -811,6 +818,14 @@
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
 		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
+		E8A3B0B01CD33BC600170D61 /* MHTabBarActiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarActiveTab.png; path = MHTabBarController/MHTabBarActiveTab.png; sourceTree = "<group>"; };
+		E8A3B0B11CD33BC600170D61 /* MHTabBarActiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarActiveTab@2x.png"; path = "MHTabBarController/MHTabBarActiveTab@2x.png"; sourceTree = "<group>"; };
+		E8A3B0B21CD33BC600170D61 /* MHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHTabBarController.h; path = MHTabBarController/MHTabBarController.h; sourceTree = "<group>"; };
+		E8A3B0B31CD33BC600170D61 /* MHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHTabBarController.m; path = MHTabBarController/MHTabBarController.m; sourceTree = "<group>"; };
+		E8A3B0B41CD33BC600170D61 /* MHTabBarInactiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarInactiveTab.png; path = MHTabBarController/MHTabBarInactiveTab.png; sourceTree = "<group>"; };
+		E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarInactiveTab@2x.png"; path = "MHTabBarController/MHTabBarInactiveTab@2x.png"; sourceTree = "<group>"; };
+		E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarIndicator.png; path = MHTabBarController/MHTabBarIndicator.png; sourceTree = "<group>"; };
+		E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@2x.png"; path = "MHTabBarController/MHTabBarIndicator@2x.png"; sourceTree = "<group>"; };
 		E8A4BEE51BD4B8BE00BCA5A5 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
 		E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
 		E8A4BEE71BD4B8BE00BCA5A5 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
@@ -1678,6 +1693,21 @@
 			name = NKOColorPickerView;
 			sourceTree = "<group>";
 		};
+		E8A3B0AF1CD33BA500170D61 /* MHTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				E8A3B0B21CD33BC600170D61 /* MHTabBarController.h */,
+				E8A3B0B31CD33BC600170D61 /* MHTabBarController.m */,
+				E8A3B0B01CD33BC600170D61 /* MHTabBarActiveTab.png */,
+				E8A3B0B11CD33BC600170D61 /* MHTabBarActiveTab@2x.png */,
+				E8A3B0B41CD33BC600170D61 /* MHTabBarInactiveTab.png */,
+				E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */,
+				E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */,
+				E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */,
+			);
+			name = MHTabBarController;
+			sourceTree = "<group>";
+		};
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1997,6 +2027,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E82990471C87AF9000504421 /* XMLReader */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E895801F1C66E39500282177 /* Reachability */,
@@ -2376,11 +2407,13 @@
 				E80731FD1B5F84B4007FDC29 /* attributes - 22.png in Resources */,
 				E80732041B5F84B4007FDC29 /* attributes - 29.png in Resources */,
 				E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */,
+				E8A3B0BB1CD33BC600170D61 /* MHTabBarInactiveTab.png in Resources */,
 				E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */,
 				E80732871B5F8561007FDC29 /* container - regular - 70x20.png in Resources */,
 				E80732161B5F84B4007FDC29 /* attributes - 47.png in Resources */,
 				E80731F51B5F84B4007FDC29 /* attributes - 13.png in Resources */,
 				E80731F41B5F84B4007FDC29 /* attributes - 12.png in Resources */,
+				E8A3B0BD1CD33BC600170D61 /* MHTabBarIndicator.png in Resources */,
 				E807323D1B5F84E8007FDC29 /* log - attended - 30x30.png in Resources */,
 				E8B6F68F1C1ACFF900577088 /* cache - trigpoint - 30x30.png in Resources */,
 				E807326A1B5F850C007FDC29 /* cache - virtual - 30x30.png in Resources */,
@@ -2410,6 +2443,7 @@
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
 				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
+				E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */,
 				E80732851B5F8561007FDC29 /* container - notchosen - 70x20.png in Resources */,
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
 				E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */,
@@ -2417,6 +2451,7 @@
 				E881440B1C7DB8CA00940820 /* GC - logo - 120x120.png in Resources */,
 				E807326D1B5F850C007FDC29 /* cache - whereigo - 30x30.png in Resources */,
 				E847A5861B9FDA1100BEFE83 /* type - tick found - 24x21.png in Resources */,
+				E8A3B0B91CD33BC600170D61 /* MHTabBarActiveTab@2x.png in Resources */,
 				E80732181B5F84B4007FDC29 /* attributes - 49.png in Resources */,
 				E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */,
 				E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */,
@@ -2478,6 +2513,7 @@
 				E80732481B5F84E8007FDC29 /* log - reviewernote - 30x30.png in Resources */,
 				E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */,
 				E80732231B5F84B4007FDC29 /* attributes - 60.png in Resources */,
+				E8A3B0BC1CD33BC600170D61 /* MHTabBarInactiveTab@2x.png in Resources */,
 				E80732861B5F8561007FDC29 /* container - other - 70x20.png in Resources */,
 				E80731FC1B5F84B4007FDC29 /* attributes - 21.png in Resources */,
 				E80732A01B5F857A007FDC29 /* map - own overlay - 18x18.png in Resources */,
@@ -2511,6 +2547,7 @@
 				E80732471B5F84E8007FDC29 /* log - published - 30x30.png in Resources */,
 				E807320D1B5F84B4007FDC29 /* attributes - 38.png in Resources */,
 				E847A58A1B9FDB3300BEFE83 /* type - disabled - 24x24.png in Resources */,
+				E8A3B0BE1CD33BC600170D61 /* MHTabBarIndicator@2x.png in Resources */,
 				E807321C1B5F84B4007FDC29 /* attributes - 53.png in Resources */,
 				E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */,
 				E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */,
@@ -2728,6 +2765,7 @@
 				E8C5BB741C719EB1006222D5 /* WaypointImagesViewController.m in Sources */,
 				E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
+				E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */,
 				E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */,
 				E833B7321C522EA600B9FB45 /* ListViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
@@ -2989,7 +3027,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;
@@ -3014,7 +3052,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = Geocube/Info.plist;

@@ -544,7 +544,7 @@ enum {
 - (void)menuOpenInBrowser
 {
     [_AppDelegate switchController:RC_BROWSER];
-    [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
+    [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
     [bbvc loadURL:waypoint.wpt_url];
 }
 
@@ -569,7 +569,7 @@ enum {
     [waypointManager setCurrentWaypoint:waypoint];
     [self.tableView reloadData];
 
-    BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+    MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
     WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
     [cvc showWaypoint:waypointManager.currentWaypoint];
@@ -579,7 +579,7 @@ enum {
     [mvc refreshWaypointsData];
 
     [_AppDelegate switchController:RC_NAVIGATE];
-    [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
+    [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
 }
 
 

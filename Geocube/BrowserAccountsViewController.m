@@ -96,7 +96,7 @@
 {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
 
-    [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
+    [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
     [bbvc clearScreen];
     [bbvc loadURL:a.url_queries];
 }

@@ -247,7 +247,7 @@
 
     [waypointManager setCurrentWaypoint:waypoint];
 
-    BHTabsViewController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+    MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
     WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
     [cvc showWaypoint:waypointManager.currentWaypoint];
@@ -257,7 +257,7 @@
     [mvc refreshWaypointsData];
 
     [_AppDelegate switchController:RC_NAVIGATE];
-    [tb makeTabViewCurrent:VC_NAVIGATE_COMPASS];
+    [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
 
     return;
 }

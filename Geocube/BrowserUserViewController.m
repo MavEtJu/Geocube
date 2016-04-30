@@ -137,7 +137,7 @@ enum {
                            {
                                //Do some thing here
 
-                               [btc makeTabViewCurrent:VC_BROWSER_BROWSER];
+                               [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
                                [bbvc loadURL:bm.url];
                            }];
     UIAlertAction *cancel = [UIAlertAction

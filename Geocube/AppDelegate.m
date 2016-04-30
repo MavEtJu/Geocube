@@ -28,8 +28,6 @@
     NSMutableArray *tabBars;
 }
 
-@property (strong, nonatomic) UIWindow *window;
-
 @end
 
 @implementation AppDelegate
@@ -100,21 +98,11 @@
 
     tabBars = [[NSMutableArray alloc] initWithCapacity:RC_MAX];
 
-#define TABBARCONTROLLER(__controllers__) \
-    tabBarController = [[UITabBarController alloc] init]; \
-    tabBarController.tabBar.translucent = NO; \
-    tabBarController.viewControllers = __controllers__; \
-    tabBarController.customizableViewControllers = __controllers__; \
-    tabBarController.delegate = self; \
-    [tabBars addObject:tabBarController];
-#undef TABBARCONTROLLER
 #define TABBARCONTROLLER(index, __controllers__) { \
-        BHTabsViewController *tbc = \
-            [[BHTabsViewController alloc] \
-            initWithViewControllers:index \
-            viewControllers:__controllers__ \
-            style:[BHTabStyle defaultStyle]]; \
-        [tabBars addObject:tbc]; \
+    MHTabBarController *tbc = [[MHTabBarController alloc] init]; \
+    tbc.delegate = self; \
+    tbc.viewControllers = __controllers__; \
+    [tabBars addObject:tbc]; \
     }
 
     for (NSInteger i = 0; i < RC_MAX; i++) {
@@ -418,16 +406,16 @@
     // UITabBarController.viewControllers = [UIViewController ...]
 
     [self switchController:myConfig.currentPage];
-    BHTabsViewController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
+    MHTabBarController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
     NSInteger cpt = myConfig.currentPageTab;
 
     [self.window makeKeyAndVisible];
-    [currentTab makeTabViewCurrent:cpt];
+    [currentTab setSelectedIndex:cpt animated:YES];
 
-    btc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-    UINavigationController *nvc = [btc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    tbc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [tbc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
     bbvc = [nvc.viewControllers objectAtIndex:0];
 
     /* No site information yet? */
@@ -436,7 +424,7 @@
         [self switchController:RC_NOTICES];
         currentTab = [tabBars objectAtIndex:RC_NOTICES];
         cpt = VC_NOTICES_NOTICES;
-        [currentTab makeTabViewCurrent:cpt];
+        [currentTab setSelectedIndex:cpt animated:YES];
         [NoticesViewController AccountsNeedToBeInitialized];
     }
 
@@ -456,7 +444,7 @@
 
 - (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [tabBars enumerateObjectsUsingBlock:^(BHTabsViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tabBars enumerateObjectsUsingBlock:^(MHTabBarController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
         [vc resizeController:size coordinator:coordinator];
     }];
 }
@@ -473,26 +461,18 @@
     NSLog(@"%@ - %@ - memory warning", [application class], [self class]);
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (BOOL)mh_tabBarController:(MHTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index
+{
+    NSLog(@"mh_tabBarController %@ shouldSelectViewController %@ at index %lu", tabBarController, viewController, index);
+
+    // Uncomment this to prevent "Tab 3" from being selected.
+    //return (index != 2);
+
+    return YES;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)mh_tabBarController:(MHTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index
+{
+    NSLog(@"mh_tabBarController %@ didSelectViewController %@ at index %lu", tabBarController, viewController, index);
 }
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
 @end

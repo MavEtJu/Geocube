@@ -49,7 +49,7 @@ IOSFileTransfers *IOSFTM;
 MyConfig *myConfig = nil;
 
 // Webbrowser
-BHTabsViewController *btc = nil;
+MHTabBarController *tbc = nil;
 BrowserBrowserViewController *bbvc = nil;
 
 //

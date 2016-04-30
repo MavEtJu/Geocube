@@ -19,13 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface AppDelegate : UIResponder <UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, MHTabBarControllerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *tabBars;
 @property (nonatomic) NSInteger currentTabBar;
+@property (nonatomic, strong) UIWindow *window;
 
 - (void)switchController:(NSInteger)idx;
 - (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
+
 
 @end
 
