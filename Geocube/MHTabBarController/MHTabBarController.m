@@ -212,6 +212,8 @@ static const NSInteger TagOffset = 1000;
     if (newSelectedIndex >= [self.viewControllers count])
         newSelectedIndex = 0;
 
+    [myConfig currentPageTabUpdate:newSelectedIndex];
+
 	if ([self.delegate respondsToSelector:@selector(mh_tabBarController:shouldSelectViewController:atIndex:)])
 	{
 		UIViewController *toViewController = (self.viewControllers)[newSelectedIndex];
