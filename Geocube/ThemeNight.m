@@ -31,22 +31,16 @@
 {
     self = [super init];
 
-    {
-        labelBackgroundColor = [UIColor blackColor];
-        labelTextColor = [UIColor lightTextColor];
-        labelTextColorDisabled = [UIColor darkGrayColor];
+    labelBackgroundColor = [UIColor blackColor];
+    labelTextColor = [UIColor lightTextColor];
+    labelTextColorDisabled = [UIColor darkGrayColor];
 
-        backgroundColor = [UIColor blackColor];
-        textColor = [UIColor lightGrayColor];
-    }
+    backgroundColor = [UIColor blackColor];
+    textColor = [UIColor lightGrayColor];
 
-    {
-        tableViewBackgroundColor = backgroundColor;
-
-        tableViewCellBackgroundColor = backgroundColor;
-
-        viewBackgroundColor = backgroundColor;
-    }
+    tableViewBackgroundColor = backgroundColor;
+    tableViewCellBackgroundColor = backgroundColor;
+    viewBackgroundColor = backgroundColor;
 
     tableViewCellGradient = NO;
 

@@ -31,27 +31,16 @@
 {
     self = [super init];
 
-    {
-        UILabel *tv = [[UILabel alloc] init];
-        labelTextColor = tv.textColor;
-        labelTextColorDisabled = [UIColor lightGrayColor];
-        labelBackgroundColor = tv.backgroundColor;
+    labelTextColor = [UIColor darkTextColor];
+    labelTextColorDisabled = [UIColor lightGrayColor];
+    labelBackgroundColor = [UIColor whiteColor];
 
-        textColor = tv.textColor;
-        backgroundColor = tv.backgroundColor;
-    }
-    {
-        UITableViewCell *tvc = [[UITableViewCell alloc] init];
-        tableViewCellBackgroundColor = tvc.backgroundColor;
-    }
-    {
-        UITableView *tv = [[UITableView alloc] init];
-        tableViewBackgroundColor = tv.backgroundColor;
-    }
-    {
-        UIView *v = [[UIView alloc] init];
-        viewBackgroundColor = v.backgroundColor;
-    }
+    backgroundColor = [UIColor whiteColor];
+    textColor = [UIColor darkTextColor];
+
+    tableViewCellBackgroundColor = backgroundColor;
+    tableViewBackgroundColor = backgroundColor;
+    viewBackgroundColor = backgroundColor;
 
     tableViewCellGradient = NO;
 
