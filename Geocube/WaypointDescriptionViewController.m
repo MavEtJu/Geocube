@@ -36,25 +36,27 @@
     self = [super init];
 
     waypoint = _wp;
-
     lmi = nil;
-    hasCloseButton = YES;
 
     return self;
 }
 
 - (void)viewDidLoad
 {
+    hasCloseButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    NSInteger width = applicationFrame.size.width;
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
-
+    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [webview loadHTMLString:[self makeHTMLString] baseURL:nil];
     [webview sizeToFit];
     self.view = webview;
+
+    // Swipe to close
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [webview addGestureRecognizer:swipeRight];
+    [webview.scrollView.panGestureRecognizer requireGestureRecognizerToFail:swipeRight];
 }
 
 - (NSString *)makeHTMLString

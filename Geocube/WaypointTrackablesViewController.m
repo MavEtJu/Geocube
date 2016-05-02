@@ -48,9 +48,14 @@
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     lmi = nil;
-    hasCloseButton = YES;
 
     return self;
+}
+
+- (void)viewDidLoad
+{
+    hasCloseButton = YES;
+    [super viewDidLoad];
 }
 
 #pragma mark - TableViewController related functions

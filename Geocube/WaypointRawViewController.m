@@ -38,13 +38,13 @@
     self = [super init];
 
     waypoint = wp;
-    hasCloseButton = YES;
     lmi = nil;
 
     return self;
 }
 
 - (void)viewDidLoad {
+    hasCloseButton = YES;
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;

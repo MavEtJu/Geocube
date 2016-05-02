@@ -49,15 +49,14 @@
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
 
     lmi = nil;
-    hasCloseButton = YES;
 
     return self;
 }
 
 - (void)viewDidLoad
 {
+    hasCloseButton = YES;
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark - TableViewController related functions

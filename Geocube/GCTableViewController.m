@@ -44,8 +44,6 @@
     closeButton = nil;
     hasCloseButton = NO;
 
-    [self changeTheme];
-
     return self;
 }
 
@@ -63,6 +61,17 @@
     }
 
     [self.tableView reloadData];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self changeTheme];
+    if (hasCloseButton == YES) {
+        UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
+        swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
+        [self.view addGestureRecognizer:swipeToRight];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

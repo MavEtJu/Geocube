@@ -51,7 +51,6 @@ enum {
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
 
     self.delegateWaypoint = nil;
-    hasCloseButton = YES;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
@@ -60,6 +59,7 @@ enum {
 
 - (void)viewDidLoad
 {
+    hasCloseButton = YES;
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }

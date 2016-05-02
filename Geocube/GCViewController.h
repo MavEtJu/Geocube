@@ -30,5 +30,6 @@
 - (void)showCloseButton;
 - (void)refreshMenu;
 - (void)changeTheme;
+- (void)closePage:(NSObject *)b;
 
 @end

@@ -60,8 +60,6 @@ enum {
     [lmi addItem:menuExportTrack label:@"Export track"];
     [lmi addItem:menuDeleteTrack label:@"Delete track"];
 
-    hasCloseButton = YES;
-
     return self;
 }
 
@@ -72,6 +70,7 @@ enum {
 
 - (void)viewDidLoad
 {
+    hasCloseButton = YES;
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;

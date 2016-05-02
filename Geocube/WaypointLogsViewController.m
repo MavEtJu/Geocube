@@ -45,7 +45,6 @@
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 
-    hasCloseButton = YES;
     lmi = nil;
 
     return self;
@@ -63,6 +62,7 @@
 
 - (void)viewDidLoad
 {
+    hasCloseButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 

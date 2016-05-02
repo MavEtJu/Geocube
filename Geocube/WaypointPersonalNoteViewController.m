@@ -43,7 +43,6 @@ enum {
     self = [super init];
 
     waypoint = _waypoint;
-    hasCloseButton = YES;
     self.delegateWaypoint = nil;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
@@ -56,6 +55,7 @@ enum {
 
 - (void)loadView
 {
+    hasCloseButton = YES;
     [super loadView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 

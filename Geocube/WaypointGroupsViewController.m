@@ -51,10 +51,15 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
-    hasCloseButton = YES;
     lmi = nil;
 
     return self;
+}
+
+- (void)viewDidLoad
+{
+    hasCloseButton = YES;
+    [super viewDidLoad];
 }
 
 #pragma mark - TableViewController related functions
