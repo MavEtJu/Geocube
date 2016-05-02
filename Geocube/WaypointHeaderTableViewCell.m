@@ -80,9 +80,9 @@
     CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT - N, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
     CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
     CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, LON_HEIGHT);
-    CGRect rectBearDis = CGRectMake(BORDER + N, height - BORDER - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N, BEARDIS_HEIGHT);
+    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, LON_HEIGHT);
+    CGRect rectBearDis = CGRectMake(BORDER + N, height - BORDER - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, BEARDIS_HEIGHT);
 
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
@@ -98,6 +98,7 @@
     r.size.height /= 2;
     favourites = [[GCLabel alloc] initWithFrame:r];
     favourites.font = [UIFont boldSystemFontOfSize:10];
+    favourites.backgroundColor = [UIColor clearColor];
     favourites.textColor = [UIColor whiteColor];
     favourites.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:favourites];
