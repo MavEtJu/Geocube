@@ -122,6 +122,7 @@
     favouritesIV.hidden = TRUE;
 
     favouritesLabel = [[GCLabel alloc] initWithFrame:rectFavouritesLabel];
+    favouritesLabel.backgroundColor = [UIColor clearColor];
     favouritesLabel.font = [UIFont boldSystemFontOfSize:10];
     favouritesLabel.textColor = [UIColor whiteColor];
     favouritesLabel.textAlignment = NSTextAlignmentCenter;
