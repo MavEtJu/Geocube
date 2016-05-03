@@ -214,7 +214,6 @@
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     width = applicationFrame.size.width;
     NSInteger height = applicationFrame.size.height - 50;
-    NSLog(@"height: %ld", (long)height);
 
     UIFont *f = [UIFont systemFontOfSize:14];
     NSInteger textHeight = f.lineHeight;
