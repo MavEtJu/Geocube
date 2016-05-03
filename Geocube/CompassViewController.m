@@ -68,6 +68,8 @@
     CGRect rectAltitude;
 
     float oldCompass;
+    UIDeviceOrientation currentOrienation;
+    float bearingAdjustment;
 }
 
 @end
@@ -88,6 +90,8 @@
     altitudeLabel = nil;
 
     oldCompass = 0;
+    currentOrienation = UIDeviceOrientationPortrait;
+    bearingAdjustment = 0;
 
     lmi = nil;
 
@@ -353,6 +357,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
     /* Initiate the current cache */
     Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_lat_float lon:waypointManager.currentWaypoint.wpt_lon_float];
@@ -433,7 +439,36 @@
     [audioFeedback togglePlay:NO];
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if ([[UIDevice currentDevice] isGeneratingDeviceOrientationNotifications]) {
+        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    }
 }
+
+- (void)deviceDidRotate:(NSNotification *)notification
+{
+    currentOrienation = [[UIDevice currentDevice] orientation];
+
+    switch (currentOrienation) {
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown:
+        case UIDeviceOrientationUnknown:
+        case UIDeviceOrientationPortrait:
+            bearingAdjustment = 0;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            bearingAdjustment = - M_PI / 2;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            bearingAdjustment = M_PI / 2;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            bearingAdjustment = M_PI;
+            break;
+    }
+}
+
 
 /* Receive data from the location manager */
 - (void)updateLocationManagerLocation
@@ -448,13 +483,13 @@
     myLonLabel.text = [c lon_degreesDecimalMinutes];
 
     /* Draw the compass */
-    float newCompass = -LM.direction * M_PI / 180.0f;
+    float newCompass = -LM.direction * M_PI / 180.0f + bearingAdjustment;
 
     compassIV.transform = CGAffineTransformMakeRotation(newCompass);
     oldCompass = newCompass;
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
-    float fBearing = bearing * M_PI / 180.0;
+    float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
 
     /* Draw the line */
     if (waypointManager.currentWaypoint == nil) {
