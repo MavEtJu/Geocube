@@ -92,7 +92,6 @@
     mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
-    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
 
     mapvc.view = mapView;
 
@@ -403,7 +402,7 @@
 
 - (void)updateMyBearing:(CLLocationDirection)bearing
 {
-    // Nothing
+//    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
 }
 
 #pragma mark -- delegation from the map
