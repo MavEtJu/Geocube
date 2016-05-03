@@ -92,6 +92,7 @@
     mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
+    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
 
     mapvc.view = mapView;
 
@@ -398,6 +399,11 @@
 - (CLLocationCoordinate2D)currentCenter
 {
     return [mapView centerCoordinate];
+}
+
+- (void)updateMyBearing:(CLLocationDirection)bearing
+{
+    // Nothing
 }
 
 #pragma mark -- delegation from the map

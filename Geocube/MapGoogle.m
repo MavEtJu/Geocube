@@ -246,6 +246,11 @@
     return [mapView.projection coordinateForPoint:point];
 }
 
+- (void)updateMyBearing:(CLLocationDirection)bearing
+{
+    [mapView animateToBearing:bearing];
+}
+
 #pragma mark -- delegation from the map
 
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture

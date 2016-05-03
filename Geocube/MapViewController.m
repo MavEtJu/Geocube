@@ -37,6 +37,7 @@
     NSInteger showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
     CLLocationCoordinate2D meLocation;
+    CLLocationDirection meBearing;
     BOOL useGPS;
 
     NSInteger waypointCount;
@@ -423,6 +424,11 @@ enum {
         return;
 
     meLocation = [LM coords];
+
+    if (fabs(meBearing - [LM direction]) > 5) {
+        meBearing = [LM direction];
+        [map updateMyBearing:meBearing];
+    }
 
     // Move the map around to match current location
     if (showWhom == SHOW_FOLLOWMEZOOM)
