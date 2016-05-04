@@ -72,9 +72,6 @@
         }
     }
 
-    //    NSString *imgfile = [NSString stringWithFormat:@"%@/global menu icon.png", [MyTools DataDistributionDirectory]];
-    //    UIImage *img = [UIImage imageNamed:imgfile];
-
     button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openGlobalMenu:)];
     button.tintColor = [UIColor whiteColor];
 
@@ -159,16 +156,12 @@
 
 - (void)didDismissMenu:(DOPNavbarMenu *)menu
 {
-    // NSLog(@"GlobalMenu/didDismissMenu: self.vc:%p", self.parent_vc);
-
     [button setTitle:MENU_STRING];
     button.enabled = YES;
 }
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
 {
-    // NSLog(@"GlobalMenu/didSelectedMenu: self.vc:%p", self.parent_vc);
-
     NSLog(@"Switching to %ld", (long)index);
     [myConfig currentPageUpdate:index];
     [_AppDelegate switchController:index];
