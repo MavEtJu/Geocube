@@ -44,6 +44,7 @@ enum {
 + (NSString *)simpleHTML:(NSString *)plainText;
 + (NSInteger)numberOfLines:(NSString *)s;
 
++ (NSString *)niceCGRect:(CGRect)r;
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)niceTimeDifference:(NSInteger)i;

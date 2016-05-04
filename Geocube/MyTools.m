@@ -289,6 +289,11 @@
     return [NSString stringWithFormat:@"%ld year%@ ago", diff, diff == 1 ? @"" : @"s"];
 }
 
++ (NSString *)niceCGRect:(CGRect)r
+{
+    return [NSString stringWithFormat:@"(%0.0f, %0.0f), (%0.0f x %0.0f)", r.origin.x, r.origin.y, r.size.width, r.size.height];
+}
+
 - (instancetype)initClock:(NSString *)_title
 {
     self = [super init];
