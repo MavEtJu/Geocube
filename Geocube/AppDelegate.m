@@ -401,10 +401,6 @@
         }
     }
 
-    // UIResponder.window = UIWIndow
-    // UIWindow.rootViewController = UITabBarController
-    // UITabBarController.viewControllers = [UIViewController ...]
-
     [self switchController:myConfig.currentPage];
     MHTabBarController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
