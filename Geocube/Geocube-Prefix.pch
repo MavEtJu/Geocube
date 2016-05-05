@@ -119,6 +119,7 @@
 #import "ImportLiveAPIJSON.h"
 #import "ImportGeocube.h"
 #import "ImportViewController.h"
+#import "ExportGPX.h"
 
 #import "GCCloseBUtton.h"
 #import "GCLabel.h"

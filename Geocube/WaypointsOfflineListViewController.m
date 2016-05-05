@@ -39,6 +39,7 @@
 
 enum {
     menuAddWaypoint,
+    menuExportGPX,
     menuMax
 };
 
@@ -48,6 +49,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
+    [lmi addItem:menuExportGPX label:@"Export GPX"];
 
     return self;
 }
@@ -124,6 +126,11 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeView];
     }];
+    if ([waypoints count] == 0)
+        [lmi disableItem:menuExportGPX];
+    else
+        [lmi enableItem:menuExportGPX];
+    [self refreshMenu];
 }
 
 - (void)refreshCachesData:(NSString *)searchString
@@ -273,6 +280,9 @@ enum {
     switch (index) {
         case menuAddWaypoint:
             [self addWaypoint];
+            return;
+        case menuExportGPX:
+            [ExportGPX exports:waypoints];
             return;
     }
 

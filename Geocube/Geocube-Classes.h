@@ -31,6 +31,7 @@
 @class Coordinates;
 @class DNFListViewController;
 @class DatabaseCache;
+@class ExportGPX;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;

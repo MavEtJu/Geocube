@@ -69,6 +69,7 @@ enum {
     menuOpenInBrowser,
     menuAddToGroup,
     menuViewRaw,
+    menuExportGPX,
     menuMax
 };
 
@@ -84,6 +85,7 @@ enum {
     [lmi addItem:menuSetAsTarget label:@"Set target"];
     [lmi addItem:menuLogThisWaypoint label:@"Log waypoint"];
     [lmi addItem:menuOpenInBrowser label:@"Open browser"];
+    [lmi addItem:menuExportGPX label:@"Export GPX"];
 
     hasCloseButton = canBeClosed;
 
@@ -535,6 +537,9 @@ enum {
             return;
         case menuSetAsTarget:
             [self menuSetAsTarget];
+            return;
+        case menuExportGPX:
+            [ExportGPX export:waypoint];
             return;
     }
 

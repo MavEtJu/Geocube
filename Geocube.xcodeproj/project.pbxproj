@@ -292,6 +292,7 @@
 		E8A3B0BC1CD33BC600170D61 /* MHTabBarInactiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */; };
 		E8A3B0BD1CD33BC600170D61 /* MHTabBarIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */; };
 		E8A3B0BE1CD33BC600170D61 /* MHTabBarIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */; };
+		E8A3B0C11CDB241600170D61 /* ExportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3B0C01CDB241600170D61 /* ExportGPX.m */; };
 		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; };
 		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; };
 		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; };
@@ -826,6 +827,8 @@
 		E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarInactiveTab@2x.png"; path = "MHTabBarController/MHTabBarInactiveTab@2x.png"; sourceTree = "<group>"; };
 		E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarIndicator.png; path = MHTabBarController/MHTabBarIndicator.png; sourceTree = "<group>"; };
 		E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@2x.png"; path = "MHTabBarController/MHTabBarIndicator@2x.png"; sourceTree = "<group>"; };
+		E8A3B0BF1CDB241600170D61 /* ExportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportGPX.h; sourceTree = "<group>"; };
+		E8A3B0C01CDB241600170D61 /* ExportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportGPX.m; sourceTree = "<group>"; };
 		E8A4BEE51BD4B8BE00BCA5A5 /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrack.h; sourceTree = "<group>"; };
 		E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrack.m; sourceTree = "<group>"; };
 		E8A4BEE71BD4B8BE00BCA5A5 /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackElement.h; sourceTree = "<group>"; };
@@ -2210,6 +2213,8 @@
 		E8F570BA1B3FFB7F003F020C /* Convertors */ = {
 			isa = PBXGroup;
 			children = (
+				E8A3B0BF1CDB241600170D61 /* ExportGPX.h */,
+				E8A3B0C01CDB241600170D61 /* ExportGPX.m */,
 				E8F9913F1C197ECC00D360F1 /* ImportGCAJSON.h */,
 				E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */,
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
@@ -2851,6 +2856,7 @@
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,
 				E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */,
+				E8A3B0C11CDB241600170D61 /* ExportGPX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,7 @@
 enum {
     menuClearFlags,
     menuReloadWaypoints,
+    menuExportGPX,
     menuMax
 };
 
@@ -44,6 +45,7 @@ NEEDS_OVERLOADING(clearFlags)
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuClearFlags label:@"Clear list"];
     [lmi addItem:menuReloadWaypoints label:@"Reload Waypoints"];
+    [lmi addItem:menuExportGPX label:@"Export GPX"];
 
     return self;
 }
@@ -60,6 +62,12 @@ NEEDS_OVERLOADING(clearFlags)
     [super viewWillAppear:animated];
     waypoints = [dbWaypoint dbAllByFlag:flag];
     [self.tableView reloadData];
+
+    if ([waypoints count] == 0)
+        [lmi disableItem:menuExportGPX];
+    else
+        [lmi enableItem:menuExportGPX];
+    [self refreshMenu];
 }
 
 #pragma mark - TableViewController related functions
@@ -194,6 +202,9 @@ NEEDS_OVERLOADING(clearFlags)
             return;
         case menuReloadWaypoints:
             [self menuReloadWaypoints];
+            return;
+        case menuExportGPX:
+            [ExportGPX exports:waypoints];
             return;
     }
 
