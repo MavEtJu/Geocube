@@ -31,6 +31,7 @@
 - (void)mapViewDidAppear;
 - (void)mapViewDidDisappear;
 - (void)mapViewDidLoad;
+- (void)recalculateRects;
 
 - (void)startActivityViewer:(NSString *)text;
 - (void)stopActivityViewer;

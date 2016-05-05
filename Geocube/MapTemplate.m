@@ -34,6 +34,7 @@ EMPTY_METHOD(mapViewWillDisappear)
 EMPTY_METHOD(mapViewDidAppear)
 EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
+EMPTY_METHOD(recalculateRects)
 
 NEEDS_OVERLOADING(startActivityViewer:(NSString *)text)
 NEEDS_OVERLOADING(stopActivityViewer)

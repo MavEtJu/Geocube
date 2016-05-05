@@ -56,9 +56,23 @@
     [super initMap];
 
     /* Credits label for OSM */
-    creditsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+    creditsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    creditsLabel.font = [UIFont systemFontOfSize:10];
     creditsLabel.text = @"© OpenStreetMap";
     [self.mapvc.view addSubview:creditsLabel];
+}
+
+- (void)recalculateRects
+{
+    CGRect r = self.mapvc.view.frame;
+    NSLog(@"%@", [MyTools niceCGRect:r]);
+    creditsLabel.frame = CGRectMake(2, r.size.height - 20, 200, 20);
+}
+
+- (void)mapViewWillAppear
+{
+    [super mapViewWillAppear];
+    [self recalculateRects];
 }
 
 - (void)mapViewDidLoad

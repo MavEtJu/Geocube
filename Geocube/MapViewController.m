@@ -305,6 +305,8 @@ enum {
     labelMapSeeTarget.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth , imgheight);
 
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
+
+    [map recalculateRects];
 }
 
 - (void)initDistanceLabel
