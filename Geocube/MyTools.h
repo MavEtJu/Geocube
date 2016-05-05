@@ -35,7 +35,7 @@ enum {
 
 + (NSInteger)secondsSinceEpochWindows:(NSString *)datetime;
 + (NSInteger)secondsSinceEpoch:(NSString *)datetime;
-+ (NSString *)dateString:(NSInteger)seconds;
++ (NSString *)dateTimeString:(NSInteger)seconds;
 + (NSString *)timeString:(NSInteger)seconds;
 + (NSString *)datetimePartDate:(NSString *)datetime;
 + (NSString *)datetimePartTime:(NSString *)datetime;

@@ -157,7 +157,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     if ([pq objectForKey:@"DateTime"] != nil) {
         if ([detail isEqualToString:@""] == NO)
             [detail appendString:@" - "];
-        NSString *date = [MyTools dateString:[[pq objectForKey:@"DateTime"] integerValue]];
+        NSString *date = [MyTools dateTimeString:[[pq objectForKey:@"DateTime"] integerValue]];
         [detail appendString:date];
     }
 
@@ -167,7 +167,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
             qi.filesize == size) {
             if ([detail isEqualToString:@""] == NO)
                 [detail appendString:@" - "];
-            [detail appendFormat:@"Last import on %@", [MyTools dateString:qi.lastimport]];
+            [detail appendFormat:@"Last import on %@", [MyTools dateTimeString:qi.lastimport]];
             *stop = YES;
         }
     }];

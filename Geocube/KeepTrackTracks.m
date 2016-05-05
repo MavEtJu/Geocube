@@ -87,7 +87,7 @@ enum {
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
 
     cell.textLabel.text = t.name;
-    cell.detailTextLabel.text = [MyTools datetimePartDate:[MyTools dateString:t.dateStart]];
+    cell.detailTextLabel.text = [MyTools datetimePartDate:[MyTools dateTimeString:t.dateStart]];
     cell.userInteractionEnabled = YES;
 
     return cell;
@@ -148,7 +148,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Name of the new track";
-        textField.text = [MyTools dateString:time(NULL)];
+        textField.text = [MyTools dateTimeString:time(NULL)];
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -169,13 +169,13 @@ enum {
 
 + (void)trackAutoRotate
 {
-    NSString *newdate = [[MyTools dateString:time(NULL)] substringToIndex:10];
+    NSString *newdate = [[MyTools dateTimeString:time(NULL)] substringToIndex:10];
     dbTrack *track = [dbTrack dbGet:myConfig.currentTrack];
-    NSString *olddate = [[MyTools dateString:track.dateStart] substringToIndex:10];
+    NSString *olddate = [[MyTools dateTimeString:track.dateStart] substringToIndex:10];
 
     if ([newdate isEqualToString:olddate] == NO) {
         dbTrack *t = [[dbTrack alloc] init];
-        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateString:time(NULL)]];
+        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateTimeString:time(NULL)]];
         t.dateStart = time(NULL);
         t.dateStop = 0;
         [t dbCreate];

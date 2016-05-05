@@ -269,7 +269,7 @@ enum {
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);
-    wp.wpt_date_placed = [MyTools dateString:wp.wpt_date_placed_epoch];
+    wp.wpt_date_placed = [MyTools dateTimeString:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
     wp.wpt_urlname = wp.wpt_name;
     wp.wpt_symbol_id = 1;

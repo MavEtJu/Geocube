@@ -685,7 +685,7 @@ enum {
 
 - (void)addLog:(NSString *)text
 {
-    NSString *date = [MyTools dateString:time(NULL)];
+    NSString *date = [MyTools dateTimeString:time(NULL)];
     [dbLog CreateLogNote:@"Write note" waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
 }
 

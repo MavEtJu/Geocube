@@ -90,7 +90,7 @@ enum {
 
     labelDate = [[GCLabel alloc] initWithFrame:rectDate];
     labelDate.textAlignment = NSTextAlignmentCenter;
-    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
+    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateTimeString:track.dateStart]]];
     [self.view addSubview:labelDate];
 
     labelDistance = [[GCLabel alloc] initWithFrame:rectDistance];
@@ -156,7 +156,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateString:track.dateStart]]];
+    labelDate.text = [NSString stringWithFormat:@"%@", [MyTools datetimePartDate:[MyTools dateTimeString:track.dateStart]]];
 }
 
 - (void)ivHeightTapMethod
@@ -335,7 +335,7 @@ enum {
     [o appendString:@"<?xml version=\"1.1\" encoding=\"UTF-8\" ?>\n"];
     [o appendString:@"<gpx version=\"1.1\" creator=\"Geocube\">\n"];
     [o appendString:@"\t<metadata>\n"];
-    [o appendFormat:@"\t\t<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
+    [o appendFormat:@"\t\t<time>%@</time>\n", [MyTools dateTimeString:te.timestamp_epoch]];
     [o appendString:@"\t</metadata>\n"];
     [o appendString:@"\t<trk>\n"];
     [o appendFormat:@"\t\t<name>%@</name>\n", track.name];
@@ -351,7 +351,7 @@ enum {
         }
         [o appendFormat:@"\t\t\t<trkpt lat=\"%f\" lon=\"%f\">\n", te.lat, te.lon];
         [o appendFormat:@"\t\t\t\t<ele>%ld</ele>\n", (long)te.height];
-        [o appendFormat:@"\t\t\t\t<time>%@</time>\n", [MyTools dateString:te.timestamp_epoch]];
+        [o appendFormat:@"\t\t\t\t<time>%@</time>\n", [MyTools dateTimeString:te.timestamp_epoch]];
         [o appendString:@"\t\t\t</trkpt>\n"];
     }];
 

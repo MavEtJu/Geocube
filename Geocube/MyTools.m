@@ -124,7 +124,7 @@
     return [date timeIntervalSince1970];
 }
 
-+ (NSString *)dateString:(NSInteger)seconds
++ (NSString *)dateTimeString:(NSInteger)seconds
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
