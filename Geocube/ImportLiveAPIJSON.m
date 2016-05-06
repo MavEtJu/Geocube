@@ -428,7 +428,7 @@
     DICT_INTEGER_KEY(dict, gc_id, @"AttributeTypeID");
     dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
     BOOL yesNo;
-    DICT_BOOL_KEY(dict, yesNo, @"IsON");
+    DICT_BOOL_KEY(dict, yesNo, @"IsOn");
     [a dbLinkToWaypoint:wp._id YesNo:yesNo];
 }
 
