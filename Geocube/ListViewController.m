@@ -205,6 +205,7 @@ NEEDS_OVERLOADING(clearFlags)
             return;
         case menuExportGPX:
             [ExportGPX exports:waypoints];
+            [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
             return;
     }
 

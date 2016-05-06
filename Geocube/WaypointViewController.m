@@ -540,6 +540,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX export:waypoint];
+            [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
             return;
     }
 
