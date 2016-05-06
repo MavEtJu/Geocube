@@ -363,7 +363,7 @@ enum {
     filename = [filename stringByReplacingOccurrencesOfString:@":" withString:@"_"];
     filename = [filename stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     filename = [filename stringByReplacingOccurrencesOfString:@"\\" withString:@"_"];
-    NSString *fullname = [NSString stringWithFormat:@"%@/export-%@.gpx", [MyTools FilesDir], filename];
+    NSString *fullname = [NSString stringWithFormat:@"%@/Track - %@.gpx", [MyTools FilesDir], filename];
     NSError *error = nil;
     [o writeToFile:fullname atomically:NO encoding:NSUTF8StringEncoding error:&error];
     NSLog(@"Track written to %@, error %@", fullname, error);
