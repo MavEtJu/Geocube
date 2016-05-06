@@ -181,7 +181,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, label, icon, gc_id from attributes where id in (select attribute_id from attribute2waypoints where waypoint_id = ?)");
+        DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");
 
         SET_VAR_INT( 1, wp_id);
 
@@ -191,6 +191,7 @@
             TEXT_FETCH(1, a.label);
             INT_FETCH (2, a.icon);
             INT_FETCH (3, a.gc_id);
+            INT_FETCH (4, a._YesNo);
             [ss addObject:a];
         }
         DB_FINISH;
