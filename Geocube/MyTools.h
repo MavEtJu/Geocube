@@ -62,6 +62,7 @@ enum {
 + (NSString *)urlDecode:(NSString *)in;
 + (NSString *)tickEscape:(NSString *)in;
 + (NSString *)JSONEscape:(NSString *)in;
++ (NSString *)HTMLEscape:(NSString *)in;
 
 + (BOOL)checkCoordinate:(NSString *)text;
 
