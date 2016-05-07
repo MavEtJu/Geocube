@@ -126,52 +126,73 @@
     LINE_S(@"time", wp.wpt_date_placed);
     LINE_S(@"name", wp.wpt_name);
     LINE_S(@"desc", wp.wpt_description);
-    LINE_S(@"url", wp.wpt_url);
+    if (wp.wpt_url == nil || [wp.wpt_url isEqualToString:@""] == YES)
+        [lines addObject:@"<url />"];
+    else
+        LINE_S(@"url", wp.wpt_url);
     LINE_S(@"urlname", wp.wpt_urlname);
     LINE_S(@"sym", wp.wpt_symbol_str);
     LINE_S(@"type", wp.wpt_type_str);
-    [lines addObject:[NSString stringWithFormat:@"<groundspeak:cache id=\"%@\" archived=\"%@\" available=\"%@\" xmlns:groundspeak=\"http://www.groundspeak.com/cache/1/0/1\">", [NSNumber numberWithLongLong:wp._id], wp.gs_archived == YES ? @"true" : @"false", wp.gs_available == YES ? @"true" : @"false"]];
-    LINE_S(@"groundspeak:name", wp.wpt_urlname);
-    LINE_S(@"groundspeak:placed_by", wp.gs_placed_by);
-    LINE_S(@"groundspeak:owner", wp.gs_owner_str);
-    LINE_S(@"groundspeak:type", @"XXXX");
 
+    if (wp.gs_rating_difficulty != 0 && wp.gs_rating_terrain != 0) {
+        [lines addObject:[NSString stringWithFormat:@"<groundspeak:cache id=\"%@\" archived=\"%@\" available=\"%@\" xmlns:groundspeak=\"http://www.groundspeak.com/cache/1/0/1\">", [NSNumber numberWithLongLong:wp._id], wp.gs_archived == YES ? @"true" : @"false", wp.gs_available == YES ? @"true" : @"false"]];
+        LINE_S(@"groundspeak:name", wp.wpt_urlname);
+        LINE_S(@"groundspeak:placed_by", wp.gs_placed_by);
+        LINE_S(@"groundspeak:owner", wp.gs_owner_str);
+        LINE_S(@"groundspeak:type", wp.wpt_type.type_minor);
 
-    NSArray *as = [dbAttribute dbAllByWaypoint:wp._id];
-    if ([as count] == 0) {
-        [lines addObject:@"<groundspeak:attributes />"];
-    } else {
-        [lines addObject:@"<groundspeak:attributes>"];
-        [as enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
-            NSString *l = [NSString stringWithFormat:@"<groundspeak:attribute id=\"%ld\" inc=\"%d\">%@</groundspeak:attribute>", (long)a.gc_id, a._YesNo == YES ? 1 : 0, a.label];
-            [lines addObject:l];
-        }];
-        [lines addObject:@"</groundspeak:attributes>"];
+        NSArray *as = [dbAttribute dbAllByWaypoint:wp._id];
+        if ([as count] == 0) {
+            [lines addObject:@"<groundspeak:attributes />"];
+        } else {
+            [lines addObject:@"<groundspeak:attributes>"];
+            [as enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
+                NSString *l = [NSString stringWithFormat:@"<groundspeak:attribute id=\"%ld\" inc=\"%d\">%@</groundspeak:attribute>", (long)a.gc_id, a._YesNo == YES ? 1 : 0, a.label];
+                [lines addObject:l];
+            }];
+            [lines addObject:@"</groundspeak:attributes>"];
+        }
+
+        LINE_F(@"groundspeak:difficulty", 1, wp.gs_rating_difficulty);
+        LINE_F(@"groundspeak:terrain", 1, wp.gs_rating_terrain);
+        LINE_S(@"groundspeak:country", wp.gs_country_str);
+        LINE_S(@"groundspeak:state", wp.gs_state_str);
+
+        [l appendString:@"<groundspeak:short_description html=\""];
+        [l appendString:(wp.gs_short_desc_html == YES ? @"true" : @"false")];
+        [l appendString:@"\">"];
+        [l appendString:[MyTools HTMLEscape:wp.gs_short_desc]];
+        [l appendString:@"</groundspeak:short_description>"];
+        [lines addObject:l];
+
+        [l appendString:@"<groundspeak:long_description html=\""];
+        [l appendString:(wp.gs_long_desc_html == YES ? @"true" : @"false")];
+        [l appendString:@"\">"];
+        [l appendString:[MyTools HTMLEscape:wp.gs_long_desc]];
+        [l appendString:@"</groundspeak:long_description>"];
+        [lines addObject:l];
+
+        LINE_S(@"groundspeak:encoded_hints", wp.gs_hint);
+
+        NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
+        if ([logs count] == 0) {
+            [lines addObject:@"<groundspeak:logs />"];
+        } else {
+            [lines addObject:@"<groundspeak:logs>"];
+            [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
+                [lines addObject:[NSString stringWithFormat:@"<groundspeak:log id=\"%ld\">", (long)log._id]];
+                LINE_S(@"groundspeak:date", [MyTools dateTimeString:log.datetime_epoch]);
+                LINE_S(@"groundspeak:type", log.logtype_string);
+                LINE_S(@"groundspeak:finder", log.logger_str);
+                LINE_S(@"groundspeak:text", [MyTools HTMLEscape:log.log]);
+                [lines addObject:@"</groundspeak:log>"];
+            }];
+            [lines addObject:@"</groundspeak:logs>"];
+        }
+
+        [lines addObject:@"<groundspeak:travelbugs />"];
+        [lines addObject:@"</groundspeak:cache>"];
     }
-
-    LINE_F(@"groundspeak:difficulty", 1, wp.gs_rating_difficulty);
-    LINE_F(@"groundspeak:terrain", 1, wp.gs_rating_terrain);
-    LINE_S(@"groundspeak:country", wp.gs_country_str);
-    LINE_S(@"groundspeak:state", wp.gs_state_str);
-
-    [l appendString:@"<groundspeak:short_description html=\""];
-    [l appendString:(wp.gs_short_desc_html == YES ? @"true" : @"false")];
-    [l appendString:@"\">"];
-    [l appendString:[MyTools HTMLEscape:wp.gs_short_desc]];
-    [l appendString:@"</groundspeak:short_description>"];
-    [lines addObject:l];
-
-    [l appendString:@"<groundspeak:long_description html=\""];
-    [l appendString:(wp.gs_long_desc_html == YES ? @"true" : @"false")];
-    [l appendString:@"\">"];
-    [l appendString:[MyTools HTMLEscape:wp.gs_long_desc]];
-    [l appendString:@"</groundspeak:long_description>"];
-    [lines addObject:l];
-
-    LINE_S(@"groundspeak:encoded_hints", wp.gs_hint);
-    [lines addObject:@"<groundspeak:logs />"];
-    [lines addObject:@"<groundspeak:travelbugs />"];
-    [lines addObject:@"</groundspeak:cache>"];
     [lines addObject:@"</wpt>"];
 }
 
