@@ -176,6 +176,8 @@
     if (wp.wpt_symbol_str == nil)
         wp.wpt_symbol_str = @"Geocache";
 
+    wp.wpt_url = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@", wpname];
+
     [wp finish];
 
     if (old == 0) {
