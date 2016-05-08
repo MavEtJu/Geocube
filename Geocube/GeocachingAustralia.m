@@ -387,7 +387,7 @@
     }];
     [ps setValue:note forKey:@"text"];
 
-    [ps setValue:[NSString stringWithFormat:@"%ld", rating] forKey:@"Overall Experience"];
+    [ps setValue:[NSString stringWithFormat:@"%ld", (long)rating] forKey:@"Overall Experience"];
 
     [ps setValue:[dateLogged substringWithRange:NSMakeRange(0, 4)] forKey:@"gca_date_selector_year"];
     [ps setValue:[dateLogged substringWithRange:NSMakeRange(5, 2)] forKey:@"gca_date_selector_month"];

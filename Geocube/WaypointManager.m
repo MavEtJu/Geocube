@@ -79,7 +79,7 @@
 
         [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
             // Doing this via the main queue because Google Map Service insists on it.
-            NSLog(@"%@: refreshing #%ld: %@", [self class], idx, [delegate class]);
+            NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [delegate refreshWaypoints];
             }];

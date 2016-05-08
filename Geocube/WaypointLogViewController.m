@@ -183,7 +183,7 @@ enum {
                         cell.keyLabel.textColor = [UIColor lightGrayColor];
                     } else {
                         NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
-                        cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", ratingSelected, r.length];
+                        cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
                     }
                     break;
                 }
@@ -391,7 +391,7 @@ enum {
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:5];
     NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
     for (NSInteger i = r.location; i <= r.length; i++) {
-        [as addObject:[NSString stringWithFormat:@"%ld out of %ld", i, r.length]];
+        [as addObject:[NSString stringWithFormat:@"%ld out of %lu", (long)i, (unsigned long)r.length]];
     }
 
     [ActionSheetStringPicker
