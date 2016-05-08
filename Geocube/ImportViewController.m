@@ -91,9 +91,6 @@
         prevtotalWaypointsValue[i] = 0;
     }
 
-    lmi = nil;
-    hasCloseButton = YES;
-
     return self;
 }
 
@@ -111,12 +108,17 @@
 
 - (void)viewDidLoad
 {
+    lmi = nil;
+    hasCloseButton = YES;
+
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
+
+    [self prepareCloseButton:contentView];
 
     [self addOrResizeFields];
 }

@@ -51,11 +51,14 @@
 {
     [super viewDidLoad];
     [self changeTheme];
+}
 
+- (void)prepareCloseButton:(UIView *)view
+{
     if (hasCloseButton == YES) {
         UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
         swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
-        [self.view addGestureRecognizer:swipeToRight];
+        [view addGestureRecognizer:swipeToRight];
     }
 }
 

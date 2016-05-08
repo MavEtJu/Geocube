@@ -52,11 +52,7 @@
     [webview sizeToFit];
     self.view = webview;
 
-    // Swipe to close
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
-    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [webview addGestureRecognizer:swipeRight];
-    [webview.scrollView.panGestureRecognizer requireGestureRecognizerToFail:swipeRight];
+    [self prepareCloseButton:webview];
 }
 
 - (NSString *)makeHTMLString

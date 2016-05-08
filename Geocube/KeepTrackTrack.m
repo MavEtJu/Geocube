@@ -114,6 +114,8 @@ enum {
     labelDistance.text = [NSString stringWithFormat:@"Total distance: %@", [MyTools niceDistance:distance]];
 
     [self viewWilltransitionToSize];
+
+    [self prepareCloseButton:contentView];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

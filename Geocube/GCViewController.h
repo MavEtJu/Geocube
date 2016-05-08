@@ -31,5 +31,6 @@
 - (void)refreshMenu;
 - (void)changeTheme;
 - (void)closePage:(NSObject *)b;
+- (void)prepareCloseButton:(UIView *)view;
 
 @end
