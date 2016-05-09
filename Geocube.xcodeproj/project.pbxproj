@@ -233,6 +233,7 @@
 		E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611AA21B8B25C500B9D7C3 /* compass - red on blue compass - compass.png */; };
 		E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
+		E869D7561CE0A0F700FFA0F9 /* log - announcement - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E869D7551CE0A0F700FFA0F9 /* log - announcement - 30x30.png */; };
 		E86A42531C3E673A0022396B /* log - moved - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E86A42521C3E673A0022396B /* log - moved - 30x30.png */; };
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
@@ -738,6 +739,7 @@
 		E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackHeightScroller.m; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
+		E869D7551CE0A0F700FFA0F9 /* log - announcement - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - announcement - 30x30.png"; path = "images/log - announcement - 30x30.png"; sourceTree = "<group>"; };
 		E86A42521C3E673A0022396B /* log - moved - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - moved - 30x30.png"; path = "images/log - moved - 30x30.png"; sourceTree = "<group>"; };
 		E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLibrary.h; sourceTree = "<group>"; };
 		E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibrary.m; sourceTree = "<group>"; };
@@ -1577,6 +1579,7 @@
 		E8740FA31B4E86BB002527DA /* logs */ = {
 			isa = PBXGroup;
 			children = (
+				E869D7551CE0A0F700FFA0F9 /* log - announcement - 30x30.png */,
 				E86A42521C3E673A0022396B /* log - moved - 30x30.png */,
 				E807322C1B5F84E8007FDC29 /* log - archived - 30x30.png */,
 				E807322D1B5F84E8007FDC29 /* log - attended - 30x30.png */,
@@ -2398,6 +2401,7 @@
 				E80731F31B5F84B4007FDC29 /* attributes - 11.png in Resources */,
 				E8611A9D1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png in Resources */,
 				E80732751B5F852A007FDC29 /* waypoint - finish - 30x30.png in Resources */,
+				E869D7561CE0A0F700FFA0F9 /* log - announcement - 30x30.png in Resources */,
 				E807324B1B5F84E8007FDC29 /* log - willattend - 30x30.png in Resources */,
 				E80732241B5F84B4007FDC29 /* attributes - 61.png in Resources */,
 				E80732B11B5F8593007FDC29 /* icons - sad - 30x30.png in Resources */,
