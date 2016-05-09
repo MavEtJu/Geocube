@@ -281,6 +281,7 @@
 
         // Deal with the completion of the log
         if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
+            [currentLog finish];
             [logs addObject:currentLog];
 
             inLog = NO;
