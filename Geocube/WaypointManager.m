@@ -53,6 +53,7 @@
     [LM startDelegation:self isNavigating:NO];
 
     delegates = [NSMutableArray arrayWithCapacity:5];
+    [self needsRefresh];
 
     return self;
 }
