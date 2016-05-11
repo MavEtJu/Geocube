@@ -115,6 +115,7 @@
         KEY(notice, note, @"note");
         KEY(notice, sender, @"sender");
         KEY(notice, date, @"date");
+        KEY(notice, url, @"url");
 
         dbNotice *n = [dbNotice dbGetByGCId:[geocube_id integerValue]];
         if (n == nil) {
@@ -124,11 +125,13 @@
             n.sender = sender;
             n.date = date;
             n.note = note;
+            n.url = url;
             [n dbCreate];
         } else {
             n.sender = sender;
             n.date = date;
             n.note = note;
+            n.url = url;
             [n dbUpdate];
         }
     }];

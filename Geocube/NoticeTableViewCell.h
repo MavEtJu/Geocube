@@ -28,5 +28,6 @@
 @property (nonatomic) BOOL seen;
 
 - (void)setNote:(NSString *)noteString;
+- (void)setURL:(NSString *)urlString;
 
 @end

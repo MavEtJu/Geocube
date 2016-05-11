@@ -26,6 +26,7 @@
     NSString *note;
     NSString *sender;
     NSString *date;
+    NSString *url;
     NSInteger geocube_id;
     BOOL seen;
 
@@ -37,18 +38,19 @@
 
 @implementation dbNotice
 
-@synthesize note, sender, seen, date, cellHeight, geocube_id;
+@synthesize note, sender, seen, date, url, cellHeight, geocube_id;
 
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into notices(note, sender, date, seen, geocube_id) values(?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into notices(note, sender, date, seen, geocube_id, url) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, note);
         SET_VAR_TEXT(2, sender);
         SET_VAR_TEXT(3, date);
         SET_VAR_BOOL(4, seen);
         SET_VAR_INT (5, geocube_id);
+        SET_VAR_TEXT(6, url);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id)
@@ -62,7 +64,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices order by seen, date desc, id");
+        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices order by seen, date desc, id");
 
         DB_WHILE_STEP {
             dbNotice *n = [[dbNotice alloc] init];
@@ -72,6 +74,7 @@
             TEXT_FETCH(3, n.date);
             BOOL_FETCH(4, n.seen);
             INT_FETCH (5, n.geocube_id);
+            TEXT_FETCH(6, n.url);
             [n finish];
             [ss addObject:n];
         }
@@ -86,7 +89,7 @@
     dbNotice *n = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id from notices where geocube_id = ? order by seen, geocube_id desc");
+        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices where geocube_id = ? order by seen, geocube_id desc");
 
         SET_VAR_INT(1, geocube_id);
 
@@ -98,6 +101,7 @@
             TEXT_FETCH(3, n.date);
             BOOL_FETCH(4, n.seen);
             INT_FETCH (5, n.geocube_id);
+            TEXT_FETCH(6, n.url);
             [n finish];
         }
         DB_FINISH;
@@ -108,13 +112,14 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ? where id = ?");
+        DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ?, url = ? where id = ?");
 
         SET_VAR_BOOL(1, self.seen);
         SET_VAR_TEXT(2, self.date);
         SET_VAR_TEXT(3, self.sender);
         SET_VAR_TEXT(4, self.note);
         SET_VAR_INT (5, self._id);
+        SET_VAR_TEXT(6, self.url);
 
         DB_CHECK_OKAY;
         DB_FINISH;

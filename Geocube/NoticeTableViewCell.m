@@ -110,6 +110,15 @@
     [noteLabel sizeToFit];
 }
 
+- (void)setURL:(NSString *)urlString
+{
+    noteLabel.frame = rectNote;
+    NSMutableString *s = [NSMutableString stringWithString:noteLabel.text];
+    [s appendFormat:@"\n\n--> Press to open link <--"];
+    noteLabel.text = s;
+    [noteLabel sizeToFit];
+}
+
 - (void)changeTheme
 {
     [senderLabel changeTheme];

@@ -121,6 +121,8 @@ enum {
     cell.seen = n.seen;
 
     [cell setNote:n.note];
+    if (n.url != nil && [n.url isEqualToString:@""] == NO)
+        [cell setURL:n.url];
     [cell.noteLabel bold:(n.seen == NO)];
 
     cell.userInteractionEnabled = YES;
@@ -144,11 +146,17 @@ enum {
     dbNotice *n = [notices objectAtIndex:indexPath.row];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (n.seen == YES)
-        return;
-    n.seen = YES;
-    [n dbUpdate];
-    [self.tableView reloadData];
+    if (n.seen == NO) {
+        n.seen = YES;
+        [n dbUpdate];
+        [self.tableView reloadData];
+    }
+
+    if (n.url != nil && [n.url isEqualToString:@""] == NO) {
+        [_AppDelegate switchController:RC_BROWSER];
+        [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [bbvc loadURL:n.url];
+    }
 }
 
 #pragma mark - Local menu related functions
@@ -211,6 +219,7 @@ enum {
     n.date = @"2015-08-01";
     n.geocube_id = 0;
     n.note = @"Welcome! It seems this is the first time you run Geocube.\n\nTo initialize the initial notices, please tap on the local menu button on the top right and select 'Download notices information'.\n\nOnce this has been loaded, you will have more notices which will help you configure everything.\n\nIf you tap on this note, the text will from bold to normal, indicating you have seen it.";
+    n.url = @"https://geocube.mavetju.org/";
     [n dbCreate];
 }
 

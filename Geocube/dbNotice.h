@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString *note;
 @property (nonatomic, retain) NSString *sender;
 @property (nonatomic, retain) NSString *date;
+@property (nonatomic, retain) NSString *url;
 @property (nonatomic) BOOL seen;
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger cellHeight;

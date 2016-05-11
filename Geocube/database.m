@@ -332,6 +332,13 @@
     @"insert into config(key, value) values('url_bookmarks', 'https://geocube.mavetju.org/geocube_bookmarks.geocube')",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 21
+    a = @[
+    @"alter table notices add column url string",
+    @"update notices set url = ''",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 @end

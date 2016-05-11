@@ -18,7 +18,7 @@ insert into config(key, value) values("url_logtypes", "https://geocube.mavetju.o
 insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
-insert into config(key, value) values("version", "20");
+insert into config(key, value) values("version", "21");
 
 create table filters (
     id integer primary key,
@@ -293,6 +293,7 @@ create table notices (
     note text,
     sender text,
     date text,
+    url text,
     seen bool
 );
 create index notices_idx_id on notices(id);
