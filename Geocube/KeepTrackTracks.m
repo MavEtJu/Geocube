@@ -105,6 +105,17 @@ enum {
     [self.navigationController pushViewController:newController animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [dbTrackElement dbDeleteByTrack:t._id];
+        [t dbDelete];
+        tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - Local menu related functions
 
 - (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
