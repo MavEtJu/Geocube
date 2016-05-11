@@ -111,6 +111,22 @@ enum {
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    return cg.deletable;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete && cg.deletable == YES) {
+        [self groupDelete:cg];
+        [self refreshGroupData];
+        [self.tableView reloadData];
+    }
+}
+
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (showUsers == NO) {
