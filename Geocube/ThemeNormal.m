@@ -33,7 +33,7 @@
 
     labelTextColor = [UIColor darkTextColor];
     labelTextColorDisabled = [UIColor lightGrayColor];
-    labelBackgroundColor = [UIColor whiteColor];
+    labelBackgroundColor = [UIColor clearColor];
 
     backgroundColor = [UIColor whiteColor];
     textColor = [UIColor darkTextColor];
