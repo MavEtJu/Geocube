@@ -90,6 +90,11 @@ enum {
     return self;
 }
 
+- (void)viewDidLoad
+{
+    hasCloseButton = YES;
+    [super viewDidLoad];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
