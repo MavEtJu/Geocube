@@ -240,6 +240,20 @@
     return _ct;
 }
 
+- (dbType *)Type_get_byminor:(NSString *)minor
+{
+    __block dbType *_ct = nil;
+    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+        if ([ct.type_minor isEqualToString:minor] == YES) {
+            _ct = ct;
+            *stop = YES;
+        }
+    }];
+    if (_ct == nil)
+        return Type_Unknown;
+    return _ct;
+}
+
 - (dbType *)Type_get:(NSId)_id
 {
     __block dbType *_ct = nil;
