@@ -359,7 +359,11 @@
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
                     NSArray *as = [cleanText componentsSeparatedByString:@"|"];
-                    [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
+                    if ([as count] == 2) {
+                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
+                    } else {
+                        [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
+                    }
                     [currentWP setWpt_type_id:currentWP.wpt_type._id];
                     goto bye;
                 }
