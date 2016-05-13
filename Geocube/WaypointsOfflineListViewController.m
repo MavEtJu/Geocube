@@ -226,6 +226,7 @@ enum {
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
     cell.distance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+    cell.labelSize.text = wp.wpt_type.type_minor;
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (wp.gs_state != nil)
@@ -236,8 +237,6 @@ enum {
         [s appendFormat:@"%@", wp.gs_country.code];
     }
     cell.stateCountry.text = s;
-
-    //[cell showGroundspeak:(gs != nil)]; Not yet sure
 
     [cell viewWillTransitionToSize];
 
