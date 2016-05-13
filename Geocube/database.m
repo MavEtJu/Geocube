@@ -339,6 +339,13 @@
     @"update notices set url = ''",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 22
+    a = @[
+    @"insert into config(key, value) values('url_containers', 'https://geocube.mavetju.org/geocube_containers.geocube')",
+    @"alter table containers add column gc_id integer"
+    ];
+    [upgradeSteps addObject:a];
 }
 
 @end

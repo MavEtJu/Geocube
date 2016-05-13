@@ -18,7 +18,8 @@ insert into config(key, value) values("url_logtypes", "https://geocube.mavetju.o
 insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
-insert into config(key, value) values("version", "21");
+insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
+insert into config(key, value) values("version", "22");
 
 create table filters (
     id integer primary key,
@@ -184,13 +185,6 @@ create table containers (
     size text,
     icon integer
 );
-insert into containers(size, icon) values("Large", 450);
-insert into containers(size, icon) values("Micro", 451);
-insert into containers(size, icon) values("Not chosen", 452);
-insert into containers(size, icon) values("Other", 453);
-insert into containers(size, icon) values("Regular", 454);
-insert into containers(size, icon) values("Small", 455);
-insert into containers(size, icon) values("Virtual", 456);
 
 create table attribute2waypoints (
     id integer primary key,

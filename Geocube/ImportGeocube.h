@@ -33,6 +33,7 @@
 #define KEY_REVISION_TYPES          @"types_revision"
 #define KEY_REVISION_PINS           @"pins_revision"
 #define KEY_REVISION_BOOKMARKS      @"bookmarks_revision"
+#define KEY_REVISION_CONTAINERS     @"containers_revision"
 
 + (BOOL)parse:(NSData *)data;
 

@@ -288,6 +288,7 @@ enum {
     [self downloadFile:@"url_types" header:@"types" revision:@"types_revision"];
     [self downloadFile:@"url_pins" header:@"pins" revision:@"pins_revision"];
     [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:@"bookmarks_revision"];
+    [self downloadFile:@"url_containers" header:@"containers" revision:@"containers_revision"];
 
     [dbc AccountsReload];
     [self refreshAccountData];

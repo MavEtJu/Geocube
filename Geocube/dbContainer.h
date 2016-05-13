@@ -23,8 +23,11 @@
 
 @property (nonatomic, retain) NSString *size;
 @property (nonatomic) NSInteger icon;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic) BOOL selected;
 
-- (instancetype)init:(NSId)_id size:(NSString *)size icon:(NSInteger)icon;
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id size:(NSString *)size icon:(NSInteger)icon;
++ (dbContainer *)dbGetByGCID:(NSInteger)gc_id;
++ (NSId)dbCreate:(dbContainer *)c;
 
 @end

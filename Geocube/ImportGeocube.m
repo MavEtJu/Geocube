@@ -70,6 +70,8 @@
         okay |= [self parsePins:d];
     if ((d = [xmlDictionary objectForKey:@"bookmarks"]) != nil)
         okay |= [self parseBookmarks:d];
+    if ((d = [xmlDictionary objectForKey:@"containers"]) != nil)
+        okay |= [self parseContainers:d];
 
     return okay;
 }
@@ -488,6 +490,36 @@
             bm.url = url;
             bm.import_id = import_id;
             [dbBookmark dbCreate:bm];
+        }
+    }];
+
+    return YES;
+}
+
+- (BOOL)parseContainers:(NSDictionary *)dict
+{
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_CONTAINERS] == NO)
+        return NO;
+
+    NSArray *containers = [dict objectForKey:@"container"];
+    [containers enumerateObjectsUsingBlock:^(NSDictionary *container, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *label = [container objectForKey:@"label"];
+        NSInteger gc_id = [[container objectForKey:@"gc_id"] integerValue];
+        NSInteger icon = [[container objectForKey:@"icon"] integerValue];
+
+        dbContainer *c = [dbContainer dbGetByGCID:gc_id];
+        if (c != nil) {
+            c.size = label;
+            c.gc_id = gc_id;
+            c.icon = icon;
+            [c finish];
+            [c dbUpdate];
+        } else {
+            c = [[dbContainer alloc] init];
+            c.size = label;
+            c.gc_id = gc_id;
+            c.icon = icon;
+            [dbContainer dbCreate:c];
         }
     }];
 
