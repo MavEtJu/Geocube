@@ -99,9 +99,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into bookmarks(name, url, import_id) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1 ,bm.name);
-        SET_VAR_TEXT(2 ,bm.url);
-        SET_VAR_INT (3 ,bm.import_id);
+        SET_VAR_TEXT(1, bm.name);
+        SET_VAR_TEXT(2, bm.url);
+        SET_VAR_INT (3, bm.import_id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
