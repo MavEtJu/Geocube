@@ -411,7 +411,7 @@
         NSInteger icon = [[type objectForKey:@"icon"] integerValue];
         NSInteger pin = [[type objectForKey:@"pin"] integerValue];
 
-        dbType *t = [dbc Type_get_byname:major minor:minor];
+        dbType *t = [dbType dbGetByMajor:major minor:minor];
         if (t != nil) {
             t.type_major = major;
             t.type_minor = minor;

@@ -107,6 +107,30 @@
     }
 }
 
++ (dbType *)dbGetByMajor:(NSString *)major minor:(NSString *)minor
+{
+    dbType *t = nil;
+
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id from types where type_minor = ? and type_major = ?");
+
+        SET_VAR_TEXT(1, minor);
+        SET_VAR_TEXT(2, major);
+
+        DB_IF_STEP {
+            t = [[dbType alloc] init];;
+            INT_FETCH (0, t._id);
+            TEXT_FETCH(1, t.type_major);
+            TEXT_FETCH(2, t.type_minor);
+            INT_FETCH (3, t.icon);
+            INT_FETCH (4, t.pin_id);
+            [t finish];
+        }
+        DB_FINISH;
+    }
+    return t;
+}
+
 + (NSInteger)dbCount
 {
     return [dbType dbCount:@"types"];

@@ -29,4 +29,6 @@
 @property (nonatomic) dbPin *pin;
 @property (nonatomic) BOOL selected;
 
++ (dbType *)dbGetByMajor:(NSString *)major minor:(NSString *)minor;
+
 @end
