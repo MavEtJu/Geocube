@@ -201,14 +201,4 @@
     return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT;
 }
 
-- (void)showGroundspeak:(BOOL)yesno
-{
-    labelRatingD.hidden = !yesno;
-    labelRatingT.hidden = !yesno;
-    for (NSInteger i = 0; i < 5; i++) {
-        ratingD[i].hidden = !yesno;
-        ratingT[i].hidden = !yesno;
-    }
-}
-
 @end

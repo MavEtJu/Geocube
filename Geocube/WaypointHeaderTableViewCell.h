@@ -31,6 +31,5 @@
 + (NSInteger)cellHeight;
 - (NSInteger)cellHeight;
 - (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
-- (void)showGroundspeak:(BOOL)yesno;
 
 @end
