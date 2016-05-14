@@ -226,7 +226,15 @@ enum {
     cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     cell.compass.text = [Coordinates bearing2compass:bearing];
     cell.distance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+
     cell.labelSize.text = wp.wpt_type.type_minor;
+    if (wp.gs_container.icon == 0) {
+        cell.labelSize.hidden = NO;
+        cell.imageSize.hidden = YES;
+    } else {
+        cell.labelSize.hidden = YES;
+        cell.imageSize.hidden = NO;
+    }
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (wp.gs_state != nil)

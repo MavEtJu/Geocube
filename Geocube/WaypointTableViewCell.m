@@ -25,7 +25,7 @@
 {
     GCLabel *description;
     GCLabel *name;
-    UIImageView *size;
+    UIImageView *imageSize;
     GCLabel *ratingDLabel, *ratingTLabel;
     UIImageView *ratingDIV, *ratingTIV;
     GCLabel *favouritesLabel;
@@ -35,6 +35,7 @@
     GCLabel *bearing;
     GCLabel *compass;
     GCLabel *distance;
+    GCLabel *labelSize;
 
     dbWaypoint *waypoint;
 
@@ -44,6 +45,7 @@
     CGRect rectFavouritesLabel;
     CGRect rectFavouritesIV;
     CGRect rectSize;
+    CGRect rectSizeLabel;
     CGRect rectRatingDIV;
     CGRect rectRatingTIV;
     CGRect rectRatingDLabel;
@@ -58,7 +60,7 @@
 
 @implementation WaypointTableViewCell
 
-@synthesize description, name, icon, stateCountry, bearing, compass, distance;
+@synthesize description, name, icon, stateCountry, bearing, compass, distance, labelSize, imageSize;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -149,9 +151,13 @@
     [self.contentView addSubview:ratingTIV];
 
     // Size
-    size = [[UIImageView alloc] initWithFrame:rectSize];
-    size.image = imgSize;
-    [self.contentView addSubview:size];
+    imageSize = [[UIImageView alloc] initWithFrame:rectSize];
+    imageSize.image = imgSize;
+    [self.contentView addSubview:imageSize];
+    labelSize = [[GCLabel alloc] initWithFrame:rectSizeLabel];
+    labelSize.text = @"";
+    labelSize.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:labelSize];
 
     [self changeTheme];
 
@@ -191,6 +197,7 @@
     rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
     rectFavouritesIV = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
     rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH / 2, STAR_HEIGHT / 2);
+    rectSizeLabel = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH, STAR_HEIGHT / 2);
     rectRatingDIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     rectRatingTIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     rectBearing = CGRectMake(BORDER, height - BORDER - 2 * BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
@@ -216,7 +223,8 @@
     name.frame = rectName;
     favouritesIV.frame = rectFavouritesIV;
     favouritesLabel.frame = rectFavouritesLabel;
-    size.frame = rectSize;
+    imageSize.frame = rectSize;
+    labelSize.frame = rectSizeLabel;
     ratingDIV.frame = rectRatingDIV;
     ratingTIV.frame = rectRatingTIV;
     bearing.frame = rectBearing;
@@ -238,6 +246,7 @@
     [compass changeTheme];
     [ratingDLabel changeTheme];
     [ratingTLabel changeTheme];
+    [labelSize changeTheme];
 
     [super changeTheme];
 }
@@ -255,7 +264,7 @@
         favouritesIV.hidden = TRUE;;
     }
 
-    size.image = [imageLibrary get:sz];
+    imageSize.image = [imageLibrary get:sz];
 }
 
 + (NSInteger)cellHeight
@@ -266,14 +275,6 @@
 - (NSInteger)cellHeight
 {
     return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
-}
-
-- (void)showGroundspeak:(BOOL)yesno
-{
-    ratingDIV.hidden = !yesno;
-    ratingTIV.hidden = !yesno;
-    ratingDLabel.hidden = !yesno;
-    ratingTLabel.hidden = !yesno;
 }
 
 @end
