@@ -36,6 +36,7 @@
 - (void)checkVersion;
 //- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 - (NSInteger)getDatabaseSize;
+- (void)singleStatement:(NSString *)sql;
 
 @end
 

@@ -72,6 +72,8 @@
         okay |= [self parseBookmarks:d];
     if ((d = [xmlDictionary objectForKey:@"containers"]) != nil)
         okay |= [self parseContainers:d];
+    if ((d = [xmlDictionary objectForKey:@"sqls"]) != nil)
+        okay |= [self parseSQL:d];
 
     return okay;
 }
@@ -522,6 +524,23 @@
             [dbContainer dbCreate:c];
         }
     }];
+
+    return YES;
+}
+
+- (BOOL)parseSQL:(NSDictionary *)dict
+{
+    NSObject *sqls = [dict objectForKey:@"sql"];
+    if ([sqls isKindOfClass:[NSDictionary class]] == YES) {
+        NSString *sql = [[(NSDictionary *)sqls objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [db singleStatement:sql];
+    }
+    if ([sqls isKindOfClass:[NSArray class]] == YES) {
+        [(NSArray *)sqls enumerateObjectsUsingBlock:^(NSDictionary *sqldict, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *sql = [[sqldict objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            [db singleStatement:sql];
+        }];
+    }
 
     return YES;
 }

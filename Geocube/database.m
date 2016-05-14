@@ -348,4 +348,22 @@
     [upgradeSteps addObject:a];
 }
 
+- (void)singleStatement:(NSString *)sql
+{
+    @synchronized(self.dbaccess) {
+        sqlite3_stmt *req;
+
+        DB_PREPARE(@"begin");
+        DB_CHECK_OKAY;
+        DB_PREPARE(sql);
+        if (sqlite3_step(req) != SQLITE_DONE) {
+            NSLog(@"Failure of '%@'", sql);
+            DB_ASSERT_STEP;
+        }
+        DB_PREPARE(@"commit");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end
