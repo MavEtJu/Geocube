@@ -200,13 +200,15 @@
     return i;
 }
 
-- (void)dbUpdateName
+- (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update names set name = ? where id = ?");
+        DB_PREPARE(@"update names set name = ?, code = ?, account_id = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
-        SET_VAR_INT (2, self._id);
+        SET_VAR_TEXT(2, self.code);
+        SET_VAR_INT (3, self.account_id);
+        SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -215,23 +217,40 @@
 
 + (void)makeNameExist:(NSString *)_name code:(NSString *)_code account:(dbAccount *)account
 {
+    /*
+     * First check if the code exists.
+     * - If so, get the dbName and update the name if needed.
+     * If the code doesn't exist, check if the name exist.
+     * - If so, update the code.
+     * - If not, create the name with the code.
+     */
+
+    if ([_name isEqualToString:@"Team MavEtJu"] == YES)
+        NSLog(@"foo");
+
     dbName *name;
     if (_code != nil && [_code isEqualToString:@""] == NO) {
         name = [dbName dbGetByCode:_code account:account];
-        if (name == nil) {
-            [dbName dbCreate:_name code:_code account:account];
+        if (name != nil) {
+            if ([name.name isEqualToString:_name] == YES)
+                return;
+            name.name = _name;
+            [name dbUpdate];
             return;
         }
-        if ([name.name isEqualToString:_name] == YES)
+    }
+
+    name = [dbName dbGetByName:_name account:account];
+    if (name != nil) {
+        if (_code != nil && [_code isEqualToString:name.code] == NO) {
+            name.code = _code;
+            [name dbUpdate];
             return;
-        name.name = _name;
-        [name dbUpdateName];
+        }
         return;
     }
 
-    if ([dbName dbGetByName:_name account:account] == nil) {
-        [dbName dbCreate:_name code:nil account:account];
-    }
+    [dbName dbCreate:_name code:_code account:account];
 }
 
 + (NSInteger)dbCount
