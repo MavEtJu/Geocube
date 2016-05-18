@@ -78,7 +78,7 @@
 - (void)checkRemoteAccess
 {
     if (enabled == NO) {
-        [self disableRemoteAccess:@"Not enabled"];
+        [self disableRemoteAccess:@"This account is not enabled"];
         return;
     }
 
@@ -87,13 +87,13 @@
         case ProtocolLiveAPI:
             if (oauth_token == nil || [oauth_token isEqualToString:@""] == YES ||
                 oauth_token_secret == nil || [oauth_token_secret isEqualToString:@""] == YES)
-                [self disableRemoteAccess:@"Not authenticated"];
+                [self disableRemoteAccess:@"This account is currenlty not authenticated"];
             else
                 [self enableRemoteAccess];
             break;
         case ProtocolGCA:
             if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)
-                [self disableRemoteAccess:@"Not authenticated"];
+                [self disableRemoteAccess:@"This account is currently not authenticated"];
             else
                 [self enableRemoteAccess];
             break;
