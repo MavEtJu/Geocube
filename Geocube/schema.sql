@@ -183,7 +183,8 @@ create index logs_idx_waypoint_id on logs(waypoint_id);
 create table containers (
     id integer primary key,
     size text,
-    icon integer
+    icon integer,
+    gc_id integer
 );
 
 create table attribute2waypoints (
