@@ -113,7 +113,7 @@
 
     [super viewDidLoad];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;

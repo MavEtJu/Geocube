@@ -69,7 +69,7 @@ enum {
 
     [coordinator animateAlongsideTransition:nil
                                  completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     CGRect frame = [[UIScreen mainScreen] applicationFrame];
+                                     CGRect frame = [[UIScreen mainScreen] bounds];
                                      webView.frame = frame;
                                  }
      ];

@@ -100,7 +100,7 @@
 
 - (void)viewDidLoad
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -211,7 +211,7 @@
 
 - (void)calculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     width = applicationFrame.size.width;
     NSInteger height = applicationFrame.size.height - 50;
 

@@ -49,7 +49,7 @@
 {
     [super viewDidLoad];
 
-    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    CGRect frame = [[UIScreen mainScreen] bounds];
     NSInteger y = 10;
 
     GCScrollView *contentView = [[GCScrollView alloc] initWithFrame:frame];

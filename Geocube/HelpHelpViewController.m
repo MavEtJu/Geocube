@@ -31,7 +31,7 @@
     [super viewDidLoad];
 
     NSInteger y = 10;
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
     UILabel *t = [[UILabel alloc] initWithFrame:(CGRectMake(10, y, width - 20, 0))];

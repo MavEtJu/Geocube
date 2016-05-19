@@ -59,7 +59,7 @@ enum {
     [super loadView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     UIScrollView *view = [[UIScrollView alloc] initWithFrame:applicationFrame];
     self.view = view;
 
@@ -103,7 +103,7 @@ enum {
     l.text = text;
     [l sizeToFit];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     CGRect frame = l.frame;
     frame.size.width = applicationFrame.size.width;
     l.frame = frame;

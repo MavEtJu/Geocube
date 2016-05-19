@@ -74,7 +74,7 @@ enum {
 {
     [super viewDidLoad];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
     sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
     sv.delegate = self;
@@ -134,7 +134,7 @@ enum {
 - (void)createHeightMap
 {
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     __block CGFloat ymin = +100000, ymax = -100000;
     __block CGFloat xmin = time(NULL) + 86400, xmax = 0;
@@ -214,7 +214,7 @@ enum {
 
 - (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     if (zoomIn == YES) {
         imgview.frame = CGRectMake(0, 0, applicationFrame.size.width, applicationFrame.size.height - 50);
@@ -235,7 +235,7 @@ enum {
 
 - (void)updateLabelTime:(NSInteger)idx
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
     if (idx < 0)
@@ -260,7 +260,7 @@ enum {
     frame.origin.x = scrollView.contentOffset.x;
     labelTimeStart.frame = frame;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
     frame = labelTimeStop.frame;
     frame.origin.x = scrollView.contentOffset.x + width - 200;

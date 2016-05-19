@@ -68,7 +68,7 @@ enum {
 {
     [super viewDidLoad];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
     sv.delegate = self;
     self.view = sv;
@@ -149,7 +149,7 @@ enum {
     if (labelCount == nil)
         return;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
     CGRect frame = labelCount.frame;
@@ -161,7 +161,7 @@ enum {
 
 - (void)zoominout:(BOOL)zoomIn
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     // Nothing to zoom in if the picture is small enough already.
     if (image.size.width < applicationFrame.size.width &&
@@ -207,7 +207,7 @@ enum {
 - (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX centerY:(CGFloat)centerY
 {
     [self zoominout:zoomIn];
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     /*
      *  +-------------------+
@@ -253,7 +253,7 @@ enum {
 
 - (void)calculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
     labelCount.frame = CGRectMake(width - 100, 0, 100, 15);

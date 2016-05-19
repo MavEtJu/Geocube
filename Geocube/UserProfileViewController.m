@@ -61,7 +61,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;

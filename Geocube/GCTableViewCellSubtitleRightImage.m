@@ -37,7 +37,7 @@
 {
     [super layoutSubviews];
 
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     CGRect oldImageView = self.imageView.frame;
     CGRect oldTextLabel = self.textLabel.frame;

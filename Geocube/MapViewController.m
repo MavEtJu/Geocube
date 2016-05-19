@@ -288,7 +288,7 @@ enum {
 
 - (void)recalculateRects
 {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 //    NSInteger height = applicationFrame.size.height - 50;
 
