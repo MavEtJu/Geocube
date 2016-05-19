@@ -219,10 +219,16 @@ enum {
                     break;
                 }
                 case SECTION_SUBMIT_SUBMIT:
-                    if (waypoint.account.canDoRemoteStuff == YES && upload == YES)
+                    if (waypoint.account.canDoRemoteStuff == YES && upload == YES) {
                         cell.keyLabel.text = @"Submit";
-                    else
+                        cell.userInteractionEnabled = (note == nil || [note isEqualToString:@""] == YES) ? NO : YES;
+                        cell.keyLabel.textColor = cell.userInteractionEnabled == YES ? [UIColor blackColor] : [UIColor lightGrayColor];
+                        cell.keyLabel.textColor = cell.userInteractionEnabled == YES ? [currentTheme labelTextColor] : [currentTheme labelTextColorDisabled];
+                    } else {
                         cell.keyLabel.text = @"Save";
+                        cell.userInteractionEnabled = YES;
+                        cell.keyLabel.textColor = [currentTheme labelTextColor];
+                    }
                     break;
             }
             break;
