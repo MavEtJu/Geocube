@@ -112,7 +112,7 @@ enum { kTagTabBase = 100 };
 }
 
 - (void)loadView {
-  CGRect frame = [UIScreen mainScreen].applicationFrame;
+  CGRect frame = [UIScreen mainScreen].bounds;
   UIView *view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
   self.edgesForExtendedLayout = UIRectEdgeNone;

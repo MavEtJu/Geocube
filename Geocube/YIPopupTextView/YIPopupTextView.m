@@ -401,7 +401,7 @@ typedef enum {
     CGRect frame;
     if (!view) {
         targetView = [UIApplication sharedApplication].keyWindow;
-        frame = [UIScreen mainScreen].applicationFrame;
+        frame = [UIScreen mainScreen].bounds;
     }
     else {
         targetView = view;
