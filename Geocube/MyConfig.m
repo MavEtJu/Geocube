@@ -34,7 +34,8 @@
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
-@synthesize soundDirection, soundDistance, keeptrackAutoRotate;;
+@synthesize soundDirection, soundDistance;
+@synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax;
 @synthesize mapClustersEnable, mapClustersZoomLevel;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
@@ -130,6 +131,10 @@
     CHECK(@"sound_distance", @"0");
 
     CHECK(@"keeptrack_autorotate", @"1");
+    CHECK(@"keeptrack_timedelta_min", @"5.0");
+    CHECK(@"keeptrack_timedelta_max", @"10.0");
+    CHECK(@"keeptrack_distancedelta_min", @"100");
+    CHECK(@"keeptrack_distancedelta_max", @"200");
 
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
@@ -177,6 +182,10 @@
     soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
     soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
     keeptrackAutoRotate = [[dbConfig dbGetByKey:@"keeptrack_autorotate"].value boolValue];
+    keeptrackTimeDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_timedelta_min"].value floatValue];
+    keeptrackTimeDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_timedelta_max"].value floatValue];
+    keeptrackDistanceDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_min"].value floatValue];
+    keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
     dynamicmapEnable = [[dbConfig dbGetByKey:@"dynamicmap_enable"].value boolValue];
@@ -354,6 +363,27 @@
 {
     keeptrackAutoRotate = value;
     [self BOOLUpdate:@"keeptrack_autorotate" value:value];
+}
+
+- (void)keeptrackTimeDeltaMinUpdate:(float)value
+{
+    keeptrackTimeDeltaMin = value;
+    [self FloatUpdate:@"keeptrack_timedelta_min" value:value];
+}
+- (void)keeptrackTimeDeltaMaxUpdate:(float)value
+{
+    keeptrackTimeDeltaMax = value;
+    [self FloatUpdate:@"keeptrack_timedelta_max" value:value];
+}
+- (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value
+{
+    keeptrackDistanceDeltaMin = value;
+    [self NSIntegerUpdate:@"keeptrack_distancedelta_min" value:value];
+}
+- (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value
+{
+    keeptrackDistanceDeltaMax = value;
+    [self NSIntegerUpdate:@"keeptrack_distancedelta_max" value:value];
 }
 
 - (void)mapClustersUpdateEnable:(BOOL)value

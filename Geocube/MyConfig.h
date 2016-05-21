@@ -55,6 +55,10 @@
 @property (nonatomic, readonly) BOOL soundDistance;
 
 @property (nonatomic, readonly) BOOL keeptrackAutoRotate;
+@property (nonatomic, readonly) float keeptrackTimeDeltaMin;
+@property (nonatomic, readonly) float keeptrackTimeDeltaMax;
+@property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMin;
+@property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMax;
 
 @property (nonatomic, readonly) BOOL mapClustersEnable;
 @property (nonatomic, readonly) float mapClustersZoomLevel;
@@ -113,6 +117,10 @@
 - (void)soundDirectionUpdate:(BOOL)value;
 - (void)soundDistanceUpdate:(BOOL)value;
 - (void)keeptrackAutoRotateUpdate:(BOOL)value;
+- (void)keeptrackTimeDeltaMinUpdate:(float)value;
+- (void)keeptrackTimeDeltaMaxUpdate:(float)value;
+- (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value;
+- (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value;
 - (void)mapClustersUpdateEnable:(BOOL)value;
 - (void)mapClustersUpdateZoomLevel:(float)value;
 - (void)dynamicmapEnableUpdate:(BOOL)value;

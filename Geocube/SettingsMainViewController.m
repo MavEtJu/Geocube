@@ -28,6 +28,7 @@
     UISwitch *orientationPortrait, *orientationPortraitUpsideDown, *orientationLandscapeLeft, *orientationLandscapeRight;
     UISwitch *soundDirection;
     UISwitch *soundDistance;
+
     UISwitch *keeptrackAutoRotate;
 
     UISwitch *mapClustersEnable;
@@ -285,6 +286,10 @@ enum sections {
     SECTION_DYNAMICMAP_MAX,
 
     SECTION_KEEPTRACK_AUTOROTATE = 0,
+    SECTION_KEEPTRACK_TIMEDELTA_MIN,
+    SECTION_KEEPTRACK_TIMEDELTA_MAX,
+    SECTION_KEEPTRACK_DISTANCEDELTA_MIN,
+    SECTION_KEEPTRACK_DISTANCEDELTA_MAX,
     SECTION_KEEPTRACK_MAX,
 
     SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
@@ -619,16 +624,49 @@ enum sections {
         }
 
         case SECTION_KEEPTRACK: {
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
 
             switch (indexPath.row) {
                 case SECTION_KEEPTRACK_AUTOROTATE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+
                     cell.textLabel.text = @"Autorotate every day";
 
                     keeptrackAutoRotate = [[UISwitch alloc] initWithFrame:CGRectZero];
                     keeptrackAutoRotate.on = myConfig.keeptrackAutoRotate;
                     [keeptrackAutoRotate addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = keeptrackAutoRotate;
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Time difference for a new track point";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", myConfig.keeptrackTimeDeltaMin];
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Time difference for a new track";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", myConfig.keeptrackTimeDeltaMax];
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Distance difference for a new track point";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:myConfig.keeptrackDistanceDeltaMin]];
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Distance difference for a new track";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:myConfig.keeptrackDistanceDeltaMax]];
 
                     return cell;
                 }
@@ -891,7 +929,120 @@ enum sections {
                     break;
             }
             return;
+
+        case SECTION_KEEPTRACK:
+            switch (indexPath.row) {
+                case SECTION_KEEPTRACK_TIMEDELTA_MIN:
+                case SECTION_KEEPTRACK_TIMEDELTA_MAX:
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+                    [self keeptrackChange:indexPath.row];
+                    break;
+            }
+            return;
     }
+}
+
+/* ********************************************************************************* */
+
+- (void)keeptrackChange:(NSInteger)type
+{
+    NSString *message;
+    switch (type) {
+        case SECTION_KEEPTRACK_TIMEDELTA_MIN:
+            message = @"Change the time difference for a new track point.";
+            break;
+        case SECTION_KEEPTRACK_TIMEDELTA_MAX:
+            message = @"Change the time difference for a new track.";
+            break;
+        case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
+            message = @"Change the distance difference for a new track point.";
+            break;
+        case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+            message = @"Change the distance difference for a new track.";
+            break;
+    }
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Update value"
+                               message:message
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             switch (type) {
+                                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
+                                     float f = [value floatValue];
+                                     if (f > myConfig.keeptrackTimeDeltaMax) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %0.1f.", myConfig.keeptrackTimeDeltaMax]];
+                                         break;
+                                     }
+                                     [myConfig keeptrackTimeDeltaMinUpdate:f];
+                                     break;
+                                 }
+                                 case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
+                                     float f = [value floatValue];
+                                     if (f < myConfig.keeptrackTimeDeltaMin) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %0.1f.", myConfig.keeptrackTimeDeltaMin]];
+                                         break;
+                                     }
+                                     [myConfig keeptrackTimeDeltaMaxUpdate:f];
+                                     break;
+                                 }
+                                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
+                                     NSInteger i = [value integerValue];
+                                     if (i > myConfig.keeptrackDistanceDeltaMax) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %ld.", (long)myConfig.keeptrackDistanceDeltaMin]];
+                                         break;
+                                     }
+                                     [myConfig keeptrackDistanceDeltaMinUpdate:i];
+                                     break;
+                                 }
+                                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
+                                     NSInteger i = [value integerValue];
+                                     if (i < myConfig.keeptrackDistanceDeltaMin) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %ld.", (long)myConfig.keeptrackDistanceDeltaMin]];
+                                         break;
+                                     }
+                                     [myConfig keeptrackDistanceDeltaMaxUpdate:i];
+                                     break;
+                                 }
+                            }
+
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        switch (type) {
+            case SECTION_KEEPTRACK_TIMEDELTA_MIN:
+                textField.text = [NSString stringWithFormat:@"%0.1f", myConfig.keeptrackTimeDeltaMin];
+                break;
+            case SECTION_KEEPTRACK_TIMEDELTA_MAX:
+                textField.text = [NSString stringWithFormat:@"%0.1f", myConfig.keeptrackTimeDeltaMax];
+                break;
+            case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
+                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackDistanceDeltaMin];
+                break;
+            case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackDistanceDeltaMax];
+                break;
+        }
+        textField.placeholder = @"Enter value...";
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /* ********************************************************************************* */
