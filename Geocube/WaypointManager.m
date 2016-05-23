@@ -454,8 +454,10 @@
             NSInteger flagInProgress = [[self configGet:@"flags_inprogress"] integerValue];
             NSInteger flagIgnored = [[self configGet:@"flags_ignored"] integerValue];
             NSInteger flagMarkedFound = [[self configGet:@"flags_markedfound"] integerValue];
+            NSInteger flagMarkedDNF = [[self configGet:@"flags_markeddnf"] integerValue];
             NSInteger flagMine = [[self configGet:@"flags_owner"] integerValue];
-            NSInteger flagLogStatus = [[self configGet:@"flags_logstatus"] integerValue];
+            NSInteger flagLoggedAsFound = [[self configGet:@"flags_loggedasfound"] integerValue];
+            NSInteger flagLoggedAsDNF = [[self configGet:@"flags_loggedasdnf"] integerValue];
 
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL keep = YES;
@@ -468,10 +470,14 @@
                     keep = (wp.flag_ignore == NO && flagIgnored == 2) || (wp.flag_ignore == YES && flagIgnored == 1);
                 if (keep == YES && flagMarkedFound != 0)
                     keep = (wp.flag_markedfound == NO && flagMarkedFound == 2) || (wp.flag_markedfound == YES && flagMarkedFound == 1);
+                if (keep == YES && flagMarkedDNF != 0)
+                    keep = (wp.flag_dnf == NO && flagMarkedDNF == 2) || (wp.flag_dnf == YES && flagMarkedDNF == 1);
                 if (keep == YES && flagMine != 0)
                     keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == 2) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == 1);
-                if (keep == YES && flagLogStatus != 0)
-                    keep = (wp.logStatus == LOGSTATUS_FOUND && flagLogStatus == 3) || (wp.logStatus == LOGSTATUS_NOTFOUND && flagLogStatus == 2) || (wp.logStatus == LOGSTATUS_NOTLOGGED && flagLogStatus == 1);
+                if (keep == YES && flagLoggedAsFound != 0)
+                    keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == 1) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == 2);
+                if (keep == YES && flagLoggedAsDNF != 0)
+                    keep = (wp.logStatus == LOGSTATUS_NOTFOUND && flagLoggedAsDNF == 1) || (wp.logStatus != LOGSTATUS_NOTFOUND && flagLoggedAsDNF == 2);
 
                 if (keep == YES)
                     [after addObject:wp];
