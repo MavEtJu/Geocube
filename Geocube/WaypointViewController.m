@@ -607,19 +607,23 @@ enum {
                               waypoint.flag_dnf = !waypoint.flag_dnf;
                               [waypoint dbUpdateMarkedDNF];
                               [waypointManager needsRefresh];
+                              if (waypoint.flag_dnf == YES && waypoint == waypointManager.currentWaypoint)
+                                  [waypointManager setCurrentWaypoint:nil];
                               [self.tableView reloadData];
                           }];
     UIAlertAction *found = [UIAlertAction
                             actionWithTitle:(waypoint.flag_markedfound == YES) ? @"Remove mark as Found" : @"Mark as Found"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
-                                if (waypoint.flag_ignore)
+                                if (waypoint.flag_markedfound)
                                     [self addLog:@"Unmarked as Found"];
                                 else
                                     [self addLog:@"Marked as Found"];
                                 waypoint.flag_markedfound = !waypoint.flag_markedfound;
                                 [waypoint dbUpdateMarkedFound];
                                 [waypointManager needsRefresh];
+                                if (waypoint.flag_markedfound == YES && waypoint == waypointManager.currentWaypoint)
+                                    [waypointManager setCurrentWaypoint:nil];
                                 [self.tableView reloadData];
                             }];
     UIAlertAction *ignore = [UIAlertAction

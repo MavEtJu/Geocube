@@ -43,6 +43,7 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
+@synthesize markasFoundDNFClearsTarget;
 
 - (instancetype)init
 {
@@ -160,6 +161,8 @@
 
     CHECK(@"mapsearchmaximum_distancegs", @"5000");
     CHECK(@"mapsearchmaximum_numbergca", @"50");
+
+    CHECK(@"markas_founddnf_clearstarget", @"1");
 }
 
 - (void)loadValues
@@ -208,6 +211,7 @@
     downloadTimeoutQuery = [[dbConfig dbGetByKey:@"download_timeout_query"].value integerValue];
     mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
+    markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -505,6 +509,12 @@
 {
     mapSearchMaximumDistanceGS = value;
     [self NSIntegerUpdate:@"mapsearchmaximum_distancegs" value:value];
+}
+
+- (void)markasFoundDNFClearsTarget:(BOOL)value
+{
+    markasFoundDNFClearsTarget = value;
+    [self BOOLUpdate:@"markas_founddnf_clearstarget" value:value];
 }
 
 @end

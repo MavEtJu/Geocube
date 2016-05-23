@@ -61,6 +61,8 @@
     NSArray *mapcacheMaxAgeValues;
     NSArray *mapcacheMaxSizeValues;
 
+    UISwitch *markasFoundDNFClearsTarget;
+
     UISwitch *downloadImagesWaypoints;
     UISwitch *downloadImagesLogs;
     UISwitch *downloadImagesMobile;
@@ -242,6 +244,7 @@ enum sections {
     SECTION_MAPCACHE,
     SECTION_DYNAMICMAP,
     SECTION_KEEPTRACK,
+    SECTION_MARKAS,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -299,6 +302,9 @@ enum sections {
     SECTION_IMPORTS_LOG_IMAGES_MOBILE,
     SECTION_IMPORTS_QUERIES_MOBILE,
     SECTION_IMPORTS_MAX,
+
+    SECTION_MARKAS_FOUNDDNFCLEARSTARGET = 0,
+    SECTION_MARKAS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -332,6 +338,10 @@ enum sections {
             return SECTION_IMPORTS_MAX;
         case SECTION_MAPSEARCHMAXIMUM:
             return SECTION_MAPSEARCHMAXIMUM_MAX;
+        case SECTION_MARKAS:
+            return SECTION_MARKAS_MAX;
+        default:
+            NSAssert1(0, @"Unknown section %ld", section);
     }
 
     return 0;
@@ -363,6 +373,8 @@ enum sections {
             return @"Import options";
         case SECTION_MAPSEARCHMAXIMUM:
             return @"Map search maximums";
+        case SECTION_MARKAS:
+            return @"Mark as...";
     }
 
     return nil;
@@ -774,9 +786,30 @@ enum sections {
             break;
         }
 
+        case SECTION_MARKAS: {
+            switch (indexPath.row) {
+                case SECTION_MARKAS_FOUNDDNFCLEARSTARGET: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Remove target when marking as found/DNF";
+
+                    markasFoundDNFClearsTarget = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    markasFoundDNFClearsTarget.on = myConfig.markasFoundDNFClearsTarget;
+                    [markasFoundDNFClearsTarget addTarget:self action:@selector(updatemarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = markasFoundDNFClearsTarget;
+
+                    return cell;
+                }
+            }
+        }
+
     }
 
     return nil;
+}
+
+- (void)updatemarkasFoundDNFClearsTarget:(UISwitch *)s
+{
+    [myConfig markasFoundDNFClearsTarget:s.on];
 }
 
 - (void)updateDownloadImagesLogs:(UISwitch *)s

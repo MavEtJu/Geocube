@@ -89,6 +89,8 @@
 @property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
 
+@property (nonatomic, readonly) BOOL markasFoundDNFClearsTarget;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -142,5 +144,6 @@
 - (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
 - (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;
 - (void)orientationsAllowedUpdate:(NSInteger)value;
+- (void)markasFoundDNFClearsTarget:(BOOL)value;
 
 @end
