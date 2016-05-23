@@ -36,7 +36,7 @@
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.flag_markedfound = NO;
+        wp.flag_dnf = NO;
         [wp dbUpdateMarkedDNF];
     }];
 }
