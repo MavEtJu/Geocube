@@ -83,6 +83,8 @@ enum {
 
     if (l.text == nil || [l.text isEqualToString:@""] == YES)
         [self labelTapped];
+
+    [self prepareCloseButton:self.view];
 }
 
 - (void)labelTapped

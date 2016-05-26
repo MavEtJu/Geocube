@@ -84,6 +84,7 @@
 
     [contentView setContentSize:CGSizeMake(width, y)];
 
+    [self prepareCloseButton:contentView];
 }
 
 @end
