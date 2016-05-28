@@ -121,6 +121,11 @@ enum {
         [lmi disableItem:menuRefreshWaypoint];
     else
         [lmi enableItem:menuRefreshWaypoint];
+
+    if (waypoint == waypointManager.currentWaypoint)
+        [lmi disableItem:menuSetAsTarget];
+    else
+        [lmi enableItem:menuSetAsTarget];
 }
 
 - (void)didReceiveMemoryWarning
@@ -373,7 +378,11 @@ enum {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
-                    cell.textLabel.text = @"Set as target";
+                    if (waypoint == waypointManager.currentWaypoint) {
+                        cell.textLabel.text = @"Remove as target";
+                    } else {
+                        cell.textLabel.text = @"Set as target";
+                    }
                     return cell;
                 }
 
