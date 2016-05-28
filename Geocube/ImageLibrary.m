@@ -365,7 +365,7 @@
 {
     UIImage *img = imgs[imgnum];
     if (img == nil)
-        NSLog(@"ImageLibrary: imgnum %ld not found", (long)imgnum);
+        NSLog(@"ImageLibrary/get: imgnum %ld not found", (long)imgnum);
     return img;
 }
 
@@ -373,7 +373,7 @@
 {
     NSString *name = names[imgnum];
     if (name == nil)
-        NSLog(@"ImageLibrary: imgnum %ld not found", (long)imgnum);
+        NSLog(@"ImageLibrary/getName: imgnum %ld not found", (long)imgnum);
     return name;
 }
 

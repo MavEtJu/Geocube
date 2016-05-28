@@ -258,7 +258,10 @@ enum {
                                  [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
 
             cell.userInteractionEnabled = NO;
-            cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
+            if (waypoint.gs_container != nil)
+                cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
+            else
+                cell.size.image = nil;
             cell.icon.image = [imageLibrary getType:waypoint];
 
             return cell;

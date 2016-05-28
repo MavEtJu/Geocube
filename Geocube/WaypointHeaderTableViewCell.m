@@ -171,23 +171,45 @@
 
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
 {
-    for (NSInteger i = 0; i < t; i++)
-        ratingT[i].image = imgRatingOn;
-    for (NSInteger i = t; i < 5; i++)
-        ratingT[i].image = imgRatingOff;
-    if (t - (int)t != 0)
-        ratingT[(int)t].image = imgRatingHalf;
+    if (t != 0) {
+        labelRatingT.hidden = NO;
+        for (NSInteger i = 0; i < 5; i++)
+            ratingT[i].hidden = NO;
 
-    for (NSInteger i = 0; i < d; i++)
-        ratingD[i].image = imgRatingOn;
-    for (NSInteger i = d; i < 5; i++)
-        ratingD[i].image = imgRatingOff;
-    if (d - (int)d != 0)
-        ratingD[(int)d].image = imgRatingHalf;
+        for (NSInteger i = 0; i < t; i++)
+            ratingT[i].image = imgRatingOn;
+        for (NSInteger i = t; i < 5; i++)
+            ratingT[i].image = imgRatingOff;
+        if (t - (int)t != 0)
+            ratingT[(int)t].image = imgRatingHalf;
+    } else {
+        for (NSInteger i = 0; i < 5; i++)
+            ratingT[i].hidden = YES;
+        labelRatingT.hidden = YES;
+    }
+
+    if (d != 0) {
+        labelRatingD.hidden = NO;
+        for (NSInteger i = 0; i < 5; i++)
+            ratingD[i].hidden = NO;
+
+        for (NSInteger i = 0; i < d; i++)
+            ratingD[i].image = imgRatingOn;
+        for (NSInteger i = d; i < 5; i++)
+            ratingD[i].image = imgRatingOff;
+        if (d - (int)d != 0)
+            ratingD[(int)d].image = imgRatingHalf;
+    } else {
+        for (NSInteger i = 0; i < 5; i++)
+            ratingD[i].hidden = YES;
+        labelRatingD.hidden = YES;
+    }
 
     if (favs != 0) {
         favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
-        imgFavouritesIV.hidden = FALSE;
+        imgFavouritesIV.hidden = NO;
+    } else {
+        imgFavouritesIV.hidden = YES;
     }
 }
 

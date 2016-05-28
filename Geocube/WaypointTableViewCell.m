@@ -253,18 +253,37 @@
 
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d size:(NSInteger)sz
 {
-    ratingDIV.image = [imageLibrary getRating:d];
-    ratingTIV.image = [imageLibrary getRating:t];
+    if (t != 0) {
+        ratingTIV.image = [imageLibrary getRating:t];
+        ratingTLabel.hidden = NO;
+        ratingTIV.hidden = NO;
+    } else {
+        ratingTIV.hidden = YES;
+        ratingTLabel.hidden = YES;
+    }
+    if (d != 0) {
+        ratingDIV.image = [imageLibrary getRating:d];
+        ratingDLabel.hidden = NO;
+        ratingDIV.hidden = NO;
+    } else {
+        ratingDIV.hidden = YES;
+        ratingDLabel.hidden = YES;
+    }
 
     if (favs != 0) {
         favouritesLabel.text = [NSString stringWithFormat:@"%ld", (long)favs];
-        favouritesIV.hidden = FALSE;
+        favouritesIV.hidden = NO;
     } else {
         favouritesLabel.text = nil;
-        favouritesIV.hidden = TRUE;;
+        favouritesIV.hidden = YES;
     }
 
-    imageSize.image = [imageLibrary get:sz];
+    if (sz != 0) {
+        imageSize.image = [imageLibrary get:sz];
+        imageSize.hidden = NO;
+    } else {
+        imageSize.hidden = YES;
+    }
 }
 
 + (NSInteger)cellHeight
