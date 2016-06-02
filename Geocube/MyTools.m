@@ -298,6 +298,11 @@
     return [NSString stringWithFormat:@"(%0.0f, %0.0f), (%0.0f x %0.0f)", r.origin.x, r.origin.y, r.size.width, r.size.height];
 }
 
++ (NSString *)niceCGSize:(CGSize)s
+{
+    return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
+}
+
 - (instancetype)initClock:(NSString *)_title
 {
     self = [super init];

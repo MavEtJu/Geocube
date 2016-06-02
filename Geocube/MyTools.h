@@ -45,6 +45,7 @@ enum {
 + (NSInteger)numberOfLines:(NSString *)s;
 
 + (NSString *)niceCGRect:(CGRect)r;
++ (NSString *)niceCGSize:(CGSize)s;
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)niceTimeDifference:(NSInteger)i;
