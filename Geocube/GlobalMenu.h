@@ -27,7 +27,7 @@
 
 @interface GlobalMenu : NSObject <DOPNavbarMenuDelegate>
 
-@property (nonatomic, retain) UIViewController *parent_vc, *previous_vc;
+@property (nonatomic, retain) UIViewController *parent_vc;
 @property (nonatomic) id localMenuDelegate;
 @property (nonatomic, retain) UIButton *localMenuButton;
 

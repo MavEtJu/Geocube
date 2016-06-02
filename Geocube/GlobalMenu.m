@@ -28,7 +28,7 @@
     NSMutableArray *items;
     DOPNavbarMenu *_global_menu;
     NSInteger numberOfItemsInRow;
-    UIViewController<DOPNavbarMenuDelegate> *parent_vc, *previous_vc;
+    UIViewController<DOPNavbarMenuDelegate> *parent_vc;
     UIBarButtonItem *button;
     id localMenuDelegate;
     UIButton *localMenuButton;
@@ -40,7 +40,7 @@
 
 @implementation GlobalMenu
 
-@synthesize parent_vc, previous_vc, localMenuDelegate, localMenuButton;
+@synthesize parent_vc, localMenuDelegate, localMenuButton;
 
 - (instancetype)init
 {
@@ -90,6 +90,7 @@
     if (_global_menu != nil)
         [_global_menu removeFromSuperview];
     _global_menu = nil;
+
     currentFrameSize = newSize;
     UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
     localMenuButton.frame = CGRectMake(newSize.width - 2 - imgMenu.size.width, localMenuButton.frame.origin.y, localMenuButton.frame.size.width, localMenuButton.frame.size.height);
@@ -98,7 +99,6 @@
 - (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
 {
     // NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);
-    previous_vc = parent_vc;
     parent_vc = _vc;
     button.target = _vc;
     localMenuDelegate = _vc;
