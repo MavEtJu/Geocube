@@ -241,6 +241,4 @@
     [MyTools messageBox:self header:@"You selected..." text:[NSString stringWithFormat:@"number %@", @(index + 1)]];
 }
 
-
-
 @end
