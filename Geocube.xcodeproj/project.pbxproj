@@ -376,11 +376,6 @@
 		E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02B1B6720F100CC741A /* FilterDateTableViewCell.m */; };
 		E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */; };
 		E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */; };
-		E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */; };
-		E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */; };
-		E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4431B591DFF0027AE6F /* BHTabsView.m */; };
-		E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */; };
-		E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EAF4471B591DFF0027AE6F /* BHTabView.m */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
@@ -996,16 +991,6 @@
 		E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryTableViewCell.m; sourceTree = "<group>"; };
 		E8E8D0301B67212000CC741A /* FilterOthersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterOthersTableViewCell.h; sourceTree = "<group>"; };
 		E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOthersTableViewCell.m; sourceTree = "<group>"; };
-		E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsFooterView.h; path = BHTabBar/BHTabsFooterView.h; sourceTree = "<group>"; };
-		E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsFooterView.m; path = BHTabBar/BHTabsFooterView.m; sourceTree = "<group>"; };
-		E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabStyle.h; path = BHTabBar/BHTabStyle.h; sourceTree = "<group>"; };
-		E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabStyle.m; path = BHTabBar/BHTabStyle.m; sourceTree = "<group>"; };
-		E8EAF4421B591DFF0027AE6F /* BHTabsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsView.h; path = BHTabBar/BHTabsView.h; sourceTree = "<group>"; };
-		E8EAF4431B591DFF0027AE6F /* BHTabsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsView.m; path = BHTabBar/BHTabsView.m; sourceTree = "<group>"; };
-		E8EAF4441B591DFF0027AE6F /* BHTabsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabsViewController.h; path = BHTabBar/BHTabsViewController.h; sourceTree = "<group>"; };
-		E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabsViewController.m; path = BHTabBar/BHTabsViewController.m; sourceTree = "<group>"; };
-		E8EAF4461B591DFF0027AE6F /* BHTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BHTabView.h; path = BHTabBar/BHTabView.h; sourceTree = "<group>"; };
-		E8EAF4471B591DFF0027AE6F /* BHTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BHTabView.m; path = BHTabBar/BHTabView.m; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1930,23 +1915,6 @@
 			name = CMRangeSlider;
 			sourceTree = "<group>";
 		};
-		E8EAF43D1B591DEB0027AE6F /* BHTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				E8EAF43E1B591DFF0027AE6F /* BHTabsFooterView.h */,
-				E8EAF43F1B591DFF0027AE6F /* BHTabsFooterView.m */,
-				E8EAF4401B591DFF0027AE6F /* BHTabStyle.h */,
-				E8EAF4411B591DFF0027AE6F /* BHTabStyle.m */,
-				E8EAF4421B591DFF0027AE6F /* BHTabsView.h */,
-				E8EAF4431B591DFF0027AE6F /* BHTabsView.m */,
-				E8EAF4441B591DFF0027AE6F /* BHTabsViewController.h */,
-				E8EAF4451B591DFF0027AE6F /* BHTabsViewController.m */,
-				E8EAF4461B591DFF0027AE6F /* BHTabView.h */,
-				E8EAF4471B591DFF0027AE6F /* BHTabView.m */,
-			);
-			name = BHTabBar;
-			sourceTree = "<group>";
-		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -2033,20 +2001,19 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
-				E82990471C87AF9000504421 /* XMLReader */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
-				E895801F1C66E39500282177 /* Reachability */,
-				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
-				E8EAF43D1B591DEB0027AE6F /* BHTabBar */,
+				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
 				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
-				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
-				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
+				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
+				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
+				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
+				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
+				E82990471C87AF9000504421 /* XMLReader */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
@@ -2673,7 +2640,6 @@
 				E84D6FCC1C5236A00000A6A0 /* InProgressListViewController.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */,
-				E8EAF4491B591DFF0027AE6F /* BHTabStyle.m in Sources */,
 				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
 				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
@@ -2704,7 +2670,6 @@
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
-				E8EAF4481B591DFF0027AE6F /* BHTabsFooterView.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
@@ -2750,10 +2715,8 @@
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
 				E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */,
-				E8EAF44C1B591DFF0027AE6F /* BHTabView.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
 				E8C5BB771C719EB1006222D5 /* WaypointLogViewController.m in Sources */,
-				E8EAF44A1B591DFF0027AE6F /* BHTabsView.m in Sources */,
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
@@ -2788,7 +2751,6 @@
 				E8C5BB7A1C719EB1006222D5 /* WaypointsOfflineListViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
-				E8EAF44B1B591DFF0027AE6F /* BHTabsViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
 				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,
