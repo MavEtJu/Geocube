@@ -40,6 +40,10 @@ echo "No { after @interface:"
 grep @interface *.[mh] | grep \{
 
 echo
+echo "Method definitions should have the { on the next line:"
+grep "^[\-\+].*{\s*$" *.m
+
+echo
 echo "MyConfig:"
 a=$(grep -c 'CHECK.@' MyConfig.m)
 b=$(grep -c 'self .*Update:.*value:value' MyConfig.m)

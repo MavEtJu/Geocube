@@ -82,7 +82,8 @@
     return [[datetime substringFromIndex:6] integerValue] / 1000;
 }
 
-+ (NSDate *)dateFromISO8601String17:(NSString *)string {
++ (NSDate *)dateFromISO8601String17:(NSString *)string
+{
     if (string == nil) {
         return nil;
     }
@@ -97,7 +98,8 @@
     return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
-+ (NSDate *)dateFromISO8601String10:(NSString *)string {
++ (NSDate *)dateFromISO8601String10:(NSString *)string
+{
     if (string == nil)
         return nil;
 
@@ -140,7 +142,8 @@
     return [dateFormatter stringFromDate:date];
 }
 
-+ (NSString *)datetimePartDate:(NSString *)datetime {
++ (NSString *)datetimePartDate:(NSString *)datetime
+{
     return [datetime substringToIndex:10];
 }
 
@@ -161,7 +164,8 @@
     return s;
 }
 
-+ (NSString *)stripHTML:(NSString *)l {
++ (NSString *)stripHTML:(NSString *)l
+{
     NSRange r;
     NSString *s = l;
     while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
