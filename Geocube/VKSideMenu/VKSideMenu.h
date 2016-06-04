@@ -113,6 +113,12 @@ typedef NS_ENUM(NSInteger, VKSideMenuDirection)
 @property (nonatomic, strong) NSString *title;
 
 /*!
+ @property  disabled
+ @abstract  Is this item disabled
+ */
+@property (nonatomic, strong) NSString *disabled;
+
+/*!
  @property  tag
  @abstract  Tag for item
  @note      Used just for convenience

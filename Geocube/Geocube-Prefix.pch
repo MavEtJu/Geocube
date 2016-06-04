@@ -100,6 +100,7 @@
 #import "AppDelegate.h"
 #import "Geocube.h"
 #import "GlobalMenu.h"
+#import "LocalMenuItems.h"
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
 #import "MyConfig.h"

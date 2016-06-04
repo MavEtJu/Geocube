@@ -21,8 +21,6 @@
 
 #import "Geocube-Prefix.pch"
 
-//#define MENU_STRING @"GC"
-//
 @interface GlobalMenu ()
 {
     NSMutableArray *items;
@@ -34,14 +32,14 @@
 
 @implementation GlobalMenu
 
-- (void)buttonMenuLeft:(id)sender
+- (void)buttonMenuGlobal:(id)sender
 {
-    [self.menuLeft show];
+    [self.menuGlobal show];
 }
 
-- (void)buttonMenuRight:(id)sender
+- (void)buttonMenuLocal:(id)sender
 {
-    [self.menuRight show];
+    [self.menuLocal show];
 }
 
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc
@@ -57,7 +55,7 @@
     #define MATCH(__i__, __s__) \
         case __i__: [items addObject:__s__]; \
         break;
-    
+
     items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
@@ -80,22 +78,28 @@
         }
     }
 
-    self.menuLeft = [[VKSideMenu alloc] initWithWidth:220 andDirection:VKSideMenuDirectionLeftToRight];
-    self.menuLeft.dataSource = self;
-    self.menuLeft.delegate   = self;
+    self.menuGlobal = [[VKSideMenu alloc] initWithWidth:220 andDirection:VKSideMenuDirectionLeftToRight];
+    self.menuGlobal.dataSource       = self;
+    self.menuGlobal.delegate         = self;
+    self.menuGlobal.textColor        = [UIColor lightTextColor];
+    self.menuGlobal.enableOverlay    = NO;
+    self.menuGlobal.hideOnSelection  = YES;
+    self.menuGlobal.selectionColor   = [UIColor colorWithWhite:.0 alpha:.3];
+    self.menuGlobal.iconsColor       = nil;
+    self.menuGlobal.blurEffectStyle  = UIBlurEffectStyleDark;
 
     // Init custom right-side menu
-    self.menuRight = [[VKSideMenu alloc] initWithWidth:180 andDirection:VKSideMenuDirectionRightToLeft];
-    self.menuRight.dataSource       = self;
-    self.menuRight.delegate         = self;
-    self.menuRight.textColor        = [UIColor lightTextColor];
-    self.menuRight.enableOverlay    = NO;
-    self.menuRight.hideOnSelection  = NO;
-    self.menuRight.selectionColor   = [UIColor colorWithWhite:.0 alpha:.3];
-    self.menuRight.iconsColor       = nil;
+    self.menuLocal = [[VKSideMenu alloc] initWithWidth:180 andDirection:VKSideMenuDirectionRightToLeft];
+    self.menuLocal.dataSource       = self;
+    self.menuLocal.delegate         = self;
+    self.menuLocal.textColor        = [UIColor lightTextColor];
+    self.menuLocal.enableOverlay    = NO;
+    self.menuLocal.hideOnSelection  = YES;
+    self.menuLocal.selectionColor   = [UIColor colorWithWhite:.0 alpha:.3];
+    self.menuLocal.iconsColor       = nil;
+    self.menuLocal.blurEffectStyle  = UIBlurEffectStyleDark;
     /* See more options in VKSideMenu.h */
 
-    self.menuRight.blurEffectStyle = UIBlurEffectStyleDark;
 
     return self;
 }
@@ -107,7 +111,7 @@
 
 - (NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
 {
-    if (sideMenu == self.menuLeft)
+    if (sideMenu == self.menuGlobal)
         return [items count];
     else
         return [localMenuItems count];
@@ -120,12 +124,10 @@
     VKSideMenuItem *item = [VKSideMenuItem new];
 
     item.icon = nil;
-    if (sideMenu == self.menuLeft) {
+    if (sideMenu == self.menuGlobal)
         item.title = [items objectAtIndex:indexPath.row];
-        return item;
-    } else {
+    else
         item.title = [localMenuItems objectAtIndex:indexPath.row];
-    }
     return item;
 }
 
@@ -138,25 +140,24 @@
 
 - (void)sideMenuDidShow:(VKSideMenu *)sideMenu
 {
-    NSLog(@"%@ VKSideMenue did show", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
+//    NSLog(@"%@ VKSideMenue did show", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
 }
 
 - (void)sideMenuDidHide:(VKSideMenu *)sideMenu
 {
-    NSLog(@"%@ VKSideMenue did hide", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
+//    NSLog(@"%@ VKSideMenue did hide", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
 }
 
 - (void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
-    if (sideMenu == self.menuLeft) {
+    if (sideMenu == self.menuGlobal) {
         NSLog(@"Switching to %ld", (long)indexPath.row);
         [myConfig currentPageUpdate:indexPath.row];
         [_AppDelegate switchController:indexPath.row];
     } else {
         NSLog(@"Local menu action %ld", (long)indexPath.row);
         [localMenuTarget performLocalMenuAction:indexPath.row];
-        [self.menuRight hide];
     }
 }
 
@@ -170,97 +171,4 @@
 
 @end
 
-@implementation LocalMenuItems
 
-- (instancetype)init:(NSInteger)max
-{
-    self = [super init];
-
-    makeMenuItems = [[NSMutableDictionary alloc] initWithCapacity:max];
-    makeMenuMax = max;
-
-    return self;
-}
-
-- (void)addItem:(NSInteger)idx label:(NSString *)label
-{
-    NSString *key = [NSString stringWithFormat:@"%ld", (long)idx];
-    __block BOOL found = NO;
-    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
-        if ([key integerValue] == idx) {
-            found = YES;
-            *stop = YES;
-        }
-    }];
-    NSAssert1(found == NO, @"Menuitem %ld already found!", (long)idx);
-
-    NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
-    [makeMenuItems setValue:label forKey:key];
-}
-
-- (void)changeItem:(NSInteger)idx label:(NSString *)label
-{
-    NSString *key = [NSString stringWithFormat:@"%ld", (long)idx];
-    __block BOOL found = NO;
-    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
-        if ([key integerValue] == idx) {
-            found = YES;
-            *stop = YES;
-        }
-    }];
-    NSAssert1(found == YES, @"Menuitem %ld not yet found!", (long)idx);
-    [makeMenuItems setValue:label forKey:key];
-}
-
-- (void)enableItem:(NSInteger)idx
-{
-    __block NSString *keyfound = nil;
-    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
-        if ([key integerValue] == idx) {
-            keyfound = key;
-            *stop = YES;
-        }
-    }];
-    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", (long)idx);
-    NSString *value = [makeMenuItems objectForKey:keyfound];
-    if ([[value substringToIndex:1] isEqualToString:@"X"] == YES) {
-        value = [value substringFromIndex:1];
-        [makeMenuItems setValue:value forKey:keyfound];
-    }
-}
-
-- (void)disableItem:(NSInteger)idx
-{
-    __block NSString *keyfound = nil;
-    [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
-        if ([key integerValue] == idx) {
-            keyfound = key;
-            *stop = YES;
-        }
-    }];
-    NSAssert1(keyfound != nil, @"Menuitem %ld not found!", (long)idx);
-    NSString *value = [makeMenuItems objectForKey:keyfound];
-    if ([[value substringToIndex:1] isEqualToString:@"X"] == NO) {
-        value = [NSString stringWithFormat:@"X%@", value];
-        [makeMenuItems setValue:value forKey:keyfound];
-    }
-}
-
-- (NSMutableArray *)makeMenu
-{
-    NSMutableArray *menuItems = [[NSMutableArray alloc] initWithCapacity:makeMenuMax];
-    for (NSInteger i = 0; i < makeMenuMax; i++) {
-        __block BOOL found = NO;
-        [makeMenuItems enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
-            if ([key integerValue] == i) {
-                *stop = YES;
-                found = YES;
-                [menuItems addObject:obj];
-            }
-        }];
-        NSAssert1(found == YES, @"Menuitem %ld not found!", (long)i);
-    }
-    return menuItems;
-}
-
-@end

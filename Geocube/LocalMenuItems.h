@@ -19,19 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol GlobalMenuDelegate
+@interface LocalMenuItems : NSObject
 
-- (void)performLocalMenuAction:(NSInteger)idx;
-
-@end
-
-@interface GlobalMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
-
-@property (nonatomic, strong) VKSideMenu *menuGlobal;
-@property (nonatomic, strong) VKSideMenu *menuLocal;
-
-- (void)buttonMenuGlobal:(id)sender;
-- (void)buttonMenuLocal:(id)sender;
-- (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc;
+- (instancetype)init:(NSInteger)max;
+- (void)addItem:(NSInteger)idx label:(NSString *)label;
+- (void)changeItem:(NSInteger)idx label:(NSString *)label;
+- (NSMutableArray *)makeMenu;
+- (void)enableItem:(NSInteger)idx;
+- (void)disableItem:(NSInteger)idx;
 
 @end

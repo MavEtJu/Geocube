@@ -73,9 +73,9 @@
     }
 }
 
-- (void)buttonMenuRight:(id)sender
+- (void)buttonMenuLocal:(id)sender
 {
-    [menuGlobal.menuRight show];
+    [menuGlobal.menuLocal show];
 }
 
 - (void)viewDidAppear:(BOOL)animated

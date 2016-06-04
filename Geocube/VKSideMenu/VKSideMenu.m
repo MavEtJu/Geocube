@@ -33,6 +33,7 @@
 @synthesize icon;
 @synthesize title;
 @synthesize tag;
+@synthesize disabled;
 
 @end
 
@@ -254,8 +255,8 @@
     
     title.text      = item.title;
     title.textColor = self.textColor;
-    
-    
+    cell.userInteractionEnabled = !item.disabled;
+
     return cell;
 }
 

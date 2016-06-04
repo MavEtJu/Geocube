@@ -402,7 +402,7 @@ static const NSInteger TagOffset = 1000;
     UINavigationController *nvc = [t.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
     GCTableViewController *vc = [nvc.viewControllers objectAtIndex:0];
 
-    [b addTarget:menuGlobal action:@selector(buttonMenuLeft:) forControlEvents:UIControlEventTouchDown];
+    [b addTarget:menuGlobal action:@selector(buttonMenuGlobal:) forControlEvents:UIControlEventTouchDown];
     /***** Global Menu ****/
 
     /***** Local Menu ****/
@@ -417,7 +417,7 @@ static const NSInteger TagOffset = 1000;
     vc = [nvc.viewControllers objectAtIndex:0];
 
     [self.view addSubview:b];
-    [b addTarget:vc action:@selector(buttonMenuRight:) forControlEvents:UIControlEventTouchDown];
+    [b addTarget:vc action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
     /***** Global Menu ****/
 }
 

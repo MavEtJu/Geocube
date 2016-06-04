@@ -354,6 +354,7 @@
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DD39531C40AFB500407705 /* MapAppleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DD39521C40AFB500407705 /* MapAppleCache.m */; };
 		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
+		E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */; };
 		E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E88D911BF06D9500E90F8D /* LocationManager.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
 		E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF91B6588C600CC741A /* FiltersViewController.m */; };
@@ -948,6 +949,8 @@
 		E8DD39521C40AFB500407705 /* MapAppleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleCache.m; sourceTree = "<group>"; };
 		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
 		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
+		E8E2F5551D02C4C8009170E3 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMenuItems.h; sourceTree = "<group>"; };
+		E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMenuItems.m; sourceTree = "<group>"; };
 		E8E88D901BF06D9500E90F8D /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		E8E88D911BF06D9500E90F8D /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
@@ -1153,12 +1156,11 @@
 		E82FBB2B1B4613E90009AB6D /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				E8E2F5541D02C4B4009170E3 /* Menus */,
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
-				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
-				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
@@ -1842,6 +1844,17 @@
 			name = CCHMapClusterController;
 			sourceTree = "<group>";
 		};
+		E8E2F5541D02C4B4009170E3 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
+				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E8E2F5551D02C4C8009170E3 /* LocalMenuItems.h */,
+				E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1996,7 +2009,6 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E812CF531D01A07400C4E777 /* VKSizeMenu */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
@@ -2007,6 +2019,7 @@
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E812CF531D01A07400C4E777 /* VKSizeMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E82990471C87AF9000504421 /* XMLReader */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
@@ -2677,6 +2690,7 @@
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
+				E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */,
 				E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E82990461C87A36200504421 /* ImportGeocube.m in Sources */,
