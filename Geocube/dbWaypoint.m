@@ -267,27 +267,33 @@
     [super finish];
 }
 
-- (NSInteger)hasLogs {
+- (NSInteger)hasLogs
+{
     return [dbLog dbCountByWaypoint:_id];
 }
 
-- (NSInteger)hasAttributes {
+- (NSInteger)hasAttributes
+{
     return [dbAttribute dbCountByWaypoint:_id];
 }
 
-- (NSInteger)hasFieldNotes {
+- (NSInteger)hasFieldNotes
+{
     return [[dbLog dbAllByWaypointLogged:_id] count];
 }
 
-- (NSInteger)hasImages {
+- (NSInteger)hasImages
+{
     return [dbImage dbCountByWaypoint:_id];
 }
 
-- (NSInteger)hasPersonalNotes {
+- (NSInteger)hasPersonalNotes
+{
     return [dbTrackable dbCountByWaypoint:_id];
 }
 
-- (NSInteger)hasInventory {
+- (NSInteger)hasInventory
+{
     return [dbTrackable dbCountByWaypoint:_id];
 }
 
