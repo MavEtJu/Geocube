@@ -67,7 +67,6 @@ NEEDS_OVERLOADING(clearFlags)
         [lmi disableItem:menuExportGPX];
     else
         [lmi enableItem:menuExportGPX];
-    [self refreshMenu];
 }
 
 #pragma mark - TableViewController related functions
@@ -194,7 +193,7 @@ NEEDS_OVERLOADING(clearFlags)
         [MyTools playSound:playSoundImportComplete];
 }
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
         case menuClearFlags:
@@ -209,7 +208,7 @@ NEEDS_OVERLOADING(clearFlags)
             return;
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 @end

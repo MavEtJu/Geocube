@@ -21,22 +21,18 @@
 
 @protocol GlobalMenuDelegate
 
-- (void)openLocalMenu:(id)sender;
+- (void)performLocalMenuAction:(NSInteger)idx;
 
 @end
 
-@interface GlobalMenu : NSObject <DOPNavbarMenuDelegate>
+@interface GlobalMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
 
-@property (nonatomic, retain) UIViewController *parent_vc;
-@property (nonatomic) id localMenuDelegate;
-@property (nonatomic, retain) UIButton *localMenuButton;
+@property (nonatomic, strong) VKSideMenu *menuLeft;
+@property (nonatomic, strong) VKSideMenu *menuRight;
 
-- (void)openGlobalMenu:(id)sender;
-- (void)openLocalMenu:(id)sender;
-- (void)didDismissMenu:(DOPNavbarMenu *)menu;
-- (void)didShowMenu:(DOPNavbarMenu *)menu;
-- (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)vc;
-- (void)transitionToSize:(CGSize)size;
+- (void)buttonMenuLeft:(id)sender;
+- (void)buttonMenuRight:(id)sender;
+- (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc;
 
 @end
 

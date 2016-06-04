@@ -294,7 +294,7 @@ enum {
 
 #pragma mark - Local menu related
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     // Add a group
     switch (index) {
@@ -307,7 +307,7 @@ enum {
             return;
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 

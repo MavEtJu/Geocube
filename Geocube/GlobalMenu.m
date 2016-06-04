@@ -21,35 +21,43 @@
 
 #import "Geocube-Prefix.pch"
 
-#define MENU_STRING @"GC"
-
+//#define MENU_STRING @"GC"
+//
 @interface GlobalMenu ()
 {
     NSMutableArray *items;
-    DOPNavbarMenu *_global_menu;
-    NSInteger numberOfItemsInRow;
-    UIViewController<DOPNavbarMenuDelegate> *parent_vc;
-    UIBarButtonItem *button;
-    id localMenuDelegate;
-    UIButton *localMenuButton;
-
-    CGSize currentFrameSize;
+    NSArray *localMenuItems;
+    id localMenuTarget;
 }
 
 @end
 
 @implementation GlobalMenu
 
-@synthesize parent_vc, localMenuDelegate, localMenuButton;
+- (void)buttonMenuLeft:(id)sender
+{
+    [self.menuLeft show];
+}
+
+- (void)buttonMenuRight:(id)sender
+{
+    [self.menuRight show];
+}
+
+- (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc
+{
+    localMenuItems = [lmi makeMenu];
+    localMenuTarget = vc;
+}
 
 - (instancetype)init
 {
     self = [super init];
 
-#define MATCH(__i__, __s__) \
-    case __i__: [items addObject:__s__]; \
-    break;
-
+    #define MATCH(__i__, __s__) \
+        case __i__: [items addObject:__s__]; \
+        break;
+    
     items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
@@ -72,99 +80,84 @@
         }
     }
 
-    button = [[UIBarButtonItem alloc] initWithTitle:MENU_STRING style:UIBarButtonItemStylePlain target:nil action:@selector(openGlobalMenu:)];
-    button.tintColor = [UIColor whiteColor];
+    self.menuLeft = [[VKSideMenu alloc] initWithWidth:220 andDirection:VKSideMenuDirectionLeftToRight];
+    self.menuLeft.dataSource = self;
+    self.menuLeft.delegate   = self;
 
-    numberOfItemsInRow = 3;
+    // Init custom right-side menu
+    self.menuRight = [[VKSideMenu alloc] initWithWidth:180 andDirection:VKSideMenuDirectionRightToLeft];
+    self.menuRight.dataSource       = self;
+    self.menuRight.delegate         = self;
+    self.menuRight.textColor        = [UIColor lightTextColor];
+    self.menuRight.enableOverlay    = NO;
+    self.menuRight.hideOnSelection  = NO;
+    self.menuRight.selectionColor   = [UIColor colorWithWhite:.0 alpha:.3];
+    self.menuRight.iconsColor       = nil;
+    /* See more options in VKSideMenu.h */
 
-    currentFrameSize = [[UIScreen mainScreen] bounds].size;
+    self.menuRight.blurEffectStyle = UIBlurEffectStyleDark;
 
     return self;
 }
 
-- (void)transitionToSize:(CGSize)newSize
+- (NSInteger)numberOfSectionsInSideMenu:(VKSideMenu *)sideMenu
 {
-    if (newSize.width == currentFrameSize.width && newSize.height == currentFrameSize.height)
-        return;
-
-    if (_global_menu != nil)
-        [_global_menu removeFromSuperview];
-    _global_menu = nil;
-
-    currentFrameSize = newSize;
-    UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
-    localMenuButton.frame = CGRectMake(newSize.width - 2 - imgMenu.size.width, localMenuButton.frame.origin.y, localMenuButton.frame.size.width, localMenuButton.frame.size.height);
+    return 1;
 }
 
-- (void)setLocalMenuTarget:(UIViewController<DOPNavbarMenuDelegate> *)_vc
+- (NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
 {
-    // NSLog(@"GlobalMenu/setTarget: from %p to %p", parent_vc, _vc);
-    parent_vc = _vc;
-    button.target = _vc;
-    localMenuDelegate = _vc;
+    if (sideMenu == self.menuLeft)
+        return [items count];
+    else
+        return [localMenuItems count];
 }
 
-- (DOPNavbarMenu *)global_menu
+- (VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_global_menu == nil) {
-        NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
+    // This solution is provided for DEMO propose only
+    // It's beter to store all items in separate arrays like you do it in your UITableView's. Right?
+    VKSideMenuItem *item = [VKSideMenuItem new];
 
-        [items enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
-            BOOL enabled = YES;
-            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
-                enabled = NO;
-                menuitem = [menuitem substringFromIndex:1];
-            }
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
-            [menuoptions addObject:item];
-        }];
-
-        _global_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:parent_vc.view.dop_width maximumNumberInRow:numberOfItemsInRow];
-        _global_menu.backgroundColor = [UIColor blackColor];
-        _global_menu.separatarColor = [UIColor whiteColor];
-        _global_menu.menuName = MENU_STRING;
-        _global_menu.delegate = self;
-    }
-    return _global_menu;
-}
-
-- (void)openLocalMenu:(id)sender
-{
-    if (localMenuDelegate != nil)
-        [localMenuDelegate openLocalMenu:sender];
-}
-
-- (void)openGlobalMenu:(id)sender
-{
-    // NSLog(@"GlobalMenu/openMenu: self.vc:%p", self.parent_vc);
-
-    button.enabled = NO;
-    if (self.global_menu.isOpen) {
-        [self.global_menu dismissWithAnimation:YES];
+    item.icon = nil;
+    if (sideMenu == self.menuLeft) {
+        item.title = [items objectAtIndex:indexPath.row];
+        return item;
     } else {
-        [self.global_menu showInNavigationController:parent_vc.navigationController];
+        item.title = [localMenuItems objectAtIndex:indexPath.row];
     }
+    return item;
 }
 
-- (void)didShowMenu:(DOPNavbarMenu *)menu
-{
-    // NSLog(@"GlobalMenu/didShowMenu: self.vc:%p", self.parent_vc);
+#pragma mark - VKSideMenuDelegate
 
-    [button setTitle:MENU_STRING];
-    button.enabled = NO;
+- (NSString *)sideMenu:(VKSideMenu *)sideMenu titleForHeaderInSection:(NSInteger)section
+{
+    return nil;
 }
 
-- (void)didDismissMenu:(DOPNavbarMenu *)menu
+- (void)sideMenuDidShow:(VKSideMenu *)sideMenu
 {
-    [button setTitle:MENU_STRING];
-    button.enabled = YES;
+    NSLog(@"%@ VKSideMenue did show", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
 }
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)sideMenuDidHide:(VKSideMenu *)sideMenu
 {
-    NSLog(@"Switching to %ld", (long)index);
-    [myConfig currentPageUpdate:index];
-    [_AppDelegate switchController:index];
+    NSLog(@"%@ VKSideMenue did hide", sideMenu == self.menuLeft ? @"LEFT" : @"RIGHT");
+}
+
+- (void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+    if (sideMenu == self.menuLeft) {
+        NSLog(@"Switching to %ld", (long)indexPath.row);
+        [myConfig currentPageUpdate:indexPath.row];
+        [_AppDelegate switchController:indexPath.row];
+    } else {
+        NSLog(@"Local menu action %ld", (long)indexPath.row);
+        [localMenuTarget performLocalMenuAction:indexPath.row];
+        [self.menuRight hide];
+    }
 }
 
 @end

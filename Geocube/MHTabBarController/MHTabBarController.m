@@ -381,7 +381,7 @@ static const NSInteger TagOffset = 1000;
 
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [menuGlobal transitionToSize:size];
+//    [menuGlobal transitionToSize:size];
 
 //    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
 //        [vc viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -397,7 +397,12 @@ static const NSInteger TagOffset = 1000;
     b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
     [self.view addSubview:b];
-    [b addTarget:menuGlobal action:@selector(openGlobalMenu:) forControlEvents:UIControlEventTouchDown];
+
+    MHTabBarController *t = [_AppDelegate.tabBars objectAtIndex:RC_WAYPOINTS];
+    UINavigationController *nvc = [t.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
+    GCTableViewController *vc = [nvc.viewControllers objectAtIndex:0];
+
+    [b addTarget:menuGlobal action:@selector(buttonMenuLeft:) forControlEvents:UIControlEventTouchDown];
     /***** Global Menu ****/
 
     /***** Local Menu ****/
@@ -406,9 +411,13 @@ static const NSInteger TagOffset = 1000;
     b.frame = CGRectMake(self.view.bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
+
+    t = [_AppDelegate.tabBars objectAtIndex:RC_WAYPOINTS];
+    nvc = [t.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
+    vc = [nvc.viewControllers objectAtIndex:0];
+
     [self.view addSubview:b];
-    [b addTarget:menuGlobal action:@selector(openLocalMenu:) forControlEvents:UIControlEventTouchDown];
-    menuGlobal.localMenuButton = b;
+    [b addTarget:vc action:@selector(buttonMenuRight:) forControlEvents:UIControlEventTouchDown];
     /***** Global Menu ****/
 }
 

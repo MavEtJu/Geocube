@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCViewController : UIViewController <GlobalMenuDelegate, DOPNavbarMenuDelegate, UIScrollViewDelegate>
+@interface GCViewController : UIViewController <GlobalMenuDelegate, UIScrollViewDelegate>
 {
     LocalMenuItems *lmi;
     BOOL hasCloseButton;
@@ -28,7 +28,6 @@
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
 
 - (void)showCloseButton;
-- (void)refreshMenu;
 - (void)changeTheme;
 - (void)closePage:(NSObject *)b;
 - (void)prepareCloseButton:(UIView *)view;

@@ -1494,14 +1494,15 @@ enum sections {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
+- (void)performLocalMenuAction:(NSInteger)index
+{
     switch (index) {
         case menuResetToDefault:
             [self resetValues];
             return;
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 - (void)resetValues

@@ -439,13 +439,14 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
         case menuICloud:
             [IOSFTM downloadICloud:self];
             return;
     }
+    [super performLocalMenuAction:index];
 }
 
 @end

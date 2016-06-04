@@ -24,7 +24,6 @@
 @interface GCTableViewController ()
 {
     NSInteger numberOfItemsInRow;
-    DOPNavbarMenu *tab_menu;
     GCCloseButton *closeButton;
 }
 
@@ -32,7 +31,7 @@
 
 @implementation GCTableViewController
 
-@synthesize numberOfItemsInRow, tab_menu, hasCloseButton;
+@synthesize numberOfItemsInRow, hasCloseButton;
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
@@ -74,6 +73,11 @@
     }
 }
 
+- (void)buttonMenuRight:(id)sender
+{
+    [menuGlobal.menuRight show];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -87,12 +91,7 @@
 
     [super viewWillAppear:animated];
 
-    // Deal with the local menu button
-    if (lmi == nil)
-        menuGlobal.localMenuButton.hidden = YES;
-    else
-        menuGlobal.localMenuButton.hidden = NO;
-    [menuGlobal setLocalMenuTarget:self];
+    [menuGlobal defineLocalMenu:lmi forVC:self];
 
     // Add a close button to the view
     if (hasCloseButton == YES && closeButton == nil) {
@@ -105,10 +104,6 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    if (tab_menu != nil)
-        [tab_menu removeFromSuperview];
-    tab_menu = nil;
-
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
@@ -150,7 +145,6 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//  [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     if (currentTheme.tableViewCellGradient == YES) {
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = cell.bounds;
@@ -181,63 +175,10 @@
 //    }
 }
 
-
 #pragma -- Local menu related functions
 
-- (DOPNavbarMenu *)tab_menu
+- (void)performLocalMenuAction:(NSInteger)index
 {
-    if (tab_menu == nil) {
-        NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
-
-        [[lmi makeMenu] enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
-            BOOL enabled = YES;
-            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
-                enabled = NO;
-                menuitem = [menuitem substringFromIndex:1];
-            }
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
-            [menuoptions addObject:item];
-        }];
-
-        tab_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
-        tab_menu.backgroundColor = [UIColor blackColor];
-        tab_menu.separatarColor = [UIColor whiteColor];
-        tab_menu.menuName = @"Local";
-        tab_menu.delegate = self;
-    }
-    return tab_menu;
-}
-
-- (void)refreshMenu
-{
-    self.tab_menu = nil;
-}
-
-- (void)openLocalMenu:(id)sender
-{
-    // NSLog(@"GCTableViewController/openMenu: self:%p", self);
-
-    if (lmi == nil)
-        return;
-
-    if (self.tab_menu.isOpen) {
-        [self.tab_menu dismissWithAnimation:YES];
-    } else {
-        [self.tab_menu showInNavigationController:self.navigationController];
-    }
-}
-
-- (void)didShowMenu:(DOPNavbarMenu *)menu
-{
-    // NSLog(@"GCTableViewController/didShowMenu: self:%p", self);
-}
-
-- (void)didDismissMenu:(DOPNavbarMenu *)menu
-{
-    // NSLog(@"GCTableViewController/didDismissMenu: self:%p", self);
-}
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     [MyTools messageBox:self header:@"You selected..." text:[NSString stringWithFormat:@"number %@", @(index + 1)]];
 }
 

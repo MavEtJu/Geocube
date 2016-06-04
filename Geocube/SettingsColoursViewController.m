@@ -90,7 +90,7 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
         case menuReset: // Reset
@@ -98,7 +98,7 @@ enum {
             return;
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 - (void)resetPinColours

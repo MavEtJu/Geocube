@@ -156,6 +156,7 @@
 		E80F73731B530C4600F35528 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
+		E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E812CF551D01A09400C4E777 /* VKSideMenu.m */; };
 		E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E81304031B5C4EB1006DF300 /* dbSymbol.m */; };
 		E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */ = {isa = PBXBuildFile; fileRef = E813040A1B5D9B5E006DF300 /* dbTrackable.m */; };
 		E8182F431C0C1BB4004AC534 /* menu icon - see target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8182F421C0C1BB4004AC534 /* menu icon - see target.png */; };
@@ -215,8 +216,6 @@
 		E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeNormal.m */; };
 		E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760111B85E06E00F34483 /* ThemeGeosphere.m */; };
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
-		E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */; };
-		E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCSimpleObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */; };
@@ -602,6 +601,8 @@
 		E80F73721B530C4600F35528 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E812CF541D01A09400C4E777 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
+		E812CF551D01A09400C4E777 /* VKSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VKSideMenu.m; path = VKSideMenu/VKSideMenu.m; sourceTree = "<group>"; };
 		E81304021B5C4EB1006DF300 /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSymbol.h; sourceTree = "<group>"; };
 		E81304031B5C4EB1006DF300 /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSymbol.m; sourceTree = "<group>"; };
 		E81304091B5D9B5E006DF300 /* dbTrackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbTrackable.h; sourceTree = "<group>"; };
@@ -705,10 +706,6 @@
 		E85760111B85E06E00F34483 /* ThemeGeosphere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeGeosphere.m; sourceTree = "<group>"; };
 		E85760131B85E08400F34483 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTemplate.h; sourceTree = "<group>"; };
 		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
-		E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOPNavbarMenu.h; path = DOPNavbarMenu/DOPNavbarMenu.h; sourceTree = "<group>"; };
-		E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOPNavbarMenu.m; path = DOPNavbarMenu/DOPNavbarMenu.m; sourceTree = "<group>"; };
-		E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+DOPExtension.h"; path = "DOPNavbarMenu/UIView+DOPExtension.h"; sourceTree = "<group>"; };
-		E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+DOPExtension.m"; path = "DOPNavbarMenu/UIView+DOPExtension.m"; sourceTree = "<group>"; };
 		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
 		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
@@ -1113,6 +1110,15 @@
 			path = objects;
 			sourceTree = "<group>";
 		};
+		E812CF531D01A07400C4E777 /* VKSizeMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E812CF541D01A09400C4E777 /* VKSideMenu.h */,
+				E812CF551D01A09400C4E777 /* VKSideMenu.m */,
+			);
+			name = VKSizeMenu;
+			sourceTree = "<group>";
+		};
 		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -1387,17 +1393,6 @@
 				E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */,
 			);
 			name = Geocube;
-			sourceTree = "<group>";
-		};
-		E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E85DAFD51B450EAA00C738A8 /* UIView+DOPExtension.h */,
-				E85DAFD61B450EAA00C738A8 /* UIView+DOPExtension.m */,
-				E85DAFD21B450C3600C738A8 /* DOPNavbarMenu.h */,
-				E85DAFD31B450C3600C738A8 /* DOPNavbarMenu.m */,
-			);
-			name = DOPNavbarMenu;
 			sourceTree = "<group>";
 		};
 		E8611A981B8ABC8F00B9D7C3 /* Compass */ = {
@@ -2001,12 +1996,12 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E812CF531D01A07400C4E777 /* VKSizeMenu */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
 				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
-				E85DAFD11B450C1900C738A8 /* DOPNavbarMenu */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
@@ -2641,7 +2636,6 @@
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */,
 				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
-				E85DAFD41B450C3600C738A8 /* DOPNavbarMenu.m in Sources */,
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
@@ -2666,6 +2660,7 @@
 				E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */,
 				E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */,
 				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
+				E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
@@ -2750,7 +2745,6 @@
 				E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */,
 				E8C5BB7A1C719EB1006222D5 /* WaypointsOfflineListViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
-				E85DAFD71B450EAA00C738A8 /* UIView+DOPExtension.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
 				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,

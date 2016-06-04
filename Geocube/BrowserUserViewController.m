@@ -259,7 +259,7 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     // Go back home
     switch (index) {
@@ -267,6 +267,8 @@ enum {
             [self addBookmark];
             return;
     }
+
+    [super performLocalMenuAction:index];
 }
 
 @end

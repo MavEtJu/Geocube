@@ -289,7 +289,7 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     // Go back home
     switch (index) {
@@ -297,6 +297,7 @@ enum {
             [self loadURL:urlHome];
             return;
     }
+    [super performLocalMenuAction:index];
 }
 
 @end

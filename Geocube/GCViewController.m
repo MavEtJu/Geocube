@@ -24,7 +24,6 @@
 @interface GCViewController ()
 {
     NSInteger numberOfItemsInRow;
-    DOPNavbarMenu *tab_menu;
     GCCloseButton *closeButton;
 }
 
@@ -86,12 +85,7 @@
     [super viewWillAppear:animated];
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
 
-    // Deal with the local menu
-    if (lmi == nil)
-        menuGlobal.localMenuButton.hidden = YES;
-    else
-        menuGlobal.localMenuButton.hidden = NO;
-    [menuGlobal setLocalMenuTarget:self];
+    [menuGlobal defineLocalMenu:lmi forVC:self];
 
     // Add a close button to the view
     if (hasCloseButton == YES && closeButton == nil) {
@@ -129,53 +123,8 @@
 
 #pragma -- Local menu related functions
 
-- (DOPNavbarMenu *)tab_menu
+- (void)performLocalMenuAction:(NSInteger)index
 {
-    if (tab_menu == nil) {
-        NSMutableArray *menuoptions = [[NSMutableArray alloc] initWithCapacity:20];
-
-        [[lmi makeMenu] enumerateObjectsUsingBlock:^(NSString *menuitem, NSUInteger idx, BOOL *stop) {
-            BOOL enabled = YES;
-            if ([[menuitem substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"X"] == YES) {
-                enabled = NO;
-                menuitem = [menuitem substringFromIndex:1];
-            }
-            DOPNavbarMenuItem *item = [DOPNavbarMenuItem ItemWithTitle:menuitem icon:[UIImage imageNamed:@"Image"] enabled:enabled];
-            [menuoptions addObject:item];
-        }];
-
-        tab_menu = [[DOPNavbarMenu alloc] initWithItems:menuoptions width:self.view.dop_width maximumNumberInRow:numberOfItemsInRow];
-        tab_menu.backgroundColor = [UIColor blackColor];
-        tab_menu.separatarColor = [UIColor whiteColor];
-        tab_menu.menuName = @"Local";
-        tab_menu.delegate = self;
-    }
-    return tab_menu;
-}
-
-- (void)refreshMenu
-{
-    tab_menu = nil;
-}
-
-- (void)openLocalMenu:(id)sender
-{
-    if (self.tab_menu.isOpen) {
-        [self.tab_menu dismissWithAnimation:YES];
-    } else {
-        [self.tab_menu showInNavigationController:self.navigationController];
-    }
-}
-
-- (void)didShowMenu:(DOPNavbarMenu *)menu
-{
-}
-
-- (void)didDismissMenu:(DOPNavbarMenu *)menu
-{
-}
-
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index {
     [MyTools messageBox:self header:@"You selected..." text:[NSString stringWithFormat:@"number %@", @(index + 1)]];
 }
 

@@ -22,7 +22,7 @@
 #ifndef Geocube_Geocube_h
 #define Geocube_Geocube_h
 
-// Global menu
+// Global menu management
 extern GlobalMenu *menuGlobal;
 
 // Database handle

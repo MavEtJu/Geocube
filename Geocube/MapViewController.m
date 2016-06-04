@@ -200,7 +200,6 @@ enum {
             hasGMS = YES;
             [lmi enableItem:menuMapGoogle];
             [GMSServices provideAPIKey:myConfig.keyGMS];
-            [self refreshMenu];
         }
     }
 
@@ -647,8 +646,6 @@ enum {
     if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
 
-    [self refreshMenu];
-
     [map initMap];
     [map mapViewDidLoad];
     [map initCamera:LM.coords];
@@ -776,7 +773,6 @@ enum {
     } else {
         [lmi changeItem:menuAutoZoom label:@"AutoZoom"];
     }
-    [self refreshMenu];
 }
 
 - (void)menuLoadWaypoints
@@ -826,7 +822,6 @@ enum {
 - (void)menuRecenter
 {
     [lmi enableItem:menuUseGPS];
-    [self refreshMenu];
 
     useGPS = NO;
     [LM useGPS:NO coordinates:[map currentCenter]];
@@ -839,7 +834,6 @@ enum {
 - (void)menuUseGPS
 {
     [lmi disableItem:menuUseGPS];
-    [self refreshMenu];
 
     useGPS = YES;
     [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
@@ -857,7 +851,7 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
         case menuMap: /* Map view */
@@ -915,7 +909,7 @@ enum {
             return;
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 @end

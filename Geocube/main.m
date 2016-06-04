@@ -21,6 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
+// Global menu management
 GlobalMenu *menuGlobal;
 
 // Database handle

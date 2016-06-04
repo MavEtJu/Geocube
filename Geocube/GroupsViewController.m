@@ -269,7 +269,7 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)didSelectedMenu:(DOPNavbarMenu *)menu atIndex:(NSInteger)index
+- (void)performLocalMenuAction:(NSInteger)index
 {
     // Add a group
     if (showUsers == YES) {
@@ -288,7 +288,7 @@ enum {
         }
     }
 
-    [super didSelectedMenu:menu atIndex:index];
+    [super performLocalMenuAction:index];
 }
 
 - (void)newGroup
