@@ -116,7 +116,7 @@ typedef NS_ENUM(NSInteger, VKSideMenuDirection)
  @property  disabled
  @abstract  Is this item disabled
  */
-@property (nonatomic, strong) NSString *disabled;
+@property (nonatomic) BOOL disabled;
 
 /*!
  @property  tag

@@ -24,7 +24,7 @@
 @interface GlobalMenu ()
 {
     NSMutableArray *items;
-    NSArray *localMenuItems;
+    LocalMenuItems *localMenuItems;
     id localMenuTarget;
 }
 
@@ -44,7 +44,7 @@
 
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc
 {
-    localMenuItems = [lmi makeMenu];
+    localMenuItems = lmi;
     localMenuTarget = vc;
 }
 
@@ -114,7 +114,7 @@
     if (sideMenu == self.menuGlobal)
         return [items count];
     else
-        return [localMenuItems count];
+        return [localMenuItems countItems];
 }
 
 - (VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,11 +123,11 @@
     // It's beter to store all items in separate arrays like you do it in your UITableView's. Right?
     VKSideMenuItem *item = [VKSideMenuItem new];
 
-    item.icon = nil;
-    if (sideMenu == self.menuGlobal)
+    if (sideMenu == self.menuGlobal) {
+        item.disabled = NO;
         item.title = [items objectAtIndex:indexPath.row];
-    else
-        item.title = [localMenuItems objectAtIndex:indexPath.row];
+    } else
+        item = [localMenuItems makeItem:indexPath.row];
     return item;
 }
 
