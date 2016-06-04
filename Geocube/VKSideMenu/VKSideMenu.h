@@ -251,11 +251,18 @@ typedef NS_ENUM(NSInteger, VKSideMenuDirection)
 @property (nonatomic, strong) UIColor *selectionColor;
 
 /*!
- @property  selectionColor
+ @property  textColor
  @abstract  Color of title for <code>tableView</code> rows
  @note      Default is #252525
  */
 @property (nonatomic, strong) UIColor *textColor;
+
+/*!
+ @property  textDisabledColor
+ @abstract  Color of title for <code>tableView</code> rows
+ @note      Default is #050505
+ */
+@property (nonatomic, strong) UIColor *textDisabledColor;
 
 /*!
  @property  sectionTitleFont

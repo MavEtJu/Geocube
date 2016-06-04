@@ -88,6 +88,7 @@
     self.backgroundColor    = [UIColor colorWithWhite:1. alpha:.8];
 #pragma clang diagnostic pop
     self.textColor          = UIColorFromRGB(0x252525);
+    self.textDisabledColor  = UIColorFromRGB(0x050505);
     self.iconsColor         = UIColorFromRGB(0x8f8f8f);
     self.sectionTitleColor  = UIColorFromRGB(0x8f8f8f);
     
@@ -254,7 +255,7 @@
     }
     
     title.text      = item.title;
-    title.textColor = self.textColor;
+    title.textColor = item.disabled == YES ? self.textDisabledColor : self.textColor;
     cell.userInteractionEnabled = !item.disabled;
 
     return cell;
