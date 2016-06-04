@@ -41,7 +41,11 @@ grep @interface *.[mh] | grep \{
 
 echo
 echo "Method definitions should have the { on the next line:"
-grep "^[\-\+].*{\s*$" *.m
+grep "^[-+].*{\s*$" *.m
+
+echo
+echo "Method definitions should have a space between [-+] and name:"
+grep "^[-+]\S" *.m
 
 echo
 echo "MyConfig:"
