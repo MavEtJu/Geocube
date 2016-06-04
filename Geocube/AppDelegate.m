@@ -35,8 +35,8 @@
 @synthesize tabBars, currentTabBar;
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     _AppDelegate = self;
 
     // File manager

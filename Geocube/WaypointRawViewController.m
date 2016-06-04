@@ -43,7 +43,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     hasCloseButton = YES;
     [super viewDidLoad];
 

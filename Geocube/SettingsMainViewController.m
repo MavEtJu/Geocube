@@ -84,7 +84,8 @@ enum {
     menuMax
 };
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 

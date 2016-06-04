@@ -216,7 +216,8 @@
     }
 }
 
-- (void)addObservers {
+- (void)addObservers
+{
     // Keep track of the textView/Field that we are editing
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(editingDidBegin:)

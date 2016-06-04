@@ -27,7 +27,8 @@
 
 @implementation HelpHelpViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     NSInteger y = 10;

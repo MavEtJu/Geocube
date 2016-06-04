@@ -32,7 +32,8 @@
 
 #define THISCELL @"NotesImagesViewcell"
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
