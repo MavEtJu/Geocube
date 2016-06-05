@@ -176,7 +176,7 @@ enum {
                 buttonOwner = b;
                 break;
             default:
-                NSAssert1(0, @"Flag %ld not found", i);
+                NSAssert1(0, @"Flag %ld not found", (long)i);
         }
         y += 20;
     };

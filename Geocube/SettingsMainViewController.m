@@ -342,7 +342,7 @@ enum sections {
         case SECTION_MARKAS:
             return SECTION_MARKAS_MAX;
         default:
-            NSAssert1(0, @"Unknown section %ld", section);
+            NSAssert1(0, @"Unknown section %ld", (long)section);
     }
 
     return 0;
