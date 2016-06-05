@@ -49,7 +49,7 @@
 
     [coordinator animateAlongsideTransition:nil
                                  completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     //[self reloadTexts];
+                                     [self.tableView reloadData];
                                  }
      ];
 }
@@ -198,12 +198,14 @@
                        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
                        __DATE__, __TIME__];
         cell.textLabel.text = s;
-    } else
+        cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCTextblockFont.pointSize];
+    } else {
         cell.textLabel.text = [texts objectAtIndex:indexPath.row - 1];
+        cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCSmallFont.pointSize];
+    }
 
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCSmallFont.pointSize];
 
     [cell.textLabel sizeToFit];
     [heights replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:cell.textLabel.frame.size.height]];
