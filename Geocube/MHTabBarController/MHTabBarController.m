@@ -391,6 +391,7 @@ static const NSInteger TagOffset = 1000;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     CGRect bounds = self.view.bounds;
     UIButton *b = localMenuButton;
     UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
@@ -411,10 +412,6 @@ static const NSInteger TagOffset = 1000;
     [b setImage:imgMenu forState:UIControlStateNormal];
     [self.view addSubview:b];
 
-    MHTabBarController *t = [_AppDelegate.tabBars objectAtIndex:RC_WAYPOINTS];
-    UINavigationController *nvc = [t.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
-    GCTableViewController *vc = [nvc.viewControllers objectAtIndex:0];
-
     [b addTarget:menuGlobal action:@selector(buttonMenuGlobal:) forControlEvents:UIControlEventTouchDown];
     globalMenuButton = b;
     /***** Global Menu ****/
@@ -426,12 +423,8 @@ static const NSInteger TagOffset = 1000;
     b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
 
-    t = [_AppDelegate.tabBars objectAtIndex:RC_WAYPOINTS];
-    nvc = [t.viewControllers objectAtIndex:VC_WAYPOINTS_LIST];
-    vc = [nvc.viewControllers objectAtIndex:0];
-
     [self.view addSubview:b];
-    [b addTarget:vc action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
+    [b addTarget:menuGlobal action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
     localMenuButton = b;
     /***** Global Menu ****/
 }
