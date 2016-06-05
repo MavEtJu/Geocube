@@ -193,9 +193,10 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     if (indexPath.row == 0) {
-        NSString *s = [NSString stringWithFormat:@"Geocube Version %@(%@)",
-            [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
-                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        NSString *s = [NSString stringWithFormat:@"Geocube Version %@(%@)\nBuild on %s %s",
+                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                       __DATE__, __TIME__];
         cell.textLabel.text = s;
     } else
         cell.textLabel.text = [texts objectAtIndex:indexPath.row - 1];
