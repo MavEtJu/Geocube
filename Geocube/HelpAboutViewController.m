@@ -75,8 +75,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
     [self loadTexts];
-    heights = [NSMutableArray arrayWithCapacity:[texts count]];
-    for (NSInteger i = 0; i < [texts count]; i++) {
+    heights = [NSMutableArray arrayWithCapacity:[texts count] + 1];
+    for (NSInteger i = 0; i < [texts count] + 1; i++) {
         [heights addObject:[NSNumber numberWithInteger:0]];
     }
 }
@@ -184,7 +184,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [texts count];
+    return 1 + [texts count];
 }
 
 // Return a cell for the index path
@@ -192,7 +192,14 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
-    cell.textLabel.text = [texts objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        NSString *s = [NSString stringWithFormat:@"Geocube Version %@(%@)",
+            [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        cell.textLabel.text = s;
+    } else
+        cell.textLabel.text = [texts objectAtIndex:indexPath.row - 1];
+
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCSmallFont.pointSize];
