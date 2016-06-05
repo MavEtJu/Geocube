@@ -1279,6 +1279,8 @@
 		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
+				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = Waypoints;
@@ -1549,8 +1551,6 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
-				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
-				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
 				E89051751C8AE1B600220986 /* Logging */,
 				E89051741C8AE1AE00220986 /* Images */,
 				E85707911CA1E7CE00467CE0 /* Single Waypoint */,
