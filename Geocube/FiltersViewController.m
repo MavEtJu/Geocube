@@ -129,85 +129,27 @@ enum {
 {
    FilterObject *fo = [filters objectAtIndex:indexPath.row];
 
+#define FILTER(__row__, __type__) \
+        case __row__: { \
+            __type__ *cell = [[__type__ alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo]; \
+            fo.tvc = cell; \
+            break; \
+        }
+
     switch (indexPath.row) {
-        case filterGroups: {
-            FilterGroupsTableViewCell *cell = [[FilterGroupsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterTypes: {
-            FilterTypesTableViewCell *cell = [[FilterTypesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterFavourites: {
-            FilterFavouritesTableViewCell *cell = [[FilterFavouritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterSizes: {
-            FilterSizesTableViewCell *cell = [[FilterSizesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterDifficulty: {
-            FilterDifficultyTableViewCell *cell = [[FilterDifficultyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterTerrain: {
-            FilterTerrainTableViewCell *cell = [[FilterTerrainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterDistance: {
-            FilterDistanceTableViewCell *cell = [[FilterDistanceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterDirection: {
-            FilterDirectionTableViewCell *cell = [[FilterDirectionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterText: {
-            FilterTextTableViewCell *cell = [[FilterTextTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterDates: {
-            FilterDateTableViewCell *cell = [[FilterDateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterCategories: {
-            FilterCategoryTableViewCell *cell = [[FilterCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterOtherRequirements: {
-            FilterOthersTableViewCell *cell = [[FilterOthersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
-        case filterFlags: {
-            FilterFlagsTableViewCell *cell = [[FilterFlagsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo];
-            fo.tvc = cell;
-            break;
-        }
-
+        FILTER(filterGroups, FilterGroupsTableViewCell)
+        FILTER(filterTypes, FilterTypesTableViewCell)
+        FILTER(filterFavourites, FilterFavouritesTableViewCell)
+        FILTER(filterSizes, FilterSizesTableViewCell)
+        FILTER(filterDifficulty, FilterDifficultyTableViewCell)
+        FILTER(filterTerrain, FilterTerrainTableViewCell)
+        FILTER(filterDistance, FilterDistanceTableViewCell)
+        FILTER(filterDirection, FilterDirectionTableViewCell)
+        FILTER(filterText, FilterTextTableViewCell)
+        FILTER(filterDates, FilterDateTableViewCell)
+        FILTER(filterCategories, FilterCategoryTableViewCell)
+        FILTER(filterOtherRequirements, FilterOthersTableViewCell)
+        FILTER(filterFlags, FilterFlagsTableViewCell)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
 
