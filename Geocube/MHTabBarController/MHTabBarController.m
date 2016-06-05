@@ -29,6 +29,8 @@ static const NSInteger TagOffset = 1000;
 	UIView *tabButtonsContainerView;
 	UIView *contentContainerView;
 	UIImageView *indicatorImageView;
+
+    UIButton *globalMenuButton, *localMenuButton;
 }
 
 - (void)viewDidLoad
@@ -377,15 +379,26 @@ static const NSInteger TagOffset = 1000;
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [_AppDelegate resizeControllers:size coordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:nil
+                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     UIButton *b = localMenuButton;
+                                     UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+                                     b.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+                                 }
+     ];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    CGRect bounds = self.view.bounds;
+    UIButton *b = localMenuButton;
+    UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 }
 
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-//    [menuGlobal transitionToSize:size];
-
-//    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
-//        [vc viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//    }];
 }
 
 - (void)addMenus
@@ -403,6 +416,7 @@ static const NSInteger TagOffset = 1000;
     GCTableViewController *vc = [nvc.viewControllers objectAtIndex:0];
 
     [b addTarget:menuGlobal action:@selector(buttonMenuGlobal:) forControlEvents:UIControlEventTouchDown];
+    globalMenuButton = b;
     /***** Global Menu ****/
 
     /***** Local Menu ****/
@@ -418,6 +432,7 @@ static const NSInteger TagOffset = 1000;
 
     [self.view addSubview:b];
     [b addTarget:vc action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
+    localMenuButton = b;
     /***** Global Menu ****/
 }
 
