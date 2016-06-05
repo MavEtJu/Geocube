@@ -414,6 +414,7 @@ static const NSInteger TagOffset = 1000;
 
     [b addTarget:menuGlobal action:@selector(buttonMenuGlobal:) forControlEvents:UIControlEventTouchDown];
     globalMenuButton = b;
+    menuGlobal.menuGlobalButton = b;
     /***** Global Menu ****/
 
     /***** Local Menu ****/
@@ -426,6 +427,7 @@ static const NSInteger TagOffset = 1000;
     [self.view addSubview:b];
     [b addTarget:menuGlobal action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
     localMenuButton = b;
+    menuGlobal.menuLocalButton = b;
     /***** Global Menu ****/
 }
 

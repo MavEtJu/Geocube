@@ -46,6 +46,12 @@
 {
     localMenuItems = lmi;
     localMenuTarget = vc;
+
+    if (localMenuItems == nil) {
+        self.menuLocalButton.hidden = YES;
+    } else {
+        self.menuLocalButton.hidden = NO;
+    }
 }
 
 - (instancetype)init

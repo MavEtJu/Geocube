@@ -30,6 +30,9 @@
 @property (nonatomic, strong) VKSideMenu *menuGlobal;
 @property (nonatomic, strong) VKSideMenu *menuLocal;
 
+@property (nonatomic, retain) UIButton *menuGlobalButton;
+@property (nonatomic, retain) UIButton *menuLocalButton;
+
 - (void)buttonMenuGlobal:(id)sender;
 - (void)buttonMenuLocal:(id)sender;
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc;
