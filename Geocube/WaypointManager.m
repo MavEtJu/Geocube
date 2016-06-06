@@ -507,22 +507,22 @@
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL keep = YES;
 
-                if (keep == YES && flagHighlight != 0)
-                    keep = (wp.flag_highlight == NO && flagHighlight == 2) || (wp.flag_highlight == YES && flagHighlight == 1);
-                if (keep == YES && flagInProgress != 0)
-                    keep = (wp.flag_inprogress == NO && flagInProgress == 2) || (wp.flag_inprogress == YES && flagInProgress == 1);
-                if (keep == YES && flagIgnored != 0)
-                    keep = (wp.flag_ignore == NO && flagIgnored == 2) || (wp.flag_ignore == YES && flagIgnored == 1);
-                if (keep == YES && flagMarkedFound != 0)
-                    keep = (wp.flag_markedfound == NO && flagMarkedFound == 2) || (wp.flag_markedfound == YES && flagMarkedFound == 1);
-                if (keep == YES && flagMarkedDNF != 0)
-                    keep = (wp.flag_dnf == NO && flagMarkedDNF == 2) || (wp.flag_dnf == YES && flagMarkedDNF == 1);
-                if (keep == YES && flagMine != 0)
-                    keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == 2) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == 1);
-                if (keep == YES && flagLoggedAsFound != 0)
-                    keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == 1) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == 2);
-                if (keep == YES && flagLoggedAsDNF != 0)
-                    keep = (wp.logStatus == LOGSTATUS_NOTFOUND && flagLoggedAsDNF == 1) || (wp.logStatus != LOGSTATUS_NOTFOUND && flagLoggedAsDNF == 2);
+                if (keep == YES && flagHighlight != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.flag_highlight == NO && flagHighlight == FILTER_FLAGS_NOTSET) || (wp.flag_highlight == YES && flagHighlight == FILTER_FLAGS_SET);
+                if (keep == YES && flagInProgress != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.flag_inprogress == NO && flagInProgress == FILTER_FLAGS_NOTSET) || (wp.flag_inprogress == YES && flagInProgress == FILTER_FLAGS_SET);
+                if (keep == YES && flagIgnored != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.flag_ignore == NO && flagIgnored == FILTER_FLAGS_NOTSET) || (wp.flag_ignore == YES && flagIgnored == FILTER_FLAGS_SET);
+                if (keep == YES && flagMarkedFound != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.flag_markedfound == NO && flagMarkedFound == FILTER_FLAGS_NOTSET) || (wp.flag_markedfound == YES && flagMarkedFound == FILTER_FLAGS_SET);
+                if (keep == YES && flagMarkedDNF != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.flag_dnf == NO && flagMarkedDNF == FILTER_FLAGS_NOTSET) || (wp.flag_dnf == YES && flagMarkedDNF == FILTER_FLAGS_SET);
+                if (keep == YES && flagMine != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == FILTER_FLAGS_SET);
+                if (keep == YES && flagLoggedAsFound != LOGSTATUS_NOTLOGGED)
+                    keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_NOTSET);
+                if (keep == YES && flagLoggedAsDNF != LOGSTATUS_NOTLOGGED)
+                    keep = (wp.logStatus == LOGSTATUS_NOTFOUND && flagLoggedAsDNF == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_NOTFOUND && flagLoggedAsDNF == FILTER_FLAGS_NOTSET);
 
                 if (keep == YES)
                     [after addObject:wp];

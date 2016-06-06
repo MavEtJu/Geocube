@@ -85,13 +85,13 @@ enum {
 
     NSString *c;
 
-    valueHighlighted = 0;
-    valueMarkedAsFound = 0;
-    valueMarkedAsDNF = 0;
-    valueIgnored = 0;
-    valueInProgress = 0;
-    valueLoggedAsFound = 0;
-    valueLoggedAsDNF = 0;
+    valueHighlighted = FILTER_FLAGS_NOTCHECKED;
+    valueMarkedAsFound = FILTER_FLAGS_NOTCHECKED;
+    valueMarkedAsDNF = FILTER_FLAGS_NOTCHECKED;
+    valueIgnored = FILTER_FLAGS_NOTCHECKED;
+    valueInProgress =FILTER_FLAGS_NOTCHECKED;
+    valueLoggedAsFound = FILTER_FLAGS_NOTCHECKED;
+    valueLoggedAsDNF = FILTER_FLAGS_NOTCHECKED;
 
     valuesHighlighted = @[@"Highlighted", @"Highlighted", @"Not highlighted"];
     valuesMarkedAsFound = @[@"Marked as Found", @"Marked as Found", @"Not marked as found"];

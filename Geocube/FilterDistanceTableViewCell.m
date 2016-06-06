@@ -135,7 +135,7 @@
 
     s = [self configGet:@"compareDistance"];
     if (s == nil)
-        compareDistance = 0;
+        compareDistance = FILTER_DISTANCE_LESSTHAN;
     else
         compareDistance = [s integerValue];
 }

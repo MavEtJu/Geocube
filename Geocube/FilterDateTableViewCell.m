@@ -133,13 +133,13 @@
 
     s = [self configGet:@"placed_compare"];
     if (s == nil)
-        comparePlaced= 1;
+        comparePlaced= FILTER_DATE_AFTER;
     else
         comparePlaced = [s integerValue];
 
     s = [self configGet:@"lastlog_compare"];
     if (s == nil)
-        compareLastLog = 1;
+        compareLastLog = FILTER_DATE_AFTER;
     else
         compareLastLog = [s integerValue];
 }

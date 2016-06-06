@@ -21,4 +21,10 @@
 
 @interface FilterFlagsTableViewCell : FilterTableViewCell
 
+enum {
+    FILTER_FLAGS_NOTCHECKED = 0,
+    FILTER_FLAGS_SET,
+    FILTER_FLAGS_NOTSET
+};
+
 @end
