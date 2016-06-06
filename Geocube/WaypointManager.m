@@ -132,17 +132,23 @@
 
             // On the equator there are 111 kilometers in a degrees longitude.
             // As such by filtering these distance you will be able to speed up the loading of the waypoints from the database.
-            if (compareDistance == 0) {         /* <= */
-                CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
-                CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
-                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
-            } else if (compareDistance == 1) {  /* >= */
-                // Don't worry about these...
-                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
-            } else {                            /* = */
-                CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
-                CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
-                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+            switch (compareDistance) {
+                case FILTER_DISTANCE_LESSTHAN: {
+                    CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
+                    CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
+                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+                    break;
+                }
+                case FILTER_DISTANCE_MORETHAN:
+                    // Don't worry about these...
+                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+                    break;
+                case FILTER_DISTANCE_INBETWEEN: {
+                    CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
+                    CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
+                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+                    break;
+                }
             }
 
         } else {
@@ -548,16 +554,19 @@
 
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL fine = NO;
-                if (compareDistance == 0) {         /* <= */
-                    if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
-                        fine = YES;
-                } else if (compareDistance == 1) {  /* >= */
-                    if (wp.calculatedDistance >= distanceKm * 1000 + distanceM)
-                        fine = YES;
-                } else {                            /* = */
-                    if (wp.calculatedDistance >= (distanceKm - variationKm) * 1000 + (distanceM - variationM) &&
-                        wp.calculatedDistance <= (distanceKm + variationKm) * 1000 + (distanceM + variationM))
-                        fine = YES;
+                switch (compareDistance) {
+                    case FILTER_DISTANCE_LESSTHAN:
+                        if (wp.calculatedDistance <= distanceKm * 1000 + distanceM)
+                            fine = YES;
+                        break;
+                    case FILTER_DISTANCE_MORETHAN:
+                        if (wp.calculatedDistance >= distanceKm * 1000 + distanceM)
+                            fine = YES;
+                        break;
+                    case FILTER_DISTANCE_INBETWEEN:
+                        if (wp.calculatedDistance >= (distanceKm - variationKm) * 1000 + (distanceM - variationM) &&
+                            wp.calculatedDistance <= (distanceKm + variationKm) * 1000 + (distanceM + variationM))
+                            fine = YES;
                 }
                 if (fine == YES)
                     [after addObject:wp];

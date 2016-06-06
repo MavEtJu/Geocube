@@ -158,15 +158,15 @@
     [self configUpdate];
 
     switch (compareDistance) {
-        case 0:
+        case FILTER_DISTANCE_LESSTHAN:
             [compareDistanceButton setTitle:@"=<" forState:UIControlStateNormal];
             [compareDistanceButton setTitle:@"=<" forState:UIControlStateSelected];
             break;
-        case 1:
+        case FILTER_DISTANCE_MORETHAN:
             [compareDistanceButton setTitle:@">=" forState:UIControlStateNormal];
             [compareDistanceButton setTitle:@">=" forState:UIControlStateSelected];
             break;
-        case 2:
+        case FILTER_DISTANCE_INBETWEEN:
             [compareDistanceButton setTitle:@"=" forState:UIControlStateNormal];
             [compareDistanceButton setTitle:@"=" forState:UIControlStateSelected];
             break;

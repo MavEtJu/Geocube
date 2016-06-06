@@ -21,4 +21,8 @@
 
 @interface FilterDistanceTableViewCell : FilterTableViewCell
 
+#define FILTER_DISTANCE_LESSTHAN    0
+#define FILTER_DISTANCE_MORETHAN    1
+#define FILTER_DISTANCE_INBETWEEN   2
+
 @end
