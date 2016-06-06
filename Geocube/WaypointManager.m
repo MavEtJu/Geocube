@@ -587,14 +587,14 @@
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL fine = NO;
 
-                if (direction == 0 && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
-                if (direction == 1 &&  wp.calculatedBearing <=  90 && wp.calculatedBearing >=   0) fine = YES;
-                if (direction == 2 &&  wp.calculatedBearing <= 135 && wp.calculatedBearing >=  45) fine = YES;
-                if (direction == 3 &&  wp.calculatedBearing <= 180 && wp.calculatedBearing >=  90) fine = YES;
-                if (direction == 4 &&  wp.calculatedBearing <= 225 && wp.calculatedBearing >= 135) fine = YES;
-                if (direction == 5 &&  wp.calculatedBearing <= 270 && wp.calculatedBearing >= 180) fine = YES;
-                if (direction == 6 &&  wp.calculatedBearing <= 315 && wp.calculatedBearing >= 225) fine = YES;
-                if (direction == 7 &&  wp.calculatedBearing <= 360 && wp.calculatedBearing >= 270) fine = YES;
+                if (direction == FILTER_DIRECTIONS_NORTH     && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
+                if (direction == FILTER_DIRECTIONS_NORTHEAST &&  wp.calculatedBearing <=  90 && wp.calculatedBearing >=   0) fine = YES;
+                if (direction == FILTER_DIRECTIONS_EAST      &&  wp.calculatedBearing <= 135 && wp.calculatedBearing >=  45) fine = YES;
+                if (direction == FILTER_DIRECTIONS_SOUTHEAST &&  wp.calculatedBearing <= 180 && wp.calculatedBearing >=  90) fine = YES;
+                if (direction == FILTER_DIRECTIONS_SOUTH     &&  wp.calculatedBearing <= 225 && wp.calculatedBearing >= 135) fine = YES;
+                if (direction == FILTER_DIRECTIONS_SOUTHWEST &&  wp.calculatedBearing <= 270 && wp.calculatedBearing >= 180) fine = YES;
+                if (direction == FILTER_DIRECTIONS_WEST      &&  wp.calculatedBearing <= 315 && wp.calculatedBearing >= 225) fine = YES;
+                if (direction == FILTER_DIRECTIONS_NORTHWEST &&  wp.calculatedBearing <= 360 && wp.calculatedBearing >= 270) fine = YES;
 
                 if (fine == YES)
                     [after addObject:wp];
