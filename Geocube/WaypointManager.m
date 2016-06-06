@@ -110,8 +110,9 @@
         caches = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"groups"];
 
-        __block NSString *c = [self configGet:@"groups_enabled"];
-        if (c != nil && [c boolValue] == YES) {
+        __block NSString *c_groups = [self configGet:@"groups_enabled"];
+        __block NSString *c_distance = [self configGet:@"distance_enabled"];
+        if (c_groups != nil && [c_groups boolValue] == YES) {
             __block NSMutableArray *groups = [NSMutableArray arrayWithCapacity:20];
             [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"groups_group_%ld", (long)group._id]];
@@ -120,6 +121,30 @@
                 [groups addObject:group];
             }];
             [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
+        } else if (c_distance != nil && [c_distance boolValue] == YES) {
+            NSInteger compareDistance = [[self configGet:@"distance_compareDistance"] integerValue];
+            NSInteger distanceM = [[self configGet:@"distance_distanceM"] integerValue];
+            NSInteger distanceKm = [[self configGet:@"distance_distanceKm"] integerValue];
+            NSInteger variationM = [[self configGet:@"distance_variationM"] integerValue];
+            NSInteger variationKm = [[self configGet:@"distance_variationKm"] integerValue];
+
+#define KM_IN_DEGREE 110000.0
+
+            // On the equator there are 111 kilometers in a degrees longitude.
+            // As such
+            if (compareDistance == 0) {         /* <= */
+                CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
+                CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
+                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+            } else if (compareDistance == 1) {  /* >= */
+                // Don't worry about these...
+                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+            } else {                            /* = */
+                CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
+                CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
+                caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+            }
+
         } else {
             caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
             [clock clockShowAndReset:@"dbAll"];
@@ -135,7 +160,7 @@
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"types"];
 
-        c = [self configGet:@"types_enabled"];
+        __block NSString *c = [self configGet:@"types_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering types", [self class]);
             [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL *stop) {

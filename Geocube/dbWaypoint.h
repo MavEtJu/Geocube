@@ -125,5 +125,6 @@ enum {
 + (NSArray *)waypointsWithLogs;
 + (NSArray *)waypointsWithMyLogs;
 + (NSArray *)dbAllByFlag:(NSInteger)flag;
++ (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
 @end

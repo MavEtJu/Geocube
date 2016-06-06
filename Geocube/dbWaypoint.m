@@ -440,6 +440,13 @@
     return wps;
 }
 
++ (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt
+{
+    // -34040000 < wpt_lat_int and wpt_lat_int < 34050000 and 151093000 < wpt_lon_int and wpt_lon_int < 1510950000;
+    NSArray *wps = [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"%0.0f < wpt_lat_int and wpt_lat_int < %0.0f and %0.0f < wpt_lon_int and wpt_lon_int < %0.0f", 1000000 * lt.latitude, 1000000 * rt.latitude, 1000000 * lt.longitude, 1000000 * rt.longitude]];
+    return wps;
+}
+
 + (NSArray *)dbAllInGroups:(NSArray *)groups
 {
     NSMutableString *where = [NSMutableString stringWithString:@""];
