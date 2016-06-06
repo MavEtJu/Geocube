@@ -131,7 +131,7 @@
 #define KM_IN_DEGREE 110000.0
 
             // On the equator there are 111 kilometers in a degrees longitude.
-            // As such
+            // As such by filtering these distance you will be able to speed up the loading of the waypoints from the database.
             if (compareDistance == 0) {         /* <= */
                 CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
                 CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
