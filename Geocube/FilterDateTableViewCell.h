@@ -21,4 +21,10 @@
 
 @interface FilterDateTableViewCell : FilterTableViewCell
 
+enum {
+    FILTER_DATE_BEFORE = 0,
+    FILTER_DATE_AFTER,
+    FILTER_DATE_ON,
+};
+
 @end

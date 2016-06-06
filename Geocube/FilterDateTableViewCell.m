@@ -109,6 +109,8 @@
 
 #pragma mark -- configuration
 
+#define JAN1_2000   946684800
+
 - (void)configInit
 {
     [self configPrefix:@"dates"];
@@ -119,13 +121,13 @@
 
     s = [self configGet:@"placed_epoch"];
     if (s == nil)
-        epochPlaced = 946684800;
+        epochPlaced = JAN1_2000;
     else
         epochPlaced = [s integerValue];
 
     s = [self configGet:@"lastlog_epoch"];
     if (s == nil)
-        epochLastLog = 946684800;
+        epochLastLog = JAN1_2000;
     else
         epochLastLog = [s integerValue];
 
@@ -163,13 +165,13 @@
     [self configUpdate];
 
     switch (compare) {
-    case 0:
+    case FILTER_DATE_BEFORE:
         [b setTitle:@"before" forState:UIControlStateNormal];
         break;
-    case 1:
+    case FILTER_DATE_AFTER:
         [b setTitle:@"after" forState:UIControlStateNormal];
         break;
-    case 2:
+    case FILTER_DATE_ON:
         [b setTitle:@"on" forState:UIControlStateNormal];
         break;
     }

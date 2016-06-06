@@ -302,62 +302,76 @@
             NSInteger placedCompare = [[self configGet:@"dates_placed_compare"] integerValue];
             NSInteger lastLogCompare = [[self configGet:@"dates_lastlog_compare"] integerValue];
 
-            if (placedCompare == 0) {           // before
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.wpt_date_placed_epoch <= placedEpoch)
-                        [after addObject:wp];
-                }];
-            } else if (placedCompare == 1) {    // after
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.wpt_date_placed_epoch >= placedEpoch)
-                        [after addObject:wp];
-                }];
-            } else {                            // on
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.wpt_date_placed_epoch >= placedEpoch - 86400 && wp.wpt_date_placed_epoch <= placedEpoch + 86400)
-                        [after addObject:wp];
-                }];
+            switch (placedCompare) {
+                case FILTER_DATE_BEFORE: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        if (wp.wpt_date_placed_epoch <= placedEpoch)
+                            [after addObject:wp];
+                    }];
+                    break;
+                }
+                case FILTER_DATE_AFTER: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        if (wp.wpt_date_placed_epoch >= placedEpoch)
+                            [after addObject:wp];
+                    }];
+                    break;
+                }
+                case FILTER_DATE_ON: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        if (wp.wpt_date_placed_epoch >= placedEpoch - 86400 && wp.wpt_date_placed_epoch <= placedEpoch + 86400)
+                            [after addObject:wp];
+                    }];
+                    break;
+                }
             }
 
-            if (lastLogCompare == 0) {           // before
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
-                    __block BOOL rv = YES;
-                    [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
-                        if (log.datetime_epoch > lastLogEpoch) {
-                            rv = NO;
-                            *stop = YES;
-                        }
+            switch (lastLogCompare) {
+                case FILTER_DATE_BEFORE: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
+                        __block BOOL rv = YES;
+                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                            if (log.datetime_epoch > lastLogEpoch) {
+                                rv = NO;
+                                *stop = YES;
+                            }
+                        }];
+                        if (rv == YES)
+                            [after addObject:wp];
                     }];
-                    if (rv == YES)
-                        [after addObject:wp];
-                }];
-            } else if (lastLogCompare == 1) {    // after
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
-                    __block BOOL rv = NO;
-                    [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
-                        if (log.datetime_epoch > lastLogEpoch) {
-                            rv = YES;
-                            *stop = YES;
-                        }
+                    break;
+                }
+                case FILTER_DATE_AFTER: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
+                        __block BOOL rv = NO;
+                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                            if (log.datetime_epoch > lastLogEpoch) {
+                                rv = YES;
+                                *stop = YES;
+                            }
+                        }];
+                        if (rv == YES)
+                            [after addObject:wp];
                     }];
-                    if (rv == YES)
-                        [after addObject:wp];
-                }];
-            } else {                            // on
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
-                    __block BOOL rv = NO;
-                    [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
-                        if (log.datetime_epoch > lastLogEpoch - 86400 && log.datetime_epoch < lastLogEpoch + 86400) {
-                            rv = YES;
-                            *stop = YES;
-                        }
+                    break;
+                }
+                case FILTER_DATE_ON: {
+                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                        NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
+                        __block BOOL rv = NO;
+                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                            if (log.datetime_epoch > lastLogEpoch - 86400 && log.datetime_epoch < lastLogEpoch + 86400) {
+                                rv = YES;
+                                *stop = YES;
+                            }
+                        }];
+                        if (rv == YES)
+                            [after addObject:wp];
                     }];
-                    if (rv == YES)
-                        [after addObject:wp];
-                }];
+                    break;
+                }
             }
 
             caches = after;
