@@ -46,13 +46,18 @@
         return self;
     }
 
+    UIImage *img = [imageLibrary get:dbc.Container_Unknown.icon];
+    CGSize imgSize = img.size;
+
     containers = [dbc Containers];
     [containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         UIImage *img = [imageLibrary get:c.icon];
-        CGRect rect = CGRectMake(20, y, img.size.width, img.size.height);
-        UIImageView *cv = [[UIImageView alloc] initWithFrame:rect];
-        cv.image = img;
-        [self.contentView addSubview:cv];
+        if (img != nil) {
+            CGRect rect = CGRectMake(20, y, imgSize.width, imgSize.height);
+            UIImageView *cv = [[UIImageView alloc] initWithFrame:rect];
+            cv.image = img;
+            [self.contentView addSubview:cv];
+        }
 
         NSString *cfg = [self configGet:[NSString stringWithFormat:@"container_%ld", (long)c._id]];
         if (cfg == nil)
@@ -60,7 +65,7 @@
         else
             c.selected = [cfg boolValue];
 
-        rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
+        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, imgSize.height);
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -69,7 +74,7 @@
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:b];
 
-        y += cv.frame.size.height;
+        y += rect.size.height;
     }];
 
     [self.contentView sizeToFit];
