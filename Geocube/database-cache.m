@@ -158,6 +158,14 @@
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
 
+    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([c.size isEqualToString:@"Unknown"] == YES) {
+            Container_Unknown = c;
+            *stop = YES;
+        }
+    }];
+    NSAssert(Container_Unknown != nil, @"Container_Unknown");
+
     [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_major isEqualToString:@"*"] == YES) {
             Type_Unknown = ct;
