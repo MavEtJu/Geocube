@@ -136,7 +136,9 @@
 @class ThemeNight;
 @class ThemeNormal;
 @class ThemeTemplate;
-@class TrackablesViewController;
+@class TrackablesInventoryViewController;
+@class TrackablesListViewController;
+@class TrackablesMineViewController;
 @class UserProfileViewController;
 @class WaypointAddViewController;
 @class WaypointAttributesViewController;

@@ -346,6 +346,14 @@
     @"alter table containers add column gc_id integer"
     ];
     [upgradeSteps addObject:a];
+
+    // Version 23
+    a = @[
+    @"alter table travelbugs add column owner_id integer",
+    @"alter table travelbugs add column carrier_id integer",
+    @"alter table travelbugs add waypoint_name text",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

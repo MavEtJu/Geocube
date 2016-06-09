@@ -715,4 +715,86 @@
     return json;
 }
 
+- (GCDictionaryLiveAPI *)GetUsersTrackables
+{
+    NSLog(@"GetUsersTrackables");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetUsersTrackables" method:@"POST"];
+
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"StartIndex"];
+    [_dict setValue:[NSNumber numberWithInteger:30] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"TrackableLogsCount"];
+    [_dict setValue:[NSNumber numberWithBool:NO] forKey:@"CollectionOnly"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    return json;
+}
+
+- (GCDictionaryLiveAPI *)GetOwnedTrackables
+{
+    NSLog(@"GetOwnedTrackables");
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetOwnedTrackables" method:@"POST"];
+
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"StartIndex"];
+    [_dict setValue:[NSNumber numberWithInteger:30] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"TrackableLogsCount"];
+    [_dict setValue:[NSNumber numberWithBool:NO] forKey:@"CollectionOnly"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    return json;
+}
+
 @end

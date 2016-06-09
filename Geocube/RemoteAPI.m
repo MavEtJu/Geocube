@@ -329,9 +329,7 @@
             return NO;
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
-        [imp parseBefore];
         [imp parseDictionary:json];
-        [imp parseAfter];
 
         [waypointManager needsRefresh];
         return YES;
@@ -578,6 +576,26 @@
     }
 
     return nil;
+}
+
+- (void)trackablesMine
+{
+    if (account.protocol != ProtocolLiveAPI)
+        return;
+
+    NSDictionary *json = [gs GetOwnedTrackables];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    [imp parseDictionary:json];
+}
+
+- (void)trackablesInventory
+{
+    if (account.protocol != ProtocolLiveAPI)
+        return;
+
+    NSDictionary *json = [gs GetUsersTrackables];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    [imp parseDictionary:json];
 }
 
 @end

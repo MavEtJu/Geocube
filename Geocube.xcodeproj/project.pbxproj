@@ -167,7 +167,7 @@
 		E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */; };
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
-		E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesViewController.m */; };
+		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -183,6 +183,8 @@
 		E833B72A1C4FA7D600B9FB45 /* type - marked found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */; };
 		E833B72E1C4FAA0300B9FB45 /* type - in progress - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */; };
 		E833B7321C522EA600B9FB45 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListViewController.m */; };
+		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
+		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
@@ -620,8 +622,8 @@
 		E81D242F1B9BDB94001E6027 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
 		E82002271B7B1C04009AE50F /* NotesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesImagesViewController.h; sourceTree = "<group>"; };
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
-		E820F2041B7DA451009FB999 /* TrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesViewController.h; sourceTree = "<group>"; };
-		E820F2051B7DA451009FB999 /* TrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesViewController.m; sourceTree = "<group>"; };
+		E820F2041B7DA451009FB999 /* TrackablesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesListViewController.h; sourceTree = "<group>"; };
+		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -646,6 +648,10 @@
 		E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - in progress - 24x24.png"; path = "images/type - in progress - 24x24.png"; sourceTree = "<group>"; };
 		E833B7301C522EA600B9FB45 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		E833B7311C522EA600B9FB45 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		E8371D481D06A79500C2F174 /* TrackablesMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesMineViewController.h; sourceTree = "<group>"; };
+		E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesMineViewController.m; sourceTree = "<group>"; };
+		E8371D4B1D06C63300C2F174 /* TrackablesInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesInventoryViewController.h; sourceTree = "<group>"; };
+		E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesInventoryViewController.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E84402B61BFEABD600EFFD13 /* MapApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapApple.h; sourceTree = "<group>"; };
@@ -1261,8 +1267,12 @@
 		E857078C1CA1E68F00467CE0 /* Trackables */ = {
 			isa = PBXGroup;
 			children = (
-				E820F2041B7DA451009FB999 /* TrackablesViewController.h */,
-				E820F2051B7DA451009FB999 /* TrackablesViewController.m */,
+				E8371D481D06A79500C2F174 /* TrackablesMineViewController.h */,
+				E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */,
+				E8371D4B1D06C63300C2F174 /* TrackablesInventoryViewController.h */,
+				E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */,
+				E820F2041B7DA451009FB999 /* TrackablesListViewController.h */,
+				E820F2051B7DA451009FB999 /* TrackablesListViewController.m */,
 			);
 			name = Trackables;
 			sourceTree = "<group>";
@@ -2723,13 +2733,14 @@
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
-				E820F2061B7DA451009FB999 /* TrackablesViewController.m in Sources */,
+				E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,
 				E8C5BB771C719EB1006222D5 /* WaypointLogViewController.m in Sources */,
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
+				E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */,
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
@@ -2829,6 +2840,7 @@
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,
+				E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */,
 				E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */,
 				E8A3B0C11CDB241600170D61 /* ExportGPX.m in Sources */,
 			);

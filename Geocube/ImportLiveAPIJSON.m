@@ -27,7 +27,7 @@
 
 @implementation ImportLiveAPIJSON
 
-- (void)parseBefore
+- (void)parseBefore_geocaches
 {
     NSLog(@"%@: Parsing initializing", [self class]);
     [dbc.Group_LastImport dbEmpty];
@@ -35,11 +35,41 @@
     [dbGroup cleanupAfterDelete];
 }
 
+- (void)parseAfter_geocaches
+{
+    NSLog(@"%@: Parsing done", [self class]);
+    [[dbc Group_AllWaypoints_Found] dbEmpty];
+    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
+    [[dbc Group_AllWaypoints_Attended] dbEmpty];
+    [[dbc Group_AllWaypoints_Attended] dbAddWaypoints:[dbWaypoint dbAllAttended]];
+    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
+    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
+    [dbGroup cleanupAfterDelete];
+    [dbc loadWaypointData];
+    [dbWaypoint dbUpdateLogStatus];
+}
+
+- (void)parseBefore_trackables
+{
+}
+- (void)parseAfter_trackables
+{
+}
+
 - (void)parseDictionary:(NSDictionary *)dict
 {
     NSLog(@"%@: Parsing data", [self class]);
 
-    [self parseGeocaches:[dict objectForKey:@"Geocaches"]];
+    if ([dict objectForKey:@"Geocaches"] != nil) {
+        [self parseBefore_geocaches];
+        [self parseGeocaches:[dict objectForKey:@"Geocaches"]];
+        [self parseAfter_geocaches];
+    }
+    if ([dict objectForKey:@"Trackables"] != nil) {
+        [self parseBefore_trackables];
+        [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:nil];
+        [self parseAfter_trackables];
+    }
 }
 
 - (void)parseGeocaches:(NSArray *)as
@@ -357,6 +387,24 @@
     DICT_NSSTRING_KEY(dict, tb.name, @"Name");
     DICT_INTEGER_KEY(dict, tb.gc_id, @"Id");
     DICT_NSSTRING_KEY(dict, tb.ref, @"Code");
+    DICT_NSSTRING_KEY(dict, tb.waypoint_name, @"CurrentGeocacheCode");
+    DICT_NSSTRING_PATH(dict, tb.owner_str, @"OriginalOwner.UserName");
+    DICT_NSSTRING_PATH(dict, tb.carrier_str, @"CurrentOwner.UserName");
+
+    NSString *owner_id, *carrier_id;
+    DICT_NSSTRING_PATH(dict, carrier_id, @"CurrentOwner.Id");
+    DICT_NSSTRING_PATH(dict, owner_id, @"OriginalOwner.Id");
+
+    if ([tb.owner_str isEqualToString:@""] == NO)
+        [dbName makeNameExist:tb.owner_str code:owner_id account:account];
+    else
+        tb.owner_str = nil;
+    if ([tb.carrier_str isEqualToString:@""] == NO)
+        [dbName makeNameExist:tb.carrier_str code:carrier_id account:account];
+    else
+        tb.carrier_str = nil;
+
+    [tb finish:account];
 
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
@@ -367,7 +415,8 @@
         [tb dbUpdate];
     }
 
-    [tb dbLinkToWaypoint:wp._id];
+    if (wp != nil)
+        [tb dbLinkToWaypoint:wp._id];
 }
 
 - (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
@@ -598,20 +647,6 @@
     }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
-}
-
-- (void)parseAfter
-{
-    NSLog(@"%@: Parsing done", [self class]);
-    [[dbc Group_AllWaypoints_Found] dbEmpty];
-    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
-    [[dbc Group_AllWaypoints_Attended] dbEmpty];
-    [[dbc Group_AllWaypoints_Attended] dbAddWaypoints:[dbWaypoint dbAllAttended]];
-    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
-    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
-    [dbGroup cleanupAfterDelete];
-    [dbc loadWaypointData];
-    [dbWaypoint dbUpdateLogStatus];
 }
 
 @end

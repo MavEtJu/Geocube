@@ -212,12 +212,15 @@
 #import "QueriesGroundspeakViewController.h"
 #import "QueriesGCAViewController.h"
 
+#import "TrackablesListViewController.h"
+#import "TrackablesMineViewController.h"
+#import "TrackablesInventoryViewController.h"
+
 #import "WaypointsOfflineListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
 #import "GroupsViewController.h"
 #import "NullViewController.h"
-#import "TrackablesViewController.h"
 #import "UserProfileViewController.h"
 
 #import "GCPointAnnotation.h"

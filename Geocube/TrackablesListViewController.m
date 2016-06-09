@@ -21,16 +21,16 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface TrackablesViewController ()
+@interface TrackablesListViewController ()
 {
     NSArray *tbs;
 }
 
 @end
 
-@implementation TrackablesViewController
+@implementation TrackablesListViewController
 
-#define THISCELL @"TrackablesViewControllerCell"
+#define THISCELL @"TrackablesListViewControllerCell"
 
 - (void)viewDidLoad
 {

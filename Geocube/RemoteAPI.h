@@ -75,4 +75,7 @@
 - (NSArray *)listQueries;
 - (NSObject *)retrieveQuery:(NSString *)_id group:(dbGroup *)group;
 
+- (void)trackablesMine;
+- (void)trackablesInventory;
+
 @end

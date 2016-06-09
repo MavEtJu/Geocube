@@ -22,29 +22,33 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbTrackable ()
-{
-    NSString *name;
-    NSString *ref;
-    NSId gc_id;
-}
 
 @end
 
 @implementation dbTrackable
 
-@synthesize name, ref, gc_id;
+@synthesize name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name;
 
-- (instancetype)init:(NSId)__id name:(NSString *)_name ref:(NSString *)_ref gc_id:(NSId)_gc_id
+- (void)finish
 {
-    self = [super init];
+    NSAssert(NO, @"Use finish:account");
+}
 
-    name = _name;
-    _id = __id;
-    ref = _ref;
-    gc_id = _gc_id;
+- (void)finish:(dbAccount *)account;
+{
+    if (carrier_id != 0)
+        carrier = [dbName dbGet:carrier_id];
+    if (carrier_str != nil)
+        carrier = [dbName dbGetByName:carrier_str account:account];
+    carrier_id = carrier._id;
+    carrier_str = carrier.name;
 
-    [self finish];
-    return self;
+    if (owner_id != 0)
+        owner = [dbName dbGet:owner_id];
+    if (owner_str != nil)
+        owner = [dbName dbGetByName:owner_str account:account];
+    owner_id = owner._id;
+    owner_str = owner.name;
 }
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
@@ -91,12 +95,14 @@
 }
 
 
-+ (NSArray *)dbAll
++ (NSArray *)dbAllXXX:(NSString *)where
 {
     NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
 
+    NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name from travelbugs %@", where];
+
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs");
+        DB_PREPARE(sql);
 
         DB_WHILE_STEP {
             dbTrackable *tb = [[dbTrackable alloc] init];
@@ -104,11 +110,30 @@
             TEXT_FETCH(1, tb.name);
             TEXT_FETCH(2, tb.ref);
             INT_FETCH (3, tb.gc_id);
+            INT_FETCH (4, tb.carrier_id);
+            INT_FETCH (5, tb.owner_id);
+            TEXT_FETCH(6, tb.waypoint_name);
+            [tb finish:nil];    // can be nil because we have the _id's
             [tbs addObject:tb];
         }
         DB_FINISH;
     }
     return tbs;
+}
+
++ (NSArray *)dbAll
+{
+    return [self dbAllXXX:@""];
+}
+
++ (NSArray *)dbAllMine
+{
+    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
+}
+
++ (NSArray *)dbAllInventory
+{
+    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
 }
 
 + (NSInteger)dbCount
@@ -118,24 +143,8 @@
 
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, name, ref, gc_id from travelbugs where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_WHILE_STEP {
-            dbTrackable *tb = [[dbTrackable alloc] init];;
-            INT_FETCH (0, tb._id);
-            TEXT_FETCH(1, tb.name);
-            TEXT_FETCH(2, tb.ref);
-            INT_FETCH (4, tb.gc_id);
-            [ss addObject:tb];
-        }
-        DB_FINISH;
-    }
-    return ss;
+    NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = %lld)", wp_id];
+    return [self dbAllXXX:sql];
 }
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
@@ -165,11 +174,14 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name) values(?, ?, ?)");
+        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, tb.gc_id);
         SET_VAR_TEXT(2, tb.ref);
         SET_VAR_TEXT(3, tb.name);
+        SET_VAR_INT (4, tb.carrier_id);
+        SET_VAR_INT (5, tb.owner_id);
+        SET_VAR_TEXT(6, tb.waypoint_name);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -182,12 +194,15 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ? where id = ?");
+        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ? where id = ?");
 
         SET_VAR_INT (1, gc_id);
         SET_VAR_TEXT(2, ref);
         SET_VAR_TEXT(3, name);
-        SET_VAR_INT (4, _id);
+        SET_VAR_INT (4, carrier_id);
+        SET_VAR_INT (5, owner_id);
+        SET_VAR_TEXT(6, waypoint_name);
+        SET_VAR_INT (7, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

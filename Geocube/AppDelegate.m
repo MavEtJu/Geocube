@@ -200,8 +200,20 @@
             case RC_TRACKABLES:
                 controllers = [NSMutableArray array];
 
-                vc = [[TrackablesViewController alloc] init];
-                vc.title = @"Trackables";
+                vc = [[TrackablesInventoryViewController alloc] init];
+                vc.title = @"Inventory";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[TrackablesMineViewController alloc] init];
+                vc.title = @"Mine";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[TrackablesListViewController alloc] init];
+                vc.title = @"List";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];

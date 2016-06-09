@@ -156,6 +156,7 @@
             currentTB = [[dbTrackable alloc] init];
             [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
             [currentTB setRef:[attributeDict objectForKey:@"ref"]];
+            [currentTB setWaypoint_name:currentWP.wpt_name];
 
             inTrackable = YES;
             return;
