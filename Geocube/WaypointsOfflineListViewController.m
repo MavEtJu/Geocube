@@ -26,6 +26,8 @@
     NSArray *waypoints;
     NSInteger waypointCount;
 
+    NSInteger currentSortOrder;
+
     BOOL needsRefresh;
     BOOL isVisible;
 }
@@ -40,16 +42,40 @@
 enum {
     menuAddWaypoint,
     menuExportGPX,
+    menuSortBy,
     menuMax
+};
+
+enum {
+    SORTORDER_DISTANCE_ASC = 0,
+    SORTORDER_DISTANCE_DESC,
+    SORTORDER_DIRECTION_ASC,
+    SORTORDER_DIRECTION_DESC,
+    SORTORDER_TYPE,
+    SORTORDER_CONTAINER,
+    SORTORDER_FAVOURITES_ASC,
+    SORTORDER_FAVOURITES_DESC,
+    SORTORDER_TERRAIN_ASC,
+    SORTORDER_TERRAIN_DESC,
+    SORTORDER_DIFFICULTY_ASC,
+    SORTORDER_DIFFICULTY_DESC,
+    SORTORDER_DATE_LASTLOG_OLDESTFIRST,
+    SORTORDER_DATE_LASTLOG_NEWESTFIRST,
+    SORTORDER_DATE_HIDDEN_OLDESTFIRST,
+    SORTORDER_DATE_HIDDEN_NEWESTFIRST,
+    SORTORDER_MAX,
 };
 
 - (instancetype)init
 {
     self = [super init];
 
+    currentSortOrder = SORTORDER_DISTANCE_ASC;
+
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
     [lmi addItem:menuExportGPX label:@"Export GPX"];
+    [lmi addItem:menuSortBy label:@"Sort By"];
 
     return self;
 }
@@ -161,16 +187,34 @@ enum {
         wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
     }];
 
-    wps = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
-        if (obj1.calculatedDistance > obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-
-        if (obj1.calculatedDistance < obj2.calculatedDistance) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
+#define CMP(I, O1, O2, W) \
+    case I: \
+        wps = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedDescending; \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedAscending; \
+            return (NSComparisonResult)NSOrderedSame; \
+        }]; \
+        break;
+    switch (currentSortOrder) {
+        CMP(SORTORDER_DISTANCE_ASC, obj1.calculatedDistance, obj2.calculatedDistance, >)
+        CMP(SORTORDER_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
+        CMP(SORTORDER_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
+        CMP(SORTORDER_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
+        CMP(SORTORDER_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
+        CMP(SORTORDER_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
+        CMP(SORTORDER_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
+        CMP(SORTORDER_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
+        CMP(SORTORDER_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
+        CMP(SORTORDER_TERRAIN_DESC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, <)
+        CMP(SORTORDER_DIFFICULTY_ASC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, >)
+        CMP(SORTORDER_DIFFICULTY_DESC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, <)
+        CMP(SORTORDER_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
+        CMP(SORTORDER_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
+        CMP(SORTORDER_DATE_LASTLOG_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
+        CMP(SORTORDER_DATE_LASTLOG_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+    }
 
     return wps;
 }
@@ -291,6 +335,9 @@ enum {
             [ExportGPX exports:waypoints];
             [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
             return;
+        case menuSortBy:
+            [self menuSortBy];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -301,6 +348,61 @@ enum {
     WaypointAddViewController *newController = [[WaypointAddViewController alloc] init];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
+}
+
+- (void)menuSortBy
+{
+    NSMutableArray *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
+    for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
+#define CASE(__order__, __title__) \
+    case __order__: \
+        [orders addObject:__title__]; \
+        break;
+        switch (i) {
+            CASE(SORTORDER_DISTANCE_ASC, @"Distance (ascending)")
+            CASE(SORTORDER_DISTANCE_DESC, @"Distance (descending)")
+            CASE(SORTORDER_DIRECTION_ASC, @"Direction (ascending)")
+            CASE(SORTORDER_DIRECTION_DESC, @"Direction (descending)")
+            CASE(SORTORDER_TYPE, @"Type")
+            CASE(SORTORDER_CONTAINER, @"Container")
+            CASE(SORTORDER_FAVOURITES_ASC, @"Favourites (ascending)")
+            CASE(SORTORDER_FAVOURITES_DESC, @"Favourites (descending)")
+            CASE(SORTORDER_TERRAIN_ASC, @"Terrain (ascending)")
+            CASE(SORTORDER_TERRAIN_DESC, @"Terrain (descending)")
+            CASE(SORTORDER_DIFFICULTY_ASC, @"Difficulty (ascending)")
+            CASE(SORTORDER_DIFFICULTY_DESC, @"Difficulty (descending)")
+            CASE(SORTORDER_DATE_LASTLOG_OLDESTFIRST, @"Last Log date (oldest first)")
+            CASE(SORTORDER_DATE_LASTLOG_NEWESTFIRST, @"Last Log date (newest first)")
+            CASE(SORTORDER_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
+            CASE(SORTORDER_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
+        }
+    }
+
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Sort by"
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
+        UIAlertAction *action = [UIAlertAction
+                                 actionWithTitle:[orders objectAtIndex:i]
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     currentSortOrder = i;
+                                     waypoints = [self resortCachesData:waypoints];
+                                     [self.tableView reloadData];
+                                 }];
+        [alert addAction:action];
+    }
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 @end
