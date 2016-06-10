@@ -354,6 +354,13 @@
     @"alter table travelbugs add waypoint_name text",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 24
+    a = @[
+    @"alter table waypoints add column date_lastlog_epoch integer",
+    @"update waypoints set date_lastlog_epoch = 0"
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

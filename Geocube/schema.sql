@@ -19,7 +19,7 @@ insert into config(key, value) values("url_types", "https://geocube.mavetju.org/
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
-insert into config(key, value) values("version", "23");
+insert into config(key, value) values("version", "24");
 
 create table filters (
     id integer primary key,
@@ -78,6 +78,7 @@ create table waypoints (
     markedfound bool,
     inprogress bool,
     dnfed bool,
+    date_lastlog_epoch integer,
 
     gs_enabled bool,
     gs_archived bool,

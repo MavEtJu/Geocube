@@ -59,6 +59,8 @@ enum {
     SORTORDER_TERRAIN_DESC,
     SORTORDER_DIFFICULTY_ASC,
     SORTORDER_DIFFICULTY_DESC,
+    SORTORDER_DATE_FOUND_OLDESTFIRST,
+    SORTORDER_DATE_FOUND_NEWESTFIRST,
     SORTORDER_DATE_LASTLOG_OLDESTFIRST,
     SORTORDER_DATE_LASTLOG_NEWESTFIRST,
     SORTORDER_DATE_HIDDEN_OLDESTFIRST,
@@ -212,8 +214,12 @@ enum {
         CMP(SORTORDER_DIFFICULTY_DESC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, <)
         CMP(SORTORDER_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
         CMP(SORTORDER_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
-        CMP(SORTORDER_DATE_LASTLOG_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
-        CMP(SORTORDER_DATE_LASTLOG_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+        CMP(SORTORDER_DATE_FOUND_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
+        CMP(SORTORDER_DATE_FOUND_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+        CMP(SORTORDER_DATE_LASTLOG_OLDESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, >)
+        CMP(SORTORDER_DATE_LASTLOG_NEWESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, <)
+        default:
+            NSAssert(NO, @"Unknown sort order");
     }
 
     return wps;
@@ -375,6 +381,10 @@ enum {
             CASE(SORTORDER_DATE_LASTLOG_NEWESTFIRST, @"Last Log date (newest first)")
             CASE(SORTORDER_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
             CASE(SORTORDER_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
+            CASE(SORTORDER_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
+            CASE(SORTORDER_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
+            default:
+                NSAssert(NO, @"Unknown sort order");
         }
     }
 
