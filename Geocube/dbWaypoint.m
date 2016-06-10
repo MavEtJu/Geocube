@@ -608,6 +608,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+    @synchronized(db.dbaccess) {
+        DB_PREPARE(@"update waypoints set date_lastlog_epoch = (select max(l.datetime_epoch) from logs l where l.waypoint_id = waypoints.id);");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
 }
 
 - (void)dbUpdateLogStatus
