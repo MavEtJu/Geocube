@@ -120,6 +120,9 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nScheduled %ld\n   ", (long)i];
     }];
+
+    if (i == 0)
+        [self updateQueuedImagesData:0 downloadedImages:0];
 }
 
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
