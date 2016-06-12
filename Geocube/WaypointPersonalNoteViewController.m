@@ -138,6 +138,7 @@ enum {
     switch (index) {
         case menuScanForWaypoints:
             [self scanForWaypoints];
+            [self.delegateWaypoint refreshView];
             return;
     }
 
