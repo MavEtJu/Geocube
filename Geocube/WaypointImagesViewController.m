@@ -80,7 +80,36 @@ enum {
 
     currentIndexPath = [[NSIndexPath alloc] init];
 
+    [self needsDownloadMenu];
+
     return self;
+}
+
+- (void)needsDownloadMenu
+{
+    __block NSInteger needsDownload = NO;
+    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([img imageHasBeenDowloaded] == NO) {
+            needsDownload = YES;
+            *stop = YES;
+        }
+    }];
+    if (needsDownload == NO)
+        [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([img imageHasBeenDowloaded] == NO) {
+                needsDownload = YES;
+                *stop = YES;
+            }
+        }];
+    if (needsDownload == NO)
+        [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([img imageHasBeenDowloaded] == NO) {
+                needsDownload = YES;
+                *stop = YES;
+            }
+        }];
+    if (needsDownload == NO)
+        [lmi disableItem:menuDownloadImages];
 }
 
 #pragma mark - Functions for downloading of images
@@ -142,6 +171,7 @@ enum {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView removeViewAnimated:YES];
         }];
+        [self needsDownloadMenu];
     }
 }
 
