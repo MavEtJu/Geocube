@@ -361,6 +361,12 @@
     @"update waypoints set date_lastlog_epoch = 0"
     ];
     [upgradeSteps addObject:a];
+
+    // Version 25
+    a = @[
+    @"insert into groups(name, usergroup, deletable) values('Manual waypoints', 1, 0)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

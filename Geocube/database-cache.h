@@ -42,6 +42,7 @@
 @property (nonatomic, retain) dbGroup *Group_LiveImport;
 @property (nonatomic, retain) dbGroup *Group_LastImport;
 @property (nonatomic, retain) dbGroup *Group_LastImportAdded;
+@property (nonatomic, retain) dbGroup *Group_ManualWaypoints;
 
 // Types
 @property (nonatomic, retain) dbType *Type_Unknown;

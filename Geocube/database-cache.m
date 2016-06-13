@@ -46,6 +46,7 @@
     dbGroup *Group_LiveImport;
     dbGroup *Group_LastImport;
     dbGroup *Group_LastImportAdded;
+    dbGroup *Group_ManualWaypoints;
 
     // Pins
     dbPin *Pin_Unknown;
@@ -71,7 +72,7 @@
 @implementation DatabaseCache
 
 @synthesize Accounts, Pins, Types, Groups, LogTypes, Containers, Attributes, Countries, States, Symbols;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
 @synthesize Pin_Unknown, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 @synthesize LogType_Found, LogType_Attended, LogType_NotFound;
 
@@ -147,6 +148,10 @@
             Group_LastImportAdded = cg;
             return;
         }
+        if (cg.usergroup == YES && [cg.name isEqualToString:@"Manual waypoints"] == YES) {
+            Group_ManualWaypoints = cg;
+            return;
+        }
     }];
     NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
     NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
@@ -157,6 +162,7 @@
     NSAssert(Group_LiveImport != nil, @"Group_LiveImport");
     NSAssert(Group_LastImport != nil, @"Group_LastImport");
     NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
+    NSAssert(Group_ManualWaypoints != nil, @"Group_ManualWaypoints");
 
     [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([c.size isEqualToString:@"Unknown"] == YES) {
@@ -164,7 +170,8 @@
             *stop = YES;
         }
     }];
-    NSAssert(Container_Unknown != nil, @"Container_Unknown");
+    // You cannot do this until the configuration files are loaded.
+    // NSAssert(Container_Unknown != nil, @"Container_Unknown");
 
     [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_major isEqualToString:@"*"] == YES) {

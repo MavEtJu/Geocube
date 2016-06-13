@@ -190,6 +190,7 @@ enum {
 
             [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
             [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
+            [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
 
             [waypointManager needsRefresh];
 

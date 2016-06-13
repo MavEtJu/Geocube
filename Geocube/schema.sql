@@ -1,4 +1,3 @@
-
 -- Scheme for Geocube
 
 create table config (
@@ -19,7 +18,7 @@ insert into config(key, value) values("url_types", "https://geocube.mavetju.org/
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
-insert into config(key, value) values("version", "24");
+insert into config(key, value) values("version", "25");
 
 create table filters (
     id integer primary key,
@@ -44,6 +43,7 @@ insert into groups(name, usergroup, deletable) values("All Waypoints - Ignored",
 insert into groups(name, usergroup, deletable) values("Last Import", 0, 0);
 insert into groups(name, usergroup, deletable) values("Last Import - New", 0, 0);
 insert into groups(name, usergroup, deletable) values("Live Import", 1, 0);
+insert into groups(name, usergroup, deletable) values("Manual waypoints", 1, 0);
 insert into groups(name, usergroup, deletable) values("GCA - NSW", 1, 1);
 insert into groups(name, usergroup, deletable) values("GC - NSW", 1, 1);
 insert into groups(name, usergroup, deletable) values("GC - ACT", 1, 1);
