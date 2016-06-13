@@ -428,7 +428,8 @@ enum {
 
     if (fabs(meBearing - [LM direction]) > 5) {
         meBearing = [LM direction];
-        [map updateMyBearing:meBearing];
+        if (myConfig.mapRotateToBearing == YES)
+            [map updateMyBearing:meBearing];
     }
 
     // Move the map around to match current location

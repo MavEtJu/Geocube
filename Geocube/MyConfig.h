@@ -62,6 +62,7 @@
 
 @property (nonatomic, readonly) BOOL mapClustersEnable;
 @property (nonatomic, readonly) float mapClustersZoomLevel;
+@property (nonatomic, readonly) BOOL mapRotateToBearing;
 
 @property (nonatomic, readonly, retain) UIFont *GCLabelFont;
 @property (nonatomic, readonly, retain) UIFont *GCSmallFont;
@@ -125,6 +126,7 @@
 - (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value;
 - (void)mapClustersUpdateEnable:(BOOL)value;
 - (void)mapClustersUpdateZoomLevel:(float)value;
+- (void)mapRotateToBearingUpdate:(BOOL)value;
 - (void)dynamicmapEnableUpdate:(BOOL)value;
 - (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value;
 - (void)dynamicmapWalkingDistanceUpdate:(NSInteger)value;

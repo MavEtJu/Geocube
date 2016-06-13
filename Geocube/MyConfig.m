@@ -36,7 +36,7 @@
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
 @synthesize soundDirection, soundDistance;
 @synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax;
-@synthesize mapClustersEnable, mapClustersZoomLevel;
+@synthesize mapClustersEnable, mapClustersZoomLevel, mapRotateToBearing;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
@@ -139,6 +139,7 @@
 
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
+    CHECK(@"map_rotate_to_bearing", @"0");
 
     CHECK(@"dynamicmap_enable", @"1");
     CHECK(@"dynamicmap_speed_walking", @"7");
@@ -191,6 +192,7 @@
     keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
+    mapRotateToBearing = [[dbConfig dbGetByKey:@"map_rotate_to_bearing"].value boolValue];
     dynamicmapEnable = [[dbConfig dbGetByKey:@"dynamicmap_enable"].value boolValue];
     dynamicmapWalkingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_walking"].value floatValue];
     dynamicmapCyclingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_cycling"].value floatValue];
@@ -401,6 +403,11 @@
     mapClustersZoomLevel = value;
     [self FloatUpdate:@"map_clusters_zoomlevel" value:value];
     [self sendDelegatesMapClusters];
+}
+- (void)mapRotateToBearingUpdate:(BOOL)value
+{
+    mapRotateToBearing = value;
+    [self BOOLUpdate:@"map_rotate_to_bearing" value:value];
 }
 
 - (void)dynamicmapEnableUpdate:(BOOL)value

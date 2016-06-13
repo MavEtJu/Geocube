@@ -34,6 +34,7 @@
     UISwitch *mapClustersEnable;
     UISwitch *dynamicmapEnable;
     float mapClustersZoomlevel;
+    UISwitch *mapRotateToBearing;
 
     NSArray *compassTypes;
     NSArray *externalMapTypes;
@@ -262,6 +263,7 @@ enum sections {
 
     SECTION_MAPS_CLUSTERS = 0,
     SECTION_MAPS_ZOOMLEVEL,
+    SECTION_MAPS_ROTATE_TO_BEARING,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -543,6 +545,18 @@ enum sections {
 
                     cell.textLabel.text = @"Maximum zoom level for clustering";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
+
+                    return cell;
+                }
+                case SECTION_MAPS_ROTATE_TO_BEARING: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Rotate to bearing";
+
+                    mapRotateToBearing = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    mapRotateToBearing.on = myConfig.mapClustersEnable;
+                    [mapRotateToBearing addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = mapRotateToBearing;
 
                     return cell;
                 }
@@ -864,6 +878,10 @@ enum sections {
 - (void)updateMapClustersEnable:(UISwitch *)s
 {
     [myConfig mapClustersUpdateEnable:s.on];
+}
+- (void)updateMapRotateToBearing:(UISwitch *)s
+{
+    [myConfig mapRotateToBearingUpdate:s.on];
 }
 
 - (void)updateKeeptrackAutoRotate:(UISwitch *)s
