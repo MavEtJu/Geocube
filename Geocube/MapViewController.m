@@ -25,7 +25,7 @@
 {
     MapTemplate *map;
 
-    UILabel *distanceLabel;
+    THLabel *distanceLabel;
     UIButton *labelMapFollowMe;
     UIButton *labelMapShowBoth;
     UIButton *labelMapSeeTarget;
@@ -310,7 +310,9 @@ enum {
 
 - (void)initDistanceLabel
 {
-    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    distanceLabel = [[THLabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    distanceLabel.strokeColor = [UIColor whiteColor];
+    distanceLabel.strokeSize = 1;
     distanceLabel.text = @"Nothing yet";
     [self.view addSubview:distanceLabel];
 }
@@ -447,6 +449,8 @@ enum {
     if (waypointManager.currentWaypoint != nil) {
         NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
         distanceLabel.text = distance;
+        distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
+        distanceLabel.layer.shadowRadius = 1;
     } else {
         distanceLabel.text = @"";
     }

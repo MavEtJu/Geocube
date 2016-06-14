@@ -185,6 +185,7 @@
 		E833B7321C522EA600B9FB45 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListViewController.m */; };
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
+		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
@@ -652,6 +653,8 @@
 		E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesMineViewController.m; sourceTree = "<group>"; };
 		E8371D4B1D06C63300C2F174 /* TrackablesInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesInventoryViewController.h; sourceTree = "<group>"; };
 		E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesInventoryViewController.m; sourceTree = "<group>"; };
+		E8371D4F1D10202B00C2F174 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = THLabel/THLabel.h; sourceTree = "<group>"; };
+		E8371D501D10202B00C2F174 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = THLabel/THLabel.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E84402B61BFEABD600EFFD13 /* MapApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapApple.h; sourceTree = "<group>"; };
@@ -1209,6 +1212,15 @@
 				E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */,
 			);
 			name = Lists;
+			sourceTree = "<group>";
+		};
+		E8371D4E1D101F9400C2F174 /* THLabel */ = {
+			isa = PBXGroup;
+			children = (
+				E8371D4F1D10202B00C2F174 /* THLabel.h */,
+				E8371D501D10202B00C2F174 /* THLabel.m */,
+			);
+			name = THLabel;
 			sourceTree = "<group>";
 		};
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
@@ -2029,6 +2041,7 @@
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E8371D4E1D101F9400C2F174 /* THLabel */,
 				E812CF531D01A07400C4E777 /* VKSizeMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E82990471C87AF9000504421 /* XMLReader */,
@@ -2686,6 +2699,7 @@
 				E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
+				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,

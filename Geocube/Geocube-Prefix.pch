@@ -51,6 +51,7 @@
 #import "RangeSlider.h"
 #import "Reachability.h"
 #import "SSZipArchive.h"
+#import "THLabel.h"
 #import "VKSideMenu.h"
 #import "XMLDictionary.h"
 #import "XMLReader.h"
