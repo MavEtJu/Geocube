@@ -163,6 +163,8 @@ enum {
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
+    if (showType == SHOW_ONEWAYPOINT)
+        [lmi disableItem:menuLoadWaypoints];
 
     waypointsArray = nil;
     waypointCount = 0;
