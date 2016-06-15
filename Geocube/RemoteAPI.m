@@ -495,14 +495,13 @@
     }
 
     if (account.protocol == ProtocolGCA) {
+        /*
         NSArray *as = [gca my_query];
         if (as == nil || [as count] == 0)
             return nil;
         return as;
+         */
 
-        /*
-         * Waiting until GCA has stopped throwing a tantrum
-         *
         NSDictionary *json = [gca my_query_list__json];
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
 
@@ -518,7 +517,6 @@
         }];
 
         return as;
-         */
     }
 
     return nil;
