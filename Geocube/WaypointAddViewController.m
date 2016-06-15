@@ -276,7 +276,7 @@ enum {
     wp.wpt_date_placed_epoch = time(NULL);
     wp.wpt_date_placed = [MyTools dateTimeString:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
-    wp.wpt_urlname = wp.wpt_name;
+    wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
     wp.wpt_symbol_id = 1;
     wp.wpt_type_id = [dbc Type_Unknown]._id;
     [dbWaypoint dbCreate:wp];
