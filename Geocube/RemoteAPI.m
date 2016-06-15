@@ -318,7 +318,7 @@
     return NO;
 }
 
-- (BOOL)updateWaypoint:(dbWaypoint *)waypoint
+- (BOOL)loadWaypoint:(dbWaypoint *)waypoint
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -346,28 +346,26 @@
         return YES;
     }
     if (account.protocol == ProtocolGCA) {
-        /*
-         * Waiting until GCA has stopped throwing a tantrum
-         *
         NSDictionary *json = [gca cache__json:waypoint.wpt_name];
         ImportGCAJSON *imp = [[ImportGCAJSON alloc] init:g account:a];
-        [imp parseBefore_cache];
-        [imp parseData_cache:json];
-        [imp parseAfter_cache];
+        [imp parseBefore];
+        [imp parseDictionary:json];
+        [imp parseAfter];
 
         json = [gca logs_cache:waypoint.wpt_name];
         imp = [[ImportGCAJSON alloc] init:g account:a];
-        [imp parseBefore_logs];
-        [imp parseData_logs:json];
-        [imp parseAfter_logs];
-         */
+        [imp parseBefore];
+        [imp parseDictionary:json];
+        [imp parseAfter];
 
+        /*
         NSString *gpx = [gca cache__gpx:waypoint.wpt_name];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
         [imp parseString:[gpx description]];
         [imp parseAfter];
+         */
 
         [waypointManager needsRefresh];
         return YES;

@@ -743,7 +743,7 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
     }];
-    BOOL success = [waypoint.account.remoteAPI updateWaypoint:waypoint];
+    BOOL success = [waypoint.account.remoteAPI loadWaypoint:waypoint];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];

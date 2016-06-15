@@ -170,7 +170,7 @@ NEEDS_OVERLOADING(clearFlags)
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]];
         }];
-        if ([wp.account.remoteAPI updateWaypoint:wp] == NO) {
+        if ([wp.account.remoteAPI loadWaypoint:wp] == NO) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
                 failure = YES;

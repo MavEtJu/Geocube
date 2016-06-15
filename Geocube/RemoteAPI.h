@@ -67,7 +67,7 @@
 
 - (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating;
 
-- (BOOL)updateWaypoint:(dbWaypoint *)waypoint;
+- (BOOL)loadWaypoint:(dbWaypoint *)waypoint;
 - (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center;
 
 - (BOOL)updatePersonalNote:(dbPersonalNote *)note;
