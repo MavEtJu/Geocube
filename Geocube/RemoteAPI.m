@@ -399,6 +399,9 @@
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
+        if ([account canDoRemoteStuff] == NO)
+            return nil;
+
         GCDictionaryGCA *wps = [gca caches_gca:center];
         NSMutableArray *logs = [NSMutableArray arrayWithCapacity:50];
 
@@ -420,6 +423,9 @@
     }
 
     if (account.protocol == ProtocolLiveAPI) {
+        if ([account canDoRemoteStuff] == NO)
+            return nil;
+
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
         NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
         if (json == nil)

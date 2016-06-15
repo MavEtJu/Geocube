@@ -419,7 +419,7 @@
     NSInteger i = 1;
 
     do {
-        name = [NSString stringWithFormat:@"%@%06ld", prefix, i++];
+        name = [NSString stringWithFormat:@"%@%06ld", prefix, (long)i++];
     } while ([dbWaypoint dbGetByName:name] != 0);
 
     return name;

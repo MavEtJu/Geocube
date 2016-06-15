@@ -806,7 +806,12 @@ enum {
 - (void)runLoadWaypoints:(dbWaypoint *)wp
 {
     NSArray *accounts = [dbc Accounts];
+    __block NSInteger accountsFound = 0;
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([account canDoRemoteStuff] == NO)
+            return;
+        accountsFound++;
+
         account.remoteAPI.delegateLoadWaypoints = self;
         [ivc setGroupAccount:dbc.Group_LiveImport account:account];
 
@@ -828,6 +833,12 @@ enum {
 
         [ivc run:d];
     }];
+
+    if (accountsFound == 0) {
+        [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
+        return;
+    }
+
     [MyTools playSound:playSoundImportComplete];
 
     [dbWaypoint dbUpdateLogStatus];

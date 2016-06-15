@@ -224,12 +224,11 @@ enum {
     __block NSInteger count = 0;
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
-
         // If there is nothing, do not show.
-        if (a.accountname == nil)
+        if ([a canDoRemoteStuff] == NO)
             return;
 
+        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
         count++;
 
         if (a.enabled == NO) {
@@ -245,7 +244,15 @@ enum {
         [self performSelectorInBackground:@selector(runStatistics:) withObject:a];
         [d setObject:@"Polling..." forKey:@"status"];
     }];
+
+    if (count == 0) {
+        [MyTools messageBox:self header:@"No statistics loaded" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
+        return;
+    }
+
     [self showAccounts];
+
+
 }
 
 - (void)runStatistics:(dbAccount *)a
