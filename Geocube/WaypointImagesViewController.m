@@ -286,7 +286,7 @@ enum {
     return;
 }
 
-- (void)swipeToRight
+- (void)swipeToDown
 {
     NSInteger max = 0;
 
@@ -309,7 +309,7 @@ enum {
     }
 }
 
-- (void)swipeToLeft
+- (void)swipeToUp
 {
     NSInteger max = 0;
 

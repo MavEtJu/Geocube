@@ -74,6 +74,7 @@ enum {
     self.view = sv;
 
     [self loadImage];
+    [self prepareCloseButton:sv];
 }
 
 - (void)loadImage
@@ -97,13 +98,13 @@ enum {
     singleTap.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:singleTap];
 
-    UISwipeGestureRecognizer *swipeleft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
-    swipeleft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:swipeleft];
+    UISwipeGestureRecognizer *swipeup = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp:)];
+    swipeup.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipeup];
 
-    UISwipeGestureRecognizer *swiperight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
-    swiperight.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swiperight];
+    UISwipeGestureRecognizer *swipedown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown:)];
+    swipedown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipedown];
 
     [self calculateRects];
     [self viewWillTransitionToSize];
@@ -126,18 +127,18 @@ enum {
     }];
 }
 
-- (void)swipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeUp:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
-        [delegate swipeToLeft];
+        [delegate swipeToUp];
         [self loadImage];
     }
 }
 
-- (void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeDown:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if (delegate != nil) {
-        [delegate swipeToRight];
+        [delegate swipeToDown];
         [self loadImage];
     }
 }

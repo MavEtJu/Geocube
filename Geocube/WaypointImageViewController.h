@@ -21,8 +21,8 @@
 
 @protocol WaypointImageViewControllerDelegate
 
-- (void)swipeToLeft;
-- (void)swipeToRight;
+- (void)swipeToUp;
+- (void)swipeToDown;
 
 @end
 
