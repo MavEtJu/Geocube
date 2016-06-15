@@ -148,6 +148,7 @@
     wp.gs_state = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_placed_by, @"placedby");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"short_description");
+    wp.gs_short_desc = [MyTools HTMLUnescape:wp.gs_short_desc];
     wp.gs_short_desc_html = YES;
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"name");
     DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"country");
@@ -162,6 +163,7 @@
     wp.wpt_type = nil;
     DICT_NSSTRING_KEY(dict, wp.wpt_date_placed, @"hidden");
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"long_description");
+    wp.gs_long_desc = [MyTools HTMLUnescape:wp.gs_long_desc];
     wp.gs_long_desc_html = YES;
     DICT_NSSTRING_KEY(dict, wp.gs_owner_str, @"owner");
     wp.gs_owner = nil;

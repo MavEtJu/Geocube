@@ -398,6 +398,17 @@
     return s;
 }
 
++ (NSString *)HTMLUnescape:(NSString *)in
+{
+    if (in == nil)
+        return @"";
+    NSMutableString *s = [NSMutableString stringWithString:in];
+    [s replaceOccurrencesOfString:@"&amp;" withString:@"&" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@"&lt;" withString:@"<" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@"&gt;" withString:@">" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+    return s;
+}
+
 + (BOOL)checkCoordinate:(NSString *)text
 {
     // As long as it matches any of these, it is fine:

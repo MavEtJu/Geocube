@@ -64,6 +64,7 @@ enum {
 + (NSString *)tickEscape:(NSString *)in;
 + (NSString *)JSONEscape:(NSString *)in;
 + (NSString *)HTMLEscape:(NSString *)in;
++ (NSString *)HTMLUnescape:(NSString *)in;
 
 + (BOOL)checkCoordinate:(NSString *)text;
 + (NSString *)makeNewWaypoint:(NSString *)prefix;
