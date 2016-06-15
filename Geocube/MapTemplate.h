@@ -22,6 +22,7 @@
 @interface MapTemplate : NSObject
 {
     MapViewController *mapvc;
+    LXMapScaleView *mapScaleView;
 }
 
 @property (nonatomic, retain) MapViewController *mapvc;
@@ -59,6 +60,7 @@
 
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)updateMyBearing:(CLLocationDirection)bearing;
+- (void)updateMapScaleView;
 
 - (void)placeMarkers;
 - (void)removeMarkers;

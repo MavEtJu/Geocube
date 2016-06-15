@@ -143,7 +143,6 @@ enum {
     if ([map mapHasViewTerrain] == FALSE)
         [lmi disableItem:menuTerrain];
 
-
     if (waypointManager.currentWaypoint == nil)
         [lmi disableItem:menuRemoveTarget];
 
@@ -306,6 +305,7 @@ enum {
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
 
     [map recalculateRects];
+    [map updateMapScaleView];
 }
 
 - (void)initDistanceLabel

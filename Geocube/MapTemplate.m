@@ -202,4 +202,9 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
      ];
 }
 
+- (void)updateMapScaleView
+{
+    [mapScaleView update];
+}
+
 @end

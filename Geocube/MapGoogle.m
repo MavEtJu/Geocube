@@ -29,8 +29,6 @@
     GMSMarker *me;
     NSMutableArray *markers;
 
-    LXMapScaleView *mapScaleView;
-
     GMSPolyline *lineMeToWaypoint;
     GMSPolyline *lineHistory;
 }
@@ -259,6 +257,11 @@
         [mapvc userInteraction];
 
     // Update the ruler
+    [mapScaleView update];
+}
+
+- (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position
+{
     [mapScaleView update];
 }
 
