@@ -105,6 +105,21 @@
         mapClusterController.maxZoomLevelForClustering = 0;
     else
         mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
+
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
+    [mapView addGestureRecognizer:lpgr];
+}
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+
+    CGPoint touchPoint = [gestureRecognizer locationInView:mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+
+    [mapvc addNewWaypoint:touchMapCoordinate];
 }
 
 - (void)removeMap

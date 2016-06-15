@@ -413,6 +413,18 @@
     return NO;
 }
 
++ (NSString *)makeNewWaypoint:(NSString *)prefix
+{
+    NSString *name;
+    NSInteger i = 1;
+
+    do {
+        name = [NSString stringWithFormat:@"%@%06ld", prefix, i++];
+    } while ([dbWaypoint dbGetByName:name] != 0);
+
+    return name;
+}
+
 - (void)toggleFlashLight:(BOOL)onoff
 {
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];

@@ -518,7 +518,15 @@ enum {
     [self refreshWaypointsData:nil];
 }
 
-#pragma mark -- Menu related functions
+- (void)addNewWaypoint:(CLLocationCoordinate2D)coords
+{
+    WaypointAddViewController *newController = [[WaypointAddViewController alloc] init];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
+    [newController setCoordinates:coords];
+}
+
+#pragma mark -- Map menu related functions
 
 - (void)userInteraction
 {
@@ -587,6 +595,8 @@ enum {
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
     [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
 }
+
+#pragma mark - Local menu related functions
 
 - (void)menuMapType:(NSInteger)maptype
 {
@@ -853,8 +863,6 @@ enum {
     [lmi disableItem:menuRemoveTarget];
     [waypointManager setCurrentWaypoint:nil];
 }
-
-#pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index
 {

@@ -48,13 +48,18 @@ enum {
 
     lmi = nil;
 
-    code = @"MYxxxxx";
+    code = [MyTools makeNewWaypoint:@"MY"];
     name = @"A new name";
     coords = [LM coords];
 
     hasCloseButton = YES;
 
     return self;
+}
+
+- (void)setCoordinates:(CLLocationCoordinate2D)_coords
+{
+    coords = _coords;
 }
 
 - (void)viewDidLoad

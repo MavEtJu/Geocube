@@ -66,6 +66,7 @@ enum {
 + (NSString *)HTMLEscape:(NSString *)in;
 
 + (BOOL)checkCoordinate:(NSString *)text;
++ (NSString *)makeNewWaypoint:(NSString *)prefix;
 
 - (void)toggleFlashLight:(BOOL)onoff;
 + (BOOL)hasWifiNetwork;

@@ -265,4 +265,9 @@
     [mapScaleView update];
 }
 
+- (void) mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    [mapvc addNewWaypoint:coordinate];
+}
+
 @end

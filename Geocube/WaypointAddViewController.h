@@ -21,4 +21,6 @@
 
 @interface WaypointAddViewController : GCTableViewController <UITextFieldDelegate>
 
+- (void)setCoordinates:(CLLocationCoordinate2D)coords;
+
 @end
