@@ -69,7 +69,6 @@ enum {
 + (BOOL)checkCoordinate:(NSString *)text;
 + (NSString *)makeNewWaypoint:(NSString *)prefix;
 
-- (void)toggleFlashLight:(BOOL)onoff;
 + (BOOL)hasWifiNetwork;
 + (BOOL)hasMobileNetwork;
 + (BOOL)hasAnyNetwork;

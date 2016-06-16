@@ -439,22 +439,6 @@
     return name;
 }
 
-- (void)toggleFlashLight:(BOOL)onoff
-{
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if ([device hasTorch]) {
-        [device lockForConfiguration:nil];
-        if (device.torchMode == AVCaptureTorchModeOff) {
-            device.torchMode = AVCaptureTorchModeOn;
-            NSLog(@"Torch mode is on.");
-        } else {
-            device.torchMode = AVCaptureTorchModeOff;
-            NSLog(@"Torch mode is off.");
-        }
-        [device unlockForConfiguration];
-    }
-}
-
 + (BOOL)hasWifiNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
