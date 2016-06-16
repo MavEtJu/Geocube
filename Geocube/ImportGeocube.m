@@ -170,6 +170,7 @@
         KEY(site, protocol, @"protocol");
         KEY(site, url_queries, @"queries");
         KEY(site, url_website, @"website");
+        KEY(site, distance, @"minimum_distance");
 
         NSInteger protocol_id = ProtocolNone;
         if ([protocol isEqualToString:@"OKAPI"] == YES)
@@ -201,6 +202,7 @@
             a.gca_callback_url = gca_callback_url;
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
+            a.distance_minimum = [distance integerValue];
             [a dbCreate];
         } else {
             a.enabled = enabledBool;
@@ -217,6 +219,7 @@
             a.gca_callback_url = gca_callback_url;
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
+            a.distance_minimum = [distance integerValue];
             [a dbUpdate];
         }
     }];

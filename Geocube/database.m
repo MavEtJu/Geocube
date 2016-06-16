@@ -367,6 +367,12 @@
     @"insert into groups(name, usergroup, deletable) values('Manual waypoints', 1, 0)",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 26
+    a = @[
+    @"alter table accounts add column distance_minimum integer",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

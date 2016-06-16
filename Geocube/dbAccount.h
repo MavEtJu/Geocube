@@ -51,6 +51,7 @@ enum dbAccountProtocol {
 @property (nonatomic, retain) NSString *gca_cookie_value;
 @property (nonatomic, retain) NSString *gca_callback_url;
 @property (nonatomic, retain) NSString *gca_authenticate_url;
+@property (nonatomic) NSInteger distance_minimum;
 
 @property (nonatomic, readonly) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) NSString *lastError;
