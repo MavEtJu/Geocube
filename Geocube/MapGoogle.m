@@ -28,6 +28,7 @@
     GMSMapView *mapView;
     GMSMarker *me;
     NSMutableArray *markers;
+    NSMutableArray *circles;
 
     GMSPolyline *lineMeToWaypoint;
     GMSPolyline *lineHistory;
@@ -120,6 +121,12 @@
         m = nil;
     }];
     markers = nil;
+
+    [circles enumerateObjectsUsingBlock:^(GMSCircle *c, NSUInteger idx, BOOL *stop) {
+        c.map = nil;
+        c = nil;
+    }];
+    circles = nil;
 }
 
 - (void)placeMarkers
@@ -131,6 +138,7 @@
 
     // Add the new markers to the map
     markers = [NSMutableArray arrayWithCapacity:20];
+    circles = [NSMutableArray arrayWithCapacity:20];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = wp.coordinates;
@@ -142,7 +150,29 @@
 
         marker.icon = [self waypointImage:wp];
         [markers addObject:marker];
+
+        if (circlesShown == YES && wp.account.distance_minimum != 0) {
+            GMSCircle *circle = [GMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
+            circle.strokeColor = [UIColor blueColor];
+            circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+            circle.map = mapView;
+            [circles addObject:circle];
+        }
     }];
+}
+
+- (void)showCircles
+{
+    circlesShown = YES;
+    [self removeMarkers];
+    [self placeMarkers];
+}
+
+- (void)hideCircles
+{
+    circlesShown = NO;
+    [self removeMarkers];
+    [self placeMarkers];
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker

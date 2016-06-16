@@ -23,9 +23,11 @@
 {
     MapViewController *mapvc;
     LXMapScaleView *mapScaleView;
+    BOOL circlesShown;
 }
 
 @property (nonatomic, retain) MapViewController *mapvc;
+@property (nonatomic) BOOL circlesShown;
 
 - (void)mapViewWillAppear;
 - (void)mapViewWillDisappear;
@@ -61,6 +63,9 @@
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)updateMyBearing:(CLLocationDirection)bearing;
 - (void)updateMapScaleView;
+
+- (void)showCircles;
+- (void)hideCircles;
 
 - (void)placeMarkers;
 - (void)removeMarkers;

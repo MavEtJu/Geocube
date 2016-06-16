@@ -25,11 +25,14 @@
 {
     GCPointAnnotation *me;
     NSMutableArray *markers;
+    NSMutableArray *circles;
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineRenderer *viewLineMeToWaypoint;
     MKPolyline *lineHistory;
     MKPolylineRenderer *viewLineHistory;
+
+    BOOL circlesShown;
 
     CCHMapClusterController *mapClusterController;
 }
@@ -172,6 +175,29 @@
     }];
     [mapClusterController removeAnnotations:markers withCompletionHandler:nil];
     markers = nil;
+}
+
+- (void)showCircles
+{
+    circlesShown = YES;
+    circles = [NSMutableArray arrayWithCapacity:20];
+    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        if (circlesShown == YES && wp.account.distance_minimum != 0) {
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+            [mapView addOverlay:circle];
+            [circles addObject:circle];
+        }
+    }];
+}
+
+- (void)hideCircles
+{
+    circlesShown = NO;
+    [circles enumerateObjectsUsingBlock:^(MKCircle *c, NSUInteger idx, BOOL *stop) {
+        [mapView removeOverlay:c];
+        c = nil;
+    }];
+    circles = nil;
 }
 
 - (void)mapCallOutPressed:(id)sender
@@ -317,7 +343,18 @@
         return viewLineHistory;
     }
 
-    return nil;
+    __block MKCircleRenderer *circleRenderer = nil;
+    [circles enumerateObjectsUsingBlock:^(MKCircle *c, NSUInteger idx, BOOL *stop) {
+        if (overlay == c) {
+            circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+            circleRenderer.strokeColor = [UIColor blueColor];
+            circleRenderer.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+            circleRenderer.lineWidth = 1;
+            *stop = YES;
+        }
+    }];
+
+    return circleRenderer;
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom

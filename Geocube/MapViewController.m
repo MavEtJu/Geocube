@@ -44,6 +44,7 @@
     NSArray *waypointsArray;
 
     BOOL hasGMS;
+    BOOL showBoundaries;
 
     BOOL isVisible;
     BOOL needsRefresh;
@@ -71,6 +72,7 @@ enum {
     menuRecenter,
     menuUseGPS,
     menuRemoveTarget,
+    menuShowBoundaries,
     menuMax,
     menuFollowMe,
     menuShowBoth,
@@ -111,6 +113,9 @@ enum {
     [lmi addItem:menuRemoveTarget label:@"Remove Target"];
     [lmi addItem:menuRecenter label:@"Recenter"];
     [lmi addItem:menuUseGPS label:@"Use GPS"];
+
+    showBoundaries = NO;
+    [lmi addItem:menuShowBoundaries label:@"Show Boundaries"];
 
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
@@ -869,6 +874,19 @@ enum {
     [waypointManager needsRefresh];
 }
 
+- (void)menuShowBoundaries
+{
+    if (showBoundaries == NO) {
+        showBoundaries = YES;
+        [lmi changeItem:menuShowBoundaries label:@"Hide boundaries"];
+        [map showCircles];
+    } else {
+        showBoundaries = NO;
+        [lmi changeItem:menuShowBoundaries label:@"Show boundaries"];
+        [map hideCircles];
+    }
+}
+
 - (void)menuRemoveTarget
 {
     [lmi disableItem:menuRemoveTarget];
@@ -928,6 +946,9 @@ enum {
             [self menuUseGPS];
             return;
 
+        case menuShowBoundaries:
+            [self menuShowBoundaries];
+            return;
         case menuRemoveTarget:
             [self menuRemoveTarget];
             return;

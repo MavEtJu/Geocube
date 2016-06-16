@@ -27,7 +27,7 @@
 
 @implementation MapTemplate
 
-@synthesize mapvc;
+@synthesize mapvc, circlesShown;
 
 EMPTY_METHOD(mapViewDidDisappear)
 EMPTY_METHOD(mapViewWillDisappear)
@@ -47,6 +47,8 @@ NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordina
 NEEDS_OVERLOADING(updateMyBearing:(CLLocationDirection)bearing);
 NEEDS_OVERLOADING(placeMarkers)
 NEEDS_OVERLOADING(removeMarkers)
+NEEDS_OVERLOADING(showCircles)
+NEEDS_OVERLOADING(hideCircles)
 NEEDS_OVERLOADING(addLineMeToWaypoint)
 NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
@@ -64,6 +66,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
     self = [super init];
 
     mapvc = mvc;
+    circlesShown = NO;
 
     return self;
 }
