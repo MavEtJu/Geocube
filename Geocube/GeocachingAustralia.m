@@ -307,7 +307,7 @@
 
 - (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name
 {
-    NSLog(@"cacher_statistics__finds");
+    NSLog(@"cacher_statistics__finds:%@", name);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlEncode:name]];
     NSArray *lines = [self loadPage:urlString];
@@ -345,7 +345,7 @@
 
 - (GCStringGPX *)cache__gpx:(NSString *)wpname
 {
-    NSLog(@"cache__gpx");
+    NSLog(@"cache__gpx:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
     NSArray *lines = [self loadPage:urlString];
@@ -354,7 +354,7 @@
 
 - (GCDictionaryGCA *)cache__json:(NSString *)wpname
 {
-    NSLog(@"cache__json");
+    NSLog(@"cache__json:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.json", [MyTools urlEncode:wpname]];
     NSArray *lines = [self loadPage:urlString];
@@ -374,7 +374,7 @@
 
 - (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating
 {
-    NSLog(@"my_log_new");
+    NSLog(@"my_log_new:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/log/new/%@", [MyTools urlEncode:wpname]];
 
@@ -416,7 +416,7 @@
 
 - (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description
 {
-    NSLog(@"my_gallery_cache_add");
+    NSLog(@"my_gallery_cache_add:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/gallery/cache/add/%@", [MyTools urlEncode:wpname]];
 
@@ -436,7 +436,7 @@
 
 - (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center
 {
-    NSLog(@"caches_gca");
+    NSLog(@"caches_gca:%@", [Coordinates NiceCoordinates:center]);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/caches/gca.json?center=%f,%f&cacher=no&limit=%ld", center.latitude, center.longitude, (long)myConfig.mapSearchMaximumNumberGCA];
 
@@ -458,7 +458,7 @@
 
 - (GCDictionaryGCA *)logs_cache:(NSString *)wpname
 {
-    NSLog(@"logs_cache");
+    NSLog(@"logs_cache:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/logs/cache/%@.json", wpname];
 
@@ -478,7 +478,7 @@
 
 - (GCDictionaryGCA *)my_query_json:(NSString *)queryname
 {
-    NSLog(@"my_query_json");
+    NSLog(@"my_query_json:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
 
@@ -494,12 +494,15 @@
     NSError *error = nil;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
+    if (json == nil)
+        return nil;
+
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname
 {
-    NSLog(@"my_query_gpx");
+    NSLog(@"my_query_gpx:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
 
