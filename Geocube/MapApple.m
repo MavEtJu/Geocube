@@ -34,7 +34,7 @@
 
     BOOL circlesShown;
 
-    CCHMapClusterController *mapClusterController;
+//    CCHMapClusterController *mapClusterController;
 }
 
 @end
@@ -102,12 +102,12 @@
     mapScaleView.style = kLXMapScaleStyleBar;
 
     /* Add the cluster controller */
-    mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
-    mapClusterController.delegate = self;
-    if (myConfig.mapClustersEnable == NO)
-        mapClusterController.maxZoomLevelForClustering = 0;
-    else
-        mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
+//    mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
+//    mapClusterController.delegate = self;
+//    if (myConfig.mapClustersEnable == NO)
+//        mapClusterController.maxZoomLevelForClustering = 0;
+//    else
+//        mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
 
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
@@ -128,7 +128,7 @@
 - (void)removeMap
 {
     mapView = nil;
-    mapClusterController = nil;
+//    mapClusterController = nil;
     mapScaleView = nil;
 }
 
@@ -163,7 +163,8 @@
 
         [markers addObject:annotation];
     }];
-    [mapClusterController addAnnotations:markers withCompletionHandler:nil];
+//    [mapClusterController addAnnotations:markers withCompletionHandler:nil];
+    [mapView addAnnotations:markers];
 }
 
 - (void)removeMarkers
@@ -173,7 +174,8 @@
         [mapView removeAnnotation:m];
         m = nil;
     }];
-    [mapClusterController removeAnnotations:markers withCompletionHandler:nil];
+//    [mapClusterController removeAnnotations:markers withCompletionHandler:nil];
+    [mapView removeAnnotations:markers];
     markers = nil;
 }
 
@@ -486,10 +488,10 @@
 
 - (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel
 {
-    if (enable == NO)
-        mapClusterController.maxZoomLevelForClustering = 0;
-    else
-        mapClusterController.maxZoomLevelForClustering = zoomLevel;
+//    if (enable == NO)
+//        mapClusterController.maxZoomLevelForClustering = 0;
+//    else
+//        mapClusterController.maxZoomLevelForClustering = zoomLevel;
     [self removeMarkers];
     [self placeMarkers];
 }
