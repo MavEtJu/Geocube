@@ -80,6 +80,8 @@ enum {
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error;
 
++ (UIViewController *)topMostController;
+
 @end
 
 typedef sqlite3_int64 NSId;
