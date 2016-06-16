@@ -147,7 +147,8 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         if ([detail isEqualToString:@""] == NO)
             [detail appendString:@" - "];
         size = count;
-        [detail appendFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
+        if (count >= 0)
+            [detail appendFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
     }
     if ([pq objectForKey:@"Size"] != nil) {
         if ([detail isEqualToString:@""] == NO)
@@ -186,7 +187,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     }
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
-    [self performSelectorInBackground:@selector(runRetrieveQuery:) withObject:pq];
+    [self performSelectorInBackground:@selector(runRetrieveQueryFirst:) withObject:pq];
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
@@ -216,7 +217,17 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     return;
 }
 
-- (void)runRetrieveQuery:(NSDictionary *)pq
+- (void)runRetrieveQueryFirst:(NSDictionary *)pq
+{
+    [self runRetrieveQuery:pq first:YES];
+}
+
+- (void)runRetrieveQueryRetry:(NSDictionary *)pq
+{
+    [self runRetrieveQuery:pq first:NO];
+}
+
+- (void)runRetrieveQuery:(NSDictionary *)pq first:(BOOL)first
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@\n0 / 0", queryString]];
@@ -240,13 +251,45 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     __block BOOL failure = NO;
     account.remoteAPI.delegateQueries = self;
 
-    // Download the query
-    NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
-    if (ret == nil) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
-        failure = YES;
+    if (first == YES) {
+        // Download the query
+        NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+        if (ret == nil) {
+            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+            UIAlertController *alert= [UIAlertController
+                                       alertControllerWithTitle:@"Unable to retrieve the query via the GCA API"
+                                       message:@"Do you want to download the query via GPX?"
+                                       preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction *yes = [UIAlertAction
+                                  actionWithTitle:@"Yes"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action) {
+                                      [self runRetrieveQueryRetry:pq];
+                                  }];
+            UIAlertAction *no = [UIAlertAction
+                                 actionWithTitle:@"No" style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+
+            [alert addAction:yes];
+            [alert addAction:no];
+
+            [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+
+            failure = YES;
+        } else {
+            [self parseRetrievedQuery:ret group:group];
+        }
     } else {
-        [self parseRetrievedQuery:ret group:group];
+        NSObject *ret = [account.remoteAPI retrieveQuery_retry:[pq objectForKey:@"Id"] group:group];
+        if (ret == nil) {
+            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+            failure = YES;
+        } else {
+            [self parseRetrievedQuery:ret group:group];
+        }
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
