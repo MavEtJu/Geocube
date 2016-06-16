@@ -62,6 +62,8 @@
     return s;
 }
 
+///////////////////////////////////////////
+
 + (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1
 {
     struct timeval ret;
@@ -152,6 +154,8 @@
     return [datetime substringWithRange:NSMakeRange(11, 8)];
 }
 
+///////////////////////////////////////////
+
 + (NSString *)simpleHTML:(NSString *)plainText
 {
     if (plainText == nil)
@@ -185,6 +189,8 @@
     }
     return lineNum;
 }
+
+///////////////////////////////////////////
 
 + (NSString *)niceNumber:(NSInteger)i
 {
@@ -303,6 +309,8 @@
     return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
 }
 
+///////////////////////////////////////////
+
 - (instancetype)initClock:(NSString *)_title
 {
     self = [super init];
@@ -347,6 +355,8 @@
 {
     clockEnabled = yesno;
 }
+
+///////////////////////////////////////////
 
 + (NSString *)urlEncode:(NSString *)in
 {
@@ -412,6 +422,8 @@
     return s;
 }
 
+///////////////////////////////////////////
+
 + (BOOL)checkCoordinate:(NSString *)text
 {
     // As long as it matches any of these, it is fine:
@@ -427,6 +439,8 @@
     return NO;
 }
 
+///////////////////////////////////////////
+
 + (NSString *)makeNewWaypoint:(NSString *)prefix
 {
     NSString *name;
@@ -438,6 +452,8 @@
 
     return name;
 }
+
+///////////////////////////////////////////
 
 + (BOOL)hasWifiNetwork
 {
@@ -493,6 +509,8 @@
     return NO;
 }
 
+///////////////////////////////////////////
+
 + (void)playSoundFile:(NSString *)filename extension:(NSString *)extension
 {
     /* Crappy way to do sound but will work for now */
@@ -516,6 +534,8 @@
             break;
     }
 }
+
+///////////////////////////////////////////
 
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text
 {
@@ -557,6 +577,7 @@
     }];
 }
 
+///////////////////////////////////////////
 
 // Obtained from https://forums.developer.apple.com/thread/11519
 + (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
@@ -586,6 +607,8 @@
 
     return result;
 }
+
+///////////////////////////////////////////
 
 + (UIViewController *)topMostController
 {
