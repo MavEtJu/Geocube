@@ -443,7 +443,9 @@
             NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }
     }
+
     [imp parseAfter];
+    [MyTools playSound:playSoundImportComplete];
 
     [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
         [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] error:nil];

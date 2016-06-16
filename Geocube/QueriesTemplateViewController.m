@@ -296,8 +296,6 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         [DejalBezelActivityView removeViewAnimated:NO];
         [self.tableView reloadData];
     }];
-    if (failure == NO)
-        [MyTools playSound:playSoundImportComplete];
 }
 
 - (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
