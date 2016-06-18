@@ -225,9 +225,6 @@
      * - If not, create the name with the code.
      */
 
-    if ([_name isEqualToString:@"Team MavEtJu"] == YES)
-        NSLog(@"foo");
-
     dbName *name;
     if (_code != nil && [_code isEqualToString:@""] == NO) {
         name = [dbName dbGetByCode:_code account:account];
