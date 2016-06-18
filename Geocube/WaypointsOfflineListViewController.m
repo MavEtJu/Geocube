@@ -76,7 +76,7 @@ enum {
 {
     self = [super init];
 
-    currentSortOrder = SORTORDER_DISTANCE_ASC;
+    currentSortOrder = myConfig.waypointListSortBy;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
@@ -373,7 +373,7 @@ enum {
     [self.navigationController pushViewController:newController animated:YES];
 }
 
-- (void)menuSortBy
++ (NSArray *)sortByOrder
 {
     NSMutableArray *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
     for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
@@ -408,6 +408,12 @@ enum {
                 NSAssert(NO, @"Unknown sort order");
         }
     }
+    return orders;
+}
+
+- (void)menuSortBy
+{
+    NSArray *orders = [WaypointsOfflineListViewController sortByOrder];
 
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Sort by"

@@ -23,4 +23,6 @@
 
 @property (strong, nonatomic) UISearchController *searchController;
 
++ (NSArray *)sortByOrder;
+
 @end

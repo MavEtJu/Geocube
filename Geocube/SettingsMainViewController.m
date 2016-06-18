@@ -247,6 +247,7 @@ enum sections {
     SECTION_DYNAMICMAP,
     SECTION_KEEPTRACK,
     SECTION_MARKAS,
+    SECTION_WAYPOINTS,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -308,6 +309,9 @@ enum sections {
 
     SECTION_MARKAS_FOUNDDNFCLEARSTARGET = 0,
     SECTION_MARKAS_MAX,
+
+    SECTION_WAYPOINTS_SORTBY = 0,
+    SECTION_WAYPOINTS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -343,6 +347,8 @@ enum sections {
             return SECTION_MAPSEARCHMAXIMUM_MAX;
         case SECTION_MARKAS:
             return SECTION_MARKAS_MAX;
+        case SECTION_WAYPOINTS:
+            return SECTION_WAYPOINTS_MAX;
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -378,6 +384,8 @@ enum sections {
             return @"Map search maximums";
         case SECTION_MARKAS:
             return @"Mark as...";
+        case SECTION_WAYPOINTS:
+            return @"Waypoints";
     }
 
     return nil;
@@ -817,6 +825,20 @@ enum sections {
             }
         }
 
+        case SECTION_WAYPOINTS: {
+            switch (indexPath.row) {
+                case SECTION_WAYPOINTS_SORTBY: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Sort waypoints default by...";
+                    NSArray *order = [WaypointsOfflineListViewController sortByOrder];
+                    cell.detailTextLabel.text = [order objectAtIndex:myConfig.waypointListSortBy];
+
+                    return cell;
+                }
+            }
+        }
+
     }
 
     return nil;
@@ -824,7 +846,7 @@ enum sections {
 
 - (void)updatemarkasFoundDNFClearsTarget:(UISwitch *)s
 {
-    [myConfig markasFoundDNFClearsTarget:s.on];
+    [myConfig markasFoundDNFClearsTargetUpdate:s.on];
 }
 
 - (void)updateDownloadImagesLogs:(UISwitch *)s
@@ -989,6 +1011,14 @@ enum sections {
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
                     [self keeptrackChange:indexPath.row];
+                    break;
+            }
+            return;
+
+        case SECTION_WAYPOINTS:
+            switch (indexPath.row) {
+                case SECTION_WAYPOINTS_SORTBY:
+                    [self changeWaypointSortBy];
                     break;
             }
             return;
@@ -1472,6 +1502,26 @@ enum sections {
 {
     float f = [selectedIndex floatValue] / 2.0;
     [myConfig mapClustersUpdateZoomLevel:f];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeWaypointSortBy
+{
+    [ActionSheetStringPicker showPickerWithTitle:@"Sort waypoints by"
+                                            rows:[WaypointsOfflineListViewController sortByOrder]
+                                initialSelection:myConfig.waypointListSortBy
+                                          target:self
+                                   successAction:@selector(updateWaypointSortBy:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateWaypointSortBy:(NSNumber *)selectedIndex element:(id)element
+{
+    [myConfig waypointListSortByUpdate:selectedIndex.integerValue];
     [self.tableView reloadData];
 }
 
