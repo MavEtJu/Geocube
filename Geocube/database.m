@@ -371,6 +371,21 @@
     // Version 26
     a = @[
     @"alter table accounts add column distance_minimum integer",
+    @"update accounts set distance_minimum = 0",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 27
+    a = @[
+    @"alter table travelbugs add column log_type integer",
+    @"update travelbugs set log_type = 0",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 28
+    a = @[
+    @"alter table travelbugs add column code text",
+    @"update travelbugs set code = ''",
     ];
     [upgradeSteps addObject:a];
 }

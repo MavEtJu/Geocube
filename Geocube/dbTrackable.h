@@ -21,6 +21,16 @@
 
 @interface dbTrackable : dbObject
 
+enum {
+    LOGTYPE_NONE = 0,
+    LOGTYPE_VISIT,
+    LOGTYPE_DROPOFF,
+    LOGTYPE_PICKUP,
+    LOGTYPE_DISCOVER,
+    LOGTYPE_MAX
+};
+
+@property (nonatomic, retain) NSString *code;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *ref;
 @property (nonatomic) NSId gc_id;
@@ -31,11 +41,13 @@
 @property (nonatomic, retain) NSString *owner_str;
 @property (nonatomic, retain) dbName *owner;
 @property (nonatomic, retain) NSString *waypoint_name;
+@property (nonatomic) NSInteger logtype;
 
 + (NSArray *)dbAllMine;
 + (NSArray *)dbAllInventory;
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
 - (void)dbLinkToWaypoint:(NSId)wp_id;
++ (dbTrackable *)dbGet:(NSId)_id;
 + (NSId)dbGetIdByGC:(NSId)_gc_id;
 + (NSId)dbCreate:(dbTrackable *)tb;
 - (NSId)dbCreate;

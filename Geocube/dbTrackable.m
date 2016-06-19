@@ -27,7 +27,7 @@
 
 @implementation dbTrackable
 
-@synthesize name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name;
+@synthesize name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name, logtype, code;
 
 - (void)finish
 {
@@ -99,7 +99,7 @@
 {
     NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
 
-    NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name from travelbugs %@", where];
+    NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(sql);
@@ -113,6 +113,8 @@
             INT_FETCH (4, tb.carrier_id);
             INT_FETCH (5, tb.owner_id);
             TEXT_FETCH(6, tb.waypoint_name);
+            INT_FETCH (7, tb.logtype);
+            TEXT_FETCH(8, tb.code);
             [tb finish:nil];    // can be nil because we have the _id's
             [tbs addObject:tb];
         }
@@ -134,6 +136,12 @@
 + (NSArray *)dbAllInventory
 {
     return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
+}
+
++ (dbTrackable *)dbGet:(NSId)_id
+{
+    NSArray *as = [self dbAllXXX:[NSString stringWithFormat:@"where id = %ld", (long)_id]];
+    return [as objectAtIndex:0];
 }
 
 + (NSInteger)dbCount
@@ -174,7 +182,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name) values(?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, tb.gc_id);
         SET_VAR_TEXT(2, tb.ref);
@@ -182,6 +190,8 @@
         SET_VAR_INT (4, tb.carrier_id);
         SET_VAR_INT (5, tb.owner_id);
         SET_VAR_TEXT(6, tb.waypoint_name);
+        SET_VAR_INT (7, tb.logtype);
+        SET_VAR_TEXT(8, tb.code);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -194,7 +204,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ? where id = ?");
+        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
 
         SET_VAR_INT (1, gc_id);
         SET_VAR_TEXT(2, ref);
@@ -202,7 +212,9 @@
         SET_VAR_INT (4, carrier_id);
         SET_VAR_INT (5, owner_id);
         SET_VAR_TEXT(6, waypoint_name);
-        SET_VAR_INT (7, _id);
+        SET_VAR_INT (7, logtype);
+        SET_VAR_TEXT(8, code);
+        SET_VAR_INT (9, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
