@@ -297,14 +297,17 @@
     return nil;
 }
 
-- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables
 {
     NSData *imgdata = nil;
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
 
     if (account.protocol == ProtocolLiveAPI) {
-        return [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
+        NSInteger retvalue = [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
+        [trackables enumerateObjectsUsingBlock:^(dbTrackable *t, NSUInteger idx, BOOL * _Nonnull stop) {
+        }];
+        return retvalue;
     }
     if (account.protocol == ProtocolOKAPI) {
         return [okapi services_logs_submit:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];

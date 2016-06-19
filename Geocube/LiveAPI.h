@@ -33,6 +33,7 @@
 - (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser;
 - (GCDictionaryLiveAPI *)GetGeocacheDataTypes;
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;
+- (void)CreateTrackableLog;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
 - (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset;

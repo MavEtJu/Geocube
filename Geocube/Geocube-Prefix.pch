@@ -171,6 +171,7 @@
 #import "WaypointImageViewController.h"
 #import "WaypointImagesViewController.h"
 #import "WaypointLogImagesViewController.h"
+#import "WaypointLogTrackablesViewController.h"
 #import "WaypointLogViewController.h"
 #import "WaypointLogsViewController.h"
 #import "WaypointRawViewController.h"

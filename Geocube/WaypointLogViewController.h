@@ -19,7 +19,7 @@
 * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-@interface WaypointLogViewController : GCTableViewController <YIPopupTextViewDelegate, WaypointLogImagesDelegate>
+@interface WaypointLogViewController : GCTableViewController <YIPopupTextViewDelegate, WaypointLogImagesDelegate, WaypointLogTrackablesDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

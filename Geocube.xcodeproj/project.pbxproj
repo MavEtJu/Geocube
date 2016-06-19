@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
+		E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* WaypointManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
@@ -440,6 +441,8 @@
 		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80250E51D160EF300F05772 /* WaypointLogTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogTrackablesViewController.h; sourceTree = "<group>"; };
+		E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogTrackablesViewController.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E8045B871B697A3B00DD44CC /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
@@ -1680,6 +1683,8 @@
 				E8C5BB611C719EB1006222D5 /* WaypointLogViewController.m */,
 				E89051711C8ACEFA00220986 /* WaypointLogImagesViewController.h */,
 				E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */,
+				E80250E51D160EF300F05772 /* WaypointLogTrackablesViewController.h */,
+				E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
@@ -2729,6 +2734,7 @@
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */,
+				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
 				E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */,

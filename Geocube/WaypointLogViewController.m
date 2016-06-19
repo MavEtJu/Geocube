@@ -32,6 +32,8 @@
     NSString *imageCaption;
     NSString *imageLongText;
 
+    NSMutableArray *trackables;
+
     NSInteger ratingSelected;
     BOOL fp, upload;
 }
@@ -64,6 +66,7 @@ enum {
 
 #define THISCELL_ALL @"CacheLogViewControllerCellAll"
 #define THISCELL_PHOTO @"CacheLogViewControllerCellPhoto"
+#define THISCELL_SUBTITLE @"CacheLogViewControllerCellSubtitle"
 
 - (instancetype)init:(dbWaypoint *)_waypoint
 {
@@ -77,11 +80,14 @@ enum {
     ratingSelected = 3;
     self.delegateWaypoint = nil;
 
+    trackables = [NSMutableArray arrayWithArray:[dbTrackable dbAllInventory]];
+
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     date = [dateFormatter stringFromDate:d];
 
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL_ALL];
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_PHOTO];
     hasCloseButton = YES;
@@ -94,6 +100,11 @@ enum {
 {
     hasCloseButton = YES;
     [super viewDidLoad];
+}
+
+- (void)refreshTable
+{
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -193,12 +204,47 @@ enum {
                     break;
                 }
                 case SECTION_EXTRADETAILS_TRACKABLE:
-                    cell.keyLabel.text = @"Trackable";
+                    cell = nil;
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
+                    c.textLabel.text = @"Trackables";
                     if ([waypoint.account.remoteAPI commentSupportsTrackables] == NO) {
-                        cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                        c.userInteractionEnabled = NO;
+                        c.textLabel.textColor = [UIColor lightGrayColor];
+                    } else {
+                        __block NSInteger visited = 0;
+                        __block NSInteger discovered = 0;
+                        __block NSInteger pickedup = 0;
+                        __block NSInteger droppedoff = 0;
+                        __block NSInteger noaction = 0;
+                        [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+                            switch (tb.logtype) {
+                                case LOGTYPE_NONE: noaction++; break;
+                                case LOGTYPE_DISCOVER: discovered++; break;
+                                case LOGTYPE_PICKUP: pickedup++; break;
+                                case LOGTYPE_DROPOFF: droppedoff++; break;
+                                case LOGTYPE_VISIT: visited++; break;
+                                default: NSAssert1(NO, @"unknown logtype: %ld", tb.logtype);
+                            }
+                        }];
+                        NSMutableString *s = [NSMutableString stringWithString:@"Actions: "];
+                        BOOL first = YES;
+#define ACTION(__s__, __v__) \
+    if (__v__ != 0) { \
+        if (first == NO) \
+            [s appendFormat:@", "]; \
+        [s appendFormat: @"%ld %@", __v__, __s__]; \
+        first = NO; \
+    }
+                        ACTION(@"visited", visited);
+                        ACTION(@"discovered", discovered);
+                        ACTION(@"picked up", pickedup);
+                        ACTION(@"dropped off", droppedoff);
+                        if (first == YES)
+                            [s appendString:@" none"];
+                        c.detailTextLabel.text = s;
                     }
-                    break;
+                    // Only place to return because the return format has changed.
+                    return c;
             }
             break;
         }
@@ -421,6 +467,10 @@ enum {
 
 - (void)changeTrackable
 {
+    WaypointLogTrackablesViewController *newController = [[WaypointLogTrackablesViewController alloc] init:waypoint trackables:trackables];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:newController animated:YES];
+    newController.delegate = self;
 }
 
 - (void)submitLog
@@ -440,7 +490,7 @@ enum {
         return;
     }
 
-    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected];
+    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
 
     // Successful but not log id returned
     if (gc_id == -1) {

@@ -65,7 +65,7 @@
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
 
-- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating;
+- (NSInteger)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
 - (BOOL)loadWaypoint:(dbWaypoint *)waypoint;
 - (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center;
