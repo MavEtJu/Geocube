@@ -51,6 +51,8 @@ enum {
 + (NSId)dbGetIdByGC:(NSId)_gc_id;
 + (NSId)dbCreate:(dbTrackable *)tb;
 - (NSId)dbCreate;
++ (dbTrackable *)dbGetByCode:(NSString *)code;
++ (dbTrackable *)dbGetByRef:(NSString *)ref;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id;
 - (void)finish:(dbAccount *)account;

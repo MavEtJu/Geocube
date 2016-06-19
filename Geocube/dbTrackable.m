@@ -172,6 +172,26 @@
     return _id;
 }
 
++ (dbTrackable *)dbGetByCode:(NSString *)code
+{
+    NSArray *tbs = [self dbAllXXX:[NSString stringWithFormat:@"where code = '%@'", code]];
+    if (tbs == nil)
+        return nil;
+    if ([tbs count] == 0)
+        return nil;
+    return [tbs objectAtIndex:0];
+}
+
++ (dbTrackable *)dbGetByRef:(NSString *)ref
+{
+    NSArray *tbs = [self dbAllXXX:[NSString stringWithFormat:@"where ref = '%@'", ref]];
+    if (tbs == nil)
+        return nil;
+    if ([tbs count] == 0)
+        return nil;
+    return [tbs objectAtIndex:0];
+}
+
 - (NSId)dbCreate
 {
     return [dbTrackable dbCreate:self];
