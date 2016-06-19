@@ -107,8 +107,14 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
+- (void)willClosePage
+{
+    // Nothing for now.
+}
+
 - (void)closePage:(UIButton *)b
 {
+    [self willClosePage];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

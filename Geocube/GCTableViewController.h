@@ -31,5 +31,6 @@
 - (void)performLocalMenuAction:(NSInteger)index;
 
 - (void)changeTheme;
+- (void)willClosePage;
 
 @end

@@ -29,7 +29,7 @@
 
 - (void)showCloseButton;
 - (void)changeTheme;
-- (void)closePage:(NSObject *)b;
+- (void)willClosePage;
 - (void)prepareCloseButton:(UIView *)view;
 
 @end
