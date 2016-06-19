@@ -289,7 +289,8 @@
 
 - (void)parseTrackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
 {
-    [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
+    if (wp != nil)
+        [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
         totalTrackablesCount++;

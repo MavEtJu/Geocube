@@ -601,4 +601,29 @@
     [imp parseDictionary:json];
 }
 
+- (dbTrackable *)trackableFind:(NSString *)code
+{
+    if (account.protocol != ProtocolLiveAPI)
+        return nil;
+
+    NSDictionary *json = [gs GetTrackablesByTrackingNumber:code];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    [imp parseDictionary:json];
+
+    NSArray *refs = nil;
+    NSString *ref = nil;
+    DICT_ARRAY_PATH(json, refs, @"Trackables.Code");
+    if ([refs count] != 0)
+        ref = [refs objectAtIndex:0];
+    if (ref == nil)
+        return nil;
+
+    dbTrackable *tb = [dbTrackable dbGetByRef:ref];
+    if ([tb.code isEqualToString:@""] == YES ) {
+        tb.code = code;
+        [tb dbUpdate];
+    }
+    return tb;
+}
+
 @end

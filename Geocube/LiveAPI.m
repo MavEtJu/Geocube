@@ -797,4 +797,33 @@
     return json;
 }
 
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code
+{
+    NSLog(@"GetTrackablesByTrackingNumber:%@", code);
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetTrackablesByTrackingNumber" parameters:[NSString stringWithFormat:@"accessToken=%@&trackingNumber=%@&trackableLogCount=0", [MyTools urlEncode:remoteAPI.oabb.token], code]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    return json;
+}
+
 @end

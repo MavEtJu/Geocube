@@ -174,4 +174,77 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - Local menu related functions
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    switch (index) {
+        case menuPickup:
+            [self menuPickup];
+            return;
+        case menuDiscover:
+            [self menuDiscover];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
+}
+
+- (void)menuPickup
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Pick up a trackable"
+                               message:@"Enter the code as found on the trackable"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"Pick up"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             NSString *code = [alert.textFields objectAtIndex:0].text;
+                             __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
+                             if (tb == nil) {
+                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                     if (a.protocol == ProtocolLiveAPI) {
+                                         tb = [a.remoteAPI trackableFind:code];
+                                         *stop = YES;
+                                     }
+                                 }];
+                             }
+
+                             if (tb == nil) {
+                                 [MyTools messageBox:self header:@"Trackable not found" text:[NSString stringWithFormat:@"There was no travelbug found with the code '%@'", code]];
+                                 return;
+                             }
+
+                             [tbs addObject:tb];
+                             tb.logtype = LOGTYPE_PICKUP;
+                             [logtypes addObject:[NSNumber numberWithInteger:LOGTYPE_PICKUP]];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Code";
+        textField.keyboardType = UIKeyboardTypeDefault;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        textField.autocorrectionType = UITextAutocorrectionTypeYes;
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuDiscover
+{
+}
+
 @end

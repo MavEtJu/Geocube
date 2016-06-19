@@ -78,5 +78,6 @@
 
 - (void)trackablesMine;
 - (void)trackablesInventory;
+- (dbTrackable *)trackableFind:(NSString *)code;
 
 @end

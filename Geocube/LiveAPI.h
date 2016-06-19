@@ -43,5 +43,6 @@
 - (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
 - (GCDictionaryLiveAPI *)GetUsersTrackables;
 - (GCDictionaryLiveAPI *)GetOwnedTrackables;
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code;
 
 @end
