@@ -390,6 +390,7 @@
     DICT_NSSTRING_KEY(dict, tb.waypoint_name, @"CurrentGeocacheCode");
     DICT_NSSTRING_PATH(dict, tb.owner_str, @"OriginalOwner.UserName");
     DICT_NSSTRING_PATH(dict, tb.carrier_str, @"CurrentOwner.UserName");
+    DICT_NSSTRING_KEY(dict, tb.code, @"TrackingCode");
 
     NSString *owner_id, *carrier_id;
     DICT_NSSTRING_PATH(dict, carrier_id, @"CurrentOwner.Id");
@@ -411,6 +412,12 @@
         [dbTrackable dbCreate:tb];
         newTrackablesCount++;
     } else {
+        // The code isn't always updated while we do have it.
+        // In that case save it from the previous one.
+        if ([tb.code isEqualToString:@""] == YES) {
+            dbTrackable *prevtb = [dbTrackable dbGet:_id];
+            tb.code = prevtb.code;
+        }
         tb._id = _id;
         [tb dbUpdate];
     }
