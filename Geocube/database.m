@@ -388,6 +388,18 @@
     @"update travelbugs set code = ''",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 29
+    a = @[
+    @"insert into config(key, value) values('url_logstrings', 'https://geocube.mavetju.org/geocube_logstrings.geocube')",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 30
+    a = @[
+    @"create table log_strings (id integer primary key, text text, type text, logtype integer, account_id integer)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

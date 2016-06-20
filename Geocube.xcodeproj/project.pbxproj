@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */; };
+		E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E91D17CADA00F05772 /* dbLogString.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* WaypointManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
@@ -443,6 +444,8 @@
 		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80250E51D160EF300F05772 /* WaypointLogTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogTrackablesViewController.h; sourceTree = "<group>"; };
 		E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogTrackablesViewController.m; sourceTree = "<group>"; };
+		E80250E81D17CADA00F05772 /* dbLogString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogString.h; sourceTree = "<group>"; };
+		E80250E91D17CADA00F05772 /* dbLogString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogString.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E8045B871B697A3B00DD44CC /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
@@ -2115,6 +2118,8 @@
 				E8A7FAA41B78A678003F4132 /* dbImage.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
+				E80250E81D17CADA00F05772 /* dbLogString.h */,
+				E80250E91D17CADA00F05772 /* dbLogString.m */,
 				E8740FCB1B4E90EB002527DA /* dbLogType.h */,
 				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
 				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
@@ -2783,6 +2788,7 @@
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
+				E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,

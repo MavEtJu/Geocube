@@ -18,7 +18,8 @@ insert into config(key, value) values("url_types", "https://geocube.mavetju.org/
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
-insert into config(key, value) values("version", "28");
+insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
+insert into config(key, value) values("version", "30");
 
 create table filters (
     id integer primary key,
@@ -347,4 +348,12 @@ create table externalmap_urls (
     model text,
     type integer,
     url text
+);
+
+create table log_strings (
+    id integer primary key,
+    text text,
+    type text,
+    logtype integer,
+    account_id integer		-- points to accounts(id)
 );

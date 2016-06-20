@@ -72,6 +72,8 @@
         okay |= [self parseBookmarks:d];
     if ((d = [xmlDictionary objectForKey:@"containers"]) != nil)
         okay |= [self parseContainers:d];
+    if ((d = [xmlDictionary objectForKey:@"logstrings"]) != nil)
+        okay |= [self parseLogStrings:d];
     if ((d = [xmlDictionary objectForKey:@"sqls"]) != nil)
         okay |= [self parseSQL:d];
 
@@ -527,6 +529,57 @@
             [dbContainer dbCreate:c];
         }
     }];
+
+    return YES;
+}
+
+- (BOOL)parseLogStrings:(NSDictionary *)dict
+{
+    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGSTRINGS] == NO)
+        return NO;
+
+    [dbLogString dbDeleteAll];
+
+    NSArray *accounts = [dict objectForKey:@"account"];
+    [accounts enumerateObjectsUsingBlock:^(NSDictionary *accountdict, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *account_name = [accountdict objectForKey:@"name"];
+        dbAccount *_account = [dbAccount dbGetBySite:account_name];
+        NSLog(@"accounts");
+        NSArray *logtypes = [accountdict objectForKey:@"logtype"];
+        [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *logtype_type = [logtypedict objectForKey:@"type"];
+            NSInteger logtype = [dbLogString stringToLogtype:logtype_type];
+            NSLog(@"logtypes");
+            NSArray *logs = [logtypedict objectForKey:@"log"];
+            [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *text = [logdict objectForKey:@"string"];
+                NSString *type = [logdict objectForKey:@"type"];
+                dbLogString *ls = [[dbLogString alloc] init];
+                ls.text = text;
+                ls.type = type;
+                ls.logtype = logtype;
+                ls.account = _account;
+                ls.account_id = _account._id;
+                [ls dbCreate];
+            }];
+        }];
+    }];
+
+//        dbContainer *c = [dbContainer dbGetByGCID:gc_id];
+//        if (c != nil) {
+//            c.size = label;
+//            c.gc_id = gc_id;
+//            c.icon = icon;
+//            [c finish];
+//            [c dbUpdate];
+//        } else {
+//            c = [[dbContainer alloc] init];
+//            c.size = label;
+//            c.gc_id = gc_id;
+//            c.icon = icon;
+//            [dbContainer dbCreate:c];
+//        }
+//    }];
 
     return YES;
 }
