@@ -278,17 +278,18 @@ enum {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
     }];
 
-    [self downloadFile:@"url_sites" header:@"site information" revision:@"sites_revision"];
-    [self downloadFile:@"url_externalmaps" header:@"external maps" revision:@"externalmaps_revision"];
-    [self downloadFile:@"url_attributes" header:@"attributes" revision:@"attributes_revision"];
-    [self downloadFile:@"url_countries" header:@"countries" revision:@"countries_revision"];
-    [self downloadFile:@"url_states" header:@"states" revision:@"states_revision"];
-    [self downloadFile:@"url_keys" header:@"keys" revision:@"keys_revision"];
-    [self downloadFile:@"url_logtypes" header:@"logtypes" revision:@"logtypes_revision"];
-    [self downloadFile:@"url_types" header:@"types" revision:@"types_revision"];
-    [self downloadFile:@"url_pins" header:@"pins" revision:@"pins_revision"];
-    [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:@"bookmarks_revision"];
-    [self downloadFile:@"url_containers" header:@"containers" revision:@"containers_revision"];
+    [self downloadFile:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
+    [self downloadFile:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
+    [self downloadFile:@"url_attributes" header:@"attributes" revision:KEY_REVISION_ATTRIBUTES];
+    [self downloadFile:@"url_countries" header:@"countries" revision:KEY_REVISION_COUNTRIES];
+    [self downloadFile:@"url_states" header:@"states" revision:KEY_REVISION_STATES];
+    [self downloadFile:@"url_keys" header:@"keys" revision:KEY_REVISION_KEYS];
+    [self downloadFile:@"url_logtypes" header:@"logtypes" revision:KEY_REVISION_LOGTYPES];
+    [self downloadFile:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];
+    [self downloadFile:@"url_pins" header:@"pins" revision:KEY_REVISION_PINS];
+    [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:KEY_REVISION_BOOKMARKS];
+    [self downloadFile:@"url_containers" header:@"containers" revision:KEY_REVISION_CONTAINERS];
+    [self downloadFile:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
 
     [dbc AccountsReload];
     [self refreshAccountData];
