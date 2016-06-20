@@ -355,5 +355,7 @@ create table log_strings (
     text text,
     type text,
     logtype integer,
+    default_note bool,
+    default_found bool,
     account_id integer		-- points to accounts(id)
 );

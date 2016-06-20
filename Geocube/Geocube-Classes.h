@@ -174,8 +174,8 @@
 @class dbGroup;
 @class dbImage;
 @class dbLog;
-@class dbLogType;
 @class dbLogString;
+@class dbLogType;
 @class dbName;
 @class dbNotice;
 @class dbObject;

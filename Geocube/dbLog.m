@@ -316,18 +316,18 @@
     return [dbLog dbCount:@"logs"];
 }
 
-+ (dbLog *)CreateLogNote:(NSString *)logtype waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged
++ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged
 {
     dbLog *log = [[dbLog alloc] init];
 
     log.needstobelogged = needstobelogged;
-    log.logtype_string = logtype;
+    log.logtype_string = logstring.text;
     log.log = note;
     log.datetime = [NSString stringWithFormat:@"%@T00:00:00", date];
     log.waypoint_id = waypoint._id;
     log.waypoint = waypoint;
 
-    dbLogType *lt = [dbc LogType_get_bytype:logtype];
+    dbLogType *lt = [dbc LogType_get_bytype:logstring.text];
     log.logtype_id = lt._id;
     log.logtype = lt;
     log.logtype_string = lt.logtype;

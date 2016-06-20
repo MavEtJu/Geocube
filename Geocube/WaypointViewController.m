@@ -238,7 +238,6 @@ enum {
     return [super tableView:tableView heightForHeaderInSection:section];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -600,7 +599,6 @@ enum {
     [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
 }
 
-
 - (void)menuMarkAs
 {
     UIAlertController *alert= [UIAlertController
@@ -703,7 +701,17 @@ enum {
 - (void)addLog:(NSString *)text
 {
     NSString *date = [MyTools dateTimeString:time(NULL)];
-    [dbLog CreateLogNote:@"Write note" waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
+    NSInteger logtype = [dbLogString stringToLogtype:waypoint.wpt_type.type_full];
+    NSArray *lss = [dbLogString dbAllByAccountLogtype:waypoint.account logtype:logtype];
+    __block dbLogString *logstring = nil;
+    [lss enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (ls.defaultNote == YES) {
+            logstring = ls;
+            *stop = YES;
+        }
+    }];
+
+    [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
 }
 
 - (void)addToGroup

@@ -33,9 +33,12 @@ typedef enum {
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic) NSId account_id;
+@property (nonatomic) BOOL defaultNote;
+@property (nonatomic) BOOL defaultFound;
 @property (nonatomic) NSInteger logtype;
 
 + (NSInteger)stringToLogtype:(NSString *)string;
 + (void)dbDeleteAll;
++ (NSArray *)dbAllByAccountLogtype:(dbAccount *)account logtype:(NSInteger)logtype;
 
 @end

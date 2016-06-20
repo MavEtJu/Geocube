@@ -552,32 +552,22 @@
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *text = [logdict objectForKey:@"string"];
                 NSString *type = [logdict objectForKey:@"type"];
+                NSString *s = [logdict objectForKey:@"default"];
+                BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
+                BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
+
                 dbLogString *ls = [[dbLogString alloc] init];
                 ls.text = text;
                 ls.type = type;
                 ls.logtype = logtype;
                 ls.account = _account;
                 ls.account_id = _account._id;
+                ls.defaultNote = defaultNote;
+                ls.defaultFound = defaultFound;
                 [ls dbCreate];
             }];
         }];
     }];
-
-//        dbContainer *c = [dbContainer dbGetByGCID:gc_id];
-//        if (c != nil) {
-//            c.size = label;
-//            c.gc_id = gc_id;
-//            c.icon = icon;
-//            [c finish];
-//            [c dbUpdate];
-//        } else {
-//            c = [[dbContainer alloc] init];
-//            c.size = label;
-//            c.gc_id = gc_id;
-//            c.icon = icon;
-//            [dbContainer dbCreate:c];
-//        }
-//    }];
 
     return YES;
 }

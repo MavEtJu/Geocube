@@ -23,7 +23,7 @@
 
 @implementation dbLogString
 
-@synthesize text, type, logtype, account, account_id;
+@synthesize text, type, logtype, account, account_id, defaultNote, defaultFound;
 
 - (void)finish
 {
@@ -33,12 +33,13 @@
         account_id = account._id;
 }
 
-+ (NSArray *)dbAll
++ (NSArray *)dbAllXXX:(NSString *)where
 {
     NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, account_id, default_note, default_found from log_strings %@ order by id", where];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, text, type, logtype, account_id from log_strings order by id");
+        DB_PREPARE(sql);
 
         DB_WHILE_STEP {
             dbLogString *ls = [[dbLogString alloc] init];
@@ -47,6 +48,8 @@
             TEXT_FETCH(2, ls.type);
             INT_FETCH (3, ls.logtype);
             INT_FETCH (4, ls.account_id);
+            BOOL_FETCH(5, ls.defaultNote);
+            BOOL_FETCH(6, ls.defaultFound);
             [ls finish];
             [lss addObject:ls];
         }
@@ -55,15 +58,28 @@
     return lss;
 }
 
++ (NSArray *)dbAll
+{
+    return [dbLogString dbAllXXX:@""];
+}
+
++ (NSArray *)dbAllByAccountLogtype:(dbAccount *)account logtype:(NSInteger)logtype
+{
+    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld", (long)account._id, logtype];
+    return [dbLogString dbAllXXX:where];
+}
+
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into log_strings(text, type, logtype, account_id) values(?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(text, type, logtype, account_id, default_note, default_found) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, text);
         SET_VAR_TEXT(2, type);
         SET_VAR_INT (3, logtype);
         SET_VAR_INT (4, account_id);
+        SET_VAR_BOOL(5, defaultNote);
+        SET_VAR_BOOL(6, defaultFound);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -76,13 +92,15 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, account_id = ? where id = ?");
+        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, account_id = ?, default_note = ?, default_found = ? where id = ?");
 
         SET_VAR_TEXT(1, text);
         SET_VAR_TEXT(2, type);
         SET_VAR_INT (3, logtype);
         SET_VAR_INT (4, account_id);
-        SET_VAR_INT (5, _id);
+        SET_VAR_BOOL(5, defaultNote);
+        SET_VAR_BOOL(6, defaultFound);
+        SET_VAR_INT (7, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

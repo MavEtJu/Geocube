@@ -397,7 +397,7 @@
 
     // Version 30
     a = @[
-    @"create table log_strings (id integer primary key, text text, type text, logtype integer, account_id integer)",
+    @"create table log_strings (id integer primary key, text text, type text, logtype integer, default_note bool, default_found bool, account_id integer)",
     ];
     [upgradeSteps addObject:a];
 }

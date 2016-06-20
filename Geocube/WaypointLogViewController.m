@@ -24,7 +24,8 @@
 @interface WaypointLogViewController ()
 {
     dbWaypoint *waypoint;
-    NSString *logtype;
+    NSArray *logstrings;
+    dbLogString *logstring;
     NSString *note;
     NSString *date;
 
@@ -73,12 +74,31 @@ enum {
     self = [super init];
 
     waypoint = _waypoint;
-    logtype = @"Found it";
     fp = NO;
     upload = YES;
     image = nil;
     ratingSelected = 3;
     self.delegateWaypoint = nil;
+
+    NSInteger type = LOGSTRING_LOGTYPE_WAYPOINT;
+    if ([waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|CITO"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Cache In Trash Out Event"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga-Event Cache"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega-Event Cache"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
+        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega"] == YES)
+        type = LOGSTRING_LOGTYPE_EVENT;
+    logstrings = [dbLogString dbAllByAccountLogtype:waypoint.account logtype:type];
+    [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (ls.defaultFound == YES) {
+            logstring = ls;
+            *stop = YES;
+        }
+    }];
 
     trackables = [NSMutableArray arrayWithArray:[dbTrackable dbAllInventory]];
 
@@ -149,7 +169,7 @@ enum {
             switch (indexPath.row) {
                 case SECTION_LOGDETAILS_TYPE:
                     cell.keyLabel.text = @"Type";
-                    cell.valueLabel.text = logtype;
+                    cell.valueLabel.text = logstring.text;
                     break;
                 case SECTION_LOGDETAILS_DATE:
                     cell.keyLabel.text = @"Date";
@@ -344,26 +364,20 @@ enum {
 
 - (void)changeType
 {
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:10];
     __block NSInteger selected;
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:[logstrings count]];
 
-    NSString *type = @"other";
-    if ([waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega"] == YES)
-        type = @"event";
-
-    [[waypoint.account.remoteAPI logtypes:type] enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
-        if ([l isEqualToString:logtype] == YES)
+    [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
+        if (ls == logstring)
             selected = idx;
-        [as addObject:l];
+        [as addObject:ls.text];
     }];
     [ActionSheetStringPicker
         showPickerWithTitle:@"Select a Logtype"
         rows:as
         initialSelection:selected
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            logtype = [as objectAtIndex:selectedIndex];
+            logstring = [logstrings objectAtIndex:selectedIndex];
             [self.tableView reloadData];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -477,7 +491,7 @@ enum {
 {
     // Do not upload, save it locally for later
     if (upload == NO) {
-        [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
+        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
         waypoint.logStatus = LOGSTATUS_FOUND;
         [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
@@ -490,7 +504,7 @@ enum {
         return;
     }
 
-    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
+    NSInteger gc_id = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
 
     // Successful but not log id returned
     if (gc_id == -1) {
@@ -503,7 +517,7 @@ enum {
 
     // Successful and a log id returned
     if (gc_id > 0) {
-        dbLog *log = [dbLog CreateLogNote:logtype waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
+        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
         log.gc_id = gc_id;
         [log dbUpdate];
 
