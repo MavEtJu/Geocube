@@ -544,12 +544,10 @@
     [accounts enumerateObjectsUsingBlock:^(NSDictionary *accountdict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *account_name = [accountdict objectForKey:@"name"];
         dbAccount *_account = [dbAccount dbGetBySite:account_name];
-        NSLog(@"accounts");
         NSArray *logtypes = [accountdict objectForKey:@"logtype"];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
             NSInteger logtype = [dbLogString stringToLogtype:logtype_type];
-            NSLog(@"logtypes");
             NSArray *logs = [logtypedict objectForKey:@"log"];
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *text = [logdict objectForKey:@"string"];
