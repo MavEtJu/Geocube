@@ -305,7 +305,8 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         NSInteger retvalue = [gs CreateFieldNoteAndPublish:logtype waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
-        [trackables enumerateObjectsUsingBlock:^(dbTrackable *t, NSUInteger idx, BOOL * _Nonnull stop) {
+        [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+            [gs CreateTrackableLog:waypoint trackable:tb dateLogged:dateLogged];
         }];
         return retvalue;
     }

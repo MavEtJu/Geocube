@@ -28,6 +28,8 @@
 
     NSMutableArray *GSLogTypesEvents;
     NSMutableArray *GSLogTypesOthers;
+    NSMutableArray *GSLogTypesTrackablesPerson;
+    NSMutableArray *GSLogTypesTrackablesCache;
     NSMutableDictionary *GSLogTypes;
 
     id delegate;
@@ -48,6 +50,8 @@
 
     GSLogTypesEvents = nil;
     GSLogTypesOthers = nil;
+    GSLogTypesTrackablesPerson = nil;
+    GSLogTypesTrackablesCache = nil;
 
     return self;
 }
@@ -71,37 +75,6 @@
 - (BOOL)waypointSupportsPersonalNotes
 {
     return YES;
-}
-
-- (NSArray *)logtypes:(NSString *)waypointType
-{
-    if (GSLogTypesEvents == nil)
-        [self GetGeocacheDataTypes];
-
-    if ([waypointType isEqualToString:@"event"] == YES) {
-        NSMutableArray *rs = [NSMutableArray arrayWithCapacity:20];
-        [GSLogTypesEvents enumerateObjectsUsingBlock:^(NSNumber *num1, NSUInteger idx, BOOL *stop) {
-            [[GSLogTypes allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-                if ([[GSLogTypes objectForKey:key] integerValue] == [num1 integerValue]) {
-                    [rs addObject:key];
-                    *stop = YES;
-                }
-            }];
-        }];
-        return rs;
-    }
-
-    NSMutableArray *rs = [NSMutableArray arrayWithCapacity:20];
-    [GSLogTypesOthers enumerateObjectsUsingBlock:^(NSNumber *num1, NSUInteger idx, BOOL *stop) {
-        [[GSLogTypes allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-            if ([[GSLogTypes objectForKey:key] integerValue] == [num1 integerValue]) {
-                [rs addObject:key];
-                *stop = YES;
-            }
-        }];
-    }];
-
-    return rs;
 }
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
@@ -290,6 +263,8 @@
 
     GSLogTypesEvents = [NSMutableArray arrayWithCapacity:20];
     GSLogTypesOthers = [NSMutableArray arrayWithCapacity:20];
+    GSLogTypesTrackablesPerson = [NSMutableArray arrayWithCapacity:20];
+    GSLogTypesTrackablesCache = [NSMutableArray arrayWithCapacity:20];
     GSLogTypes = [NSMutableDictionary dictionaryWithCapacity:20];
 
     [[json valueForKey:@"EventLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
@@ -297,6 +272,12 @@
     }];
     [[json valueForKey:@"GeocacheLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
         [GSLogTypesOthers addObject:num];
+    }];
+    [[json valueForKey:@"TrackableLogTypeIdsinCache"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
+        [GSLogTypesTrackablesCache addObject:num];
+    }];
+    [[json valueForKey:@"TrackableLogTypeIdswithPerson"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
+        [GSLogTypesTrackablesPerson addObject:num];
     }];
 
     NSArray *d = [json objectForKey:@"WptLogTypes"];
@@ -823,6 +804,62 @@
         return nil;
     }
 
+    return json;
+}
+
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp trackable:(dbTrackable *)tb dateLogged:(NSString *)dateLogged
+{
+    NSLog(@"CreateTrackableLog:%@", tb.ref);
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateTrackableLog" method:@"POST"];
+
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    /*
+     "CacheCode":"String content",
+     "TravelBugCode":"String content",
+     "TrackingNumber":"String content",
+     "UTCDateLogged":"\/Date(928174800000-0700)\/",
+     "Note":"String content",
+     "LogType":9223372036854775807,
+     }*/
+
+    NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
+    [dateF setDateFormat:@"YYYY-MM-dd"];
+    NSDate *todayDate = [dateF dateFromString:dateLogged];
+    time_t date = [todayDate timeIntervalSince1970];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:wp.wpt_name forKey:@"CacheCode"];
+    [_dict setValue:tb.ref forKey:@"TrackingNumber"];
+    [_dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"LogType"];
+    [_dict setValue:@"" forKey:@"Note"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    NSHTTPURLResponse *response = nil;
+    error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil || response.statusCode != 200) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+
+    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        return nil;
+    }
+    
     return json;
 }
 
