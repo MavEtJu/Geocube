@@ -63,9 +63,15 @@
     return [dbLogString dbAllXXX:@""];
 }
 
-+ (NSArray *)dbAllByAccountLogtype:(dbAccount *)account logtype:(NSInteger)logtype
++ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype
 {
     NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld", (long)account._id, logtype];
+    return [dbLogString dbAllXXX:where];
+}
+
++ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype
+{
+    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld and forlogs = 1", (long)account._id, logtype];
     return [dbLogString dbAllXXX:where];
 }
 
