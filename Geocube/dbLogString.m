@@ -75,6 +75,17 @@
     return [dbLogString dbAllXXX:where];
 }
 
++ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
+{
+    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld and type = '%@'", (long)account._id, logtype, type];
+    NSArray *as = [dbLogString dbAllXXX:where];
+    if (as == nil)
+        return nil;
+    if ([as count] == 0)
+        return nil;
+    return [as objectAtIndex:0];
+}
+
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {

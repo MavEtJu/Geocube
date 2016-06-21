@@ -538,8 +538,6 @@
     if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGSTRINGS] == NO)
         return NO;
 
-    [dbLogString dbDeleteAll];
-
     NSArray *accounts = [dict objectForKey:@"account"];
     [accounts enumerateObjectsUsingBlock:^(NSDictionary *accountdict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *account_name = [accountdict objectForKey:@"name"];
@@ -559,18 +557,29 @@
                 NSInteger found = [[logdict objectForKey:@"found"] integerValue];
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
-                dbLogString *ls = [[dbLogString alloc] init];
-                ls.text = text;
-                ls.type = type;
-                ls.logtype = logtype;
-                ls.account = _account;
-                ls.account_id = _account._id;
-                ls.defaultNote = defaultNote;
-                ls.defaultFound = defaultFound;
-                ls.icon = icon;
-                ls.forLogs = forlogs;
-                ls.found = found;
-                [ls dbCreate];
+                dbLogString *ls = [dbLogString dbGetByAccountEventType:_account logtype:logtype type:type];
+                if (ls == nil) {
+                    dbLogString *ls = [[dbLogString alloc] init];
+                    ls.text = text;
+                    ls.type = type;
+                    ls.logtype = logtype;
+                    ls.account = _account;
+                    ls.account_id = _account._id;
+                    ls.defaultNote = defaultNote;
+                    ls.defaultFound = defaultFound;
+                    ls.icon = icon;
+                    ls.forLogs = forlogs;
+                    ls.found = found;
+                    [ls dbCreate];
+                } else {
+                    ls.text = text;
+                    ls.defaultNote = defaultNote;
+                    ls.defaultFound = defaultFound;
+                    ls.icon = icon;
+                    ls.forLogs = forlogs;
+                    ls.found = found;
+                    [ls dbUpdate];
+                }
             }];
         }];
     }];
