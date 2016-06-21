@@ -555,6 +555,9 @@
                 NSString *s = [logdict objectForKey:@"default"];
                 BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
                 BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
+                BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
+                NSInteger found = [[logdict objectForKey:@"found"] integerValue];
+                NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
                 dbLogString *ls = [[dbLogString alloc] init];
                 ls.text = text;
@@ -564,6 +567,9 @@
                 ls.account_id = _account._id;
                 ls.defaultNote = defaultNote;
                 ls.defaultFound = defaultFound;
+                ls.icon = icon;
+                ls.forLogs = forlogs;
+                ls.found = found;
                 [ls dbCreate];
             }];
         }];

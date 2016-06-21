@@ -701,7 +701,7 @@ enum {
 - (void)addLog:(NSString *)text
 {
     NSString *date = [MyTools dateTimeString:time(NULL)];
-    NSInteger logtype = [dbLogString stringToLogtype:waypoint.wpt_type.type_full];
+    NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
     NSArray *lss = [dbLogString dbAllByAccountLogtype:waypoint.account logtype:logtype];
     __block dbLogString *logstring = nil;
     [lss enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {

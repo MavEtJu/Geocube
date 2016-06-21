@@ -21,13 +21,17 @@
 
 @interface dbLogString : dbObject
 
-typedef enum {
+enum {
     LOGSTRING_LOGTYPE_UNKNOWN = 0,
     LOGSTRING_LOGTYPE_EVENT,
     LOGSTRING_LOGTYPE_WAYPOINT,
     LOGSTRING_LOGTYPE_TRACKABLEPERSON,
     LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT,
-} LogString_LogTypes;
+
+    LOGSTRING_FOUND_YES = 0,
+    LOGSTRING_FOUND_NO,
+    LOGSTRING_FOUND_NA,
+};
 
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) NSString *type;
@@ -35,9 +39,13 @@ typedef enum {
 @property (nonatomic) NSId account_id;
 @property (nonatomic) BOOL defaultNote;
 @property (nonatomic) BOOL defaultFound;
+@property (nonatomic) BOOL forLogs;
 @property (nonatomic) NSInteger logtype;
+@property (nonatomic) NSInteger found;
+@property (nonatomic) NSInteger icon;
 
 + (NSInteger)stringToLogtype:(NSString *)string;
++ (NSInteger)wptTypeToLogType:(NSString *)type_full;
 + (void)dbDeleteAll;
 + (NSArray *)dbAllByAccountLogtype:(dbAccount *)account logtype:(NSInteger)logtype;
 

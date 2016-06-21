@@ -357,5 +357,8 @@ create table log_strings (
     logtype integer,
     default_note bool,
     default_found bool,
-    account_id integer		-- points to accounts(id)
+    account_id integer,		-- points to accounts(id)
+    icon integer,
+    found integer,
+    forlogs bool
 );

@@ -23,7 +23,7 @@
 
 @implementation dbLogString
 
-@synthesize text, type, logtype, account, account_id, defaultNote, defaultFound;
+@synthesize text, type, logtype, account, account_id, defaultNote, defaultFound, icon, found, forLogs;
 
 - (void)finish
 {
@@ -72,7 +72,7 @@
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into log_strings(text, type, logtype, account_id, default_note, default_found) values(?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(text, type, logtype, account_id, default_note, default_found, icon, forlogs, found) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, text);
         SET_VAR_TEXT(2, type);
@@ -80,6 +80,9 @@
         SET_VAR_INT (4, account_id);
         SET_VAR_BOOL(5, defaultNote);
         SET_VAR_BOOL(6, defaultFound);
+        SET_VAR_INT (7, icon);
+        SET_VAR_BOOL(8, forLogs);
+        SET_VAR_INT (9, found);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -92,15 +95,18 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, account_id = ?, default_note = ?, default_found = ? where id = ?");
+        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, account_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ? where id = ?");
 
-        SET_VAR_TEXT(1, text);
-        SET_VAR_TEXT(2, type);
-        SET_VAR_INT (3, logtype);
-        SET_VAR_INT (4, account_id);
-        SET_VAR_BOOL(5, defaultNote);
-        SET_VAR_BOOL(6, defaultFound);
-        SET_VAR_INT (7, _id);
+        SET_VAR_TEXT( 1, text);
+        SET_VAR_TEXT( 2, type);
+        SET_VAR_INT ( 3, logtype);
+        SET_VAR_INT ( 4, account_id);
+        SET_VAR_BOOL( 5, defaultNote);
+        SET_VAR_BOOL( 6, defaultFound);
+        SET_VAR_INT ( 7, icon);
+        SET_VAR_BOOL( 8, forLogs);
+        SET_VAR_INT ( 9, found);
+        SET_VAR_INT (10, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -134,6 +140,22 @@
     if ([string isEqualToString:@"TrackablePerson"] == YES)
         return LOGSTRING_LOGTYPE_TRACKABLEPERSON;
     return LOGSTRING_LOGTYPE_UNKNOWN;
+}
+
++ (NSInteger)wptTypeToLogType:(NSString *)type_full
+{
+    if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Event"] == YES ||
+        [type_full isEqualToString:@"Geocache|CITO"] == YES ||
+        [type_full isEqualToString:@"Geocache|Cache In Trash Out Event"] == YES ||
+        [type_full isEqualToString:@"Geocache|Giga"] == YES ||
+        [type_full isEqualToString:@"Geocache|Giga-Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Mega-Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
+        [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
+        [type_full isEqualToString:@"Geocache|Mega"] == YES)
+        return LOGSTRING_LOGTYPE_EVENT;
+    return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
 @end

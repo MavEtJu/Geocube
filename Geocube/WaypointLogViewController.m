@@ -80,18 +80,7 @@ enum {
     ratingSelected = 3;
     self.delegateWaypoint = nil;
 
-    NSInteger type = LOGSTRING_LOGTYPE_WAYPOINT;
-    if ([waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Event"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|CITO"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Cache In Trash Out Event"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Giga-Event Cache"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega-Event Cache"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
-        [waypoint.wpt_type.type_full isEqualToString:@"Geocache|Mega"] == YES)
-        type = LOGSTRING_LOGTYPE_EVENT;
+    NSInteger type = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
     logstrings = [dbLogString dbAllByAccountLogtype:waypoint.account logtype:type];
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
         if (ls.defaultFound == YES) {
