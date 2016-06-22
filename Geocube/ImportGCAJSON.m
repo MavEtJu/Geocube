@@ -250,6 +250,7 @@
     DICT_NSSTRING_KEY(dict, dummy, @"date");
     t.datetime = [NSString stringWithFormat:@"%@T00:00:00", dummy];
     DICT_NSSTRING_KEY(dict, t.logger_str, @"cacher");
+    [dbName makeNameExist:t.logger_str code:nil account:account];
     DICT_NSSTRING_KEY(dict, t.log, @"text");
     t.log = [MyTools HTMLUnescape:t.log];
     t.needstobelogged = NO;
