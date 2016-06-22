@@ -631,7 +631,7 @@
     l.datetime = [MyTools dateTimeString:l.datetime_epoch];
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
-    DICT_NSSTRING_PATH(dict, l.logtype_string, @"LogType.WptLogTypeName");
+    DICT_NSSTRING_PATH(dict, l.logstring_string, @"LogType.WptLogTypeName");
 
     dbName *name = [[dbName alloc] init];
     DICT_NSSTRING_PATH(dict, name.name, @"Finder.UserName");

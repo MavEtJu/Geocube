@@ -26,7 +26,7 @@
 @property (nonatomic, retain) dbWaypoint *waypoint;
 @property (nonatomic) NSId logstring_id;
 @property (nonatomic, retain) dbLogString *logstring;
-@property (nonatomic, retain) NSString *logtype_string;
+@property (nonatomic, retain) NSString *logstring_string;
 @property (nonatomic, retain) NSString *datetime;
 @property (nonatomic) NSInteger datetime_epoch;
 @property (nonatomic, retain) NSString *logger_gsid;
