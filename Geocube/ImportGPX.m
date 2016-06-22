@@ -309,7 +309,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
-                    [currentLog setLogtype_string:cleanText];
+                    currentLog.logstring_string = cleanText;
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {

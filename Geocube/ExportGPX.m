@@ -182,7 +182,7 @@
             [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
                 [lines addObject:[NSString stringWithFormat:@"<groundspeak:log id=\"%ld\">", (long)log._id]];
                 LINE_S(@"groundspeak:date", [MyTools dateTimeString:log.datetime_epoch]);
-                LINE_S(@"groundspeak:type", log.logtype_string);
+                LINE_S(@"groundspeak:type", log.logstring_string);
                 LINE_S(@"groundspeak:finder", log.logger_str);
                 LINE_S(@"groundspeak:text", [MyTools HTMLEscape:log.log]);
                 [lines addObject:@"</groundspeak:log>"];

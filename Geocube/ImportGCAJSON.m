@@ -246,7 +246,7 @@
 
     t.waypoint_id = [dbWaypoint dbGetByName:[dict objectForKey:@"cache"]];
     DICT_INTEGER_KEY(dict, t.gc_id, @"id");
-    DICT_NSSTRING_KEY(dict, t.logtype_string, @"type");
+    DICT_NSSTRING_KEY(dict, t.logstring_string, @"type");
     DICT_NSSTRING_KEY(dict, dummy, @"date");
     t.datetime = [NSString stringWithFormat:@"%@T00:00:00", dummy];
     DICT_NSSTRING_KEY(dict, t.logger_str, @"cacher");
