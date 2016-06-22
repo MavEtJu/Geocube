@@ -423,13 +423,13 @@
 
 + (NSArray *)dbAllNotFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id = (select id from log_types where logtype = 'Didn''t find it'))) and not id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select accountname from accounts where accountname != ''))) and id in (select id from logs where log_type_id in (select id from log_types where logtype = 'Attended' or logtype = 'Found it')))"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select name_id from accounts))) and id in (select id from logs where log_string_id = (select id from log_strings where found = 0))) and not id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select id from names where name in (select name_id from accounts)))"];
     return wps;
 }
 
 + (NSArray *)dbAllFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_string_id = (select id from log_strings where found = 1) and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))"];
     return wps;
 }
 
@@ -596,12 +596,12 @@
 + (void)dbUpdateLogStatus
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set log_status = 1 where id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Didn''t find it') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))");
+        DB_PREPARE(@"update waypoints set log_status = 1 where id in (select waypoint_id from logs l where log_string_id in (select id from log_strings where found = 0) and logger_id in (select id from names where name in (select name_id from accounts)))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set log_status = 2 where gs_date_found != 0 or (id in (select waypoint_id from logs l where log_type_id in (select id from log_types where logtype = 'Found it' or logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))))");
+        DB_PREPARE(@"update waypoints set log_status = 2 where gs_date_found != 0 or (id in (select waypoint_id from logs l where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
         DB_CHECK_OKAY;
         DB_FINISH;
     }
