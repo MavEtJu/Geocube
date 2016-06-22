@@ -36,7 +36,7 @@
 + (NSArray *)dbAllXXX:(NSString *)where
 {
     NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
-    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, account_id, default_note, default_found from log_strings %@ order by id", where];
+    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, account_id, default_note, default_found, icon, forlogs, found from log_strings %@ order by id", where];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(sql);
@@ -50,6 +50,9 @@
             INT_FETCH (4, ls.account_id);
             BOOL_FETCH(5, ls.defaultNote);
             BOOL_FETCH(6, ls.defaultFound);
+            INT_FETCH (7, ls.icon);
+            BOOL_FETCH(8, ls.forLogs);
+            INT_FETCH (9, ls.found);
             [ls finish];
             [lss addObject:ls];
         }
