@@ -22,7 +22,7 @@
 @interface dbWaypoint : dbObject
 
 enum {
-    LOGSTATUS_NOTLOGGED,
+    LOGSTATUS_NOTLOGGED = 0,
     LOGSTATUS_NOTFOUND,
     LOGSTATUS_FOUND,
 };
