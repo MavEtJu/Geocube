@@ -110,7 +110,6 @@ enum {
 - (void)dbUpdate;
 + (NSArray *)dbAll;
 + (NSArray *)dbAllFound;
-+ (NSArray *)dbAllAttended;
 + (NSArray *)dbAllNotFound;
 + (NSArray *)dbAllIgnored;
 + (NSArray *)dbAllInGroups:(NSArray *)groups;

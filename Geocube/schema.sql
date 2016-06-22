@@ -36,7 +36,6 @@ create table groups (
 create index groups_idx_id on groups(id);
 insert into groups(name, usergroup, deletable) values("All Waypoints", 0, 0);
 insert into groups(name, usergroup, deletable) values("All Waypoints - Found", 0, 0);
-insert into groups(name, usergroup, deletable) values("All Waypoints - Attended", 0, 0);
 insert into groups(name, usergroup, deletable) values("All Waypoints - Not Found", 0, 0);
 insert into groups(name, usergroup, deletable) values("All Waypoints - Manually entered", 0, 0);
 insert into groups(name, usergroup, deletable) values("All Waypoints - Ignored", 0, 0);

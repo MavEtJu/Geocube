@@ -36,7 +36,6 @@
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_Found;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_NotFound;
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints_Attended;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_ManuallyAdded;
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints_Ignored;
 @property (nonatomic, retain) dbGroup *Group_LiveImport;

@@ -406,6 +406,7 @@
     @"drop table log_types",
     @"alter table logs add column log_string_id integer",
     @"update logs set log_string_id = 0",
+    @"delete from groups where name ='All Waypoints - Attended'",
     ];
     [upgradeSteps addObject:a];
 }

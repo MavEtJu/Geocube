@@ -40,7 +40,6 @@
     dbGroup *Group_AllWaypoints;
     dbGroup *Group_AllWaypoints_Found;
     dbGroup *Group_AllWaypoints_NotFound;
-    dbGroup *Group_AllWaypoints_Attended;
     dbGroup *Group_AllWaypoints_ManuallyAdded;
     dbGroup *Group_AllWaypoints_Ignored;
     dbGroup *Group_LiveImport;
@@ -66,7 +65,7 @@
 @implementation DatabaseCache
 
 @synthesize Accounts, Pins, Types, Groups, LogStrings, Containers, Attributes, Countries, States, Symbols;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
+@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
 @synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 
 - (instancetype)init
@@ -93,7 +92,6 @@
 
     Group_AllWaypoints = nil;
     Group_AllWaypoints_Found = nil;
-    Group_AllWaypoints_Attended = nil;
     Group_AllWaypoints_NotFound = nil;
     Group_AllWaypoints_ManuallyAdded = nil;
     Group_AllWaypoints_Ignored = nil;
@@ -105,10 +103,6 @@
     [Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints"] == YES) {
             Group_AllWaypoints = cg;
-            return;
-        }
-        if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Attended"] == YES) {
-            Group_AllWaypoints_Attended = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
@@ -146,7 +140,6 @@
     }];
     NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
     NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
-    NSAssert(Group_AllWaypoints_Attended != nil, @"Group_AllWaypoints_Attended");
     NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
     NSAssert(Group_AllWaypoints_ManuallyAdded != nil, @"Group_AllWaypoints_ManuallyAdded");
     NSAssert(Group_AllWaypoints_Ignored != nil, @"Group_AllWaypoints_Ignored");
