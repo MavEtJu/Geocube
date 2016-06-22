@@ -310,7 +310,7 @@
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls.account == account &&
             ls.logtype == logtype &&
-            [ls.text isEqualToString:type] == YES) {
+            [ls.text compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;
             *stop = YES;
         }
