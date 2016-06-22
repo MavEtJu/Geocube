@@ -429,13 +429,7 @@
 
 + (NSArray *)dbAllFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Found it') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
-    return wps;
-}
-
-+ (NSArray *)dbAllAttended
-{
-    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_type_id = (select id from log_types where logtype = 'Attended') and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where log_string_id = (select id from log_strings where found = 1) and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
     return wps;
 }
 
