@@ -103,6 +103,22 @@
             logger_gsid = logger.code;
     }
 
+    if (logstring_string == nil) {
+        if (logstring != nil) {
+            logstring_string = logstring.text;
+            logstring_id = logstring._id;
+        } else if (logstring_id != 0) {
+            logstring = [dbc LogString_get:logstring_id];
+            logstring_string = logstring.text;
+        }
+    }
+    if (logstring == nil) {
+        if (logstring_id != 0) {
+            logstring = [dbc LogString_get:logstring_id];
+            logstring_string = logstring.text;
+        }
+    }
+
     [super finish];
 }
 
@@ -153,7 +169,7 @@
     NSId _id = 0;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, log.waypoint_id);
         SET_VAR_INT (2, log.logstring_id);
@@ -175,7 +191,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update logs set log_type_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
+        DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
 
         SET_VAR_INT (1, logstring_id);
         SET_VAR_INT (2, waypoint_id);
@@ -241,7 +257,7 @@
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
 
         SET_VAR_INT(1, _wp_id);
 
@@ -269,7 +285,7 @@
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
 
         SET_VAR_INT(1, wp_id);
 
@@ -327,10 +343,9 @@
     log.waypoint_id = waypoint._id;
     log.waypoint = waypoint;
 
-    dbLogString *ls = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logstring.text];
-    log.logstring_id = ls._id;
-    log.logstring = ls;
-    log.logtype_string = ls.text;
+    log.logstring_id = logstring._id;
+    log.logstring = logstring;
+    log.logtype_string = logstring.text;
 
     dbName *name = waypoint.account.accountname;
     log.logger = name;
