@@ -25,7 +25,6 @@
 @property (nonatomic, retain) NSArray *Pins;
 @property (nonatomic, retain) NSArray *Types;
 @property (nonatomic, retain) NSArray *Groups;
-@property (nonatomic, retain) NSArray *LogTypes;
 @property (nonatomic, retain) NSArray *Containers;
 @property (nonatomic, retain) NSArray *Attributes;
 @property (nonatomic, retain) NSMutableArray *Symbols;
@@ -54,11 +53,8 @@
 // Symbols
 @property (nonatomic, retain) dbSymbol *Symbol_Unknown;
 
-// LogTypes
-@property (nonatomic, retain) dbLogType *LogType_Unknown;
-@property (nonatomic, retain) dbLogType *LogType_Found;
-@property (nonatomic, retain) dbLogType *LogType_Attended;
-@property (nonatomic, retain) dbLogType *LogType_NotFound;
+// LogStrings
+
 
 // ContainerSize
 @property (nonatomic, retain) dbContainer *Container_Unknown;
@@ -83,9 +79,9 @@
 - (dbSymbol *)Symbol_get:(NSId)_id;
 - (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol;
 
-- (dbLogType *)LogType_get_bytype:(NSString *)type;
-- (dbLogType *)LogType_get:(NSId)_id;
-- (void)LogType_add:(dbLogType *)logtype;
+- (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
+- (dbLogString *)LogString_get:(NSId)_id;
+- (void)LogString_add:(dbLogString *)logstring;
 
 - (dbGroup *)Group_get:(NSId)_id;
 

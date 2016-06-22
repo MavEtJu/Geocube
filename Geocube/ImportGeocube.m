@@ -381,28 +381,28 @@
 
 - (BOOL)parseLogtypes:(NSDictionary *)dict
 {
-    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGTYPES] == NO)
-        return NO;
-
-    NSArray *logtypes = [dict objectForKey:@"logtype"];
-    [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *type = [logtype objectForKey:@"type"];
-        NSInteger icon = [[logtype objectForKey:@"icon"] integerValue];
-
-        dbLogType *lt = [dbc LogType_get_bytype:type];
-        if (lt != nil) {
-            lt.logtype = type;
-            lt.icon = icon;
-            [lt dbUpdate];
-        } else {
-            lt = [[dbLogType alloc] init];
-            lt.logtype = type;
-            lt.icon = icon;
-            [lt dbCreate];
-            [dbc LogType_add:lt];
-        }
-    }];
-
+//    if ([self checkVersion:dict version:1 revisionKey:KEY_REVISION_LOGTYPES] == NO)
+//        return NO;
+//
+//    NSArray *logtypes = [dict objectForKey:@"logtype"];
+//    [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *type = [logtype objectForKey:@"type"];
+//        NSInteger icon = [[logtype objectForKey:@"icon"] integerValue];
+//
+//        dbLogType *lt = [dbc LogType_get_bytype:type];
+//        if (lt != nil) {
+//            lt.logtype = type;
+//            lt.icon = icon;
+//            [lt dbUpdate];
+//        } else {
+//            lt = [[dbLogType alloc] init];
+//            lt.logtype = type;
+//            lt.icon = icon;
+//            [lt dbCreate];
+//            [dbc LogType_add:lt];
+//        }
+//    }];
+//
     return YES;
 }
 

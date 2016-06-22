@@ -400,6 +400,14 @@
     @"create table log_strings (id integer primary key, text text, type text, logtype integer, default_note bool, default_found bool, account_id integer, icon integer, found integer, forlogs bool)",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 31
+    a = @[
+    @"drop table log_types",
+    @"alter table logs add column log_string_id integer",
+    @"update logs set log_string_id = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

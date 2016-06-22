@@ -24,8 +24,8 @@
 @property (nonatomic) NSInteger gc_id;
 @property (nonatomic) NSId waypoint_id;
 @property (nonatomic, retain) dbWaypoint *waypoint;
-@property (nonatomic) NSId logtype_id;
-@property (nonatomic, retain) dbLogType *logtype;
+@property (nonatomic) NSId logstring_id;
+@property (nonatomic, retain) dbLogString *logstring;
 @property (nonatomic, retain) NSString *logtype_string;
 @property (nonatomic, retain) NSString *datetime;
 @property (nonatomic) NSInteger datetime_epoch;
@@ -39,7 +39,7 @@
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wp_id logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged;
+- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wp_id logstring_id:(NSId)_lsid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged;
 - (instancetype)init:(NSInteger)gc_id;
 
 + (NSId)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;

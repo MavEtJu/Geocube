@@ -54,12 +54,6 @@
     // Types
     dbType *Type_Unknown;
 
-    // LogTypes
-    dbLogType *LogType_Unknown;
-    dbLogType *LogType_Found;
-    dbLogType *LogType_Attended;
-    dbLogType *LogType_NotFound;
-
     // Container
     dbContainer *Container_Unknown;
 
@@ -71,11 +65,9 @@
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Pins, Types, Groups, LogTypes, Containers, Attributes, Countries, States, Symbols;
+@synthesize Accounts, Pins, Types, Groups, LogStrings, Containers, Attributes, Countries, States, Symbols;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_Attended, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
-@synthesize Pin_Unknown, Type_Unknown, LogType_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
-@synthesize LogType_Found, LogType_Attended, LogType_NotFound;
-
+@synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 
 - (instancetype)init
 {
@@ -92,7 +84,7 @@
     Pins = [dbPin dbAll];
     Types = [dbType dbAll];
     Containers = [dbContainer dbAll];
-    LogTypes = [dbLogType dbAll];
+    LogStrings = [dbLogString dbAll];
     Containers = [dbContainer dbAll];
     Attributes = [dbAttribute dbAll];
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
@@ -109,7 +101,6 @@
     Group_LastImportAdded = nil;
     Type_Unknown = nil;
     Container_Unknown = nil;
-    LogType_Unknown = nil;
 
     [Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints"] == YES) {
@@ -199,31 +190,6 @@
     }];
     if ([Symbols count] != 0)
         NSAssert(Symbol_Unknown != nil, @"Symbol_Unknown");
-
-    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
-        if ([lt.logtype isEqualToString:@"Unknown"] == YES) {
-            LogType_Unknown = lt;
-            return;
-        }
-        if ([lt.logtype isEqualToString:@"Found it"] == YES) {
-            LogType_Found = lt;
-            return;
-        }
-        if ([lt.logtype isEqualToString:@"Attended"] == YES) {
-            LogType_Attended = lt;
-            return;
-        }
-        if ([lt.logtype isEqualToString:@"Didn't find it"] == YES) {
-            LogType_NotFound = lt;
-            return;
-        }
-    }];
-    if ([LogTypes count] != 0) {
-        NSAssert(LogType_Unknown != nil, @"LogType_Unknown");
-        NSAssert(LogType_Attended != nil, @"LogType_Attended");
-        NSAssert(LogType_NotFound != nil, @"LogType_NotFound");
-        NSAssert(LogType_Found != nil, @"LogType_Found");
-    }
 
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if ([a.label isEqualToString:@"Unknown"] == YES) {
@@ -345,35 +311,37 @@
     [Symbols addObject:cs];
 }
 
-- (dbLogType *)LogType_get_bytype:(NSString *)type
+- (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
 {
-    __block dbLogType *_lt = nil;
-    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
-        if ([lt.logtype isEqualToString:type] == YES) {
-            _lt = lt;
+    __block dbLogString *_ls = nil;
+    [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
+        if (ls.account == account &&
+            ls.logtype == logtype &&
+            [ls.type isEqualToString:type] == YES) {
+            _ls = ls;
             *stop = YES;
         }
     }];
-    return _lt;
+    return _ls;
 }
 
-- (dbLogType *)LogType_get:(NSId)_id
+- (dbLogString *)LogString_get:(NSId)_id
 {
-    __block dbLogType *_lt = nil;
-    [LogTypes enumerateObjectsUsingBlock:^(dbLogType *lt, NSUInteger idx, BOOL *stop) {
-        if (lt._id == _id) {
-            _lt = lt;
+    __block dbLogString *_ls = nil;
+    [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
+        if (ls._id == _id) {
+            _ls = ls;
             *stop = YES;
         }
     }];
-    return _lt;
+    return _ls;
 }
 
-- (void)LogType_add:(dbLogType *)logtype
+- (void)LogString_add:(dbLogString *)logstring
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:LogTypes];
-    [as addObject:logtype];
-    LogTypes = as;
+    NSMutableArray *as = [NSMutableArray arrayWithArray:LogStrings];
+    [as addObject:logstring];
+    LogStrings = as;
 }
 
 - (dbGroup *)Group_get:(NSId)_id

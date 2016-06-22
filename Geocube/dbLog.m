@@ -26,9 +26,9 @@
     NSInteger gc_id;    // This is an NSInteger, not an NSId
     NSId waypoint_id;
     dbWaypoint *waypoint;
-    NSId logtype_id;
-    NSString *logtype_string;
-    dbLogType *logtype;
+    NSId logstring_id;
+    NSString *logstring_string;
+    dbLogString *logstring;
     NSString *datetime;
     NSString *logger_gsid;
     NSString *logger_str;
@@ -46,7 +46,7 @@
 
 @implementation dbLog
 
-@synthesize gc_id, waypoint, waypoint_id, logtype_id, logtype_string, logtype, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
+@synthesize gc_id, waypoint, waypoint_id, logstring_id, logtype_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
 
 - (instancetype)init:(NSInteger)_gc_id
 {
@@ -56,13 +56,13 @@
     return self;
 }
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id waypoint_id:(NSId)_wpid logtype_id:(NSId)_ltid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)_needstobelogged
+- (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id waypoint_id:(NSId)_wpid logstring_id:(NSId)_lsid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)_needstobelogged
 {
     self = [super init];
     _id = __id;
     gc_id = _gc_id;
     waypoint_id = _wpid;
-    logtype_id = _ltid;
+    logstring_id = _lsid;
     datetime = _datetime;
     logger_id = _logger_id;
     log = _log;
@@ -78,12 +78,12 @@
 - (void)finish
 {
     datetime_epoch = [MyTools secondsSinceEpoch:datetime];
-    if (logtype_id == 0) {
-        logtype = [dbc LogType_get_bytype:logtype_string];
-        logtype_id = logtype._id;
+    if (logstring_id == 0) {
+        logstring = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logtype_string];
+        logstring_id = logstring._id;
     } else {
-        logtype = [dbc LogType_get:logtype_id];
-        logtype_string = logtype.logtype;
+        logstring = [dbc LogString_get:logstring_id];
+        logtype_string = logstring.text;
     }
     waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
 
@@ -156,7 +156,7 @@
         DB_PREPARE(@"insert into logs(waypoint_id, log_type_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, log.waypoint_id);
-        SET_VAR_INT (2, log.logtype_id);
+        SET_VAR_INT (2, log.logstring_id);
         SET_VAR_TEXT(3, log.datetime);
         SET_VAR_INT (4, log.datetime_epoch);
         SET_VAR_INT (5, log.logger_id);
@@ -177,7 +177,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log_type_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
 
-        SET_VAR_INT (1, logtype_id);
+        SET_VAR_INT (1, logstring_id);
         SET_VAR_INT (2, waypoint_id);
         SET_VAR_TEXT(3, datetime);
         SET_VAR_INT (4, datetime_epoch);
@@ -250,7 +250,7 @@
             INT_FETCH (0, l._id);
             INT_FETCH (1, l.gc_id);
             INT_FETCH (2, l.waypoint_id);
-            INT_FETCH (3, l.logtype_id);
+            INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
             //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
@@ -278,7 +278,7 @@
             INT_FETCH (0, l._id);
             INT_FETCH (1, l.gc_id);
             INT_FETCH (2, l.waypoint_id);
-            INT_FETCH (3, l.logtype_id);
+            INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
             //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
@@ -327,10 +327,10 @@
     log.waypoint_id = waypoint._id;
     log.waypoint = waypoint;
 
-    dbLogType *lt = [dbc LogType_get_bytype:logstring.text];
-    log.logtype_id = lt._id;
-    log.logtype = lt;
-    log.logtype_string = lt.logtype;
+    dbLogString *ls = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logstring.text];
+    log.logstring_id = ls._id;
+    log.logstring = ls;
+    log.logtype_string = ls.text;
 
     dbName *name = waypoint.account.accountname;
     log.logger = name;

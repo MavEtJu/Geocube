@@ -103,8 +103,8 @@
     dbLog *l = [logs objectAtIndex:indexPath.row];
     cell.datetimeLabel.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
     cell.loggerLabel.text = l.logger.name;
-    dbLogType *lt = [dbc LogType_get:l.logtype_id];
-    cell.logtypeImage.image = [imageLibrary get:lt.icon];
+    dbLogString *ls = [dbc LogString_get:l.logstring_id];
+    cell.logtypeImage.image = [imageLibrary get:ls.icon];
 
     [cell setLogString:l.log];
     [cell.contentView sizeToFit];

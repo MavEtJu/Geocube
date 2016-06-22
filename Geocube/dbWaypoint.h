@@ -56,6 +56,7 @@ enum {
 @property (nonatomic, retain) NSString *wpt_type_str;
 @property (nonatomic, retain) dbType *wpt_type;
 
+@property (nonatomic) NSInteger logstring_logtype;
 @property (nonatomic) NSInteger logStatus;
 @property (nonatomic) BOOL flag_highlight;
 @property (nonatomic) BOOL flag_ignore;

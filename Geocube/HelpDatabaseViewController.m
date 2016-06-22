@@ -103,8 +103,8 @@ enum {
     [vs addObject:[NSNumber numberWithInteger:[dbImage dbCount]]];
     [fs addObject:@"Logs"];
     [vs addObject:[NSNumber numberWithInteger:[dbLog dbCount]]];
-    [fs addObject:@"LogTypes"];
-    [vs addObject:[NSNumber numberWithInteger:[dbLogType dbCount]]];
+    [fs addObject:@"LogStrings"];
+    [vs addObject:[NSNumber numberWithInteger:[dbLogString dbCount]]];
     [fs addObject:@"Names"];
     [vs addObject:[NSNumber numberWithInteger:[dbName dbCount]]];
     [fs addObject:@"Notices"];

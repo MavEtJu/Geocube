@@ -13,13 +13,12 @@ insert into config(key, value) values("url_countries", "https://geocube.mavetju.
 insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.geocube");
 insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.geocube");
 insert into config(key, value) values("url_keys", "https://geocube.mavetju.org/geocube_keys.geocube");
-insert into config(key, value) values("url_logtypes", "https://geocube.mavetju.org/geocube_logtypes.geocube");
 insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
-insert into config(key, value) values("version", "30");
+insert into config(key, value) values("version", "31");
 
 create table filters (
     id integer primary key,
@@ -161,17 +160,11 @@ create table types (
 );
 create index types_idx_id on types(id);
 
-create table log_types (
-    id integer primary key,
-    logtype text,
-    icon integer
-);
-
 create table logs (
     id integer primary key,
     gc_id integer,
     waypoint_id integer,		-- points to waypoints(id)
-    log_type_id integer,		-- points to log_types(id)
+    log_string_id integer,		-- points to log_strings(id)
     datetime text,
     datetime_epoch integer,
     logger_id integer,			-- points to names(id)
