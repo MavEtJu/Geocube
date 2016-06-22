@@ -310,7 +310,7 @@
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls.account == account &&
             ls.logtype == logtype &&
-            [ls.type isEqualToString:type] == YES) {
+            [ls.text isEqualToString:type] == YES) {
             _ls = ls;
             *stop = YES;
         }
