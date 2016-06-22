@@ -46,7 +46,7 @@
 
 @implementation dbLog
 
-@synthesize gc_id, waypoint, waypoint_id, logstring_id, logtype_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
+@synthesize gc_id, waypoint, waypoint_id, logstring_id, logstring_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
 
 - (instancetype)init:(NSInteger)_gc_id
 {
@@ -77,15 +77,16 @@
 
 - (void)finish
 {
+    waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
     datetime_epoch = [MyTools secondsSinceEpoch:datetime];
+
     if (logstring_id == 0) {
-        logstring = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logtype_string];
+        logstring = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logstring_string];
         logstring_id = logstring._id;
     } else {
         logstring = [dbc LogString_get:logstring_id];
-        logtype_string = logstring.text;
+        logstring_string = logstring.text;
     }
-    waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
 
     if (logger == nil) {
         if (logger_id != 0) {
@@ -337,7 +338,7 @@
     dbLog *log = [[dbLog alloc] init];
 
     log.needstobelogged = needstobelogged;
-    log.logtype_string = logstring.text;
+    log.logstring_string = logstring.text;
     log.log = note;
     log.datetime = [NSString stringWithFormat:@"%@T00:00:00", date];
     log.waypoint_id = waypoint._id;
@@ -345,7 +346,7 @@
 
     log.logstring_id = logstring._id;
     log.logstring = logstring;
-    log.logtype_string = logstring.text;
+    log.logstring_string = logstring.text;
 
     dbName *name = waypoint.account.accountname;
     log.logger = name;
