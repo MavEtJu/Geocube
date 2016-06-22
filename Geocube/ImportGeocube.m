@@ -554,7 +554,14 @@
                 BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
                 BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
                 BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
-                NSInteger found = [[logdict objectForKey:@"found"] integerValue];
+                NSString *_found = [logdict objectForKey:@"found"];
+                NSInteger found = LOGSTRING_FOUND_NA;
+                if (_found != nil) {
+                    if ([_found isEqualToString:@"yes"] == YES)
+                        found = LOGSTRING_FOUND_YES;
+                    if ([_found isEqualToString:@"no"] == YES)
+                        found = LOGSTRING_FOUND_NO;
+                }
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
                 dbLogString *ls = [dbLogString dbGetByAccountEventType:_account logtype:logtype type:type];
