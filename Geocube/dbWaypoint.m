@@ -423,7 +423,7 @@
 
 + (NSArray *)dbAllNotFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.id in (select waypoint_id from logs where (logger_id = (select id from names where name in (select name_id from accounts))) and id in (select id from logs where log_string_id = (select id from log_strings where found = 0))) and not id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select id from names where name in (select name_id from accounts)))"];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))"];
     return wps;
 }
 
@@ -602,13 +602,13 @@
         DB_FINISH;
     }
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set log_status = ? where id in (select waypoint_id from logs l where log_string_id in (select id from log_strings where found = 0) and logger_id in (select id from names where name in (select name_id from accounts)))");
+        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found = 0 and (id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
         SET_VAR_INT(1, LOGSTATUS_NOTFOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
     }
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or (id in (select waypoint_id from logs l where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
+        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))");
         SET_VAR_INT(1, LOGSTATUS_FOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
