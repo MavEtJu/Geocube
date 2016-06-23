@@ -95,14 +95,14 @@
 }
 
 
-+ (NSArray *)dbAllXXX:(NSString *)where
++ (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
     NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
 
     NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(sql);
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
             dbTrackable *tb = [[dbTrackable alloc] init];
@@ -123,6 +123,11 @@
     return tbs;
 }
 
++ (NSArray *)dbAllXXX:(NSString *)where
+{
+    return [dbTrackable dbAllXXX:where keys:nil values:nil];
+}
+
 + (NSArray *)dbAll
 {
     return [self dbAllXXX:@""];
@@ -140,7 +145,7 @@
 
 + (dbTrackable *)dbGet:(NSId)_id
 {
-    NSArray *as = [self dbAllXXX:[NSString stringWithFormat:@"where id = %ld", (long)_id]];
+    NSArray *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]];
     return [as objectAtIndex:0];
 }
 
@@ -151,8 +156,8 @@
 
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
-    NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = %lld)", wp_id];
-    return [self dbAllXXX:sql];
+    NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)"];
+    return [self dbAllXXX:sql keys:@"i" values:@[[NSNumber numberWithLong:wp_id]]];
 }
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
@@ -174,7 +179,7 @@
 
 + (dbTrackable *)dbGetByCode:(NSString *)code
 {
-    NSArray *tbs = [self dbAllXXX:[NSString stringWithFormat:@"where code = '%@'", code]];
+    NSArray *tbs = [self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]];
     if (tbs == nil)
         return nil;
     if ([tbs count] == 0)
@@ -184,7 +189,7 @@
 
 + (dbTrackable *)dbGetByRef:(NSString *)ref
 {
-    NSArray *tbs = [self dbAllXXX:[NSString stringWithFormat:@"where ref = '%@'", ref]];
+    NSArray *tbs = [self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]];
     if (tbs == nil)
         return nil;
     if ([tbs count] == 0)

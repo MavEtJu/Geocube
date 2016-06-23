@@ -33,14 +33,13 @@
         account_id = account._id;
 }
 
-+ (NSArray *)dbAllXXX:(NSString *)where
++ (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
     NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, account_id, default_note, default_found, icon, forlogs, found from log_strings %@ order by id", where];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(sql);
-
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
         DB_WHILE_STEP {
             dbLogString *ls = [[dbLogString alloc] init];
             INT_FETCH (0, ls._id);
@@ -61,6 +60,11 @@
     return lss;
 }
 
++ (NSArray *)dbAllXXX:(NSString *)where
+{
+    return [dbLogString dbAllXXX:where keys:nil values:nil];
+}
+
 + (NSArray *)dbAll
 {
     return [dbLogString dbAllXXX:@""];
@@ -68,20 +72,19 @@
 
 + (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype
 {
-    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld", (long)account._id, logtype];
-    return [dbLogString dbAllXXX:where];
+    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
 + (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype
 {
-    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld and forlogs = 1", (long)account._id, logtype];
-    return [dbLogString dbAllXXX:where];
+    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1" keys:@"ii" values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
 + (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
 {
-    NSString *where = [NSString stringWithFormat:@"where account_id = %ld and logtype = %ld and type = '%@'", (long)account._id, logtype, type];
-    NSArray *as = [dbLogString dbAllXXX:where];
+    NSArray *as = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
+                                   keys:@"iis"
+                                 values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype], type]];
     if (as == nil)
         return nil;
     if ([as count] == 0)
