@@ -542,7 +542,36 @@
     [accounts enumerateObjectsUsingBlock:^(NSDictionary *accountdict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *account_name = [accountdict objectForKey:@"name"];
         dbAccount *_account = [dbAccount dbGetBySite:account_name];
+
+        NSString *see = [accountdict objectForKey:@"see"];
+        if (see != nil) {
+            // Copy everything from $see to $account_name
+            dbAccount *seeAccount = [dbAccount dbGetBySite:see];
+            NSAssert1(seeAccount != nil, @"Unknown account: '%@'", see);
+
+            NSArray *as = [dbLogString dbAllByAccount:seeAccount];
+
+            [as enumerateObjectsUsingBlock:^(dbLogString *lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
+                dbLogString *lsReplicate = [dbLogString dbGet_byAccountLogtypeType:_account logtype:lsOriginal.logtype type:lsOriginal.type];
+
+                lsOriginal.account = _account;
+                lsOriginal.account_id = _account._id;
+                if (lsReplicate == nil) {
+                    lsOriginal._id = 0;
+                    [lsOriginal dbCreate];
+                } else {
+                    lsOriginal._id = lsReplicate._id;
+                    [lsOriginal dbUpdate];
+                }
+
+            }];
+
+            return;
+        }
+
         NSArray *logtypes = [accountdict objectForKey:@"logtype"];
+        if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
+            logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
             NSInteger logtype = [dbLogString stringToLogtype:logtype_type];
