@@ -47,6 +47,8 @@ enum {
 + (NSInteger)stringToLogtype:(NSString *)string;
 + (NSInteger)wptTypeToLogType:(NSString *)type_full;
 + (void)dbDeleteAll;
++ (NSArray *)dbAllByAccount:(dbAccount *)account;
++ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
 + (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype;
 + (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype;
 + (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;

@@ -70,14 +70,37 @@
     return [dbLogString dbAllXXX:@""];
 }
 
++ (NSArray *)dbAllByAccount:(dbAccount *)account
+{
+    return [dbLogString dbAllXXX:@"where account_id = ?"
+                            keys:@"i"
+                          values:@[[NSNumber numberWithInteger:account._id]]];
+}
+
 + (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype
 {
-    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?"
+                            keys:@"ii"
+                          values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+}
+
++ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
+{
+    NSArray *lss = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
+                                    keys:@"iis"
+                                  values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype], type]];
+    if (lss == nil)
+        return nil;
+    if ([lss count] == 0)
+        return nil;
+    return [lss objectAtIndex:0];
 }
 
 + (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype
 {
-    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1" keys:@"ii" values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1"
+                            keys:@"ii"
+                          values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
 + (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
