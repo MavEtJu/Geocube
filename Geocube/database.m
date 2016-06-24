@@ -397,6 +397,7 @@
 
     // Version 30
     a = @[
+    @"delete from logs",
     @"create table log_strings (id integer primary key, text text, type text, logtype integer, default_note bool, default_found bool, account_id integer, icon integer, found integer, forlogs bool)",
     ];
     [upgradeSteps addObject:a];
