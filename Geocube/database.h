@@ -123,7 +123,7 @@ extern database *db;
                 case 'i': \
                     SET_VAR_INT(i, [n longValue]); \
                     break; \
-                case 'd': \
+                case 'f': \
                     SET_VAR_DOUBLE(i, [n floatValue]); \
                     break; \
                 case 's': \
