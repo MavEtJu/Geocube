@@ -187,7 +187,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     }
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
-    [self performSelectorInBackground:@selector(runRetrieveQueryFirst:) withObject:pq];
+    [self performSelectorInBackground:@selector(doRunRetrieveQuery:) withObject:pq];
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
@@ -217,25 +217,10 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     return;
 }
 
-- (void)runRetrieveQueryFirst:(NSDictionary *)pq
+- (dbGroup *)makeGroupExist:(NSString *)name
 {
-    [self runRetrieveQuery:pq first:YES];
-}
-
-- (void)runRetrieveQueryRetry:(NSDictionary *)pq
-{
-    [self runRetrieveQuery:pq first:NO];
-}
-
-- (void)runRetrieveQuery:(NSDictionary *)pq first:(BOOL)first
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@\n0 / 0", queryString]];
-    }];
-
     // Find the group to import to
     __block dbGroup *group = nil;
-    NSString *name = [pq objectForKey:@"Name"];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([g.name isEqualToString:name] == YES) {
             group = g;
@@ -248,53 +233,41 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         group = [dbGroup dbGet:_id];
     }
 
-    __block BOOL failure = NO;
-    account.remoteAPI.delegateQueries = self;
+    return group;
+}
 
-    if (first == YES) {
-        // Download the query
-        NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
-        if (ret == nil) {
-            UIAlertController *alert= [UIAlertController
-                                       alertControllerWithTitle:@"Unable to retrieve the query via the GCA API"
-                                       message:@"Do you want to download the query via GPX?"
-                                       preferredStyle:UIAlertControllerStyleAlert];
+- (void)doRunRetrieveQuery:(NSDictionary *)pq
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@\n0 / 0", queryString]];
+    }];
 
-            UIAlertAction *yes = [UIAlertAction
-                                  actionWithTitle:@"Yes"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction *action) {
-                                      [self runRetrieveQueryRetry:pq];
-                                  }];
-            UIAlertAction *no = [UIAlertAction
-                                 actionWithTitle:@"No" style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action) {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                 }];
+    dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
+    BOOL failure = [self runRetrieveQuery:pq group:group];
 
-            [alert addAction:yes];
-            [alert addAction:no];
-
-            [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
-
-            failure = YES;
-        } else {
-            [self parseRetrievedQuery:ret group:group];
-        }
-    } else {
-        NSObject *ret = [account.remoteAPI retrieveQuery_retry:[pq objectForKey:@"Id"] group:group];
-        if (ret == nil) {
-            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
-            failure = YES;
-        } else {
-            [self parseRetrievedQuery:ret group:group];
-        }
-    }
+    if (failure == YES)
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeViewAnimated:NO];
         [self.tableView reloadData];
     }];
+}
+
+- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
+{
+    __block BOOL failure = NO;
+    account.remoteAPI.delegateQueries = self;
+
+    // Download the query
+    NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+    if (ret == nil) {
+        failure = YES;
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+    } else
+        [self parseRetrievedQuery:ret group:group];
+
+    return failure;
 }
 
 - (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
