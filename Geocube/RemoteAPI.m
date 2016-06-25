@@ -572,7 +572,7 @@
     return nil;
 }
 
-- (NSObject *)retrieveQuery_retry:(NSString *)_id group:(dbGroup *)group
+- (NSObject *)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group
 {
     if (account.protocol == ProtocolGCA) {
         NSString *gpx = [gca my_query_gpx:_id];
