@@ -255,7 +255,6 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         // Download the query
         NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
         if (ret == nil) {
-            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
             UIAlertController *alert= [UIAlertController
                                        alertControllerWithTitle:@"Unable to retrieve the query via the GCA API"
                                        message:@"Do you want to download the query via GPX?"
