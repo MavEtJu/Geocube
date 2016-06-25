@@ -95,6 +95,8 @@ typedef sqlite3_int64 NSId;
     - (NSRange) __name__ { NEEDS_OVERLOADING_ASSERT; return NSMakeRange(0, 0); }
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
+#define EMPTY_METHOD_BOOL(__name__) \
+    - (BOOL) __name__ { return NO; }
 
 // JSON related safety functions
 #define DICT_NSSTRING_KEY(__dict__, __a__, __key__) { \
