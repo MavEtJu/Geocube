@@ -37,6 +37,8 @@
     dbWaypoint *currentWP;
     dbLog *currentLog;
     dbTrackable *currentTB;
+
+    BOOL runOption_LogsOnly;
 }
 
 @end
@@ -61,12 +63,15 @@
 
 - (void)parseData:(NSData *)data
 {
+    runOption_LogsOnly = (run_options & RUN_OPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);
 
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
 
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     totalLines = [MyTools numberOfLines:s];
+
+    NSLog(@"run_options: %ld", run_options);
 
     [rssParser setDelegate:self];
     [rssParser setShouldProcessNamespaces:NO];
@@ -115,7 +120,6 @@
         }
 
         if ([currentElement isEqualToString:@"groundspeak:cache"] == YES) {
-            //[currentWP setGs_hasdata:YES];
             [currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
             [currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
 
@@ -196,27 +200,28 @@
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
             totalWaypointsCount++;
-            if (currentWP._id == 0) {
-                [dbWaypoint dbCreate:currentWP];
-                newWaypointsCount++;
+            if (runOption_LogsOnly == NO) {
+                if (currentWP._id == 0) {
+                    [dbWaypoint dbCreate:currentWP];
+                    newWaypointsCount++;
 
-                // Update the group
-                [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
-                [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
-                [group dbAddWaypoint:currentWP._id];
-            } else {
-                [currentWP dbUpdate];
-
-                // Update the group
-                if ([group dbContainsWaypoint:currentWP._id] == NO)
+                    // Update the group
+                    [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
+                    [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
                     [group dbAddWaypoint:currentWP._id];
-            }
-            [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
+                } else {
+                    [currentWP dbUpdate];
 
-            if (currentWP.gs_long_desc != nil)
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGETYPE_CACHE];
-            if (currentWP.gs_short_desc != nil)
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGETYPE_CACHE];
+                    // Update the group
+                    if ([group dbContainsWaypoint:currentWP._id] == NO)
+                        [group dbAddWaypoint:currentWP._id];
+                }
+                [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
+                if (currentWP.gs_long_desc != nil)
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGETYPE_CACHE];
+                if (currentWP.gs_short_desc != nil)
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGETYPE_CACHE];
+            }
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
@@ -240,26 +245,28 @@
                 totalLogsCount++;
             }];
 
-            // Link attributes to cache
-            [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
-            [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
-            [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
+            if (runOption_LogsOnly == NO) {
+                // Link attributes to cache
+                [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
+                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
+                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
 
-            // Link trackables to cache
-            [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
-            [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
-                NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
-                [tb finish];
-                if (_id == 0) {
-                    newTrackablesCount++;
-                    [tb dbCreate];
-                } else {
-                    tb._id = _id;
-                    [tb dbUpdate];
-                }
-                [tb dbLinkToWaypoint:currentWP._id];
-                totalTrackablesCount++;
-            }];
+                // Link trackables to cache
+                [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
+                [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
+                    NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
+                    [tb finish];
+                    if (_id == 0) {
+                        newTrackablesCount++;
+                        [tb dbCreate];
+                    } else {
+                        tb._id = _id;
+                        [tb dbUpdate];
+                    }
+                    [tb dbLinkToWaypoint:currentWP._id];
+                    totalTrackablesCount++;
+                }];
+            }
 
             inItem = NO;
             [self updateDelegates];

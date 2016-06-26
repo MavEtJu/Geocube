@@ -29,6 +29,8 @@
 {
     id delegate;
 
+    NSInteger run_options;
+
     NSInteger newWaypointsCount;
     NSInteger totalWaypointsCount;
 
@@ -57,6 +59,7 @@
 @property (nonatomic, readonly) NSUInteger percentageRead;
 @property (nonatomic, readonly) NSUInteger totalLines;
 @property (nonatomic, readonly) NSInteger newImagesCount;
+@property (nonatomic) NSInteger run_options;
 
 @property (nonatomic, retain) dbGroup *group;
 @property (nonatomic, retain) dbAccount *account;

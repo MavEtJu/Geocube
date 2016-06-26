@@ -30,7 +30,7 @@
 @implementation Importer
 
 @synthesize newWaypointsCount, totalWaypointsCount, newLogsCount, totalLogsCount, newTrackablesCount, totalTrackablesCount, percentageRead, totalLines, newImagesCount;
-@synthesize group, account;
+@synthesize group, account, run_options;
 
 @synthesize delegate;
 

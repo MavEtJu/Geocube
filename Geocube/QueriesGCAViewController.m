@@ -47,22 +47,63 @@ enum {
     [self reloadQueries:ProtocolGCA];
 }
 
-- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
+- (BOOL)parseRetrievedQueryGPX:(NSObject *)query group:(dbGroup *)group
 {
-    GCStringGPX *d = (GCStringGPX *)query;
-
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         ImportViewController *newController = [[ImportViewController alloc] init];
         [newController setGroupAccount:group account:account];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = @"Import";
         [self.navigationController pushViewController:newController animated:YES];
-        [newController run:d];
+        newController.run_options = RUN_OPTION_LOGSONLY;
+        [newController run:query];
     }];
 
     [waypointManager needsRefresh];
 
     return YES;
+}
+
+
+- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        ImportViewController *newController = [[ImportViewController alloc] init];
+        [newController setGroupAccount:group account:account];
+        newController.edgesForExtendedLayout = UIRectEdgeNone;
+        newController.title = @"Import";
+        [self.navigationController pushViewController:newController animated:YES];
+        [newController run:query];
+    }];
+
+    [waypointManager needsRefresh];
+
+    return YES;
+}
+
+- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
+{
+    __block BOOL failure = NO;
+    account.remoteAPI.delegateQueries = self;
+
+    // Download the query. The GPX file is also required since the JSON file doesn't contain the logs.
+    NSObject *retjson = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+    NSObject *retgpx = [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group];
+
+    if (retjson == nil && retgpx == nil) {
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+        failure = YES;
+        return failure;
+    }
+
+    if (retjson == nil) {
+        [self parseRetrievedQuery:retgpx group:group];
+    } else {
+        [self parseRetrievedQuery:retjson group:group];
+        [self parseRetrievedQueryGPX:retgpx group:group];
+    }
+
+    return failure;
 }
 
 @end

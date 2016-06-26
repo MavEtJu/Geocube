@@ -404,6 +404,8 @@
 {
     [imp parseBefore];
 
+    imp.run_options = self.run_options;
+
     @autoreleasepool {
         if ([data isKindOfClass:[GCStringFilename class]] == YES) {
             [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
