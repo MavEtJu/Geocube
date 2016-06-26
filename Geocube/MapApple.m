@@ -33,8 +33,6 @@
     MKPolylineRenderer *viewLineHistory;
 
     BOOL circlesShown;
-
-//    CCHMapClusterController *mapClusterController;
 }
 
 @end
@@ -101,14 +99,6 @@
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
-    /* Add the cluster controller */
-//    mapClusterController = [[CCHMapClusterController alloc] initWithMapView:mapView];
-//    mapClusterController.delegate = self;
-//    if (myConfig.mapClustersEnable == NO)
-//        mapClusterController.maxZoomLevelForClustering = 0;
-//    else
-//        mapClusterController.maxZoomLevelForClustering = myConfig.mapClustersZoomLevel;
-
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
     [mapView addGestureRecognizer:lpgr];
@@ -128,7 +118,6 @@
 - (void)removeMap
 {
     mapView = nil;
-//    mapClusterController = nil;
     mapScaleView = nil;
 }
 
@@ -163,7 +152,6 @@
 
         [markers addObject:annotation];
     }];
-//    [mapClusterController addAnnotations:markers withCompletionHandler:nil];
     [mapView addAnnotations:markers];
 }
 
@@ -174,7 +162,6 @@
         [mapView removeAnnotation:m];
         m = nil;
     }];
-//    [mapClusterController removeAnnotations:markers withCompletionHandler:nil];
     [mapView removeAnnotations:markers];
     markers = nil;
 }
@@ -204,39 +191,9 @@
 
 - (void)mapCallOutPressed:(id)sender
 {
-    CCHMapClusterAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
-    if ([ann.annotations count] == 1) {
-        MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
-        NSLog(@"%@", ann.title);
-        [super openWaypointView:ann.title];
-    } else {
-        NSMutableArray *anns = [NSMutableArray arrayWithCapacity:[ann.annotations count]];
-        [ann.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
-            [anns addObject:pa.title];
-        }];
-        [super openWaypointsPicker:anns origin:self.mapvc.view];
-    }
-}
-
-- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
-{
-    MKPinAnnotationView *av = (MKPinAnnotationView *)[mapView viewForAnnotation:mapClusterAnnotation];
-
-    if ([mapClusterAnnotation.annotations count] == 1) {
-        __block dbWaypoint *wp = nil;
-        [mapClusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
-            wp = [waypointManager waypoint_byId:pa._id];
-        }];
-        av.image = [self waypointImage:wp];
-
-        UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
-        av.rightCalloutAccessoryView = disclosureButton;
-        av.canShowCallout = YES;
-
-    } else {
-        av.image = [imageLibrary getSquareWithNumber:[mapClusterAnnotation.annotations count]];
-    }
+    MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+    NSLog(@"%@", ann.title);
+    [super openWaypointView:ann.title];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -257,68 +214,7 @@
         return dropPin;
     }
 
-    if ([annotation isKindOfClass:[CCHMapClusterAnnotation class]] == YES) {
-        static NSString *identifier = @"identifier";
-        CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *)annotation;
-
-        MKAnnotationView *av = (MKAnnotationView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (av != nil) {
-            av.annotation = annotation;
-        } else {
-            av = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        }
-
-        if ([clusterAnnotation.annotations count] == 1) {
-            __block dbWaypoint *wp = nil;
-            [clusterAnnotation.annotations enumerateObjectsUsingBlock:^(GCPointAnnotation *pa, BOOL * _Nonnull stop) {
-                wp = [waypointManager waypoint_byId:pa._id];
-            }];
-            av.image = [self waypointImage:wp];
-
-            UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
-            av.rightCalloutAccessoryView = disclosureButton;
-            av.canShowCallout = YES;
-        } else {
-            av.image = [imageLibrary getSquareWithNumber:[clusterAnnotation.annotations count]];
-        }
-
-        return av;
-    }
-
     return nil;
-}
-
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
-{
-    NSUInteger numAnnotations = mapClusterAnnotation.annotations.count;
-    NSString *ret;
-
-    if (numAnnotations == 1) {
-        GCPointAnnotation *pa = [mapClusterAnnotation.annotations anyObject];
-        ret = pa.name;
-    } else {
-        ret = [NSString stringWithFormat:@"%tu waypoints", numAnnotations];
-    }
-    return ret;
-}
-
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController subtitleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
-{
-    NSUInteger numAnnotations = MIN(mapClusterAnnotation.annotations.count, 5);
-    NSMutableString *ret;
-
-    if (numAnnotations == 1) {
-        GCPointAnnotation *pa = [mapClusterAnnotation.annotations anyObject];
-        ret = [NSMutableString stringWithString:pa.subtitle];
-    } else {
-        NSArray *annotations = [mapClusterAnnotation.annotations.allObjects subarrayWithRange:NSMakeRange(0, numAnnotations)];
-        NSArray *titles = [annotations valueForKey:@"title"];
-        ret = [NSMutableString stringWithString:[titles componentsJoinedByString:@", "]];
-        if (numAnnotations > 5)
-            [ret appendString:@"..."];
-    }
-    return ret;
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
@@ -488,10 +384,6 @@
 
 - (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel
 {
-//    if (enable == NO)
-//        mapClusterController.maxZoomLevelForClustering = 0;
-//    else
-//        mapClusterController.maxZoomLevelForClustering = zoomLevel;
     [self removeMarkers];
     [self placeMarkers];
 }
