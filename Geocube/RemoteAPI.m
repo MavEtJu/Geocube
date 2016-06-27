@@ -453,16 +453,15 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject *)retObject
+- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
-    retObject = nil;
+    *retObject = nil;
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == ProtocolGCA) {
         if ([account canDoRemoteStuff] == NO) {
-            retObject = nil;
             [self alertError:@"[GCA] loadWaypoints: remote API is disabled" code:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
         }
@@ -498,7 +497,7 @@
         [d setObject:wps forKey:@"geocaches1"];
         [d setObject:logs forKey:@"logs"];
         GCDictionaryGCA *gcajson = [[GCDictionaryGCA alloc] initWithDictionary:d];
-        retObject = gcajson;
+        *retObject = gcajson;
         return REMOTEAPI_OK;
     }
 
@@ -526,7 +525,7 @@
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
         [d setObject:wps forKey:@"Geocaches"];
         GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
-        retObject = livejson;
+        *retObject = livejson;
         return REMOTEAPI_OK;
     }
 

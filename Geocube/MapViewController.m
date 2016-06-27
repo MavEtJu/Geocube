@@ -827,7 +827,7 @@ enum {
         }];
 
         NSObject *d;
-        [account.remoteAPI loadWaypoints:wp.coordinates retObj:d];
+        [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d];
         account.remoteAPI.delegateLoadWaypoints = nil;
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

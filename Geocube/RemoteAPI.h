@@ -82,7 +82,7 @@ enum {
 - (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
 - (NSInteger)loadWaypoint:(dbWaypoint *)waypoint;
-- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject *)retObj;
+- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj;
 
 - (NSInteger)updatePersonalNote:(dbPersonalNote *)note;
 
