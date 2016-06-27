@@ -26,12 +26,6 @@
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
 
-    NSMutableArray *GSLogTypesEvents;
-    NSMutableArray *GSLogTypesOthers;
-    NSMutableArray *GSLogTypesTrackablesPerson;
-    NSMutableArray *GSLogTypesTrackablesCache;
-    NSMutableDictionary *GSLogTypes;
-
     id delegate;
 }
 
@@ -47,11 +41,6 @@
 
     remoteAPI = _remoteAPI;
     liveAPIPrefix = @"https://api.groundspeak.com/LiveV6/geocaching.svc/";
-
-    GSLogTypesEvents = nil;
-    GSLogTypesOthers = nil;
-    GSLogTypesTrackablesPerson = nil;
-    GSLogTypesTrackablesCache = nil;
 
     return self;
 }
@@ -228,71 +217,6 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetGeocacheDataTypes
-{
-    NSLog(@"GetGeocacheDataTypes");
-
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetGeocacheDataTypes" parameters:[NSString stringWithFormat:@"accessToken=%@&logTypes=true", [MyTools urlEncode:remoteAPI.oabb.token]]];
-
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    /* Get the following:
-     * For events: Write note, Will Attend, Attended, Announcement
-     * For waypoints: Found it, Didn't find it, Write note, Needs Archived, Temporary Disable Listing, Enable Listing,
-     *                Needs Maintenance, Owner Maintenance, Update Coordinates
-     * For trackable: Write note, Dropped Off, Retrieved It from a Cache, Discovered It
-     */
-
-    GSLogTypesEvents = [NSMutableArray arrayWithCapacity:20];
-    GSLogTypesOthers = [NSMutableArray arrayWithCapacity:20];
-    GSLogTypesTrackablesPerson = [NSMutableArray arrayWithCapacity:20];
-    GSLogTypesTrackablesCache = [NSMutableArray arrayWithCapacity:20];
-    GSLogTypes = [NSMutableDictionary dictionaryWithCapacity:20];
-
-    [[json valueForKey:@"EventLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        [GSLogTypesEvents addObject:num];
-    }];
-    [[json valueForKey:@"GeocacheLogTypeIds"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        [GSLogTypesOthers addObject:num];
-    }];
-    [[json valueForKey:@"TrackableLogTypeIdsinCache"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        [GSLogTypesTrackablesCache addObject:num];
-    }];
-    [[json valueForKey:@"TrackableLogTypeIdswithPerson"] enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        [GSLogTypesTrackablesPerson addObject:num];
-    }];
-
-    NSArray *d = [json objectForKey:@"WptLogTypes"];
-    if (d == nil)
-        return nil;
-
-    [d enumerateObjectsUsingBlock:^(NSDictionary *gslt, NSUInteger idx, BOOL *stop) {
-        if ([[gslt objectForKey:@"AdminActionable"] boolValue] == YES && [[gslt objectForKey:@"OwnerActionable"] boolValue] == NO)
-            return;
-        [GSLogTypes setValue:[NSNumber numberWithInteger:[[gslt objectForKey:@"WptLogTypeId"] integerValue]] forKey:[gslt objectForKey:@"WptLogTypeName"]];
-    }];
-
-    return json;
-}
-
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
@@ -321,8 +245,6 @@
      * }
      */
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:20];
-
-    NSInteger gslogtype;
     NSTimeInterval date;
 
     NSMutableDictionary *imageDict = nil;
@@ -339,11 +261,6 @@
         [dict setValue:imageDict forKey:@"ImageData"];
     }
 
-    if (GSLogTypesEvents == nil)
-        [self GetGeocacheDataTypes];
-
-    gslogtype = [[GSLogTypes objectForKey:logtype] integerValue];
-
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
     [dateF setDateFormat:@"YYYY-MM-dd"];
     NSDate *todayDate = [dateF dateFromString:dateLogged];
@@ -351,7 +268,7 @@
 
     [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [dict setValue:waypointName forKey:@"CacheCode"];
-    [dict setValue:[NSNumber numberWithLong:gslogtype] forKey:@"WptLogTypeId"];
+    [dict setValue:[NSNumber numberWithLong:[logtype integerValue]] forKey:@"WptLogTypeId"];
     [dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
     [dict setValue:[MyTools JSONEscape:note] forKey:@"Note"];
     [dict setValue:((favourite == YES) ? @"true" : @"false") forKey:@"FavoriteThisCache"];

@@ -25,7 +25,6 @@
 
 - (GCDictionaryLiveAPI *)GetYourUserProfile;
 - (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser;
-- (GCDictionaryLiveAPI *)GetGeocacheDataTypes;
 - (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;
 - (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)waypoint trackable:(dbTrackable *)tb dateLogged:(NSString *)dateLogged;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname;
