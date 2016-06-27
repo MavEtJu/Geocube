@@ -308,7 +308,21 @@
         imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSInteger retvalue = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
+        GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
+        if (json == nil) {
+            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - json = nil" code:REMOTEAPI_APIFAILED];
+            return REMOTEAPI_APIFAILED;
+        }
+        NSNumber *num = [json valueForKeyPath:@"Status.StatusCode"];
+        if (num == nil) {
+            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - num = nil" code:REMOTEAPI_APIFAILED];
+            return REMOTEAPI_APIFAILED;
+        }
+        if ([num integerValue] != 0) {
+                NSLog(@"Return message for CreateFieldNoteAndPublish: %@", [json valueForKeyPath:@"Status.ExceptionDetails"]);
+            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - num = nil" code:REMOTEAPI_CREATELOG_LOGFAILED];
+            return REMOTEAPI_CREATELOG_LOGFAILED;
+        }
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_NONE)
                 return;
@@ -326,12 +340,13 @@
                 case TRACKABLE_LOG_DISCOVER:
                     dflt = LOGSTRING_DEFAULT_DISCOVER;
                     break;
-
+                default:
+                    NSAssert(NO, @"Unknown tb.logtype");
             }
             dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:LOGSTRING_LOGTYPE_TRACKABLEPERSON default:dflt];
             [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb dateLogged:dateLogged];
         }];
-        return retvalue;
+        return REMOTEAPI_OK;
     }
 
     if (account.protocol == ProtocolOKAPI) {

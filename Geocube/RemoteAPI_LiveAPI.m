@@ -217,7 +217,7 @@
     return json;
 }
 
-- (NSInteger)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename
+- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
@@ -290,20 +290,19 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        return 0;
+        return nil;
     }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryLiveAPI *retJson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
     if ([self checkStatus:json] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        return 0;
+        return retJson;
     }
 
-    NSDictionary *log = [json objectForKey:@"Log"];
-    NSNumber *log_id = [log objectForKey:@"ID"];
-    return [log_id integerValue];
+    return retJson;
 }
 
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname
