@@ -751,14 +751,14 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
     }];
-    BOOL success = [waypoint.account.remoteAPI loadWaypoint:waypoint];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
 
-    if (success == YES) {
+    if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
-	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.tableView reloadData];
         }];
         [MyTools playSound:playSoundImportComplete];

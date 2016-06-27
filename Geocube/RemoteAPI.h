@@ -19,6 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+enum {
+    REMOTEAPI_OK = 0,
+    REMOTEAPI_APIFAILED,
+    REMOTEAPI_APIDISABLED,
+    REMOTEAPI_NOTPROCESSED,
+
+    REMOTEAPI_CREATELOG_LOGFAILED,
+    REMOTEAPI_CREATELOG_IMAGEFAILED,
+    REMOTEAPI_LOADWAYPOINT_LOADFAILED,
+    REMOTEAPI_LOADWAYPOINTS_LOADFAILED,
+    REMOTEAPI_LISTQUERIES_LOADFAILED,
+};
+
 @protocol RemoteAPIAuthenticationDelegate
 
 - (void)remoteAPI:(RemoteAPI *)api failure:(NSString *)failure error:(NSError *)error;
@@ -40,7 +53,7 @@
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, LiveAPIDelegate, OKAPIDelegate, GeocachingAustraliaDelegate>
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, GeocachingAustraliaDelegate>
 
 @property (nonatomic, retain) id delegateQueries;
 @property (nonatomic, retain) id delegateLoadWaypoints;
@@ -49,8 +62,10 @@
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
 @property (nonatomic) NSInteger stats_found, stats_notfound;
 @property (nonatomic) id authenticationDelegate;
-@property (nonatomic, retain) NSString *clientMsg;
-@property (nonatomic, retain) NSError *clientError;
+
+@property (nonatomic, retain) NSString *errorMsg;
+@property (nonatomic, retain) NSError *error;
+@property (nonatomic) NSInteger errorCode;
 
 - (instancetype)init:(dbAccount*)account;
 - (BOOL)Authenticate;
@@ -60,21 +75,20 @@
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
-- (NSArray *)logtypes:(NSString *)waypointType;
 
 - (NSDictionary *)UserStatistics;
 - (NSDictionary *)UserStatistics:(NSString *)username;
 
 - (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
-- (BOOL)loadWaypoint:(dbWaypoint *)waypoint;
-- (NSObject *)loadWaypoints:(CLLocationCoordinate2D)center;
+- (NSInteger)loadWaypoint:(dbWaypoint *)waypoint;
+- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject *)retObj;
 
-- (BOOL)updatePersonalNote:(dbPersonalNote *)note;
+- (NSInteger)updatePersonalNote:(dbPersonalNote *)note;
 
-- (NSArray *)listQueries;
-- (NSObject *)retrieveQuery:(NSString *)_id group:(dbGroup *)group;
-- (NSObject *)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group;
+- (NSInteger)listQueries:(NSArray *)qs;
+- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj;
+- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj;
 
 - (void)trackablesMine;
 - (void)trackablesInventory;

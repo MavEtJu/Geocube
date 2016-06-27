@@ -826,7 +826,8 @@ enum {
             [DejalBezelActivityView activityViewForView:ivc.view withLabel:[NSString stringWithFormat:@"Loading for %@", account.site]];
         }];
 
-        NSObject *d = [account.remoteAPI loadWaypoints:wp.coordinates];
+        NSObject *d;
+        [account.remoteAPI loadWaypoints:wp.coordinates retObj:d];
         account.remoteAPI.delegateLoadWaypoints = nil;
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

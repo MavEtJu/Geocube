@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol OKAPIDelegate
-
-- (void)alertError:(NSString *)msg error:(NSError *)error;
-
-@end
-
 @interface OKAPI : ProtocolTemplate
 
 @property (nonatomic) id delegate;

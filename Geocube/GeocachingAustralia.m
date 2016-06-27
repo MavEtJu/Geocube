@@ -27,8 +27,6 @@
     id delegate;
     NSHTTPCookie *authCookie;
     NSString *callback;
-
-    NSMutableDictionary *logtypes;
 }
 
 @end
@@ -64,19 +62,6 @@
         [cookiemgr setCookie:authCookie];
     }
 
-    logtypes = [NSMutableDictionary dictionaryWithCapacity:20];
-    [logtypes setObject:@"F" forKey:@"Found it"];
-    [logtypes setObject:@"D" forKey:@"Did not find it"];
-    [logtypes setObject:@"N" forKey:@"Noted"];
-    [logtypes setObject:@"E" forKey:@"Needs archiving"];
-    [logtypes setObject:@"M" forKey:@"Needs maintenance"];
-    [logtypes setObject:@"C" forKey:@"Maintained"];
-    [logtypes setObject:@"B" forKey:@"Published"];
-    [logtypes setObject:@"I" forKey:@"Disabled"];
-    [logtypes setObject:@"L" forKey:@"Enabled"];
-    [logtypes setObject:@"V" forKey:@"Archived"];
-    [logtypes setObject:@"U" forKey:@"Unarchived"];
-
     return self;
 }
 
@@ -103,11 +88,6 @@
 - (BOOL)waypointSupportsPersonalNotes
 {
     return NO;
-}
-
-- (NSArray *)logtypes:(NSString *)waypointType
-{
-    return [logtypes allKeys];
 }
 
 - (void)storeCookie:(NSHTTPCookie *)cookie
@@ -372,19 +352,14 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (NSInteger)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating
+- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating
 {
     NSLog(@"my_log_new:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/log/new/%@", [MyTools urlEncode:wpname]];
 
     NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithCapacity:5];
-    [logtypes enumerateKeysAndObjectsUsingBlock:^(NSString *lt, NSString *value, BOOL *stop) {
-        if ([lt isEqualToString:logtype] == YES) {
-            [ps setValue:value forKey:@"action"];
-            *stop = YES;
-        }
-    }];
+    [ps setValue:logtype forKey:@"action"];
     [ps setValue:note forKey:@"text"];
 
     [ps setValue:[NSString stringWithFormat:@"%ld", (long)rating] forKey:@"Overall Experience"];
@@ -402,36 +377,56 @@
 
     NSArray *lines = [self postPageForm:urlString params:ps];
 
-    __block BOOL found = NO;
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL *stop) {
-        NSRange r = [l rangeOfString:@"Log added"];
-        if (r.location == NSNotFound)
-            return;
-        found = YES;
-    }];
-    if (found == NO)
-        return 0;
-    return -1;
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    if (json == nil)
+        return nil;
+
+    return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (NSInteger)my_gallery_cache_add:(NSString *)wpname data:(NSData *)data caption:(NSString *)caption description:(NSString *)description
+- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)_data caption:(NSString *)caption description:(NSString *)description
 {
     NSLog(@"my_gallery_cache_add:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/gallery/cache/add/%@", [MyTools urlEncode:wpname]];
 
-    NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithCapacity:5];
-    [ps setValue:data forKey:@"uploaded"];
+    NSMutableDictionary *ps = [NSMutableDictionary dictionaryWithCapacity:10];
+    [ps setValue:_data forKey:@"uploaded"];
     [ps setValue:wpname forKey:@"cache"];
     [ps setValue:caption forKey:@"caption"];
     [ps setValue:@"" forKey:@"cacher"];
     [ps setValue:description forKey:@"description"];
-    [ps setValue:@"" forKey:@"log_number"];
+    [ps setValue:[NSNumber numberWithInteger:log_id] forKey:@"log_number"];
     [ps setValue:@"" forKey:@"swaggie"];
     [ps setValue:@"Save Image" forKey:@"button"];
 
-    [self postPageMultiForm:urlString dataField:@"uploaded" params:ps];
-    return -1;
+    NSArray *lines = [self postPageMultiForm:urlString dataField:@"uploaded" params:ps];
+
+    NSString *S = [lines componentsJoinedByString:@""];
+    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+
+    if (data == nil) {
+        NSLog(@"%@ - No data returned", [self class]);
+        return nil;
+    }
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    if (json == nil)
+        return nil;
+
+    return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
 - (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center

@@ -125,11 +125,11 @@
     NSLog(@"retbody: %@", retbody);
 
     if (error != nil || response.statusCode != 200) {
-        if (response.statusCode == 400) {
-            [delegate alertError:@"OKAPI - Unable to submit request: No such user" error:error];
-        } else {
-            [delegate alertError:@"OKAPI - The server was unable to deal with the request" error:error];
-        }
+//        if (response.statusCode == 400) {
+//            [delegate alertError:@"OKAPI - Unable to submit request: No such user" error:error];
+//        } else {
+//            [delegate alertError:@"OKAPI - The server was unable to deal with the request" error:error];
+//        }
         return nil;
     }
 
@@ -152,14 +152,14 @@
     NSLog(@"retbody: %@", retbody);
 
     if (error != nil || response.statusCode != 200) {
-        [delegate alertError:@"OKAPI - Unable to submit request" error:error];
+//        [delegate alertError:@"OKAPI - Unable to submit request" error:error];
         return 0;
     }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     BOOL success = [[json valueForKey:@"success"] boolValue];;
     if (success == NO) {
-        [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
+//        [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
         return 0;
     }
 

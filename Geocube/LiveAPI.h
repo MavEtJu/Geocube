@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol LiveAPIDelegate
-
-- (void)alertError:(NSString *)msg error:(NSError *)error;
-
-@end
-
 @interface LiveAPI : ProtocolTemplate
 
 @property (nonatomic) id delegate;

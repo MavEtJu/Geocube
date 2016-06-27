@@ -88,7 +88,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         if (a.protocol == protocol) {
             account = a;
             if (a.canDoRemoteStuff == YES) {
-                qs = [a.remoteAPI listQueries];
+                [a.remoteAPI listQueries:qs];
                 if (qs == nil)
                     failure = YES;
             } else {
@@ -260,7 +260,8 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     account.remoteAPI.delegateQueries = self;
 
     // Download the query
-    NSObject *ret = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group];
+    NSObject *ret;
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:ret];
     if (ret == nil) {
         failure = YES;
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
