@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface GeocachingAustralia ()
+@interface RemoteAPI_GCA ()
 {
     RemoteAPI *remoteAPI;
     id delegate;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation GeocachingAustralia
+@implementation RemoteAPI_GCA
 
 @synthesize delegate, callback;
 

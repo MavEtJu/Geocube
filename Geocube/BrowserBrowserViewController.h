@@ -25,6 +25,6 @@
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;
 - (void)prepare_oauth:(GCOAuthBlackbox *)oabb;
-- (void)prepare_gca:(GeocachingAustralia *)gca;
+- (void)prepare_gca:(RemoteAPI_GCA *)gca;
 
 @end

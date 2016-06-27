@@ -149,8 +149,8 @@
 		E80732F31B626133007FDC29 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732F21B626133007FDC29 /* dbAccount.m */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
-		E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* OKAPI.m */; };
-		E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */; };
+		E807A5F81B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */; };
+		E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */; };
 		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; };
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
@@ -179,7 +179,7 @@
 		E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67C1B6F76E70019F9D2 /* menu icon - local.png */; };
 		E832E6801B7024E40019F9D2 /* menu icon - close.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67F1B7024E40019F9D2 /* menu icon - close.png */; };
 		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
-		E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */; };
+		E832E7DF1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */; };
 		E833B7241C4F739800B9FB45 /* map - marked found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7231C4F739800B9FB45 /* map - marked found - 9x9.png */; };
 		E833B7281C4F7E8500B9FB45 /* map - in progress - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */; };
 		E833B72A1C4FA7D600B9FB45 /* type - marked found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */; };
@@ -243,7 +243,6 @@
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
 		E8740F9B1B4E3C6A002527DA /* WaypointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */; };
-		E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FCC1B4E90EB002527DA /* dbLogType.m */; };
 		E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FDE1B4F87D2002527DA /* dbLog.m */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D44471BA6A44800671FB9 /* ThemeManager.m */; };
@@ -594,10 +593,10 @@
 		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuthBlackbox.h; sourceTree = "<group>"; };
 		E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuthBlackbox.m; sourceTree = "<group>"; };
-		E807A5F61B8BC9CF00EBA187 /* OKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAPI.h; sourceTree = "<group>"; };
-		E807A5F71B8BC9CF00EBA187 /* OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAPI.m; sourceTree = "<group>"; };
-		E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveAPI.h; sourceTree = "<group>"; };
-		E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveAPI.m; sourceTree = "<group>"; };
+		E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_OKAPI.h; sourceTree = "<group>"; };
+		E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_OKAPI.m; sourceTree = "<group>"; };
+		E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_LiveAPI.h; sourceTree = "<group>"; };
+		E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_LiveAPI.m; sourceTree = "<group>"; };
 		E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColoursViewController.h; sourceTree = "<group>"; };
 		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
 		E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColourViewController.h; sourceTree = "<group>"; };
@@ -647,8 +646,8 @@
 		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
 		E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
 		E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
-		E832E7DD1B8DB91A00A3CCF6 /* GeocachingAustralia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocachingAustralia.h; sourceTree = "<group>"; };
-		E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocachingAustralia.m; sourceTree = "<group>"; };
+		E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GCA.h; sourceTree = "<group>"; };
+		E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GCA.m; sourceTree = "<group>"; };
 		E833B7231C4F739800B9FB45 /* map - marked found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - marked found - 9x9.png"; path = "images/map - marked found - 9x9.png"; sourceTree = "<group>"; };
 		E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - in progress - 18x18.png"; path = "images/map - in progress - 18x18.png"; sourceTree = "<group>"; };
 		E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - marked found - 24x21.png"; path = "images/type - marked found - 24x21.png"; sourceTree = "<group>"; };
@@ -757,8 +756,6 @@
 		E86C65AF1B4DCEE400E2ABFE /* dbObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
 		E8740F991B4E3C6A002527DA /* WaypointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewController.h; sourceTree = "<group>"; };
 		E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewController.m; sourceTree = "<group>"; };
-		E8740FCB1B4E90EB002527DA /* dbLogType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogType.h; sourceTree = "<group>"; };
-		E8740FCC1B4E90EB002527DA /* dbLogType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogType.m; sourceTree = "<group>"; };
 		E8740FDD1B4F87D2002527DA /* dbLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLog.h; sourceTree = "<group>"; };
 		E8740FDE1B4F87D2002527DA /* dbLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLog.m; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
@@ -2120,8 +2117,6 @@
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E80250E81D17CADA00F05772 /* dbLogString.h */,
 				E80250E91D17CADA00F05772 /* dbLogString.m */,
-				E8740FCB1B4E90EB002527DA /* dbLogType.h */,
-				E8740FCC1B4E90EB002527DA /* dbLogType.m */,
 				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
 				E80732BC1B5FB4CF007FDC29 /* dbName.m */,
 				E88037A01B946D1F0053AD01 /* dbNotice.h */,
@@ -2155,16 +2150,16 @@
 			children = (
 				E88144201C840C5400940820 /* IOSFileTransfers.h */,
 				E88144211C840C5400940820 /* IOSFileTransfers.m */,
-				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
-				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
 				E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */,
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
-				E807A5F61B8BC9CF00EBA187 /* OKAPI.h */,
-				E807A5F71B8BC9CF00EBA187 /* OKAPI.m */,
-				E807A5F91B8BC9EB00EBA187 /* LiveAPI.h */,
-				E807A5FA1B8BC9EB00EBA187 /* LiveAPI.m */,
-				E832E7DD1B8DB91A00A3CCF6 /* GeocachingAustralia.h */,
-				E832E7DE1B8DB91A00A3CCF6 /* GeocachingAustralia.m */,
+				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
+				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
+				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
+				E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */,
+				E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */,
+				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
+				E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */,
+				E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */,
 				E89580191C643AD500282177 /* ProtocolTemplate.h */,
 				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
 			);
@@ -2701,11 +2696,10 @@
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
-				E807A5FB1B8BC9EB00EBA187 /* LiveAPI.m in Sources */,
+				E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,
 				E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */,
 				E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */,
-				E8740FCD1B4E90EB002527DA /* dbLogType.m in Sources */,
 				E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* MyConfig.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
@@ -2738,7 +2732,7 @@
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
-				E832E7DF1B8DB91A00A3CCF6 /* GeocachingAustralia.m in Sources */,
+				E832E7DF1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
@@ -2823,7 +2817,7 @@
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
-				E807A5F81B8BC9CF00EBA187 /* OKAPI.m in Sources */,
+				E807A5F81B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,

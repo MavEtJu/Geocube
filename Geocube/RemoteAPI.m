@@ -25,9 +25,9 @@
 {
     GCOAuthBlackbox *oabb;
 
-    LiveAPI *gs;
-    OKAPI *okapi;
-    GeocachingAustralia *gca;
+    RemoteAPI_LiveAPI *liveAPI;
+    RemoteAPI_OKAPI *okapi;
+    RemoteAPI_GCA *gca;
     ProtocolTemplate *protocol;
 
     dbAccount *account;
@@ -64,22 +64,22 @@
     [oabb consumerKey:account.oauth_consumer_public];
     [oabb consumerSecret:account.oauth_consumer_private];
 
-    gs = nil;
+    liveAPI = nil;
     okapi = nil;
     gca = nil;
     switch (account.protocol) {
         case ProtocolLiveAPI:
-            gs = [[LiveAPI alloc] init:self];
-            gs.delegate = self;
-            protocol = gs;
+            liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
+            liveAPI.delegate = self;
+            protocol = liveAPI;
             break;
         case ProtocolOKAPI:
-            okapi = [[OKAPI alloc] init:self];
+            okapi = [[RemoteAPI_OKAPI alloc] init:self];
             okapi.delegate = self;
             protocol = okapi;
             break;
         case ProtocolGCA:
-            gca = [[GeocachingAustralia alloc] init:self];
+            gca = [[RemoteAPI_GCA alloc] init:self];
             gca.delegate = self;
             protocol = gca;
             break;
@@ -263,8 +263,8 @@
     }
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *dict1 = [gs GetYourUserProfile];
-        NSDictionary *dict2 = [gs GetCacheIdsFavoritedByUser];
+        NSDictionary *dict1 = [liveAPI GetYourUserProfile];
+        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser];
 
         if (dict1 == nil && dict2 == nil)
             ret = nil;
@@ -308,9 +308,9 @@
         imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSInteger retvalue = [gs CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
+        NSInteger retvalue = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
-            [gs CreateTrackableLog:waypoint trackable:tb dateLogged:dateLogged];
+            [liveAPI CreateTrackableLog:waypoint trackable:tb dateLogged:dateLogged];
         }];
         return retvalue;
     }
@@ -373,7 +373,7 @@
     dbGroup *g = dbc.Group_LiveImport;
 
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs SearchForGeocaches_waypointname:waypoint.wpt_name];
+        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -507,7 +507,7 @@
             return REMOTEAPI_APIFAILED;
 
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
-        NSDictionary *json = [gs SearchForGeocaches_pointradius:center];
+        NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -517,7 +517,7 @@
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
                 done += 20;
-                json = [gs GetMoreGeocaches:done];
+                json = [liveAPI GetMoreGeocaches:done];
                 if ([json objectForKey:@"Geocaches"] != nil)
                     [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             } while (done < total);
@@ -536,7 +536,7 @@
 - (NSInteger)updatePersonalNote:(dbPersonalNote *)note
 {
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs UpdateCacheNote:note.wp_name text:note.note];
+        NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
         return REMOTEAPI_OK;
@@ -555,7 +555,7 @@
  */
 {
     if (account.protocol == ProtocolLiveAPI) {
-        NSDictionary *json = [gs GetPocketQueryList];
+        NSDictionary *json = [liveAPI GetPocketQueryList];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -635,7 +635,7 @@
         [self.delegateQueries remoteAPIQueriesDownloadUpdate:0 max:0];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
-            NSDictionary *json = [gs GetFullPocketQueryData:_id startItem:offset numItems:increase];
+            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase];
             if (json == nil)
                 break;
 
@@ -701,7 +701,7 @@
     if (account.protocol != ProtocolLiveAPI)
         return;
 
-    NSDictionary *json = [gs GetOwnedTrackables];
+    NSDictionary *json = [liveAPI GetOwnedTrackables];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
@@ -711,7 +711,7 @@
     if (account.protocol != ProtocolLiveAPI)
         return;
 
-    NSDictionary *json = [gs GetUsersTrackables];
+    NSDictionary *json = [liveAPI GetUsersTrackables];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
@@ -721,7 +721,7 @@
     if (account.protocol != ProtocolLiveAPI)
         return nil;
 
-    NSDictionary *json = [gs GetTrackablesByTrackingNumber:code];
+    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 

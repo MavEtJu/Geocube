@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface LiveAPI ()
+@interface RemoteAPI_LiveAPI ()
 {
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
@@ -37,7 +37,7 @@
 
 @end
 
-@implementation LiveAPI
+@implementation RemoteAPI_LiveAPI
 
 @synthesize delegate;
 

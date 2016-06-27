@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol GeocachingAustraliaDelegate
+@protocol RemoteAPI_GCADelegate
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie;
 
 @end
 
-@interface GeocachingAustralia : ProtocolTemplate <NSURLConnectionDataDelegate>
+@interface RemoteAPI_GCA : ProtocolTemplate <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id delegate;
 @property (nonatomic, retain, readonly) NSString *callback;

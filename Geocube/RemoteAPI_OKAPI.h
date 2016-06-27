@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface OKAPI : ProtocolTemplate
+@interface RemoteAPI_OKAPI : ProtocolTemplate
 
 @property (nonatomic) id delegate;
 

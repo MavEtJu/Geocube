@@ -76,7 +76,6 @@
 @class GCURLRequest;
 @class GCView;
 @class GCViewController;
-@class GeocachingAustralia;
 @class GlobalMenu;
 @class GroupsViewController;
 @class HelpAboutViewController;
@@ -101,7 +100,6 @@
 @class KeepTrackTracks;
 @class KeyboardCoordinateView;
 @class ListViewController;
-@class LiveAPI;
 @class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;
@@ -119,13 +117,15 @@
 @class NoticeTableViewCell;
 @class NoticesViewController;
 @class NullViewController;
-@class OKAPI;
 @class PersonalNoteTableViewCell;
 @class ProtocolTemplate;
 @class QueriesGCAViewController;
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
 @class RemoteAPI;
+@class RemoteAPI_GCA;
+@class RemoteAPI_LiveAPI;
+@class RemoteAPI_OKAPI;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;
 @class SettingsColoursViewController;

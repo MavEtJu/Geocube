@@ -53,7 +53,7 @@ enum {
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, GeocachingAustraliaDelegate>
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, RemoteAPI_GCADelegate>
 
 @property (nonatomic, retain) id delegateQueries;
 @property (nonatomic, retain) id delegateLoadWaypoints;

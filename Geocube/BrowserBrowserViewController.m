@@ -32,7 +32,7 @@
     NSString *urlHome;
 
     GCOAuthBlackbox *oabb;
-    GeocachingAustralia *gca;
+    RemoteAPI_GCA *gca;
     NSInteger networkActivityIndicator;
 }
 
@@ -213,7 +213,7 @@ enum {
     oabb = _oabb;
 }
 
-- (void)prepare_gca:(GeocachingAustralia *)_gca
+- (void)prepare_gca:(RemoteAPI_GCA *)_gca
 {
     gca = _gca;
 }

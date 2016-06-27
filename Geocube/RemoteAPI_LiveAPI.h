@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface LiveAPI : ProtocolTemplate
+@interface RemoteAPI_LiveAPI : ProtocolTemplate
 
 @property (nonatomic) id delegate;
 
