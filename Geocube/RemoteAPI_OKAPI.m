@@ -65,13 +65,6 @@
     return NO;
 }
 
-- (NSArray *)logtypes:(NSString *)waypointType
-{
-    if ([waypointType isEqualToString:@"event"] == YES)
-        return @[@"Will attend", @"Attended", @"Comment"];
-    return @[@"Found it", @"Didn't find it", @"Comment"];
-}
-
 - (NSString *)string_array:(NSArray *)fields
 {
     return [MyTools urlEncode:[fields componentsJoinedByString:@"|"]];
