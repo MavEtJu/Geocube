@@ -86,9 +86,9 @@ enum {
 
 - (NSInteger)updatePersonalNote:(dbPersonalNote *)note;
 
-- (NSInteger)listQueries:(NSArray *)qs;
-- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj;
-- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj;
+- (NSInteger)listQueries:(NSArray **)qs;
+- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
+- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
 
 - (void)trackablesMine;
 - (void)trackablesInventory;

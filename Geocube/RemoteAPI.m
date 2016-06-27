@@ -544,7 +544,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)listQueries:(NSArray *)qs
+- (NSInteger)listQueries:(NSArray **)qs
 /* Returns: array of dicts of
  * - Name
  * - Id
@@ -553,6 +553,7 @@
  * - Count
  */
 {
+    *qs = nil;
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [liveAPI GetPocketQueryList];
         if (json == nil)
@@ -573,7 +574,7 @@
             [as addObject:d];
         }];
 
-        qs = as;
+        *qs = as;
         return REMOTEAPI_OK;
     }
 
@@ -612,15 +613,16 @@
             [as addObject:d];
         }];
 
-        qs = as;
+        *qs = as;
         return REMOTEAPI_OK;
     }
 
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj
+- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
+    *retObj = nil;
 
     if (account.protocol == ProtocolLiveAPI) {
         NSMutableDictionary *result = nil;
@@ -654,7 +656,7 @@
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
-        retObj = result;
+        *retObj = result;
         return REMOTEAPI_OK;
     }
 
@@ -674,21 +676,22 @@
             return REMOTEAPI_LISTQUERIES_LOADFAILED;
         }
 
-        retObj = json;
+        *retObj = json;
         return REMOTEAPI_OK;
     }
 
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject *)retObj
+- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
+    *retObj = nil;
     if (account.protocol == ProtocolGCA) {
         NSString *gpx = [gca my_query_gpx:_id];
         if (gpx == nil) {
             return REMOTEAPI_APIFAILED;
         }
-        retObj = gpx;
+        *retObj = gpx;
         return REMOTEAPI_OK;
     }
 

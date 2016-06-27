@@ -89,8 +89,8 @@ enum {
     // Download the query. The GPX file is also required since the JSON file doesn't contain the logs.
     NSObject *retjson;
     NSObject *retgpx;
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:retjson];
-    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:retgpx];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson];
+    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx];
 
     if (retjson == nil && retgpx == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];

@@ -76,7 +76,6 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
 - (void)reloadQueries:(NSInteger)protocol
 {
-    qs = nil;
     account = nil;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -88,9 +87,11 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
         if (a.protocol == protocol) {
             account = a;
             if (a.canDoRemoteStuff == YES) {
-                [a.remoteAPI listQueries:qs];
+                NSArray *queries = nil;
+                [a.remoteAPI listQueries:&queries];
                 if (qs == nil)
                     failure = YES;
+                qs = queries;
             } else {
                 failure = YES;
                 if (account.lastError == nil)
@@ -261,7 +262,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
     // Download the query
     NSObject *ret;
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:ret];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
     if (ret == nil) {
         failure = YES;
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
