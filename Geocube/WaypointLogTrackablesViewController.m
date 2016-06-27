@@ -69,12 +69,12 @@ enum {
     [logtypes enumerateObjectsUsingBlock:^(NSNumber *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger lt = [logtype integerValue];
         dbTrackable *tb = [tbs objectAtIndex:idx];
-        if (lt == LOGTYPE_VISIT && tb.logtype != LOGTYPE_VISIT) {
+        if (lt == TRACKABLE_LOG_VISIT && tb.logtype != TRACKABLE_LOG_VISIT) {
             tb.logtype = lt;
             [tb dbUpdate];
             return;
         }
-        if (lt == LOGTYPE_NONE && tb.logtype != LOGTYPE_NONE) {
+        if (lt == TRACKABLE_LOG_NONE && tb.logtype != TRACKABLE_LOG_NONE) {
             tb.logtype = lt;
             [tb dbUpdate];
             return;
@@ -110,25 +110,25 @@ enum {
     cell.userInteractionEnabled = YES;
     cell.detailTextLabel.text = @"";
     switch (logtype) {
-        case LOGTYPE_NONE:
-            if (tb.logtype == LOGTYPE_NONE)
+        case TRACKABLE_LOG_NONE:
+            if (tb.logtype == TRACKABLE_LOG_NONE)
                 cell.detailTextLabel.text = @"No action (automatic)";
             else
                 cell.detailTextLabel.text = @"No action";
             break;
-        case LOGTYPE_VISIT:
-            if (tb.logtype == LOGTYPE_NONE)
+        case TRACKABLE_LOG_VISIT:
+            if (tb.logtype == TRACKABLE_LOG_NONE)
                 cell.detailTextLabel.text = @"Visited";
             else
                 cell.detailTextLabel.text = @"Visited (automatic)";
             break;
-        case LOGTYPE_DROPOFF:
+        case TRACKABLE_LOG_DROPOFF:
             cell.detailTextLabel.text = @"Dropped off";
             break;
-        case LOGTYPE_PICKUP:
+        case TRACKABLE_LOG_PICKUP:
             cell.detailTextLabel.text = @"Picked up";
             break;
-        case LOGTYPE_DISCOVER:
+        case TRACKABLE_LOG_DISCOVER:
             cell.detailTextLabel.text = @"Discovered";
             break;
     }
@@ -147,7 +147,7 @@ enum {
                                actionWithTitle:@"No action"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
-                                   [logtypes setObject:[NSNumber numberWithInteger:LOGTYPE_NONE] atIndexedSubscript:indexPath.row];
+                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
                                    [self.tableView reloadData];
                                }];
 
@@ -155,7 +155,7 @@ enum {
                               actionWithTitle:@"Dropped off"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
-                                  [logtypes setObject:[NSNumber numberWithInteger:LOGTYPE_DROPOFF] atIndexedSubscript:indexPath.row];
+                                  [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DROPOFF] atIndexedSubscript:indexPath.row];
                                   [self.tableView reloadData];
                               }];
 
@@ -163,7 +163,7 @@ enum {
                               actionWithTitle:@"Visited"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
-                                  [logtypes setObject:[NSNumber numberWithInteger:LOGTYPE_VISIT] atIndexedSubscript:indexPath.row];
+                                  [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_VISIT] atIndexedSubscript:indexPath.row];
                                   [self.tableView reloadData];
                               }];
 
@@ -218,8 +218,8 @@ enum {
                              }
 
                              [tbs addObject:tb];
-                             tb.logtype = LOGTYPE_PICKUP;
-                             [logtypes addObject:[NSNumber numberWithInteger:LOGTYPE_PICKUP]];
+                             tb.logtype = TRACKABLE_LOG_PICKUP;
+                             [logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP]];
                              [self.tableView reloadData];
                          }];
 
@@ -271,8 +271,8 @@ enum {
                              }
 
                              [tbs addObject:tb];
-                             tb.logtype = LOGTYPE_DISCOVER;
-                             [logtypes addObject:[NSNumber numberWithInteger:LOGTYPE_DISCOVER]];
+                             tb.logtype = TRACKABLE_LOG_DISCOVER;
+                             [logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER]];
                              [self.tableView reloadData];
                          }];
 

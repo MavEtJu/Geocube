@@ -227,11 +227,11 @@ enum {
                         __block NSInteger noaction = 0;
                         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
                             switch (tb.logtype) {
-                                case LOGTYPE_NONE: noaction++; break;
-                                case LOGTYPE_DISCOVER: discovered++; break;
-                                case LOGTYPE_PICKUP: pickedup++; break;
-                                case LOGTYPE_DROPOFF: droppedoff++; break;
-                                case LOGTYPE_VISIT: visited++; break;
+                                case TRACKABLE_LOG_NONE: noaction++; break;
+                                case TRACKABLE_LOG_DISCOVER: discovered++; break;
+                                case TRACKABLE_LOG_PICKUP: pickedup++; break;
+                                case TRACKABLE_LOG_DROPOFF: droppedoff++; break;
+                                case TRACKABLE_LOG_VISIT: visited++; break;
                                 default: NSAssert1(NO, @"unknown logtype: %ld", tb.logtype);
                             }
                         }];

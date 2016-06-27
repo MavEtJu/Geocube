@@ -22,12 +22,12 @@
 @interface dbTrackable : dbObject
 
 enum {
-    LOGTYPE_NONE = 0,
-    LOGTYPE_VISIT,
-    LOGTYPE_DROPOFF,
-    LOGTYPE_PICKUP,
-    LOGTYPE_DISCOVER,
-    LOGTYPE_MAX
+    TRACKABLE_LOG_NONE = 0,
+    TRACKABLE_LOG_VISIT,
+    TRACKABLE_LOG_DROPOFF,
+    TRACKABLE_LOG_PICKUP,
+    TRACKABLE_LOG_DISCOVER,
+    TRACKABLE_LOG_MAX
 };
 
 @property (nonatomic, retain) NSString *code;
