@@ -312,7 +312,24 @@
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_NONE)
                 return;
-            [liveAPI CreateTrackableLog:waypoint trackable:tb dateLogged:dateLogged];
+            NSInteger dflt = 0;
+            switch (tb.logtype) {
+                case TRACKABLE_LOG_VISIT:
+                    dflt = LOGSTRING_DEFAULT_VISIT;
+                    break;
+                case TRACKABLE_LOG_DROPOFF:
+                    dflt = LOGSTRING_DEFAULT_DROPOFF;
+                    break;
+                case TRACKABLE_LOG_PICKUP:
+                    dflt = LOGSTRING_DEFAULT_PICKUP;
+                    break;
+                case TRACKABLE_LOG_DISCOVER:
+                    dflt = LOGSTRING_DEFAULT_DISCOVER;
+                    break;
+
+            }
+            dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:LOGSTRING_LOGTYPE_TRACKABLEPERSON default:dflt];
+            [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb dateLogged:dateLogged];
         }];
         return retvalue;
     }
