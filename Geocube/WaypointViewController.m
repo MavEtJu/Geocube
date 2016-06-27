@@ -702,14 +702,7 @@ enum {
 {
     NSString *date = [MyTools dateTimeString:time(NULL)];
     NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
-    NSArray *lss = [dbLogString dbAllByAccountLogtype_All:waypoint.account logtype:logtype];
-    __block dbLogString *logstring = nil;
-    [lss enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (ls.defaultNote == YES) {
-            logstring = ls;
-            *stop = YES;
-        }
-    }];
+    dbLogString *logstring = [dbLogString dbGetByAccountLogtypeDefault:waypoint.account logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
 
     [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
 }

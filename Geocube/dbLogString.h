@@ -31,6 +31,13 @@ enum {
     LOGSTRING_FOUND_NO = 0,
     LOGSTRING_FOUND_YES,
     LOGSTRING_FOUND_NA,
+
+    LOGSTRING_DEFAULT_NOTE = 0,
+    LOGSTRING_DEFAULT_FOUND,
+    LOGSTRING_DEFAULT_VISIT,
+    LOGSTRING_DEFAULT_DROPOFF,
+    LOGSTRING_DEFAULT_PICKUP,
+    LOGSTRING_DEFAULT_DISCOVER,
 };
 
 @property (nonatomic, retain) NSString *text;
@@ -39,6 +46,10 @@ enum {
 @property (nonatomic) NSId account_id;
 @property (nonatomic) BOOL defaultNote;
 @property (nonatomic) BOOL defaultFound;
+@property (nonatomic) BOOL defaultVisit;
+@property (nonatomic) BOOL defaultDropoff;
+@property (nonatomic) BOOL defaultPickup;
+@property (nonatomic) BOOL defaultDiscover;
 @property (nonatomic) BOOL forLogs;
 @property (nonatomic) NSInteger logtype;
 @property (nonatomic) NSInteger found;
@@ -52,5 +63,6 @@ enum {
 + (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype;
 + (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype;
 + (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
++ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(NSInteger)logtype default:(NSInteger)dflt;
 
 @end

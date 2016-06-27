@@ -410,6 +410,16 @@
     @"delete from groups where name ='All Waypoints - Attended'",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 32
+    a = @[
+    @"alter table log_strings add column default_visit bool",
+    @"alter table log_strings add column default_dropoff bool",
+    @"alter table log_strings add column default_pickup bool",
+    @"alter table log_strings add column default_discover bool",
+    @"update log_strings set default_visit = 0, default_dropoff = 0, default_pickup = 0, default_discover = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

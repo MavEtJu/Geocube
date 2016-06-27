@@ -582,6 +582,10 @@
                 NSString *s = [logdict objectForKey:@"default"];
                 BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
                 BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
+                BOOL defaultVisit = ([s isEqualToString:@"visit"] == YES);
+                BOOL defaultDropoff = ([s isEqualToString:@"dropoff"] == YES);
+                BOOL defaultPickup = ([s isEqualToString:@"pickup"] == YES);
+                BOOL defaultDiscover = ([s isEqualToString:@"discover"] == YES);
                 BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
                 NSString *_found = [logdict objectForKey:@"found"];
                 NSInteger found = LOGSTRING_FOUND_NA;
@@ -603,6 +607,10 @@
                     ls.account_id = _account._id;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
+                    ls.defaultVisit = defaultVisit;
+                    ls.defaultDropoff = defaultDropoff;
+                    ls.defaultPickup = defaultPickup;
+                    ls.defaultDiscover = defaultDiscover;
                     ls.icon = icon;
                     ls.forLogs = forlogs;
                     ls.found = found;
@@ -611,6 +619,10 @@
                     ls.text = text;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
+                    ls.defaultVisit = defaultVisit;
+                    ls.defaultDropoff = defaultDropoff;
+                    ls.defaultPickup = defaultPickup;
+                    ls.defaultDiscover = defaultDiscover;
                     ls.icon = icon;
                     ls.forLogs = forlogs;
                     ls.found = found;

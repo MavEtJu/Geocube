@@ -310,6 +310,8 @@
     if (account.protocol == ProtocolLiveAPI) {
         NSInteger retvalue = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (tb.logtype == TRACKABLE_LOG_NONE)
+                return;
             [liveAPI CreateTrackableLog:waypoint trackable:tb dateLogged:dateLogged];
         }];
         return retvalue;
