@@ -21,15 +21,17 @@
 
 enum {
     REMOTEAPI_OK = 0,
-    REMOTEAPI_APIFAILED,
-    REMOTEAPI_APIDISABLED,
-    REMOTEAPI_NOTPROCESSED,
+    REMOTEAPI_APIREFUSED,               // Couldn't connect to the API
+    REMOTEAPI_APIFAILED,                // Invalid values returned
+    REMOTEAPI_APIDISABLED,              // No authentication details
 
-    REMOTEAPI_CREATELOG_LOGFAILED,
-    REMOTEAPI_CREATELOG_IMAGEFAILED,
-    REMOTEAPI_LOADWAYPOINT_LOADFAILED,
-    REMOTEAPI_LOADWAYPOINTS_LOADFAILED,
-    REMOTEAPI_LISTQUERIES_LOADFAILED,
+    REMOTEAPI_NOTPROCESSED,             // Not supported in this protocol
+
+    REMOTEAPI_CREATELOG_LOGFAILED,      // Unable to create the log
+    REMOTEAPI_CREATELOG_IMAGEFAILED,    // Unable to upload the image
+    REMOTEAPI_LOADWAYPOINT_LOADFAILED,  // Unable to load the waypoint
+    REMOTEAPI_LOADWAYPOINTS_LOADFAILED, // Unable to load the waypoints
+    REMOTEAPI_LISTQUERIES_LOADFAILED,   // Unable to load the list of queries
 };
 
 @protocol RemoteAPIAuthenticationDelegate
