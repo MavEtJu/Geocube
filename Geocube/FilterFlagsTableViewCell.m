@@ -216,7 +216,6 @@ enum {
 
 - (void)clickGroup:(UIButton *)b
 {
-
     if (b == buttonMarkedAsFound) {
         valueMarkedAsFound = (valueMarkedAsFound + 1) % [valuesMarkedAsFound count];
         [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];

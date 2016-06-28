@@ -85,7 +85,6 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
 
 - (NSInteger)calculateSpan
 {
-
     if (myConfig.dynamicmapEnable == NO)
         return myConfig.dynamicmapWalkingDistance;
 

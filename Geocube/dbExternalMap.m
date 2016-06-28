@@ -124,7 +124,7 @@
 
 - (void)finish
 {
-
+    [super finish];
 }
 
 - (NSId)dbCreate

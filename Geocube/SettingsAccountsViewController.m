@@ -302,7 +302,6 @@ enum {
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
 {
-
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading %@", header];
     }];

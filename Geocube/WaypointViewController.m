@@ -240,7 +240,6 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     switch (indexPath.section) {
         case WAYPOINT_HEADER: {
             WaypointHeaderTableViewCell *cell = [[WaypointHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];

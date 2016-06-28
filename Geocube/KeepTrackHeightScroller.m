@@ -133,7 +133,6 @@ enum {
 
 - (void)createHeightMap
 {
-
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     __block CGFloat ymin = +100000, ymax = -100000;

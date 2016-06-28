@@ -394,7 +394,6 @@ enum sections {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
             UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
