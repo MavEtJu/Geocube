@@ -228,12 +228,12 @@
     }
 }
 
-- (NSDictionary *)UserStatistics
+- (NSInteger)UserStatistics:(NSDictionary **)retDict
 {
-    return [self UserStatistics:account.accountname_string];
+    return [self UserStatistics:account.accountname_string retDict:retDict];
 }
 
-- (NSDictionary *)UserStatistics:(NSString *)username
+- (NSInteger)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -253,13 +253,15 @@
         NSDictionary *dict = [okapi services_users_byUsername:username];
 
         if (dict == nil)
-            return nil;
+            return REMOTEAPI_APIFAILED;
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
         [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
         [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
         [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"rcmds_given"];
-        return ret;
+
+        *retDict = ret;
+        return REMOTEAPI_OK;
     }
 
     if (account.protocol == ProtocolLiveAPI) {
@@ -267,7 +269,7 @@
         NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser];
 
         if (dict1 == nil && dict2 == nil)
-            ret = nil;
+            return REMOTEAPI_APIFAILED;
 
         NSDictionary *d = [dict1 objectForKey:@"Profile"];
         d = [d objectForKey:@"User"];
@@ -280,7 +282,8 @@
             [ret setValue:n forKey:@"recommendations_given"];
         }
 
-        return ret;
+        *retDict = ret;
+        return REMOTEAPI_OK;
     }
 
     if (account.protocol == ProtocolGCA) {
@@ -288,17 +291,18 @@
         NSDictionary *dict2 = [gca cacher_statistic__hides:username];
 
         if ([dict1 count] == 0 && [dict2 count] == 0)
-            return nil;
+            return REMOTEAPI_APIFAILED;
 
         [self getNumber:ret from:dict1 outKey:@"waypoints_found" inKey:@"waypoints_found"];
         [self getNumber:ret from:dict2 outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
         [self getNumber:ret from:dict2 outKey:@"recommendatons_received" inKey:@"recommendatons_received"];
         [self getNumber:ret from:dict2 outKey:@"recommendations_given" inKey:@"recommendations_given"];
 
-        return ret;
+        *retDict = ret;
+        return REMOTEAPI_OK;
     }
 
-    return nil;
+    return REMOTEAPI_NOTPROCESSED;
 }
 
 - (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables

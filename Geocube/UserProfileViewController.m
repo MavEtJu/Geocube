@@ -251,13 +251,15 @@ enum {
     }
 
     [self showAccounts];
-
-
 }
 
 - (void)runStatistics:(dbAccount *)a
 {
-    NSDictionary *d = [a.remoteAPI UserStatistics];
+    NSDictionary *d = nil;
+    NSInteger retValue = [a.remoteAPI UserStatistics:&d];
+
+    if (retValue != REMOTEAPI_OK)
+        return;
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *aa, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a == aa) {

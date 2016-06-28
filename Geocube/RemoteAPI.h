@@ -78,8 +78,7 @@ enum {
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
 
-- (NSDictionary *)UserStatistics;
-- (NSDictionary *)UserStatistics:(NSString *)username;
+- (NSInteger)UserStatistics:(NSDictionary **)retDict;
 
 - (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
