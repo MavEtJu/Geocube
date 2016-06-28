@@ -420,6 +420,13 @@
     @"update log_strings set default_visit = 0, default_dropoff = 0, default_pickup = 0, default_discover = 0",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 33
+    a = @[
+    @"alter table types add column has_boundary bool",
+    @"update types set has_boundary = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

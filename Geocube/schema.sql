@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
-insert into config(key, value) values("version", "32");
+insert into config(key, value) values("version", "33");
 
 create table filters (
     id integer primary key,
@@ -155,7 +155,8 @@ create table types (
     type_major text,
     type_minor text,
     icon integer,
-    pin_id integer	-- points to pins(id)
+    pin_id integer,	-- points to pins(id)
+    has_boundary bool
 );
 create index types_idx_id on types(id);
 

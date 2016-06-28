@@ -171,7 +171,7 @@
     circlesShown = YES;
     circles = [NSMutableArray arrayWithCapacity:20];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        if (circlesShown == YES && wp.account.distance_minimum != 0) {
+        if (circlesShown == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
             [mapView addOverlay:circle];
             [circles addObject:circle];

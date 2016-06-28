@@ -27,6 +27,7 @@
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) NSId pin_id;
 @property (nonatomic) dbPin *pin;
+@property (nonatomic) BOOL hasBoundary;
 @property (nonatomic) BOOL selected;
 
 + (dbType *)dbGetByMajor:(NSString *)major minor:(NSString *)minor;

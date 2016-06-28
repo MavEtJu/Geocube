@@ -417,6 +417,10 @@
         NSString *minor = [type objectForKey:@"minor"];
         NSInteger icon = [[type objectForKey:@"icon"] integerValue];
         NSInteger pin = [[type objectForKey:@"pin"] integerValue];
+        NSString *b = [type objectForKey:@"hasBoundary"];
+        BOOL hasBoundary = NO;
+        if (b != nil)
+            hasBoundary = [b boolValue];
 
         dbType *t = [dbType dbGetByMajor:major minor:minor];
         if (t != nil) {
@@ -424,6 +428,7 @@
             t.type_minor = minor;
             t.icon = icon;
             t.pin_id = pin;
+            t.hasBoundary = hasBoundary;
             [t finish];
             [t dbUpdate];
         } else {
@@ -432,6 +437,7 @@
             t.type_minor = minor;
             t.icon = icon;
             t.pin_id = pin;
+            t.hasBoundary = hasBoundary;
             [t finish];
             [t dbCreate];
             [dbc Type_add:t];
