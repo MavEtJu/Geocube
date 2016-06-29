@@ -24,6 +24,10 @@
     MapViewController *mapvc;
     LXMapScaleView *mapScaleView;
     BOOL circlesShown;
+
+    UIView *wpInfoView;
+    WaypointTableViewCell *wtvc;
+    UIButton *wpInfoViewButton;
 }
 
 @property (nonatomic, retain) MapViewController *mapvc;
@@ -35,6 +39,8 @@
 - (void)mapViewDidDisappear;
 - (void)mapViewDidLoad;
 - (void)recalculateRects;
+
+- (void)mapCallOutPressed:(id)sender;
 
 - (void)startActivityViewer:(NSString *)text;
 - (void)stopActivityViewer;
@@ -75,6 +81,11 @@
 
 - (void)removeHistory;
 - (void)addHistory;
+
+- (void)hideWaypointInfo;
+- (void)showWaypointInfo;
+- (void)initWaypointInfo;
+- (void)updateWaypointInfo:(dbWaypoint *)wp;
 
 - (CLLocationCoordinate2D)currentCenter;
 

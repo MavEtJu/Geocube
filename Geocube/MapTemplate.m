@@ -55,6 +55,7 @@ NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 NEEDS_OVERLOADING(removeHistory)
 NEEDS_OVERLOADING(addHistory)
+NEEDS_OVERLOADING(mapCallOutPressed:(id)sender)
 - (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
 NEEDS_OVERLOADING_BOOL(mapHasViewMap);
 NEEDS_OVERLOADING_BOOL(mapHasViewSatellite);
@@ -207,6 +208,75 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
 - (void)updateMapScaleView
 {
     [mapScaleView update];
+}
+
+- (void)hideWaypointInfo
+{
+    wpInfoView.hidden = YES;
+}
+
+- (void)showWaypointInfo
+{
+    wpInfoView.hidden = NO;
+}
+
+- (void)updateWaypointInfo:(dbWaypoint *)wp
+{
+    wtvc.description.text = wp.wpt_urlname;
+    wtvc.name.text = wp.wpt_name;
+    wtvc.icon.image = [imageLibrary getType:wp];
+    if (wp.flag_highlight == YES)
+        wtvc.description.backgroundColor = [UIColor yellowColor];
+    else
+        wtvc.description.backgroundColor = [UIColor clearColor];
+
+    [wtvc setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
+
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    wtvc.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
+    wtvc.compass.text = [Coordinates bearing2compass:bearing];
+    wtvc.distance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+
+    wtvc.labelSize.text = wp.wpt_type.type_minor;
+    if (wp.gs_container.icon == 0) {
+        wtvc.labelSize.hidden = NO;
+        wtvc.imageSize.hidden = YES;
+    } else {
+        wtvc.labelSize.hidden = YES;
+        wtvc.imageSize.hidden = NO;
+    }
+
+    NSMutableString *s = [NSMutableString stringWithFormat:@""];
+    if (wp.gs_state != nil)
+        [s appendFormat:@"%@", wp.gs_state.name];
+    if (wp.gs_country != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        [s appendFormat:@"%@", wp.gs_country.code];
+    }
+    wtvc.stateCountry.text = s;
+
+    CGRect frame = mapvc.view.frame;
+    wpInfoView.frame = CGRectMake(0, frame.size.height - [wtvc cellHeight], frame.size.width, [wtvc cellHeight]);
+    wpInfoViewButton.frame = wpInfoView.frame;
+}
+
+
+- (void)initWaypointInfo
+{
+    /* Add the info window */
+    wpInfoView = [[UIView alloc] initWithFrame:CGRectZero];
+    wpInfoView.hidden = NO;
+    wpInfoView.backgroundColor = [UIColor whiteColor];
+    [mapvc.view addSubview:wpInfoView];
+    wtvc = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    [[wtvc subviews] enumerateObjectsUsingBlock:^(UIView *sv, NSUInteger idx, BOOL *stop) {
+        [wpInfoView addSubview:sv];
+    }];
+    wpInfoViewButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [wpInfoViewButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchDown];
+    wpInfoViewButton.backgroundColor = [UIColor clearColor];
+    [mapvc.view addSubview:wpInfoViewButton];
 }
 
 @end

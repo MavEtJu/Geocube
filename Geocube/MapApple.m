@@ -99,9 +99,12 @@
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
 
+    // Add a new waypoint
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
     [mapView addGestureRecognizer:lpgr];
+
+    [self initWaypointInfo];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -147,8 +150,8 @@
         annotation._id = wp._id;
         annotation.name = wp.wpt_name;
 
-        [annotation setTitle:wp.wpt_name];
-        [annotation setSubtitle:wp.wpt_urlname];
+        annotation.title = wp.wpt_name;
+        annotation.subtitle = wp.wpt_urlname;
 
         [markers addObject:annotation];
     }];
@@ -209,12 +212,30 @@
         [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
 
         dropPin.rightCalloutAccessoryView = disclosureButton;
-        dropPin.canShowCallout = YES;
+        dropPin.canShowCallout = NO;
 
         return dropPin;
     }
 
     return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
+        GCPointAnnotation *pa = (GCPointAnnotation *)view.annotation;
+        dbWaypoint *wp = [dbWaypoint dbGet:pa._id];
+        [self updateWaypointInfo:wp];
+        [self showWaypointInfo];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
+        [self hideWaypointInfo];
+        wpInfoView.hidden = YES;
+    }
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
@@ -360,8 +381,8 @@
 {
     UIView *view = self.mapvc.view.subviews.firstObject;
     //  Look through gesture recognizers to determine whether this region change is from user interaction
-    for(UIGestureRecognizer *recognizer in view.gestureRecognizers) {
-        if(recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
+    for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {
+        if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
             return YES;
         }
     }
