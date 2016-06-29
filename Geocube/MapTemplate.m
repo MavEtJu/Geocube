@@ -55,12 +55,12 @@ NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
 NEEDS_OVERLOADING(removeHistory)
 NEEDS_OVERLOADING(addHistory)
-NEEDS_OVERLOADING(mapCallOutPressed:(id)sender)
 - (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
-NEEDS_OVERLOADING_BOOL(mapHasViewMap);
-NEEDS_OVERLOADING_BOOL(mapHasViewSatellite);
-NEEDS_OVERLOADING_BOOL(mapHasViewHybrid);
-NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
+NEEDS_OVERLOADING_BOOL(mapHasViewMap)
+NEEDS_OVERLOADING_BOOL(mapHasViewSatellite)
+NEEDS_OVERLOADING_BOOL(mapHasViewHybrid)
+NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
+NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 
 - (instancetype)init:(MapViewController *)mvc
 {
@@ -274,7 +274,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewTerrain);
         [wpInfoView addSubview:sv];
     }];
     wpInfoViewButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [wpInfoViewButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchDown];
+    [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
     wpInfoViewButton.backgroundColor = [UIColor clearColor];
     [mapvc.view addSubview:wpInfoViewButton];
 }

@@ -40,8 +40,6 @@
 - (void)mapViewDidLoad;
 - (void)recalculateRects;
 
-- (void)mapCallOutPressed:(id)sender;
-
 - (void)startActivityViewer:(NSString *)text;
 - (void)stopActivityViewer;
 - (void)updateActivityViewer:(NSString *)s;
@@ -86,6 +84,7 @@
 - (void)showWaypointInfo;
 - (void)initWaypointInfo;
 - (void)updateWaypointInfo:(dbWaypoint *)wp;
+- (void)openWaypointInfo:(id)sender;
 
 - (CLLocationCoordinate2D)currentCenter;
 

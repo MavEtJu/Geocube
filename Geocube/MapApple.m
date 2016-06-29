@@ -192,11 +192,11 @@
     circles = nil;
 }
 
-- (void)mapCallOutPressed:(id)sender
+- (void)openWaypointInfo:(id)sender
 {
     MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
     NSLog(@"%@", ann.title);
-    [super openWaypointView:ann.title];
+    [self openWaypointView:ann.title];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation

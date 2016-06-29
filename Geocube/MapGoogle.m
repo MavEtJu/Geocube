@@ -32,6 +32,8 @@
 
     GMSPolyline *lineMeToWaypoint;
     GMSPolyline *lineHistory;
+
+    dbWaypoint *wpSelected;
 }
 
 @end
@@ -98,6 +100,9 @@
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
     [mapScaleView update];
+
+    wpSelected = nil;
+    [self initWaypointInfo];
 }
 
 - (void)removeMap
@@ -147,6 +152,7 @@
         marker.map = mapView;
         marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
         marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
+        marker.userData = wp.wpt_name;
 
         marker.icon = [self waypointImage:wp];
         [markers addObject:marker];
@@ -295,9 +301,29 @@
     [mapScaleView update];
 }
 
-- (void) mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
+- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
     [mapvc addNewWaypoint:coordinate];
+}
+
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
+{
+    wpSelected = [dbWaypoint dbGet:[dbWaypoint dbGetByName:marker.userData]];
+    [self updateWaypointInfo:wpSelected];
+    [self showWaypointInfo];
+    return YES;
+}
+
+- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    [self hideWaypointInfo];
+    wpSelected = nil;
+}
+
+- (void)openWaypointInfo:(id)sender
+{
+    NSLog(@"%@", wpSelected.wpt_name);
+    [self openWaypointView:wpSelected.wpt_name];
 }
 
 @end
