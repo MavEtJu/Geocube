@@ -228,7 +228,6 @@
 {
     if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
         [self hideWaypointInfo];
-        wpInfoView.hidden = YES;
     }
 }
 

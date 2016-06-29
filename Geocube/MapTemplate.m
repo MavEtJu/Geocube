@@ -22,6 +22,11 @@
 #import "Geocube-Prefix.pch"
 
 @interface MapTemplate ()
+{
+    MapWaypointInfoView *wpInfoView;
+    WaypointTableViewCell *wtvc;
+    UIButton *wpInfoViewButton;
+}
 
 @end
 
@@ -265,7 +270,7 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 - (void)initWaypointInfo
 {
     /* Add the info window */
-    wpInfoView = [[UIView alloc] initWithFrame:CGRectZero];
+    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:CGRectZero];
     wpInfoView.hidden = NO;
     wpInfoView.backgroundColor = [UIColor whiteColor];
     [mapvc.view addSubview:wpInfoView];

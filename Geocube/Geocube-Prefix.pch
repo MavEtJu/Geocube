@@ -223,6 +223,7 @@
 #import "UserProfileViewController.h"
 
 #import "GCPointAnnotation.h"
+#import "MapWaypointInfoView.h"
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"

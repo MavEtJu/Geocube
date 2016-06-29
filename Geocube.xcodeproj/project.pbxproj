@@ -10,6 +10,7 @@
 		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */; };
 		E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E91D17CADA00F05772 /* dbLogString.m */; };
+		E80250ED1D2474B500F05772 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* WaypointManager.m */; };
 		E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E80731A61B5F84B4007FDC29 /* attributes - 01.png */; };
@@ -445,6 +446,8 @@
 		E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogTrackablesViewController.m; sourceTree = "<group>"; };
 		E80250E81D17CADA00F05772 /* dbLogString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogString.h; sourceTree = "<group>"; };
 		E80250E91D17CADA00F05772 /* dbLogString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogString.m; sourceTree = "<group>"; };
+		E80250EB1D2474B500F05772 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
+		E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E8045B871B697A3B00DD44CC /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
@@ -1452,6 +1455,8 @@
 				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
 				E8DD39511C40AFB500407705 /* MapAppleCache.h */,
 				E8DD39521C40AFB500407705 /* MapAppleCache.m */,
+				E80250EB1D2474B500F05772 /* MapWaypointInfoView.h */,
+				E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
 			);
@@ -2740,6 +2745,7 @@
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
+				E80250ED1D2474B500F05772 /* MapWaypointInfoView.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */,
 				E8C5BB761C719EB1006222D5 /* WaypointLogsViewController.m in Sources */,

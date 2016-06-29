@@ -24,10 +24,6 @@
     MapViewController *mapvc;
     LXMapScaleView *mapScaleView;
     BOOL circlesShown;
-
-    UIView *wpInfoView;
-    WaypointTableViewCell *wtvc;
-    UIButton *wpInfoViewButton;
 }
 
 @property (nonatomic, retain) MapViewController *mapvc;

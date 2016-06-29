@@ -109,6 +109,7 @@
 @class MapOSM;
 @class MapTemplate;
 @class MapViewController;
+@class MapWaypointInfoView;
 @class MyConfig;
 @class MyTools;
 @class NotesFieldnotesViewController;
