@@ -262,9 +262,7 @@ enum sections {
     SECTION_SOUNDS_DISTANCE,
     SECTION_SOUNDS_MAX,
 
-    SECTION_MAPS_CLUSTERS = 0,
-    SECTION_MAPS_ZOOMLEVEL,
-    SECTION_MAPS_ROTATE_TO_BEARING,
+    SECTION_MAPS_ROTATE_TO_BEARING = 0,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -535,26 +533,6 @@ enum sections {
 
         case SECTION_MAPS: {   // Maps
             switch (indexPath.row) {
-                case SECTION_MAPS_CLUSTERS: {   // Enable
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-
-                    cell.textLabel.text = @"Enable clusters";
-
-                    mapClustersEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    mapClustersEnable.on = myConfig.mapClustersEnable;
-                    [mapClustersEnable addTarget:self action:@selector(updateMapClustersEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = mapClustersEnable;
-
-                    return cell;
-                }
-                case SECTION_MAPS_ZOOMLEVEL: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
-
-                    cell.textLabel.text = @"Maximum zoom level for clustering";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f", myConfig.mapClustersZoomLevel];
-
-                    return cell;
-                }
                 case SECTION_MAPS_ROTATE_TO_BEARING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
 
@@ -945,9 +923,6 @@ enum sections {
             return;
         case SECTION_MAPS:
             switch (indexPath.row) {
-                case SECTION_MAPS_ZOOMLEVEL:
-                    [self changeMapZoomLevel];
-                    break;
             }
             return;
         case SECTION_DYNAMICMAP:
@@ -1476,31 +1451,6 @@ enum sections {
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 10;
     [myConfig mapSearchMaximumNumberGCAUpdate:d];
-    [self.tableView reloadData];
-}
-
-/* ********************************************************************************* */
-
-- (void)changeMapZoomLevel
-{
-    NSMutableArray *zoomLevels = [NSMutableArray arrayWithCapacity:2 * 19];
-    for (float f = 0; f < 19.2; f += 0.5) {
-        [zoomLevels addObject:[NSString stringWithFormat:@"%0.1f", f]];
-    }
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Zoom Level"
-                                            rows:zoomLevels
-                                initialSelection:myConfig.mapClustersZoomLevel * 2
-                                          target:self
-                                   successAction:@selector(updateMapZoomLevelSuccess:element:)
-                                    cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
-     ];
-}
-
-- (void)updateMapZoomLevelSuccess:(NSNumber *)selectedIndex element:(id)element
-{
-    float f = [selectedIndex floatValue] / 2.0;
-    [myConfig mapClustersUpdateZoomLevel:f];
     [self.tableView reloadData];
 }
 

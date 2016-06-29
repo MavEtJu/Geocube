@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapApple : MapTemplate <MKMapViewDelegate, MyConfigChangedDelegate>
+@interface MapApple : MapTemplate <MKMapViewDelegate>
 {
     MKMapView *mapView;
 }

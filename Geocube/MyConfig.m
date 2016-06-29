@@ -228,13 +228,6 @@
     }
 }
 
-- (void)sendDelegatesMapClusters
-{
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        [delegate changeMapClusters:mapClustersEnable zoomLevel:mapClustersZoomLevel];
-    }];
-}
-
 /*
  * Updates-related meta functions
  */
@@ -400,13 +393,11 @@
 {
     mapClustersEnable = value;
     [self BOOLUpdate:@"map_clusters_enable" value:value];
-    [self sendDelegatesMapClusters];
 }
 - (void)mapClustersUpdateZoomLevel:(float)value
 {
     mapClustersZoomLevel = value;
     [self FloatUpdate:@"map_clusters_zoomlevel" value:value];
-    [self sendDelegatesMapClusters];
 }
 - (void)mapRotateToBearingUpdate:(BOOL)value
 {

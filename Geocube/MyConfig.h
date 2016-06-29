@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol MyConfigChangedDelegate
-
-@optional - (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel;
-
-@end
-
 @interface MyConfig : NSObject
 
 // System settings

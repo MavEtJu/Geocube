@@ -208,12 +208,6 @@
         dbWaypoint *wp = [waypointManager waypoint_byId:a._id];
         dropPin.image = [self waypointImage:wp];
 
-        UIButton *disclosureButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [disclosureButton addTarget:self action:@selector(mapCallOutPressed:) forControlEvents:UIControlEventTouchUpInside];
-
-        dropPin.rightCalloutAccessoryView = disclosureButton;
-        dropPin.canShowCallout = NO;
-
         return dropPin;
     }
 
@@ -399,14 +393,6 @@
 
     // Update the ruler
     [mapScaleView update];
-}
-
-#pragma mark -- delegation from MyConfig
-
-- (void)changeMapClusters:(BOOL)enable zoomLevel:(float)zoomLevel
-{
-    [self removeMarkers];
-    [self placeMarkers];
 }
 
 @end
