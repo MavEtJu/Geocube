@@ -229,6 +229,11 @@
     [mapScaleView update];
 }
 
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
+{
+    [mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord zoom:zoomLevel]];
+}
+
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
     CLLocationCoordinate2D d1, d2;
@@ -280,6 +285,12 @@
 {
     CGPoint point = mapView.center;
     return [mapView.projection coordinateForPoint:point];
+}
+
+- (double)currentZoom
+{
+    CGFloat zoom = mapView.camera.zoom;
+    return zoom;
 }
 
 - (void)updateMyBearing:(CLLocationDirection)bearing

@@ -284,6 +284,22 @@
     [mapView setCenterCoordinate:t animated:YES];
 }
 
+- (void)setZoomLevel:(NSUInteger)zoomLevel
+{
+    [self moveCameraTo:mapView.centerCoordinate zoomLevel:zoomLevel];
+}
+
+- (double)currentZoom
+{
+    return log2(360 * ((mapView.frame.size.width/256) / mapView.region.span.longitudeDelta));
+}
+
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
+{
+    MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, zoomLevel)*mapView.frame.size.width/256);
+    [mapView setRegion:MKCoordinateRegionMake(coord, span) animated:NO];
+}
+
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
     CLLocationCoordinate2D d1, d2;
