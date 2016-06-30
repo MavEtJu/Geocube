@@ -372,15 +372,23 @@
 // From http://stackoverflow.com/questions/5556977/determine-if-mkmapview-was-dragged-moved moby
 - (BOOL)mapViewRegionDidChangeFromUserInteraction
 {
-    UIView *view = self.mapvc.view.subviews.firstObject;
+    NSArray *views = self.mapvc.view.subviews;
     //  Look through gesture recognizers to determine whether this region change is from user interaction
-    for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {
-        if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
-            return YES;
-        }
-    }
 
-    return NO;
+    __block BOOL found = NO;
+    [views enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([view isKindOfClass:[UIView class]] == NO)
+             return;
+        for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {
+            if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
+                found = YES;
+                *stop = YES;
+                return;
+            }
+        }
+    }];
+
+    return found;
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
