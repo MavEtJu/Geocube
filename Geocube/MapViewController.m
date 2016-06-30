@@ -612,6 +612,9 @@ enum {
 
 - (void)menuChangeMapbrand:(NSInteger)brand
 {
+    CLLocationCoordinate2D currentCoords = [map currentCenter];
+    NSLog(@"currentCoords: %@", [Coordinates NiceCoordinates:currentCoords]);
+
     [self removeDistanceLabel];
     [map removeMarkers];
     [map removeCamera];
@@ -670,7 +673,7 @@ enum {
 
     [map initMap];
     [map mapViewDidLoad];
-    [map initCamera:LM.coords];
+    [map initCamera:currentCoords];
 
     [self initDistanceLabel];
     [self initMapIcons];

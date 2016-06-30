@@ -113,6 +113,8 @@
 
 - (void)initCamera:(CLLocationCoordinate2D)coords
 {
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:coords zoom:15];
+    [mapView setCamera:camera];
 }
 
 - (void)removeCamera
