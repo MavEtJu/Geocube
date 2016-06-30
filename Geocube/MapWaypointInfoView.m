@@ -70,7 +70,6 @@
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
-    //icon.backgroundColor = [UIColor yellowColor];
     [self addSubview:icon];
 
     // Description
@@ -102,7 +101,6 @@
     // State country
     stateCountry = [[GCLabel alloc] initWithFrame:rectStateCountry];
     stateCountry.font = [UIFont systemFontOfSize:10];
-    //stateCountry.backgroundColor = [UIColor purpleColor];
     [self addSubview:stateCountry];
 
     // Favourites
@@ -125,7 +123,6 @@
     [self addSubview:ratingDLabel];
 
     ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingDIV];
-    //ratingD.image = imgRatingBase;
     [self addSubview:ratingDIV];
 
     // Terrain rating
@@ -135,7 +132,6 @@
     [self addSubview:ratingTLabel];
 
     ratingTIV = [[UIImageView alloc] initWithFrame:rectRatingTIV];
-    //ratingT.image = imgRatingBase;
     [self addSubview:ratingTIV];
 
     // Size
@@ -224,7 +220,6 @@
 
     ratingDLabel.frame = rectRatingDLabel;
     ratingTLabel.frame = rectRatingTLabel;
-    //    [self calculateCellHeight];
 }
 
 - (void)changeTheme
