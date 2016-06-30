@@ -23,23 +23,13 @@
 
 @interface MapWaypointInfoView ()
 {
-    GCView *contentView;
-
-    GCLabel *description;
-    GCLabel *name;
     UIImageView *imageSize;
     GCLabel *ratingDLabel, *ratingTLabel;
     UIImageView *ratingDIV, *ratingTIV;
     GCLabel *favouritesLabel;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
     UIImageView *icon, *favouritesIV;
-    GCLabel *stateCountry;
-    GCLabel *bearing;
-    GCLabel *compass;
-    GCLabel *distance;
     GCLabel *labelSize;
-
-    dbWaypoint *waypoint;
 
     CGRect rectIcon;
     CGRect rectDescription;
@@ -53,16 +43,15 @@
     CGRect rectRatingDLabel;
     CGRect rectRatingTLabel;
     CGRect rectBearing;
-    CGRect rectCompass;
     CGRect rectStateCountry;
-    CGRect rectDistance;
+    CGRect rectCoordinates;
 }
 
 @end
 
 @implementation MapWaypointInfoView
 
-@synthesize description, name, icon, stateCountry, bearing, compass, distance, labelSize, imageSize;
+@synthesize description, name, icon, stateCountry, bearing, labelSize, imageSize, coordinates;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -81,48 +70,39 @@
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
-    [contentView addSubview:icon];
+    [self addSubview:icon];
 
     // Description
     description = [[GCLabel alloc] initWithFrame:rectDescription];
     description.font = [UIFont boldSystemFontOfSize:14.0];
-    [contentView addSubview:description];
+    [self addSubview:description];
 
     // Name
     name = [[GCLabel alloc] initWithFrame:rectName];
     name.font = [UIFont systemFontOfSize:10.0];
-    [contentView addSubview:name];
+    [self addSubview:name];
 
     // Bearing
     bearing = [[GCLabel alloc] initWithFrame:rectBearing];
     bearing.font = [UIFont systemFontOfSize:10.0];
-    bearing.textAlignment = NSTextAlignmentCenter;
-    //bearing.backgroundColor = [UIColor redColor];
-    [contentView addSubview:bearing];
+    [self addSubview:bearing];
 
-    // Compass
-    compass = [[GCLabel alloc] initWithFrame:rectCompass];
-    compass.font = [UIFont systemFontOfSize:10.0];
-    compass.textAlignment = NSTextAlignmentCenter;
-    //compass.backgroundColor = [UIColor blueColor];
-    [contentView addSubview:compass];
+    // Coordinates
+    coordinates = [[GCLabel alloc] initWithFrame:rectCoordinates];
+    coordinates.font = [UIFont systemFontOfSize:10];
+    coordinates.backgroundColor = [UIColor purpleColor];
+    [self addSubview:coordinates];
 
     // State country
     stateCountry = [[GCLabel alloc] initWithFrame:rectStateCountry];
     stateCountry.font = [UIFont systemFontOfSize:10];
     //stateCountry.backgroundColor = [UIColor purpleColor];
-    [contentView addSubview:stateCountry];
-
-    // Distance
-    distance = [[GCLabel alloc] initWithFrame:rectDistance];
-    distance.font = [UIFont systemFontOfSize:10.0];
-    //distance.backgroundColor = [UIColor greenColor];
-    [contentView addSubview:distance];
+    [self addSubview:stateCountry];
 
     // Favourites
     favouritesIV = [[UIImageView alloc] initWithFrame:rectFavouritesIV];
     favouritesIV.image = imgFavourites;
-    [contentView addSubview:favouritesIV];
+    [self addSubview:favouritesIV];
     favouritesIV.hidden = TRUE;
 
     favouritesLabel = [[GCLabel alloc] initWithFrame:rectFavouritesLabel];
@@ -130,36 +110,36 @@
     favouritesLabel.font = [UIFont boldSystemFontOfSize:10];
     favouritesLabel.textColor = [UIColor whiteColor];
     favouritesLabel.textAlignment = NSTextAlignmentCenter;
-    [contentView addSubview:favouritesLabel];
+    [self addSubview:favouritesLabel];
 
     // Difficulty rating
     ratingDLabel = [[GCLabel alloc] initWithFrame:rectRatingDLabel];
     ratingDLabel.font = [UIFont systemFontOfSize:10.0];
     ratingDLabel.text = @"D";
-    [contentView addSubview:ratingDLabel];
+    [self addSubview:ratingDLabel];
 
     ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingDIV];
     //ratingD.image = imgRatingBase;
-    [contentView addSubview:ratingDIV];
+    [self addSubview:ratingDIV];
 
     // Terrain rating
     ratingTLabel = [[GCLabel alloc] initWithFrame:rectRatingTLabel];
     ratingTLabel.font = [UIFont systemFontOfSize:10.0];
     ratingTLabel.text = @"T";
-    [contentView addSubview:ratingTLabel];
+    [self addSubview:ratingTLabel];
 
     ratingTIV = [[UIImageView alloc] initWithFrame:rectRatingTIV];
     //ratingT.image = imgRatingBase;
-    [contentView addSubview:ratingTIV];
+    [self addSubview:ratingTIV];
 
     // Size
     imageSize = [[UIImageView alloc] initWithFrame:rectSize];
     imageSize.image = imgSize;
-    [contentView addSubview:imageSize];
+    [self addSubview:imageSize];
     labelSize = [[GCLabel alloc] initWithFrame:rectSizeLabel];
     labelSize.text = @"";
     labelSize.font = [UIFont systemFontOfSize:10];
-    [contentView addSubview:labelSize];
+    [self addSubview:labelSize];
 
     [self changeTheme];
 
@@ -173,14 +153,15 @@
     NSInteger height = [MapWaypointInfoView cellHeight];
 
     /*
-     +---+--------------------+---+
-     |   | Description        | F |  Favourites
-     |   +--------------------+   |  Difficulty
-     |   | Name               |   |  Terrain
-     +---+--------------+-----+---+  Angle
-     | A | State Country| D XXXXX |  Compass
-     | C | Distance     | T XXXXX |
-     +---+--------------+---------+
+     +---+---------------------+---+
+     |   | Description         | F |  Favourites
+     |   +---------------------+   |  Difficulty
+     |   | Name                |   |  Terrain
+     +---+---------------------+---+  Angle
+     | Coordinates                 |  Compass
+     | A | Distance      | D XXXXX |
+     | C | State Country | T XXXXX |
+     +---+--------------+----------+
      */
 #define BORDER 1
 #define ICON_WIDTH 30
@@ -193,6 +174,7 @@
 #define STAR_HEIGHT 18
 #define DISTANCE_HEIGHT 14
 #define BEARING_HEIGHT 14
+#define COORDINATES_HEIGHT 14
 
     rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
     rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
@@ -202,10 +184,9 @@
     rectSizeLabel = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH, STAR_HEIGHT / 2);
     rectRatingDIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     rectRatingTIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    rectBearing = CGRectMake(BORDER, height - BORDER - 2 * BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
-    rectCompass = CGRectMake(BORDER, height - BORDER - BEARING_HEIGHT, ICON_WIDTH, BEARING_HEIGHT);
+    rectBearing = CGRectMake(BORDER + ICON_WIDTH, height - BORDER - 2 * BEARING_HEIGHT, width - 2 * BORDER - ICON_WIDTH, BEARING_HEIGHT);
     rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingTIV.size.width, DISTANCE_HEIGHT);
-    rectDistance = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingDIV.size.width, DISTANCE_HEIGHT);
+    rectCoordinates = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - COORDINATES_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingDIV.size.width, COORDINATES_HEIGHT);
 
     rectFavouritesLabel = rectFavouritesIV;
     rectFavouritesLabel.size.height /= 2;
@@ -230,9 +211,8 @@
     ratingDIV.frame = rectRatingDIV;
     ratingTIV.frame = rectRatingTIV;
     bearing.frame = rectBearing;
-    compass.frame = rectCompass;
     stateCountry.frame = rectStateCountry;
-    distance.frame = rectDistance;
+    coordinates.frame = rectCoordinates;
 
     ratingDLabel.frame = rectRatingDLabel;
     ratingTLabel.frame = rectRatingTLabel;
@@ -243,9 +223,7 @@
 {
     [name changeTheme];
     [stateCountry changeTheme];
-    [distance changeTheme];
     [bearing changeTheme];
-    [compass changeTheme];
     [ratingDLabel changeTheme];
     [ratingTLabel changeTheme];
     [labelSize changeTheme];
@@ -290,7 +268,12 @@
 
 + (NSInteger)cellHeight
 {
-    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2;
+    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2 + COORDINATES_HEIGHT;
+}
+
+- (NSInteger)cellHeight
+{
+    return [MapWaypointInfoView cellHeight];
 }
 
 @end
