@@ -71,7 +71,7 @@
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     totalLines = [MyTools numberOfLines:s];
 
-    NSLog(@"run_options: %ld", run_options);
+    NSLog(@"run_options: %ld", (long)run_options);
 
     [rssParser setDelegate:self];
     [rssParser setShouldProcessNamespaces:NO];

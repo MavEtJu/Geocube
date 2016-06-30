@@ -114,11 +114,11 @@ extern database *db;
     DB_PREPARE(sql); \
     if (__keys__ != nil) { \
         if ([__keys__ length] != [__values__ count]) \
-            NSAssert2(NO, @"Keys length is not equal to values count: %ld - %ld", [__keys__ length], [__values__ count]); \
+            NSAssert2(NO, @"Keys length is not equal to values count: %ld - %ld", (long)[__keys__ length], (long)[__values__ count]); \
         [__values__ enumerateObjectsUsingBlock:^(NSObject *v, NSUInteger idx, BOOL * _Nonnull stop) { \
             NSNumber *n = (NSNumber *)v; \
             NSString *s = (NSString *)v; \
-            int i = (int)(idx + 1); \
+            int i = (int)idx + 1; \
             switch ([__keys__ characterAtIndex:idx]) { \
                 case 'i': \
                     SET_VAR_INT(i, [n longValue]); \
@@ -133,7 +133,7 @@ extern database *db;
                     SET_VAR_BOOL(i, [n boolValue]); \
                     break; \
                 default: \
-                    NSAssert2(NO, @"Invalid key: %@ at index %ld", __keys__, idx); \
+                    NSAssert2(NO, @"Invalid key: %@ at index %ld", __keys__, (unsigned long)idx); \
             } \
         }]; \
     } \

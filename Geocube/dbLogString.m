@@ -78,21 +78,21 @@
 {
     return [dbLogString dbAllXXX:@"where account_id = ?"
                             keys:@"i"
-                          values:@[[NSNumber numberWithInteger:account._id]]];
+                          values:@[[NSNumber numberWithLongLong:account._id]]];
 }
 
 + (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype
 {
     return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?"
                             keys:@"ii"
-                          values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+                          values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
 + (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
 {
     NSArray *lss = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
                                     keys:@"iis"
-                                  values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype], type]];
+                                  values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype], type]];
     if (lss == nil)
         return nil;
     if ([lss count] == 0)
@@ -104,14 +104,14 @@
 {
     return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1"
                             keys:@"ii"
-                          values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+                          values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
 + (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
 {
     NSArray *as = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
                                    keys:@"iis"
-                                 values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype], type]];
+                                 values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype], type]];
     if (as == nil)
         return nil;
     if ([as count] == 0)
@@ -239,13 +239,13 @@
             what = @"discover";
             break;
         default:
-            NSAssert1(NO, @"Unknown default field: %ld", dflt);
+            NSAssert1(NO, @"Unknown default field: %ld", (long)dflt);
     }
 
     NSString *where = [NSString stringWithFormat:@"where account_id = ? and logtype = ? and default_%@ = 1", what];
     NSArray *as = [dbLogString dbAllXXX:where
                                    keys:@"ii"
-                                 values:@[[NSNumber numberWithInteger:account._id], [NSNumber numberWithInteger:logtype]]];
+                                 values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
     if (as == nil)
         return nil;
     if ([as count] == 0)

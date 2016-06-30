@@ -232,7 +232,7 @@ enum {
                                 case TRACKABLE_LOG_PICKUP: pickedup++; break;
                                 case TRACKABLE_LOG_DROPOFF: droppedoff++; break;
                                 case TRACKABLE_LOG_VISIT: visited++; break;
-                                default: NSAssert1(NO, @"unknown logtype: %ld", tb.logtype);
+                                default: NSAssert1(NO, @"unknown logtype: %ld", (long)tb.logtype);
                             }
                         }];
                         NSMutableString *s = [NSMutableString stringWithString:@"Actions: "];
@@ -241,7 +241,7 @@ enum {
     if (__v__ != 0) { \
         if (first == NO) \
             [s appendFormat:@", "]; \
-        [s appendFormat: @"%ld %@", __v__, __s__]; \
+        [s appendFormat: @"%ld %@", (long)__v__, __s__]; \
         first = NO; \
     }
                         ACTION(@"visited", visited);

@@ -460,7 +460,7 @@
             [where appendString:@" or "];
         [where appendString:@"group_id = ?"];
         [keys appendString:@"i"];
-        [values addObject:[NSNumber numberWithInteger:group._id]];
+        [values addObject:[NSNumber numberWithLongLong:group._id]];
     }];
     // Stop selecting this criteria without actually selecting a group!
     if ([where isEqualToString:@""] == YES)
@@ -491,7 +491,7 @@
 
 + (dbWaypoint *)dbGet:(NSId)_id
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
     if ([wps count] == 0)
         return nil;
     return [wps objectAtIndex:0];

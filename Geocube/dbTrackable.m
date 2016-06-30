@@ -145,7 +145,7 @@
 
 + (dbTrackable *)dbGet:(NSId)_id
 {
-    NSArray *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]];
+    NSArray *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
     return [as objectAtIndex:0];
 }
 
@@ -157,7 +157,7 @@
 + (NSArray *)dbAllByWaypoint:(NSId)wp_id
 {
     NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)"];
-    return [self dbAllXXX:sql keys:@"i" values:@[[NSNumber numberWithLong:wp_id]]];
+    return [self dbAllXXX:sql keys:@"i" values:@[[NSNumber numberWithLongLong:wp_id]]];
 }
 
 + (NSId)dbGetIdByGC:(NSId)_gc_id
