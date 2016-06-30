@@ -263,7 +263,7 @@
         SET_VAR_INT(1, _wp_id);
 
         DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];;
+            dbLog *l = [[dbLog alloc] init];
             INT_FETCH (0, l._id);
             INT_FETCH (1, l.gc_id);
             INT_FETCH (2, l.waypoint_id);
@@ -291,7 +291,7 @@
         SET_VAR_INT(1, wp_id);
 
         DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];;
+            dbLog *l = [[dbLog alloc] init];
             INT_FETCH (0, l._id);
             INT_FETCH (1, l.gc_id);
             INT_FETCH (2, l.waypoint_id);

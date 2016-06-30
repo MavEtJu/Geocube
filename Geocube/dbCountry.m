@@ -53,7 +53,7 @@
         DB_PREPARE(@"select id, name, code from countries");
 
         DB_WHILE_STEP {
-            dbCountry *c = [[dbCountry alloc] init];;
+            dbCountry *c = [[dbCountry alloc] init];
             INT_FETCH (0, c._id);
             TEXT_FETCH(1, c.name);
             TEXT_FETCH(2, c.code);

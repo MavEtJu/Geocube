@@ -55,7 +55,7 @@
     NSTimeInterval oldest = now;
     NSInteger totalFileSize = 0;
     NSInteger filesize;
-    NSInteger checked = 0, deletedAge = 0, deletedSize = 0;;
+    NSInteger checked = 0, deletedAge = 0, deletedSize = 0;
 
     /* Clean up objects older than N days */
     while ((filename = [dirEnum nextObject]) != nil) {

@@ -62,7 +62,7 @@
         SET_VAR_INT(1, track_id);
 
         DB_WHILE_STEP {
-            dbTrackElement *te = [[dbTrackElement alloc] init];;
+            dbTrackElement *te = [[dbTrackElement alloc] init];
             INT_FETCH (0, te._id);
             INT_FETCH (1, te.track_id);
             INT_FETCH (2, te.lat_int);

@@ -664,7 +664,7 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         NSMutableDictionary *result = nil;
-        NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];;
+        NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];
 
         NSInteger max = 0;
         NSInteger tried = 0;

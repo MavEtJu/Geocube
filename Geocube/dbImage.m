@@ -74,7 +74,7 @@
         DB_PREPARE(@"select id, url, datafile, filename from images");
 
         DB_WHILE_STEP {
-            dbImage *i = [[dbImage alloc] init];;
+            dbImage *i = [[dbImage alloc] init];
             INT_FETCH (0, i._id);
             TEXT_FETCH(1, i.url);
             TEXT_FETCH(2, i.datafile);
@@ -103,7 +103,7 @@
         SET_VAR_INT(2, type);
 
         DB_WHILE_STEP {
-            dbImage *i = [[dbImage alloc] init];;
+            dbImage *i = [[dbImage alloc] init];
             INT_FETCH (0, i._id);
             TEXT_FETCH(1, i.url);
             TEXT_FETCH(2, i.datafile);

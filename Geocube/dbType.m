@@ -56,7 +56,7 @@
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types");
 
         DB_WHILE_STEP {
-            dbType *t = [[dbType alloc] init];;
+            dbType *t = [[dbType alloc] init];
             INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);
@@ -121,7 +121,7 @@
         SET_VAR_TEXT(2, major);
 
         DB_IF_STEP {
-            t = [[dbType alloc] init];;
+            t = [[dbType alloc] init];
             INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);

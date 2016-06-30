@@ -150,7 +150,7 @@
     }
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    BOOL success = [[json valueForKey:@"success"] boolValue];;
+    BOOL success = [[json valueForKey:@"success"] boolValue];
     if (success == NO) {
 //        [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
         return 0;

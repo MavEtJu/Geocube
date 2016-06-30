@@ -76,7 +76,7 @@
         DB_PREPARE(@"select id, filename, filesize, last_import_epoch from file_imports");
 
         DB_WHILE_STEP {
-            dbFileImport *i = [[dbFileImport alloc] init];;
+            dbFileImport *i = [[dbFileImport alloc] init];
             INT_FETCH (0, i._id);
             TEXT_FETCH(1, i.filename);
             INT_FETCH (2, i.filesize);

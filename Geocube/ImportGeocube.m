@@ -126,7 +126,7 @@
         dbNotice *n = [dbNotice dbGetByGCId:[geocube_id integerValue]];
         if (n == nil) {
             n = [[dbNotice alloc] init];
-            n.geocube_id = [geocube_id integerValue];;
+            n.geocube_id = [geocube_id integerValue];
             n.seen = NO;
             n.sender = sender;
             n.date = date;

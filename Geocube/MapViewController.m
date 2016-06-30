@@ -296,7 +296,6 @@ enum {
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
-//    NSInteger height = applicationFrame.size.height - 50;
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
@@ -635,7 +634,7 @@ enum {
             [lmi disableItem:menuMapGoogle];
             [lmi enableItem:menuMapApple];
             [lmi enableItem:menuMapOSM];
-            break;;
+            break;
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];

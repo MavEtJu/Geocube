@@ -71,7 +71,7 @@
         DB_PREPARE(@"select id, description, rgb, rgb_default from pins");
 
         DB_WHILE_STEP {
-            dbPin *p = [[dbPin alloc] init];;
+            dbPin *p = [[dbPin alloc] init];
             INT_FETCH (0, p._id);
             TEXT_FETCH(1, p.description);
             TEXT_FETCH(2, p.rgb);

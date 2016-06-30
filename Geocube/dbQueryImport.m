@@ -80,7 +80,7 @@
         DB_PREPARE(@"select id, account_id, name, filesize, last_import_epoch from query_imports");
 
         DB_WHILE_STEP {
-            dbQueryImport *qi = [[dbQueryImport alloc] init];;
+            dbQueryImport *qi = [[dbQueryImport alloc] init];
             INT_FETCH (0, qi._id);
             INT_FETCH (1, qi.account_id);
             TEXT_FETCH(2, qi.name);

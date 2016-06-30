@@ -52,6 +52,10 @@ echo "Empty lines after beginning of a function:"
 grep -n -A 1 ^{ *.m  | grep -v '^--$' | grep -- -$
 
 echo
+echo "Double ;;'s:"
+grep ";;" *.m *.h
+
+echo
 echo "MyConfig:"
 a=$(grep -c 'CHECK.@' MyConfig.m)
 b=$(grep -c 'self .*Update:.*value:value' MyConfig.m)

@@ -43,7 +43,7 @@
         SET_VAR_INT(1, id);
 
         DB_WHILE_STEP {
-            t = [[dbTrack alloc] init];;
+            t = [[dbTrack alloc] init];
             INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.name);
             INT_FETCH (2, t.dateStart);
@@ -63,7 +63,7 @@
         DB_PREPARE(@"select id, name, startedon, stoppedon from tracks order by startedon desc");
 
         DB_WHILE_STEP {
-            dbTrack *t = [[dbTrack alloc] init];;
+            dbTrack *t = [[dbTrack alloc] init];
             INT_FETCH (0, t._id);
             TEXT_FETCH(1, t.name);
             INT_FETCH (2, t.dateStart);
