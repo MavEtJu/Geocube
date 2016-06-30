@@ -38,7 +38,6 @@ EMPTY_METHOD(mapViewWillDisappear)
 EMPTY_METHOD(mapViewDidAppear)
 EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
-EMPTY_METHOD(recalculateRects)
 
 NEEDS_OVERLOADING(startActivityViewer:(NSString *)text)
 NEEDS_OVERLOADING(stopActivityViewer)
@@ -209,6 +208,15 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
      ];
 }
 
+- (void)recalculateRects
+{
+    CGRect frame = mapvc.view.frame;
+    wpInfoView.frame = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
+    wpInfoViewButton.frame = wpInfoView.frame;
+    [wpInfoView calculateRects];
+    [wpInfoView viewWillTransitionToSize];
+}
+
 - (void)updateMapScaleView
 {
     [mapScaleView update];
@@ -264,9 +272,7 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
     }
     wpInfoView.stateCountry.text = s;
 
-    CGRect frame = mapvc.view.frame;
-    wpInfoView.frame = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
-    wpInfoViewButton.frame = wpInfoView.frame;
+    [self recalculateRects];
 }
 
 

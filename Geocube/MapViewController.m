@@ -287,6 +287,7 @@ enum {
     [coordinator animateAlongsideTransition:nil
                                  completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                      [self recalculateRects];
+                                     [map recalculateRects];
                                  }
      ];
 }

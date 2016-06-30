@@ -64,6 +64,7 @@
 
 - (void)recalculateRects
 {
+    [super recalculateRects];
     CGRect r = self.mapvc.view.frame;
     NSLog(@"%@", [MyTools niceCGRect:r]);
     creditsLabel.frame = CGRectMake(2, r.size.height - 20, 200, 20);
