@@ -638,6 +638,7 @@ enum {
             [lmi enableItem:menuMapApple];
             [lmi enableItem:menuMapOSM];
             break;
+
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];
@@ -651,6 +652,7 @@ enum {
             [lmi disableItem:menuMapApple];
             [lmi enableItem:menuMapOSM];
             break;
+
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
             map = [[MapOSM alloc] init:self];

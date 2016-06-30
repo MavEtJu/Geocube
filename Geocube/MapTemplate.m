@@ -222,6 +222,10 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
     [mapScaleView update];
 }
 
+/*
+ * WaypointInfo related stuff
+ */
+
 - (void)hideWaypointInfo
 {
     [mapvc.view sendSubviewToBack:wpInfoView];
