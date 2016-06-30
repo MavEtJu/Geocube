@@ -216,18 +216,23 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 
 - (void)hideWaypointInfo
 {
-    wpInfoView.hidden = YES;
+    [mapvc.view sendSubviewToBack:wpInfoView];
+    [mapvc.view sendSubviewToBack:wpInfoViewButton];
+    [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
 }
 
 - (void)showWaypointInfo
 {
-    wpInfoView.hidden = NO;
+    [mapvc.view bringSubviewToFront:wpInfoView];
+    [mapvc.view bringSubviewToFront:wpInfoViewButton];
+    [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
 }
 
 - (void)updateWaypointInfo:(dbWaypoint *)wp
 {
     wpInfoView.description.text = wp.wpt_urlname;
-    wpInfoView.name.text = wp.wpt_name;
+    wpInfoView.whomWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools datetimePartDate:[MyTools dateTimeString:wp.wpt_date_placed_epoch]]];
+    wpInfoView.name.text = [NSString stringWithFormat:@"%@ (%@)", wp.wpt_name, wp.account.site];;
     wpInfoView.icon.image = [imageLibrary getType:wp];
     if (wp.flag_highlight == YES)
         wpInfoView.description.backgroundColor = [UIColor yellowColor];
@@ -269,14 +274,14 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 {
     /* Add the info window */
     wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:CGRectZero];
-    wpInfoView.hidden = NO;
     wpInfoView.backgroundColor = [UIColor whiteColor];
     [mapvc.view addSubview:wpInfoView];
 
     wpInfoViewButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
     wpInfoViewButton.backgroundColor = [UIColor clearColor];
     [mapvc.view addSubview:wpInfoViewButton];
+
+    [self hideWaypointInfo];
 }
 
 @end

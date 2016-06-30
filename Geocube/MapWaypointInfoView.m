@@ -45,13 +45,14 @@
     CGRect rectBearing;
     CGRect rectStateCountry;
     CGRect rectCoordinates;
+    CGRect rectByWhomWhen;
 }
 
 @end
 
 @implementation MapWaypointInfoView
 
-@synthesize description, name, icon, stateCountry, bearing, labelSize, imageSize, coordinates;
+@synthesize description, name, icon, stateCountry, bearing, labelSize, imageSize, coordinates, whomWhen;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -76,6 +77,11 @@
     description = [[GCLabel alloc] initWithFrame:rectDescription];
     description.font = [UIFont boldSystemFontOfSize:14.0];
     [self addSubview:description];
+
+    // Whom and when
+    whomWhen = [[GCLabel alloc] initWithFrame:rectByWhomWhen];
+    whomWhen.font = [UIFont systemFontOfSize:10.0];
+    [self addSubview:whomWhen];
 
     // Name
     name = [[GCLabel alloc] initWithFrame:rectName];
@@ -150,7 +156,6 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
-    NSInteger height = [MapWaypointInfoView cellHeight];
 
     /*
      +---+---------------------+---+
@@ -178,15 +183,17 @@
 
     rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
     rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
-    rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
+    rectByWhomWhen = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
+    rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + NAME_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
+    rectBearing = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + 2 * NAME_HEIGHT, width - 2 * BORDER - ICON_WIDTH, BEARING_HEIGHT);
+    rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + 3 * NAME_HEIGHT, width - 2 * BORDER - ICON_WIDTH - rectRatingTIV.size.width, DISTANCE_HEIGHT);
+    rectCoordinates = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + 4 * NAME_HEIGHT, width - 2 * BORDER - ICON_WIDTH - rectRatingDIV.size.width, COORDINATES_HEIGHT);
+
     rectFavouritesIV = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
     rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH / 2, STAR_HEIGHT / 2);
     rectSizeLabel = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT / 2, 5 * STAR_WIDTH, STAR_HEIGHT / 2);
     rectRatingDIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
     rectRatingTIV = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    rectBearing = CGRectMake(BORDER + ICON_WIDTH, height - BORDER - 2 * BEARING_HEIGHT, width - 2 * BORDER - ICON_WIDTH, BEARING_HEIGHT);
-    rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, height - DISTANCE_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingTIV.size.width, DISTANCE_HEIGHT);
-    rectCoordinates = CGRectMake(BORDER + ICON_WIDTH, height - 2 * DISTANCE_HEIGHT - COORDINATES_HEIGHT - BORDER, width - 2 * BORDER - ICON_WIDTH - rectRatingDIV.size.width, COORDINATES_HEIGHT);
 
     rectFavouritesLabel = rectFavouritesIV;
     rectFavouritesLabel.size.height /= 2;
@@ -203,6 +210,7 @@
     [self calculateRects];
     icon.frame = rectIcon;
     description.frame = rectDescription;
+    whomWhen.frame = rectByWhomWhen;
     name.frame = rectName;
     favouritesIV.frame = rectFavouritesIV;
     favouritesLabel.frame = rectFavouritesLabel;
@@ -227,6 +235,8 @@
     [ratingDLabel changeTheme];
     [ratingTLabel changeTheme];
     [labelSize changeTheme];
+    [coordinates changeTheme];
+    [whomWhen changeTheme];
 
     [super changeTheme];
 }
@@ -268,7 +278,7 @@
 
 + (NSInteger)cellHeight
 {
-    return BORDER * 2 + FAVOURITES_HEIGHT + STAR_HEIGHT * 2 + COORDINATES_HEIGHT;
+    return BORDER * 2 + DESCRIPTION_HEIGHT + 4 * NAME_HEIGHT;
 }
 
 - (NSInteger)cellHeight

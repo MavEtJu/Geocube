@@ -29,6 +29,7 @@
 @property (nonatomic, retain) GCLabel *bearing;
 @property (nonatomic, retain) GCLabel *labelSize;
 @property (nonatomic, retain) GCLabel *coordinates;
+@property (nonatomic, retain) GCLabel *whomWhen;
 @property (nonatomic, retain) UIImageView *imageSize;
 
 + (NSInteger)cellHeight;
