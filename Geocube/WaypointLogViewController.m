@@ -493,15 +493,36 @@ enum {
         return;
     }
 
+    [self performSelectorInBackground:@selector(submitLogBackground) withObject:nil];
+}
+
+- (void)submitLogBackground
+{
+    [menuGlobal enableMenus:NO];
+    [MHTabBarController enableMenus:NO controllerFrom:self];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Uploading log"];
+    }];
+
     NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:NO];
+    }];
+
+    [menuGlobal enableMenus:YES];
+    [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
         dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
         [log dbUpdate];
 
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
         [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"This log has been successfully submitted."];
 
-        [self.navigationController popViewControllerAnimated:YES];
         return;
     } else {
         [MyTools messageBox:self header:@"Log failed" text:@"This log has not been submitted yet." error:waypoint.account.lastError];

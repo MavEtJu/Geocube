@@ -740,6 +740,9 @@ enum {
 
 - (void)runRefreshWaypoint
 {
+    [menuGlobal enableMenus:NO];
+    [MHTabBarController enableMenus:NO controllerFrom:self];
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
     }];
@@ -747,6 +750,9 @@ enum {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
          [DejalBezelActivityView removeViewAnimated:NO];
      }];
+
+    [menuGlobal enableMenus:YES];
+    [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
