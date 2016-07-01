@@ -38,6 +38,7 @@
 
 enum {
     menuICloud,
+    menuRefresh,
     menuMax
 };
 
@@ -53,6 +54,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
+    [lmi addItem:menuRefresh label:@"Refresh"];
 }
 
 - (void)refreshFileData
@@ -186,6 +188,16 @@ enum {
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
     }
+    UIAlertAction *restore = nil;
+    if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
+        restore = [UIAlertAction
+                   actionWithTitle:@"Restore"
+                   style:UIAlertActionStyleDefault
+                   handler:^(UIAlertAction * action) {
+                       [self fileRestore:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
+                       [view dismissViewControllerAnimated:YES completion:nil];
+                   }];
+    }
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] isEqualToString:@"zip"] == YES) {
         unzip = [UIAlertAction
@@ -238,6 +250,8 @@ enum {
     popPresenter.sourceRect = rectToUse;
 
     [view addAction:delete];
+    if (restore != nil)
+        [view addAction:restore];
     if (import != nil)
         [view addAction:import];
     if (unzip != nil)
@@ -278,6 +292,19 @@ enum {
 
     [self refreshFileData];
     [self.tableView reloadData];
+}
+
+- (void)fileRestore:(NSInteger)row view:(UITableViewCell *)tablecell
+{
+    // If the suffix is .sqlite, restore it as the database
+    NSString *fn = [filesNames objectAtIndex:row];
+    if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
+        if ([db restoreFromCopy:fn] == NO)
+            [MyTools messageBox:self header:@"Restore failed" text:@"Unable to restore to the database."];
+        else
+            [MyTools messageBox:self header:@"Restore successful" text:@"Please quit Geocube and restart it."];
+        return;
+    }
 }
 
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
@@ -444,6 +471,10 @@ enum {
     switch (index) {
         case menuICloud:
             [IOSFTM downloadICloud:self];
+            return;
+        case menuRefresh:
+            [self refreshFileData];
+            [self.tableView reloadData];
             return;
     }
     [super performLocalMenuAction:index];
