@@ -284,7 +284,6 @@ enum {
     [self downloadFile:@"url_countries" header:@"countries" revision:KEY_REVISION_COUNTRIES];
     [self downloadFile:@"url_states" header:@"states" revision:KEY_REVISION_STATES];
     [self downloadFile:@"url_keys" header:@"keys" revision:KEY_REVISION_KEYS];
-    [self downloadFile:@"url_logtypes" header:@"logtypes" revision:KEY_REVISION_LOGTYPES];
     [self downloadFile:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];
     [self downloadFile:@"url_pins" header:@"pins" revision:KEY_REVISION_PINS];
     [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:KEY_REVISION_BOOKMARKS];
