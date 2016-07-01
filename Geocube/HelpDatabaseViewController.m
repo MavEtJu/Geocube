@@ -40,10 +40,16 @@ enum {
     SECTION_MAX
 };
 
+enum {
+    menuDumpDatabase = 0,
+    menuMax,
+};
+
 - (instancetype)init
 {
     self = [super init];
-    lmi = nil;
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuDumpDatabase label:@"Dump database"];
 
     [self.tableView registerClass:[GCTableViewCellTwoTextfields class] forCellReuseIdentifier:THISCELL];
     [self reloadNumbers];
@@ -198,5 +204,26 @@ enum {
 
     return cell;
 }
+
+#pragma mark - Local menu related functions
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    switch (index) {
+        case menuDumpDatabase:
+            [self dumpDatabase];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
+}
+
+- (void)dumpDatabase
+{
+    NSString *file = [db saveCopy];
+    [MyTools messageBox:self header:@"Backup saved" text:[NSString stringWithFormat:@"You can find the dump in the Files section as %@", file]];
+}
+
+
 
 @end
