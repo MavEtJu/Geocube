@@ -37,6 +37,8 @@
 //- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 - (NSInteger)getDatabaseSize;
 - (void)singleStatement:(NSString *)sql;
+- (NSString *)saveCopy;
+- (BOOL)restoreFromCopy:(NSString *)source;
 
 @end
 

@@ -46,6 +46,25 @@
     return self;
 }
 
+- (NSString *)saveCopy
+{
+    NSError *error;
+    NSString *toName = [NSString stringWithFormat:@"Geocube-%@.sqlit", [MyTools datetimePartDate:[MyTools dateTimeString:time(NULL)]]];
+    NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], toName];
+    [fm removeItemAtPath:to error:&error];
+    [fm copyItemAtPath:dbname toPath:to error:&error];
+    return toName;
+}
+
+- (BOOL)restoreFromCopy:(NSString *)source
+{
+    NSError *error = nil;
+    NSString *from = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], source];
+    [fm removeItemAtPath:dbname error:&error];
+    [fm copyItemAtPath:from toPath:dbname error:&error];
+    return (error == nil);
+}
+
 - (void)checkVersion
 {
     dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
