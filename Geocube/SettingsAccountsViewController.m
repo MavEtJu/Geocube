@@ -274,6 +274,8 @@ enum {
 
 - (void)downloadFiles
 {
+    [menuGlobal enableMenus:NO];
+    [MHTabBarController enableMenus:NO controllerFrom:self];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
     }];
@@ -297,6 +299,8 @@ enum {
         [DejalBezelActivityView removeViewAnimated:NO];
         [self.tableView reloadData];
     }];
+    [menuGlobal enableMenus:YES];
+    [MHTabBarController enableMenus:YES controllerFrom:self];
 }
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision

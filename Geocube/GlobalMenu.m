@@ -26,6 +26,8 @@
     NSMutableArray *items;
     LocalMenuItems *localMenuItems;
     id localMenuTarget;
+
+    BOOL buttonsEnabled;
 }
 
 @end
@@ -34,12 +36,19 @@
 
 - (void)buttonMenuGlobal:(id)sender
 {
-    [self.menuGlobal show];
+    if (buttonsEnabled == YES)
+        [self.menuGlobal show];
 }
 
 - (void)buttonMenuLocal:(id)sender
 {
-    [self.menuLocal show];
+    if (buttonsEnabled == YES)
+        [self.menuLocal show];
+}
+
+- (void)enableMenus:(BOOL)YESNO
+{
+    buttonsEnabled = YESNO;
 }
 
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc
@@ -106,6 +115,7 @@
     self.menuLocal.blurEffectStyle  = UIBlurEffectStyleDark;
     /* See more options in VKSideMenu.h */
 
+    buttonsEnabled = YES;
 
     return self;
 }

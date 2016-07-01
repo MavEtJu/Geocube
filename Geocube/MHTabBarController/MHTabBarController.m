@@ -53,6 +53,7 @@ static const NSInteger TagOffset = 1000;
 	indicatorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MHTabBarIndicator"]];
 	[self.view addSubview:indicatorImageView];
 
+    _buttonsEnabled = YES;
 	[self reloadTabButtons];
 
     [self addMenus];
@@ -130,6 +131,21 @@ static const NSInteger TagOffset = 1000;
 	{
 		[[tabButtonsContainerView.subviews lastObject] removeFromSuperview];
 	}
+}
+
+- (void)enableTabButtons:(BOOL)YESNO
+{
+    [tabButtonsContainerView.subviews enumerateObjectsUsingBlock:^(UIButton *tabbutton, NSUInteger idx, BOOL * _Nonnull stop) {
+        tabbutton.enabled = YESNO;
+    }];
+}
+
++ (void)enableMenus:(BOOL)YESNO controllerFrom:(UIViewController *)vc
+{
+    MHTabBarController *tbc = (MHTabBarController *)vc.parentViewController.parentViewController;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        tbc.buttonsEnabled = YESNO;
+    }];
 }
 
 - (void)layoutTabButtons
@@ -334,7 +350,8 @@ static const NSInteger TagOffset = 1000;
 
 - (void)tabButtonPressed:(UIButton *)sender
 {
-	[self setSelectedIndex:sender.tag - TagOffset animated:YES];
+    if (_buttonsEnabled == YES)
+        [self setSelectedIndex:sender.tag - TagOffset animated:YES];
 }
 
 #pragma mark - Change these methods to customize the look of the buttons

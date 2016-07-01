@@ -37,4 +37,6 @@
 - (void)buttonMenuLocal:(id)sender;
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc;
 
+- (void)enableMenus:(BOOL)YESNO;
+
 @end
