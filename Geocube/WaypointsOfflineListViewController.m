@@ -140,9 +140,6 @@ enum {
 {
     [super viewDidAppear:animated];
     if (needsRefresh == YES) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
-        }];
         [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
     } else {
         waypoints = [self resortCachesData:waypoints];
@@ -154,6 +151,9 @@ enum {
 
 - (void)refreshCachesData
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    }];
     [self refreshCachesData:nil];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView removeView];
