@@ -23,7 +23,7 @@
 {
     MapViewController *mapvc;
     LXMapScaleView *mapScaleView;
-    BOOL circlesShown;
+    BOOL showBoundary;
 }
 
 @property (nonatomic, retain) MapViewController *mapvc;

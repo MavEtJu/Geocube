@@ -159,7 +159,7 @@
         marker.icon = [self waypointImage:wp];
         [markers addObject:marker];
 
-        if (circlesShown == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
             GMSCircle *circle = [GMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
             circle.strokeColor = [UIColor blueColor];
             circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
@@ -171,14 +171,14 @@
 
 - (void)showCircles
 {
-    circlesShown = YES;
+    showBoundary = YES;
     [self removeMarkers];
     [self placeMarkers];
 }
 
 - (void)hideCircles
 {
-    circlesShown = NO;
+    showBoundary = NO;
     [self removeMarkers];
     [self placeMarkers];
 }

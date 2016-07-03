@@ -166,10 +166,10 @@
 
 - (void)showCircles
 {
-    circlesShown = YES;
+    showBoundary = YES;
     circles = [NSMutableArray arrayWithCapacity:20];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        if (circlesShown == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
             [circles addObject:circle];
         }
@@ -179,7 +179,7 @@
 
 - (void)hideCircles
 {
-    circlesShown = NO;
+    showBoundary = NO;
     [circles enumerateObjectsUsingBlock:^(MKCircle *c, NSUInteger idx, BOOL *stop) {
         [mapView removeOverlay:c];
         c = nil;
