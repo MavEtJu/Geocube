@@ -65,8 +65,7 @@
 - (void)updateMyBearing:(CLLocationDirection)bearing;
 - (void)updateMapScaleView;
 
-- (void)showCircles;
-- (void)hideCircles;
+- (void)showBoundaries:(BOOL)yesno;
 
 - (void)placeMarkers;
 - (void)removeMarkers;

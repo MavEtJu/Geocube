@@ -690,6 +690,8 @@ enum {
     [map mapViewDidAppear];
     [self menuShowWhom:showWhom];
 
+    [map showBoundaries:showBoundaries];
+
     [self updateLocationManagerLocation];
 }
 
@@ -888,12 +890,11 @@ enum {
     if (showBoundaries == NO) {
         showBoundaries = YES;
         [lmi changeItem:menuShowBoundaries label:@"Hide boundaries"];
-        [map showCircles];
     } else {
         showBoundaries = NO;
         [lmi changeItem:menuShowBoundaries label:@"Show boundaries"];
-        [map hideCircles];
     }
+    [map showBoundaries:showBoundaries];
 }
 
 - (void)menuRemoveTarget

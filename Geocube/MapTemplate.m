@@ -51,8 +51,7 @@ NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordina
 NEEDS_OVERLOADING(updateMyBearing:(CLLocationDirection)bearing);
 NEEDS_OVERLOADING(placeMarkers)
 NEEDS_OVERLOADING(removeMarkers)
-NEEDS_OVERLOADING(showCircles)
-NEEDS_OVERLOADING(hideCircles)
+NEEDS_OVERLOADING(showBoundaries:(BOOL)yesno)
 NEEDS_OVERLOADING(addLineMeToWaypoint)
 NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)

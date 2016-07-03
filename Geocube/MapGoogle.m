@@ -169,16 +169,9 @@
     }];
 }
 
-- (void)showCircles
+- (void)showBoundaries:(BOOL)yesno
 {
-    showBoundary = YES;
-    [self removeMarkers];
-    [self placeMarkers];
-}
-
-- (void)hideCircles
-{
-    showBoundary = NO;
+    showBoundary = yesno;
     [self removeMarkers];
     [self placeMarkers];
 }

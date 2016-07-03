@@ -164,27 +164,23 @@
     markers = nil;
 }
 
-- (void)showCircles
+- (void)showBoundaries:(BOOL)yesno
 {
-    showBoundary = YES;
-    circles = [NSMutableArray arrayWithCapacity:20];
-    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
-            [circles addObject:circle];
-        }
+    if (yesno == YES) {
+        showBoundary = YES;
+        circles = [NSMutableArray arrayWithCapacity:20];
+        [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+                MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                [circles addObject:circle];
+            }
+        }];
         [mapView addOverlays:circles];
-    }];
-}
-
-- (void)hideCircles
-{
-    showBoundary = NO;
-    [circles enumerateObjectsUsingBlock:^(MKCircle *c, NSUInteger idx, BOOL *stop) {
-        [mapView removeOverlay:c];
-        c = nil;
-    }];
-    circles = nil;
+    } else {
+        showBoundary = NO;
+        [mapView removeOverlays:circles];
+        circles = nil;
+    }
 }
 
 - (void)openWaypointInfo:(id)sender
