@@ -31,6 +31,6 @@
 
 @implementation GCPointAnnotation
 
-@synthesize name, _id;
+@synthesize name, _id, waypoint;
 
 @end

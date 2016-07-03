@@ -31,8 +31,6 @@
     MKPolylineRenderer *viewLineMeToWaypoint;
     MKPolyline *lineHistory;
     MKPolylineRenderer *viewLineHistory;
-
-    BOOL circlesShown;
 }
 
 @end
@@ -149,6 +147,7 @@
 
         annotation._id = wp._id;
         annotation.name = wp.wpt_name;
+        annotation.waypoint = wp;
 
         annotation.title = wp.wpt_name;
         annotation.subtitle = wp.wpt_urlname;
@@ -161,10 +160,6 @@
 - (void)removeMarkers
 {
     NSLog(@"%@/removeMarkers", [self class]);
-    [markers enumerateObjectsUsingBlock:^(MKPointAnnotation *m, NSUInteger idx, BOOL *stop) {
-        [mapView removeAnnotation:m];
-        m = nil;
-    }];
     [mapView removeAnnotations:markers];
     markers = nil;
 }
@@ -176,9 +171,9 @@
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         if (circlesShown == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
-            [mapView addOverlay:circle];
             [circles addObject:circle];
         }
+        [mapView addOverlays:circles];
     }];
 }
 
@@ -201,12 +196,19 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    // If it is the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+
+    // If it is a waypoint, add an image to it.
     if ([annotation isKindOfClass:[GCPointAnnotation class]] == YES) {
         GCPointAnnotation *a = annotation;
-        MKPinAnnotationView *dropPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"venues"];
 
-        dbWaypoint *wp = [waypointManager waypoint_byId:a._id];
-        dropPin.image = [self waypointImage:wp];
+        MKAnnotationView *dropPin = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"waypoints"];
+        if (dropPin == nil)
+            dropPin = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"waypoints"];
+        dropPin.image = [self waypointImage:a.waypoint];
+        dropPin.annotation = annotation;
 
         return dropPin;
     }
@@ -218,8 +220,7 @@
 {
     if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
         GCPointAnnotation *pa = (GCPointAnnotation *)view.annotation;
-        dbWaypoint *wp = [dbWaypoint dbGet:pa._id];
-        [self updateWaypointInfo:wp];
+        [self updateWaypointInfo:pa.waypoint];
         [self showWaypointInfo];
     }
 }
