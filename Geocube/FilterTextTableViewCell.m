@@ -161,6 +161,7 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
 
+    initialized = YES;
     return self;
 }
 
@@ -185,6 +186,8 @@
 
 - (void)configUpdate
 {
+    if (initialized == NO)
+        return;
     [self configSet:@"cachename" value:cacheName];
     [self configSet:@"owner" value:owner];
     [self configSet:@"placedby" value:placedBy];

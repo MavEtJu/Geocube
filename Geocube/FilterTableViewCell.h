@@ -24,6 +24,7 @@
     NSInteger cellHeight, width;
     FilterObject *fo;
     UIFont *f2;
+    BOOL initialized;
 }
 
 - (NSInteger)cellHeight;

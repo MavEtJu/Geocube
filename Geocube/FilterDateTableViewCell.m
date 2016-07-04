@@ -104,6 +104,7 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
 
+    initialized = YES;
     return self;
 }
 
@@ -146,6 +147,8 @@
 
 - (void)configUpdate
 {
+    if (initialized == NO)
+        return;
     [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochPlaced]];
     [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochLastLog]];
     [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)comparePlaced]];

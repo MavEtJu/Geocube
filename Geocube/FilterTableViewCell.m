@@ -46,6 +46,8 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight;
 
+    initialized = NO;
+
     return self;
 }
 

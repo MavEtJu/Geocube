@@ -96,6 +96,7 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
 
+    initialized = YES;
     return self;
 }
 
@@ -142,6 +143,8 @@
 
 - (void)configUpdate
 {
+    if (initialized == NO)
+        return;
     [self configSet:@"compareDistance" value:[NSString stringWithFormat:@"%ld", (long)compareDistance]];
     [self configSet:@"distanceM" value:[NSString stringWithFormat:@"%ld", (long)distanceM]];
     [self configSet:@"distanceKm" value:[NSString stringWithFormat:@"%ld", (long)distanceKm]];
