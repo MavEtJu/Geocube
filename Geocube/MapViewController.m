@@ -224,7 +224,6 @@ enum {
 
     [map mapViewWillAppear];
     [map removeMarkers];
-    [self refreshWaypointsData:nil];
     [map placeMarkers];
 }
 
