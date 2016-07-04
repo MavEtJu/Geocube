@@ -235,7 +235,7 @@
         textField.placeholder = @"Change field 2";
     }];
 
-    UIViewController* activeVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *activeVC = [UIApplication sharedApplication].keyWindow.rootViewController;
     [ALERT_VC_RVC(activeVC) presentViewController:alert animated:YES completion:nil];
 }
 

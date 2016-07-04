@@ -622,7 +622,7 @@ enum {
     [map removeCamera];
     [map removeMap];
 
-    for (UIView* b in self.view.subviews) {
+    for (UIView *b in self.view.subviews) {
         [b removeFromSuperview];
     }
 

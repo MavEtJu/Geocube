@@ -127,7 +127,7 @@ enum {
     }];
 }
 
-- (void)swipeUp:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (delegate != nil) {
         [delegate swipeToUp];
@@ -135,7 +135,7 @@ enum {
     }
 }
 
-- (void)swipeDown:(UISwipeGestureRecognizer*)gestureRecognizer
+- (void)swipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (delegate != nil) {
         [delegate swipeToDown];

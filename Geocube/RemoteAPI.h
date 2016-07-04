@@ -69,7 +69,7 @@ enum {
 @property (nonatomic, retain) NSError *error;
 @property (nonatomic) NSInteger errorCode;
 
-- (instancetype)init:(dbAccount*)account;
+- (instancetype)init:(dbAccount *)account;
 - (BOOL)Authenticate;
 - (BOOL)waypointSupportsPersonalNotes;
 - (BOOL)commentSupportsPhotos;

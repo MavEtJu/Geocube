@@ -200,7 +200,7 @@
     if ([annotation isKindOfClass:[GCPointAnnotation class]] == YES) {
         GCPointAnnotation *a = annotation;
 
-        MKAnnotationView *dropPin = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"waypoints"];
+        MKAnnotationView *dropPin = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"waypoints"];
         if (dropPin == nil)
             dropPin = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"waypoints"];
         dropPin.image = [self waypointImage:a.waypoint];
@@ -288,12 +288,12 @@
 
 - (double)currentZoom
 {
-    return log2(360 * ((mapView.frame.size.width/256) / mapView.region.span.longitudeDelta));
+    return log2(360 * ((mapView.frame.size.width / 256) / mapView.region.span.longitudeDelta));
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
-    MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, zoomLevel)*mapView.frame.size.width/256);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0, 360 / pow(2, zoomLevel) * mapView.frame.size.width / 256);
     [mapView setRegion:MKCoordinateRegionMake(coord, span) animated:NO];
 }
 

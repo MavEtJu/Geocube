@@ -421,7 +421,7 @@ enum {
     [tv showInViewController:self];
 }
 
-- (void)popupTextView:(YIPopupTextView*)textView didDismissWithText:(NSString*)text cancelled:(BOOL)cancelled
+- (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
 {
     if (cancelled == YES)
         return;
