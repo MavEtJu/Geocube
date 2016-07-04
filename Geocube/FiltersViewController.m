@@ -47,8 +47,6 @@ enum {
     filterText,
     filterDates,
     filterFlags,
-    filterCategories,
-    filterOtherRequirements,
     filterMax
 };
 
@@ -79,8 +77,6 @@ enum {
             MATCH(filterText, @"Text");
             MATCH(filterDates, @"Date");
             MATCH(filterFlags, @"Flags");
-            MATCH(filterCategories, @"Category");
-            MATCH(filterOtherRequirements, @"Other Requirements");
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
@@ -148,8 +144,6 @@ enum {
         FILTER(filterDirection, FilterDirectionTableViewCell)
         FILTER(filterText, FilterTextTableViewCell)
         FILTER(filterDates, FilterDateTableViewCell)
-        FILTER(filterCategories, FilterCategoryTableViewCell)
-        FILTER(filterOtherRequirements, FilterOthersTableViewCell)
         FILTER(filterFlags, FilterFlagsTableViewCell)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
