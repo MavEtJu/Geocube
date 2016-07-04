@@ -75,7 +75,6 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
 
-    initialized = YES;
     return self;
 }
 
@@ -103,8 +102,6 @@
 
 - (void)configUpdate
 {
-    if (initialized == NO)
-        return;
     [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)config_min]];
     [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];

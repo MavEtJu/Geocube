@@ -46,8 +46,6 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight;
 
-    initialized = NO;
-
     return self;
 }
 
@@ -104,6 +102,8 @@
 {
 }
 
+NEEDS_OVERLOADING(configUpdate)
+
 - (void)configPrefix:(NSString *)prefix
 {
     configPrefix = prefix;
@@ -117,11 +117,6 @@
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
     [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
-}
-
-- (void)configUpdate
-{
-    NSAssert(0, @"%@ should be overriden", [self class]);
 }
 
 @end

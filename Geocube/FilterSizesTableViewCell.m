@@ -80,7 +80,6 @@
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
 
-    initialized = YES;
     return self;
 }
 
@@ -97,8 +96,6 @@
 
 - (void)configUpdate
 {
-    if (initialized == NO)
-        return;
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
 }
 
