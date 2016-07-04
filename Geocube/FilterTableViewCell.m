@@ -98,11 +98,8 @@
 
 #pragma mark -- configuration
 
-- (void)configInit
-{
-}
-
 NEEDS_OVERLOADING(configUpdate)
+NEEDS_OVERLOADING(configInit)
 
 - (void)configPrefix:(NSString *)prefix
 {
