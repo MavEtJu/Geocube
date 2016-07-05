@@ -23,8 +23,9 @@
 
 @property (nonatomic) id delegate;
 
-- (GCDictionaryOC *)services_users_byUsername:(NSString *)username;
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username;
 - (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname;
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset;
 
 @end

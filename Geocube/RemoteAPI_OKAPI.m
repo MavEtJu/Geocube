@@ -39,7 +39,7 @@
     self = [super init];
 
     remoteAPI = _remoteAPI;
-    okapi_prefix = @"/okapi/services";
+    okapi_prefix = @"okapi/services";
 
     return self;
 }
@@ -73,9 +73,8 @@
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@%@", remoteAPI.account.url_site, okapi_prefix, url];
-    if (parameters != nil) {
+    if (parameters != nil)
         [urlString appendFormat:@"?%@", parameters];
-    }
 
     NSURL *urlURL = [NSURL URLWithString:urlString];
     GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
@@ -101,7 +100,7 @@
     return req;
 }
 
-- (GCDictionaryOC *)services_users_byUsername:(NSString *)username
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username
 {
     NSLog(@"services_users_byUsername");
 
@@ -126,7 +125,7 @@
         return nil;
     }
 
-    GCDictionaryOC *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryOKAPI *json = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
     return json;
 }
 
@@ -161,7 +160,7 @@
 
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname
 {
-    NSLog(@"services_caches_formatters_gpx");
+    NSLog(@"services_caches_formatters_gpx: %@", wpname);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/formatters/gpx" parameters:[NSString stringWithFormat:@"cache_codes=%@&ns_ground=true&latest_logs=true", [MyTools urlEncode:wpname]]];
 
@@ -174,6 +173,28 @@
     NSLog(@"retbody: %@", retbody);
 
     return retbody;
+}
+
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset
+{
+    NSLog(@"services_caches_search_nearest: %@", [Coordinates NiceCoordinates:center]);
+
+    float radius = myConfig.mapSearchMaximumDistanceOKAPI / 1000;
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%0.1f|%0.1f", center.latitude, center.longitude]], radius, (long)offset]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    GCDictionaryOKAPI *json = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    if (error != nil)
+        return nil;
+    return json;
 }
 
 @end

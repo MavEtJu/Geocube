@@ -250,7 +250,7 @@
     [ret setValue:@"" forKey:@"recommendations_received"];
 
     if (account.protocol == ProtocolOKAPI) {
-        NSDictionary *dict = [okapi services_users_byUsername:username];
+        GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username];
 
         if (dict == nil)
             return REMOTEAPI_APIFAILED;
@@ -498,6 +498,9 @@
     *retObject = nil;
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
+    if (account.protocol != ProtocolOKAPI)
+        return REMOTEAPI_APIDISABLED;
+
     if (account.protocol == ProtocolGCA) {
         if ([account canDoRemoteStuff] == NO) {
             [self alertError:@"[GCA] loadWaypoints: remote API is disabled" code:REMOTEAPI_APIDISABLED];
@@ -541,7 +544,7 @@
 
     if (account.protocol == ProtocolLiveAPI) {
         if ([account canDoRemoteStuff] == NO)
-            return REMOTEAPI_APIFAILED;
+            return REMOTEAPI_APIDISABLED;
 
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
         NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center];
@@ -564,6 +567,33 @@
         [d setObject:wps forKey:@"Geocaches"];
         GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
         *retObject = livejson;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol == ProtocolOKAPI) {
+        if ([account canDoRemoteStuff] == NO)
+            return REMOTEAPI_APIDISABLED;
+
+        NSInteger offset = 0;
+        BOOL more = NO;
+        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
+        do {
+            GCDictionaryOKAPI *json = [okapi services_caches_search_nearest:center offset:offset];
+            if (json == nil)
+                return REMOTEAPI_APIFAILED;
+            more = [[json objectForKey:@"more"] boolValue];
+            NSArray *rets = nil;
+            NSObject *vs = [json objectForKey:@"results"];
+            if ([vs isKindOfClass:[NSString class]] == YES)
+                rets = @[rets];
+            else if ([vs isKindOfClass:[NSArray class]] == YES)
+                rets = (NSArray *)vs;
+            [rets enumerateObjectsUsingBlock:^(NSString *v, NSUInteger idx, BOOL * _Nonnull stop) {
+                [wps addObject:v];
+            }];
+            offset += [rets count];
+        } while (more == YES);
+
         return REMOTEAPI_OK;
     }
 
