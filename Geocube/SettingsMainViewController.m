@@ -279,6 +279,7 @@ enum sections {
 
     SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS = 0,
     SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA,
+    SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI,
     SECTION_MAPSEARCHMAXIMUM_MAX,
 
     SECTION_DYNAMICMAP_ENABLED = 0,
@@ -556,6 +557,13 @@ enum sections {
 
                     cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceGS];
+                    return cell;
+                }
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Distance in OKAPI search radius";
+                    cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceOKAPI];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
@@ -915,6 +923,9 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
                     [self changeMapSearchMaximumDistanceGS];
+                    break;
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
+                    [self changeMapSearchMaximumDistanceOKAPI];
                     break;
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
                     [self changeMapSearchMaximumNumberGCA];
@@ -1428,6 +1439,29 @@ enum sections {
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 250;
     [myConfig mapSearchMaximumDistanceGSUpdate:d];
+    [self.tableView reloadData];
+}
+
+- (void)changeMapSearchMaximumDistanceOKAPI
+{
+    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    for (NSInteger d = 250; d < 10000; d += 250) {
+        [distances addObject:[MyTools niceDistance:d]];
+    }
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+                                            rows:distances
+                                initialSelection:(myConfig.mapSearchMaximumDistanceOKAPI / 250) - 1
+                                          target:self
+                                   successAction:@selector(updateMapSearchMaximumDistanceOKAPI:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapSearchMaximumDistanceOKAPI:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
+    [myConfig mapSearchMaximumDistanceOKAPIUpdate:d];
     [self.tableView reloadData];
 }
 
