@@ -302,14 +302,14 @@
             case RC_SETTINGS:
                 controllers = [NSMutableArray array];
 
-                vc = [[SettingsMainViewController alloc] init];
-                vc.title = @"Settings";
+                vc = [[SettingsAccountsViewController alloc] init];
+                vc.title = @"Accounts";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[SettingsAccountsViewController alloc] init];
-                vc.title = @"Accounts";
+                vc = [[SettingsMainViewController alloc] init];
+                vc.title = @"Settings";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
