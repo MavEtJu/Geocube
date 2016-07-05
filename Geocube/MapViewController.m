@@ -255,7 +255,7 @@ enum {
 
     isVisible = YES;
     if (needsRefresh == YES) {
-        [self refreshWaypointsData:nil];
+        [self refreshWaypointsData];
         [map removeMarkers];
         [map placeMarkers];
         needsRefresh = NO;
@@ -472,16 +472,17 @@ enum {
 {
     needsRefresh = YES;
     if (isVisible == YES) {
-        [self refreshWaypointsData:nil];
-        [map removeMarkers];
-        [map placeMarkers];
         needsRefresh = NO;
+        [self performSelectorInBackground:@selector(refreshWaypointsData) withObject:nil];
     }
 }
 
-- (void)refreshWaypointsData:(NSString *)searchString
+- (void)refreshWaypointsData
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    }];
+
     [waypointManager applyFilters:LM.coords];
 
     if (showType == SHOW_ONEWAYPOINT) {
@@ -493,35 +494,21 @@ enum {
             waypointsArray = nil;
             waypointCount = 0;
         }
-        return;
     }
 
     if (showType == SHOW_ALLWAYPOINTS) {
-        [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
-                return;
-            [wps addObject:wp];
-        }];
-        waypointsArray = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) {
-
-            if (obj1.calculatedDistance > obj2.calculatedDistance) {
-                return (NSComparisonResult)NSOrderedDescending;
-            }
-
-            if (obj1.calculatedDistance < obj2.calculatedDistance) {
-                return (NSComparisonResult)NSOrderedAscending;
-            }
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-
+        waypointsArray = [waypointManager currentWaypoints];
         waypointCount = [waypointsArray count];
-        return;
     }
-}
 
-- (void)refreshWaypointsData
-{
-    [self refreshWaypointsData:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [map removeMarkers];
+        [map placeMarkers];
+    }];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeView];
+    }];
 }
 
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords
@@ -683,7 +670,7 @@ enum {
     [self initMapIcons];
     [self recalculateRects];
 
-    [self refreshWaypointsData:nil];
+    [self refreshWaypointsData];
     [map placeMarkers];
 
     [map mapViewDidAppear];

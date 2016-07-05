@@ -46,7 +46,6 @@ enum {
 - (instancetype)init:(NSInteger)maptype;
 - (void)userInteraction;
 - (void)refreshWaypointsData;
-- (void)refreshWaypointsData:(NSString *)searchString;
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords;
 
 @end
