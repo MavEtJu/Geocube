@@ -235,6 +235,8 @@
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
     DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"Owner.UserName");
+    if ([wp.gs_owner_str isEqualToString:@""] == NO)
+        [dbName makeNameExist:wp.gs_owner_str code:wp.gs_owner_gsid account:account];
 
     DICT_NSSTRING_PATH(dict, wp.gs_container_str, @"ContainerType.ContainerTypeName");
 
