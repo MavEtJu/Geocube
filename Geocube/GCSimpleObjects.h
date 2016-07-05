@@ -39,5 +39,5 @@
 @interface GCDictionaryLiveAPI : GCDictionaryObject
 @end
 
-@interface GCDictionaryOC : GCDictionaryObject
+@interface GCDictionaryOKAPI : GCDictionaryObject
 @end

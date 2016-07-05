@@ -91,5 +91,5 @@
 @end
 @implementation GCDictionaryLiveAPI
 @end
-@implementation GCDictionaryOC
+@implementation GCDictionaryOKAPI
 @end
