@@ -28,6 +28,5 @@
 - (BOOL)commentSupportsTrackables;
 - (BOOL)waypointSupportsPersonalNotes;
 - (instancetype)init:(RemoteAPI *)remoteAPI;
-//- (NSArray *)logtypes:(NSString *)waypointType;
 
 @end
