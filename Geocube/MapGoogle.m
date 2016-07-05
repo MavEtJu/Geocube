@@ -142,6 +142,7 @@
     [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
         m.map = nil;
     }];
+    markers = nil;
 
     // Add the new markers to the map
     markers = [NSMutableArray arrayWithCapacity:20];
