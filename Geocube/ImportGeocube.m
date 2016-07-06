@@ -339,7 +339,7 @@
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
 
-        dbState *s = [dbc State_get_byName:name];
+        dbState *s = [dbc State_get_byNameCode:name];
         if (s != nil) {
             s.code = abbr;
             s.name = name;
@@ -364,7 +364,7 @@
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
 
-        dbCountry *c = [dbc Country_get_byName:name];
+        dbCountry *c = [dbc Country_get_byNameCode:name];
         if (c != nil) {
             c.code = abbr;
             c.name = name;

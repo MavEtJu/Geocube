@@ -110,7 +110,7 @@
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc State_get_byName:name] == nil) {
+    if ([dbc State_get_byNameCode:name] == nil) {
         NSId _id = [dbState dbCreate:name code:name];
         dbState *s = [self dbGet:_id];
         [dbc State_add:s];

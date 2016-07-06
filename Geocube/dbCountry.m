@@ -109,7 +109,7 @@
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc Country_get_byName:name] == nil) {
+    if ([dbc Country_get_byNameCode:name] == nil) {
         NSId _id = [dbCountry dbCreate:name code:name];
         dbCountry *c = [self dbGet:_id];
         [dbc Country_add:c];

@@ -223,6 +223,8 @@
 
     DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"Country");
     DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"State");
+    [dbCountry makeNameExist:wp.gs_country_str];
+    [dbState makeNameExist:wp.gs_state_str];
 
     DICT_BOOL_KEY(dict, wp.gs_short_desc_html, @"ShortDescriptionIsHtml");
     DICT_BOOL_KEY(dict, wp.gs_long_desc_html, @"LongDescriptionIsHtml");

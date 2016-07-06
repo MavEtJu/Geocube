@@ -88,13 +88,11 @@
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;
 - (void)Attribute_add:(dbAttribute *)attr;
 
-- (dbCountry *)Country_get_byName:(NSString *)name;
-- (dbCountry *)Country_get_byCode:(NSString *)code;
+- (dbCountry *)Country_get_byNameCode:(NSString *)name;
 - (dbCountry *)Country_get:(NSId)_id;
 - (void)Country_add:(dbCountry *)country;
 
-- (dbState *)State_get_byName:(NSString *)name;
-- (dbState *)State_get_byCode:(NSString *)code;
+- (dbState *)State_get_byNameCode:(NSString *)name;
 - (dbState *)State_get:(NSId)_id;
 - (void)State_add:(dbState *)state;
 

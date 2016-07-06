@@ -404,23 +404,11 @@
     Attributes = as;
 }
 
-- (dbCountry *)Country_get_byName:(NSString *)name
+- (dbCountry *)Country_get_byNameCode:(NSString *)name
 {
     __block dbCountry *_c = nil;
     [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
-        if ([c.name isEqualToString:name] == YES) {
-            _c = c;
-            *stop = YES;
-        }
-    }];
-    return _c;
-}
-
-- (dbCountry *)Country_get_byCode:(NSString *)code
-{
-    __block dbCountry *_c = nil;
-    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
-        if ([c.code isEqualToString:code] == YES) {
+        if ([c.name isEqualToString:name] == YES || [c.code isEqualToString:name] == YES) {
             _c = c;
             *stop = YES;
         }
@@ -445,23 +433,11 @@
     [Countries addObject:country];
 }
 
-- (dbState *)State_get_byName:(NSString *)name
+- (dbState *)State_get_byNameCode:(NSString *)name
 {
     __block dbState *_s = nil;
     [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
-        if ([s.name isEqualToString:name] == YES) {
-            _s = s;
-            *stop = YES;
-        }
-    }];
-    return _s;
-}
-
-- (dbState *)State_get_byCode:(NSString *)code
-{
-    __block dbState *_s = nil;
-    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
-        if ([s.code isEqualToString:code] == YES) {
+        if ([s.name isEqualToString:name] == YES || [s.code isEqualToString:name] == YES) {
             _s = s;
             *stop = YES;
         }
