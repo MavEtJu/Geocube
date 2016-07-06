@@ -63,6 +63,8 @@
     NSArray *mapcacheMaxSizeValues;
 
     UISwitch *markasFoundDNFClearsTarget;
+    UISwitch *showCountryAsAbbrevation;
+    UISwitch *showStateAsAbbrevation;
 
     UISwitch *downloadImagesWaypoints;
     UISwitch *downloadImagesLogs;
@@ -310,6 +312,8 @@ enum sections {
     SECTION_MARKAS_MAX,
 
     SECTION_WAYPOINTS_SORTBY = 0,
+    SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION,
+    SECTION_WAYPOINTS_SHOWSTATEASABBREVATION,
     SECTION_WAYPOINTS_MAX,
 };
 
@@ -802,7 +806,7 @@ enum sections {
 
                     markasFoundDNFClearsTarget = [[UISwitch alloc] initWithFrame:CGRectZero];
                     markasFoundDNFClearsTarget.on = myConfig.markasFoundDNFClearsTarget;
-                    [markasFoundDNFClearsTarget addTarget:self action:@selector(updatemarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
+                    [markasFoundDNFClearsTarget addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = markasFoundDNFClearsTarget;
 
                     return cell;
@@ -821,6 +825,30 @@ enum sections {
 
                     return cell;
                 }
+
+                case SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Show country as abbrevation";
+
+                    showCountryAsAbbrevation = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showCountryAsAbbrevation.on = myConfig.showCountryAsAbbrevation;
+                    [showCountryAsAbbrevation addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = showCountryAsAbbrevation;
+
+                    return cell;
+                }
+
+                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATION: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Show state as abbrevation";
+
+                    showStateAsAbbrevation = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showStateAsAbbrevation.on = myConfig.showStateAsAbbrevation;
+                    [showStateAsAbbrevation addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = showStateAsAbbrevation;
+
+                    return cell;
+                }
             }
         }
 
@@ -829,7 +857,7 @@ enum sections {
     return nil;
 }
 
-- (void)updatemarkasFoundDNFClearsTarget:(UISwitch *)s
+- (void)updateMarkasFoundDNFClearsTarget:(UISwitch *)s
 {
     [myConfig markasFoundDNFClearsTargetUpdate:s.on];
 }
@@ -1505,6 +1533,18 @@ enum sections {
 - (void)updateWaypointSortBy:(NSNumber *)selectedIndex element:(id)element
 {
     [myConfig waypointListSortByUpdate:selectedIndex.integerValue];
+    [self.tableView reloadData];
+}
+
+- (void)updateShowCountryAsAbbrevation:(UISwitch *)b
+{
+    [myConfig showCountryAsAbbrevationUpdate:b.on];
+    [self.tableView reloadData];
+}
+
+- (void)updateShowStateAsAbbrevation:(UISwitch *)b
+{
+    [myConfig showStateAsAbbrevationUpdate:b.on];
     [self.tableView reloadData];
 }
 

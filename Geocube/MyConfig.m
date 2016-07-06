@@ -43,7 +43,7 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
-@synthesize markasFoundDNFClearsTarget;
+@synthesize markasFoundDNFClearsTarget, showCountryAsAbbrevation, showStateAsAbbrevation;
 @synthesize waypointListSortBy;
 
 - (instancetype)init
@@ -166,6 +166,8 @@
     CHECK(@"mapsearchmaximum_numbergca", @"50");
 
     CHECK(@"markas_founddnf_clearstarget", @"1");
+    CHECK(@"showasabbrevation_country", @"1");
+    CHECK(@"showasabbrevation_state", @"0");
 
     CHECK(@"waypointlist_sortby", @"0");
 }
@@ -219,6 +221,8 @@
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
     mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
     markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
+    showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
+    showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
@@ -524,6 +528,16 @@
 {
     markasFoundDNFClearsTarget = value;
     [self BOOLUpdate:@"markas_founddnf_clearstarget" value:value];
+}
+- (void)showStateAsAbbrevationUpdate:(BOOL)value
+{
+    showStateAsAbbrevation = value;
+    [self BOOLUpdate:@"showasabbrevation_state" value:value];
+}
+- (void)showCountryAsAbbrevationUpdate:(BOOL)value
+{
+    showCountryAsAbbrevation = value;
+    [self BOOLUpdate:@"showasabbrevation_country" value:value];
 }
 
 - (void)waypointListSortByUpdate:(NSInteger)value

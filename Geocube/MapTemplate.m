@@ -269,11 +269,11 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (wp.gs_state != nil)
-        [s appendFormat:@"%@", wp.gs_state.name];
+        [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
     if (wp.gs_country != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        [s appendFormat:@"%@", wp.gs_country.code];
+        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
     }
     wpInfoView.stateCountry.text = s;
 
