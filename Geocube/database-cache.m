@@ -416,6 +416,18 @@
     return _c;
 }
 
+- (dbCountry *)Country_get_byCode:(NSString *)code
+{
+    __block dbCountry *_c = nil;
+    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+        if ([c.code isEqualToString:code] == YES) {
+            _c = c;
+            *stop = YES;
+        }
+    }];
+    return _c;
+}
+
 - (dbCountry *)Country_get:(NSId)_id
 {
     __block dbCountry *_c = nil;
@@ -438,6 +450,18 @@
     __block dbState *_s = nil;
     [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if ([s.name isEqualToString:name] == YES) {
+            _s = s;
+            *stop = YES;
+        }
+    }];
+    return _s;
+}
+
+- (dbState *)State_get_byCode:(NSString *)code
+{
+    __block dbState *_s = nil;
+    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+        if ([s.code isEqualToString:code] == YES) {
             _s = s;
             *stop = YES;
         }

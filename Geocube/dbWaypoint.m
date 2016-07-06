@@ -247,6 +247,10 @@
     if (gs_state == nil) {
         if (gs_state_str != nil) {
             gs_state = [dbc State_get_byName:gs_state_str];
+            if (gs_state == nil)
+                gs_state = [dbc State_get_byCode:gs_state_str];
+            if (gs_state == nil)
+                NSLog(@"Unknown state: %@", gs_state_str);
             gs_state_id = gs_state._id;
         }
         if (gs_state_id != 0) {
@@ -258,6 +262,10 @@
     if (gs_country == nil) {
         if (gs_country_str != nil) {
             gs_country = [dbc Country_get_byName:gs_country_str];
+            if (gs_country == nil)
+                gs_country = [dbc Country_get_byCode:gs_country_str];
+            if (gs_country == nil)
+                NSLog(@"Unknown country: %@", gs_country_str);
             gs_country_id = gs_country._id;
         }
         if (gs_country_id != 0) {
