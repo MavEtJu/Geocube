@@ -591,6 +591,8 @@
             offset += [rets count];
         } while (more == YES);
 
+        if ([wpcodes count] == 0)
+            return REMOTEAPI_OK;
         NSDictionary *json = [okapi services_caches_geocaches:wpcodes];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
@@ -598,7 +600,8 @@
         NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
         [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
             NSDictionary *wpjson = [json objectForKey:wpcode];
-            [wps addObject:wpjson];
+            if (wpjson != nil)
+                [wps addObject:wpjson];
         }];
 
         GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
