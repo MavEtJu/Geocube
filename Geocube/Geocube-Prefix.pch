@@ -117,6 +117,7 @@
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
 #import "ImportGeocube.h"
+#import "ImportOKAPIJSON.h"
 #import "ImportViewController.h"
 #import "ExportGPX.h"
 

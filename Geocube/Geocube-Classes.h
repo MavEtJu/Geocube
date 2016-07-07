@@ -54,7 +54,7 @@
 @class GCCoordsHistorical;
 @class GCDictionaryGCA;
 @class GCDictionaryLiveAPI;
-@class GCDictionaryOC;
+@class GCDictionaryOKAPI;
 @class GCDictionaryObject;
 @class GCLabel;
 @class GCMutableURLRequest;
@@ -91,6 +91,7 @@
 @class ImportGPX;
 @class ImportGeocube;
 @class ImportLiveAPIJSON;
+@class ImportOKAPIJSON;
 @class ImportViewController;
 @class Importer;
 @class InProgressListViewController;

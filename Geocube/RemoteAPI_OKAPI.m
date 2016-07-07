@@ -175,9 +175,9 @@
     return retbody;
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset
+- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset
 {
-    NSLog(@"services_caches_search_nearest: %@", [Coordinates NiceCoordinates:center]);
+    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], offset);
 
     float radius = myConfig.mapSearchMaximumDistanceOKAPI / 1000;
 
@@ -191,7 +191,29 @@
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
 
-    GCDictionaryOKAPI *json = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+    return json;
+}
+
+- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes
+{
+    NSLog(@"services_caches_geocaches: (%lu) %@", [wpcodes count], [wpcodes objectAtIndex:0]);
+
+    NSArray *fields = @[@"code", @"name", @"names", @"location", @"type", @"status", @"needs_maintenance", @"url", @"owner", @"gc_code", @"is_found", @"is_not_found", @"founds", @"notfounds", @"willattends", @"size", @"size2", @"difficulty", @"terrain", @"trip_time", @"trip_distance", @"rating", @"rating_votes", @"recommendations", @"req_passwd", @"short_description", @"short_descriptions", @"description", @"descriptions", @"hint2", @"hints2", @"images", @"preview_image", @"attr_acodes", @"attrnames", @"attribution_note", @"latest_logs", @"my_notes", @"trackables_count", @"trackables", @"alt_wpts", @"country", @"state", @"protection_areas", @"last_found", @"last_modified", @"date_created", @"date_hidden", @"internal_id"];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/geocaches" parameters:[NSString stringWithFormat:@"cache_codes=%@&fields=%@", [self string_array:wpcodes], [self string_array:fields]]];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [MyTools sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    NSDictionary *json = [[NSDictionary alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
     if (error != nil)
         return nil;
     return json;

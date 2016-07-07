@@ -498,9 +498,6 @@
     *retObject = nil;
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
-    if (account.protocol != ProtocolOKAPI)
-        return REMOTEAPI_APIDISABLED;
-
     if (account.protocol == ProtocolGCA) {
         if ([account canDoRemoteStuff] == NO) {
             [self alertError:@"[GCA] loadWaypoints: remote API is disabled" code:REMOTEAPI_APIDISABLED];
@@ -576,9 +573,9 @@
 
         NSInteger offset = 0;
         BOOL more = NO;
-        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
+        NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
         do {
-            GCDictionaryOKAPI *json = [okapi services_caches_search_nearest:center offset:offset];
+            NSDictionary *json = [okapi services_caches_search_nearest:center offset:offset];
             if (json == nil)
                 return REMOTEAPI_APIFAILED;
             more = [[json objectForKey:@"more"] boolValue];
@@ -589,10 +586,23 @@
             else if ([vs isKindOfClass:[NSArray class]] == YES)
                 rets = (NSArray *)vs;
             [rets enumerateObjectsUsingBlock:^(NSString *v, NSUInteger idx, BOOL * _Nonnull stop) {
-                [wps addObject:v];
+                [wpcodes addObject:v];
             }];
             offset += [rets count];
         } while (more == YES);
+
+        NSDictionary *json = [okapi services_caches_geocaches:wpcodes];
+        if (json == nil)
+            return REMOTEAPI_APIFAILED;
+
+        NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
+        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *wpjson = [json objectForKey:wpcode];
+            [wps addObject:wpjson];
+        }];
+
+        GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
+        *retObject = rv;
 
         return REMOTEAPI_OK;
     }

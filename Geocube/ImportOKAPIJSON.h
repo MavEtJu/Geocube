@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_OKAPI : ProtocolTemplate
-
-@property (nonatomic) id delegate;
-
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username;
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname;
-- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset;
-- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcode;
+@interface ImportOKAPIJSON : Importer
 
 @end

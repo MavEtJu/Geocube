@@ -281,6 +281,7 @@
 		E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */; };
 		E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */; };
 		E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E890517A1C96BA0200220986 /* HelpHelpViewController.m */; };
+		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -816,6 +817,8 @@
 		E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSubtitleRightImage.m; sourceTree = "<group>"; };
 		E89051791C96BA0200220986 /* HelpHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpHelpViewController.h; sourceTree = "<group>"; };
 		E890517A1C96BA0200220986 /* HelpHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpHelpViewController.m; sourceTree = "<group>"; };
+		E891D27C1D2D2DDE00A17B17 /* ImportOKAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportOKAPIJSON.h; sourceTree = "<group>"; };
+		E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportOKAPIJSON.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -2159,12 +2162,12 @@
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
-				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
-				E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */,
-				E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */,
-				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
 				E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */,
 				E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */,
+				E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */,
+				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
+				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
+				E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */,
 				E89580191C643AD500282177 /* ProtocolTemplate.h */,
 				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
 			);
@@ -2232,6 +2235,8 @@
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
 				E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */,
 				E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */,
+				E891D27C1D2D2DDE00A17B17 /* ImportOKAPIJSON.h */,
+				E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */,
 				E82990441C87A36200504421 /* ImportGeocube.h */,
 				E82990451C87A36200504421 /* ImportGeocube.m */,
 				E85707921CA1EE0F00467CE0 /* Importer.h */,
@@ -2797,6 +2802,7 @@
 				E8C5BB7A1C719EB1006222D5 /* WaypointsOfflineListViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
+				E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
 				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,
 				E80AEEBE1BA670B200106F7F /* GCView.m in Sources */,

@@ -149,6 +149,8 @@
         imp = [[ImportGCAJSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
         imp = [[ImportLiveAPIJSON alloc] init:group account:account];
+    } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
+        imp = [[ImportOKAPIJSON alloc] init:group account:account];
     } else {
         NSAssert1(NO, @"Unknown data class: %@", [data class]);
     }
@@ -437,6 +439,13 @@
         } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 filenameString = [NSString stringWithFormat:@"Import of Geocaching Australia data"];
+                [filenameLabel setText:filenameString];
+            }];
+            [imp parseDictionary:(NSDictionary *)data];
+            progressValue = 100;
+        } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                filenameString = [NSString stringWithFormat:@"Import of OKAPI data"];
                 [filenameLabel setText:filenameString];
             }];
             [imp parseDictionary:(NSDictionary *)data];
