@@ -157,7 +157,7 @@
 
     struct timeval tp;
     gettimeofday(&tp, NULL);
-    nonce = [[NSString stringWithFormat:@"%ld%06d", tp.tv_sec, tp.tv_usec] substringToIndex:10];
+    nonce = [[NSString stringWithFormat:@"%ld%06d", tp.tv_sec, tp.tv_usec] substringToIndex:13];
     timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
 
     timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
