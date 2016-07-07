@@ -98,9 +98,9 @@
 - (void)start
 {
     if (running == 0) {
+        NSLog(@"%@/starting", [self class]);
         running = 10;
         [self performSelectorInBackground:@selector(run) withObject:nil];
-        NSLog(@"%@/starting", [self class]);
     }
     running = 10;
 }
@@ -256,7 +256,7 @@
 + (void)addToQueue:(dbImage *)img
 {
     // Do not download images if disabled.
-    if (myConfig.downloadImagesLogs == NO)
+    if (myConfig.downloadImagesWaypoints == NO)
         return;
 
     // Do not download anything unless Wifi is required and available.
