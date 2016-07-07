@@ -408,6 +408,7 @@
 
     imp.run_options = self.run_options;
 
+    @synchronized (self) {
     @autoreleasepool {
         if ([data isKindOfClass:[GCStringFilename class]] == YES) {
             [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
@@ -453,6 +454,7 @@
         } else {
             NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }
+    }
     }
 
     [imp parseAfter];
