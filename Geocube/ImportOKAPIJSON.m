@@ -81,7 +81,7 @@
     wp.wpt_name = wpt_name;
 
     DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"state");
-    [dbCountry makeNameExist:wp.gs_state_str];
+    [dbState makeNameExist:wp.gs_state_str];
     wp.gs_state_id = 0;
     wp.gs_state = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"country");
