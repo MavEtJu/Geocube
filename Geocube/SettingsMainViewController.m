@@ -367,6 +367,8 @@ enum sections {
             return @"Theme";
         case SECTION_SOUNDS:
             return @"Sounds";
+        case SECTION_COMPASS:
+            return @"Compass";
         case SECTION_MAPCOLOURS:
             return @"Map colours";
         case SECTION_MAPS:
@@ -385,6 +387,8 @@ enum sections {
             return @"Mark as...";
         case SECTION_WAYPOINTS:
             return @"Waypoints";
+        default:
+            NSAssert1(0, @"Unknown section %ld", (long)section);
     }
 
     return nil;
