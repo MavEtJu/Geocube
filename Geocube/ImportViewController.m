@@ -484,6 +484,7 @@
 
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
 {
+    return;
     @synchronized(self) {
         queuedImagesValue = queuedImages;
         downloadedImagesValue = downloadedImages;
