@@ -544,7 +544,7 @@ enum sections {
                     cell.textLabel.text = @"Rotate to bearing";
 
                     mapRotateToBearing = [[UISwitch alloc] initWithFrame:CGRectZero];
-                    mapRotateToBearing.on = myConfig.mapClustersEnable;
+                    mapRotateToBearing.on = myConfig.mapRotateToBearing;
                     [mapRotateToBearing addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = mapRotateToBearing;
 
