@@ -62,6 +62,7 @@
     NSArray *mapcacheMaxAgeValues;
     NSArray *mapcacheMaxSizeValues;
 
+    UISwitch *compassAlwaysInPortraitMode;
     UISwitch *markasFoundDNFClearsTarget;
     UISwitch *showCountryAsAbbrevation;
     UISwitch *showStateAsAbbrevation;
@@ -242,6 +243,7 @@ enum sections {
     SECTION_IMPORTS,
     SECTION_THEME,
     SECTION_SOUNDS,
+    SECTION_COMPASS,
     SECTION_MAPCOLOURS,
     SECTION_MAPSEARCHMAXIMUM,
     SECTION_MAPS,
@@ -263,6 +265,9 @@ enum sections {
     SECTION_SOUNDS_DIRECTION = 0,
     SECTION_SOUNDS_DISTANCE,
     SECTION_SOUNDS_MAX,
+
+    SECTION_COMPASS_ALWAYSPORTRAIT = 0,
+    SECTION_COMPASS_MAX,
 
     SECTION_MAPS_ROTATE_TO_BEARING = 0,
     SECTION_MAPS_MAX,
@@ -326,32 +331,23 @@ enum sections {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_DISTANCE: // Distance section
-            return SECTION_DISTANCE_MAX;
-        case SECTION_APPS:
-            return SECTION_APPS_MAX;
-        case SECTION_THEME: // Theme section
-            return SECTION_THEME_MAX;
-        case SECTION_SOUNDS: // Sounds section
-            return SECTION_SOUNDS_MAX;
-        case SECTION_MAPS: // Maps section
-            return SECTION_MAPS_MAX;
-        case SECTION_DYNAMICMAP: // Maps section
-            return SECTION_DYNAMICMAP_MAX;
-        case SECTION_MAPCOLOURS:
-            return SECTION_MAPCOLOURS_MAX;
-        case SECTION_KEEPTRACK:
-            return SECTION_KEEPTRACK_MAX;
-        case SECTION_MAPCACHE:
-            return SECTION_MAPCACHE_MAX;
-        case SECTION_IMPORTS:
-            return SECTION_IMPORTS_MAX;
-        case SECTION_MAPSEARCHMAXIMUM:
-            return SECTION_MAPSEARCHMAXIMUM_MAX;
-        case SECTION_MARKAS:
-            return SECTION_MARKAS_MAX;
-        case SECTION_WAYPOINTS:
-            return SECTION_WAYPOINTS_MAX;
+#define SECTION_MAX(__d__) \
+    case SECTION_##__d__: \
+        return SECTION_##__d__##_MAX;
+        SECTION_MAX(DISTANCE);
+        SECTION_MAX(APPS);
+        SECTION_MAX(THEME);
+        SECTION_MAX(SOUNDS);
+        SECTION_MAX(COMPASS);
+        SECTION_MAX(MAPS);
+        SECTION_MAX(DYNAMICMAP);
+        SECTION_MAX(MAPCOLOURS);
+        SECTION_MAX(KEEPTRACK);
+        SECTION_MAX(MAPCACHE);
+        SECTION_MAX(IMPORTS);
+        SECTION_MAX(MAPSEARCHMAXIMUM);
+        SECTION_MAX(MARKAS);
+        SECTION_MAX(WAYPOINTS);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -814,6 +810,22 @@ enum sections {
             }
         }
 
+        case SECTION_COMPASS: {
+            switch (indexPath.row) {
+                case SECTION_COMPASS_ALWAYSPORTRAIT: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Compass is always in portrait mode";
+
+                    compassAlwaysInPortraitMode = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    compassAlwaysInPortraitMode.on = myConfig.compassAlwaysInPortraitMode;
+                    [compassAlwaysInPortraitMode addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = compassAlwaysInPortraitMode;
+
+                    return cell;
+                }
+            }
+        }
+
         case SECTION_WAYPOINTS: {
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY: {
@@ -860,6 +872,11 @@ enum sections {
 - (void)updateMarkasFoundDNFClearsTarget:(UISwitch *)s
 {
     [myConfig markasFoundDNFClearsTargetUpdate:s.on];
+}
+
+- (void)updateCompassAlwaysInPortraitMode:(UISwitch *)s
+{
+    [myConfig compassAlwaysInPortraitModeUpdate:s.on];
 }
 
 - (void)updateDownloadImagesLogs:(UISwitch *)s

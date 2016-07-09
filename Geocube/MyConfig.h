@@ -86,6 +86,7 @@
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceOKAPI;
 
 @property (nonatomic, readonly) BOOL markasFoundDNFClearsTarget;
+@property (nonatomic, readonly) BOOL compassAlwaysInPortraitMode;
 @property (nonatomic, readonly) BOOL showCountryAsAbbrevation;
 @property (nonatomic, readonly) BOOL showStateAsAbbrevation;
 
@@ -147,6 +148,7 @@
 - (void)mapSearchMaximumDistanceOKAPIUpdate:(NSInteger)value;
 - (void)orientationsAllowedUpdate:(NSInteger)value;
 - (void)markasFoundDNFClearsTargetUpdate:(BOOL)value;
+- (void)compassAlwaysInPortraitModeUpdate:(BOOL)value;
 - (void)showStateAsAbbrevationUpdate:(BOOL)value;
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value;
 - (void)waypointListSortByUpdate:(NSInteger)value;

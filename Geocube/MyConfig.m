@@ -43,7 +43,7 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
-@synthesize markasFoundDNFClearsTarget, showCountryAsAbbrevation, showStateAsAbbrevation;
+@synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation;
 @synthesize waypointListSortBy;
 
 - (instancetype)init
@@ -166,6 +166,7 @@
     CHECK(@"mapsearchmaximum_numbergca", @"50");
 
     CHECK(@"markas_founddnf_clearstarget", @"1");
+    CHECK(@"compass_alwaysinportraitmode", @"1");
     CHECK(@"showasabbrevation_country", @"1");
     CHECK(@"showasabbrevation_state", @"0");
 
@@ -221,6 +222,7 @@
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
     mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
     markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
+    compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
     showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
@@ -528,6 +530,11 @@
 {
     markasFoundDNFClearsTarget = value;
     [self BOOLUpdate:@"markas_founddnf_clearstarget" value:value];
+}
+- (void)compassAlwaysInPortraitModeUpdate:(BOOL)value
+{
+    compassAlwaysInPortraitMode = value;
+    [self BOOLUpdate:@"compass_alwaysinportraitmode" value:value];
 }
 - (void)showStateAsAbbrevationUpdate:(BOOL)value
 {
