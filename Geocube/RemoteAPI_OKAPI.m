@@ -181,7 +181,7 @@
 
     float radius = myConfig.mapSearchMaximumDistanceOKAPI / 1000;
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%0.1f|%0.1f", center.latitude, center.longitude]], radius, (long)offset]];
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
