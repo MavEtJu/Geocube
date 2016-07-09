@@ -389,6 +389,11 @@ static const NSInteger TagOffset = 1000;
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
+    // The compass in the navigate tab might have to stay in portrait.
+    if (self.selectedIndex == VC_NAVIGATE_COMPASS &&
+        self == [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE] &&
+        myConfig.compassAlwaysInPortraitMode == YES)
+        return UIInterfaceOrientationMaskPortrait;
     return myConfig.orientationsAllowed;
 }
 
