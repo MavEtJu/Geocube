@@ -147,6 +147,12 @@
     return item;
 }
 
+- (void)hideAll
+{
+    [_menuLocal hide];
+    [_menuGlobal hide];
+}
+
 #pragma mark - VKSideMenuDelegate
 
 - (NSString *)sideMenu:(VKSideMenu *)sideMenu titleForHeaderInSection:(NSInteger)section

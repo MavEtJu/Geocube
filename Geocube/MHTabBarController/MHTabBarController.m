@@ -399,6 +399,7 @@ static const NSInteger TagOffset = 1000;
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
+    [menuGlobal hideAll];
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [_AppDelegate resizeControllers:size coordinator:coordinator];
 
@@ -407,6 +408,7 @@ static const NSInteger TagOffset = 1000;
                                      UIButton *b = localMenuButton;
                                      UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
                                      b.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+
                                  }
      ];
 }

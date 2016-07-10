@@ -36,6 +36,7 @@
 - (void)buttonMenuGlobal:(id)sender;
 - (void)buttonMenuLocal:(id)sender;
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc;
+- (void)hideAll;
 
 - (void)enableMenus:(BOOL)YESNO;
 
