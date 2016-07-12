@@ -223,7 +223,7 @@
 		E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760111B85E06E00F34483 /* ThemeGeosphere.m */; };
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
-		E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */; };
+		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCSimpleObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A8B1B87475400B9D7C3 /* icons - smiley - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */; };
@@ -727,8 +727,8 @@
 		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
 		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
 		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
-		E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
-		E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		E85DAFDB1B45429500C738A8 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		E85FCA711CAC6EF3005D7AE1 /* GCSimpleObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleObjects.h; sourceTree = "<group>"; };
 		E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSimpleObjects.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
@@ -1298,13 +1298,13 @@
 			name = Trackables;
 			sourceTree = "<group>";
 		};
-		E857078D1CA1E6A200467CE0 /* User Profile */ = {
+		E857078D1CA1E6A200467CE0 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
-				E85DAFDB1B45429500C738A8 /* UserProfileViewController.h */,
-				E85DAFDC1B45429500C738A8 /* UserProfileViewController.m */,
+				E85DAFDB1B45429500C738A8 /* StatisticsViewController.h */,
+				E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */,
 			);
-			name = "User Profile";
+			name = Statistics;
 			sourceTree = "<group>";
 		};
 		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
@@ -2206,7 +2206,7 @@
 				E833B72F1C522E8D00B9FB45 /* Lists */,
 				E84D6FD01C5826140000A6A0 /* Queries */,
 				E8FD610D1BE8C46100859A58 /* Files */,
-				E857078D1CA1E6A200467CE0 /* User Profile */,
+				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
@@ -2733,7 +2733,7 @@
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E82990461C87A36200504421 /* ImportGeocube.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
-				E85DAFDD1B45429500C738A8 /* UserProfileViewController.m in Sources */,
+				E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */,
 				E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */,
 				E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,

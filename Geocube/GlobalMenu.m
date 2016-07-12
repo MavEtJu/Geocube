@@ -82,7 +82,7 @@
             MATCH(RC_GROUPS, @"Groups");
             MATCH(RC_BROWSER, @"Browser");
             MATCH(RC_FILES, @"Files");
-            MATCH(RC_USERPROFILE, @"User Profile");
+            MATCH(RC_STATISTICS, @"Statistics");
             MATCH(RC_NOTICES, @"Notices");
             MATCH(RC_SETTINGS, @"Settings");
             MATCH(RC_HELP, @"Help");

@@ -133,6 +133,7 @@
 @class SettingsColoursViewController;
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
+@class StatisticsViewController;
 @class ThemeGeosphere;
 @class ThemeManager;
 @class ThemeNight;
@@ -141,7 +142,6 @@
 @class TrackablesInventoryViewController;
 @class TrackablesListViewController;
 @class TrackablesMineViewController;
-@class UserProfileViewController;
 @class WaypointAddViewController;
 @class WaypointAttributesViewController;
 @class WaypointDescriptionViewController;

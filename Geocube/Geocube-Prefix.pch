@@ -221,7 +221,7 @@
 #import "CompassViewController.h"
 #import "GroupsViewController.h"
 #import "NullViewController.h"
-#import "UserProfileViewController.h"
+#import "StatisticsViewController.h"
 
 #import "GCPointAnnotation.h"
 #import "MapWaypointInfoView.h"

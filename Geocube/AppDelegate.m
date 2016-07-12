@@ -275,16 +275,16 @@
                 TABBARCONTROLLER(RC_FILES, controllers)
                 break;
 
-            case RC_USERPROFILE:
+            case RC_STATISTICS:
                 controllers = [NSMutableArray array];
 
-                vc = [[UserProfileViewController alloc] init];
-                vc.title = @"User Profile";
+                vc = [[StatisticsViewController alloc] init];
+                vc.title = @"Statistics";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                TABBARCONTROLLER(RC_USERPROFILE, controllers)
+                TABBARCONTROLLER(RC_STATISTICS, controllers)
                 break;
 
             case RC_NOTICES:

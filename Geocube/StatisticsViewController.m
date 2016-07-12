@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface UserProfileViewController ()
+@interface StatisticsViewController ()
 {
     UIScrollView *contentView;
     NSMutableArray *accountViews;
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation UserProfileViewController
+@implementation StatisticsViewController
 
 enum {
     menuReload,
