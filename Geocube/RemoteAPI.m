@@ -331,24 +331,29 @@
             if (tb.logtype == TRACKABLE_LOG_NONE)
                 return;
             NSInteger dflt = 0;
+            NSString *note = nil;
             switch (tb.logtype) {
                 case TRACKABLE_LOG_VISIT:
                     dflt = LOGSTRING_DEFAULT_VISIT;
+                    note = [NSString stringWithFormat:@"Visited '%@' (%@)", waypoint.wpt_urlname, waypoint.wpt_name];
                     break;
                 case TRACKABLE_LOG_DROPOFF:
                     dflt = LOGSTRING_DEFAULT_DROPOFF;
+                    note = [NSString stringWithFormat:@"Dropped off at '%@' (%@)", waypoint.wpt_urlname, waypoint.wpt_name];
                     break;
                 case TRACKABLE_LOG_PICKUP:
                     dflt = LOGSTRING_DEFAULT_PICKUP;
+                    note = [NSString stringWithFormat:@"Picked up from '%@' (%@)", waypoint.wpt_urlname, waypoint.wpt_name];
                     break;
                 case TRACKABLE_LOG_DISCOVER:
                     dflt = LOGSTRING_DEFAULT_DISCOVER;
+                    note = [NSString stringWithFormat:@"Discovered in '%@' (%@)", waypoint.wpt_urlname, waypoint.wpt_name];
                     break;
                 default:
                     NSAssert(NO, @"Unknown tb.logtype");
             }
-            dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:LOGSTRING_LOGTYPE_TRACKABLEPERSON default:dflt];
-            [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb dateLogged:dateLogged];
+            dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT default:dflt];
+            [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged];
         }];
         return REMOTEAPI_OK;
     }

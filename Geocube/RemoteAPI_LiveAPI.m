@@ -723,7 +723,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb dateLogged:(NSString *)dateLogged
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged
 {
     NSLog(@"CreateTrackableLog:%@", tb.ref);
 
@@ -748,9 +748,10 @@
     [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:wp.wpt_name forKey:@"CacheCode"];
     [_dict setValue:tb.code forKey:@"TrackingNumber"];
+    [_dict setValue:tb.ref forKey:@"TravelBugCode"];
     [_dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
     [_dict setValue:logtype forKey:@"LogType"];
-    [_dict setValue:@"" forKey:@"Note"];
+    [_dict setValue:note forKey:@"Note"];
 
     NSError *error = nil;
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];

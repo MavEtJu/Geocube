@@ -138,6 +138,65 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
+
+    if (tb.logtype == TRACKABLE_LOG_PICKUP) {
+        [self trackableContainerAction:tb indexPath:indexPath];
+    } else if (tb.logtype == TRACKABLE_LOG_DISCOVER) {
+        [self trackableContainerAction:tb indexPath:indexPath];
+    } else {
+        [self trackableCarrierAction:tb indexPath:indexPath];
+    }
+}
+
+- (void)trackableContainerAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Trackable action"
+                               message:@""
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ignore = [UIAlertAction
+                               actionWithTitle:@"Ignore"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action) {
+                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
+                                   [self.tableView reloadData];
+                               }];
+
+    UIAlertAction *pickup = [UIAlertAction
+                             actionWithTitle:@"Pick up"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action) {
+                                 [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP] atIndexedSubscript:indexPath.row];
+                                 [self.tableView reloadData];
+                             }];
+
+    UIAlertAction *discovered = [UIAlertAction
+                                 actionWithTitle:@"Discovered"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER] atIndexedSubscript:indexPath.row];
+                                     [self.tableView reloadData];
+                                 }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleCancel
+                             handler:^(UIAlertAction *action) {
+                                 [self.tableView reloadData];
+                             }];
+
+    [alert addAction:pickup];
+    [alert addAction:discovered];
+    [alert addAction:ignore];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)trackableCarrierAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
+{
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Trackable action"
                                message:@""
@@ -167,9 +226,17 @@ enum {
                                   [self.tableView reloadData];
                               }];
 
-    [alert addAction:noaction];
+    UIAlertAction *cancel = [UIAlertAction
+                              actionWithTitle:@"Cancel"
+                              style:UIAlertActionStyleCancel
+                              handler:^(UIAlertAction *action) {
+                                  [self.tableView reloadData];
+                              }];
+
     [alert addAction:dropoff];
     [alert addAction:visited];
+    [alert addAction:noaction];
+    [alert addAction:cancel];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
