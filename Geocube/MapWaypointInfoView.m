@@ -23,13 +23,23 @@
 
 @interface MapWaypointInfoView ()
 {
-    UIImageView *imageSize;
     GCLabel *ratingDLabel, *ratingTLabel;
     UIImageView *ratingDIV, *ratingTIV;
     GCLabel *favouritesLabel;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
-    UIImageView *icon, *favouritesIV;
+    UIImageView *favouritesIV;
+    UIButton *setAsTarget;
+
+    GCLabel *description;
+    GCLabel *name;
+    UIImageView *icon;
+    GCLabel *country;
+    GCLabel *stateCountry;
+    GCLabel *bearing;
     GCLabel *labelSize;
+    GCLabel *coordinates;
+    GCLabel *whomWhen;
+    UIImageView *imageSize;
 
     CGRect rectIcon;
     CGRect rectDescription;
@@ -46,13 +56,14 @@
     CGRect rectStateCountry;
     CGRect rectCoordinates;
     CGRect rectByWhomWhen;
+    CGRect rectSetAsTarget;
+
+    dbWaypoint *waypoint;
 }
 
 @end
 
 @implementation MapWaypointInfoView
-
-@synthesize description, name, icon, stateCountry, bearing, labelSize, imageSize, coordinates, whomWhen;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -143,26 +154,89 @@
     labelSize.font = [UIFont systemFontOfSize:10];
     [self addSubview:labelSize];
 
+    // Set as target
+    setAsTarget = [UIButton buttonWithType:UIButtonTypeSystem];
+    setAsTarget.frame = rectSetAsTarget;
+    [setAsTarget addTarget:self action:@selector(setAsTarget:) forControlEvents:UIControlEventTouchDown];
+    [setAsTarget setImage:[imageLibrary get:ImageIcon_FindMe] forState:UIControlStateNormal];
+    [self addSubview:setAsTarget];
+
     [self changeTheme];
 
     return self;
+}
+
+- (void)waypointData:(dbWaypoint *)wp
+{
+    waypoint = wp;
+
+    description.text = wp.wpt_urlname;
+    whomWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools datetimePartDate:[MyTools dateTimeString:wp.wpt_date_placed_epoch]]];
+    name.text = [NSString stringWithFormat:@"%@ (%@)", wp.wpt_name, wp.account.site];
+    icon.image = [imageLibrary getType:wp];
+    if (wp.flag_highlight == YES)
+        description.backgroundColor = [UIColor yellowColor];
+    else
+        description.backgroundColor = [UIColor clearColor];
+
+    [self setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
+
+    NSInteger b = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    bearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)b, [Coordinates bearing2compass:b], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]]];
+    coordinates.text = [Coordinates NiceCoordinates:wp.coordinates];
+
+    labelSize.text = wp.wpt_type.type_minor;
+    if (wp.gs_container.icon == 0) {
+        labelSize.hidden = NO;
+        imageSize.hidden = YES;
+    } else {
+        labelSize.hidden = YES;
+        imageSize.hidden = NO;
+    }
+
+    NSMutableString *s = [NSMutableString stringWithFormat:@""];
+    if (wp.gs_state != nil)
+        [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
+    if (wp.gs_country != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
+    }
+    stateCountry.text = s;
+}
+
+- (void)setAsTarget:(UIButton *)setAsTarget
+{
+    [waypointManager setCurrentWaypoint:waypoint];
+
+    MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
+    UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
+    WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
+    [cvc showWaypoint:waypointManager.currentWaypoint];
+
+    nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
+    MapViewController *mvc = [nvc.viewControllers objectAtIndex:0];
+    [mvc refreshWaypointsData];
+
+    [_AppDelegate switchController:RC_NAVIGATE];
+    [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
 }
 
 - (void)calculateRects
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
+    CGSize setAsTargetSize = setAsTarget.imageView.image.size;
 
     /*
      +---+---------------------+---+
-     |   | Description         | F |  Favourites
-     |   +---------------------+   |  Difficulty
-     |   | Name                |   |  Terrain
-     +---+---------------------+---+  Angle
-     | Coordinates                 |  Compass
-     | A | Distance      | D XXXXX |
-     | C | State Country | T XXXXX |
-     +---+--------------+----------+
+     |   | Name                | F |  Favourites
+     | C | By X on Y           |   |  Difficulty
+     |   | GC Code             |   |  Terrain
+     |   |---------------+-----+---+  Angle
+     | T | A at Distance | D XXXXX |
+     |   | State Country | T XXXXX |
+     +---+---------------+---------+
      */
 #define BORDER 1
 #define ICON_WIDTH 30
@@ -178,6 +252,7 @@
 #define COORDINATES_HEIGHT 14
 
     rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
+    rectSetAsTarget = CGRectMake(BORDER, 2 * BORDER + ICON_HEIGHT, setAsTargetSize.width, setAsTargetSize.height * 1.5);
     rectDescription = CGRectMake(BORDER + ICON_WIDTH, BORDER, width - ICON_WIDTH - 2 * BORDER, DESCRIPTION_HEIGHT);
     rectByWhomWhen = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
     rectName = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + NAME_HEIGHT, width - 2 * BORDER - FAVOURITES_WIDTH, NAME_HEIGHT);
@@ -217,6 +292,7 @@
     bearing.frame = rectBearing;
     stateCountry.frame = rectStateCountry;
     coordinates.frame = rectCoordinates;
+    setAsTarget.frame = rectSetAsTarget;
 
     ratingDLabel.frame = rectRatingDLabel;
     ratingTLabel.frame = rectRatingTLabel;

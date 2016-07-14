@@ -24,7 +24,7 @@
 @interface MapTemplate ()
 {
     MapWaypointInfoView *wpInfoView;
-    UIButton *wpInfoViewButton;
+    NSArray *wpInfoViewButtons;
 }
 
 @end
@@ -213,7 +213,14 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 {
     CGRect frame = mapvc.view.frame;
     wpInfoView.frame = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
-    wpInfoViewButton.frame = wpInfoView.frame;
+
+    UIButton *b = [wpInfoViewButtons objectAtIndex:0];
+    b.frame = wpInfoView.frame;
+    b.frame = CGRectMake(30, wpInfoView.frame.origin.y, b.frame.size.width - 30, b.frame.size.height);
+
+    b = [wpInfoViewButtons objectAtIndex:1];
+    b.frame = CGRectMake(0, wpInfoView.frame.origin.y, 30, 30);
+
     [wpInfoView calculateRects];
     [wpInfoView viewWillTransitionToSize];
 }
@@ -230,53 +237,24 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 - (void)hideWaypointInfo
 {
     [mapvc.view sendSubviewToBack:wpInfoView];
-    [mapvc.view sendSubviewToBack:wpInfoViewButton];
-    [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mapvc.view sendSubviewToBack:wpInfoViewButton];
+        [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    }];
 }
 
 - (void)showWaypointInfo
 {
     [mapvc.view bringSubviewToFront:wpInfoView];
-    [mapvc.view bringSubviewToFront:wpInfoViewButton];
-    [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mapvc.view bringSubviewToFront:wpInfoViewButton];
+        [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    }];
 }
 
 - (void)updateWaypointInfo:(dbWaypoint *)wp
 {
-    wpInfoView.description.text = wp.wpt_urlname;
-    wpInfoView.whomWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools datetimePartDate:[MyTools dateTimeString:wp.wpt_date_placed_epoch]]];
-    wpInfoView.name.text = [NSString stringWithFormat:@"%@ (%@)", wp.wpt_name, wp.account.site];
-    wpInfoView.icon.image = [imageLibrary getType:wp];
-    if (wp.flag_highlight == YES)
-        wpInfoView.description.backgroundColor = [UIColor yellowColor];
-    else
-        wpInfoView.description.backgroundColor = [UIColor clearColor];
-
-    [wpInfoView setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
-
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
-    wpInfoView.bearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)bearing, [Coordinates bearing2compass:bearing], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]]];
-    wpInfoView.coordinates.text = [Coordinates NiceCoordinates:wp.coordinates];
-
-    wpInfoView.labelSize.text = wp.wpt_type.type_minor;
-    if (wp.gs_container.icon == 0) {
-        wpInfoView.labelSize.hidden = NO;
-        wpInfoView.imageSize.hidden = YES;
-    } else {
-        wpInfoView.labelSize.hidden = YES;
-        wpInfoView.imageSize.hidden = NO;
-    }
-
-    NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (wp.gs_state != nil)
-        [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
-    if (wp.gs_country != nil) {
-        if ([s isEqualToString:@""] == NO)
-            [s appendFormat:@", "];
-        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
-    }
-    wpInfoView.stateCountry.text = s;
-
+    [wpInfoView waypointData:wp];
     [self recalculateRects];
 }
 
@@ -288,9 +266,22 @@ NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
     wpInfoView.backgroundColor = [UIColor whiteColor];
     [mapvc.view addSubview:wpInfoView];
 
-    wpInfoViewButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    wpInfoViewButton.backgroundColor = [UIColor clearColor];
-    [mapvc.view addSubview:wpInfoViewButton];
+    NSMutableArray *as = [NSMutableArray arrayWithCapacity:2];
+
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+    b.backgroundColor = [UIColor clearColor];
+    b.frame = wpInfoView.frame;
+    b.frame = CGRectMake(30, wpInfoView.frame.origin.y, b.frame.size.width - 30, b.frame.size.height);
+    [mapvc.view addSubview:b];
+    [as addObject:b];
+
+    b = [UIButton buttonWithType:UIButtonTypeSystem];
+    b.backgroundColor = [UIColor clearColor];
+    b.frame = CGRectMake(0, wpInfoView.frame.origin.y, 30, 30);
+    [mapvc.view addSubview:b];
+    [as addObject:b];
+
+    wpInfoViewButtons = as;
 
     [self hideWaypointInfo];
 }
