@@ -263,6 +263,10 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
+    // Images
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGETYPE_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGETYPE_CACHE];
+
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
@@ -636,6 +640,8 @@
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, l.logstring_string, @"LogType.WptLogTypeName");
+
+    [ImagesDownloadManager findImagesInDescription:wp._id text:l.log type:IMAGETYPE_LOG];
 
     dbName *name = [[dbName alloc] init];
     DICT_NSSTRING_PATH(dict, name.name, @"Finder.UserName");

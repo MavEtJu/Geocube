@@ -223,6 +223,9 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGETYPE_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGETYPE_CACHE];
+
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"my_notes");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
@@ -348,6 +351,8 @@
     [dbName makeNameExist:loggername code:loggerid account:account];
 
     name = [dbName dbGetByName:loggername account:account];
+
+    [ImagesDownloadManager findImagesInDescription:wp._id text:comment type:IMAGETYPE_LOG];
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
