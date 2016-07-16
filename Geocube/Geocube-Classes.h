@@ -32,7 +32,7 @@
 @class DNFListViewController;
 @class DatabaseCache;
 @class DownloadManager;
-@class DownloadsViewController;
+@class DownloadsImportsViewController;
 @class ExportGPX;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
@@ -95,6 +95,7 @@
 @class ImportLiveAPIJSON;
 @class ImportOKAPIJSON;
 @class Importer;
+@class ImportManager;
 @class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;

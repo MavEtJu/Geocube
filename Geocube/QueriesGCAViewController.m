@@ -49,35 +49,14 @@ enum {
 
 - (BOOL)parseRetrievedQueryGPX:(NSObject *)query group:(dbGroup *)group
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        DownloadsViewController *newController = [[DownloadsViewController alloc] init];
-        [newController setGroupAccount:group account:account];
-        newController.edgesForExtendedLayout = UIRectEdgeNone;
-        newController.title = @"Import";
-        [self.navigationController pushViewController:newController animated:YES];
-        newController.run_options = RUN_OPTION_LOGSONLY;
-        [newController run:query];
-    }];
-
-    [waypointManager needsRefresh];
-
+    [importManager run:query group:group account:account options:RUN_OPTION_LOGSONLY];
     return YES;
 }
 
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        DownloadsViewController *newController = [[DownloadsViewController alloc] init];
-        [newController setGroupAccount:group account:account];
-        newController.edgesForExtendedLayout = UIRectEdgeNone;
-        newController.title = @"Import";
-        [self.navigationController pushViewController:newController animated:YES];
-        [newController run:query];
-    }];
-
-    [waypointManager needsRefresh];
-
+    [importManager run:query group:group account:account options:RUN_OPTION_NONE];
     return YES;
 }
 

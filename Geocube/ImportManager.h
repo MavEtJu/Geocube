@@ -19,14 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
+@interface ImportManager : NSObject
 
-@interface DownloadManager ()
-{
-}
+enum {
+    RUN_OPTION_NONE = 0,
+    RUN_OPTION_LOGSONLY = 1,
+};
 
-@end
-
-@implementation DownloadManager
+- (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
 
 @end

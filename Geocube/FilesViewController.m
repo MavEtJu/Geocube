@@ -391,13 +391,8 @@ enum {
             [myConfig lastImportSourceUpdate:selectedIndex];
             __block NSString *filename = [filesNames objectAtIndex:row];
             __block NSNumber *filesize = [filesSizes objectAtIndex:row];
-            DownloadsViewController *newController = [[DownloadsViewController alloc] init];
-            [newController setGroupAccount:group account:[accounts objectAtIndex:selectedIndex]];
-            newController.edgesForExtendedLayout = UIRectEdgeNone;
-            newController.title = @"Import";
-            [self.navigationController pushViewController:newController animated:YES];
             GCStringFilename *sfn = [[GCStringFilename alloc] initWithString:filename];
-            [newController run:sfn];
+            [importManager run:sfn group:group account:[accounts objectAtIndex:selectedIndex] options:RUN_OPTION_NONE];
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {

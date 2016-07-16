@@ -120,8 +120,9 @@
 #import "ImportOKAPIJSON.h"
 #import "ExportGPX.h"
 
-#import "DownloadsViewController.h"
+#import "DownloadsImportsViewController.h"
 #import "DownloadManager.h"
+#import "ImportManager.h"
 
 #import "GCCloseBUtton.h"
 #import "GCLabel.h"

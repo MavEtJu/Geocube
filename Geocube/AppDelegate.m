@@ -410,7 +410,7 @@
             case RC_DOWNLOADS:
                 controllers = [NSMutableArray array];
 
-                vc = [[DownloadsViewController alloc] init];
+                vc = [[DownloadsImportsViewController alloc] init];
                 vc.title = @"Downloads";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
@@ -443,8 +443,9 @@
     // Download View Controller and Manager
     downloadTabController = [_AppDelegate.tabBars objectAtIndex:RC_DOWNLOADS];
     nvc = [downloadTabController.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
-    downloadViewController = [nvc.viewControllers objectAtIndex:0];
+    downloadsImportsViewController = [nvc.viewControllers objectAtIndex:0];
     downloadManager = [[DownloadManager alloc] init];
+    importManager = [[ImportManager alloc] init];
 
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];

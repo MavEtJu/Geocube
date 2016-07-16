@@ -45,17 +45,7 @@
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
     GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:query];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        DownloadsViewController *newController = [[DownloadsViewController alloc] init];
-        [newController setGroupAccount:group account:account];
-        newController.edgesForExtendedLayout = UIRectEdgeNone;
-        newController.title = @"Import";
-        [self.navigationController pushViewController:newController animated:YES];
-        [newController run:d];
-    }];
-
-    [waypointManager needsRefresh];
+    [importManager run:d group:group account:account options:RUN_OPTION_NONE];
 
     return YES;
 }

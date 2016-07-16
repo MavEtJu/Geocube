@@ -156,7 +156,7 @@
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
-		E80F73731B530C4600F35528 /* DownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* DownloadsViewController.m */; };
+		E80F73731B530C4600F35528 /* DownloadsImportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E812CF551D01A09400C4E777 /* VKSideMenu.m */; };
@@ -382,6 +382,7 @@
 		E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */; };
 		E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
+		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
@@ -610,8 +611,8 @@
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
 		E80AEEBD1BA670B200106F7F /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
-		E80F73711B530C4600F35528 /* DownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadsViewController.h; sourceTree = "<group>"; };
-		E80F73721B530C4600F35528 /* DownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadsViewController.m; sourceTree = "<group>"; };
+		E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadsImportsViewController.h; sourceTree = "<group>"; };
+		E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadsImportsViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E812CF541D01A09400C4E777 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
@@ -1009,6 +1010,8 @@
 		E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOthersTableViewCell.m; sourceTree = "<group>"; };
 		E8EC073D1D39D898009B8EB1 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
 		E8EC073E1D39D898009B8EB1 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
+		E8EC07401D39E887009B8EB1 /* ImportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportManager.h; sourceTree = "<group>"; };
+		E8EC07411D39E887009B8EB1 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1945,17 +1948,19 @@
 			name = CMRangeSlider;
 			sourceTree = "<group>";
 		};
-		E8EC073C1D39C526009B8EB1 /* Downloads */ = {
+		E8EC073C1D39C526009B8EB1 /* Downloads and Imports */ = {
 			isa = PBXGroup;
 			children = (
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E8EC073D1D39D898009B8EB1 /* DownloadManager.h */,
 				E8EC073E1D39D898009B8EB1 /* DownloadManager.m */,
-				E80F73711B530C4600F35528 /* DownloadsViewController.h */,
-				E80F73721B530C4600F35528 /* DownloadsViewController.m */,
+				E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */,
+				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
+				E8EC07401D39E887009B8EB1 /* ImportManager.h */,
+				E8EC07411D39E887009B8EB1 /* ImportManager.m */,
 			);
-			name = Downloads;
+			name = "Downloads and Imports";
 			sourceTree = "<group>";
 		};
 		E8F5704A1B3F7255003F020C = {
@@ -2210,7 +2215,7 @@
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
-				E8EC073C1D39C526009B8EB1 /* Downloads */,
+				E8EC073C1D39C526009B8EB1 /* Downloads and Imports */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2759,7 +2764,7 @@
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
-				E80F73731B530C4600F35528 /* DownloadsViewController.m in Sources */,
+				E80F73731B530C4600F35528 /* DownloadsImportsViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
@@ -2782,6 +2787,7 @@
 				E829904A1C87AFA400504421 /* XMLReader.m in Sources */,
 				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* WaypointViewController.m in Sources */,
+				E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
 				E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */,
 				E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */,

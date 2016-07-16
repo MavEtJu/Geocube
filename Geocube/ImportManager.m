@@ -21,12 +21,18 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface DownloadManager ()
+@interface ImportManager ()
 {
 }
 
 @end
 
-@implementation DownloadManager
+@implementation ImportManager
+
+- (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions
+{
+    NSLog(@"ImportManager:run");
+}
+
 
 @end

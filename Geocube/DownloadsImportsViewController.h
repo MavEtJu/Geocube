@@ -19,17 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadsViewController : GCViewController <ImporterDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
+@interface DownloadsImportsViewController : GCViewController <ImporterDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
 
 @property (nonatomic) NSInteger run_options;
 
-enum {
-    RUN_OPTION_NONE = 0,
-    RUN_OPTION_LOGSONLY = 1,
-};
-
 - (instancetype)init;
-- (void)setGroupAccount:(dbGroup *)_group account:(dbAccount *)_account;
-- (void)run:(NSObject *)data;
 
 @end

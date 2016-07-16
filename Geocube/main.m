@@ -55,8 +55,9 @@ BrowserBrowserViewController *browserViewController = nil;
 
 // Download manager and view controller
 MHTabBarController *downloadTabController = nil;
-DownloadsViewController *downloadViewController = nil;
+DownloadsImportsViewController *downloadsImportsViewController = nil;
 DownloadManager *downloadManager = nil;
+ImportManager *importManager = nil;
 
 //
 AppDelegate *_AppDelegate;

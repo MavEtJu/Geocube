@@ -48,8 +48,6 @@
 
     BOOL isVisible;
     BOOL needsRefresh;
-
-    DownloadsViewController *ivc;
 }
 
 @end
@@ -798,11 +796,6 @@ enum {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
 
-    ivc = [[DownloadsViewController alloc] init];
-    ivc.edgesForExtendedLayout = UIRectEdgeNone;
-    ivc.title = @"Import";
-    [self.navigationController pushViewController:ivc animated:YES];
-
     [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
 }
 
@@ -816,26 +809,17 @@ enum {
         accountsFound++;
 
         account.remoteAPI.delegateLoadWaypoints = self;
-        [ivc setGroupAccount:dbc.Group_LiveImport account:account];
-
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView activityViewForView:ivc.view withLabel:[NSString stringWithFormat:@"Loading for %@", account.site]];
-        }];
 
         NSObject *d;
         [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d];
         account.remoteAPI.delegateLoadWaypoints = nil;
-
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView removeViewAnimated:NO];
-        }];
 
         if (d == nil) {
             [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
             return;
         }
 
-        [ivc run:d];
+        [importManager run:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
     }];
 
     if (accountsFound == 0) {
