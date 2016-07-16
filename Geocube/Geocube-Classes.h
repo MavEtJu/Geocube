@@ -31,6 +31,8 @@
 @class Coordinates;
 @class DNFListViewController;
 @class DatabaseCache;
+@class DownloadManager;
+@class DownloadsViewController;
 @class ExportGPX;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;
@@ -92,7 +94,6 @@
 @class ImportGeocube;
 @class ImportLiveAPIJSON;
 @class ImportOKAPIJSON;
-@class ImportViewController;
 @class Importer;
 @class InProgressListViewController;
 @class KeepTrackCar;
@@ -118,7 +119,6 @@
 @class NotesPersonalNotesViewController;
 @class NoticeTableViewCell;
 @class NoticesViewController;
-@class NullViewController;
 @class PersonalNoteTableViewCell;
 @class ProtocolTemplate;
 @class QueriesGCAViewController;

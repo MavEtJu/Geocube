@@ -53,6 +53,11 @@ MyConfig *myConfig = nil;
 MHTabBarController *tbc = nil;
 BrowserBrowserViewController *bbvc = nil;
 
+// Download manager and view controller
+MHTabBarController *downloadTabController;
+DownloadsViewController *downloadViewController;
+DownloadManager *downloadManager;
+
 //
 AppDelegate *_AppDelegate;
 

@@ -118,8 +118,10 @@
 #import "ImportLiveAPIJSON.h"
 #import "ImportGeocube.h"
 #import "ImportOKAPIJSON.h"
-#import "ImportViewController.h"
 #import "ExportGPX.h"
+
+#import "DownloadsViewController.h"
+#import "DownloadManager.h"
 
 #import "GCCloseBUtton.h"
 #import "GCLabel.h"
@@ -220,7 +222,6 @@
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
 #import "GroupsViewController.h"
-#import "NullViewController.h"
 #import "StatisticsViewController.h"
 
 #import "GCPointAnnotation.h"

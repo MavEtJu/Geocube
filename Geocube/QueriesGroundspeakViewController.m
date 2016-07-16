@@ -47,7 +47,7 @@
     GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:query];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        ImportViewController *newController = [[ImportViewController alloc] init];
+        DownloadsViewController *newController = [[DownloadsViewController alloc] init];
         [newController setGroupAccount:group account:account];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = @"Import";

@@ -156,7 +156,7 @@
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
-		E80F73731B530C4600F35528 /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* ImportViewController.m */; };
+		E80F73731B530C4600F35528 /* DownloadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* DownloadsViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E812CF551D01A09400C4E777 /* VKSideMenu.m */; };
@@ -359,7 +359,6 @@
 		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DD39531C40AFB500407705 /* MapAppleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DD39521C40AFB500407705 /* MapAppleCache.m */; };
-		E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DF1A841B42AF7900FFCC95 /* NullViewController.m */; };
 		E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */; };
 		E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E88D911BF06D9500E90F8D /* LocationManager.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
@@ -382,6 +381,7 @@
 		E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02B1B6720F100CC741A /* FilterDateTableViewCell.m */; };
 		E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */; };
 		E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */; };
+		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
@@ -610,8 +610,8 @@
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
 		E80AEEBD1BA670B200106F7F /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
-		E80F73711B530C4600F35528 /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
-		E80F73721B530C4600F35528 /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
+		E80F73711B530C4600F35528 /* DownloadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadsViewController.h; sourceTree = "<group>"; };
+		E80F73721B530C4600F35528 /* DownloadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadsViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E812CF541D01A09400C4E777 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
@@ -965,8 +965,6 @@
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DD39511C40AFB500407705 /* MapAppleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAppleCache.h; sourceTree = "<group>"; };
 		E8DD39521C40AFB500407705 /* MapAppleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleCache.m; sourceTree = "<group>"; };
-		E8DF1A831B42AF7900FFCC95 /* NullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullViewController.h; sourceTree = "<group>"; };
-		E8DF1A841B42AF7900FFCC95 /* NullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullViewController.m; sourceTree = "<group>"; };
 		E8E2F5551D02C4C8009170E3 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMenuItems.h; sourceTree = "<group>"; };
 		E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMenuItems.m; sourceTree = "<group>"; };
 		E8E88D901BF06D9500E90F8D /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -1009,6 +1007,8 @@
 		E8E8D02E1B67210800CC741A /* FilterCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryTableViewCell.m; sourceTree = "<group>"; };
 		E8E8D0301B67212000CC741A /* FilterOthersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterOthersTableViewCell.h; sourceTree = "<group>"; };
 		E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOthersTableViewCell.m; sourceTree = "<group>"; };
+		E8EC073D1D39D898009B8EB1 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		E8EC073E1D39D898009B8EB1 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1179,8 +1179,6 @@
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
-				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
-				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
 				E8E88D901BF06D9500E90F8D /* LocationManager.h */,
@@ -1191,17 +1189,6 @@
 				E8045B881B697A3B00DD44CC /* WaypointManager.m */,
 			);
 			name = Base;
-			sourceTree = "<group>";
-		};
-		E82FBB2C1B4613F10009AB6D /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				E80F73711B530C4600F35528 /* ImportViewController.h */,
-				E80F73721B530C4600F35528 /* ImportViewController.m */,
-				E8DF1A831B42AF7900FFCC95 /* NullViewController.h */,
-				E8DF1A841B42AF7900FFCC95 /* NullViewController.m */,
-			);
-			name = Pages;
 			sourceTree = "<group>";
 		};
 		E833B72F1C522E8D00B9FB45 /* Lists */ = {
@@ -1958,6 +1945,19 @@
 			name = CMRangeSlider;
 			sourceTree = "<group>";
 		};
+		E8EC073C1D39C526009B8EB1 /* Downloads */ = {
+			isa = PBXGroup;
+			children = (
+				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
+				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
+				E8EC073D1D39D898009B8EB1 /* DownloadManager.h */,
+				E8EC073E1D39D898009B8EB1 /* DownloadManager.m */,
+				E80F73711B530C4600F35528 /* DownloadsViewController.h */,
+				E80F73721B530C4600F35528 /* DownloadsViewController.m */,
+			);
+			name = Downloads;
+			sourceTree = "<group>";
+		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -2194,7 +2194,6 @@
 				E85760161B85E08F00F34483 /* Geocube */,
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
-				E82FBB2C1B4613F10009AB6D /* Pages */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E857078F1CA1E77B00467CE0 /* Navigate */,
@@ -2211,6 +2210,7 @@
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
+				E8EC073C1D39C526009B8EB1 /* Downloads */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2759,7 +2759,7 @@
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
-				E80F73731B530C4600F35528 /* ImportViewController.m in Sources */,
+				E80F73731B530C4600F35528 /* DownloadsViewController.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
@@ -2769,6 +2769,7 @@
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
+				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */,
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
@@ -2853,7 +2854,6 @@
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
-				E8DF1A851B42AF7900FFCC95 /* NullViewController.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
 				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellTwoTextfields.m in Sources */,

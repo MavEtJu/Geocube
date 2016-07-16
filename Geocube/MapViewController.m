@@ -49,7 +49,7 @@
     BOOL isVisible;
     BOOL needsRefresh;
 
-    ImportViewController *ivc;
+    DownloadsViewController *ivc;
 }
 
 @end
@@ -798,7 +798,7 @@ enum {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
 
-    ivc = [[ImportViewController alloc] init];
+    ivc = [[DownloadsViewController alloc] init];
     ivc.edgesForExtendedLayout = UIRectEdgeNone;
     ivc.title = @"Import";
     [self.navigationController pushViewController:ivc animated:YES];

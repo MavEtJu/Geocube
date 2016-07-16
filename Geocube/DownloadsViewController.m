@@ -23,7 +23,7 @@
 
 #define MAXHISTORY  10
 
-@interface ImportViewController ()
+@interface DownloadsViewController ()
 {
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
@@ -72,7 +72,7 @@
 
 @end
 
-@implementation ImportViewController
+@implementation DownloadsViewController
 
 - (instancetype)init
 {

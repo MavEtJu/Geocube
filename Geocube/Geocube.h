@@ -54,6 +54,11 @@ extern MyConfig *myConfig;
 extern MHTabBarController *tbc;
 extern BrowserBrowserViewController *bbvc;
 
+// Download manager and view controller
+extern MHTabBarController *downloadTabController;
+extern DownloadsViewController *downloadViewController;
+extern DownloadManager *downloadManager;
+
 //
 extern AppDelegate *_AppDelegate;
 

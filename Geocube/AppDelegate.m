@@ -407,12 +407,25 @@
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
 
+            case RC_DOWNLOADS:
+                controllers = [NSMutableArray array];
+
+                vc = [[DownloadsViewController alloc] init];
+                vc.title = @"Downloads";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                TABBARCONTROLLER(RC_DOWNLOADS, controllers)
+                break;
+
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 
         }
     }
 
+    // Switch back to the last page the user was on.
     [self switchController:myConfig.currentPage];
     MHTabBarController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -422,9 +435,16 @@
     [self.window makeKeyAndVisible];
     [currentTab setSelectedIndex:cpt animated:YES];
 
+    // Browser View Controller
     tbc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
     UINavigationController *nvc = [tbc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
     bbvc = [nvc.viewControllers objectAtIndex:0];
+
+    // Download View Controller and Manager
+    downloadTabController = [_AppDelegate.tabBars objectAtIndex:RC_DOWNLOADS];
+    nvc = [tbc.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
+    downloadViewController = [nvc.viewControllers objectAtIndex:0];
+    downloadManager = [[DownloadManager alloc] init];
 
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];

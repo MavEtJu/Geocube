@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NullViewController : GCViewController
+#import "Geocube-Prefix.pch"
+
+@implementation DownloadManager
 
 @end

@@ -391,7 +391,7 @@ enum {
             [myConfig lastImportSourceUpdate:selectedIndex];
             __block NSString *filename = [filesNames objectAtIndex:row];
             __block NSNumber *filesize = [filesSizes objectAtIndex:row];
-            ImportViewController *newController = [[ImportViewController alloc] init];
+            DownloadsViewController *newController = [[DownloadsViewController alloc] init];
             [newController setGroupAccount:group account:[accounts objectAtIndex:selectedIndex]];
             newController.edgesForExtendedLayout = UIRectEdgeNone;
             newController.title = @"Import";
