@@ -20,6 +20,12 @@ grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
 echo
+echo "Protocols:"
+grep --exclude Geocube-Delegates.h -h ^@protocol *.h | sed -e 's/$/;/' | sort > /tmp/a
+grep ^@protocol Geocube-Delegates.h > /tmp/b
+diff /tmp/[ab]
+
+echo
 echo "Spaces at the end:"
 grep -n "[	 ]$" *.m *.h
 

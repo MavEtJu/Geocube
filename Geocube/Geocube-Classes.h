@@ -93,9 +93,9 @@
 @class ImportGPX;
 @class ImportGeocube;
 @class ImportLiveAPIJSON;
+@class ImportManager;
 @class ImportOKAPIJSON;
 @class Importer;
-@class ImportManager;
 @class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;

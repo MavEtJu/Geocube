@@ -55,6 +55,7 @@
 #import "YIPopupTextView.h"
 
 #import "Geocube-Classes.h"
+#import "Geocube-Delegates.h"
 
 #import "Coordinates.h"
 #import "MyTools.h"
@@ -120,9 +121,9 @@
 #import "ImportOKAPIJSON.h"
 #import "ExportGPX.h"
 
-#import "DownloadsImportsViewController.h"
 #import "DownloadManager.h"
 #import "ImportManager.h"
+#import "DownloadsImportsViewController.h"
 
 #import "GCCloseBUtton.h"
 #import "GCLabel.h"
