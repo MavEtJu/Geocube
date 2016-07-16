@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol ImportManagerDelegate
+
+@end
+
 @interface ImportManager : NSObject
 
 enum {

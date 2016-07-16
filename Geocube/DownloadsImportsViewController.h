@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadsImportsViewController : GCViewController <ImporterDelegate, SSZipArchiveDelegate, ImagesDownloadManagerDelegate>
+@interface DownloadsImportsViewController : GCViewController <ImportManagerDelegate, DownloadManagerDelegate, SSZipArchiveDelegate>
 
 @property (nonatomic) NSInteger run_options;
 

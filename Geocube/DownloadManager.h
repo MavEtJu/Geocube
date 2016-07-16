@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol DownloadManagerDelegate
+
+@end
+
 @interface DownloadManager : NSObject
 
 @end
