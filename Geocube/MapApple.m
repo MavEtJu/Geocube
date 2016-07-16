@@ -193,8 +193,10 @@
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]])
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        ((MKUserLocation *)annotation).title = @"";
         return nil;
+    }
 
     // If it is a waypoint, add an image to it.
     if ([annotation isKindOfClass:[GCPointAnnotation class]] == YES) {
