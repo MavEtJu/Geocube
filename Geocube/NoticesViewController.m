@@ -154,8 +154,8 @@ enum {
 
     if (n.url != nil && [n.url isEqualToString:@""] == NO) {
         [_AppDelegate switchController:RC_BROWSER];
-        [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-        [bbvc loadURL:n.url];
+        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController loadURL:n.url];
     }
 }
 

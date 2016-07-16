@@ -51,8 +51,8 @@ extern IOSFileTransfers *IOSFTM;
 extern MyConfig *myConfig;
 
 // Webbrowser
-extern MHTabBarController *tbc;
-extern BrowserBrowserViewController *bbvc;
+extern MHTabBarController *browserTabController;
+extern BrowserBrowserViewController *browserViewController;
 
 // Download manager and view controller
 extern MHTabBarController *downloadTabController;

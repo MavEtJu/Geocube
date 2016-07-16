@@ -137,8 +137,8 @@ enum {
                            {
                                //Do some thing here
 
-                               [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-                               [bbvc loadURL:bm.url];
+                               [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+                               [browserViewController loadURL:bm.url];
                            }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"

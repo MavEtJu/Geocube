@@ -96,9 +96,9 @@
 {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
 
-    [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-    [bbvc clearScreen];
-    [bbvc loadURL:a.url_queries];
+    [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+    [browserViewController clearScreen];
+    [browserViewController loadURL:a.url_queries];
 }
 
 

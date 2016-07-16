@@ -560,8 +560,8 @@ enum {
 - (void)menuOpenInBrowser
 {
     [_AppDelegate switchController:RC_BROWSER];
-    [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-    [bbvc loadURL:waypoint.wpt_url];
+    [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+    [browserViewController loadURL:waypoint.wpt_url];
 }
 
 - (void)menuLogThisWaypoint

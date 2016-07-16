@@ -436,13 +436,13 @@
     [currentTab setSelectedIndex:cpt animated:YES];
 
     // Browser View Controller
-    tbc = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
-    UINavigationController *nvc = [tbc.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
-    bbvc = [nvc.viewControllers objectAtIndex:0];
+    browserTabController = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
+    UINavigationController *nvc = [browserTabController.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
+    browserViewController = [nvc.viewControllers objectAtIndex:0];
 
     // Download View Controller and Manager
     downloadTabController = [_AppDelegate.tabBars objectAtIndex:RC_DOWNLOADS];
-    nvc = [tbc.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
+    nvc = [downloadTabController.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
     downloadViewController = [nvc.viewControllers objectAtIndex:0];
     downloadManager = [[DownloadManager alloc] init];
 

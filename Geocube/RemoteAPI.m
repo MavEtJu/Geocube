@@ -115,9 +115,9 @@
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
 
         [_AppDelegate switchController:RC_BROWSER];
-        [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-        [bbvc prepare_oauth:oabb];
-        [bbvc loadURL:url];
+        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController prepare_oauth:oabb];
+        [browserViewController loadURL:url];
         return YES;
     }
 
@@ -128,9 +128,9 @@
         gca.delegate = self;
 
         [_AppDelegate switchController:RC_BROWSER];
-        [tbc setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
-        [bbvc prepare_gca:gca];
-        [bbvc loadURL:url];
+        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController prepare_gca:gca];
+        [browserViewController loadURL:url];
         return YES;
     }
 
@@ -142,8 +142,8 @@
     account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [account dbUpdateCookieValue];
 
-    [bbvc prepare_gca:nil];
-    [bbvc clearScreen];
+    [browserViewController prepare_gca:nil];
+    [browserViewController clearScreen];
 
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
@@ -158,8 +158,8 @@
     [account dbUpdateOAuthToken];
     //oabb = nil;
 
-    [bbvc prepare_oauth:nil];
-    [bbvc clearScreen];
+    [browserViewController prepare_oauth:nil];
+    [browserViewController clearScreen];
 
     if (authenticationDelegate)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
@@ -175,8 +175,8 @@
     [account dbUpdateOAuthToken];
     oabb = nil;
 
-    [bbvc prepare_oauth:nil];
-    [bbvc clearScreen];
+    [browserViewController prepare_oauth:nil];
+    [browserViewController clearScreen];
 
     [_AppDelegate switchController:RC_SETTINGS];
     if (authenticationDelegate)

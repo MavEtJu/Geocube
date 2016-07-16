@@ -50,13 +50,13 @@ IOSFileTransfers *IOSFTM;
 MyConfig *myConfig = nil;
 
 // Webbrowser
-MHTabBarController *tbc = nil;
-BrowserBrowserViewController *bbvc = nil;
+MHTabBarController *browserTabController = nil;
+BrowserBrowserViewController *browserViewController = nil;
 
 // Download manager and view controller
-MHTabBarController *downloadTabController;
-DownloadsViewController *downloadViewController;
-DownloadManager *downloadManager;
+MHTabBarController *downloadTabController = nil;
+DownloadsViewController *downloadViewController = nil;
+DownloadManager *downloadManager = nil;
 
 //
 AppDelegate *_AppDelegate;
