@@ -36,4 +36,6 @@ enum {
 
 - (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
 
+- (void)resetImports;
+
 @end

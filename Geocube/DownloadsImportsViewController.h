@@ -24,5 +24,8 @@
 @property (nonatomic) NSInteger run_options;
 
 - (void)showDownloadManager;
+- (void)resetForegroundDownload;
+- (void)resetBackgroundDownload;
+- (void)resetImports;
 
 @end

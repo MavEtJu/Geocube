@@ -111,67 +111,52 @@
     labelDownloading.text = @"Downloading";
     [self.view addSubview:labelDownloading];
     labelDownloadingDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloadingDescription.text = @"(downloadingDescription)";
     [self.view addSubview:labelDownloadingDescription];
     labelDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloadingURL.text = @"(downloadingURL)";
     [self.view addSubview:labelDownloadingURL];
     labelDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloadingNumbers.text = @"(downloadingNumbers)";
     [self.view addSubview:labelDownloadingNumbers];
     labelDownloadingChunks = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloadingChunks.text = @"(downloadingChunks)";
     [self.view addSubview:labelDownloadingChunks];
+    [self resetForegroundDownload];
 
     labelBGDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelBGDownloading.text = @"Background downloading";
     [self.view addSubview:labelBGDownloading];
     labelBGDownloadingDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGDownloadingDescription.text = @"(bgdownloadingDescription)";
     [self.view addSubview:labelBGDownloadingDescription];
     labelBGDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGDownloadingURL.text = @"(bgdownloadingURL)";
     [self.view addSubview:labelBGDownloadingURL];
     labelBGDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGDownloadingNumbers.text = @"(bgdownloadingNumber)";
     [self.view addSubview:labelBGDownloadingNumbers];
     labelBGPending = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGPending.text = @"Pending";
     [self.view addSubview:labelBGPending];
     labelBGPendingQueued = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGPendingQueued.text = @"(bgpendingQueued)";
     [self.view addSubview:labelBGPendingQueued];
+    [self resetBackgroundDownload];
 
     labelImport = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelImport.text = @"Importing";
     [self.view addSubview:labelImport];
     labelImportFilename = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportFilename.text = @"(importFilename)";
     [self.view addSubview:labelImportFilename];
     labelImportNewWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportNewWaypoints.text = @"(importNewWaypoints)";
     [self.view addSubview:labelImportNewWaypoints];
     labelImportTotalWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportTotalWaypoints.text = @"(importTotalWaypoints)";
     [self.view addSubview:labelImportTotalWaypoints];
     labelImportNewLogs = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportNewLogs.text = @"(labelImportNewLogs)";
     [self.view addSubview:labelImportNewLogs];
     labelImportTotalLogs = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportTotalLogs.text = @"(importTotalLogs)";
     [self.view addSubview:labelImportTotalLogs];
     labelImportNewTrackables = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportNewTrackables.text = @"(importNewTrackables)";
     [self.view addSubview:labelImportNewTrackables];
     labelImportTotalTrackables = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportTotalTrackables.text = @"(importTotalTrackables)";
     [self.view addSubview:labelImportTotalTrackables];
     labelImportTotalImages = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportTotalImages.text = @"(importTotalImages)";
     [self.view addSubview:labelImportTotalImages];
     labelImportQueuedImages = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImportQueuedImages.text = @"(importQueuedImages)";
     [self.view addSubview:labelImportQueuedImages];
+    [self resetImports];
 
     [self calculateRects];
 }
@@ -325,6 +310,40 @@
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelBGPendingQueued.text = [[NSNumber numberWithInteger:size] stringValue];
+    }];
+}
+
+- (void)resetForegroundDownload
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelDownloadingDescription.text = @"(no description yet)";
+        labelDownloadingURL.text = @"(no URL yet)";
+        labelDownloadingNumbers.text = @"(no download yet)";
+        labelDownloadingChunks.text = @"(no data yet)";
+    }];
+}
+
+- (void)resetBackgroundDownload
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelBGDownloadingDescription.text = @"(no description yet)";
+        labelBGDownloadingURL.text = @"(no URL yet)";
+        labelBGDownloadingNumbers.text = @"(no download yet)";
+        labelBGPendingQueued.text = @"(no data yet)";
+    }];
+}
+
+- (void)resetImports
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportFilename.text = @"(no description yet)";
+        labelImportNewWaypoints.text = @"()";
+        labelImportNewLogs.text = @"()";
+        labelImportTotalLogs.text = @"()";
+        labelImportNewTrackables.text = @"()";
+        labelImportTotalTrackables.text = @"()";
+        labelImportTotalImages.text = @"()";
+        labelImportQueuedImages.text = @"()";
     }];
 }
 

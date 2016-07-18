@@ -119,4 +119,9 @@
     }];
 }
 
+- (void)resetImports
+{
+    [downloadsImportsViewController resetImports];
+}
+
 @end

@@ -38,6 +38,16 @@
 
 @synthesize delegate;
 
+- (void)resetForegroundDownload
+{
+    [downloadsImportsViewController resetForegroundDownload];
+}
+
+- (void)resetBackgroundDownload
+{
+    [downloadsImportsViewController resetBackgroundDownload];
+}
+
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output
 {
     [delegate downloadManager_queueSize:42];
