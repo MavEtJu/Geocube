@@ -309,9 +309,9 @@
     return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
 }
 
-+ (NSString *)nicePercentage:(float)value
++ (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 {
-    return [NSString stringWithFormat:@"%0.2f%%", value];
+    return [NSString stringWithFormat:@"%0.1f%%", 100.0 * value / total];
 }
 
 
