@@ -21,8 +21,29 @@
 
 @protocol DownloadManagerDelegate
 
+- (void)downloadManager_setDescription:(NSString *)description;
+- (void)downloadManager_setURL:(NSString *)url;
+- (void)downloadManager_setNumberOfChunksTotal:(NSInteger)chunks;
+- (void)downloadManager_setNumberOfChunksDownload:(NSInteger)chunks;
+- (void)downloadManager_setNumberBytesTotal:(NSInteger)bytes;
+- (void)downloadManager_setNumberBytesDownload:(NSInteger)bytes;
+
+- (void)downloadManager_setBGDescription:(NSString *)description;
+- (void)downloadManager_setBGURL:(NSString *)url;
+- (void)downloadManager_setBGNumberOfChunksTotal:(NSInteger)chunks;
+- (void)downloadManager_setBGNumberOfChunksDownload:(NSInteger)chunks;
+- (void)downloadManager_setBGNumberBytesTotal:(NSInteger)bytes;
+- (void)downloadManager_setBGNumberBytesDownload:(NSInteger)bytes;
+
+- (void)downloadManager_queueSize:(NSInteger)size;
+
 @end
 
-@interface DownloadManager : NSObject
+@interface DownloadManager : NSObject <NSURLSessionDelegate>
+
+@property (nonatomic, retain) id delegate;
+
+- (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
 
 @end

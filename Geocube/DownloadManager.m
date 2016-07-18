@@ -29,4 +29,46 @@
 
 @implementation DownloadManager
 
+@synthesize delegate;
+
+- (void)addToQueue:(NSString *)url outputFile:(NSString *)output
+{
+    [delegate downloadManager_queueSize:42];
+}
+
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
+{
+    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error];
+}
+
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
+{
+    dispatch_semaphore_t sem;
+    __block NSData *result;
+
+    result = nil;
+    sem = dispatch_semaphore_create(0);
+
+    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
+    [delegate downloadManager_setNumberBytesDownload:0];
+    [delegate downloadManager_setNumberBytesTotal:0];
+
+    [[[NSURLSession sharedSession] dataTaskWithRequest:urlRequest
+                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                         if (errorPtr != NULL)
+                                             *errorPtr = error;
+                                         if (responsePtr != NULL)
+                                             *responsePtr = response;
+                                         if (error == nil)
+                                             result = data;
+                                         [delegate downloadManager_setNumberBytesDownload:[data length]];
+                                         [delegate downloadManager_setNumberBytesTotal:[data length]];
+                                         dispatch_semaphore_signal(sem);
+                                     }] resume];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    return result;
+}
+
 @end
