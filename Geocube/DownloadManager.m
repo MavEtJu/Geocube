@@ -107,7 +107,7 @@
     syncError = error;
     [delegate downloadManager_setNumberBytesDownload:[syncData length]];
     [delegate downloadManager_setNumberBytesTotal:[syncData length]];
- 
+
     dispatch_semaphore_signal(syncSem);
 };
 
@@ -120,6 +120,8 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
     completionHandler(NSURLSessionResponseAllow);
+    if (response.expectedContentLength != 0)
+        [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
 }
 
 @end
