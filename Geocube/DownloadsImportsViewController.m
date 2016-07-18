@@ -118,7 +118,6 @@
     [self.view addSubview:labelDownloadingNumbers];
     labelDownloadingChunks = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingChunks];
-    [self resetForegroundDownload];
 
     labelBGDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelBGDownloading.text = @"Background downloading";
@@ -133,7 +132,6 @@
     [self.view addSubview:labelBGPending];
     labelBGPendingQueued = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelBGPendingQueued];
-    [self resetBackgroundDownload];
 
     labelImport = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelImport.text = @"Importing";
@@ -156,7 +154,6 @@
     [self.view addSubview:labelImportTotalImages];
     labelImportQueuedImages = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportQueuedImages];
-    [self resetImports];
 
     [self calculateRects];
 }
@@ -257,12 +254,12 @@
 - (void)downloadManager_setNumberOfChunks
 {
     NSString *output = nil;
-    if (valueDownloadingChunksTotal == 0)
-        output = [NSString stringWithFormat:@"%ld", valueDownloadingChunksDownloaded];
+    if (valueDownloadingChunksDownloaded == 0)
+        output = @"Chunks: n/a";
+    else if (valueDownloadingChunksTotal == 0)
+        output = [NSString stringWithFormat:@"Chunks: %ld", valueDownloadingChunksDownloaded];
     else
-        output = [NSString stringWithFormat:@"%@ (%ld of %ld)",
-                  [MyTools nicePercentage:valueDownloadingChunksDownloaded total:valueDownloadingChunksTotal],
-                  valueDownloadingChunksDownloaded, valueDownloadingChunksTotal];
+        output = [NSString stringWithFormat:@"Chunks: %ld of %ld", valueDownloadingChunksDownloaded, valueDownloadingChunksTotal];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelDownloadingChunks.text = output;
     }];
@@ -284,9 +281,10 @@
 {
     NSString *output = nil;
     if (valueDownloadingNumbersTotal == 0)
-        output = [MyTools niceFileSize:valueDownloadingNumbersDownloaded];
+        output = [NSString stringWithFormat:@"Downloaded: %@",
+                  [MyTools niceFileSize:valueDownloadingNumbersDownloaded]];
     else
-        output = [NSString stringWithFormat:@"%@ (%@ of %@)",
+        output = [NSString stringWithFormat:@"Downloaded: %@ (%@ of %@)",
                   [MyTools nicePercentage:valueDownloadingNumbersDownloaded total:valueDownloadingNumbersTotal],
                   [MyTools niceFileSize:valueDownloadingNumbersDownloaded],
                   [MyTools niceFileSize:valueDownloadingNumbersTotal]];

@@ -264,6 +264,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     NSObject *ret;
 
     [downloadsImportsViewController showDownloadManager];
+    [downloadManager resetForegroundDownload];
 
     [downloadManager setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];

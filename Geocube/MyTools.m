@@ -311,7 +311,7 @@
 
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 {
-    return [NSString stringWithFormat:@"%0.1f%%", 100.0 * value / total];
+    return [NSString stringWithFormat:@"%0.0f%%", 100.0 * value / total];
 }
 
 
