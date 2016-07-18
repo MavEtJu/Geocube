@@ -23,6 +23,13 @@
 
 @interface DownloadManager ()
 {
+    dispatch_semaphore_t syncSem;
+
+    NSURLSessionDataTask *syncSessionDataTask;
+    NSURLSession *syncSession;
+    NSError *syncError;
+    NSMutableData *syncData;
+    NSURLSessionConfiguration *syncSessionConfiguration;
 }
 
 @end
@@ -41,7 +48,7 @@
     return [self sendSynchronousRequest:urlRequest returningResponse:response error:error];
 }
 
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
+- (NSData *)sendSynchronousRequestX:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
 {
     dispatch_semaphore_t sem;
     __block NSData *result;
@@ -69,6 +76,50 @@
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     return result;
+}
+
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
+{
+    __block NSData *result;
+
+    result = nil;
+    syncSem = dispatch_semaphore_create(0);
+
+    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
+    [delegate downloadManager_setNumberBytesDownload:0];
+    [delegate downloadManager_setNumberBytesTotal:0];
+
+    syncSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    syncSession = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
+
+    syncData = [NSMutableData dataWithLength:0];
+
+    syncSessionDataTask = [syncSession dataTaskWithRequest:urlRequest];
+    [syncSessionDataTask resume];
+
+    dispatch_semaphore_wait(syncSem, DISPATCH_TIME_FOREVER);
+
+    return syncData;
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    syncError = error;
+    [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+    [delegate downloadManager_setNumberBytesTotal:[syncData length]];
+ 
+    dispatch_semaphore_signal(syncSem);
+};
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
+{
+    [syncData appendData:data];
+    [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    completionHandler(NSURLSessionResponseAllow);
 }
 
 @end

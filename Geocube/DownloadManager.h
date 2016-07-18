@@ -39,7 +39,7 @@
 
 @end
 
-@interface DownloadManager : NSObject <NSURLSessionDelegate>
+@interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 @property (nonatomic, retain) id delegate;
 
