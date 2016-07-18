@@ -692,7 +692,7 @@
 
             [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
             [d setValue:[pq objectForKey:@"queryid"] forKey:@"Id"];
-            [d setValue:[NSNumber numberWithInteger:[gca my_query_count:[pq objectForKey:@"queryid"]]] forKey:@"Count"];
+//            [d setValue:[NSNumber numberWithInteger:[gca my_query_count:[pq objectForKey:@"queryid"]]] forKey:@"Count"];
 
             [as addObject:d];
         }];
@@ -751,6 +751,7 @@
 
     if (account.protocol == ProtocolGCA) {
         NSDictionary *json = [gca my_query_json:_id];
+
         if (json == nil) {
             [self alertError:@"[GCA] retrieveQuery: json == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
