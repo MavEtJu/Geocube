@@ -553,8 +553,6 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    [downloadManager resetForegroundDownload];
-    return nil;
     NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
