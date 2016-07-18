@@ -262,7 +262,12 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
     // Download the query
     NSObject *ret;
+
+    [downloadsImportsViewController showDownloadManager];
+
+    [downloadManager.delegate downloadManager_setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
+
     if (ret == nil) {
         failure = YES;
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
