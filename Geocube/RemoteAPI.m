@@ -717,7 +717,12 @@
         NSInteger offset = 0;
         NSInteger increase = 25;
 
+        [downloadManager resetForegroundDownload];
+        [downloadManager setDescription:@"Download pocket query"];
+
         [self.delegateQueries remoteAPIQueriesDownloadUpdate:0 max:0];
+        [downloadManager setNumberOfChunksDownload:1];
+        [downloadManager setNumberOfChunksTotal:1];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
             NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase];
@@ -736,6 +741,8 @@
             tried += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
             [self.delegateQueries remoteAPIQueriesDownloadUpdate:offset max:max];
+            [downloadManager setNumberOfChunksDownload:offset / increase];
+            [downloadManager setNumberOfChunksTotal:max / increase];
         } while (tried < max);
 
         [result setObject:geocaches forKey:@"Geocaches"];

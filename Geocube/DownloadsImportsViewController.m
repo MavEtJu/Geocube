@@ -234,6 +234,8 @@
 {
 }
 
+//////////////////////////////////////////////////////////////////////////
+
 - (void)importManager_setDescription:(NSString *)description
 {
 }
@@ -252,12 +254,30 @@
     }];
 }
 
+- (void)downloadManager_setNumberOfChunks
+{
+    NSString *output = nil;
+    if (valueDownloadingChunksTotal == 0)
+        output = [NSString stringWithFormat:@"%ld", valueDownloadingChunksDownloaded];
+    else
+        output = [NSString stringWithFormat:@"%@ (%ld of %ld)",
+                  [MyTools nicePercentage:valueDownloadingChunksDownloaded total:valueDownloadingChunksTotal],
+                  valueDownloadingChunksDownloaded, valueDownloadingChunksTotal];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelDownloadingChunks.text = output;
+    }];
+}
+
 - (void)downloadManager_setNumberOfChunksTotal:(NSInteger)chunks
 {
+    valueDownloadingChunksTotal = chunks;
+    [self downloadManager_setNumberOfChunks];
 }
 
 - (void)downloadManager_setNumberOfChunksDownload:(NSInteger)chunks
 {
+    valueDownloadingChunksDownloaded = chunks;
+    [self downloadManager_setNumberOfChunks];
 }
 
 - (void)downloadManager_setNumberBytes
@@ -267,7 +287,7 @@
         output = [MyTools niceFileSize:valueDownloadingNumbersDownloaded];
     else
         output = [NSString stringWithFormat:@"%@ (%@ of %@)",
-                  [MyTools nicePercentage:100.0 * valueDownloadingNumbersDownloaded / valueDownloadingNumbersTotal],
+                  [MyTools nicePercentage:valueDownloadingNumbersDownloaded total:valueDownloadingNumbersTotal],
                   [MyTools niceFileSize:valueDownloadingNumbersDownloaded],
                   [MyTools niceFileSize:valueDownloadingNumbersTotal]];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -306,12 +326,14 @@
 {
 }
 
-- (void)downloadManager_queueSize:(NSInteger)size
+- (void)downloadManager_setQueueSize:(NSInteger)size
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelBGPendingQueued.text = [[NSNumber numberWithInteger:size] stringValue];
     }];
 }
+
+//////////////////////////////////////////////////////////////////////////
 
 - (void)resetForegroundDownload
 {
