@@ -340,6 +340,10 @@
         labelDownloadingURL.text = @"(no URL yet)";
         labelDownloadingNumbers.text = @"(no download yet)";
         labelDownloadingChunks.text = @"(no data yet)";
+        valueDownloadingNumbersDownloaded = 0;
+        valueDownloadingNumbersTotal = 0;
+        valueDownloadingChunksDownloaded = 0;
+        valueDownloadingChunksTotal = 0;
     }];
 }
 
