@@ -103,7 +103,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [MyTools sendSynchronousRequest:req returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
 
     if (response.statusCode == 403) {   // Forbidden
         remoteAPI.account.gca_cookie_value = @"";
