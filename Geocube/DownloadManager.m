@@ -23,8 +23,9 @@
 
 @interface DownloadManager ()
 {
-    dispatch_semaphore_t syncSem;
+    UIViewController *vc;
 
+    dispatch_semaphore_t syncSem;
     NSURLSessionDataTask *syncSessionDataTask;
     NSURLSession *syncSession;
     NSError *syncError;
@@ -97,12 +98,14 @@
     syncSem = dispatch_semaphore_create(0);
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:downloadsImportsViewController.view withLabel:@"Downloading"];
+        [DejalBezelActivityView activityViewForView:(vc == nil ? downloadsImportsViewController.view : vc.view) withLabel:@"Downloading"];
     }];
 
-    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
-    [delegate downloadManager_setNumberBytesDownload:0];
-    [delegate downloadManager_setNumberBytesTotal:0];
+    if (vc == nil) {
+        [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
+        [delegate downloadManager_setNumberBytesDownload:0];
+        [delegate downloadManager_setNumberBytesTotal:0];
+    }
 
     syncSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     syncSession = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
@@ -126,8 +129,14 @@
     return syncData;
 }
 
+- (void)setViewController:(UIViewController *)_vc
+{
+    vc = _vc;
+}
+
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
+    NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
     if (session == syncSession && task == syncSessionDataTask) {
         syncError = error;
         [delegate downloadManager_setNumberBytesDownload:[syncData length]];
@@ -139,6 +148,7 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
+    NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) diReceiveData:(NSData *)");
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
         [delegate downloadManager_setNumberBytesDownload:[syncData length]];
@@ -147,6 +157,7 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
+    NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveResponse:(NSURLResponse *)");
     if (session == syncSession && dataTask == syncSessionDataTask) {
         completionHandler(NSURLSessionResponseAllow);
         syncReponse = response;

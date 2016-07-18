@@ -45,6 +45,7 @@
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+- (void)setViewController:(UIViewController *)vc;
 
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
