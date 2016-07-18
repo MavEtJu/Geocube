@@ -35,7 +35,7 @@
 - (void)downloadManager_setBGNumberBytesTotal:(NSInteger)bytes;
 - (void)downloadManager_setBGNumberBytesDownload:(NSInteger)bytes;
 
-- (void)downloadManager_queueSize:(NSInteger)size;
+- (void)downloadManager_setQueueSize:(NSInteger)size;
 
 @end
 
@@ -48,5 +48,19 @@
 
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
+
+- (void)setDescription:(NSString *)description;
+- (void)setURL:(NSString *)url;
+- (void)setNumberOfChunksTotal:(NSInteger)chunks;
+- (void)setNumberOfChunksDownload:(NSInteger)chunks;
+- (void)setNumberBytesTotal:(NSInteger)bytes;
+- (void)setNumberBytesDownload:(NSInteger)bytes;
+- (void)setBGDescription:(NSString *)description;
+- (void)setBGURL:(NSString *)url;
+- (void)setBGNumberOfChunksTotal:(NSInteger)chunks;
+- (void)setBGNumberOfChunksDownload:(NSInteger)chunks;
+- (void)setBGNumberBytesTotal:(NSInteger)bytes;
+- (void)setBGNumberBytesDownload:(NSInteger)bytes;
+- (void)setQueueSize:(NSInteger)size;
 
 @end

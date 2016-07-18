@@ -30,6 +30,7 @@
     NSError *syncError;
     NSMutableData *syncData;
     NSURLSessionConfiguration *syncSessionConfiguration;
+    NSURLResponse *syncReponse;
 }
 
 @end
@@ -50,7 +51,7 @@
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output
 {
-    [delegate downloadManager_queueSize:42];
+    [delegate downloadManager_setQueueSize:42];
 }
 
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
@@ -104,10 +105,15 @@
 
     syncData = [NSMutableData dataWithLength:0];
 
+    syncError = nil;
+    syncReponse = nil;
+
     syncSessionDataTask = [syncSession dataTaskWithRequest:urlRequest];
     [syncSessionDataTask resume];
 
     dispatch_semaphore_wait(syncSem, DISPATCH_TIME_FOREVER);
+    *errorPtr = syncError;
+    *responsePtr = syncReponse;
 
     return syncData;
 }
@@ -130,8 +136,76 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
     completionHandler(NSURLSessionResponseAllow);
+    syncReponse = response;
     if (response.expectedContentLength != 0)
         [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)setDescription:(NSString *)description
+{
+    [delegate downloadManager_setDescription:description];
+}
+
+- (void)setURL:(NSString *)url
+{
+    [delegate downloadManager_setURL:url];
+}
+
+- (void)setNumberOfChunksTotal:(NSInteger)chunks
+{
+    [delegate downloadManager_setNumberOfChunksTotal:chunks];
+}
+
+- (void)setNumberOfChunksDownload:(NSInteger)chunks
+{
+    [delegate downloadManager_setNumberOfChunksDownload:chunks];
+}
+
+- (void)setNumberBytesTotal:(NSInteger)bytes
+{
+    [delegate downloadManager_setNumberBytesTotal:bytes];
+}
+
+- (void)setNumberBytesDownload:(NSInteger)bytes
+{
+    [delegate downloadManager_setNumberBytesDownload:bytes];
+}
+
+- (void)setBGDescription:(NSString *)description
+{
+    [delegate downloadManager_setBGDescription:description];
+}
+
+- (void)setBGURL:(NSString *)url
+{
+    [delegate downloadManager_setBGURL:url];
+}
+
+- (void)setBGNumberOfChunksTotal:(NSInteger)chunks
+{
+    [delegate downloadManager_setBGNumberOfChunksTotal:chunks];
+}
+
+- (void)setBGNumberOfChunksDownload:(NSInteger)chunks
+{
+    [delegate downloadManager_setBGNumberOfChunksDownload:chunks];
+}
+
+- (void)setBGNumberBytesTotal:(NSInteger)bytes
+{
+    [delegate downloadManager_setBGNumberBytesTotal:bytes];
+}
+
+- (void)setBGNumberBytesDownload:(NSInteger)bytes
+{
+    [delegate downloadManager_setBGNumberBytesDownload:bytes];
+}
+
+- (void)setQueueSize:(NSInteger)size
+{
+    [delegate downloadManager_setQueueSize:size];
 }
 
 @end
