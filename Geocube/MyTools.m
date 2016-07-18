@@ -309,6 +309,12 @@
     return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
 }
 
++ (NSString *)nicePercentage:(float)value
+{
+    return [NSString stringWithFormat:@"%0.2f%%", value];
+}
+
+
 ///////////////////////////////////////////
 
 - (instancetype)initClock:(NSString *)_title

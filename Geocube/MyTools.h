@@ -53,6 +53,7 @@ enum {
 + (NSString *)niceDistance:(NSInteger)m isMetric:(BOOL)isMetric;
 + (NSString *)niceSpeed:(NSInteger)kmph;
 + (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
++ (NSString *)nicePercentage:(float)value;
 
 - (instancetype)initClock:(NSString *)title;
 - (void)clockShowAndReset;
