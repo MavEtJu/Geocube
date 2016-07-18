@@ -28,12 +28,13 @@
     GCLabel *labelDownloading;
     GCLabel *labelDownloadingDescription;
     GCLabel *labelDownloadingURL;
-    GCLabel *labelDownloadingNumber;
+    GCLabel *labelDownloadingNumbers;
+    GCLabel *labelDownloadingChunks;
 
     GCLabel *labelBGDownloading;
     GCLabel *labelBGDownloadingDescription;
     GCLabel *labelBGDownloadingURL;
-    GCLabel *labelBGDownloadingNumber;
+    GCLabel *labelBGDownloadingNumbers;
     GCLabel *labelBGPending;
     GCLabel *labelBGPendingQueued;
 
@@ -48,8 +49,10 @@
     GCLabel *labelImportTotalImages;
     GCLabel *labelImportQueuedImages;
 
-    NSInteger valueDownloadingNumberDownloaded;
-    NSInteger valueDownloadingNumberTotal;
+    NSInteger valueDownloadingNumbersDownloaded;
+    NSInteger valueDownloadingNumbersTotal;
+    NSInteger valueDownloadingChunksDownloaded;
+    NSInteger valueDownloadingChunksTotal;
 
     time_t prevpolls[MAXHISTORY], prevpoll;
     NSInteger prevtotalWaypointsValue[MAXHISTORY];
@@ -77,8 +80,10 @@
         prevtotalWaypointsValue[i] = 0;
     }
 
-    valueDownloadingNumberDownloaded = 0;
-    valueDownloadingNumberTotal = 0;
+    valueDownloadingNumbersDownloaded = 0;
+    valueDownloadingNumbersTotal = 0;
+    valueDownloadingChunksDownloaded = 0;
+    valueDownloadingChunksTotal = 0;
 
     return self;
 }
@@ -111,9 +116,12 @@
     labelDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelDownloadingURL.text = @"(downloadingURL)";
     [self.view addSubview:labelDownloadingURL];
-    labelDownloadingNumber = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloadingNumber.text = @"(downloadingNumber)";
-    [self.view addSubview:labelDownloadingNumber];
+    labelDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelDownloadingNumbers.text = @"(downloadingNumbers)";
+    [self.view addSubview:labelDownloadingNumbers];
+    labelDownloadingChunks = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelDownloadingChunks.text = @"(downloadingChunks)";
+    [self.view addSubview:labelDownloadingChunks];
 
     labelBGDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelBGDownloading.text = @"Background downloading";
@@ -124,9 +132,9 @@
     labelBGDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelBGDownloadingURL.text = @"(bgdownloadingURL)";
     [self.view addSubview:labelBGDownloadingURL];
-    labelBGDownloadingNumber = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGDownloadingNumber.text = @"(bgdownloadingNumber)";
-    [self.view addSubview:labelBGDownloadingNumber];
+    labelBGDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelBGDownloadingNumbers.text = @"(bgdownloadingNumber)";
+    [self.view addSubview:labelBGDownloadingNumbers];
     labelBGPending = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelBGPending.text = @"Pending";
     [self.view addSubview:labelBGPending];
@@ -188,52 +196,37 @@
     NSInteger lh = myConfig.GCLabelFont.lineHeight;
     NSInteger y = MARGIN;
 
-    labelDownloading.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh);
+#define LABEL_RESIZE(__s__) \
+    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh); \
     y += lh;
-    labelDownloadingDescription.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelDownloadingURL.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelDownloadingNumber.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
+#define INDENT_RESIZE(__s__) \
+    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh); \
     y += lh;
 
+    LABEL_RESIZE(labelDownloading);
+    INDENT_RESIZE(labelDownloadingDescription);
+    INDENT_RESIZE(labelDownloadingURL);
+    INDENT_RESIZE(labelDownloadingNumbers);
+    INDENT_RESIZE(labelDownloadingChunks);
     y += lh / 2;
 
-    labelBGDownloading.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh);
-    y += lh;
-    labelBGDownloadingDescription.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelBGDownloadingURL.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelBGDownloadingNumber.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelBGPending.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh);
-    y += lh;
-    labelBGPendingQueued.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-
+    LABEL_RESIZE(labelBGDownloading);
+    INDENT_RESIZE(labelBGDownloadingDescription);
+    INDENT_RESIZE(labelBGDownloadingURL);
+    INDENT_RESIZE(labelBGDownloadingNumbers);
+    LABEL_RESIZE(labelBGPending);
+    INDENT_RESIZE(labelBGPendingQueued);
     y += lh / 2;
 
-    labelImport.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh);
-    y += lh;
-    labelImportFilename.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportNewWaypoints.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportTotalWaypoints.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportNewLogs.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportTotalLogs.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportNewTrackables.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportTotalTrackables.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportTotalImages.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
-    labelImportQueuedImages.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh);
-    y += lh;
+    LABEL_RESIZE(labelImport);
+    INDENT_RESIZE(labelImportFilename);
+    INDENT_RESIZE(labelImportNewWaypoints);
+    INDENT_RESIZE(labelImportNewLogs);
+    INDENT_RESIZE(labelImportTotalLogs);
+    INDENT_RESIZE(labelImportNewTrackables);
+    INDENT_RESIZE(labelImportTotalTrackables);
+    INDENT_RESIZE(labelImportTotalImages);
+    INDENT_RESIZE(labelImportQueuedImages);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -284,20 +277,28 @@
 
 - (void)downloadManager_setNumberBytes
 {
+    NSString *output = nil;
+    if (valueDownloadingNumbersTotal == 0)
+        output = [MyTools niceFileSize:valueDownloadingNumbersDownloaded];
+    else
+        output = [NSString stringWithFormat:@"%@ (%@ of %@)",
+                  [MyTools nicePercentage:100.0 * valueDownloadingNumbersDownloaded / valueDownloadingNumbersTotal],
+                  [MyTools niceFileSize:valueDownloadingNumbersDownloaded],
+                  [MyTools niceFileSize:valueDownloadingNumbersTotal]];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelDownloadingNumber .text = [NSString stringWithFormat:@"%@ of %@", [MyTools niceFileSize:valueDownloadingNumberDownloaded], [MyTools niceFileSize:valueDownloadingNumberTotal]];
+        labelDownloadingNumbers.text = output;
     }];
 }
 
 - (void)downloadManager_setNumberBytesTotal:(NSInteger)bytes
 {
-    valueDownloadingNumberTotal = bytes;
+    valueDownloadingNumbersTotal = bytes;
     [self downloadManager_setNumberBytes];
 }
 
 - (void)downloadManager_setNumberBytesDownload:(NSInteger)bytes
 {
-    valueDownloadingNumberDownloaded = bytes;
+    valueDownloadingNumbersDownloaded = bytes;
     [self downloadManager_setNumberBytes];
 }
 
