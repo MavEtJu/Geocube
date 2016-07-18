@@ -96,6 +96,10 @@
     result = nil;
     syncSem = dispatch_semaphore_create(0);
 
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:downloadsImportsViewController.view withLabel:@"Downloading"];
+    }];
+
     [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
     [delegate downloadManager_setNumberBytesDownload:0];
     [delegate downloadManager_setNumberBytesTotal:0];
@@ -115,30 +119,40 @@
     *errorPtr = syncError;
     *responsePtr = syncReponse;
 
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeViewAnimated:YES];
+    }];
+
     return syncData;
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
-    syncError = error;
-    [delegate downloadManager_setNumberBytesDownload:[syncData length]];
-    [delegate downloadManager_setNumberBytesTotal:[syncData length]];
+    if (session == syncSession && task == syncSessionDataTask) {
+        syncError = error;
+        [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+        [delegate downloadManager_setNumberBytesTotal:[syncData length]];
 
-    dispatch_semaphore_signal(syncSem);
+        dispatch_semaphore_signal(syncSem);
+    }
 };
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
-    [syncData appendData:data];
-    [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+    if (session == syncSession && dataTask == syncSessionDataTask) {
+        [syncData appendData:data];
+        [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
-    completionHandler(NSURLSessionResponseAllow);
-    syncReponse = response;
-    if (response.expectedContentLength >= 0)
-        [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+    if (session == syncSession && dataTask == syncSessionDataTask) {
+        completionHandler(NSURLSessionResponseAllow);
+        syncReponse = response;
+        if (response.expectedContentLength >= 0)
+            [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
