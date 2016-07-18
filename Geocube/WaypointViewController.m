@@ -742,13 +742,11 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refresh waypoint"];
-    }];
+    [downloadsImportsViewController showDownloadManager];
+    [downloadManager resetForegroundDownload];
+    [downloadManager setNumberOfChunksTotal:0];
+    [downloadManager setDescription:[NSString stringWithFormat:@"Refreshing %@", waypoint.wpt_name]];
     NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-         [DejalBezelActivityView removeViewAnimated:NO];
-     }];
 
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];

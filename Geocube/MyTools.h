@@ -74,7 +74,7 @@ enum {
 + (BOOL)hasMobileNetwork;
 + (BOOL)hasAnyNetwork;
 
-+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr;
+//+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr;
 
 + (void)playSound:(NSInteger)reason;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
