@@ -137,7 +137,7 @@ enum {
                            {
                                //Do some thing here
 
-                               [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+                               [browserViewController showBrowser];
                                [browserViewController loadURL:bm.url];
                            }];
     UIAlertAction *cancel = [UIAlertAction

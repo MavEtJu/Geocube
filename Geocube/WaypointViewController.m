@@ -559,8 +559,7 @@ enum {
 
 - (void)menuOpenInBrowser
 {
-    [_AppDelegate switchController:RC_BROWSER];
-    [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+    [browserViewController showBrowser];
     [browserViewController loadURL:waypoint.wpt_url];
 }
 

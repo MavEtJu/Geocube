@@ -63,6 +63,12 @@ enum {
     return self;
 }
 
+- (void)showBrowser
+{
+    [_AppDelegate switchController:RC_BROWSER];
+    [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];

@@ -96,7 +96,7 @@
 {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
 
-    [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+    [browserViewController showBrowser];
     [browserViewController clearScreen];
     [browserViewController loadURL:a.url_queries];
 }

@@ -153,8 +153,7 @@ enum {
     }
 
     if (n.url != nil && [n.url isEqualToString:@""] == NO) {
-        [_AppDelegate switchController:RC_BROWSER];
-        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController showBrowser];
         [browserViewController loadURL:n.url];
     }
 }

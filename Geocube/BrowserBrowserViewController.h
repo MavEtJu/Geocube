@@ -21,6 +21,8 @@
 
 @interface BrowserBrowserViewController : GCViewController <UIWebViewDelegate>
 
+- (void)showBrowser;
+
 - (void)clearScreen;
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;

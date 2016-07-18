@@ -114,8 +114,7 @@
 
         NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
 
-        [_AppDelegate switchController:RC_BROWSER];
-        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController showBrowser];
         [browserViewController prepare_oauth:oabb];
         [browserViewController loadURL:url];
         return YES;
@@ -127,8 +126,7 @@
 
         gca.delegate = self;
 
-        [_AppDelegate switchController:RC_BROWSER];
-        [browserTabController setSelectedIndex:VC_BROWSER_BROWSER animated:YES];
+        [browserViewController showBrowser];
         [browserViewController prepare_gca:gca];
         [browserViewController loadURL:url];
         return YES;
