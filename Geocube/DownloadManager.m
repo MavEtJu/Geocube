@@ -137,7 +137,7 @@
 {
     completionHandler(NSURLSessionResponseAllow);
     syncReponse = response;
-    if (response.expectedContentLength != 0)
+    if (response.expectedContentLength >= 0)
         [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
 }
 
