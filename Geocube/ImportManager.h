@@ -21,14 +21,18 @@
 
 @protocol ImportManagerDelegate
 
+- (void)importManager_setDescription:(NSString *)description;
+
 @end
 
-@interface ImportManager : NSObject
+@interface ImportManager : NSObject <SSZipArchiveDelegate>
 
 enum {
     RUN_OPTION_NONE = 0,
     RUN_OPTION_LOGSONLY = 1,
 };
+
+@property (nonatomic, retain) id delegate;
 
 - (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
 
