@@ -239,44 +239,16 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
 - (void)doRunRetrieveQuery:(NSDictionary *)pq
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading %@\n0 / 0", queryString]];
-    }];
-
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
     BOOL failure = [self runRetrieveQuery:pq group:group];
 
     if (failure == YES)
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:NO];
-        [self.tableView reloadData];
-    }];
+    [self.tableView reloadData];
 }
 
-- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
-{
-    __block BOOL failure = NO;
-    account.remoteAPI.delegateQueries = self;
-
-    // Download the query
-    NSObject *ret;
-
-    [downloadsImportsViewController showDownloadManager];
-    [downloadManager resetForegroundDownload];
-
-    [downloadManager setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
-
-    if (ret == nil) {
-        failure = YES;
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
-    } else
-        [self parseRetrievedQuery:ret group:group];
-
-    return failure;
-}
+NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group);
 
 - (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
 {

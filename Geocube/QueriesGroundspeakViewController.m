@@ -50,4 +50,27 @@
     return YES;
 }
 
+- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
+{
+    __block BOOL failure = NO;
+    account.remoteAPI.delegateQueries = self;
+
+    // Download the query
+    NSObject *ret;
+
+    [downloadsImportsViewController showDownloadManager];
+    [downloadManager resetForegroundDownload];
+    [downloadManager setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
+
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
+
+    if (ret == nil) {
+        failure = YES;
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+    } else
+        [self parseRetrievedQuery:ret group:group];
+
+    return failure;
+}
+
 @end

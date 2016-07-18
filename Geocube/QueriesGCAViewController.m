@@ -68,7 +68,15 @@ enum {
     // Download the query. The GPX file is also required since the JSON file doesn't contain the logs.
     NSObject *retjson;
     NSObject *retgpx;
+
+    [downloadsImportsViewController showDownloadManager];
+    [downloadManager resetForegroundDownload];
+    [downloadManager setDescription:[NSString stringWithFormat:@"Query %@", [pq objectForKey:@"Name"]]];
+    [downloadManager setNumberOfChunksTotal:2];
+
+    [downloadManager setNumberOfChunksDownload:1];
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson];
+    [downloadManager setNumberOfChunksDownload:2];
     [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx];
 
     if (retjson == nil && retgpx == nil) {
