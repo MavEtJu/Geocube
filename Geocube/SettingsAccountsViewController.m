@@ -304,6 +304,7 @@ enum {
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
 {
     [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading %@", header]];
+
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
