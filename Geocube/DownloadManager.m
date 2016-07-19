@@ -156,6 +156,7 @@
     bezelText = text;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [DejalBezelActivityView currentActivityView].activityLabel.text = text;
+        [DejalBezelActivityView currentActivityView].labelWidth = 0;
     }];
 }
 
