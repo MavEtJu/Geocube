@@ -72,7 +72,7 @@ enum {
                              actionWithTitle:@"Import"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
-                                 [self downloadNotices];
+                                 [self performSelectorInBackground:@selector(downloadNotices) withObject:nil];
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
@@ -164,7 +164,7 @@ enum {
 {
     switch (index) {
         case menuDownloadNotices:
-            [self downloadNotices];
+            [self performSelectorInBackground:@selector(downloadNotices) withObject:nil];
             return;
     }
 
@@ -175,10 +175,15 @@ enum {
 {
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_notices"] value]];
 
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Downloading notices"];
+
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+
+    [downloadManager setBezelViewController:nil];
 
     if (data != nil && error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
@@ -188,7 +193,7 @@ enum {
             [MyTools messageBox:self header:@"Notices download" text:@"There was a failure in parsing the downloaded notices file"];
 
         notices = [dbNotice dbAll];
-        [self.tableView reloadData];
+        [self reloadDataMainQueue];
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
 
