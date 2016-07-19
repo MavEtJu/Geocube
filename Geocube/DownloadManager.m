@@ -171,6 +171,7 @@
         [delegate downloadManager_setNumberBytesTotal:[syncData length]];
 
         dispatch_semaphore_signal(syncSem);
+        return;
     }
 };
 
@@ -180,6 +181,7 @@
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
         [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+        return;
     }
 }
 
@@ -191,6 +193,7 @@
         syncReponse = response;
         if (response.expectedContentLength >= 0)
             [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+        return;
     }
 }
 
