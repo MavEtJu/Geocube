@@ -101,9 +101,14 @@
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req delegate:self semaphore:sem];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    error = nil;    // XXXX get rid of compiler warning for now.
 
     if (response.statusCode == 403) {   // Forbidden
         remoteAPI.account.gca_cookie_value = @"";
@@ -136,9 +141,14 @@
     [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req delegate:self semaphore:sem];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];;
+    error = nil;    // XXXX get rid of compiler warning for now.
 
     if (data == nil || response.statusCode != 200)
         return nil;
@@ -179,9 +189,14 @@
 
     [req setHTTPBody:body];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req delegate:self semaphore:sem];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];;
+    error = nil;    // XXXX get rid of compiler warning for now.
 
     if (data == nil || response.statusCode != 200)
         return nil;

@@ -742,11 +742,10 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    [downloadsImportsViewController showDownloadManager];
-    [downloadManager resetForegroundDownload];
-    [downloadManager setNumberOfChunksTotal:0];
-    [downloadManager setDescription:[NSString stringWithFormat:@"Refreshing %@", waypoint.wpt_name]];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
     NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint];
+    [downloadManager setBezelViewController:nil];
 
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];
