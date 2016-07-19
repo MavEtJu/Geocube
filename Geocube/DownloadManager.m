@@ -138,30 +138,6 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)setBezelViewController:(UIViewController *)vc
-{
-    bezelViewController = vc;
-    bezelText = @"Downloading";
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (bezelViewController == nil)
-            [DejalBezelActivityView removeViewAnimated:YES];
-        else
-            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
-    }];
-}
-
-- (void)setBezelViewText:(NSString *)text
-{
-    bezelText = text;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = text;
-        [DejalBezelActivityView currentActivityView].labelWidth = 0;
-    }];
-}
-
-/////////////////////////////////////////////////////////////////////////
-
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
@@ -195,6 +171,30 @@
             [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
         return;
     }
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)setBezelViewController:(UIViewController *)vc
+{
+    bezelViewController = vc;
+    bezelText = @"Downloading";
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (bezelViewController == nil)
+            [DejalBezelActivityView removeViewAnimated:YES];
+        else
+            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
+    }];
+}
+
+- (void)setBezelViewText:(NSString *)text
+{
+    bezelText = text;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = text;
+        [DejalBezelActivityView currentActivityView].labelWidth = 0;
+    }];
 }
 
 /////////////////////////////////////////////////////////////////////////
