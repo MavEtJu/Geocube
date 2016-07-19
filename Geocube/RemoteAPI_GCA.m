@@ -147,7 +147,7 @@
 
     NSData *data = [retDict objectForKey:@"data"];
     NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
-    NSError *error = [retDict objectForKey:@"error"];;
+    NSError *error = [retDict objectForKey:@"error"];
     error = nil;    // XXXX get rid of compiler warning for now.
 
     if (data == nil || response.statusCode != 200)
@@ -195,7 +195,7 @@
 
     NSData *data = [retDict objectForKey:@"data"];
     NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
-    NSError *error = [retDict objectForKey:@"error"];;
+    NSError *error = [retDict objectForKey:@"error"];
     error = nil;    // XXXX get rid of compiler warning for now.
 
     if (data == nil || response.statusCode != 200)

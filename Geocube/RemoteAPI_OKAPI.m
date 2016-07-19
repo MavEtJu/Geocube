@@ -115,7 +115,7 @@
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
-    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];;
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
     NSError *error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
