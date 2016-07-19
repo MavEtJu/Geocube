@@ -39,7 +39,10 @@
 
 - (void)reloadQueries
 {
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Downloading list of pocket queries"];
     [self reloadQueries:ProtocolLiveAPI];
+    [downloadManager setBezelViewController:nil];
 }
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
