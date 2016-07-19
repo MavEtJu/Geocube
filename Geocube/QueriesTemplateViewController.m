@@ -78,7 +78,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 {
     account = nil;
 
-    [downloadManager setViewController:self];
+    [downloadManager setBezelViewController:self];
     __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == protocol) {
@@ -97,7 +97,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
             *stop = YES;
         }
     }];
-    [downloadManager setViewController:nil];
+    [downloadManager setBezelViewController:nil];
 
     if (failure == YES)
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.lastError];
