@@ -629,14 +629,15 @@
 }
 
 - (NSInteger)listQueries:(NSArray **)qs
-/* Returns: array of dicts of
- * - Name
- * - Id
- * - DateTime
- * - Size
- * - Count
- */
 {
+    /* Returns: array of dicts of
+     * - Name
+     * - Id
+     * - DateTime
+     * - Size
+     * - Count
+     */
+
     *qs = nil;
     if (account.protocol == ProtocolLiveAPI) {
         NSDictionary *json = [liveAPI GetPocketQueryList];
@@ -663,13 +664,6 @@
     }
 
     if (account.protocol == ProtocolGCA) {
-        /*
-        NSArray *as = [gca my_query];
-        if (as == nil || [as count] == 0)
-            return nil;
-        return as;
-         */
-
         NSDictionary *json = [gca my_query_list__json];
         if (json == nil) {
             [self alertError:@"[GCA] ListQueries: json == nil" code:REMOTEAPI_APIFAILED];
