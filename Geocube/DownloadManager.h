@@ -47,6 +47,7 @@
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest delegate:(id)asyncDelegate semaphore:(dispatch_semaphore_t)sem;
 
 - (void)setBezelViewController:(UIViewController *)vc;
 - (void)setBezelViewText:(NSString *)text;

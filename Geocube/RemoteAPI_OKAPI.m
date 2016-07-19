@@ -108,9 +108,15 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];;
+    NSError *error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

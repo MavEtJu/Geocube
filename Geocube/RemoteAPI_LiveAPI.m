@@ -165,9 +165,14 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -194,9 +199,13 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"reponse"];
+    NSError *error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {

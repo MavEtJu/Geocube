@@ -33,6 +33,8 @@
     NSMutableData *syncData;
     NSURLSessionConfiguration *syncSessionConfiguration;
     NSURLResponse *syncReponse;
+
+    NSMutableArray *asyncRequests;
 }
 
 @end
@@ -40,6 +42,15 @@
 @implementation DownloadManager
 
 @synthesize delegate;
+
+- (instancetype)init
+{
+    self = [super init];
+
+    asyncRequests = [NSMutableArray arrayWithCapacity:10];
+
+    return self;
+}
 
 - (void)resetForegroundDownload
 {
@@ -57,6 +68,35 @@
 }
 
 /////////////////////////////////////////////////////////////////////////
+
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest delegate:(id)asyncDelegate semaphore:(dispatch_semaphore_t)sem
+{
+    NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
+    [req setObject:urlRequest forKey:@"urlRequest"];
+    [req setObject:asyncDelegate forKey:@"delegate"];
+    [req setObject:sem forKey:@"semaphore"];
+
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
+    [req setObject:session forKey:@"session"];
+
+    NSData *data = [NSMutableData dataWithLength:0];
+    [req setObject:data forKey:@"data"];
+
+    NSURLSessionDataTask *sessionDataTask = [session dataTaskWithRequest:urlRequest];
+    [req setObject:sessionDataTask forKey:@"task"];
+
+    [req setObject:[NSNumber numberWithBool:NO] forKey:@"completed"];
+
+    [sessionDataTask resume];
+
+    @synchronized (asyncRequests) {
+        [asyncRequests addObject:req];
+    }
+
+    return req;
+}
 
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
 {
@@ -149,6 +189,22 @@
         dispatch_semaphore_signal(syncSem);
         return;
     }
+
+    @synchronized (asyncRequests) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (session == [req objectForKey:@"session"] && task == [req objectForKey:@"task"]) {
+                [req setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
+                if (error != nil)
+                    [req setObject:error forKey:@"error"];
+                [asyncRequests removeObjectAtIndex:idx];
+                dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
+                *stop = YES;
+                NSLog(@"Finished download thread %ld", (long)idx);
+                return;
+            }
+        }];
+    }
+
 };
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
@@ -158,6 +214,17 @@
         [syncData appendData:data];
         [delegate downloadManager_setNumberBytesDownload:[syncData length]];
         return;
+    }
+
+    @synchronized (asyncRequests) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
+                NSMutableData *d = [req objectForKey:@"data"];
+                [d appendData:data];
+                *stop = YES;
+                return;
+            }
+        }];
     }
 }
 
@@ -170,6 +237,19 @@
         if (response.expectedContentLength >= 0)
             [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
         return;
+    }
+
+    @synchronized (asyncRequests) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
+                NSLog(@"Starting download thread %ld", (long)idx);
+                completionHandler(NSURLSessionResponseAllow);
+                [req setObject:response forKey:@"response"];
+                syncReponse = response;
+                *stop = YES;
+                return;
+            }
+        }];
     }
 }
 
