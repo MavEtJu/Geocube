@@ -76,10 +76,6 @@
     result = nil;
     sem = dispatch_semaphore_create(0);
 
-    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
-    [delegate downloadManager_setNumberBytesDownload:0];
-    [delegate downloadManager_setNumberBytesTotal:0];
-
     [[[NSURLSession sharedSession] dataTaskWithRequest:urlRequest
                                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                          if (errorPtr != NULL)
@@ -116,11 +112,9 @@
         }];
     }
 
-    if (bezelViewController == nil) {
-        [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
-        [delegate downloadManager_setNumberBytesDownload:0];
-        [delegate downloadManager_setNumberBytesTotal:0];
-    }
+    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
+    [delegate downloadManager_setNumberBytesDownload:0];
+    [delegate downloadManager_setNumberBytesTotal:0];
 
     syncSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     syncSession = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
