@@ -106,10 +106,6 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView activityViewForView:downloadsImportsViewController.view withLabel:bezelText];
         }];
-    } else {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
-        }];
     }
 
     [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
@@ -131,9 +127,11 @@
     *errorPtr = syncError;
     *responsePtr = syncReponse;
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:YES];
-    }];
+    if (bezelViewController == nil) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView removeViewAnimated:YES];
+        }];
+    }
 
     return syncData;
 }
@@ -144,6 +142,13 @@
 {
     bezelViewController = vc;
     bezelText = @"Downloading";
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (bezelViewController == nil)
+            [DejalBezelActivityView removeViewAnimated:YES];
+        else
+            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
+    }];
 }
 
 - (void)setBezelViewText:(NSString *)text
