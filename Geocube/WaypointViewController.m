@@ -753,9 +753,7 @@ enum {
 
     if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
-        }];
+        [self reloadDataMainQueue];
         [MyTools playSound:playSoundImportComplete];
         return;
     }

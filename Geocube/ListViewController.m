@@ -178,9 +178,7 @@ NEEDS_OVERLOADING(clearFlags)
 
     waypoints = [dbWaypoint dbAllByFlag:flag];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
+    [self reloadDataMainQueue];
     [waypointManager needsRefresh];
 
     if (failure == NO)

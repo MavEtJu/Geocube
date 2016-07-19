@@ -276,9 +276,8 @@ enum {
 {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"];
-    }];
+
+    [downloadManager setBezelViewController:self];
 
     [self downloadFile:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
     [self downloadFile:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
@@ -292,22 +291,19 @@ enum {
     [self downloadFile:@"url_containers" header:@"containers" revision:KEY_REVISION_CONTAINERS];
     [self downloadFile:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
 
+    [downloadManager setBezelViewController:nil];
+
     [dbc AccountsReload];
     [self refreshAccountData];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:NO];
-        [self.tableView reloadData];
-    }];
+    [self reloadDataMainQueue];
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];
 }
 
 - (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading %@", header];
-    }];
+    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading %@", header]];
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];

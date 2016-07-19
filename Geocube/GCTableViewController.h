@@ -32,5 +32,6 @@
 
 - (void)changeTheme;
 - (void)willClosePage;
+- (void)reloadDataMainQueue;
 
 @end

@@ -118,6 +118,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)reloadDataMainQueue
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma -- UITableView related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
