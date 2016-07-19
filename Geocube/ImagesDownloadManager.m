@@ -149,7 +149,7 @@
         GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
         NSURLResponse *response = nil;
         NSError *error = nil;
-        NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+        NSData *data = [downloadManager downloadImage:urlRequest returningResponse:&response error:&error];
 
         if (error == nil) {
             NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, (unsigned long)[data length]);
