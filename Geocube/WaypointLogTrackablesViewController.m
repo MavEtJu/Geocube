@@ -272,7 +272,7 @@ enum {
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if (a.protocol == ProtocolLiveAPI) {
+                                     if (a.protocol == PROTOCOL_LIVEAPI) {
                                          tb = [a.remoteAPI trackableFind:code];
                                          *stop = YES;
                                      }
@@ -325,7 +325,7 @@ enum {
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if (a.protocol == ProtocolLiveAPI) {
+                                     if (a.protocol == PROTOCOL_LIVEAPI) {
                                          tb = [a.remoteAPI trackableFind:code];
                                          *stop = YES;
                                      }

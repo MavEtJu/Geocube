@@ -174,13 +174,13 @@
         KEY(site, url_website, @"website");
         KEY(site, distance, @"minimum_distance");
 
-        NSInteger protocol_id = ProtocolNone;
+        NSInteger protocol_id = PROTOCOL_NONE;
         if ([protocol isEqualToString:@"OKAPI"] == YES)
-            protocol_id = ProtocolOKAPI;
+            protocol_id = PROTOCOL_OKAPI;
         if ([protocol isEqualToString:@"GCA"] == YES)
-            protocol_id = ProtocolGCA;
+            protocol_id = PROTOCOL_GCA;
         if ([protocol isEqualToString:@"LiveAPI"] == YES)
-            protocol_id = ProtocolLiveAPI;
+            protocol_id = PROTOCOL_LIVEAPI;
 
         BOOL enabledBool = NO;
         if ([enabled isEqualToString:@"YES"] == YES)

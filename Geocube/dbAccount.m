@@ -83,22 +83,22 @@
     }
 
     switch (protocol) {
-        case ProtocolOKAPI:
-        case ProtocolLiveAPI:
+        case PROTOCOL_OKAPI:
+        case PROTOCOL_LIVEAPI:
             if (oauth_token == nil || [oauth_token isEqualToString:@""] == YES ||
                 oauth_token_secret == nil || [oauth_token_secret isEqualToString:@""] == YES)
                 [self disableRemoteAccess:@"This account is currenlty not authenticated"];
             else
                 [self enableRemoteAccess];
             break;
-        case ProtocolGCA:
+        case PROTOCOL_GCA:
             if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)
                 [self disableRemoteAccess:@"This account is currently not authenticated"];
             else
                 [self enableRemoteAccess];
             break;
         default:
-        case ProtocolNone:
+        case PROTOCOL_NONE:
             [self disableRemoteAccess:@"Unkown Protocol"];
             break;
     }

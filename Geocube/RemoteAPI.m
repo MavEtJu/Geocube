@@ -68,17 +68,17 @@
     okapi = nil;
     gca = nil;
     switch (account.protocol) {
-        case ProtocolLiveAPI:
+        case PROTOCOL_LIVEAPI:
             liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
             liveAPI.delegate = self;
             protocol = liveAPI;
             break;
-        case ProtocolOKAPI:
+        case PROTOCOL_OKAPI:
             okapi = [[RemoteAPI_OKAPI alloc] init:self];
             okapi.delegate = self;
             protocol = okapi;
             break;
-        case ProtocolGCA:
+        case PROTOCOL_GCA:
             gca = [[RemoteAPI_GCA alloc] init:self];
             gca.delegate = self;
             protocol = gca;
@@ -89,7 +89,7 @@
 
 - (BOOL)Authenticate
 {
-    if (account.protocol == ProtocolOKAPI || account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_OKAPI || account.protocol == PROTOCOL_LIVEAPI) {
         // Reset it
         oabb = [[GCOAuthBlackbox alloc] init];
 
@@ -120,7 +120,7 @@
         return YES;
     }
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
         NSString *url = account.gca_authenticate_url;
 
@@ -247,7 +247,7 @@
     [ret setValue:@"" forKey:@"recommendations_given"];
     [ret setValue:@"" forKey:@"recommendations_received"];
 
-    if (account.protocol == ProtocolOKAPI) {
+    if (account.protocol == PROTOCOL_OKAPI) {
         GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username];
 
         if (dict == nil)
@@ -262,7 +262,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *dict1 = [liveAPI GetYourUserProfile];
         NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser];
 
@@ -284,7 +284,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         NSDictionary *dict1 = [gca cacher_statistic__finds:username];
         NSDictionary *dict2 = [gca cacher_statistic__hides:username];
 
@@ -309,7 +309,7 @@
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
 
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile];
         if (json == nil) {
             [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - json = nil" code:REMOTEAPI_APIFAILED];
@@ -356,11 +356,11 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolOKAPI) {
+    if (account.protocol == PROTOCOL_OKAPI) {
         return [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite];
     }
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating];
 
         if (json == nil) {
@@ -413,7 +413,7 @@
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
@@ -424,7 +424,7 @@
         [waypointManager needsRefresh];
         return REMOTEAPI_OK;
     }
-    if (account.protocol == ProtocolOKAPI) {
+    if (account.protocol == PROTOCOL_OKAPI) {
         NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
@@ -435,7 +435,7 @@
         [waypointManager needsRefresh];
         return REMOTEAPI_OK;
     }
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name];
         if (json == nil) {
             [self alertError:@"[GCA] loadWaypoint/cache__json: json == nil" code:REMOTEAPI_APIFAILED];
@@ -501,7 +501,7 @@
     *retObject = nil;
 //    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         if ([account canDoRemoteStuff] == NO) {
             [self alertError:@"[GCA] loadWaypoints: remote API is disabled" code:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
@@ -542,7 +542,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         if ([account canDoRemoteStuff] == NO)
             return REMOTEAPI_APIDISABLED;
 
@@ -570,7 +570,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolOKAPI) {
+    if (account.protocol == PROTOCOL_OKAPI) {
         if ([account canDoRemoteStuff] == NO)
             return REMOTEAPI_APIDISABLED;
 
@@ -618,7 +618,7 @@
 
 - (NSInteger)updatePersonalNote:(dbPersonalNote *)note
 {
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
@@ -639,7 +639,7 @@
      */
 
     *qs = nil;
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI GetPocketQueryList];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
@@ -663,7 +663,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         NSDictionary *json = [gca my_query_list__json];
         if (json == nil) {
             [self alertError:@"[GCA] ListQueries: json == nil" code:REMOTEAPI_APIFAILED];
@@ -702,7 +702,7 @@
 {
     *retObj = nil;
 
-    if (account.protocol == ProtocolLiveAPI) {
+    if (account.protocol == PROTOCOL_LIVEAPI) {
         NSMutableDictionary *result = nil;
         NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];
 
@@ -743,7 +743,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         NSDictionary *json = [gca my_query_json:_id];
 
         if (json == nil) {
@@ -770,7 +770,7 @@
 - (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
     *retObj = nil;
-    if (account.protocol == ProtocolGCA) {
+    if (account.protocol == PROTOCOL_GCA) {
         NSString *gpx = [gca my_query_gpx:_id];
         if (gpx == nil) {
             return REMOTEAPI_APIFAILED;
@@ -784,7 +784,7 @@
 
 - (void)trackablesMine
 {
-    if (account.protocol != ProtocolLiveAPI)
+    if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
     NSDictionary *json = [liveAPI GetOwnedTrackables];
@@ -794,7 +794,7 @@
 
 - (void)trackablesInventory
 {
-    if (account.protocol != ProtocolLiveAPI)
+    if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
     NSDictionary *json = [liveAPI GetUsersTrackables];
@@ -804,7 +804,7 @@
 
 - (dbTrackable *)trackableFind:(NSString *)code
 {
-    if (account.protocol != ProtocolLiveAPI)
+    if (account.protocol != PROTOCOL_LIVEAPI)
         return nil;
 
     NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code];

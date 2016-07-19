@@ -46,7 +46,7 @@ enum {
 {
     [downloadManager setBezelViewController:self];
     [downloadManager setBezelViewText:@"Downloading list of queries"];
-    [self reloadQueries:ProtocolGCA];
+    [self reloadQueries:PROTOCOL_GCA];
     [downloadManager setBezelViewController:nil];
 }
 

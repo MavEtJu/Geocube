@@ -93,7 +93,7 @@ enum {
 - (void)menuUpdate
 {
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol == ProtocolLiveAPI) {
+        if (a.protocol == PROTOCOL_LIVEAPI) {
             [a.remoteAPI trackablesMine];
             tbs = [dbTrackable dbAllMine];
             [self.tableView reloadData];

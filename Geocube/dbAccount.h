@@ -20,10 +20,10 @@
  */
 
 enum dbAccountProtocol {
-    ProtocolNone = 0,
-    ProtocolLiveAPI = 1,
-    ProtocolOKAPI = 2,
-    ProtocolGCA = 3
+    PROTOCOL_NONE = 0,
+    PROTOCOL_LIVEAPI = 1,
+    PROTOCOL_OKAPI = 2,
+    PROTOCOL_GCA = 3
 };
 
 @interface dbAccount : dbObject
