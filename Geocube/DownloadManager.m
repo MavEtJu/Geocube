@@ -23,7 +23,8 @@
 
 @interface DownloadManager ()
 {
-    UIViewController *vc;
+    UIViewController *bezelViewController;
+    NSString *bezelText;
 
     dispatch_semaphore_t syncSem;
     NSURLSessionDataTask *syncSessionDataTask;
@@ -55,12 +56,19 @@
     [delegate downloadManager_setQueueSize:42];
 }
 
+/////////////////////////////////////////////////////////////////////////
+
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
 {
     return [self sendSynchronousRequest:urlRequest returningResponse:response error:error];
 }
 
-- (NSData *)sendSynchronousRequestX:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
+- (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
+{
+    return [self imageSynchronousRequest:urlRequest returningResponse:response error:error];
+}
+
+- (NSData *)imageSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
 {
     dispatch_semaphore_t sem;
     __block NSData *result;
@@ -80,8 +88,6 @@
                                              *responsePtr = response;
                                          if (error == nil)
                                              result = data;
-                                         [delegate downloadManager_setNumberBytesDownload:[data length]];
-                                         [delegate downloadManager_setNumberBytesTotal:[data length]];
                                          dispatch_semaphore_signal(sem);
                                      }] resume];
 
@@ -97,11 +103,20 @@
     result = nil;
     syncSem = dispatch_semaphore_create(0);
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:(vc == nil ? downloadsImportsViewController.view : vc.view) withLabel:@"Downloading"];
-    }];
+    if (bezelText == nil)
+        bezelText = @"Downloading";
 
-    if (vc == nil) {
+    if (bezelViewController == nil) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView activityViewForView:downloadsImportsViewController.view withLabel:bezelText];
+        }];
+    } else {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
+        }];
+    }
+
+    if (bezelViewController == nil) {
         [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
         [delegate downloadManager_setNumberBytesDownload:0];
         [delegate downloadManager_setNumberBytesTotal:0];
@@ -129,10 +144,23 @@
     return syncData;
 }
 
-- (void)setViewController:(UIViewController *)_vc
+/////////////////////////////////////////////////////////////////////////
+
+- (void)setBezelViewController:(UIViewController *)vc
 {
-    vc = _vc;
+    bezelViewController = vc;
+    bezelText = @"Downloading";
 }
+
+- (void)setBezelViewText:(NSString *)text
+{
+    bezelText = text;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView currentActivityView].activityLabel.text = text;
+    }];
+}
+
+/////////////////////////////////////////////////////////////////////////
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {

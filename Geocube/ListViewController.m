@@ -162,20 +162,16 @@ NEEDS_OVERLOADING(clearFlags)
 
 - (void)runReloadWaypoints
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[waypoints count]]];
-    }];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[waypoints count]]];
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]];
-        }];
-        if ([wp.account.remoteAPI loadWaypoint:wp] == NO) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
-                failure = YES;
-            }];
+        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp];
+        if (rv != REMOTEAPI_OK) {
+            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
+            failure = YES;
             *stop = YES;
         }
     }];
@@ -183,11 +179,8 @@ NEEDS_OVERLOADING(clearFlags)
     waypoints = [dbWaypoint dbAllByFlag:flag];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:NO];
-    }];
-    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-    });
+    }];
     [waypointManager needsRefresh];
 
     if (failure == NO)

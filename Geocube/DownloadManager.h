@@ -45,7 +45,11 @@
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
-- (void)setViewController:(UIViewController *)vc;
+
+- (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+
+- (void)setBezelViewController:(UIViewController *)vc;
+- (void)setBezelViewText:(NSString *)text;
 
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
