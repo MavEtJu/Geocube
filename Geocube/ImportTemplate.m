@@ -21,13 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface Importer()
+@interface ImportTemplate()
 {
 }
 
 @end
 
-@implementation Importer
+@implementation ImportTemplate
 
 @synthesize newWaypointsCount, totalWaypointsCount, newLogsCount, totalLogsCount, newTrackablesCount, totalTrackablesCount, percentageRead, totalLines, newImagesCount;
 @synthesize group, account, run_options;
@@ -60,7 +60,7 @@
 - (void)updateDelegates
 {
     if (delegate != nil)
-        [delegate importerDelegateUpdate];
+        [delegate importDelegateUpdate];
 }
 
 /* ************************************ */

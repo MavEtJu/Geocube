@@ -28,7 +28,7 @@
 @protocol IOSFileTransfersDelegate;
 @protocol ImagesDownloadManagerDelegate;
 @protocol ImportManagerDelegate;
-@protocol ImporterDelegate;
+@protocol ImportDelegate;
 @protocol LocationManagerDelegate;
 @protocol RemoteAPIAuthenticationDelegate;
 @protocol RemoteAPILoadWaypointDownloadProgressDelegate;

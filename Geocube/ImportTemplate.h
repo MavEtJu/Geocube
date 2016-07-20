@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImporterDelegate
+@protocol ImportDelegate
 
-- (void)importerDelegateUpdate;
+- (void)importDelegateUpdate;
 
 @end
 
-@interface Importer : NSObject
+@interface ImportTemplate : NSObject
 {
     id delegate;
 

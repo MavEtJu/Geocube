@@ -95,7 +95,7 @@
 @class ImportLiveAPIJSON;
 @class ImportManager;
 @class ImportOKAPIJSON;
-@class Importer;
+@class ImportTemplate;
 @class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;

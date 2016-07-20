@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGeocube : Importer
+@interface ImportGeocube : ImportTemplate
 
 #define KEY_REVISION_ATTRIBUTES     @"attributes_revision"
 #define KEY_REVISION_BOOKMARKS      @"bookmarks_revision"

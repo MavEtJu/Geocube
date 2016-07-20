@@ -23,7 +23,7 @@
 
 @interface ImportManager ()
 {
-    Importer *imp;
+    ImportTemplate *imp;
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
 }
