@@ -121,7 +121,6 @@
 @class NoticeTableViewCell;
 @class NoticesViewController;
 @class PersonalNoteTableViewCell;
-@class ProtocolTemplate;
 @class QueriesGCAViewController;
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
@@ -129,6 +128,7 @@
 @class RemoteAPI_GCA;
 @class RemoteAPI_LiveAPI;
 @class RemoteAPI_OKAPI;
+@class RemoteAPI_Template;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;
 @class SettingsColoursViewController;

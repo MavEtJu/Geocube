@@ -282,7 +282,7 @@
 		E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */; };
 		E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E890517A1C96BA0200220986 /* HelpHelpViewController.m */; };
 		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
-		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
+		E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* RemoteAPI_Template.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
@@ -820,8 +820,8 @@
 		E890517A1C96BA0200220986 /* HelpHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpHelpViewController.m; sourceTree = "<group>"; };
 		E891D27C1D2D2DDE00A17B17 /* ImportOKAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportOKAPIJSON.h; sourceTree = "<group>"; };
 		E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportOKAPIJSON.m; sourceTree = "<group>"; };
-		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
-		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
+		E89580191C643AD500282177 /* RemoteAPI_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_Template.h; sourceTree = "<group>"; };
+		E895801A1C643AD500282177 /* RemoteAPI_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_Template.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
 		E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTemplateViewController.m; sourceTree = "<group>"; };
 		E89580231C66E44900282177 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
@@ -2175,8 +2175,8 @@
 				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
 				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
 				E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */,
-				E89580191C643AD500282177 /* ProtocolTemplate.h */,
-				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
+				E89580191C643AD500282177 /* RemoteAPI_Template.h */,
+				E895801A1C643AD500282177 /* RemoteAPI_Template.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -2858,7 +2858,7 @@
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
-				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
+				E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */,
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,

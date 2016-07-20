@@ -25,7 +25,7 @@
 
 @end
 
-@interface RemoteAPI_GCA : ProtocolTemplate <NSURLConnectionDataDelegate>
+@interface RemoteAPI_GCA : RemoteAPI_Template <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id delegate;
 @property (nonatomic, retain, readonly) NSString *callback;

@@ -28,7 +28,7 @@
     RemoteAPI_LiveAPI *liveAPI;
     RemoteAPI_OKAPI *okapi;
     RemoteAPI_GCA *gca;
-    ProtocolTemplate *protocol;
+    RemoteAPI_Template *protocol;
 
     dbAccount *account;
 

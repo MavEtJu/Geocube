@@ -19,14 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ProtocolTemplate : NSObject
+#import "Geocube-Prefix.pch"
 
-- (BOOL)commentSupportsFavouritePoint;
-- (BOOL)commentSupportsPhotos;
-- (BOOL)commentSupportsRating;
-- (NSRange)commentSupportsRatingRange;
-- (BOOL)commentSupportsTrackables;
-- (BOOL)waypointSupportsPersonalNotes;
-- (instancetype)init:(RemoteAPI *)remoteAPI;
+@interface RemoteAPI_Template ()
+
+@end
+
+@implementation RemoteAPI_Template
+
+NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
+NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
+NEEDS_OVERLOADING_BOOL(commentSupportsRating)
+NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
+NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
+NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
+- (instancetype)init:(RemoteAPI *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end

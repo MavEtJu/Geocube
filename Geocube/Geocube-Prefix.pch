@@ -149,7 +149,7 @@
 #import "BrowserUserViewController.h"
 
 #import "GCOAuthBlackbox.h"
-#import "ProtocolTemplate.h"
+#import "RemoteAPI_Template.h"
 #import "RemoteAPI_GCA.h"
 #import "RemoteAPI_LiveAPI.h"
 #import "RemoteAPI_OKAPI.h"
