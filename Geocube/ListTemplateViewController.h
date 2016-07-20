@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ListViewController : GCTableViewController
+@interface ListTemplateViewController : GCTableViewController
 {
     NSInteger flag;
     NSArray *waypoints;

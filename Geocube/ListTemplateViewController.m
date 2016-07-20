@@ -21,11 +21,11 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface ListViewController ()
+@interface ListTemplateViewController ()
 
 @end
 
-@implementation ListViewController
+@implementation ListTemplateViewController
 
 enum {
     menuClearFlags,

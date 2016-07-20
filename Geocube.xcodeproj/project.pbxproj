@@ -185,7 +185,7 @@
 		E833B7281C4F7E8500B9FB45 /* map - in progress - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */; };
 		E833B72A1C4FA7D600B9FB45 /* type - marked found - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */; };
 		E833B72E1C4FAA0300B9FB45 /* type - in progress - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */; };
-		E833B7321C522EA600B9FB45 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListViewController.m */; };
+		E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */; };
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
 		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
@@ -657,8 +657,8 @@
 		E833B7271C4F7E8500B9FB45 /* map - in progress - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - in progress - 18x18.png"; path = "images/map - in progress - 18x18.png"; sourceTree = "<group>"; };
 		E833B7291C4FA7D600B9FB45 /* type - marked found - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - marked found - 24x21.png"; path = "images/type - marked found - 24x21.png"; sourceTree = "<group>"; };
 		E833B72D1C4FAA0300B9FB45 /* type - in progress - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - in progress - 24x24.png"; path = "images/type - in progress - 24x24.png"; sourceTree = "<group>"; };
-		E833B7301C522EA600B9FB45 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		E833B7311C522EA600B9FB45 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTemplateViewController.h; sourceTree = "<group>"; };
+		E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTemplateViewController.m; sourceTree = "<group>"; };
 		E8371D481D06A79500C2F174 /* TrackablesMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesMineViewController.h; sourceTree = "<group>"; };
 		E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesMineViewController.m; sourceTree = "<group>"; };
 		E8371D4B1D06C63300C2F174 /* TrackablesInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesInventoryViewController.h; sourceTree = "<group>"; };
@@ -1198,8 +1198,8 @@
 		E833B72F1C522E8D00B9FB45 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				E833B7301C522EA600B9FB45 /* ListViewController.h */,
-				E833B7311C522EA600B9FB45 /* ListViewController.m */,
+				E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */,
+				E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */,
 				E881441D1C82663D00940820 /* DNFListViewController.h */,
 				E881441E1C82663D00940820 /* DNFListViewController.m */,
 				E84D6FC71C5236930000A6A0 /* FoundListViewController.h */,
@@ -2798,7 +2798,7 @@
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */,
 				E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */,
-				E833B7321C522EA600B9FB45 /* ListViewController.m in Sources */,
+				E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,

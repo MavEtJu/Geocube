@@ -102,7 +102,7 @@
 @class KeepTrackTrack;
 @class KeepTrackTracks;
 @class KeyboardCoordinateView;
-@class ListViewController;
+@class ListTemplateViewController;
 @class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;
