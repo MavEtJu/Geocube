@@ -26,6 +26,8 @@
 - (void)showDownloadManager;
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
+
+- (void)showImportManager;
 - (void)resetImports;
 
 @end

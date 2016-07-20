@@ -39,7 +39,7 @@
     GCLabel *labelBGPendingQueued;
 
     GCLabel *labelImport;
-    GCLabel *labelImportFilename;
+    GCLabel *labelImportDescription;
     GCLabel *labelImportNewWaypoints;
     GCLabel *labelImportTotalWaypoints;
     GCLabel *labelImportNewLogs;
@@ -96,6 +96,14 @@
     }];
 }
 
+- (void)showImportManager
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [_AppDelegate switchController:RC_DOWNLOADS];
+        [downloadTabController setSelectedIndex:VC_DOWNLOADS_DOWNLOADS animated:YES];
+    }];
+}
+
 - (void)viewDidLoad
 {
     lmi = nil;
@@ -136,8 +144,8 @@
     labelImport = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelImport.text = @"Importing";
     [self.view addSubview:labelImport];
-    labelImportFilename = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportFilename];
+    labelImportDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportDescription];
     labelImportNewWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportNewWaypoints];
     labelImportTotalWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
@@ -201,8 +209,9 @@
     y += lh / 2;
 
     LABEL_RESIZE(labelImport);
-    INDENT_RESIZE(labelImportFilename);
+    INDENT_RESIZE(labelImportDescription);
     INDENT_RESIZE(labelImportNewWaypoints);
+    INDENT_RESIZE(labelImportTotalWaypoints);
     INDENT_RESIZE(labelImportNewLogs);
     INDENT_RESIZE(labelImportTotalLogs);
     INDENT_RESIZE(labelImportNewTrackables);
@@ -235,7 +244,68 @@
 
 - (void)importManager_setDescription:(NSString *)description
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportDescription.text = description;
+    }];
 }
+
+- (void)ImportManager_setNewWaypoints:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportNewWaypoints.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setTotalWaypoints:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTotalWaypoints.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setNewLogs:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportNewLogs.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setTotalLogs:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTotalLogs.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setNewTrackables:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportNewTrackables.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setTotalTrackables:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTotalTrackables.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setTotalImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTotalImages.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setQueuedImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportQueuedImages.text = [NSString stringWithFormat:@"%ld", (long)v];
+    }];
+}
+
+//////////////////////////////////////////////////////////////////////////
 
 - (void)downloadManager_setDescription:(NSString *)description
 {
@@ -360,14 +430,15 @@
 - (void)resetImports
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportFilename.text = @"(no description yet)";
-        labelImportNewWaypoints.text = @"()";
-        labelImportNewLogs.text = @"()";
-        labelImportTotalLogs.text = @"()";
-        labelImportNewTrackables.text = @"()";
-        labelImportTotalTrackables.text = @"()";
-        labelImportTotalImages.text = @"()";
-        labelImportQueuedImages.text = @"()";
+        labelImportDescription.text = @"(no description yet)";
+        labelImportTotalWaypoints.text = @"n/a";
+        labelImportNewWaypoints.text = @"n/a";
+        labelImportNewLogs.text = @"n/a";
+        labelImportTotalLogs.text = @"n/a";
+        labelImportNewTrackables.text = @"n/a";
+        labelImportTotalTrackables.text = @"n/a";
+        labelImportTotalImages.text = @"n/a";
+        labelImportQueuedImages.text = @"n/a";
     }];
 }
 

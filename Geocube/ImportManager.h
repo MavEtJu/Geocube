@@ -22,6 +22,14 @@
 @protocol ImportManagerDelegate
 
 - (void)importManager_setDescription:(NSString *)description;
+- (void)ImportManager_setTotalWaypoints:(NSInteger)v;
+- (void)ImportManager_setNewWaypoints:(NSInteger)v;
+- (void)ImportManager_setNewLogs:(NSInteger)v;
+- (void)ImportManager_setTotalLogs:(NSInteger)v;
+- (void)ImportManager_setNewTrackables:(NSInteger)v;
+- (void)ImportManager_setTotalTrackables:(NSInteger)v;
+- (void)ImportManager_setTotalImages:(NSInteger)v;
+- (void)ImportManager_setQueuedImages:(NSInteger)v;
 
 @end
 
