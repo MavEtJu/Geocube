@@ -19,6 +19,13 @@
 * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+@protocol WaypointLogDelegate
+
+- (void)WaypointLog_refreshWaypointData;
+- (void)WaypointLog_refreshTable;
+
+@end
+
 @interface WaypointLogViewController : GCTableViewController <YIPopupTextViewDelegate, WaypointLogImagesDelegate, WaypointLogTrackablesDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;

@@ -19,13 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol WaypointViewControllerRefreshDelegate
-
-- (void)refreshView;
-
-@end
-
-@interface WaypointViewController : GCTableViewController <WaypointViewControllerRefreshDelegate>
+@interface WaypointViewController : GCTableViewController <WaypointLogDelegate, WaypointImagesDelegate, WaypointPersonalNoteDelegate, WaypointWaypointsDelegate>
 
 - (void)showWaypoint:(dbWaypoint *)wp;
 - (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed;

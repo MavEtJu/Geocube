@@ -147,9 +147,29 @@ enum {
 
 #pragma mark - Delegates
 
--  (void)refreshView
+-  (void)WaypointImages_refreshTable
 {
     [self.tableView reloadData];
+}
+
+-  (void)WaypointPersonalNote_refreshTable
+{
+    [self.tableView reloadData];
+}
+
+-  (void)WaypointLog_refreshTable
+{
+    [self.tableView reloadData];
+}
+
+-  (void)WaypointWaypoints_refreshTable
+{
+    [self.tableView reloadData];
+}
+
+-  (void)WaypointLog_refreshWaypointData
+{
+    [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
 }
 
 #pragma mark - Table view data source
@@ -528,7 +548,7 @@ enum {
 {
     switch (index) {
         case menuRefreshWaypoint: // Refresh waypoint from server
-            [self refreshWaypoint];
+            [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
             return;
         case menuAddToGroup: // Add waypoint to a group
             [self addToGroup];
@@ -730,11 +750,6 @@ enum {
         }
         origin:self.tableView
     ];
-}
-
-- (void)refreshWaypoint
-{
-    [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
 }
 
 - (void)runRefreshWaypoint

@@ -223,7 +223,7 @@ enum {
         userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
         [self.tableView reloadData];
         if (self.delegateWaypoint != nil)
-            [self.delegateWaypoint refreshView];
+            [self.delegateWaypoint WaypointImages_refreshTable];
     }
 }
 
@@ -409,7 +409,7 @@ enum {
     userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
     [self.tableView reloadData];
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint refreshView];
+        [self.delegateWaypoint WaypointImages_refreshTable];
 
     [self finishAndUpdate];
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -419,7 +419,7 @@ enum {
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint refreshView];
+        [self.delegateWaypoint WaypointImages_refreshTable];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

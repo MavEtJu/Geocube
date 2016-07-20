@@ -35,9 +35,12 @@
 @protocol RemoteAPIQueriesDownloadProgressDelegate;
 @protocol RemoteAPI_GCADelegate;
 @protocol WaypointImageViewControllerDelegate;
+@protocol WaypointImagesDelegate;
+@protocol WaypointLogDelegate;
 @protocol WaypointLogImagesDelegate;
 @protocol WaypointLogTrackablesDelegate;
 @protocol WaypointManagerDelegate;
-@protocol WaypointViewControllerRefreshDelegate;
+@protocol WaypointPersonalNoteDelegate;
+@protocol WaypointWaypointsDelegate;
 
 #endif /* Geocube_Delegates_h */

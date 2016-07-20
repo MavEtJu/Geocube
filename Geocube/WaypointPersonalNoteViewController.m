@@ -127,7 +127,7 @@ enum {
         }
     }
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint refreshView];
+        [self.delegateWaypoint WaypointPersonalNote_refreshTable];
 }
 
 #pragma mark - Local menu related functions
@@ -138,7 +138,7 @@ enum {
     switch (index) {
         case menuScanForWaypoints:
             [self scanForWaypoints];
-            [self.delegateWaypoint refreshView];
+            [self.delegateWaypoint WaypointPersonalNote_refreshTable];
             return;
     }
 

@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol WaypointImagesDelegate
+
+- (void)WaypointImages_refreshTable;
+
+@end
+
 @interface WaypointImagesViewController : GCTableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WaypointImageViewControllerDelegate, ImagesDownloadManagerDelegate>
 
 @property (nonatomic, retain) UIView *overlayView;

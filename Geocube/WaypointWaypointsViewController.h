@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol WaypointWaypointsDelegate
+
+- (void)WaypointWaypoints_refreshTable;
+
+@end
+
 @interface WaypointWaypointsViewController : GCTableViewController
 
 - (instancetype)init:(dbWaypoint *)waypoint;

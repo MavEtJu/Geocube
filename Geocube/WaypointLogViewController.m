@@ -341,7 +341,7 @@ enum {
                 case SECTION_SUBMIT_SUBMIT:
                     [self submitLog];
                     if (self.delegateWaypoint != nil)
-                        [self.delegateWaypoint refreshView];
+                        [self.delegateWaypoint WaypointLog_refreshTable];
                     break;
             }
             break;
@@ -537,6 +537,9 @@ enum {
     if (retValue == REMOTEAPI_OK) {
         dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
         [log dbUpdate];
+
+        if (self.delegateWaypoint != nil)
+            [self.delegateWaypoint WaypointLog_refreshWaypointData];
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.navigationController popViewControllerAnimated:YES];

@@ -117,7 +117,7 @@ enum {
         wps = [waypoint hasWaypoints];
         [self.tableView reloadData];
         if (self.delegateWaypoint != nil)
-            [self.delegateWaypoint refreshView];
+            [self.delegateWaypoint WaypointWaypoints_refreshTable];
     }
 }
 
@@ -181,7 +181,7 @@ enum {
                     [self.tableView reloadData];
                     [waypointManager needsRefresh];
                     if (self.delegateWaypoint != nil)
-                        [self.delegateWaypoint refreshView];
+                        [self.delegateWaypoint WaypointWaypoints_refreshTable];
                 }];
     [okButton setEnabled:NO];
     UIAlertAction *cancel = [UIAlertAction

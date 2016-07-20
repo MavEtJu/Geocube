@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol WaypointPersonalNoteDelegate
+
+- (void)WaypointPersonalNote_refreshTable;
+
+@end
+
 @interface WaypointPersonalNoteViewController : GCViewController <YIPopupTextViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
