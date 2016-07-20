@@ -445,9 +445,9 @@
     nvc = [downloadTabController.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
     downloadsImportsViewController = [nvc.viewControllers objectAtIndex:0];
     downloadManager = [[DownloadManager alloc] init];
-    downloadManager.delegate = downloadsImportsViewController;
+    downloadManager.downloadsImportsDelegate = downloadsImportsViewController;
     importManager = [[ImportManager alloc] init];
-    importManager.delegate = downloadsImportsViewController;
+    importManager.downloadsImportsDelegate = downloadsImportsViewController;
 
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];

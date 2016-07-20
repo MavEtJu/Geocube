@@ -32,7 +32,7 @@ enum {
     RUN_OPTION_LOGSONLY = 1,
 };
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id downloadsImportsDelegate;
 
 - (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
 

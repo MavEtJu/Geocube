@@ -41,7 +41,7 @@
 
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id downloadsImportsDelegate;
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;

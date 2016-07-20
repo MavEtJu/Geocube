@@ -32,7 +32,7 @@
 
 @implementation ImportManager
 
-@synthesize delegate;
+@synthesize downloadsImportsDelegate;
 
 - (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
 {
@@ -89,21 +89,21 @@
         @autoreleasepool {
             if ([data isKindOfClass:[GCStringFilename class]] == YES) {
                 [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-                    [delegate importManager_setDescription:filename];
+                    [downloadsImportsDelegate importManager_setDescription:filename];
                     [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
                     [waypointManager needsRefresh];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
-                [delegate importManager_setDescription:@"GPX data"];
+                [downloadsImportsDelegate importManager_setDescription:@"GPX data"];
                 [imp parseString:(NSString *)data];
             } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-                [delegate importManager_setDescription:@"LiveAPI data"];
+                [downloadsImportsDelegate importManager_setDescription:@"LiveAPI data"];
                 [imp parseDictionary:(NSDictionary *)data];
             } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
-                [delegate importManager_setDescription:@"Geocaching Australia data"];
+                [downloadsImportsDelegate importManager_setDescription:@"Geocaching Australia data"];
                 [imp parseDictionary:(NSDictionary *)data];
             } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-                [delegate importManager_setDescription:@"OKAPI data"];
+                [downloadsImportsDelegate importManager_setDescription:@"OKAPI data"];
                 [imp parseDictionary:(NSDictionary *)data];
             } else {
                 NSAssert1(NO, @"Unknown data object type: %@", [data class]);

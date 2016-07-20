@@ -41,7 +41,7 @@
 
 @implementation DownloadManager
 
-@synthesize delegate;
+@synthesize downloadsImportsDelegate;
 
 - (instancetype)init
 {
@@ -64,7 +64,7 @@
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output
 {
-    [delegate downloadManager_setQueueSize:42];
+    [downloadsImportsDelegate downloadManager_setQueueSize:42];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -148,9 +148,9 @@
         }];
     }
 
-    [delegate downloadManager_setURL:urlRequest.URL.absoluteString];
-    [delegate downloadManager_setNumberBytesDownload:0];
-    [delegate downloadManager_setNumberBytesTotal:0];
+    [downloadsImportsDelegate downloadManager_setURL:urlRequest.URL.absoluteString];
+    [downloadsImportsDelegate downloadManager_setNumberBytesDownload:0];
+    [downloadsImportsDelegate downloadManager_setNumberBytesTotal:0];
 
     syncSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     syncSession = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
@@ -183,8 +183,8 @@
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
     if (session == syncSession && task == syncSessionDataTask) {
         syncError = error;
-        [delegate downloadManager_setNumberBytesDownload:[syncData length]];
-        [delegate downloadManager_setNumberBytesTotal:[syncData length]];
+        [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
+        [downloadsImportsDelegate downloadManager_setNumberBytesTotal:[syncData length]];
 
         dispatch_semaphore_signal(syncSem);
         return;
@@ -212,7 +212,7 @@
     NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) diReceiveData:(NSData *)");
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
-        [delegate downloadManager_setNumberBytesDownload:[syncData length]];
+        [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
         return;
     }
 
@@ -235,7 +235,7 @@
         completionHandler(NSURLSessionResponseAllow);
         syncReponse = response;
         if (response.expectedContentLength >= 0)
-            [delegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+            [downloadsImportsDelegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
         return;
     }
 
@@ -281,67 +281,67 @@
 
 - (void)setDescription:(NSString *)description
 {
-    [delegate downloadManager_setDescription:description];
+    [downloadsImportsDelegate downloadManager_setDescription:description];
 }
 
 - (void)setURL:(NSString *)url
 {
-    [delegate downloadManager_setURL:url];
+    [downloadsImportsDelegate downloadManager_setURL:url];
 }
 
 - (void)setNumberOfChunksTotal:(NSInteger)chunks
 {
-    [delegate downloadManager_setNumberOfChunksTotal:chunks];
+    [downloadsImportsDelegate downloadManager_setNumberOfChunksTotal:chunks];
 }
 
 - (void)setNumberOfChunksDownload:(NSInteger)chunks
 {
-    [delegate downloadManager_setNumberOfChunksDownload:chunks];
+    [downloadsImportsDelegate downloadManager_setNumberOfChunksDownload:chunks];
 }
 
 - (void)setNumberBytesTotal:(NSInteger)bytes
 {
-    [delegate downloadManager_setNumberBytesTotal:bytes];
+    [downloadsImportsDelegate downloadManager_setNumberBytesTotal:bytes];
 }
 
 - (void)setNumberBytesDownload:(NSInteger)bytes
 {
-    [delegate downloadManager_setNumberBytesDownload:bytes];
+    [downloadsImportsDelegate downloadManager_setNumberBytesDownload:bytes];
 }
 
 - (void)setBGDescription:(NSString *)description
 {
-    [delegate downloadManager_setBGDescription:description];
+    [downloadsImportsDelegate downloadManager_setBGDescription:description];
 }
 
 - (void)setBGURL:(NSString *)url
 {
-    [delegate downloadManager_setBGURL:url];
+    [downloadsImportsDelegate downloadManager_setBGURL:url];
 }
 
 - (void)setBGNumberOfChunksTotal:(NSInteger)chunks
 {
-    [delegate downloadManager_setBGNumberOfChunksTotal:chunks];
+    [downloadsImportsDelegate downloadManager_setBGNumberOfChunksTotal:chunks];
 }
 
 - (void)setBGNumberOfChunksDownload:(NSInteger)chunks
 {
-    [delegate downloadManager_setBGNumberOfChunksDownload:chunks];
+    [downloadsImportsDelegate downloadManager_setBGNumberOfChunksDownload:chunks];
 }
 
 - (void)setBGNumberBytesTotal:(NSInteger)bytes
 {
-    [delegate downloadManager_setBGNumberBytesTotal:bytes];
+    [downloadsImportsDelegate downloadManager_setBGNumberBytesTotal:bytes];
 }
 
 - (void)setBGNumberBytesDownload:(NSInteger)bytes
 {
-    [delegate downloadManager_setBGNumberBytesDownload:bytes];
+    [downloadsImportsDelegate downloadManager_setBGNumberBytesDownload:bytes];
 }
 
 - (void)setQueueSize:(NSInteger)size
 {
-    [delegate downloadManager_setQueueSize:size];
+    [downloadsImportsDelegate downloadManager_setQueueSize:size];
 }
 
 @end
