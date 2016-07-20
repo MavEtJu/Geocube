@@ -19,26 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
-@interface IgnoredListViewController ()
-
-@end
-
-@implementation IgnoredListViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    flag = FLAGS_IGNORED;
-}
-
-- (void)clearFlags
-{
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.flag_ignore = NO;
-        [wp dbUpdateIgnore];
-    }];
-}
+@interface ListFoundViewController : ListTemplateViewController
 
 @end

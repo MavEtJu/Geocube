@@ -356,31 +356,31 @@
             case RC_LISTS:
                 controllers = [NSMutableArray array];
 
-                vc = [[HighlightListViewController alloc] init];
+                vc = [[ListHighlightViewController alloc] init];
                 vc.title = @"Highlight";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[FoundListViewController alloc] init];
+                vc = [[ListFoundViewController alloc] init];
                 vc.title = @"Found";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[DNFListViewController alloc] init];
+                vc = [[ListDNFViewController alloc] init];
                 vc.title = @"DNF";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[InProgressListViewController alloc] init];
+                vc = [[ListInProgressViewController alloc] init];
                 vc.title = @"In Progress";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[IgnoredListViewController alloc] init];
+                vc = [[ListIgnoredViewController alloc] init];
                 vc.title = @"Ignored";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;

@@ -29,7 +29,6 @@
 @class BrowserUserViewController;
 @class CompassViewController;
 @class Coordinates;
-@class DNFListViewController;
 @class DatabaseCache;
 @class DownloadManager;
 @class DownloadsImportsViewController;
@@ -51,7 +50,6 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
-@class FoundListViewController;
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCDictionaryGCA;
@@ -84,9 +82,7 @@
 @class HelpDatabaseViewController;
 @class HelpHelpViewController;
 @class HelpImagesViewController;
-@class HighlightListViewController;
 @class IOSFileTransfers;
-@class IgnoredListViewController;
 @class ImageLibrary;
 @class ImagesDownloadManager;
 @class ImportGCAJSON;
@@ -96,12 +92,16 @@
 @class ImportManager;
 @class ImportOKAPIJSON;
 @class ImportTemplate;
-@class InProgressListViewController;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;
 @class KeepTrackTrack;
 @class KeepTrackTracks;
 @class KeyboardCoordinateView;
+@class ListDNFViewController;
+@class ListFoundViewController;
+@class ListHighlightViewController;
+@class ListIgnoredViewController;
+@class ListInProgressViewController;
 @class ListTemplateViewController;
 @class LocalMenuItems;
 @class LocationManager;

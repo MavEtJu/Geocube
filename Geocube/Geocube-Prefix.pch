@@ -236,11 +236,11 @@
 #import "MapViewController.h"
 
 #import "ListTemplateViewController.h"
-#import "DNFListViewController.h"
-#import "FoundListViewController.h"
-#import "HighlightListViewController.h"
-#import "IgnoredListViewController.h"
-#import "InProgressListViewController.h"
+#import "ListDNFViewController.h"
+#import "ListFoundViewController.h"
+#import "ListHighlightViewController.h"
+#import "ListIgnoredViewController.h"
+#import "ListInProgressViewController.h"
 
 #endif
 

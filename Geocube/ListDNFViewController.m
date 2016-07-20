@@ -21,11 +21,11 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface DNFListViewController ()
+@interface ListDNFViewController ()
 
 @end
 
-@implementation DNFListViewController
+@implementation ListDNFViewController
 
 - (void)viewDidLoad
 {

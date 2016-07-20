@@ -204,10 +204,10 @@
 		E847A5931BA0524E00BEFE83 /* GCSmallLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */; };
 		E847A5951BA0DA1300BEFE83 /* map - highlight - 21x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5941BA0DA1300BEFE83 /* map - highlight - 21x21.png */; };
 		E847A5971BA0DB4500BEFE83 /* map - background - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E847A5961BA0DB4500BEFE83 /* map - background - 35x42.png */; };
-		E84D6FC31C52366D0000A6A0 /* IgnoredListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC21C52366D0000A6A0 /* IgnoredListViewController.m */; };
-		E84D6FC61C52367B0000A6A0 /* HighlightListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC51C52367B0000A6A0 /* HighlightListViewController.m */; };
-		E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC81C5236930000A6A0 /* FoundListViewController.m */; };
-		E84D6FCC1C5236A00000A6A0 /* InProgressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */; };
+		E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC21C52366D0000A6A0 /* ListIgnoredViewController.m */; };
+		E84D6FC61C52367B0000A6A0 /* ListHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC51C52367B0000A6A0 /* ListHighlightViewController.m */; };
+		E84D6FC91C5236930000A6A0 /* ListFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FC81C5236930000A6A0 /* ListFoundViewController.m */; };
+		E84D6FCC1C5236A00000A6A0 /* ListInProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCB1C5236A00000A6A0 /* ListInProgressViewController.m */; };
 		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
 		E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */; };
 		E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */; };
@@ -269,7 +269,7 @@
 		E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144161C7DBA5800940820 /* GC - logo - 58x58.png */; };
 		E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144171C7DBA5800940820 /* GC - logo - 87x87.png */; };
 		E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */; };
-		E881441F1C82663D00940820 /* DNFListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E881441E1C82663D00940820 /* DNFListViewController.m */; };
+		E881441F1C82663D00940820 /* ListDNFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E881441E1C82663D00940820 /* ListDNFViewController.m */; };
 		E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E88144211C840C5400940820 /* IOSFileTransfers.m */; };
 		E88974B51B6DF01C00703E80 /* map - disabled - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */; };
 		E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E88974B61B6DF07F00703E80 /* map - archived - 15x15.png */; };
@@ -690,14 +690,14 @@
 		E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSmallLabel.m; sourceTree = "<group>"; };
 		E847A5941BA0DA1300BEFE83 /* map - highlight - 21x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - highlight - 21x21.png"; path = "images/map - highlight - 21x21.png"; sourceTree = "<group>"; };
 		E847A5961BA0DB4500BEFE83 /* map - background - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - background - 35x42.png"; path = "images/map - background - 35x42.png"; sourceTree = "<group>"; };
-		E84D6FC11C52366C0000A6A0 /* IgnoredListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IgnoredListViewController.h; sourceTree = "<group>"; };
-		E84D6FC21C52366D0000A6A0 /* IgnoredListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IgnoredListViewController.m; sourceTree = "<group>"; };
-		E84D6FC41C52367B0000A6A0 /* HighlightListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightListViewController.h; sourceTree = "<group>"; };
-		E84D6FC51C52367B0000A6A0 /* HighlightListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightListViewController.m; sourceTree = "<group>"; };
-		E84D6FC71C5236930000A6A0 /* FoundListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoundListViewController.h; sourceTree = "<group>"; };
-		E84D6FC81C5236930000A6A0 /* FoundListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoundListViewController.m; sourceTree = "<group>"; };
-		E84D6FCA1C5236A00000A6A0 /* InProgressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InProgressListViewController.h; sourceTree = "<group>"; };
-		E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InProgressListViewController.m; sourceTree = "<group>"; };
+		E84D6FC11C52366C0000A6A0 /* ListIgnoredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListIgnoredViewController.h; sourceTree = "<group>"; };
+		E84D6FC21C52366D0000A6A0 /* ListIgnoredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListIgnoredViewController.m; sourceTree = "<group>"; };
+		E84D6FC41C52367B0000A6A0 /* ListHighlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListHighlightViewController.h; sourceTree = "<group>"; };
+		E84D6FC51C52367B0000A6A0 /* ListHighlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListHighlightViewController.m; sourceTree = "<group>"; };
+		E84D6FC71C5236930000A6A0 /* ListFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListFoundViewController.h; sourceTree = "<group>"; };
+		E84D6FC81C5236930000A6A0 /* ListFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListFoundViewController.m; sourceTree = "<group>"; };
+		E84D6FCA1C5236A00000A6A0 /* ListInProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListInProgressViewController.h; sourceTree = "<group>"; };
+		E84D6FCB1C5236A00000A6A0 /* ListInProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListInProgressViewController.m; sourceTree = "<group>"; };
 		E84D6FCD1C531CD30000A6A0 /* FilterFlagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterFlagsTableViewCell.h; sourceTree = "<group>"; };
 		E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterFlagsTableViewCell.m; sourceTree = "<group>"; };
 		E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGroundspeakViewController.h; sourceTree = "<group>"; };
@@ -797,8 +797,8 @@
 		E88144161C7DBA5800940820 /* GC - logo - 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 58x58.png"; path = "icons/GC - logo - 58x58.png"; sourceTree = "<group>"; };
 		E88144171C7DBA5800940820 /* GC - logo - 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 87x87.png"; path = "icons/GC - logo - 87x87.png"; sourceTree = "<group>"; };
 		E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 167x167.png"; path = "icons/GC - logo - 167x167.png"; sourceTree = "<group>"; };
-		E881441D1C82663D00940820 /* DNFListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNFListViewController.h; sourceTree = "<group>"; };
-		E881441E1C82663D00940820 /* DNFListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNFListViewController.m; sourceTree = "<group>"; };
+		E881441D1C82663D00940820 /* ListDNFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDNFViewController.h; sourceTree = "<group>"; };
+		E881441E1C82663D00940820 /* ListDNFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDNFViewController.m; sourceTree = "<group>"; };
 		E88144201C840C5400940820 /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSFileTransfers.h; sourceTree = "<group>"; };
 		E88144211C840C5400940820 /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSFileTransfers.m; sourceTree = "<group>"; };
 		E88974B41B6DF01C00703E80 /* map - disabled - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - disabled - 15x15.png"; path = "images/map - disabled - 15x15.png"; sourceTree = "<group>"; };
@@ -1200,16 +1200,16 @@
 			children = (
 				E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */,
 				E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */,
-				E881441D1C82663D00940820 /* DNFListViewController.h */,
-				E881441E1C82663D00940820 /* DNFListViewController.m */,
-				E84D6FC71C5236930000A6A0 /* FoundListViewController.h */,
-				E84D6FC81C5236930000A6A0 /* FoundListViewController.m */,
-				E84D6FC41C52367B0000A6A0 /* HighlightListViewController.h */,
-				E84D6FC51C52367B0000A6A0 /* HighlightListViewController.m */,
-				E84D6FC11C52366C0000A6A0 /* IgnoredListViewController.h */,
-				E84D6FC21C52366D0000A6A0 /* IgnoredListViewController.m */,
-				E84D6FCA1C5236A00000A6A0 /* InProgressListViewController.h */,
-				E84D6FCB1C5236A00000A6A0 /* InProgressListViewController.m */,
+				E881441D1C82663D00940820 /* ListDNFViewController.h */,
+				E881441E1C82663D00940820 /* ListDNFViewController.m */,
+				E84D6FC71C5236930000A6A0 /* ListFoundViewController.h */,
+				E84D6FC81C5236930000A6A0 /* ListFoundViewController.m */,
+				E84D6FC41C52367B0000A6A0 /* ListHighlightViewController.h */,
+				E84D6FC51C52367B0000A6A0 /* ListHighlightViewController.m */,
+				E84D6FC11C52366C0000A6A0 /* ListIgnoredViewController.h */,
+				E84D6FC21C52366D0000A6A0 /* ListIgnoredViewController.m */,
+				E84D6FCA1C5236A00000A6A0 /* ListInProgressViewController.h */,
+				E84D6FCB1C5236A00000A6A0 /* ListInProgressViewController.m */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -2690,7 +2690,7 @@
 				E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */,
 				E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */,
 				E8C5BB731C719EB1006222D5 /* WaypointHintViewController.m in Sources */,
-				E84D6FCC1C5236A00000A6A0 /* InProgressListViewController.m in Sources */,
+				E84D6FCC1C5236A00000A6A0 /* ListInProgressViewController.m in Sources */,
 				E8F570A51B3F7F6A003F020C /* unzip.c in Sources */,
 				E8A7FA9B1B77F8C5003F4132 /* dbBookmark.m in Sources */,
 				E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */,
@@ -2706,7 +2706,7 @@
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
-				E84D6FC31C52366D0000A6A0 /* IgnoredListViewController.m in Sources */,
+				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
@@ -2794,7 +2794,7 @@
 				E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */,
 				E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */,
 				E8C5BB741C719EB1006222D5 /* WaypointImagesViewController.m in Sources */,
-				E84D6FC91C5236930000A6A0 /* FoundListViewController.m in Sources */,
+				E84D6FC91C5236930000A6A0 /* ListFoundViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */,
 				E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */,
@@ -2842,7 +2842,7 @@
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
-				E84D6FC61C52367B0000A6A0 /* HighlightListViewController.m in Sources */,
+				E84D6FC61C52367B0000A6A0 /* ListHighlightViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
 				E8DD39531C40AFB500407705 /* MapAppleCache.m in Sources */,
@@ -2854,7 +2854,7 @@
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8C5BB701C719EB1006222D5 /* WaypointDescriptionViewController.m in Sources */,
 				E89580251C66E44900282177 /* Reachability.m in Sources */,
-				E881441F1C82663D00940820 /* DNFListViewController.m in Sources */,
+				E881441F1C82663D00940820 /* ListDNFViewController.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,

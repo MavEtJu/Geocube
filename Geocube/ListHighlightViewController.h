@@ -19,26 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
-@interface InProgressListViewController ()
-
-@end
-
-@implementation InProgressListViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    flag = FLAGS_INPROGRESS;
-}
-
-- (void)clearFlags
-{
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.flag_inprogress = NO;
-        [wp dbUpdateInProgress];
-    }];
-}
+@interface ListHighlightViewController : ListTemplateViewController
 
 @end

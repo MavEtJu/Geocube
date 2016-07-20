@@ -21,23 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface FoundListViewController ()
+@interface ListInProgressViewController ()
 
 @end
 
-@implementation FoundListViewController
+@implementation ListInProgressViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    flag = FLAGS_MARKEDFOUND;
+    flag = FLAGS_INPROGRESS;
 }
 
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.flag_markedfound = NO;
-        [wp dbUpdateMarkedFound];
+        wp.flag_inprogress = NO;
+        [wp dbUpdateInProgress];
     }];
 }
 

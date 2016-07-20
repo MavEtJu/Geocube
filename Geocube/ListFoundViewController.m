@@ -19,6 +19,26 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InProgressListViewController : ListTemplateViewController
+#import "Geocube-Prefix.pch"
+
+@interface ListFoundViewController ()
+
+@end
+
+@implementation ListFoundViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    flag = FLAGS_MARKEDFOUND;
+}
+
+- (void)clearFlags
+{
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.flag_markedfound = NO;
+        [wp dbUpdateMarkedFound];
+    }];
+}
 
 @end

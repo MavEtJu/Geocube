@@ -21,23 +21,23 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface HighlightListViewController ()
+@interface ListIgnoredViewController ()
 
 @end
 
-@implementation HighlightListViewController
+@implementation ListIgnoredViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    flag = FLAGS_HIGHLIGHTED;
+    flag = FLAGS_IGNORED;
 }
 
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.flag_highlight = NO;
-        [wp dbUpdateHighlight];
+        wp.flag_ignore = NO;
+        [wp dbUpdateIgnore];
     }];
 }
 

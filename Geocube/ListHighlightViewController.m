@@ -19,6 +19,26 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface HighlightListViewController : ListTemplateViewController
+#import "Geocube-Prefix.pch"
+
+@interface ListHighlightViewController ()
+
+@end
+
+@implementation ListHighlightViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    flag = FLAGS_HIGHLIGHTED;
+}
+
+- (void)clearFlags
+{
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.flag_highlight = NO;
+        [wp dbUpdateHighlight];
+    }];
+}
 
 @end
