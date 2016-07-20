@@ -29,6 +29,6 @@
 
 - (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray *)tbs;
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id<WaypointLogTrackablesDelegate> delegate;
 
 @end

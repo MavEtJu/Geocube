@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesTemplateViewController : GCTableViewController <RemoteAPIQueriesDownloadProgressDelegate>
+@interface QueriesTemplateViewController : GCTableViewController
 {
     dbAccount *account;
 }

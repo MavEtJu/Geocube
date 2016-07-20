@@ -27,10 +27,10 @@
 
 @interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
 {
-    id delegate;
+    id<IOSFileTransfersDelegate> delegate;
 }
 
-@property (nonatomic, retain)id delegate;
+@property (nonatomic, retain) id<IOSFileTransfersDelegate> delegate;
 
 - (void)cleanupITunes;
 - (void)uploadAirdrop:(NSString *)path vc:(UIViewController *)vc;

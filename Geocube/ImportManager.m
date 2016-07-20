@@ -40,6 +40,11 @@
     [filenamesToBeRemoved addObject:[unzippedFilePath lastPathComponent]];
 }
 
+- (void)importDelegateUpdate
+{
+    NSAssert(NO, @"Not yet implemented");
+}
+
 - (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions
 {
     NSAssert(group != nil, @"group should be initialized");

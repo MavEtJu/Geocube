@@ -40,8 +40,8 @@
 @property (nonatomic) NSMutableArray *coordsHistorical;
 @property (nonatomic, readonly) BOOL useGPS;
 
-- (void)startDelegation:(id)delegate isNavigating:(BOOL)isNavigating;
-- (void)stopDelegation:(id)delegate;
+- (void)startDelegation:(id<LocationManagerDelegate>)delegate isNavigating:(BOOL)isNavigating;
+- (void)stopDelegation:(id<LocationManagerDelegate>)delegate;
 - (void)updateDataDelegate;
 - (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords;
 

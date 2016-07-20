@@ -28,7 +28,7 @@
 
 @interface WaypointImageViewController : GCViewController
 
-@property (nonatomic) id delegate;
+@property (nonatomic) id<WaypointImageViewControllerDelegate> delegate;
 
 - (instancetype)init;
 - (void)setImage:(dbImage *)img idx:(NSInteger)thisImage totalImages:(NSInteger)totalImages;

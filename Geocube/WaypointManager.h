@@ -36,8 +36,8 @@
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)needsRefresh;
 - (void)setCurrentWaypoint:(dbWaypoint *)wp;
-- (void)startDelegation:(id)_delegate;
-- (void)stopDelegation:(id)_delegate;
+- (void)startDelegation:(id<WaypointManagerDelegate>)_delegate;
+- (void)stopDelegation:(id<WaypointManagerDelegate>)_delegate;
 
 - (dbWaypoint *)waypoint_byId:(NSId)id;
 - (dbWaypoint *)waypoint_byName:(NSString *)name;

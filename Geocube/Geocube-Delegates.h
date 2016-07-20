@@ -27,12 +27,10 @@
 @protocol GlobalMenuDelegate;
 @protocol IOSFileTransfersDelegate;
 @protocol ImagesDownloadManagerDelegate;
-@protocol ImportManagerDelegate;
 @protocol ImportDelegate;
+@protocol ImportManagerDelegate;
 @protocol LocationManagerDelegate;
 @protocol RemoteAPIAuthenticationDelegate;
-@protocol RemoteAPILoadWaypointDownloadProgressDelegate;
-@protocol RemoteAPIQueriesDownloadProgressDelegate;
 @protocol RemoteAPI_GCADelegate;
 @protocol WaypointImageViewControllerDelegate;
 @protocol WaypointImagesDelegate;

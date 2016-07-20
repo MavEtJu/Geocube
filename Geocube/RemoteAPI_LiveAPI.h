@@ -21,8 +21,6 @@
 
 @interface RemoteAPI_LiveAPI : RemoteAPI_Template
 
-@property (nonatomic) id delegate;
-
 - (GCDictionaryLiveAPI *)GetYourUserProfile;
 - (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser;
 - (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;

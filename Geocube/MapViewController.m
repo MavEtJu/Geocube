@@ -808,11 +808,8 @@ enum {
             return;
         accountsFound++;
 
-        account.remoteAPI.delegateLoadWaypoints = self;
-
         NSObject *d;
         [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d];
-        account.remoteAPI.delegateLoadWaypoints = nil;
 
         if (d == nil) {
             [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];

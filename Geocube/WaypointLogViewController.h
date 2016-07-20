@@ -30,6 +30,6 @@
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 
-@property (nonatomic, retain) id delegateWaypoint;
+@property (nonatomic, retain) id<WaypointLogDelegate> delegateWaypoint;
 
 @end

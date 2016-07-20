@@ -56,7 +56,6 @@
 - (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     __block BOOL failure = NO;
-    account.remoteAPI.delegateQueries = self;
 
     // Download the query
     NSObject *ret;

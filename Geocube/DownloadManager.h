@@ -41,13 +41,13 @@
 
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
-@property (nonatomic, retain) id downloadsImportsDelegate;
+@property (nonatomic, retain) id<DownloadManagerDelegate> downloadsImportsDelegate;
 
 - (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest delegate:(id)asyncDelegate semaphore:(dispatch_semaphore_t)sem;
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem;
 
 - (void)setBezelViewController:(UIViewController *)vc;
 - (void)setBezelViewText:(NSString *)text;

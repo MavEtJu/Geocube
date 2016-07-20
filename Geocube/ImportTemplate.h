@@ -27,7 +27,7 @@
 
 @interface ImportTemplate : NSObject
 {
-    id delegate;
+    id<ImportDelegate> delegate;
 
     NSInteger run_options;
 
@@ -49,7 +49,7 @@
     dbGroup *group;
 }
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id<ImportDelegate> delegate;
 @property (nonatomic, readonly) NSInteger newWaypointsCount;
 @property (nonatomic, readonly) NSInteger totalWaypointsCount;
 @property (nonatomic, readonly) NSInteger newLogsCount;

@@ -98,9 +98,6 @@
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
 @property (nonatomic, readonly) NSInteger orientationsAllowed;
 
-- (void)addDelegate:(id)destination;
-- (void)deleteDelegate:(id)destination;
-
 - (void)keyGMSUpdate:(NSString *)value;
 - (void)keyMapboxUpdate:(NSString *)value;
 

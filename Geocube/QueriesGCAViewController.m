@@ -66,7 +66,6 @@ enum {
 - (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     __block BOOL failure = NO;
-    account.remoteAPI.delegateQueries = self;
 
     // Download the query. The GPX file is also required since the JSON file doesn't contain the logs.
     NSObject *retjson;

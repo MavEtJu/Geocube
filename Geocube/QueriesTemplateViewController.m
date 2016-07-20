@@ -245,13 +245,6 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
 NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group);
 
-- (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading %@\n%ld / %ld", queryString, (long)offset, (long)max];
-    }];
-}
-
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

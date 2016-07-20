@@ -29,6 +29,6 @@
 
 - (instancetype)init:(dbWaypoint *)wp table:(UITableView *)table;
 
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id<WaypointLogImagesDelegate> delegate;
 
 @end

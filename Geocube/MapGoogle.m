@@ -60,18 +60,6 @@
     return YES;
 }
 
-- (void)mapViewWillAppear
-{
-    if (self.mapvc.isMovingToParentViewController)
-        [myConfig addDelegate:self];
-}
-
-- (void)mapViewWillDisappear
-{
-    if (self.mapvc.isMovingFromParentViewController)
-        [myConfig deleteDelegate:self];
-}
-
 - (void)startActivityViewer:(NSString *)text
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

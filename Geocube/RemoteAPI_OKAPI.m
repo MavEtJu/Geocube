@@ -25,14 +25,11 @@
 {
     RemoteAPI *remoteAPI;
     NSString *okapi_prefix;
-    id delegate;
 }
 
 @end
 
 @implementation RemoteAPI_OKAPI
-
-@synthesize delegate;
 
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {
@@ -110,7 +107,7 @@
 
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 

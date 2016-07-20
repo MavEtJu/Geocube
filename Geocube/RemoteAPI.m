@@ -47,7 +47,7 @@
 
 @implementation RemoteAPI
 
-@synthesize account, oabb, authenticationDelegate, delegateLoadWaypoints;
+@synthesize account, oabb, authenticationDelegate;
 @synthesize stats_found, stats_notfound;
 @synthesize error, errorMsg, errorCode;
 
@@ -70,12 +70,10 @@
     switch (account.protocol) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
-            liveAPI.delegate = self;
             protocol = liveAPI;
             break;
         case PROTOCOL_OKAPI:
             okapi = [[RemoteAPI_OKAPI alloc] init:self];
-            okapi.delegate = self;
             protocol = okapi;
             break;
         case PROTOCOL_GCA:
@@ -499,7 +497,6 @@
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
     *retObject = nil;
-//    [delegateLoadWaypoints remoteAPILoadWaypointsImportWaypointsTotal:0];
 
     if (account.protocol == PROTOCOL_GCA) {
         if ([account canDoRemoteStuff] == NO) {
@@ -711,7 +708,6 @@
         NSInteger offset = 0;
         NSInteger increase = 25;
 
-        [self.delegateQueries remoteAPIQueriesDownloadUpdate:0 max:0];
         [downloadManager setNumberOfChunksDownload:0];
         [downloadManager setNumberOfChunksTotal:0];
         do {
@@ -731,7 +727,6 @@
             offset += found;
             tried += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
-            [self.delegateQueries remoteAPIQueriesDownloadUpdate:offset max:max];
             [downloadManager setNumberOfChunksDownload:offset / increase];
             [downloadManager setNumberOfChunksTotal:1 + (max / increase)];
         } while (tried < max);

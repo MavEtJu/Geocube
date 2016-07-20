@@ -32,6 +32,6 @@
 
 - (instancetype)init:(dbWaypoint *)wp;
 
-@property (nonatomic, retain) id delegateWaypoint;
+@property (nonatomic, retain) id<WaypointImagesDelegate> delegateWaypoint;
 
 @end

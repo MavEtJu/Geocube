@@ -22,9 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface MyConfig ()
-{
-    NSMutableArray *delegates;
-}
 
 @end
 
@@ -51,8 +48,6 @@
 {
     self = [super init];
 
-    delegates = [[NSMutableArray alloc] initWithCapacity:3];
-
     [self checkDefaults];
     [self loadValues];
 
@@ -65,38 +60,6 @@
     NSLog(@"%@ initialized", [self class]);
 
     return self;
-}
-
-- (void)addDelegate:(id)destination
-{
-    __block BOOL alreadythere = NO;
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (delegate == destination) {
-            alreadythere = YES;
-            *stop = YES;
-        }
-    }];
-    if (alreadythere == YES)
-        return;
-    [delegates addObject:destination];
-    NSLog(@"%@: adding delegate to %@", [self class], [destination class]);
-}
-
-- (void)deleteDelegate:(id)destination;
-{
-    __block BOOL isthere = NO;
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (delegate == destination) {
-            isthere = YES;
-            *stop = YES;
-        }
-    }];
-    if (isthere == NO) {
-        NSLog(@"%@: delegate %@ not found for removal", [self class], [destination class]);
-        return;
-    }
-    [delegates removeObject:destination];
-    NSLog(@"%@: removing delegate %@", [self class], [destination class]);
 }
 
 - (void)checkDefaults

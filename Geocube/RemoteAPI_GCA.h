@@ -27,7 +27,7 @@
 
 @interface RemoteAPI_GCA : RemoteAPI_Template <NSURLConnectionDataDelegate>
 
-@property (nonatomic) id delegate;
+@property (nonatomic) id<RemoteAPI_GCADelegate> delegate;
 @property (nonatomic, retain, readonly) NSString *callback;
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;

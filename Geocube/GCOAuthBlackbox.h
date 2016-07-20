@@ -51,7 +51,7 @@
 
 @property (nonatomic, retain, readonly) NSString *token;
 @property (nonatomic, retain, readonly) NSString *callback;
-@property (nonatomic)id delegate;
+@property (nonatomic) id<GCOAuthBlackboxDelegate> delegate;
 
 - (void)URLRequestToken:(NSString *)s;
 - (void)URLAuthorize:(NSString *)s;

@@ -25,15 +25,11 @@
 {
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
-
-    id delegate;
 }
 
 @end
 
 @implementation RemoteAPI_LiveAPI
-
-@synthesize delegate;
 
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {
@@ -166,7 +162,7 @@
     urlRequest.HTTPBody = body;
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -200,7 +196,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest delegate:self semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     NSData *data = [retDict objectForKey:@"data"];

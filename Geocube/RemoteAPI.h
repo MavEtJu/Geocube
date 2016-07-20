@@ -41,29 +41,12 @@ enum {
 
 @end
 
-@protocol RemoteAPIQueriesDownloadProgressDelegate
-
-- (void)remoteAPIQueriesDownloadUpdate:(NSInteger)offset max:(NSInteger)max;
-
-@end
-
-@protocol RemoteAPILoadWaypointDownloadProgressDelegate
-
-- (void)remoteAPILoadWaypointsImportWaypointCount:(NSInteger)count;
-- (void)remoteAPILoadWaypointsImportLogsCount:(NSInteger)count;
-- (void)remoteAPILoadWaypointsImportWaypointsTotal:(NSInteger)count;
-
-@end
-
 @interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, RemoteAPI_GCADelegate>
-
-@property (nonatomic, retain) id delegateQueries;
-@property (nonatomic, retain) id delegateLoadWaypoints;
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
 @property (nonatomic) NSInteger stats_found, stats_notfound;
-@property (nonatomic) id authenticationDelegate;
+@property (nonatomic) id<RemoteAPIAuthenticationDelegate> authenticationDelegate;
 
 @property (nonatomic, retain) NSString *errorMsg;
 @property (nonatomic, retain) NSError *error;
