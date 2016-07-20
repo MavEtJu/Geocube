@@ -91,6 +91,7 @@
 @property (nonatomic, readonly) BOOL showStateAsAbbrevation;
 
 @property (nonatomic, readonly) NSInteger waypointListSortBy;
+@property (nonatomic, readonly) BOOL refreshWaypointAfterLog;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
@@ -152,5 +153,6 @@
 - (void)showStateAsAbbrevationUpdate:(BOOL)value;
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value;
 - (void)waypointListSortByUpdate:(NSInteger)value;
+- (void)refreshWaypointAfterLogUpdate:(BOOL)value;
 
 @end

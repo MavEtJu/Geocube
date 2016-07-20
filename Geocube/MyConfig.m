@@ -45,6 +45,7 @@
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
 @synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation;
 @synthesize waypointListSortBy;
+@synthesize refreshWaypointAfterLog;
 
 - (instancetype)init
 {
@@ -171,6 +172,8 @@
     CHECK(@"showasabbrevation_state", @"0");
 
     CHECK(@"waypointlist_sortby", @"0");
+
+    CHECK(@"waypoint_refreshafterlog", @"1");
 }
 
 - (void)loadValues
@@ -226,6 +229,7 @@
     showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
+    refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -551,6 +555,12 @@
 {
     waypointListSortBy = value;
     [self NSIntegerUpdate:@"waypointlist_sortby" value:value];
+}
+
+- (void)refreshWaypointAfterLogUpdate:(BOOL)value
+{
+    refreshWaypointAfterLog = value;
+    [self BOOLUpdate:@"waypoint_refreshafterlog" value:value];
 }
 
 @end

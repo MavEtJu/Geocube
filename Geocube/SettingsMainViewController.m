@@ -66,6 +66,7 @@
     UISwitch *markasFoundDNFClearsTarget;
     UISwitch *showCountryAsAbbrevation;
     UISwitch *showStateAsAbbrevation;
+    UISwitch *refreshWaypointAfterLog;
 
     UISwitch *downloadImagesWaypoints;
     UISwitch *downloadImagesLogs;
@@ -319,6 +320,7 @@ enum sections {
     SECTION_WAYPOINTS_SORTBY = 0,
     SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION,
     SECTION_WAYPOINTS_SHOWSTATEASABBREVATION,
+    SECTION_WAYPOINTS_REFRESHAFTERLOG,
     SECTION_WAYPOINTS_MAX,
 };
 
@@ -838,6 +840,18 @@ enum sections {
                     cell.textLabel.text = @"Sort waypoints default by...";
                     NSArray *order = [WaypointsOfflineListViewController sortByOrder];
                     cell.detailTextLabel.text = [order objectAtIndex:myConfig.waypointListSortBy];
+
+                    return cell;
+                }
+
+                case SECTION_WAYPOINTS_REFRESHAFTERLOG: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Refresh after log";
+
+                    refreshWaypointAfterLog = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    refreshWaypointAfterLog.on = myConfig.refreshWaypointAfterLog;
+                    [refreshWaypointAfterLog addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = refreshWaypointAfterLog;
 
                     return cell;
                 }
@@ -1554,6 +1568,12 @@ enum sections {
 - (void)updateWaypointSortBy:(NSNumber *)selectedIndex element:(id)element
 {
     [myConfig waypointListSortByUpdate:selectedIndex.integerValue];
+    [self.tableView reloadData];
+}
+
+- (void)updateRefreshWaypointAfterLog:(UISwitch *)b
+{
+    [myConfig refreshWaypointAfterLogUpdate:b.on];
     [self.tableView reloadData];
 }
 
