@@ -577,7 +577,7 @@
             NSArray *rets = nil;
             NSObject *vs = [json objectForKey:@"results"];
             if ([vs isKindOfClass:[NSString class]] == YES)
-                rets = @[rets];
+                rets = @[vs];
             else if ([vs isKindOfClass:[NSArray class]] == YES)
                 rets = (NSArray *)vs;
             [rets enumerateObjectsUsingBlock:^(NSString *v, NSUInteger idx, BOOL * _Nonnull stop) {
