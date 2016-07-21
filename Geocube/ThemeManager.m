@@ -23,7 +23,6 @@
 
 @interface ThemeManager ()
 {
-    NSArray *themeNames;
     NSInteger themeNr;
 }
 

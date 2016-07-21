@@ -26,8 +26,6 @@
     NSString *shortprefix;
     NSString *prefix;
     NSDate *now;
-
-    NSInteger hits, misses, saves;
 }
 
 @end

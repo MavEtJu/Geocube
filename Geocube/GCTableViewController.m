@@ -23,7 +23,6 @@
 
 @interface GCTableViewController ()
 {
-    NSInteger numberOfItemsInRow;
     GCCloseButton *closeButton;
 }
 

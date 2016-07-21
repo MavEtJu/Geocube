@@ -22,8 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface GCTableViewCell ()
-{
-}
 
 @end
 

@@ -22,77 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbWaypoint ()
-{
-    /* Waypoint related data */
-    NSString *wpt_name, *wpt_description, *wpt_url, *wpt_urlname;
-
-    NSString *wpt_lat, *wpt_lon;
-    NSInteger wpt_lat_int, wpt_lon_int;
-    float wpt_lat_float, wpt_lon_float;
-
-    NSString *wpt_date_placed;
-    NSInteger wpt_date_placed_epoch;
-
-    dbSymbol *wpt_symbol;
-    NSId wpt_symbol_id;
-    NSString *wpt_symbol_str;
-
-    dbType *wpt_type;
-    NSId wpt_type_id;
-    NSString *wpt_type_str;
-
-    /* Geocube related data */
-    NSId account_id;
-    dbAccount *account;
-
-    NSInteger logStatus;
-    BOOL flag_highlight;
-    BOOL flag_ignore;
-    BOOL flag_inprogress;
-    BOOL flag_markedfound;
-    BOOL flag_dnf;
-
-    /* Groundspeak related data */
-    float gs_rating_difficulty, gs_rating_terrain;
-    NSInteger gs_favourites;
-
-    BOOL gs_archived, gs_available;
-
-    NSString *gs_country_str;
-    NSId gs_country_id;
-    dbCountry *gs_country;
-
-    NSString *gs_state_str;
-    NSId gs_state_id;
-    dbState *gs_state;
-
-    BOOL gs_short_desc_html, gs_long_desc_html;
-    NSString *gs_short_desc, *gs_long_desc;
-    NSString *gs_hint;
-
-    NSString *gs_placed_by;
-
-    NSString *gs_owner_gsid;
-    NSString *gs_owner_str;
-    NSId gs_owner_id;
-    dbName *gs_owner;
-
-    NSId gs_container_id;
-    NSString *gs_container_str;
-    dbContainer *gs_container;
-
-    NSInteger gs_date_found;
-
-    /* Not read from the database */
-    CLLocationCoordinate2D coordinates;
-    NSInteger calculatedDistance;
-    NSInteger calculatedBearing;
-}
 
 @end
 
 @implementation dbWaypoint
 
+@synthesize _id;
 @synthesize wpt_name, wpt_description, wpt_url, wpt_urlname, wpt_lat, wpt_lon, wpt_date_placed, wpt_type_str, wpt_symbol_str, wpt_lat_int, wpt_lon_int, wpt_lat_float, wpt_lon_float, wpt_date_placed_epoch, wpt_type_id, wpt_type, wpt_symbol_id, wpt_symbol;
 @synthesize logstring_logtype, coordinates, calculatedDistance, calculatedBearing, logStatus, flag_highlight, account, account_id, flag_ignore, flag_markedfound, flag_inprogress, flag_dnf, date_lastlog_epoch;
 @synthesize gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_country, gs_country_id, gs_country_str, gs_state, gs_state_id, gs_state_str, gs_short_desc_html, gs_short_desc, gs_long_desc_html, gs_long_desc, gs_hint, gs_container, gs_container_str, gs_container_id, gs_archived, gs_available, gs_placed_by, gs_owner_gsid, gs_owner, gs_owner_id, gs_owner_str, gs_date_found;

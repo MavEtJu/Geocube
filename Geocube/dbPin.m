@@ -22,21 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbPin ()
-{
-    NSString *rgb;
-    NSString *rgb_default;
-    NSString *description;
-
-    // Not from the database
-    UIColor *colour;
-    UIImage *img;
-}
 
 @end
 
 @implementation dbPin
 
-@synthesize rgb, rgb_default, description, colour, img;
+@synthesize _id, rgb, rgb_default, description, colour, img;
 
 - (void)finish
 {

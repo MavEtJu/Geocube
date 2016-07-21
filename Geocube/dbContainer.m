@@ -22,20 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbContainer ()
-{
-    NSString *size;
-    NSInteger icon;
-    NSInteger gc_id;
-
-    /* Not read from the database */
-    BOOL selected;
-}
 
 @end
 
 @implementation dbContainer
 
-@synthesize size, icon, gc_id, selected;
+@synthesize _id, size, icon, gc_id, selected;
 
 - (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id size:(NSString *)_size icon:(NSInteger)_icon
 {

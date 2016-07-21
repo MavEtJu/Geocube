@@ -22,17 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbTrack ()
-{
-    NSString *name;
-    NSInteger dateStart;
-    NSInteger dateStop;
-}
 
 @end
 
 @implementation dbTrack
 
-@synthesize name, dateStart, dateStop;
+@synthesize _id, name, dateStart, dateStop;
 
 + (dbTrack *)dbGet:(NSId)id
 {

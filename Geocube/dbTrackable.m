@@ -27,7 +27,7 @@
 
 @implementation dbTrackable
 
-@synthesize name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name, logtype, code;
+@synthesize _id, name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name, logtype, code;
 
 - (void)finish
 {

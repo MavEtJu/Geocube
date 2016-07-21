@@ -22,31 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbLog ()
-{
-    NSInteger gc_id;    // This is an NSInteger, not an NSId
-    NSId waypoint_id;
-    dbWaypoint *waypoint;
-    NSId logstring_id;
-    NSString *logstring_string;
-    dbLogString *logstring;
-    NSString *datetime;
-    NSString *logger_gsid;
-    NSString *logger_str;
-    NSId logger_id;
-    dbName *logger;
-    BOOL needstobelogged;
-
-    NSString *log;
-
-    // Internal values
-    NSInteger cellHeight;
-}
 
 @end
 
 @implementation dbLog
 
-@synthesize gc_id, waypoint, waypoint_id, logstring_id, logstring_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
+@synthesize _id, gc_id, waypoint, waypoint_id, logstring_id, logstring_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
 
 - (instancetype)init:(NSInteger)_gc_id
 {

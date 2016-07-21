@@ -24,9 +24,7 @@
 @interface RemoteAPI_GCA ()
 {
     RemoteAPI *remoteAPI;
-    id delegate;
     NSHTTPCookie *authCookie;
-    NSString *callback;
 }
 
 @end

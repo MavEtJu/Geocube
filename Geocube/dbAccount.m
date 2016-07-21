@@ -22,43 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbAccount ()
-{
-    NSString *site;
-    NSString *url_site;
-    NSString *url_queries;
-    NSString *accountname_string;
-    NSId accountname_id;
-    dbName *accountname;
-    NSInteger protocol;
-    NSInteger geocube_id;
-    NSInteger revision;
-    BOOL enabled;
-
-    NSString *gca_cookie_name;
-    NSString *gca_cookie_value;
-    NSString *gca_callback_url;
-    NSString *gca_autenticate_url;
-
-    NSString *oauth_consumer_public;
-    NSString *oauth_consumer_private;
-    NSString *oauth_token;
-    NSString *oauth_token_secret;
-    NSString *oauth_access_url;
-    NSString *oauth_authorize_url;
-    NSString *oauth_request_url;
-
-    // Not read from the database
-    BOOL canDoRemoteStuff;
-    NSString *lastError;
-    RemoteAPI *remoteAPI;
-    NSInteger idx;
-}
 
 @end
 
 @implementation dbAccount
 
-@synthesize site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, enabled, canDoRemoteStuff, lastError, distance_minimum; //, idx;
+@synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, remoteAPI, geocube_id, revision, enabled, canDoRemoteStuff, lastError, distance_minimum; //, idx;
 
 - (void)finish
 {

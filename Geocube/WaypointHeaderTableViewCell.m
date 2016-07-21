@@ -23,9 +23,7 @@
 
 @interface WaypointHeaderTableViewCell ()
 {
-    UIImageView *icon, *imgFavouritesIV;
-    GCLabel *lat, *lon;
-    UIImageView *size;
+    UIImageView *imgFavouritesIV;
     GCLabel *labelRatingD, *labelRatingT;
     UIImageView *ratingD[5];
     UIImageView *ratingT[5];

@@ -23,12 +23,8 @@
 
 @interface PersonalNoteTableViewCell ()
 {
-    GCTextblock *logLabel;
-    GCSmallLabel *nameLabel;
     CGRect rectLog;
     CGRect rectName;
-
-    dbPersonalNote *personalNote;
 }
 
 @end

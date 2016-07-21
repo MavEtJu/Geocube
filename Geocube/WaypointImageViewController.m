@@ -32,7 +32,6 @@
     GCLabel *labelCount;
 
     BOOL zoomedIn;
-    id delegate;
 
     NSInteger totalImages, thisImage;
 }

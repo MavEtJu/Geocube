@@ -24,6 +24,7 @@
 - (void)updateLocationManagerLocation;
 
 @optional
+
 - (void)updateLocationManagerHistory;
 
 @end

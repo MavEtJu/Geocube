@@ -23,19 +23,11 @@
 
 @interface WaypointTableViewCell ()
 {
-    GCLabel *description;
-    GCLabel *name;
-    UIImageView *imageSize;
     GCLabel *ratingDLabel, *ratingTLabel;
     UIImageView *ratingDIV, *ratingTIV;
     GCLabel *favouritesLabel;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
-    UIImageView *icon, *favouritesIV;
-    GCLabel *stateCountry;
-    GCLabel *bearing;
-    GCLabel *compass;
-    GCLabel *distance;
-    GCLabel *labelSize;
+    UIImageView *favouritesIV;
 
     dbWaypoint *waypoint;
 

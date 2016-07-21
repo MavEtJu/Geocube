@@ -21,7 +21,6 @@
 
 @interface dbObject : NSObject
 {
-    NSId _id;
     BOOL finished;
 }
 

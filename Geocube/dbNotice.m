@@ -22,23 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbNotice ()
-{
-    NSString *note;
-    NSString *sender;
-    NSString *date;
-    NSString *url;
-    NSInteger geocube_id;
-    BOOL seen;
-
-    // Not obtained from the database
-    NSInteger cellHeight;
-}
 
 @end
 
 @implementation dbNotice
 
-@synthesize note, sender, seen, date, url, cellHeight, geocube_id;
+@synthesize _id, note, sender, seen, date, url, cellHeight, geocube_id;
 
 - (NSId)dbCreate
 {

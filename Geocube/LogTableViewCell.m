@@ -23,17 +23,10 @@
 
 @interface LogTableViewCell ()
 {
-    UIImageView *logtypeImage;
-    GCSmallLabel *datetimeLabel;
-    GCSmallLabel *loggerLabel;
-    GCTextblock *logLabel;
-
     CGRect rectLogtype;
     CGRect rectDatetime;
     CGRect rectLogger;
     CGRect rectLog;
-
-    dbLog *log;
 }
 
 @end

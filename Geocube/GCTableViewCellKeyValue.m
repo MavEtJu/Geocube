@@ -23,10 +23,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface GCTableViewCellKeyValue ()
-{
-    GCLabel *keyLabel;
-    GCLabel *valueLabel;
-}
 
 @end
 

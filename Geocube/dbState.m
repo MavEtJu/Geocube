@@ -22,16 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbState ()
-{
-    NSString *name;
-    NSString *code;
-}
 
 @end
 
 @implementation dbState
 
-@synthesize name, code;
+@synthesize _id, name, code;
 
 - (instancetype)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code
 {

@@ -22,15 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbSymbol ()
-{
-    NSString *symbol;
-}
 
 @end
 
 @implementation dbSymbol
 
-@synthesize symbol;
+@synthesize _id, symbol;
 
 - (instancetype)init:(NSId)__id symbol:(NSString *)_symbol
 {

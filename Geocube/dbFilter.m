@@ -22,16 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbFilter ()
-{
-    NSString *key;
-    NSString *value;
-}
 
 @end
 
 @implementation dbFilter
 
-@synthesize key, value;
+@synthesize _id, key, value;
 
 - (instancetype)init:(NSId)__id key:(NSString *)_key value:(NSString *)_value
 {

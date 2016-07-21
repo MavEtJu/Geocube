@@ -31,6 +31,8 @@
 
 @implementation dbExternalMap
 
+@synthesize _id;
+
 - (NSId)dbCreate
 {
     NSId __id;
@@ -121,6 +123,8 @@
 @end
 
 @implementation dbExternalMapURL
+
+@synthesize _id;
 
 - (void)finish
 {

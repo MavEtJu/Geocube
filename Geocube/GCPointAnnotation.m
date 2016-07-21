@@ -22,10 +22,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface GCPointAnnotation ()
-{
-    NSId _id;
-    NSString *name;
-}
 
 @end
 

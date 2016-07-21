@@ -22,26 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbTrackElement ()
-{
-    NSId track_id;
-    dbTrack *track;
-
-    CLLocationCoordinate2D coords;
-    NSInteger lat_int;
-    CLLocationDegrees lat;
-    NSInteger lon_int;
-    CLLocationDegrees lon;
-
-    NSInteger height;
-    NSInteger timestamp_epoch;
-    BOOL restart;
-}
 
 @end
 
 @implementation dbTrackElement
 
-@synthesize track_id, track, coords, lat_int, lat, lon_int, lon, height, timestamp_epoch, restart;
+@synthesize _id, track_id, track, coords, lat_int, lat, lon_int, lon, height, timestamp_epoch, restart;
 
 - (void)finish
 {

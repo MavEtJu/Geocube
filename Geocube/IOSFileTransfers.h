@@ -26,9 +26,6 @@
 @end
 
 @interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
-{
-    id<IOSFileTransfersDelegate> delegate;
-}
 
 @property (nonatomic, retain) id<IOSFileTransfersDelegate> delegate;
 

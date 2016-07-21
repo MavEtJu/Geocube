@@ -23,9 +23,7 @@
 
 @interface database ()
 {
-    sqlite3 *db;
     NSString *dbname, *dbempty;
-    id dbaccess;
 
     NSMutableArray *upgradeSteps;
 }

@@ -22,17 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbImage ()
-{
-    NSString *url;
-    NSString *name;
-    NSString *datafile;
-}
 
 @end
 
 @implementation dbImage
 
-@synthesize url, name, datafile;
+@synthesize _id, url, name, datafile;
 
 - (instancetype)init:(NSString *)_url name:(NSString *)_name datafile:(NSString *)_datafile
 {

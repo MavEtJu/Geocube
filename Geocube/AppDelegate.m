@@ -24,9 +24,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface AppDelegate ()
-{
-    NSMutableArray *tabBars;
-}
 
 @end
 

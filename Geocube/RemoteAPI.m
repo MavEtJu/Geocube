@@ -23,17 +23,12 @@
 
 @interface RemoteAPI ()
 {
-    GCOAuthBlackbox *oabb;
-
     RemoteAPI_LiveAPI *liveAPI;
     RemoteAPI_OKAPI *okapi;
     RemoteAPI_GCA *gca;
     RemoteAPI_Template *protocol;
 
     dbAccount *account;
-
-    NSInteger stats_found, stats_notfound;
-    id authenticationDelegate;
 
     NSString *clientMsg;
     NSError *clientError;

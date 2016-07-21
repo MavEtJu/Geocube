@@ -21,9 +21,13 @@
 
 #import "Geocube-Prefix.pch"
 
+@interface dbLogString ()
+
+@end
+
 @implementation dbLogString
 
-@synthesize text, type, logtype, account, account_id, defaultNote, defaultFound, icon, found, forLogs, defaultVisit, defaultDropoff, defaultPickup, defaultDiscover;
+@synthesize _id, text, type, logtype, account, account_id, defaultNote, defaultFound, icon, found, forLogs, defaultVisit, defaultDropoff, defaultPickup, defaultDiscover;
 
 - (void)finish
 {

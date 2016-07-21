@@ -25,8 +25,6 @@
 {
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
-    NSMutableArray *currentWaypoints;
-    dbWaypoint *currentWaypoint;
 
     NSMutableArray *delegates;
 }

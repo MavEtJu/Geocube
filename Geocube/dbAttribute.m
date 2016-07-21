@@ -22,20 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbAttribute ()
-{
-    NSInteger icon;
-    NSId gc_id;
-    NSString *label;
-
-    // Internal stuff
-    BOOL _YesNo;
-}
 
 @end
 
 @implementation dbAttribute
 
-@synthesize icon, label, gc_id, _YesNo;
+@synthesize _id, icon, label, gc_id, _YesNo;
 
 - (instancetype)init:(NSId)__id gc_id:(NSId)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
 {

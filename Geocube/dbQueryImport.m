@@ -27,7 +27,7 @@
 
 @implementation dbQueryImport
 
-@synthesize name, lastimport, filesize, account_id, account;
+@synthesize _id, name, lastimport, filesize, account_id, account;
 
 - (void)finish
 {

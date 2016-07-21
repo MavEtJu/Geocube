@@ -31,7 +31,6 @@
     NSString *version;
     NSString *callback;
     NSString *signature;
-    NSString *token;
     NSString *tokenSecret;
     NSString *verifier;
 
@@ -46,8 +45,6 @@
     NSURL *AccessTokenURL;
 
     NSString *server;
-
-    id delegate;
 }
 
 @end

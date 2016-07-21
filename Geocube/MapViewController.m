@@ -41,7 +41,6 @@
     BOOL useGPS;
 
     NSInteger waypointCount;
-    NSArray *waypointsArray;
 
     BOOL hasGMS;
     BOOL showBoundaries;

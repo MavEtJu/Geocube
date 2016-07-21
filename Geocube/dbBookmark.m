@@ -22,17 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbBookmark ()
-{
-    NSString *name;
-    NSString *url;
-    NSInteger import_id;
-}
 
 @end
 
 @implementation dbBookmark
 
-@synthesize url, name, import_id;
+@synthesize _id, url, name, import_id;
 
 - (instancetype)init:(NSId)__id name:(NSString *)_name url:(NSString *)_url import_id:(NSInteger)_import_id
 {

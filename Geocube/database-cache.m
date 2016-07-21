@@ -24,47 +24,18 @@
 @interface DatabaseCache ()
 {
     // In memory database information
-    NSMutableArray *Accounts;
-    NSArray *Pins;
-    NSArray *Types;
-    NSArray *Groups;
-    NSArray *LogTypes;
-    NSArray *Containers;
-    NSArray *Attributes;
+    NSMutableArray *LogTypes;
+    NSMutableArray *Attributes;
     NSMutableArray *Symbols;
-    NSMutableArray *Countries;
-    NSMutableArray *States;
+    NSMutableArray *LogStrings;
     NSMutableDictionary *Names;
-
-    // System Groups
-    dbGroup *Group_AllWaypoints;
-    dbGroup *Group_AllWaypoints_Found;
-    dbGroup *Group_AllWaypoints_NotFound;
-    dbGroup *Group_AllWaypoints_ManuallyAdded;
-    dbGroup *Group_AllWaypoints_Ignored;
-    dbGroup *Group_LiveImport;
-    dbGroup *Group_LastImport;
-    dbGroup *Group_LastImportAdded;
-    dbGroup *Group_ManualWaypoints;
-
-    // Pins
-    dbPin *Pin_Unknown;
-
-    // Types
-    dbType *Type_Unknown;
-
-    // Container
-    dbContainer *Container_Unknown;
-
-    // Attribute
-    dbAttribute *Attribute_Unknown;
 }
 
 @end
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Pins, Types, Groups, LogStrings, Containers, Attributes, Countries, States, Symbols;
+@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
 @synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 
@@ -79,13 +50,13 @@
 - (void)loadWaypointData
 {
     Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
-    Groups = [dbGroup dbAll];
-    Pins = [dbPin dbAll];
-    Types = [dbType dbAll];
-    Containers = [dbContainer dbAll];
-    LogStrings = [dbLogString dbAll];
-    Containers = [dbContainer dbAll];
-    Attributes = [dbAttribute dbAll];
+    Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
+    Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
+    Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
+    Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
+    LogStrings = [NSMutableArray arrayWithArray:[dbLogString dbAll]];
+    Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
+    Attributes = [NSMutableArray arrayWithArray:[dbAttribute dbAll]];
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
     Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
     States = [NSMutableArray arrayWithArray:[dbState dbAll]];

@@ -22,20 +22,12 @@
 #import "Geocube-Prefix.pch"
 
 @interface dbGroup ()
-{
-    NSString *name;
-    BOOL usergroup;
-    BOOL deletable;
-
-    /* Not read from the database */
-    BOOL selected;
-}
 
 @end
 
 @implementation dbGroup
 
-@synthesize name, usergroup, selected, deletable;
+@synthesize _id, name, usergroup, selected, deletable;
 
 - (instancetype)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup deletable:(BOOL)_deletable
 {

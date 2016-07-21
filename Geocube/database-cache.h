@@ -21,16 +21,14 @@
 
 @interface DatabaseCache : NSObject
 
-@property (nonatomic, retain) NSArray *Accounts;
-@property (nonatomic, retain) NSArray *Pins;
-@property (nonatomic, retain) NSArray *Types;
-@property (nonatomic, retain) NSArray *Groups;
-@property (nonatomic, retain) NSArray *Containers;
-@property (nonatomic, retain) NSArray *Attributes;
-@property (nonatomic, retain) NSMutableArray *Symbols;
+// In memory database information
+@property (nonatomic, retain) NSMutableArray *Accounts;
+@property (nonatomic, retain) NSMutableArray *Pins;
+@property (nonatomic, retain) NSMutableArray *Types;
+@property (nonatomic, retain) NSMutableArray *Groups;
+@property (nonatomic, retain) NSMutableArray *Containers;
 @property (nonatomic, retain) NSMutableArray *Countries;
 @property (nonatomic, retain) NSMutableArray *States;
-@property (nonatomic, retain) NSArray *LogStrings;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
@@ -51,9 +49,6 @@
 
 // Symbols
 @property (nonatomic, retain) dbSymbol *Symbol_Unknown;
-
-// LogStrings
-
 
 // ContainerSize
 @property (nonatomic, retain) dbContainer *Container_Unknown;

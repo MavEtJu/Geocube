@@ -21,8 +21,6 @@
 
 @interface DownloadsImportsViewController : GCViewController <ImportManagerDelegate, DownloadManagerDelegate, ImagesDownloadManagerDelegate>
 
-@property (nonatomic) NSInteger run_options;
-
 - (void)showDownloadManager;
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;

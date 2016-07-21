@@ -25,17 +25,8 @@
 {
     CLLocationManager *_LM;
 
-    CLLocationAccuracy accuracy;
-    CLLocationDistance altitude;
-    CLLocationDirection direction;
-    CLLocationCoordinate2D coords;
-
-    BOOL useGPS;
-
-    NSMutableArray *coordsHistorical;
     NSDate *lastHistory;
     CLLocationCoordinate2D coordsHistoricalLast;
-    float speed;
 }
 
 @end
