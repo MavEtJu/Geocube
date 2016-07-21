@@ -535,7 +535,7 @@
 + (void)playSound:(NSInteger)reason
 {
     switch (reason) {
-        case playSoundImportComplete:
+        case PLAYSOUND_IMPORTCOMPLETE:
             [MyTools playSoundFile:@"Import Complete" extension:@"wav"];
             break;
     }

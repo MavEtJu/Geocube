@@ -117,7 +117,7 @@
     }
 
     [imp parseAfter];
-    [MyTools playSound:playSoundImportComplete];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 
     [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
         [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] error:nil];

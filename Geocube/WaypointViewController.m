@@ -768,7 +768,7 @@ enum {
     if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
         [self reloadDataMainQueue];
-        [MyTools playSound:playSoundImportComplete];
+        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
         return;
     }
     [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.lastError];

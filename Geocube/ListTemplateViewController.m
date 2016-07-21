@@ -182,7 +182,7 @@ NEEDS_OVERLOADING(clearFlags)
     [waypointManager needsRefresh];
 
     if (failure == NO)
-        [MyTools playSound:playSoundImportComplete];
+        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

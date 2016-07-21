@@ -22,8 +22,8 @@
 @interface MyTools : NSObject
 
 enum {
-    playSoundImportComplete,
-    playSoundMax
+    PLAYSOUND_IMPORTCOMPLETE,
+    PLAYSOUND_MAX
 };
 
 + (NSString *)DocumentRoot;
