@@ -129,32 +129,50 @@ enum {
 {
     receivedData = nil;
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
+    NSURLConnection *urlConnection;
 
     if (oabb == nil && gca == nil) {
         [self showActivity:YES];
         NSString *urlString = [[newRequest URL] absoluteString];
+        NSLog(@"urlString: -%@-", urlString);
+
+        // Download Pocket Queries from geocaching.com
         if ([urlString containsString:@"geocaching.com/"] == YES &&
             [urlString containsString:@"/pocket/downloadpq.ashx"] == YES) {
-            [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
             return NO;
         }
+
+        // Download queries from Geocaching Australia
         if ([urlString containsString:@"geocaching.com.au/my/query/gpx/"] == YES ||
             [urlString containsString:@"geocaching.com.au/my/query/zip/"] == YES) {
-            [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
             return NO;
         }
+
+        // Download caches from OpenCaching websites
         if ([urlString containsString:@"opencaching"] == YES &&
             [urlString containsString:@"search.php"] == YES &&
             [urlString containsString:@"output=gpxgc"] == YES) {
-            [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
             return NO;
         }
+
+        // Download a single GPX file from geocaching.com
+        if ([urlString containsString:@"geocaching.com/geocache"] == YES &&
+            [[newRequest HTTPMethod] isEqualToString:@"POST"] == YES) {
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            return NO;
+        }
+
+        // Download .zip, .xml or .gpx files.
         if ([[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".zip"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".xml"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".gpx"] == YES) {
-            [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
             return NO;
         }
+
         return YES;
     }
 
@@ -250,12 +268,17 @@ enum {
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    if ([error code] != NSURLErrorCancelled) {
-        NSLog(@"Error for WEBVIEW: %@", [error description]);
+    if ([error code] == NSURLErrorCancelled)
+        return;
 
-        [MyTools messageBox:self header:@"Failed to download" text:[error description]];
-        [self showActivity:NO];
-    }
+    NSLog(@"Error for WEBVIEW: %@", [error description]);
+
+    // Ignore "Fame Load Interrupted" errors. Seen after app store links.
+    if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"])
+        return;
+
+    [MyTools messageBox:self header:@"Failed to download" text:[error description]];
+    [self showActivity:NO];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView

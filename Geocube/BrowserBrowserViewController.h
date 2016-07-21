@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BrowserBrowserViewController : GCViewController <UIWebViewDelegate>
+@interface BrowserBrowserViewController : GCViewController <UIWebViewDelegate, NSURLConnectionDataDelegate>
 
 - (void)showBrowser;
 
