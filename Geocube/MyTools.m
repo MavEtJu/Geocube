@@ -78,29 +78,13 @@
     return ret;
 }
 
-+ (NSInteger)secondsSinceEpochWindows:(NSString *)datetime
++ (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime
 {
     // /Date(1413702000000-0700)/
     return [[datetime substringFromIndex:6] integerValue] / 1000;
 }
 
-+ (NSDate *)dateFromISO8601String17:(NSString *)string
-{
-    if (string == nil) {
-        return nil;
-    }
-
-    struct tm tm;
-    time_t t;
-
-    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%dT%H:%M:%S%z", &tm);
-    tm.tm_isdst = -1;
-    t = mktime(&tm);
-
-    return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
-}
-
-+ (NSDate *)dateFromISO8601String10:(NSString *)string
++ (NSDate *)dateFromISO8601String:(NSString *)string format:(char *)format
 {
     if (string == nil)
         return nil;
@@ -108,22 +92,20 @@
     struct tm tm;
     time_t t;
 
-    memset(&tm, '\0', sizeof(tm));
-
-    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%d", &tm);
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], format, &tm);
     tm.tm_isdst = -1;
     t = mktime(&tm);
 
     return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
-+ (NSInteger)secondsSinceEpoch:(NSString *)datetime
++ (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime
 {
     NSDate *date;
     if ([datetime length] == 10) {
-        date = [self dateFromISO8601String10:datetime];
+        date = [MyTools dateFromISO8601String:datetime format:"%Y-%m-%d"];
     } else {
-        date = [self dateFromISO8601String17:datetime];
+        date = [MyTools dateFromISO8601String:datetime format:"%Y-%m-%dT%H:%M:%S%z"];
     }
     return [date timeIntervalSince1970];
 }

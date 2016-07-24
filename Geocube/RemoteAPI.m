@@ -644,7 +644,7 @@
 
             [d setValue:[pq objectForKey:@"Name"] forKey:@"Name"];
             [d setValue:[pq objectForKey:@"GUID"] forKey:@"Id"];
-            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
+            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochFromWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
             [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"Size"];
             [d setValue:[pq objectForKey:@"PQCount"] forKey:@"Count"];
 

@@ -344,7 +344,7 @@
     DICT_NSSTRING_KEY(dict, type, @"type");
     dbLogString *ls = [dbLogString dbGetByAccountEventType:account logtype:logtype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
-    dateSinceEpoch = [MyTools secondsSinceEpoch:date];
+    dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");
     DICT_NSSTRING_PATH(dict, loggerid, @"user.uuid");
     DICT_NSSTRING_PATH(dict, comment, @"comment");

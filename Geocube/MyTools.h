@@ -33,8 +33,9 @@ enum {
 
 + (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1;
 
-+ (NSInteger)secondsSinceEpochWindows:(NSString *)datetime;
-+ (NSInteger)secondsSinceEpoch:(NSString *)datetime;
++ (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime;
++ (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime;
+
 + (NSString *)dateTimeString:(NSInteger)seconds;
 + (NSString *)timeString:(NSInteger)seconds;
 + (NSString *)datetimePartDate:(NSString *)datetime;

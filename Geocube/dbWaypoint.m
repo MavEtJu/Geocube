@@ -106,7 +106,7 @@
     wpt_lat_int = wpt_lat_float * 1000000;
     wpt_lon_int = wpt_lon_float * 1000000;
 
-    wpt_date_placed_epoch = [MyTools secondsSinceEpoch:wpt_date_placed];
+    wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:wpt_date_placed];
 
     coordinates = CLLocationCoordinate2DMake([wpt_lat floatValue], [wpt_lon floatValue]);
 

@@ -59,7 +59,7 @@
 - (void)finish
 {
     waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
-    datetime_epoch = [MyTools secondsSinceEpoch:datetime];
+    datetime_epoch = [MyTools secondsSinceEpochFromISO8601:datetime];
 
     if (logstring_id == 0) {
         logstring = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logstring_string];
