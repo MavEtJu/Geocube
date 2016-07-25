@@ -234,7 +234,7 @@ enum {
     if (waypoint.gs_placed_by != nil && [waypoint.gs_placed_by isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", waypoint.gs_placed_by];
     if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
-        [s appendFormat:@" on %@", [MyTools datetimePartDate:waypoint.wpt_date_placed]];
+        [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
     l.text = s;
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
@@ -718,7 +718,7 @@ enum {
 
 - (void)addLog:(NSString *)text
 {
-    NSString *date = [MyTools dateTimeString:time(NULL)];
+    NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
     NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
     dbLogString *logstring = [dbLogString dbGetByAccountLogtypeDefault:waypoint.account logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
 

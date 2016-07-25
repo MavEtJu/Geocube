@@ -230,7 +230,7 @@
     waypoint.wpt_lon = [NSString stringWithFormat:@"%f", coordsRecordedLocation.longitude];
     waypoint.wpt_lat = [NSString stringWithFormat:@"%f", coordsRecordedLocation.latitude];
 
-    waypoint.wpt_date_placed = [MyTools dateTimeString:time(NULL)];
+    waypoint.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
 
     [waypoint finish];
     [waypoint dbUpdate];

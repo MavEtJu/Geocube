@@ -101,7 +101,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbLog *l = [logs objectAtIndex:indexPath.row];
-    cell.datetimeLabel.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
+    cell.datetimeLabel.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:l.datetime_epoch];
     cell.loggerLabel.text = l.logger.name;
     cell.logtypeImage.image = [imageLibrary get:l.logstring.icon];
 

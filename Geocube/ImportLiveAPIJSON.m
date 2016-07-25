@@ -206,7 +206,7 @@
     NSString *dummy;
     DICT_NSSTRING_PATH(dict, dummy, @"UTCPlaceDate");
     wp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
-    wp.wpt_date_placed = [MyTools dateTimeString:wp.wpt_date_placed_epoch];
+    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
 
     wp.wpt_symbol_str = @"Geocache";
     DICT_NSSTRING_PATH(dict, wp.wpt_type_str, @"CacheType.GeocacheTypeName");
@@ -556,7 +556,7 @@
     NSString *dummy;
     DICT_NSSTRING_KEY(dict, dummy, @"UTCEnteredDate");
     awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
-    awp.wpt_date_placed = [MyTools dateTimeString:awp.wpt_date_placed_epoch];
+    awp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:awp.wpt_date_placed_epoch];
 
     DICT_NSSTRING_KEY(dict, awp.wpt_symbol_str, @"Name");
     DICT_NSSTRING_KEY(dict, awp.wpt_type_str, @"Type");
@@ -636,7 +636,7 @@
     NSString *dummy;
     DICT_NSSTRING_KEY(dict, dummy, @"UTCCreateDate");
     l.datetime_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
-    l.datetime = [MyTools dateTimeString:l.datetime_epoch];
+    l.datetime = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:l.datetime_epoch];
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, l.logstring_string, @"LogType.WptLogTypeName");

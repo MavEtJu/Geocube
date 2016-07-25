@@ -110,31 +110,29 @@
     return [date timeIntervalSince1970];
 }
 
-+ (NSString *)dateTimeString:(NSInteger)seconds
++ (NSString *)dateTimeStringFormat:(NSInteger)seconds format:(NSString *)format
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [dateFormatter setDateFormat:format];
     return [dateFormatter stringFromDate:date];
 }
 
-+ (NSString *)timeString:(NSInteger)seconds
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
-    return [dateFormatter stringFromDate:date];
-}
 
-+ (NSString *)datetimePartDate:(NSString *)datetime
-{
-    return [datetime substringToIndex:10];
-}
+#define TIME(__method__, __format__) \
+    + (NSString *)__method__ { \
+        return [self __method__:time(NULL)]; \
+    } \
+    + (NSString *)__method__:(NSInteger)seconds { \
+        return [self dateTimeStringFormat:seconds format:__format__]; \
+    }
 
-+ (NSString *)datetimePartTime:(NSString *)datetime
-{
-    return [datetime substringWithRange:NSMakeRange(11, 8)];
-}
+TIME(dateTimeString_YYYY_MM_DDThh_mm_ss, @"yyyy-MM-dd'T'HH:mm:ss");
+TIME(dateTimeString_YYYY_MM_DD_hh_mm_ss, @"yyyy-MM-dd HH:mm:ss");
+TIME(dateTimeString_YYYY_MM_DD, @"yyyy-MM-dd");
+TIME(dateTimeString_YYYYMMDD, @"yyyyMMdd");
+TIME(dateTimeString_YYYYMMDD_hhmmss, @"yyyyMMdd-HHmmss");
+TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss");
 
 ///////////////////////////////////////////
 

@@ -103,7 +103,7 @@
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointLogged:wp._id] objectAtIndex:indexPath.row];
 
-    cell.datetimeLabel.text = [NSString stringWithFormat:@"%@ %@", [MyTools datetimePartDate:l.datetime], [MyTools datetimePartTime:l.datetime]];
+    cell.datetimeLabel.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:l.datetime_epoch];
     cell.loggerLabel.text = l.logger.name;
     cell.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
     dbLogString *ls = [dbc LogString_get:l.logstring_id];

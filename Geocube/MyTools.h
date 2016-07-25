@@ -36,10 +36,18 @@ enum {
 + (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime;
 + (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime;
 
-+ (NSString *)dateTimeString:(NSInteger)seconds;
-+ (NSString *)timeString:(NSInteger)seconds;
-+ (NSString *)datetimePartDate:(NSString *)datetime;
-+ (NSString *)datetimePartTime:(NSString *)datetime;
++ (NSString *)dateTimeString_YYYY_MM_DDThh_mm_ss:(NSInteger)seconds;
++ (NSString *)dateTimeString_YYYY_MM_DDThh_mm_ss;
++ (NSString *)dateTimeString_YYYY_MM_DD_hh_mm_ss:(NSInteger)seconds;
++ (NSString *)dateTimeString_YYYY_MM_DD_hh_mm_ss;
++ (NSString *)dateTimeString_YYYYMMDD_hhmmss:(NSInteger)seconds;
++ (NSString *)dateTimeString_YYYYMMDD_hhmmss;
++ (NSString *)dateTimeString_YYYY_MM_DD:(NSInteger)seconds;
++ (NSString *)dateTimeString_YYYY_MM_DD;
++ (NSString *)dateTimeString_YYYYMMDD:(NSInteger)seconds;
++ (NSString *)dateTimeString_YYYYMMDD;
++ (NSString *)dateTimeString_hh_mm_ss:(NSInteger)seconds;
++ (NSString *)dateTimeString_hh_mm_ss;
 
 + (NSString *)stripHTML:(NSString *)s;
 + (NSString *)simpleHTML:(NSString *)plainText;

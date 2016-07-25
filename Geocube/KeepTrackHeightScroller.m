@@ -247,8 +247,8 @@ enum {
         }
     }
 
-    labelTimeStart.text = [MyTools timeString:[[timestamps objectAtIndex:idx] integerValue]];
-    labelTimeStop.text = [MyTools timeString:[[timestamps objectAtIndex:idx + width] integerValue]];
+    labelTimeStart.text = [MyTools dateTimeString_hh_mm_ss:[[timestamps objectAtIndex:idx] integerValue]];
+    labelTimeStop.text = [MyTools dateTimeString_hh_mm_ss:[[timestamps objectAtIndex:idx + width] integerValue]];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

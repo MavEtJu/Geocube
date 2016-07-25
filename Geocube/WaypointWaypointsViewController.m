@@ -167,7 +167,7 @@ enum {
                     wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
                     wp.wpt_description = wp.wpt_name;
                     wp.wpt_date_placed_epoch = time(NULL);
-                    wp.wpt_date_placed = [MyTools dateTimeString:wp.wpt_date_placed_epoch];
+                    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
                     wp.wpt_url = nil;
                     wp.wpt_urlname = wp.wpt_name;
                     wp.wpt_symbol_id = 1;
