@@ -47,7 +47,7 @@
 - (NSString *)saveCopy
 {
     NSError *error;
-    NSString *toName = [NSString stringWithFormat:@"Geocube-%@.sqlit", [MyTools datetimePartDate:[MyTools dateTimeString:time(NULL)]]];
+    NSString *toName = [NSString stringWithFormat:@"Geocube-%@.sqlite", [MyTools dateTimeString_YYYYMMDD]];
     NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], toName];
     [fm removeItemAtPath:to error:&error];
     [fm copyItemAtPath:dbname toPath:to error:&error];
