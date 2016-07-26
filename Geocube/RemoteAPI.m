@@ -725,7 +725,7 @@
             [downloadManager setNumberOfChunksDownload:offset / increase];
             [downloadManager setNumberOfChunksTotal:1 + (max / increase)];
         } while (tried < max);
-        [downloadManager setNumberOfChunksTotal:1 + (max / increase)];
+        [downloadManager setNumberOfChunksDownload:1 + (max / increase)];
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
@@ -762,9 +762,8 @@
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {
         NSString *gpx = [gca my_query_gpx:_id];
-        if (gpx == nil) {
+        if (gpx == nil)
             return REMOTEAPI_APIFAILED;
-        }
         *retObj = gpx;
         return REMOTEAPI_OK;
     }
