@@ -489,6 +489,7 @@
     NSLog(@"my_query_json:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
+    [downloadManager setURL:urlString];
 
     NSArray *lines = [self loadPage:urlString];
     NSString *S = [lines componentsJoinedByString:@""];
@@ -513,6 +514,7 @@
     NSLog(@"my_query_gpx:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
+    [downloadManager setURL:urlString];
 
     NSArray *lines = [self loadPage:urlString];
     return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];

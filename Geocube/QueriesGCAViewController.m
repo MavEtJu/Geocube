@@ -73,12 +73,15 @@ enum {
 
     [downloadsImportsViewController showDownloadManager];
     [downloadManager resetForegroundDownload];
-    [downloadManager setDescription:[NSString stringWithFormat:@"Query %@", [pq objectForKey:@"Name"]]];
-    [downloadManager setNumberOfChunksTotal:2];
 
+    [downloadManager setDescription:[NSString stringWithFormat:@"Query %@", [pq objectForKey:@"Name"]]];
     [downloadManager setNumberOfChunksDownload:1];
+    [downloadManager setNumberOfChunksTotal:2];
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson];
+
+    [downloadManager setDescription:[NSString stringWithFormat:@"Query %@", [pq objectForKey:@"Name"]]];
     [downloadManager setNumberOfChunksDownload:2];
+    [downloadManager setNumberOfChunksTotal:2];
     [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx];
 
     if (retjson == nil && retgpx == nil) {
