@@ -54,7 +54,6 @@
 #import "XMLReader.h"
 #import "YIPopupTextView.h"
 
-#import "Geocube-Delegates.h"
 #import "Geocube-Classes.h"
 
 #import "Coordinates.h"
