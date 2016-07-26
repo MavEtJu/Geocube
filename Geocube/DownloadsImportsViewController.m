@@ -416,14 +416,14 @@
 - (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalImages.text = [[NSNumber numberWithInteger:v] stringValue];
+        labelImportTotalImages.text = [NSString stringWithFormat:@"Images downloaded: %ld", v];
     }];
 }
 
 - (void)imagesDownloadManager_setQueuedImages:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportQueuedImages.text = [[NSNumber numberWithInteger:v] stringValue];
+        labelImportQueuedImages.text = [NSString stringWithFormat:@"Images queued: %ld", v];
     }];
 }
 
