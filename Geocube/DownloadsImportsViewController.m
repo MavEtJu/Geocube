@@ -40,6 +40,7 @@
 
     GCLabel *labelImport;
     GCLabel *labelImportDescription;
+    GCLabel *labelImportAccount;
     GCLabel *labelImportNewWaypoints;
     GCLabel *labelImportTotalWaypoints;
     GCLabel *labelImportNewLogs;
@@ -120,6 +121,8 @@
     [self.view addSubview:labelDownloading];
     labelDownloadingDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingDescription];
+    labelImportAccount = [[GCLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportAccount];
     labelDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingURL];
     labelDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
@@ -210,6 +213,7 @@
 
     LABEL_RESIZE(labelImport);
     INDENT_RESIZE(labelImportDescription);
+    INDENT_RESIZE(labelImportAccount);
     INDENT_RESIZE(labelImportNewWaypoints);
     INDENT_RESIZE(labelImportTotalWaypoints);
     INDENT_RESIZE(labelImportNewLogs);
@@ -246,6 +250,13 @@
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelImportDescription.text = description;
+    }];
+}
+
+- (void)importManager_setAccount:(dbAccount *)account
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportAccount.text = account.site;
     }];
 }
 
