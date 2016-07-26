@@ -27,10 +27,9 @@
 
 @implementation ImportTemplate
 
-@synthesize newWaypointsCount, totalWaypointsCount, newLogsCount, totalLogsCount, newTrackablesCount, totalTrackablesCount, percentageRead, totalLines, newImagesCount;
-@synthesize group, account, run_options;
-
 @synthesize delegate;
+
+@synthesize run_options;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
@@ -40,6 +39,7 @@
 
     group = _group;
     account = _account;
+    run_options = RUN_OPTION_NONE;
 
     newWaypointsCount = 0;
     totalWaypointsCount = 0;

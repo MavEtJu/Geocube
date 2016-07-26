@@ -36,11 +36,6 @@
 
 @interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
 
-enum {
-    RUN_OPTION_NONE = 0,
-    RUN_OPTION_LOGSONLY = 1,
-};
-
 @property (nonatomic, retain) id<ImportManagerDelegate> downloadsImportsDelegate;
 
 - (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;

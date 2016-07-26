@@ -51,20 +51,13 @@
     dbGroup *group;
 }
 
-@property (nonatomic, retain) id<ImportDelegate> delegate;
-@property (nonatomic, readonly) NSInteger newWaypointsCount;
-@property (nonatomic, readonly) NSInteger totalWaypointsCount;
-@property (nonatomic, readonly) NSInteger newLogsCount;
-@property (nonatomic, readonly) NSInteger totalLogsCount;
-@property (nonatomic, readonly) NSInteger newTrackablesCount;
-@property (nonatomic, readonly) NSInteger totalTrackablesCount;
-@property (nonatomic, readonly) NSUInteger percentageRead;
-@property (nonatomic, readonly) NSUInteger totalLines;
-@property (nonatomic, readonly) NSInteger newImagesCount;
-@property (nonatomic) NSInteger run_options;
+enum {
+    RUN_OPTION_NONE = 0,
+    RUN_OPTION_LOGSONLY = 1,
+};
 
-@property (nonatomic, retain) dbGroup *group;
-@property (nonatomic, retain) dbAccount *account;
+@property (nonatomic, retain) id<ImportDelegate> delegate;
+@property (nonatomic) NSInteger run_options;
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 
