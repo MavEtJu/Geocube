@@ -39,6 +39,7 @@
     dbTrackable *currentTB;
 
     BOOL runOption_LogsOnly;
+    NSInteger numberOfLines;
 }
 
 @end
@@ -69,7 +70,7 @@
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
 
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    totalLines = [MyTools numberOfLines:s];
+    numberOfLines = [MyTools numberOfLines:s];
 
     NSLog(@"run_options: %ld", (long)run_options);
 
@@ -84,14 +85,16 @@
     inTrackable = NO;
     logIdGCId = [dbLog dbAllIdGCId];
 
+    [delegate Import_setProgress:0 total:numberOfLines];
     @autoreleasepool {
         [rssParser parse];
     }
+    [delegate Import_setProgress:numberOfLines total:numberOfLines];
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    NSString * errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
+    NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
     NSLog(@"Error parsing XML: %@", errorString);
 }
 
@@ -184,6 +187,8 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    [delegate Import_setProgress:parser.lineNumber total:numberOfLines];
+
     @autoreleasepool {
         index--;
 
@@ -200,10 +205,12 @@
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
             totalWaypointsCount++;
+            [delegate Import_setTotalWaypoints:totalWaypointsCount];
             if (runOption_LogsOnly == NO) {
                 if (currentWP._id == 0) {
                     [dbWaypoint dbCreate:currentWP];
                     newWaypointsCount++;
+                    [delegate Import_setNewWaypoints:newWaypointsCount];
 
                     // Update the group
                     [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
@@ -235,6 +242,7 @@
 
                 if (_id == 0) {
                     newLogsCount++;
+                    [delegate Import_setNewLogs:newLogsCount];
                     [l finish];
                     [l dbCreate];
                     [logIdGCId setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
@@ -243,6 +251,7 @@
                     [l dbUpdateNote];
                 }
                 totalLogsCount++;
+                [delegate Import_setTotalLogs:totalLogsCount];
             }];
 
             if (runOption_LogsOnly == NO) {
@@ -255,9 +264,10 @@
                 [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
                 [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
-                    [tb finish];
+                    [tb finish:account];
                     if (_id == 0) {
                         newTrackablesCount++;
+                        [delegate Import_setNewTrackables:newTrackablesCount];
                         [tb dbCreate];
                     } else {
                         tb._id = _id;
@@ -265,6 +275,7 @@
                     }
                     [tb dbLinkToWaypoint:currentWP._id];
                     totalTrackablesCount++;
+                    [delegate Import_setTotalTrackables:totalTrackablesCount];
                 }];
             }
 
@@ -432,7 +443,6 @@ bye:
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     @autoreleasepool {
-        percentageRead = 100 * parser.lineNumber / totalLines;
         if (string == nil)
             return;
         if (currentText == nil)

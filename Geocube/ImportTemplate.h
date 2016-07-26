@@ -21,9 +21,13 @@
 
 @protocol ImportDelegate
 
+- (void)Import_setTotalWaypoints:(NSInteger)v;
 - (void)Import_setNewWaypoints:(NSInteger)v;
+- (void)Import_setTotalLogs:(NSInteger)v;
 - (void)Import_setNewLogs:(NSInteger)v;
+- (void)Import_setTotalTrackables:(NSInteger)v;
 - (void)Import_setNewTrackables:(NSInteger)v;
+- (void)Import_setProgress:(NSInteger)l total:(NSInteger)t;
 
 @end
 
@@ -41,9 +45,6 @@
 
     NSInteger newTrackablesCount;
     NSInteger totalTrackablesCount;
-
-    NSUInteger percentageRead;
-    NSUInteger totalLines;
 
     NSInteger newImagesCount;
 

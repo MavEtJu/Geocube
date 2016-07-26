@@ -45,7 +45,6 @@
     totalWaypointsCount = 0;
     newLogsCount = 0;
     totalLogsCount = 0;
-    percentageRead = 0;
     newTrackablesCount = 0;
     totalTrackablesCount = 0;
     newImagesCount = 0;

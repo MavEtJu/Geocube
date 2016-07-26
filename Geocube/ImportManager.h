@@ -29,8 +29,7 @@
 - (void)ImportManager_setTotalLogs:(NSInteger)v;
 - (void)ImportManager_setNewTrackables:(NSInteger)v;
 - (void)ImportManager_setTotalTrackables:(NSInteger)v;
-- (void)ImportManager_setTotalImages:(NSInteger)v;
-- (void)ImportManager_setQueuedImages:(NSInteger)v;
+- (void)ImportManager_setProgress:(NSInteger)v total:(NSInteger)t;
 
 @end
 

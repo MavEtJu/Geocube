@@ -41,6 +41,7 @@
     GCLabel *labelImport;
     GCLabel *labelImportDescription;
     GCLabel *labelImportAccount;
+    GCLabel *labelImportProgress;
     GCLabel *labelImportNewWaypoints;
     GCLabel *labelImportTotalWaypoints;
     GCLabel *labelImportNewLogs;
@@ -149,6 +150,8 @@
     [self.view addSubview:labelImport];
     labelImportDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportDescription];
+    labelImportProgress = [[GCLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportProgress];
     labelImportNewWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportNewWaypoints];
     labelImportTotalWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
@@ -161,10 +164,10 @@
     [self.view addSubview:labelImportNewTrackables];
     labelImportTotalTrackables = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportTotalTrackables];
-    labelImportTotalImages = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportTotalImages];
     labelImportQueuedImages = [[GCLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportQueuedImages];
+    labelImportTotalImages = [[GCLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportTotalImages];
 
     [self calculateRects];
 }
@@ -214,6 +217,7 @@
     LABEL_RESIZE(labelImport);
     INDENT_RESIZE(labelImportDescription);
     INDENT_RESIZE(labelImportAccount);
+    INDENT_RESIZE(labelImportProgress);
     INDENT_RESIZE(labelImportNewWaypoints);
     INDENT_RESIZE(labelImportTotalWaypoints);
     INDENT_RESIZE(labelImportNewLogs);
@@ -263,56 +267,63 @@
 - (void)ImportManager_setNewWaypoints:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewWaypoints.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportNewWaypoints.text = [NSString stringWithFormat:@"New waypoints: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setTotalWaypoints:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalWaypoints.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportTotalWaypoints.text = [NSString stringWithFormat:@"Total waypoints: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setNewLogs:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewLogs.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportNewLogs.text = [NSString stringWithFormat:@"New logs: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setTotalLogs:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalLogs.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportTotalLogs.text = [NSString stringWithFormat:@"Total logs: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setNewTrackables:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewTrackables.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportNewTrackables.text = [NSString stringWithFormat:@"New trackables: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setTotalTrackables:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalTrackables.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportTotalTrackables.text = [NSString stringWithFormat:@"Total trackables: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setTotalImages:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalImages.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportTotalImages.text = [NSString stringWithFormat:@"Total images: %ld", (long)v];
     }];
 }
 
 - (void)ImportManager_setQueuedImages:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportQueuedImages.text = [NSString stringWithFormat:@"%ld", (long)v];
+        labelImportQueuedImages.text = [NSString stringWithFormat:@"Queued images: %ld", (long)v];
+    }];
+}
+
+- (void)ImportManager_setProgress:(NSInteger)v total:(NSInteger)t
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportProgress.text = [NSString stringWithFormat:@"Progress: %@", [MyTools nicePercentage:v total:t]];
     }];
 }
 
@@ -442,14 +453,16 @@
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelImportDescription.text = @"(no description yet)";
-        labelImportTotalWaypoints.text = @"n/a";
-        labelImportNewWaypoints.text = @"n/a";
-        labelImportNewLogs.text = @"n/a";
-        labelImportTotalLogs.text = @"n/a";
-        labelImportNewTrackables.text = @"n/a";
-        labelImportTotalTrackables.text = @"n/a";
-        labelImportTotalImages.text = @"n/a";
-        labelImportQueuedImages.text = @"n/a";
+        labelImportAccount.text = @"(no description yet)";
+        labelImportProgress.text = @"Progress: 0%";
+        labelImportTotalWaypoints.text = @"Total waypoints: 0";
+        labelImportNewWaypoints.text = @"New waypoints: 0";
+        labelImportNewLogs.text = @"New logs: 0";
+        labelImportTotalLogs.text = @"Total logs: 0";
+        labelImportNewTrackables.text = @"New trackables: 0";
+        labelImportTotalTrackables.text = @"Total trackables: 0";
+        labelImportQueuedImages.text = @"Queued images: 0";
+        labelImportTotalImages.text = @"Total images: 0";
     }];
 }
 

@@ -45,6 +45,8 @@
     NSAssert(group != nil, @"group should be initialized");
     NSAssert(account != nil, @"account should be initialized");
 
+    [downloadsImportsDelegate importManager_setAccount:account];
+
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
         filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
@@ -128,17 +130,37 @@
 
 - (void)Import_setNewWaypoints:(NSInteger)v
 {
-    NSAssert(NO, @"Not yet implemented");
+    [downloadsImportsDelegate ImportManager_setNewWaypoints:v];
 }
 
 - (void)Import_setNewLogs:(NSInteger)v
 {
-    NSAssert(NO, @"Not yet implemented");
+    [downloadsImportsDelegate ImportManager_setNewLogs:v];
 }
 
 - (void)Import_setNewTrackables:(NSInteger)v
 {
-    NSAssert(NO, @"Not yet implemented");
+    [downloadsImportsDelegate ImportManager_setNewTrackables:v];
+}
+
+- (void)Import_setTotalWaypoints:(NSInteger)v
+{
+    [downloadsImportsDelegate ImportManager_setTotalWaypoints:v];
+}
+
+- (void)Import_setTotalLogs:(NSInteger)v
+{
+    [downloadsImportsDelegate ImportManager_setTotalLogs:v];
+}
+
+- (void)Import_setTotalTrackables:(NSInteger)v
+{
+    [downloadsImportsDelegate ImportManager_setTotalTrackables:v];
+}
+
+- (void)Import_setProgress:(NSInteger)v total:(NSInteger)t
+{
+    [downloadsImportsDelegate ImportManager_setProgress:v total:t];
 }
 
 @end
