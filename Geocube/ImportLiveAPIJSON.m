@@ -77,7 +77,6 @@
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
-        [self updateDelegates];
     }];
 }
 - (void)parseGeocache:(NSDictionary *)dict
@@ -581,7 +580,6 @@
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;
-        [self updateDelegates];
     }];
 }
 

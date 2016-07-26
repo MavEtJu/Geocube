@@ -22,6 +22,7 @@
 @protocol ImportManagerDelegate
 
 - (void)importManager_setDescription:(NSString *)description;
+- (void)importManager_setAccount:(dbAccount *)account;
 - (void)ImportManager_setTotalWaypoints:(NSInteger)v;
 - (void)ImportManager_setNewWaypoints:(NSInteger)v;
 - (void)ImportManager_setNewLogs:(NSInteger)v;

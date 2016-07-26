@@ -269,8 +269,6 @@
             }
 
             inItem = NO;
-            [self updateDelegates];
-
             goto bye;
         }
 

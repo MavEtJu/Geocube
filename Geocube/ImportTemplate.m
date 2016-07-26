@@ -55,12 +55,6 @@
     return self;
 }
 
-- (void)updateDelegates
-{
-    if (delegate != nil)
-        [delegate importDelegateUpdate];
-}
-
 /* ************************************ */
 
 - (void)parseBefore

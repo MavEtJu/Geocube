@@ -21,7 +21,9 @@
 
 @protocol ImportDelegate
 
-- (void)importDelegateUpdate;
+- (void)Import_setNewWaypoints:(NSInteger)v;
+- (void)Import_setNewLogs:(NSInteger)v;
+- (void)Import_setNewTrackables:(NSInteger)v;
 
 @end
 
@@ -66,7 +68,6 @@
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 
-- (void)updateDelegates;
 - (void)parseBefore;
 - (void)parseAfter;
 - (void)parseFile:(NSString *)filename;
