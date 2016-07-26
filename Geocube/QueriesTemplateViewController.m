@@ -165,7 +165,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
             qi.filesize == size) {
             if ([detail isEqualToString:@""] == NO)
                 [detail appendString:@" - "];
-            [detail appendFormat:@"Last import on %@", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:qi.lastimport]];
+            [detail appendFormat:@"Last import on %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
             *stop = YES;
         }
     }];
