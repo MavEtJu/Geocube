@@ -228,18 +228,6 @@
     INDENT_RESIZE(labelImportQueuedImages);
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [imagesDownloadManager addDelegate:self];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [imagesDownloadManager removeDelegate:self];
-}
-
 - (void)importerDelegateUpdate
 {
 }
@@ -420,6 +408,22 @@
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelBGPendingQueued.text = [[NSNumber numberWithInteger:size] stringValue];
+    }];
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+- (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTotalImages.text = [[NSNumber numberWithInteger:v] stringValue];
+    }];
+}
+
+- (void)imagesDownloadManager_setQueuedImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportQueuedImages.text = [[NSNumber numberWithInteger:v] stringValue];
     }];
 }
 

@@ -52,9 +52,6 @@
     // Initialize the IOS File Transfer Manager - After file manager
     IOSFTM = [[IOSFileTransfers alloc] init];
 
-    // Initialize imagesDownloader
-    imagesDownloadManager = [[ImagesDownloadManager alloc] init];
-
     // Initialize and cache the database - after file manager
     db = [[database alloc] init];
     [db checkVersion];
@@ -445,6 +442,8 @@
     downloadManager.downloadsImportsDelegate = downloadsImportsViewController;
     importManager = [[ImportManager alloc] init];
     importManager.downloadsImportsDelegate = downloadsImportsViewController;
+    imagesDownloadManager = [[ImagesDownloadManager alloc] init];
+    imagesDownloadManager.delegate = downloadsImportsViewController;
 
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];

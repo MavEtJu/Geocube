@@ -25,7 +25,7 @@
 
 @end
 
-@interface WaypointImagesViewController : GCTableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WaypointImageViewControllerDelegate, ImagesDownloadManagerDelegate>
+@interface WaypointImagesViewController : GCTableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WaypointImageViewControllerDelegate>
 
 @property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) UIImagePickerController *imagePickerController;

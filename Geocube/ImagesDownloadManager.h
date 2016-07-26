@@ -21,7 +21,8 @@
 
 @protocol ImagesDownloadManagerDelegate
 
-- (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages;
+- (void)imagesDownloadManager_setQueuedImages:(NSInteger)v;
+- (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v;
 
 @end
 
@@ -30,7 +31,7 @@
 + (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
 + (void)addToQueue:(dbImage *)img;
 + (void)addToQueueImmediately:(dbImage *)img;
-- (void)addDelegate:(id<ImagesDownloadManagerDelegate>)_delegate;
-- (void)removeDelegate:(id<ImagesDownloadManagerDelegate>)_delegate;
+
+@property (nonatomic, retain) id<ImagesDownloadManagerDelegate> delegate;
 
 @end

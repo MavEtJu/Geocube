@@ -117,7 +117,6 @@ enum {
 - (void)downloadImage:(dbImage *)img
 {
     [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading image"];
-    [imagesDownloadManager addDelegate:self];
     [ImagesDownloadManager addToQueueImmediately:img];
 }
 
@@ -126,7 +125,6 @@ enum {
     __block NSInteger i = 0;
     [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading images\nDownloaded 1/1\nPending"];
 
-    [imagesDownloadManager addDelegate:self];
     [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         if ([img imageHasBeenDowloaded] == NO) {
             [ImagesDownloadManager addToQueueImmediately:img];
@@ -167,7 +165,6 @@ enum {
     }
 
     if (queuedImages == 0) {
-        [imagesDownloadManager removeDelegate:self];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [DejalBezelActivityView removeViewAnimated:YES];
         }];
