@@ -94,6 +94,32 @@
         [delegate GCAAuthSuccessful:cookie];
 }
 
+- (NSData *)loadDataForeground:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    GCURLRequest *req = [GCURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
+
+    if (response.statusCode == 403) {   // Forbidden
+        remoteAPI.account.gca_cookie_value = @"";
+        [remoteAPI.account dbUpdateCookieValue];
+        return nil;
+    }
+
+    if (data == nil || response.statusCode != 200)
+        return nil;
+
+    return data;
+}
+
+- (NSString *)loadJSONForeground:(NSString *)urlString
+{
+    return [[NSString alloc] initWithData:[self loadDataForeground:urlString] encoding:NSUTF8StringEncoding];
+}
+
 - (NSArray *)loadPage:(NSString *)urlString
 {
     NSURL *url = [NSURL URLWithString:urlString];
@@ -107,6 +133,29 @@
     NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
     NSError *error = [retDict objectForKey:@"error"];
     error = nil;    // XXXX get rid of compiler warning for now.
+
+    if (response.statusCode == 403) {   // Forbidden
+        remoteAPI.account.gca_cookie_value = @"";
+        [remoteAPI.account dbUpdateCookieValue];
+        return nil;
+    }
+
+    if (data == nil || response.statusCode != 200)
+        return nil;
+
+    NSArray *lines = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+    return lines;
+}
+
+- (NSArray *)loadPageForeground:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    GCURLRequest *req = [GCURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
 
     if (response.statusCode == 403) {   // Forbidden
         remoteAPI.account.gca_cookie_value = @"";
@@ -234,9 +283,7 @@
     NSLog(@"my_query_list__json");
 
     NSString *urlString = @"http://geocaching.com.au/my/query/list.json";
-    NSArray *lines = [self loadPage:urlString];
-    NSString *S = [lines componentsJoinedByString:@""];
-    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [self loadDataForeground:urlString];
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
@@ -255,7 +302,7 @@
     // Obsolete, do not use aymore
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query"];
-    NSArray *lines = [self loadPage:urlString];
+    NSArray *lines = [self loadPageForeground:urlString];
 
     NSError *e;
     NSRegularExpression *r1 = [NSRegularExpression regularExpressionWithPattern:@"<td.*queryid='(\\d+)'>(.*?)</td>" options:0 error:&e];
@@ -491,9 +538,7 @@
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSArray *lines = [self loadPage:urlString];
-    NSString *S = [lines componentsJoinedByString:@""];
-    NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [self loadDataForeground:urlString];
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
@@ -516,8 +561,8 @@
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSArray *lines = [self loadPage:urlString];
-    return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
+    NSData *data = [self loadDataForeground:urlString];
+    return [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 - (NSInteger)my_query_count:(NSString *)queryname
