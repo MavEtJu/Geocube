@@ -77,6 +77,8 @@
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
+        [delegate Import_setTotalWaypoints:totalWaypointsCount];
+        [delegate Import_setProgress:idx + 1 total:[as count]];
     }];
 }
 - (void)parseGeocache:(NSDictionary *)dict
@@ -251,8 +253,9 @@
     [wp finish];
     if (wp._id == 0) {
         NSLog(@"%@: Creating %@", [self class], wp.wpt_name);
-        newWaypointsCount++;
         [dbWaypoint dbCreate:wp];
+        newWaypointsCount++;
+        [delegate Import_setNewWaypoints:newWaypointsCount];
     } else {
         NSLog(@"%@: Updating %@", [self class], wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
@@ -301,6 +304,7 @@
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
         totalTrackablesCount++;
+        [delegate Import_setTotalTrackables:totalTrackablesCount];
     }];
 }
 
@@ -419,6 +423,7 @@
     if (_id == 0) {
         [dbTrackable dbCreate:tb];
         newTrackablesCount++;
+        [delegate Import_setNewTrackables:newTrackablesCount];
     } else {
         // The code isn't always updated while we do have it.
         // In that case save it from the previous one.
@@ -501,6 +506,7 @@
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
         totalWaypointsCount++;
+        [delegate Import_setTotalWaypoints:totalWaypointsCount];
     }];
 }
 
@@ -568,6 +574,7 @@
         [dbWaypoint dbCreate:awp];
         [group dbAddWaypoint:awp._id];
         newWaypointsCount++;
+        [delegate Import_setNewWaypoints:newWaypointsCount];
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
@@ -580,6 +587,7 @@
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;
+        [delegate Import_setTotalLogs:totalLogsCount];
     }];
 }
 
@@ -658,8 +666,9 @@
 
     NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
     if (l_id == 0) {
-        newLogsCount++;
         [l dbCreate];
+        newLogsCount++;
+        [delegate Import_setNewLogs:newLogsCount];
     }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
