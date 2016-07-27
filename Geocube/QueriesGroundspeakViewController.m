@@ -62,6 +62,7 @@
 
     [downloadsImportsViewController showDownloadManager];
     [downloadManager resetForegroundDownload];
+    [downloadsImportsViewController resetImports];
     [downloadManager setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
 
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
