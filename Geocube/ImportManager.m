@@ -26,6 +26,8 @@
     ImportTemplate *imp;
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
+
+    NSMutableArray *queue;
 }
 
 @end
@@ -34,58 +36,102 @@
 
 @synthesize downloadsImportsDelegate;
 
+- (instancetype)init
+{
+    self = [super init];
+
+    queue = [NSMutableArray arrayWithCapacity:10];
+
+    return self;
+}
+
 - (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
 {
     [filenames addObject:[unzippedFilePath lastPathComponent]];
     [filenamesToBeRemoved addObject:[unzippedFilePath lastPathComponent]];
 }
 
-- (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions
+- (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions
 {
     NSAssert(group != nil, @"group should be initialized");
     NSAssert(account != nil, @"account should be initialized");
 
-    [downloadsImportsDelegate importManager_setAccount:account];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+    [d setObject:data forKey:@"data"];
+    [d setObject:group forKey:@"group"];
+    [d setObject:account forKey:@"account"];
+    [d setObject:[NSNumber numberWithInteger:runoptions] forKey:@"runoptions"];
 
-    if ([data isKindOfClass:[GCStringFilename class]] == YES) {
-        NSString *_filename = [data description];
-        filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
-        filenames = [NSMutableArray arrayWithCapacity:1];
-        if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
-            [filenames addObject:_filename];
-        }
-        if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
-            NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
-            NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
-            [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+    @synchronized (queue) {
+        [queue addObject:d];
+        if ([queue count] == 1) {
+            NSLog(@"%@/starting", [self class]);
+            [self performSelectorInBackground:@selector(runQueue) withObject:nil];
         }
     }
 
-    if ([data isKindOfClass:[GCStringFilename class]] == YES ||
-        [data isKindOfClass:[GCStringGPX class]] == YES) {
-        imp = [[ImportGPX alloc] init:group account:account];
-    } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
-        imp = [[ImportGCAJSON alloc] init:group account:account];
-    } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-        imp = [[ImportLiveAPIJSON alloc] init:group account:account];
-    } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-        imp = [[ImportOKAPIJSON alloc] init:group account:account];
-    } else {
-        NSAssert1(NO, @"Unknown data class: %@", [data class]);
-    }
-    imp.delegate = self;
-
-    [self performSelectorInBackground:@selector(runImporter:) withObject:[NSArray arrayWithObjects:data, [NSNumber numberWithInteger:runoptions], nil]];
 }
 
-- (void)runImporter:(NSArray *)datas
+- (void)runQueue
 {
-    NSObject *data = [datas objectAtIndex:0];
-    NSNumber *run_options = [datas objectAtIndex:1];
+    NSDictionary *d;
+    while (TRUE) {
+        // If there is nothing left, leave.
+        @synchronized (queue) {
+            if ([queue count] == 0)
+                return;
+            d = [queue objectAtIndex:0];
+        }
 
+        dbAccount *account = [d objectForKey:@"account"];
+        dbGroup *group = [d objectForKey:@"group"];
+        NSNumber *runoptions = [d objectForKey:@"runoptions"];
+        NSObject *data = [d objectForKey:@"data"];
+
+        [downloadsImportsDelegate importManager_setAccount:account];
+
+        if ([data isKindOfClass:[GCStringFilename class]] == YES) {
+            NSString *_filename = [data description];
+            filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
+            filenames = [NSMutableArray arrayWithCapacity:1];
+            if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
+                [filenames addObject:_filename];
+            }
+            if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
+                NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
+                NSLog(@"Decompressing file '%@' to '%@'", fullname, [MyTools FilesDir]);
+                [SSZipArchive unzipFileAtPath:fullname toDestination:[MyTools FilesDir] delegate:self];
+            }
+        }
+
+        if ([data isKindOfClass:[GCStringFilename class]] == YES ||
+            [data isKindOfClass:[GCStringGPX class]] == YES) {
+            imp = [[ImportGPX alloc] init:group account:account];
+        } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
+            imp = [[ImportGCAJSON alloc] init:group account:account];
+        } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
+            imp = [[ImportLiveAPIJSON alloc] init:group account:account];
+        } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
+            imp = [[ImportOKAPIJSON alloc] init:group account:account];
+        } else {
+            NSAssert1(NO, @"Unknown data class: %@", [data class]);
+        }
+        imp.delegate = self;
+
+        [self runImporter:data run_options:[runoptions integerValue]];
+
+        // Remove the one just done.
+        @synchronized (queue) {
+            [queue removeObjectAtIndex:0];
+        }
+    }
+}
+
+- (void)runImporter:(NSObject *)data run_options:(NSInteger)run_options
+{
     [imp parseBefore];
 
-    imp.run_options = [run_options integerValue];
+    imp.run_options = run_options;
 
     @synchronized (self) {
         @autoreleasepool {

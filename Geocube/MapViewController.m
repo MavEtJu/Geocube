@@ -815,7 +815,7 @@ enum {
             return;
         }
 
-        [importManager run:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
+        [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
     }];
 
     if (accountsFound == 0) {

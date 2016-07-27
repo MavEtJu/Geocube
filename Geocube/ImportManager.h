@@ -37,7 +37,7 @@
 
 @property (nonatomic, retain) id<ImportManagerDelegate> downloadsImportsDelegate;
 
-- (void)run:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
+- (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
 
 - (void)resetImports;
 

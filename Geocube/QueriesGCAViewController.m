@@ -52,14 +52,14 @@ enum {
 
 - (BOOL)parseRetrievedQueryGPX:(NSObject *)query group:(dbGroup *)group
 {
-    [importManager run:query group:group account:account options:RUN_OPTION_LOGSONLY];
+    [importManager addToQueue:query group:group account:account options:RUN_OPTION_LOGSONLY];
     return YES;
 }
 
 
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
-    [importManager run:query group:group account:account options:RUN_OPTION_NONE];
+    [importManager addToQueue:query group:group account:account options:RUN_OPTION_NONE];
     return YES;
 }
 

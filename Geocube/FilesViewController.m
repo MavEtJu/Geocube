@@ -396,7 +396,7 @@ enum {
             [downloadsImportsViewController showImportManager];
             [downloadsImportsViewController resetImports];
 
-            [importManager run:sfn group:group account:[accounts objectAtIndex:selectedIndex] options:RUN_OPTION_NONE];
+            [importManager addToQueue:sfn group:group account:[accounts objectAtIndex:selectedIndex] options:RUN_OPTION_NONE];
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {

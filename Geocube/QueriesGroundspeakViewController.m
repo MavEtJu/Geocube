@@ -48,7 +48,7 @@
 - (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
 {
     GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:query];
-    [importManager run:d group:group account:account options:RUN_OPTION_NONE];
+    [importManager addToQueue:d group:group account:account options:RUN_OPTION_NONE];
 
     return YES;
 }
