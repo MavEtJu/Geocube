@@ -84,6 +84,8 @@
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
+        [delegate Import_setTotalWaypoints:totalWaypointsCount];
+        [delegate Import_setProgress:idx + 1 total:[as count]];
     }];
 }
 
@@ -188,6 +190,8 @@
         NSLog(@"%@: Creating %@", [self class], wpname);
         [dbWaypoint dbCreate:wp];
         [group dbAddWaypoint:wp._id];
+        newWaypointsCount++;
+        [delegate Import_setNewWaypoints:newWaypointsCount];
     } else {
         NSLog(@"%@: Updating %@", [self class], wpname);
         [wp dbUpdate];
@@ -225,6 +229,8 @@
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
         totalLogsCount++;
+        [delegate Import_setTotalLogs:totalLogsCount];
+        [delegate Import_setProgress:idx + 1 total:[as count]];
     }];
 }
 
@@ -262,6 +268,8 @@
     NSId _id = [dbLog dbGetIdByGC:t.gc_id account:account];
     if (_id == 0) {
         [dbLog dbCreate:t];
+        newLogsCount++;
+        [delegate Import_setNewLogs:newLogsCount];
     } else {
         t._id = _id;
         [t dbUpdate];
