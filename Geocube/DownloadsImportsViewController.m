@@ -294,6 +294,13 @@
     }];
 }
 
+- (void)ImportManager_setQueueSize:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImport.text = [NSString stringWithFormat:@"Importing (%ld pending)", (long)v];
+    }];
+}
+
 - (void)ImportManager_setTotalImages:(NSInteger)v
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -456,6 +463,7 @@
 - (void)resetImports
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImport.text = @"Importng";
         labelImportDescription.text = @"(no description yet)";
         labelImportAccount.text = @"(no description yet)";
         labelImportProgress.text = @"Progress: 0%";

@@ -68,6 +68,7 @@
             NSLog(@"%@/starting", [self class]);
             [self performSelectorInBackground:@selector(runQueue) withObject:nil];
         }
+        [downloadsImportsDelegate ImportManager_setQueueSize:[queue count]];
     }
 
 }
@@ -78,6 +79,7 @@
     while (TRUE) {
         // If there is nothing left, leave.
         @synchronized (queue) {
+            [downloadsImportsDelegate ImportManager_setQueueSize:[queue count]];
             if ([queue count] == 0)
                 return;
             d = [queue objectAtIndex:0];

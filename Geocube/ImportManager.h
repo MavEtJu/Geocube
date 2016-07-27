@@ -30,6 +30,7 @@
 - (void)ImportManager_setNewTrackables:(NSInteger)v;
 - (void)ImportManager_setTotalTrackables:(NSInteger)v;
 - (void)ImportManager_setProgress:(NSInteger)v total:(NSInteger)t;
+- (void)ImportManager_setQueueSize:(NSInteger)v;
 
 @end
 
