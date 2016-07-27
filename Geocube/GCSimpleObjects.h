@@ -21,6 +21,7 @@
 
 @interface GCStringObject : NSString
 - (instancetype)initWithString:(NSString *)s;
+- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
 @end
 
 @interface GCStringGPX : GCStringObject

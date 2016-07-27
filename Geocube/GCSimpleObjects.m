@@ -35,6 +35,13 @@
     return self;
 }
 
+- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding
+{
+    self = [super init];
+    sfn = [[NSMutableString alloc] initWithData:data encoding:encoding];
+    return self;
+}
+
 - (NSUInteger)length
 {
     return [sfn length];
