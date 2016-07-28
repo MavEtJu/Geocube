@@ -93,6 +93,10 @@
 @property (nonatomic, readonly) NSInteger waypointListSortBy;
 @property (nonatomic, readonly) BOOL refreshWaypointAfterLog;
 
+@property (nonatomic, readonly) BOOL gpsAdjustmentEnable;
+@property (nonatomic, readonly) NSInteger gpsAdjustmentLatitude;
+@property (nonatomic, readonly) NSInteger gpsAdjustmentLongitude;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -151,5 +155,8 @@
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value;
 - (void)waypointListSortByUpdate:(NSInteger)value;
 - (void)refreshWaypointAfterLogUpdate:(BOOL)value;
+- (void)gpsAdjustmentEnableUpdate:(BOOL)value;
+- (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value;
+- (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
 
 @end

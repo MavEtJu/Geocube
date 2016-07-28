@@ -43,6 +43,7 @@
 @synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation;
 @synthesize waypointListSortBy;
 @synthesize refreshWaypointAfterLog;
+@synthesize gpsAdjustmentEnable, gpsAdjustmentLatitude, gpsAdjustmentLongitude;
 
 - (instancetype)init
 {
@@ -137,6 +138,10 @@
     CHECK(@"waypointlist_sortby", @"0");
 
     CHECK(@"waypoint_refreshafterlog", @"1");
+
+    CHECK(@"gpsadjustment_enable", @"0");
+    CHECK(@"gpsadjustment_latitude", @"0");
+    CHECK(@"gpsadjustment_longitude", @"0");
 }
 
 - (void)loadValues
@@ -193,6 +198,9 @@
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
     refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
+    gpsAdjustmentEnable = [[dbConfig dbGetByKey:@"gpsadjustment_enable"].value boolValue];
+    gpsAdjustmentLongitude = [[dbConfig dbGetByKey:@"gpsadjustment_longitude"].value integerValue];
+    gpsAdjustmentLatitude = [[dbConfig dbGetByKey:@"gpsadjustment_latitude"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -524,6 +532,22 @@
 {
     refreshWaypointAfterLog = value;
     [self BOOLUpdate:@"waypoint_refreshafterlog" value:value];
+}
+
+- (void)gpsAdjustmentEnableUpdate:(BOOL)value
+{
+    gpsAdjustmentEnable = value;
+    [self BOOLUpdate:@"gpsadjustment_enable" value:value];
+}
+- (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value
+{
+    gpsAdjustmentLongitude = value;
+    [self NSIntegerUpdate:@"gpsadjustment_longitude" value:value];
+}
+- (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value
+{
+    gpsAdjustmentLatitude = value;
+    [self NSIntegerUpdate:@"gpsadjustment_latitude" value:value];
 }
 
 @end
