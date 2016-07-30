@@ -41,6 +41,7 @@
 
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
++ (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (NSString *)bearing2compass:(CLLocationDegrees)bearing;
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;

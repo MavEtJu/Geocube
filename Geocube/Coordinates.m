@@ -143,6 +143,51 @@
     return 180 * f / M_PI;
 }
 
++ (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o
+{
+    // From http://www.movable-type.co.uk/scripts/latlong.html
+    float R = 6371000; // radius of Earth in metres
+    float d = sqrt(o.latitude * o.latitude + o.longitude * o.longitude);
+    R *= 1000; // mm
+    float δ = d / R;    // Ratio distance and ratio earth
+    float θ = 0;        // Angle from the North clockwise.
+
+    float longside = sqrt(o.longitude * o.longitude + o.latitude * o.latitude);
+    if (fpclassify(longside) == FP_ZERO)
+        return c;
+
+    if (o.latitude >= 0 && o.longitude >= 0)
+        θ = 0 * M_PI + asinf(o.longitude / longside);
+    if (o.latitude <  0 && o.longitude >= 0)
+        θ = 1 * M_PI - asinf(o.longitude / longside);
+    if (o.latitude <  0 && o.longitude <  0)
+        θ = 1 * M_PI + asinf(-o.longitude / longside);
+    if (o.latitude >= 0 && o.longitude <  0)
+        θ = 2 * M_PI - asinf(-o.longitude / longside);
+
+    // NSLog(@"Angle: %f %0.f", θ, [self toDegrees:θ]);
+    // NSLog(@"ratio: %0.f", δ);
+
+    float φ1 = [self toRadians:c.latitude];
+    float λ1 = [self toRadians:c.longitude];
+    // NSLog(@"φ1:%f λ1:%f", φ1, λ1);
+    float φ2 = asin(sin(φ1) * cos(δ) + cos(φ1) * sin(δ) * cos(θ));
+    float λ2 = λ1 + atan2(sin(θ) * sin(δ) * cos(φ1), cos(δ) - sin(φ1) * sin(φ2));
+    // NSLog(@"φ2:%f λ2:%f", φ2, λ2);
+
+    float φ = [self toDegrees:φ2];
+    float λ = [self toDegrees:λ2];
+
+    // NSLog(@"φ:%f λ:%f", φ, λ);
+
+    while (λ < -180)
+        λ += 180;
+    while (λ > 180)
+        λ -= 180;
+
+    return CLLocationCoordinate2DMake(φ, λ);
+}
+
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
