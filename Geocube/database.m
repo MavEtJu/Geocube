@@ -464,4 +464,46 @@
     }
 }
 
+- (void)cleanupAfterDelete
+{
+    @synchronized(self.dbaccess) {
+        sqlite3_stmt *req;
+
+        // Delete all logs from caches not longer in an usergroup (should be zero)
+        DB_PREPARE(@"delete from group2waypoints where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all logs from caches not longer in an usergroup
+        DB_PREPARE(@"delete from logs where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all trackables from caches not longer in an usergroup
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all attributes from caches not longer in an usergroup
+        DB_PREPARE(@"delete from attribute2waypoints where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all trackables from caches not longer in an usergroup
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all images from caches not longer in an usergroup
+        DB_PREPARE(@"delete from image2waypoint where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+
+        // Delete all caches which are not longer in a usergroup
+        DB_PREPARE(@"delete from waypoints where id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

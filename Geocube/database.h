@@ -39,6 +39,7 @@
 - (void)singleStatement:(NSString *)sql;
 - (NSString *)saveCopy;
 - (BOOL)restoreFromCopy:(NSString *)source;
+- (void)cleanupAfterDelete;
 
 @end
 

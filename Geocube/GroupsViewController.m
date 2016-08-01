@@ -211,7 +211,7 @@ enum {
 - (void)groupEmpty:(dbGroup *)cg reload:(BOOL)reload
 {
     [cg dbEmpty];
-    [dbGroup cleanupAfterDelete];
+    [db cleanupAfterDelete];
     [waypointManager needsRefresh];
     [dbc loadWaypointData];
     if (reload == YES) {
@@ -223,7 +223,7 @@ enum {
 - (void)groupDelete:(dbGroup *)cg
 {
     [cg dbDelete];
-    [dbGroup cleanupAfterDelete];
+    [db cleanupAfterDelete];
     [waypointManager needsRefresh];
     [dbc loadWaypointData];
     [self refreshGroupData];

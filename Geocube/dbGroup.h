@@ -41,6 +41,5 @@
 - (BOOL)dbContainsWaypoint:(NSId)c_id;
 - (NSInteger)dbCountWaypoints;
 + (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;
-+ (void)cleanupAfterDelete;
 
 @end

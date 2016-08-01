@@ -41,7 +41,7 @@
     NSLog(@"%@: Parsing initializing", [self class]);
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
-    [dbGroup cleanupAfterDelete];
+    [db cleanupAfterDelete];
 }
 
 - (void)parseAfter_caches
@@ -53,7 +53,7 @@
     [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
     [[dbc Group_AllWaypoints_Ignored] dbEmpty];
     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
-    [dbGroup cleanupAfterDelete];
+    [db cleanupAfterDelete];
     [dbc loadWaypointData];
     [dbWaypoint dbUpdateLogStatus];
 }
