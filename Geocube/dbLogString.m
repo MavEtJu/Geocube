@@ -35,6 +35,7 @@
         account = [dbc Account_get:account_id];
     if (account_id == 0)
         account_id = account._id;
+    [super finish];
 }
 
 + (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values

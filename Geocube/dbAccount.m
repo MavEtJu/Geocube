@@ -34,7 +34,7 @@
     remoteAPI = [[RemoteAPI alloc] init:self];
     canDoRemoteStuff = 0;
     lastError = nil;
-    finished = YES;
+    [super finish];
 
     /* Even if it is nil.... */
     dbName *n = [dbName dbGetByName:accountname_string account:self];

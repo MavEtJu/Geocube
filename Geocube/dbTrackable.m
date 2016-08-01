@@ -49,6 +49,7 @@
         owner = [dbName dbGetByName:owner_str account:account];
     owner_id = owner._id;
     owner_str = owner.name;
+    [super finish];
 }
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
