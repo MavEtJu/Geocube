@@ -188,6 +188,11 @@
     return CLLocationCoordinate2DMake(φ, λ);
 }
 
++ (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o
+{
+    return [self coordinatesPlusOffset:c offset:CLLocationCoordinate2DMake(-o.latitude, -o.longitude)];
+}
+
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
