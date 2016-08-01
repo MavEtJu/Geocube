@@ -70,6 +70,7 @@ enum {
     menuAddToGroup,
     menuViewRaw,
     menuExportGPX,
+    menuDeleteWaypoint,
     menuMax
 };
 
@@ -86,6 +87,7 @@ enum {
     [lmi addItem:menuLogThisWaypoint label:@"Log waypoint"];
     [lmi addItem:menuOpenInBrowser label:@"Open browser"];
     [lmi addItem:menuExportGPX label:@"Export GPX"];
+    [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
 
     hasCloseButton = canBeClosed;
 
@@ -572,6 +574,9 @@ enum {
             [ExportGPX export:waypoint];
             [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
             return;
+        case menuDeleteWaypoint:
+            [self menuDeleteWaypoint];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -615,6 +620,35 @@ enum {
 
     [_AppDelegate switchController:RC_NAVIGATE];
     [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
+}
+
+- (void)menuDeleteWaypoint
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Delete waypoint"
+                               message:@"Are you sure?"
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *yes = [UIAlertAction
+                          actionWithTitle:@"Yes"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction *action) {
+                              [waypoint dbDelete];
+                              [db cleanupAfterDelete];
+                              [waypointManager needsRefresh];
+                              [self.navigationController popViewControllerAnimated:YES];
+                          }];
+
+    UIAlertAction *no = [UIAlertAction
+                         actionWithTitle:@"NO!" style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+
+    [alert addAction:yes];
+    [alert addAction:no];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)menuMarkAs
