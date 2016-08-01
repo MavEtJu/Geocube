@@ -95,6 +95,16 @@ enum {
     cell.detailTextLabel.text = wp.wpt_name;
     cell.imageView.image = [imageLibrary get:wp.wpt_type.icon];
 
+    if (wp._id == waypoint._id) {
+        cell.userInteractionEnabled = NO;
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    } else {
+        cell.userInteractionEnabled = YES;
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+    }
+
     return cell;
 }
 
@@ -119,6 +129,14 @@ enum {
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointWaypoints_refreshTable];
     }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    if (wp._id == waypoint._id)
+        return NO;
+    return YES;
 }
 
 
