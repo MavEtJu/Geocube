@@ -46,8 +46,6 @@ NEEDS_OVERLOADING(dbDelete);
 
 - (void)finish
 {
-
-    NSAssert(finished == NO, @"Already finished!");
     finished = YES;
 }
 
