@@ -95,6 +95,15 @@ enum {
 {
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == PROTOCOL_LIVEAPI) {
+            // Get rid of any old data
+            [tbs enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+                tb.carrier = nil;
+                tb.carrier_id = 0;
+                tb.carrier_str = @"";
+                tb.waypoint_name = nil;
+                [tb dbUpdate];
+            }];
+
             [a.remoteAPI trackablesInventory];
             tbs = [dbTrackable dbAllInventory];
             [self.tableView reloadData];
