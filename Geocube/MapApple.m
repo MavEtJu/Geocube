@@ -125,7 +125,7 @@
 {
     NSLog(@"%@/placeMarkers", [self class]);
     // Creates a marker in the center of the map.
-    markers = [NSMutableArray arrayWithCapacity:20];
+    markers = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         // Place a single pin
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
@@ -155,7 +155,7 @@
 {
     if (yesno == YES) {
         showBoundary = YES;
-        circles = [NSMutableArray arrayWithCapacity:20];
+        circles = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
         [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
                 MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
@@ -193,6 +193,7 @@
         if (dropPin == nil)
             dropPin = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"waypoints"];
         dropPin.image = [self waypointImage:a.waypoint];
+        dropPin.centerOffset = CGPointMake(5, -17);
         dropPin.annotation = annotation;
 
         return dropPin;
