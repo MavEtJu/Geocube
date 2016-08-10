@@ -138,70 +138,81 @@ enum {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
     NSInteger y = 0;
-    NSInteger labelHeight = myConfig.GCLabelFont.lineHeight;
 
     [v.subviews enumerateObjectsUsingBlock:^(UIView *cv, NSUInteger idx, BOOL * _Nonnull stop) {
         [cv removeFromSuperview];
     }];
 
-    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, width - 20, labelHeight)];
+#define MARGIN  5
+#define INDENT  10
+
+#define LABEL_RESIZE(__s__) \
+    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+    y += __s__.font.lineHeight;
+#define INDENT_RESIZE(__s__) \
+    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+    y += __s__.font.lineHeight;
+
+    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectZero];
     l.text = site;
+    LABEL_RESIZE(l);
     [v addSubview:l];
-    y += l.frame.size.height;
+    NSInteger yh = l.font.lineHeight;
 
     NSObject *o = [d objectForKey:@"status"];
     if ([o isKindOfClass:[NSString class]] == YES) {
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         l.text = [NSString stringWithFormat:@"%@", o];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
     o = [d valueForKey:@"waypoints_found"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_found" with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         [l setText:[NSString stringWithFormat:@"Found: %@", o]];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
     o = [d valueForKey:@"waypoints_notfound"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_notfound" with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
     o = [d valueForKey:@"waypoints_hidden"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_hidden" with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
     o = [d valueForKey:@"recommendations_given"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"recommendations_given" with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
     o = [d valueForKey:@"recommendations_received"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"recommendations_received" with:o];
-        l = [[GCLabel alloc] initWithFrame:CGRectMake(width / 8, y, 7 * width / 8, labelHeight)];
+        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
         [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
+        INDENT_RESIZE(l);
         [v addSubview:l];
-        y += l.frame.size.height;
     }
 
+    y += yh / 2;
     v.frame = CGRectMake(0, 0, width, y);
 }
 
