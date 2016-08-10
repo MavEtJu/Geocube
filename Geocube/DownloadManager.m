@@ -62,11 +62,6 @@
     [downloadsImportsViewController resetBackgroundDownload];
 }
 
-- (void)addToQueue:(NSString *)url outputFile:(NSString *)output
-{
-    [downloadsImportsDelegate downloadManager_setQueueSize:42];
-}
-
 /////////////////////////////////////////////////////////////////////////
 
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem
@@ -208,7 +203,7 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
-    NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) diReceiveData:(NSData *)");
+//  NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveData:(NSData *)");
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
         [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
@@ -336,11 +331,6 @@
 - (void)setBGNumberBytesDownload:(NSInteger)bytes
 {
     [downloadsImportsDelegate downloadManager_setBGNumberBytesDownload:bytes];
-}
-
-- (void)setQueueSize:(NSInteger)size
-{
-    [downloadsImportsDelegate downloadManager_setQueueSize:size];
 }
 
 @end

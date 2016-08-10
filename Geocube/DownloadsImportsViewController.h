@@ -24,6 +24,7 @@
 - (void)showDownloadManager;
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
+- (void)resetImagesDownloads;
 
 - (void)showImportManager;
 - (void)resetImports;

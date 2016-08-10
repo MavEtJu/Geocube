@@ -35,15 +35,12 @@
 - (void)downloadManager_setBGNumberBytesTotal:(NSInteger)bytes;
 - (void)downloadManager_setBGNumberBytesDownload:(NSInteger)bytes;
 
-- (void)downloadManager_setQueueSize:(NSInteger)size;
-
 @end
 
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 @property (nonatomic, retain) id<DownloadManagerDelegate> downloadsImportsDelegate;
 
-- (void)addToQueue:(NSString *)url outputFile:(NSString *)output;
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
@@ -67,6 +64,5 @@
 - (void)setBGNumberOfChunksDownload:(NSInteger)chunks;
 - (void)setBGNumberBytesTotal:(NSInteger)bytes;
 - (void)setBGNumberBytesDownload:(NSInteger)bytes;
-- (void)setQueueSize:(NSInteger)size;
 
 @end

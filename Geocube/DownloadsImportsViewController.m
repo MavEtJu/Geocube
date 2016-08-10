@@ -35,21 +35,25 @@
     GCLabel *labelBGDownloadingDescription;
     GCLabel *labelBGDownloadingURL;
     GCLabel *labelBGDownloadingNumbers;
-    GCLabel *labelBGPending;
-    GCLabel *labelBGPendingQueued;
+
+    GCLabel *labelImageDownloading;
+    GCLabel *labelImageDownloadingQueued;
+    GCLabel *labelImageDownloadingDownloaded;
 
     GCLabel *labelImport;
     GCLabel *labelImportDescription;
     GCLabel *labelImportAccount;
     GCLabel *labelImportProgress;
-    GCLabel *labelImportNewWaypoints;
-    GCLabel *labelImportTotalWaypoints;
-    GCLabel *labelImportNewLogs;
-    GCLabel *labelImportTotalLogs;
-    GCLabel *labelImportNewTrackables;
-    GCLabel *labelImportTotalTrackables;
-    GCLabel *labelImportTotalImages;
-    GCLabel *labelImportQueuedImages;
+    GCLabel *labelImportWaypoints;
+    GCLabel *labelImportLogs;
+    GCLabel *labelImportTrackables;
+
+    NSInteger valueImportTrackablesNew;
+    NSInteger valueImportTrackablesTotal;
+    NSInteger valueImportLogsNew;
+    NSInteger valueImportLogsTotal;
+    NSInteger valueImportWaypointsNew;
+    NSInteger valueImportWaypointsTotal;
 
     NSInteger valueDownloadingNumbersDownloaded;
     NSInteger valueDownloadingNumbersTotal;
@@ -118,56 +122,51 @@
     self.view = contentView;
 
     labelDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelDownloading.text = @"Downloading";
     [self.view addSubview:labelDownloading];
-    labelDownloadingDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelDownloadingDescription = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingDescription];
-    labelImportAccount = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelImportAccount = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportAccount];
-    labelDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelDownloadingURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingURL];
-    labelDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelDownloadingNumbers];
-    labelDownloadingChunks = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelDownloadingChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelDownloadingChunks];
+    labelDownloadingNumbers = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelDownloadingNumbers];
 
     labelBGDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBGDownloading.text = @"Background downloading";
     [self.view addSubview:labelBGDownloading];
-    labelBGDownloadingDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelBGDownloadingDescription = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelBGDownloadingDescription];
-    labelBGDownloadingURL = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelBGDownloadingURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelBGDownloadingURL];
-    labelBGDownloadingNumbers = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelBGDownloadingNumbers = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelBGDownloadingNumbers];
-    labelBGPending = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelBGPending];
-    labelBGPendingQueued = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelBGPendingQueued];
+
+    labelImageDownloading = [[GCLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImageDownloading];
+    labelImageDownloadingQueued = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImageDownloadingQueued];
+    labelImageDownloadingDownloaded = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImageDownloadingDownloaded];
 
     labelImport = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelImport.text = @"Importing";
     [self.view addSubview:labelImport];
-    labelImportDescription = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelImportDescription = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportDescription];
-    labelImportProgress = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelImportProgress = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     [self.view addSubview:labelImportProgress];
-    labelImportNewWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportNewWaypoints];
-    labelImportTotalWaypoints = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportTotalWaypoints];
-    labelImportNewLogs = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportNewLogs];
-    labelImportTotalLogs = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportTotalLogs];
-    labelImportNewTrackables = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportNewTrackables];
-    labelImportTotalTrackables = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportTotalTrackables];
-    labelImportQueuedImages = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportQueuedImages];
-    labelImportTotalImages = [[GCLabel alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:labelImportTotalImages];
+    labelImportWaypoints = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportWaypoints];
+    labelImportLogs = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportLogs];
+    labelImportTrackables = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:labelImportTrackables];
+
+    [self resetForegroundDownload];
+    [self resetBackgroundDownload];
+    [self resetImports];
+    [self resetImagesDownloads];
 
     [self calculateRects];
 }
@@ -189,43 +188,41 @@
 #define INDENT  10
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
-    NSInteger lh = myConfig.GCLabelFont.lineHeight;
     NSInteger y = MARGIN;
+    NSInteger lh = labelDownloading.font.lineHeight;
 
 #define LABEL_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, lh); \
-    y += lh;
+    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+    y += __s__.font.lineHeight;
 #define INDENT_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, lh); \
-    y += lh;
+    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+    y += __s__.font.lineHeight;
 
     LABEL_RESIZE(labelDownloading);
     INDENT_RESIZE(labelDownloadingDescription);
     INDENT_RESIZE(labelDownloadingURL);
-    INDENT_RESIZE(labelDownloadingNumbers);
     INDENT_RESIZE(labelDownloadingChunks);
+    INDENT_RESIZE(labelDownloadingNumbers);
     y += lh / 2;
 
     LABEL_RESIZE(labelBGDownloading);
     INDENT_RESIZE(labelBGDownloadingDescription);
     INDENT_RESIZE(labelBGDownloadingURL);
     INDENT_RESIZE(labelBGDownloadingNumbers);
-    LABEL_RESIZE(labelBGPending);
-    INDENT_RESIZE(labelBGPendingQueued);
+    y += lh / 2;
+
+    LABEL_RESIZE(labelImageDownloading);
+    INDENT_RESIZE(labelImageDownloadingQueued);
+    INDENT_RESIZE(labelImageDownloadingDownloaded);
     y += lh / 2;
 
     LABEL_RESIZE(labelImport);
     INDENT_RESIZE(labelImportDescription);
     INDENT_RESIZE(labelImportAccount);
     INDENT_RESIZE(labelImportProgress);
-    INDENT_RESIZE(labelImportNewWaypoints);
-    INDENT_RESIZE(labelImportTotalWaypoints);
-    INDENT_RESIZE(labelImportNewLogs);
-    INDENT_RESIZE(labelImportTotalLogs);
-    INDENT_RESIZE(labelImportNewTrackables);
-    INDENT_RESIZE(labelImportTotalTrackables);
-    INDENT_RESIZE(labelImportTotalImages);
-    INDENT_RESIZE(labelImportQueuedImages);
+    INDENT_RESIZE(labelImportWaypoints);
+    INDENT_RESIZE(labelImportLogs);
+    INDENT_RESIZE(labelImportTrackables);
 }
 
 - (void)importerDelegateUpdate
@@ -252,46 +249,55 @@
     }];
 }
 
-- (void)ImportManager_setNewWaypoints:(NSInteger)v
+- (void)ImportManager_setWaypoints
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewWaypoints.text = [NSString stringWithFormat:@"New waypoints: %ld", (long)v];
+        labelImportWaypoints.text = [NSString stringWithFormat:@"Total waypoints: %ld (new: %ld)", (long)valueImportWaypointsTotal, (long)valueImportWaypointsNew];
     }];
 }
-
 - (void)ImportManager_setTotalWaypoints:(NSInteger)v
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalWaypoints.text = [NSString stringWithFormat:@"Total waypoints: %ld", (long)v];
-    }];
+    valueImportWaypointsTotal = v;
+    [self ImportManager_setWaypoints];
+}
+- (void)ImportManager_setNewWaypoints:(NSInteger)v
+{
+    valueImportWaypointsNew = v;
+    [self ImportManager_setWaypoints];
 }
 
+- (void)ImportManager_setLogs
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportLogs.text = [NSString stringWithFormat:@"Total logs: %ld (new: %ld)", (long)valueImportLogsTotal, (long)valueImportLogsNew];
+    }];
+}
 - (void)ImportManager_setNewLogs:(NSInteger)v
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewLogs.text = [NSString stringWithFormat:@"New logs: %ld", (long)v];
-    }];
+    valueImportLogsNew = v;
+    [self ImportManager_setLogs];
 }
-
 - (void)ImportManager_setTotalLogs:(NSInteger)v
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalLogs.text = [NSString stringWithFormat:@"Total logs: %ld", (long)v];
-    }];
+    valueImportLogsTotal = v;
+    [self ImportManager_setLogs];
 }
 
+- (void)ImportManager_setTrackables
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImportTrackables.text = [NSString stringWithFormat:@"Total trackables: %ld (new: %ld)", (long)valueImportTrackablesTotal, (long)valueImportTrackablesNew];
+    }];
+}
 - (void)ImportManager_setNewTrackables:(NSInteger)v
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportNewTrackables.text = [NSString stringWithFormat:@"New trackables: %ld", (long)v];
-    }];
+    valueImportTrackablesNew = v;
+    [self ImportManager_setTrackables];
 }
-
 - (void)ImportManager_setTotalTrackables:(NSInteger)v
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalTrackables.text = [NSString stringWithFormat:@"Total trackables: %ld", (long)v];
-    }];
+    valueImportTrackablesTotal = v;
+    [self ImportManager_setTrackables];
 }
 
 - (void)ImportManager_setQueueSize:(NSInteger)v
@@ -301,24 +307,26 @@
     }];
 }
 
-- (void)ImportManager_setTotalImages:(NSInteger)v
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalImages.text = [NSString stringWithFormat:@"Total images: %ld", (long)v];
-    }];
-}
-
-- (void)ImportManager_setQueuedImages:(NSInteger)v
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportQueuedImages.text = [NSString stringWithFormat:@"Queued images: %ld", (long)v];
-    }];
-}
-
 - (void)ImportManager_setProgress:(NSInteger)v total:(NSInteger)t
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelImportProgress.text = [NSString stringWithFormat:@"Progress: %@", [MyTools nicePercentage:v total:t]];
+    }];
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+- (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImageDownloadingDownloaded.text = [NSString stringWithFormat:@"Total images downloaded: %ld", (long)v];
+    }];
+}
+
+- (void)imagesDownloadManager_setQueuedImages:(NSInteger)v
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImageDownloadingQueued.text = [NSString stringWithFormat:@"Images queued for downloading: %ld", (long)v];
     }];
 }
 
@@ -370,6 +378,9 @@
     if (valueDownloadingNumbersTotal == 0)
         output = [NSString stringWithFormat:@"Downloaded: %@",
                   [MyTools niceFileSize:valueDownloadingNumbersDownloaded]];
+    else if (valueDownloadingNumbersDownloaded == valueDownloadingNumbersTotal)
+        output = [NSString stringWithFormat:@"Downloaded: 100%% (%@)",
+                  [MyTools niceFileSize:valueDownloadingNumbersTotal]];
     else
         output = [NSString stringWithFormat:@"Downloaded: %@ (%@ of %@)",
                   [MyTools nicePercentage:valueDownloadingNumbersDownloaded total:valueDownloadingNumbersTotal],
@@ -411,38 +422,16 @@
 {
 }
 
-- (void)downloadManager_setQueueSize:(NSInteger)size
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelBGPendingQueued.text = [[NSNumber numberWithInteger:size] stringValue];
-    }];
-}
-
-//////////////////////////////////////////////////////////////////////////
-
-- (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportTotalImages.text = [NSString stringWithFormat:@"Images downloaded: %ld", v];
-    }];
-}
-
-- (void)imagesDownloadManager_setQueuedImages:(NSInteger)v
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImportQueuedImages.text = [NSString stringWithFormat:@"Images queued: %ld", v];
-    }];
-}
-
 //////////////////////////////////////////////////////////////////////////
 
 - (void)resetForegroundDownload
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelDownloadingDescription.text = @"(no description yet)";
-        labelDownloadingURL.text = @"(no URL yet)";
-        labelDownloadingNumbers.text = @"(no download yet)";
-        labelDownloadingChunks.text = @"(no data yet)";
+        labelDownloading.text = @"Download";
+        labelDownloadingDescription.text = @"(description)";
+        labelDownloadingURL.text = @"(URL)";
+        labelDownloadingNumbers.text = @"Dowloaded:";
+        labelDownloadingChunks.text = @"Chunks:";
         valueDownloadingNumbersDownloaded = 0;
         valueDownloadingNumbersTotal = 0;
         valueDownloadingChunksDownloaded = 0;
@@ -453,28 +442,32 @@
 - (void)resetBackgroundDownload
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelBGDownloadingDescription.text = @"(no description yet)";
-        labelBGDownloadingURL.text = @"(no URL yet)";
-        labelBGDownloadingNumbers.text = @"(no download yet)";
-        labelBGPendingQueued.text = @"(no data yet)";
+        labelBGDownloading.text = @"Background download (0 pending)";
+        labelBGDownloadingDescription.text = @"(description)";
+        labelBGDownloadingURL.text = @"(URL)";
+        labelBGDownloadingNumbers.text = @"Downloaded:";
     }];
 }
 
 - (void)resetImports
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelImport.text = @"Importng";
-        labelImportDescription.text = @"(no description yet)";
-        labelImportAccount.text = @"(no description yet)";
+        labelImport.text = @"Importing (0 pending)";
+        labelImportDescription.text = @"(description)";
+        labelImportAccount.text = @"(account)";
         labelImportProgress.text = @"Progress: 0%";
-        labelImportTotalWaypoints.text = @"Total waypoints: 0";
-        labelImportNewWaypoints.text = @"New waypoints: 0";
-        labelImportNewLogs.text = @"New logs: 0";
-        labelImportTotalLogs.text = @"Total logs: 0";
-        labelImportNewTrackables.text = @"New trackables: 0";
-        labelImportTotalTrackables.text = @"Total trackables: 0";
-        labelImportQueuedImages.text = @"Queued images: 0";
-        labelImportTotalImages.text = @"Total images: 0";
+        labelImportWaypoints.text = @"Total waypoints: 0 (new: 0)";
+        labelImportLogs.text = @"Total logs: 0 (new: 0)";
+        labelImportTrackables.text = @"Total trackables: 0 (new: 0)";
+    }];
+}
+
+- (void)resetImagesDownloads
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelImageDownloading.text = @"Images Download";
+        labelImageDownloadingQueued.text = @"Images queued for downloading: 0";
+        labelImageDownloadingDownloaded.text = @"Total images downloaded: 0";
     }];
 }
 
