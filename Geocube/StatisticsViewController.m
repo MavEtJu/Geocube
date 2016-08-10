@@ -240,6 +240,7 @@ enum {
             return;
 
         NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
+        [d removeAllObjects];
         count++;
 
         if (a.enabled == NO) {
