@@ -25,6 +25,8 @@
 
 @interface DownloadsImportsViewController ()
 {
+    UIScrollView *contentView;
+
     GCLabel *labelDownloading;
     GCLabel *labelDownloadingDescription;
     GCLabel *labelDownloadingURL;
@@ -117,7 +119,7 @@
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
+    contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
 
@@ -223,6 +225,8 @@
     INDENT_RESIZE(labelImportWaypoints);
     INDENT_RESIZE(labelImportLogs);
     INDENT_RESIZE(labelImportTrackables);
+
+    contentView.contentSize = CGSizeMake(width, y);
 }
 
 - (void)importerDelegateUpdate
