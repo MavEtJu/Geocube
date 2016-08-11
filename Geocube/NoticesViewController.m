@@ -125,7 +125,6 @@ enum {
         [cell setURL:n.url];
     [cell.noteLabel bold:(n.seen == NO)];
 
-    cell.userInteractionEnabled = YES;
     cell.notice = n;
 
     [cell viewWillTransitionToSize];

@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define __CLASS__NOTICESTABLEVIEWCELL__
 #import "Geocube-Prefix.pch"
 
 @interface NoticeTableViewCell ()
@@ -54,6 +55,8 @@
     noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
     noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:noteLabel];
+
+    self.userInteractionEnabled = YES;
 
     return self;
 }
