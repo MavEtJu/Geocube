@@ -35,10 +35,9 @@
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
-    UILabel *t = [[UILabel alloc] initWithFrame:(CGRectMake(10, y, width - 20, 0))];
+    GCLabel *t = [[GCLabel alloc] initWithFrame:(CGRectMake(10, y, width - 20, 0))];
     t.numberOfLines = 0;
     t.lineBreakMode = NSLineBreakByWordWrapping;
-    t.font = [UIFont systemFontOfSize:myConfig.GCLabelFont.pointSize];
     t.text = @"For further help:\n\n"
               "The website https://geocube.mavetju.org/ has a lot of documentation on the workings of Geocube.\n\n"
               "Follow me on Twitter @GeocubeCaching for announcements.\n\n"
