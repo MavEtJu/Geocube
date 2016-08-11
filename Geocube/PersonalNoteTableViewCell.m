@@ -48,10 +48,6 @@
     logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
     logLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [logLabel sizeToFit];
-
-    self.contentView.backgroundColor = currentTheme.tableViewCellBackgroundColor;
-
-    [self.contentView sizeToFit];
     [self.contentView addSubview:logLabel];
 
     [self changeTheme];
