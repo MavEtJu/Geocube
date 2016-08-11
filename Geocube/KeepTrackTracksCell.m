@@ -22,6 +22,10 @@
 #define __CLASS__KEEPTRACKTRACKSCELL__
 #import "Geocube-Prefix.pch"
 
+@interface KeepTrackTracksCell ()
+
+@end
+
 @implementation KeepTrackTracksCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

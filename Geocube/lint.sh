@@ -36,6 +36,20 @@ echo "Subclassing space-colon-space:"
 grep @interface *.h | grep -v "\w\s:\s\w"
 
 echo
+echo "Missing interface()"
+for i in $(grep '@class' Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
+	if [ -z "$(grep @interface\ $i\  *.h)" ]; then
+		echo "Missing @interface for $i in .h"
+	fi
+	if [ -z "$(grep @interface\ $i\  *.m)" ]; then
+		echo "Missing @interface for $i in .m"
+	fi
+	if [ -z "$(grep @implementation\ $i\$ *.m)" ]; then
+		echo "Missing @implementation for $i in .m"
+	fi
+done
+
+echo
 echo "No { after @interface:"
 grep @interface *.[mh] | grep \{
 

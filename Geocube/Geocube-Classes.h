@@ -66,10 +66,10 @@
 @class GCStringGPX;
 @class GCStringObject;
 @class GCTableViewCell;
+@class GCTableViewCellFieldValue;
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
 @class GCTableViewCellSubtitleRightImage;
-@class GCTableViewCellFieldValue;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
 @class GCTextblock;

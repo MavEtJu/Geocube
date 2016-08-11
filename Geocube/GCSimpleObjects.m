@@ -23,6 +23,8 @@
 
 /*****************************************/
 
+@interface GCStringObject ()
+@end
 @implementation GCStringObject
 {
     NSMutableString *sfn;
@@ -61,13 +63,19 @@
 
 /*****************************************/
 
-@implementation GCStringFilename
+@interface GCStringGPX ()
 @end
 @implementation GCStringGPX
+@end
+@interface GCStringFilename ()
+@end
+@implementation GCStringFilename
 @end
 
 /*****************************************/
 
+@interface GCDictionaryObject ()
+@end
 @implementation GCDictionaryObject
 {
     NSDictionary *d;
@@ -94,9 +102,15 @@
 
 /*****************************************/
 
+@interface GCDictionaryGCA ()
+@end
 @implementation GCDictionaryGCA
 @end
+@interface GCDictionaryLiveAPI ()
+@end
 @implementation GCDictionaryLiveAPI
+@end
+@interface GCDictionaryOKAPI ()
 @end
 @implementation GCDictionaryOKAPI
 @end

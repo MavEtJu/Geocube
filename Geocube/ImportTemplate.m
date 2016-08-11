@@ -21,7 +21,7 @@
 
 #import "Geocube-Prefix.pch"
 
-@interface ImportTemplate()
+@interface ImportTemplate ()
 
 @end
 
