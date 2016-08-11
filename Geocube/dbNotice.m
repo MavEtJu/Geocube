@@ -89,8 +89,8 @@
             TEXT_FETCH(2, n.sender);
             TEXT_FETCH(3, n.date);
             BOOL_FETCH(4, n.seen);
-            INT_FETCH (5, n.geocube_id);
-            TEXT_FETCH(6, n.url);
+            TEXT_FETCH(5, n.url);
+            INT_FETCH (6, n.geocube_id);
             [n finish];
         }
         DB_FINISH;
@@ -107,8 +107,8 @@
         SET_VAR_TEXT(2, self.date);
         SET_VAR_TEXT(3, self.sender);
         SET_VAR_TEXT(4, self.note);
-        SET_VAR_INT (5, self._id);
-        SET_VAR_TEXT(6, self.url);
+        SET_VAR_TEXT(5, self.url);
+        SET_VAR_INT (6, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
