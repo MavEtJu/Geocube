@@ -1272,6 +1272,8 @@
 		E857078B1CA1E68600467CE0 /* Notices */ = {
 			isa = PBXGroup;
 			children = (
+				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
+				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
 				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
 				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
 			);
@@ -1634,8 +1636,6 @@
 			children = (
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
-				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
-				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */,

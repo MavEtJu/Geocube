@@ -24,4 +24,9 @@
 @property (nonatomic, retain) NSString *trackName;
 @property (nonatomic) NSInteger dateStart;
 
+#if !defined(__CLASS__KEEPTRACKTRACKSCELL__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
+
 @end
