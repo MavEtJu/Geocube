@@ -132,7 +132,7 @@
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellSubtitleRightImage.h"
 #import "GCTableViewCellWithSubtitle.h"
-#import "GCTableViewCellTwoTextfields.h"
+#import "GCTableViewCellFieldValue.h"
 #import "GCTableViewCellKeyValue.h"
 #import "GCTextblock.h"
 #import "GCView.h"

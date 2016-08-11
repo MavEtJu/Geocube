@@ -51,7 +51,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDumpDatabase label:@"Dump database"];
 
-    [self.tableView registerClass:[GCTableViewCellTwoTextfields class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellFieldValue class] forCellReuseIdentifier:THISCELL];
     [self reloadNumbers];
 
     return self;
@@ -178,7 +178,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellTwoTextfields *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellFieldValue *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     switch (indexPath.section) {
         case SECTION_DBCOUNT: {

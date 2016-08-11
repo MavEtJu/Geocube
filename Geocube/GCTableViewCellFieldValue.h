@@ -19,9 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCellTwoTextfields : GCTableViewCell
+@interface GCTableViewCellFieldValue : GCTableViewCell
 
 @property (nonatomic, retain) GCLabel *fieldLabel;
 @property (nonatomic, retain) GCLabel *valueLabel;
+
+#if !defined(__CLASS__GCTABLEVIEWCELLFIELDVALUE__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
 
 @end

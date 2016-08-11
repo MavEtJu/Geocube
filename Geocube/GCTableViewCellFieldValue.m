@@ -19,13 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define __CLASS__GCTABLEVIEWCELLFIELDVALUE__
 #import "Geocube-Prefix.pch"
 
-@interface GCTableViewCellTwoTextfields ()
+@interface GCTableViewCellFieldValue ()
 
 @end
 
-@implementation GCTableViewCellTwoTextfields
+@implementation GCTableViewCellFieldValue
 
 @synthesize fieldLabel, valueLabel;
 

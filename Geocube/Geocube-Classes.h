@@ -69,7 +69,7 @@
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
 @class GCTableViewCellSubtitleRightImage;
-@class GCTableViewCellTwoTextfields;
+@class GCTableViewCellFieldValue;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
 @class GCTextblock;
