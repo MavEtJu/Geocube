@@ -193,7 +193,7 @@
         if (dropPin == nil)
             dropPin = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"waypoints"];
         dropPin.image = [self waypointImage:a.waypoint];
-        dropPin.centerOffset = CGPointMake(5, -17);
+        dropPin.centerOffset = CGPointMake(7, -17);
         dropPin.annotation = annotation;
 
         return dropPin;
