@@ -795,6 +795,11 @@ enum {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
 
+    [downloadsImportsViewController showImportManager];
+    [downloadManager resetForegroundDownload];
+    [downloadsImportsViewController resetImports];
+    [downloadManager setDescription:[NSString stringWithFormat:@"Load waypoints"]];
+
     [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
 }
 
