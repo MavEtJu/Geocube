@@ -96,6 +96,7 @@
 @class KeepTrackHeightScroller;
 @class KeepTrackTrack;
 @class KeepTrackTracks;
+@class KeepTrackTracksCell;
 @class KeyboardCoordinateView;
 @class ListDNFViewController;
 @class ListFoundViewController;

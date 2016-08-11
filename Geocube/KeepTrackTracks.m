@@ -44,7 +44,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddATrack label:@"Start new track"];
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[KeepTrackTracksCell class] forCellReuseIdentifier:THISCELL];
 
     return self;
 }
@@ -82,13 +82,12 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    KeepTrackTracksCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = t.name;
-    cell.detailTextLabel.text = [MyTools dateTimeString_YYYY_MM_DD:t.dateStart];
-    cell.userInteractionEnabled = YES;
+    cell.trackName = t.name;
+    cell.dateStart = t.dateStart;
 
     return cell;
 }
