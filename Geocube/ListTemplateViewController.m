@@ -94,7 +94,6 @@ NEEDS_OVERLOADING(clearFlags)
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-    cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     cell.description.text = wp.wpt_urlname;
