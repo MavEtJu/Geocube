@@ -263,6 +263,7 @@
                        ([prefix isEqualToString:@"VI"] == YES && [nameprefix isEqualToString:@"VI"] == YES) || // Geocaching.su virtual
                        ([prefix isEqualToString:@"TR"] == YES && [nameprefix isEqualToString:@"TR"] == YES) || // Geocaching.su traditional
                        ([prefix isEqualToString:@"MS"] == YES && [nameprefix isEqualToString:@"MS"] == YES) || // Geocaching.su multistep
+                       ([prefix isEqualToString:@"TC"] == YES && [nameprefix isEqualToString:@"TC"] == YES) || // Terracaching
                        ([prefix isEqualToString:@"OB"] == YES && [nameprefix isEqualToString:@"OB"] == YES) || // OpenCaching NL
                        ([prefix isEqualToString:@"OP"] == YES && [nameprefix isEqualToString:@"OP"] == YES) || // OpenCaching PL
                        ([prefix isEqualToString:@"OK"] == YES && [nameprefix isEqualToString:@"OK"] == YES) || // OpenCaching UK
