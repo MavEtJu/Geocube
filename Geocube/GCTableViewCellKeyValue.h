@@ -24,4 +24,9 @@
 @property (nonatomic, retain) GCLabel *keyLabel;
 @property (nonatomic, retain) GCLabel *valueLabel;
 
+#if !defined(__CLASS__GCTABLEVIEWCELLKEYVALUE__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
+
 @end

@@ -20,6 +20,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define __CLASS__GCTABLEVIEWCELLKEYVALUE__
 #import "Geocube-Prefix.pch"
 
 @interface GCTableViewCellKeyValue ()

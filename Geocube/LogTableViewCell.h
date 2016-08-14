@@ -27,6 +27,11 @@
 @property (nonatomic, retain) GCTextblock *logLabel;
 @property (nonatomic, retain) dbLog *log;
 
+#if !defined(__CLASS__LOGTABLEVIEWCELL__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
+
 - (void)setLogString:(NSString *)logString;
 
 @end

@@ -25,6 +25,11 @@
 @property (nonatomic, retain) GCSmallLabel *nameLabel;
 @property (nonatomic, retain) dbPersonalNote *personalNote;
 
+#if !defined(__CLASS__PERSONALNOTETABLEVIEWCELL__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
+
 - (void)setLogString:(NSString *)logString;
 
 @end

@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define __CLASS__LOGTABLEVIEWCELL__
 #import "Geocube-Prefix.pch"
 
 @interface LogTableViewCell ()

@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define __CLASS__WAYPOINTTABLEVIEWCELL__
 #import "Geocube-Prefix.pch"
 
 @interface WaypointTableViewCell ()
@@ -57,6 +58,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+
+    self.accessoryType = UITableViewCellAccessoryNone;
 
     imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
     imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];

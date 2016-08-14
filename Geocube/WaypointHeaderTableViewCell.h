@@ -21,12 +21,17 @@
 
 @interface WaypointHeaderTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain)UIImageView *icon;
-@property (nonatomic, retain)UIImageView *size;
-@property (nonatomic, retain)GCLabel *lat;
-@property (nonatomic, retain)GCLabel *lon;
-@property (nonatomic, retain)GCLabel *beardis;
-@property (nonatomic, retain)GCLabel *favourites;
+@property (nonatomic, retain) UIImageView *icon;
+@property (nonatomic, retain) UIImageView *size;
+@property (nonatomic, retain) GCLabel *lat;
+@property (nonatomic, retain) GCLabel *lon;
+@property (nonatomic, retain) GCLabel *beardis;
+@property (nonatomic, retain) GCLabel *favourites;
+
+#if !defined(__CLASS__WAYPOINTHEADERTABLEVIEWCELL__)
+@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
+@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
+#endif
 
 + (NSInteger)cellHeight;
 - (NSInteger)cellHeight;
