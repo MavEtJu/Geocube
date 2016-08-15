@@ -167,6 +167,7 @@
     wp.gs_long_desc = [MyTools HTMLUnescape:wp.gs_long_desc];
     wp.gs_long_desc_html = YES;
     DICT_NSSTRING_KEY(dict, wp.gs_owner_str, @"owner");
+    [dbName makeNameExist:wp.gs_owner_str code:nil account:account];
     wp.gs_owner = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_container_str, @"container_text");
     wp.gs_container = nil;

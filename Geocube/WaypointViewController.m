@@ -233,8 +233,8 @@ enum {
 
     l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if (waypoint.gs_placed_by != nil && [waypoint.gs_placed_by isEqualToString:@""] == NO)
-        [s appendFormat:@"by %@", waypoint.gs_placed_by];
+    if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
+        [s appendFormat:@"by %@", waypoint.gs_owner_str];
     if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
         [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
     l.text = s;
