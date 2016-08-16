@@ -71,9 +71,6 @@ enum {
     menuRemoveTarget,
     menuShowBoundaries,
     menuMax,
-    menuFollowMe,
-    menuShowBoth,
-    menuShowTarget,
 };
 
 - (instancetype)init
@@ -888,16 +885,6 @@ enum {
             return;
         case menuTerrain: /* Terrain view */
             [self menuMapType:MAPTYPE_TERRAIN];
-            return;
-
-        case menuShowTarget: /* Show cache */
-            [self menuShowWhom:SHOW_SEETARGET];
-            return;
-        case menuFollowMe: /* Show Me */
-            [self menuShowWhom:SHOW_FOLLOWME];
-            return;
-        case menuShowBoth: /* Show Both */
-            [self menuShowWhom:SHOW_SHOWBOTH];
             return;
 
         case menuDirections:
