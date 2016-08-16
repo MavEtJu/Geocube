@@ -84,6 +84,7 @@
 
 - (CLLocationCoordinate2D)currentCenter;
 - (double)currentZoom;
+- (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight;
 
 // User related actions
 - (void)openWaypointView:(NSString *)name;

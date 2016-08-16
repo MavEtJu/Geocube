@@ -275,6 +275,16 @@
     return zoom;
 }
 
+- (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
+{
+    GMSVisibleRegion visibleRegion = mapView.projection.visibleRegion;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:visibleRegion];
+
+    // we've got what we want, but here are NE and SW points
+    *topRight = bounds.northEast;
+    *bottomLeft = bounds.southWest;
+}
+
 - (void)updateMyBearing:(CLLocationDirection)bearing
 {
     [mapView animateToBearing:bearing];

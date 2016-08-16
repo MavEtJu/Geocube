@@ -365,6 +365,13 @@
     return [mapView centerCoordinate];
 }
 
+- (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
+{
+    MKCoordinateRegion cr = mapView.region;
+    *bottomLeft = CLLocationCoordinate2DMake(cr.center.latitude - cr.span.latitudeDelta, cr.center.longitude - cr.span.longitudeDelta);
+    *topRight = CLLocationCoordinate2DMake(cr.center.latitude + cr.span.latitudeDelta, cr.center.longitude + cr.span.longitudeDelta);
+}
+
 - (void)updateMyBearing:(CLLocationDirection)bearing
 {
 //    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];

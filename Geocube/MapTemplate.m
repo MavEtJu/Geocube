@@ -65,6 +65,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewSatellite)
 NEEDS_OVERLOADING_BOOL(mapHasViewHybrid)
 NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
 NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
+NEEDS_OVERLOADING(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight)
 
 - (instancetype)init:(MapViewController *)mvc
 {

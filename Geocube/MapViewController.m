@@ -70,6 +70,7 @@ enum {
     menuUseGPS,
     menuRemoveTarget,
     menuShowBoundaries,
+    menuExportVisible,
     menuMax,
 };
 
@@ -107,6 +108,7 @@ enum {
     [lmi addItem:menuRemoveTarget label:@"Remove Target"];
     [lmi addItem:menuRecenter label:@"Recenter"];
     [lmi addItem:menuUseGPS label:@"Use GPS"];
+    [lmi addItem:menuExportVisible label:@"Export Visible"];
 
     showBoundaries = NO;
     [lmi addItem:menuShowBoundaries label:@"Show Boundaries"];
@@ -162,8 +164,10 @@ enum {
 
     showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     showWhom = (showType == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
-    if (showType == SHOW_ONEWAYPOINT)
+    if (showType == SHOW_ONEWAYPOINT) {
         [lmi disableItem:menuLoadWaypoints];
+        [lmi disableItem:menuExportVisible];
+    }
 
     waypointsArray = nil;
     waypointCount = 0;
@@ -871,6 +875,26 @@ enum {
     [waypointManager setCurrentWaypoint:nil];
 }
 
+- (void)menuExportVisible
+{
+    CLLocationCoordinate2D bottomLeft, topRight;
+    [map currentRectangle:&bottomLeft topRight:&topRight];
+    NSLog(@"bottomLeft: %@", [Coordinates NiceCoordinates:bottomLeft]);
+    NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
+
+    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
+    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (wp.coordinates.latitude > bottomLeft.latitude &&
+            wp.coordinates.latitude < topRight.latitude &&
+            wp.coordinates.longitude > bottomLeft.longitude &&
+            wp.coordinates.longitude < topRight.longitude) {
+            [wps addObject:wp];
+        }
+    }];
+    if ([wps count] > 0)
+        [ExportGPX exports:wps];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
@@ -919,6 +943,9 @@ enum {
             return;
         case menuRemoveTarget:
             [self menuRemoveTarget];
+            return;
+        case menuExportVisible:
+            [self menuExportVisible];
             return;
     }
 
