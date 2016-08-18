@@ -119,6 +119,7 @@ enum {
 + (NSArray *)dbAllIgnored;
 + (NSArray *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
+
 + (void)dbUpdateLogStatus;
 - (void)dbUpdateLogStatus;
 - (void)dbUpdateHighlight;
@@ -126,6 +127,8 @@ enum {
 - (void)dbUpdateMarkedFound;
 - (void)dbUpdateInProgress;
 - (void)dbUpdateMarkedDNF;
+
+- (NSString *)makeLocaleStateCountry;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;

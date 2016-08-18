@@ -673,6 +673,27 @@
     }
 }
 
+- (NSString *)makeLocaleStateCountry
+{
+    NSMutableString *s = [NSMutableString stringWithFormat:@""];
+    if (gca_locale != nil)
+        [s appendFormat:@"%@", gca_locale.name];
+    if (gs_state != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        if (myConfig.showStateAsAbbrevationIfLocaleExists == YES && gca_locale != nil)
+            [s appendFormat:@"%@", gs_state.code];
+        else
+            [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? gs_state.code : gs_state.name];
+    }
+    if (gs_country != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? gs_country.code : gs_country.name];
+    }
+    return s;
+}
+
 + (NSString *)makeName:(NSString *)suffix
 {
     for (char c = 'A'; c <= 'Z'; c++) {
