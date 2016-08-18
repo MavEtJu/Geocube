@@ -26,6 +26,7 @@
     dbWaypoint *waypoint;
 
     WaypointHeaderTableViewCell *headerCell;
+    NSInteger headerCellHeight;
 }
 
 @end
@@ -102,6 +103,7 @@ enum {
 {
     waypoint = _wp;
     headerCell = nil;
+    headerCellHeight = 45;
 
     [self.tableView reloadData];
 }
@@ -221,6 +223,7 @@ enum {
         return [super tableView:tableView viewForHeaderInSection:section];
 
     NSInteger width = tableView.bounds.size.width;
+    NSInteger y = 2;
 
     GCView *headerView = [[GCView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
     GCLabel *l;
@@ -229,14 +232,16 @@ enum {
     if (waypoint.flag_highlight == YES)
        backgroundColor = [UIColor yellowColor];
 
-    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 0, width, 15)];
+    l = [[GCLabel alloc] initWithFrame:CGRectZero];
     l.text = waypoint.wpt_urlname;
     l.font = [UIFont boldSystemFontOfSize:14];
     l.textAlignment = NSTextAlignmentCenter;
     l.backgroundColor = backgroundColor;
+    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
     [headerView addSubview:l];
+    y += l.font.lineHeight;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 15, width, 10)];
+    l = [[GCLabel alloc] initWithFrame:CGRectZero];
     NSMutableString *s = [NSMutableString stringWithString:@""];
     if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", waypoint.gs_owner_str];
@@ -246,14 +251,21 @@ enum {
     l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
     l.backgroundColor = backgroundColor;
+    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
     [headerView addSubview:l];
+    y += l.font.lineHeight;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectMake (0, 25, width, 12)];
+    l = [[GCLabel alloc] initWithFrame:CGRectZero];
     l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
     l.textAlignment = NSTextAlignmentCenter;
     l.backgroundColor = backgroundColor;
+    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
     [headerView addSubview:l];
+    y += l.font.lineHeight;
+
+    y += 2;
+    headerCellHeight = y;
 
     return headerView;
 }
@@ -261,7 +273,7 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == WAYPOINT_HEADER)
-        return 37;
+        return headerCellHeight;
     return [super tableView:tableView heightForHeaderInSection:section];
 }
 
