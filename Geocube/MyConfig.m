@@ -40,7 +40,7 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
-@synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation;
+@synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
 @synthesize waypointListSortBy;
 @synthesize refreshWaypointAfterLog;
 @synthesize gpsAdjustmentEnable, gpsAdjustmentLatitude, gpsAdjustmentLongitude;
@@ -134,6 +134,7 @@
     CHECK(@"compass_alwaysinportraitmode", @"1");
     CHECK(@"showasabbrevation_country", @"1");
     CHECK(@"showasabbrevation_state", @"0");
+    CHECK(@"showasabbrevation_statewithlocale", @"1");
 
     CHECK(@"waypointlist_sortby", @"0");
 
@@ -196,6 +197,7 @@
     compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
     showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
+    showStateAsAbbrevationIfLocaleExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
     refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
     gpsAdjustmentEnable = [[dbConfig dbGetByKey:@"gpsadjustment_enable"].value boolValue];
@@ -515,6 +517,11 @@
 {
     showStateAsAbbrevation = value;
     [self BOOLUpdate:@"showasabbrevation_state" value:value];
+}
+- (void)showStateAsAbbrevationIfLocaleExistsUpdate:(BOOL)value
+{
+    showStateAsAbbrevationIfLocaleExists = value;
+    [self BOOLUpdate:@"showasabbrevation_statewithlocale" value:value];
 }
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value
 {

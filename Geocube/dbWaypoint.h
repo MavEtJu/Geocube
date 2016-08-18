@@ -93,6 +93,10 @@ enum {
 @property (nonatomic) NSInteger gs_date_found;
 @property (nonatomic) NSInteger date_lastlog_epoch;
 
+@property (nonatomic) NSId gca_locale_id;
+@property (nonatomic) dbLocale *gca_locale;
+@property (nonatomic) NSString *gca_locale_str;
+
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;

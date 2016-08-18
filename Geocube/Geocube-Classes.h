@@ -177,6 +177,7 @@
 @class dbFilter;
 @class dbGroup;
 @class dbImage;
+@class dbLocale;
 @class dbLog;
 @class dbLogString;
 @class dbName;

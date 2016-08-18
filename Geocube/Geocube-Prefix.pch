@@ -74,6 +74,7 @@
 #import "dbFilter.h"
 #import "dbGroup.h"
 #import "dbImage.h"
+#import "dbLocale.h"
 #import "dbLog.h"
 #import "dbLogString.h"
 #import "dbName.h"

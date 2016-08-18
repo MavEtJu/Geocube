@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSMutableArray *Containers;
 @property (nonatomic, retain) NSMutableArray *Countries;
 @property (nonatomic, retain) NSMutableArray *States;
+@property (nonatomic, retain) NSMutableArray *Locales;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
@@ -90,6 +91,10 @@
 - (dbState *)State_get_byNameCode:(NSString *)name;
 - (dbState *)State_get:(NSId)_id;
 - (void)State_add:(dbState *)state;
+
+- (dbLocale *)Locale_get_byName:(NSString *)name;
+- (dbLocale *)Locale_get:(NSId)_id;
+- (void)Locale_add:(dbLocale *)state;
 
 - (void)AccountsReload;
 - (dbAccount *)Account_get:(NSId)_id;

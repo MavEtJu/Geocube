@@ -300,11 +300,19 @@ enum {
     }
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (wp.gs_state != nil)
-        [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
+    if (wp.gca_locale != nil)
+        [s appendFormat:@"%@", wp.gca_locale.name];
+    if (wp.gs_state != nil) {
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
+        if (myConfig.showStateAsAbbrevationIfLocaleExists == YES && wp.gca_locale != nil)
+            [s appendFormat:@"%@", wp.gs_state.code];
+        else
+            [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
+    }
     if (wp.gs_country != nil) {
-         if ([s isEqualToString:@""] == NO)
-             [s appendFormat:@", "];
+        if ([s isEqualToString:@""] == NO)
+            [s appendFormat:@", "];
         [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
     }
     cell.stateCountry.text = s;

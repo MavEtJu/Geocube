@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
-insert into config(key, value) values("version", "33");
+insert into config(key, value) values("version", "34");
 
 create table filters (
     id integer primary key,
@@ -83,6 +83,7 @@ create table waypoints (
     gs_archived bool,
     gs_available bool,
     gs_country_id integer,		-- pointer to countries(id)
+    gca_locale_id integer,		-- pointer to locales(id)
     gs_state_id integer,		-- pointer to states(id)
     gs_rating_difficulty float,
     gs_rating_terrain float,
@@ -116,6 +117,13 @@ create table countries (
 );
 create index countries_idx_id on countries(id);
 create index countries_idx_name on countries(name);
+
+create table locales (
+    id integer primary key,
+    name text
+);
+create index locales_idx_id on locales(id);
+create index locales_idx_name on locales(name);
 
 create table states (
     id integer primary key,

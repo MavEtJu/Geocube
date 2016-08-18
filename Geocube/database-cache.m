@@ -35,7 +35,7 @@
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types;
+@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types, Locales;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
 @synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
 
@@ -60,6 +60,7 @@
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
     Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
     States = [NSMutableArray arrayWithArray:[dbState dbAll]];
+    Locales = [NSMutableArray arrayWithArray:[dbLocale dbAll]];
 
     Group_AllWaypoints = nil;
     Group_AllWaypoints_Found = nil;
@@ -431,6 +432,35 @@
 - (void)State_add:(dbState *)state
 {
     [States addObject:state];
+}
+
+- (dbLocale *)Locale_get_byName:(NSString *)name
+{
+    __block dbLocale *_l = nil;
+    [Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
+        if ([l.name isEqualToString:name] == YES) {
+            _l = l;
+            *stop = YES;
+        }
+    }];
+    return _l;
+}
+
+- (dbLocale *)Locale_get:(NSId)_id
+{
+    __block dbLocale *_l = nil;
+    [Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
+        if (l._id == _id) {
+            _l = l;
+            *stop = YES;
+        }
+    }];
+    return _l;
+}
+
+- (void)Locale_add:(dbLocale *)l
+{
+    [Locales addObject:l];
 }
 
 - (void)AccountsReload

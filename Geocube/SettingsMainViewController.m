@@ -66,6 +66,7 @@
     UISwitch *markasFoundDNFClearsTarget;
     UISwitch *showCountryAsAbbrevation;
     UISwitch *showStateAsAbbrevation;
+    UISwitch *showStateAsAbbrevationIfLocaleExists;
     UISwitch *refreshWaypointAfterLog;
 
     UISwitch *downloadImagesWaypoints;
@@ -323,6 +324,7 @@ enum sections {
     SECTION_WAYPOINTS_SORTBY = 0,
     SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION,
     SECTION_WAYPOINTS_SHOWSTATEASABBREVATION,
+    SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE,
     SECTION_WAYPOINTS_REFRESHAFTERLOG,
     SECTION_WAYPOINTS_MAX,
 
@@ -889,6 +891,18 @@ enum sections {
                     showStateAsAbbrevation.on = myConfig.showStateAsAbbrevation;
                     [showStateAsAbbrevation addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showStateAsAbbrevation;
+
+                    return cell;
+                }
+
+                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Show state as abbrevation if locale exist";
+
+                    showStateAsAbbrevationIfLocaleExists = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showStateAsAbbrevationIfLocaleExists.on = myConfig.showStateAsAbbrevationIfLocaleExists;
+                    [showStateAsAbbrevationIfLocaleExists addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = showStateAsAbbrevationIfLocaleExists;
 
                     return cell;
                 }
@@ -1696,6 +1710,12 @@ enum sections {
 - (void)updateShowStateAsAbbrevation:(UISwitch *)b
 {
     [myConfig showStateAsAbbrevationUpdate:b.on];
+    [self.tableView reloadData];
+}
+
+- (void)updateShowStateAsAbbrevationWithLocale:(UISwitch *)b
+{
+    [myConfig showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
     [self.tableView reloadData];
 }
 

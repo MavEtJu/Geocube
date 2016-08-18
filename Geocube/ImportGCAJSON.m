@@ -147,6 +147,9 @@
     wp.wpt_type = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"state");
     wp.gs_state = nil;
+    DICT_NSSTRING_KEY(dict, wp.gca_locale_str, @"locale");
+    [dbLocale makeNameExist:wp.gca_locale_str];
+    wp.gca_locale = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_placed_by, @"placedby");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"short_description");
     wp.gs_short_desc = [MyTools HTMLUnescape:wp.gs_short_desc];

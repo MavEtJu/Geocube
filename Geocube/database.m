@@ -444,6 +444,17 @@
     @"update types set has_boundary = 0",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 34
+    a = @[
+    @"alter table waypoints add column gca_locale_id integer",
+    @"update waypoints set gca_locale_id = 0",
+    @"create table locales(id integer primary key, name text)",
+    @"create index locales_idx_id on locales(id)",
+    @"create index locales_idx_name on locales(name)",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

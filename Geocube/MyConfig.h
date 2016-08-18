@@ -89,6 +89,7 @@
 @property (nonatomic, readonly) BOOL compassAlwaysInPortraitMode;
 @property (nonatomic, readonly) BOOL showCountryAsAbbrevation;
 @property (nonatomic, readonly) BOOL showStateAsAbbrevation;
+@property (nonatomic, readonly) BOOL showStateAsAbbrevationIfLocaleExists;
 
 @property (nonatomic, readonly) NSInteger waypointListSortBy;
 @property (nonatomic, readonly) BOOL refreshWaypointAfterLog;
@@ -151,6 +152,7 @@
 - (void)orientationsAllowedUpdate:(NSInteger)value;
 - (void)markasFoundDNFClearsTargetUpdate:(BOOL)value;
 - (void)compassAlwaysInPortraitModeUpdate:(BOOL)value;
+- (void)showStateAsAbbrevationIfLocaleExistsUpdate:(BOOL)value;
 - (void)showStateAsAbbrevationUpdate:(BOOL)value;
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value;
 - (void)waypointListSortByUpdate:(NSInteger)value;

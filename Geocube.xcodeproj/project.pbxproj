@@ -405,6 +405,7 @@
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
 		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; };
 		E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */; };
+		E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1054,6 +1055,8 @@
 		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E8F7FF101D5C8B7800AC7EE6 /* KeepTrackTracksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTracksCell.h; sourceTree = "<group>"; };
 		E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracksCell.m; sourceTree = "<group>"; };
+		E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLocale.h; sourceTree = "<group>"; };
+		E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLocale.m; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -2131,6 +2134,8 @@
 				E88FD8F21B4160A700D0CCE7 /* dbGroup.m */,
 				E8A7FAA31B78A678003F4132 /* dbImage.h */,
 				E8A7FAA41B78A678003F4132 /* dbImage.m */,
+				E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */,
+				E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E80250E81D17CADA00F05772 /* dbLogString.h */,
@@ -2707,6 +2712,7 @@
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
+				E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
