@@ -24,6 +24,8 @@
 @interface WaypointViewController ()
 {
     dbWaypoint *waypoint;
+
+    WaypointHeaderTableViewCell *headerCell;
 }
 
 @end
@@ -91,12 +93,15 @@ enum {
 
     hasCloseButton = canBeClosed;
 
+    headerCell = nil;
+
     return self;
 }
 
 - (void)showWaypoint:(dbWaypoint *)_wp
 {
     waypoint = _wp;
+    headerCell = nil;
 
     [self.tableView reloadData];
 }
@@ -264,27 +269,30 @@ enum {
 {
     switch (indexPath.section) {
         case WAYPOINT_HEADER: {
-            WaypointHeaderTableViewCell *cell = [[WaypointHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            if (headerCell == nil)
+                headerCell = [[WaypointHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
+
+            headerCell.accessoryType = UITableViewCellAccessoryNone;
             Coordinates *c = [[Coordinates alloc] init:waypoint.wpt_lat_float lon:waypoint.wpt_lon_float];
-            cell.lat.text = [c lat_degreesDecimalMinutes];
-            cell.lon.text = [c lon_degreesDecimalMinutes];
-            [cell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
+            headerCell.lat.text = [c lat_degreesDecimalMinutes];
+            headerCell.lon.text = [c lon_degreesDecimalMinutes];
+            [headerCell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
 
             NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates];
-            cell.beardis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                                 (long)[Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates],
-                                 [Coordinates bearing2compass:bearing],
-                                 [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
+            headerCell.beardis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
+                                       (long)[Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates],
+                                       [Coordinates bearing2compass:bearing],
+                                       [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
+            headerCell.location.text = [waypoint makeLocaleStateCountry];
 
-            cell.userInteractionEnabled = NO;
+            headerCell.userInteractionEnabled = NO;
             if (waypoint.gs_container != nil)
-                cell.size.image = [imageLibrary get:waypoint.gs_container.icon];
+                headerCell.size.image = [imageLibrary get:waypoint.gs_container.icon];
             else
-                cell.size.image = nil;
-            cell.icon.image = [imageLibrary getType:waypoint];
+                headerCell.size.image = nil;
+            headerCell.icon.image = [imageLibrary getType:waypoint];
 
-            return cell;
+            return headerCell;
         }
 
         case WAYPOINT_DATA: {
@@ -540,7 +548,7 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == WAYPOINT_HEADER)
-        return [WaypointTableViewCell cellHeight];
+        return [headerCell cellHeight];
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 

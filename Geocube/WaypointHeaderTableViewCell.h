@@ -27,13 +27,13 @@
 @property (nonatomic, retain) GCLabel *lon;
 @property (nonatomic, retain) GCLabel *beardis;
 @property (nonatomic, retain) GCLabel *favourites;
+@property (nonatomic, retain) GCLabel *location;
 
 #if !defined(__CLASS__WAYPOINTHEADERTABLEVIEWCELL__)
 @property (nonatomic) UILabel *textLabel __attribute__((unavailable));
 @property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
 #endif
 
-+ (NSInteger)cellHeight;
 - (NSInteger)cellHeight;
 - (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
 

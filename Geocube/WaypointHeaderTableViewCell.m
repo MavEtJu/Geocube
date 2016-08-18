@@ -30,13 +30,14 @@
     UIImageView *ratingT[5];
     GCLabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
+    UIFont *font10;
 }
 
 @end
 
 @implementation WaypointHeaderTableViewCell
 
-@synthesize icon, lat, lon, beardis, size, favourites;
+@synthesize icon, lat, lon, beardis, size, favourites, location;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -44,6 +45,7 @@
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
+    font10 = [UIFont systemFontOfSize:10.0];
     NSInteger height = [self cellHeight];
 
     imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
@@ -62,26 +64,29 @@
      | BearDis          |         |  Favourites
      +------------------+---------+
      */
-#define BORDER 1
+#define BORDER_SIDE 5
+#define BORDER_TOP 5
 #define ICON_WIDTH 30
 #define ICON_HEIGHT 30
 #define FAVOURITES_WIDTH 20
 #define FAVOURITES_HEIGHT 30
 #define STAR_WIDTH 19
 #define STAR_HEIGHT 18
-#define LAT_HEIGHT 10
-#define LON_HEIGHT 10
-#define BEARDIS_HEIGHT 10
+#define LAT_HEIGHT font10.lineHeight
+#define LON_HEIGHT font10.lineHeight
+#define BEARDIS_HEIGHT font10.lineHeight
+#define LOCATION_HEIGHT font10.lineHeight
 
-#define N 5
-    CGRect rectIcon = CGRectMake(BORDER + N, BORDER, ICON_WIDTH - N, ICON_HEIGHT);
-    CGRect rectFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH - N, BORDER, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
-    CGRect rectSize = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - STAR_HEIGHT - N, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER, STAR_HEIGHT);
-    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER - 5 * STAR_WIDTH, BORDER + FAVOURITES_HEIGHT + STAR_HEIGHT - N, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectLat = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER + N, height - BORDER - LON_HEIGHT - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, LON_HEIGHT);
-    CGRect rectBearDis = CGRectMake(BORDER + N, height - BORDER - BEARDIS_HEIGHT + N, width - 2 * BORDER - 5 * STAR_WIDTH - N - 10, BEARDIS_HEIGHT);
+    CGRect rectIcon = CGRectMake(BORDER_SIDE, BORDER_TOP, ICON_WIDTH, ICON_HEIGHT);
+    CGRect rectFavourites = CGRectMake(width - 2 * BORDER_SIDE - FAVOURITES_WIDTH, BORDER_TOP, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    CGRect rectSize = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER_SIDE, STAR_HEIGHT);
+    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+
+    CGRect rectLat = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LAT_HEIGHT);
+    CGRect rectLon = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LON_HEIGHT);
+    CGRect rectBearDis = CGRectMake(BORDER_SIDE, height - BORDER_TOP - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, BEARDIS_HEIGHT);
+    CGRect rectLocation = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LOCATION_HEIGHT);
 
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
@@ -137,7 +142,7 @@
     r = rectRatingsT;
     r.origin.x -= 10;
     labelRatingT = [[GCLabel alloc] initWithFrame:r];
-    labelRatingT.font = [UIFont systemFontOfSize:10.0];
+    labelRatingT.font = font10;
     labelRatingT.text = @"T";
     [self.contentView addSubview:labelRatingT];
 
@@ -152,18 +157,23 @@
 
     // Lon
     lon = [[GCLabel alloc] initWithFrame:rectLon];
-    lon.font = [UIFont systemFontOfSize:10.0];
+    lon.font = font10;
     [self.contentView addSubview:lon];
 
     // Lat
     lat = [[GCLabel alloc] initWithFrame:rectLat];
-    lat.font = [UIFont systemFontOfSize:10.0];
+    lat.font = font10;
     [self.contentView addSubview:lat];
 
     // BearDis
     beardis = [[GCLabel alloc] initWithFrame:rectBearDis];
-    beardis.font = [UIFont systemFontOfSize:10.0];
+    beardis.font = font10;
     [self.contentView addSubview:beardis];
+
+    // Location
+    location = [[GCLabel alloc] initWithFrame:rectLocation];
+    location.font = font10;
+    [self.contentView addSubview:location];
 
     return self;
 }
@@ -212,14 +222,9 @@
     }
 }
 
-+ (NSInteger)cellHeight
-{
-    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT;
-}
-
 - (NSInteger)cellHeight
 {
-    return BORDER * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT;
+    return BORDER_TOP * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT + LOCATION_HEIGHT;
 }
 
 @end
