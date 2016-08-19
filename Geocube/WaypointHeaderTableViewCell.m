@@ -31,6 +31,17 @@
     GCLabel *favourites;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
     UIFont *font10;
+
+    CGRect rectIcon;
+    CGRect rectFavourites;
+    CGRect rectSize;
+    CGRect rectRatingsD;
+    CGRect rectRatingsT;
+
+    CGRect rectLat;
+    CGRect rectLon;
+    CGRect rectBearDis;
+    CGRect rectLocation;
 }
 
 @end
@@ -43,17 +54,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-    font10 = [UIFont systemFontOfSize:10.0];
-    NSInteger height = [self cellHeight];
-
-    imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
-    imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];
-    imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
-    imgFavourites = [imageLibrary get:ImageCacheView_favourites];
-
-    CGRect r;
+    [self calculateRects];
 
     /*
      +---+--------------+-----+---+
@@ -62,6 +63,7 @@
      | Lat              | D XXXXX |  Difficulty
      | Lon              | T XXXXX |  Terrain
      | BearDis          |         |  Favourites
+     | Location         |         |
      +------------------+---------+
      */
 #define BORDER_SIDE 5
@@ -77,17 +79,6 @@
 #define BEARDIS_HEIGHT font10.lineHeight
 #define LOCATION_HEIGHT font10.lineHeight
 
-    CGRect rectIcon = CGRectMake(BORDER_SIDE, BORDER_TOP, ICON_WIDTH, ICON_HEIGHT);
-    CGRect rectFavourites = CGRectMake(width - 2 * BORDER_SIDE - FAVOURITES_WIDTH, BORDER_TOP, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
-    CGRect rectSize = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER_SIDE, STAR_HEIGHT);
-    CGRect rectRatingsD = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    CGRect rectRatingsT = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-
-    CGRect rectLat = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LAT_HEIGHT);
-    CGRect rectLon = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LON_HEIGHT);
-    CGRect rectBearDis = CGRectMake(BORDER_SIDE, height - BORDER_TOP - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, BEARDIS_HEIGHT);
-    CGRect rectLocation = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LOCATION_HEIGHT);
-
     // Icon
     icon = [[UIImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
@@ -98,7 +89,7 @@
     imgFavouritesIV.image = imgFavourites;
     [self.contentView addSubview:imgFavouritesIV];
     imgFavouritesIV.hidden = TRUE;
-    r = rectFavourites;
+    CGRect r = rectFavourites;
     r.size.height /= 2;
     favourites = [[GCLabel alloc] initWithFrame:r];
     favourites.font = [UIFont boldSystemFontOfSize:10];
@@ -176,6 +167,57 @@
     [self.contentView addSubview:location];
 
     return self;
+}
+
+- (void)calculateRects
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    font10 = [UIFont systemFontOfSize:10.0];
+    NSInteger height = [self cellHeight];
+
+    imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
+    imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];
+    imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
+    imgFavourites = [imageLibrary get:ImageCacheView_favourites];
+
+    rectIcon = CGRectMake(BORDER_SIDE, BORDER_TOP, ICON_WIDTH, ICON_HEIGHT);
+    rectFavourites = CGRectMake(width - 2 * BORDER_SIDE - FAVOURITES_WIDTH, BORDER_TOP, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
+    rectSize = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER_SIDE, STAR_HEIGHT);
+    rectRatingsD = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+    rectRatingsT = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+
+    rectLat = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LAT_HEIGHT);
+    rectLon = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LON_HEIGHT);
+    rectBearDis = CGRectMake(BORDER_SIDE, height - BORDER_TOP - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, BEARDIS_HEIGHT);
+    rectLocation = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LOCATION_HEIGHT);
+}
+
+- (void)viewWillTransitionToSize
+{
+    [self calculateRects];
+    icon.frame = rectIcon;
+    favourites.frame = rectFavourites;
+    size.frame = rectSize;
+    labelRatingD.frame = rectRatingsD;
+    labelRatingT.frame = rectRatingsT;
+    lat.frame = rectLat;
+    lon.frame = rectLon;
+    beardis.frame = rectBearDis;
+    location.frame = rectLocation;
+}
+
+- (void)changeTheme
+{
+    [favourites changeTheme];
+    [labelRatingT changeTheme];
+    [labelRatingD changeTheme];
+    [lat changeTheme];
+    [lon changeTheme];
+    [beardis changeTheme];
+    [location changeTheme];
+
+    [super changeTheme];
 }
 
 - (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
