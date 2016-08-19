@@ -149,6 +149,7 @@ enum {
 
     [coordinator animateAlongsideTransition:nil
                                  completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                     headerCell = nil;
                                      [self.tableView reloadData];
                                  }
      ];
