@@ -337,8 +337,11 @@ CG_INLINE BOOL isIPhone4() {
             NSAssert(picker != NULL, @"PickerView is invalid");
             [picker selectRow:buttonValue inComponent:0 animated:YES];
             if ([self respondsToSelector:@selector(pickerView:didSelectRow:inComponent:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpedantic"
                 void (*objc_msgSendTyped)(id target, SEL _cmd, id pickerView, NSInteger row, NSInteger component) = (void *) objc_msgSend; // sending Integers as params
                 objc_msgSendTyped(self, @selector(pickerView:didSelectRow:inComponent:), picker, buttonValue, 0);
+#pragma clang diagnostic pop
             }
             break;
         }
