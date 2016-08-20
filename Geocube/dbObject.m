@@ -29,8 +29,8 @@
 
 @synthesize _id;
 
-NEEDS_OVERLOADING(dbUpdate);
-NEEDS_OVERLOADING(dbDelete);
+NEEDS_OVERLOADING(dbUpdate)
+NEEDS_OVERLOADING(dbDelete)
 - (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
 + (NSArray *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
 + (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }

@@ -127,12 +127,12 @@
         return [self dateTimeStringFormat:seconds format:__format__]; \
     }
 
-TIME(dateTimeString_YYYY_MM_DDThh_mm_ss, @"yyyy-MM-dd'T'HH:mm:ss");
-TIME(dateTimeString_YYYY_MM_DD_hh_mm_ss, @"yyyy-MM-dd HH:mm:ss");
-TIME(dateTimeString_YYYY_MM_DD, @"yyyy-MM-dd");
-TIME(dateTimeString_YYYYMMDD, @"yyyyMMdd");
-TIME(dateTimeString_YYYYMMDD_hhmmss, @"yyyyMMdd-HHmmss");
-TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss");
+TIME(dateTimeString_YYYY_MM_DDThh_mm_ss, @"yyyy-MM-dd'T'HH:mm:ss")
+TIME(dateTimeString_YYYY_MM_DD_hh_mm_ss, @"yyyy-MM-dd HH:mm:ss")
+TIME(dateTimeString_YYYY_MM_DD, @"yyyy-MM-dd")
+TIME(dateTimeString_YYYYMMDD, @"yyyyMMdd")
+TIME(dateTimeString_YYYYMMDD_hhmmss, @"yyyyMMdd-HHmmss")
+TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 

@@ -48,14 +48,14 @@ NEEDS_OVERLOADING(removeMap)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel)
 NEEDS_OVERLOADING(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
-NEEDS_OVERLOADING(updateMyBearing:(CLLocationDirection)bearing);
+NEEDS_OVERLOADING(updateMyBearing:(CLLocationDirection)bearing)
 NEEDS_OVERLOADING(placeMarkers)
 NEEDS_OVERLOADING(removeMarkers)
 NEEDS_OVERLOADING(showBoundaries:(BOOL)yesno)
 NEEDS_OVERLOADING(addLineMeToWaypoint)
 NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(NSInteger)mapType)
-NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c);
+NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c)
 NEEDS_OVERLOADING(removeHistory)
 NEEDS_OVERLOADING(addHistory)
 - (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }

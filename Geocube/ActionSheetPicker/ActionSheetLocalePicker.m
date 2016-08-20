@@ -167,7 +167,7 @@
     }];
 
     self.continentsAndCityDictionary = continentsDict;
-};
+}
 
 - (void)setSelectedRows
 {
@@ -368,7 +368,7 @@
 {
     NSMutableArray *citiesIncontinent = _continentsAndCityDictionary[continent];
     return citiesIncontinent;
-};
+}
 
 
 - (void)customButtonPressed:(id)sender {

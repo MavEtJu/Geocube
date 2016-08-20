@@ -78,9 +78,9 @@
     [dbWaypoint dbUpdateLogStatus];
 }
 
-NEEDS_OVERLOADING(parseFile:(NSString *)filename);
-NEEDS_OVERLOADING(parseData:(NSData *)data);
-NEEDS_OVERLOADING(parseString:(NSString *)data);
-NEEDS_OVERLOADING(parseDictionary:(NSDictionary *)dict);
+NEEDS_OVERLOADING(parseFile:(NSString *)filename)
+NEEDS_OVERLOADING(parseData:(NSData *)data)
+NEEDS_OVERLOADING(parseString:(NSString *)data)
+NEEDS_OVERLOADING(parseDictionary:(NSDictionary *)dict)
 
 @end
