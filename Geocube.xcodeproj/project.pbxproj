@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCDB95B810A028E770E84C /* libPods.a */; };
 		E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */; };
 		E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E91D17CADA00F05772 /* dbLogString.m */; };
 		E80250ED1D2474B500F05772 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */; };
@@ -409,6 +408,7 @@
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
+		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,9 +443,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8C1A9513093211440A37A173 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		B7FCDB95B810A028E770E84C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.debug.xcconfig"; sourceTree = "<group>"; };
+		237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.release.xcconfig"; sourceTree = "<group>"; };
+		88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Geocube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80250E51D160EF300F05772 /* WaypointLogTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogTrackablesViewController.h; sourceTree = "<group>"; };
 		E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogTrackablesViewController.m; sourceTree = "<group>"; };
 		E80250E81D17CADA00F05772 /* dbLogString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogString.h; sourceTree = "<group>"; };
@@ -1087,7 +1087,7 @@
 				E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */,
 				E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */,
 				E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */,
-				B5CD37DBF5F6EDE349986CB3 /* libPods.a in Frameworks */,
+				ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,16 +1106,16 @@
 			children = (
 				E80F73761B53443000F35528 /* CoreLocation.framework */,
 				E80F73741B533F4D00F35528 /* MapKit.framework */,
-				B7FCDB95B810A028E770E84C /* libPods.a */,
+				88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C52879D9FDE55D2D5B94688C /* Pods */ = {
+		B88F87C0C9D0E4A555CE980D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8C1A9513093211440A37A173 /* Pods.debug.xcconfig */,
-				A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */,
+				0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */,
+				237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1978,9 +1978,9 @@
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F5706F1B3F7255003F020C /* GeocubeTests */,
 				E8F570541B3F7255003F020C /* Products */,
-				C52879D9FDE55D2D5B94688C /* Pods */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
+				B88F87C0C9D0E4A555CE980D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2319,12 +2319,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
 			buildPhases = (
-				9254E849F0A5BD2FD44239AC /* Check Pods Manifest.lock */,
+				2B22D39840096528A77E7C43 /* 📦 Check Pods Manifest.lock */,
 				E8F5704F1B3F7255003F020C /* Sources */,
 				E8F570501B3F7255003F020C /* Frameworks */,
 				E8F570511B3F7255003F020C /* Resources */,
-				A6786FD4ECC5DEE28B247D4B /* Copy Pods Resources */,
-				45C82FDC9B85B379E2BE1849 /* Embed Pods Frameworks */,
+				49D5871A08E106E97092B7AE /* 📦 Embed Pods Frameworks */,
+				8D16B52877B1DEA54ABEA344 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2626,29 +2626,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		45C82FDC9B85B379E2BE1849 /* Embed Pods Frameworks */ = {
+		2B22D39840096528A77E7C43 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9254E849F0A5BD2FD44239AC /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2656,19 +2641,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A6786FD4ECC5DEE28B247D4B /* Copy Pods Resources */ = {
+		49D5871A08E106E97092B7AE /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D16B52877B1DEA54ABEA344 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3061,7 +3061,7 @@
 		};
 		E8F570771B3F7255003F020C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C1A9513093211440A37A173 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3088,7 +3088,7 @@
 		};
 		E8F570781B3F7255003F020C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A98980CF2A6219D8CB3D4A89 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
