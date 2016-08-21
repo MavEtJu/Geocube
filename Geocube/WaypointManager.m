@@ -387,6 +387,7 @@
             NSLog(@"%@ - Filtering text", [self class]);
             NSString *cachename = [self configGet:@"text_cachename"];
             NSString *owner = [self configGet:@"text_owner"];
+            NSString *locale = [self configGet:@"text_locale"];
             NSString *state = [self configGet:@"text_state"];
             NSString *country = [self configGet:@"text_country"];
             NSString *description = [self configGet:@"text_description"];
@@ -394,6 +395,7 @@
 
             __block NSMutableArray *countries = nil;
             __block NSMutableArray *states = nil;
+            __block NSMutableArray *locales = nil;
             __block NSMutableArray *owners = nil;
 
             if (country != nil && [country isEqualToString:@""] == NO) {
@@ -411,6 +413,14 @@
                     if ([c.name localizedCaseInsensitiveContainsString:state] ||
                         [c.code localizedCaseInsensitiveContainsString:state])
                         [states addObject:c];
+                }];
+            }
+
+            if (locale != nil && [locale isEqualToString:@""] == NO) {
+                locales = [NSMutableArray arrayWithCapacity:20];
+                [[dbc Locales] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
+                    if ([c.name localizedCaseInsensitiveContainsString:locale])
+                        [locales addObject:c];
                 }];
             }
 
@@ -436,6 +446,18 @@
                     [wp.gs_long_desc localizedCaseInsensitiveContainsString:description] == NO &&
                     [wp.gs_short_desc localizedCaseInsensitiveContainsString:description] == NO) {
                     rv = NO;
+                }
+
+                if (locales != nil) {
+                    __block BOOL matched = NO;
+                    [locales enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+                        if (s._id == wp.gca_locale_id) {
+                            matched = YES;
+                            *stop = YES;
+                        }
+                    }];
+                    if (matched == NO)
+                        rv = NO;
                 }
 
                 if (states != nil) {

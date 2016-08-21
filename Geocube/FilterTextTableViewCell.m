@@ -26,16 +26,18 @@
     UIButton *bCacheName;
     UIButton *bOwner;
     UIButton *bPlacedBy;
-    UIButton *bState;
     UIButton *bCountry;
+    UIButton *bState;
+    UIButton *bLocale;
     UIButton *bDescription;
     UIButton *bLogs;
 
     NSString *cacheName;
     NSString *owner;
     NSString *placedBy;
-    NSString *state;
     NSString *country;
+    NSString *state;
+    NSString *locale;
     NSString *description;
     NSString *logs;
 }
@@ -92,6 +94,22 @@
     [bOwner setTitle:owner forState:UIControlStateNormal];
     [bOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bOwner];
+    y += 20;
+
+    rect = CGRectMake(20, y, 100, 15);
+    l = [[GCLabel alloc] initWithFrame:rect];
+    l.text = @"Locale:";
+    l.font = f2;
+    l.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:l];
+
+    rect = CGRectMake(120, y, width - 140, 15);
+    bLocale = [UIButton buttonWithType:UIButtonTypeSystem];
+    bLocale.frame = rect;
+    bLocale.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bLocale setTitle:locale forState:UIControlStateNormal];
+    [bLocale addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bLocale];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -177,6 +195,7 @@
     cacheName = [self configGet:@"cachename"];
     owner = [self configGet:@"owner"];
     placedBy = [self configGet:@"placedby"];
+    locale = [self configGet:@"locale"];
     state = [self configGet:@"state"];
     country = [self configGet:@"country"];
     description = [self configGet:@"description"];
@@ -188,6 +207,7 @@
     [self configSet:@"cachename" value:cacheName];
     [self configSet:@"owner" value:owner];
     [self configSet:@"placedby" value:placedBy];
+    [self configSet:@"locale" value:locale];
     [self configSet:@"state" value:state];
     [self configSet:@"country" value:country];
     [self configSet:@"description" value:description];
@@ -216,6 +236,7 @@
                              if (b == bCacheName) cacheName = newstring;
                              if (b == bOwner) owner = newstring;
                              if (b == bPlacedBy) placedBy = newstring;
+                             if (b == bLocale) locale = newstring;
                              if (b == bState) state = newstring;
                              if (b == bCountry) country = newstring;
                              if (b == bDescription) description = newstring;
