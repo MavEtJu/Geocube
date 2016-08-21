@@ -79,7 +79,6 @@
 
     // Waypoint Manager - after myConfig, LM, db
     waypointManager = [[WaypointManager alloc] init];
-    [dbc loadWaypointData];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];

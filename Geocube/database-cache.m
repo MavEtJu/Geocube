@@ -42,12 +42,12 @@
 - (instancetype)init
 {
     self = [super init];
-    [self loadWaypointData];
+    [self loadCachableData];
     return self;
 }
 
 // Load all waypoints and waypoint related data in memory
-- (void)loadWaypointData
+- (void)loadCachableData
 {
     Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
     Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
@@ -319,6 +319,16 @@
         }
     }];
     return _g;
+}
+
+- (void)Group_add:(dbGroup *)group
+{
+    [Groups addObject:group];
+}
+
+- (void)Group_delete:(dbGroup *)group
+{
+    [Groups removeObject:group];
 }
 
 - (dbContainer *)Container_get:(NSId)_id

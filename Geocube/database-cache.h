@@ -57,7 +57,7 @@
 // Attributes
 @property (nonatomic, retain) dbAttribute *Attribute_Unknown;
 
-- (void)loadWaypointData;
+- (void)loadCachableData;
 
 - (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
 - (dbType *)Type_get_byminor:(NSString *)minor;
@@ -79,6 +79,8 @@
 - (void)LogString_add:(dbLogString *)logstring;
 
 - (dbGroup *)Group_get:(NSId)_id;
+- (void)Group_add:(dbGroup *)group;
+- (void)Group_delete:(dbGroup *)group;
 
 - (dbAttribute *)Attribute_get:(NSId)_id;
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;

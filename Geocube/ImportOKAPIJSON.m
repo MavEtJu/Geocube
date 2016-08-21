@@ -54,7 +54,6 @@
     [[dbc Group_AllWaypoints_Ignored] dbEmpty];
     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
     [db cleanupAfterDelete];
-    [dbc loadWaypointData];
     [dbWaypoint dbUpdateLogStatus];
 }
 

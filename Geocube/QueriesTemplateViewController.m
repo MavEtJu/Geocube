@@ -225,8 +225,8 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     }];
     if (group == nil) {
         NSId _id = [dbGroup dbCreate:name isUser:YES];
-        [dbc loadWaypointData];
         group = [dbGroup dbGet:_id];
+        [dbc Group_add:group];
     }
 
     return group;

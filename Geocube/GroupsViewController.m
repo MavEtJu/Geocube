@@ -213,7 +213,6 @@ enum {
     [cg dbEmpty];
     [db cleanupAfterDelete];
     [waypointManager needsRefresh];
-    [dbc loadWaypointData];
     if (reload == YES) {
         [self refreshGroupData];
         [self.tableView reloadData];
@@ -225,7 +224,7 @@ enum {
     [cg dbDelete];
     [db cleanupAfterDelete];
     [waypointManager needsRefresh];
-    [dbc loadWaypointData];
+    [dbc Group_delete:cg];
     [self refreshGroupData];
     [self.tableView reloadData];
 }
@@ -246,7 +245,7 @@ enum {
 
                              NSLog(@"Renaming group '%ld' to '%@'", (long)cg._id, tf.text);
                              [cg dbUpdateName:tf.text];
-                             [dbc loadWaypointData];
+                             cg.name = tf.text;
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];
@@ -307,8 +306,9 @@ enum {
                              NSString *newgroup = tf.text;
 
                              NSLog(@"Creating new group '%@'", newgroup);
-                             [dbGroup dbCreate:newgroup isUser:YES];
-                             [dbc loadWaypointData];
+                             NSId gid = [dbGroup dbCreate:newgroup isUser:YES];
+                             dbGroup *group = [dbGroup dbGet:gid];
+                             [dbc Group_add:group];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];
