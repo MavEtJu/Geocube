@@ -42,7 +42,6 @@
 - (instancetype)init
 {
     self = [super init];
-    [self loadCachableData];
     return self;
 }
 
