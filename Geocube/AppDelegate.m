@@ -56,6 +56,7 @@
     db = [[database alloc] init];
     [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
+    [dbc loadCachableData]; // Explicit because it requires itself to be there.
 
     // Initialize the configuration manager - after db
     myConfig = [[MyConfig alloc] init];
