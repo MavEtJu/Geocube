@@ -29,14 +29,16 @@
     NSMutableArray *attributesYES, *attributesNO;
     NSMutableArray *logs;
     NSMutableArray *trackables;
+    NSMutableArray *imagesLog, *imagesCache;
     NSInteger index;
-    NSInteger inItem, inLog, inTrackable, inGroundspeak;
+    NSInteger inItem, inLog, inTrackable, inGroundspeak, inImageLog, inImageCache;
     NSMutableString *currentText;
     NSString *currentElement;
     NSString *gsOwnerNameId, *logFinderNameId;
     dbWaypoint *currentWP;
     dbLog *currentLog;
     dbTrackable *currentTB;
+    dbImage *currentImage;
 
     BOOL runOption_LogsOnly;
     NSInteger numberOfLines;
@@ -83,6 +85,8 @@
     inItem = NO;
     inLog = NO;
     inTrackable = NO;
+    inImageLog = NO;
+    inImageCache = NO;
     logIdGCId = [dbLog dbAllIdGCId];
 
     [delegate Import_setProgress:0 total:numberOfLines];
@@ -117,6 +121,8 @@
             attributesYES = [NSMutableArray arrayWithCapacity:20];
             attributesNO = [NSMutableArray arrayWithCapacity:20];
             trackables = [NSMutableArray arrayWithCapacity:20];
+            imagesLog = [NSMutableArray arrayWithCapacity:20];
+            imagesCache = [NSMutableArray arrayWithCapacity:20];
 
             inItem = YES;
             return;
@@ -181,6 +187,18 @@
             return;
         }
 
+        if ([currentElement isEqualToString:@"gsak:CacheImage"] == YES) {
+            currentImage = [[dbImage alloc] init];
+            inImageCache = YES;
+            return;
+        }
+
+        if ([currentElement isEqualToString:@"gsak:LogImage"] == YES) {
+            currentImage = [[dbImage alloc] init];
+            inImageLog = YES;
+            return;
+        }
+
         return;
     }
 }
@@ -229,6 +247,15 @@
                 if (currentWP.gs_short_desc != nil)
                     newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGETYPE_CACHE];
             }
+
+            // Link images to cache
+            [imagesCache enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGETYPE_CACHE];
+            }];
+
+            [imagesLog enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGETYPE_LOG];
+            }];
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
@@ -305,6 +332,21 @@
             goto bye;
         }
 
+        // Deal with the completion of the image
+        if (index == 4 && inImageCache  == YES && [elementName isEqualToString:@"gsak:CacheImage"] == YES) {
+            [imagesCache addObject:currentImage];
+
+            inImageCache = NO;
+            goto bye;
+        }
+
+        if (index == 4 && inImageLog == YES && [elementName isEqualToString:@"gsak:LogImage"] == YES) {
+            [imagesLog addObject:currentImage];
+
+            inImageLog = NO;
+            goto bye;
+        }
+
         // Deal with the data of the travelbug
         if (inTrackable == YES) {
             if (index == 5) {
@@ -340,6 +382,21 @@
                 goto bye;
             }
             goto bye;
+        }
+
+        // Deal with the data of the GSAK image
+        if (inImageLog == YES || inImageCache == YES) {
+            if (index == 5 && cleanText != nil) {
+                if ([elementName isEqualToString:@"gsak:iimage"] == YES) {
+                    [currentImage setUrl:cleanText];
+                    goto bye;
+                }
+                if ([elementName isEqualToString:@"gsak:iname"] == YES) {
+                    [currentImage setName:cleanText];
+                    goto bye;
+                }
+                goto bye;
+            }
         }
 
         // Deal with the data of the cache. Always the last one!
@@ -430,6 +487,10 @@
                     goto bye;
                 }
 
+                if ([elementName isEqualToString:@"gsak:County"] == YES) {
+                    [currentWP setGca_locale_str:cleanText];
+                    goto bye;
+                }
                 if ([elementName isEqualToString:@"gsak:FavPoints"] == YES) {
                     [currentWP setGs_favourites:[cleanText integerValue]];
                     goto bye;

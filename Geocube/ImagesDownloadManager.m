@@ -188,32 +188,37 @@
         }
 
         imgtag = [imgtag substringToIndex:r.location];
-        NSString *datafile = [dbImage createDataFilename:imgtag];
+
+        if ([self downloadImage:wp_id url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
+            found++;
         NSLog(@"%@/parse: Found image: %@", [self class], imgtag);
 
-        dbImage *img = [dbImage dbGetByURL:imgtag];
-        if (img == nil) {
-            img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
-            [dbImage dbCreate:img];
-        } else {
-            //NSLog(@"%@/parse: Image already seen", [self class]);
-        }
-
-        if ([img dbLinkedtoWaypoint:wp_id] == NO)
-            [img dbLinkToWaypoint:wp_id type:type];
-
-        if ([img imageHasBeenDowloaded] == NO) {
-            // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
-            if (type != IMAGETYPE_CACHE && myConfig.downloadImagesLogs == NO)
-                return 0;
-
-            [ImagesDownloadManager addToQueueImmediately:img];
-        }
-
-        found++;
     } while (next != nil);
 
     return found;
+}
+
++ (BOOL)downloadImage:(NSId)wp_id url:(NSString *)url name:(NSString *)name type:(NSInteger)type
+{
+    NSString *datafile = [dbImage createDataFilename:url];
+    dbImage *img = [dbImage dbGetByURL:url];
+    if (img == nil) {
+        img = [[dbImage alloc] init:url name:name datafile:datafile];
+        [dbImage dbCreate:img];
+    }
+
+    if ([img dbLinkedtoWaypoint:wp_id] == NO)
+        [img dbLinkToWaypoint:wp_id type:type];
+
+    if ([img imageHasBeenDowloaded] == NO) {
+        // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
+        if (type != IMAGETYPE_CACHE && myConfig.downloadImagesLogs == NO)
+            return NO;
+
+        [ImagesDownloadManager addToQueueImmediately:img];
+    }
+
+    return YES;
 }
 
 + (void)addToQueue:(dbImage *)img
