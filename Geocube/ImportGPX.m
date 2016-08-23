@@ -376,11 +376,10 @@
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
                     NSArray *as = [cleanText componentsSeparatedByString:@"|"];
-                    if ([as count] == 2) {
-                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
-                    } else {
+                    if ([as count] == 1)
                         [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
-                    }
+                    else
+                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
                     [currentWP setWpt_type_id:currentWP.wpt_type._id];
                     goto bye;
                 }
@@ -430,6 +429,35 @@
                     [currentWP setGs_placed_by:cleanText];
                     goto bye;
                 }
+
+                if ([elementName isEqualToString:@"gsak:FavPoints"] == YES) {
+                    [currentWP setGs_favourites:[cleanText integerValue]];
+                    goto bye;
+                }
+                if ([elementName isEqualToString:@"gsak:GcNote"] == YES) {
+                    NSString *personal_note = currentText;  // Can contain newlines
+                    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:currentWP.wpt_name];
+                    if (pn != nil) {
+                        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+                            [pn dbDelete];
+                            pn = nil;
+                        } else {
+                            pn.note = personal_note;
+                            [pn dbUpdate];
+                        }
+                    } else {
+                        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+                            pn = [[dbPersonalNote alloc] init];
+                            pn.wp_name = currentWP.wpt_name;
+                           pn.waypoint_id = currentWP._id;
+                            pn.note = personal_note;
+                            [pn dbCreate];
+                        }
+                    }
+
+                    goto bye;
+                }
+
                 goto bye;
             }
             goto bye;
