@@ -219,6 +219,7 @@
         // Deal with the completion of the cache
         if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
             [currentWP finish];
+            currentWP.date_lastimport_epoch = time(NULL);
 
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];

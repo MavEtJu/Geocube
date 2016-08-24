@@ -29,7 +29,7 @@
 
 @synthesize _id;
 @synthesize wpt_name, wpt_description, wpt_url, wpt_urlname, wpt_lat, wpt_lon, wpt_date_placed, wpt_type_str, wpt_symbol_str, wpt_lat_int, wpt_lon_int, wpt_lat_float, wpt_lon_float, wpt_date_placed_epoch, wpt_type_id, wpt_type, wpt_symbol_id, wpt_symbol;
-@synthesize logstring_logtype, coordinates, calculatedDistance, calculatedBearing, logStatus, flag_highlight, account, account_id, flag_ignore, flag_markedfound, flag_inprogress, flag_dnf, date_lastlog_epoch, coordinatesUncorrected;
+@synthesize logstring_logtype, coordinates, calculatedDistance, calculatedBearing, logStatus, flag_highlight, account, account_id, flag_ignore, flag_markedfound, flag_inprogress, flag_dnf, date_lastlog_epoch, date_lastimport_epoch, coordinatesUncorrected;
 @synthesize gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_country, gs_country_id, gs_country_str, gs_state, gs_state_id, gs_state_str, gs_short_desc_html, gs_short_desc, gs_long_desc_html, gs_long_desc, gs_hint, gs_container, gs_container_str, gs_container_id, gs_archived, gs_available, gs_placed_by, gs_owner_gsid, gs_owner, gs_owner_id, gs_owner_str, gs_date_found;
 @synthesize gca_locale, gca_locale_id, gca_locale_str;
 
@@ -99,6 +99,7 @@
     self.flag_markedfound = NO;
     self.flag_dnf = NO;
     self.date_lastlog_epoch = 0;
+    self.date_lastimport_epoch = 0;
     self.logstring_logtype = LOGSTRING_LOGTYPE_UNKNOWN;
 
     return self;
@@ -302,7 +303,7 @@
     NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
 
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id from waypoints wp %@", where];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch from waypoints wp %@", where];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
@@ -351,6 +352,7 @@
             BOOL_FETCH  (35, wp.flag_dnf);
             INT_FETCH   (36, wp.date_lastlog_epoch);
             INT_FETCH   (37, wp.gca_locale_id);
+            INT_FETCH   (38, wp.date_lastimport_epoch);
 
             [wp finish];
             [wps addObject:wp];
@@ -455,7 +457,7 @@
 {
     NSId _id = 0;
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch) values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT  ( 1, wp.wpt_name);
         SET_VAR_TEXT  ( 2, wp.wpt_description);
@@ -497,6 +499,7 @@
         SET_VAR_BOOL  (35, wp.flag_dnf);
         SET_VAR_INT   (36, wp.date_lastlog_epoch);
         SET_VAR_INT   (37, wp.gca_locale_id);
+        SET_VAR_INT   (38, wp.date_lastimport_epoch);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -508,7 +511,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_lat_int = ?, wpt_lon_int = ?, wpt_date_placed = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ? where id = ?");
+        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_lat_int = ?, wpt_lon_int = ?, wpt_date_placed = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ? where id = ?");
 
         SET_VAR_TEXT  ( 1, wpt_name);
         SET_VAR_TEXT  ( 2, wpt_description);
@@ -550,8 +553,9 @@
         SET_VAR_BOOL  (35, flag_dnf);
         SET_VAR_INT   (36, date_lastlog_epoch);
         SET_VAR_INT   (37, gca_locale_id);
+        SET_VAR_INT   (38, date_lastimport_epoch);
 
-        SET_VAR_INT   (38, _id);
+        SET_VAR_INT   (39, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

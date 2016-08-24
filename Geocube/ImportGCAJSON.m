@@ -189,6 +189,7 @@
     wp.wpt_url = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@", wpname];
 
     [wp finish];
+    wp.date_lastimport_epoch = time(NULL);
 
     if (old == 0) {
         NSLog(@"%@: Creating %@", [self class], wpname);

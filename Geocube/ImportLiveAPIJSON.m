@@ -250,6 +250,8 @@
 
     // Now see what we had and what we need to change
     [wp finish];
+    wp.date_lastimport_epoch = time(NULL);
+
     if (wp._id == 0) {
         NSLog(@"%@: Creating %@", [self class], wp.wpt_name);
         [dbWaypoint dbCreate:wp];

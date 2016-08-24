@@ -455,6 +455,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 35
+    a = @[
+    @"alter table waypoints add column date_lastimport_epoch integer",
+    @"update waypoints set date_lastimport_epoch = 0",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

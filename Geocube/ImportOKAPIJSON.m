@@ -212,6 +212,8 @@
 
     wp.account = account;
     [wp finish];
+    wp.date_lastimport_epoch = time(NULL);
+
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];

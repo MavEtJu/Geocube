@@ -91,7 +91,9 @@ enum {
 @property (nonatomic) NSId gs_owner_id;
 @property (nonatomic, retain) dbName *gs_owner;
 @property (nonatomic) NSInteger gs_date_found;
+
 @property (nonatomic) NSInteger date_lastlog_epoch;
+@property (nonatomic) NSInteger date_lastimport_epoch;
 
 @property (nonatomic) NSId gca_locale_id;
 @property (nonatomic) dbLocale *gca_locale;

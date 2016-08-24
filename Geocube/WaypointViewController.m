@@ -103,7 +103,7 @@ enum {
 {
     waypoint = _wp;
     headerCell = nil;
-    headerCellHeight = 45;
+    headerCellHeight = 55;
 
     [self.tableView reloadData];
 }
@@ -259,6 +259,15 @@ enum {
     l = [[GCLabel alloc] initWithFrame:CGRectZero];
     l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
     l.font = [UIFont systemFontOfSize:12];
+    l.textAlignment = NSTextAlignmentCenter;
+    l.backgroundColor = backgroundColor;
+    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
+    [headerView addSubview:l];
+    y += l.font.lineHeight;
+
+    l = [[GCLabel alloc] initWithFrame:CGRectZero];
+    l.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
+    l.font = [UIFont systemFontOfSize:10];
     l.textAlignment = NSTextAlignmentCenter;
     l.backgroundColor = backgroundColor;
     l.frame = CGRectMake(0, y, width, l.font.lineHeight);
