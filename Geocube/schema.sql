@@ -284,12 +284,10 @@ create table accounts (
 
 create table personal_notes (
     id integer primary key,
-    waypoint_id integer, 	-- points to waypoints(id)
     wp_name text,		-- in case the waypoint gets removed
     note text
 );
 create index personal_notes_idx_wpname on personal_notes(wp_name);
-create index personal_notes_idx_waypoint_id on personal_notes(waypoint_id);
 create index personal_notes_idx_id on personal_notes(id);
 
 create table notices (

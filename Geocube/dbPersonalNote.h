@@ -21,12 +21,10 @@
 
 @interface dbPersonalNote : dbObject
 
-@property (nonatomic) NSId waypoint_id;
 @property (nonatomic, retain) NSString *wp_name;
 @property (nonatomic, retain) NSString *note;
 @property (nonatomic) NSInteger cellHeight;
 
-+ (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id;
 + (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname;
 
 @end

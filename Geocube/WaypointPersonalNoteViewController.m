@@ -48,7 +48,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
 
-    note = [dbPersonalNote dbGetByWaypointID:waypoint._id];
+    note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 
     return self;
 }
@@ -113,7 +113,6 @@ enum {
     if (note == nil) {
         note = [[dbPersonalNote alloc] init];
         note.note = text;
-        note.waypoint_id = waypoint._id;
         note.wp_name = waypoint.wpt_name;
         [note dbCreate];
     } else {

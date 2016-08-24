@@ -27,16 +27,15 @@
 
 @implementation dbPersonalNote
 
-@synthesize _id, note, wp_name, waypoint_id, cellHeight;
+@synthesize _id, note, wp_name, cellHeight;
 
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into personal_notes(waypoint_id, wp_name, note) values(?, ?, ?)");
+        DB_PREPARE(@"insert into personal_notes(wp_name, note) values(?, ?, ?)");
 
-        SET_VAR_INT (1, waypoint_id);
-        SET_VAR_TEXT(2, wp_name);
-        SET_VAR_TEXT(3, note);
+        SET_VAR_TEXT(1, wp_name);
+        SET_VAR_TEXT(2, note);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id)
@@ -48,12 +47,11 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update personal_notes set waypoint_id = ?, wp_name = ?, note = ? where id = ?");
+        DB_PREPARE(@"update personal_notes set wp_name = ?, note = ? where id = ?");
 
-        SET_VAR_INT (1, waypoint_id);
-        SET_VAR_TEXT(2, wp_name);
-        SET_VAR_TEXT(3, note);
-        SET_VAR_INT (4, _id);
+        SET_VAR_TEXT(1, wp_name);
+        SET_VAR_TEXT(2, note);
+        SET_VAR_INT (3, _id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -65,16 +63,15 @@
     dbPersonalNote *pn = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, waypoint_id, wp_name, note from personal_notes where waypoint_id = ?");
+        DB_PREPARE(@"select id, wp_name, note from personal_notes where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
 
         DB_IF_STEP {
             pn = [[dbPersonalNote alloc] init];
             INT_FETCH (0, pn._id);
-            INT_FETCH (1, pn.waypoint_id);
-            TEXT_FETCH(2, pn.wp_name);
-            TEXT_FETCH(3, pn.note);
+            TEXT_FETCH(1, pn.wp_name);
+            TEXT_FETCH(2, pn.note);
         }
         DB_FINISH;
     }
@@ -87,16 +84,15 @@
     dbPersonalNote *pn = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, waypoint_id, wp_name, note from personal_notes where wp_name = ?");
+        DB_PREPARE(@"select id, wp_name, note from personal_notes where wp_name = ?");
 
         SET_VAR_TEXT(1, wpname);
 
         DB_IF_STEP {
             pn = [[dbPersonalNote alloc] init];
             INT_FETCH (0, pn._id);
-            INT_FETCH (1, pn.waypoint_id);
-            TEXT_FETCH(2, pn.wp_name);
-            TEXT_FETCH(3, pn.note);
+            TEXT_FETCH(1, pn.wp_name);
+            TEXT_FETCH(2, pn.note);
         }
         DB_FINISH;
     }
@@ -109,14 +105,13 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, waypoint_id, wp_name, note from personal_notes");
+        DB_PREPARE(@"select id, wp_name, note from personal_notes");
 
         DB_WHILE_STEP {
             dbPersonalNote *pn = [[dbPersonalNote alloc] init];
             INT_FETCH (0, pn._id);
-            INT_FETCH (1, pn.waypoint_id);
-            TEXT_FETCH(2, pn.wp_name);
-            TEXT_FETCH(3, pn.note);
+            TEXT_FETCH(1, pn.wp_name);
+            TEXT_FETCH(2, pn.note);
             [ss addObject:pn];
         }
         DB_FINISH;

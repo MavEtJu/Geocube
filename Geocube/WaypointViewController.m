@@ -343,7 +343,7 @@ enum {
 
                 case WAYPOINT_DATA_PERSONALNOTE:
                     cell.textLabel.text = @"Personal Note";
-                    if ([dbPersonalNote dbGetByWaypointID:waypoint._id] == nil)
+                    if ([dbPersonalNote dbGetByWaypointName:waypoint.wpt_name] == nil)
                         tc = currentTheme.labelTextColorDisabled;
                     // Do not disable this one as you want to be able to create one.
                     break;

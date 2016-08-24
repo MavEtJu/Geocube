@@ -242,7 +242,6 @@
         if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
             pn = [[dbPersonalNote alloc] init];
             pn.wp_name = wp.wpt_name;
-            pn.waypoint_id = wp._id;
             pn.note = personal_note;
             [pn dbCreate];
         }
