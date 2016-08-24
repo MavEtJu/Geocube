@@ -78,11 +78,11 @@
     themeManager = [[ThemeManager alloc] init];
     [themeManager setTheme:myConfig.themeType];
 
-    // Waypoint Manager - after myConfig, LM, db
-    waypointManager = [[WaypointManager alloc] init];
-
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
+
+    // Waypoint Manager - after myConfig, LM, db, imageLibrary
+    waypointManager = [[WaypointManager alloc] init];
 
     // Initialize the tabbar controllers
 
