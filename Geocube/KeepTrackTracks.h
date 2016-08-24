@@ -22,5 +22,6 @@
 @interface KeepTrackTracks : GCTableViewController
 
 + (void)trackAutoRotate;
++ (void)trackAutoPurge;
 
 @end

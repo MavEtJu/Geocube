@@ -32,7 +32,7 @@
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
 @synthesize soundDirection, soundDistance;
-@synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax;
+@synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax, keeptrackPurgeAge;
 @synthesize mapClustersEnable, mapClustersZoomLevel, mapRotateToBearing;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
@@ -102,6 +102,7 @@
     CHECK(@"keeptrack_timedelta_max", @"10.0");
     CHECK(@"keeptrack_distancedelta_min", @"100");
     CHECK(@"keeptrack_distancedelta_max", @"200");
+    CHECK(@"keeptrack_purgeage", @"30");
 
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
@@ -169,6 +170,7 @@
     keeptrackTimeDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_timedelta_max"].value floatValue];
     keeptrackDistanceDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_min"].value floatValue];
     keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
+    keeptrackPurgeAge = [[dbConfig dbGetByKey:@"keeptrack_purgeage"].value integerValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
     mapRotateToBearing = [[dbConfig dbGetByKey:@"map_rotate_to_bearing"].value boolValue];
@@ -372,6 +374,11 @@
 {
     keeptrackDistanceDeltaMax = value;
     [self NSIntegerUpdate:@"keeptrack_distancedelta_max" value:value];
+}
+- (void)keeptrackPurgeAgeUpdate:(NSInteger)value
+{
+    keeptrackPurgeAge = value;
+    [self NSIntegerUpdate:@"keeptrack_purgeage" value:value];
 }
 
 - (void)mapClustersUpdateEnable:(BOOL)value

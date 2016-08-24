@@ -69,6 +69,7 @@
 
     // Auto rotate the kept tracks
     [KeepTrackTracks trackAutoRotate];
+    [KeepTrackTracks trackAutoPurge];
 
     // Audio
     audioFeedback = [[AudioFeedback alloc] init];

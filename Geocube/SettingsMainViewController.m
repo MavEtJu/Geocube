@@ -308,6 +308,7 @@ enum sections {
     SECTION_KEEPTRACK_TIMEDELTA_MAX,
     SECTION_KEEPTRACK_DISTANCEDELTA_MIN,
     SECTION_KEEPTRACK_DISTANCEDELTA_MAX,
+    SECTION_KEEPTRACK_PURGEAGE,
     SECTION_KEEPTRACK_MAX,
 
     SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
@@ -706,6 +707,14 @@ enum sections {
 
                     cell.textLabel.text = @"Distance difference for a new track";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:myConfig.keeptrackDistanceDeltaMax]];
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_PURGEAGE: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Autopurge age for old tracks";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", myConfig.keeptrackPurgeAge];
 
                     return cell;
                 }
@@ -1124,6 +1133,7 @@ enum sections {
                 case SECTION_KEEPTRACK_TIMEDELTA_MAX:
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+                case SECTION_KEEPTRACK_PURGEAGE:
                     [self keeptrackChange:indexPath.row];
                     break;
             }
@@ -1215,6 +1225,9 @@ enum sections {
         case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
             message = @"Change the distance difference for a new track.";
             break;
+        case SECTION_KEEPTRACK_PURGEAGE:
+            message = @"Change the maximum age of old tracks before they get purged.";
+            break;
     }
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update value"
@@ -1265,7 +1278,13 @@ enum sections {
                                      [myConfig keeptrackDistanceDeltaMaxUpdate:i];
                                      break;
                                  }
-                            }
+                                 case SECTION_KEEPTRACK_PURGEAGE: {
+                                     NSInteger i = [value integerValue];
+                                     [myConfig keeptrackPurgeAgeUpdate:i];
+                                     break;
+                                 }
+                             }
+                             [self.tableView reloadData];
 
                          }];
 
@@ -1291,6 +1310,9 @@ enum sections {
                 break;
             case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
                 textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackDistanceDeltaMax];
+                break;
+            case SECTION_KEEPTRACK_PURGEAGE:
+                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackPurgeAge];
                 break;
         }
         textField.placeholder = @"Enter value...";

@@ -194,4 +194,18 @@ enum {
     }
 }
 
++ (void)trackAutoPurge
+{
+    NSArray *tracks = [dbTrack dbAll];
+    time_t cutoff = time(NULL) - myConfig.keeptrackPurgeAge * 86400;
+
+    [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (track.dateStart < cutoff) {
+            NSLog(@"trackAutoPurge: Purging %@", track.name);
+            [dbTrackElement dbDeleteByTrack:track._id];
+            [track dbDelete];
+        }
+    }];
+}
+
 @end
