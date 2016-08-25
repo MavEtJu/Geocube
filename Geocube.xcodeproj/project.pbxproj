@@ -406,6 +406,8 @@
 		E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */; };
 		E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */; };
 		E8F7FF171D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */; };
+		E8F7FF191D6F109000AC7EE6 /* cache - beacon - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */; };
+		E8F7FF1B1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1059,6 +1061,8 @@
 		E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLocale.h; sourceTree = "<group>"; };
 		E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLocale.m; sourceTree = "<group>"; };
 		E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30.png"; path = "images/cache - podcast - 30x30.png"; sourceTree = "<group>"; };
+		E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30.png"; path = "images/cache - beacon - 30x30.png"; sourceTree = "<group>"; };
+		E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30.png"; path = "images/cache - burke-wills - 30x30.png"; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -1543,6 +1547,8 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */,
+				E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */,
 				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
 				E89580281C6818C100282177 /* cache - history - 30x30.png */,
 				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
@@ -2460,6 +2466,7 @@
 				E807326B1B5F850C007FDC29 /* cache - waymark - 30x30.png in Resources */,
 				E80732781B5F852A007FDC29 /* waypoint - parking - 30x30.png in Resources */,
 				E80732DB1B60FAB4007FDC29 /* ratings - star off 18x18.png in Resources */,
+				E8F7FF191D6F109000AC7EE6 /* cache - beacon - 30x30.png in Resources */,
 				E80732201B5F84B4007FDC29 /* attributes - 57.png in Resources */,
 				E80731EF1B5F84B4007FDC29 /* attributes - 07.png in Resources */,
 				E807322A1B5F84B4007FDC29 /* attributes - 67.png in Resources */,
@@ -2567,6 +2574,7 @@
 				E80732211B5F84B4007FDC29 /* attributes - 58.png in Resources */,
 				E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */,
 				E807322B1B5F84B4007FDC29 /* attributes - unknown.png in Resources */,
+				E8F7FF1B1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png in Resources */,
 				E881440F1C7DB8CA00940820 /* GC - logo - 180x180.png in Resources */,
 				E80731F01B5F84B4007FDC29 /* attributes - 08.png in Resources */,
 				E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */,
