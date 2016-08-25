@@ -173,17 +173,6 @@
     [self calculateRects];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self calculateRects];
-                                 }
-     ];
-}
-
 - (void)calculateRects
 {
 #define MARGIN  5

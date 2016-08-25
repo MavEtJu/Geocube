@@ -32,4 +32,8 @@
 - (void)willClosePage;
 - (void)prepareCloseButton:(UIView *)view;
 
+// Required for rotating
+- (void)calculateRects;
+- (void)viewWilltransitionToSize;
+
 @end

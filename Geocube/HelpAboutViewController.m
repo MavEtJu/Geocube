@@ -43,17 +43,6 @@
     return self;
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self.tableView reloadData];
-                                 }
-     ];
-}
-
 - (NSInteger)addText:(NSInteger)y text:(NSString *)t
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];

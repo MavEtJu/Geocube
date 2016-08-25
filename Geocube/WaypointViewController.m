@@ -147,11 +147,12 @@ enum {
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     headerCell = nil;
-                                     [self.tableView reloadData];
-                                 }
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                                headerCell = nil;
+                                                [self.tableView reloadData];
+                                                [self viewWillTransitionToSize];
+                                            }
+                                 completion:nil
      ];
 }
 

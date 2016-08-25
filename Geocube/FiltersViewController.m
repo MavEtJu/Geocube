@@ -97,17 +97,6 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self.tableView reloadData];
-                                 }
-     ];
-}
-
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView

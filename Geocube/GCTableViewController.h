@@ -34,4 +34,7 @@
 - (void)willClosePage;
 - (void)reloadDataMainQueue;
 
+// For rotation related
+- (void)viewWillTransitionToSize;
+
 @end

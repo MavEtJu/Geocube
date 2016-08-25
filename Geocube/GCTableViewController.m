@@ -104,6 +104,18 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                                [self.tableView reloadData];
+                                                [self viewWillTransitionToSize];
+                                            }
+                                 completion:nil
+     ];
+}
+
+- (void)viewWillTransitionToSize
+{
+    // Dummy for this class
 }
 
 - (void)willClosePage

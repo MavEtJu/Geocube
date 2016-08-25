@@ -86,17 +86,6 @@ enum {
     return self;
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self.tableView reloadData];
-                                 }
-     ];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

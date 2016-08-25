@@ -158,18 +158,6 @@
     rectButtonSetAsTarget = CGRectMake(0, height - 5 * height18, width, height18);
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self calculateRects];
-                                     [self viewWilltransitionToSize];
-                                 }
-     ];
-}
-
 - (void)viewWilltransitionToSize
 {
     labelCurrentLocation.frame = rectCurrentLocation;

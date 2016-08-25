@@ -260,18 +260,6 @@ enum {
     [self zoominout:zoomedIn];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     [self calculateRects];
-                                     [self viewWillTransitionToSize];
-                                 }
-     ];
-}
-
 - (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages
 {
     img = _img;

@@ -101,6 +101,23 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                                [self calculateRects];
+                                                [self viewWilltransitionToSize];
+                                            }
+                                 completion:nil
+     ];
+}
+
+- (void)calculateRects
+{
+    // Dummy for this class
+}
+
+- (void)viewWilltransitionToSize
+{
+    // Dummy for this class
 }
 
 - (void)willClosePage

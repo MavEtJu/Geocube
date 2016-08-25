@@ -403,13 +403,12 @@ static const NSInteger TagOffset = 1000;
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [_AppDelegate resizeControllers:size coordinator:coordinator];
 
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                      UIButton *b = localMenuButton;
                                      UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
                                      b.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
-
                                  }
+                                 completion:nil
      ];
 }
 

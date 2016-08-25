@@ -281,11 +281,12 @@ enum {
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    [coordinator animateAlongsideTransition:^(id  _Nonnull context) {
                                      [self recalculateRects];
                                      [map recalculateRects];
-                                 }
+                                     [self viewWilltransitionToSize];
+    }
+                                 completion:nil
      ];
 }
 

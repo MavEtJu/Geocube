@@ -73,11 +73,13 @@ enum {
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    [coordinator animateAlongsideTransition:nil
-                                 completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     CGRect frame = [[UIScreen mainScreen] bounds];
-                                     webView.frame = frame;
-                                 }
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+                                                CGRect frame = [[UIScreen mainScreen] bounds];
+                                                webView.frame = frame;
+                                                [self calculateRects];
+                                                [self viewWilltransitionToSize];
+                                            }
+                                 completion:nil
      ];
 }
 
