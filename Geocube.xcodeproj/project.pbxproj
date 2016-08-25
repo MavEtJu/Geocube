@@ -408,6 +408,7 @@
 		E8F7FF171D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */; };
 		E8F7FF191D6F109000AC7EE6 /* cache - beacon - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */; };
 		E8F7FF1B1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */; };
+		E8F7FF1D1D6F1B6F00AC7EE6 /* cache - night - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1063,6 +1064,7 @@
 		E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30.png"; path = "images/cache - podcast - 30x30.png"; sourceTree = "<group>"; };
 		E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30.png"; path = "images/cache - beacon - 30x30.png"; sourceTree = "<group>"; };
 		E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30.png"; path = "images/cache - burke-wills - 30x30.png"; sourceTree = "<group>"; };
+		E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30.png"; path = "images/cache - night - 30x30.png"; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -1547,6 +1549,7 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */,
 				E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */,
 				E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */,
 				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
@@ -2492,6 +2495,7 @@
 				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
 				E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */,
 				E80732851B5F8561007FDC29 /* container - notchosen - 70x20.png in Resources */,
+				E8F7FF1D1D6F1B6F00AC7EE6 /* cache - night - 30x30.png in Resources */,
 				E807324A1B5F84E8007FDC29 /* log - unknown - 30x30.png in Resources */,
 				E8B6F6911C1AD3E600577088 /* cache - moveable - 30x30.png in Resources */,
 				E807327A1B5F852A007FDC29 /* waypoint - trailhead - 30x30.png in Resources */,

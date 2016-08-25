@@ -62,6 +62,7 @@
     [self addToLibrary:@"cache - podcast - 30x30" index:ImageTypes_Podcast];
     [self addToLibrary:@"cache - beacon - 30x30" index:ImageTypes_Beacon];
     [self addToLibrary:@"cache - burke-wills - 30x30" index:ImageTypes_BurkeWills];
+    [self addToLibrary:@"cache - night - 30x30" index:ImageTypes_Night];
 
     [self addToLibrary:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
