@@ -44,6 +44,7 @@ typedef enum {
     ImageTypes_Trigpoint,
     ImageTypes_Moveable,
     ImageTypes_History,
+    ImageTypes_Podcast,
     ImageTypes_NFI,
 
     ImageWaypoints_FinalLocation = 200,

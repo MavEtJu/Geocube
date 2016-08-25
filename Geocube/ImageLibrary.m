@@ -59,6 +59,7 @@
     [self addToLibrary:@"cache - moveable - 30x30" index:ImageTypes_Moveable];
     [self addToLibrary:@"cache - trigpoint - 30x30" index:ImageTypes_Trigpoint];
     [self addToLibrary:@"cache - history - 30x30" index:ImageTypes_History];
+    [self addToLibrary:@"cache - podcast - 30x30" index:ImageTypes_Podcast];
 
     [self addToLibrary:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
@@ -243,10 +244,7 @@
 {
     NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], name];
     UIImage *img = [[UIImage alloc] initWithContentsOfFile:s];
-    if (img == nil) {
-        NSLog(@"ImageLibrary: Image %@ not found", s);
-        return;
-    }
+    NSAssert1(img != nil, @"ImageLibrary: Image %@ not found", s);
     imgs[idx] = img;
     names[idx] = name;
 }

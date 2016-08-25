@@ -405,6 +405,7 @@
 		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; };
 		E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */; };
 		E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */; };
+		E8F7FF171D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1057,6 +1058,7 @@
 		E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracksCell.m; sourceTree = "<group>"; };
 		E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLocale.h; sourceTree = "<group>"; };
 		E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLocale.m; sourceTree = "<group>"; };
+		E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30.png"; path = "images/cache - podcast - 30x30.png"; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -1541,6 +1543,7 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
 				E89580281C6818C100282177 /* cache - history - 30x30.png */,
 				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
 				E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */,
@@ -2554,6 +2557,7 @@
 				E80732861B5F8561007FDC29 /* container - other - 70x20.png in Resources */,
 				E80731FC1B5F84B4007FDC29 /* attributes - 21.png in Resources */,
 				E80732A01B5F857A007FDC29 /* map - own overlay - 18x18.png in Resources */,
+				E8F7FF171D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png in Resources */,
 				E807321B1B5F84B4007FDC29 /* attributes - 52.png in Resources */,
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,

@@ -42,6 +42,7 @@
 
 enum {
     menuGoHome,
+    menuEnterURL,
     menuMax
 };
 
@@ -51,6 +52,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuGoHome label:@"Go home"];
+    [lmi addItem:menuEnterURL label:@"Enter URL"];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;
@@ -326,8 +328,46 @@ enum {
         case menuGoHome:
             [self loadURL:urlHome];
             return;
+        case menuEnterURL:
+            [self menuEnterURL];
+            return;
     }
     [super performLocalMenuAction:index];
+}
+
+- (void)menuEnterURL
+{
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Enter URL"
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+
+                             [self loadURL:value];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"";
+        textField.placeholder = @"URL";
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 @end
