@@ -35,6 +35,20 @@
 #define KEY_REVISION_STATES         @"states_revision"
 #define KEY_REVISION_TYPES          @"types_revision"
 
+#define KEY_VERSION_ATTRIBUTES      1
+#define KEY_VERSION_BOOKMARKS       1
+#define KEY_VERSION_CONFIG          1
+#define KEY_VERSION_CONTAINERS      1
+#define KEY_VERSION_COUNTRIES       1
+#define KEY_VERSION_EXTERNALMAPS    1
+#define KEY_VERSION_KEYS            1
+#define KEY_VERSION_LOGSTRINGS      1
+#define KEY_VERSION_NOTICES         1
+#define KEY_VERSION_PINS            1
+#define KEY_VERSION_SITES           1
+#define KEY_VERSION_STATES          1
+#define KEY_VERSION_TYPES           1
+
 + (BOOL)parse:(NSData *)data;
 
 @end
