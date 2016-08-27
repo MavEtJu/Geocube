@@ -23,32 +23,32 @@ typedef enum {
     ImageLibraryImagesMin = -1,
 
     /* Do not reorder, index matches schema.sql */
-    ImageTypes_Benchmark = 100,
-    ImageTypes_CITO,
-    ImageTypes_EarthCache,
-    ImageTypes_Event,
-    ImageTypes_Giga,
-    ImageTypes_GroundspeakHQ,
-    ImageTypes_Letterbox,
-    ImageTypes_Maze,
-    ImageTypes_Mega,
-    ImageTypes_MultiCache,
-    ImageTypes_Mystery,
-    ImageTypes_Other,
-    ImageTypes_TraditionalCache,
-    ImageTypes_UnknownCache,
-    ImageTypes_VirtualCache,
-    ImageTypes_Waymark,
-    ImageTypes_WebcamCache,
-    ImageTypes_WhereigoCache,
-    ImageTypes_Trigpoint,
-    ImageTypes_Moveable,
-    ImageTypes_History,
-    ImageTypes_Podcast,
-    ImageTypes_Beacon,
-    ImageTypes_BurkeWills,
-    ImageTypes_Night,
-    ImageTypes_NFI,
+    ImageTypes_Benchmark = 100,     // 100
+    ImageTypes_CITO,                // 101
+    ImageTypes_EarthCache,          // 102
+    ImageTypes_Event,               // 103
+    ImageTypes_Giga,                // 104
+    ImageTypes_GroundspeakHQ,       // 105
+    ImageTypes_Letterbox,           // 106
+    ImageTypes_Maze,                // 107
+    ImageTypes_Mega,                // 108
+    ImageTypes_MultiCache,          // 109
+    ImageTypes_Mystery,             // 110
+    ImageTypes_Other,               // 111
+    ImageTypes_TraditionalCache,    // 112
+    ImageTypes_UnknownCache,        // 113
+    ImageTypes_VirtualCache,        // 114
+    ImageTypes_Waymark,             // 115
+    ImageTypes_WebcamCache,         // 116
+    ImageTypes_WhereigoCache,       // 117
+    ImageTypes_Trigpoint,           // 118
+    ImageTypes_Moveable,            // 119
+    ImageTypes_History,             // 120
+    ImageTypes_Podcast,             // 121
+    ImageTypes_Beacon,              // 122
+    ImageTypes_BurkeWills,          // 123
+    ImageTypes_Night,               // 124
+    ImageTypes_NFI,                 // 125
 
     ImageWaypoints_FinalLocation = 200,
     ImageWaypoints_Flag,

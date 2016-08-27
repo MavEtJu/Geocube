@@ -74,7 +74,7 @@
     [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_Trailhead];
     [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_VirtualStage];
 
-    [self addToLibrary:@"cache - unknown - 30x30" index:ImageTypes_NFI];
+    [self addToLibrary:@"cache - unknowntype - 30x30" index:ImageTypes_NFI];
     [self addToLibrary:@"waypoint - unknown - 30x30" index:Imagewaypoints_NFI];
     [self addToLibrary:@"cache - unknown - 30x30" index:ImageNFI];
 
