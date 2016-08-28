@@ -43,6 +43,7 @@ enum {
     menuAddWaypoint,
     menuExportGPX,
     menuSortBy,
+    menuReloadWaypoints,
     menuMax
 };
 
@@ -82,6 +83,7 @@ enum {
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuSortBy label:@"Sort By"];
+    [lmi addItem:menuReloadWaypoints label:@"Reload waypoints"];
 
     return self;
 }
@@ -339,6 +341,9 @@ enum {
         case menuSortBy:
             [self menuSortBy];
             return;
+        case menuReloadWaypoints:
+            [self menuReloadWaypoints];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -418,6 +423,38 @@ enum {
     [alert addAction:cancel];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuReloadWaypoints
+{
+    [self performSelectorInBackground:@selector(runReloadWaypoints) withObject:nil];
+}
+
+- (void)runReloadWaypoints
+{
+    NSArray *wps = [NSArray arrayWithArray:waypoints];
+
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[wps count]]];
+
+    __block BOOL failure = NO;
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp];
+        if (rv != REMOTEAPI_OK) {
+            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
+            failure = YES;
+            *stop = YES;
+        }
+    }];
+
+    [self reloadDataMainQueue];
+    [waypointManager needsRefresh];
+
+    [downloadManager setBezelViewController:nil];
+
+    if (failure == NO)
+        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 }
 
 @end
