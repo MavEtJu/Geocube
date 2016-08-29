@@ -21,6 +21,7 @@
 
 typedef enum {
     ImageLibraryImagesMin = -1,
+    Image_Nil = 0,
 
     /* Do not reorder, index matches schema.sql */
     ImageTypes_Benchmark = 100,     // 100

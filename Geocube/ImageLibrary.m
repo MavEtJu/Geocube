@@ -38,6 +38,8 @@
     self = [super init];
     NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
 
+    [self addToLibrary:@"image - nil - 1x1" index:Image_Nil];
+
     [self addToLibrary:@"cache - benchmark - 30x30" index:ImageTypes_Benchmark];
     [self addToLibrary:@"cache - cito - 30x30" index:ImageTypes_CITO];
     [self addToLibrary:@"cache - earth - 30x30" index:ImageTypes_EarthCache];
