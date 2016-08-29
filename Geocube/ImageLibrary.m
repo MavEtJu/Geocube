@@ -131,6 +131,7 @@
     [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
     [self addToLibrary:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
     [self addToLibrary:@"type - in progress - 24x24" index:ImageMap_typeInProgress];
+    [self addToLibrary:@"type - owner - 24x24" index:ImageMap_typeOwner];
 
     [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -531,19 +532,19 @@
 
 // -----------------------------------------------------------
 
-- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
 {
-    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight owner:NO markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
+    NSString *s = [self getPinTypeCode:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
     UIImage *img = [typeImages valueForKey:s];
     if (img == nil) {
-        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
+        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
         [typeImages setObject:img forKey:s];
     }
 
     return img;
 }
 
-- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
+- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
     UIImage *img = [imageLibrary get:type.icon];
 
@@ -552,6 +553,9 @@
 
     if (archived == YES)
         img = [self mergeArchived:img top:ImageMap_typeOutlineArchived];
+
+    if (owner == YES)
+        img = [self mergeOwner:img top:ImageMap_typeOwner];
 
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageMap_typeMarkedFound];
@@ -582,7 +586,7 @@
 
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
+    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:[dbc Account_isOwner:wp] markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
 }
 
 // -----------------------------------------------------------

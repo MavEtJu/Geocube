@@ -34,8 +34,8 @@
 #define THISCELL @"HelpImagesCells"
 
 enum {
-    IMAGES_TYPES_EACH = 0,
-    IMAGES_PINS_EACH,
+    IMAGES_TYPES_ONE = 0,
+    IMAGES_PINS_ONE,
     IMAGES_PINS_ALL,
     IMAGES_TYPES_ALL,
     IMAGES_RATING,
@@ -97,13 +97,13 @@ enum {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == IMAGES_PINS_ALL)
-        return 41;
+        return [[dbc Pins] count];
     if (section == IMAGES_TYPES_ALL)
-        return 21;
-    if (section == IMAGES_PINS_EACH)
-        return 21;
-    if (section == IMAGES_TYPES_EACH)
-        return 18;
+        return [[dbc Types] count];
+    if (section == IMAGES_PINS_ONE)
+        return 10;
+    if (section == IMAGES_TYPES_ONE)
+        return 10;
     if (section == IMAGES_RATING)
         return 11;
     if (section == IMAGES_IMAGES)
@@ -113,9 +113,9 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == IMAGES_PINS_EACH)
+    if (section == IMAGES_PINS_ONE)
         return @"Pins:";
-    if (section == IMAGES_TYPES_EACH)
+    if (section == IMAGES_TYPES_ONE)
         return @"Types:";
     if (section == IMAGES_PINS_ALL)
         return @"Pins all:";
@@ -133,7 +133,7 @@ enum {
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
-    if (indexPath.section == IMAGES_PINS_EACH) {
+    if (indexPath.section == IMAGES_PINS_ONE) {
         NSArray *pins = [dbc Pins];
         dbPin *pin = [pins objectAtIndex:1];
 
@@ -153,174 +153,82 @@ enum {
 
             case 3:
                 cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - Disabled";
+                cell.textLabel.text = @"Pin - Disabled";
                 break;
             case 4:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - Disabled";
+                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Pin - Archived";
                 break;
             case 5:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - Disabled";
+                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Pin - Highlight";
                 break;
-
             case 6:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - Archived";
+                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Pin - Owner";
                 break;
             case 7:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - Archived";
+                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Pin - Marked Found";
                 break;
             case 8:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - Archived";
-                break;
-
-            case 9:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - Highlight";
-                break;
-            case 10:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - Highlight";
-                break;
-            case 11:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - Highlight";
-                break;
-
-            case 12:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - Owner";
-                break;
-            case 13:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - Owner";
-                break;
-            case 14:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - Owner";
-                break;
-
-            case 15:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - Marked Found";
-                break;
-            case 16:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - Marked Found";
-                break;
-            case 17:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - Marked Found";
-                break;
-
-            case 18:
                 cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not logged - In Progress";
+                cell.textLabel.text = @"Pin - Marked In Progress";
                 break;
-            case 19:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Pin - Found - In Progress";
-                break;
-            case 20:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Pin - Not Found - In Progress";
+            case 9:
+                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES];
+                cell.textLabel.text = @"Pin - Marked DNF";
                 break;
 
         }
         return cell;
     }
 
-    if (indexPath.section == IMAGES_TYPES_EACH) {
-        NSArray *types = [dbc Types];
-        dbType *type = [types objectAtIndex:0];
+    if (indexPath.section == IMAGES_TYPES_ONE) {
+        dbType *type = [dbc Type_get_byminor:@"Traditional"];
 
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = @"Type - Not Logged";
                 break;
             case 1:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = @"Type - Found";
                 break;
             case 2:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = @"Type - Not Found";
                 break;
 
             case 3:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Logged - Disabled";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Type - Disabled";
                 break;
             case 4:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Found - Disabled";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Type Archived";
                 break;
             case 5:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Found - Disabled";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Type - Highlight";
                 break;
-
             case 6:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Logged - Archived";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Type - Marked Found";
                 break;
             case 7:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Found - Archived";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
+                cell.textLabel.text = @"Type - Marked Found";
                 break;
             case 8:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Found - Archived";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
+                cell.textLabel.text = @"Type - Marked In Progress";
                 break;
-
             case 9:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Logged - Highlight";
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES];
+                cell.textLabel.text = @"Type - Marked DNF";
                 break;
-            case 10:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Found - Highlight";
-                break;
-            case 11:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Found - Highlight";
-                break;
-
-            case 12:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Logged - Marked Found";
-                break;
-            case 13:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Found - Marked Found";
-                break;
-            case 14:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:YES inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Found - Marked Found";
-                break;
-
-            case 15:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Logged - In Progress";
-                break;
-            case 16:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Type - Found - In Progress";
-                break;
-            case 17:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:YES markedDNF:NO];
-                cell.textLabel.text = @"Type - Not Found - In Progress";
-                break;
-
-            default:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Default";
-                break;
-
         }
 
         return cell;
@@ -328,302 +236,19 @@ enum {
 
     if (indexPath.section == IMAGES_PINS_ALL) {
         NSArray *pins = [dbc Pins];
-        dbPin *pin = [pins objectAtIndex:1];
+        dbPin *pin = [pins objectAtIndex:indexPath.row];
 
-        switch (indexPath.row) {
-            case 0:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin";
-                break;
-            case 1:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found";
-                break;
-            case 2:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found";
-                break;
-
-            case 3:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled";
-                break;
-            case 4:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled";
-                break;
-            case 5:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled";
-                break;
-
-            case 6:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - archived";
-                break;
-            case 7:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - archived";
-                break;
-            case 8:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - archived";
-                break;
-
-            case 9:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - archived";
-                break;
-            case 10:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - archived";
-                break;
-            case 11:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - archived";
-                break;
-
-            case 12:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - highlight";
-                break;
-            case 13:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - highlight";
-                break;
-            case 14:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - highlight";
-                break;
-
-            case 15:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - archived - highlight";
-                break;
-            case 16:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - archived - highlight";
-                break;
-            case 17:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - archived - highlight";
-                break;
-
-            case 18:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - highlight";
-                break;
-            case 19:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - highlight";
-                break;
-            case 20:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - highlight";
-                break;
-
-            case 21:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - owner";
-                break;
-            case 22:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - owner";
-                break;
-            case 23:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - owner";
-                break;
-
-            case 24:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - owner";
-                break;
-            case 25:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - owner";
-                break;
-            case 26:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - owner";
-                break;
-
-            case 27:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - archived - owner";
-                break;
-            case 28:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - archived - owner";
-                break;
-            case 29:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - archived - owner";
-                break;
-
-            case 30:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - archived - owner";
-                break;
-            case 31:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - archived - owner";
-                break;
-            case 32:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - archived - owner";
-                break;
-
-            case 33:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - highlight - owner";
-                break;
-            case 34:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - highlight - owner";
-                break;
-            case 35:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - highlight - owner";
-                break;
-
-            case 36:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - archived - highlight - owner";
-                break;
-            case 37:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - archived - highlight - owner";
-                break;
-            case 38:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - archived - highlight - owner";
-                break;
-
-            case 39:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - disabled - highlight - owner";
-                break;
-            case 40:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - found - disabled - highlight - owner";
-                break;
-            case 41:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:YES owner:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Pin - not found - disabled - highlight - owner";
-                break;
-
-            default:
-                cell.imageView.image = nil;
-                cell.textLabel.text = @"None";
-                break;
-
-        }
+        cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+        cell.textLabel.text = @"Pin";
         return cell;
     }
 
     if (indexPath.section == IMAGES_TYPES_ALL) {
         NSArray *types = [dbc Types];
-        dbType *type = [types objectAtIndex:0];
+        dbType *type = [types objectAtIndex:indexPath.row];
 
-        switch (indexPath.row) {
-            case 0:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type";
-                break;
-            case 1:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found";
-                break;
-            case 2:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found";
-                break;
-
-            case 3:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - disabled";
-                break;
-            case 4:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - disabled";
-                break;
-            case 5:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - disabled";
-                break;
-
-            case 6:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - archived";
-                break;
-            case 7:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - archived";
-                break;
-            case 8:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - archived";
-                break;
-
-            case 9:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - disabled - archived";
-                break;
-            case 10:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - disabled - archived";
-                break;
-            case 11:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:NO markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - disabled - archived";
-                break;
-
-            case 12:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - disabled - highlight";
-                break;
-            case 13:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - disabled - highlight";
-                break;
-            case 14:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:NO highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - disabled - highlight";
-                break;
-
-            case 15:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - archived - highlight";
-                break;
-            case 16:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - archived - highlight";
-                break;
-            case 17:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - archived - highlight";
-                break;
-
-            case 18:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - disabled - highlight";
-                break;
-            case 19:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:YES archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - found - disabled - highlight";
-                break;
-            case 20:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:YES archived:YES highlight:YES markedFound:NO inProgress:NO markedDNF:NO];
-                cell.textLabel.text = @"Type - not found - disabled - highlight";
-                break;
-
-            default:
-                cell.imageView.image = nil;
-                cell.textLabel.text = @"None";
-                break;
-
-        }
+        cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+        cell.textLabel.text = @"Type";
         return cell;
     }
 
