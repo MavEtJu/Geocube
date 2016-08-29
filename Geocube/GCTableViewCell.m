@@ -36,6 +36,11 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [self changeTheme];
+}
+
 - (void)changeTheme
 {
     self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
