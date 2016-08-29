@@ -156,9 +156,10 @@ enum {
 
 - (void)newWaypoint
 {
+    NSString *s = [NSString stringWithFormat:@"Current coordinates:\n%@", [Coordinates NiceCoordinates:waypoint.coordinates]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Add a related waypoint"
-                                message:@"Enter the coordinates"
+                                message:s
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     okButton = [UIAlertAction
