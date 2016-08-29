@@ -32,7 +32,7 @@
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into personal_notes(wp_name, note) values(?, ?, ?)");
+        DB_PREPARE(@"insert into personal_notes(wp_name, note) values(?, ?)");
 
         SET_VAR_TEXT(1, wp_name);
         SET_VAR_TEXT(2, note);
