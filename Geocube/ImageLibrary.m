@@ -494,14 +494,14 @@
 
     img = [self mergePinhead:img topImg:pin.img];
 
+    if (owner == YES)
+        img = [self mergeOwner:img top:ImageMap_pinOwner];
+
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
 
     if (archived == YES)
         img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
-
-    if (owner == YES)
-        img = [self mergeOwner:img top:ImageMap_pinOwner];
 
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageMap_pinMarkedFound];
@@ -548,14 +548,14 @@
 {
     UIImage *img = [imageLibrary get:type.icon];
 
+    if (owner == YES)
+        img = [self mergeOwner:img top:ImageMap_typeOwner];
+
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_typeOutlineDisabled];
 
     if (archived == YES)
         img = [self mergeArchived:img top:ImageMap_typeOutlineArchived];
-
-    if (owner == YES)
-        img = [self mergeOwner:img top:ImageMap_typeOwner];
 
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageMap_typeMarkedFound];
