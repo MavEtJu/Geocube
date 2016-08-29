@@ -50,12 +50,14 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
+@class GCButton;
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCDictionaryGCA;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
 @class GCDictionaryObject;
+@class GCImageView;
 @class GCLabel;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

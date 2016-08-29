@@ -125,7 +125,9 @@
 #import "ImportManager.h"
 #import "DownloadsImportsViewController.h"
 
+#import "GCButton.h"
 #import "GCCloseBUtton.h"
+#import "GCImageView.h"
 #import "GCLabel.h"
 #import "GCSmallLabel.h"
 #import "GCScrollView.h"

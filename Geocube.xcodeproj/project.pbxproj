@@ -411,6 +411,8 @@
 		E8F7FF1D1D6F1B6F00AC7EE6 /* cache - night - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */; };
 		E8F7FF1F1D714BD400AC7EE6 /* cache - unknowntype - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF1E1D714BD400AC7EE6 /* cache - unknowntype - 30x30.png */; };
 		E8F7FF211D7414AD00AC7EE6 /* type - owner - 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF201D7414AD00AC7EE6 /* type - owner - 24x24.png */; };
+		E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF231D744E9800AC7EE6 /* GCImageView.m */; };
+		E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF261D74507100AC7EE6 /* GCButton.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1069,6 +1071,10 @@
 		E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30.png"; path = "images/cache - night - 30x30.png"; sourceTree = "<group>"; };
 		E8F7FF1E1D714BD400AC7EE6 /* cache - unknowntype - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30.png"; path = "images/cache - unknowntype - 30x30.png"; sourceTree = "<group>"; };
 		E8F7FF201D7414AD00AC7EE6 /* type - owner - 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - owner - 24x24.png"; path = "images/type - owner - 24x24.png"; sourceTree = "<group>"; };
+		E8F7FF221D744E9800AC7EE6 /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCImageView.h; sourceTree = "<group>"; };
+		E8F7FF231D744E9800AC7EE6 /* GCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCImageView.m; sourceTree = "<group>"; };
+		E8F7FF251D74507100AC7EE6 /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCButton.h; sourceTree = "<group>"; };
+		E8F7FF261D74507100AC7EE6 /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCButton.m; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -1406,6 +1412,20 @@
 		E85760161B85E08F00F34483 /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
+				E8F7FF251D74507100AC7EE6 /* GCButton.h */,
+				E8F7FF261D74507100AC7EE6 /* GCButton.m */,
+				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
+				E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */,
+				E8F7FF221D744E9800AC7EE6 /* GCImageView.h */,
+				E8F7FF231D744E9800AC7EE6 /* GCImageView.m */,
+				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
+				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
+				E85FCA711CAC6EF3005D7AE1 /* GCSimpleObjects.h */,
+				E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */,
+				E87D44491BA6F6E800671FB9 /* GCScrollView.h */,
+				E87D444A1BA6F6E800671FB9 /* GCScrollView.m */,
+				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
+				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
 				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
 				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
 				E85760061B85DB5500F34483 /* GCTableViewCell.h */,
@@ -1420,22 +1440,12 @@
 				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */,
 				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
 				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
-				E82FBB251B4613C20009AB6D /* GCViewController.h */,
-				E82FBB261B4613C20009AB6D /* GCViewController.m */,
-				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
-				E847A58C1BA0425100BEFE83 /* GCLabel.m */,
-				E87D44491BA6F6E800671FB9 /* GCScrollView.h */,
-				E87D444A1BA6F6E800671FB9 /* GCScrollView.m */,
-				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
-				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
 				E847A58E1BA04AF400BEFE83 /* GCTextblock.h */,
 				E847A58F1BA04AF400BEFE83 /* GCTextblock.m */,
 				E80AEEBC1BA670B200106F7F /* GCView.h */,
 				E80AEEBD1BA670B200106F7F /* GCView.m */,
-				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
-				E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */,
-				E85FCA711CAC6EF3005D7AE1 /* GCSimpleObjects.h */,
-				E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */,
+				E82FBB251B4613C20009AB6D /* GCViewController.h */,
+				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 			);
 			name = Geocube;
 			sourceTree = "<group>";
@@ -2744,6 +2754,7 @@
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
+				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */,
@@ -2768,6 +2779,7 @@
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
+				E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */,
 				E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */,
 				E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
