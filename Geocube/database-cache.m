@@ -526,6 +526,8 @@
 {
     __block BOOL found = NO;
     [Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (wp.gs_owner_id == 0)
+            return;
         if (a.accountname_id == wp.gs_owner_id) {
             found = YES;
             *stop = YES;
