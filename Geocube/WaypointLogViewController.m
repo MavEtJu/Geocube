@@ -150,8 +150,6 @@ enum {
     cell.userInteractionEnabled = YES;
     cell.keyLabel.text = @"";
     cell.valueLabel.text = @"";
-    cell.keyLabel.textColor = [UIColor blackColor];
-    cell.valueLabel.textColor = [UIColor blackColor];
 
     switch (indexPath.section) {
         case SECTION_LOGDETAILS: {
@@ -183,7 +181,7 @@ enum {
                         c.imageView.image = [imageLibrary get:Image_NoImageFile];
                     if ([waypoint.account.remoteAPI commentSupportsPhotos] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = [UIColor lightGrayColor];
+                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     }
                     // Only place to return because the return format has changed.
                     return c;
@@ -195,7 +193,7 @@ enum {
                     cell.accessoryView = fpSwitch;
                     if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
                         cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                        cell.keyLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     }
@@ -205,7 +203,7 @@ enum {
                     cell.keyLabel.text = @"Rating";
                     if ([waypoint.account.remoteAPI commentSupportsRating] == NO) {
                         cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = [UIColor lightGrayColor];
+                        cell.keyLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
                         cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
@@ -218,7 +216,7 @@ enum {
                     c.textLabel.text = @"Trackables";
                     if ([waypoint.account.remoteAPI commentSupportsTrackables] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = [UIColor lightGrayColor];
+                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         __block NSInteger visited = 0;
                         __block NSInteger discovered = 0;
