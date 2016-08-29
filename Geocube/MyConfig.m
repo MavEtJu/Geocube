@@ -40,7 +40,8 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
-@synthesize markasFoundDNFClearsTarget, compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
+@synthesize markasFoundDNFClearsTarget, markasFoundMarksAllWaypoints;
+@synthesize compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
 @synthesize waypointListSortBy;
 @synthesize refreshWaypointAfterLog;
 @synthesize gpsAdjustmentEnable, gpsAdjustmentLatitude, gpsAdjustmentLongitude;
@@ -132,6 +133,8 @@
     CHECK(@"mapsearchmaximum_numbergca", @"50");
 
     CHECK(@"markas_founddnf_clearstarget", @"1");
+    CHECK(@"markas_foundmarksallwaypoints", @"1");
+
     CHECK(@"compass_alwaysinportraitmode", @"1");
     CHECK(@"showasabbrevation_country", @"1");
     CHECK(@"showasabbrevation_state", @"0");
@@ -196,6 +199,7 @@
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
     mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
     markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
+    markasFoundMarksAllWaypoints = [[dbConfig dbGetByKey:@"markas_foundmarksallwaypoints"].value boolValue];
     compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
     showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
@@ -515,6 +519,12 @@
     markasFoundDNFClearsTarget = value;
     [self BOOLUpdate:@"markas_founddnf_clearstarget" value:value];
 }
+- (void)markasFoundMarksAllWaypointsUpdate:(BOOL)value
+{
+    markasFoundMarksAllWaypoints = value;
+    [self BOOLUpdate:@"markas_foundmarksallwaypoints" value:value];
+}
+
 - (void)compassAlwaysInPortraitModeUpdate:(BOOL)value
 {
     compassAlwaysInPortraitMode = value;

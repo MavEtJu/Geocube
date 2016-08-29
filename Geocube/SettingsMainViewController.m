@@ -64,6 +64,7 @@
 
     UISwitch *compassAlwaysInPortraitMode;
     UISwitch *markasFoundDNFClearsTarget;
+    UISwitch *markasFoundMarksAllWaypoints;
     UISwitch *showCountryAsAbbrevation;
     UISwitch *showStateAsAbbrevation;
     UISwitch *showStateAsAbbrevationIfLocaleExists;
@@ -320,6 +321,7 @@ enum sections {
     SECTION_IMPORTS_MAX,
 
     SECTION_MARKAS_FOUNDDNFCLEARSTARGET = 0,
+    SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS,
     SECTION_MARKAS_MAX,
 
     SECTION_WAYPOINTS_SORTBY = 0,
@@ -835,6 +837,17 @@ enum sections {
 
                     return cell;
                 }
+                case SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Mark all related waypoints when marked as found";
+
+                    markasFoundMarksAllWaypoints = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    markasFoundMarksAllWaypoints.on = myConfig.markasFoundMarksAllWaypoints;
+                    [markasFoundMarksAllWaypoints addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = markasFoundMarksAllWaypoints;
+
+                    return cell;
+                }
             }
             break;
         }
@@ -965,6 +978,11 @@ enum sections {
 - (void)updateMarkasFoundDNFClearsTarget:(UISwitch *)s
 {
     [myConfig markasFoundDNFClearsTargetUpdate:s.on];
+}
+
+- (void)updateMarkasFoundMarksAllWaypoints:(UISwitch *)s
+{
+    [myConfig markasFoundMarksAllWaypointsUpdate:s.on];
 }
 
 - (void)updateCompassAlwaysInPortraitMode:(UISwitch *)s
