@@ -71,7 +71,7 @@ enum {
     hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
 
     waypoint = wp;
     userImages = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
@@ -227,7 +227,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbImage *img;
