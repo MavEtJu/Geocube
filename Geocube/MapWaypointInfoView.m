@@ -24,22 +24,22 @@
 @interface MapWaypointInfoView ()
 {
     GCLabel *ratingDLabel, *ratingTLabel;
-    UIImageView *ratingDIV, *ratingTIV;
+    GCImageView *ratingDIV, *ratingTIV;
     GCLabel *favouritesLabel;
     UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgRatingBase, *imgFavourites, *imgSize;
-    UIImageView *favouritesIV;
-    UIButton *setAsTarget;
+    GCImageView *favouritesIV;
+    GCButton *setAsTarget;
 
     GCLabel *description;
     GCLabel *name;
-    UIImageView *icon;
+    GCImageView *icon;
     GCLabel *country;
     GCLabel *stateCountry;
     GCLabel *bearing;
     GCLabel *labelSize;
     GCLabel *coordinates;
     GCLabel *whomWhen;
-    UIImageView *imageSize;
+    GCImageView *imageSize;
 
     CGRect rectIcon;
     CGRect rectDescription;
@@ -79,7 +79,7 @@
     [self calculateRects];
 
     // Icon
-    icon = [[UIImageView alloc] initWithFrame:rectIcon];
+    icon = [[GCImageView alloc] initWithFrame:rectIcon];
     icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
     [self addSubview:icon];
 
@@ -115,7 +115,7 @@
     [self addSubview:stateCountry];
 
     // Favourites
-    favouritesIV = [[UIImageView alloc] initWithFrame:rectFavouritesIV];
+    favouritesIV = [[GCImageView alloc] initWithFrame:rectFavouritesIV];
     favouritesIV.image = imgFavourites;
     [self addSubview:favouritesIV];
     favouritesIV.hidden = TRUE;
@@ -133,7 +133,7 @@
     ratingDLabel.text = @"D";
     [self addSubview:ratingDLabel];
 
-    ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingDIV];
+    ratingDIV = [[GCImageView alloc] initWithFrame:rectRatingDIV];
     [self addSubview:ratingDIV];
 
     // Terrain rating
@@ -142,7 +142,7 @@
     ratingTLabel.text = @"T";
     [self addSubview:ratingTLabel];
 
-    ratingTIV = [[UIImageView alloc] initWithFrame:rectRatingTIV];
+    ratingTIV = [[GCImageView alloc] initWithFrame:rectRatingTIV];
     [self addSubview:ratingTIV];
 
     // Size
@@ -155,7 +155,7 @@
     [self addSubview:labelSize];
 
     // Set as target
-    setAsTarget = [UIButton buttonWithType:UIButtonTypeSystem];
+    setAsTarget = [GCButton buttonWithType:UIButtonTypeSystem];
     setAsTarget.frame = rectSetAsTarget;
     [setAsTarget addTarget:self action:@selector(setAsTarget:) forControlEvents:UIControlEventTouchDown];
     [setAsTarget setImage:[imageLibrary get:ImageIcon_FindMe] forState:UIControlStateNormal];
