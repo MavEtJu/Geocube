@@ -146,7 +146,7 @@
     [self addSubview:ratingTIV];
 
     // Size
-    imageSize = [[UIImageView alloc] initWithFrame:rectSize];
+    imageSize = [[GCImageView alloc] initWithFrame:rectSize];
     imageSize.image = imgSize;
     [self addSubview:imageSize];
     labelSize = [[GCLabel alloc] initWithFrame:rectSizeLabel];
