@@ -144,10 +144,10 @@ enum {
     cell.detailTextLabel.text = a.accountname_string;
     cell.userInteractionEnabled = YES;
     if (a.enabled == NO) {
-        cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
+        cell.imageView.image = [imageLibrary get:Image_Nil];
     } else {
         if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES) {
-            cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+            cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
         } else {
             if (a.canDoRemoteStuff == YES)
                 cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
