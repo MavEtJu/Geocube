@@ -522,6 +522,18 @@
     return _a;
 }
 
+- (BOOL)Account_isOwner:(dbWaypoint *)wp
+{
+    __block BOOL found = NO;
+    [Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (a._id == wp.gs_owner_id) {
+            found = YES;
+            *stop = YES;
+        }
+    }];
+    return found;
+}
+
 - (dbName *)Name_get:(NSId)_id
 {
     NSNumber *n = [NSNumber numberWithLongLong:_id];

@@ -100,6 +100,7 @@
 
 - (void)AccountsReload;
 - (dbAccount *)Account_get:(NSId)_id;
+- (BOOL)Account_isOwner:(dbWaypoint *)wp;
 
 - (dbName *)Name_get:(NSId)_id;
 - (void)Name_add:(dbName *)name;
