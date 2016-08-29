@@ -264,7 +264,6 @@ NEEDS_OVERLOADING(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight
 {
     /* Add the info window */
     wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:CGRectZero];
-    wpInfoView.backgroundColor = [UIColor whiteColor];
     [mapvc.view addSubview:wpInfoView];
 
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:2];
