@@ -41,17 +41,38 @@
 
 @property (nonatomic, retain) id<DownloadManagerDelegate> downloadsImportsDelegate;
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
-
-- (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem;
-
+/*
+ * Make a simple bezel.
+ * - Set vc to nil to remove it.
+ * - The text is automatically resized
+ */
 - (void)setBezelViewController:(UIViewController *)vc;
 - (void)setBezelViewText:(NSString *)text;
 
+/*
+ * Download an image now.
+ */
+- (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+
+/*
+ * Download the contents of an URL now.
+ */
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+
+/*
+ * Add  the contents of an URL to the download queue.
+ */
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem;
+
+/*
+ * Reset the values of the foreground download view or the background download view back to their initial values.
+ */
 - (void)resetForegroundDownload;
 - (void)resetBackgroundDownload;
 
+/*
+ * Set various fields
+ */
 - (void)setDescription:(NSString *)description;
 - (void)setURL:(NSString *)url;
 - (void)setNumberOfChunksTotal:(NSInteger)chunks;
