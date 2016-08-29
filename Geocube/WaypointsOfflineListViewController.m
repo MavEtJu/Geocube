@@ -434,12 +434,22 @@ enum {
 {
     NSArray *wps = [NSArray arrayWithArray:waypoints];
 
+    // XXX group them by account
+
     [downloadManager setBezelViewController:self];
     [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[wps count]]];
 
     __block BOOL failure = NO;
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+
+        // Just ignore this stuff
+        if (wp.account == nil)
+            return;
+
+        if ([wp.account canDoRemoteStuff] == NO)
+            return;
+
         NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
