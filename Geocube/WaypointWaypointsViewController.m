@@ -93,7 +93,7 @@ enum {
 
     cell.textLabel.text = wp.wpt_urlname;
     cell.detailTextLabel.text = wp.wpt_name;
-    cell.imageView.image = [imageLibrary get:wp.wpt_type.icon];
+    cell.imageView.image = [imageLibrary getType:wp];
 
     if (wp._id == waypoint._id) {
         cell.userInteractionEnabled = NO;
