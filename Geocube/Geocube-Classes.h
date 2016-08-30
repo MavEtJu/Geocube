@@ -116,6 +116,7 @@
 @class MapTemplate;
 @class MapViewController;
 @class MapWaypointInfoView;
+@class MyClock;
 @class MyConfig;
 @class MyTools;
 @class NotesFieldnotesViewController;

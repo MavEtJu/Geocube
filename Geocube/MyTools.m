@@ -23,11 +23,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface MyTools ()
-{
-    struct timeval clock;
-    BOOL clockEnabled;
-    NSString *clockTitle;
-}
 
 @end
 
@@ -292,54 +287,6 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 {
     return [NSString stringWithFormat:@"%0.0f%%", 100.0 * value / total];
-}
-
-
-///////////////////////////////////////////
-
-- (instancetype)initClock:(NSString *)_title
-{
-    self = [super init];
-
-    clockTitle = _title;
-    gettimeofday(&clock, NULL);
-    [self clockShowAndReset];
-
-    return self;
-}
-
-- (void)clockShowAndReset
-{
-    [self clockShowAndReset:nil];
-}
-
-- (void)clockShowAndReset:(NSString *)title
-{
-    struct timeval now1, now, diff;
-    gettimeofday(&now1, NULL);
-    now = now1;
-    if (now.tv_usec < clock.tv_usec) {
-        now.tv_sec--;
-        now.tv_usec += 1000000;
-    }
-    diff.tv_usec = now.tv_usec - clock.tv_usec;
-    diff.tv_sec = now.tv_sec - clock.tv_sec;
-
-    clock = now1;
-    if (clockEnabled == NO)
-        return;
-
-    NSMutableString *t = [NSMutableString stringWithString:clockTitle];
-    if (title != nil) {
-        [t appendString:@":"];
-        [t appendString:title];
-    }
-    NSLog(@"CLOCK: %@ %ld.%06d", t, diff.tv_sec, diff.tv_usec);
-}
-
-- (void)clockEnable:(BOOL)yesno
-{
-    clockEnabled = yesno;
 }
 
 ///////////////////////////////////////////

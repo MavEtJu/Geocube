@@ -57,6 +57,7 @@
 #import "Geocube-Classes.h"
 
 #import "Coordinates.h"
+#import "MyClock.h"
 #import "MyTools.h"
 #import "KeyboardCoordinateView.h"
 

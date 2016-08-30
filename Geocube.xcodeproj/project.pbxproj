@@ -414,6 +414,7 @@
 		E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF231D744E9800AC7EE6 /* GCImageView.m */; };
 		E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF261D74507100AC7EE6 /* GCButton.m */; };
 		E8F7FF291D74DFE000AC7EE6 /* image - nil - 1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F7FF281D74DFE000AC7EE6 /* image - nil - 1x1.png */; };
+		E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF2B1D75645800AC7EE6 /* MyClock.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
 		E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F9913D1C19518600D360F1 /* menu icon - find target.png */; };
 		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
@@ -1077,6 +1078,8 @@
 		E8F7FF251D74507100AC7EE6 /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCButton.h; sourceTree = "<group>"; };
 		E8F7FF261D74507100AC7EE6 /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCButton.m; sourceTree = "<group>"; };
 		E8F7FF281D74DFE000AC7EE6 /* image - nil - 1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - nil - 1x1.png"; path = "images/image - nil - 1x1.png"; sourceTree = "<group>"; };
+		E8F7FF2A1D75645800AC7EE6 /* MyClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClock.h; sourceTree = "<group>"; };
+		E8F7FF2B1D75645800AC7EE6 /* MyClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClock.m; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E8F9913D1C19518600D360F1 /* menu icon - find target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - find target.png"; path = "images/menu icon - find target.png"; sourceTree = "<group>"; };
@@ -2225,6 +2228,8 @@
 			children = (
 				E880379A1B915CEE0053AD01 /* GCURLRequest.h */,
 				E880379B1B915CEE0053AD01 /* GCURLRequest.m */,
+				E8F7FF2A1D75645800AC7EE6 /* MyClock.h */,
+				E8F7FF2B1D75645800AC7EE6 /* MyClock.m */,
 				E8A7FAA61B78CE36003F4132 /* MyTools.h */,
 				E8A7FAA71B78CE36003F4132 /* MyTools.m */,
 				E8467C8C1B4E04EE00FFA253 /* Coordinates.h */,
@@ -2754,6 +2759,7 @@
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
+				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,

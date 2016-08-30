@@ -64,11 +64,6 @@ enum {
 + (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 
-- (instancetype)initClock:(NSString *)title;
-- (void)clockShowAndReset;
-- (void)clockShowAndReset:(NSString *)title;
-- (void)clockEnable:(BOOL)yesno;
-
 + (NSString *)urlEncode:(NSString *)in;
 + (NSString *)urlDecode:(NSString *)in;
 + (NSString *)tickEscape:(NSString *)in;

@@ -97,7 +97,7 @@
 
         NSMutableArray *caches;
         NSMutableArray *after;
-        MyTools *clock = [[MyTools alloc] initClock:@"filter"];
+        MyClock *clock = [[MyClock alloc] initClock:@"filter"];
         [clock clockEnable:YES];
 
         /* Filter out by group:
