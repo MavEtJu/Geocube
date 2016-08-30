@@ -714,9 +714,22 @@ enum {
                                     [self addLog:@"Marked as Found"];
                                 waypoint.flag_markedfound = !waypoint.flag_markedfound;
                                 [waypoint dbUpdateMarkedFound];
-                                [waypointManager needsRefresh];
                                 if (waypoint.flag_markedfound == YES && waypoint == waypointManager.currentWaypoint)
                                     [waypointManager setCurrentWaypoint:nil];
+
+                                if (waypoint.flag_markedfound == YES) {
+                                    NSArray *wps = [waypoint hasWaypoints];
+                                    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                                        if (wp._id == waypoint._id)
+                                            return;
+                                        wp.flag_markedfound = YES;
+                                        [wp dbUpdateMarkedFound];
+                                        if (waypoint == waypointManager.currentWaypoint)
+                                            [waypointManager setCurrentWaypoint:nil];
+                                    }];
+                                }
+
+                                [waypointManager needsRefresh];
                                 [self.tableView reloadData];
                             }];
     UIAlertAction *ignore = [UIAlertAction
