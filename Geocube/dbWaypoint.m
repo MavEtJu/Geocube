@@ -260,12 +260,14 @@
     NSString *namesuffix, *nameprefix, *prefix;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ?")
+        DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ? and (account_id = ? or account_id = 0)")
 
         namesuffix = [self.wpt_name substringFromIndex:2];
         nameprefix = [self.wpt_name substringToIndex:2];
         NSString *sql = [NSString stringWithFormat:@"%%%@", namesuffix];
         SET_VAR_TEXT(1, sql);
+        SET_VAR_INT (2, account_id);
+
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN (0, __id);
             TEXT_FETCH_AND_ASSIGN(1, name);
