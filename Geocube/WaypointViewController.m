@@ -346,7 +346,6 @@ enum {
                     cell.textLabel.text = @"Personal Note";
                     if ([dbPersonalNote dbGetByWaypointName:waypoint.wpt_name] == nil)
                         tc = currentTheme.labelTextColorDisabled;
-                    // Do not disable this one as you want to be able to create one.
                     break;
 
                 case WAYPOINT_DATA_FIELDNOTES: {
@@ -385,11 +384,11 @@ enum {
 
                 case WAYPOINT_DATA_ADDITIONALWAYPOINTS: {
                     cell.textLabel.text = @"Additional Waypoints";
+
                     NSArray *wps = [waypoint hasWaypoints];
-                    if ([wps count] <= 1) {
+                    if ([wps count] <= 1)
                         tc = currentTheme.labelTextColorDisabled;
-                        cell.userInteractionEnabled = YES;     // Be able to create one
-                    } else
+                    else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)([wps count] - 1)];
                     break;
                 }
@@ -408,10 +407,9 @@ enum {
                 case WAYPOINT_DATA_IMAGES: {
                     cell.textLabel.text = @"Images";
                     NSInteger c = [waypoint hasImages];
-                    if (c == 0) {
+                    if (c == 0)
                         tc = currentTheme.labelTextColorDisabled;
-                        cell.userInteractionEnabled = YES;  // Be able to create one
-                    } else
+                    else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)",cell.textLabel.text, (long)c];
                     break;
                 }
