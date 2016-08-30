@@ -276,20 +276,20 @@
 
             if ([name isEqualToString:self.wpt_name] == YES) {
                 [wps addObject:[dbWaypoint dbGet:__id]];
-            } else if (([prefix isEqualToString:@"GA"] == YES && [nameprefix isEqualToString:@"GA"] == YES) || // Geocaching Australia
-                       ([prefix isEqualToString:@"TP"] == YES && [nameprefix isEqualToString:@"TP"] == YES) || // Geocaching Australia Trigpoint
-                       ([prefix isEqualToString:@"GC"] == YES && [nameprefix isEqualToString:@"GC"] == YES) || // Groundspeak Geocaching.com
-                       ([prefix isEqualToString:@"VI"] == YES && [nameprefix isEqualToString:@"VI"] == YES) || // Geocaching.su virtual
-                       ([prefix isEqualToString:@"TR"] == YES && [nameprefix isEqualToString:@"TR"] == YES) || // Geocaching.su traditional
-                       ([prefix isEqualToString:@"MS"] == YES && [nameprefix isEqualToString:@"MS"] == YES) || // Geocaching.su multistep
-                       ([prefix isEqualToString:@"TC"] == YES && [nameprefix isEqualToString:@"TC"] == YES) || // Terracaching
-                       ([prefix isEqualToString:@"OB"] == YES && [nameprefix isEqualToString:@"OB"] == YES) || // OpenCaching NL
-                       ([prefix isEqualToString:@"OP"] == YES && [nameprefix isEqualToString:@"OP"] == YES) || // OpenCaching PL
-                       ([prefix isEqualToString:@"OK"] == YES && [nameprefix isEqualToString:@"OK"] == YES) || // OpenCaching UK
-                       ([prefix isEqualToString:@"OU"] == YES && [nameprefix isEqualToString:@"OU"] == YES) || // OpenCaching US
-                       ([prefix isEqualToString:@"OR"] == YES && [nameprefix isEqualToString:@"OR"] == YES) || // OpenCaching RO
-                       ([prefix isEqualToString:@"OZ"] == YES && [nameprefix isEqualToString:@"OZ"] == YES) || // OpenCaching CZ
-                       ([prefix isEqualToString:@"OC"] == YES && [nameprefix isEqualToString:@"OC"] == YES)) { // OpenCaching DE/FR/IT
+            } else if ([prefix isEqualToString:@"GA"] == YES || // Geocaching Australia
+                       [prefix isEqualToString:@"TP"] == YES || // Geocaching Australia Trigpoint
+                       [prefix isEqualToString:@"GC"] == YES || // Groundspeak Geocaching.com
+                       [prefix isEqualToString:@"VI"] == YES || // Geocaching.su virtual
+                       [prefix isEqualToString:@"TR"] == YES || // Geocaching.su traditional
+                       [prefix isEqualToString:@"MS"] == YES || // Geocaching.su multistep
+                       [prefix isEqualToString:@"TC"] == YES || // Terracaching
+                       [prefix isEqualToString:@"OB"] == YES || // OpenCaching NL
+                       [prefix isEqualToString:@"OP"] == YES || // OpenCaching PL
+                       [prefix isEqualToString:@"OK"] == YES || // OpenCaching UK
+                       [prefix isEqualToString:@"OU"] == YES || // OpenCaching US
+                       [prefix isEqualToString:@"OR"] == YES || // OpenCaching RO
+                       [prefix isEqualToString:@"OZ"] == YES || // OpenCaching CZ
+                       [prefix isEqualToString:@"OC"] == YES) { // OpenCaching DE/FR/IT
                 // Nothing!
             } else {
                 [wps addObject:[dbWaypoint dbGet:__id]];
@@ -566,24 +566,31 @@
 
 + (void)dbUpdateLogStatus
 {
+    // Make all not logged
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set log_status = ?");
         SET_VAR_INT(1, LOGSTATUS_NOTLOGGED);
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    // Find all the logs about non-found caches and mark these caches as not found.
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found = 0 and (id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
         SET_VAR_INT(1, LOGSTATUS_NOTFOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    // Find all the logs about found caches and mark these caches as found.
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))");
         SET_VAR_INT(1, LOGSTATUS_FOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    // Set the time of the last log in the waypoint
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set date_lastlog_epoch = (select max(l.datetime_epoch) from logs l where l.waypoint_id = waypoints.id);");
         DB_CHECK_OKAY;
