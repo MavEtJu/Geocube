@@ -26,6 +26,8 @@
     BOOL mineOnly;
     dbWaypoint *waypoint;
     NSArray *logs;
+
+    dbLog *selectedLog;
 }
 
 @end
@@ -33,6 +35,11 @@
 #define THISCELL @"WaypointLogsViewControllerCell"
 
 @implementation WaypointLogsViewController
+
+enum {
+    menuScanForWaypoints,
+    menuMax,
+};
 
 - (instancetype)init:(dbWaypoint *)_wp
 {
@@ -45,7 +52,9 @@
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 
-    lmi = nil;
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
+    [lmi disableItem:menuScanForWaypoints];
 
     return self;
 }
@@ -96,7 +105,7 @@
 
     [cell setLogString:l.log];
     [cell.contentView sizeToFit];
-    [cell setUserInteractionEnabled:NO];
+    [cell setUserInteractionEnabled:YES];
 
     cell.log = l;
     [cell viewWillTransitionToSize];
@@ -112,6 +121,37 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    selectedLog = [logs objectAtIndex:indexPath.row];
+    [lmi enableItem:menuScanForWaypoints];
+}
+
+- (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedLog = nil;
+    [lmi disableItem:menuScanForWaypoints];
+}
+
+#pragma mark - Local menu related functions
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    // Import a photo
+    switch (index) {
+        case menuScanForWaypoints:
+            [self scanForWaypoints];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
+}
+
+- (void)scanForWaypoints
+{
+    if (selectedLog == nil)
+        return;
+
+    NSArray *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
+    [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
 }
 
 @end
