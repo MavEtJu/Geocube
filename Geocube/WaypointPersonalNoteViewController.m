@@ -35,6 +35,7 @@
 
 enum {
     menuScanForWaypoints,
+    menuCopyLog,
     menuMax,
 };
 
@@ -47,6 +48,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
+    [lmi addItem:menuCopyLog label:@"Copy note to clipboard"];
 
     note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 
@@ -139,6 +141,9 @@ enum {
             [self scanForWaypoints];
             [self.delegateWaypoint WaypointPersonalNote_refreshTable];
             return;
+        case menuCopyLog:
+            [self menuCopyLog];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -148,6 +153,13 @@ enum {
 {
     NSArray *lines = [note.note componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
+}
+
+- (void)menuCopyLog
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = note.note;
+    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the personal note has been copied to the clipboard"];
 }
 
 @end
