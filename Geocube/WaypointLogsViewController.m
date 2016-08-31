@@ -38,6 +38,7 @@
 
 enum {
     menuScanForWaypoints,
+    menuCopyLog,
     menuMax,
 };
 
@@ -54,7 +55,9 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
+    [lmi addItem:menuCopyLog label:@"Copy log to clipboard"];
     [lmi disableItem:menuScanForWaypoints];
+    [lmi disableItem:menuCopyLog];
 
     return self;
 }
@@ -123,12 +126,14 @@ enum {
 {
     selectedLog = [logs objectAtIndex:indexPath.row];
     [lmi enableItem:menuScanForWaypoints];
+    [lmi enableItem:menuCopyLog];
 }
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedLog = nil;
     [lmi disableItem:menuScanForWaypoints];
+    [lmi disableItem:menuCopyLog];
 }
 
 #pragma mark - Local menu related functions
@@ -139,6 +144,9 @@ enum {
     switch (index) {
         case menuScanForWaypoints:
             [self scanForWaypoints];
+            return;
+        case menuCopyLog:
+            [self menuCopyLog];
             return;
     }
 
@@ -152,6 +160,16 @@ enum {
 
     NSArray *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
+}
+
+- (void)menuCopyLog
+{
+    if (selectedLog == nil)
+        return;
+
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = selectedLog.log;
+    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the selected log is copied to the clipboard"];
 }
 
 @end
