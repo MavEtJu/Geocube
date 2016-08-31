@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_Geocube_Classes_h
-#define Geocube_Geocube_Classes_h
-
 @class AppDelegate;
 @class AudioFeedback;
 @class BrowserAccountsViewController;
@@ -196,5 +193,3 @@
 @class dbTrackable;
 @class dbType;
 @class dbWaypoint;
-
-#endif

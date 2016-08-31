@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_Geocube_Prefix_pch
-#define Geocube_Geocube_Prefix_pch
-
 #ifdef __OBJC__
 
 #import <sys/time.h>
@@ -245,7 +242,5 @@
 #import "ListHighlightViewController.h"
 #import "ListIgnoredViewController.h"
 #import "ListInProgressViewController.h"
-
-#endif
 
 #endif
