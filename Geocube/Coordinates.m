@@ -354,4 +354,64 @@
     d2->longitude = bottom - (top - bottom) * 0.1;
 }
 
++ (NSInteger)scanForWaypoints:(NSArray *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
+{
+    NSError *e = nil;
+    __block NSInteger found = 0;
+
+    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:@"([NSns] +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3})" options:0 error:&e];
+    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:@"([EWew] +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3})" options:0 error:&e];
+
+    [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *NS = nil;
+        NSString *EW = nil;
+
+        NSArray *matches = [rns matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange range = [match rangeAtIndex:1];
+            NS = [line substringWithRange:range];
+        }
+
+        matches = [rew matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+        for (NSTextCheckingResult *match in matches) {
+            NSRange range = [match rangeAtIndex:1];
+            EW = [line substringWithRange:range];
+        }
+
+        if (NS != nil && EW != nil) {
+            NSLog(@"%@ - %@", NS, EW);
+            Coordinates *c = [[Coordinates alloc] initString:NS lon:EW];
+
+            dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+            wp.wpt_lat = [c lat_decimalDegreesSigned];
+            wp.wpt_lon = [c lon_decimalDegreesSigned];
+            wp.wpt_lat_int = [c lat] * 1000000;
+            wp.wpt_lon_int = [c lon] * 1000000;
+            wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+            wp.wpt_description = wp.wpt_name;
+            wp.wpt_date_placed_epoch = time(NULL);
+            wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
+            wp.wpt_url = nil;
+            wp.wpt_urlname = wp.wpt_name;
+            wp.wpt_symbol_id = 1;
+            wp.wpt_type_id = [dbc Type_Unknown]._id;
+            [dbWaypoint dbCreate:wp];
+
+            [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
+            [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
+            [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
+
+            [waypointManager needsRefresh];
+            found++;
+        }
+    }];
+    if (found == 0)
+        [MyTools messageBox:vc header:@"Imported failed" text:@"No waypoints were found"];
+    else if (found == 1)
+        [MyTools messageBox:vc header:@"Imported successful" text:@"Succesfully added one waypoint"];
+    else
+        [MyTools messageBox:vc header:@"Imported successful" text:[NSString stringWithFormat:@"Succesfully added %ld waypoints", found]];
+    return found;
+}
+
 @end
