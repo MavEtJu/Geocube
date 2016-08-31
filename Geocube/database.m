@@ -462,6 +462,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 36
+    a = @[
+    @"alter table waypoints add column related_id integer",
+    @"update waypoints set related_id = 0",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

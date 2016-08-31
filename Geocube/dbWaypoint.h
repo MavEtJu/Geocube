@@ -65,6 +65,7 @@ enum {
 @property (nonatomic) BOOL flag_dnf;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
+@property (nonatomic) NSId related_id;
 
 @property (nonatomic) float gs_rating_difficulty;
 @property (nonatomic) float gs_rating_terrain;

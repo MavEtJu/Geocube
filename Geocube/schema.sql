@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
-insert into config(key, value) values("version", "35");
+insert into config(key, value) values("version", "36");
 
 create table filters (
     id integer primary key,
@@ -57,6 +57,8 @@ create index group2waypoints_idx_waypoint_id on group2waypoints(waypoint_id);
 
 create table waypoints (
     id integer primary key,
+    related_id integer,
+
     wpt_lat text,
     wpt_lon text,
     wpt_lat_int integer,		-- lat times 1000 000 for now

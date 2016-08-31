@@ -191,6 +191,7 @@ enum {
                     wp.wpt_urlname = wp.wpt_name;
                     wp.wpt_symbol_id = 1;
                     wp.wpt_type_id = [dbc Type_Unknown]._id;
+                    wp.related_id = waypoint._id;
                     [dbWaypoint dbCreate:wp];
 
                     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
