@@ -169,7 +169,7 @@ enum {
 
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = selectedLog.log;
-    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the selected log is copied to the clipboard"];
+    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the selected log has been copied to the clipboard"];
 }
 
 @end
