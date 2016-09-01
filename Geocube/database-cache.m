@@ -37,7 +37,7 @@
 
 @synthesize Accounts, Containers, Countries, Groups, Pins, States, Types, Locales;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
-@synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown;
+@synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown, Type_ManuallyEntered;
 
 - (instancetype)init
 {
@@ -129,13 +129,16 @@
     // NSAssert(Container_Unknown != nil, @"Container_Unknown");
 
     [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
-        if ([ct.type_major isEqualToString:@"*"] == YES) {
+        if ([ct.type_major isEqualToString:@"*"] == YES)
             Type_Unknown = ct;
-            *stop = YES;
-        }
+        if ([ct.type_major isEqualToString:@"Waypoint"] == YES && [ct.type_minor isEqualToString:@"Manually entered"] == YES)
+            Type_ManuallyEntered = ct;
     }];
-    if ([Types count] != 0)
+    if ([Types count] != 0) {
         NSAssert(Type_Unknown != nil, @"Type_Unknown");
+        if (Type_ManuallyEntered == nil)
+            Type_ManuallyEntered = Type_Unknown;
+    }
 
     [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if ([pt.description isEqualToString:@"*"] == YES) {
@@ -231,6 +234,18 @@
     }];
     if (_pt == nil)
         return Pin_Unknown;
+    return _pt;
+}
+
+- (dbPin *)Pin_get_nilokay:(NSId)_id
+{
+    __block dbPin *_pt = nil;
+    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+        if (pt._id == _id) {
+            _pt = pt;
+            *stop = YES;
+        }
+    }];
     return _pt;
 }
 

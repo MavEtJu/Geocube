@@ -44,6 +44,7 @@
 
 // Types
 @property (nonatomic, retain) dbType *Type_Unknown;
+@property (nonatomic, retain) dbType *Type_ManuallyEntered;
 
 // Pins
 @property (nonatomic, retain) dbPin *Pin_Unknown;
@@ -65,6 +66,7 @@
 - (void)Type_add:(dbType *)type;
 
 - (dbPin *)Pin_get:(NSId)_id;
+- (dbPin *)Pin_get_nilokay:(NSId)_id;
 - (void)Pin_add:(dbPin *)pin;
 
 - (dbContainer *)Container_get_bysize:(NSString *)size;
