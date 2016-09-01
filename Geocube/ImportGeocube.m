@@ -458,7 +458,7 @@
         NSString *rgb = [pin objectForKey:@"rgb"];
         NSInteger _id = [[pin objectForKey:@"id"] integerValue];
 
-        dbPin *p = [dbc Pin_get:_id];
+        dbPin *p = [dbc Pin_get_nilokay:_id];
         if (p != nil) {
             p.description = description;
             p._id = _id;

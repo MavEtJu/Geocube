@@ -190,7 +190,7 @@ enum {
                     wp.wpt_url = nil;
                     wp.wpt_urlname = wp.wpt_name;
                     wp.wpt_symbol_id = 1;
-                    wp.wpt_type_id = [dbc Type_Unknown]._id;
+                    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
                     wp.related_id = waypoint._id;
                     [dbWaypoint dbCreate:wp];
 
