@@ -278,6 +278,7 @@
             if ([name isEqualToString:self.wpt_name] == YES) {
                 [wps addObject:[dbWaypoint dbGet:__id]];
             } else if ([prefix isEqualToString:@"GA"] == YES || // Geocaching Australia
+                       [prefix isEqualToString:@"MY"] == YES || // Geocube internal
                        [prefix isEqualToString:@"TP"] == YES || // Geocaching Australia Trigpoint
                        [prefix isEqualToString:@"GC"] == YES || // Groundspeak Geocaching.com
                        [prefix isEqualToString:@"VI"] == YES || // Geocaching.su virtual
