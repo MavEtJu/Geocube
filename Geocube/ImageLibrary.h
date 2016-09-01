@@ -51,15 +51,16 @@ typedef enum {
     ImageTypes_Night,               // 124
     ImageTypes_NFI,                 // 125
 
-    ImageWaypoints_FinalLocation = 200,
-    ImageWaypoints_Flag,
-    ImageWaypoints_MultiStage,
-    ImageWaypoints_ParkingArea,
-    ImageWaypoints_PhysicalStage,
-    ImageWaypoints_ReferenceStage,
-    ImageWaypoints_Trailhead,
-    ImageWaypoints_VirtualStage,
-    Imagewaypoints_NFI,
+    ImageWaypoints_FinalLocation = 200, // 200
+    ImageWaypoints_Flag,                // 201
+    ImageWaypoints_MultiStage,          // 202
+    ImageWaypoints_ParkingArea,         // 203
+    ImageWaypoints_PhysicalStage,       // 204
+    ImageWaypoints_ReferenceStage,      // 205
+    ImageWaypoints_Trailhead,           // 206
+    ImageWaypoints_VirtualStage,        // 207
+    Imagewaypoints_NFI,                 // 208
+    ImageWaypoints_ManuallyEntered,     // 209
     ImageNFI,
 
     ImageLog_DidNotFind = 400,
