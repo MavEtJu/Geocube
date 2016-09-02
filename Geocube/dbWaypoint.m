@@ -259,6 +259,23 @@
 {
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
     NSString *namesuffix, *nameprefix, *prefix;
+    NSArray *GCCodes = @[
+                         @"GA", // Geocaching Australia
+                         @"MY", // Geocube internal
+                         @"TP", // Geocaching Australia Trigpoint
+                         @"GC", // Groundspeak Geocaching.com
+                         @"VI", // Geocaching.su virtual
+                         @"TR", // Geocaching.su traditional
+                         @"MS", // Geocaching.su multistep
+                         @"TC", // Terracaching
+                         @"OB", // OpenCaching NL
+                         @"OP", // OpenCaching PL
+                         @"OK", // OpenCaching UK
+                         @"OU", // OpenCaching US
+                         @"OR", // OpenCaching RO
+                         @"OZ", // OpenCaching CZ
+                         @"OC", // OpenCaching DE/FR/IT
+                       ];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ? and (account_id = ? or account_id = 0)")
@@ -277,21 +294,7 @@
 
             if ([name isEqualToString:self.wpt_name] == YES) {
                 [wps addObject:[dbWaypoint dbGet:__id]];
-            } else if ([prefix isEqualToString:@"GA"] == YES || // Geocaching Australia
-                       [prefix isEqualToString:@"MY"] == YES || // Geocube internal
-                       [prefix isEqualToString:@"TP"] == YES || // Geocaching Australia Trigpoint
-                       [prefix isEqualToString:@"GC"] == YES || // Groundspeak Geocaching.com
-                       [prefix isEqualToString:@"VI"] == YES || // Geocaching.su virtual
-                       [prefix isEqualToString:@"TR"] == YES || // Geocaching.su traditional
-                       [prefix isEqualToString:@"MS"] == YES || // Geocaching.su multistep
-                       [prefix isEqualToString:@"TC"] == YES || // Terracaching
-                       [prefix isEqualToString:@"OB"] == YES || // OpenCaching NL
-                       [prefix isEqualToString:@"OP"] == YES || // OpenCaching PL
-                       [prefix isEqualToString:@"OK"] == YES || // OpenCaching UK
-                       [prefix isEqualToString:@"OU"] == YES || // OpenCaching US
-                       [prefix isEqualToString:@"OR"] == YES || // OpenCaching RO
-                       [prefix isEqualToString:@"OZ"] == YES || // OpenCaching CZ
-                       [prefix isEqualToString:@"OC"] == YES) { // OpenCaching DE/FR/IT
+            } else if ([prefix isEqualToString:nameprefix] == YES && [GCCodes indexOfObject:prefix] != NSNotFound) {
                 // Nothing!
             } else {
                 [wps addObject:[dbWaypoint dbGet:__id]];
