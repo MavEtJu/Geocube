@@ -158,8 +158,10 @@
     [syncSessionDataTask resume];
 
     dispatch_semaphore_wait(syncSem, DISPATCH_TIME_FOREVER);
-    *errorPtr = syncError;
-    *responsePtr = syncReponse;
+    if (*errorPtr != nil)
+        *errorPtr = syncError;
+    if (*responsePtr != nil)
+        *responsePtr = syncReponse;
 
     if (bezelViewController == nil) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
