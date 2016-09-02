@@ -158,9 +158,9 @@
     [syncSessionDataTask resume];
 
     dispatch_semaphore_wait(syncSem, DISPATCH_TIME_FOREVER);
-    if (*errorPtr != nil)
+    if (errorPtr != nil)
         *errorPtr = syncError;
-    if (*responsePtr != nil)
+    if (responsePtr != nil)
         *responsePtr = syncReponse;
 
     if (bezelViewController == nil) {
