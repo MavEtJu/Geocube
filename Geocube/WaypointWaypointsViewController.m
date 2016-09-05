@@ -156,7 +156,7 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:@"Current coordinates:\n%@", [Coordinates NiceCoordinates:waypoint.coordinates]];
+    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates NiceCoordinates:waypoint.coordinates], [Coordinates NiceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Add a related waypoint"
                                 message:s
@@ -192,6 +192,7 @@ enum {
                     wp.wpt_symbol_id = 1;
                     wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
                     wp.related_id = waypoint._id;
+                    wp.account_id = waypoint.account_id;
                     [dbWaypoint dbCreate:wp];
 
                     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
