@@ -23,8 +23,7 @@
 
 @interface WaypointsOfflineListViewController ()
 {
-    NSArray *waypoints;
-    NSInteger waypointCount;
+    NSMutableArray *waypoints;
 
     NSInteger currentSortOrder;
 
@@ -171,11 +170,10 @@ enum {
 
     waypoints = [self resortCachesData:_wps];
 
-    waypointCount = [waypoints count];
     [self reloadDataMainQueue];
 }
 
-- (NSArray *)resortCachesData:(NSArray *)wps
+- (NSMutableArray *)resortCachesData:(NSMutableArray *)wps
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
@@ -184,22 +182,22 @@ enum {
 
 #define NCMP(I, O1, O2, W) \
     case I: \
-        wps = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
             if (O1 W O2) \
                 return (NSComparisonResult)NSOrderedDescending; \
             if (O1 W O2) \
                 return (NSComparisonResult)NSOrderedAscending; \
             return (NSComparisonResult)NSOrderedSame; \
-        }]; \
+        }]]; \
         break;
 #define SCMP(I, O1, O2, W) \
     case I: \
-        wps = [wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
             if (W == NSOrderedAscending) \
                 return (NSComparisonResult)[O1 compare:O2 options:NSCaseInsensitiveSearch]; \
             else \
                 return (NSComparisonResult)(-[O1 compare:O2 options:NSCaseInsensitiveSearch]); \
-        }]; \
+        }]]; \
         break;
     switch (currentSortOrder) {
         NCMP(SORTORDER_DISTANCE_ASC, obj1.calculatedDistance, obj2.calculatedDistance, >)
@@ -241,7 +239,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return waypointCount;
+    return [waypoints count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -329,14 +327,31 @@ enum {
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
+    NSUInteger idx = [waypoints indexOfObject:wp];
+    if (idx == NSNotFound)
+        return;
+    [waypoints removeObjectAtIndex:idx];
+    waypoints = [self resortCachesData:waypoints];
+    [self reloadDataMainQueue];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
+    if ([waypoints indexOfObject:wp] != NSNotFound)
+        return;
+    [waypoints addObject:wp];
+    waypoints = [self resortCachesData:waypoints];
+    [self reloadDataMainQueue];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
+    NSUInteger idx = [waypoints indexOfObject:wp];
+    if (idx == NSNotFound)
+        return;
+    [waypoints replaceObjectAtIndex:idx withObject:wp];
+    waypoints = [self resortCachesData:waypoints];
+    [self reloadDataMainQueue];
 }
 
 #pragma mark - Local menu related functions
