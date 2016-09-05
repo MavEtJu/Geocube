@@ -171,7 +171,10 @@
     waypoint = wp;
 
     description.text = wp.wpt_urlname;
-    whomWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+    if (wp.gs_owner == nil)
+        whomWhen.text = [NSString stringWithFormat:@"Yours on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+    else
+        whomWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
     name.text = [NSString stringWithFormat:@"%@ (%@)", wp.wpt_name, wp.account.site];
     icon.image = [imageLibrary getType:wp];
     if (wp.flag_highlight == YES)
