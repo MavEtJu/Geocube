@@ -280,6 +280,7 @@ enum {
     wp.wpt_symbol_id = 1;
     wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
     wp.related_id = 0;  // This is a new parent
+    [wp finish];
     [dbWaypoint dbCreate:wp];
 
     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
