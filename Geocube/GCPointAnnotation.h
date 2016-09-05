@@ -21,8 +21,6 @@
 
 @interface GCPointAnnotation : MKPointAnnotation
 
-@property (nonatomic) NSId _id;
-@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
