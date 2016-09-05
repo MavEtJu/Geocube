@@ -141,7 +141,7 @@
                 [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
                     [downloadsImportsDelegate importManager_setDescription:filename];
                     [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename]];
-                    [waypointManager needsRefresh];
+                    [waypointManager needsRefreshAll];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
                 [downloadsImportsDelegate importManager_setDescription:@"GPX data"];

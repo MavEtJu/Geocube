@@ -664,7 +664,7 @@ enum {
                           handler:^(UIAlertAction *action) {
                               [waypoint dbDelete];
                               [db cleanupAfterDelete];
-                              [waypointManager needsRefresh];
+                              [waypointManager needsRefreshRemove:waypoint];
                               [self.navigationController popViewControllerAnimated:YES];
                           }];
 
@@ -697,7 +697,7 @@ enum {
                                   [self addLog:@"Marked as DNF"];
                               waypoint.flag_dnf = !waypoint.flag_dnf;
                               [waypoint dbUpdateMarkedDNF];
-                              [waypointManager needsRefresh];
+                              [waypointManager needsRefreshUpdate:waypoint];
                               if (waypoint.flag_dnf == YES && waypoint == waypointManager.currentWaypoint)
                                   [waypointManager setCurrentWaypoint:nil];
                               [self.tableView reloadData];
@@ -727,7 +727,7 @@ enum {
                                     }];
                                 }
 
-                                [waypointManager needsRefresh];
+                                [waypointManager needsRefreshUpdate:waypoint];
                                 [self.tableView reloadData];
                             }];
     UIAlertAction *ignore = [UIAlertAction
@@ -740,7 +740,7 @@ enum {
                                      [self addLog:@"Marked as Ignored"];
                                  waypoint.flag_ignore = !waypoint.flag_ignore;
                                  [waypoint dbUpdateIgnore];
-                                 [waypointManager needsRefresh];
+                                 [waypointManager needsRefreshUpdate:waypoint];
                                  [self.tableView reloadData];
 
                                  if (waypoint.flag_ignore == YES) {
@@ -759,7 +759,7 @@ enum {
                                          [self addLog:@"Marked as In Progress"];
                                      waypoint.flag_inprogress = !waypoint.flag_inprogress;
                                      [waypoint dbUpdateInProgress];
-                                     [waypointManager needsRefresh];
+                                     [waypointManager needsRefreshUpdate:waypoint];
                                      [self.tableView reloadData];
                                  }];
     UIAlertAction *highlight = [UIAlertAction
@@ -772,7 +772,7 @@ enum {
                                         [self addLog:@"Marked as Highlighted"];
                                     waypoint.flag_highlight = !waypoint.flag_highlight;
                                     [waypoint dbUpdateHighlight];
-                                    [waypointManager needsRefresh];
+                                    [waypointManager needsRefreshUpdate:waypoint];
                                     [self.tableView reloadData];
                                 }];
 

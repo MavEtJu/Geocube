@@ -467,49 +467,6 @@ enum {
     [map addHistory];
 }
 
-- (void)refreshWaypoints
-{
-    needsRefresh = YES;
-    if (isVisible == YES) {
-        needsRefresh = NO;
-        [self performSelectorInBackground:@selector(refreshWaypointsData) withObject:nil];
-    }
-}
-
-- (void)refreshWaypointsData
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
-    }];
-
-    [waypointManager applyFilters:LM.coords];
-
-    if (showType == SHOW_ONEWAYPOINT) {
-        if (waypointManager.currentWaypoint != nil) {
-            waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
-            waypointsArray = @[waypointManager.currentWaypoint];
-            waypointCount = [waypointsArray count];
-        } else {
-            waypointsArray = nil;
-            waypointCount = 0;
-        }
-    }
-
-    if (showType == SHOW_ALLWAYPOINTS) {
-        waypointsArray = [waypointManager currentWaypoints];
-        waypointCount = [waypointsArray count];
-    }
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [map removeMarkers];
-        [map placeMarkers];
-    }];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeView];
-    }];
-}
-
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords
 {
     WaypointAddViewController *newController = [[WaypointAddViewController alloc] init];
@@ -586,6 +543,66 @@ enum {
     [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
     [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
+}
+
+#pragma mark - Waypoint manager callbacks
+
+- (void)refreshWaypoints
+{
+    needsRefresh = YES;
+    if (isVisible == YES) {
+        needsRefresh = NO;
+        [self performSelectorInBackground:@selector(refreshWaypointsData) withObject:nil];
+    }
+}
+
+- (void)refreshWaypointsData
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
+    }];
+
+    [waypointManager applyFilters:LM.coords];
+
+    if (showType == SHOW_ONEWAYPOINT) {
+        if (waypointManager.currentWaypoint != nil) {
+            waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
+            waypointsArray = @[waypointManager.currentWaypoint];
+            waypointCount = [waypointsArray count];
+        } else {
+            waypointsArray = nil;
+            waypointCount = 0;
+        }
+    }
+
+    if (showType == SHOW_ALLWAYPOINTS) {
+        waypointsArray = [waypointManager currentWaypoints];
+        waypointCount = [waypointsArray count];
+    }
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [map removeMarkers];
+        [map placeMarkers];
+    }];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [DejalBezelActivityView removeView];
+    }];
+}
+
+- (void)removeWaypoint:(dbWaypoint *)wp
+{
+    [map removeMarker:wp];
+}
+
+- (void)addWaypoint:(dbWaypoint *)wp
+{
+    [map addMarker:wp];
+}
+
+- (void)updateWaypoint:(dbWaypoint *)wp
+{
+    [map updateMarker:wp];
 }
 
 #pragma mark - Local menu related functions
@@ -831,7 +848,7 @@ enum {
     }
 
     [dbWaypoint dbUpdateLogStatus];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 }
 
 - (void)menuRecenter
@@ -843,7 +860,7 @@ enum {
 
     meLocation = [map currentCenter];
     showWhom = SHOW_NEITHER;
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 }
 
 - (void)menuUseGPS
@@ -855,7 +872,7 @@ enum {
 
     meLocation = [map currentCenter];
     showWhom = SHOW_NEITHER;
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 }
 
 - (void)menuShowBoundaries

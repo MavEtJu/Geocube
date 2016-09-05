@@ -419,7 +419,7 @@
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
         [imp parseDictionary:json];
 
-        [waypointManager needsRefresh];
+        [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_OKAPI) {
@@ -430,7 +430,7 @@
         [imp parseString:gpx];
         [imp parseAfter];
 
-        [waypointManager needsRefresh];
+        [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_GCA) {
@@ -484,7 +484,7 @@
         [imp parseAfter];
          */
 
-        [waypointManager needsRefresh];
+        [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
 

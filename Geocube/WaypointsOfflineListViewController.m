@@ -231,14 +231,6 @@ enum {
     return wps;
 }
 
-/* Delegated from WaypointManager */
-- (void)refreshWaypoints
-{
-    needsRefresh = YES;
-    if (isVisible == YES)
-        [self refreshCachesData:nil];
-}
-
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -324,6 +316,27 @@ enum {
     [self refreshCachesData:searchString];
     //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
     [self.tableView reloadData];
+}
+
+#pragma mark - Waypoint manager callbacks
+
+- (void)refreshWaypoints
+{
+    needsRefresh = YES;
+    if (isVisible == YES)
+        [self refreshCachesData:nil];
+}
+
+- (void)removeWaypoint:(dbWaypoint *)wp
+{
+}
+
+- (void)addWaypoint:(dbWaypoint *)wp
+{
+}
+
+- (void)updateWaypoint:(dbWaypoint *)wp
+{
 }
 
 #pragma mark - Local menu related functions
@@ -456,10 +469,11 @@ enum {
             failure = YES;
             *stop = YES;
         }
+
+        [waypointManager needsRefreshUpdate:wp];
     }];
 
     [self reloadDataMainQueue];
-    [waypointManager needsRefresh];
 
     [downloadManager setBezelViewController:nil];
 

@@ -200,7 +200,7 @@ enum {
 
                     wps = [waypoint hasWaypoints];
                     [self.tableView reloadData];
-                    [waypointManager needsRefresh];
+                    [waypointManager needsRefreshAdd:wp];
                     if (self.delegateWaypoint != nil)
                         [self.delegateWaypoint WaypointWaypoints_refreshTable];
                 }];

@@ -212,7 +212,7 @@ enum {
 {
     [cg dbEmpty];
     [db cleanupAfterDelete];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
     if (reload == YES) {
         [self refreshGroupData];
         [self.tableView reloadData];
@@ -223,7 +223,7 @@ enum {
 {
     [cg dbDelete];
     [db cleanupAfterDelete];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
     [dbc Group_delete:cg];
     [self refreshGroupData];
     [self.tableView reloadData];

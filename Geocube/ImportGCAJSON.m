@@ -71,7 +71,7 @@
      */
 
     [self parseGeocaches:[dict objectForKey:@"geocaches"]];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 }
 
 - (void)parseAfter_caches

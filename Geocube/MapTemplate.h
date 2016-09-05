@@ -69,6 +69,9 @@
 
 - (void)placeMarkers;
 - (void)removeMarkers;
+- (void)addMarker:(dbWaypoint *)wp;
+- (void)removeMarker:(dbWaypoint *)wp;
+- (void)updateMarker:(dbWaypoint *)wp;
 
 - (void)addLineMeToWaypoint;
 - (void)removeLineMeToWaypoint;

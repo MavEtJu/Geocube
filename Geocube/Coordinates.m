@@ -403,7 +403,7 @@
             [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
             [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
 
-            [waypointManager needsRefresh];
+            [waypointManager needsRefreshAdd:wp];
             found++;
         }
     }];

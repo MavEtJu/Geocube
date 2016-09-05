@@ -151,7 +151,7 @@ NEEDS_OVERLOADING(clearFlags)
     [self clearFlags];
     waypoints = @[];
     [self.tableView reloadData];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 }
 
 - (void)menuReloadWaypoints
@@ -178,7 +178,7 @@ NEEDS_OVERLOADING(clearFlags)
     waypoints = [dbWaypoint dbAllByFlag:flag];
 
     [self reloadDataMainQueue];
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
 
     if (failure == NO)
         [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];

@@ -22,6 +22,9 @@
 @protocol WaypointManagerDelegate
 
 - (void)refreshWaypoints;
+- (void)removeWaypoint:(dbWaypoint *)wp;
+- (void)addWaypoint:(dbWaypoint *)wp;
+- (void)updateWaypoint:(dbWaypoint *)wp;
 
 @end
 
@@ -34,7 +37,10 @@
 - (void)applyFilters:(CLLocationCoordinate2D)coords;
 - (NSString *)configGet:(NSString *)name;
 - (void)configSet:(NSString *)name value:(NSString *)value;
-- (void)needsRefresh;
+- (void)needsRefreshAll;
+- (void)needsRefreshRemove:(dbWaypoint *)wp;
+- (void)needsRefreshAdd:(dbWaypoint *)wp;
+- (void)needsRefreshUpdate:(dbWaypoint *)wp;
 - (void)setCurrentWaypoint:(dbWaypoint *)wp;
 - (void)startDelegation:(id<WaypointManagerDelegate>)_delegate;
 - (void)stopDelegation:(id<WaypointManagerDelegate>)_delegate;

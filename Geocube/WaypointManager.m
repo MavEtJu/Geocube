@@ -51,7 +51,7 @@
     [LM startDelegation:self isNavigating:NO];
 
     delegates = [NSMutableArray arrayWithCapacity:5];
-    [self needsRefresh];
+    [self needsRefreshAll];
 
     return self;
 }
@@ -71,7 +71,7 @@
     NSLog(@"%@: stopping", [self class]);
 }
 
-- (void)needsRefresh
+- (void)needsRefreshAll
 {
     if (needsRefresh == NO) {
         needsRefresh = YES;
@@ -84,6 +84,21 @@
             }];
         }];
     }
+}
+
+- (void)needsRefreshAdd:(dbWaypoint *)wp
+{
+    [self needsRefreshAll];
+}
+
+- (void)needsRefreshRemove:(dbWaypoint *)wp
+{
+    [self needsRefreshAll];
+}
+
+- (void)needsRefreshUpdate:(dbWaypoint *)wp
+{
+    [self needsRefreshAll];
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
@@ -652,7 +667,7 @@
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    [waypointManager needsRefresh];
+    [waypointManager needsRefreshAll];
     [dbFilter dbUpdateOrInsert:_name value:_value];
 }
 
@@ -666,7 +681,7 @@
         NSInteger realDistanceM = [Coordinates coordinates2distance:lastCoordinates to:LM.coords];
         if (realDistanceM > filterDistanceM / 4) {
             NSLog(@"Updating filter: %ld - %ld", (long)realDistanceM, (long)filterDistanceM);
-            [self needsRefresh];
+            [self needsRefreshAll];
             lastCoordinates = LM.coords;
         }
     }
