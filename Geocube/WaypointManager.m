@@ -88,17 +88,35 @@
 
 - (void)needsRefreshAdd:(dbWaypoint *)wp
 {
-    [self needsRefreshAll];
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        // Doing this via the main queue because Google Map Service insists on it.
+        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [delegate needsRefreshAdd:wp];
+        }];
+    }];
 }
 
 - (void)needsRefreshRemove:(dbWaypoint *)wp
 {
-    [self needsRefreshAll];
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        // Doing this via the main queue because Google Map Service insists on it.
+        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [delegate needsRefreshRemove:wp];
+        }];
+    }];
 }
 
 - (void)needsRefreshUpdate:(dbWaypoint *)wp
 {
-    [self needsRefreshAll];
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        // Doing this via the main queue because Google Map Service insists on it.
+        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [delegate needsRefreshUpdate:wp];
+        }];
+    }];
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
