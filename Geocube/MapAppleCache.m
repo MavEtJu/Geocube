@@ -44,6 +44,11 @@
 
 + (void)cleanupCache
 {
+    [[self class] performSelectorInBackground:@selector(cleanupCacheBackground) withObject:nil];
+}
+
++ (void)cleanupCacheBackground
+{
     NSString *prefix = [MapAppleCache createPrefix:@""];
     NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:prefix];
     NSString *filename;
@@ -54,6 +59,9 @@
     NSInteger totalFileSize = 0;
     NSInteger filesize;
     NSInteger checked = 0, deletedAge = 0, deletedSize = 0;
+
+    // Give the startup phase some time to complete before doing a disk I/O intensive job.
+    [NSThread sleepForTimeInterval:5.0];
 
     /* Clean up objects older than N days */
     while ((filename = [dirEnum nextObject]) != nil) {
