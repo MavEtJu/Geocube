@@ -92,7 +92,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [delegate needsRefreshAdd:wp];
+            [delegate addWaypoint:wp];
         }];
     }];
 }
@@ -103,7 +103,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [delegate needsRefreshRemove:wp];
+            [delegate removeWaypoint:wp];
         }];
     }];
 }
@@ -114,7 +114,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [delegate needsRefreshUpdate:wp];
+            [delegate updateWaypoint:wp];
         }];
     }];
 }
