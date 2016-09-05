@@ -90,7 +90,7 @@
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight;
 
 // User related actions
-- (void)openWaypointView:(NSString *)name;
+- (void)openWaypointView:(dbWaypoint *)wp;
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin;
 
 @end

@@ -41,7 +41,7 @@ enum {
     MAPBRAND_OPENSTREETMAPS,
 };
 
-@property (nonatomic, retain) NSArray *waypointsArray;
+@property (nonatomic, retain) NSMutableArray *waypointsArray;
 
 - (instancetype)init:(NSInteger)maptype;
 - (void)userInteraction;

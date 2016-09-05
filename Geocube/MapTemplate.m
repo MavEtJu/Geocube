@@ -139,10 +139,8 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 #pragma mark -- User interaction
 
-- (void)openWaypointView:(NSString *)name
+- (void)openWaypointView:(dbWaypoint *)wp
 {
-    dbWaypoint *wp = [waypointManager waypoint_byName:name];
-
     // Find the right tab and the right navigation view controller
     MHTabBarController *tb = nil;
     UINavigationController *nvc = nil;
@@ -190,6 +188,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin
 {
+    NSAssert(NO, @"XXX");
     NSLog(@"amount: %lu", (unsigned long)[names count]);
 
     NSMutableArray *descs = [NSMutableArray arrayWithCapacity:[names count]];

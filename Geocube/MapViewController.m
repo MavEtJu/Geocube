@@ -567,7 +567,7 @@ enum {
     if (showType == SHOW_ONEWAYPOINT) {
         if (waypointManager.currentWaypoint != nil) {
             waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
-            waypointsArray = @[waypointManager.currentWaypoint];
+            waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
             waypointCount = [waypointsArray count];
         } else {
             waypointsArray = nil;
@@ -592,16 +592,28 @@ enum {
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
+    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    if (idx == NSNotFound)
+        return;
+    [waypointsArray removeObjectAtIndex:idx];
     [map removeMarker:wp];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
+    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    if (idx != NSNotFound)
+        return;
+    [waypointsArray addObject:wp];
     [map addMarker:wp];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
+    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    if (idx == NSNotFound)
+        return;
+    [waypointsArray replaceObjectAtIndex:idx withObject:wp];
     [map updateMarker:wp];
 }
 

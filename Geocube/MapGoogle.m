@@ -124,6 +124,29 @@
     circles = nil;
 }
 
+- (GMSMarker *)makeMarker:(dbWaypoint *)wp
+{
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = wp.coordinates;
+    marker.title = wp.wpt_name;
+    marker.snippet = wp.wpt_urlname;
+    marker.map = mapView;
+    marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
+    marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
+    marker.userData = wp;
+    marker.icon = [self waypointImage:wp];
+    return marker;
+}
+
+- (GMSCircle *)makeCircle:(dbWaypoint *)wp
+{
+    GMSCircle *circle = [GMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
+    circle.strokeColor = [UIColor blueColor];
+    circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+    circle.map = mapView;
+    return circle;
+}
+
 - (void)placeMarkers
 {
     // Remove everything from the map
@@ -136,26 +159,64 @@
     markers = [NSMutableArray arrayWithCapacity:20];
     circles = [NSMutableArray arrayWithCapacity:20];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = wp.coordinates;
-        marker.title = wp.wpt_name;
-        marker.snippet = wp.wpt_urlname;
-        marker.map = mapView;
-        marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
-        marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
-        marker.userData = wp.wpt_name;
+        [markers addObject:[self makeMarker:wp]];
 
-        marker.icon = [self waypointImage:wp];
-        [markers addObject:marker];
+        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+            [circles addObject:[self makeCircle:wp]];
+    }];
+}
 
-        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-            GMSCircle *circle = [GMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
-            circle.strokeColor = [UIColor blueColor];
-            circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
-            circle.map = mapView;
-            [circles addObject:circle];
+- (void)addMarker:(dbWaypoint *)wp
+{
+    __block BOOL found = NO;
+    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
+        dbObject *o = (dbObject *)m.userData;
+        if (wp._id == o._id) {
+            found = YES;
+            *stop = YES;
         }
     }];
+    if (found == YES)
+        return;
+
+    [markers addObject:[self makeMarker:wp]];
+    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        GMSCircle *circle = [self makeCircle:wp];
+        circle.map = mapView;
+        [circles addObject:circle];
+    }
+}
+
+- (void)removeMarker:(dbWaypoint *)wp
+{
+    __block NSUInteger idx = NSNotFound;
+    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idxx, BOOL *stop) {
+        dbObject *o = (dbObject *)m.userData;
+        if (wp._id == o._id) {
+            idx = idxx;
+            *stop = YES;
+        }
+    }];
+    if (idx == NSNotFound)
+        return;
+
+    [markers removeObjectAtIndex:idx];
+}
+
+- (void)updateMarker:(dbWaypoint *)wp
+{
+    __block NSUInteger idx = NSNotFound;
+    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idxx, BOOL *stop) {
+        dbObject *o = (dbObject *)m.userData;
+        if (wp._id == o._id) {
+            idx = idxx;
+            *stop = YES;
+        }
+    }];
+    if (idx == NSNotFound)
+        return;
+
+    [markers replaceObjectAtIndex:idx withObject:[self makeMarker:wp]];
 }
 
 - (void)showBoundaries:(BOOL)yesno
@@ -167,7 +228,7 @@
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    [super openWaypointView:marker.title];
+    [super openWaypointView:marker.userData];
 }
 
 - (void)setMapType:(NSInteger)mapType
@@ -313,7 +374,7 @@
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
-    wpSelected = [dbWaypoint dbGet:[dbWaypoint dbGetByName:marker.userData]];
+    wpSelected = marker.userData;
     [self updateWaypointInfo:wpSelected];
     [self showWaypointInfo];
     return YES;
@@ -328,7 +389,7 @@
 - (void)openWaypointInfo:(id)sender
 {
     NSLog(@"%@", wpSelected.wpt_name);
-    [self openWaypointView:wpSelected.wpt_name];
+    [self openWaypointView:wpSelected];
 }
 
 @end

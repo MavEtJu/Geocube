@@ -131,13 +131,7 @@
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = wp.coordinates;
         [annotation setCoordinate:coord];
-
-        annotation._id = wp._id;
-        annotation.name = wp.wpt_name;
         annotation.waypoint = wp;
-
-        annotation.title = wp.wpt_name;
-        annotation.subtitle = wp.wpt_urlname;
 
         [markers addObject:annotation];
     }];
@@ -149,6 +143,69 @@
     NSLog(@"%@/removeMarkers", [self class]);
     [mapView removeAnnotations:markers];
     markers = nil;
+}
+
+- (void)addMarker:(dbWaypoint *)wp
+{
+    __block BOOL found = NO;
+    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idx, BOOL *stop) {
+        if (wp._id == m.waypoint._id) {
+            found = YES;
+            *stop = YES;
+        }
+    }];
+    if (found == YES)
+        return;
+
+    GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
+    CLLocationCoordinate2D coord = wp.coordinates;
+    [annotation setCoordinate:coord];
+    annotation.waypoint = wp;
+
+    [markers addObject:annotation];
+    [mapView addAnnotation:annotation];
+}
+
+- (void)removeMarker:(dbWaypoint *)wp
+{
+    __block GCPointAnnotation *annotiation;
+    __block NSUInteger idx = NSNotFound;
+    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+        if (wp._id == m.waypoint._id) {
+            annotiation = m;
+            idx = idxx;
+            *stop = YES;
+        }
+    }];
+    if (annotiation == nil)
+        return;
+
+    [markers removeObjectAtIndex:idx];
+    [mapView removeAnnotation:annotiation];
+}
+
+- (void)updateMarker:(dbWaypoint *)wp
+{
+    __block GCPointAnnotation *annotiation;
+    __block NSUInteger idx = NSNotFound;
+    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+        if (wp._id == m.waypoint._id) {
+            annotiation = m;
+            idx = idxx;
+            *stop = YES;
+        }
+    }];
+    if (annotiation == nil)
+        return;
+
+    GCPointAnnotation *newMarker = [[GCPointAnnotation alloc] init];
+    CLLocationCoordinate2D coord = wp.coordinates;
+    [newMarker setCoordinate:coord];
+    newMarker.waypoint = wp;
+
+    [markers replaceObjectAtIndex:idx withObject:newMarker];
+    [mapView removeAnnotation:annotiation];
+    [mapView addAnnotation:newMarker];
 }
 
 - (void)showBoundaries:(BOOL)yesno
@@ -172,9 +229,8 @@
 
 - (void)openWaypointInfo:(id)sender
 {
-    MKPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
-    NSLog(@"%@", ann.title);
-    [self openWaypointView:ann.title];
+    GCPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+    [self openWaypointView:ann.waypoint];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
