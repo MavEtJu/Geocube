@@ -65,4 +65,9 @@ NEEDS_OVERLOADING(dbDelete)
     return c;
 }
 
+- (BOOL)isEqual:(dbObject *)object
+{
+    return self._id == object._id;
+}
+
 @end
