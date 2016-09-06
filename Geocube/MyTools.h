@@ -177,3 +177,11 @@ typedef sqlite3_int64 NSId;
 
 // UIAlertController related macro
 #define ALERT_VC_RVC(__vc__) __vc__.view.window.rootViewController
+
+// Logging macro
+
+#define GCLog(__fmt__, ...) \
+    { \
+        NSString *fmt = [NSString stringWithFormat:@"%%s: %@", __fmt__]; \
+        NSLog(fmt, __func__, ## __VA_ARGS__); \
+    }

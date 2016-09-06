@@ -29,7 +29,7 @@
 
 - (void)parseBefore_geocaches
 {
-    NSLog(@"%@: Parsing initializing", [self class]);
+    GCLog(@"Parsing initializing");
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
     [db cleanupAfterDelete];
@@ -37,7 +37,7 @@
 
 - (void)parseAfter_geocaches
 {
-    NSLog(@"%@: Parsing done", [self class]);
+    GCLog(@"Parsing done");
     [[dbc Group_AllWaypoints_Found] dbEmpty];
     [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];
@@ -57,7 +57,7 @@
 
 - (void)parseDictionary:(NSDictionary *)dict
 {
-    NSLog(@"%@: Parsing data", [self class]);
+    GCLog(@"Parsing data");
 
     if ([dict objectForKey:@"Geocaches"] != nil) {
         [self parseBefore_geocaches];
@@ -253,12 +253,12 @@
     wp.date_lastimport_epoch = time(NULL);
 
     if (wp._id == 0) {
-        NSLog(@"%@: Creating %@", [self class], wp.wpt_name);
+        GCLog(@"Creating %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];
         newWaypointsCount++;
         [delegate Import_setNewWaypoints:newWaypointsCount];
     } else {
-        NSLog(@"%@: Updating %@", [self class], wp.wpt_name);
+        GCLog(@"Updating %@", wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
         wp._id = wpold._id;
         [wp dbUpdate];
