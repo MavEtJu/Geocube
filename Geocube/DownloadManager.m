@@ -137,9 +137,8 @@
         bezelText = @"Downloading";
 
     if (bezelViewController == nil) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView activityViewForView:downloadsImportsViewController.view withLabel:bezelText];
-        }];
+        [downloadManager setBezelViewController:downloadsImportsViewController];
+        [downloadManager setBezelViewText:bezelText];
     }
 
     [downloadsImportsDelegate downloadManager_setURL:urlRequest.URL.absoluteString];
@@ -163,11 +162,8 @@
     if (responsePtr != nil)
         *responsePtr = syncReponse;
 
-    if (bezelViewController == nil) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView removeViewAnimated:YES];
-        }];
-    }
+    if (bezelViewController == nil)
+        [downloadManager setBezelViewController:nil];
 
     return syncData;
 }

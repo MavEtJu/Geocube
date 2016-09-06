@@ -338,7 +338,6 @@
 		E8C5BB7B1C719EB1006222D5 /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB691C719EB1006222D5 /* WaypointTableViewCell.m */; };
 		E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */; };
 		E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */; };
-		E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -939,8 +938,6 @@
 		E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTrackablesViewController.m; sourceTree = "<group>"; };
 		E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsViewController.h; sourceTree = "<group>"; };
 		E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointWaypointsViewController.m; sourceTree = "<group>"; };
-		E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DejalActivityView.h; path = DejalActivityView/DejalActivityView.h; sourceTree = "<group>"; };
-		E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DejalActivityView.m; path = DejalActivityView/DejalActivityView.m; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -1880,15 +1877,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		E8CC60ED1B6B9B9900049BBA /* DejalActivityView */ = {
-			isa = PBXGroup;
-			children = (
-				E8CC60EE1B6B9BAF00049BBA /* DejalActivityView.h */,
-				E8CC60EF1B6B9BAF00049BBA /* DejalActivityView.m */,
-			);
-			name = DejalActivityView;
-			sourceTree = "<group>";
-		};
 		E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -2126,17 +2114,16 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
-				E8CC60ED1B6B9B9900049BBA /* DejalActivityView */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
+				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E8371D4E1D101F9400C2F174 /* THLabel */,
 				E812CF531D01A07400C4E777 /* VKSizeMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
@@ -2885,7 +2872,6 @@
 				E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */,
 				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,
 				E829904A1C87AFA400504421 /* XMLReader.m in Sources */,
-				E8CC60F01B6B9BAF00049BBA /* DejalActivityView.m in Sources */,
 				E8740F9B1B4E3C6A002527DA /* WaypointViewController.m in Sources */,
 				E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,

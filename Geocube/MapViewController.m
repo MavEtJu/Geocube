@@ -558,9 +558,8 @@ enum {
 
 - (void)refreshWaypointsData
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
-    }];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Refreshing database"];
 
     [waypointManager applyFilters:LM.coords];
 
@@ -585,9 +584,7 @@ enum {
         [map placeMarkers];
     }];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeView];
-    }];
+    [downloadManager setBezelViewController:nil];
 }
 
 - (void)removeWaypoint:(dbWaypoint *)wp

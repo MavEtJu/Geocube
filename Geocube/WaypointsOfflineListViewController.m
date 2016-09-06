@@ -141,13 +141,13 @@ enum {
 
 - (void)refreshCachesData
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Refreshing database"];
-    }];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Refreshing database"];
+
     [self refreshCachesData:nil];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeView];
-    }];
+
+    [downloadManager setBezelViewController:nil];
+
     if ([waypoints count] == 0)
         [lmi disableItem:menuExportGPX];
     else

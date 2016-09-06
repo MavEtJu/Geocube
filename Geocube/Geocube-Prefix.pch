@@ -39,7 +39,6 @@
 #import "ActionSheetDistancePicker.h"
 #import "ActionSheetStringPicker.h"
 #import "MHTabBarController.h"
-#import "DejalActivityView.h"
 #import "LXMapScaleView.h"
 #import "NKOColorPickerView.h"
 #import "RangeSlider.h"

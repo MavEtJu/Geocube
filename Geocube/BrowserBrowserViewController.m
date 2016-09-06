@@ -262,9 +262,8 @@ enum {
             receivedData = [NSMutableData dataWithCapacity:0];
             suggestedFilename = response.suggestedFilename;
             [webView stopLoading];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [DejalBezelActivityView activityViewForView:self.view withLabel:[NSString stringWithFormat:@"Loading data for %@      ", suggestedFilename]];
-            }];
+            [downloadManager setBezelViewController:self];
+            [downloadManager setBezelViewText:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
             *stop = YES;
         }
     }];
@@ -297,7 +296,7 @@ enum {
     [receivedData appendData:_data];
     NSLog(@"Size: %ld - %ld", (long)[receivedData length], (long)[_data length]);
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Loading %@ for %@", [MyTools niceFileSize:[receivedData length]], suggestedFilename];
+        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Loading %@ for %@", [MyTools niceFileSize:[receivedData length]], suggestedFilename]];
     }];
 }
 
@@ -310,7 +309,7 @@ enum {
     NSLog(@"Received %ld bytes", (long)length);
     [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView removeViewAnimated:NO];
+        [downloadManager setBezelViewController:nil];
 
         [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], suggestedFilename]];
     }];

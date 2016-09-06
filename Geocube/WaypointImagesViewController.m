@@ -116,14 +116,16 @@ enum {
 
 - (void)downloadImage:(dbImage *)img
 {
-    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading image"];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Downloading image"];
     [ImagesDownloadManager addToQueueImmediately:img];
 }
 
 - (void)downloadImages
 {
     __block NSInteger i = 0;
-    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Downloading images\nDownloaded 1/1\nPending"];
+    [downloadManager setBezelViewController:self];
+    [downloadManager setBezelViewText:@"Downloading images\nDownloaded 1/1\nPending"];
 
     [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         if ([img imageHasBeenDowloaded] == NO) {
@@ -144,9 +146,7 @@ enum {
         }
     }];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nScheduled %ld\n   ", (long)i];
-    }];
+    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading images\nScheduled %ld", (long)i]];
 
     if (i == 0)
         [self updateQueuedImagesData:0 downloadedImages:0];
@@ -159,15 +159,11 @@ enum {
     }];
 
     if (queuedImages != 0) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView currentActivityView].activityLabel.text = [NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages];
-        }];
+        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages]];
     }
 
     if (queuedImages == 0) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [DejalBezelActivityView removeViewAnimated:YES];
-        }];
+        [downloadManager setBezelViewController:nil];
         [self needsDownloadMenu];
     }
 }
