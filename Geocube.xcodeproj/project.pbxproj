@@ -247,6 +247,11 @@
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D44471BA6A44800671FB9 /* ThemeManager.m */; };
 		E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D444A1BA6F6E800671FB9 /* GCScrollView.m */; };
+		E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7781D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m */; };
+		E87DF7821D7EDFE000F16B5A /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF77A1D7EDFE000F16B5A /* SVProgressAnimatedView.m */; };
+		E87DF7831D7EDFE000F16B5A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E87DF77C1D7EDFE000F16B5A /* SVProgressHUD.bundle */; };
+		E87DF7841D7EDFE000F16B5A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */; };
+		E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
 		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
@@ -783,6 +788,16 @@
 		E87D44471BA6A44800671FB9 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		E87D44491BA6F6E800671FB9 /* GCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCScrollView.h; sourceTree = "<group>"; };
 		E87D444A1BA6F6E800671FB9 /* GCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCScrollView.m; sourceTree = "<group>"; };
+		E87DF7771D7EDFE000F16B5A /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		E87DF7781D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		E87DF7791D7EDFE000F16B5A /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		E87DF77A1D7EDFE000F16B5A /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		E87DF77B1D7EDFE000F16B5A /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SVProgressHUD-Prefix.pch"; path = "SVProgressHUD/SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		E87DF77C1D7EDFE000F16B5A /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E87DF77D1D7EDFE000F16B5A /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		E87DF77F1D7EDFE000F16B5A /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
 		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
@@ -1685,6 +1700,23 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E87DF7771D7EDFE000F16B5A /* SVIndefiniteAnimatedView.h */,
+				E87DF7781D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m */,
+				E87DF7791D7EDFE000F16B5A /* SVProgressAnimatedView.h */,
+				E87DF77A1D7EDFE000F16B5A /* SVProgressAnimatedView.m */,
+				E87DF77B1D7EDFE000F16B5A /* SVProgressHUD-Prefix.pch */,
+				E87DF77C1D7EDFE000F16B5A /* SVProgressHUD.bundle */,
+				E87DF77D1D7EDFE000F16B5A /* SVProgressHUD.h */,
+				E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */,
+				E87DF77F1D7EDFE000F16B5A /* SVRadialGradientLayer.h */,
+				E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */,
+			);
+			name = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2094,6 +2126,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
@@ -2476,6 +2509,7 @@
 				E80732DC1B60FAB4007FDC29 /* ratings - star on 19x18.png in Resources */,
 				E80732A91B5F857A007FDC29 /* map - tick found - 9x9.png in Resources */,
 				E80732D81B60FAB4007FDC29 /* ratings - favourites 20x30.png in Resources */,
+				E87DF7831D7EDFE000F16B5A /* SVProgressHUD.bundle in Resources */,
 				E80732461B5F84E8007FDC29 /* log - ownermaintenance - 30x30.png in Resources */,
 				E80732DA1B60FAB4007FDC29 /* ratings - star half 18x18.png in Resources */,
 				E833B7241C4F739800B9FB45 /* map - marked found - 9x9.png in Resources */,
@@ -2763,6 +2797,7 @@
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
+				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
@@ -2820,6 +2855,7 @@
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
 				E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */,
 				E8C5BB761C719EB1006222D5 /* WaypointLogsViewController.m in Sources */,
+				E87DF7821D7EDFE000F16B5A /* SVProgressAnimatedView.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
@@ -2835,8 +2871,10 @@
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
 				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
+				E87DF7841D7EDFE000F16B5A /* SVProgressHUD.m in Sources */,
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
+				E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */,
 				E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */,
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
