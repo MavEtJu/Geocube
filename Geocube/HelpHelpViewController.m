@@ -40,9 +40,9 @@
     t.lineBreakMode = NSLineBreakByWordWrapping;
     t.text = @"For further help:\n\n"
               "The website https://geocube.mavetju.org/ has a lot of documentation on the workings of Geocube.\n\n"
-              "Follow me on Twitter @GeocubeCaching for announcements.\n\n"
-              "Checkout on Facebook: Geocube Geocaching for announcements.\n\n"
-              "Email: geocube@mavetju.org if you have any questions, comments or feedback.\n";
+              "Follow the project on Twitter as @GeocubeCaching for announcements.\n\n"
+              "Checkout on the Facebook page as Geocube Geocaching for announcements.\n\n"
+              "Email me geocube@mavetju.org if you have any questions, comments or feedback.\n";
 
     [t sizeToFit];
     t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
