@@ -36,10 +36,6 @@
 - (void)mapViewDidLoad;
 - (void)recalculateRects;
 
-- (void)startActivityViewer:(NSString *)text;
-- (void)stopActivityViewer;
-- (void)updateActivityViewer:(NSString *)s;
-
 - (instancetype)init:(MapViewController *)mvc;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
