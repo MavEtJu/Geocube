@@ -267,7 +267,7 @@
 
 - (void)parseData_images:(NSArray *)images waypoint:(dbWaypoint *)wp
 {
-    NSLog(@"Image number 0-%u", [images count] - 1);
+    NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"Image number %ld", (unsigned long)idx);
         [self parseData_image:image waypoint:wp];

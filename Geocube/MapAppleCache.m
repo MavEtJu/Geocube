@@ -166,7 +166,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, path.z % 10, path.y % 10, path.x % 10, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)path.z % 10, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
     if (myConfig.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
