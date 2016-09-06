@@ -39,6 +39,20 @@
     NSString *p = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
     if ([fm fileExistsAtPath:p] == NO)
         [fm createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
+
+    if ([_prefix isEqualToString:@""] == YES)
+        return p;
+
+    // The has directories be z % 10, y % 10, x % 10
+    for (NSInteger z = 1; z < 20; z++) {
+        for (NSInteger y = 0; y < 10; y++) {
+            for (NSInteger x = 0; x < 10; x++) {
+                NSString *d = [NSString stringWithFormat:@"%@/%ld/%ld/%ld", p, z, y, x];
+                if ([fm fileExistsAtPath:d] == NO)
+                    [fm createDirectoryAtPath:d withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+        }
+    }
     return p;
 }
 
@@ -59,6 +73,19 @@
     NSInteger totalFileSize = 0;
     NSInteger filesize;
     NSInteger checked = 0, deletedAge = 0, deletedSize = 0;
+
+    // Purge the whole cache
+    error = nil;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_clearmapcache"] == YES) {
+        [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_clearmapcache"];
+
+        NSLog(@"%@ - Purging map cache", [self class]);
+        while ((filename = [dirEnum nextObject]) != nil) {
+            NSString *fullfilename = [NSString stringWithFormat:@"%@%@", prefix, filename];
+            [fm removeItemAtPath:fullfilename error:&error];
+        }
+        return;
+    }
 
     // Give the startup phase some time to complete before doing a disk I/O intensive job.
     [NSThread sleepForTimeInterval:5.0];
@@ -139,7 +166,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/tile_%ld_%ld_%ld", prefix, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [NSString stringWithFormat:@"%@/%ld/%ld/%ld/tile_%ld_%ld_%ld", prefix, path.z % 10, path.y % 10, path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
     if (myConfig.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
