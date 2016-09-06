@@ -47,7 +47,7 @@
     for (NSInteger z = 1; z < 20; z++) {
         for (NSInteger y = 0; y < 10; y++) {
             for (NSInteger x = 0; x < 10; x++) {
-                NSString *d = [NSString stringWithFormat:@"%@/%ld/%ld/%ld", p, z, y, x];
+                NSString *d = [NSString stringWithFormat:@"%@/%ld/%ld/%ld", p, (long)z, (long)y, (long)x];
                 if ([fm fileExistsAtPath:d] == NO)
                     [fm createDirectoryAtPath:d withIntermediateDirectories:YES attributes:nil error:nil];
             }
@@ -166,7 +166,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%ld/%ld/%ld/tile_%ld_%ld_%ld", prefix, path.z % 10, path.y % 10, path.x % 10, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, path.z % 10, path.y % 10, path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
     if (myConfig.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {

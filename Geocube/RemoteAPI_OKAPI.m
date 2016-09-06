@@ -180,7 +180,7 @@
 
 - (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset
 {
-    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], offset);
+    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
     float radius = myConfig.mapSearchMaximumDistanceOKAPI / 1000;
 
@@ -202,7 +202,7 @@
 
 - (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes
 {
-    NSLog(@"services_caches_geocaches: (%lu) %@", [wpcodes count], [wpcodes objectAtIndex:0]);
+    NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 
     NSArray *fields = @[@"code", @"name", @"names", @"location", @"type", @"status", @"url", @"owner", @"gc_code", @"is_found", @"is_not_found", @"founds", @"notfounds", @"willattends", @"size", @"size2", @"difficulty", @"terrain", @"trip_time", @"trip_distance", @"rating", @"rating_votes", @"recommendations", @"req_passwd", @"short_description", @"short_descriptions", @"description", @"descriptions", @"hint2", @"hints2", @"images", @"preview_image", @"attr_acodes", @"attrnames", @"attribution_note", @"latest_logs", @"my_notes", @"trackables_count", @"trackables", @"alt_wpts", @"country", @"state", @"protection_areas", @"last_found", @"last_modified", @"date_created", @"date_hidden", @"internal_id"];
 

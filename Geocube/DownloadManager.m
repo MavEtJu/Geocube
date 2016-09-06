@@ -231,7 +231,7 @@
         completionHandler(NSURLSessionResponseAllow);
         syncReponse = response;
         if (response.expectedContentLength >= 0)
-            [downloadsImportsDelegate downloadManager_setNumberBytesTotal:response.expectedContentLength];
+            [downloadsImportsDelegate downloadManager_setNumberBytesTotal:(NSInteger)response.expectedContentLength];
         return;
     }
 

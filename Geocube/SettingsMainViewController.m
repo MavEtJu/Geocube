@@ -716,7 +716,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Autopurge age for old tracks";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", myConfig.keeptrackPurgeAge];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)myConfig.keeptrackPurgeAge];
 
                     return cell;
                 }
@@ -1218,7 +1218,7 @@ enum sections {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [NSString stringWithFormat:@"%ld", isLatitude == YES ? myConfig.gpsAdjustmentLatitude : myConfig.gpsAdjustmentLongitude];
+        textField.text = [NSString stringWithFormat:@"%ld", (long)(isLatitude == YES ? myConfig.gpsAdjustmentLatitude : myConfig.gpsAdjustmentLongitude)];
         textField.placeholder = @"Distance in mm";
     }];
 

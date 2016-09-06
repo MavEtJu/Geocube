@@ -412,7 +412,7 @@
     else if (found == 1)
         [MyTools messageBox:vc header:@"Imported successful" text:@"Succesfully added one waypoint"];
     else
-        [MyTools messageBox:vc header:@"Imported successful" text:[NSString stringWithFormat:@"Succesfully added %ld waypoints", found]];
+        [MyTools messageBox:vc header:@"Imported successful" text:[NSString stringWithFormat:@"Succesfully added %ld waypoints", (long)found]];
     return found;
 }
 

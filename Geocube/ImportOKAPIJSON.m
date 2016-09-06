@@ -151,7 +151,7 @@
     if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
         return;
 
-    NSInteger wpid = [dbWaypoint dbGetByName:wpt_name];
+    NSId wpid = [dbWaypoint dbGetByName:wpt_name];
     dbWaypoint *wp;
     if (wpid == 0)
         wp = [[dbWaypoint alloc] init];
@@ -267,9 +267,9 @@
 
 - (void)parseData_images:(NSArray *)images waypoint:(dbWaypoint *)wp
 {
-    NSLog(@"Image number 0-%ld", [images count] - 1);
+    NSLog(@"Image number 0-%u", [images count] - 1);
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"Image number %ld", idx);
+        NSLog(@"Image number %ld", (unsigned long)idx);
         [self parseData_image:image waypoint:wp];
     }];
 }

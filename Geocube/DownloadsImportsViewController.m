@@ -345,9 +345,9 @@
     if (valueDownloadingChunksDownloaded == 0)
         output = @"Chunks: n/a";
     else if (valueDownloadingChunksTotal == 0)
-        output = [NSString stringWithFormat:@"Chunks: %ld", valueDownloadingChunksDownloaded];
+        output = [NSString stringWithFormat:@"Chunks: %ld", (long)valueDownloadingChunksDownloaded];
     else
-        output = [NSString stringWithFormat:@"Chunks: %ld of %ld", valueDownloadingChunksDownloaded, valueDownloadingChunksTotal];
+        output = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)valueDownloadingChunksDownloaded, (long)valueDownloadingChunksTotal];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         labelDownloadingChunks.text = output;
     }];
