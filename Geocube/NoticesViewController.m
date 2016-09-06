@@ -163,15 +163,15 @@ enum {
 {
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_notices"] value]];
 
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Downloading notices"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Downloading notices"];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
 
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 
     if (data != nil && error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);

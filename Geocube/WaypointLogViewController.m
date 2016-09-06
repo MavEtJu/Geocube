@@ -499,12 +499,12 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Uploading log"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Uploading log"];
 
     NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
 
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 
     if ([waypoint.account.remoteAPI commentSupportsTrackables] == YES) {
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {

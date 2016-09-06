@@ -21,6 +21,7 @@
 
 @class AppDelegate;
 @class AudioFeedback;
+@class BezelManager;
 @class BrowserAccountsViewController;
 @class BrowserBrowserViewController;
 @class BrowserUserViewController;

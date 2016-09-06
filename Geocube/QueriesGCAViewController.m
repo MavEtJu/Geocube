@@ -44,10 +44,10 @@ enum {
 
 - (void)reloadQueries
 {
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Downloading list of queries"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Downloading list of queries"];
     [self reloadQueries:PROTOCOL_GCA];
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 }
 
 - (BOOL)parseRetrievedQueryGPX:(NSObject *)query group:(dbGroup *)group

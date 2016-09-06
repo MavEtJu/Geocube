@@ -23,9 +23,6 @@
 
 @interface DownloadManager ()
 {
-    UIViewController *bezelViewController;
-    NSString *bezelText;
-
     dispatch_semaphore_t syncSem;
     NSURLSessionDataTask *syncSessionDataTask;
     NSURLSession *syncSession;
@@ -133,14 +130,6 @@
     result = nil;
     syncSem = dispatch_semaphore_create(0);
 
-    if (bezelText == nil)
-        bezelText = @"Downloading";
-
-    if (bezelViewController == nil) {
-        [downloadManager setBezelViewController:downloadsImportsViewController];
-        [downloadManager setBezelViewText:bezelText];
-    }
-
     [downloadsImportsDelegate downloadManager_setURL:urlRequest.URL.absoluteString];
     [downloadsImportsDelegate downloadManager_setNumberBytesDownload:0];
     [downloadsImportsDelegate downloadManager_setNumberBytesTotal:0];
@@ -161,9 +150,6 @@
         *errorPtr = syncError;
     if (responsePtr != nil)
         *responsePtr = syncReponse;
-
-    if (bezelViewController == nil)
-        [downloadManager setBezelViewController:nil];
 
     return syncData;
 }
@@ -243,32 +229,6 @@
             }
         }];
     }
-}
-
-/////////////////////////////////////////////////////////////////////////
-
-- (void)setBezelViewController:(UIViewController *)vc
-{
-    bezelViewController = vc;
-    bezelText = @"Downloading";
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (bezelViewController == nil) {
-            [SVProgressHUD dismiss];
-        } else {
-            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-            [SVProgressHUD showWithStatus:@"Doing Stuff"];
-        }
-    }];
-}
-
-- (void)setBezelViewText:(NSString *)text
-{
-    bezelText = text;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD showWithStatus:text];
-    }];
 }
 
 /////////////////////////////////////////////////////////////////////////

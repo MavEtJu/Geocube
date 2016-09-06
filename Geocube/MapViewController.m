@@ -558,8 +558,8 @@ enum {
 
 - (void)refreshWaypointsData
 {
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Refreshing database"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Refreshing database"];
 
     [waypointManager applyFilters:LM.coords];
 
@@ -584,7 +584,7 @@ enum {
         [map placeMarkers];
     }];
 
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 }
 
 - (void)removeWaypoint:(dbWaypoint *)wp

@@ -141,12 +141,12 @@ enum {
 
 - (void)refreshCachesData
 {
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Refreshing database"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Refreshing database"];
 
     [self refreshCachesData:nil];
 
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 
     if ([waypoints count] == 0)
         [lmi disableItem:menuExportGPX];
@@ -464,12 +464,12 @@ enum {
 
     // XXX group them by account
 
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[wps count]]];
+    [bezelManager showBezel:self];
+    [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[wps count]]];
 
     __block BOOL failure = NO;
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+        [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[wps count]]];
 
         // Just ignore this stuff
         if (wp.account == nil)
@@ -490,7 +490,7 @@ enum {
 
     [self reloadDataMainQueue];
 
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 
     if (failure == NO)
         [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];

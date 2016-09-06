@@ -47,6 +47,9 @@ extern NSFileManager *fm;
 // IOS FileTransfer Manager
 extern IOSFileTransfers *IOSFTM;
 
+// Bezel Manager
+extern BezelManager *bezelManager;
+
 // Configuration Manager
 extern MyConfig *myConfig;
 

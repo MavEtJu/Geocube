@@ -46,6 +46,9 @@ NSFileManager *fm = nil;
 // IOS File Transfer Manager
 IOSFileTransfers *IOSFTM;
 
+// Bezel manager
+BezelManager *bezelManager;
+
 // Configuration manager
 MyConfig *myConfig = nil;
 

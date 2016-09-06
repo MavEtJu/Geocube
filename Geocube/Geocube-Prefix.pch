@@ -95,6 +95,7 @@
 #import "ThemeManager.h"
 
 #import "AppDelegate.h"
+#import "BezelManager.h"
 #import "Geocube.h"
 #import "GlobalMenu.h"
 #import "LocalMenuItems.h"

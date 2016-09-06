@@ -262,8 +262,8 @@ enum {
             receivedData = [NSMutableData dataWithCapacity:0];
             suggestedFilename = response.suggestedFilename;
             [webView stopLoading];
-            [downloadManager setBezelViewController:self];
-            [downloadManager setBezelViewText:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
+            [bezelManager showBezel:self];
+            [bezelManager setText:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
             *stop = YES;
         }
     }];
@@ -295,9 +295,7 @@ enum {
         return;
     [receivedData appendData:_data];
     NSLog(@"Size: %ld - %ld", (long)[receivedData length], (long)[_data length]);
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Loading %@ for %@", [MyTools niceFileSize:[receivedData length]], suggestedFilename]];
-    }];
+    [bezelManager setText:[NSString stringWithFormat:@"Loading %@ for %@", [MyTools niceFileSize:[receivedData length]], suggestedFilename]];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -308,11 +306,9 @@ enum {
     NSInteger length = [receivedData length];
     NSLog(@"Received %ld bytes", (long)length);
     [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [downloadManager setBezelViewController:nil];
 
-        [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], suggestedFilename]];
-    }];
+    [bezelManager removeBezel];
+    [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], suggestedFilename]];
 
     receivedData = nil;
     //urlConnection = nil;

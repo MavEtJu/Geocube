@@ -116,16 +116,16 @@ enum {
 
 - (void)downloadImage:(dbImage *)img
 {
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Downloading image"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Downloading image"];
     [ImagesDownloadManager addToQueueImmediately:img];
 }
 
 - (void)downloadImages
 {
     __block NSInteger i = 0;
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:@"Downloading images\nDownloaded 1/1\nPending"];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Downloading images\nDownloaded 1/1\nPending"];
 
     [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         if ([img imageHasBeenDowloaded] == NO) {
@@ -146,7 +146,7 @@ enum {
         }
     }];
 
-    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading images\nScheduled %ld", (long)i]];
+    [bezelManager setText:[NSString stringWithFormat:@"Downloading images\nScheduled %ld", (long)i]];
 
     if (i == 0)
         [self updateQueuedImagesData:0 downloadedImages:0];
@@ -159,11 +159,11 @@ enum {
     }];
 
     if (queuedImages != 0) {
-        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages]];
+        [bezelManager setText:[NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages]];
     }
 
     if (queuedImages == 0) {
-        [downloadManager setBezelViewController:nil];
+        [bezelManager removeBezel];
         [self needsDownloadMenu];
     }
 }

@@ -42,14 +42,6 @@
 @property (nonatomic, retain) id<DownloadManagerDelegate> downloadsImportsDelegate;
 
 /*
- * Make a simple bezel.
- * - Set vc to nil to remove it.
- * - The text is automatically resized
- */
-- (void)setBezelViewController:(UIViewController *)vc;
-- (void)setBezelViewText:(NSString *)text;
-
-/*
  * Download an image now.
  */
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;

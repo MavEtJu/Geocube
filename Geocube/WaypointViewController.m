@@ -833,10 +833,10 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
+    [bezelManager showBezel:self];
+    [bezelManager setText:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
     NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint];
-    [downloadManager setBezelViewController:nil];
+    [bezelManager removeBezel];
 
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];

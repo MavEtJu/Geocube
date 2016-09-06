@@ -252,6 +252,7 @@
 		E87DF7831D7EDFE000F16B5A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E87DF77C1D7EDFE000F16B5A /* SVProgressHUD.bundle */; };
 		E87DF7841D7EDFE000F16B5A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */; };
 		E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */; };
+		E87DF7881D7F6D6900F16B5A /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7871D7F6D6900F16B5A /* BezelManager.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
 		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
@@ -797,6 +798,8 @@
 		E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		E87DF77F1D7EDFE000F16B5A /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		E87DF7861D7F6D6900F16B5A /* BezelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelManager.h; sourceTree = "<group>"; };
+		E87DF7871D7F6D6900F16B5A /* BezelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelManager.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
 		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
@@ -1233,6 +1236,8 @@
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
 				E8045B871B697A3B00DD44CC /* WaypointManager.h */,
 				E8045B881B697A3B00DD44CC /* WaypointManager.m */,
+				E87DF7861D7F6D6900F16B5A /* BezelManager.h */,
+				E87DF7871D7F6D6900F16B5A /* BezelManager.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1290,6 +1295,7 @@
 		E84D6FD01C5826140000A6A0 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
+				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */,
 				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
 				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
@@ -2279,7 +2285,6 @@
 				E833B72F1C522E8D00B9FB45 /* Lists */,
 				E84D6FD01C5826140000A6A0 /* Queries */,
 				E8FD610D1BE8C46100859A58 /* Files */,
-				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
@@ -2862,6 +2867,7 @@
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,
 				E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */,
+				E87DF7881D7F6D6900F16B5A /* BezelManager.m in Sources */,
 				E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */,
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,

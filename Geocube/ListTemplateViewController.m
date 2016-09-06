@@ -161,12 +161,12 @@ NEEDS_OVERLOADING(clearFlags)
 
 - (void)runReloadWaypoints
 {
-    [downloadManager setBezelViewController:self];
-    [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[waypoints count]]];
+    [bezelManager showBezel:self];
+    [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[waypoints count]]];
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [downloadManager setBezelViewText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
+        [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
         NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];

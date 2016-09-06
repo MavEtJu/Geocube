@@ -130,12 +130,12 @@ enum {
 - (void)updatePersonalNote
 {
     if ([waypoint.account.remoteAPI waypointSupportsPersonalNotes] == YES) {
-        [downloadManager setBezelViewController:self];
-        [downloadManager setBezelViewText:@"Updating personal note"];
+        [bezelManager showBezel:self];
+        [bezelManager setText:@"Updating personal note"];
         if ([waypoint.account.remoteAPI updatePersonalNote:note] != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.lastError];
         }
-        [downloadManager setBezelViewController:nil];
+        [bezelManager removeBezel];
     }
 }
 

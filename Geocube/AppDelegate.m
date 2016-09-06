@@ -36,6 +36,9 @@
 {
     _AppDelegate = self;
 
+    // Bezel manager
+    bezelManager = [[BezelManager alloc] init];
+
     // File manager
     fm = [[NSFileManager alloc] init];
 
