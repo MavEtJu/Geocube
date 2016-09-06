@@ -148,6 +148,10 @@
               @"SSZipArchive: Copyright (c) 2010-2015, Sam Soffes, http://soff.es\n"
               "(https://github.com/iosphere/ssziparchive)",
 
+              @"SVProgressHUD: Copyright (c) 2011-2016 Sam Vermette and contributors. All rights reserved.\n"
+              "https://github.com/SVProgressHUD/SVProgressHUD\n"
+              "SVProgressHUD is distributed under the terms and conditions of the MIT license (https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE.txt). The success, error and info icons are made by Freepik (http://www.freepik.com) from Flaticon (http://www.flaticon.com) and are licensed under Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/).",
+
               @"THLabel: Copyright (c) 2012-2016 Tobias Hagemann, tobiha.de\n"
               "https://github.com/MuscleRumble/THLabel\n"
               "This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.\n"
