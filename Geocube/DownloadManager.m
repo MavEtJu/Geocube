@@ -257,10 +257,12 @@
     bezelText = @"Downloading";
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (bezelViewController == nil)
-            [DejalBezelActivityView removeViewAnimated:YES];
-        else
-            [DejalBezelActivityView activityViewForView:bezelViewController.view withLabel:bezelText];
+        if (bezelViewController == nil) {
+            [SVProgressHUD dismiss];
+        } else {
+            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            [SVProgressHUD showWithStatus:@"Doing Stuff"];
+        }
     }];
 }
 
@@ -268,8 +270,8 @@
 {
     bezelText = text;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [DejalBezelActivityView currentActivityView].activityLabel.text = text;
-        [DejalBezelActivityView currentActivityView].labelWidth = 0;
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showWithStatus:text];
     }];
 }
 
