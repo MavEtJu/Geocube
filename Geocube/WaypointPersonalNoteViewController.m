@@ -121,14 +121,22 @@ enum {
         note.note = text;
         [note dbUpdate];
     }
+    [self performSelectorInBackground:@selector(updatePersonalNote) withObject:nil];
 
-    if ([waypoint.account.remoteAPI waypointSupportsPersonalNotes] == YES) {
-        if ([waypoint.account.remoteAPI updatePersonalNote:note] == NO) {
-            [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.lastError];
-        }
-    }
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointPersonalNote_refreshTable];
+}
+
+- (void)updatePersonalNote
+{
+    if ([waypoint.account.remoteAPI waypointSupportsPersonalNotes] == YES) {
+        [downloadManager setBezelViewController:self];
+        [downloadManager setBezelViewText:@"Updating personal note"];
+        if ([waypoint.account.remoteAPI updatePersonalNote:note] != REMOTEAPI_OK) {
+            [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.lastError];
+        }
+        [downloadManager setBezelViewController:nil];
+    }
 }
 
 #pragma mark - Local menu related functions
