@@ -576,6 +576,7 @@
 {
     MyClock *clock = [[MyClock alloc] initClock:@"dbUpdateLogStatus"];
     [clock clockEnable:YES];
+    [clock clockShowAndReset:@"start"];
 
     // Make all not logged
     @synchronized(db.dbaccess) {
