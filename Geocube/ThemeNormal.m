@@ -29,20 +29,30 @@
 {
     self = [super init];
 
-    labelTextColor = [UIColor darkTextColor];
+    UILabel *label = [[UILabel alloc] init];
+    UISwitch *switch_ = [[UISwitch alloc] init];
+    UIView *view = [[UIView alloc] init];
+    UITableView *tableView = [[UITableView alloc] init];
+    UITableViewCell *tableViewCell = [[UITableViewCell alloc] init];
+
+    labelTextColor = label.textColor;
     labelTextColorDisabled = [UIColor lightGrayColor];
-    labelBackgroundColor = [UIColor clearColor];
+    labelBackgroundColor = label.backgroundColor;
 
-    backgroundColor = [UIColor whiteColor];
-    textColor = [UIColor darkTextColor];
+    backgroundColor = label.backgroundColor;
+    textColor = label.textColor;
 
-    tableViewCellBackgroundColor = backgroundColor;
-    tableViewBackgroundColor = backgroundColor;
-    viewBackgroundColor = backgroundColor;
+    tableViewCellBackgroundColor = tableViewCell.backgroundColor;
+    tableViewBackgroundColor = tableView.backgroundColor;
+    viewBackgroundColor = view.backgroundColor;
 
     tableViewCellGradient = NO;
 
     svProgressHUDStyle = SVProgressHUDStyleDark;
+
+    switchTintColor = switch_.tintColor;
+    switchOnTintColor = switch_.onTintColor;
+    switchThumbTintColor = switch_.thumbTintColor;
 
     return self;
 }

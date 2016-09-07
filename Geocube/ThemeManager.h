@@ -23,7 +23,7 @@ extern ThemeTemplate *currentTheme;
 extern ThemeManager *themeManager;
 
 enum GCThemeType {
-    THEME_NORMAL = 0,
+    THEME_IOS = 0,
     THEME_NIGHT,
 };
 

@@ -31,6 +31,7 @@
 @synthesize tableViewBackgroundColor;
 @synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;
 @synthesize svProgressHUDStyle;
+@synthesize switchTintColor, switchOnTintColor, switchThumbTintColor;
 
 - (instancetype)init
 {

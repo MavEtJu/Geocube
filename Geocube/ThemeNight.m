@@ -44,6 +44,10 @@
 
     svProgressHUDStyle = SVProgressHUDStyleLight;
 
+    switchTintColor = [UIColor darkGrayColor];
+    switchOnTintColor = [UIColor darkGrayColor];
+    switchThumbTintColor = [UIColor lightGrayColor];
+
     return self;
 }
 

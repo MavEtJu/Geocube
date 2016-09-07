@@ -37,6 +37,10 @@
     UIColor *tableViewCellGradient2;
 
     SVProgressHUDStyle svProgressHUDStyle;
+
+    UIColor *switchTintColor;
+    UIColor *switchOnTintColor;
+    UIColor *switchThumbTintColor;
 }
 
 @property (readonly, nonatomic, retain) UIColor *backgroundColor;
@@ -56,5 +60,9 @@
 @property (readonly, nonatomic, retain) UIColor *tableViewCellGradient2;
 
 @property (readonly, nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
+
+@property (readonly, nonatomic, retain) UIColor *switchTintColor;
+@property (readonly, nonatomic, retain) UIColor *switchOnTintColor;
+@property (readonly, nonatomic, retain) UIColor *switchThumbTintColor;
 
 @end

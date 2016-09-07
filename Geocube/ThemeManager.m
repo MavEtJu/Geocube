@@ -39,8 +39,8 @@ ThemeManager *themeManager;
     self = [super init];
 
     themeNames = @[
-                   @"Default day theme",
-                   @"Default night theme",
+                   @"Default iOS theme",
+                   @"Geocube night theme",
                   ];
 
     return self;
@@ -55,7 +55,7 @@ ThemeManager *themeManager;
 {
     themeNr = nr;
     switch (nr) {
-        case THEME_NORMAL:
+        case THEME_IOS:
             currentTheme = [[ThemeNormal alloc] init];
             break;
         case THEME_NIGHT:
@@ -117,6 +117,12 @@ ThemeManager *themeManager;
 
     if ([v isKindOfClass:[GCView class]] == YES) {
         GCView *v_ = (GCView *)v;
+        [v_ changeTheme];
+        return;
+    }
+
+    if ([v isKindOfClass:[GCSwitch class]] == YES) {
+        GCSwitch *v_ = (GCSwitch *)v;
         [v_ changeTheme];
         return;
     }
