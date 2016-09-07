@@ -252,6 +252,7 @@
 		E87DF7841D7EDFE000F16B5A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF77E1D7EDFE000F16B5A /* SVProgressHUD.m */; };
 		E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */; };
 		E87DF7881D7F6D6900F16B5A /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7871D7F6D6900F16B5A /* BezelManager.m */; };
+		E87DF78B1D80B6F100F16B5A /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78A1D80B6F100F16B5A /* GCSwitch.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
 		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
@@ -796,6 +797,8 @@
 		E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		E87DF7861D7F6D6900F16B5A /* BezelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelManager.h; sourceTree = "<group>"; };
 		E87DF7871D7F6D6900F16B5A /* BezelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelManager.m; sourceTree = "<group>"; };
+		E87DF7891D80B6F100F16B5A /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSwitch.h; sourceTree = "<group>"; };
+		E87DF78A1D80B6F100F16B5A /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSwitch.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
 		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
@@ -1443,6 +1446,8 @@
 				E87D444A1BA6F6E800671FB9 /* GCScrollView.m */,
 				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
 				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
+				E87DF7891D80B6F100F16B5A /* GCSwitch.h */,
+				E87DF78A1D80B6F100F16B5A /* GCSwitch.m */,
 				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
 				E82FBB291B4613D70009AB6D /* GCTableViewController.m */,
 				E85760061B85DB5500F34483 /* GCTableViewCell.h */,
@@ -2897,6 +2902,7 @@
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,
 				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
+				E87DF78B1D80B6F100F16B5A /* GCSwitch.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
