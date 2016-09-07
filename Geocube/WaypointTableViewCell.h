@@ -32,11 +32,6 @@
 @property (nonatomic, retain) GCLabel *labelSize;
 @property (nonatomic, retain) UIImageView *imageSize;
 
-#if !defined(__CLASS__WAYPOINTTABLEVIEWCELL__)
-@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
-@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
-#endif
-
 - (NSInteger)cellHeight;
 + (NSInteger)cellHeight;
 - (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v size:(NSInteger)sz;

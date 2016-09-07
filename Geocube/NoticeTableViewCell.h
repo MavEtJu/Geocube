@@ -27,11 +27,6 @@
 @property (nonatomic, retain) dbNotice *notice;
 @property (nonatomic) BOOL seen;
 
-#if !defined(__CLASS__NOTICESTABLEVIEWCELL__)
-@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
-@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
-#endif
-
 - (void)setNote:(NSString *)noteString;
 - (void)setURL:(NSString *)urlString;
 

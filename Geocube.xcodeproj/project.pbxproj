@@ -391,7 +391,6 @@
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
-		E8F570731B3F7255003F020C /* GeocubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570721B3F7255003F020C /* GeocubeTests.m */; };
 		E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570911B3F7CAE003F020C /* libz.dylib */; };
 		E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E8F570991B3F7F6A003F020C /* ioapi.c */; };
 		E8F570A41B3F7F6A003F020C /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E8F5709B1B3F7F6A003F020C /* mztools.c */; };
@@ -1047,8 +1046,6 @@
 		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8F570711B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8F570721B3F7255003F020C /* GeocubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocubeTests.m; sourceTree = "<group>"; };
 		E8F570911B3F7CAE003F020C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E8F570981B3F7F6A003F020C /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		E8F570991B3F7F6A003F020C /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -2034,7 +2031,6 @@
 			children = (
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
-				E8F5706F1B3F7255003F020C /* GeocubeTests */,
 				E8F570541B3F7255003F020C /* Products */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
@@ -2081,23 +2077,6 @@
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E8F5706F1B3F7255003F020C /* GeocubeTests */ = {
-			isa = PBXGroup;
-			children = (
-				E8F570721B3F7255003F020C /* GeocubeTests.m */,
-				E8F570701B3F7255003F020C /* Supporting Files */,
-			);
-			path = GeocubeTests;
-			sourceTree = "<group>";
-		};
-		E8F570701B3F7255003F020C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E8F570711B3F7255003F020C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2974,7 +2953,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8F570731B3F7255003F020C /* GeocubeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

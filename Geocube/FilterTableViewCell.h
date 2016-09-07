@@ -26,11 +26,6 @@
     UIFont *f2;
 }
 
-#if !defined(__CLASS__FILTERTABLEVIEWCELL__)
-@property (nonatomic) UILabel *textLabel __attribute__((unavailable));
-@property (nonatomic) UILabel *detailTextLabel __attribute__((unavailable));
-#endif
-
 - (NSInteger)cellHeight;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
