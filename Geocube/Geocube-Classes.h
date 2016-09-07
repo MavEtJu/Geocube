@@ -65,6 +65,7 @@
 @class GCStringFilename;
 @class GCStringGPX;
 @class GCStringObject;
+@class GCSwitch;
 @class GCTableViewCell;
 @class GCTableViewCellFieldValue;
 @class GCTableViewCellKeyValue;
