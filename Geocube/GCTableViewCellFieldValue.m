@@ -19,7 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define __CLASS__GCTABLEVIEWCELLFIELDVALUE__
 @interface GCTableViewCellFieldValue ()
 
 @end
