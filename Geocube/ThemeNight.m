@@ -44,6 +44,8 @@
 
     tableViewCellGradient = NO;
 
+    svProgressHUDStyle = SVProgressHUDStyleLight;
+
     return self;
 }
 

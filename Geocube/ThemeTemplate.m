@@ -32,6 +32,7 @@
 @synthesize viewBackgroundColor;
 @synthesize tableViewBackgroundColor;
 @synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;
+@synthesize svProgressHUDStyle;
 
 - (instancetype)init
 {

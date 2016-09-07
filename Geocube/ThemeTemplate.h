@@ -35,6 +35,8 @@
     BOOL tableViewCellGradient;
     UIColor *tableViewCellGradient1;
     UIColor *tableViewCellGradient2;
+
+    SVProgressHUDStyle svProgressHUDStyle;
 }
 
 @property (readonly, nonatomic, retain) UIColor *backgroundColor;
@@ -52,5 +54,7 @@
 @property (readonly, nonatomic)         BOOL tableViewCellGradient;
 @property (readonly, nonatomic, retain) UIColor *tableViewCellGradient1;
 @property (readonly, nonatomic, retain) UIColor *tableViewCellGradient2;
+
+@property (readonly, nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
 
 @end
