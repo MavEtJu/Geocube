@@ -25,7 +25,6 @@ extern ThemeManager *themeManager;
 enum GCThemeType {
     THEME_NORMAL = 0,
     THEME_NIGHT,
-    THEME_GEOSPHERE
 };
 
 @interface ThemeManager : NSObject

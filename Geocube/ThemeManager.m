@@ -43,7 +43,6 @@ ThemeManager *themeManager;
     themeNames = @[
                    @"Default day theme",
                    @"Default night theme",
-                   @"Geosphere"
                   ];
 
     return self;
@@ -58,14 +57,11 @@ ThemeManager *themeManager;
 {
     themeNr = nr;
     switch (nr) {
-        case 0:
+        case THEME_NORMAL:
             currentTheme = [[ThemeNormal alloc] init];
             break;
-        case 1:
+        case THEME_NIGHT:
             currentTheme = [[ThemeNight alloc] init];
-            break;
-        case 2:
-            currentTheme = [[ThemeGeosphere alloc] init];
             break;
         default:
             currentTheme = [[ThemeNormal alloc] init];
