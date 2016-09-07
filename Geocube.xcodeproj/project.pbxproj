@@ -219,7 +219,6 @@
 		E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760071B85DB5500F34483 /* GCTableViewCell.m */; };
 		E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */; };
 		E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeNormal.m */; };
-		E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760111B85E06E00F34483 /* ThemeGeosphere.m */; };
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
@@ -740,8 +739,6 @@
 		E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellWithSubtitle.m; sourceTree = "<group>"; };
 		E857600D1B85E04500F34483 /* ThemeNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNormal.h; sourceTree = "<group>"; };
 		E857600E1B85E04500F34483 /* ThemeNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNormal.m; sourceTree = "<group>"; };
-		E85760101B85E06E00F34483 /* ThemeGeosphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeGeosphere.h; sourceTree = "<group>"; };
-		E85760111B85E06E00F34483 /* ThemeGeosphere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeGeosphere.m; sourceTree = "<group>"; };
 		E85760131B85E08400F34483 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTemplate.h; sourceTree = "<group>"; };
 		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
 		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
@@ -1424,8 +1421,6 @@
 				E87D44471BA6A44800671FB9 /* ThemeManager.m */,
 				E85760131B85E08400F34483 /* ThemeTemplate.h */,
 				E85760141B85E08400F34483 /* ThemeTemplate.m */,
-				E85760101B85E06E00F34483 /* ThemeGeosphere.h */,
-				E85760111B85E06E00F34483 /* ThemeGeosphere.m */,
 				E857600D1B85E04500F34483 /* ThemeNormal.h */,
 				E857600E1B85E04500F34483 /* ThemeNormal.m */,
 				E80AEEAF1BA5983A00106F7F /* ThemeNight.h */,
@@ -2914,7 +2909,6 @@
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
 				E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
-				E85760121B85E06E00F34483 /* ThemeGeosphere.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,

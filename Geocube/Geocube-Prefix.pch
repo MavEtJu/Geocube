@@ -89,7 +89,6 @@
 #import "dbWaypoint.h"
 
 #import "ThemeTemplate.h"
-#import "ThemeGeosphere.h"
 #import "ThemeNight.h"
 #import "ThemeNormal.h"
 #import "ThemeManager.h"

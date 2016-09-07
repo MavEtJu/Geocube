@@ -137,7 +137,6 @@
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
 @class StatisticsViewController;
-@class ThemeGeosphere;
 @class ThemeManager;
 @class ThemeNight;
 @class ThemeNormal;
