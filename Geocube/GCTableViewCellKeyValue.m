@@ -21,8 +21,6 @@
  */
 
 #define __CLASS__GCTABLEVIEWCELLKEYVALUE__
-#import "Geocube-Prefix.pch"
-
 @interface GCTableViewCellKeyValue ()
 
 @end

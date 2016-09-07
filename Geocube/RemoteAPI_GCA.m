@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
 @interface RemoteAPI_GCA ()
 {
     RemoteAPI *remoteAPI;

@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__GCTABLEVIEWCELLFIELDVALUE__
-#import "Geocube-Prefix.pch"
-
 @interface GCTableViewCellFieldValue ()
 
 @end

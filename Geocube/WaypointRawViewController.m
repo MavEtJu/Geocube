@@ -19,7 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
 #import "objc/runtime.h"
 
 @interface WaypointRawViewController ()

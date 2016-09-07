@@ -20,8 +20,6 @@
  */
 
 #import <sys/time.h>
-#import "Geocube-Prefix.pch"
-
 @interface MyTools ()
 
 @end

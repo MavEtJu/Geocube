@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__WAYPOINTTABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface WaypointTableViewCell ()
 {
     GCLabel *ratingDLabel, *ratingTLabel;

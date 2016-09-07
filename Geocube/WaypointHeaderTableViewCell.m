@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__WAYPOINTHEADERTABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface WaypointHeaderTableViewCell ()
 {
     UIImageView *imgFavouritesIV;

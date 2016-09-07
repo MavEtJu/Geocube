@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__LOGTABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface LogTableViewCell ()
 {
     CGRect rectLogtype;

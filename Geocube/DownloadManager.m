@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
-
 @interface DownloadManager ()
 {
     dispatch_semaphore_t syncSem;

@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__FILTERTABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface FilterTableViewCell ()
 {
     UIFont *f1;

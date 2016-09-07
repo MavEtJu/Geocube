@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__NOTICESTABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface NoticeTableViewCell ()
 {
     CGRect rectNote;

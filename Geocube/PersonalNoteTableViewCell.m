@@ -20,8 +20,6 @@
  */
 
 #define __CLASS__PERSONALNOTETABLEVIEWCELL__
-#import "Geocube-Prefix.pch"
-
 @interface PersonalNoteTableViewCell ()
 {
     CGRect rectLog;
