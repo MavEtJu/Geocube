@@ -9,10 +9,6 @@
 #import "Geocube-Prefix.pch"
 
 @interface BezelManager ()
-{
-    UIViewController *bezelViewController;
-    NSString *bezelText;
-}
 
 @end
 
@@ -20,24 +16,16 @@
 
 - (void)showBezel:(UIViewController *)vc
 {
-    bezelViewController = vc;
-    bezelText = @"Doing stuff";
-
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (bezelViewController == nil) {
-            [SVProgressHUD dismiss];
-        } else {
-            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-            [SVProgressHUD showWithStatus:bezelText];
-        }
+        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
+        [SVProgressHUD showWithStatus:@"Doing stuff"];
     }];
 }
 
 - (void)setText:(NSString *)text
 {
-    bezelText = text;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
         [SVProgressHUD showWithStatus:text];
     }];
 }
