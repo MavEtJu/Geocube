@@ -1222,6 +1222,8 @@
 				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
+				E87DF7861D7F6D6900F16B5A /* BezelManager.h */,
+				E87DF7871D7F6D6900F16B5A /* BezelManager.m */,
 				E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */,
 				E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */,
 				E8E88D901BF06D9500E90F8D /* LocationManager.h */,
@@ -1230,8 +1232,6 @@
 				E88974BB1B6EBF9500703E80 /* MyConfig.m */,
 				E8045B871B697A3B00DD44CC /* WaypointManager.h */,
 				E8045B881B697A3B00DD44CC /* WaypointManager.m */,
-				E87DF7861D7F6D6900F16B5A /* BezelManager.h */,
-				E87DF7871D7F6D6900F16B5A /* BezelManager.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
