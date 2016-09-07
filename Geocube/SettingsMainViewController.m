@@ -21,18 +21,18 @@
 
 @interface SettingsMainViewController ()
 {
-    UISwitch *distanceMetric;
-    UISwitch *themeGeosphere;
-    UISwitch *orientationPortrait, *orientationPortraitUpsideDown, *orientationLandscapeLeft, *orientationLandscapeRight;
-    UISwitch *soundDirection;
-    UISwitch *soundDistance;
+    GCSwitch *distanceMetric;
+    GCSwitch *themeGeosphere;
+    GCSwitch *orientationPortrait, *orientationPortraitUpsideDown, *orientationLandscapeLeft, *orientationLandscapeRight;
+    GCSwitch *soundDirection;
+    GCSwitch *soundDistance;
 
-    UISwitch *keeptrackAutoRotate;
+    GCSwitch *keeptrackAutoRotate;
 
-    UISwitch *mapClustersEnable;
-    UISwitch *dynamicmapEnable;
+    GCSwitch *mapClustersEnable;
+    GCSwitch *dynamicmapEnable;
     float mapClustersZoomlevel;
-    UISwitch *mapRotateToBearing;
+    GCSwitch *mapRotateToBearing;
 
     NSArray *compassTypes;
     NSArray *externalMapTypes;
@@ -54,28 +54,28 @@
     NSMutableArray *distancesCycling;
     NSMutableArray *distancesDriving;
 
-    UISwitch *mapcacheEnable;
+    GCSwitch *mapcacheEnable;
     NSInteger mapcacheMaxAge;
     NSInteger mapcacheMaxSize;
     NSArray *mapcacheMaxAgeValues;
     NSArray *mapcacheMaxSizeValues;
 
-    UISwitch *compassAlwaysInPortraitMode;
-    UISwitch *markasFoundDNFClearsTarget;
-    UISwitch *markasFoundMarksAllWaypoints;
-    UISwitch *showCountryAsAbbrevation;
-    UISwitch *showStateAsAbbrevation;
-    UISwitch *showStateAsAbbrevationIfLocaleExists;
-    UISwitch *refreshWaypointAfterLog;
+    GCSwitch *compassAlwaysInPortraitMode;
+    GCSwitch *markasFoundDNFClearsTarget;
+    GCSwitch *markasFoundMarksAllWaypoints;
+    GCSwitch *showCountryAsAbbrevation;
+    GCSwitch *showStateAsAbbrevation;
+    GCSwitch *showStateAsAbbrevationIfLocaleExists;
+    GCSwitch *refreshWaypointAfterLog;
 
-    UISwitch *downloadImagesWaypoints;
-    UISwitch *downloadImagesLogs;
-    UISwitch *downloadImagesMobile;
-    UISwitch *downloadQueriesMobile;
+    GCSwitch *downloadImagesWaypoints;
+    GCSwitch *downloadImagesLogs;
+    GCSwitch *downloadImagesMobile;
+    GCSwitch *downloadQueriesMobile;
     NSMutableArray *downloadSimpleTimeouts;
     NSMutableArray *downloadQueryTimeouts;
 
-    UISwitch *GPSAdjustmentEnable;
+    GCSwitch *GPSAdjustmentEnable;
 }
 
 @end
@@ -421,7 +421,7 @@ enum sections {
                 case SECTION_DISTANCE_METRIC: {   // Metric
                     cell.textLabel.text = @"Use metric units";
 
-                    distanceMetric = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    distanceMetric = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     distanceMetric.on = myConfig.distanceMetric;
                     [distanceMetric addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = distanceMetric;
@@ -509,7 +509,7 @@ enum sections {
                 case SECTION_SOUNDS_DIRECTION: {   // soundDirection
                     cell.textLabel.text = @"Enable sounds for direction";
 
-                    soundDirection = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    soundDirection = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     soundDirection.on = myConfig.soundDirection;
                     [soundDirection addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = soundDirection;
@@ -519,7 +519,7 @@ enum sections {
                 case SECTION_SOUNDS_DISTANCE: {   // soundDistance
                     cell.textLabel.text = @"Enable sounds for distance";
 
-                    soundDistance = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    soundDistance = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     soundDistance.on = myConfig.soundDistance;
                     [soundDistance addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = soundDistance;
@@ -559,7 +559,7 @@ enum sections {
 
                     cell.textLabel.text = @"Rotate to bearing";
 
-                    mapRotateToBearing = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    mapRotateToBearing = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     mapRotateToBearing.on = myConfig.mapRotateToBearing;
                     [mapRotateToBearing addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = mapRotateToBearing;
@@ -604,7 +604,7 @@ enum sections {
 
                     cell.textLabel.text = @"Enable dynamic maps";
 
-                    dynamicmapEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    dynamicmapEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     dynamicmapEnable.on = myConfig.dynamicmapEnable;
                     [dynamicmapEnable addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = dynamicmapEnable;
@@ -671,7 +671,7 @@ enum sections {
 
                     cell.textLabel.text = @"Autorotate every day";
 
-                    keeptrackAutoRotate = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    keeptrackAutoRotate = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     keeptrackAutoRotate.on = myConfig.keeptrackAutoRotate;
                     [keeptrackAutoRotate addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = keeptrackAutoRotate;
@@ -729,7 +729,7 @@ enum sections {
 
                     cell.textLabel.text = @"Enable map cache";
 
-                    mapcacheEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    mapcacheEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     mapcacheEnable.on = myConfig.mapcacheEnable;
                     [mapcacheEnable addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = mapcacheEnable;
@@ -778,7 +778,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download waypoint images";
 
-                    downloadImagesWaypoints = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     downloadImagesWaypoints.on = myConfig.downloadImagesWaypoints;
                     [downloadImagesWaypoints addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesWaypoints;
@@ -789,7 +789,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download log images";
 
-                    downloadImagesLogs = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesLogs = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     downloadImagesLogs.on = myConfig.downloadImagesLogs;
                     [downloadImagesLogs addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesLogs;
@@ -800,7 +800,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download logged images over mobile data";
 
-                    downloadImagesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadImagesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     downloadImagesMobile.on = myConfig.downloadImagesMobile;
                     [downloadImagesMobile addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesMobile;
@@ -811,7 +811,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Download batch queries over mobile data";
 
-                    downloadQueriesMobile = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    downloadQueriesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     downloadQueriesMobile.on = myConfig.downloadQueriesMobile;
                     [downloadQueriesMobile addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadQueriesMobile;
@@ -828,7 +828,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Remove target when marking as found/DNF";
 
-                    markasFoundDNFClearsTarget = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    markasFoundDNFClearsTarget = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     markasFoundDNFClearsTarget.on = myConfig.markasFoundDNFClearsTarget;
                     [markasFoundDNFClearsTarget addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = markasFoundDNFClearsTarget;
@@ -839,7 +839,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Mark all related waypoints when marked as found";
 
-                    markasFoundMarksAllWaypoints = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    markasFoundMarksAllWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     markasFoundMarksAllWaypoints.on = myConfig.markasFoundMarksAllWaypoints;
                     [markasFoundMarksAllWaypoints addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = markasFoundMarksAllWaypoints;
@@ -856,7 +856,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Compass is always in portrait mode";
 
-                    compassAlwaysInPortraitMode = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    compassAlwaysInPortraitMode = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     compassAlwaysInPortraitMode.on = myConfig.compassAlwaysInPortraitMode;
                     [compassAlwaysInPortraitMode addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = compassAlwaysInPortraitMode;
@@ -883,7 +883,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Refresh after log";
 
-                    refreshWaypointAfterLog = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    refreshWaypointAfterLog = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     refreshWaypointAfterLog.on = myConfig.refreshWaypointAfterLog;
                     [refreshWaypointAfterLog addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = refreshWaypointAfterLog;
@@ -895,7 +895,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Show country as abbrevation";
 
-                    showCountryAsAbbrevation = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showCountryAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     showCountryAsAbbrevation.on = myConfig.showCountryAsAbbrevation;
                     [showCountryAsAbbrevation addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showCountryAsAbbrevation;
@@ -907,7 +907,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation";
 
-                    showStateAsAbbrevation = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showStateAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     showStateAsAbbrevation.on = myConfig.showStateAsAbbrevation;
                     [showStateAsAbbrevation addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showStateAsAbbrevation;
@@ -919,7 +919,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation if locale exist";
 
-                    showStateAsAbbrevationIfLocaleExists = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    showStateAsAbbrevationIfLocaleExists = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     showStateAsAbbrevationIfLocaleExists.on = myConfig.showStateAsAbbrevationIfLocaleExists;
                     [showStateAsAbbrevationIfLocaleExists addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showStateAsAbbrevationIfLocaleExists;
@@ -936,7 +936,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
                     cell.textLabel.text = @"GPS Adjustment enable";
 
-                    GPSAdjustmentEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    GPSAdjustmentEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     GPSAdjustmentEnable.on = myConfig.gpsAdjustmentEnable;
                     [GPSAdjustmentEnable addTarget:self action:@selector(updateGPSAdjustmentEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = GPSAdjustmentEnable;
@@ -968,84 +968,84 @@ enum sections {
     return nil;
 }
 
-- (void)updateGPSAdjustmentEnable:(UISwitch *)s
+- (void)updateGPSAdjustmentEnable:(GCSwitch *)s
 {
     [myConfig gpsAdjustmentEnableUpdate:s.on];
 }
 
-- (void)updateMarkasFoundDNFClearsTarget:(UISwitch *)s
+- (void)updateMarkasFoundDNFClearsTarget:(GCSwitch *)s
 {
     [myConfig markasFoundDNFClearsTargetUpdate:s.on];
 }
 
-- (void)updateMarkasFoundMarksAllWaypoints:(UISwitch *)s
+- (void)updateMarkasFoundMarksAllWaypoints:(GCSwitch *)s
 {
     [myConfig markasFoundMarksAllWaypointsUpdate:s.on];
 }
 
-- (void)updateCompassAlwaysInPortraitMode:(UISwitch *)s
+- (void)updateCompassAlwaysInPortraitMode:(GCSwitch *)s
 {
     [myConfig compassAlwaysInPortraitModeUpdate:s.on];
 }
 
-- (void)updateDownloadImagesLogs:(UISwitch *)s
+- (void)updateDownloadImagesLogs:(GCSwitch *)s
 {
     [myConfig downloadImagesLogsUpdate:s.on];
 }
 
-- (void)updateDownloadImagesWaypoints:(UISwitch *)s
+- (void)updateDownloadImagesWaypoints:(GCSwitch *)s
 {
     [myConfig downloadImagesWaypointsUpdate:s.on];
 }
 
-- (void)updateDownloadImagesMobile:(UISwitch *)s
+- (void)updateDownloadImagesMobile:(GCSwitch *)s
 {
     [myConfig downloadImagesMobileUpdate:s.on];
 }
 
-- (void)updateDownloadQueriesMobile:(UISwitch *)s
+- (void)updateDownloadQueriesMobile:(GCSwitch *)s
 {
     [myConfig downloadQueriesMobileUpdate:s.on];
 }
 
-- (void)updateMapcacheEnable:(UISwitch *)s
+- (void)updateMapcacheEnable:(GCSwitch *)s
 {
     [myConfig mapcacheEnableUpdate:s.on];
 }
 
-- (void)updateDynamicmapEnable:(UISwitch *)s
+- (void)updateDynamicmapEnable:(GCSwitch *)s
 {
     [myConfig dynamicmapEnableUpdate:s.on];
 }
 
-- (void)updateDistanceMetric:(UISwitch *)s
+- (void)updateDistanceMetric:(GCSwitch *)s
 {
     [myConfig distanceMetricUpdate:s.on];
     [self calculateDynamicmapSpeedsDistances];
     [self.tableView reloadData];
 }
 
-- (void)updateSoundDistance:(UISwitch *)s
+- (void)updateSoundDistance:(GCSwitch *)s
 {
     [myConfig soundDistanceUpdate:s.on];
 }
 
-- (void)updateSoundDirection:(UISwitch *)s
+- (void)updateSoundDirection:(GCSwitch *)s
 {
     [audioFeedback togglePlay:s.on];
     [myConfig soundDirectionUpdate:s.on];
 }
 
-- (void)updateMapClustersEnable:(UISwitch *)s
+- (void)updateMapClustersEnable:(GCSwitch *)s
 {
     [myConfig mapClustersUpdateEnable:s.on];
 }
-- (void)updateMapRotateToBearing:(UISwitch *)s
+- (void)updateMapRotateToBearing:(GCSwitch *)s
 {
     [myConfig mapRotateToBearingUpdate:s.on];
 }
 
-- (void)updateKeeptrackAutoRotate:(UISwitch *)s
+- (void)updateKeeptrackAutoRotate:(GCSwitch *)s
 {
     [myConfig keeptrackAutoRotateUpdate:s.on];
 }
@@ -1733,25 +1733,25 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateRefreshWaypointAfterLog:(UISwitch *)b
+- (void)updateRefreshWaypointAfterLog:(GCSwitch *)b
 {
     [myConfig refreshWaypointAfterLogUpdate:b.on];
     [self.tableView reloadData];
 }
 
-- (void)updateShowCountryAsAbbrevation:(UISwitch *)b
+- (void)updateShowCountryAsAbbrevation:(GCSwitch *)b
 {
     [myConfig showCountryAsAbbrevationUpdate:b.on];
     [self.tableView reloadData];
 }
 
-- (void)updateShowStateAsAbbrevation:(UISwitch *)b
+- (void)updateShowStateAsAbbrevation:(GCSwitch *)b
 {
     [myConfig showStateAsAbbrevationUpdate:b.on];
     [self.tableView reloadData];
 }
 
-- (void)updateShowStateAsAbbrevationWithLocale:(UISwitch *)b
+- (void)updateShowStateAsAbbrevationWithLocale:(GCSwitch *)b
 {
     [myConfig showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
     [self.tableView reloadData];

@@ -186,7 +186,7 @@ enum {
                 }
                 case SECTION_EXTRADETAILS_FAVOURITE: {
                     cell.keyLabel.text = @"Favourite Point";
-                    UISwitch *fpSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    GCSwitch *fpSwitch = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     fpSwitch.on = fp;
                     cell.accessoryView = fpSwitch;
                     if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
@@ -257,7 +257,7 @@ enum {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_UPLOAD: {
                     cell.keyLabel.text = @"Upload";
-                    UISwitch *uploadSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+                    GCSwitch *uploadSwitch = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     if (waypoint.account.canDoRemoteStuff == YES) {
                         uploadSwitch.on = upload;
                         [uploadSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
@@ -289,12 +289,12 @@ enum {
     return cell;
 }
 
-- (void)updateFPSwitch:(UISwitch *)s
+- (void)updateFPSwitch:(GCSwitch *)s
 {
     fp = s.on;
 }
 
-- (void)updateUploadSwitch:(UISwitch *)s
+- (void)updateUploadSwitch:(GCSwitch *)s
 {
     upload = s.on;
     [self.tableView reloadData];
