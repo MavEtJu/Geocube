@@ -21,7 +21,7 @@
 
 @interface SettingsMainColorPickerViewController ()
 {
-    NSInteger type;
+    SettingsPicker type;
     UIButton *chooseButton, *resetButton;
     dbPin *dummyPin;
     UIColor *currentColour;
@@ -34,7 +34,7 @@
 
 @implementation SettingsMainColorPickerViewController
 
-- (instancetype)init:(NSInteger)_type
+- (instancetype)init:(SettingsPicker)_type
 {
     self = [super init];
 

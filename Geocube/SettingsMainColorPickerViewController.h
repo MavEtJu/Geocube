@@ -23,11 +23,11 @@
 
 @interface SettingsMainColorPickerViewController : GCViewController
 
-enum {
+typedef NS_ENUM(NSInteger, SettingsPicker) {
     SettingsMainColorPickerTrack = 0,
     SettingsMainColorPickerDestination
 };
 
-- (instancetype)init:(NSInteger)type;
+- (instancetype)init:(SettingsPicker)type;
 
 @end
