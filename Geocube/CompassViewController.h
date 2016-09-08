@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum GCCompassType {
+typedef NS_ENUM(NSInteger, GCCompassType) {
     COMPASS_REDONBLUECOMPASS = 0,
     COMPASS_WHITEARROWONBLACK,
     COMPASS_REDARROWONBLACK,
