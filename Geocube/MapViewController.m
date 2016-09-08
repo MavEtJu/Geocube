@@ -30,9 +30,9 @@
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
 
-    NSInteger showType; /* SHOW_ONECACHE | SHOW_ALLCACHES */
-    NSInteger showWhom; /* SHOW_CACHE | SHOW_ME | SHOW_BOTH */
-    NSInteger showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
+    GCMapHowMany showWhat; /* SHOW_ONECACHE | SHOW_ALLCACHES */
+    GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
+    GCMapBrand showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
     CLLocationCoordinate2D meLocation;
     CLLocationDirection meBearing;
@@ -78,7 +78,7 @@ enum {
     return nil;
 }
 
-- (instancetype)init:(NSInteger)maptype
+- (instancetype)init:(GCMapHowMany)mapWhat
 {
     self = [super init];
 
@@ -160,9 +160,9 @@ enum {
     if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
 
-    showType = maptype; /* SHOW_ONECACHE or SHOW_ALLCACHES */
-    showWhom = (showType == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
-    if (showType == SHOW_ONEWAYPOINT) {
+    showWhat = mapWhat; /* SHOW_ONECACHE or SHOW_ALLCACHES */
+    followWhom = (showWhat == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
+    if (showWhat == SHOW_ONEWAYPOINT) {
         [lmi disableItem:menuLoadWaypoints];
         [lmi disableItem:menuExportVisible];
     }
@@ -229,7 +229,7 @@ enum {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
     [map mapViewDidAppear];
-    [LM startDelegation:self isNavigating:(showType == SHOW_ONEWAYPOINT)];
+    [LM startDelegation:self isNavigating:(showWhat == SHOW_ONEWAYPOINT)];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
 
@@ -362,7 +362,7 @@ enum {
     [labelMapFindTarget setImage:[imageLibrary get:ImageIcon_FindTarget] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindTarget];
 
-    switch (showWhom) {
+    switch (followWhom) {
         case SHOW_FOLLOWME:
             [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
             [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
@@ -383,6 +383,8 @@ enum {
             [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
             [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
             [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
+            break;
+        default:
             break;
     }
 }
@@ -438,12 +440,19 @@ enum {
     }
 
     // Move the map around to match current location
-    if (showWhom == SHOW_FOLLOWMEZOOM)
-        [map moveCameraTo:meLocation zoom:YES];
-    if (showWhom == SHOW_FOLLOWME)
-        [map moveCameraTo:meLocation zoom:NO];
-    if (showWhom == SHOW_SHOWBOTH)
-        [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+    switch (followWhom) {
+        case SHOW_FOLLOWMEZOOM:
+            [map moveCameraTo:meLocation zoom:YES];
+            break;
+        case SHOW_FOLLOWME:
+            [map moveCameraTo:meLocation zoom:NO];
+            break;
+        case SHOW_SHOWBOTH:
+            [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            break;
+        default:
+            break;
+    }
 
     [map removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
@@ -477,7 +486,7 @@ enum {
 
 - (void)userInteraction
 {
-    showWhom = SHOW_NEITHER;
+    followWhom = SHOW_NEITHER;
     [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
@@ -488,7 +497,7 @@ enum {
 - (void)menuShowWhom:(NSInteger)whom
 {
     if (whom == SHOW_FOLLOWME) {
-        showWhom = whom;
+        followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:meLocation zoom:NO];
         [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
@@ -498,7 +507,7 @@ enum {
         [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
-        showWhom = whom;
+        followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
         [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
@@ -508,7 +517,7 @@ enum {
         [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
-        showWhom = whom;
+        followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
         [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
@@ -522,7 +531,7 @@ enum {
 - (void)menuFindMe
 {
     meLocation = [LM coords];
-    showWhom = SHOW_FOLLOWMEZOOM;
+    followWhom = SHOW_FOLLOWMEZOOM;
     [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
@@ -534,7 +543,7 @@ enum {
 - (void)menuFindTarget
 {
     meLocation = [LM coords];
-    showWhom = SHOW_SEETARGET;
+    followWhom = SHOW_SEETARGET;
     [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
@@ -561,7 +570,7 @@ enum {
 
     [waypointManager applyFilters:LM.coords];
 
-    if (showType == SHOW_ONEWAYPOINT) {
+    if (showWhat == SHOW_ONEWAYPOINT) {
         if (waypointManager.currentWaypoint != nil) {
             waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
             waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
@@ -572,7 +581,7 @@ enum {
         }
     }
 
-    if (showType == SHOW_ALLWAYPOINTS) {
+    if (showWhat == SHOW_ALLWAYPOINTS) {
         waypointsArray = [waypointManager currentWaypoints];
         waypointCount = [waypointsArray count];
     }
@@ -614,12 +623,12 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)menuMapType:(NSInteger)maptype
+- (void)menuMapType:(GCMapType)maptype
 {
     [map setMapType:maptype];
 }
 
-- (void)menuChangeMapbrand:(NSInteger)brand
+- (void)menuChangeMapbrand:(GCMapBrand)brand
 {
     CLLocationCoordinate2D currentCoords = [map currentCenter];
     double currentZoom = [map currentZoom];
@@ -697,7 +706,7 @@ enum {
     [map placeMarkers];
 
     [map mapViewDidAppear];
-    [self menuShowWhom:showWhom];
+    [self menuShowWhom:followWhom];
 
     [map showBoundaries:showBoundaries];
 
@@ -866,7 +875,7 @@ enum {
     [LM useGPS:NO coordinates:[map currentCenter]];
 
     meLocation = [map currentCenter];
-    showWhom = SHOW_NEITHER;
+    followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
@@ -878,7 +887,7 @@ enum {
     [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
 
     meLocation = [map currentCenter];
-    showWhom = SHOW_NEITHER;
+    followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
