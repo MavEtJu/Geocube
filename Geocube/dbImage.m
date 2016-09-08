@@ -85,7 +85,7 @@
     return [dbImage dbCount:@"images"];
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
@@ -165,7 +165,7 @@
     return linked;
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(NSInteger)type
+- (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
     @synchronized (db.dbaccess) {
         DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
@@ -179,7 +179,7 @@
     }
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(NSInteger)type
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
     NSInteger linked = 0;
     @synchronized (db.dbaccess) {

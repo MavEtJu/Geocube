@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum ImageTypes {
+typedef NS_ENUM(NSInteger, ImageCategory) {
     IMAGETYPE_NONE = 0,
     IMAGETYPE_LOG = 1,
     IMAGETYPE_CACHE = 2,
@@ -37,10 +37,10 @@ enum ImageTypes {
 + (dbImage *)dbGetByURL:(NSString *)url;
 + (NSId)dbCreate:(dbImage *)img;
 - (BOOL)dbLinkedtoWaypoint:(NSId)wp_id;
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(NSInteger)type;
+- (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(NSInteger)type;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(NSInteger)type;
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type;
++ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type;
 - (BOOL)imageHasBeenDowloaded;
 - (UIImage *)imageGet;
 + (NSString *)filename:(NSString *)url;
