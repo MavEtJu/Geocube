@@ -22,7 +22,7 @@
 @interface FilterDirectionTableViewCell ()
 {
     NSArray *directions;
-    NSInteger direction;
+    FilterDirection direction;
     NSString *directionString;
     UIButton *directionButton;
 }

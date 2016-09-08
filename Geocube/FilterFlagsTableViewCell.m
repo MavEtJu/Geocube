@@ -30,14 +30,14 @@
     UIButton *buttonLoggedAsDNF;
     UIButton *buttonOwner;
 
-    NSInteger valueHighlighted;
-    NSInteger valueMarkedAsFound;
-    NSInteger valueMarkedAsDNF;
-    NSInteger valueIgnored;
-    NSInteger valueInProgress;
-    NSInteger valueLoggedAsFound;
-    NSInteger valueLoggedAsDNF;
-    NSInteger valueOwner;
+    FilterFlag valueHighlighted;
+    FilterFlag valueMarkedAsFound;
+    FilterFlag valueMarkedAsDNF;
+    FilterFlag valueIgnored;
+    FilterFlag valueInProgress;
+    FilterFlag valueLoggedAsFound;
+    FilterFlag valueLoggedAsDNF;
+    FilterFlag valueOwner;
 
     NSArray *valuesHighlighted;
     NSArray *valuesMarkedAsFound;
@@ -53,7 +53,7 @@
 
 @implementation FilterFlagsTableViewCell
 
-enum {
+typedef NS_ENUM(NSInteger, FlagType) {
     flagHighlighted,
     flagMarkedAsFound,
     flagMarkedAsDNF,
@@ -125,7 +125,7 @@ enum {
     if (c != nil)
         valueOwner = [c integerValue];
 
-    for (NSInteger i = 0; i < flagMax; i++) {
+    for (FlagType i = 0; i < flagMax; i++) {
         CGRect rect = CGRectMake(20, y, width - 40, 20);
         UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;

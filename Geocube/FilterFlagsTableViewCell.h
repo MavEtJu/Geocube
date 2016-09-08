@@ -21,7 +21,7 @@
 
 @interface FilterFlagsTableViewCell : FilterTableViewCell
 
-enum {
+typedef NS_ENUM(NSInteger, FilterFlag) {
     FILTER_FLAGS_NOTCHECKED = 0,
     FILTER_FLAGS_SET,
     FILTER_FLAGS_NOTSET

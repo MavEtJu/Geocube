@@ -23,7 +23,7 @@
 {
     UIButton *compareDistanceButton;
     UIButton *distanceButton, *variationButton;
-    NSInteger compareDistance;
+    FilterDistance compareDistance;
 
     NSInteger distanceKm, distanceM;
     NSInteger variationKm, variationM;
@@ -152,7 +152,7 @@
 
 - (void)clickCompare:(UIButton *)b
 {
-    compareDistance = (compareDistance + 1) % 3;
+    compareDistance = (compareDistance + 1) % FILTER_DISTANCE_MAX;
     [self configUpdate];
 
     switch (compareDistance) {
@@ -167,6 +167,8 @@
         case FILTER_DISTANCE_INBETWEEN:
             [compareDistanceButton setTitle:@"=" forState:UIControlStateNormal];
             [compareDistanceButton setTitle:@"=" forState:UIControlStateSelected];
+            break;
+        default:
             break;
     }
 }

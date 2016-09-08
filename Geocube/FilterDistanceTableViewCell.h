@@ -21,10 +21,11 @@
 
 @interface FilterDistanceTableViewCell : FilterTableViewCell
 
-enum {
+typedef NS_ENUM(NSInteger, FilterDistance) {
     FILTER_DISTANCE_LESSTHAN = 0,
     FILTER_DISTANCE_MORETHAN,
     FILTER_DISTANCE_INBETWEEN,
+    FILTER_DISTANCE_MAX,
 };
 
 @end

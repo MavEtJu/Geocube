@@ -21,7 +21,7 @@
 
 @interface FilterDirectionTableViewCell : FilterTableViewCell
 
-enum {
+typedef NS_ENUM(NSInteger, FilterDirection) {
     FILTER_DIRECTIONS_NORTH = 0,
     FILTER_DIRECTIONS_NORTHEAST,
     FILTER_DIRECTIONS_EAST,
