@@ -778,7 +778,7 @@
     return wps;
 }
 
-+ (NSArray *)dbAllByFlag:(NSInteger)flag
++ (NSArray *)dbAllByFlag:(Flag)flag
 {
     NSArray *wps = nil;
 

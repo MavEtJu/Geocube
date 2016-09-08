@@ -28,13 +28,11 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 };
 
 typedef NS_ENUM(NSInteger, Flag) {
-    FLAGS_NONE = 0,
     FLAGS_HIGHLIGHTED,
     FLAGS_IGNORED,
     FLAGS_MARKEDFOUND,
     FLAGS_INPROGRESS,
     FLAGS_MARKEDDNF,
-    FLAGS_MAX,
 };
 
 @property (nonatomic, retain) NSString *wpt_name;
@@ -136,7 +134,7 @@ typedef NS_ENUM(NSInteger, Flag) {
 + (NSArray *)waypointsWithImages;
 + (NSArray *)waypointsWithLogs;
 + (NSArray *)waypointsWithMyLogs;
-+ (NSArray *)dbAllByFlag:(NSInteger)flag;
++ (NSArray *)dbAllByFlag:(Flag)flag;
 + (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
 @end
