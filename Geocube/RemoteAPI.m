@@ -74,6 +74,8 @@
             gca.delegate = self;
             protocol = gca;
             break;
+        default:
+            break;
     }
     return self;
 }
@@ -217,12 +219,12 @@
     }
 }
 
-- (NSInteger)UserStatistics:(NSDictionary **)retDict
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict
 {
     return [self UserStatistics:account.accountname_string retDict:retDict];
 }
 
-- (NSInteger)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -294,7 +296,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -404,7 +406,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)loadWaypoint:(dbWaypoint *)waypoint
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -490,7 +492,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -611,7 +613,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)updatePersonalNote:(dbPersonalNote *)note
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note
 {
     if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note];
@@ -623,7 +625,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)listQueries:(NSArray **)qs
+- (RemoteAPIResult)listQueries:(NSArray **)qs
 {
     /* Returns: array of dicts of
      * - Name
@@ -693,7 +695,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
     *retObj = nil;
 
@@ -760,7 +762,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {

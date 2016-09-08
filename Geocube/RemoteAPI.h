@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-enum {
+typedef NS_ENUM(NSInteger, RemoteAPIResult) {
     REMOTEAPI_OK = 0,
     REMOTEAPI_APIREFUSED,               // Couldn't connect to the API
     REMOTEAPI_APIFAILED,                // Invalid values returned
@@ -61,18 +61,18 @@ enum {
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
 
-- (NSInteger)UserStatistics:(NSDictionary **)retDict;
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict;
 
-- (NSInteger)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
-- (NSInteger)loadWaypoint:(dbWaypoint *)waypoint;
-- (NSInteger)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj;
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint;
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj;
 
-- (NSInteger)updatePersonalNote:(dbPersonalNote *)note;
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note;
 
-- (NSInteger)listQueries:(NSArray **)qs;
-- (NSInteger)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
-- (NSInteger)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
+- (RemoteAPIResult)listQueries:(NSArray **)qs;
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
 
 - (void)trackablesMine;
 - (void)trackablesInventory;
