@@ -21,7 +21,7 @@
 
 @interface MyTools : NSObject
 
-enum {
+typedef NS_ENUM(NSInteger, PlaySound) {
     PLAYSOUND_IMPORTCOMPLETE,
     PLAYSOUND_MAX
 };
@@ -80,7 +80,7 @@ enum {
 
 //+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr;
 
-+ (void)playSound:(NSInteger)reason;
++ (void)playSound:(PlaySound)reason;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error;
 

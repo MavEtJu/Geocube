@@ -457,11 +457,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     AudioServicesPlaySystemSound(soundFileObject);
 }
 
-+ (void)playSound:(NSInteger)reason
++ (void)playSound:(PlaySound)reason
 {
     switch (reason) {
         case PLAYSOUND_IMPORTCOMPLETE:
             [MyTools playSoundFile:@"Import Complete" extension:@"wav"];
+            break;
+        case PLAYSOUND_MAX:
             break;
     }
 }
