@@ -21,7 +21,7 @@
 
 @interface FilterDateTableViewCell : FilterTableViewCell
 
-enum {
+typedef NS_ENUM(NSInteger, FilterDate) {
     FILTER_DATE_BEFORE = 0,
     FILTER_DATE_AFTER,
     FILTER_DATE_ON,

@@ -21,7 +21,7 @@
 
 @interface FilterDateTableViewCell ()
 {
-    NSInteger comparePlaced, compareLastLog;
+    FilterDate comparePlaced, compareLastLog;
     UIButton *buttonComparePlaced, *buttonCompareLastLog;
     UIButton *buttonDatePlaced, *buttonDateLastLog;
 
@@ -155,7 +155,7 @@
 
 - (void)clickCompare:(UIButton *)b
 {
-    NSInteger compare = -1;
+    FilterDate compare = -1;
     if (b == buttonCompareLastLog)
         compare = compareLastLog = (compareLastLog + 1) % 3;
     if (b == buttonComparePlaced)
