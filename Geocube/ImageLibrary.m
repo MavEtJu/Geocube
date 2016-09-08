@@ -34,7 +34,7 @@
 - (instancetype)init
 {
     self = [super init];
-    NSLog(@"ImageLibrary: %d elements", ImageLibraryImagesMax);
+    NSLog(@"ImageLibrary: %ld elements", (long)ImageLibraryImagesMax);
 
     [self addToLibrary:@"image - nil - 1x1" index:Image_Nil];
 
@@ -364,7 +364,7 @@
     return result;
 }
 
-- (UIImage *)get:(NSInteger)imgnum
+- (UIImage *)get:(ImageNumber)imgnum
 {
     UIImage *img = imgs[imgnum];
     if (img == nil)
@@ -372,7 +372,7 @@
     return img;
 }
 
-- (NSString *)getName:(NSInteger)imgnum
+- (NSString *)getName:(ImageNumber)imgnum
 {
     NSString *name = names[imgnum];
     if (name == nil)

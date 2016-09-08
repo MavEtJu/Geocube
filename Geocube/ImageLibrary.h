@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageLibraryImagesMin = -1,
     Image_Nil = 0,
 
@@ -215,12 +215,12 @@ typedef enum {
     ImageCompass_AirplaneCompass,
 
     ImageLibraryImagesMax
-} ImageLibraryImages;
+};
 
 @interface ImageLibrary : NSObject
 
 - (instancetype)init;
-- (UIImage *)get:(NSInteger)imgnum;
+- (UIImage *)get:(ImageNumber)imgnum;
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;
 
@@ -229,7 +229,7 @@ typedef enum {
 
 - (UIImage *)getSquareWithNumber:(NSInteger)num;
 
-- (NSString *)getName:(NSInteger)imgnum;
+- (NSString *)getName:(ImageNumber)imgnum;
 - (UIImage *)getRating:(float)rating;
 
 + (UIImage *)newPinHead:(UIColor *)color;
