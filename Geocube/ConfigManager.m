@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MyConfig ()
+@interface ConfigManager ()
 
 @end
 
-@implementation MyConfig
+@implementation ConfigManager
 
 @synthesize keyGMS, keyMapbox;
 @synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;

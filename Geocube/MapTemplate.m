@@ -83,8 +83,8 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 - (NSInteger)calculateSpan
 {
-    if (myConfig.dynamicmapEnable == NO)
-        return myConfig.dynamicmapWalkingDistance;
+    if (configManager.dynamicmapEnable == NO)
+        return configManager.dynamicmapWalkingDistance;
 
     /*
      * 5000 |                              .
@@ -103,12 +103,12 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
      * Up to 10 - 30 m/s, driving speed, show between 1000 and 5000 meters around
      */
 
-    float dmWS = myConfig.dynamicmapWalkingSpeed / 3.6;
-    float dmCS = myConfig.dynamicmapCyclingSpeed / 3.6;
-    float dmDS = myConfig.dynamicmapDrivingSpeed / 3.6;
-    float dmWD = myConfig.dynamicmapWalkingDistance;
-    float dmCD = myConfig.dynamicmapCyclingDistance;
-    float dmDD = myConfig.dynamicmapDrivingDistance;
+    float dmWS = configManager.dynamicmapWalkingSpeed / 3.6;
+    float dmCS = configManager.dynamicmapCyclingSpeed / 3.6;
+    float dmDS = configManager.dynamicmapDrivingSpeed / 3.6;
+    float dmWD = configManager.dynamicmapWalkingDistance;
+    float dmCD = configManager.dynamicmapCyclingDistance;
+    float dmDD = configManager.dynamicmapDrivingDistance;
 
     NSInteger speed = LM.speed;
 

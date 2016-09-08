@@ -381,7 +381,7 @@
     }
 
     // Update compass type
-    switch (myConfig.compassType) {
+    switch (configManager.compassType) {
         case COMPASS_REDONBLUECOMPASS:
             compassImage = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
             compassIV.image = compassImage;
@@ -405,7 +405,7 @@
             break;
     }
 
-    if (myConfig.soundDirection == YES)
+    if (configManager.soundDirection == YES)
         [audioFeedback togglePlay:YES];
     else
         [audioFeedback togglePlay:NO];
@@ -486,7 +486,7 @@
         distanceLabel.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
 
-    if (myConfig.soundDirection == YES) {
+    if (configManager.soundDirection == YES) {
         bearing = labs(bearing);
         if (bearing > 180)
             bearing = 360 - bearing;

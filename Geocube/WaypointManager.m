@@ -43,8 +43,8 @@
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DMake(0, 0);
 
-    if ([myConfig.currentWaypoint isEqualToString:@""] == NO)
-        currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:myConfig.currentWaypoint]];
+    if ([configManager.currentWaypoint isEqualToString:@""] == NO)
+        currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:configManager.currentWaypoint]];
 
     [LM startDelegation:self isNavigating:NO];
 
@@ -706,7 +706,7 @@
 - (void)setCurrentWaypoint:(dbWaypoint *)wp
 {
     currentWaypoint = wp;
-    [myConfig currentWaypointUpdate:wp.wpt_name];
+    [configManager currentWaypointUpdate:wp.wpt_name];
 }
 
 - (dbWaypoint *)waypoint_byId:(NSId)_id

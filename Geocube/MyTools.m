@@ -201,7 +201,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 + (NSString *)niceDistance:(NSInteger)m
 {
-    return [MyTools niceDistance:m isMetric:myConfig.distanceMetric];
+    return [MyTools niceDistance:m isMetric:configManager.distanceMetric];
 }
 
 + (NSString *)niceDistance:(NSInteger)m isMetric:(BOOL)isMetric
@@ -230,7 +230,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 + (NSString *)niceSpeed:(NSInteger)kmph
 {
-    return [MyTools niceSpeed:kmph isMetric:myConfig.distanceMetric];
+    return [MyTools niceSpeed:kmph isMetric:configManager.distanceMetric];
 }
 
 + (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric

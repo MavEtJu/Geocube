@@ -422,7 +422,7 @@ enum sections {
                     cell.textLabel.text = @"Use metric units";
 
                     distanceMetric = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    distanceMetric.on = myConfig.distanceMetric;
+                    distanceMetric.on = configManager.distanceMetric;
                     [distanceMetric addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = distanceMetric;
 
@@ -441,7 +441,7 @@ enum sections {
 
                     __block NSString *name = nil;
                     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (em.geocube_id == myConfig.mapExternal) {
+                        if (em.geocube_id == configManager.mapExternal) {
                             name = em.name;
                             *stop = YES;
                         }
@@ -458,36 +458,36 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Theme";
-                    cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:myConfig.themeType];
+                    cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:configManager.themeType];
                     return cell;
                 }
                 case SECTION_THEME_COMPASS: {   // Compass type
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Compass type";
-                    cell.detailTextLabel.text = [compassTypes objectAtIndex:myConfig.compassType];
+                    cell.detailTextLabel.text = [compassTypes objectAtIndex:configManager.compassType];
                     return cell;
                 }
                 case SECTION_THEME_ORIENTATIONS: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     NSMutableString *s = [NSMutableString stringWithString:@""];
-                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
+                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
                         [s appendString:@"Portrait"];
                     }
-                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
+                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
                         [s appendString:@"Upside Down"];
                     }
-                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
+                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
                         [s appendString:@"Landscape Left"];
                     }
-                    if ((myConfig.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
+                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
                         [s appendString:@"Landscape Right"];
@@ -510,7 +510,7 @@ enum sections {
                     cell.textLabel.text = @"Enable sounds for direction";
 
                     soundDirection = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    soundDirection.on = myConfig.soundDirection;
+                    soundDirection.on = configManager.soundDirection;
                     [soundDirection addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = soundDirection;
 
@@ -520,7 +520,7 @@ enum sections {
                     cell.textLabel.text = @"Enable sounds for distance";
 
                     soundDistance = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    soundDistance.on = myConfig.soundDistance;
+                    soundDistance.on = configManager.soundDistance;
                     [soundDistance addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = soundDistance;
 
@@ -536,7 +536,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Destination line";
-                    cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapDestinationColour];
+                    cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapDestinationColour];
 
                     return cell;
                 }
@@ -544,7 +544,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Track line";
-                    cell.imageView.image = [ImageLibrary circleWithColour:myConfig.mapTrackColour];
+                    cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapTrackColour];
 
                     return cell;
                 }
@@ -560,7 +560,7 @@ enum sections {
                     cell.textLabel.text = @"Rotate to bearing";
 
                     mapRotateToBearing = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    mapRotateToBearing.on = myConfig.mapRotateToBearing;
+                    mapRotateToBearing.on = configManager.mapRotateToBearing;
                     [mapRotateToBearing addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = mapRotateToBearing;
 
@@ -576,21 +576,21 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
-                    cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceGS];
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance in OKAPI search radius";
-                    cell.detailTextLabel.text = [MyTools niceDistance:myConfig.mapSearchMaximumDistanceOKAPI];
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)myConfig.mapSearchMaximumNumberGCA];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)configManager.mapSearchMaximumNumberGCA];
                     return cell;
                 }
             }
@@ -605,7 +605,7 @@ enum sections {
                     cell.textLabel.text = @"Enable dynamic maps";
 
                     dynamicmapEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    dynamicmapEnable.on = myConfig.dynamicmapEnable;
+                    dynamicmapEnable.on = configManager.dynamicmapEnable;
                     [dynamicmapEnable addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = dynamicmapEnable;
 
@@ -615,7 +615,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum walking speed";
-                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapWalkingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
 
                     return cell;
                 }
@@ -623,7 +623,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum cycling speed";
-                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapCyclingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
 
                     return cell;
                 }
@@ -631,7 +631,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum driving speed";
-                    cell.detailTextLabel.text = [MyTools niceSpeed:myConfig.dynamicmapDrivingSpeed];
+                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
 
                     return cell;
                 }
@@ -639,7 +639,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Walking zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
 
                     return cell;
                 }
@@ -647,7 +647,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Cycling zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapWalkingDistance], [MyTools niceDistance:myConfig.dynamicmapCyclingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
 
                     return cell;
                 }
@@ -655,7 +655,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Driving zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:myConfig.dynamicmapCyclingDistance], [MyTools niceDistance:myConfig.dynamicmapDrivingDistance]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
 
                     return cell;
                 }
@@ -672,7 +672,7 @@ enum sections {
                     cell.textLabel.text = @"Autorotate every day";
 
                     keeptrackAutoRotate = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    keeptrackAutoRotate.on = myConfig.keeptrackAutoRotate;
+                    keeptrackAutoRotate.on = configManager.keeptrackAutoRotate;
                     [keeptrackAutoRotate addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = keeptrackAutoRotate;
 
@@ -682,7 +682,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Time difference for a new track point";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", myConfig.keeptrackTimeDeltaMin];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMin];
 
                     return cell;
                 }
@@ -690,7 +690,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Time difference for a new track";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", myConfig.keeptrackTimeDeltaMax];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMax];
 
                     return cell;
                 }
@@ -698,7 +698,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance difference for a new track point";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:myConfig.keeptrackDistanceDeltaMin]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMin]];
 
                     return cell;
                 }
@@ -706,7 +706,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance difference for a new track";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:myConfig.keeptrackDistanceDeltaMax]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMax]];
 
                     return cell;
                 }
@@ -714,7 +714,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Autopurge age for old tracks";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)myConfig.keeptrackPurgeAge];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.keeptrackPurgeAge];
 
                     return cell;
                 }
@@ -730,7 +730,7 @@ enum sections {
                     cell.textLabel.text = @"Enable map cache";
 
                     mapcacheEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    mapcacheEnable.on = myConfig.mapcacheEnable;
+                    mapcacheEnable.on = configManager.mapcacheEnable;
                     [mapcacheEnable addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = mapcacheEnable;
 
@@ -740,7 +740,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum age for objects in cache";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)myConfig.mapcacheMaxAge];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.mapcacheMaxAge];
 
                     return cell;
                 }
@@ -748,7 +748,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum size for the cache";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)myConfig.mapcacheMaxSize];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)configManager.mapcacheMaxSize];
 
                     return cell;
                 }
@@ -762,7 +762,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Timeout for simple HTTP requests";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)myConfig.downloadTimeoutSimple];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutSimple];
 
                     return cell;
                 }
@@ -770,7 +770,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Timeout for big HTTP requests";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)myConfig.downloadTimeoutQuery];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutQuery];
 
                     return cell;
                 }
@@ -779,7 +779,7 @@ enum sections {
                     cell.textLabel.text = @"Download waypoint images";
 
                     downloadImagesWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    downloadImagesWaypoints.on = myConfig.downloadImagesWaypoints;
+                    downloadImagesWaypoints.on = configManager.downloadImagesWaypoints;
                     [downloadImagesWaypoints addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesWaypoints;
 
@@ -790,7 +790,7 @@ enum sections {
                     cell.textLabel.text = @"Download log images";
 
                     downloadImagesLogs = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    downloadImagesLogs.on = myConfig.downloadImagesLogs;
+                    downloadImagesLogs.on = configManager.downloadImagesLogs;
                     [downloadImagesLogs addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesLogs;
 
@@ -801,7 +801,7 @@ enum sections {
                     cell.textLabel.text = @"Download logged images over mobile data";
 
                     downloadImagesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    downloadImagesMobile.on = myConfig.downloadImagesMobile;
+                    downloadImagesMobile.on = configManager.downloadImagesMobile;
                     [downloadImagesMobile addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadImagesMobile;
 
@@ -812,7 +812,7 @@ enum sections {
                     cell.textLabel.text = @"Download batch queries over mobile data";
 
                     downloadQueriesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    downloadQueriesMobile.on = myConfig.downloadQueriesMobile;
+                    downloadQueriesMobile.on = configManager.downloadQueriesMobile;
                     [downloadQueriesMobile addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = downloadQueriesMobile;
 
@@ -829,7 +829,7 @@ enum sections {
                     cell.textLabel.text = @"Remove target when marking as found/DNF";
 
                     markasFoundDNFClearsTarget = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    markasFoundDNFClearsTarget.on = myConfig.markasFoundDNFClearsTarget;
+                    markasFoundDNFClearsTarget.on = configManager.markasFoundDNFClearsTarget;
                     [markasFoundDNFClearsTarget addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = markasFoundDNFClearsTarget;
 
@@ -840,7 +840,7 @@ enum sections {
                     cell.textLabel.text = @"Mark all related waypoints when marked as found";
 
                     markasFoundMarksAllWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    markasFoundMarksAllWaypoints.on = myConfig.markasFoundMarksAllWaypoints;
+                    markasFoundMarksAllWaypoints.on = configManager.markasFoundMarksAllWaypoints;
                     [markasFoundMarksAllWaypoints addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = markasFoundMarksAllWaypoints;
 
@@ -857,7 +857,7 @@ enum sections {
                     cell.textLabel.text = @"Compass is always in portrait mode";
 
                     compassAlwaysInPortraitMode = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    compassAlwaysInPortraitMode.on = myConfig.compassAlwaysInPortraitMode;
+                    compassAlwaysInPortraitMode.on = configManager.compassAlwaysInPortraitMode;
                     [compassAlwaysInPortraitMode addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = compassAlwaysInPortraitMode;
 
@@ -874,7 +874,7 @@ enum sections {
 
                     cell.textLabel.text = @"Sort waypoints default by...";
                     NSArray *order = [WaypointsOfflineListViewController sortByOrder];
-                    cell.detailTextLabel.text = [order objectAtIndex:myConfig.waypointListSortBy];
+                    cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
 
                     return cell;
                 }
@@ -884,7 +884,7 @@ enum sections {
                     cell.textLabel.text = @"Refresh after log";
 
                     refreshWaypointAfterLog = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    refreshWaypointAfterLog.on = myConfig.refreshWaypointAfterLog;
+                    refreshWaypointAfterLog.on = configManager.refreshWaypointAfterLog;
                     [refreshWaypointAfterLog addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = refreshWaypointAfterLog;
 
@@ -896,7 +896,7 @@ enum sections {
                     cell.textLabel.text = @"Show country as abbrevation";
 
                     showCountryAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    showCountryAsAbbrevation.on = myConfig.showCountryAsAbbrevation;
+                    showCountryAsAbbrevation.on = configManager.showCountryAsAbbrevation;
                     [showCountryAsAbbrevation addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showCountryAsAbbrevation;
 
@@ -908,7 +908,7 @@ enum sections {
                     cell.textLabel.text = @"Show state as abbrevation";
 
                     showStateAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    showStateAsAbbrevation.on = myConfig.showStateAsAbbrevation;
+                    showStateAsAbbrevation.on = configManager.showStateAsAbbrevation;
                     [showStateAsAbbrevation addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showStateAsAbbrevation;
 
@@ -920,7 +920,7 @@ enum sections {
                     cell.textLabel.text = @"Show state as abbrevation if locale exist";
 
                     showStateAsAbbrevationIfLocaleExists = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    showStateAsAbbrevationIfLocaleExists.on = myConfig.showStateAsAbbrevationIfLocaleExists;
+                    showStateAsAbbrevationIfLocaleExists.on = configManager.showStateAsAbbrevationIfLocaleExists;
                     [showStateAsAbbrevationIfLocaleExists addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = showStateAsAbbrevationIfLocaleExists;
 
@@ -937,7 +937,7 @@ enum sections {
                     cell.textLabel.text = @"GPS Adjustment enable";
 
                     GPSAdjustmentEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    GPSAdjustmentEnable.on = myConfig.gpsAdjustmentEnable;
+                    GPSAdjustmentEnable.on = configManager.gpsAdjustmentEnable;
                     [GPSAdjustmentEnable addTarget:self action:@selector(updateGPSAdjustmentEnable:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = GPSAdjustmentEnable;
 
@@ -947,7 +947,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"GPS Adjustment for latitude";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)myConfig.gpsAdjustmentLatitude];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLatitude];
 
                     return cell;
                 }
@@ -955,7 +955,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"GPS Adjustment for longitude";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)myConfig.gpsAdjustmentLongitude];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLongitude];
 
                     return cell;
                 }
@@ -970,84 +970,84 @@ enum sections {
 
 - (void)updateGPSAdjustmentEnable:(GCSwitch *)s
 {
-    [myConfig gpsAdjustmentEnableUpdate:s.on];
+    [configManager gpsAdjustmentEnableUpdate:s.on];
 }
 
 - (void)updateMarkasFoundDNFClearsTarget:(GCSwitch *)s
 {
-    [myConfig markasFoundDNFClearsTargetUpdate:s.on];
+    [configManager markasFoundDNFClearsTargetUpdate:s.on];
 }
 
 - (void)updateMarkasFoundMarksAllWaypoints:(GCSwitch *)s
 {
-    [myConfig markasFoundMarksAllWaypointsUpdate:s.on];
+    [configManager markasFoundMarksAllWaypointsUpdate:s.on];
 }
 
 - (void)updateCompassAlwaysInPortraitMode:(GCSwitch *)s
 {
-    [myConfig compassAlwaysInPortraitModeUpdate:s.on];
+    [configManager compassAlwaysInPortraitModeUpdate:s.on];
 }
 
 - (void)updateDownloadImagesLogs:(GCSwitch *)s
 {
-    [myConfig downloadImagesLogsUpdate:s.on];
+    [configManager downloadImagesLogsUpdate:s.on];
 }
 
 - (void)updateDownloadImagesWaypoints:(GCSwitch *)s
 {
-    [myConfig downloadImagesWaypointsUpdate:s.on];
+    [configManager downloadImagesWaypointsUpdate:s.on];
 }
 
 - (void)updateDownloadImagesMobile:(GCSwitch *)s
 {
-    [myConfig downloadImagesMobileUpdate:s.on];
+    [configManager downloadImagesMobileUpdate:s.on];
 }
 
 - (void)updateDownloadQueriesMobile:(GCSwitch *)s
 {
-    [myConfig downloadQueriesMobileUpdate:s.on];
+    [configManager downloadQueriesMobileUpdate:s.on];
 }
 
 - (void)updateMapcacheEnable:(GCSwitch *)s
 {
-    [myConfig mapcacheEnableUpdate:s.on];
+    [configManager mapcacheEnableUpdate:s.on];
 }
 
 - (void)updateDynamicmapEnable:(GCSwitch *)s
 {
-    [myConfig dynamicmapEnableUpdate:s.on];
+    [configManager dynamicmapEnableUpdate:s.on];
 }
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
-    [myConfig distanceMetricUpdate:s.on];
+    [configManager distanceMetricUpdate:s.on];
     [self calculateDynamicmapSpeedsDistances];
     [self.tableView reloadData];
 }
 
 - (void)updateSoundDistance:(GCSwitch *)s
 {
-    [myConfig soundDistanceUpdate:s.on];
+    [configManager soundDistanceUpdate:s.on];
 }
 
 - (void)updateSoundDirection:(GCSwitch *)s
 {
     [audioFeedback togglePlay:s.on];
-    [myConfig soundDirectionUpdate:s.on];
+    [configManager soundDirectionUpdate:s.on];
 }
 
 - (void)updateMapClustersEnable:(GCSwitch *)s
 {
-    [myConfig mapClustersUpdateEnable:s.on];
+    [configManager mapClustersUpdateEnable:s.on];
 }
 - (void)updateMapRotateToBearing:(GCSwitch *)s
 {
-    [myConfig mapRotateToBearingUpdate:s.on];
+    [configManager mapRotateToBearingUpdate:s.on];
 }
 
 - (void)updateKeeptrackAutoRotate:(GCSwitch *)s
 {
-    [myConfig keeptrackAutoRotateUpdate:s.on];
+    [configManager keeptrackAutoRotateUpdate:s.on];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1200,9 +1200,9 @@ enum sections {
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              NSString *value = tf.text;
                              if (isLatitude == YES)
-                                 [myConfig gpsAdjustmentLatitudeUpdate:[value integerValue]];
+                                 [configManager gpsAdjustmentLatitudeUpdate:[value integerValue]];
                              else
-                                 [myConfig gpsAdjustmentLongitudeUpdate:[value integerValue]];
+                                 [configManager gpsAdjustmentLongitudeUpdate:[value integerValue]];
                              [self.tableView reloadData];
                          }];
 
@@ -1216,7 +1216,7 @@ enum sections {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [NSString stringWithFormat:@"%ld", (long)(isLatitude == YES ? myConfig.gpsAdjustmentLatitude : myConfig.gpsAdjustmentLongitude)];
+        textField.text = [NSString stringWithFormat:@"%ld", (long)(isLatitude == YES ? configManager.gpsAdjustmentLatitude : configManager.gpsAdjustmentLongitude)];
         textField.placeholder = @"Distance in mm";
     }];
 
@@ -1260,43 +1260,43 @@ enum sections {
                              switch (type) {
                                  case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
                                      float f = [value floatValue];
-                                     if (f > myConfig.keeptrackTimeDeltaMax) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %0.1f.", myConfig.keeptrackTimeDeltaMax]];
+                                     if (f > configManager.keeptrackTimeDeltaMax) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %0.1f.", configManager.keeptrackTimeDeltaMax]];
                                          break;
                                      }
-                                     [myConfig keeptrackTimeDeltaMinUpdate:f];
+                                     [configManager keeptrackTimeDeltaMinUpdate:f];
                                      break;
                                  }
                                  case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
                                      float f = [value floatValue];
-                                     if (f < myConfig.keeptrackTimeDeltaMin) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %0.1f.", myConfig.keeptrackTimeDeltaMin]];
+                                     if (f < configManager.keeptrackTimeDeltaMin) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %0.1f.", configManager.keeptrackTimeDeltaMin]];
                                          break;
                                      }
-                                     [myConfig keeptrackTimeDeltaMaxUpdate:f];
+                                     [configManager keeptrackTimeDeltaMaxUpdate:f];
                                      break;
                                  }
                                  case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
                                      NSInteger i = [value integerValue];
-                                     if (i > myConfig.keeptrackDistanceDeltaMax) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %ld.", (long)myConfig.keeptrackDistanceDeltaMin]];
+                                     if (i > configManager.keeptrackDistanceDeltaMax) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %ld.", (long)configManager.keeptrackDistanceDeltaMin]];
                                          break;
                                      }
-                                     [myConfig keeptrackDistanceDeltaMinUpdate:i];
+                                     [configManager keeptrackDistanceDeltaMinUpdate:i];
                                      break;
                                  }
                                  case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
                                      NSInteger i = [value integerValue];
-                                     if (i < myConfig.keeptrackDistanceDeltaMin) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %ld.", (long)myConfig.keeptrackDistanceDeltaMin]];
+                                     if (i < configManager.keeptrackDistanceDeltaMin) {
+                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %ld.", (long)configManager.keeptrackDistanceDeltaMin]];
                                          break;
                                      }
-                                     [myConfig keeptrackDistanceDeltaMaxUpdate:i];
+                                     [configManager keeptrackDistanceDeltaMaxUpdate:i];
                                      break;
                                  }
                                  case SECTION_KEEPTRACK_PURGEAGE: {
                                      NSInteger i = [value integerValue];
-                                     [myConfig keeptrackPurgeAgeUpdate:i];
+                                     [configManager keeptrackPurgeAgeUpdate:i];
                                      break;
                                  }
                              }
@@ -1316,19 +1316,19 @@ enum sections {
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         switch (type) {
             case SECTION_KEEPTRACK_TIMEDELTA_MIN:
-                textField.text = [NSString stringWithFormat:@"%0.1f", myConfig.keeptrackTimeDeltaMin];
+                textField.text = [NSString stringWithFormat:@"%0.1f", configManager.keeptrackTimeDeltaMin];
                 break;
             case SECTION_KEEPTRACK_TIMEDELTA_MAX:
-                textField.text = [NSString stringWithFormat:@"%0.1f", myConfig.keeptrackTimeDeltaMax];
+                textField.text = [NSString stringWithFormat:@"%0.1f", configManager.keeptrackTimeDeltaMax];
                 break;
             case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
-                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackDistanceDeltaMin];
+                textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackDistanceDeltaMin];
                 break;
             case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
-                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackDistanceDeltaMax];
+                textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackDistanceDeltaMax];
                 break;
             case SECTION_KEEPTRACK_PURGEAGE:
-                textField.text = [NSString stringWithFormat:@"%ld", (long)myConfig.keeptrackPurgeAge];
+                textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackPurgeAge];
                 break;
         }
         textField.placeholder = @"Enter value...";
@@ -1348,19 +1348,19 @@ enum sections {
     switch (row) {
         case SECTION_DYNAMICMAP_SPEED_WALKING:
             speeds = speedsWalking;
-            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapWalkingSpeed];
+            currentSpeed = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
             title = @"Maximum walking speed";
             successAction = @selector(updateDynamicmapSpeedWalking:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_CYCLING:
             speeds = speedsCycling;
-            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapCyclingSpeed];
+            currentSpeed = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
             title = @"Maximum cycling speed";
             successAction = @selector(updateDynamicmapSpeedCycling:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_DRIVING:
             speeds = speedsDriving;
-            currentSpeed = [MyTools niceSpeed:myConfig.dynamicmapDrivingSpeed];
+            currentSpeed = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
             title = @"Maximum driving speed";
             successAction = @selector(updateDynamicmapSpeedDriving:element:);
             break;
@@ -1386,19 +1386,19 @@ enum sections {
 
 - (void)updateDynamicmapSpeedWalking:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapWalkingSpeedUpdate:[[speedsWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapWalkingSpeedUpdate:[[speedsWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapSpeedCycling:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapCyclingSpeedUpdate:[[speedsCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapCyclingSpeedUpdate:[[speedsCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapSpeedDriving:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapDrivingSpeedUpdate:[[speedsDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapDrivingSpeedUpdate:[[speedsDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1411,19 +1411,19 @@ enum sections {
     switch (row) {
         case SECTION_DYNAMICMAP_DISTANCE_WALKING:
             distances = distancesWalking;
-            currentDistance = [MyTools niceDistance:myConfig.dynamicmapWalkingDistance];
+            currentDistance = [MyTools niceDistance:configManager.dynamicmapWalkingDistance];
             title = @"Maximum walking distance";
             successAction = @selector(updateDynamicmapDistanceWalking:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
             distances = distancesCycling;
-            currentDistance = [MyTools niceDistance:myConfig.dynamicmapCyclingDistance];
+            currentDistance = [MyTools niceDistance:configManager.dynamicmapCyclingDistance];
             title = @"Maximum cycling distance";
             successAction = @selector(updateDynamicmapDistanceCycling:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
             distances = distancesDriving;
-            currentDistance = [MyTools niceDistance:myConfig.dynamicmapDrivingDistance];
+            currentDistance = [MyTools niceDistance:configManager.dynamicmapDrivingDistance];
             title = @"Maximum driving distance";
             successAction = @selector(updateDynamicmapDistanceDriving:element:);
             break;
@@ -1449,19 +1449,19 @@ enum sections {
 
 - (void)updateDynamicmapDistanceWalking:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapWalkingDistanceUpdate:[[distancesWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapWalkingDistanceUpdate:[[distancesWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapDistanceCycling:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapCyclingDistanceUpdate:[[distancesCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapCyclingDistanceUpdate:[[distancesCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapDistanceDriving:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig dynamicmapDrivingDistanceUpdate:[[distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapDrivingDistanceUpdate:[[distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1471,7 +1471,7 @@ enum sections {
 {
     __block NSInteger currentChoice = 10;   // 600 seconds
     [downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([s integerValue] == myConfig.downloadTimeoutQuery) {
+        if ([s integerValue] == configManager.downloadTimeoutQuery) {
             currentChoice = idx;
             *stop = YES;
         }
@@ -1489,7 +1489,7 @@ enum sections {
 
 - (void)updateDownloadQueryTimeout:(NSNumber *)selectedIndex element:(NSString *)element
 {
-    [myConfig downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1497,7 +1497,7 @@ enum sections {
 {
     __block NSInteger currentChoice = 4;   // 120 seconds
     [downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([s integerValue] == myConfig.downloadTimeoutSimple) {
+        if ([s integerValue] == configManager.downloadTimeoutSimple) {
             currentChoice = idx;
             *stop = YES;
         }
@@ -1515,7 +1515,7 @@ enum sections {
 
 - (void)updateDownloadSimpleTimeout:(NSNumber *)selectedIndex element:(NSString *)element
 {
-    [myConfig downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1523,7 +1523,7 @@ enum sections {
 
 - (void)updateMapcacheMaxAge:(NSNumber *)selectedIndex element:(NSString *)element
 {
-    [myConfig mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1531,7 +1531,7 @@ enum sections {
 {
     __block NSInteger currentChoice = 14;   // 30 days
     [mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([s integerValue] == myConfig.mapcacheMaxAge) {
+        if ([s integerValue] == configManager.mapcacheMaxAge) {
             currentChoice = idx;
             *stop = YES;
         }
@@ -1549,14 +1549,14 @@ enum sections {
 
 - (void)updateMapcacheMaxSize:(NSNumber *)selectedIndex element:(NSString *)element
 {
-    [myConfig mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)changeMapCacheMaxSize
 {    __block NSInteger currentChoice = 10;   // 250 Mb
     [mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([s integerValue] == myConfig.mapcacheMaxSize) {
+        if ([s integerValue] == configManager.mapcacheMaxSize) {
             currentChoice = idx;
             *stop = YES;
         }
@@ -1578,7 +1578,7 @@ enum sections {
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select theme"
                                             rows:[themeManager themeNames]
-                                initialSelection:myConfig.themeType
+                                initialSelection:configManager.themeType
                                           target:self
                                    successAction:@selector(updateThemeThemeSuccess:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1589,7 +1589,7 @@ enum sections {
 - (void)updateThemeThemeSuccess:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger i = [selectedIndex intValue];
-    [myConfig themeTypeUpdate:i];
+    [configManager themeTypeUpdate:i];
     [self.tableView reloadData];
 
     [themeManager setTheme:i];
@@ -1600,7 +1600,7 @@ enum sections {
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Select Compass"
                                             rows:compassTypes
-                                initialSelection:myConfig.compassType
+                                initialSelection:configManager.compassType
                                           target:self
                                    successAction:@selector(updateThemeCompassSuccess:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1611,7 +1611,7 @@ enum sections {
 - (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger i = [selectedIndex intValue];
-    [myConfig compassTypeUpdate:i];
+    [configManager compassTypeUpdate:i];
     [self.tableView reloadData];
 }
 
@@ -1619,7 +1619,7 @@ enum sections {
 {
     __block NSInteger orientationIndex = 0;
     [orientationValues enumerateObjectsUsingBlock:^(NSNumber *n, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([n integerValue] == myConfig.orientationsAllowed) {
+        if ([n integerValue] == configManager.orientationsAllowed) {
             orientationIndex = idx;
             *stop = YES;
         }
@@ -1637,7 +1637,7 @@ enum sections {
 - (void)updateThemeOrientations:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = [[orientationValues objectAtIndex:[selectedIndex integerValue]] integerValue];
-    [myConfig orientationsAllowedUpdate:d];
+    [configManager orientationsAllowedUpdate:d];
     [self.tableView reloadData];
 }
 
@@ -1652,7 +1652,7 @@ enum sections {
     }
     [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
                                             rows:distances
-                                initialSelection:(myConfig.mapSearchMaximumDistanceGS / 250) - 1
+                                initialSelection:(configManager.mapSearchMaximumDistanceGS / 250) - 1
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumDistanceGS:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1663,7 +1663,7 @@ enum sections {
 - (void)updateMapSearchMaximumDistanceGS:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [myConfig mapSearchMaximumDistanceGSUpdate:d];
+    [configManager mapSearchMaximumDistanceGSUpdate:d];
     [self.tableView reloadData];
 }
 
@@ -1675,7 +1675,7 @@ enum sections {
     }
     [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
                                             rows:distances
-                                initialSelection:(myConfig.mapSearchMaximumDistanceOKAPI / 250) - 1
+                                initialSelection:(configManager.mapSearchMaximumDistanceOKAPI / 250) - 1
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumDistanceOKAPI:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1686,7 +1686,7 @@ enum sections {
 - (void)updateMapSearchMaximumDistanceOKAPI:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [myConfig mapSearchMaximumDistanceOKAPIUpdate:d];
+    [configManager mapSearchMaximumDistanceOKAPIUpdate:d];
     [self.tableView reloadData];
 }
 
@@ -1698,7 +1698,7 @@ enum sections {
     }
     [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Waypoints"
                                             rows:distances
-                                initialSelection:(myConfig.mapSearchMaximumNumberGCA / 10) - 1
+                                initialSelection:(configManager.mapSearchMaximumNumberGCA / 10) - 1
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumNumberGCA:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1709,7 +1709,7 @@ enum sections {
 - (void)updateMapSearchMaximumNumberGCA:(NSNumber *)selectedIndex element:(id)element
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 10;
-    [myConfig mapSearchMaximumNumberGCAUpdate:d];
+    [configManager mapSearchMaximumNumberGCAUpdate:d];
     [self.tableView reloadData];
 }
 
@@ -1719,7 +1719,7 @@ enum sections {
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Sort waypoints by"
                                             rows:[WaypointsOfflineListViewController sortByOrder]
-                                initialSelection:myConfig.waypointListSortBy
+                                initialSelection:configManager.waypointListSortBy
                                           target:self
                                    successAction:@selector(updateWaypointSortBy:element:)
                                     cancelAction:@selector(updateCancel:)
@@ -1729,31 +1729,31 @@ enum sections {
 
 - (void)updateWaypointSortBy:(NSNumber *)selectedIndex element:(id)element
 {
-    [myConfig waypointListSortByUpdate:selectedIndex.integerValue];
+    [configManager waypointListSortByUpdate:selectedIndex.integerValue];
     [self.tableView reloadData];
 }
 
 - (void)updateRefreshWaypointAfterLog:(GCSwitch *)b
 {
-    [myConfig refreshWaypointAfterLogUpdate:b.on];
+    [configManager refreshWaypointAfterLogUpdate:b.on];
     [self.tableView reloadData];
 }
 
 - (void)updateShowCountryAsAbbrevation:(GCSwitch *)b
 {
-    [myConfig showCountryAsAbbrevationUpdate:b.on];
+    [configManager showCountryAsAbbrevationUpdate:b.on];
     [self.tableView reloadData];
 }
 
 - (void)updateShowStateAsAbbrevation:(GCSwitch *)b
 {
-    [myConfig showStateAsAbbrevationUpdate:b.on];
+    [configManager showStateAsAbbrevationUpdate:b.on];
     [self.tableView reloadData];
 }
 
 - (void)updateShowStateAsAbbrevationWithLocale:(GCSwitch *)b
 {
-    [myConfig showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
+    [configManager showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
     [self.tableView reloadData];
 }
 
@@ -1764,7 +1764,7 @@ enum sections {
     NSArray *maps = [dbExternalMap dbAll];
     __block NSInteger initial = 0;
     [maps enumerateObjectsUsingBlock:^(dbExternalMap *map, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (map.geocube_id == myConfig.mapExternal) {
+        if (map.geocube_id == configManager.mapExternal) {
             initial = idx;
             *stop = YES;
         }
@@ -1784,7 +1784,7 @@ enum sections {
 {
     NSArray *maps = [dbExternalMap dbAll];
     dbExternalMap *map = [maps objectAtIndex:[selectedIndex integerValue]];
-    [myConfig mapExternalUpdate:map.geocube_id];
+    [configManager mapExternalUpdate:map.geocube_id];
     [self.tableView reloadData];
 }
 

@@ -60,10 +60,10 @@
     [dbc loadCachableData]; // Explicit because it requires itself to be there.
 
     // Initialize the configuration manager - after db
-    myConfig = [[MyConfig alloc] init];
+    configManager = [[ConfigManager alloc] init];
 
     // Initialize Google Maps -- after db, myConfig
-    [GMSServices provideAPIKey:myConfig.keyGMS];
+    [GMSServices provideAPIKey:configManager.keyGMS];
 
     // Clean the map cache - after myconfig
     [MapAppleCache cleanupCache];
@@ -74,11 +74,11 @@
 
     // Audio
     audioFeedback = [[AudioFeedback alloc] init];
-    [audioFeedback togglePlay:myConfig.soundDirection];
+    [audioFeedback togglePlay:configManager.soundDirection];
 
     // Initialize the theme - after myconfig
     themeManager = [[ThemeManager alloc] init];
-    [themeManager setTheme:myConfig.themeType];
+    [themeManager setTheme:configManager.themeType];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
@@ -422,11 +422,11 @@
     }
 
     // Switch back to the last page the user was on.
-    [self switchController:myConfig.currentPage];
-    MHTabBarController *currentTab = [tabBars objectAtIndex:myConfig.currentPage];
+    [self switchController:configManager.currentPage];
+    MHTabBarController *currentTab = [tabBars objectAtIndex:configManager.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
-    NSInteger cpt = myConfig.currentPageTab;
+    NSInteger cpt = configManager.currentPageTab;
 
     [self.window makeKeyAndVisible];
     [currentTab setSelectedIndex:cpt animated:YES];

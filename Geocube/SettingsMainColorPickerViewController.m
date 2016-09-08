@@ -58,11 +58,11 @@
     switch (type) {
         case SettingsMainColorPickerTrack:
             l.text = @"Track";
-            currentColour = myConfig.mapTrackColour;
+            currentColour = configManager.mapTrackColour;
             break;
         case SettingsMainColorPickerDestination:
             l.text = @"Destination";
-            currentColour = myConfig.mapDestinationColour;
+            currentColour = configManager.mapDestinationColour;
             break;
         default:
             l.text = @"Wot?";
@@ -124,10 +124,10 @@
     /* Write to database */
     switch (type) {
         case SettingsMainColorPickerTrack:
-            [myConfig mapTrackColourUpdate:hexString];
+            [configManager mapTrackColourUpdate:hexString];
             break;
         case SettingsMainColorPickerDestination:
-            [myConfig mapDestinationColourUpdate:hexString];
+            [configManager mapDestinationColourUpdate:hexString];
             break;
     }
 
@@ -139,10 +139,10 @@
     /* Reset the colour */
     switch (type) {
         case SettingsMainColorPickerTrack:
-            [colorPickerView setColor:myConfig.mapTrackColour];
+            [colorPickerView setColor:configManager.mapTrackColour];
             break;
         case SettingsMainColorPickerDestination:
-            [colorPickerView setColor:myConfig.mapDestinationColour];
+            [colorPickerView setColor:configManager.mapDestinationColour];
             break;
     }
 }

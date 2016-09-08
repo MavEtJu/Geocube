@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
 
-    self.font = myConfig.GCLabelFont;
+    self.font = configManager.GCLabelFont;
     [self changeTheme];
 
     return self;
@@ -46,9 +46,9 @@
 - (void)bold:(BOOL)onoff
 {
     if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:myConfig.GCLabelFont.pointSize];
+        self.font = [UIFont boldSystemFontOfSize:configManager.GCLabelFont.pointSize];
     else
-        self.font = [UIFont systemFontOfSize:myConfig.GCLabelFont.pointSize];
+        self.font = [UIFont systemFontOfSize:configManager.GCLabelFont.pointSize];
 }
 
 @end

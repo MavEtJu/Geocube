@@ -225,7 +225,7 @@
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateFieldNoteAndPublish" method:@"POST"];
-    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutSimple];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutSimple];
 
     /*
      * {
@@ -372,7 +372,7 @@
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
-    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
     /*
      * {
@@ -399,7 +399,7 @@
     [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
 
     NSDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:20];
-    [dd setValue:[NSNumber numberWithFloat:myConfig.mapSearchMaximumDistanceGS] forKey:@"DistanceInMeters"];
+    [dd setValue:[NSNumber numberWithFloat:configManager.mapSearchMaximumDistanceGS] forKey:@"DistanceInMeters"];
 
     NSDictionary *p = [NSMutableDictionary dictionaryWithCapacity:20];
     [p setValue:[NSNumber numberWithFloat:center.latitude] forKey:@"Latitude"];
@@ -438,7 +438,7 @@
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
-    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
     /*
      * {
@@ -521,7 +521,7 @@
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@", [MyTools urlEncode:remoteAPI.oabb.token], guid]];
-    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutQuery];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
@@ -551,7 +551,7 @@
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
-    [urlRequest setTimeoutInterval:myConfig.downloadTimeoutSimple];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutSimple];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;

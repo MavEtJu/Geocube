@@ -159,12 +159,12 @@
     // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
     float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
     td = ch.when - lastHistory.timeIntervalSince1970;
-    if (td > [myConfig keeptrackTimeDeltaMin] || distance > [myConfig keeptrackDistanceDeltaMin]) {
+    if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
         [self updateHistoryDelegate];
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
-        if (myConfig.currentTrack != 0)
-            [dbTrackElement addElement:coords height:altitude restart:(td > [myConfig keeptrackTimeDeltaMax] || distance > [myConfig keeptrackDistanceDeltaMax])];
+        if (configManager.currentTrack != 0)
+            [dbTrackElement addElement:coords height:altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
     }
 
     NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);

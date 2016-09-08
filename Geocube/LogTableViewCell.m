@@ -83,7 +83,7 @@
 #define IMAGE_WIDTH 10
 #define DATE_WIDTH 150
 
-    NSInteger height_name = myConfig.GCSmallFont.lineHeight;
+    NSInteger height_name = configManager.GCSmallFont.lineHeight;
 
     rectLogtype = CGRectMake(BORDER, BORDER, IMAGE_WIDTH, height_name);
     rectDatetime = CGRectMake(BORDER + IMAGE_WIDTH + BORDER, BORDER, DATE_WIDTH, height_name);

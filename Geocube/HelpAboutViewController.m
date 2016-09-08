@@ -187,10 +187,10 @@
                        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
                        __DATE__, __TIME__];
         cell.textLabel.text = s;
-        cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCTextblockFont.pointSize];
+        cell.textLabel.font = [UIFont systemFontOfSize:configManager.GCTextblockFont.pointSize];
     } else {
         cell.textLabel.text = [texts objectAtIndex:indexPath.row - 1];
-        cell.textLabel.font = [UIFont systemFontOfSize:myConfig.GCSmallFont.pointSize];
+        cell.textLabel.font = [UIFont systemFontOfSize:configManager.GCSmallFont.pointSize];
     }
 
     cell.textLabel.numberOfLines = 0;

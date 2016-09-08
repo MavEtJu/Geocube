@@ -210,7 +210,7 @@
 
     if ([img imageHasBeenDowloaded] == NO) {
         // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
-        if (type != IMAGECATEGORY_CACHE && myConfig.downloadImagesLogs == NO)
+        if (type != IMAGECATEGORY_CACHE && configManager.downloadImagesLogs == NO)
             return NO;
 
         [ImagesDownloadManager addToQueueImmediately:img];
@@ -222,11 +222,11 @@
 + (void)addToQueue:(dbImage *)img
 {
     // Do not download images if disabled.
-    if (myConfig.downloadImagesWaypoints == NO)
+    if (configManager.downloadImagesWaypoints == NO)
         return;
 
     // Do not download anything unless Wifi is required and available.
-    if (myConfig.downloadImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
+    if (configManager.downloadImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
         return;
 
     [self addToQueueImmediately:img];

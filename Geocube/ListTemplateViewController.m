@@ -111,12 +111,12 @@ NEEDS_OVERLOADING(clearFlags)
 
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (wp.gs_state != nil) {
-        [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
+        [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? wp.gs_state.code : wp.gs_state.name];
     }
     if (wp.gs_country != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
+        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? wp.gs_country.code : wp.gs_country.name];
     }
     cell.stateCountry.text = s;
 

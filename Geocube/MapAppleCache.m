@@ -66,7 +66,7 @@
     NSString *filename;
     NSError *error;
     NSTimeInterval now = time(NULL);
-    NSTimeInterval maxtime = myConfig.mapcacheMaxAge * 86400;
+    NSTimeInterval maxtime = configManager.mapcacheMaxAge * 86400;
     NSTimeInterval oldest = now;
     NSInteger totalFileSize = 0;
     NSInteger filesize;
@@ -112,7 +112,7 @@
     }
 
     /* Clean up objects if size is more than N */
-    while (totalFileSize > myConfig.mapcacheMaxSize * 1024 * 1024) {
+    while (totalFileSize > configManager.mapcacheMaxSize * 1024 * 1024) {
         NSInteger found = 0;
         oldest += 86400;
 
@@ -166,7 +166,7 @@
 {
     NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)path.z % 10, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
-    if (myConfig.mapcacheEnable == NO) {
+    if (configManager.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             result(tileData, error);
         }];

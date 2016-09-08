@@ -74,7 +74,7 @@
 #define BORDER 10
 #define WIDTH_DATE 60
 
-    NSInteger height_name = myConfig.GCSmallFont.lineHeight;
+    NSInteger height_name = configManager.GCSmallFont.lineHeight;
     rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
     rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
     rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);

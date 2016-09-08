@@ -734,15 +734,15 @@
     if (gs_state != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        if (myConfig.showStateAsAbbrevationIfLocaleExists == YES && gca_locale != nil)
+        if (configManager.showStateAsAbbrevationIfLocaleExists == YES && gca_locale != nil)
             [s appendFormat:@"%@", gs_state.code];
         else
-            [s appendFormat:@"%@", myConfig.showStateAsAbbrevation == YES ? gs_state.code : gs_state.name];
+            [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? gs_state.code : gs_state.name];
     }
     if (gs_country != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        [s appendFormat:@"%@", myConfig.showCountryAsAbbrevation == YES ? gs_country.code : gs_country.name];
+        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? gs_country.code : gs_country.name];
     }
     return s;
 }

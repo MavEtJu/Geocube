@@ -100,7 +100,7 @@
 #import "LocalMenuItems.h"
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
-#import "MyConfig.h"
+#import "ConfigManager.h"
 #import "AudioFeedback.h"
 
 #import "LocationManager.h"

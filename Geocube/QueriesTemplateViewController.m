@@ -175,7 +175,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (myConfig.downloadQueriesMobile == NO && [MyTools hasWifiNetwork] == NO) {
+    if (configManager.downloadQueriesMobile == NO && [MyTools hasWifiNetwork] == NO) {
         [MyTools messageBox:self header:@"Failure" text:[NSString stringWithFormat:@"Your settings don't allow download of %@ if Wi-Fi is not available", self.queriesString]];
         return;
     }

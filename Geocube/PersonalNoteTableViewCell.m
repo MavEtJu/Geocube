@@ -68,7 +68,7 @@
      */
 #define BORDER 10
 
-    NSInteger height = myConfig.GCSmallFont.lineHeight;
+    NSInteger height = configManager.GCSmallFont.lineHeight;
     rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
     rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
 }

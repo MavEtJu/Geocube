@@ -171,14 +171,14 @@ enum {
     [t dbCreate];
 
     [tracks addObject:t];
-    [myConfig currentTrackUpdate:t._id];
+    [configManager currentTrackUpdate:t._id];
     return t;
 }
 
 + (void)trackAutoRotate
 {
     NSString *newdate = [MyTools dateTimeString_YYYY_MM_DD];
-    dbTrack *track = [dbTrack dbGet:myConfig.currentTrack];
+    dbTrack *track = [dbTrack dbGet:configManager.currentTrack];
     NSString *olddate = [MyTools dateTimeString_YYYY_MM_DD:track.dateStart];
 
     if ([newdate isEqualToString:olddate] == NO) {
@@ -188,14 +188,14 @@ enum {
         t.dateStop = 0;
         [t dbCreate];
 
-        [myConfig currentTrackUpdate:t._id];
+        [configManager currentTrackUpdate:t._id];
     }
 }
 
 + (void)trackAutoPurge
 {
     NSArray *tracks = [dbTrack dbAll];
-    time_t cutoff = time(NULL) - myConfig.keeptrackPurgeAge * 86400;
+    time_t cutoff = time(NULL) - configManager.keeptrackPurgeAge * 86400;
 
     [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
         if (track.dateStart < cutoff) {

@@ -26,6 +26,7 @@
 @class BrowserBrowserViewController;
 @class BrowserUserViewController;
 @class CompassViewController;
+@class ConfigManager;
 @class Coordinates;
 @class DatabaseCache;
 @class DownloadManager;
@@ -116,7 +117,6 @@
 @class MapViewController;
 @class MapWaypointInfoView;
 @class MyClock;
-@class MyConfig;
 @class MyTools;
 @class NotesFieldnotesViewController;
 @class NotesImagesViewController;

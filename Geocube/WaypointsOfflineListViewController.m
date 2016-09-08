@@ -74,7 +74,7 @@ enum {
 {
     self = [super init];
 
-    currentSortOrder = myConfig.waypointListSortBy;
+    currentSortOrder = configManager.waypointListSortBy;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];

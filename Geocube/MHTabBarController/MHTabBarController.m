@@ -230,7 +230,7 @@ static const NSInteger TagOffset = 1000;
     if (newSelectedIndex >= [self.viewControllers count])
         newSelectedIndex = 0;
 
-    [myConfig currentPageTabUpdate:newSelectedIndex];
+    [configManager currentPageTabUpdate:newSelectedIndex];
 
 	if ([self.delegate respondsToSelector:@selector(mh_tabBarController:shouldSelectViewController:atIndex:)])
 	{
@@ -392,9 +392,9 @@ static const NSInteger TagOffset = 1000;
     // The compass in the navigate tab might have to stay in portrait.
     if (self.selectedIndex == VC_NAVIGATE_COMPASS &&
         self == [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE] &&
-        myConfig.compassAlwaysInPortraitMode == YES)
+        configManager.compassAlwaysInPortraitMode == YES)
         return UIInterfaceOrientationMaskPortrait;
-    return myConfig.orientationsAllowed;
+    return configManager.orientationsAllowed;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MyConfig : NSObject
+@interface ConfigManager : NSObject
 
 // System settings
 @property (nonatomic, readonly, retain) NSString *currentWaypoint;

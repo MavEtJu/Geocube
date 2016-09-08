@@ -51,7 +51,7 @@ extern IOSFileTransfers *IOSFTM;
 extern BezelManager *bezelManager;
 
 // Configuration Manager
-extern MyConfig *myConfig;
+extern ConfigManager *configManager;
 
 // Webbrowser
 extern MHTabBarController *browserTabController;

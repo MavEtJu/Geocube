@@ -239,10 +239,10 @@
         text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
         if ([site isEqualToString:@"googlemaps"] == YES) {
-            [myConfig keyGMSUpdate:text];
+            [configManager keyGMSUpdate:text];
         }
         if ([site isEqualToString:@"mapbox"] == YES) {
-            [myConfig keyMapboxUpdate:text];
+            [configManager keyMapboxUpdate:text];
         }
     }];
 

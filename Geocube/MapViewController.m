@@ -84,10 +84,10 @@ enum {
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
-    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         hasGMS = NO;
 
-    showBrand = myConfig.mapBrand;
+    showBrand = configManager.mapBrand;
     if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
         showBrand = MAPBRAND_APPLEMAPS;
 
@@ -145,7 +145,7 @@ enum {
     if (waypointManager.currentWaypoint == nil)
         [lmi disableItem:menuRemoveTarget];
 
-    if (myConfig.dynamicmapEnable == YES) {
+    if (configManager.dynamicmapEnable == YES) {
         [lmi addItem:menuAutoZoom label:@"No AutoZoom"];
     } else {
         [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
@@ -157,7 +157,7 @@ enum {
     else
         [lmi disableItem:menuUseGPS];
 
-    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
 
     showWhat = mapWhat; /* SHOW_ONECACHE or SHOW_ALLCACHES */
@@ -198,10 +198,10 @@ enum {
 
     // Appear GoogleMaps if it came back
     if (hasGMS == NO) {
-        if (myConfig.keyGMS != nil && [myConfig.keyGMS isEqualToString:@""] == NO) {
+        if (configManager.keyGMS != nil && [configManager.keyGMS isEqualToString:@""] == NO) {
             hasGMS = YES;
             [lmi enableItem:menuMapGoogle];
-            [GMSServices provideAPIKey:myConfig.keyGMS];
+            [GMSServices provideAPIKey:configManager.keyGMS];
         }
     }
 
@@ -435,7 +435,7 @@ enum {
 
     if (fabs(meBearing - [LM direction]) > 5) {
         meBearing = [LM direction];
-        if (myConfig.mapRotateToBearing == YES)
+        if (configManager.mapRotateToBearing == YES)
             [map updateMyBearing:meBearing];
     }
 
@@ -688,9 +688,9 @@ enum {
             break;
     }
     showBrand = brand;
-    [myConfig mapBrandUpdate:brand];
+    [configManager mapBrandUpdate:brand];
 
-    if (myConfig.keyGMS == nil || [myConfig.keyGMS isEqualToString:@""] == YES)
+    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuMapGoogle];
 
     [map initMap];
@@ -754,7 +754,7 @@ enum {
 - (void)menuDirections
 {
     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (em.geocube_id != myConfig.mapExternal)
+        if (em.geocube_id != configManager.mapExternal)
             return;
 
         *stop = YES;
@@ -817,8 +817,8 @@ enum {
 
 - (void)menuAutoZoom
 {
-    myConfig.dynamicmapEnable = !myConfig.dynamicmapEnable;
-    if (myConfig.dynamicmapEnable == YES) {
+    configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
+    if (configManager.dynamicmapEnable == YES) {
         [lmi changeItem:menuAutoZoom label:@"No AutoZoom"];
     } else {
         [lmi changeItem:menuAutoZoom label:@"AutoZoom"];

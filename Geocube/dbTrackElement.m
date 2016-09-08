@@ -84,7 +84,7 @@
 + (void)addElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
 {
     dbTrackElement *te = [[dbTrackElement alloc] init];
-    te.track_id = myConfig.currentTrack;
+    te.track_id = configManager.currentTrack;
     te.height = _height;
     te.lat_int = _coords.latitude * 1000000;
     te.lon_int = _coords.longitude * 1000000;

@@ -48,7 +48,7 @@ IOSFileTransfers *IOSFTM;
 BezelManager *bezelManager;
 
 // Configuration manager
-MyConfig *myConfig = nil;
+ConfigManager *configManager = nil;
 
 // Webbrowser
 MHTabBarController *browserTabController = nil;

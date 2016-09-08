@@ -812,9 +812,9 @@ enum {
 
     [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
         rows:groupNames
-        initialSelection:myConfig.lastAddedGroup
+        initialSelection:configManager.lastAddedGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            [myConfig lastAddedGroupUpdate:selectedIndex];
+            [configManager lastAddedGroupUpdate:selectedIndex];
             dbGroup *group = [groups objectAtIndex:selectedIndex];
             [group dbRemoveWaypoint:waypoint._id];
             [group dbAddWaypoint:waypoint._id];

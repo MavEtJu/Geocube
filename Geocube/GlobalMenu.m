@@ -174,7 +174,7 @@
     NSLog(@"SideMenu didSelectRow: %@", indexPath);
     if (sideMenu == self.menuGlobal) {
         NSLog(@"Switching to %ld", (long)indexPath.row);
-        [myConfig currentPageUpdate:indexPath.row];
+        [configManager currentPageUpdate:indexPath.row];
         [_AppDelegate switchController:indexPath.row];
     } else {
         NSLog(@"Local menu action %ld", (long)indexPath.row);

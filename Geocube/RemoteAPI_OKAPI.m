@@ -180,7 +180,7 @@
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
-    float radius = myConfig.mapSearchMaximumDistanceOKAPI / 1000;
+    float radius = configManager.mapSearchMaximumDistanceOKAPI / 1000;
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
 

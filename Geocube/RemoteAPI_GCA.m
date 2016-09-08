@@ -491,7 +491,7 @@
 {
     NSLog(@"caches_gca:%@", [Coordinates NiceCoordinates:center]);
 
-    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/caches/gca.json?center=%f,%f&cacher=no&limit=%ld", center.latitude, center.longitude, (long)myConfig.mapSearchMaximumNumberGCA];
+    NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/caches/gca.json?center=%f,%f&cacher=no&limit=%ld", center.latitude, center.longitude, (long)configManager.mapSearchMaximumNumberGCA];
 
     NSArray *lines = [self loadPage:urlString];
     NSString *S = [lines componentsJoinedByString:@""];
