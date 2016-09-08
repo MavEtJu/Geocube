@@ -21,7 +21,7 @@
 
 @interface dbLogString : dbObject
 
-enum {
+typedef NS_ENUM(NSInteger, LogStringLogType) {
     LOGSTRING_LOGTYPE_UNKNOWN = 0,
     LOGSTRING_LOGTYPE_EVENT,
     LOGSTRING_LOGTYPE_WAYPOINT,
@@ -51,7 +51,7 @@ enum {
 @property (nonatomic) BOOL defaultPickup;
 @property (nonatomic) BOOL defaultDiscover;
 @property (nonatomic) BOOL forLogs;
-@property (nonatomic) NSInteger logtype;
+@property (nonatomic) LogStringLogType logtype;
 @property (nonatomic) NSInteger found;
 @property (nonatomic) NSInteger icon;
 
@@ -59,10 +59,10 @@ enum {
 + (NSInteger)wptTypeToLogType:(NSString *)type_full;
 + (void)dbDeleteAll;
 + (NSArray *)dbAllByAccount:(dbAccount *)account;
-+ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
-+ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype;
-+ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype;
-+ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
-+ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(NSInteger)logtype default:(NSInteger)dflt;
++ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(LogStringLogType)logtype;
++ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(LogStringLogType)logtype;
++ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(LogStringLogType)logtype default:(NSInteger)dflt;
 
 @end

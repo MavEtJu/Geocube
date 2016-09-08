@@ -84,14 +84,14 @@
                           values:@[[NSNumber numberWithLongLong:account._id]]];
 }
 
-+ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(NSInteger)logtype
++ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(LogStringLogType)logtype
 {
     return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?"
                             keys:@"ii"
                           values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
-+ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
++ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
 {
     NSArray *lss = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
                                     keys:@"iis"
@@ -103,14 +103,14 @@
     return [lss objectAtIndex:0];
 }
 
-+ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(NSInteger)logtype
++ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(LogStringLogType)logtype
 {
     return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1"
                             keys:@"ii"
                           values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
 }
 
-+ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
++ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type
 {
     NSArray *as = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
                                    keys:@"iis"
@@ -219,7 +219,7 @@
     return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
-+ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(NSInteger)logtype default:(NSInteger)dflt
++ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(LogStringLogType)logtype default:(NSInteger)dflt
 {
     NSString *what = nil;
     switch (dflt) {

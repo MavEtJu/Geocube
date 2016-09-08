@@ -21,13 +21,13 @@
 
 @interface dbWaypoint : dbObject
 
-enum {
+typedef NS_ENUM(NSInteger, LogStatus) {
     LOGSTATUS_NOTLOGGED = 0,
     LOGSTATUS_NOTFOUND,
     LOGSTATUS_FOUND,
 };
 
-enum {
+typedef NS_ENUM(NSInteger, Flag) {
     FLAGS_NONE = 0,
     FLAGS_HIGHLIGHTED,
     FLAGS_IGNORED,
@@ -56,8 +56,8 @@ enum {
 @property (nonatomic, retain) NSString *wpt_type_str;
 @property (nonatomic, retain) dbType *wpt_type;
 
-@property (nonatomic) NSInteger logstring_logtype;
-@property (nonatomic) NSInteger logStatus;
+@property (nonatomic) LogStringLogType logstring_logtype;
+@property (nonatomic) LogStatus logStatus;
 @property (nonatomic) BOOL flag_highlight;
 @property (nonatomic) BOOL flag_ignore;
 @property (nonatomic) BOOL flag_markedfound;
