@@ -22,7 +22,7 @@
 extern ThemeTemplate *currentTheme;
 extern ThemeManager *themeManager;
 
-enum GCThemeType {
+typedef NS_ENUM(NSInteger, GCThemeType) {
     THEME_IOS = 0,
     THEME_NIGHT,
 };
@@ -31,8 +31,8 @@ enum GCThemeType {
 
 @property (nonatomic, retain, readonly) NSArray *themeNames;
 
-- (NSInteger)currentTheme;
-- (void)setTheme:(NSInteger)nr;
+- (GCThemeType)currentTheme;
+- (void)setTheme:(GCThemeType)nr;
 - (void)changeThemeView:(UIView *)v;
 - (void)changeThemeViewController:(UIViewController *)v;
 - (void)changeThemeArray:(NSArray *)vs;

@@ -21,7 +21,7 @@
 
 @interface ThemeManager ()
 {
-    NSInteger themeNr;
+    GCThemeType themeNr;
 }
 
 @end
@@ -46,12 +46,12 @@ ThemeManager *themeManager;
     return self;
 }
 
-- (NSInteger)currentTheme
+- (GCThemeType)currentTheme
 {
     return themeNr;
 }
 
-- (void)setTheme:(NSInteger)nr
+- (void)setTheme:(GCThemeType)nr
 {
     themeNr = nr;
     switch (nr) {
