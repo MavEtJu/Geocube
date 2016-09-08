@@ -21,7 +21,7 @@
 
 @interface dbTrackable : dbObject
 
-enum {
+typedef NS_ENUM(NSInteger, TrackableLog) {
     TRACKABLE_LOG_NONE = 0,
     TRACKABLE_LOG_VISIT,
     TRACKABLE_LOG_DROPOFF,
@@ -41,7 +41,7 @@ enum {
 @property (nonatomic, retain) NSString *owner_str;
 @property (nonatomic, retain) dbName *owner;
 @property (nonatomic, retain) NSString *waypoint_name;
-@property (nonatomic) NSInteger logtype;
+@property (nonatomic) TrackableLog logtype;
 
 + (NSArray *)dbAllMine;
 + (NSArray *)dbAllInventory;
