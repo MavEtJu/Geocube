@@ -20,10 +20,10 @@
  */
 
 typedef NS_ENUM(NSInteger, ImageCategory) {
-    IMAGETYPE_NONE = 0,
-    IMAGETYPE_LOG = 1,
-    IMAGETYPE_CACHE = 2,
-    IMAGETYPE_USER = 3,
+    IMAGECATEGORY_NONE = 0,
+    IMAGECATEGORY_LOG = 1,
+    IMAGECATEGORY_CACHE = 2,
+    IMAGECATEGORY_USER = 3,
 };
 
 @interface dbImage : dbObject

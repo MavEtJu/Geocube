@@ -61,7 +61,7 @@ enum {
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
 
     waypoint = wp;
-    images = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
+    images = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
 
     return self;
 }
@@ -212,10 +212,10 @@ enum {
     }
 
     if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
-        [img dbLinkToWaypoint:waypoint._id type:IMAGETYPE_USER];
+        [img dbLinkToWaypoint:waypoint._id type:IMAGECATEGORY_USER];
 
 
-    images = [dbImage dbAllByWaypoint:waypoint._id type:IMAGETYPE_USER];
+    images = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     [parentTable reloadData];
 

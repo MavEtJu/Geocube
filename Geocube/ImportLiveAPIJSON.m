@@ -265,8 +265,8 @@
         [group dbAddWaypoint:wp._id];
 
     // Images
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGETYPE_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGETYPE_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
 
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
@@ -292,7 +292,7 @@
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
     [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
     [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:wp];
-    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_CACHE];
+    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_CACHE];
 }
 
 - (void)parseTrackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
@@ -646,7 +646,7 @@
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, l.logstring_string, @"LogType.WptLogTypeName");
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:l.log type:IMAGETYPE_LOG];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:l.log type:IMAGECATEGORY_LOG];
 
     dbName *name = [[dbName alloc] init];
     DICT_NSSTRING_PATH(dict, name.name, @"Finder.UserName");
@@ -670,7 +670,7 @@
         [delegate Import_setNewLogs:newLogsCount];
     }
 
-    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGETYPE_LOG];
+    [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_LOG];
 }
 
 @end

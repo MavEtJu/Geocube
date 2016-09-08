@@ -57,7 +57,7 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:section];
-    return [dbImage dbCountByWaypoint:wp._id type:IMAGETYPE_USER];
+    return [dbImage dbCountByWaypoint:wp._id type:IMAGECATEGORY_USER];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -73,7 +73,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
-    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
+    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = img.name;
@@ -86,7 +86,7 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
-    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGETYPE_USER];
+    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
     WaypointImageViewController *newController = [[WaypointImageViewController alloc] init];

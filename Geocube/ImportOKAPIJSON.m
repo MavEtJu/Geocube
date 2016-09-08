@@ -222,8 +222,8 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGETYPE_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGETYPE_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
 
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"my_notes");
@@ -301,7 +301,7 @@
     }
 
     if ([image dbLinkedtoWaypoint:wp._id] == NO)
-        [image dbLinkToWaypoint:wp._id type:IMAGETYPE_CACHE];
+        [image dbLinkToWaypoint:wp._id type:IMAGECATEGORY_CACHE];
 
     [ImagesDownloadManager addToQueue:image];
 
@@ -350,7 +350,7 @@
 
     name = [dbName dbGetByName:loggername account:account];
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:comment type:IMAGETYPE_LOG];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:comment type:IMAGECATEGORY_LOG];
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {

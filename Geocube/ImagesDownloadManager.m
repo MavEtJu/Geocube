@@ -210,7 +210,7 @@
 
     if ([img imageHasBeenDowloaded] == NO) {
         // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
-        if (type != IMAGETYPE_CACHE && myConfig.downloadImagesLogs == NO)
+        if (type != IMAGECATEGORY_CACHE && myConfig.downloadImagesLogs == NO)
             return NO;
 
         [ImagesDownloadManager addToQueueImmediately:img];

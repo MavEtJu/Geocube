@@ -242,23 +242,23 @@
                 }
                 [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
                 if (currentWP.gs_long_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGETYPE_CACHE];
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
                 if (currentWP.gs_short_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGETYPE_CACHE];
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
             }
 
             // Link images to cache
             [imagesCache enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGETYPE_CACHE];
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGECATEGORY_CACHE];
             }];
 
             [imagesLog enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGETYPE_LOG];
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGECATEGORY_LOG];
             }];
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGETYPE_LOG];
+                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGECATEGORY_LOG];
                 l.waypoint_id = currentWP._id;
 
                 __block NSId _id = 0;

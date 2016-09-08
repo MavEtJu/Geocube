@@ -175,8 +175,8 @@
     DICT_NSSTRING_KEY(dict, wp.gs_hint, @"hints");
     DICT_INTEGER_KEY(dict, wp.gs_date_found, @"datefound");
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGETYPE_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGETYPE_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
 
     wp.account = account;
     wp.account_id = account._id;
@@ -266,7 +266,7 @@
     t.needstobelogged = NO;
     [t finish];
 
-    [ImagesDownloadManager findImagesInDescription:t.waypoint_id text:t.log type:IMAGETYPE_LOG];
+    [ImagesDownloadManager findImagesInDescription:t.waypoint_id text:t.log type:IMAGECATEGORY_LOG];
 
     NSId _id = [dbLog dbGetIdByGC:t.gc_id account:account];
     if (_id == 0) {

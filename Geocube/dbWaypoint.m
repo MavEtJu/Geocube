@@ -762,7 +762,7 @@
 
 + (NSArray *)waypointsWithImages
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from image2waypoint where type = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:IMAGETYPE_USER]] ];
+    NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from image2waypoint where type = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:IMAGECATEGORY_USER]] ];
     return wps;
 }
 
