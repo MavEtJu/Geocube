@@ -32,9 +32,12 @@
     UIColor *bgColor = [UIColor blackColor];
     UIColor *fgColor = [UIColor lightTextColor];
 
-    labelBackgroundColor = bgColor;
     labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor darkGrayColor];
+    labelBackgroundColor = bgColor;
+
+    backgroundColor = bgColor;
+    textColor = fgColor;
 
     tableViewBackgroundColor = bgColor;
     tableViewCellBackgroundColor = bgColor;
