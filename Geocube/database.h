@@ -43,8 +43,6 @@
 
 @end
 
-extern database *db;
-
 #define TEXT_FETCH_AND_ASSIGN(col, string) \
     NSString *string = nil; \
     { \

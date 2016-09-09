@@ -22,7 +22,7 @@
 // Global menu management
 GlobalMenu *menuGlobal;
 
-// Database handle
+// Database handle and cache
 database *db = nil;
 DatabaseCache *dbc = nil;
 

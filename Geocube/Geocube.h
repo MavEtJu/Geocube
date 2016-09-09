@@ -25,8 +25,8 @@
 // Global menu management
 extern GlobalMenu *menuGlobal;
 
-// Database handle
-extern database *dbe;
+// Database handle and cache
+extern database *db;
 extern DatabaseCache *dbc;
 
 // Images
