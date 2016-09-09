@@ -81,7 +81,7 @@
     return _id;
 }
 
-+ (void)addElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
++ (dbTrackElement *)createElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
 {
     dbTrackElement *te = [[dbTrackElement alloc] init];
     te.track_id = configManager.currentTrack;
@@ -91,7 +91,7 @@
     te.timestamp_epoch = time(NULL);
     te.restart = _restart;
     [te finish];
-    [te dbCreate];
+    return te;
 }
 
 + (NSInteger)dbCount
