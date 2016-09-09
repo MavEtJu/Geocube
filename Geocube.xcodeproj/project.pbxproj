@@ -1292,7 +1292,6 @@
 		E84D6FD01C5826140000A6A0 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
-				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */,
 				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
 				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
@@ -2264,6 +2263,7 @@
 				E833B72F1C522E8D00B9FB45 /* Lists */,
 				E84D6FD01C5826140000A6A0 /* Queries */,
 				E8FD610D1BE8C46100859A58 /* Files */,
+				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
