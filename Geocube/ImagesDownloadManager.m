@@ -47,8 +47,8 @@
 {
     self = [super init];
 
-    if ([fm fileExistsAtPath:[MyTools ImagesDir]] == NO)
-        [fm createDirectoryAtPath:[MyTools ImagesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    if ([fileManager fileExistsAtPath:[MyTools ImagesDir]] == NO)
+        [fileManager createDirectoryAtPath:[MyTools ImagesDir] withIntermediateDirectories:NO attributes:nil error:nil];
     todo = [NSMutableArray arrayWithCapacity:20];
 
     running = 0;

@@ -38,14 +38,14 @@
     bezelManager = [[BezelManager alloc] init];
 
     // File manager
-    fm = [[NSFileManager alloc] init];
+    fileManager = [[NSFileManager alloc] init];
 
     // Initialize the location mamager
     LM = [[LocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];
 
     /* Create files directory */
-    [fm createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];

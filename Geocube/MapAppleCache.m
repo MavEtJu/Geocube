@@ -35,8 +35,8 @@
 + (NSString *)createPrefix:(NSString *)_prefix;
 {
     NSString *p = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
-    if ([fm fileExistsAtPath:p] == NO)
-        [fm createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
+    if ([fileManager fileExistsAtPath:p] == NO)
+        [fileManager createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
 
     if ([_prefix isEqualToString:@""] == YES)
         return p;
@@ -46,8 +46,8 @@
         for (NSInteger y = 0; y < 10; y++) {
             for (NSInteger x = 0; x < 10; x++) {
                 NSString *d = [NSString stringWithFormat:@"%@/%ld/%ld/%ld", p, (long)z, (long)y, (long)x];
-                if ([fm fileExistsAtPath:d] == NO)
-                    [fm createDirectoryAtPath:d withIntermediateDirectories:YES attributes:nil error:nil];
+                if ([fileManager fileExistsAtPath:d] == NO)
+                    [fileManager createDirectoryAtPath:d withIntermediateDirectories:YES attributes:nil error:nil];
             }
         }
     }
@@ -62,7 +62,7 @@
 + (void)cleanupCacheBackground
 {
     NSString *prefix = [MapAppleCache createPrefix:@""];
-    NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:prefix];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:prefix];
     NSString *filename;
     NSError *error;
     NSTimeInterval now = time(NULL);
@@ -80,7 +80,7 @@
         NSLog(@"%@ - Purging map cache", [self class]);
         while ((filename = [dirEnum nextObject]) != nil) {
             NSString *fullfilename = [NSString stringWithFormat:@"%@%@", prefix, filename];
-            [fm removeItemAtPath:fullfilename error:&error];
+            [fileManager removeItemAtPath:fullfilename error:&error];
         }
         return;
     }
@@ -91,7 +91,7 @@
     /* Clean up objects older than N days */
     while ((filename = [dirEnum nextObject]) != nil) {
         NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
-        NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
+        NSDictionary *dict = [fileManager attributesOfItemAtPath:fullfilename error:&error];
         NSDate *date = [dict objectForKey:NSFileModificationDate];
 
         if ([[dict objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
@@ -100,7 +100,7 @@
         checked++;
         if ([date timeIntervalSince1970] - now > maxtime) {
             NSLog(@"%@ - Removing %@", [self class], filename);
-            [fm removeItemAtPath:fullfilename error:&error];
+            [fileManager removeItemAtPath:fullfilename error:&error];
             deletedAge++;
             continue;
         }
@@ -116,10 +116,10 @@
         NSInteger found = 0;
         oldest += 86400;
 
-        dirEnum = [fm enumeratorAtPath:prefix];
+        dirEnum = [fileManager enumeratorAtPath:prefix];
         while ((filename = [dirEnum nextObject]) != nil) {
             NSString *fullfilename = [NSString stringWithFormat:@"%@/%@", prefix, filename];
-            NSDictionary *dict = [fm attributesOfItemAtPath:fullfilename error:&error];
+            NSDictionary *dict = [fileManager attributesOfItemAtPath:fullfilename error:&error];
 
             if ([[dict objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
                 continue;
@@ -127,7 +127,7 @@
             found++;
             if ([[dict objectForKey:NSFileModificationDate ] timeIntervalSince1970] < oldest) {
                 NSLog(@"%@ - Removing %@", [self class], filename);
-                [fm removeItemAtPath:fullfilename error:&error];
+                [fileManager removeItemAtPath:fullfilename error:&error];
                 deletedSize++;
                 totalFileSize -= [[dict objectForKey:@"NSFileSize"] integerValue];
                 continue;
@@ -173,11 +173,11 @@
         return;
     }
 
-    if ([fm fileExistsAtPath:cachefile] == NO) {
+    if ([fileManager fileExistsAtPath:cachefile] == NO) {
         NSError *err = nil;
 
         NSDictionary *modificationDateAttr = [NSDictionary dictionaryWithObjectsAndKeys:now, NSFileModificationDate, nil];
-        [fm setAttributes:modificationDateAttr ofItemAtPath:cachefile error:&err];
+        [fileManager setAttributes:modificationDateAttr ofItemAtPath:cachefile error:&err];
 
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             if (error == nil) {

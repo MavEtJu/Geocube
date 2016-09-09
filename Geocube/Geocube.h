@@ -42,7 +42,7 @@ extern WaypointManager *waypointManager;
 extern LocationManager *LM;
 
 // File manager
-extern NSFileManager *fm;
+extern NSFileManager *fileManager;
 
 // IOS FileTransfer Manager
 extern IOSFileTransfers *IOSFTM;

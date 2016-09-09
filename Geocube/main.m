@@ -39,7 +39,7 @@ WaypointManager *waypointManager = nil;
 LocationManager *LM = nil;
 
 // File manager
-NSFileManager *fm = nil;
+NSFileManager *fileManager = nil;
 
 // IOS File Transfer Manager
 IOSFileTransfers *IOSFTM;

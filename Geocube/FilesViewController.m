@@ -59,13 +59,13 @@ enum {
 {
     // Count files in FilesDir
 
-    NSArray *files = [fm contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
     filesNames = [NSMutableArray arrayWithCapacity:20];
     filesDates = [NSMutableArray arrayWithCapacity:20];
     filesSizes = [NSMutableArray arrayWithCapacity:20];
 
     [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
-        NSDictionary *a = [fm attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
+        NSDictionary *a = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
         if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             return;
         [filesNames addObject:file];
@@ -276,7 +276,7 @@ enum {
 {
     NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
     NSLog(@"Removing file '%@'", fullname);
-    [fm removeItemAtPath:fullname error:nil];
+    [fileManager removeItemAtPath:fullname error:nil];
 
     [self refreshFileData];
     [self.tableView reloadData];
@@ -441,7 +441,7 @@ enum {
                              NSString *tofullfile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], tf.text];
 
                              NSLog(@"Renaming file '%@' to '%@'", fromfullfile, tofullfile);
-                             [fm moveItemAtPath:fromfullfile toPath:tofullfile error:nil];
+                             [fileManager moveItemAtPath:fromfullfile toPath:tofullfile error:nil];
                              [self refreshFileData];
                              [self.tableView reloadData];
                          }];

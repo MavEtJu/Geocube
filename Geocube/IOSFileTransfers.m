@@ -81,8 +81,8 @@ enum {
 
     NSString *fromFile = [NSString stringWithFormat:@"%@/Inbox/%@", [MyTools DocumentRoot], file];
     NSString *toFile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file];
-    [fm removeItemAtPath:toFile error:nil];
-    [fm moveItemAtPath:fromFile toPath:toFile error:nil];
+    [fileManager removeItemAtPath:toFile error:nil];
+    [fileManager moveItemAtPath:fromFile toPath:toFile error:nil];
     NSLog(@"Importing from AirDrop or attachment: %@", file);
 
     [delegate refreshFilelist];
@@ -92,7 +92,7 @@ enum {
 
 - (void)cleanupITunes
 {
-    NSArray *files = [fm contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
 
     [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
         /*
@@ -100,7 +100,7 @@ enum {
          * Do not move database.
          */
         NSString *fromFile = [NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], file];
-        NSDictionary *a = [fm attributesOfItemAtPath:fromFile error:nil];
+        NSDictionary *a = [fileManager attributesOfItemAtPath:fromFile error:nil];
         if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             return;
         if ([file isEqualToString:@"database.db"] == YES)
@@ -108,8 +108,8 @@ enum {
 
         // Move this file into the files directory
         NSString *toFile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file];
-        [fm removeItemAtPath:toFile error:nil];
-        [fm moveItemAtPath:fromFile toPath:toFile error:nil];
+        [fileManager removeItemAtPath:toFile error:nil];
+        [fileManager moveItemAtPath:fromFile toPath:toFile error:nil];
         NSLog(@"Importing from iTunes: %@", file);
     }];
 
@@ -156,10 +156,10 @@ enum {
         NSURL *destinationName = [[NSURL alloc] initFileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], [url lastPathComponent]] isDirectory:NO];
 
         /* Remove this file is it already exists. Ignore the error. */
-        [fm removeItemAtURL:destinationName error:&error];
+        [fileManager removeItemAtURL:destinationName error:&error];
         error = nil;
 
-        if ([fm copyItemAtURL:url toURL:destinationName error:&error] == YES) {
+        if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
             [MyTools messageBox:ICloudVC header:@"Download complete" text:@"You can find the saved file in the Files menu"];
             [delegate refreshFilelist];
         } else {

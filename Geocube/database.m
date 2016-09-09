@@ -47,8 +47,8 @@
     NSError *error;
     NSString *toName = [NSString stringWithFormat:@"Geocube-%@.sqlite", [MyTools dateTimeString_YYYYMMDD]];
     NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], toName];
-    [fm removeItemAtPath:to error:&error];
-    [fm copyItemAtPath:dbname toPath:to error:&error];
+    [fileManager removeItemAtPath:to error:&error];
+    [fileManager copyItemAtPath:dbname toPath:to error:&error];
     return toName;
 }
 
@@ -56,8 +56,8 @@
 {
     NSError *error = nil;
     NSString *from = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], source];
-    [fm removeItemAtPath:dbname error:&error];
-    [fm copyItemAtPath:from toPath:dbname error:&error];
+    [fileManager removeItemAtPath:dbname error:&error];
+    [fileManager copyItemAtPath:from toPath:dbname error:&error];
     return (error == nil);
 }
 
@@ -69,8 +69,8 @@
 
     // Keep a symlink to /Users/edwin/db to the database for easy access
     NSError *e;
-    [fm removeItemAtPath:@"/Users/edwin/db" error:nil];
-    [fm createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:dbname error:&e];
+    [fileManager removeItemAtPath:@"/Users/edwin/db" error:nil];
+    [fileManager createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:dbname error:&e];
 
     // If the database doesn't exist, create it
     [self checkAndCreateDatabase];
@@ -117,12 +117,12 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_cleardatabase"] == TRUE) {
         NSLog(@"Erasing database on user request.");
         [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_cleardatabase"];
-        [fm removeItemAtPath:dbname error:NULL];
+        [fileManager removeItemAtPath:dbname error:NULL];
     }
 
-    success = [fm fileExistsAtPath:dbname];
+    success = [fileManager fileExistsAtPath:dbname];
     if (success == NO) {
-        [fm copyItemAtPath:dbempty toPath:dbname error:nil];
+        [fileManager copyItemAtPath:dbempty toPath:dbname error:nil];
         NSLog(@"Initializing database from %@ to %@.", dbempty, dbname);
     }
 }
@@ -135,7 +135,7 @@
 - (NSInteger)getDatabaseSize
 {
     NSError *e = nil;
-    NSDictionary *as = [fm attributesOfItemAtPath:dbname error:&e];
+    NSDictionary *as = [fileManager attributesOfItemAtPath:dbname error:&e];
     if (e != nil)
         return -1;
     NSNumber *n = [as valueForKey:@"NSFileSize"];
