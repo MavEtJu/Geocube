@@ -56,13 +56,13 @@ ThemeManager *themeManager;
     themeNr = nr;
     switch (nr) {
         case THEME_IOS:
-            currentTheme = [[ThemeNormal alloc] init];
+            currentTheme = [[ThemeIOS alloc] init];
             break;
         case THEME_NIGHT:
             currentTheme = [[ThemeNight alloc] init];
             break;
         default:
-            currentTheme = [[ThemeNormal alloc] init];
+            currentTheme = [[ThemeIOS alloc] init];
             break;
     }
 

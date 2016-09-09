@@ -89,8 +89,8 @@
 #import "dbWaypoint.h"
 
 #import "ThemeTemplate.h"
+#import "ThemeIOS.h"
 #import "ThemeNight.h"
-#import "ThemeNormal.h"
 #import "ThemeManager.h"
 
 #import "AppDelegate.h"

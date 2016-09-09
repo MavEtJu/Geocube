@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNormal ()
+@interface ThemeIOS ()
 
 @end
 
-@implementation ThemeNormal
+@implementation ThemeIOS
 
 - (instancetype)init
 {

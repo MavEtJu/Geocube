@@ -138,9 +138,9 @@
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
 @class StatisticsViewController;
+@class ThemeIOS;
 @class ThemeManager;
 @class ThemeNight;
-@class ThemeNormal;
 @class ThemeTemplate;
 @class TrackablesInventoryViewController;
 @class TrackablesListViewController;

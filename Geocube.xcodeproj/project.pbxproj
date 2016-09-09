@@ -218,7 +218,7 @@
 		E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */; };
 		E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760071B85DB5500F34483 /* GCTableViewCell.m */; };
 		E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */; };
-		E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeNormal.m */; };
+		E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeIOS.m */; };
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
@@ -737,8 +737,8 @@
 		E85760071B85DB5500F34483 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
 		E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellWithSubtitle.h; sourceTree = "<group>"; };
 		E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellWithSubtitle.m; sourceTree = "<group>"; };
-		E857600D1B85E04500F34483 /* ThemeNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNormal.h; sourceTree = "<group>"; };
-		E857600E1B85E04500F34483 /* ThemeNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNormal.m; sourceTree = "<group>"; };
+		E857600D1B85E04500F34483 /* ThemeIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeIOS.h; sourceTree = "<group>"; };
+		E857600E1B85E04500F34483 /* ThemeIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeIOS.m; sourceTree = "<group>"; };
 		E85760131B85E08400F34483 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTemplate.h; sourceTree = "<group>"; };
 		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
 		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
@@ -1420,8 +1420,8 @@
 				E87D44471BA6A44800671FB9 /* ThemeManager.m */,
 				E85760131B85E08400F34483 /* ThemeTemplate.h */,
 				E85760141B85E08400F34483 /* ThemeTemplate.m */,
-				E857600D1B85E04500F34483 /* ThemeNormal.h */,
-				E857600E1B85E04500F34483 /* ThemeNormal.m */,
+				E857600D1B85E04500F34483 /* ThemeIOS.h */,
+				E857600E1B85E04500F34483 /* ThemeIOS.m */,
 				E80AEEAF1BA5983A00106F7F /* ThemeNight.h */,
 				E80AEEB01BA5983A00106F7F /* ThemeNight.m */,
 			);
@@ -2773,7 +2773,7 @@
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
-				E857600F1B85E04500F34483 /* ThemeNormal.m in Sources */,
+				E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */,
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
