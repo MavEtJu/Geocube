@@ -40,20 +40,16 @@
     // File manager
     fileManager = [[NSFileManager alloc] init];
 
-    // Initialize the location mamager
-    LM = [[LocationManager alloc] init];
-    [LM startDelegation:nil isNavigating:NO];
-
     /* Create files directory */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
     // Initialize the global menu
     menuGlobal = [[GlobalMenu alloc] init];
 
-    // Initialize the IOS File Transfer Manager - After file manager
+    // Initialize the IOS File Transfer Manager - After fileManager
     IOSFTM = [[IOSFileTransfers alloc] init];
 
-    // Initialize and cache the database - after file manager
+    // Initialize and cache the database - after fileManager
     db = [[database alloc] init];
     [db checkVersion];
     dbc = [[DatabaseCache alloc] init];
@@ -62,10 +58,14 @@
     // Initialize the configuration manager - after db
     configManager = [[ConfigManager alloc] init];
 
-    // Initialize Google Maps -- after db, myConfig
+    // Initialize the location mamager - after configurationManager
+    LM = [[LocationManager alloc] init];
+    [LM startDelegation:nil isNavigating:NO];
+
+    // Initialize Google Maps -- after db, configurationManager
     [GMSServices provideAPIKey:configManager.keyGMS];
 
-    // Clean the map cache - after myconfig
+    // Clean the map cache - after configurationManager
     [MapAppleCache cleanupCache];
 
     // Auto rotate the kept tracks
@@ -76,14 +76,14 @@
     audioFeedback = [[AudioFeedback alloc] init];
     [audioFeedback togglePlay:configManager.soundDirection];
 
-    // Initialize the theme - after myconfig
+    // Initialize the theme - after configurationManager
     themeManager = [[ThemeManager alloc] init];
     [themeManager setTheme:configManager.themeType];
 
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
 
-    // Waypoint Manager - after myConfig, LM, db, imageLibrary
+    // Waypoint Manager - after configurationManager, LM, db, imageLibrary
     waypointManager = [[WaypointManager alloc] init];
 
     // Initialize the tabbar controllers
