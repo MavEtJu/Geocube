@@ -31,22 +31,26 @@
 
     UILabel *label = [[UILabel alloc] init];
     UISwitch *switch_ = [[UISwitch alloc] init];
-    UIView *view = [[UIView alloc] init];
-    UITableView *tableView = [[UITableView alloc] init];
-    UITableViewCell *tableViewCell = [[UITableViewCell alloc] init];
 
-    labelTextColor = label.textColor;
+    UIColor *bgColor = label.backgroundColor;
+    UIColor *fgColor = label.textColor;
+
+    bgColor = [UIColor whiteColor];
+    fgColor = [UIColor blackColor];
+
+    labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor lightGrayColor];
-    labelBackgroundColor = label.backgroundColor;
+    labelBackgroundColor = bgColor;
 
-    backgroundColor = label.backgroundColor;
-    textColor = label.textColor;
+    backgroundColor = bgColor;
+    textColor = fgColor;
 
-    tableViewCellBackgroundColor = tableViewCell.backgroundColor;
-    tableViewBackgroundColor = tableView.backgroundColor;
-    viewBackgroundColor = view.backgroundColor;
+    tableViewCellBackgroundColor = bgColor;
+    tableViewBackgroundColor = bgColor;
 
-    tableViewCellGradient = NO;
+    // Use label here instead of an UIView because that UIView is always black for the background colour.
+    viewBackgroundColor = bgColor;
+    viewControllerBackgroundColour = bgColor;
 
     svProgressHUDStyle = SVProgressHUDStyleDark;
 

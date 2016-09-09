@@ -27,20 +27,10 @@
 
 @synthesize textColor, backgroundColor;
 @synthesize labelTextColor, labelTextColorDisabled, labelBackgroundColor;
-@synthesize viewBackgroundColor;
+@synthesize viewBackgroundColor, viewControllerBackgroundColour;
 @synthesize tableViewBackgroundColor;
-@synthesize tableViewCellBackgroundColor, tableViewCellGradient, tableViewCellGradient1, tableViewCellGradient2;
+@synthesize tableViewCellBackgroundColor;
 @synthesize svProgressHUDStyle;
 @synthesize switchTintColor, switchOnTintColor, switchThumbTintColor;
-
-- (instancetype)init
-{
-    self = [super init];
-
-    tableViewCellGradient = NO;
-
-    return self;
-}
-
 
 @end

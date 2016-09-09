@@ -103,8 +103,8 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    GCView *contentView = [[GCView alloc] initWithFrame:applicationFrame];
+    contentView.backgroundColor = currentTheme.viewBackgroundColor;
     self.view = contentView;
     [self.view sizeToFit];
 
@@ -331,12 +331,6 @@
     lineIV.frame = rectCompass;
 
     [self updateLocationManagerLocation];
-}
-
-- (void)changeTheme
-{
-    [themeManager changeThemeArray:[self.view subviews]];
-    [super changeTheme];
 }
 
 - (void)viewWillAppear:(BOOL)animated

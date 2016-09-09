@@ -61,7 +61,7 @@
 
 - (void)changeTheme
 {
-    self.view.backgroundColor = currentTheme.tableViewBackgroundColor;
+    self.view.backgroundColor = currentTheme.viewControllerBackgroundColour;
 
     [themeManager changeThemeView:self.view];
 }

@@ -61,7 +61,7 @@ enum {
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    contentView.backgroundColor = currentTheme.viewBackgroundColor;
     self.view = contentView;
 
     accountDictionaries = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];

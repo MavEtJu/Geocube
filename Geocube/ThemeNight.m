@@ -29,18 +29,18 @@
 {
     self = [super init];
 
-    labelBackgroundColor = [UIColor blackColor];
-    labelTextColor = [UIColor lightTextColor];
+    UIColor *bgColor = [UIColor blackColor];
+    UIColor *fgColor = [UIColor lightTextColor];
+
+    labelBackgroundColor = bgColor;
+    labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor darkGrayColor];
 
-    backgroundColor = [UIColor blackColor];
-    textColor = [UIColor lightGrayColor];
+    tableViewBackgroundColor = bgColor;
+    tableViewCellBackgroundColor = bgColor;
 
-    tableViewBackgroundColor = backgroundColor;
-    tableViewCellBackgroundColor = backgroundColor;
-    viewBackgroundColor = backgroundColor;
-
-    tableViewCellGradient = NO;
+    viewBackgroundColor = bgColor;
+    viewControllerBackgroundColour = bgColor;
 
     svProgressHUDStyle = SVProgressHUDStyleLight;
 

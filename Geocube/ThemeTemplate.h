@@ -29,12 +29,10 @@
     UIColor *labelBackgroundColor;
 
     UIColor *viewBackgroundColor;
+    UIColor *viewControllerBackgroundColour;
 
     UIColor *tableViewBackgroundColor;
     UIColor *tableViewCellBackgroundColor;
-    BOOL tableViewCellGradient;
-    UIColor *tableViewCellGradient1;
-    UIColor *tableViewCellGradient2;
 
     SVProgressHUDStyle svProgressHUDStyle;
 
@@ -51,13 +49,11 @@
 @property (readonly, nonatomic, retain) UIColor *labelTextColorDisabled;
 
 @property (readonly, nonatomic, retain) UIColor *viewBackgroundColor;
+@property (readonly, nonatomic, retain) UIColor *viewControllerBackgroundColour;
 
 @property (readonly, nonatomic, retain) UIColor *tableViewBackgroundColor;
 
 @property (readonly, nonatomic, retain) UIColor *tableViewCellBackgroundColor;
-@property (readonly, nonatomic)         BOOL tableViewCellGradient;
-@property (readonly, nonatomic, retain) UIColor *tableViewCellGradient1;
-@property (readonly, nonatomic, retain) UIColor *tableViewCellGradient2;
 
 @property (readonly, nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
 
