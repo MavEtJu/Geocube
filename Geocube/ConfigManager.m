@@ -30,7 +30,7 @@
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
 @synthesize soundDirection, soundDistance;
-@synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax, keeptrackPurgeAge;
+@synthesize keeptrackAutoRotate, keeptrackTimeDeltaMin, keeptrackTimeDeltaMax, keeptrackDistanceDeltaMin, keeptrackDistanceDeltaMax, keeptrackPurgeAge, keeptrackSync;
 @synthesize mapClustersEnable, mapClustersZoomLevel, mapRotateToBearing;
 @synthesize GCLabelFont, GCSmallFont, GCTextblockFont;
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
@@ -102,6 +102,7 @@
     CHECK(@"keeptrack_distancedelta_min", @"100");
     CHECK(@"keeptrack_distancedelta_max", @"200");
     CHECK(@"keeptrack_purgeage", @"30");
+    CHECK(@"keeptrack_sync", @"120");
 
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
@@ -172,6 +173,7 @@
     keeptrackDistanceDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_min"].value floatValue];
     keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
     keeptrackPurgeAge = [[dbConfig dbGetByKey:@"keeptrack_purgeage"].value integerValue];
+    keeptrackSync = [[dbConfig dbGetByKey:@"keeptrack_sync"].value integerValue];
     mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
     mapRotateToBearing = [[dbConfig dbGetByKey:@"map_rotate_to_bearing"].value boolValue];
@@ -381,6 +383,11 @@
 {
     keeptrackPurgeAge = value;
     [self NSIntegerUpdate:@"keeptrack_purgeage" value:value];
+}
+- (void)keeptrackSync:(NSInteger)value
+{
+    keeptrackSync = value;
+    [self NSIntegerUpdate:@"keeptrack_sync" value:value];
 }
 
 - (void)mapClustersUpdateEnable:(BOOL)value

@@ -54,6 +54,7 @@
 @property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMin;
 @property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMax;
 @property (nonatomic, readonly) NSInteger keeptrackPurgeAge;
+@property (nonatomic, readonly) NSInteger keeptrackSync;
 
 @property (nonatomic, readonly) BOOL mapClustersEnable;
 @property (nonatomic, readonly) float mapClustersZoomLevel;
@@ -131,6 +132,7 @@
 - (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value;
 - (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value;
 - (void)keeptrackPurgeAgeUpdate:(NSInteger)value;
+- (void)keeptrackSync:(NSInteger)value;
 - (void)mapClustersUpdateEnable:(BOOL)value;
 - (void)mapClustersUpdateZoomLevel:(float)value;
 - (void)mapRotateToBearingUpdate:(BOOL)value;

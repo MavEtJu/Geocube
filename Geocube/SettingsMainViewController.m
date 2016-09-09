@@ -308,6 +308,7 @@ enum sections {
     SECTION_KEEPTRACK_DISTANCEDELTA_MIN,
     SECTION_KEEPTRACK_DISTANCEDELTA_MAX,
     SECTION_KEEPTRACK_PURGEAGE,
+    SECTION_KEEPTRACK_SYNC,
     SECTION_KEEPTRACK_MAX,
 
     SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
@@ -715,6 +716,14 @@ enum sections {
 
                     cell.textLabel.text = @"Autopurge age for old tracks";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.keeptrackPurgeAge];
+
+                    return cell;
+                }
+                case SECTION_KEEPTRACK_SYNC: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Sync track data";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Every %ld seconds", (long)configManager.keeptrackSync];
 
                     return cell;
                 }
@@ -1150,6 +1159,7 @@ enum sections {
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
                 case SECTION_KEEPTRACK_PURGEAGE:
+                case SECTION_KEEPTRACK_SYNC:
                     [self keeptrackChange:indexPath.row];
                     break;
             }
@@ -1244,6 +1254,9 @@ enum sections {
         case SECTION_KEEPTRACK_PURGEAGE:
             message = @"Change the maximum age of old tracks before they get purged.";
             break;
+        case SECTION_KEEPTRACK_SYNC:
+            message = @"Change the time interval to sync the track data";
+            break;
     }
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Update value"
@@ -1299,6 +1312,11 @@ enum sections {
                                      [configManager keeptrackPurgeAgeUpdate:i];
                                      break;
                                  }
+                                 case SECTION_KEEPTRACK_SYNC: {
+                                     NSInteger i = [value integerValue];
+                                     [configManager keeptrackSync:i];
+                                     break;
+                                 }
                              }
                              [self.tableView reloadData];
 
@@ -1329,6 +1347,9 @@ enum sections {
                 break;
             case SECTION_KEEPTRACK_PURGEAGE:
                 textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackPurgeAge];
+                break;
+            case SECTION_KEEPTRACK_SYNC:
+                textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackSync];
                 break;
         }
         textField.placeholder = @"Enter value...";

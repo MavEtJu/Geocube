@@ -25,6 +25,9 @@
 
     NSDate *lastHistory;
     CLLocationCoordinate2D coordsHistoricalLast;
+
+    NSMutableArray *historyData;
+    NSInteger lastSync;
 }
 
 @end
@@ -52,6 +55,9 @@
 
     delegates = [NSMutableArray arrayWithCapacity:5];
     useGPS = YES;
+
+    lastSync = 0;
+    historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
         [_LM requestWhenInUseAuthorization];
@@ -163,8 +169,17 @@
         [self updateHistoryDelegate];
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
-        if (configManager.currentTrack != 0)
-            [dbTrackElement addElement:coords height:altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
+        if (configManager.currentTrack != 0) {
+            dbTrackElement *te = [dbTrackElement createElement:coords height:altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
+            [historyData addObject:te];
+            if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
+                [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [e dbCreate];
+                }];
+                [historyData removeAllObjects];
+                lastSync = te.timestamp_epoch;
+            }
+        }
     }
 
     NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
