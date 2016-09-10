@@ -34,13 +34,14 @@
 
     UIColor *bgColor = label.backgroundColor;
     UIColor *fgColor = label.textColor;
+    UIColor *clearColor = [UIColor clearColor];
 
     bgColor = [UIColor whiteColor];
     fgColor = [UIColor blackColor];
 
     labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor lightGrayColor];
-    labelBackgroundColor = bgColor;
+    labelBackgroundColor = clearColor;
 
     backgroundColor = bgColor;
     textColor = fgColor;

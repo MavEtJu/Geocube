@@ -31,10 +31,11 @@
 
     UIColor *bgColor = [UIColor blackColor];
     UIColor *fgColor = [UIColor lightTextColor];
+    UIColor *clearColor = [UIColor clearColor];
 
     labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor darkGrayColor];
-    labelBackgroundColor = bgColor;
+    labelBackgroundColor = clearColor;
 
     backgroundColor = bgColor;
     textColor = fgColor;
