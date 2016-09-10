@@ -98,9 +98,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     if (failure == YES)
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.lastError];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
+    [self reloadDataMainQueue];
 }
 
 #pragma mark - TableViewController related functions

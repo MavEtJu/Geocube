@@ -77,9 +77,7 @@ enum {
 
     accounts = bs;
     accountsCount = [accounts count];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
+    [self reloadDataMainQueue];
 }
 
 - (void)viewWillAppear:(BOOL)animated

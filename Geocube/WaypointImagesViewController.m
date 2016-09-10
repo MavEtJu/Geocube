@@ -152,9 +152,7 @@ enum {
 
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
+    [self reloadDataMainQueue];
 
     if (queuedImages != 0) {
         [bezelManager setText:[NSString stringWithFormat:@"Downloading images\nDownloaded %ld, pending %ld", (long)downloadedImages, (long)queuedImages]];
