@@ -46,7 +46,14 @@
     return ([downloads count] != 0);
 }
 
-- (DownloadInfoDownload *)addDownload:(NSString *)desc url:(NSString *)url
+- (DownloadInfoDownload *)addDownload:(NSString *)description
+{
+    DownloadInfoDownload *did = [self addDownload];
+    [did setDescription:description];
+    return did;
+}
+
+- (DownloadInfoDownload *)addDownload
 {
     __block NSInteger max = 0;
     DownloadInfoDownload *did = [[DownloadInfoDownload alloc] init];
@@ -62,9 +69,6 @@
     did.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     did.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     did.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-
-    [did setURL:url];
-    [did setDescription:desc];
 
     @synchronized (downloads) {
         [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
