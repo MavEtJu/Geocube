@@ -98,8 +98,8 @@
 - (void)setBytes
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (bytesTotal == 0)
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %ld", bytesCount];
+        if (bytesTotal <= 0)
+            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bytesCount]];
         else
             labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bytesCount], [MyTools niceFileSize:bytesTotal], (bytesCount * 100) / bytesTotal];
     }];
