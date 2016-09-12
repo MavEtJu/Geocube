@@ -62,6 +62,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (NSRange)commentSupportsRatingRange;
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict;
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoDownload:(DownloadInfoDownload *)did;
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 

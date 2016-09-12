@@ -120,11 +120,16 @@
 
 - (NSArray *)loadPage:(NSString *)urlString
 {
+    return [self loadPage:urlString downloadInfoDownload:nil];
+}
+
+- (NSArray *)loadPage:(NSString *)urlString downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadViewDownload:did];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -343,12 +348,12 @@
     return as;
 }
 
-- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoDownload:(DownloadInfoDownload *)did
 {
     NSLog(@"cacher_statistics__finds:%@", name);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlEncode:name]];
-    NSArray *lines = [self loadPage:urlString];
+    NSArray *lines = [self loadPage:urlString downloadInfoDownload:did];
     NSMutableDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
     NSString *value = [self FindValueInLine:lines key:@"Geocaching Australia Finds"];
@@ -358,12 +363,12 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
-- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoDownload:(DownloadInfoDownload *)did
 {
     NSLog(@"cacher_statistics__hides");
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/hides/", [MyTools urlEncode:name]];
-    NSArray *lines = [self loadPage:urlString];
+    NSArray *lines = [self loadPage:urlString downloadInfoDownload:did];
     NSMutableDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
     NSString *value = [self FindValueInLine:lines key:@"Total Geocaching Australia Hides"];

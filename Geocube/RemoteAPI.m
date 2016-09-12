@@ -221,10 +221,15 @@
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict
 {
-    return [self UserStatistics:account.accountname_string retDict:retDict];
+    return [self UserStatistics:account.accountname_string retDict:retDict downloadInfoDownload:nil];
 }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoDownload:(DownloadInfoDownload *)did
+{
+    return [self UserStatistics:account.accountname_string retDict:retDict downloadInfoDownload:did];
+}
+
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict downloadInfoDownload:(DownloadInfoDownload *)did
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -241,7 +246,9 @@
     [ret setValue:@"" forKey:@"recommendations_received"];
 
     if (account.protocol == PROTOCOL_OKAPI) {
-        GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username];
+        [did setChunksTotal:1];
+        [did setChunksCount:1];
+        GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username downloadInfoDownload:did];
 
         if (dict == nil)
             return REMOTEAPI_APIFAILED;
@@ -256,8 +263,11 @@
     }
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        NSDictionary *dict1 = [liveAPI GetYourUserProfile];
-        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser];
+        [did setChunksTotal:2];
+        [did setChunksCount:1];
+        NSDictionary *dict1 = [liveAPI GetYourUserProfile:did];
+        [did setChunksCount:2];
+        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser:did];
 
         if (dict1 == nil && dict2 == nil)
             return REMOTEAPI_APIFAILED;
@@ -278,8 +288,11 @@
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        NSDictionary *dict1 = [gca cacher_statistic__finds:username];
-        NSDictionary *dict2 = [gca cacher_statistic__hides:username];
+        [did setChunksTotal:2];
+        [did setChunksCount:1];
+        NSDictionary *dict1 = [gca cacher_statistic__finds:username downloadInfoDownload:did];
+        [did setChunksCount:2];
+        NSDictionary *dict2 = [gca cacher_statistic__hides:username downloadInfoDownload:did];
 
         if ([dict1 count] == 0 && [dict2 count] == 0)
             return REMOTEAPI_APIFAILED;

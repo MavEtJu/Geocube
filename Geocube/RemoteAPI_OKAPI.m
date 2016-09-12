@@ -95,7 +95,7 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoDownload:(DownloadInfoDownload *)did
 {
     NSLog(@"services_users_byUsername");
 
@@ -103,9 +103,8 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
 
-
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadViewDownload:did];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 

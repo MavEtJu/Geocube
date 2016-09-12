@@ -120,7 +120,7 @@
 
 /**************************************************************************/
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(DownloadInfoDownload *)did
 {
     NSLog(@"GetYourUserProfile");
 
@@ -160,7 +160,7 @@
     urlRequest.HTTPBody = body;
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadViewDownload:did];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -187,14 +187,14 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(DownloadInfoDownload *)did
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadViewDownload:did];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     NSData *data = [retDict objectForKey:@"data"];
