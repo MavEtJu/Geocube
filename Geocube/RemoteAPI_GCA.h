@@ -43,7 +43,9 @@
 - (GCDictionaryGCA *)logs_cache:(NSString *)wpname;
 - (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)data caption:(NSString *)caption description:(NSString *)description;
 - (GCDictionaryGCA *)my_query_json:(NSString *)queryname;
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did;
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname;
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did;
 - (NSInteger)my_query_count:(NSString *)queryname;
 - (GCDictionaryGCA *)my_query_list__json;
 

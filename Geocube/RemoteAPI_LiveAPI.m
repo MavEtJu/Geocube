@@ -554,6 +554,11 @@
 
 - (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems
 {
+    return [self GetFullPocketQueryData:guid startItem:startItem numItems:numItems downloadInfoDownload:nil];
+}
+
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
@@ -561,7 +566,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoDownload:did];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {

@@ -94,12 +94,17 @@
 
 - (NSData *)loadDataForeground:(NSString *)urlString
 {
+    return [self loadDataForeground:urlString downloadInfoDownload:nil];
+}
+
+- (NSData *)loadDataForeground:(NSString *)urlString downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error downloadInfoDownload:did];
 
     if (response.statusCode == 403) {   // Forbidden
         remoteAPI.account.gca_cookie_value = @"";
@@ -541,12 +546,17 @@
 
 - (GCDictionaryGCA *)my_query_json:(NSString *)queryname
 {
+    return [self my_query_json:queryname downloadInfoDownload:nil];
+}
+
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSLog(@"my_query_json:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSData *data = [self loadDataForeground:urlString];
+    NSData *data = [self loadDataForeground:urlString downloadInfoDownload:did];
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
@@ -564,12 +574,17 @@
 
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname
 {
+    return [self my_query_gpx:queryname downloadInfoDownload:nil];
+}
+
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSLog(@"my_query_gpx:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSData *data = [self loadDataForeground:urlString];
+    NSData *data = [self loadDataForeground:urlString downloadInfoDownload:did];
     return [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 

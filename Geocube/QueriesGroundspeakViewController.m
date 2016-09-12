@@ -58,12 +58,13 @@
     // Download the query
     NSObject *ret;
 
-    [downloadsImportsViewController showDownloadManager];
-    [downloadManager resetForegroundDownload];
-    [downloadsImportsViewController resetImports];
-    [downloadManager setDescription:[NSString stringWithFormat:@"Pocket query %@", [pq objectForKey:@"Name"]]];
+    [self showDownloadInfo];
+    DownloadInfoDownload *did = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoDownload:did];
+
+    [downloadInfoView removeDownload:did];
+    [self hideDownloadInfo];
 
     if (ret == nil) {
         failure = YES;

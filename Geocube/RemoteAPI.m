@@ -722,6 +722,11 @@
 
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
+    return [self retrieveQuery:_id group:group retObj:retObj downloadInfoDownload:nil];
+}
+
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoDownload:(DownloadInfoDownload *)did
+{
     *retObj = nil;
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
@@ -733,11 +738,11 @@
         NSInteger offset = 0;
         NSInteger increase = 25;
 
-        [downloadManager setNumberOfChunksDownload:0];
-        [downloadManager setNumberOfChunksTotal:0];
+        [did setChunksTotal:0];
+        [did setChunksCount:1];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
-            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase];
+            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoDownload:did];
             if (json == nil)
                 break;
 
@@ -752,10 +757,10 @@
             offset += found;
             tried += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
-            [downloadManager setNumberOfChunksDownload:offset / increase];
-            [downloadManager setNumberOfChunksTotal:1 + (max / increase)];
+            [did setChunksTotal:1 + (max / increase)];
+            [did setChunksCount:offset / increase];
         } while (tried < max);
-        [downloadManager setNumberOfChunksDownload:1 + (max / increase)];
+        [did setChunksTotal:1 + (max / increase)];
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
@@ -764,7 +769,9 @@
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        NSDictionary *json = [gca my_query_json:_id];
+        [did setChunksTotal:1];
+        [did setChunksCount:1];
+        NSDictionary *json = [gca my_query_json:_id downloadInfoDownload:did];
 
         if (json == nil) {
             [self alertError:@"[GCA] retrieveQuery: json == nil" code:REMOTEAPI_APIFAILED];
@@ -789,9 +796,16 @@
 
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj
 {
+    return [self retrieveQuery:_id group:group retObj:retObj downloadInfoDownload:nil];
+}
+
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoDownload:(DownloadInfoDownload *)did
+{
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {
-        NSString *gpx = [gca my_query_gpx:_id];
+        [did setChunksTotal:1];
+        [did setChunksCount:1];
+        NSString *gpx = [gca my_query_gpx:_id downloadInfoDownload:did];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
         *retObj = gpx;

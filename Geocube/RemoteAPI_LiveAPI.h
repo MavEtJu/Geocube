@@ -32,6 +32,7 @@
 - (GCDictionaryLiveAPI *)GetPocketQueryList;
 - (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid;
 - (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoDownload:(DownloadInfoDownload *)did;
 - (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
 - (GCDictionaryLiveAPI *)GetUsersTrackables;
 - (GCDictionaryLiveAPI *)GetOwnedTrackables;
