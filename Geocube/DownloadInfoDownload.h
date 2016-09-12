@@ -22,8 +22,6 @@
 @interface DownloadInfoDownload : NSObject
 
 @property (nonatomic) NSInteger _id;
-@property (nonatomic, retain) NSString *desc;
-@property (nonatomic, retain) NSString *url;
 
 @property (nonatomic, retain) GCSmallLabel *labelDesc;
 @property (nonatomic, retain) GCSmallLabel *labelURL;
@@ -34,5 +32,11 @@
 @property (nonatomic) NSInteger viewHeight;
 
 - (void)calculateRects;
+- (void)setDescription:(NSString *)newDesc;
+- (void)setURL:(NSString *)newURL;
+- (void)setChunksTotal:(NSInteger)newTotal;
+- (void)setChunksCount:(NSInteger)newCount;
+- (void)setBytesTotal:(NSInteger)newTotal;
+- (void)setBytesCount:(NSInteger)newCount;
 
 @end

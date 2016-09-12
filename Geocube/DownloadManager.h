@@ -55,6 +55,7 @@
  * Add  the contents of an URL to the download queue.
  */
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem;
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadViewDownload:(DownloadInfoDownload *)did;
 
 /*
  * Reset the values of the foreground download view or the background download view back to their initial values.

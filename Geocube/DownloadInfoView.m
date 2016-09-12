@@ -38,8 +38,6 @@
     [self calculateRects];
     [self changeTheme];
 
-    self.backgroundColor = [UIColor redColor];
-
     return self;
 }
 
@@ -57,19 +55,16 @@
     header.text = @"Downloads";
     header.backgroundColor = [UIColor lightGrayColor];
 
-    did.desc = desc;
-    did.url = url;
     did.view = [[GCView alloc] initWithFrame:(CGRectZero)];
     did.view.backgroundColor = [UIColor lightGrayColor];
 
     did.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelDesc.text = did.desc;
     did.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelURL.text = did.url;
     did.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelChunks.text = @"Chunks:";
     did.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelBytes.text = @"Downloaded:";
+
+    [did setURL:url];
+    [did setDescription:desc];
 
     @synchronized (downloads) {
         [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
@@ -117,7 +112,7 @@
         return;
     }
 
-    header.frame = CGRectMake(0, height, width, header.font.lineHeight);
+    header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
     height += header.font.lineHeight;
     @synchronized (downloads) {
         [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
@@ -140,6 +135,7 @@
 - (void)changeTheme
 {
     [super changeTheme];
+    self.backgroundColor = [UIColor lightGrayColor];
 }
 
 @end

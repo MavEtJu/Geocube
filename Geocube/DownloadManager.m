@@ -61,9 +61,17 @@
 
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem
 {
+    return [self downloadAsynchronous:urlRequest semaphore:sem downloadViewDownload:nil];
+}
+
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadViewDownload:(DownloadInfoDownload *)did
+{
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
     [req setObject:urlRequest forKey:@"urlRequest"];
     [req setObject:sem forKey:@"semaphore"];
+    [req setObject:(did == nil ? [NSNull null] : did) forKey:@"downloadViewDownload"];
+    if (did != nil)
+        [did setURL:urlRequest.URL.absoluteString];
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
@@ -174,6 +182,14 @@
                     [req setObject:error forKey:@"error"];
                 [asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
+
+                DownloadInfoDownload *did = [req objectForKey:@"downloadViewDownload"];
+                if (did != nil && [did isKindOfClass:[NSNull class]] == NO) {
+                    NSMutableData *d = [req objectForKey:@"data"];
+                    [did setBytesCount:[d length]];
+                    [did setBytesTotal:[d length]];
+                }
+
                 *stop = YES;
                 NSLog(@"Finished download thread %ld", (long)idx);
                 return;
@@ -197,6 +213,11 @@
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
+
+                DownloadInfoDownload *did = [req objectForKey:@"downloadViewDownload"];
+                if (did != nil && [did isKindOfClass:[NSNull class]] == NO)
+                    [did setBytesCount:[d length]];
+
                 *stop = YES;
                 return;
             }
@@ -222,6 +243,11 @@
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
                 syncReponse = response;
+
+                DownloadInfoDownload *did = [req objectForKey:@"downloadViewDownload"];
+                if (did != nil && [did isKindOfClass:[NSNull class]] == NO)
+                    [did setBytesTotal:response.expectedContentLength];
+
                 *stop = YES;
                 return;
             }

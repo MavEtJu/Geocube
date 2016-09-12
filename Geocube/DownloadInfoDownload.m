@@ -20,6 +20,13 @@
  */
 
 @interface DownloadInfoDownload ()
+{
+    NSInteger chunksTotal, chunksCount;
+    NSInteger bytesTotal, bytesCount;
+
+    NSString *description;
+    NSString *url;
+}
 
 @end
 
@@ -43,7 +50,6 @@
     __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
     y += __s__.font.lineHeight;
 
-    //LABEL_RESIZE(labelDesc);
     INDENT_RESIZE(labelDesc);
     INDENT_RESIZE(labelURL);
     INDENT_RESIZE(labelChunks);
@@ -51,6 +57,62 @@
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
+}
+
+- (void)setDescription:(NSString *)newDesc
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        description = newDesc;
+        labelDesc.text = newDesc;
+    }];
+}
+
+- (void)setURL:(NSString *)newURL
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        url = newURL;
+        labelURL.text = newURL;
+    }];
+}
+
+- (void)setChunks
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (chunksTotal == 0)
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", chunksCount];
+        else
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", chunksCount, chunksTotal];
+    }];
+}
+- (void)setChunksTotal:(NSInteger)newTotal
+{
+    chunksTotal = newTotal;
+    [self setChunks];
+}
+- (void)setChunksCount:(NSInteger)newCount
+{
+    chunksCount = newCount;
+    [self setChunks];
+}
+
+- (void)setBytes
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (bytesTotal == 0)
+            labelBytes.text = [NSString stringWithFormat:@"Bytes: %ld", bytesCount];
+        else
+            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bytesCount], [MyTools niceFileSize:bytesTotal], (bytesCount * 100) / bytesTotal];
+    }];
+}
+- (void)setBytesTotal:(NSInteger)newTotal
+{
+    bytesTotal = newTotal;
+    [self setBytes];
+}
+- (void)setBytesCount:(NSInteger)newCount
+{
+    bytesCount = newCount;
+    [self setBytes];
 }
 
 @end
