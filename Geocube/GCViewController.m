@@ -50,6 +50,22 @@
     [self changeTheme];
 }
 
+- (void)makeDownloadInfo
+{
+    downloadInfoView = [[DownloadInfoView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:downloadInfoView];
+}
+
+- (void)hideDownloadInfo
+{
+    [self.view sendSubviewToBack:downloadInfoView];
+}
+
+- (void)showDownloadInfo
+{
+    [self.view bringSubviewToFront:downloadInfoView];
+}
+
 - (void)prepareCloseButton:(UIView *)view
 {
     if (hasCloseButton == YES) {

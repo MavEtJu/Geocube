@@ -253,6 +253,8 @@
 		E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */; };
 		E87DF7881D7F6D6900F16B5A /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7871D7F6D6900F16B5A /* BezelManager.m */; };
 		E87DF78B1D80B6F100F16B5A /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78A1D80B6F100F16B5A /* GCSwitch.m */; };
+		E87DF78E1D8564A800F16B5A /* DownloadInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* DownloadInfoView.m */; };
+		E87DF7921D856A7100F16B5A /* DownloadInfoDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7911D856A7100F16B5A /* DownloadInfoDownload.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
 		E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379E1B9467E90053AD01 /* NoticesViewController.m */; };
@@ -799,6 +801,10 @@
 		E87DF7871D7F6D6900F16B5A /* BezelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelManager.m; sourceTree = "<group>"; };
 		E87DF7891D80B6F100F16B5A /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSwitch.h; sourceTree = "<group>"; };
 		E87DF78A1D80B6F100F16B5A /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSwitch.m; sourceTree = "<group>"; };
+		E87DF78C1D8564A800F16B5A /* DownloadInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadInfoView.h; sourceTree = "<group>"; };
+		E87DF78D1D8564A800F16B5A /* DownloadInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadInfoView.m; sourceTree = "<group>"; };
+		E87DF7901D856A7100F16B5A /* DownloadInfoDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadInfoDownload.h; sourceTree = "<group>"; };
+		E87DF7911D856A7100F16B5A /* DownloadInfoDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadInfoDownload.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
 		E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesFieldnotesViewController.m; sourceTree = "<group>"; };
 		E880379A1B915CEE0053AD01 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
@@ -2026,6 +2032,10 @@
 				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
 				E8EC07401D39E887009B8EB1 /* ImportManager.h */,
 				E8EC07411D39E887009B8EB1 /* ImportManager.m */,
+				E87DF78C1D8564A800F16B5A /* DownloadInfoView.h */,
+				E87DF78D1D8564A800F16B5A /* DownloadInfoView.m */,
+				E87DF7901D856A7100F16B5A /* DownloadInfoDownload.h */,
+				E87DF7911D856A7100F16B5A /* DownloadInfoDownload.m */,
 			);
 			name = "Downloads and Imports";
 			sourceTree = "<group>";
@@ -2933,11 +2943,13 @@
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
+				E87DF78E1D8564A800F16B5A /* DownloadInfoView.m in Sources */,
 				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */,
 				E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */,
 				E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */,
+				E87DF7921D856A7100F16B5A /* DownloadInfoDownload.m in Sources */,
 				E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,

@@ -119,10 +119,6 @@
 #import "ImportOKAPIJSON.h"
 #import "ExportGPX.h"
 
-#import "DownloadManager.h"
-#import "ImportManager.h"
-#import "DownloadsImportsViewController.h"
-
 #import "GCButton.h"
 #import "GCCloseBUtton.h"
 #import "GCImageView.h"
@@ -138,6 +134,12 @@
 #import "GCTableViewCellKeyValue.h"
 #import "GCTextblock.h"
 #import "GCView.h"
+
+#import "DownloadInfoDownload.h"
+#import "DownloadInfoView.h"
+#import "DownloadManager.h"
+#import "ImportManager.h"
+#import "DownloadsImportsViewController.h"
 
 #import "WaypointHeaderTableViewCell.h"
 #import "WaypointTableViewCell.h"

@@ -19,27 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCViewController : UIViewController <GlobalMenuDelegate, UIScrollViewDelegate>
-{
-    LocalMenuItems *lmi;
-    BOOL hasCloseButton;
-    DownloadInfoView *downloadInfoView;
-}
+@interface DownloadInfoDownload : NSObject
 
-@property (assign, nonatomic) NSInteger numberOfItemsInRow;
+@property (nonatomic) NSInteger _id;
+@property (nonatomic, retain) NSString *desc;
+@property (nonatomic, retain) NSString *url;
 
-- (void)showCloseButton;
-- (void)changeTheme;
-- (void)willClosePage;
-- (void)prepareCloseButton:(UIView *)view;
+@property (nonatomic, retain) GCSmallLabel *labelDesc;
+@property (nonatomic, retain) GCSmallLabel *labelURL;
+@property (nonatomic, retain) GCSmallLabel *labelChunks;
+@property (nonatomic, retain) GCSmallLabel *labelBytes;
 
-// Required for rotating
+@property (nonatomic, retain) GCView *view;
+@property (nonatomic) NSInteger viewHeight;
+
 - (void)calculateRects;
-- (void)viewWilltransitionToSize;
-
-// DownloadInfo window related
-- (void)hideDownloadInfo;
-- (void)showDownloadInfo;
-- (void)makeDownloadInfo;
 
 @end

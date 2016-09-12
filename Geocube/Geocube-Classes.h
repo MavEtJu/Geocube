@@ -29,6 +29,8 @@
 @class ConfigManager;
 @class Coordinates;
 @class DatabaseCache;
+@class DownloadInfoDownload;
+@class DownloadInfoView;
 @class DownloadManager;
 @class DownloadsImportsViewController;
 @class ExportGPX;

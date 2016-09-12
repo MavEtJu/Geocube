@@ -85,6 +85,8 @@ enum {
 
     totalDictionary = [NSMutableDictionary dictionary];
 
+    [self makeDownloadInfo];
+
     [self showAccounts];
 }
 
@@ -232,6 +234,8 @@ enum {
 {
     __block NSInteger count = 0;
 
+    [self showDownloadInfo];
+
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
         // If there is nothing, do not show.
         if ([a canDoRemoteStuff] == NO)
@@ -256,6 +260,7 @@ enum {
     }];
 
     if (count == 0) {
+        [self hideDownloadInfo];
         [MyTools messageBox:self header:@"No statistics loaded" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
         return;
     }
@@ -265,6 +270,8 @@ enum {
 
 - (void)runStatistics:(dbAccount *)a
 {
+    __block NSInteger did = [downloadInfoView addDownload:a.site url:@"none yet"];
+
     NSDictionary *d = nil;
     NSInteger retValue = [a.remoteAPI UserStatistics:&d];
 
@@ -273,6 +280,7 @@ enum {
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *aa, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a == aa) {
+
             NSMutableDictionary *dd = [accountDictionaries objectAtIndex:idx];
             [d enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSObject *obj, BOOL *stop) {
                 [dd setObject:obj forKey:key];
@@ -282,6 +290,9 @@ enum {
         }
     }];
 
+    [downloadInfoView removeDownload:did];
+    if ([downloadInfoView hasDownloads] == NO)
+        [self hideDownloadInfo];
     [self showAccounts];
 }
 
