@@ -167,7 +167,7 @@ NEEDS_OVERLOADING(clearFlags)
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [did setChunksCount:idx];
+        [did resetBytes];
         [downloadInfoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", idx + 1, [waypoints count]]];
         [did setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
