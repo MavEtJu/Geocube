@@ -46,60 +46,60 @@
     return ([downloads count] != 0);
 }
 
-- (DownloadInfoDownload *)addDownload:(NSString *)description
+- (DownloadInfoItem *)addDownload:(NSString *)description
 {
-    DownloadInfoDownload *did = [self addDownload];
-    [did setDescription:description];
-    return did;
+    DownloadInfoItem *dii = [self addDownload];
+    [dii setDescription:description];
+    return dii;
 }
 
-- (DownloadInfoDownload *)addDownload
+- (DownloadInfoItem *)addDownload
 {
     __block NSInteger max = 0;
-    DownloadInfoDownload *did = [[DownloadInfoDownload alloc] init];
+    DownloadInfoItem *dii = [[DownloadInfoItem alloc] init];
 
     header = [[GCLabel alloc] initWithFrame:CGRectZero];
     header.text = @"Downloads";
     header.backgroundColor = [UIColor lightGrayColor];
 
-    did.view = [[GCView alloc] initWithFrame:(CGRectZero)];
-    did.view.backgroundColor = [UIColor lightGrayColor];
+    dii.view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    dii.view.backgroundColor = [UIColor lightGrayColor];
 
-    did.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    did.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    dii.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    dii.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    dii.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    dii.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
         }];
-        did._id = max + 1;
-        [downloads addObject:did];
+        dii._id = max + 1;
+        [downloads addObject:dii];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
 
-        [did.view addSubview:did.labelDesc];
-        [did.view addSubview:did.labelURL];
-        [did.view addSubview:did.labelChunks];
-        [did.view addSubview:did.labelBytes];
-        [did calculateRects];
+        [dii.view addSubview:dii.labelDesc];
+        [dii.view addSubview:dii.labelURL];
+        [dii.view addSubview:dii.labelChunks];
+        [dii.view addSubview:dii.labelBytes];
+        [dii calculateRects];
 
-        [self addSubview:did.view];
+        [self addSubview:dii.view];
         [self calculateRects];
     }];
 
-    return did;
+    return dii;
 }
 
-- (void)removeDownload:(DownloadInfoDownload *)did
+- (void)removeDownload:(DownloadInfoItem *)dii
 {
-    [did.view removeFromSuperview];
+    [dii.view removeFromSuperview];
 
     @synchronized (downloads) {
-        [downloads removeObject:did];
+        [downloads removeObject:dii];
     }
 
     [self calculateRects];
@@ -126,7 +126,7 @@
     header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
     height += header.font.lineHeight;
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
             d.view.frame = CGRectMake(0, height, width, d.view.frame.size.height);
             height += d.view.frame.size.height;
         }];
@@ -137,7 +137,7 @@
 - (void)viewWillTransitionToSize
 {
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }

@@ -21,18 +21,18 @@
 
 @interface RemoteAPI_LiveAPI : RemoteAPI_Template
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile:(DownloadInfoDownload *)did;
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(DownloadInfoDownload *)did;
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(DownloadInfoItem *)dii;
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(DownloadInfoItem *)dii;
 - (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename;
 - (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)waypoint logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname;
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center;
 - (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset;
 - (GCDictionaryLiveAPI *)GetPocketQueryList;
 - (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid;
 - (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
-- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
 - (GCDictionaryLiveAPI *)GetUsersTrackables;
 - (GCDictionaryLiveAPI *)GetOwnedTrackables;

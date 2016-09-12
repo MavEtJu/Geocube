@@ -95,7 +95,7 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoDownload:(DownloadInfoDownload *)did
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_users_byUsername");
 
@@ -104,7 +104,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadViewDownload:did];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:dii];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -160,10 +160,10 @@
 
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname
 {
-    return [self services_caches_formatters_gpx:wpname downloadInfoDownload:nil];
+    return [self services_caches_formatters_gpx:wpname downloadInfoItem:nil];
 }
 
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did
+- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_caches_formatters_gpx: %@", wpname);
 
@@ -171,7 +171,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoDownload:did];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

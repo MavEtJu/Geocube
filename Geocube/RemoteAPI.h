@@ -62,21 +62,21 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (NSRange)commentSupportsRatingRange;
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict;
-- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoDownload:(DownloadInfoDownload *)did;
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(DownloadInfoItem *)dii;
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables;
 
 - (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint;
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoDownload:(DownloadInfoDownload *)did;
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(DownloadInfoItem *)dii;
 - (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj;
 
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note;
 
 - (RemoteAPIResult)listQueries:(NSArray **)qs;
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoDownload:(DownloadInfoDownload *)did;
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(DownloadInfoItem *)dii;
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoDownload:(DownloadInfoDownload *)did;
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(DownloadInfoItem *)dii;
 
 - (void)trackablesMine;
 - (void)trackablesInventory;

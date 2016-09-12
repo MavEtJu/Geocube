@@ -29,7 +29,7 @@
 @class ConfigManager;
 @class Coordinates;
 @class DatabaseCache;
-@class DownloadInfoDownload;
+@class DownloadInfoItem;
 @class DownloadInfoView;
 @class DownloadManager;
 @class DownloadsImportsViewController;

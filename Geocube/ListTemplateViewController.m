@@ -162,16 +162,16 @@ NEEDS_OVERLOADING(clearFlags)
 - (void)runReloadWaypoints
 {
     [self showDownloadInfo];
-    DownloadInfoDownload *did = [downloadInfoView addDownload];
-    [did setChunksTotal:[waypoints count]];
+    DownloadInfoItem *dii = [downloadInfoView addDownload];
+    [dii setChunksTotal:[waypoints count]];
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [did resetBytes];
+        [dii resetBytes];
         [downloadInfoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", idx + 1, [waypoints count]]];
-        [did setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
+        [dii setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoDownload:did];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:dii];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
             failure = YES;
@@ -179,7 +179,7 @@ NEEDS_OVERLOADING(clearFlags)
         }
     }];
 
-    [downloadInfoView removeDownload:did];
+    [downloadInfoView removeDownload:dii];
     [self hideDownloadInfo];
 
     waypoints = [dbWaypoint dbAllByFlag:flag];

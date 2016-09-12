@@ -70,16 +70,16 @@ enum {
     NSObject *retgpx;
 
     [self showDownloadInfo];
-    DownloadInfoDownload *did = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
+    DownloadInfoItem *dii = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
 
     [downloadInfoView setHeaderSuffix:@"JSON"];
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoDownload:did];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:dii];
 
-    [did resetBytesChunks];
+    [dii resetBytesChunks];
     [downloadInfoView setHeaderSuffix:@"GPX"];
-    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoDownload:did];
+    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:dii];
 
-    [downloadInfoView removeDownload:did];
+    [downloadInfoView removeDownload:dii];
     [self hideDownloadInfo];
 
     if (retjson == nil && retgpx == nil) {

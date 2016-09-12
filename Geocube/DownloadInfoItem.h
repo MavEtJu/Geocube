@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadInfoDownload : NSObject
+@interface DownloadInfoItem : NSObject
 
 @property (nonatomic) NSInteger _id;
 

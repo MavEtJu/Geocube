@@ -59,11 +59,11 @@
     NSObject *ret;
 
     [self showDownloadInfo];
-    DownloadInfoDownload *did = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
+    DownloadInfoItem *dii = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoDownload:did];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:dii];
 
-    [downloadInfoView removeDownload:did];
+    [downloadInfoView removeDownload:dii];
     [self hideDownloadInfo];
 
     if (ret == nil) {

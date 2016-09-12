@@ -21,9 +21,9 @@
 
 @interface DownloadInfoView : GCView
 
-- (DownloadInfoDownload *)addDownload;
-- (DownloadInfoDownload *)addDownload:(NSString *)desc;
-- (void)removeDownload:(DownloadInfoDownload *)did;
+- (DownloadInfoItem *)addDownload;
+- (DownloadInfoItem *)addDownload:(NSString *)desc;
+- (void)removeDownload:(DownloadInfoItem *)did;
 - (void)setHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasDownloads;
 

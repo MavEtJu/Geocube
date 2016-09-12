@@ -33,19 +33,19 @@
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
 - (NSArray *)my_query;
-- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoDownload:(DownloadInfoDownload *)did;
-- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii;
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCStringGPX *)cache__gpx:(NSString *)wpname;
-- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCDictionaryGCA *)cache__json:(NSString *)wpname;
 - (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating;
 - (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center;
 - (GCDictionaryGCA *)logs_cache:(NSString *)wpname;
 - (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)data caption:(NSString *)caption description:(NSString *)description;
 - (GCDictionaryGCA *)my_query_json:(NSString *)queryname;
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname;
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoDownload:(DownloadInfoDownload *)did;
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii;
 - (NSInteger)my_query_count:(NSString *)queryname;
 - (GCDictionaryGCA *)my_query_list__json;
 
