@@ -48,7 +48,7 @@
     return ([downloads count] != 0);
 }
 
-- (NSInteger)addDownload:(NSString *)desc url:(NSString *)url
+- (DownloadInfoDownload *)addDownload:(NSString *)desc url:(NSString *)url
 {
     __block NSInteger max = 0;
     DownloadInfoDownload *did = [[DownloadInfoDownload alloc] init];
@@ -92,19 +92,15 @@
         [self calculateRects];
     }];
 
-    return did._id;
+    return did;
 }
 
-- (void)removeDownload:(NSInteger)__id
+- (void)removeDownload:(DownloadInfoDownload *)did
 {
+    [did.view removeFromSuperview];
+
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoDownload *d, NSUInteger idx, BOOL *stop) {
-            if (d._id == __id) {
-                [d.view removeFromSuperview];
-                [downloads removeObject:d];
-                *stop = YES;
-            }
-        }];
+        [downloads removeObject:did];
     }
 
     [self calculateRects];
