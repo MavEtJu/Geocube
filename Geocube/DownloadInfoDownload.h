@@ -38,5 +38,7 @@
 - (void)setChunksCount:(NSInteger)newCount;
 - (void)setBytesTotal:(NSInteger)newTotal;
 - (void)setBytesCount:(NSInteger)newCount;
+- (void)resetBytesChunks;
+- (void)resetBytes;
 
 @end

@@ -75,6 +75,20 @@
     }];
 }
 
+- (void)resetBytesChunks
+{
+    [self setChunksTotal:0];
+    [self setChunksCount:0];
+    [self setBytesTotal:0];
+    [self setBytesCount:0];
+}
+
+- (void)resetBytes
+{
+    [self setBytesTotal:0];
+    [self setBytesCount:0];
+}
+
 - (void)setChunks
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
