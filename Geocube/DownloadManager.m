@@ -28,6 +28,7 @@
     NSMutableData *syncData;
     NSURLSessionConfiguration *syncSessionConfiguration;
     NSURLResponse *syncReponse;
+    DownloadInfoDownload *syncDownloadInfoDownload;
 
     NSMutableArray *asyncRequests;
 }
@@ -95,9 +96,14 @@
     return req;
 }
 
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error downloadInfoDownload:(DownloadInfoDownload *)did
+{
+    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error downloadInfoDownload:did];
+}
+
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
 {
-    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error];
+    return [self downloadSynchronous:urlRequest returningResponse:response error:error downloadInfoDownload:nil];
 }
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
@@ -131,6 +137,11 @@
 
 - (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
 {
+    return [self sendSynchronousRequest:urlRequest returningResponse:responsePtr error:errorPtr downloadInfoDownload:nil];
+}
+
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoDownload:(DownloadInfoDownload *)did
+{
     __block NSData *result;
 
     result = nil;
@@ -147,6 +158,9 @@
 
     syncError = nil;
     syncReponse = nil;
+    syncDownloadInfoDownload = did;
+    if (syncDownloadInfoDownload != nil)
+        [syncDownloadInfoDownload setURL:urlRequest.URL.absoluteString];
 
     syncSessionDataTask = [syncSession dataTaskWithRequest:urlRequest];
     [syncSessionDataTask resume];
@@ -169,6 +183,9 @@
         syncError = error;
         [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
         [downloadsImportsDelegate downloadManager_setNumberBytesTotal:[syncData length]];
+
+        [syncDownloadInfoDownload setBytesCount:[syncData length]];
+        [syncDownloadInfoDownload setBytesTotal:[syncData length]];
 
         dispatch_semaphore_signal(syncSem);
         return;
@@ -205,6 +222,8 @@
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
         [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
+        if (syncDownloadInfoDownload != nil)
+            [syncDownloadInfoDownload setBytesCount:[syncData length]];
         return;
     }
 
@@ -231,8 +250,11 @@
     if (session == syncSession && dataTask == syncSessionDataTask) {
         completionHandler(NSURLSessionResponseAllow);
         syncReponse = response;
-        if (response.expectedContentLength >= 0)
+        if (response.expectedContentLength >= 0) {
             [downloadsImportsDelegate downloadManager_setNumberBytesTotal:(NSInteger)response.expectedContentLength];
+            if (syncDownloadInfoDownload != nil)
+                [syncDownloadInfoDownload setBytesTotal:(NSInteger)response.expectedContentLength];
+        }
         return;
     }
 

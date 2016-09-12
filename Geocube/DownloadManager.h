@@ -50,6 +50,7 @@
  * Download the contents of an URL now.
  */
 - (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error;
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error downloadInfoDownload:(DownloadInfoDownload *)did;
 
 /*
  * Add  the contents of an URL to the download queue.
