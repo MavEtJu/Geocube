@@ -22,6 +22,7 @@
 @interface GCTableViewController ()
 {
     GCCloseButton *closeButton;
+    NSInteger verticalContentOffset;
 }
 
 @end
@@ -68,6 +69,37 @@
         swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
         [self.view addGestureRecognizer:swipeToRight];
     }
+}
+
+- (void)makeDownloadInfo
+{
+    downloadInfoView = [[DownloadInfoView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:downloadInfoView];
+}
+
+- (void)hideDownloadInfo
+{
+    [UIView transitionWithView:downloadInfoView
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        downloadInfoView.hidden = YES;
+                    }
+                    completion:NULL];
+}
+
+- (void)showDownloadInfo
+{
+    [self.view bringSubviewToFront:downloadInfoView];
+    downloadInfoView.hidden = NO;
+
+    CGRect frame = downloadInfoView.frame;
+    CGRect bounds = self.view.superview.frame;
+
+    frame.origin.y = verticalContentOffset + bounds.size.height - frame.size.height;
+    downloadInfoView.frame = frame;
+
+    [self.view bringSubviewToFront:downloadInfoView];
 }
 
 - (void)buttonMenuLocal:(id)sender
@@ -155,14 +187,25 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (closeButton == nil)
-        return;
+    verticalContentOffset = scrollView.contentOffset.y;
 
-    CGRect frame = closeButton.frame;
-    frame.origin.y = scrollView.contentOffset.y;
-    closeButton.frame = frame;
+    if (closeButton != nil) {
+        CGRect frame = closeButton.frame;
+        frame.origin.y = scrollView.contentOffset.y;
+        closeButton.frame = frame;
 
-    [self.view bringSubviewToFront:closeButton];
+        [self.view bringSubviewToFront:closeButton];
+    }
+
+    if (downloadInfoView != nil) {
+        CGRect frame = downloadInfoView.frame;
+        CGRect bounds = self.view.superview.frame;
+
+        frame.origin.y = scrollView.contentOffset.y + bounds.size.height - frame.size.height;
+        downloadInfoView.frame = frame;
+
+        [self.view bringSubviewToFront:downloadInfoView];
+    }
 }
 
 #pragma -- Local menu related functions

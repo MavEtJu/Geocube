@@ -58,12 +58,20 @@
 
 - (void)hideDownloadInfo
 {
-    [self.view sendSubviewToBack:downloadInfoView];
+//    [self.view sendSubviewToBack:downloadInfoView];
+    [UIView transitionWithView:downloadInfoView
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        downloadInfoView.hidden = YES;
+                    }
+                    completion:NULL];
 }
 
 - (void)showDownloadInfo
 {
     [self.view bringSubviewToFront:downloadInfoView];
+    downloadInfoView.hidden = NO;
 }
 
 - (void)prepareCloseButton:(UIView *)view

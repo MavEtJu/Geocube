@@ -23,6 +23,7 @@
 {
     LocalMenuItems *lmi;
     BOOL hasCloseButton;
+    DownloadInfoView *downloadInfoView;
 }
 
 @property (nonatomic) NSInteger numberOfItemsInRow;
@@ -36,5 +37,10 @@
 
 // For rotation related
 - (void)viewWillTransitionToSize;
+
+// DownloadInfo window related
+- (void)hideDownloadInfo;
+- (void)showDownloadInfo;
+- (void)makeDownloadInfo;
 
 @end
