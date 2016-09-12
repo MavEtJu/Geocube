@@ -55,6 +55,8 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
+    [self makeDownloadInfo];
+
     qs = nil;
 }
 
@@ -236,7 +238,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     if (failure == YES)
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
 
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group)
