@@ -114,6 +114,7 @@ enum {
     // Restore
     if (hasCloseButton == NO)
         [self showWaypoint:waypointManager.currentWaypoint];
+    [self makeDownloadInfo];
 
     [self.tableView registerClass:[WaypointHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
@@ -831,13 +832,16 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    [bezelManager showBezel:self];
-    [bezelManager setText:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint];
-    [bezelManager removeBezel];
+    [self showDownloadInfo];
+    DownloadInfoDownload *did = [downloadInfoView addDownload:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
+
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint downloadInfoDownload:did];
 
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];
+
+    [downloadInfoView removeDownload:did];
+    [self hideDownloadInfo];
 
     if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
