@@ -105,6 +105,13 @@
     [self calculateRects];
 }
 
+- (void)setHeaderSuffix:(NSString *)suffix
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        header.text = [NSString stringWithFormat:@"Downloads (%@)", suffix];
+    }];
+}
+
 - (void)calculateRects
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];

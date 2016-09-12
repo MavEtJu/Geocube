@@ -24,6 +24,7 @@
 - (DownloadInfoDownload *)addDownload;
 - (DownloadInfoDownload *)addDownload:(NSString *)desc;
 - (void)removeDownload:(DownloadInfoDownload *)did;
+- (void)setHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasDownloads;
 
 @end
