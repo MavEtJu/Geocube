@@ -308,7 +308,13 @@
     return retJson;
 }
 
+
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname
+{
+    return [self SearchForGeocaches_waypointname:wpname downloadInfoDownload:nil];
+}
+
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did
 {
     NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
@@ -346,7 +352,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoDownload:did];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {

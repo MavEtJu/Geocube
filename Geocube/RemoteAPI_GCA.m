@@ -397,10 +397,15 @@
 
 - (GCDictionaryGCA *)cache__json:(NSString *)wpname
 {
+    return [self cache__json:wpname downloadInfoDownload:nil];
+}
+
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSLog(@"cache__json:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.json", [MyTools urlEncode:wpname]];
-    NSArray *lines = [self loadPage:urlString];
+    NSArray *lines = [self loadPage:urlString downloadInfoDownload:did];
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
 

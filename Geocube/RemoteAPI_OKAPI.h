@@ -24,6 +24,7 @@
 - (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoDownload:(DownloadInfoDownload *)did;
 - (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname;
+- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did;
 - (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset;
 - (NSDictionary *)services_caches_geocaches:(NSArray *)wpcode;
 

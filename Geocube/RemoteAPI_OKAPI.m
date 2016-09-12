@@ -160,13 +160,18 @@
 
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname
 {
+    return [self services_caches_formatters_gpx:wpname downloadInfoDownload:nil];
+}
+
+- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoDownload:(DownloadInfoDownload *)did
+{
     NSLog(@"services_caches_formatters_gpx: %@", wpname);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/formatters/gpx" parameters:[NSString stringWithFormat:@"cache_codes=%@&ns_ground=true&latest_logs=true", [MyTools urlEncode:wpname]]];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoDownload:did];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

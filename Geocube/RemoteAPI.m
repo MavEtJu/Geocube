@@ -421,11 +421,18 @@
 
 - (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint
 {
+    return [self loadWaypoint:waypoint downloadInfoDownload:nil];
+}
+
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoDownload:(DownloadInfoDownload *)did
+{
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name];
+        [did setChunksTotal:1];
+        [did setChunksCount:1];
+        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name downloadInfoDownload:did];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -436,7 +443,9 @@
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_OKAPI) {
-        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name];
+        [did setChunksTotal:1];
+        [did setChunksCount:1];
+        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name downloadInfoDownload:did];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
@@ -447,7 +456,9 @@
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_GCA) {
-        GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name];
+        [did setChunksTotal:2];
+        [did setChunksCount:1];
+        GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name downloadInfoDownload:did];
         if (json == nil) {
             [self alertError:@"[GCA] loadWaypoint/cache__json: json == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -468,6 +479,7 @@
         [imp parseDictionary:json];
         [imp parseAfter];
 
+        [did setChunksCount:2];
         json = [gca logs_cache:waypoint.wpt_name];
         if (json == nil) {
             [self alertError:@"[GCA] loadWaypoint/logs_cache: json == nil" code:REMOTEAPI_APIFAILED];
