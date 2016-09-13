@@ -2111,7 +2111,7 @@
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570B21B3FECDF003F020C /* Tools */,
-				E8F570A91B3FE52C003F020C /* Network */,
+				E8F570A91B3FE52C003F020C /* Network APIs */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570A81B3FE522003F020C /* Database */,
 				E8F570931B3F7EE1003F020C /* External modules */,
@@ -2260,7 +2260,7 @@
 			name = Database;
 			sourceTree = "<group>";
 		};
-		E8F570A91B3FE52C003F020C /* Network */ = {
+		E8F570A91B3FE52C003F020C /* Network APIs */ = {
 			isa = PBXGroup;
 			children = (
 				E88144201C840C5400940820 /* IOSFileTransfers.h */,
@@ -2278,7 +2278,7 @@
 				E89580191C643AD500282177 /* RemoteAPI_Template.h */,
 				E895801A1C643AD500282177 /* RemoteAPI_Template.m */,
 			);
-			name = Network;
+			name = "Network APIs";
 			sourceTree = "<group>";
 		};
 		E8F570B21B3FECDF003F020C /* Tools */ = {
