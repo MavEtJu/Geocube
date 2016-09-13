@@ -78,8 +78,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj;
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(DownloadInfoItem *)dii;
 
-- (void)trackablesMine;
-- (void)trackablesInventory;
+- (void)trackablesMine:(DownloadInfoItem *)dii;
+- (void)trackablesInventory:(DownloadInfoItem *)dii;
 - (dbTrackable *)trackableFind:(NSString *)code;
 
 @end

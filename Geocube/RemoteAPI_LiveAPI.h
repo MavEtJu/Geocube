@@ -34,8 +34,8 @@
 - (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems;
 - (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(DownloadInfoItem *)dii;
 - (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text;
-- (GCDictionaryLiveAPI *)GetUsersTrackables;
-- (GCDictionaryLiveAPI *)GetOwnedTrackables;
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code;
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(DownloadInfoItem *)dii;
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(DownloadInfoItem *)dii;
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(DownloadInfoItem *)dii;
 
 @end

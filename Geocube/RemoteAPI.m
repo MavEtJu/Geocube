@@ -815,22 +815,26 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (void)trackablesMine
+- (void)trackablesMine:(DownloadInfoItem *)dii
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
-    NSDictionary *json = [liveAPI GetOwnedTrackables];
+    [dii setChunksTotal:1];
+    [dii setChunksCount:1];
+    NSDictionary *json = [liveAPI GetOwnedTrackables:dii];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
 
-- (void)trackablesInventory
+- (void)trackablesInventory:(DownloadInfoItem *)dii
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
-    NSDictionary *json = [liveAPI GetUsersTrackables];
+    [dii setChunksTotal:1];
+    [dii setChunksCount:1];
+    NSDictionary *json = [liveAPI GetUsersTrackables:dii];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
@@ -840,7 +844,7 @@
     if (account.protocol != PROTOCOL_LIVEAPI)
         return nil;
 
-    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code];
+    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:nil];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 

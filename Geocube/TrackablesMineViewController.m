@@ -43,6 +43,8 @@ enum {
 
     tbs = [dbTrackable dbAllMine];
 
+    [self makeDownloadInfo];
+
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuUpdate label:@"Update"];
 }
@@ -90,6 +92,9 @@ enum {
 
 - (void)menuUpdate
 {
+    [self showDownloadInfo];
+    DownloadInfoItem *dii = [downloadInfoView addDownload:@"Download trackables information"];
+
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == PROTOCOL_LIVEAPI) {
             // Get rid of any old data
@@ -100,19 +105,22 @@ enum {
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];
-            [a.remoteAPI trackablesMine];
+            [a.remoteAPI trackablesMine:dii];
             tbs = [dbTrackable dbAllMine];
-            [self.tableView reloadData];
+            [self reloadDataMainQueue];
             *stop = YES;
         }
     }];
+
+    [downloadInfoView removeDownload:dii];
+    [self hideDownloadInfo];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
         case menuUpdate:
-            [self menuUpdate];
+            [self performSelectorInBackground:@selector(menuUpdate) withObject:nil];
             return;
     }
 

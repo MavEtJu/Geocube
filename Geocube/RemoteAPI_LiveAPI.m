@@ -626,7 +626,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetUsersTrackables
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(DownloadInfoItem *)dii
 {
     NSLog(@"GetUsersTrackables");
 
@@ -646,7 +646,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -667,7 +667,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetOwnedTrackables
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(DownloadInfoItem *)dii
 {
     NSLog(@"GetOwnedTrackables");
 
@@ -687,7 +687,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -708,7 +708,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
@@ -716,7 +716,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
