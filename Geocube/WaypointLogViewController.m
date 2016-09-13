@@ -500,7 +500,7 @@ enum {
     [bezelManager showBezel:self];
     [bezelManager setText:@"Uploading log"];
 
-    NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables];
+    NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables downloadInfoItem:nil];
 
     [bezelManager removeBezel];
 

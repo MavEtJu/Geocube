@@ -60,11 +60,6 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem
-{
-    return [self downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:nil];
-}
-
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -101,11 +96,6 @@
     return [self sendSynchronousRequest:urlRequest returningResponse:response error:error downloadInfoItem:dii];
 }
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
-{
-    return [self downloadSynchronous:urlRequest returningResponse:response error:error downloadInfoItem:nil];
-}
-
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
 {
     return [self imageSynchronousRequest:urlRequest returningResponse:response error:error];
@@ -133,11 +123,6 @@
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     return result;
-}
-
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
-{
-    return [self sendSynchronousRequest:urlRequest returningResponse:responsePtr error:errorPtr downloadInfoItem:nil];
 }
 
 - (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoItem:(DownloadInfoItem *)dii

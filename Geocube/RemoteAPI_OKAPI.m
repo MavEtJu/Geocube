@@ -129,7 +129,7 @@
     return json;
 }
 
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite
+- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_logs_submit");
 
@@ -137,7 +137,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -158,11 +158,6 @@
    return -1;
 }
 
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname
-{
-    return [self services_caches_formatters_gpx:wpname downloadInfoItem:nil];
-}
-
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_caches_formatters_gpx: %@", wpname);
@@ -180,7 +175,7 @@
     return retbody;
 }
 
-- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset
+- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
@@ -188,13 +183,21 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:dii];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSLog(@"retbody: %@", retbody);
+
+    if (error != nil || response.statusCode != 200)
+        return nil;
 
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (error != nil)
@@ -202,7 +205,7 @@
     return json;
 }
 
-- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes
+- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(DownloadInfoItem *)dii
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 
@@ -212,7 +215,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

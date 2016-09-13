@@ -22,10 +22,9 @@
 @interface RemoteAPI_OKAPI : RemoteAPI_Template
 
 - (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(DownloadInfoItem *)dii;
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite;
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname;
+- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(DownloadInfoItem *)dii;
 - (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
-- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset;
-- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcode;
+- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(DownloadInfoItem *)dii;
+- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcode downloadInfoItem:(DownloadInfoItem *)dii;
 
 @end

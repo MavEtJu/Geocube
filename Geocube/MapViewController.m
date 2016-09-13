@@ -187,6 +187,8 @@ enum {
     [self initMapIcons];
     [self recalculateRects];
 
+    [self makeDownloadInfo];
+
     needsRefresh = YES;
     isVisible = NO;
     [waypointManager startDelegation:self];
@@ -829,17 +831,8 @@ enum {
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
+    [self showDownloadInfo];
 
-    [downloadsImportsViewController showImportManager];
-    [downloadManager resetForegroundDownload];
-    [downloadsImportsViewController resetImports];
-    [downloadManager setDescription:[NSString stringWithFormat:@"Load waypoints"]];
-
-    [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:wp];
-}
-
-- (void)runLoadWaypoints:(dbWaypoint *)wp
-{
     NSArray *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -847,24 +840,48 @@ enum {
             return;
         accountsFound++;
 
-        NSObject *d;
-        [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d];
+        DownloadInfoItem *dii = [downloadInfoView addDownload];
+        [dii setDescription:account.site];
 
-        if (d == nil) {
-            [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
-            return;
-        }
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
+        [d setObject:wp forKey:@"wp"];
+        [d setObject:dii forKey:@"dii"];
+        [d setObject:account forKey:@"account"];
 
-        [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
+        [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
     }];
+
 
     if (accountsFound == 0) {
         [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
         return;
     }
+}
 
-    [dbWaypoint dbUpdateLogStatus];
-    [waypointManager needsRefreshAll];
+- (void)runLoadWaypoints:(NSMutableDictionary *)dict
+{
+    DownloadInfoItem *dii = [dict objectForKey:@"dii"];
+    dbWaypoint *wp = [dict objectForKey:@"wp"];
+    dbAccount *account = [dict objectForKey:@"account"];
+
+    NSObject *d;
+    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:dii];
+
+    [downloadInfoView removeDownload:dii];
+
+    if (d == nil) {
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
+        return;
+    }
+
+    [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
+
+    if ([downloadInfoView hasDownloads] == NO) {
+        [self hideDownloadInfo];
+
+        [dbWaypoint dbUpdateLogStatus];
+        [waypointManager needsRefreshAll];
+    }
 }
 
 - (void)menuRecenter

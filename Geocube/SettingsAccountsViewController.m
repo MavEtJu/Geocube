@@ -306,7 +306,7 @@ enum {
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:nil];
 
     if (error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);

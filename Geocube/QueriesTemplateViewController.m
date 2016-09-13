@@ -84,7 +84,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
             account = a;
             if (a.canDoRemoteStuff == YES) {
                 NSArray *queries = nil;
-                [a.remoteAPI listQueries:&queries];
+                [a.remoteAPI listQueries:&queries downloadInfoItem:nil];
                 if (qs == nil)
                     failure = YES;
                 qs = queries;
