@@ -1968,7 +1968,8 @@
 				E857600C1B85DF5600F34483 /* Themes */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
-				E8EC073C1D39C526009B8EB1 /* Downloads and Imports */,
+				E8E4400D1D88A85700BECB49 /* InfoViewer */,
+				E8EC073C1D39C526009B8EB1 /* Download managers */,
 			);
 			name = "GUI - base";
 			sourceTree = "<group>";
@@ -1980,6 +1981,21 @@
 				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
 			);
 			name = "Old cruft";
+			sourceTree = "<group>";
+		};
+		E8E4400D1D88A85700BECB49 /* InfoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				E87DF78C1D8564A800F16B5A /* InfoViewer.h */,
+				E87DF78D1D8564A800F16B5A /* InfoVIewer.m */,
+				E87DF7901D856A7100F16B5A /* InfoDownloadItem.h */,
+				E87DF7911D856A7100F16B5A /* InfoDownloadItem.m */,
+				E8E440051D88A55500BECB49 /* InfoImportItem.h */,
+				E8E440061D88A55500BECB49 /* InfoImportItem.m */,
+				E8E440081D88A56A00BECB49 /* InfoImageItem.h */,
+				E8E440091D88A56A00BECB49 /* InfoImageItem.m */,
+			);
+			name = InfoViewer;
 			sourceTree = "<group>";
 		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
@@ -2050,7 +2066,7 @@
 			name = CMRangeSlider;
 			sourceTree = "<group>";
 		};
-		E8EC073C1D39C526009B8EB1 /* Downloads and Imports */ = {
+		E8EC073C1D39C526009B8EB1 /* Download managers */ = {
 			isa = PBXGroup;
 			children = (
 				E8E4400C1D88A7CF00BECB49 /* Old cruft */,
@@ -2060,16 +2076,8 @@
 				E8EC073E1D39D898009B8EB1 /* DownloadManager.m */,
 				E8EC07401D39E887009B8EB1 /* ImportManager.h */,
 				E8EC07411D39E887009B8EB1 /* ImportManager.m */,
-				E87DF78C1D8564A800F16B5A /* InfoViewer.h */,
-				E87DF78D1D8564A800F16B5A /* InfoVIewer.m */,
-				E87DF7901D856A7100F16B5A /* InfoDownloadItem.h */,
-				E87DF7911D856A7100F16B5A /* InfoDownloadItem.m */,
-				E8E440051D88A55500BECB49 /* InfoImportItem.h */,
-				E8E440061D88A55500BECB49 /* InfoImportItem.m */,
-				E8E440081D88A56A00BECB49 /* InfoImageItem.h */,
-				E8E440091D88A56A00BECB49 /* InfoImageItem.m */,
 			);
-			name = "Downloads and Imports";
+			name = "Download managers";
 			sourceTree = "<group>";
 		};
 		E8F5704A1B3F7255003F020C = {
