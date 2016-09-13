@@ -94,6 +94,8 @@ enum {
     [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
 
+    [self makeDownloadInfo];
+
     isVisible = NO;
     needsRefresh = YES;
     [waypointManager startDelegation:self];
@@ -461,13 +463,14 @@ enum {
     NSArray *wps = [NSArray arrayWithArray:waypoints];
 
     // XXX group them by account
-
-    [bezelManager showBezel:self];
-    [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n0 / %ld", (unsigned long)[wps count]]];
+    [self showDownloadInfo];
+    DownloadInfoItem *dii = [downloadInfoView addDownload];
 
     __block BOOL failure = NO;
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [bezelManager setText:[NSString stringWithFormat:@"Reloading waypoints\n%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+        [dii setDescription:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
+        [downloadInfoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+        [dii resetBytesChunks];
 
         // Just ignore this stuff
         if (wp.account == nil)
@@ -476,7 +479,7 @@ enum {
         if ([wp.account canDoRemoteStuff] == NO)
             return;
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:dii];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
             failure = YES;
@@ -488,7 +491,8 @@ enum {
 
     [self reloadDataMainQueue];
 
-    [bezelManager removeBezel];
+    [downloadInfoView removeDownload:dii];
+    [self hideDownloadInfo];
 
     if (failure == NO)
         [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
