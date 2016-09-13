@@ -57,9 +57,7 @@ extern ConfigManager *configManager;
 extern MHTabBarController *browserTabController;
 extern BrowserBrowserViewController *browserViewController;
 
-// Download and Import manager and view controller
-extern MHTabBarController *downloadTabController;
-extern DownloadsImportsViewController *downloadsImportsViewController;
+// Download and Import manager
 extern DownloadManager *downloadManager;
 extern ImportManager *importManager;
 

@@ -169,7 +169,7 @@
 
 - (void)resetImports
 {
-    [downloadsImportsViewController resetImports];
+//    [downloadsImportsViewController resetImports];
 }
 
 /////////////////////////////////////////////////////////

@@ -54,9 +54,7 @@ ConfigManager *configManager = nil;
 MHTabBarController *browserTabController = nil;
 BrowserBrowserViewController *browserViewController = nil;
 
-// Download manager and view controller
-MHTabBarController *downloadTabController = nil;
-DownloadsImportsViewController *downloadsImportsViewController = nil;
+// Download manager
 DownloadManager *downloadManager = nil;
 ImportManager *importManager = nil;
 

@@ -403,18 +403,6 @@
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
 
-            case RC_DOWNLOADS:
-                controllers = [NSMutableArray array];
-
-                vc = [[DownloadsImportsViewController alloc] init];
-                vc.title = @"Downloads";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
-                TABBARCONTROLLER(RC_DOWNLOADS, controllers)
-                break;
-
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 
@@ -437,15 +425,9 @@
     browserViewController = [nvc.viewControllers objectAtIndex:0];
 
     // Download View Controller and Manager
-    downloadTabController = [_AppDelegate.tabBars objectAtIndex:RC_DOWNLOADS];
-    nvc = [downloadTabController.viewControllers objectAtIndex:VC_DOWNLOADS_DOWNLOADS];
-    downloadsImportsViewController = [nvc.viewControllers objectAtIndex:0];
     downloadManager = [[DownloadManager alloc] init];
-    downloadManager.downloadsImportsDelegate = downloadsImportsViewController;
     importManager = [[ImportManager alloc] init];
-    importManager.downloadsImportsDelegate = downloadsImportsViewController;
     imagesDownloadManager = [[ImagesDownloadManager alloc] init];
-    imagesDownloadManager.delegate = downloadsImportsViewController;
 
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];

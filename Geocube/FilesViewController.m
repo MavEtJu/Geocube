@@ -391,8 +391,8 @@ enum {
             __block NSNumber *filesize = [filesSizes objectAtIndex:row];
             GCStringFilename *sfn = [[GCStringFilename alloc] initWithString:filename];
 
-            [downloadsImportsViewController showImportManager];
-            [downloadsImportsViewController resetImports];
+//            [downloadsImportsViewController showImportManager];
+//            [downloadsImportsViewController resetImports];
 
             [importManager addToQueue:sfn group:group account:[accounts objectAtIndex:selectedIndex] options:RUN_OPTION_NONE];
 

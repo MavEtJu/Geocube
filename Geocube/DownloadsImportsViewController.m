@@ -96,18 +96,18 @@
 
 - (void)showDownloadManager
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_AppDelegate switchController:RC_DOWNLOADS];
-        [downloadTabController setSelectedIndex:VC_DOWNLOADS_DOWNLOADS animated:YES];
-    }];
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        [_AppDelegate switchController:RC_DOWNLOADS];
+//        [downloadTabController setSelectedIndex:VC_DOWNLOADS_DOWNLOADS animated:YES];
+//    }];
 }
 
 - (void)showImportManager
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_AppDelegate switchController:RC_DOWNLOADS];
-        [downloadTabController setSelectedIndex:VC_DOWNLOADS_DOWNLOADS animated:YES];
-    }];
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        [_AppDelegate switchController:RC_DOWNLOADS];
+//        [downloadTabController setSelectedIndex:VC_DOWNLOADS_DOWNLOADS animated:YES];
+//    }];
 }
 
 - (void)viewDidLoad

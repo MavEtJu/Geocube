@@ -50,12 +50,12 @@
 
 - (void)resetForegroundDownload
 {
-    [downloadsImportsViewController resetForegroundDownload];
+//    [downloadsImportsViewController resetForegroundDownload];
 }
 
 - (void)resetBackgroundDownload
 {
-    [downloadsImportsViewController resetBackgroundDownload];
+//    [downloadsImportsViewController resetBackgroundDownload];
 }
 
 /////////////////////////////////////////////////////////////////////////

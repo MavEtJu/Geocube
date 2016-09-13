@@ -1959,6 +1959,29 @@
 			name = Menus;
 			sourceTree = "<group>";
 		};
+		E8E4400B1D88A6D800BECB49 /* GUI - base */ = {
+			isa = PBXGroup;
+			children = (
+				E82FBB2B1B4613E90009AB6D /* Base */,
+				E85760161B85E08F00F34483 /* Geocube */,
+				E8740FE91B509540002527DA /* TableViewCells */,
+				E857600C1B85DF5600F34483 /* Themes */,
+				E867E8381B535A3A00CB126A /* MapViewControllers */,
+				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
+				E8EC073C1D39C526009B8EB1 /* Downloads and Imports */,
+			);
+			name = "GUI - base";
+			sourceTree = "<group>";
+		};
+		E8E4400C1D88A7CF00BECB49 /* Old cruft */ = {
+			isa = PBXGroup;
+			children = (
+				E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */,
+				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
+			);
+			name = "Old cruft";
+			sourceTree = "<group>";
+		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -2030,12 +2053,11 @@
 		E8EC073C1D39C526009B8EB1 /* Downloads and Imports */ = {
 			isa = PBXGroup;
 			children = (
+				E8E4400C1D88A7CF00BECB49 /* Old cruft */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E8EC073D1D39D898009B8EB1 /* DownloadManager.h */,
 				E8EC073E1D39D898009B8EB1 /* DownloadManager.m */,
-				E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */,
-				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
 				E8EC07401D39E887009B8EB1 /* ImportManager.h */,
 				E8EC07411D39E887009B8EB1 /* ImportManager.m */,
 				E87DF78C1D8564A800F16B5A /* InfoViewer.h */,
@@ -2085,6 +2107,7 @@
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570A81B3FE522003F020C /* Database */,
 				E8F570931B3F7EE1003F020C /* External modules */,
+				E8E4400B1D88A6D800BECB49 /* GUI - base */,
 				E8F570B61B3FF266003F020C /* GUI */,
 				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
@@ -2268,12 +2291,6 @@
 		E8F570B61B3FF266003F020C /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				E82FBB2B1B4613E90009AB6D /* Base */,
-				E85760161B85E08F00F34483 /* Geocube */,
-				E8740FE91B509540002527DA /* TableViewCells */,
-				E857600C1B85DF5600F34483 /* Themes */,
-				E867E8381B535A3A00CB126A /* MapViewControllers */,
-				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E857078F1CA1E77B00467CE0 /* Navigate */,
 				E857078E1CA1E6FE00467CE0 /* Waypoints */,
 				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
@@ -2288,7 +2305,6 @@
 				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
-				E8EC073C1D39C526009B8EB1 /* Downloads and Imports */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
