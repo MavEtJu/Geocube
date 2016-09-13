@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadInfoView ()
+@interface InfoViewer ()
 {
     NSMutableArray *downloads;
     GCLabel *header;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation DownloadInfoView
+@implementation InfoViewer
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -46,60 +46,60 @@
     return ([downloads count] != 0);
 }
 
-- (DownloadInfoItem *)addDownload:(NSString *)description
+- (InfoDownloadItem *)addDownload:(NSString *)description
 {
-    DownloadInfoItem *dii = [self addDownload];
-    [dii setDescription:description];
-    return dii;
+    InfoDownloadItem *idi = [self addDownload];
+    [idi setDescription:description];
+    return idi;
 }
 
-- (DownloadInfoItem *)addDownload
+- (InfoDownloadItem *)addDownload
 {
     __block NSInteger max = 0;
-    DownloadInfoItem *dii = [[DownloadInfoItem alloc] init];
+    InfoDownloadItem *idi = [[InfoDownloadItem alloc] init];
 
     header = [[GCLabel alloc] initWithFrame:CGRectZero];
     header.text = @"Downloads";
     header.backgroundColor = [UIColor lightGrayColor];
 
-    dii.view = [[GCView alloc] initWithFrame:(CGRectZero)];
-    dii.view.backgroundColor = [UIColor lightGrayColor];
+    idi.view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    idi.view.backgroundColor = [UIColor lightGrayColor];
 
-    dii.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    dii.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    dii.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    dii.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    idi.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    idi.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    idi.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    idi.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
         }];
-        dii._id = max + 1;
-        [downloads addObject:dii];
+        idi._id = max + 1;
+        [downloads addObject:idi];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
 
-        [dii.view addSubview:dii.labelDesc];
-        [dii.view addSubview:dii.labelURL];
-        [dii.view addSubview:dii.labelChunks];
-        [dii.view addSubview:dii.labelBytes];
-        [dii calculateRects];
+        [idi.view addSubview:idi.labelDesc];
+        [idi.view addSubview:idi.labelURL];
+        [idi.view addSubview:idi.labelChunks];
+        [idi.view addSubview:idi.labelBytes];
+        [idi calculateRects];
 
-        [self addSubview:dii.view];
+        [self addSubview:idi.view];
         [self calculateRects];
     }];
 
-    return dii;
+    return idi;
 }
 
-- (void)removeDownload:(DownloadInfoItem *)dii
+- (void)removeDownload:(InfoDownloadItem *)idi
 {
-    [dii.view removeFromSuperview];
+    [idi.view removeFromSuperview];
 
     @synchronized (downloads) {
-        [downloads removeObject:dii];
+        [downloads removeObject:idi];
     }
 
     [self calculateRects];
@@ -126,7 +126,7 @@
     header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
     height += header.font.lineHeight;
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             d.view.frame = CGRectMake(0, height, width, d.view.frame.size.height);
             height += d.view.frame.size.height;
         }];
@@ -137,7 +137,7 @@
 - (void)viewWillTransitionToSize
 {
     @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(DownloadInfoItem *d, NSUInteger idx, BOOL *stop) {
+        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }

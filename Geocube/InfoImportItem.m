@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPX : ImportTemplate <NSXMLParserDelegate>
+@interface InfoImportItem ()
+
+@end
+
+@implementation InfoImportItem
 
 @end

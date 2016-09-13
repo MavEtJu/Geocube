@@ -69,18 +69,18 @@ enum {
     NSObject *retjson;
     NSObject *retgpx;
 
-    [self showDownloadInfo];
-    DownloadInfoItem *dii = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
+    [self showInfoView];
+    InfoDownloadItem *idi = [infoView addDownload:[pq objectForKey:@"Name"]];
 
-    [downloadInfoView setHeaderSuffix:@"JSON"];
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:dii];
+    [infoView setHeaderSuffix:@"JSON"];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:idi];
 
-    [dii resetBytesChunks];
-    [downloadInfoView setHeaderSuffix:@"GPX"];
-    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:dii];
+    [idi resetBytesChunks];
+    [infoView setHeaderSuffix:@"GPX"];
+    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:idi];
 
-    [downloadInfoView removeDownload:dii];
-    [self hideDownloadInfo];
+    [infoView removeDownload:idi];
+    [self hideInfoView];
 
     if (retjson == nil && retgpx == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];

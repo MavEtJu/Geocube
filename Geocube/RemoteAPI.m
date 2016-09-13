@@ -219,12 +219,12 @@
     }
 }
 
-- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoDownloadItem *)idi
 {
-    return [self UserStatistics:account.accountname_string retDict:retDict downloadInfoItem:dii];
+    return [self UserStatistics:account.accountname_string retDict:retDict downloadInfoItem:idi];
 }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict downloadInfoItem:(InfoDownloadItem *)idi
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -241,9 +241,9 @@
     [ret setValue:@"" forKey:@"recommendations_received"];
 
     if (account.protocol == PROTOCOL_OKAPI) {
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
-        GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username downloadInfoItem:dii];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
+        GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username downloadInfoItem:idi];
 
         if (dict == nil)
             return REMOTEAPI_APIFAILED;
@@ -258,11 +258,11 @@
     }
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        [dii setChunksTotal:2];
-        [dii setChunksCount:1];
-        NSDictionary *dict1 = [liveAPI GetYourUserProfile:dii];
-        [dii setChunksCount:2];
-        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser:dii];
+        [idi setChunksTotal:2];
+        [idi setChunksCount:1];
+        NSDictionary *dict1 = [liveAPI GetYourUserProfile:idi];
+        [idi setChunksCount:2];
+        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser:idi];
 
         if (dict1 == nil && dict2 == nil)
             return REMOTEAPI_APIFAILED;
@@ -283,11 +283,11 @@
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        [dii setChunksTotal:2];
-        [dii setChunksCount:1];
-        NSDictionary *dict1 = [gca cacher_statistic__finds:username downloadInfoItem:dii];
-        [dii setChunksCount:2];
-        NSDictionary *dict2 = [gca cacher_statistic__hides:username downloadInfoItem:dii];
+        [idi setChunksTotal:2];
+        [idi setChunksCount:1];
+        NSDictionary *dict1 = [gca cacher_statistic__finds:username downloadInfoItem:idi];
+        [idi setChunksCount:2];
+        NSDictionary *dict2 = [gca cacher_statistic__hides:username downloadInfoItem:idi];
 
         if ([dict1 count] == 0 && [dict2 count] == 0)
             return REMOTEAPI_APIFAILED;
@@ -304,14 +304,14 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSData *imgdata = nil;
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile downloadInfoItem:dii];
+        GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile downloadInfoItem:idi];
         if (json == nil) {
             [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - json = nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -357,17 +357,17 @@
                     NSAssert(NO, @"Unknown tb.logtype");
             }
             dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:logtype default:dflt];
-            [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged downloadInfoItem:dii];
+            [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged downloadInfoItem:idi];
         }];
         return REMOTEAPI_OK;
     }
 
     if (account.protocol == PROTOCOL_OKAPI) {
-        return [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite downloadInfoItem:dii];
+        return [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite downloadInfoItem:idi];
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating downloadInfoItem:dii];
+        GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating downloadInfoItem:idi];
 
         if (json == nil) {
             [self alertError:@"[GCA] my_log_new/log: json == nil" code:REMOTEAPI_APIFAILED];
@@ -390,7 +390,7 @@
         }
 
         if (image != nil) {
-            json = [gca my_gallery_cache_add:waypoint.wpt_name log_id:log_id data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:dii];
+            json = [gca my_gallery_cache_add:waypoint.wpt_name log_id:log_id data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:idi];
             if (json == nil) {
                 [self alertError:@"[GCA] my_log_new/image: json == nil" code:REMOTEAPI_APIFAILED];
                 return REMOTEAPI_APIFAILED;
@@ -414,15 +414,15 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(InfoDownloadItem *)idi
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
-        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name downloadInfoItem:dii];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
+        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name downloadInfoItem:idi];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -433,9 +433,9 @@
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_OKAPI) {
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
-        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name downloadInfoItem:dii];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
+        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name downloadInfoItem:idi];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
         [imp parseBefore];
@@ -446,9 +446,9 @@
         return REMOTEAPI_OK;
     }
     if (account.protocol == PROTOCOL_GCA) {
-        [dii setChunksTotal:2];
-        [dii setChunksCount:1];
-        GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name downloadInfoItem:dii];
+        [idi setChunksTotal:2];
+        [idi setChunksCount:1];
+        GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name downloadInfoItem:idi];
         if (json == nil) {
             [self alertError:@"[GCA] loadWaypoint/cache__json: json == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -469,8 +469,8 @@
         [imp parseDictionary:json];
         [imp parseAfter];
 
-        [dii setChunksCount:2];
-        json = [gca logs_cache:waypoint.wpt_name downloadInfoItem:dii];
+        [idi setChunksCount:2];
+        json = [gca logs_cache:waypoint.wpt_name downloadInfoItem:idi];
         if (json == nil) {
             [self alertError:@"[GCA] loadWaypoint/logs_cache: json == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -507,7 +507,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject downloadInfoItem:(InfoDownloadItem *)idi
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -519,10 +519,10 @@
             return REMOTEAPI_APIDISABLED;
         }
 
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
 
-        GCDictionaryGCA *wps = [gca caches_gca:center downloadInfoItem:dii];
+        GCDictionaryGCA *wps = [gca caches_gca:center downloadInfoItem:idi];
         if (wps == nil) {
             [self alertError:@"[GCA] caches_gca: wps == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -540,14 +540,14 @@
         NSMutableArray *logs = [NSMutableArray arrayWithCapacity:50];
         NSArray *ws = [wps objectForKey:@"geocaches"];
 
-        [dii setChunksTotal:[ws count]];
-        [dii setChunksCount:1];
-        [dii resetBytes];
+        [idi setChunksTotal:[ws count]];
+        [idi setChunksCount:1];
+        [idi resetBytes];
         [ws enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-            [dii setChunksCount:idx + 1];
+            [idi setChunksCount:idx + 1];
             NSString *wpname = [wp objectForKey:@"waypoint"];
-            [dii resetBytes];
-            NSDictionary *ls = [gca logs_cache:wpname downloadInfoItem:dii];
+            [idi resetBytes];
+            NSDictionary *ls = [gca logs_cache:wpname downloadInfoItem:idi];
             NSArray *lss = [ls objectForKey:@"logs"];
             [lss enumerateObjectsUsingBlock:^(NSDictionary *l, NSUInteger idx, BOOL * _Nonnull stop) {
                 [logs addObject:l];
@@ -566,22 +566,22 @@
         if ([account canDoRemoteStuff] == NO)
             return REMOTEAPI_APIDISABLED;
 
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
-        NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center downloadInfoItem:dii];
+        NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center downloadInfoItem:idi];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
         NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];
         NSInteger done = 0;
-        [dii setChunksTotal:(total / 20) + 1];
+        [idi setChunksTotal:(total / 20) + 1];
         if (total != 0) {
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
-                [dii setChunksCount:(done / 20) + 1];
+                [idi setChunksCount:(done / 20) + 1];
                 done += 20;
-                json = [liveAPI GetMoreGeocaches:done downloadInfoItem:dii];
+                json = [liveAPI GetMoreGeocaches:done downloadInfoItem:idi];
                 if ([json objectForKey:@"Geocaches"] != nil)
                     [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             } while (done < total);
@@ -602,7 +602,7 @@
         BOOL more = NO;
         NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
         do {
-            NSDictionary *json = [okapi services_caches_search_nearest:center offset:offset downloadInfoItem:dii];
+            NSDictionary *json = [okapi services_caches_search_nearest:center offset:offset downloadInfoItem:idi];
             if (json == nil)
                 return REMOTEAPI_APIFAILED;
             more = [[json objectForKey:@"more"] boolValue];
@@ -620,7 +620,7 @@
 
         if ([wpcodes count] == 0)
             return REMOTEAPI_OK;
-        NSDictionary *json = [okapi services_caches_geocaches:wpcodes downloadInfoItem:dii];
+        NSDictionary *json = [okapi services_caches_geocaches:wpcodes downloadInfoItem:idi];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -640,10 +640,10 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoDownloadItem *)idi
 {
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:dii];
+        NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:idi];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
         return REMOTEAPI_OK;
@@ -652,7 +652,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoDownloadItem *)idi
 {
     /* Returns: array of dicts of
      * - Name
@@ -664,7 +664,7 @@
 
     *qs = nil;
     if (account.protocol == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI GetPocketQueryList:dii];
+        NSDictionary *json = [liveAPI GetPocketQueryList:idi];
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
@@ -688,7 +688,7 @@
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        NSDictionary *json = [gca my_query_list__json:dii];
+        NSDictionary *json = [gca my_query_list__json:idi];
         if (json == nil) {
             [self alertError:@"[GCA] ListQueries: json == nil" code:REMOTEAPI_APIFAILED];
             return REMOTEAPI_APIFAILED;
@@ -722,7 +722,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoDownloadItem *)idi
 {
     *retObj = nil;
 
@@ -735,11 +735,11 @@
         NSInteger offset = 0;
         NSInteger increase = 25;
 
-        [dii setChunksTotal:0];
-        [dii setChunksCount:1];
+        [idi setChunksTotal:0];
+        [idi setChunksCount:1];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
-            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoItem:dii];
+            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoItem:idi];
             if (json == nil)
                 break;
 
@@ -754,10 +754,10 @@
             offset += found;
             tried += increase;
             max = [[json objectForKey:@"PQCount"] integerValue];
-            [dii setChunksTotal:1 + (max / increase)];
-            [dii setChunksCount:offset / increase];
+            [idi setChunksTotal:1 + (max / increase)];
+            [idi setChunksCount:offset / increase];
         } while (tried < max);
-        [dii setChunksTotal:1 + (max / increase)];
+        [idi setChunksTotal:1 + (max / increase)];
 
         [result setObject:geocaches forKey:@"Geocaches"];
 
@@ -766,9 +766,9 @@
     }
 
     if (account.protocol == PROTOCOL_GCA) {
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
-        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:dii];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
+        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:idi];
 
         if (json == nil) {
             [self alertError:@"[GCA] retrieveQuery: json == nil" code:REMOTEAPI_APIFAILED];
@@ -791,13 +791,13 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(DownloadInfoItem *)dii
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoDownloadItem *)idi
 {
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {
-        [dii setChunksTotal:1];
-        [dii setChunksCount:1];
-        NSString *gpx = [gca my_query_gpx:_id downloadInfoItem:dii];
+        [idi setChunksTotal:1];
+        [idi setChunksCount:1];
+        NSString *gpx = [gca my_query_gpx:_id downloadInfoItem:idi];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
         *retObj = gpx;
@@ -807,36 +807,36 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (void)trackablesMine:(DownloadInfoItem *)dii
+- (void)trackablesMine:(InfoDownloadItem *)idi
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
-    [dii setChunksTotal:1];
-    [dii setChunksCount:1];
-    NSDictionary *json = [liveAPI GetOwnedTrackables:dii];
+    [idi setChunksTotal:1];
+    [idi setChunksCount:1];
+    NSDictionary *json = [liveAPI GetOwnedTrackables:idi];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
 
-- (void)trackablesInventory:(DownloadInfoItem *)dii
+- (void)trackablesInventory:(InfoDownloadItem *)idi
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
         return;
 
-    [dii setChunksTotal:1];
-    [dii setChunksCount:1];
-    NSDictionary *json = [liveAPI GetUsersTrackables:dii];
+    [idi setChunksTotal:1];
+    [idi setChunksCount:1];
+    NSDictionary *json = [liveAPI GetUsersTrackables:idi];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 }
 
-- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(DownloadInfoItem *)dii
+- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(InfoDownloadItem *)idi
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
         return nil;
 
-    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:dii];
+    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:idi];
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 

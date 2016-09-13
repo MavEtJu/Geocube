@@ -120,7 +120,7 @@
 
 /**************************************************************************/
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoDownloadItem *)idi
 {
     NSLog(@"GetYourUserProfile");
 
@@ -160,7 +160,7 @@
     urlRequest.HTTPBody = body;
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:idi];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -187,14 +187,14 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoDownloadItem *)idi
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:idi];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     NSData *data = [retDict objectForKey:@"data"];
@@ -220,7 +220,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
@@ -286,7 +286,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -308,7 +308,7 @@
     return retJson;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
@@ -346,7 +346,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -367,7 +367,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
@@ -413,7 +413,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -434,7 +434,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
@@ -466,7 +466,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -487,7 +487,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryList:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoDownloadItem *)idi
 {
     NSLog(@"GetPocketQueryList");
 
@@ -495,7 +495,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -516,7 +516,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
@@ -525,7 +525,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -546,7 +546,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
@@ -555,7 +555,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -576,7 +576,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"UpdateCacheNote:%@", wpt_name);
 
@@ -594,7 +594,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -615,7 +615,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetUsersTrackables:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoDownloadItem *)idi
 {
     NSLog(@"GetUsersTrackables");
 
@@ -635,7 +635,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -656,7 +656,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetOwnedTrackables:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoDownloadItem *)idi
 {
     NSLog(@"GetOwnedTrackables");
 
@@ -676,7 +676,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -697,7 +697,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
@@ -705,7 +705,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {
@@ -726,7 +726,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"CreateTrackableLog:%@", tb.ref);
 
@@ -762,7 +762,7 @@
 
     NSHTTPURLResponse *response = nil;
     error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     if (error != nil || response.statusCode != 200) {

@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadInfoItem ()
+@interface InfoDownloadItem ()
 {
     NSInteger chunksTotal, chunksCount;
     NSInteger bytesTotal, bytesCount;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation DownloadInfoItem
+@implementation InfoDownloadItem
 
 @synthesize view;
 @synthesize labelDesc, labelURL, labelBytes, labelChunks;

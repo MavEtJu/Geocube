@@ -135,8 +135,10 @@
 #import "GCTextblock.h"
 #import "GCView.h"
 
-#import "DownloadInfoItem.h"
-#import "DownloadInfoView.h"
+#import "InfoDownloadItem.h"
+#import "InfoImageItem.h"
+#import "InfoImportItem.h"
+#import "InfoViewer.h"
 #import "DownloadManager.h"
 #import "ImportManager.h"
 #import "DownloadsImportsViewController.h"

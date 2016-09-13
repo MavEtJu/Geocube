@@ -92,14 +92,14 @@
         [delegate GCAAuthSuccessful:cookie];
 }
 
-- (NSData *)loadDataForeground:(NSString *)urlString downloadInfoItem:(DownloadInfoItem *)dii
+- (NSData *)loadDataForeground:(NSString *)urlString downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error downloadInfoItem:dii];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error downloadInfoItem:idi];
 
     if (response.statusCode == 403) {   // Forbidden
         remoteAPI.account.gca_cookie_value = @"";
@@ -113,18 +113,18 @@
     return data;
 }
 
-- (NSString *)loadJSONForeground:(NSString *)urlString downloadInfoItem:(DownloadInfoItem *)dii
+- (NSString *)loadJSONForeground:(NSString *)urlString downloadInfoItem:(InfoDownloadItem *)idi
 {
-    return [[NSString alloc] initWithData:[self loadDataForeground:urlString downloadInfoItem:dii] encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:[self loadDataForeground:urlString downloadInfoItem:idi] encoding:NSUTF8StringEncoding];
 }
 
-- (NSArray *)loadPage:(NSString *)urlString downloadInfoItem:(DownloadInfoItem *)dii
+- (NSArray *)loadPage:(NSString *)urlString downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:idi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -146,13 +146,13 @@
     return lines;
 }
 
-- (NSArray *)loadPageForeground:(NSString *)urlString downloadInfoItem:(DownloadInfoItem *)dii
+- (NSArray *)loadPageForeground:(NSString *)urlString downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:idi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -174,7 +174,7 @@
     return lines;
 }
 
-- (NSArray *)postPageForm:(NSString *)baseUrl params:(NSDictionary *)params downloadInfoItem:(DownloadInfoItem *)dii
+- (NSArray *)postPageForm:(NSString *)baseUrl params:(NSDictionary *)params downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -192,7 +192,7 @@
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:idi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -208,7 +208,7 @@
     return lines;
 }
 
-- (NSArray *)postPageMultiForm:(NSString *)baseUrl dataField:(NSString *)dataField params:(NSDictionary *)params downloadInfoItem:(DownloadInfoItem *)dii
+- (NSArray *)postPageMultiForm:(NSString *)baseUrl dataField:(NSString *)dataField params:(NSDictionary *)params downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -240,7 +240,7 @@
     [req setHTTPBody:body];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:dii];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:req semaphore:sem downloadInfoItem:idi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -281,12 +281,12 @@
 
 // ------------------------------------------------
 
-- (GCDictionaryGCA *)my_query_list__json:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)my_query_list__json:(InfoDownloadItem *)idi
 {
     NSLog(@"my_query_list__json");
 
     NSString *urlString = @"http://geocaching.com.au/my/query/list.json";
-    NSData *data = [self loadDataForeground:urlString downloadInfoItem:dii];
+    NSData *data = [self loadDataForeground:urlString downloadInfoItem:idi];
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
@@ -299,13 +299,13 @@
     return json;
 }
 
-- (NSArray *)my_query:(DownloadInfoItem *)dii
+- (NSArray *)my_query:(InfoDownloadItem *)idi
 {
     NSLog(@"my_query");
     // Obsolete, do not use aymore
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query"];
-    NSArray *lines = [self loadPageForeground:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPageForeground:urlString downloadInfoItem:idi];
 
     NSError *e;
     NSRegularExpression *r1 = [NSRegularExpression regularExpressionWithPattern:@"<td.*queryid='(\\d+)'>(.*?)</td>" options:0 error:&e];
@@ -327,7 +327,7 @@
             NSLog(@"%@ - %@", _id, name);
 
             NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/count/%@", _id];
-            NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+            NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
             [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSArray *matches = [r2 matchesInString:l options:0 range:NSMakeRange(0, [l length])];
                 for (NSTextCheckingResult *match in matches) {
@@ -348,12 +348,12 @@
     return as;
 }
 
-- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"cacher_statistics__finds:%@", name);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/finds/", [MyTools urlEncode:name]];
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     NSMutableDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
     NSString *value = [self FindValueInLine:lines key:@"Geocaching Australia Finds"];
@@ -363,12 +363,12 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
-- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"cacher_statistics__hides");
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cacher/statistics/%@/hides/", [MyTools urlEncode:name]];
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     NSMutableDictionary *ret = [[NSMutableDictionary alloc] initWithCapacity:1];
 
     NSString *value = [self FindValueInLine:lines key:@"Total Geocaching Australia Hides"];
@@ -386,21 +386,21 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
-- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"cache__gpx:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
 }
 
-- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"cache__json:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.json", [MyTools urlEncode:wpname]];
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -415,7 +415,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"my_log_new:%@", wpname);
 
@@ -438,7 +438,7 @@
     [ps setValue:@"" forKey:@"cacher"];
     [ps setValue:@"Log" forKey:@"button"];
 
-    NSArray *lines = [self postPageForm:urlString params:ps downloadInfoItem:dii];
+    NSArray *lines = [self postPageForm:urlString params:ps downloadInfoItem:idi];
 
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
@@ -457,7 +457,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)_data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)_data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"my_gallery_cache_add:%@", wpname);
 
@@ -473,7 +473,7 @@
     [ps setValue:@"" forKey:@"swaggie"];
     [ps setValue:@"Save Image" forKey:@"button"];
 
-    NSArray *lines = [self postPageMultiForm:urlString dataField:@"uploaded" params:ps downloadInfoItem:dii];
+    NSArray *lines = [self postPageMultiForm:urlString dataField:@"uploaded" params:ps downloadInfoItem:idi];
 
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
@@ -492,13 +492,13 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"caches_gca:%@", [Coordinates NiceCoordinates:center]);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/caches/gca.json?center=%f,%f&cacher=no&limit=%ld", center.latitude, center.longitude, (long)configManager.mapSearchMaximumNumberGCA];
 
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -514,13 +514,13 @@
     return gcajson;
 }
 
-- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"logs_cache:%@", wpname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/logs/cache/%@.json", wpname];
 
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
     NSString *S = [lines componentsJoinedByString:@""];
     NSData *data = [S dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -534,14 +534,14 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"my_query_json:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSData *data = [self loadDataForeground:urlString downloadInfoItem:dii];
+    NSData *data = [self loadDataForeground:urlString downloadInfoItem:idi];
 
     if (data == nil) {
         NSLog(@"%@ - No data returned", [self class]);
@@ -557,18 +557,18 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"my_query_gpx:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
     [downloadManager setURL:urlString];
 
-    NSData *data = [self loadDataForeground:urlString downloadInfoItem:dii];
+    NSData *data = [self loadDataForeground:urlString downloadInfoItem:idi];
     return [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
-- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii
+- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSLog(@"my_query_count:%@", queryname);
 
@@ -576,7 +576,7 @@
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/count/%@", queryname];
 
-    NSArray *lines = [self loadPage:urlString downloadInfoItem:dii];
+    NSArray *lines = [self loadPage:urlString downloadInfoItem:idi];
 
     NSError *e = nil;
     NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"Number of matching caches: (\\d+)"options:0 error:&e];

@@ -32,18 +32,18 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
-- (NSArray *)my_query:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii;
-- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryGCA *)my_query_list__json:(DownloadInfoItem *)dii;
+- (NSArray *)my_query:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi;
+- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryGCA *)my_query_list__json:(InfoDownloadItem *)idi;
 
 @end

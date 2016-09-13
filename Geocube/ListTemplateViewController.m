@@ -54,7 +54,7 @@ NEEDS_OVERLOADING(clearFlags)
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
 
-    [self makeDownloadInfo];
+    [self makeInfoView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -161,17 +161,17 @@ NEEDS_OVERLOADING(clearFlags)
 
 - (void)runReloadWaypoints
 {
-    [self showDownloadInfo];
-    DownloadInfoItem *dii = [downloadInfoView addDownload];
-    [dii setChunksTotal:[waypoints count]];
+    [self showInfoView];
+    InfoDownloadItem *idi = [infoView addDownload];
+    [idi setChunksTotal:[waypoints count]];
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dii resetBytes];
-        [downloadInfoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", idx + 1, [waypoints count]]];
-        [dii setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
+        [idi resetBytes];
+        [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", idx + 1, [waypoints count]]];
+        [idi setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:dii];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:idi];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
             failure = YES;
@@ -179,8 +179,8 @@ NEEDS_OVERLOADING(clearFlags)
         }
     }];
 
-    [downloadInfoView removeDownload:dii];
-    [self hideDownloadInfo];
+    [infoView removeDownload:idi];
+    [self hideInfoView];
 
     waypoints = [dbWaypoint dbAllByFlag:flag];
 

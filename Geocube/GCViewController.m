@@ -50,28 +50,28 @@
     [self changeTheme];
 }
 
-- (void)makeDownloadInfo
+- (void)makeInfoView
 {
-    downloadInfoView = [[DownloadInfoView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:downloadInfoView];
+    infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:infoView];
 }
 
-- (void)hideDownloadInfo
+- (void)hideInfoView
 {
-//    [self.view sendSubviewToBack:downloadInfoView];
-    [UIView transitionWithView:downloadInfoView
+//    [self.view sendSubviewToBack:infoView];
+    [UIView transitionWithView:infoView
                       duration:1.0
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        downloadInfoView.hidden = YES;
+                        infoView.hidden = YES;
                     }
                     completion:NULL];
 }
 
-- (void)showDownloadInfo
+- (void)showInfoView
 {
-    [self.view bringSubviewToFront:downloadInfoView];
-    downloadInfoView.hidden = NO;
+    [self.view bringSubviewToFront:infoView];
+    infoView.hidden = NO;
 }
 
 - (void)prepareCloseButton:(UIView *)view

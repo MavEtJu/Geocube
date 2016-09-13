@@ -21,19 +21,19 @@
 
 @interface RemoteAPI_LiveAPI : RemoteAPI_Template
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)waypoint logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetPocketQueryList:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetUsersTrackables:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetOwnedTrackables:(DownloadInfoItem *)dii;
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(DownloadInfoItem *)dii;
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)waypoint logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoDownloadItem *)idi;
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(InfoDownloadItem *)idi;
 
 @end

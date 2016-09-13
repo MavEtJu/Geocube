@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportGPX : ImportTemplate <NSXMLParserDelegate>
+@interface InfoViewer : GCView
+
+- (InfoDownloadItem *)addDownload;
+- (InfoDownloadItem *)addDownload:(NSString *)desc;
+- (void)removeDownload:(InfoDownloadItem *)did;
+- (void)setHeaderSuffix:(NSString *)suffix;
+- (BOOL)hasDownloads;
 
 @end

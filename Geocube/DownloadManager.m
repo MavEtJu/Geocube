@@ -28,7 +28,7 @@
     NSMutableData *syncData;
     NSURLSessionConfiguration *syncSessionConfiguration;
     NSURLResponse *syncReponse;
-    DownloadInfoItem *syncDownloadInfoItem;
+    InfoDownloadItem *syncInfoDownloadItem;
 
     NSMutableArray *asyncRequests;
 }
@@ -60,14 +60,14 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(DownloadInfoItem *)dii
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(InfoDownloadItem *)idi
 {
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
     [req setObject:urlRequest forKey:@"urlRequest"];
     [req setObject:sem forKey:@"semaphore"];
-    [req setObject:(dii == nil ? [NSNull null] : dii) forKey:@"downloadInfoItem"];
-    if (dii != nil)
-        [dii setURL:urlRequest.URL.absoluteString];
+    [req setObject:(idi == nil ? [NSNull null] : idi) forKey:@"downloadInfoItem"];
+    if (idi != nil)
+        [idi setURL:urlRequest.URL.absoluteString];
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
@@ -91,9 +91,9 @@
     return req;
 }
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error downloadInfoItem:(DownloadInfoItem *)dii
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error downloadInfoItem:(InfoDownloadItem *)idi
 {
-    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error downloadInfoItem:dii];
+    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error downloadInfoItem:idi];
 }
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
@@ -125,7 +125,7 @@
     return result;
 }
 
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoItem:(DownloadInfoItem *)dii
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoItem:(InfoDownloadItem *)idi
 {
     __block NSData *result;
 
@@ -143,9 +143,9 @@
 
     syncError = nil;
     syncReponse = nil;
-    syncDownloadInfoItem = dii;
-    if (syncDownloadInfoItem != nil)
-        [syncDownloadInfoItem setURL:urlRequest.URL.absoluteString];
+    syncInfoDownloadItem = idi;
+    if (syncInfoDownloadItem != nil)
+        [syncInfoDownloadItem setURL:urlRequest.URL.absoluteString];
 
     syncSessionDataTask = [syncSession dataTaskWithRequest:urlRequest];
     [syncSessionDataTask resume];
@@ -169,8 +169,8 @@
         [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
         [downloadsImportsDelegate downloadManager_setNumberBytesTotal:[syncData length]];
 
-        [syncDownloadInfoItem setBytesCount:[syncData length]];
-        [syncDownloadInfoItem setBytesTotal:[syncData length]];
+        [syncInfoDownloadItem setBytesCount:[syncData length]];
+        [syncInfoDownloadItem setBytesTotal:[syncData length]];
 
         dispatch_semaphore_signal(syncSem);
         return;
@@ -185,11 +185,11 @@
                 [asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
 
-                DownloadInfoItem *dii = [req objectForKey:@"downloadInfoItem"];
-                if (dii != nil && [dii isKindOfClass:[NSNull class]] == NO) {
+                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
+                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO) {
                     NSMutableData *d = [req objectForKey:@"data"];
-                    [dii setBytesCount:[d length]];
-                    [dii setBytesTotal:[d length]];
+                    [idi setBytesCount:[d length]];
+                    [idi setBytesTotal:[d length]];
                 }
 
                 *stop = YES;
@@ -207,8 +207,8 @@
     if (session == syncSession && dataTask == syncSessionDataTask) {
         [syncData appendData:data];
         [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
-        if (syncDownloadInfoItem != nil)
-            [syncDownloadInfoItem setBytesCount:[syncData length]];
+        if (syncInfoDownloadItem != nil)
+            [syncInfoDownloadItem setBytesCount:[syncData length]];
         return;
     }
 
@@ -218,9 +218,9 @@
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
 
-                DownloadInfoItem *dii = [req objectForKey:@"downloadInfoItem"];
-                if (dii != nil && [dii isKindOfClass:[NSNull class]] == NO)
-                    [dii setBytesCount:[d length]];
+                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
+                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO)
+                    [idi setBytesCount:[d length]];
 
                 *stop = YES;
                 return;
@@ -237,8 +237,8 @@
         syncReponse = response;
         if (response.expectedContentLength >= 0) {
             [downloadsImportsDelegate downloadManager_setNumberBytesTotal:(NSInteger)response.expectedContentLength];
-            if (syncDownloadInfoItem != nil)
-                [syncDownloadInfoItem setBytesTotal:(NSInteger)response.expectedContentLength];
+            if (syncInfoDownloadItem != nil)
+                [syncInfoDownloadItem setBytesTotal:(NSInteger)response.expectedContentLength];
         }
         return;
     }
@@ -251,9 +251,9 @@
                 [req setObject:response forKey:@"response"];
                 syncReponse = response;
 
-                DownloadInfoItem *dii = [req objectForKey:@"downloadInfoItem"];
-                if (dii != nil && [dii isKindOfClass:[NSNull class]] == NO)
-                    [dii setBytesTotal:response.expectedContentLength];
+                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
+                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO)
+                    [idi setBytesTotal:response.expectedContentLength];
 
                 *stop = YES;
                 return;

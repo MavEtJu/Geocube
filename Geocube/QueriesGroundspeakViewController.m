@@ -58,13 +58,13 @@
     // Download the query
     NSObject *ret;
 
-    [self showDownloadInfo];
-    DownloadInfoItem *dii = [downloadInfoView addDownload:[pq objectForKey:@"Name"]];
+    [self showInfoView];
+    InfoDownloadItem *idi = [infoView addDownload:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:dii];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:idi];
 
-    [downloadInfoView removeDownload:dii];
-    [self hideDownloadInfo];
+    [infoView removeDownload:idi];
+    [self hideInfoView];
 
     if (ret == nil) {
         failure = YES;

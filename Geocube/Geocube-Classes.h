@@ -29,8 +29,6 @@
 @class ConfigManager;
 @class Coordinates;
 @class DatabaseCache;
-@class DownloadInfoItem;
-@class DownloadInfoView;
 @class DownloadManager;
 @class DownloadsImportsViewController;
 @class ExportGPX;
@@ -96,6 +94,10 @@
 @class ImportManager;
 @class ImportOKAPIJSON;
 @class ImportTemplate;
+@class InfoDownloadItem;
+@class InfoImageItem;
+@class InfoImportItem;
+@class InfoViewer;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;
 @class KeepTrackTrack;

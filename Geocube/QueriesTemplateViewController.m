@@ -55,7 +55,7 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
-    [self makeDownloadInfo];
+    [self makeInfoView];
 
     qs = nil;
 }

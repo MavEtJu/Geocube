@@ -187,7 +187,7 @@ enum {
     [self initMapIcons];
     [self recalculateRects];
 
-    [self makeDownloadInfo];
+    [self makeInfoView];
 
     needsRefresh = YES;
     isVisible = NO;
@@ -831,7 +831,7 @@ enum {
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     wp.coordinates = [map currentCenter];
-    [self showDownloadInfo];
+    [self showInfoView];
 
     NSArray *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
@@ -840,12 +840,12 @@ enum {
             return;
         accountsFound++;
 
-        DownloadInfoItem *dii = [downloadInfoView addDownload];
-        [dii setDescription:account.site];
+        InfoDownloadItem *idi = [infoView addDownload];
+        [idi setDescription:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
         [d setObject:wp forKey:@"wp"];
-        [d setObject:dii forKey:@"dii"];
+        [d setObject:idi forKey:@"idi"];
         [d setObject:account forKey:@"account"];
 
         [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
@@ -860,14 +860,14 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    DownloadInfoItem *dii = [dict objectForKey:@"dii"];
+    InfoDownloadItem *idi = [dict objectForKey:@"idi"];
     dbWaypoint *wp = [dict objectForKey:@"wp"];
     dbAccount *account = [dict objectForKey:@"account"];
 
     NSObject *d;
-    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:dii];
+    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:idi];
 
-    [downloadInfoView removeDownload:dii];
+    [infoView removeDownload:idi];
 
     if (d == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
@@ -876,8 +876,8 @@ enum {
 
     [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
 
-    if ([downloadInfoView hasDownloads] == NO) {
-        [self hideDownloadInfo];
+    if ([infoView hasDownloads] == NO) {
+        [self hideInfoView];
 
         [dbWaypoint dbUpdateLogStatus];
         [waypointManager needsRefreshAll];

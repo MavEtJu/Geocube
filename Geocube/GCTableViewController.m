@@ -71,35 +71,35 @@
     }
 }
 
-- (void)makeDownloadInfo
+- (void)makeInfoView
 {
-    downloadInfoView = [[DownloadInfoView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:downloadInfoView];
+    infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:infoView];
 }
 
-- (void)hideDownloadInfo
+- (void)hideInfoView
 {
-    [UIView transitionWithView:downloadInfoView
+    [UIView transitionWithView:infoView
                       duration:1.0
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-                        downloadInfoView.hidden = YES;
+                        infoView.hidden = YES;
                     }
                     completion:NULL];
 }
 
-- (void)showDownloadInfo
+- (void)showInfoView
 {
-    [self.view bringSubviewToFront:downloadInfoView];
-    downloadInfoView.hidden = NO;
+    [self.view bringSubviewToFront:infoView];
+    infoView.hidden = NO;
 
-    CGRect frame = downloadInfoView.frame;
+    CGRect frame = infoView.frame;
     CGRect bounds = self.view.superview.frame;
 
     frame.origin.y = verticalContentOffset + bounds.size.height - frame.size.height;
-    downloadInfoView.frame = frame;
+    infoView.frame = frame;
 
-    [self.view bringSubviewToFront:downloadInfoView];
+    [self.view bringSubviewToFront:infoView];
 }
 
 - (void)buttonMenuLocal:(id)sender
@@ -197,14 +197,14 @@
         [self.view bringSubviewToFront:closeButton];
     }
 
-    if (downloadInfoView != nil) {
-        CGRect frame = downloadInfoView.frame;
+    if (infoView != nil) {
+        CGRect frame = infoView.frame;
         CGRect bounds = self.view.superview.frame;
 
         frame.origin.y = scrollView.contentOffset.y + bounds.size.height - frame.size.height;
-        downloadInfoView.frame = frame;
+        infoView.frame = frame;
 
-        [self.view bringSubviewToFront:downloadInfoView];
+        [self.view bringSubviewToFront:infoView];
     }
 }
 

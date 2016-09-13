@@ -42,7 +42,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     tbs = [dbTrackable dbAllInventory];
-    [self makeDownloadInfo];
+    [self makeInfoView];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuUpdate label:@"Update"];
@@ -92,8 +92,8 @@ enum {
 
 - (void)menuUpdate
 {
-    [self showDownloadInfo];
-    DownloadInfoItem *dii = [downloadInfoView addDownload:@"Update trackables"];
+    [self showInfoView];
+    InfoDownloadItem *idi = [infoView addDownload:@"Update trackables"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == PROTOCOL_LIVEAPI) {
@@ -106,14 +106,14 @@ enum {
                 [tb dbUpdate];
             }];
 
-            [a.remoteAPI trackablesInventory:dii];
+            [a.remoteAPI trackablesInventory:idi];
             tbs = [dbTrackable dbAllInventory];
             [self reloadDataMainQueue];
             *stop = YES; }
     }];
 
-    [downloadInfoView removeDownload:dii];
-    [self hideDownloadInfo];
+    [infoView removeDownload:idi];
+    [self hideInfoView];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
