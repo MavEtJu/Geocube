@@ -21,15 +21,6 @@
 
 @interface DownloadManager ()
 {
-    dispatch_semaphore_t syncSem;
-    NSURLSessionDataTask *syncSessionDataTask;
-    NSURLSession *syncSession;
-    NSError *syncError;
-    NSMutableData *syncData;
-    NSURLSessionConfiguration *syncSessionConfiguration;
-    NSURLResponse *syncReponse;
-    InfoDownloadItem *syncInfoDownloadItem;
-
     NSMutableArray *asyncRequests;
 }
 
@@ -71,7 +62,7 @@
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
     [req setObject:session forKey:@"session"];
 
     NSData *data = [NSMutableData dataWithLength:0];
@@ -127,36 +118,15 @@
 
 - (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoItem:(InfoDownloadItem *)idi
 {
-    __block NSData *result;
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:idi];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
-    result = nil;
-    syncSem = dispatch_semaphore_create(0);
+    NSData *data = [retDict objectForKey:@"data"];
+    *responsePtr = [retDict objectForKey:@"response"];
+    *errorPtr = [retDict objectForKey:@"error"];
 
-    [downloadsImportsDelegate downloadManager_setURL:urlRequest.URL.absoluteString];
-    [downloadsImportsDelegate downloadManager_setNumberBytesDownload:0];
-    [downloadsImportsDelegate downloadManager_setNumberBytesTotal:0];
-
-    syncSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    syncSession = [NSURLSession sessionWithConfiguration:syncSessionConfiguration delegate:self delegateQueue:nil];
-
-    syncData = [NSMutableData dataWithLength:0];
-
-    syncError = nil;
-    syncReponse = nil;
-    syncInfoDownloadItem = idi;
-    if (syncInfoDownloadItem != nil)
-        [syncInfoDownloadItem setURL:urlRequest.URL.absoluteString];
-
-    syncSessionDataTask = [syncSession dataTaskWithRequest:urlRequest];
-    [syncSessionDataTask resume];
-
-    dispatch_semaphore_wait(syncSem, DISPATCH_TIME_FOREVER);
-    if (errorPtr != nil)
-        *errorPtr = syncError;
-    if (responsePtr != nil)
-        *responsePtr = syncReponse;
-
-    return syncData;
+    return data;
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -164,17 +134,6 @@
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
-    if (session == syncSession && task == syncSessionDataTask) {
-        syncError = error;
-        [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
-        [downloadsImportsDelegate downloadManager_setNumberBytesTotal:[syncData length]];
-
-        [syncInfoDownloadItem setBytesCount:[syncData length]];
-        [syncInfoDownloadItem setBytesTotal:[syncData length]];
-
-        dispatch_semaphore_signal(syncSem);
-        return;
-    }
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -204,13 +163,6 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
 //  NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveData:(NSData *)");
-    if (session == syncSession && dataTask == syncSessionDataTask) {
-        [syncData appendData:data];
-        [downloadsImportsDelegate downloadManager_setNumberBytesDownload:[syncData length]];
-        if (syncInfoDownloadItem != nil)
-            [syncInfoDownloadItem setBytesCount:[syncData length]];
-        return;
-    }
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -232,16 +184,6 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
     NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveResponse:(NSURLResponse *)");
-    if (session == syncSession && dataTask == syncSessionDataTask) {
-        completionHandler(NSURLSessionResponseAllow);
-        syncReponse = response;
-        if (response.expectedContentLength >= 0) {
-            [downloadsImportsDelegate downloadManager_setNumberBytesTotal:(NSInteger)response.expectedContentLength];
-            if (syncInfoDownloadItem != nil)
-                [syncInfoDownloadItem setBytesTotal:(NSInteger)response.expectedContentLength];
-        }
-        return;
-    }
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -249,7 +191,6 @@
                 NSLog(@"Starting download thread %ld", (long)idx);
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
-                syncReponse = response;
 
                 InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
                 if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO)
