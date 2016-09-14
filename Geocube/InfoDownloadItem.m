@@ -78,21 +78,23 @@
 - (void)resetBytesChunks
 {
     [self setChunksTotal:0];
-    [self setChunksCount:0];
+    [self setChunksCount:-1];
     [self setBytesTotal:0];
-    [self setBytesCount:0];
+    [self setBytesCount:-1];
 }
 
 - (void)resetBytes
 {
     [self setBytesTotal:0];
-    [self setBytesCount:0];
+    [self setBytesCount:-1];
 }
 
 - (void)setChunks
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (chunksTotal == 0)
+        if (chunksCount < 0)
+            labelChunks.text = @"Chunks: -";
+        else if (chunksTotal == 0)
             labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", chunksCount];
         else
             labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", chunksCount, chunksTotal];
@@ -114,7 +116,9 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         NSInteger bt = bytesTotal;
         NSInteger bc = bytesCount;
-        if (bytesTotal <= 0)
+        if (bc < 0)
+            labelBytes.text = @"Bytes: -";
+        else if (bt <= 0)
             labelBytes.text = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
         else
             labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (bc * 100) / bt];
