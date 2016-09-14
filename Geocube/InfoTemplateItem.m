@@ -19,22 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoDownloadItem : InfoTemplateItem
+@interface InfoTemplateItem ()
 
-@property (nonatomic) NSInteger _id;
+@end
 
-@property (nonatomic, retain) GCSmallLabel *labelDesc;
-@property (nonatomic, retain) GCSmallLabel *labelURL;
-@property (nonatomic, retain) GCSmallLabel *labelChunks;
-@property (nonatomic, retain) GCSmallLabel *labelBytes;
+@implementation InfoTemplateItem
 
-- (void)setDescription:(NSString *)newDesc;
-- (void)setURL:(NSString *)newURL;
-- (void)setChunksTotal:(NSInteger)newTotal;
-- (void)setChunksCount:(NSInteger)newCount;
-- (void)setBytesTotal:(NSInteger)newTotal;
-- (void)setBytesCount:(NSInteger)newCount;
-- (void)resetBytesChunks;
-- (void)resetBytes;
+@synthesize view;
+
+NEEDS_OVERLOADING(calculateRects)
 
 @end

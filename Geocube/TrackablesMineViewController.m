@@ -112,7 +112,7 @@ enum {
         }
     }];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
     [self hideInfoView];
 }
 

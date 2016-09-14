@@ -97,6 +97,7 @@
 @class InfoDownloadItem;
 @class InfoImageItem;
 @class InfoImportItem;
+@class InfoTemplateItem;
 @class InfoViewer;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;

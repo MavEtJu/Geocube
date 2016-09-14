@@ -188,6 +188,7 @@
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
 		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
+		E841E15A1D88FC950050D4B4 /* InfoTemplateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoTemplateItem.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
@@ -253,7 +254,7 @@
 		E87DF7851D7EDFE000F16B5A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7801D7EDFE000F16B5A /* SVRadialGradientLayer.m */; };
 		E87DF7881D7F6D6900F16B5A /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7871D7F6D6900F16B5A /* BezelManager.m */; };
 		E87DF78B1D80B6F100F16B5A /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78A1D80B6F100F16B5A /* GCSwitch.m */; };
-		E87DF78E1D8564A800F16B5A /* InfoVIewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoVIewer.m */; };
+		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E87DF7921D856A7100F16B5A /* InfoDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF7911D856A7100F16B5A /* InfoDownloadItem.m */; };
 		E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */; };
 		E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E880379B1B915CEE0053AD01 /* GCURLRequest.m */; };
@@ -686,6 +687,8 @@
 		E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesInventoryViewController.m; sourceTree = "<group>"; };
 		E8371D4F1D10202B00C2F174 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = THLabel/THLabel.h; sourceTree = "<group>"; };
 		E8371D501D10202B00C2F174 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = THLabel/THLabel.m; sourceTree = "<group>"; };
+		E841E1581D88FC950050D4B4 /* InfoTemplateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTemplateItem.h; sourceTree = "<group>"; };
+		E841E1591D88FC950050D4B4 /* InfoTemplateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTemplateItem.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E84402B61BFEABD600EFFD13 /* MapApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapApple.h; sourceTree = "<group>"; };
@@ -804,7 +807,7 @@
 		E87DF7891D80B6F100F16B5A /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSwitch.h; sourceTree = "<group>"; };
 		E87DF78A1D80B6F100F16B5A /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSwitch.m; sourceTree = "<group>"; };
 		E87DF78C1D8564A800F16B5A /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
-		E87DF78D1D8564A800F16B5A /* InfoVIewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoVIewer.m; sourceTree = "<group>"; };
+		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
 		E87DF7901D856A7100F16B5A /* InfoDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoDownloadItem.h; sourceTree = "<group>"; };
 		E87DF7911D856A7100F16B5A /* InfoDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoDownloadItem.m; sourceTree = "<group>"; };
 		E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesFieldnotesViewController.h; sourceTree = "<group>"; };
@@ -1987,7 +1990,9 @@
 			isa = PBXGroup;
 			children = (
 				E87DF78C1D8564A800F16B5A /* InfoViewer.h */,
-				E87DF78D1D8564A800F16B5A /* InfoVIewer.m */,
+				E87DF78D1D8564A800F16B5A /* InfoViewer.m */,
+				E841E1581D88FC950050D4B4 /* InfoTemplateItem.h */,
+				E841E1591D88FC950050D4B4 /* InfoTemplateItem.m */,
 				E87DF7901D856A7100F16B5A /* InfoDownloadItem.h */,
 				E87DF7911D856A7100F16B5A /* InfoDownloadItem.m */,
 				E8E440051D88A55500BECB49 /* InfoImportItem.h */,
@@ -2957,6 +2962,7 @@
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
+				E841E15A1D88FC950050D4B4 /* InfoTemplateItem.m in Sources */,
 				E84D6FC61C52367B0000A6A0 /* ListHighlightViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */,
@@ -2979,7 +2985,7 @@
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
-				E87DF78E1D8564A800F16B5A /* InfoVIewer.m in Sources */,
+				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */,
 				E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,

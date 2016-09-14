@@ -867,7 +867,7 @@ enum {
     NSObject *d;
     [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:idi];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
 
     if (d == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];

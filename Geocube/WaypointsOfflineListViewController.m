@@ -491,7 +491,7 @@ enum {
 
     [self reloadDataMainQueue];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
     [self hideInfoView];
 
     if (failure == NO)

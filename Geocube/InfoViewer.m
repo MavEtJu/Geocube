@@ -21,7 +21,7 @@
 
 @interface InfoViewer ()
 {
-    NSMutableArray *downloads;
+    NSMutableArray *items;
     GCLabel *header;
 }
 
@@ -33,7 +33,7 @@
 {
     self = [super initWithFrame:frame];
 
-    downloads = [NSMutableArray arrayWithCapacity:5];
+    items = [NSMutableArray arrayWithCapacity:5];
 
     [self calculateRects];
     [self changeTheme];
@@ -43,7 +43,25 @@
 
 - (BOOL)hasDownloads
 {
-    return ([downloads count] != 0);
+    return ([items count] != 0);
+}
+
+- (InfoImageItem *)addImage:(NSString *)description
+{
+    return nil;
+}
+- (InfoImageItem *)addImage
+{
+    return nil;
+}
+
+- (InfoImportItem *)addImport:(NSString *)description
+{
+    return nil;
+}
+- (InfoImportItem *)addImport
+{
+    return nil;
 }
 
 - (InfoDownloadItem *)addDownload:(NSString *)description
@@ -70,12 +88,12 @@
     idi.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     idi.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
-    @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
         }];
         idi._id = max + 1;
-        [downloads addObject:idi];
+        [items addObject:idi];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -94,12 +112,12 @@
     return idi;
 }
 
-- (void)removeDownload:(InfoDownloadItem *)idi
+- (void)removeItem:(InfoTemplateItem *)i
 {
-    [idi.view removeFromSuperview];
+    [i.view removeFromSuperview];
 
-    @synchronized (downloads) {
-        [downloads removeObject:idi];
+    @synchronized (items) {
+        [items removeObject:i];
     }
 
     [self calculateRects];
@@ -118,15 +136,15 @@
     NSInteger width = bounds.size.width;
     __block NSInteger height = 0;
 
-    if ([downloads count] == 0) {
+    if ([items count] == 0) {
         self.frame = CGRectZero;
         return;
     }
 
     header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
     height += header.font.lineHeight;
-    @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             d.view.frame = CGRectMake(0, height, width, d.view.frame.size.height);
             height += d.view.frame.size.height;
         }];
@@ -136,8 +154,8 @@
 
 - (void)viewWillTransitionToSize
 {
-    @synchronized (downloads) {
-        [downloads enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }

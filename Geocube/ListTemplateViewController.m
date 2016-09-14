@@ -179,7 +179,7 @@ NEEDS_OVERLOADING(clearFlags)
         }
     }];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
     [self hideInfoView];
 
     waypoints = [dbWaypoint dbAllByFlag:flag];

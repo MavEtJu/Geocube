@@ -79,7 +79,7 @@ enum {
     [infoView setHeaderSuffix:@"GPX"];
     [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:idi];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
     [self hideInfoView];
 
     if (retjson == nil && retgpx == nil) {

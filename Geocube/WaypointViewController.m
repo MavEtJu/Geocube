@@ -840,7 +840,7 @@ enum {
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
-    [infoView removeDownload:idi];
+    [infoView removeItem:idi];
     [self hideInfoView];
 
     if (retValue == REMOTEAPI_OK) {

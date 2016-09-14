@@ -23,7 +23,11 @@
 
 - (InfoDownloadItem *)addDownload;
 - (InfoDownloadItem *)addDownload:(NSString *)desc;
-- (void)removeDownload:(InfoDownloadItem *)did;
+- (InfoImageItem *)addImage;
+- (InfoImageItem *)addImage:(NSString *)desc;
+- (InfoImportItem *)addImport;
+- (InfoImportItem *)addImport:(NSString *)desc;
+- (void)removeItem:(InfoTemplateItem *)did;
 - (void)setHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasDownloads;
 
