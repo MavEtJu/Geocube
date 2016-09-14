@@ -136,9 +136,9 @@
 #import "GCView.h"
 
 #import "InfoItem.h"
-#import "InfoDownloadItem.h"
-#import "InfoImageItem.h"
-#import "InfoImportItem.h"
+#import "InfoItemDownload.h"
+#import "InfoItemImage.h"
+#import "InfoItemImport.h"
 #import "InfoViewer.h"
 #import "DownloadManager.h"
 #import "ImportManager.h"

@@ -19,16 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoDownloadItem ()
-{
-    NSInteger chunksTotal, chunksCount;
-}
+@interface InfoItemImage ()
 
 @end
 
-@implementation InfoDownloadItem
+@implementation InfoItemImage
 
-@synthesize labelChunks;
+@synthesize labelQueue;
 
 - (void)calculateRects
 {
@@ -39,49 +36,26 @@
     NSInteger y = MARGIN;
 
 #define LABEL_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
-    y += __s__.font.lineHeight;
+__s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
 #define INDENT_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
-    y += __s__.font.lineHeight;
+__s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
 
     INDENT_RESIZE(labelDesc);
+    INDENT_RESIZE(labelQueue);
     INDENT_RESIZE(labelURL);
-    INDENT_RESIZE(labelChunks);
     INDENT_RESIZE(labelBytes);
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
 }
 
-- (void)resetBytesChunks
-{
-    [self setChunksTotal:0];
-    [self setChunksCount:-1];
-    [self setBytesTotal:0];
-    [self setBytesCount:-1];
-}
-
-- (void)setChunks
+- (void)setQueueSize:(NSInteger)queueSize
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (chunksCount < 0)
-            labelChunks.text = @"Chunks: -";
-        else if (chunksTotal == 0)
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", chunksCount];
-        else
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", chunksCount, chunksTotal];
+        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", queueSize];
     }];
-}
-- (void)setChunksTotal:(NSInteger)newTotal
-{
-    chunksTotal = newTotal;
-    [self setChunks];
-}
-- (void)setChunksCount:(NSInteger)newCount
-{
-    chunksCount = newCount;
-    [self setChunks];
 }
 
 @end

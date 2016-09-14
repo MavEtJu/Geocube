@@ -219,7 +219,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
      * 1 foot is 0.30480 meters
      *
      * From Darryl Wattenberg:
-     * The norm is for miles down to 0.1 then switch to feet. The few apps that use yards get ridiculed for it.
+     * The norm is for miles down to 0.1 then switch to feet. The few apps that use yards get riidculed for it.
      */
     if (m <= 161)   // 1/10th of a mile
         return [NSString stringWithFormat:@"%ld feet", (long)(m / 0.30480)];

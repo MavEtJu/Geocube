@@ -144,11 +144,11 @@
                 [asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
 
-                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
-                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO) {
+                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO) {
                     NSMutableData *d = [req objectForKey:@"data"];
-                    [idi setBytesCount:[d length]];
-                    [idi setBytesTotal:[d length]];
+                    [iid setBytesCount:[d length]];
+                    [iid setBytesTotal:[d length]];
                 }
 
                 *stop = YES;
@@ -170,9 +170,9 @@
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
 
-                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
-                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO)
-                    [idi setBytesCount:[d length]];
+                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO)
+                    [iid setBytesCount:[d length]];
 
                 *stop = YES;
                 return;
@@ -192,9 +192,9 @@
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
 
-                InfoDownloadItem *idi = [req objectForKey:@"downloadInfoItem"];
-                if (idi != nil && [idi isKindOfClass:[NSNull class]] == NO)
-                    [idi setBytesTotal:response.expectedContentLength];
+                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO)
+                    [iid setBytesTotal:response.expectedContentLength];
 
                 *stop = YES;
                 return;

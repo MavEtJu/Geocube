@@ -61,21 +61,21 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
 
-- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoDownloadItem *)idi;
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoItemDowload *)iid;
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables downloadInfoItem:(InfoDownloadItem *)idi;
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables downloadInfoItem:(InfoItemDowload *)iid;
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(InfoDownloadItem *)idi;
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj downloadInfoItem:(InfoDownloadItem *)idi;
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(InfoItemDowload *)iid;
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid;
 
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoDownloadItem *)idi;
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDowload *)iid;
 
-- (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoDownloadItem *)idi;
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoDownloadItem *)idi;
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoDownloadItem *)idi;
+- (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoItemDowload *)iid;
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid;
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid;
 
-- (void)trackablesMine:(InfoDownloadItem *)idi;
-- (void)trackablesInventory:(InfoDownloadItem *)idi;
-- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(InfoDownloadItem *)idi;
+- (void)trackablesMine:(InfoItemDowload *)iid;
+- (void)trackablesInventory:(InfoItemDowload *)iid;
+- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(InfoItemDowload *)iid;
 
 @end

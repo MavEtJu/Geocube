@@ -66,7 +66,7 @@ __attribute__((constructor)) static void PSPDFUIKitMainThreadGuard(void) {
                     // https://developer.apple.com/library/ios/#releasenotes/General/WhatsNewIniPhoneOS/Articles/iPhoneOS4.html
                     /*
                      Drawing to a graphics context in UIKit is now thread-safe. Specifically:
-                     The routines used to access and manipulate the graphics context can now correctly handle contexts residing on different threads.
+                     The routines used to access and manipulate the graphics context can now correctly handle contexts resiidng on different threads.
                      String and image drawing is now thread-safe.
                      Using color and font objects in multiple threads is now safe to do.
                      */

@@ -59,12 +59,12 @@
     NSObject *ret;
 
     [self showInfoView];
-    InfoDownloadItem *idi = [infoView addDownload];
-    [idi setDescription:[pq objectForKey:@"Name"]];
+    InfoItemDowload *iid = [infoView addDownload];
+    [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:idi];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid];
 
-    [infoView removeItem:idi];
+    [infoView removeItem:iid];
     [self hideInfoView];
 
     if (ret == nil) {

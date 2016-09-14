@@ -833,15 +833,15 @@ enum {
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
     [self showInfoView];
-    InfoDownloadItem *idi = [infoView addDownload];
-    [idi setDescription:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
+    InfoItemDowload *iid = [infoView addDownload];
+    [iid setDescription:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
 
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint downloadInfoItem:idi];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint downloadInfoItem:iid];
 
     [menuGlobal enableMenus:YES];
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
-    [infoView removeItem:idi];
+    [infoView removeItem:iid];
     [self hideInfoView];
 
     if (retValue == REMOTEAPI_OK) {

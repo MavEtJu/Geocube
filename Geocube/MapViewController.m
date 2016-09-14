@@ -840,12 +840,12 @@ enum {
             return;
         accountsFound++;
 
-        InfoDownloadItem *idi = [infoView addDownload];
-        [idi setDescription:account.site];
+        InfoItemDowload *iid = [infoView addDownload];
+        [iid setDescription:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
         [d setObject:wp forKey:@"wp"];
-        [d setObject:idi forKey:@"idi"];
+        [d setObject:iid forKey:@"iid"];
         [d setObject:account forKey:@"account"];
 
         [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
@@ -860,14 +860,14 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    InfoDownloadItem *idi = [dict objectForKey:@"idi"];
+    InfoItemDowload *iid = [dict objectForKey:@"iid"];
     dbWaypoint *wp = [dict objectForKey:@"wp"];
     dbAccount *account = [dict objectForKey:@"account"];
 
     NSObject *d;
-    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:idi];
+    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:iid];
 
-    [infoView removeItem:idi];
+    [infoView removeItem:iid];
 
     if (d == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];

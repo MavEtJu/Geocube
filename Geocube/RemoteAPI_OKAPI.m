@@ -95,7 +95,7 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoDownloadItem *)idi
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_users_byUsername");
 
@@ -104,7 +104,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:idi];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -129,7 +129,7 @@
     return json;
 }
 
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoDownloadItem *)idi
+- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_logs_submit");
 
@@ -137,7 +137,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -158,7 +158,7 @@
    return -1;
 }
 
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(InfoDownloadItem *)idi
+- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_formatters_gpx: %@", wpname);
 
@@ -166,7 +166,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -175,7 +175,7 @@
     return retbody;
 }
 
-- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoDownloadItem *)idi
+- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
@@ -184,7 +184,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
 
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:idi];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -205,7 +205,7 @@
     return json;
 }
 
-- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoDownloadItem *)idi
+- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 
@@ -215,7 +215,7 @@
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:idi];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
     NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

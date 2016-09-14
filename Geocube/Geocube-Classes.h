@@ -94,9 +94,9 @@
 @class ImportManager;
 @class ImportOKAPIJSON;
 @class ImportTemplate;
-@class InfoDownloadItem;
-@class InfoImageItem;
-@class InfoImportItem;
+@class InfoItemDowload;
+@class InfoItemImage;
+@class InfoItemImport;
 @class InfoItem;
 @class InfoViewer;
 @class KeepTrackCar;

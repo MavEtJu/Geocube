@@ -134,7 +134,7 @@ enum {
 
 - (void)downloadImagesLogs
 {
-    InfoImageItem *iii = [infoView addImage];
+    InfoItemImage *iii = [infoView addImage];
     [iii setDescription:@"Images from the logs"];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
@@ -155,7 +155,7 @@ enum {
 
 - (void)downloadImagesCache
 {
-    InfoImageItem *iii = [infoView addImage];
+    InfoItemImage *iii = [infoView addImage];
     [iii setDescription:@"Images from the waypoint"];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {

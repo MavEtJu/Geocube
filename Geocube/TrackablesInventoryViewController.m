@@ -93,8 +93,8 @@ enum {
 - (void)menuUpdate
 {
     [self showInfoView];
-    InfoDownloadItem *idi = [infoView addDownload];
-    [idi setDescription:@"Update trackables"];
+    InfoItemDowload *iid = [infoView addDownload];
+    [iid setDescription:@"Update trackables"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == PROTOCOL_LIVEAPI) {
@@ -107,13 +107,13 @@ enum {
                 [tb dbUpdate];
             }];
 
-            [a.remoteAPI trackablesInventory:idi];
+            [a.remoteAPI trackablesInventory:iid];
             tbs = [dbTrackable dbAllInventory];
             [self reloadDataMainQueue];
             *stop = YES; }
     }];
 
-    [infoView removeItem:idi];
+    [infoView removeItem:iid];
     [self hideInfoView];
 }
 

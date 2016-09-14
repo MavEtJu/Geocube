@@ -19,10 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoImportItem ()
+@interface InfoItemDowload : InfoItem
 
-@end
+@property (nonatomic, retain) GCSmallLabel *labelChunks;
 
-@implementation InfoImportItem
+- (void)setChunksTotal:(NSInteger)newTotal;
+- (void)setChunksCount:(NSInteger)newCount;
+- (void)resetBytesChunks;
 
 @end
