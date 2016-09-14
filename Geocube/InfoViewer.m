@@ -41,7 +41,7 @@
     return self;
 }
 
-- (BOOL)hasDownloads
+- (BOOL)hasItems
 {
     return ([items count] != 0);
 }

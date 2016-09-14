@@ -29,6 +29,6 @@
 - (InfoImportItem *)addImport:(NSString *)desc;
 - (void)removeItem:(InfoTemplateItem *)did;
 - (void)setHeaderSuffix:(NSString *)suffix;
-- (BOOL)hasDownloads;
+- (BOOL)hasItems;
 
 @end

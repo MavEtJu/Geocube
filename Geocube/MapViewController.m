@@ -876,7 +876,7 @@ enum {
 
     [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
 
-    if ([infoView hasDownloads] == NO) {
+    if ([infoView hasItems] == NO) {
         [self hideInfoView];
 
         [dbWaypoint dbUpdateLogStatus];

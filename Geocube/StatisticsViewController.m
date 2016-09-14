@@ -291,7 +291,7 @@ enum {
     }];
 
     [infoView removeItem:idi];
-    if ([infoView hasDownloads] == NO)
+    if ([infoView hasItems] == NO)
         [self hideInfoView];
     [self showAccounts];
 }
