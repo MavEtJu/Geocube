@@ -43,6 +43,7 @@
 enum {
     menuUploadAirdrop,
     menuUploadICloud,
+    menuDeletePhoto,
     menuMax,
 };
 
@@ -55,6 +56,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuUploadAirdrop label:@"Airdrop"];
     [lmi addItem:menuUploadICloud label:@"iCloud"];
+    [lmi addItem:menuDeletePhoto label:@"Delete photo"];
     image = nil;
     delegate = nil;
 
@@ -127,7 +129,7 @@ enum {
 - (void)swipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (delegate != nil) {
-        [delegate swipeToUp];
+        [delegate WaypointImage_swipeToUp];
         [self loadImage];
     }
 }
@@ -135,7 +137,7 @@ enum {
 - (void)swipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (delegate != nil) {
-        [delegate swipeToDown];
+        [delegate WaypointImage_swipeToDown];
         [self loadImage];
     }
 }
@@ -285,6 +287,11 @@ enum {
             return;
         case menuUploadICloud:
             [self uploadICloud];
+            return;
+        case menuDeletePhoto:
+            [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile] error:nil];
+            [delegate WaypointImage_refreshTable];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
     }
 

@@ -22,18 +22,13 @@
 @interface InfoDownloadItem ()
 {
     NSInteger chunksTotal, chunksCount;
-    NSInteger bytesTotal, bytesCount;
-
-    NSString *description;
-    NSString *url;
 }
 
 @end
 
 @implementation InfoDownloadItem
 
-@synthesize view;
-@synthesize labelDesc, labelURL, labelBytes, labelChunks;
+@synthesize labelChunks;
 
 - (void)calculateRects
 {
@@ -59,32 +54,10 @@
     view.frame = CGRectMake(0, 0, width, y);
 }
 
-- (void)setDescription:(NSString *)newDesc
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        description = newDesc;
-        labelDesc.text = newDesc;
-    }];
-}
-
-- (void)setURL:(NSString *)newURL
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        url = newURL;
-        labelURL.text = newURL;
-    }];
-}
-
 - (void)resetBytesChunks
 {
     [self setChunksTotal:0];
     [self setChunksCount:-1];
-    [self setBytesTotal:0];
-    [self setBytesCount:-1];
-}
-
-- (void)resetBytes
-{
     [self setBytesTotal:0];
     [self setBytesCount:-1];
 }
@@ -109,30 +82,6 @@
 {
     chunksCount = newCount;
     [self setChunks];
-}
-
-- (void)setBytes
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        NSInteger bt = bytesTotal;
-        NSInteger bc = bytesCount;
-        if (bc < 0)
-            labelBytes.text = @"Bytes: -";
-        else if (bt <= 0)
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
-        else
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (bc * 100) / bt];
-    }];
-}
-- (void)setBytesTotal:(NSInteger)newTotal
-{
-    bytesTotal = newTotal;
-    [self setBytes];
-}
-- (void)setBytesCount:(NSInteger)newCount
-{
-    bytesCount = newCount;
-    [self setBytes];
 }
 
 @end

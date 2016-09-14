@@ -93,7 +93,8 @@ enum {
 - (void)menuUpdate
 {
     [self showInfoView];
-    InfoDownloadItem *idi = [infoView addDownload:@"Update trackables"];
+    InfoDownloadItem *idi = [infoView addDownload];
+    [idi setDescription:@"Update trackables"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol == PROTOCOL_LIVEAPI) {

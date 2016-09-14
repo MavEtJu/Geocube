@@ -22,12 +22,9 @@
 @interface InfoViewer : GCView
 
 - (InfoDownloadItem *)addDownload;
-- (InfoDownloadItem *)addDownload:(NSString *)desc;
 - (InfoImageItem *)addImage;
-- (InfoImageItem *)addImage:(NSString *)desc;
 - (InfoImportItem *)addImport;
-- (InfoImportItem *)addImport:(NSString *)desc;
-- (void)removeItem:(InfoTemplateItem *)did;
+- (void)removeItem:(InfoItem *)did;
 - (void)setHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasItems;
 

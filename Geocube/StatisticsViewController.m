@@ -270,7 +270,8 @@ enum {
 
 - (void)runStatistics:(dbAccount *)a
 {
-    InfoDownloadItem *idi = [infoView addDownload:a.site];
+    InfoDownloadItem *idi = [infoView addDownload];
+    [idi setDescription:a.site];
 
     NSDictionary *d = nil;
     NSInteger retValue = [a.remoteAPI UserStatistics:&d downloadInfoItem:idi];

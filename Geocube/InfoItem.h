@@ -19,11 +19,33 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoTemplateItem : NSObject
+@interface InfoItem : NSObject
+{
+    NSInteger _id;
+
+    GCView *view;
+    NSInteger viewHeight;
+
+    GCSmallLabel *labelDesc;
+    GCSmallLabel *labelURL;
+    GCSmallLabel *labelBytes;
+}
+
+@property (nonatomic) NSInteger _id;
 
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic) NSInteger viewHeight;
 
+@property (nonatomic, retain) GCSmallLabel *labelDesc;
+@property (nonatomic, retain) GCSmallLabel *labelURL;
+@property (nonatomic, retain) GCSmallLabel *labelBytes;
+
 - (void)calculateRects;
+
+- (void)setDescription:(NSString *)newDesc;
+- (void)setURL:(NSString *)newURL;
+- (void)setBytesTotal:(NSInteger)newTotal;
+- (void)setBytesCount:(NSInteger)newCount;
+- (void)resetBytes;
 
 @end

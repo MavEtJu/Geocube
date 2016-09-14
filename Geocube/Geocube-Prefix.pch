@@ -135,7 +135,7 @@
 #import "GCTextblock.h"
 #import "GCView.h"
 
-#import "InfoTemplateItem.h"
+#import "InfoItem.h"
 #import "InfoDownloadItem.h"
 #import "InfoImageItem.h"
 #import "InfoImportItem.h"

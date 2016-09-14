@@ -46,29 +46,50 @@
     return ([items count] != 0);
 }
 
-- (InfoImageItem *)addImage:(NSString *)description
-{
-    return nil;
-}
 - (InfoImageItem *)addImage
 {
-    return nil;
+    __block NSInteger max = 0;
+    InfoImageItem *iii = [[InfoImageItem alloc] init];
+
+    header = [[GCLabel alloc] initWithFrame:CGRectZero];
+    header.text = @"Downloads";
+    header.backgroundColor = [UIColor lightGrayColor];
+
+    iii.view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    iii.view.backgroundColor = [UIColor lightGrayColor];
+
+    iii.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    iii.labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    iii.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    iii.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoDownloadItem *d, NSUInteger idx, BOOL *stop) {
+            max = MAX(max, d._id);
+        }];
+        iii._id = max + 1;
+        [items addObject:iii];
+    }
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self addSubview:header];
+
+        [iii.view addSubview:iii.labelDesc];
+        [iii.view addSubview:iii.labelURL];
+        [iii.view addSubview:iii.labelQueue];
+        [iii.view addSubview:iii.labelBytes];
+        [iii calculateRects];
+
+        [self addSubview:iii.view];
+        [self calculateRects];
+    }];
+
+    return iii;
 }
 
-- (InfoImportItem *)addImport:(NSString *)description
-{
-    return nil;
-}
 - (InfoImportItem *)addImport
 {
     return nil;
-}
-
-- (InfoDownloadItem *)addDownload:(NSString *)description
-{
-    InfoDownloadItem *idi = [self addDownload];
-    [idi setDescription:description];
-    return idi;
 }
 
 - (InfoDownloadItem *)addDownload
@@ -112,7 +133,7 @@
     return idi;
 }
 
-- (void)removeItem:(InfoTemplateItem *)i
+- (void)removeItem:(InfoItem *)i
 {
     [i.view removeFromSuperview];
 
@@ -120,7 +141,9 @@
         [items removeObject:i];
     }
 
-    [self calculateRects];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
 }
 
 - (void)setHeaderSuffix:(NSString *)suffix

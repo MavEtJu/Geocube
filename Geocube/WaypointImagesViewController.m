@@ -49,6 +49,7 @@ enum {
     menuImportPhoto,
     menuMakePhoto,
     menuDownloadImages,
+    menuDeleteAllPhotos,
     menuMax
 };
 
@@ -60,6 +61,7 @@ enum {
     [lmi addItem:menuImportPhoto label:@"Import photo"];
     [lmi addItem:menuMakePhoto label:@"Make photo"];
     [lmi addItem:menuDownloadImages label:@"Download photos"];
+    [lmi addItem:menuDeleteAllPhotos label:@"Delete all photos"];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
         [lmi disableItem:menuImportPhoto];
@@ -83,71 +85,109 @@ enum {
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self makeInfoView];
+}
+
 - (void)needsDownloadMenu
 {
     __block NSInteger needsDownload = NO;
+    __block NSInteger needsDelete = NO;
     [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([img imageHasBeenDowloaded] == NO) {
+        if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
-            *stop = YES;
-        }
+        else
+            needsDelete = YES;
+    }];
+    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([img imageHasBeenDowloaded] == NO)
+            needsDownload = YES;
+        else
+            needsDelete = YES;
+    }];
+    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([img imageHasBeenDowloaded] == NO)
+            needsDownload = YES;
+        else
+            needsDelete = YES;
     }];
     if (needsDownload == NO)
-        [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([img imageHasBeenDowloaded] == NO) {
-                needsDownload = YES;
-                *stop = YES;
-            }
-        }];
-    if (needsDownload == NO)
-        [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([img imageHasBeenDowloaded] == NO) {
-                needsDownload = YES;
-                *stop = YES;
-            }
-        }];
-    if (needsDownload == NO)
         [lmi disableItem:menuDownloadImages];
+    else
+        [lmi enableItem:menuDownloadImages];
+    if (needsDelete == NO)
+        [lmi disableItem:menuDeleteAllPhotos];
+    else
+        [lmi enableItem:menuDeleteAllPhotos];
 }
 
 #pragma mark - Functions for downloading of images
 
-- (void)downloadImage:(dbImage *)img
-{
-    [bezelManager showBezel:self];
-    [bezelManager setText:@"Downloading image"];
-    [ImagesDownloadManager addToQueueImmediately:img];
-}
-
 - (void)downloadImages
 {
-    __block NSInteger i = 0;
-    [bezelManager showBezel:self];
-    [bezelManager setText:@"Downloading images\nDownloaded 1/1\nPending"];
+    [self showInfoView];
+    [self performSelectorInBackground:@selector(downloadImagesLogs) withObject:nil];
+    [self performSelectorInBackground:@selector(downloadImagesCache) withObject:nil];
+}
 
-    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        if ([img imageHasBeenDowloaded] == NO) {
-            [ImagesDownloadManager addToQueueImmediately:img];
-            i++;
-        }
-    }];
+- (void)downloadImagesLogs
+{
+    InfoImageItem *iii = [infoView addImage];
+    [iii setDescription:@"Images from the logs"];
+
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+        [iii setQueueSize:[logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
-            [ImagesDownloadManager addToQueueImmediately:img];
-            i++;
+            [self downloadImage:img infoImageItem:iii];
         }
     }];
+
+    [iii setQueueSize:0];
+    iii.view.backgroundColor = [UIColor redColor];
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO) {
+        [self hideInfoView];
+        [self needsDownloadMenu];
+    }
+}
+
+- (void)downloadImagesCache
+{
+    InfoImageItem *iii = [infoView addImage];
+    [iii setDescription:@"Images from the waypoint"];
+
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        if ([img imageHasBeenDowloaded] == NO) {
-            [ImagesDownloadManager addToQueueImmediately:img];
-            i++;
-        }
+        [iii setQueueSize:[cacheImages count] - idx];
+        if ([img imageHasBeenDowloaded] == NO)
+            [self downloadImage:img infoImageItem:iii];
     }];
 
-    [bezelManager setText:[NSString stringWithFormat:@"Downloading images\nScheduled %ld", (long)i]];
+    [iii setQueueSize:0];
+    iii.view.backgroundColor = [UIColor greenColor];
+    [infoView removeItem:iii];
 
-    if (i == 0)
-        [self updateQueuedImagesData:0 downloadedImages:0];
+    if ([infoView hasItems] == NO) {
+        [self hideInfoView];
+        [self needsDownloadMenu];
+    }
+}
+
+- (void)downloadImage:(dbImage *)image infoImageItem:iii
+{
+    NSURL *url = [NSURL URLWithString:image.url];
+    GCURLRequest *req = [GCURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error downloadInfoItem:iii];
+
+    if (data == nil || response.statusCode != 200)
+        return;
+
+    [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile] atomically:NO];
+    [self reloadDataMainQueue];
 }
 
 - (void)updateQueuedImagesData:(NSInteger)queuedImages downloadedImages:(NSInteger)downloadedImages
@@ -275,7 +315,13 @@ enum {
     return;
 }
 
-- (void)swipeToDown
+- (void)WaypointImage_refreshTable
+{
+    [self.tableView reloadData];
+    [self needsDownloadMenu];
+}
+
+- (void)WaypointImage_swipeToDown
 {
     NSInteger max = 0;
 
@@ -298,7 +344,7 @@ enum {
     }
 }
 
-- (void)swipeToUp
+- (void)WaypointImage_swipeToUp
 {
     NSInteger max = 0;
 
@@ -336,9 +382,29 @@ enum {
         case menuMakePhoto:
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
             return;
+        case menuDeleteAllPhotos:
+            [self deleteAllPhotos];
+            return;
     }
 
     [super performLocalMenuAction:index];
+}
+
+- (void)deleteAllPhotos
+{
+    [self deleteAllPhotos:cacheImages];
+    [self deleteAllPhotos:userImages];
+    [self deleteAllPhotos:logImages];
+
+    [self needsDownloadMenu];
+    [self.tableView reloadData];
+}
+
+- (void)deleteAllPhotos:(NSArray *)images
+{
+    [images enumerateObjectsUsingBlock:^(dbImage *image, NSUInteger idx, BOOL * _Nonnull stop) {
+        [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile] error:nil];
+    }];
 }
 
 #pragma mark - Camera import related functions

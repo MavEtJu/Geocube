@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoImageItem : InfoTemplateItem
+@interface InfoImageItem : InfoItem
+
+@property (nonatomic, retain) GCSmallLabel *labelQueue;
+
+- (void)setQueueSize:(NSInteger)queueSize;
 
 @end

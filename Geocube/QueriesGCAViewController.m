@@ -70,7 +70,8 @@ enum {
     NSObject *retgpx;
 
     [self showInfoView];
-    InfoDownloadItem *idi = [infoView addDownload:[pq objectForKey:@"Name"]];
+    InfoDownloadItem *idi = [infoView addDownload];
+    [idi setDescription:[pq objectForKey:@"Name"]];
 
     [infoView setHeaderSuffix:@"JSON"];
     [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:idi];

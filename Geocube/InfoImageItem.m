@@ -25,4 +25,37 @@
 
 @implementation InfoImageItem
 
+@synthesize labelQueue;
+
+- (void)calculateRects
+{
+#define MARGIN  5
+#define INDENT  10
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    NSInteger y = MARGIN;
+
+#define LABEL_RESIZE(__s__) \
+__s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
+#define INDENT_RESIZE(__s__) \
+__s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
+
+    INDENT_RESIZE(labelDesc);
+    INDENT_RESIZE(labelQueue);
+    INDENT_RESIZE(labelURL);
+    INDENT_RESIZE(labelBytes);
+
+    y += MARGIN;
+    view.frame = CGRectMake(0, 0, width, y);
+}
+
+- (void)setQueueSize:(NSInteger)queueSize
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", queueSize];
+    }];
+}
+
 @end
