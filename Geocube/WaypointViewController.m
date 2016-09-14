@@ -103,7 +103,7 @@ enum {
     headerCell = nil;
     headerCellHeight = 55;
 
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 - (void)viewDidLoad
@@ -148,7 +148,7 @@ enum {
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                                 headerCell = nil;
-                                                [self.tableView reloadData];
+                                                [self reloadDataMainQueue];
                                                 [self viewWillTransitionToSize];
                                             }
                                  completion:nil
@@ -159,22 +159,22 @@ enum {
 
 -  (void)WaypointImages_refreshTable
 {
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 -  (void)WaypointPersonalNote_refreshTable
 {
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 -  (void)WaypointLog_refreshTable
 {
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 -  (void)WaypointWaypoints_refreshTable
 {
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 -  (void)WaypointLog_refreshWaypointData
@@ -635,7 +635,7 @@ enum {
     }
 
     [waypointManager setCurrentWaypoint:waypoint];
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
