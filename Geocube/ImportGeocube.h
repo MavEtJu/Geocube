@@ -49,6 +49,9 @@
 #define KEY_VERSION_STATES          1
 #define KEY_VERSION_TYPES           1
 
+@property (nonatomic, retain) InfoItemImport *iii;
+
++ (BOOL)parse:(NSData *)data infoItemImport:(InfoItemImport *)iii;
 + (BOOL)parse:(NSData *)data;
 
 @end

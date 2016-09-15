@@ -27,25 +27,40 @@
     NSInteger viewHeight;
 
     GCSmallLabel *labelDesc;
-    GCSmallLabel *labelURL;
     GCSmallLabel *labelBytes;
+
+    NSInteger objectCount, objectTotal;
+    NSInteger lineCount, lineTotal;
+    NSInteger chunksTotal, chunksCount;
+    GCSmallLabel *labelLines;
+    GCSmallLabel *labelObjects;
+    GCSmallLabel *labelQueue;
+    GCSmallLabel *labelURL;
+    GCSmallLabel *labelChunks;
 }
+
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent;
 
 @property (nonatomic) NSInteger _id;
 
 @property (nonatomic, retain) GCView *view;
-@property (nonatomic) NSInteger viewHeight;
-
-@property (nonatomic, retain) GCSmallLabel *labelDesc;
-@property (nonatomic, retain) GCSmallLabel *labelURL;
-@property (nonatomic, retain) GCSmallLabel *labelBytes;
 
 - (void)calculateRects;
 
 - (void)setDescription:(NSString *)newDesc;
 - (void)setURL:(NSString *)newURL;
+- (void)setQueueSize:(NSInteger)queueSize;
+
+- (void)resetBytes;
+- (void)resetBytesChunks;
+
 - (void)setBytesTotal:(NSInteger)newTotal;
 - (void)setBytesCount:(NSInteger)newCount;
-- (void)resetBytes;
+- (void)setChunksTotal:(NSInteger)newTotal;
+- (void)setChunksCount:(NSInteger)newCount;
+- (void)setLineCount:(NSInteger)count;
+- (void)setLineTotal:(NSInteger)total;
+- (void)setObjectCount:(NSInteger)count;
+- (void)setObjectTotal:(NSInteger)total;
 
 @end

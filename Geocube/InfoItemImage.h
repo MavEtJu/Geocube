@@ -21,8 +21,4 @@
 
 @interface InfoItemImage : InfoItem
 
-@property (nonatomic, retain) GCSmallLabel *labelQueue;
-
-- (void)setQueueSize:(NSInteger)queueSize;
-
 @end

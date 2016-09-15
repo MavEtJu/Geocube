@@ -49,22 +49,14 @@
 - (InfoItemImage *)addImage
 {
     __block NSInteger max = 0;
-    InfoItemImage *iii = [[InfoItemImage alloc] init];
+    InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self];
 
     header = [[GCLabel alloc] initWithFrame:CGRectZero];
-    header.text = @"Downloads";
+    header.text = @"Images";
     header.backgroundColor = [UIColor lightGrayColor];
 
-    iii.view = [[GCView alloc] initWithFrame:(CGRectZero)];
-    iii.view.backgroundColor = [UIColor lightGrayColor];
-
-    iii.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iii.labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iii.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iii.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItemDowload *d, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
         }];
         iii._id = max + 1;
@@ -73,13 +65,6 @@
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
-
-        [iii.view addSubview:iii.labelDesc];
-        [iii.view addSubview:iii.labelURL];
-        [iii.view addSubview:iii.labelQueue];
-        [iii.view addSubview:iii.labelBytes];
-        [iii calculateRects];
-
         [self addSubview:iii.view];
         [self calculateRects];
     }];
@@ -89,28 +74,41 @@
 
 - (InfoItemImport *)addImport
 {
-    return nil;
+    __block NSInteger max = 0;
+    InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self];
+
+    header = [[GCLabel alloc] initWithFrame:CGRectZero];
+    header.text = @"Imports";
+    header.backgroundColor = [UIColor lightGrayColor];
+
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
+            max = MAX(max, d._id);
+        }];
+        iii._id = max + 1;
+        [items addObject:iii];
+    }
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self addSubview:header];
+        [self addSubview:iii.view];
+        [self calculateRects];
+    }];
+
+    return iii;
 }
 
 - (InfoItemDowload *)addDownload
 {
-    __block NSInteger max = 0;
-    InfoItemDowload *iid = [[InfoItemDowload alloc] init];
+    InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self];
 
     header = [[GCLabel alloc] initWithFrame:CGRectZero];
     header.text = @"Downloads";
     header.backgroundColor = [UIColor lightGrayColor];
 
-    iid.view = [[GCView alloc] initWithFrame:(CGRectZero)];
-    iid.view.backgroundColor = [UIColor lightGrayColor];
-
-    iid.labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iid.labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iid.labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    iid.labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-
+    __block NSInteger max = 0;
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItemDowload *d, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
         }];
         iid._id = max + 1;
@@ -119,13 +117,6 @@
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
-
-        [iid.view addSubview:iid.labelDesc];
-        [iid.view addSubview:iid.labelURL];
-        [iid.view addSubview:iid.labelChunks];
-        [iid.view addSubview:iid.labelBytes];
-        [iid calculateRects];
-
         [self addSubview:iid.view];
         [self calculateRects];
     }];

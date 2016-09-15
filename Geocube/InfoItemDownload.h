@@ -21,10 +21,4 @@
 
 @interface InfoItemDowload : InfoItem
 
-@property (nonatomic, retain) GCSmallLabel *labelChunks;
-
-- (void)setChunksTotal:(NSInteger)newTotal;
-- (void)setChunksCount:(NSInteger)newCount;
-- (void)resetBytesChunks;
-
 @end

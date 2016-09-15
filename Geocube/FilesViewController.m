@@ -50,6 +50,8 @@ enum {
     // Make sure we get told when a new file is here
     IOSFTM.delegate = self;
 
+    [self makeInfoView];
+
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuICloud label:@"iCloud"];
     [lmi addItem:menuRefresh label:@"Refresh"];
@@ -305,17 +307,31 @@ enum {
     }
 }
 
+- (void)fileImportGeocube:(NSString *)fn
+{
+    [self showInfoView];
+    InfoItemImport *iii = [infoView addImport];
+    [iii setDescription:[NSString stringWithFormat:@"Geocube import of %@", fn]];
+
+    NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
+    if ([ImportGeocube parse:data infoItemImport:iii] == NO) {
+        [MyTools messageBox:self header:@"Import failed" text:[NSString stringWithFormat:@"There was a problem importing the file %@.", fn]];
+    } else {
+        [MyTools messageBox:self header:@"Import successful" text:@"The import was successful."];
+    };
+
+    [infoView removeItem:iii];
+    [self hideInfoView];
+}
+
+
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
     // If the suffix is .geocube, import it as a Geocube datafile
     NSString *fn = [filesNames objectAtIndex:row];
     if ([[fn pathExtension] isEqualToString:@"geocube"] == YES) {
-        NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
-        if ([ImportGeocube parse:data] == NO) {
-            [MyTools messageBox:self header:@"Import failed" text:[NSString stringWithFormat:@"There was a problem importing the file %@.", fn]];
-        } else {
-            [MyTools messageBox:self header:@"Import successful" text:@"The import was successful."];
-        };
+
+        [self performSelectorInBackground:@selector(fileImportGeocube:) withObject:fn];
         return;
     }
 

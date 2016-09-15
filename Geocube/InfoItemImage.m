@@ -25,7 +25,28 @@
 
 @implementation InfoItemImage
 
-@synthesize labelQueue;
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+{
+    self = [super init];
+
+    view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    view.backgroundColor = [UIColor lightGrayColor];
+
+    labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [view addSubview:labelDesc];
+        [view addSubview:labelURL];
+        [view addSubview:labelQueue];
+        [view addSubview:labelBytes];
+        [self calculateRects];
+    }];
+
+    return self;
+}
 
 - (void)calculateRects
 {
@@ -49,13 +70,6 @@ y += __s__.font.lineHeight;
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
-}
-
-- (void)setQueueSize:(NSInteger)queueSize
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
-    }];
 }
 
 @end

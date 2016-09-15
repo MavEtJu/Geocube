@@ -28,10 +28,15 @@
 
 @implementation InfoItem
 
-@synthesize view, _id, viewHeight;
-@synthesize labelDesc, labelURL, labelBytes;
+@synthesize view, _id;
 
 NEEDS_OVERLOADING(calculateRects)
+
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+{
+    self = [super init];
+    return self;
+}
 
 - (void)setDescription:(NSString *)newDesc
 {
@@ -47,13 +52,64 @@ NEEDS_OVERLOADING(calculateRects)
     }];
 }
 
+- (void)setQueueSize:(NSInteger)queueSize
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
+    }];
+}
+
+- (void)showLines
+{
+    NSInteger lt = lineTotal;
+    NSInteger lc = lineCount;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (lt <= 0)
+            labelLines.text = [NSString stringWithFormat:@"Lines: %ld", lc];
+        else
+            labelLines.text = [NSString stringWithFormat:@"Lines: %ld of %ld (%ld%%)", lc, lt, 100 * lc / lt];
+    }];
+}
+- (void)setLineCount:(NSInteger)count
+{
+    lineCount = count;
+    [self showLines];
+}
+- (void)setLineTotal:(NSInteger)total
+{
+    lineTotal = total;
+    [self showLines];
+}
+
+- (void)showObjects
+{
+    NSInteger ot = objectTotal;
+    NSInteger oc = objectCount;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (ot <= 0)
+            labelObjects.text = [NSString stringWithFormat:@"Objects: %ld", oc];
+        else
+            labelObjects.text = [NSString stringWithFormat:@"Objects: %ld of %ld (%ld%%)", oc, ot, 100 * oc / ot];
+    }];
+}
+- (void)setObjectCount:(NSInteger)count
+{
+    objectCount = count;
+    [self showObjects];
+}
+- (void)setObjectTotal:(NSInteger)total
+{
+    objectTotal = total;
+    [self showObjects];
+}
+
 - (void)resetBytes
 {
     [self setBytesTotal:0];
     [self setBytesCount:-1];
 }
 
-- (void)setBytes
+- (void)showBytes
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         NSInteger bt = bytesTotal;
@@ -69,12 +125,43 @@ NEEDS_OVERLOADING(calculateRects)
 - (void)setBytesTotal:(NSInteger)newTotal
 {
     bytesTotal = newTotal;
-    [self setBytes];
+    [self showBytes];
 }
 - (void)setBytesCount:(NSInteger)newCount
 {
     bytesCount = newCount;
-    [self setBytes];
+    [self showBytes];
+}
+
+
+- (void)resetBytesChunks
+{
+    [self setChunksTotal:0];
+    [self setChunksCount:-1];
+    [self setBytesTotal:0];
+    [self setBytesCount:-1];
+}
+
+- (void)setChunks
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (chunksCount < 0)
+            labelChunks.text = @"Chunks: -";
+        else if (chunksTotal == 0)
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", (long)chunksCount];
+        else
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)chunksCount, (long)chunksTotal];
+    }];
+}
+- (void)setChunksTotal:(NSInteger)newTotal
+{
+    chunksTotal = newTotal;
+    [self setChunks];
+}
+- (void)setChunksCount:(NSInteger)newCount
+{
+    chunksCount = newCount;
+    [self setChunks];
 }
 
 @end

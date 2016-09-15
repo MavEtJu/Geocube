@@ -20,15 +20,33 @@
  */
 
 @interface InfoItemDowload ()
-{
-    NSInteger chunksTotal, chunksCount;
-}
 
 @end
 
 @implementation InfoItemDowload
 
-@synthesize labelChunks;
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+{
+    self = [super init];
+
+    view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    view.backgroundColor = [UIColor lightGrayColor];
+
+    labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [view addSubview:labelDesc];
+        [view addSubview:labelURL];
+        [view addSubview:labelChunks];
+        [view addSubview:labelBytes];
+        [self calculateRects];
+    }];
+
+    return self;
+}
 
 - (void)calculateRects
 {
@@ -52,36 +70,6 @@
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
-}
-
-- (void)resetBytesChunks
-{
-    [self setChunksTotal:0];
-    [self setChunksCount:-1];
-    [self setBytesTotal:0];
-    [self setBytesCount:-1];
-}
-
-- (void)setChunks
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (chunksCount < 0)
-            labelChunks.text = @"Chunks: -";
-        else if (chunksTotal == 0)
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", (long)chunksCount];
-        else
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)chunksCount, (long)chunksTotal];
-    }];
-}
-- (void)setChunksTotal:(NSInteger)newTotal
-{
-    chunksTotal = newTotal;
-    [self setChunks];
-}
-- (void)setChunksCount:(NSInteger)newCount
-{
-    chunksCount = newCount;
-    [self setChunks];
 }
 
 @end

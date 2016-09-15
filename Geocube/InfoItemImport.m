@@ -25,4 +25,48 @@
 
 @implementation InfoItemImport
 
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+{
+    self = [super init];
+
+    view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    view.backgroundColor = [UIColor lightGrayColor];
+
+    labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelLines = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [view addSubview:labelDesc];
+        [view addSubview:labelObjects];
+        [view addSubview:labelLines];
+        [self calculateRects];
+    }];
+
+    return self;
+}
+
+- (void)calculateRects
+{
+#define MARGIN  5
+#define INDENT  10
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    NSInteger y = MARGIN;
+
+#define LABEL_RESIZE(__s__) \
+__s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
+#define INDENT_RESIZE(__s__) \
+__s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+y += __s__.font.lineHeight;
+
+    INDENT_RESIZE(labelDesc);
+    INDENT_RESIZE(labelObjects);
+    INDENT_RESIZE(labelLines);
+
+    y += MARGIN;
+    view.frame = CGRectMake(0, 0, width, y);
+}
+
 @end

@@ -94,10 +94,10 @@
 @class ImportManager;
 @class ImportOKAPIJSON;
 @class ImportTemplate;
+@class InfoItem;
 @class InfoItemDowload;
 @class InfoItemImage;
 @class InfoItemImport;
-@class InfoItem;
 @class InfoViewer;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;
