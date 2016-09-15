@@ -539,7 +539,6 @@
     NSLog(@"my_query_json:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/json/%@", queryname];
-    [downloadManager setURL:urlString];
 
     NSData *data = [self loadDataForeground:urlString downloadInfoItem:iid];
 
@@ -562,7 +561,6 @@
     NSLog(@"my_query_gpx:%@", queryname);
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/my/query/gpx/%@", queryname];
-    [downloadManager setURL:urlString];
 
     NSData *data = [self loadDataForeground:urlString downloadInfoItem:iid];
     return [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];

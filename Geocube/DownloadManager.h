@@ -19,27 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol DownloadManagerDelegate
-
-- (void)downloadManager_setDescription:(NSString *)description;
-- (void)downloadManager_setURL:(NSString *)url;
-- (void)downloadManager_setNumberOfChunksTotal:(NSInteger)chunks;
-- (void)downloadManager_setNumberOfChunksDownload:(NSInteger)chunks;
-- (void)downloadManager_setNumberBytesTotal:(NSInteger)bytes;
-- (void)downloadManager_setNumberBytesDownload:(NSInteger)bytes;
-
-- (void)downloadManager_setBGDescription:(NSString *)description;
-- (void)downloadManager_setBGURL:(NSString *)url;
-- (void)downloadManager_setBGNumberOfChunksTotal:(NSInteger)chunks;
-- (void)downloadManager_setBGNumberOfChunksDownload:(NSInteger)chunks;
-- (void)downloadManager_setBGNumberBytesTotal:(NSInteger)bytes;
-- (void)downloadManager_setBGNumberBytesDownload:(NSInteger)bytes;
-
-@end
-
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
-
-@property (nonatomic, retain) id<DownloadManagerDelegate> downloadsImportsDelegate;
 
 /*
  * Download an image now.
@@ -55,27 +35,5 @@
  * Add  the contents of an URL to the download queue.
  */
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(InfoItem *)iid;
-
-/*
- * Reset the values of the foreground download view or the background download view back to their initial values.
- */
-- (void)resetForegroundDownload;
-- (void)resetBackgroundDownload;
-
-/*
- * Set various fields
- */
-- (void)setDescription:(NSString *)description;
-- (void)setURL:(NSString *)url;
-- (void)setNumberOfChunksTotal:(NSInteger)chunks;
-- (void)setNumberOfChunksDownload:(NSInteger)chunks;
-- (void)setNumberBytesTotal:(NSInteger)bytes;
-- (void)setNumberBytesDownload:(NSInteger)bytes;
-- (void)setBGDescription:(NSString *)description;
-- (void)setBGURL:(NSString *)url;
-- (void)setBGNumberOfChunksTotal:(NSInteger)chunks;
-- (void)setBGNumberOfChunksDownload:(NSInteger)chunks;
-- (void)setBGNumberBytesTotal:(NSInteger)bytes;
-- (void)setBGNumberBytesDownload:(NSInteger)bytes;
 
 @end

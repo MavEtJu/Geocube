@@ -29,15 +29,11 @@
 {
     self = [super init];
 
-    UILabel *label = [[UILabel alloc] init];
     UISwitch *switch_ = [[UISwitch alloc] init];
 
-    UIColor *bgColor = label.backgroundColor;
-    UIColor *fgColor = label.textColor;
+    UIColor *bgColor = [UIColor whiteColor];
+    UIColor *fgColor = [UIColor blackColor];
     UIColor *clearColor = [UIColor clearColor];
-
-    bgColor = [UIColor whiteColor];
-    fgColor = [UIColor blackColor];
 
     labelTextColor = fgColor;
     labelTextColorDisabled = [UIColor lightGrayColor];

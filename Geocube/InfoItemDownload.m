@@ -68,9 +68,9 @@
         if (chunksCount < 0)
             labelChunks.text = @"Chunks: -";
         else if (chunksTotal == 0)
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", chunksCount];
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", (long)chunksCount];
         else
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", chunksCount, chunksTotal];
+            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)chunksCount, (long)chunksTotal];
     }];
 }
 - (void)setChunksTotal:(NSInteger)newTotal

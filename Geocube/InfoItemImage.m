@@ -54,7 +54,7 @@ y += __s__.font.lineHeight;
 - (void)setQueueSize:(NSInteger)queueSize
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", queueSize];
+        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
     }];
 }
 

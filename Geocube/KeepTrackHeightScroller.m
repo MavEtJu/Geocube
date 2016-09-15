@@ -136,12 +136,11 @@ enum {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
     __block CGFloat ymin = +100000, ymax = -100000;
-    __block CGFloat xmin = time(NULL) + 86400, xmax = 0;
+    __block CGFloat xmax = 0;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         ymin = MIN(ymin, te.height);
         ymax = MAX(ymax, te.height);
     }];
-    xmin = 0;
     xmax = [tes count];
     ymin = MIN(0, ymin);
 
@@ -160,7 +159,7 @@ enum {
     }];
     X += steps;
 
-    NSLog(@"ymin,ymax=%0.2f,%0.2f xmin,xmax=%0.2f,%0.2f X,Y=%ld,%ld step=%ld", ymin, ymax, xmin, xmax, (long)X, (long)Y, (long)steps);
+    NSLog(@"ymin,ymax=%0.2f,%0.2f xmax=%0.2f X,Y=%ld,%ld step=%ld", ymin, ymax, xmax, (long)X, (long)Y, (long)steps);
 
     UIGraphicsBeginImageContext(CGSizeMake(X, Y));
     CGContextRef context = UIGraphicsGetCurrentContext();

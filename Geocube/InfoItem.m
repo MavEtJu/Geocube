@@ -63,7 +63,7 @@ NEEDS_OVERLOADING(calculateRects)
         else if (bt <= 0)
             labelBytes.text = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
         else
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (bc * 100) / bt];
+            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
     }];
 }
 - (void)setBytesTotal:(NSInteger)newTotal

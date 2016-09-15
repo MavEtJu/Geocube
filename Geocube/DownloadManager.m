@@ -28,8 +28,6 @@
 
 @implementation DownloadManager
 
-@synthesize downloadsImportsDelegate;
-
 - (instancetype)init
 {
     self = [super init];
@@ -124,7 +122,8 @@
 
     NSData *data = [retDict objectForKey:@"data"];
     *responsePtr = [retDict objectForKey:@"response"];
-    *errorPtr = [retDict objectForKey:@"error"];
+    if (errorPtr != nil)
+        *errorPtr = [retDict objectForKey:@"error"];
 
     return data;
 }
@@ -194,75 +193,13 @@
 
                 InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
                 if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO)
-                    [iid setBytesTotal:response.expectedContentLength];
+                    [iid setBytesTotal:(NSInteger)response.expectedContentLength];
 
                 *stop = YES;
                 return;
             }
         }];
     }
-}
-
-/////////////////////////////////////////////////////////////////////////
-
-- (void)setDescription:(NSString *)description
-{
-    [downloadsImportsDelegate downloadManager_setDescription:description];
-}
-
-- (void)setURL:(NSString *)url
-{
-    [downloadsImportsDelegate downloadManager_setURL:url];
-}
-
-- (void)setNumberOfChunksTotal:(NSInteger)chunks
-{
-    [downloadsImportsDelegate downloadManager_setNumberOfChunksTotal:chunks];
-}
-
-- (void)setNumberOfChunksDownload:(NSInteger)chunks
-{
-    [downloadsImportsDelegate downloadManager_setNumberOfChunksDownload:chunks];
-}
-
-- (void)setNumberBytesTotal:(NSInteger)bytes
-{
-    [downloadsImportsDelegate downloadManager_setNumberBytesTotal:bytes];
-}
-
-- (void)setNumberBytesDownload:(NSInteger)bytes
-{
-    [downloadsImportsDelegate downloadManager_setNumberBytesDownload:bytes];
-}
-
-- (void)setBGDescription:(NSString *)description
-{
-    [downloadsImportsDelegate downloadManager_setBGDescription:description];
-}
-
-- (void)setBGURL:(NSString *)url
-{
-    [downloadsImportsDelegate downloadManager_setBGURL:url];
-}
-
-- (void)setBGNumberOfChunksTotal:(NSInteger)chunks
-{
-    [downloadsImportsDelegate downloadManager_setBGNumberOfChunksTotal:chunks];
-}
-
-- (void)setBGNumberOfChunksDownload:(NSInteger)chunks
-{
-    [downloadsImportsDelegate downloadManager_setBGNumberOfChunksDownload:chunks];
-}
-
-- (void)setBGNumberBytesTotal:(NSInteger)bytes
-{
-    [downloadsImportsDelegate downloadManager_setBGNumberBytesTotal:bytes];
-}
-
-- (void)setBGNumberBytesDownload:(NSInteger)bytes
-{
-    [downloadsImportsDelegate downloadManager_setBGNumberBytesDownload:bytes];
 }
 
 @end

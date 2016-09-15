@@ -168,7 +168,7 @@ NEEDS_OVERLOADING(clearFlags)
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [iid resetBytes];
-        [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", idx + 1, [waypoints count]]];
+        [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
         [iid setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
         NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:iid];
