@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, YIPopupTextViewButtonStyle) {
 @end
 
 
-@interface YIPopupTextView : YISSTextView
+@interface YIPopupTextView : YISSTextView <CAAnimationDelegate>
 
 @property (nonatomic, assign) id <YIPopupTextViewDelegate> delegate;
 
