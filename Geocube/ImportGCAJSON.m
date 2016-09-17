@@ -25,8 +25,9 @@
 
 @implementation ImportGCAJSON
 
-- (void)parseDictionary:(GCDictionaryGCA *)dict
+- (void)parseDictionary:(GCDictionaryGCA *)dict infoItemImport:(InfoItemImport *)iii
 {
+    infoItemImport = iii;
     if ([dict objectForKey:@"geocaches1"] != nil) {
         [self parseBefore_caches];
         [self parseData_caches:[dict objectForKey:@"geocaches1"]];
@@ -79,11 +80,12 @@
 
 - (void)parseGeocaches:(NSArray *)as
 {
+    [infoItemImport setObjectTotal:[as count]];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
-        [delegate Import_setTotalWaypoints:totalWaypointsCount];
-        [delegate Import_setProgress:idx + 1 total:[as count]];
+        [infoItemImport setWaypointsTotal:totalWaypointsCount];
+        [infoItemImport setObjectCount:idx + 1];
     }];
 }
 
@@ -194,7 +196,7 @@
         [dbWaypoint dbCreate:wp];
         [group dbAddWaypoint:wp._id];
         newWaypointsCount++;
-        [delegate Import_setNewWaypoints:newWaypointsCount];
+        [infoItemImport setWaypointsNew:newWaypointsCount];
     } else {
         NSLog(@"%@: Updating %@", [self class], wpname);
         [wp dbUpdate];
@@ -229,11 +231,12 @@
 
 - (void)parseLogs:(NSArray *)as
 {
+    [infoItemImport setObjectTotal:[as count]];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
         totalLogsCount++;
-        [delegate Import_setTotalLogs:totalLogsCount];
-        [delegate Import_setProgress:idx + 1 total:[as count]];
+        [infoItemImport setObjectCount:idx + 1];
+        [infoItemImport setLogsTotal:totalLogsCount];
     }];
 }
 
@@ -272,7 +275,7 @@
     if (_id == 0) {
         [dbLog dbCreate:t];
         newLogsCount++;
-        [delegate Import_setNewLogs:newLogsCount];
+        [infoItemImport setLogsNew:newLogsCount];
     } else {
         t._id = _id;
         [t dbUpdate];

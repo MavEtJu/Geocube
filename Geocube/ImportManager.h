@@ -19,26 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImportManagerDelegate
-
-- (void)importManager_setDescription:(NSString *)description;
-- (void)importManager_setAccount:(dbAccount *)account;
-- (void)ImportManager_setTotalWaypoints:(NSInteger)v;
-- (void)ImportManager_setNewWaypoints:(NSInteger)v;
-- (void)ImportManager_setNewLogs:(NSInteger)v;
-- (void)ImportManager_setTotalLogs:(NSInteger)v;
-- (void)ImportManager_setNewTrackables:(NSInteger)v;
-- (void)ImportManager_setTotalTrackables:(NSInteger)v;
-- (void)ImportManager_setProgress:(NSInteger)v total:(NSInteger)t;
-- (void)ImportManager_setQueueSize:(NSInteger)v;
-
-@end
-
-@interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
-
-@property (nonatomic, retain) id<ImportManagerDelegate> downloadsImportsDelegate;
+@interface ImportManager : NSObject <SSZipArchiveDelegate>
 
 - (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
+- (void)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoItemImport:(InfoItemImport *)iii;
 
 - (void)resetImports;
 

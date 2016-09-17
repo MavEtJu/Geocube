@@ -70,6 +70,7 @@
 
 - (void)showInfoView
 {
+    NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
     [self.view bringSubviewToFront:infoView];
     infoView.hidden = NO;
 }

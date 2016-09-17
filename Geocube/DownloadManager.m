@@ -37,16 +37,6 @@
     return self;
 }
 
-- (void)resetForegroundDownload
-{
-//    [downloadsImportsViewController resetForegroundDownload];
-}
-
-- (void)resetBackgroundDownload
-{
-//    [downloadsImportsViewController resetBackgroundDownload];
-}
-
 /////////////////////////////////////////////////////////////////////////
 
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(InfoItem *)iti

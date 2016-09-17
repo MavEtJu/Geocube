@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DownloadsImportsViewController : GCViewController <ImportManagerDelegate>
+@interface DownloadsImportsViewController : GCViewController
 
 - (void)showImportManager;
 - (void)resetImports;

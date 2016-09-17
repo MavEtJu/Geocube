@@ -25,15 +25,11 @@
 
 @implementation ImportTemplate
 
-@synthesize delegate;
-
 @synthesize run_options;
 
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
     self = [super init];
-
-    delegate = nil;
 
     group = _group;
     account = _account;
@@ -75,9 +71,26 @@
     [dbWaypoint dbUpdateLogStatus];
 }
 
-NEEDS_OVERLOADING(parseFile:(NSString *)filename)
-NEEDS_OVERLOADING(parseData:(NSData *)data)
-NEEDS_OVERLOADING(parseString:(NSString *)data)
-NEEDS_OVERLOADING(parseDictionary:(NSDictionary *)dict)
+- (void)parseFile:(NSString *)filename
+{
+    [self parseFile:filename infoItemImport:nil];
+}
+- (void)parseData:(NSData *)data
+{
+    [self parseData:data infoItemImport:nil];
+}
+- (void)parseString:(NSString *)data
+{
+    [self parseString:data infoItemImport:nil];
+}
+- (void)parseDictionary:(NSDictionary *)dict
+{
+    [self parseDictionary:dict infoItemImport:nil];
+}
+
+NEEDS_OVERLOADING(parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii)
+NEEDS_OVERLOADING(parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii)
+NEEDS_OVERLOADING(parseString:(NSString *)data infoItemImport:(InfoItemImport *)iii)
+NEEDS_OVERLOADING(parseDictionary:(NSDictionary *)dict infoItemImport:(InfoItemImport *)iii)
 
 @end

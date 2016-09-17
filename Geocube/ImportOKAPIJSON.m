@@ -25,10 +25,11 @@
 
 @implementation ImportOKAPIJSON
 
-- (void)parseDictionary:(NSDictionary *)dict
+- (void)parseDictionary:(NSDictionary *)dict infoItemImport:(InfoItemImport *)iii
 {
     if ([dict objectForKey:@"waypoints"] != nil) {
         [self parseBefore_caches];
+        infoItemImport = iii;
         [self parseData_caches:[dict objectForKey:@"waypoints"]];
         [self parseAfter_caches];
     }
@@ -57,8 +58,12 @@
 
 - (void)parseData_caches:(NSArray *)caches
 {
+    [infoItemImport setObjectTotal:[caches count]];
     [caches enumerateObjectsUsingBlock:^(NSDictionary *cache, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_cache:cache];
+        totalWaypointsCount++;
+        [infoItemImport setWaypointsTotal:totalWaypointsCount];
+        [infoItemImport setObjectCount:idx + 1];
     }];
 }
 
@@ -215,6 +220,8 @@
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];
+        newWaypointsCount++;
+        [infoItemImport setWaypointsNew:newWaypointsCount];
     } else {
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
@@ -310,8 +317,11 @@
 - (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp
 {
     NSArray *alllogs = [dbLog dbAllByWaypoint:wp._id];
+    [infoItemImport setLogsTotal:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];
+        totalLogsCount++;
+        [infoItemImport setLogsTotal:totalLogsCount];
     }];
 }
 
@@ -365,12 +375,17 @@
 
     dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO];
     [l dbCreate];
+    newLogsCount++;
+    [infoItemImport setLogsNew:newLogsCount];
 }
 
 - (void)parseData_trackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
 {
+    [infoItemImport setTrackablesTotal:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:trackable waypoint:wp];
+        totalTrackablesCount++;
+        [infoItemImport setTrackablesTotal:totalTrackablesCount];
     }];
 }
 

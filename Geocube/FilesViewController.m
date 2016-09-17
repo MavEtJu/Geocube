@@ -410,7 +410,14 @@ enum {
 //            [downloadsImportsViewController showImportManager];
 //            [downloadsImportsViewController resetImports];
 
-            [importManager addToQueue:sfn group:group account:[accounts objectAtIndex:selectedIndex] options:RUN_OPTION_NONE];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+            [dict setObject:sfn forKey:@"sfn"];
+            [dict setObject:filename forKey:@"filename"];
+            [dict setObject:group forKey:@"group"];
+            [dict setObject:[accounts objectAtIndex:selectedIndex] forKey:@"account"];
+            [dict setObject:[NSNumber numberWithInt:RUN_OPTION_NONE] forKey:@"options"];
+
+            [self performSelectorInBackground:@selector(fileImportBG:) withObject:dict];
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {
@@ -437,7 +444,27 @@ enum {
         }
         origin:tablecell
     ];
+}
 
+- (void)fileImportBG:(NSDictionary *)dict
+{
+    GCStringFilename *sfn = [dict objectForKey:@"sfn"];
+    dbAccount *account = [dict objectForKey:@"account"];
+    dbGroup *group = [dict objectForKey:@"group"];
+    NSInteger options = [[dict objectForKey:@"options"] integerValue];
+    NSString *filename = [dict objectForKey:@"filename"];
+
+    [self showInfoView];
+    InfoItemImport *iii = [infoView addImport];
+    [iii setDescription:filename];
+
+    [importManager process:sfn group:group account:account options:options infoItemImport:iii];
+
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO) {
+        [self hideInfoView];
+        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    }
 }
 
 - (void)fileRename:(NSString *)filename
