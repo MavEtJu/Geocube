@@ -73,12 +73,12 @@
 
 - (void)parseGeocaches:(NSArray *)as
 {
-    [infoItemImport setObjectTotal:[as count]];
+    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
 
-        [infoItemImport setObjectCount:idx];
+        [infoItemImport setLineObjectCount:idx];
         [infoItemImport setWaypointsTotal:totalWaypointsCount];
     }];
 }

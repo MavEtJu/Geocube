@@ -80,12 +80,12 @@
 
 - (void)parseGeocaches:(NSArray *)as
 {
-    [infoItemImport setObjectTotal:[as count]];
+    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
         [infoItemImport setWaypointsTotal:totalWaypointsCount];
-        [infoItemImport setObjectCount:idx + 1];
+        [infoItemImport setLineObjectCount:idx + 1];
     }];
 }
 
@@ -231,11 +231,11 @@
 
 - (void)parseLogs:(NSArray *)as
 {
-    [infoItemImport setObjectTotal:[as count]];
+    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
         totalLogsCount++;
-        [infoItemImport setObjectCount:idx + 1];
+        [infoItemImport setLineObjectCount:idx + 1];
         [infoItemImport setLogsTotal:totalLogsCount];
     }];
 }

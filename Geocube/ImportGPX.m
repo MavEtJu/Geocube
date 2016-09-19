@@ -89,11 +89,11 @@
     inImageCache = NO;
     logIdGCId = [dbLog dbAllIdGCId];
 
-    [infoItemImport setLineTotal:numberOfLines];
+    [infoItemImport setLineObjectTotal:numberOfLines isLines:YES];
     @autoreleasepool {
         [rssParser parse];
     }
-    [infoItemImport setLineCount:numberOfLines];
+    [infoItemImport setLineObjectCount:numberOfLines];
 }
 
 - (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -205,7 +205,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    [infoItemImport setLineCount:parser.lineNumber];
+    [infoItemImport setLineObjectCount:parser.lineNumber];
 
     @autoreleasepool {
         index--;

@@ -58,12 +58,12 @@
 
 - (void)parseData_caches:(NSArray *)caches
 {
-    [infoItemImport setObjectTotal:[caches count]];
+    [infoItemImport setLineObjectTotal:[caches count] isLines:NO];
     [caches enumerateObjectsUsingBlock:^(NSDictionary *cache, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_cache:cache];
         totalWaypointsCount++;
         [infoItemImport setWaypointsTotal:totalWaypointsCount];
-        [infoItemImport setObjectCount:idx + 1];
+        [infoItemImport setLineObjectCount:idx + 1];
     }];
 }
 
