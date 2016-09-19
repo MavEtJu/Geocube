@@ -30,10 +30,9 @@
     GCSmallLabel *labelBytes;
 
     NSInteger objectCount, objectTotal;
-    NSInteger lineCount, lineTotal;
+    NSInteger lineObjectCount, lineObjectTotal;
     NSInteger chunksTotal, chunksCount;
-    GCSmallLabel *labelLines;
-    GCSmallLabel *labelObjects;
+    GCSmallLabel *labelLinesObjects;
     GCSmallLabel *labelQueue;
     GCSmallLabel *labelURL;
     GCSmallLabel *labelChunks;
@@ -58,9 +57,7 @@
 - (void)setBytesCount:(NSInteger)newCount;
 - (void)setChunksTotal:(NSInteger)newTotal;
 - (void)setChunksCount:(NSInteger)newCount;
-- (void)setLineCount:(NSInteger)count;
-- (void)setLineTotal:(NSInteger)total;
-- (void)setObjectCount:(NSInteger)count;
-- (void)setObjectTotal:(NSInteger)total;
+- (void)setLineObjectCount:(NSInteger)count;
+- (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)isLines;
 
 @end

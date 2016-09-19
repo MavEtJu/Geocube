@@ -42,16 +42,14 @@
     view.backgroundColor = [UIColor lightGrayColor];
 
     labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    labelObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-    labelLines = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+    labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelTrackables = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelLogs = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelWaypoints = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [view addSubview:labelDesc];
-        [view addSubview:labelObjects];
-        [view addSubview:labelLines];
+        [view addSubview:labelLinesObjects];
         [view addSubview:labelWaypoints];
         [view addSubview:labelLogs];
         [view addSubview:labelTrackables];
@@ -77,8 +75,7 @@ __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.
 y += __s__.font.lineHeight;
 
     INDENT_RESIZE(labelDesc);
-    INDENT_RESIZE(labelObjects);
-    INDENT_RESIZE(labelLines);
+    INDENT_RESIZE(labelLinesObjects);
     INDENT_RESIZE(labelWaypoints);
     INDENT_RESIZE(labelLogs);
     INDENT_RESIZE(labelTrackables);
@@ -90,7 +87,7 @@ y += __s__.font.lineHeight;
 - (void)setWaypoints
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelWaypoints.text = [NSString stringWithFormat:@"%ld (%ld new)", waypointsTotal, waypointsNew];
+        labelWaypoints.text = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", waypointsTotal, waypointsNew];
     }];
 }
 - (void)setWaypointsNew:(NSInteger)i
@@ -107,7 +104,7 @@ y += __s__.font.lineHeight;
 - (void)setLogs
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelLogs.text = [NSString stringWithFormat:@"%ld (%ld new)", logsTotal, logsNew];
+        labelLogs.text = [NSString stringWithFormat:@"Logs: %ld (%ld new)", logsTotal, logsNew];
     }];
 }
 - (void)setLogsNew:(NSInteger)i
@@ -124,7 +121,7 @@ y += __s__.font.lineHeight;
 - (void)setTrackables
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelTrackables.text = [NSString stringWithFormat:@"%ld (%ld new)", trackablesTotal, trackablesNew];
+        labelTrackables.text = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", trackablesTotal, trackablesNew];
     }];
 }
 - (void)setTrackablesNew:(NSInteger)i

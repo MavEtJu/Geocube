@@ -22,6 +22,7 @@
 @interface InfoItem ()
 {
     NSInteger bytesTotal, bytesCount;
+    BOOL isLines;
 }
 
 @end
@@ -59,48 +60,27 @@ NEEDS_OVERLOADING(calculateRects)
     }];
 }
 
-- (void)showLines
+- (void)showLinesObjects
 {
-    NSInteger lt = lineTotal;
-    NSInteger lc = lineCount;
+    NSInteger lot = lineObjectTotal;
+    NSInteger loc = lineObjectCount;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (lt <= 0)
-            labelLines.text = [NSString stringWithFormat:@"Lines: %ld", lc];
+        if (lot <= 0)
+            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", loc];
         else
-            labelLines.text = [NSString stringWithFormat:@"Lines: %ld of %ld (%ld%%)", lc, lt, 100 * lc / lt];
+            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", loc, lot, 100 * loc / lot];
     }];
 }
-- (void)setLineCount:(NSInteger)count
+- (void)setLineObjectCount:(NSInteger)count
 {
-    lineCount = count;
-    [self showLines];
+    lineObjectCount = count;
+    [self showLinesObjects];
 }
-- (void)setLineTotal:(NSInteger)total
+- (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)_isLines
 {
-    lineTotal = total;
-    [self showLines];
-}
-
-- (void)showObjects
-{
-    NSInteger ot = objectTotal;
-    NSInteger oc = objectCount;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (ot <= 0)
-            labelObjects.text = [NSString stringWithFormat:@"Objects: %ld", oc];
-        else
-            labelObjects.text = [NSString stringWithFormat:@"Objects: %ld of %ld (%ld%%)", oc, ot, 100 * oc / ot];
-    }];
-}
-- (void)setObjectCount:(NSInteger)count
-{
-    objectCount = count;
-    [self showObjects];
-}
-- (void)setObjectTotal:(NSInteger)total
-{
-    objectTotal = total;
-    [self showObjects];
+    isLines = _isLines;
+    lineObjectTotal = total;
+    [self showLinesObjects];
 }
 
 - (void)resetBytes
