@@ -722,7 +722,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback
 {
     *retObj = nil;
 
@@ -747,6 +747,7 @@
             if (json != nil) {
                 if (result == nil)
                     result = [NSMutableDictionary dictionaryWithDictionary:json];
+                [callback QueriesTemplate_retrieveQuery:iii object:result group:group];
                 [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
                 found += [[json objectForKey:@"Geocaches"] count];
             }
@@ -791,7 +792,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback
 {
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {

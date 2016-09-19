@@ -43,12 +43,29 @@
     [bezelManager removeBezel];
 }
 
-- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
+- (void)QueriesTemplate_retrieveQuery:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
 {
-    GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:query];
-    [importManager addToQueue:d group:group account:account options:RUN_OPTION_NONE];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
+    [d setObject:group forKey:@"group"];
+    [d setObject:o forKey:@"object"];
+    [d setObject:iii forKey:@"iii"];
+    [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
+}
 
-    return YES;
+- (void)parseQueryBG:(NSDictionary *)dict
+{
+    dbGroup *group = [dict objectForKey:@"group"];
+    NSObject *o = [dict objectForKey:@"object"];
+    InfoItemImport *iii = [dict objectForKey:@"iii"];
+
+
+    GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:o];
+    [importManager process:d group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+
+    if ([infoView hasItems] == NO) {
+        [infoView removeItem:iii];
+        [self hideInfoView];
+    }
 }
 
 - (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
@@ -60,18 +77,19 @@
 
     [self showInfoView];
     InfoItemDowload *iid = [infoView addDownload];
+    InfoItemImport *iii = [infoView addImport];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid importInfoItem:iii callback:self];
 
     [infoView removeItem:iid];
-    [self hideInfoView];
+    if ([infoView hasItems] == NO)
+        [self hideInfoView];
 
     if (ret == nil) {
         failure = YES;
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
-    } else
-        [self parseRetrievedQuery:ret group:group];
+    }
 
     return failure;
 }

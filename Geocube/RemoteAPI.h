@@ -71,8 +71,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDowload *)iid;
 
 - (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoItemDowload *)iid;
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid;
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid;
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback;
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback;
 
 - (void)trackablesMine:(InfoItemDowload *)iid;
 - (void)trackablesInventory:(InfoItemDowload *)iid;
