@@ -19,7 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesTemplateViewController : GCTableViewController
+@protocol QueriesTemplateDelegate
+
+- (void)QueriesTemplate_retrieveQuery:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group;
+
+@end
+
+@interface QueriesTemplateViewController : GCTableViewController <QueriesTemplateDelegate>
 {
     dbAccount *account;
 }
