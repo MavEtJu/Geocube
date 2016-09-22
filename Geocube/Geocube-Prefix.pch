@@ -154,10 +154,6 @@
 #import "BrowserBrowserViewController.h"
 #import "BrowserUserViewController.h"
 
-#import "QueriesTemplateViewController.h"
-#import "QueriesGroundspeakViewController.h"
-#import "QueriesGCAViewController.h"
-
 #import "GCOAuthBlackbox.h"
 #import "RemoteAPI_Template.h"
 #import "RemoteAPI_GCA.h"
@@ -165,6 +161,10 @@
 #import "RemoteAPI_OKAPI.h"
 #import "RemoteAPI.h"
 #import "IOSFileTransfers.h"
+
+#import "QueriesTemplateViewController.h"
+#import "QueriesGroundspeakViewController.h"
+#import "QueriesGCAViewController.h"
 
 #import "SettingsAccountsViewController.h"
 #import "SettingsColoursViewController.h"
