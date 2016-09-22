@@ -205,7 +205,8 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    [infoItemImport setLineObjectCount:parser.lineNumber];
+    if (parser.lineNumber % 25 == 0)
+        [infoItemImport setLineObjectCount:parser.lineNumber];
 
     @autoreleasepool {
         index--;
