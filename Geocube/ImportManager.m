@@ -21,7 +21,6 @@
 
 @interface ImportManager ()
 {
-    ImportTemplate *imp;
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
 }
@@ -64,6 +63,7 @@
         }
     }
 
+    ImportTemplate *imp;
     if ([data isKindOfClass:[GCStringFilename class]] == YES ||
         [data isKindOfClass:[GCStringGPX class]] == YES) {
         imp = [[ImportGPX alloc] init:group account:account];
@@ -78,11 +78,12 @@
     }
 
     @synchronized (self) {
-        [self runImporter:data run_options:runoptions infoItemImport:iii];
+        NSLog(@"%@ - My turn to import!", [self class]);
+        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItemImport:iii];
     }
 }
 
-- (void)runImporter:(NSObject *)data run_options:(NSInteger)run_options infoItemImport:(InfoItemImport *)iii
+- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(NSInteger)run_options infoItemImport:(InfoItemImport *)iii
 {
     [imp parseBefore];
 
