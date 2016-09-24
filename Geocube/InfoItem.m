@@ -29,13 +29,14 @@
 
 @implementation InfoItem
 
-@synthesize view, _id;
+@synthesize view, _id, infoViewer;
 
 NEEDS_OVERLOADING(calculateRects)
 
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent
 {
     self = [super init];
+    infoViewer = parent;
     return self;
 }
 

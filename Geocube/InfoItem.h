@@ -43,6 +43,7 @@
 @property (nonatomic) NSInteger _id;
 
 @property (nonatomic, retain) GCView *view;
+@property (nonatomic, retain) InfoViewer *infoViewer;
 
 - (void)calculateRects;
 
