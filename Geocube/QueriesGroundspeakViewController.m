@@ -43,12 +43,13 @@
     [bezelManager removeBezel];
 }
 
-- (void)QueriesTemplate_retrieveQuery:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
     [d setObject:iii forKey:@"iii"];
+
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
 }
 
@@ -58,14 +59,12 @@
     NSObject *o = [dict objectForKey:@"object"];
     InfoItemImport *iii = [dict objectForKey:@"iii"];
 
-
     GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:o];
     [importManager process:d group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
 
-    if ([infoView hasItems] == NO) {
-        [infoView removeItem:iii];
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO)
         [self hideInfoView];
-    }
 }
 
 - (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
@@ -77,10 +76,9 @@
 
     [self showInfoView];
     InfoItemDowload *iid = [infoView addDownload];
-    InfoItemImport *iii = [infoView addImport];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid importInfoItem:iii callback:self];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid infoViewer:infoView callback:self];
 
     [infoView removeItem:iid];
     if ([infoView hasItems] == NO)

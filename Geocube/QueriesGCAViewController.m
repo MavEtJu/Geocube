@@ -20,6 +20,9 @@
  */
 
 @interface QueriesGCAViewController ()
+{
+    BOOL seenJSON;
+}
 
 @end
 
@@ -61,6 +64,37 @@ enum {
     return YES;
 }
 
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
+{
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
+    [d setObject:group forKey:@"group"];
+    [d setObject:o forKey:@"object"];
+    [d setObject:iii forKey:@"iii"];
+
+    [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
+}
+
+- (void)parseQueryBG:(NSDictionary *)dict
+{
+    dbGroup *group = [dict objectForKey:@"group"];
+    NSObject *o = [dict objectForKey:@"object"];
+    InfoItemImport *iii = [dict objectForKey:@"iii"];
+
+    if ([o isKindOfClass:[GCStringGPX class]] == YES) {
+        if (seenJSON == YES)
+            [importManager process:o group:group account:account options:RUN_OPTION_LOGSONLY infoItemImport:iii];
+        else
+            [importManager process:o group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+    } else {
+        [importManager process:o group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+        seenJSON = YES;
+    }
+
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO)
+        [self hideInfoView];
+}
+
 - (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     __block BOOL failure = NO;
@@ -69,19 +103,20 @@ enum {
     NSObject *retjson;
     NSObject *retgpx;
 
+    seenJSON = NO;
+
     [self showInfoView];
     InfoItemDowload *iid = [infoView addDownload];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [infoView setHeaderSuffix:@"JSON"];
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid];
+    [infoView setHeaderSuffix:@"1/2"];
+    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid infoViewer:infoView callback:self];
 
     [iid resetBytesChunks];
-    [infoView setHeaderSuffix:@"GPX"];
-    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:iid];
+    [infoView setHeaderSuffix:@"2/2"];
+    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:iid infoViewer:infoView callback:self];
 
     [infoView removeItem:iid];
-    [self hideInfoView];
 
     if (retjson == nil && retgpx == nil) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
@@ -89,12 +124,12 @@ enum {
         return failure;
     }
 
-    if (retjson == nil) {
-        [self parseRetrievedQuery:retgpx group:group];
-    } else {
-        [self parseRetrievedQuery:retjson group:group];
-        [self parseRetrievedQueryGPX:retgpx group:group];
-    }
+//    if (retjson == nil) {
+//        [self parseRetrievedQuery:retgpx group:group];
+//    } else {
+//        [self parseRetrievedQuery:retjson group:group];
+//        [self parseRetrievedQueryGPX:retgpx group:group];
+//    }
 
     return failure;
 }
