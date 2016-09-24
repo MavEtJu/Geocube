@@ -41,6 +41,12 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 @end
 
+@protocol RemoteAPIRetrieveQueryDelegate
+
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group;
+
+@end
+
 @interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, RemoteAPI_GCADelegate>
 
 @property (nonatomic, retain) dbAccount *account;
@@ -71,8 +77,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDowload *)iid;
 
 - (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoItemDowload *)iid;
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback;
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback;
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoVIewr callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
 
 - (void)trackablesMine:(InfoItemDowload *)iid;
 - (void)trackablesInventory:(InfoItemDowload *)iid;

@@ -722,7 +722,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
 
@@ -747,7 +747,10 @@
             if (json != nil) {
                 if (result == nil)
                     result = [NSMutableDictionary dictionaryWithDictionary:json];
-                [callback QueriesTemplate_retrieveQuery:iii object:result group:group];
+
+                InfoItemImport *iii = [infoViewer addImport];
+                [callback remoteAPI_objectReadyToImport:iii object:json group:group];
+
                 [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
                 found += [[json objectForKey:@"Geocaches"] count];
             }
@@ -784,6 +787,9 @@
             [self alertError:@"[GCA] retrieveQuery: num != 1" code:REMOTEAPI_LISTQUERIES_LOADFAILED];
             return REMOTEAPI_LISTQUERIES_LOADFAILED;
         }
+        
+        InfoItemImport *iii = [infoViewer addImport];
+        [callback remoteAPI_objectReadyToImport:iii object:json group:group];
 
         *retObj = json;
         return REMOTEAPI_OK;
@@ -792,7 +798,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid importInfoItem:(InfoItemImport *)iii callback:(id<QueriesTemplateDelegate>)callback
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
     if (account.protocol == PROTOCOL_GCA) {
@@ -801,6 +807,10 @@
         NSString *gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
+
+        InfoItemImport *iii = [infoViewer addImport];
+        [callback remoteAPI_objectReadyToImport:iii object:gpx group:group];
+
         *retObj = gpx;
         return REMOTEAPI_OK;
     }
