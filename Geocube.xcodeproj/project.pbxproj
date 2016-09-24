@@ -172,6 +172,8 @@
 		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
 		E827A2F31D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F11D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png */; };
 		E827A2F41D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F21D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png */; };
+		E827A2F71D9662AC00D8E265 /* cache - mystery - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F51D9662AC00D8E265 /* cache - mystery - 30x30@2x.png */; };
+		E827A2F81D9662AC00D8E265 /* cache - mystery - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F61D9662AC00D8E265 /* cache - mystery - 30x30@3x.png */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -667,6 +669,8 @@
 		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
 		E827A2F11D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@2x.png"; path = "images/cache - trigpoint - 30x30@2x.png"; sourceTree = "<group>"; };
 		E827A2F21D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@3x.png"; path = "images/cache - trigpoint - 30x30@3x.png"; sourceTree = "<group>"; };
+		E827A2F51D9662AC00D8E265 /* cache - mystery - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@2x.png"; path = "images/cache - mystery - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A2F61D9662AC00D8E265 /* cache - mystery - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@3x.png"; path = "images/cache - mystery - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1633,6 +1637,8 @@
 				E83618481D92A38D00D8C59A /* cache - multi - 30x30@2x.png */,
 				E83618461D92A30000D8C59A /* cache - multi - 30x30@3x.png */,
 				E80732561B5F850C007FDC29 /* cache - mystery - 30x30.png */,
+				E827A2F51D9662AC00D8E265 /* cache - mystery - 30x30@2x.png */,
+				E827A2F61D9662AC00D8E265 /* cache - mystery - 30x30@3x.png */,
 				E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */,
 				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
 				E80732571B5F850C007FDC29 /* cache - traditional - 30x30.png */,
@@ -2565,6 +2571,7 @@
 				E8182F471C0C21BA004AC534 /* menu icon - show both.png in Resources */,
 				E80732871B5F8561007FDC29 /* container - regular - 70x20.png in Resources */,
 				E80732161B5F84B4007FDC29 /* attributes - 47.png in Resources */,
+				E827A2F81D9662AC00D8E265 /* cache - mystery - 30x30@3x.png in Resources */,
 				E80731F51B5F84B4007FDC29 /* attributes - 13.png in Resources */,
 				E80731F41B5F84B4007FDC29 /* attributes - 12.png in Resources */,
 				E8A3B0BD1CD33BC600170D61 /* MHTabBarIndicator.png in Resources */,
@@ -2596,6 +2603,7 @@
 				E807320F1B5F84B4007FDC29 /* attributes - 40.png in Resources */,
 				E80732271B5F84B4007FDC29 /* attributes - 64.png in Resources */,
 				E8182F491C0D6EE7004AC534 /* menu icon - find me.png in Resources */,
+				E827A2F71D9662AC00D8E265 /* cache - mystery - 30x30@2x.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
