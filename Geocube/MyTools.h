@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
 + (NSString *)ImagesDir;
++ (NSString *)ImageFile:(NSString *)imgFile;
 
 + (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1;
 

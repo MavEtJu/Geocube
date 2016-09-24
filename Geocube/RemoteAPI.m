@@ -308,7 +308,7 @@
 {
     NSData *imgdata = nil;
     if (image != nil)
-        imgdata = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], image.datafile]];
+        imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
         GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile downloadInfoItem:iid];

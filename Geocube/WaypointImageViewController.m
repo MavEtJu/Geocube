@@ -272,7 +272,7 @@ enum {
 {
     labelCount.text = [NSString stringWithFormat:@"%ld / %ld", (long)thisImage, (long)totalImages];
 
-    image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile]];
+    image = [UIImage imageWithContentsOfFile:[MyTools ImageFile:img.datafile]];
     imgview.image = image;
 }
 
@@ -289,7 +289,7 @@ enum {
             [self uploadICloud];
             return;
         case menuDeletePhoto:
-            [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile] error:nil];
+            [fileManager removeItemAtPath:[MyTools ImageFile:img.datafile] error:nil];
             [delegate WaypointImage_refreshTable];
             [self.navigationController popViewControllerAnimated:YES];
             return;
@@ -300,13 +300,13 @@ enum {
 
 - (void)uploadAirdrop
 {
-    NSString *filename = [NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile];
+    NSString *filename = [MyTools ImageFile: img.datafile];
     [IOSFTM uploadAirdrop:filename vc:self];
 }
 
 - (void)uploadICloud
 {
-    NSString *filename = [NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], img.datafile];
+    NSString *filename = [MyTools ImageFile:img.datafile];
     [IOSFTM uploadICloud:filename vc:self];
 }
 

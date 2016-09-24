@@ -48,10 +48,22 @@
     return s;
 }
 
-// Returns the location where the files distibuted by the app will be installed for the user
+// Returns the location where the images downloaded will be
 + (NSString *)ImagesDir
 {
-    NSString *s = [[NSString alloc] initWithFormat:@"%@/images/", [self DocumentRoot]];
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/images", [self DocumentRoot]];
+    return s;
+}
+
+// Returns the location where a downloaded image will be
++ (NSString *)ImageFile:(NSString *)imgFile;
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/%@/%@/%@",
+                   [self ImagesDir],
+                   [imgFile substringWithRange:NSMakeRange(0, 1)],
+                   [imgFile substringWithRange:NSMakeRange(1, 1)],
+                   imgFile
+                   ];
     return s;
 }
 

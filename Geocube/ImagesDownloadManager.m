@@ -47,8 +47,46 @@
 {
     self = [super init];
 
-    if ([fileManager fileExistsAtPath:[MyTools ImagesDir]] == NO)
-        [fileManager createDirectoryAtPath:[MyTools ImagesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    NSString *imagesDir = [MyTools ImagesDir];
+
+    if ([fileManager fileExistsAtPath:imagesDir] == NO)
+        [fileManager createDirectoryAtPath:imagesDir withIntermediateDirectories:NO attributes:nil error:nil];
+
+    for (char c1 = 'a'; c1 <= 'f'; c1++) {
+        for (char c2 = 'a'; c2 <= 'f'; c2++) {
+            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%c/%c", imagesDir, c1, c2] withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        for (char c2 = '0'; c2 <= '9'; c2++) {
+            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%c/%c", imagesDir, c1, c2] withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+    }
+
+    for (char c1 = '0'; c1 <= '9'; c1++) {
+        for (char c2 = 'a'; c2 <= 'f'; c2++) {
+            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%c/%c", imagesDir, c1, c2] withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        for (char c2 = '0'; c2 <= '9'; c2++) {
+            [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%c/%c", imagesDir, c1, c2] withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+    }
+
+    // Should be done only once
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:imagesDir error:nil];
+    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+        // Check if it isn't a directory
+        NSString *oldName = [NSString stringWithFormat:@"%@/%@", imagesDir, file];
+        BOOL isDirectory;
+        [fileManager fileExistsAtPath:oldName isDirectory:&isDirectory];
+        if (isDirectory == YES)
+            return;
+        NSError *e = nil;
+        NSString *newName = [MyTools ImageFile:file];
+        [fileManager moveItemAtPath:oldName toPath:[MyTools ImageFile:file] error:&e];
+        NSLog(@"%@", file);
+    }];
+
+    // Queued files to download
+
     todo = [NSMutableArray arrayWithCapacity:20];
 
     running = 0;
@@ -114,7 +152,7 @@
 
         if (error == nil) {
             NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, (unsigned long)[data length]);
-            [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], imgToDownload.datafile] atomically:NO];
+            [data writeToFile:[MyTools ImageFile:imgToDownload.datafile] atomically:NO];
         } else {
             NSLog(@"Failed! %@", error);
         }

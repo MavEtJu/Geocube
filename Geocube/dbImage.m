@@ -214,7 +214,7 @@
 
 - (UIImage *)imageGet
 {
-    return [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile]];
+    return [UIImage imageWithContentsOfFile:[MyTools ImageFile:datafile]];
 }
 
 + (NSString *)filename:(NSString *)url
@@ -237,7 +237,7 @@
 
 - (BOOL)imageHasBeenDowloaded
 {
-    return [fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile]];
+    return [fileManager fileExistsAtPath:[MyTools ImageFile:datafile]];
 }
 
 @end

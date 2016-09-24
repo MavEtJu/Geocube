@@ -192,7 +192,7 @@ enum {
         NSString *imgtag = imgURL.absoluteString;
         img = [dbImage dbGetByURL:imgtag];
         NSString *datafile = [dbImage createDataFilename:imgtag];
-        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
 
         if (img == nil) {
             img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
@@ -206,7 +206,7 @@ enum {
         exif = [exif objectForKey:@"{Exif}"];
         NSString *datecreated = [exif objectForKey:@"DateTimeOriginal"];
         NSString *datafile = [dbImage createDataFilename:datecreated];
-        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools ImagesDir], datafile] atomically:NO];
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
         img = [[dbImage alloc] init:datecreated name:[dbImage filename:datecreated] datafile:datafile];
         [dbImage dbCreate:img];
     }
