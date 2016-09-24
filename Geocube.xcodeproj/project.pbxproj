@@ -170,6 +170,8 @@
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
+		E827A2F31D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F11D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png */; };
+		E827A2F41D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2F21D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -663,6 +665,8 @@
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E820F2041B7DA451009FB999 /* TrackablesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesListViewController.h; sourceTree = "<group>"; };
 		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
+		E827A2F11D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@2x.png"; path = "images/cache - trigpoint - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A2F21D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@3x.png"; path = "images/cache - trigpoint - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1612,29 +1616,31 @@
 			isa = PBXGroup;
 			children = (
 				E8F7FF1E1D714BD400AC7EE6 /* cache - unknowntype - 30x30.png */,
-				E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */,
 				E8F7FF1A1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png */,
 				E8F7FF181D6F109000AC7EE6 /* cache - beacon - 30x30.png */,
-				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
-				E89580281C6818C100282177 /* cache - history - 30x30.png */,
-				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
-				E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */,
 				E807324C1B5F850C007FDC29 /* cache - benchmark - 30x30.png */,
 				E807324D1B5F850C007FDC29 /* cache - cito - 30x30.png */,
 				E807324E1B5F850C007FDC29 /* cache - earth - 30x30.png */,
 				E807324F1B5F850C007FDC29 /* cache - event - 30x30.png */,
 				E80732501B5F850C007FDC29 /* cache - giga - 30x30.png */,
+				E89580281C6818C100282177 /* cache - history - 30x30.png */,
 				E80732511B5F850C007FDC29 /* cache - groundspeak hq - 30x30.png */,
 				E80732521B5F850C007FDC29 /* cache - letterbox - 30x30.png */,
 				E80732531B5F850C007FDC29 /* cache - maze - 30x30.png */,
 				E80732541B5F850C007FDC29 /* cache - mega - 30x30.png */,
+				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
 				E80732551B5F850C007FDC29 /* cache - multi - 30x30.png */,
 				E83618481D92A38D00D8C59A /* cache - multi - 30x30@2x.png */,
 				E83618461D92A30000D8C59A /* cache - multi - 30x30@3x.png */,
 				E80732561B5F850C007FDC29 /* cache - mystery - 30x30.png */,
+				E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */,
+				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
 				E80732571B5F850C007FDC29 /* cache - traditional - 30x30.png */,
 				E836184A1D92A87A00D8C59A /* cache - traditional - 30x30@2x.png */,
 				E836184B1D92A87A00D8C59A /* cache - traditional - 30x30@3x.png */,
+				E8B6F68E1C1ACFF900577088 /* cache - trigpoint - 30x30.png */,
+				E827A2F11D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png */,
+				E827A2F21D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png */,
 				E80732581B5F850C007FDC29 /* cache - unknown - 30x30.png */,
 				E80732591B5F850C007FDC29 /* cache - virtual - 30x30.png */,
 				E807325A1B5F850C007FDC29 /* cache - waymark - 30x30.png */,
@@ -2565,6 +2571,7 @@
 				E807323D1B5F84E8007FDC29 /* log - attended - 30x30.png in Resources */,
 				E8B6F68F1C1ACFF900577088 /* cache - trigpoint - 30x30.png in Resources */,
 				E807326A1B5F850C007FDC29 /* cache - virtual - 30x30.png in Resources */,
+				E827A2F31D962C3E00D8E265 /* cache - trigpoint - 30x30@2x.png in Resources */,
 				E807326B1B5F850C007FDC29 /* cache - waymark - 30x30.png in Resources */,
 				E80732781B5F852A007FDC29 /* waypoint - parking - 30x30.png in Resources */,
 				E80732DB1B60FAB4007FDC29 /* ratings - star off 18x18.png in Resources */,
@@ -2720,6 +2727,7 @@
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
 				E80732441B5F84E8007FDC29 /* log - needsmaintenance - 30x30.png in Resources */,
+				E827A2F41D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E807325E1B5F850C007FDC29 /* cache - cito - 30x30.png in Resources */,
 				E83618491D92A38D00D8C59A /* cache - multi - 30x30@2x.png in Resources */,
 				E80732661B5F850C007FDC29 /* cache - multi - 30x30.png in Resources */,
