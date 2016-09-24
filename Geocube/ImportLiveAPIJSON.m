@@ -81,6 +81,7 @@
         [infoItemImport setLineObjectCount:idx];
         [infoItemImport setWaypointsTotal:totalWaypointsCount];
     }];
+    [infoItemImport setLineObjectCount:[as count]];
 }
 - (void)parseGeocache:(NSDictionary *)dict
 {
