@@ -78,7 +78,7 @@
     }
 
     @synchronized (self) {
-        NSLog(@"%@ - My turn to import!", [self class]);
+        NSLog(@"%@ - My turn to import %@", [self class], [data class]);
         [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItemImport:iii];
     }
 }
