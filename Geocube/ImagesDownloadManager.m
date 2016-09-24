@@ -79,10 +79,7 @@
         [fileManager fileExistsAtPath:oldName isDirectory:&isDirectory];
         if (isDirectory == YES)
             return;
-        NSError *e = nil;
-        NSString *newName = [MyTools ImageFile:file];
-        [fileManager moveItemAtPath:oldName toPath:[MyTools ImageFile:file] error:&e];
-        NSLog(@"%@", file);
+        [fileManager moveItemAtPath:oldName toPath:[MyTools ImageFile:file] error:nil];
     }];
 
     // Queued files to download
