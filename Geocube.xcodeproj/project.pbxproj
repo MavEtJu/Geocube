@@ -178,6 +178,14 @@
 		E827A2FC1D9689DC00D8E265 /* type - marked found - 24x21@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2FA1D9689DC00D8E265 /* type - marked found - 24x21@3x.png */; };
 		E827A2FF1D968B5700D8E265 /* type - owner - 24x24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2FD1D968B5700D8E265 /* type - owner - 24x24@2x.png */; };
 		E827A3001D968B5700D8E265 /* type - owner - 24x24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A2FE1D968B5700D8E265 /* type - owner - 24x24@3x.png */; };
+		E827A3031D9690A300D8E265 /* cache - history - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A3011D9690A300D8E265 /* cache - history - 30x30@2x.png */; };
+		E827A3041D9690A300D8E265 /* cache - history - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A3021D9690A300D8E265 /* cache - history - 30x30@3x.png */; };
+		E827A3071D9692DE00D8E265 /* cache - moveable - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A3051D9692DE00D8E265 /* cache - moveable - 30x30@2x.png */; };
+		E827A3081D9692DE00D8E265 /* cache - moveable - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A3061D9692DE00D8E265 /* cache - moveable - 30x30@3x.png */; };
+		E827A30B1D96957800D8E265 /* cache - night - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A3091D96957800D8E265 /* cache - night - 30x30@2x.png */; };
+		E827A30C1D96957800D8E265 /* cache - night - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A30A1D96957800D8E265 /* cache - night - 30x30@3x.png */; };
+		E827A30F1D96963E00D8E265 /* cache - podcast - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A30D1D96963E00D8E265 /* cache - podcast - 30x30@2x.png */; };
+		E827A3101D96963E00D8E265 /* cache - podcast - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E827A30E1D96963E00D8E265 /* cache - podcast - 30x30@3x.png */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -679,6 +687,14 @@
 		E827A2FA1D9689DC00D8E265 /* type - marked found - 24x21@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - marked found - 24x21@3x.png"; path = "images/type - marked found - 24x21@3x.png"; sourceTree = "<group>"; };
 		E827A2FD1D968B5700D8E265 /* type - owner - 24x24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - owner - 24x24@2x.png"; path = "images/type - owner - 24x24@2x.png"; sourceTree = "<group>"; };
 		E827A2FE1D968B5700D8E265 /* type - owner - 24x24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "type - owner - 24x24@3x.png"; path = "images/type - owner - 24x24@3x.png"; sourceTree = "<group>"; };
+		E827A3011D9690A300D8E265 /* cache - history - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@2x.png"; path = "images/cache - history - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A3021D9690A300D8E265 /* cache - history - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@3x.png"; path = "images/cache - history - 30x30@3x.png"; sourceTree = "<group>"; };
+		E827A3051D9692DE00D8E265 /* cache - moveable - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@2x.png"; path = "images/cache - moveable - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A3061D9692DE00D8E265 /* cache - moveable - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@3x.png"; path = "images/cache - moveable - 30x30@3x.png"; sourceTree = "<group>"; };
+		E827A3091D96957800D8E265 /* cache - night - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@2x.png"; path = "images/cache - night - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A30A1D96957800D8E265 /* cache - night - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@3x.png"; path = "images/cache - night - 30x30@3x.png"; sourceTree = "<group>"; };
+		E827A30D1D96963E00D8E265 /* cache - podcast - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@2x.png"; path = "images/cache - podcast - 30x30@2x.png"; sourceTree = "<group>"; };
+		E827A30E1D96963E00D8E265 /* cache - podcast - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@3x.png"; path = "images/cache - podcast - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1636,11 +1652,15 @@
 				E807324F1B5F850C007FDC29 /* cache - event - 30x30.png */,
 				E80732501B5F850C007FDC29 /* cache - giga - 30x30.png */,
 				E89580281C6818C100282177 /* cache - history - 30x30.png */,
+				E827A3011D9690A300D8E265 /* cache - history - 30x30@2x.png */,
+				E827A3021D9690A300D8E265 /* cache - history - 30x30@3x.png */,
 				E80732511B5F850C007FDC29 /* cache - groundspeak hq - 30x30.png */,
 				E80732521B5F850C007FDC29 /* cache - letterbox - 30x30.png */,
 				E80732531B5F850C007FDC29 /* cache - maze - 30x30.png */,
 				E80732541B5F850C007FDC29 /* cache - mega - 30x30.png */,
 				E8B6F6901C1AD3E600577088 /* cache - moveable - 30x30.png */,
+				E827A3051D9692DE00D8E265 /* cache - moveable - 30x30@2x.png */,
+				E827A3061D9692DE00D8E265 /* cache - moveable - 30x30@3x.png */,
 				E80732551B5F850C007FDC29 /* cache - multi - 30x30.png */,
 				E83618481D92A38D00D8C59A /* cache - multi - 30x30@2x.png */,
 				E83618461D92A30000D8C59A /* cache - multi - 30x30@3x.png */,
@@ -1648,7 +1668,11 @@
 				E827A2F51D9662AC00D8E265 /* cache - mystery - 30x30@2x.png */,
 				E827A2F61D9662AC00D8E265 /* cache - mystery - 30x30@3x.png */,
 				E8F7FF1C1D6F1B6F00AC7EE6 /* cache - night - 30x30.png */,
+				E827A3091D96957800D8E265 /* cache - night - 30x30@2x.png */,
+				E827A30A1D96957800D8E265 /* cache - night - 30x30@3x.png */,
 				E8F7FF161D6EFD5C00AC7EE6 /* cache - podcast - 30x30.png */,
+				E827A30D1D96963E00D8E265 /* cache - podcast - 30x30@2x.png */,
+				E827A30E1D96963E00D8E265 /* cache - podcast - 30x30@3x.png */,
 				E80732571B5F850C007FDC29 /* cache - traditional - 30x30.png */,
 				E836184A1D92A87A00D8C59A /* cache - traditional - 30x30@2x.png */,
 				E836184B1D92A87A00D8C59A /* cache - traditional - 30x30@3x.png */,
@@ -2638,6 +2662,7 @@
 				E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */,
 				E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */,
 				E8F9913E1C19518600D360F1 /* menu icon - find target.png in Resources */,
+				E827A30F1D96963E00D8E265 /* cache - podcast - 30x30@2x.png in Resources */,
 				E80732071B5F84B4007FDC29 /* attributes - 32.png in Resources */,
 				E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */,
 				E89580291C6818C100282177 /* cache - history - 30x30.png in Resources */,
@@ -2673,12 +2698,14 @@
 				E807321E1B5F84B4007FDC29 /* attributes - 55.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E80732651B5F850C007FDC29 /* cache - mega - 30x30.png in Resources */,
+				E827A3031D9690A300D8E265 /* cache - history - 30x30@2x.png in Resources */,
 				E836184C1D92A87A00D8C59A /* cache - traditional - 30x30@2x.png in Resources */,
 				E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */,
 				E80732281B5F84B4007FDC29 /* attributes - 65.png in Resources */,
 				E80732771B5F852A007FDC29 /* waypoint - multi - 30x30.png in Resources */,
 				E8611AA01B8B215E00B9D7C3 /* compass - red arrow on black.png in Resources */,
 				E807329F1B5F857A007FDC29 /* map - found stick - 35x42.png in Resources */,
+				E827A30C1D96957800D8E265 /* cache - night - 30x30@3x.png in Resources */,
 				E80732791B5F852A007FDC29 /* waypoint - question - 30x30.png in Resources */,
 				E80732411B5F84E8007FDC29 /* log - enabled - 30x30.png in Resources */,
 				E8F7FF2E1D7802B800AC7EE6 /* waypoint - manually entered - 30x30.png in Resources */,
@@ -2709,10 +2736,12 @@
 				E807320E1B5F84B4007FDC29 /* attributes - 39.png in Resources */,
 				E80731EA1B5F84B4007FDC29 /* attributes - 02.png in Resources */,
 				E807323E1B5F84E8007FDC29 /* log - coordinates - 30x30.png in Resources */,
+				E827A3071D9692DE00D8E265 /* cache - moveable - 30x30@2x.png in Resources */,
 				E88144141C7DB96000940820 /* GC - logo - 80x80.png in Resources */,
 				E827A3001D968B5700D8E265 /* type - owner - 24x24@3x.png in Resources */,
 				E847A5951BA0DA1300BEFE83 /* map - highlight - 21x21.png in Resources */,
 				E80732211B5F84B4007FDC29 /* attributes - 58.png in Resources */,
+				E827A3041D9690A300D8E265 /* cache - history - 30x30@3x.png in Resources */,
 				E80732B21B5F8593007FDC29 /* icons - smiley - 15x15.png in Resources */,
 				E807322B1B5F84B4007FDC29 /* attributes - unknown.png in Resources */,
 				E8F7FF1B1D6F179D00AC7EE6 /* cache - burke-wills - 30x30.png in Resources */,
@@ -2721,6 +2750,7 @@
 				E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */,
 				E807323F1B5F84E8007FDC29 /* log - didnotfind - 30x30.png in Resources */,
 				E80731FB1B5F84B4007FDC29 /* attributes - 20.png in Resources */,
+				E827A30B1D96957800D8E265 /* cache - night - 30x30@2x.png in Resources */,
 				E80732891B5F8561007FDC29 /* container - unknown - 70x20.png in Resources */,
 				E80731E91B5F84B4007FDC29 /* attributes - 01.png in Resources */,
 				E80732251B5F84B4007FDC29 /* attributes - 62.png in Resources */,
@@ -2744,11 +2774,13 @@
 				E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */,
 				E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */,
 				E807321D1B5F84B4007FDC29 /* attributes - 54.png in Resources */,
+				E827A3101D96963E00D8E265 /* cache - podcast - 30x30@3x.png in Resources */,
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
 				E8E8D0201B66E75900CC741A /* rangethumb.png in Resources */,
 				E88974B71B6DF07F00703E80 /* map - archived - 15x15.png in Resources */,
 				E8E8D01E1B66E75900CC741A /* fullrange.png in Resources */,
+				E827A3081D9692DE00D8E265 /* cache - moveable - 30x30@3x.png in Resources */,
 				E80732681B5F850C007FDC29 /* cache - traditional - 30x30.png in Resources */,
 				E80732441B5F84E8007FDC29 /* log - needsmaintenance - 30x30.png in Resources */,
 				E827A2F41D962C3E00D8E265 /* cache - trigpoint - 30x30@3x.png in Resources */,
