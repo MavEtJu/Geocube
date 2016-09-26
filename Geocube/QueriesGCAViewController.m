@@ -64,29 +64,31 @@ enum {
     return YES;
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
     [d setObject:iii forKey:@"iii"];
+    [d setObject:a forKey:@"account"];
 
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
 }
 
 - (void)parseQueryBG:(NSDictionary *)dict
 {
-    dbGroup *group = [dict objectForKey:@"group"];
+    dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
     InfoItemImport *iii = [dict objectForKey:@"iii"];
+    dbAccount *a = [dict objectForKey:@"account"];
 
     if ([o isKindOfClass:[GCStringGPX class]] == YES) {
         if (seenJSON == YES)
-            [importManager process:o group:group account:account options:RUN_OPTION_LOGSONLY infoItemImport:iii];
+            [importManager process:o group:g account:a options:RUN_OPTION_LOGSONLY infoItemImport:iii];
         else
-            [importManager process:o group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+            [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
     } else {
-        [importManager process:o group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+        [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
         seenJSON = YES;
     }
 

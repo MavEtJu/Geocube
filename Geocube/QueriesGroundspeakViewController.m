@@ -43,24 +43,26 @@
     [bezelManager removeBezel];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
     [d setObject:iii forKey:@"iii"];
+    [d setObject:a forKey:@"account"];
 
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
 }
 
 - (void)parseQueryBG:(NSDictionary *)dict
 {
-    dbGroup *group = [dict objectForKey:@"group"];
+    dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
     InfoItemImport *iii = [dict objectForKey:@"iii"];
+    dbAccount *a = [dict objectForKey:@"account"];
 
     GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:o];
-    [importManager process:d group:group account:account options:RUN_OPTION_NONE infoItemImport:iii];
+    [importManager process:d group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO)
