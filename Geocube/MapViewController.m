@@ -858,6 +858,36 @@ enum {
     }
 }
 
+- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+{
+    // We are already in a background thread, but don't want to delay the next request until this one is processed.
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:iii forKey:@"iii"];
+    [dict setObject:o forKey:@"object"];
+    [dict setObject:group forKey:@"group"];
+    [dict setObject:a forKey:@"account"];
+    [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];
+}
+
+- (void)importObjectBG:(NSDictionary *)dict
+{
+    dbGroup *g = [dict objectForKey:@"group"];
+    dbAccount *a = [dict objectForKey:@"account"];
+    NSObject *o = [dict objectForKey:@"object"];
+    InfoItemImport *iii = [dict objectForKey:@"iii"];
+
+    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
+
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO) {
+        [self hideInfoView];
+
+        [dbWaypoint dbUpdateLogStatus];
+        [waypointManager needsRefreshAll];
+    }
+}
+
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
     InfoItemDowload *iid = [dict objectForKey:@"iid"];
@@ -865,23 +895,17 @@ enum {
     dbAccount *account = [dict objectForKey:@"account"];
 
     NSObject *d;
-    [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:iid];
+    NSInteger rv = [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:iid infoViewer:infoView group:dbc.Group_LiveImport callback:self];
 
     [infoView removeItem:iid];
 
-    if (d == nil) {
+    if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
         return;
     }
 
-    [importManager addToQueue:d group:dbc.Group_LiveImport account:account options:RUN_OPTION_NONE];
-
-    if ([infoView hasItems] == NO) {
+    if ([infoView hasItems] == NO)
         [self hideInfoView];
-
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefreshAll];
-    }
 }
 
 - (void)menuRecenter

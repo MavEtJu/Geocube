@@ -507,7 +507,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject downloadInfoItem:(InfoItemDowload *)iid
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -537,6 +537,10 @@
             return REMOTEAPI_LOADWAYPOINTS_LOADFAILED;
         }
 
+        InfoItemImport *iii = [infoViewer addImport];
+        [iii showLogs:NO];
+        [iii showTrackables:NO];
+        [callback remoteAPI_objectReadyToImport:iii object:wps group:group account:account];
         NSMutableArray *logs = [NSMutableArray arrayWithCapacity:50];
         NSArray *ws = [wps objectForKey:@"geocaches"];
 
@@ -555,9 +559,16 @@
         }];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
-        [d setObject:wps forKey:@"geocaches1"];
+//        [d setObject:wps forKey:@"geocaches1"];
         [d setObject:logs forKey:@"logs"];
+
         GCDictionaryGCA *gcajson = [[GCDictionaryGCA alloc] initWithDictionary:d];
+
+        iii = [infoViewer addImport];
+        [iii showWaypoints:NO];
+        [iii showTrackables:NO];
+        [callback remoteAPI_objectReadyToImport:iii object:gcajson group:group account:account];
+
         *retObject = gcajson;
         return REMOTEAPI_OK;
     }
@@ -573,17 +584,23 @@
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
+        InfoItemImport *iii = [infoViewer addImport];
         NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];
         NSInteger done = 0;
         [iid setChunksTotal:(total / 20) + 1];
         if (total != 0) {
+            GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+            [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
                 [iid setChunksCount:(done / 20) + 1];
                 done += 20;
                 json = [liveAPI GetMoreGeocaches:done downloadInfoItem:iid];
-                if ([json objectForKey:@"Geocaches"] != nil)
+                if ([json objectForKey:@"Geocaches"] != nil) {
+                    GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+                    [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
                     [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+                }
             } while (done < total);
         }
 
@@ -631,7 +648,10 @@
                 [wps addObject:wpjson];
         }];
 
+        InfoItemImport *iii = [infoViewer addImport];
+        [iii showTrackables:NO];
         GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
+        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
         *retObject = rv;
 
         return REMOTEAPI_OK;
@@ -749,7 +769,7 @@
                     result = [NSMutableDictionary dictionaryWithDictionary:json];
 
                 InfoItemImport *iii = [infoViewer addImport];
-                [callback remoteAPI_objectReadyToImport:iii object:json group:group];
+                [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
 
                 [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
                 found += [[json objectForKey:@"Geocaches"] count];
@@ -789,7 +809,7 @@
         }
         
         InfoItemImport *iii = [infoViewer addImport];
-        [callback remoteAPI_objectReadyToImport:iii object:json group:group];
+        [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
 
         *retObj = json;
         return REMOTEAPI_OK;
@@ -809,7 +829,7 @@
             return REMOTEAPI_APIFAILED;
 
         InfoItemImport *iii = [infoViewer addImport];
-        [callback remoteAPI_objectReadyToImport:iii object:gpx group:group];
+        [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
 
         *retObj = gpx;
         return REMOTEAPI_OK;

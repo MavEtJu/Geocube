@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
+@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate, RemoteAPIRetrieveQueryDelegate>
 
 typedef NS_ENUM(NSInteger, GCMapHowMany) {
     SHOW_ONEWAYPOINT = 1,
