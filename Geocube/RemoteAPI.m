@@ -807,7 +807,7 @@
             [self alertError:@"[GCA] retrieveQuery: num != 1" code:REMOTEAPI_LISTQUERIES_LOADFAILED];
             return REMOTEAPI_LISTQUERIES_LOADFAILED;
         }
-        
+
         InfoItemImport *iii = [infoViewer addImport];
         [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
 
