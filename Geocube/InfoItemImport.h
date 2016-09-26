@@ -28,4 +28,8 @@
 - (void)setTrackablesNew:(NSInteger)i;
 - (void)setTrackablesTotal:(NSInteger)i;
 
+- (void)showWaypoints:(BOOL)yesno;
+- (void)showLogs:(BOOL)yesno;
+- (void)showTrackables:(BOOL)yesno;
+
 @end

@@ -28,6 +28,8 @@
     NSInteger logsNew, logsTotal;
     NSInteger waypointsNew, waypointsTotal;
     NSInteger trackablesNew, trackablesTotal;
+
+    BOOL showLogs, showWaypoints, showTrackables;
 }
 
 @end
@@ -47,6 +49,10 @@
     labelLogs = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelWaypoints = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
+    showLogs = YES;
+    showWaypoints = YES;
+    showTrackables = YES;
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [view addSubview:labelDesc];
         [view addSubview:labelLinesObjects];
@@ -57,6 +63,24 @@
     }];
 
     return self;
+}
+
+- (void)showWaypoints:(BOOL)yesno
+{
+    showWaypoints = yesno;
+    [self calculateRects];
+}
+
+- (void)showLogs:(BOOL)yesno
+{
+    showLogs = yesno;
+    [self calculateRects];
+}
+
+- (void)showTrackables:(BOOL)yesno
+{
+    showTrackables = yesno;
+    [self calculateRects];
 }
 
 - (void)calculateRects
@@ -76,9 +100,19 @@ y += __s__.font.lineHeight;
 
     INDENT_RESIZE(labelDesc);
     INDENT_RESIZE(labelLinesObjects);
-    INDENT_RESIZE(labelWaypoints);
-    INDENT_RESIZE(labelLogs);
-    INDENT_RESIZE(labelTrackables);
+    if (showWaypoints == YES) {
+        INDENT_RESIZE(labelWaypoints)
+    } else
+        labelWaypoints.frame = CGRectZero;
+
+    if (showLogs == YES) {
+        INDENT_RESIZE(labelLogs);
+    } else
+        labelLogs.frame = CGRectZero;
+    if (showTrackables == YES) {
+        INDENT_RESIZE(labelTrackables);
+    } else
+        labelTrackables.frame = CGRectZero;
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
