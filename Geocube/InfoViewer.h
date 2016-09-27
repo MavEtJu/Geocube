@@ -21,7 +21,9 @@
 
 @interface InfoViewer : GCView
 
+- (CGRect)rectFromBottom;
 - (void)calculateRects;
+
 - (InfoItemDowload *)addDownload;
 - (InfoItemImage *)addImage;
 - (InfoItemImport *)addImport;

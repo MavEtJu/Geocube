@@ -61,10 +61,10 @@
 //    [self.view sendSubviewToBack:infoView];
     [UIView transitionWithView:infoView
                       duration:1.0
-                       options:UIViewAnimationOptionTransitionCrossDissolve
+                       options:UIViewAnimationOptionTransitionNone
                     animations:^{
-                        infoView.hidden = YES;
-                    }
+                                infoView.hidden = YES;
+                                }
                     completion:NULL];
 }
 

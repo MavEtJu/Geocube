@@ -51,7 +51,7 @@
     __block NSInteger max = 0;
     InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:CGRectZero];
+    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
     header.text = @"Images";
     header.backgroundColor = [UIColor lightGrayColor];
 
@@ -66,7 +66,13 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
         [self addSubview:iii.view];
-        [self calculateRects];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionNone
+                        animations:^{
+                                       [self calculateRects];
+                                    }
+                        completion:nil];
     }];
 
     return iii;
@@ -77,7 +83,7 @@
     __block NSInteger max = 0;
     InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:CGRectZero];
+    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
     header.text = @"Imports";
     header.backgroundColor = [UIColor lightGrayColor];
 
@@ -92,7 +98,13 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
         [self addSubview:iii.view];
-        [self calculateRects];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionNone
+                        animations:^{
+                                       [self calculateRects];
+                                    }
+                        completion:nil];
     }];
 
     return iii;
@@ -102,7 +114,7 @@
 {
     InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:CGRectZero];
+    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
     header.text = @"Downloads";
     header.backgroundColor = [UIColor lightGrayColor];
 
@@ -118,7 +130,13 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self addSubview:header];
         [self addSubview:iid.view];
-        [self calculateRects];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionNone
+                        animations:^{
+                                       [self calculateRects];
+                                    }
+                        completion:nil];
     }];
 
     return iid;
@@ -126,14 +144,22 @@
 
 - (void)removeItem:(InfoItem *)i
 {
-    [i.view removeFromSuperview];
-
     @synchronized (items) {
         [items removeObject:i];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self calculateRects];
+        [UIView transitionWithView:i.view duration:0.5 options:UIViewAnimationOptionTransitionNone
+                         animations:^(void){
+                                        i.view.backgroundColor = [UIColor clearColor];
+                                        [self calculateRects];
+                                    }
+                         completion:^(BOOL finished) {
+                                        if (finished == YES) {
+                                            [i.view removeFromSuperview];
+                                        }
+                                    }
+         ];
     }];
 }
 
@@ -144,6 +170,15 @@
     }];
 }
 
+- (CGRect)rectFromBottom
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    bounds.origin.y = bounds.size.height;
+    bounds.size.height = 0;
+
+    return bounds;
+}
+
 - (void)calculateRects
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
@@ -151,7 +186,7 @@
     __block NSInteger height = 0;
 
     if ([items count] == 0) {
-        self.frame = CGRectZero;
+        self.frame = [self rectFromBottom];
         return;
     }
 

@@ -29,7 +29,7 @@
 {
     self = [super init];
 
-    view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
     view.backgroundColor = [UIColor lightGrayColor];
 
     labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];

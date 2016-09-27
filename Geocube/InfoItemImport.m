@@ -40,7 +40,7 @@
 {
     self = [super init];
 
-    view = [[GCView alloc] initWithFrame:(CGRectZero)];
+    view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
     view.backgroundColor = [UIColor lightGrayColor];
 
     labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -68,19 +68,25 @@
 - (void)showWaypoints:(BOOL)yesno
 {
     showWaypoints = yesno;
-    [self calculateRects];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
 }
 
 - (void)showLogs:(BOOL)yesno
 {
     showLogs = yesno;
-    [self calculateRects];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
 }
 
 - (void)showTrackables:(BOOL)yesno
 {
     showTrackables = yesno;
-    [self calculateRects];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
 }
 
 - (void)calculateRects
