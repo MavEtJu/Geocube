@@ -23,6 +23,9 @@
 {
     MapWaypointInfoView *wpInfoView;
     NSArray *wpInfoViewButtons;
+
+    CGRect rectWpinfoShow, rectWpinfoHide;
+    BOOL wpinfoShown;
 }
 
 @end
@@ -72,6 +75,8 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
     mapvc = mvc;
     circlesShown = NO;
+
+    wpinfoShown = NO;
 
     return self;
 }
@@ -204,7 +209,12 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 - (void)recalculateRects
 {
     CGRect frame = mapvc.view.frame;
-    wpInfoView.frame = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
+    rectWpinfoShow = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
+    rectWpinfoHide = CGRectMake(0, frame.size.height, frame.size.width, 0);
+    if (wpinfoShown == YES)
+        wpInfoView.frame = rectWpinfoShow;
+    else
+        wpInfoView.frame = rectWpinfoHide;
 
     UIButton *b = [wpInfoViewButtons objectAtIndex:0];
     b.frame = wpInfoView.frame;
@@ -228,16 +238,37 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 - (void)hideWaypointInfo
 {
-    [mapvc.view sendSubviewToBack:wpInfoView];
-    [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
-        [mapvc.view sendSubviewToBack:wpInfoViewButton];
-        [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    wpinfoShown = NO;
+    [UIView transitionWithView:mapvc.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionNone
+                    animations:^{
+                                wpInfoView.frame = rectWpinfoHide;
+                                }
+                    completion:^(BOOL finished) {
+                                if (finished == YES) {
+                                    [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
+                                        [mapvc.view sendSubviewToBack:wpInfoViewButton];
+                                        [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+                                    }];
+                                }
     }];
 }
 
 - (void)showWaypointInfo
 {
+    if (wpinfoShown == YES)
+        return;
+    wpinfoShown = YES;
+    [self recalculateRects];
+
     [mapvc.view bringSubviewToFront:wpInfoView];
+    [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mapvc.view sendSubviewToBack:wpInfoViewButton];
+        [wpInfoViewButton removeTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
+    }];
+
+    wpInfoView.frame = rectWpinfoShow;
     [wpInfoViewButtons enumerateObjectsUsingBlock:^(UIButton *wpInfoViewButton, NSUInteger idx, BOOL * _Nonnull stop) {
         [mapvc.view bringSubviewToFront:wpInfoViewButton];
         [wpInfoViewButton addTarget:self action:@selector(openWaypointInfo:) forControlEvents:UIControlEventTouchDown];
@@ -247,7 +278,6 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 - (void)updateWaypointInfo:(dbWaypoint *)wp
 {
     [wpInfoView waypointData:wp];
-    [self recalculateRects];
 }
 
 
@@ -256,6 +286,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
     /* Add the info window */
     wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:CGRectZero];
     [mapvc.view addSubview:wpInfoView];
+    [mapvc.view sendSubviewToBack:wpInfoView];
 
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:2];
 
