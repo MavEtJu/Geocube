@@ -615,6 +615,8 @@
         if ([account canDoRemoteStuff] == NO)
             return REMOTEAPI_APIDISABLED;
 
+        [iid setChunksTotal:0];
+        [iid setChunksCount:1];
         NSInteger offset = 0;
         BOOL more = NO;
         NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
