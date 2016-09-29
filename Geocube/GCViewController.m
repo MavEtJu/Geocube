@@ -59,13 +59,14 @@
 - (void)hideInfoView
 {
 //    [self.view sendSubviewToBack:infoView];
-    [UIView transitionWithView:infoView
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionNone
-                    animations:^{
-                                infoView.hidden = YES;
-                                }
-                    completion:NULL];
+    infoView.hidden = YES;
+//    [UIView transitionWithView:infoView
+//                      duration:1.0
+//                       options:UIViewAnimationOptionTransitionNone
+//                    animations:^{
+//                                infoView.hidden = YES;
+//                                }
+//                    completion:NULL];
 }
 
 - (void)showInfoView

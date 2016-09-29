@@ -40,6 +40,7 @@
 {
     self = [super init];
 
+    NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
     view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
     view.backgroundColor = [UIColor lightGrayColor];
 

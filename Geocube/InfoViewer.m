@@ -33,6 +33,10 @@
 {
     self = [super initWithFrame:frame];
 
+    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    header.text = @"?";
+    header.backgroundColor = [UIColor lightGrayColor];
+
     items = [NSMutableArray arrayWithCapacity:5];
 
     [self calculateRects];
@@ -51,10 +55,6 @@
     __block NSInteger max = 0;
     InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
-    header.text = @"Images";
-    header.backgroundColor = [UIColor lightGrayColor];
-
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
             max = MAX(max, d._id);
@@ -64,6 +64,7 @@
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        header.text = @"Images";
         [self addSubview:header];
         [self addSubview:iii.view];
         [UIView transitionWithView:self
@@ -83,9 +84,6 @@
     __block NSInteger max = 0;
     InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
-    header.text = @"Imports";
-    header.backgroundColor = [UIColor lightGrayColor];
 
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
@@ -96,6 +94,7 @@
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        header.text = @"Imports";
         [self addSubview:header];
         [self addSubview:iii.view];
         [UIView transitionWithView:self
@@ -114,10 +113,6 @@
 {
     InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self];
 
-    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
-    header.text = @"Downloads";
-    header.backgroundColor = [UIColor lightGrayColor];
-
     __block NSInteger max = 0;
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
@@ -128,6 +123,7 @@
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        header.text = @"Downloads";
         [self addSubview:header];
         [self addSubview:iid.view];
         [UIView transitionWithView:self
@@ -151,7 +147,8 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [UIView transitionWithView:i.view duration:0.5 options:UIViewAnimationOptionTransitionNone
                          animations:^(void){
-                                        i.view.backgroundColor = [UIColor clearColor];
+                                        i.view.hidden = YES;
+//                                        i.view.backgroundColor = [UIColor clearColor];
                                         [self calculateRects];
                                     }
                          completion:^(BOOL finished) {
