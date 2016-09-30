@@ -89,6 +89,7 @@
 
 @property (nonatomic, readonly) BOOL markasFoundDNFClearsTarget;
 @property (nonatomic, readonly) BOOL markasFoundMarksAllWaypoints;
+@property (nonatomic, readonly) BOOL loggingRemovesMarkedAsFoundDNF;
 
 @property (nonatomic, readonly) BOOL compassAlwaysInPortraitMode;
 @property (nonatomic, readonly) BOOL showCountryAsAbbrevation;
@@ -158,6 +159,7 @@
 - (void)orientationsAllowedUpdate:(NSInteger)value;
 - (void)markasFoundDNFClearsTargetUpdate:(BOOL)value;
 - (void)markasFoundMarksAllWaypointsUpdate:(BOOL)value;
+- (void)loggingRemovesMarkedAsFoundDNFUpdate:(BOOL)value;
 - (void)compassAlwaysInPortraitModeUpdate:(BOOL)value;
 - (void)showStateAsAbbrevationIfLocaleExistsUpdate:(BOOL)value;
 - (void)showStateAsAbbrevationUpdate:(BOOL)value;

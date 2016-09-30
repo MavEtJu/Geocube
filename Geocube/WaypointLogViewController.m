@@ -531,6 +531,13 @@ enum {
         dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
         [log dbUpdate];
 
+        if (configManager.loggingRemovesMarkedAsFoundDNF == YES) {
+            waypoint.flag_markedfound = NO;
+            waypoint.flag_dnf = NO;
+            [waypoint dbUpdateMarkedDNF];
+            [waypoint dbUpdateMarkedFound];
+        }
+
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointLog_refreshWaypointData];
 

@@ -38,7 +38,7 @@
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
 @synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
-@synthesize markasFoundDNFClearsTarget, markasFoundMarksAllWaypoints;
+@synthesize markasFoundDNFClearsTarget, markasFoundMarksAllWaypoints, loggingRemovesMarkedAsFoundDNF;
 @synthesize compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
 @synthesize waypointListSortBy;
 @synthesize refreshWaypointAfterLog;
@@ -133,6 +133,7 @@
 
     CHECK(@"markas_founddnf_clearstarget", @"1");
     CHECK(@"markas_foundmarksallwaypoints", @"1");
+    CHECK(@"logging_removesmarkedasfounddnf", @"1");
 
     CHECK(@"compass_alwaysinportraitmode", @"1");
     CHECK(@"showasabbrevation_country", @"1");
@@ -200,6 +201,7 @@
     mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
     markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
     markasFoundMarksAllWaypoints = [[dbConfig dbGetByKey:@"markas_foundmarksallwaypoints"].value boolValue];
+    loggingRemovesMarkedAsFoundDNF = [[dbConfig dbGetByKey:@"logging_removesmarkedasfounddnf"].value boolValue];
     compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
     showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
@@ -528,6 +530,11 @@
 {
     markasFoundMarksAllWaypoints = value;
     [self BOOLUpdate:@"markas_foundmarksallwaypoints" value:value];
+}
+- (void)loggingRemovesMarkedAsFoundDNFUpdate:(BOOL)value
+{
+    loggingRemovesMarkedAsFoundDNF = value;
+    [self BOOLUpdate:@"logging_removesmarkedasfounddnf" value:value];
 }
 
 - (void)compassAlwaysInPortraitModeUpdate:(BOOL)value

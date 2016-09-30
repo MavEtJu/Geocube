@@ -63,6 +63,7 @@
     GCSwitch *compassAlwaysInPortraitMode;
     GCSwitch *markasFoundDNFClearsTarget;
     GCSwitch *markasFoundMarksAllWaypoints;
+    GCSwitch *loggingRemovesMarkedAsFoundDNF;
     GCSwitch *showCountryAsAbbrevation;
     GCSwitch *showStateAsAbbrevation;
     GCSwitch *showStateAsAbbrevationIfLocaleExists;
@@ -321,6 +322,7 @@ enum sections {
 
     SECTION_MARKAS_FOUNDDNFCLEARSTARGET = 0,
     SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS,
+    SECTION_LOG_REMOVEMARKASFOUNDDNF,
     SECTION_MARKAS_MAX,
 
     SECTION_WAYPOINTS_SORTBY = 0,
@@ -855,6 +857,17 @@ enum sections {
 
                     return cell;
                 }
+                case SECTION_LOG_REMOVEMARKASFOUNDDNF: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Remove Marked as Found/DNF when logging";
+
+                    loggingRemovesMarkedAsFoundDNF = [[GCSwitch alloc] initWithFrame:CGRectZero];
+                    loggingRemovesMarkedAsFoundDNF.on = configManager.loggingRemovesMarkedAsFoundDNF;
+                    [loggingRemovesMarkedAsFoundDNF addTarget:self action:@selector(updateLoggingRemovesMarkedAsFoundDNF:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = loggingRemovesMarkedAsFoundDNF;
+
+                    return cell;
+                }
             }
             break;
         }
@@ -990,6 +1003,11 @@ enum sections {
 - (void)updateMarkasFoundMarksAllWaypoints:(GCSwitch *)s
 {
     [configManager markasFoundMarksAllWaypointsUpdate:s.on];
+}
+
+- (void)updateLoggingRemovesMarkedAsFoundDNF:(GCSwitch *)s
+{
+    [configManager loggingRemovesMarkedAsFoundDNFUpdate:s.on];
 }
 
 - (void)updateCompassAlwaysInPortraitMode:(GCSwitch *)s
