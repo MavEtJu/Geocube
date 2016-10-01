@@ -207,6 +207,8 @@
 		E82E65991D9FD25C00CFBDED /* icons - smiley - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65971D9FD25C00CFBDED /* icons - smiley - 30x30@3x.png */; };
 		E82E659C1D9FD7EA00CFBDED /* icons - dead - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E659A1D9FD7EA00CFBDED /* icons - dead - 30x30@2x.png */; };
 		E82E659D1D9FD7EA00CFBDED /* icons - dead - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E659B1D9FD7EA00CFBDED /* icons - dead - 30x30@3x.png */; };
+		E82E65A01D9FDC9700CFBDED /* menu icon - global@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E659E1D9FDC9700CFBDED /* menu icon - global@2x.png */; };
+		E82E65A11D9FDC9700CFBDED /* menu icon - global@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E659F1D9FDC9700CFBDED /* menu icon - global@3x.png */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
@@ -737,6 +739,8 @@
 		E82E65971D9FD25C00CFBDED /* icons - smiley - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - smiley - 30x30@3x.png"; path = "images/icons - smiley - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82E659A1D9FD7EA00CFBDED /* icons - dead - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30@2x.png"; path = "images/icons - dead - 30x30@2x.png"; sourceTree = "<group>"; };
 		E82E659B1D9FD7EA00CFBDED /* icons - dead - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30@3x.png"; path = "images/icons - dead - 30x30@3x.png"; sourceTree = "<group>"; };
+		E82E659E1D9FDC9700CFBDED /* menu icon - global@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global@2x.png"; path = "images/menu icon - global@2x.png"; sourceTree = "<group>"; };
+		E82E659F1D9FDC9700CFBDED /* menu icon - global@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global@3x.png"; path = "images/menu icon - global@3x.png"; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -1853,6 +1857,8 @@
 				E836184E1D92AA4600D8C59A /* menu icon - close@2x.png */,
 				E836184F1D92AA4600D8C59A /* menu icon - close@3x.png */,
 				E832E67B1B6F76E70019F9D2 /* menu icon - global.png */,
+				E82E659E1D9FDC9700CFBDED /* menu icon - global@2x.png */,
+				E82E659F1D9FDC9700CFBDED /* menu icon - global@3x.png */,
 				E832E67C1B6F76E70019F9D2 /* menu icon - local.png */,
 				E82E658E1D9FC30000CFBDED /* menu icon - local@2x.png */,
 				E82E658F1D9FC30000CFBDED /* menu icon - local@3x.png */,
@@ -2693,6 +2699,7 @@
 				E80731EC1B5F84B4007FDC29 /* attributes - 04.png in Resources */,
 				E80732A11B5F857A007FDC29 /* map - pin stick - 35x42.png in Resources */,
 				E807320F1B5F84B4007FDC29 /* attributes - 40.png in Resources */,
+				E82E65A01D9FDC9700CFBDED /* menu icon - global@2x.png in Resources */,
 				E80732271B5F84B4007FDC29 /* attributes - 64.png in Resources */,
 				E82E658D1D994A1100CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
 				E827A2FB1D9689DC00D8E265 /* type - marked found - 24x21@2x.png in Resources */,
@@ -2700,6 +2707,7 @@
 				E827A2F71D9662AC00D8E265 /* cache - mystery - 30x30@2x.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
+				E82E65A11D9FDC9700CFBDED /* menu icon - global@3x.png in Resources */,
 				E82E65911D9FC30000CFBDED /* menu icon - local@3x.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
 				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
