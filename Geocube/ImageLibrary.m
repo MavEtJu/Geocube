@@ -126,13 +126,13 @@
     [self addToLibrary:@"map - background - 35x42" index:ImageMap_background];
     [self addToLibrary:@"map - own overlay - 18x18" index:ImageMap_pinOwner];
     [self addToLibrary:@"map - in progress - 18x18" index:ImageMap_pinInProgress];
-    [self addToLibrary:@"type - cross dnf - 19x19" index:ImageMap_typeCrossDNF];
-    [self addToLibrary:@"type - tick found - 24x21" index:ImageMap_typeTickFound];
-    [self addToLibrary:@"type - marked found - 24x21" index:ImageMap_typeMarkedFound];
-    [self addToLibrary:@"type - disabled - 24x24" index:ImageMap_typeOutlineDisabled];
-    [self addToLibrary:@"type - archived - 24x24" index:ImageMap_typeOutlineArchived];
-    [self addToLibrary:@"type - in progress - 24x24" index:ImageMap_typeInProgress];
-    [self addToLibrary:@"type - owner - 24x24" index:ImageMap_typeOwner];
+    [self addToLibrary:@"container flag - cross dnf - 19x19" index:ImageContainerFlag_crossDNF];
+    [self addToLibrary:@"container flag - tick found - 24x21" index:ImageContainerFlag_tickFound];
+    [self addToLibrary:@"container flag - marked found - 24x21" index:ImageContainerFlag_markedFound];
+    [self addToLibrary:@"container flag - disabled - 24x24" index:ImageContainerFlag_outlineDisabled];
+    [self addToLibrary:@"container flag - archived - 24x24" index:ImageContainerFlag_outlineArchived];
+    [self addToLibrary:@"container flag - in progress - 24x24" index:ImageContainerFlag_inProgress];
+    [self addToLibrary:@"container flag - owner - 24x24" index:ImageContainerFlag_owner];
 
     [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
@@ -550,37 +550,37 @@
     UIImage *img = [imageLibrary get:type.icon];
 
     if (owner == YES)
-        img = [self mergeOwner:img top:ImageMap_typeOwner];
+        img = [self mergeOwner:img top:ImageContainerFlag_owner];
 
     if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageMap_typeOutlineDisabled];
+        img = [self mergeDisabled:img top:ImageContainerFlag_outlineDisabled];
 
     if (archived == YES)
-        img = [self mergeArchived:img top:ImageMap_typeOutlineArchived];
+        img = [self mergeArchived:img top:ImageContainerFlag_outlineArchived];
 
     if (markedFound == YES) {
-        img = [self mergeFound:img top:ImageMap_typeMarkedFound];
+        img = [self mergeFound:img top:ImageContainerFlag_markedFound];
     } else {
         switch (found) {
             case LOGSTATUS_NOTLOGGED:
                 // Do not overlay anything
                 break;
             case LOGSTATUS_NOTFOUND:
-                img = [self mergeFound:img top:ImageMap_typeCrossDNF];
+                img = [self mergeFound:img top:ImageContainerFlag_crossDNF];
                 // Overlay the blue cross
                 break;
             case LOGSTATUS_FOUND:
-                img = [self mergeFound:img top:ImageMap_typeTickFound];
+                img = [self mergeFound:img top:ImageContainerFlag_tickFound];
                 // Overlay the yellow tick
                 break;
         }
     }
 
     if (markedDNF == YES)
-        img = [self mergeDNF:img top:ImageMap_typeCrossDNF];
+        img = [self mergeDNF:img top:ImageContainerFlag_crossDNF];
 
     if (inProgress == YES)
-        img = [self mergeArchived:img top:ImageMap_typeInProgress];
+        img = [self mergeArchived:img top:ImageContainerFlag_inProgress];
 
     return img;
 }
