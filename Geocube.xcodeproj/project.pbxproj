@@ -213,6 +213,8 @@
 		E82E65A71D9FE46100CFBDED /* icons - target - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A41D9FE46100CFBDED /* icons - target - 30x30@3x.png */; };
 		E82E65AA1D9FE6DF00CFBDED /* image - no image - 32x32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A81D9FE6DF00CFBDED /* image - no image - 32x32@2x.png */; };
 		E82E65AB1D9FE6DF00CFBDED /* image - no image - 32x32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A91D9FE6DF00CFBDED /* image - no image - 32x32@3x.png */; };
+		E82E65AE1DA076FC00CFBDED /* compass - white arrow on black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65AC1DA076FC00CFBDED /* compass - white arrow on black@2x.png */; };
+		E82E65AF1DA076FC00CFBDED /* compass - white arrow on black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65AD1DA076FC00CFBDED /* compass - white arrow on black@3x.png */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
@@ -749,6 +751,8 @@
 		E82E65A41D9FE46100CFBDED /* icons - target - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 30x30@3x.png"; path = "images/icons - target - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82E65A81D9FE6DF00CFBDED /* image - no image - 32x32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - no image - 32x32@2x.png"; path = "images/image - no image - 32x32@2x.png"; sourceTree = "<group>"; };
 		E82E65A91D9FE6DF00CFBDED /* image - no image - 32x32@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - no image - 32x32@3x.png"; path = "images/image - no image - 32x32@3x.png"; sourceTree = "<group>"; };
+		E82E65AC1DA076FC00CFBDED /* compass - white arrow on black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black@2x.png"; path = "images/compass - white arrow on black@2x.png"; sourceTree = "<group>"; };
+		E82E65AD1DA076FC00CFBDED /* compass - white arrow on black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black@3x.png"; path = "images/compass - white arrow on black@3x.png"; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -1587,6 +1591,8 @@
 				E8611A9B1B8AF6DC00B9D7C3 /* compass - airplane - airplane.png */,
 				E8611A9C1B8AF6DC00B9D7C3 /* compass - airplane - compass.png */,
 				E8611A991B8ABCA800B9D7C3 /* compass - white arrow on black.png */,
+				E82E65AC1DA076FC00CFBDED /* compass - white arrow on black@2x.png */,
+				E82E65AD1DA076FC00CFBDED /* compass - white arrow on black@3x.png */,
 			);
 			name = Compass;
 			sourceTree = "<group>";
@@ -2720,6 +2726,7 @@
 				E8182F491C0D6EE7004AC534 /* menu icon - find me.png in Resources */,
 				E827A2F71D9662AC00D8E265 /* cache - mystery - 30x30@2x.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
+				E82E65AE1DA076FC00CFBDED /* compass - white arrow on black@2x.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
 				E82E65A11D9FDC9700CFBDED /* menu icon - global@3x.png in Resources */,
 				E82E65911D9FC30000CFBDED /* menu icon - local@3x.png in Resources */,
@@ -2751,6 +2758,7 @@
 				E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */,
 				E89580291C6818C100282177 /* cache - history - 30x30.png in Resources */,
 				E890516D1C8993CF00220986 /* icons - dead - 30x30.png in Resources */,
+				E82E65AF1DA076FC00CFBDED /* compass - white arrow on black@3x.png in Resources */,
 				E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */,
 				E8F7FF291D74DFE000AC7EE6 /* image - nil - 1x1.png in Resources */,
 				E807320A1B5F84B4007FDC29 /* attributes - 35.png in Resources */,
