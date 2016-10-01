@@ -106,7 +106,7 @@
      */
 
     size = [[UIImageView alloc] initWithFrame:rectSize];
-    size.image = [imageLibrary get:ImageSize_NotChosen];
+    size.image = [imageLibrary get:ImageContainerSize_NotChosen];
     [self.contentView addSubview:size];
 
     // Difficulty rating

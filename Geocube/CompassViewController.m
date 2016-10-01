@@ -131,7 +131,7 @@
     [self.view addSubview:wpLonLabel];
 
     containerSizeIV = [[UIImageView alloc] initWithFrame:rectSize];
-    containerSizeIV.image = [imageLibrary get:ImageSize_NotChosen];
+    containerSizeIV.image = [imageLibrary get:ImageContainerSize_NotChosen];
     [self.view addSubview:containerSizeIV];
 
     ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingD];

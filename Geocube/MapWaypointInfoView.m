@@ -72,7 +72,7 @@
     imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
     imgRatingBase = [imageLibrary get:ImageCacheView_ratingBase];
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
-    imgSize = [imageLibrary get:ImageSize_NotChosen];
+    imgSize = [imageLibrary get:ImageContainerSize_NotChosen];
 
     [self calculateRects];
 
