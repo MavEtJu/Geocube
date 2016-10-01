@@ -199,6 +199,10 @@
 		E82E65891D99441400CFBDED /* cache - waymark - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65871D99441400CFBDED /* cache - waymark - 30x30@3x.png */; };
 		E82E658C1D994A1100CFBDED /* cache - unknown - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E658A1D994A1100CFBDED /* cache - unknown - 30x30@2x.png */; };
 		E82E658D1D994A1100CFBDED /* cache - unknown - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E658B1D994A1100CFBDED /* cache - unknown - 30x30@3x.png */; };
+		E82E65901D9FC30000CFBDED /* menu icon - local@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E658E1D9FC30000CFBDED /* menu icon - local@2x.png */; };
+		E82E65911D9FC30000CFBDED /* menu icon - local@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E658F1D9FC30000CFBDED /* menu icon - local@3x.png */; };
+		E82E65941D9FCF5800CFBDED /* icons - sad - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65921D9FCF5800CFBDED /* icons - sad - 30x30@2x.png */; };
+		E82E65951D9FCF5800CFBDED /* icons - sad - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65931D9FCF5800CFBDED /* icons - sad - 30x30@3x.png */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
@@ -721,6 +725,10 @@
 		E82E65871D99441400CFBDED /* cache - waymark - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30@3x.png"; path = "images/cache - waymark - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82E658A1D994A1100CFBDED /* cache - unknown - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@2x.png"; path = "images/cache - unknown - 30x30@2x.png"; sourceTree = "<group>"; };
 		E82E658B1D994A1100CFBDED /* cache - unknown - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@3x.png"; path = "images/cache - unknown - 30x30@3x.png"; sourceTree = "<group>"; };
+		E82E658E1D9FC30000CFBDED /* menu icon - local@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x.png"; path = "images/menu icon - local@2x.png"; sourceTree = "<group>"; };
+		E82E658F1D9FC30000CFBDED /* menu icon - local@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x.png"; path = "images/menu icon - local@3x.png"; sourceTree = "<group>"; };
+		E82E65921D9FCF5800CFBDED /* icons - sad - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30@2x.png"; path = "images/icons - sad - 30x30@2x.png"; sourceTree = "<group>"; };
+		E82E65931D9FCF5800CFBDED /* icons - sad - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - sad - 30x30@3x.png"; path = "images/icons - sad - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -1828,7 +1836,6 @@
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				E890516C1C8993CF00220986 /* icons - dead - 30x30.png */,
 				E8F9913D1C19518600D360F1 /* menu icon - find target.png */,
 				E8182F481C0D6EE7004AC534 /* menu icon - find me.png */,
 				E8182F461C0C21BA004AC534 /* menu icon - show both.png */,
@@ -1839,7 +1846,12 @@
 				E836184F1D92AA4600D8C59A /* menu icon - close@3x.png */,
 				E832E67B1B6F76E70019F9D2 /* menu icon - global.png */,
 				E832E67C1B6F76E70019F9D2 /* menu icon - local.png */,
+				E82E658E1D9FC30000CFBDED /* menu icon - local@2x.png */,
+				E82E658F1D9FC30000CFBDED /* menu icon - local@3x.png */,
+				E890516C1C8993CF00220986 /* icons - dead - 30x30.png */,
 				E80732AD1B5F8593007FDC29 /* icons - sad - 30x30.png */,
+				E82E65921D9FCF5800CFBDED /* icons - sad - 30x30@2x.png */,
+				E82E65931D9FCF5800CFBDED /* icons - sad - 30x30@3x.png */,
 				E80732AE1B5F8593007FDC29 /* icons - smiley - 15x15.png */,
 				E8611A8A1B87475400B9D7C3 /* icons - smiley - 30x30.png */,
 				E80732AF1B5F8593007FDC29 /* icons - target - 20x20.png */,
@@ -2676,6 +2688,7 @@
 				E827A2F71D9662AC00D8E265 /* cache - mystery - 30x30@2x.png in Resources */,
 				E80731EE1B5F84B4007FDC29 /* attributes - 06.png in Resources */,
 				E80732841B5F8561007FDC29 /* container - micro - 70x20.png in Resources */,
+				E82E65911D9FC30000CFBDED /* menu icon - local@3x.png in Resources */,
 				E80731F71B5F84B4007FDC29 /* attributes - 15.png in Resources */,
 				E832E67E1B6F76E70019F9D2 /* menu icon - local.png in Resources */,
 				E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */,
@@ -2801,7 +2814,9 @@
 				E8611A9A1B8ABCA800B9D7C3 /* compass - white arrow on black.png in Resources */,
 				E80732691B5F850C007FDC29 /* cache - unknown - 30x30.png in Resources */,
 				E847A5971BA0DB4500BEFE83 /* map - background - 35x42.png in Resources */,
+				E82E65951D9FCF5800CFBDED /* icons - sad - 30x30@3x.png in Resources */,
 				E80731ED1B5F84B4007FDC29 /* attributes - 05.png in Resources */,
+				E82E65941D9FCF5800CFBDED /* icons - sad - 30x30@2x.png in Resources */,
 				E833B7281C4F7E8500B9FB45 /* map - in progress - 18x18.png in Resources */,
 				E80732B31B5F8593007FDC29 /* icons - target - 20x20.png in Resources */,
 				E807320B1B5F84B4007FDC29 /* attributes - 36.png in Resources */,
@@ -2814,6 +2829,7 @@
 				E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */,
 				E8611AA41B8B25C500B9D7C3 /* compass - red on blue compass - compass.png in Resources */,
 				E807321D1B5F84B4007FDC29 /* attributes - 54.png in Resources */,
+				E82E65901D9FC30000CFBDED /* menu icon - local@2x.png in Resources */,
 				E827A3101D96963E00D8E265 /* cache - podcast - 30x30@3x.png in Resources */,
 				E80732021B5F84B4007FDC29 /* attributes - 27.png in Resources */,
 				E80732671B5F850C007FDC29 /* cache - mystery - 30x30.png in Resources */,
