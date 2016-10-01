@@ -211,6 +211,8 @@
 		E82E65A51D9FE46100CFBDED /* icons - target - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A21D9FE46100CFBDED /* icons - target - 30x30.png */; };
 		E82E65A61D9FE46100CFBDED /* icons - target - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A31D9FE46100CFBDED /* icons - target - 30x30@2x.png */; };
 		E82E65A71D9FE46100CFBDED /* icons - target - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A41D9FE46100CFBDED /* icons - target - 30x30@3x.png */; };
+		E82E65AA1D9FE6DF00CFBDED /* image - no image - 32x32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A81D9FE6DF00CFBDED /* image - no image - 32x32@2x.png */; };
+		E82E65AB1D9FE6DF00CFBDED /* image - no image - 32x32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65A91D9FE6DF00CFBDED /* image - no image - 32x32@3x.png */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E67D1B6F76E70019F9D2 /* menu icon - global.png in Resources */ = {isa = PBXBuildFile; fileRef = E832E67B1B6F76E70019F9D2 /* menu icon - global.png */; };
@@ -745,6 +747,8 @@
 		E82E65A21D9FE46100CFBDED /* icons - target - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 30x30.png"; path = "images/icons - target - 30x30.png"; sourceTree = "<group>"; };
 		E82E65A31D9FE46100CFBDED /* icons - target - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 30x30@2x.png"; path = "images/icons - target - 30x30@2x.png"; sourceTree = "<group>"; };
 		E82E65A41D9FE46100CFBDED /* icons - target - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - target - 30x30@3x.png"; path = "images/icons - target - 30x30@3x.png"; sourceTree = "<group>"; };
+		E82E65A81D9FE6DF00CFBDED /* image - no image - 32x32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - no image - 32x32@2x.png"; path = "images/image - no image - 32x32@2x.png"; sourceTree = "<group>"; };
+		E82E65A91D9FE6DF00CFBDED /* image - no image - 32x32@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - no image - 32x32@3x.png"; path = "images/image - no image - 32x32@3x.png"; sourceTree = "<group>"; };
 		E82FBB251B4613C20009AB6D /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E82FBB261B4613C20009AB6D /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -2012,6 +2016,8 @@
 			children = (
 				E8F7FF281D74DFE000AC7EE6 /* image - nil - 1x1.png */,
 				E895802A1C69BD1D00282177 /* image - no image - 32x32.png */,
+				E82E65A81D9FE6DF00CFBDED /* image - no image - 32x32@2x.png */,
+				E82E65A91D9FE6DF00CFBDED /* image - no image - 32x32@3x.png */,
 				E867E83C1B53D61C00CB126A /* attributes */,
 				E86C65751B4BCE2E00E2ABFE /* cache icons */,
 				E8611A981B8ABC8F00B9D7C3 /* Compass */,
@@ -2645,6 +2651,7 @@
 				E80732641B5F850C007FDC29 /* cache - maze - 30x30.png in Resources */,
 				E847A5851B9FDA1100BEFE83 /* type - cross dnf - 19x19.png in Resources */,
 				E80731FF1B5F84B4007FDC29 /* attributes - 24.png in Resources */,
+				E82E65AA1D9FE6DF00CFBDED /* image - no image - 32x32@2x.png in Resources */,
 				E80732051B5F84B4007FDC29 /* attributes - 30.png in Resources */,
 				E80732121B5F84B4007FDC29 /* attributes - 43.png in Resources */,
 				E88144131C7DB96000940820 /* GC - logo - 40x40.png in Resources */,
@@ -2767,6 +2774,7 @@
 				E80731EB1B5F84B4007FDC29 /* attributes - 03.png in Resources */,
 				E80732881B5F8561007FDC29 /* container - small - 70x20.png in Resources */,
 				E847A5891B9FDB3300BEFE83 /* type - archived - 24x24.png in Resources */,
+				E82E65AB1D9FE6DF00CFBDED /* image - no image - 32x32@3x.png in Resources */,
 				E80732221B5F84B4007FDC29 /* attributes - 59.png in Resources */,
 				E80732191B5F84B4007FDC29 /* attributes - 50.png in Resources */,
 				E80731FE1B5F84B4007FDC29 /* attributes - 23.png in Resources */,
