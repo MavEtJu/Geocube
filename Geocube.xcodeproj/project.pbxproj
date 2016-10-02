@@ -336,21 +336,6 @@
 		E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A11B946D1F0053AD01 /* dbNotice.m */; };
 		E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */; };
 		E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */; };
-		E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */; };
-		E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144001C7D832200940820 /* GC - logo - 640x960.png */; };
-		E881440A1C7DB8CA00940820 /* GC - logo - 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */; };
-		E881440B1C7DB8CA00940820 /* GC - logo - 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */; };
-		E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */; };
-		E881440D1C7DB8CA00940820 /* GC - logo - 144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */; };
-		E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */; };
-		E881440F1C7DB8CA00940820 /* GC - logo - 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */; };
-		E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */; };
-		E88144131C7DB96000940820 /* GC - logo - 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144111C7DB96000940820 /* GC - logo - 40x40.png */; };
-		E88144141C7DB96000940820 /* GC - logo - 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144121C7DB96000940820 /* GC - logo - 80x80.png */; };
-		E88144181C7DBA5800940820 /* GC - logo - 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144151C7DBA5800940820 /* GC - logo - 29x29.png */; };
-		E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144161C7DBA5800940820 /* GC - logo - 58x58.png */; };
-		E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E88144171C7DBA5800940820 /* GC - logo - 87x87.png */; };
-		E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */; };
 		E881441F1C82663D00940820 /* ListDNFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E881441E1C82663D00940820 /* ListDNFViewController.m */; };
 		E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E88144211C840C5400940820 /* IOSFileTransfers.m */; };
 		E88974BC1B6EBF9500703E80 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* ConfigManager.m */; };
@@ -954,21 +939,6 @@
 		E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableViewCell.m; sourceTree = "<group>"; };
 		E88037AC1B96D05A0053AD01 /* GCTableViewCellKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellKeyValue.h; sourceTree = "<group>"; };
 		E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellKeyValue.m; sourceTree = "<group>"; };
-		E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x1136.png"; path = "icons/GC - logo - 640x1136.png"; sourceTree = "<group>"; };
-		E88144001C7D832200940820 /* GC - logo - 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 640x960.png"; path = "icons/GC - logo - 640x960.png"; sourceTree = "<group>"; };
-		E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 76x76.png"; path = "icons/GC - logo - 76x76.png"; sourceTree = "<group>"; };
-		E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 120x120.png"; path = "icons/GC - logo - 120x120.png"; sourceTree = "<group>"; };
-		E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 135x135.png"; path = "icons/GC - logo - 135x135.png"; sourceTree = "<group>"; };
-		E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 144x144.png"; path = "icons/GC - logo - 144x144.png"; sourceTree = "<group>"; };
-		E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 152x152.png"; path = "icons/GC - logo - 152x152.png"; sourceTree = "<group>"; };
-		E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 180x180.png"; path = "icons/GC - logo - 180x180.png"; sourceTree = "<group>"; };
-		E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "icons/GC - logo - 512x512.png"; sourceTree = "<group>"; };
-		E88144111C7DB96000940820 /* GC - logo - 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 40x40.png"; path = "icons/GC - logo - 40x40.png"; sourceTree = "<group>"; };
-		E88144121C7DB96000940820 /* GC - logo - 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 80x80.png"; path = "icons/GC - logo - 80x80.png"; sourceTree = "<group>"; };
-		E88144151C7DBA5800940820 /* GC - logo - 29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 29x29.png"; path = "icons/GC - logo - 29x29.png"; sourceTree = "<group>"; };
-		E88144161C7DBA5800940820 /* GC - logo - 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 58x58.png"; path = "icons/GC - logo - 58x58.png"; sourceTree = "<group>"; };
-		E88144171C7DBA5800940820 /* GC - logo - 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 87x87.png"; path = "icons/GC - logo - 87x87.png"; sourceTree = "<group>"; };
-		E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 167x167.png"; path = "icons/GC - logo - 167x167.png"; sourceTree = "<group>"; };
 		E881441D1C82663D00940820 /* ListDNFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDNFViewController.h; sourceTree = "<group>"; };
 		E881441E1C82663D00940820 /* ListDNFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDNFViewController.m; sourceTree = "<group>"; };
 		E88144201C840C5400940820 /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSFileTransfers.h; sourceTree = "<group>"; };
@@ -1432,21 +1402,6 @@
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
-				E88144151C7DBA5800940820 /* GC - logo - 29x29.png */,
-				E88144161C7DBA5800940820 /* GC - logo - 58x58.png */,
-				E88144171C7DBA5800940820 /* GC - logo - 87x87.png */,
-				E88144111C7DB96000940820 /* GC - logo - 40x40.png */,
-				E88144121C7DB96000940820 /* GC - logo - 80x80.png */,
-				E88144031C7DB8CA00940820 /* GC - logo - 76x76.png */,
-				E88144041C7DB8CA00940820 /* GC - logo - 120x120.png */,
-				E88144051C7DB8CA00940820 /* GC - logo - 135x135.png */,
-				E88144061C7DB8CA00940820 /* GC - logo - 144x144.png */,
-				E88144071C7DB8CA00940820 /* GC - logo - 152x152.png */,
-				E881441B1C7DBABB00940820 /* GC - logo - 167x167.png */,
-				E88144081C7DB8CA00940820 /* GC - logo - 180x180.png */,
-				E88144091C7DB8CA00940820 /* GC - logo - 512x512.png */,
-				E88143FF1C7D832200940820 /* GC - logo - 640x1136.png */,
-				E88144001C7D832200940820 /* GC - logo - 640x960.png */,
 			);
 			name = logos;
 			sourceTree = "<group>";
@@ -2699,7 +2654,6 @@
 				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
 				E82E67691DA07D0200CFBDED /* attributes - 63.png in Resources */,
 				E82E661C1DA07A5500CFBDED /* menu icon - find me.png in Resources */,
-				E88144131C7DB96000940820 /* GC - logo - 40x40.png in Resources */,
 				E82E67751DA07D1A00CFBDED /* image - no image - 32x32@2x.png in Resources */,
 				E82E66CA1DA07CBE00CFBDED /* cache - multi - 30x30@2x.png in Resources */,
 				E82E66BB1DA07CBE00CFBDED /* cache - event - 30x30.png in Resources */,
