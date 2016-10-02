@@ -377,6 +377,20 @@
 		E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6F6931C1E8EF100577088 /* dbPin.m */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
+		E8C586271DA10A180059DB7D /* container size - large - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586251DA10A180059DB7D /* container size - large - 70x20@2x.png */; };
+		E8C586281DA10A180059DB7D /* container size - large - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586261DA10A180059DB7D /* container size - large - 70x20@3x.png */; };
+		E8C586351DA12D2B0059DB7D /* container size - micro - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586291DA12D2B0059DB7D /* container size - micro - 70x20@2x.png */; };
+		E8C586361DA12D2B0059DB7D /* container size - micro - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862A1DA12D2B0059DB7D /* container size - micro - 70x20@3x.png */; };
+		E8C586371DA12D2B0059DB7D /* container size - notchosen - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862B1DA12D2B0059DB7D /* container size - notchosen - 70x20@2x.png */; };
+		E8C586381DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862C1DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png */; };
+		E8C586391DA12D2B0059DB7D /* container size - other - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862D1DA12D2B0059DB7D /* container size - other - 70x20@2x.png */; };
+		E8C5863A1DA12D2B0059DB7D /* container size - other - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862E1DA12D2B0059DB7D /* container size - other - 70x20@3x.png */; };
+		E8C5863B1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C5862F1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png */; };
+		E8C5863C1DA12D2B0059DB7D /* container size - regular - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586301DA12D2B0059DB7D /* container size - regular - 70x20@3x.png */; };
+		E8C5863D1DA12D2B0059DB7D /* container size - small - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586311DA12D2B0059DB7D /* container size - small - 70x20@2x.png */; };
+		E8C5863E1DA12D2B0059DB7D /* container size - small - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586321DA12D2B0059DB7D /* container size - small - 70x20@3x.png */; };
+		E8C5863F1DA12D2B0059DB7D /* container size - unknown - 70x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586331DA12D2B0059DB7D /* container size - unknown - 70x20@2x.png */; };
+		E8C586401DA12D2B0059DB7D /* container size - unknown - 70x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C586341DA12D2B0059DB7D /* container size - unknown - 70x20@3x.png */; };
 		E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */; };
 		E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB4F1C719EB1006222D5 /* WaypointAddViewController.m */; };
 		E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */; };
@@ -1012,6 +1026,20 @@
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
 		E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserBrowserViewController.m; sourceTree = "<group>"; };
+		E8C586251DA10A180059DB7D /* container size - large - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 70x20@2x.png"; path = "images/containers/container size - large - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C586261DA10A180059DB7D /* container size - large - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 70x20@3x.png"; path = "images/containers/container size - large - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C586291DA12D2B0059DB7D /* container size - micro - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - micro - 70x20@2x.png"; path = "images/containers/container size - micro - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C5862A1DA12D2B0059DB7D /* container size - micro - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - micro - 70x20@3x.png"; path = "images/containers/container size - micro - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C5862B1DA12D2B0059DB7D /* container size - notchosen - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - notchosen - 70x20@2x.png"; path = "images/containers/container size - notchosen - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C5862C1DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - notchosen - 70x20@3x.png"; path = "images/containers/container size - notchosen - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C5862D1DA12D2B0059DB7D /* container size - other - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - other - 70x20@2x.png"; path = "images/containers/container size - other - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C5862E1DA12D2B0059DB7D /* container size - other - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - other - 70x20@3x.png"; path = "images/containers/container size - other - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C5862F1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - regular - 70x20@2x.png"; path = "images/containers/container size - regular - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C586301DA12D2B0059DB7D /* container size - regular - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - regular - 70x20@3x.png"; path = "images/containers/container size - regular - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C586311DA12D2B0059DB7D /* container size - small - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - small - 70x20@2x.png"; path = "images/containers/container size - small - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C586321DA12D2B0059DB7D /* container size - small - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - small - 70x20@3x.png"; path = "images/containers/container size - small - 70x20@3x.png"; sourceTree = "<group>"; };
+		E8C586331DA12D2B0059DB7D /* container size - unknown - 70x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - unknown - 70x20@2x.png"; path = "images/containers/container size - unknown - 70x20@2x.png"; sourceTree = "<group>"; };
+		E8C586341DA12D2B0059DB7D /* container size - unknown - 70x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - unknown - 70x20@3x.png"; path = "images/containers/container size - unknown - 70x20@3x.png"; sourceTree = "<group>"; };
 		E8C5BB4B1C6DF12F006222D5 /* dbQueryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbQueryImport.h; sourceTree = "<group>"; };
 		E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbQueryImport.m; sourceTree = "<group>"; };
 		E8C5BB4E1C719EB1006222D5 /* WaypointAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointAddViewController.h; sourceTree = "<group>"; };
@@ -1823,12 +1851,26 @@
 				E82E66581DA07C4900CFBDED /* container flag - owner - 24x24@3x.png */,
 				E82E66591DA07C4900CFBDED /* container flag - tick found - 24x21.png */,
 				E82E665A1DA07C4900CFBDED /* container size - large - 70x20.png */,
+				E8C586251DA10A180059DB7D /* container size - large - 70x20@2x.png */,
+				E8C586261DA10A180059DB7D /* container size - large - 70x20@3x.png */,
 				E82E665B1DA07C4900CFBDED /* container size - micro - 70x20.png */,
+				E8C586291DA12D2B0059DB7D /* container size - micro - 70x20@2x.png */,
+				E8C5862A1DA12D2B0059DB7D /* container size - micro - 70x20@3x.png */,
 				E82E665C1DA07C4900CFBDED /* container size - notchosen - 70x20.png */,
+				E8C5862B1DA12D2B0059DB7D /* container size - notchosen - 70x20@2x.png */,
+				E8C5862C1DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png */,
 				E82E665D1DA07C4900CFBDED /* container size - other - 70x20.png */,
+				E8C5862D1DA12D2B0059DB7D /* container size - other - 70x20@2x.png */,
+				E8C5862E1DA12D2B0059DB7D /* container size - other - 70x20@3x.png */,
 				E82E665E1DA07C4900CFBDED /* container size - regular - 70x20.png */,
+				E8C5862F1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png */,
+				E8C586301DA12D2B0059DB7D /* container size - regular - 70x20@3x.png */,
 				E82E665F1DA07C4900CFBDED /* container size - small - 70x20.png */,
+				E8C586311DA12D2B0059DB7D /* container size - small - 70x20@2x.png */,
+				E8C586321DA12D2B0059DB7D /* container size - small - 70x20@3x.png */,
 				E82E66601DA07C4900CFBDED /* container size - unknown - 70x20.png */,
+				E8C586331DA12D2B0059DB7D /* container size - unknown - 70x20@2x.png */,
+				E8C586341DA12D2B0059DB7D /* container size - unknown - 70x20@3x.png */,
 			);
 			name = containers;
 			sourceTree = "<group>";
@@ -2652,6 +2694,7 @@
 				E82E65E51DA079AE00CFBDED /* map - tick found - 17x15.png in Resources */,
 				E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */,
 				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
+				E8C586391DA12D2B0059DB7D /* container size - other - 70x20@2x.png in Resources */,
 				E82E67691DA07D0200CFBDED /* attributes - 63.png in Resources */,
 				E82E661C1DA07A5500CFBDED /* menu icon - find me.png in Resources */,
 				E82E67751DA07D1A00CFBDED /* image - no image - 32x32@2x.png in Resources */,
@@ -2663,6 +2706,7 @@
 				E82E65E31DA079AE00CFBDED /* map - pin stick - 35x42.png in Resources */,
 				E87DF7831D7EDFE000F16B5A /* SVProgressHUD.bundle in Resources */,
 				E82E66CF1DA07CBE00CFBDED /* cache - night - 30x30.png in Resources */,
+				E8C5863C1DA12D2B0059DB7D /* container size - regular - 70x20@3x.png in Resources */,
 				E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */,
 				E82E677A1DA0D1E600CFBDED /* menu icon - find me@3x.png in Resources */,
 				E8A3B0BB1CD33BC600170D61 /* MHTabBarInactiveTab.png in Resources */,
@@ -2671,6 +2715,7 @@
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
+				E8C5863D1DA12D2B0059DB7D /* container size - small - 70x20@2x.png in Resources */,
 				E82E66C21DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png in Resources */,
 				E82E66401DA07A8700CFBDED /* icons - target - 30x30@3x.png in Resources */,
 				E82E66B81DA07CBE00CFBDED /* cache - burke-wills - 30x30.png in Resources */,
@@ -2688,7 +2733,6 @@
 				E82E67631DA07D0200CFBDED /* attributes - 57.png in Resources */,
 				E82E667C1DA07C6F00CFBDED /* compass - airplane - compass.png in Resources */,
 				E82E67421DA07D0200CFBDED /* attributes - 24.png in Resources */,
-				E881440D1C7DB8CA00940820 /* GC - logo - 144x144.png in Resources */,
 				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
@@ -2709,6 +2753,7 @@
 				E82E65BB1DA0794600CFBDED /* waypoint - multi - 30x30.png in Resources */,
 				E82E66CC1DA07CBE00CFBDED /* cache - mystery - 30x30.png in Resources */,
 				E82E65BF1DA0794600CFBDED /* waypoint - unknown - 30x30.png in Resources */,
+				E8C5863E1DA12D2B0059DB7D /* container size - small - 70x20@3x.png in Resources */,
 				E82E673D1DA07D0200CFBDED /* attributes - 19.png in Resources */,
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
 				E82E65C71DA0797E00CFBDED /* ratings - star half 18x18.png in Resources */,
@@ -2720,7 +2765,6 @@
 				E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */,
 				E82E66701DA07C4900CFBDED /* container size - regular - 70x20.png in Resources */,
 				E82E65FD1DA079E500CFBDED /* log - disabled - 18x18.png in Resources */,
-				E881440B1C7DB8CA00940820 /* GC - logo - 120x120.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
 				E82E67821DA0D94300CFBDED /* menu icon - follow me@3x.png in Resources */,
 				E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */,
@@ -2732,21 +2776,22 @@
 				E82E65BA1DA0794600CFBDED /* waypoint - manually entered - 30x30.png in Resources */,
 				E82E67381DA07D0200CFBDED /* attributes - 13.png in Resources */,
 				E82E66201DA07A5500CFBDED /* menu icon - global@2x.png in Resources */,
-				E881440C1C7DB8CA00940820 /* GC - logo - 135x135.png in Resources */,
 				E82E67391DA07D0200CFBDED /* attributes - 14.png in Resources */,
-				E881440E1C7DB8CA00940820 /* GC - logo - 152x152.png in Resources */,
+				E8C586371DA12D2B0059DB7D /* container size - notchosen - 70x20@2x.png in Resources */,
 				E82E65DA1DA079AE00CFBDED /* map - cross dnf - 9x9.png in Resources */,
 				E82E66D31DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png in Resources */,
+				E8C586281DA10A180059DB7D /* container size - large - 70x20@3x.png in Resources */,
 				E82E66661DA07C4900CFBDED /* container flag - marked found - 24x21@2x.png in Resources */,
+				E8C586361DA12D2B0059DB7D /* container size - micro - 70x20@3x.png in Resources */,
 				E82E67891DA0F42200CFBDED /* menu icon - show both@2x.png in Resources */,
 				E82E66C51DA07CBE00CFBDED /* cache - mega - 30x30.png in Resources */,
 				E82E67581DA07D0200CFBDED /* attributes - 46.png in Resources */,
 				E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
-				E88144011C7D832200940820 /* GC - logo - 640x1136.png in Resources */,
 				E82E666D1DA07C4900CFBDED /* container size - micro - 70x20.png in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
+				E8C586401DA12D2B0059DB7D /* container size - unknown - 70x20@3x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
@@ -2786,17 +2831,18 @@
 				E82E66391DA07A8700CFBDED /* icons - sad - 30x30@3x.png in Resources */,
 				E82E66721DA07C4900CFBDED /* container size - unknown - 70x20.png in Resources */,
 				E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */,
+				E8C586271DA10A180059DB7D /* container size - large - 70x20@2x.png in Resources */,
 				E82E66DB1DA07CBE00CFBDED /* cache - unknown - 30x30.png in Resources */,
 				E82E673E1DA07D0200CFBDED /* attributes - 20.png in Resources */,
 				E82E675B1DA07D0200CFBDED /* attributes - 49.png in Resources */,
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
+				E8C586351DA12D2B0059DB7D /* container size - micro - 70x20@2x.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E82E66691DA07C4900CFBDED /* container flag - owner - 24x24@2x.png in Resources */,
 				E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */,
 				E82E674C1DA07D0200CFBDED /* attributes - 34.png in Resources */,
-				E88144191C7DBA5800940820 /* GC - logo - 58x58.png in Resources */,
 				E82E67611DA07D0200CFBDED /* attributes - 55.png in Resources */,
 				E82E67531DA07D0200CFBDED /* attributes - 41.png in Resources */,
 				E82E66C11DA07CBE00CFBDED /* cache - letterbox - 30x30.png in Resources */,
@@ -2811,7 +2857,6 @@
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
-				E88144181C7DBA5800940820 /* GC - logo - 29x29.png in Resources */,
 				E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */,
 				E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
@@ -2820,11 +2865,10 @@
 				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */,
-				E881440A1C7DB8CA00940820 /* GC - logo - 76x76.png in Resources */,
 				E82E67361DA07D0200CFBDED /* attributes - 11.png in Resources */,
-				E881441C1C7DBABB00940820 /* GC - logo - 167x167.png in Resources */,
 				E82E67561DA07D0200CFBDED /* attributes - 44.png in Resources */,
 				E82E677E1DA0D79A00CFBDED /* menu icon - find target@3x.png in Resources */,
+				E8C5863B1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png in Resources */,
 				E8A3B0BC1CD33BC600170D61 /* MHTabBarInactiveTab@2x.png in Resources */,
 				E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E82E66711DA07C4900CFBDED /* container size - small - 70x20.png in Resources */,
@@ -2836,17 +2880,14 @@
 				E82E666F1DA07C4900CFBDED /* container size - other - 70x20.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
-				E88144141C7DB96000940820 /* GC - logo - 80x80.png in Resources */,
 				E82E675E1DA07D0200CFBDED /* attributes - 52.png in Resources */,
 				E82E66001DA079E500CFBDED /* log - moved - 30x30.png in Resources */,
 				E82E65FA1DA079E500CFBDED /* log - attended - 30x30.png in Resources */,
 				E82E66191DA07A5500CFBDED /* menu icon - close.png in Resources */,
 				E82E678A1DA0F42200CFBDED /* menu icon - show both@3x.png in Resources */,
 				E82E66081DA079E500CFBDED /* log - unknown - 30x30.png in Resources */,
-				E881440F1C7DB8CA00940820 /* GC - logo - 180x180.png in Resources */,
 				E82E666B1DA07C4900CFBDED /* container flag - tick found - 24x21.png in Resources */,
 				E82E674A1DA07D0200CFBDED /* attributes - 32.png in Resources */,
-				E88144101C7DB8CA00940820 /* GC - logo - 512x512.png in Resources */,
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
 				E82E65BD1DA0794600CFBDED /* waypoint - question - 30x30.png in Resources */,
 				E82E65DC1DA079AE00CFBDED /* map - disabled - 15x15.png in Resources */,
@@ -2867,7 +2908,6 @@
 				E82E67641DA07D0200CFBDED /* attributes - 58.png in Resources */,
 				E82E67851DA0DD0700CFBDED /* menu icon - see target@2x.png in Resources */,
 				E8A3B0BE1CD33BC600170D61 /* MHTabBarIndicator@2x.png in Resources */,
-				E88144021C7D832200940820 /* GC - logo - 640x960.png in Resources */,
 				E82E66E61DA07CBE00CFBDED /* cache - whereigo - 30x30.png in Resources */,
 				E82E672C1DA07D0200CFBDED /* attributes - 01.png in Resources */,
 				E82E674F1DA07D0200CFBDED /* attributes - 37.png in Resources */,
@@ -2885,11 +2925,12 @@
 				E82E65E21DA079AE00CFBDED /* map - own overlay - 18x18.png in Resources */,
 				E82E66651DA07C4900CFBDED /* container flag - marked found - 24x21.png in Resources */,
 				E82E673C1DA07D0200CFBDED /* attributes - 18.png in Resources */,
-				E881441A1C7DBA5800940820 /* GC - logo - 87x87.png in Resources */,
 				E82E672F1DA07D0200CFBDED /* attributes - 04.png in Resources */,
 				E82E676A1DA07D0200CFBDED /* attributes - 64.png in Resources */,
+				E8C5863F1DA12D2B0059DB7D /* container size - unknown - 70x20@2x.png in Resources */,
 				E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */,
 				E82E67511DA07D0200CFBDED /* attributes - 39.png in Resources */,
+				E8C5863A1DA12D2B0059DB7D /* container size - other - 70x20@3x.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */,
 				E82E65C91DA0797E00CFBDED /* ratings - star on 19x18.png in Resources */,
@@ -2902,6 +2943,7 @@
 				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
+				E8C586381DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png in Resources */,
 				E82E67351DA07D0200CFBDED /* attributes - 10.png in Resources */,
 				E82E661E1DA07A5500CFBDED /* menu icon - follow me.png in Resources */,
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
