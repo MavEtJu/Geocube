@@ -127,7 +127,8 @@ ThemeManager *themeManager;
         return;
     }
 
-    NSLog(@"%@ - not changedTheme: %@", [self class], [v class]);
+    if ([[[v class] description] hasPrefix:@"_"] == NO)
+        NSLog(@"%@ - not changedTheme: %@", [self class], [v class]);
 }
 
 - (void)changeThemeViewController:(UIViewController *)v
