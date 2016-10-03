@@ -256,7 +256,7 @@
 - (NSArray *)hasWaypoints
 {
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
-    NSString *namesuffix, *nameprefix, *prefix;
+    NSString *currentSuffix, *currentPrefix, *otherPrefix;
     NSArray *GCCodes = @[
                          @"GA", // Geocaching Australia
                          @"MY", // Geocube internal
@@ -278,23 +278,34 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ? and (account_id = ? or account_id = 0)")
 
-        namesuffix = [self.wpt_name substringFromIndex:2];
-        nameprefix = [self.wpt_name substringToIndex:2];
-        NSString *sql = [NSString stringWithFormat:@"%%%@", namesuffix];
+        currentSuffix = [self.wpt_name substringFromIndex:2];
+        currentPrefix = [self.wpt_name substringToIndex:2];
+        NSString *sql = [NSString stringWithFormat:@"%%%@", currentSuffix];
         SET_VAR_TEXT(1, sql);
         SET_VAR_INT (2, account_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN (0, __id);
-            TEXT_FETCH_AND_ASSIGN(1, name);
+            TEXT_FETCH_AND_ASSIGN(1, otherName);
 
-            prefix = [name substringToIndex:2];
+            otherPrefix = [otherName substringToIndex:2];
 
-            if ([name isEqualToString:self.wpt_name] == YES) {
+//          NSLog(@"self.wpt_name: %@", self.wpt_name);
+//          NSLog(@"currentPrefix: %@", currentPrefix);
+//          NSLog(@"otherName: %@", otherName);
+//          NSLog(@"otherPrefix: %@", otherPrefix);
+//          NSLog(@"[otherName isEqualToString:self.wpt_name]: %d", [otherName isEqualToString:self.wpt_name]);
+//          NSLog(@"[GCCodes indexOfObject:otherPrefix]: %ld", (long)[GCCodes indexOfObject:otherPrefix]);
+            if ([otherName isEqualToString:self.wpt_name] == YES) {
+                // Add itself, always.
                 [wps addObject:[dbWaypoint dbGet:__id]];
-            } else if ([prefix isEqualToString:nameprefix] == YES && [GCCodes indexOfObject:prefix] != NSNotFound) {
-                // Nothing!
-            } else {
+            } else if ([GCCodes indexOfObject:otherPrefix] == NSNotFound) {
+                // otherPrefix isn't in the prefixes of other listing services, then add it.
+                [wps addObject:[dbWaypoint dbGet:__id]];
+            } else if ([GCCodes indexOfObject:otherPrefix] != NSNotFound &&
+                       [GCCodes indexOfObject:currentPrefix] == NSNotFound) {
+                // It the other is in another listing service, but the current one isn't, then add it.
+                // (This can give false positives, but it's all we got...)
                 [wps addObject:[dbWaypoint dbGet:__id]];
             }
         }
