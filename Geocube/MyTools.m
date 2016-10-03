@@ -95,6 +95,7 @@
         return nil;
 
     struct tm tm;
+    memset(&tm, 0, sizeof(struct tm));
     time_t t;
 
     strptime([string cStringUsingEncoding:NSUTF8StringEncoding], format, &tm);
