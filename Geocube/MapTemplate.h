@@ -80,6 +80,7 @@
 - (void)initWaypointInfo;
 - (void)updateWaypointInfo:(dbWaypoint *)wp;
 - (void)openWaypointInfo:(id)sender;
+- (BOOL)waypointInfoViewIsShown;
 
 - (CLLocationCoordinate2D)currentCenter;
 - (double)currentZoom;

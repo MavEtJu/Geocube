@@ -258,6 +258,9 @@ enum {
         [map placeMarkers];
         needsRefresh = NO;
     }
+
+    if ([map waypointInfoViewIsShown] == YES)
+        [map showWaypointInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
