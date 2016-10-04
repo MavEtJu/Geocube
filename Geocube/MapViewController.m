@@ -54,13 +54,13 @@
 @synthesize waypointsArray;
 
 enum {
-    menuMapGoogle,
-    menuMapApple,
-    menuMapOSM,
-    menuMap,
-    menuSatellite,
-    menuHybrid,
-    menuTerrain,
+    menuBrandGoogle,
+    menuBrandApple,
+    menuBrandOSM,
+    menuMapMap,
+    menuMapSatellite,
+    menuMapHybrid,
+    menuMapTerrain,
     menuLoadWaypoints,
     menuDirections,
     menuAutoZoom,
@@ -92,14 +92,14 @@ enum {
         showBrand = MAPBRAND_APPLEMAPS;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMapGoogle label:@"Google Maps"];
-    [lmi addItem:menuMapApple label:@"Apple Maps"];
-    [lmi addItem:menuMapOSM label:@"OSM"];
+    [lmi addItem:menuBrandGoogle label:@"Google Maps"];
+    [lmi addItem:menuBrandApple label:@"Apple Maps"];
+    [lmi addItem:menuBrandOSM label:@"OSM"];
 
-    [lmi addItem:menuMap label:@"Map"];
-    [lmi addItem:menuSatellite label:@"Satellite"];
-    [lmi addItem:menuHybrid label:@"Hybrid"];
-    [lmi addItem:menuTerrain label:@"Terrain"];
+    [lmi addItem:menuMapMap label:@"Map"];
+    [lmi addItem:menuMapSatellite label:@"Satellite"];
+    [lmi addItem:menuMapHybrid label:@"Hybrid"];
+    [lmi addItem:menuMapTerrain label:@"Terrain"];
 
     [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
     [lmi addItem:menuDirections label:@"Directions"];
@@ -114,33 +114,33 @@ enum {
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             map = [[MapGoogle alloc] init:self];
-            [lmi disableItem:menuMapGoogle];
-            [lmi enableItem:menuMapApple];
-            [lmi enableItem:menuMapOSM];
+            [lmi disableItem:menuBrandGoogle];
+            [lmi enableItem:menuBrandApple];
+            [lmi enableItem:menuBrandOSM];
             break;
         case MAPBRAND_APPLEMAPS:
             map = [[MapApple alloc] init:self];
-            [lmi enableItem:menuMapGoogle];
-            [lmi disableItem:menuMapApple];
-            [lmi enableItem:menuMapOSM];
+            [lmi enableItem:menuBrandGoogle];
+            [lmi disableItem:menuBrandApple];
+            [lmi enableItem:menuBrandOSM];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             map = [[MapOSM alloc] init:self];
-            [lmi enableItem:menuMapGoogle];
-            [lmi enableItem:menuMapApple];
-            [lmi disableItem:menuMapOSM];
+            [lmi enableItem:menuBrandGoogle];
+            [lmi enableItem:menuBrandApple];
+            [lmi disableItem:menuBrandOSM];
             break;
     }
 
     // Various map view options
     if ([map mapHasViewMap] == FALSE)
-        [lmi disableItem:menuMap];
+        [lmi disableItem:menuMapMap];
     if ([map mapHasViewSatellite] == FALSE)
-        [lmi disableItem:menuSatellite];
+        [lmi disableItem:menuMapSatellite];
     if ([map mapHasViewHybrid] == FALSE)
-        [lmi disableItem:menuHybrid];
+        [lmi disableItem:menuMapHybrid];
     if ([map mapHasViewTerrain] == FALSE)
-        [lmi disableItem:menuTerrain];
+        [lmi disableItem:menuMapTerrain];
 
     if (waypointManager.currentWaypoint == nil)
         [lmi disableItem:menuRemoveTarget];
@@ -158,7 +158,7 @@ enum {
         [lmi disableItem:menuUseGPS];
 
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
-        [lmi disableItem:menuMapGoogle];
+        [lmi disableItem:menuBrandGoogle];
 
     showWhat = mapWhat; /* SHOW_ONECACHE or SHOW_ALLCACHES */
     followWhom = (showWhat == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
@@ -202,7 +202,7 @@ enum {
     if (hasGMS == NO) {
         if (configManager.keyGMS != nil && [configManager.keyGMS isEqualToString:@""] == NO) {
             hasGMS = YES;
-            [lmi enableItem:menuMapGoogle];
+            [lmi enableItem:menuBrandGoogle];
             [GMSServices provideAPIKey:configManager.keyGMS];
         }
     }
@@ -654,49 +654,49 @@ enum {
             NSLog(@"Switching to Google Maps");
             map = [[MapGoogle alloc] init:self];
 
-            [lmi enableItem:menuMap];
-            [lmi enableItem:menuSatellite];
-            [lmi enableItem:menuHybrid];
-            [lmi enableItem:menuTerrain];
+            [lmi enableItem:menuMapMap];
+            [lmi enableItem:menuMapSatellite];
+            [lmi enableItem:menuMapHybrid];
+            [lmi enableItem:menuMapTerrain];
 
-            [lmi disableItem:menuMapGoogle];
-            [lmi enableItem:menuMapApple];
-            [lmi enableItem:menuMapOSM];
+            [lmi disableItem:menuBrandGoogle];
+            [lmi enableItem:menuBrandApple];
+            [lmi enableItem:menuBrandOSM];
             break;
 
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];
 
-            [lmi enableItem:menuMap];
-            [lmi enableItem:menuSatellite];
-            [lmi enableItem:menuHybrid];
-            [lmi disableItem:menuTerrain];
+            [lmi enableItem:menuMapMap];
+            [lmi enableItem:menuMapSatellite];
+            [lmi enableItem:menuMapHybrid];
+            [lmi disableItem:menuMapTerrain];
 
-            [lmi enableItem:menuMapGoogle];
-            [lmi disableItem:menuMapApple];
-            [lmi enableItem:menuMapOSM];
+            [lmi enableItem:menuBrandGoogle];
+            [lmi disableItem:menuBrandApple];
+            [lmi enableItem:menuBrandOSM];
             break;
 
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
             map = [[MapOSM alloc] init:self];
 
-            [lmi enableItem:menuMap];
-            [lmi disableItem:menuSatellite];
-            [lmi disableItem:menuHybrid];
-            [lmi disableItem:menuTerrain];
+            [lmi enableItem:menuMapMap];
+            [lmi disableItem:menuMapSatellite];
+            [lmi disableItem:menuMapHybrid];
+            [lmi disableItem:menuMapTerrain];
 
-            [lmi enableItem:menuMapGoogle];
-            [lmi enableItem:menuMapApple];
-            [lmi disableItem:menuMapOSM];
+            [lmi enableItem:menuBrandGoogle];
+            [lmi enableItem:menuBrandApple];
+            [lmi disableItem:menuBrandOSM];
             break;
     }
     showBrand = brand;
     [configManager mapBrandUpdate:brand];
 
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
-        [lmi disableItem:menuMapGoogle];
+        [lmi disableItem:menuBrandGoogle];
 
     [map initMap];
     [map mapViewDidLoad];
@@ -976,16 +976,16 @@ enum {
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
-        case menuMap: /* Map view */
+        case menuMapMap: /* Map view */
             [self menuMapType:MAPTYPE_NORMAL];
             return;
-        case menuSatellite: /* Satellite view */
+        case menuMapSatellite: /* Satellite view */
             [self menuMapType:MAPTYPE_SATELLITE];
             return;
-        case menuHybrid: /* Hybrid view */
+        case menuMapHybrid: /* Hybrid view */
             [self menuMapType:MAPTYPE_HYBRID];
             return;
-        case menuTerrain: /* Terrain view */
+        case menuMapTerrain: /* Terrain view */
             [self menuMapType:MAPTYPE_TERRAIN];
             return;
 
@@ -999,13 +999,13 @@ enum {
             [self menuLoadWaypoints];
             return;
 
-        case menuMapGoogle:
+        case menuBrandGoogle:
             [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
             return;
-        case menuMapApple:
+        case menuBrandApple:
             [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
             return;
-        case menuMapOSM:
+        case menuBrandOSM:
             [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
             return;
 
