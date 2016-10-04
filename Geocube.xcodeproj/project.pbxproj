@@ -1573,7 +1573,7 @@
 			name = Themes;
 			sourceTree = "<group>";
 		};
-		E85760161B85E08F00F34483 /* Geocube */ = {
+		E85760161B85E08F00F34483 /* Base objects */ = {
 			isa = PBXGroup;
 			children = (
 				E8F7FF251D74507100AC7EE6 /* GCButton.h */,
@@ -1613,7 +1613,7 @@
 				E82FBB251B4613C20009AB6D /* GCViewController.h */,
 				E82FBB261B4613C20009AB6D /* GCViewController.m */,
 			);
-			name = Geocube;
+			name = "Base objects";
 			sourceTree = "<group>";
 		};
 		E8611A981B8ABC8F00B9D7C3 /* Compass */ = {
@@ -2145,7 +2145,7 @@
 			isa = PBXGroup;
 			children = (
 				E82FBB2B1B4613E90009AB6D /* Base */,
-				E85760161B85E08F00F34483 /* Geocube */,
+				E85760161B85E08F00F34483 /* Base objects */,
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
 				E867E8381B535A3A00CB126A /* MapViewControllers */,
