@@ -498,12 +498,6 @@
     if (owner == YES)
         img = [self mergeOwner:img top:ImageMap_pinOwner];
 
-    if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
-
-    if (archived == YES)
-        img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
-
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageMap_pinMarkedFound];
     } else {
@@ -527,6 +521,12 @@
 
     if (inProgress == YES)
         img = [self mergeOwner:img top:ImageMap_pinInProgress];
+
+    if (disabled == YES)
+        img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
+
+    if (archived == YES)
+        img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
 
     return img;
 }
@@ -552,12 +552,6 @@
     if (owner == YES)
         img = [self mergeOwner:img top:ImageContainerFlag_owner];
 
-    if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageContainerFlag_outlineDisabled];
-
-    if (archived == YES)
-        img = [self mergeArchived:img top:ImageContainerFlag_outlineArchived];
-
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageContainerFlag_markedFound];
     } else {
@@ -581,6 +575,12 @@
 
     if (inProgress == YES)
         img = [self mergeArchived:img top:ImageContainerFlag_inProgress];
+
+    if (disabled == YES)
+        img = [self mergeDisabled:img top:ImageContainerFlag_outlineDisabled];
+
+    if (archived == YES)
+        img = [self mergeArchived:img top:ImageContainerFlag_outlineArchived];
 
     return img;
 }
