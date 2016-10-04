@@ -95,11 +95,13 @@ enum {
     [lmi addItem:menuBrandGoogle label:@"Google Maps"];
     [lmi addItem:menuBrandApple label:@"Apple Maps"];
     [lmi addItem:menuBrandOSM label:@"OSM"];
+//  [lmi linkTogether:@[menuBrandGoogle, menuBrandApple, menuBrandOSM]];
 
     [lmi addItem:menuMapMap label:@"Map"];
     [lmi addItem:menuMapSatellite label:@"Satellite"];
     [lmi addItem:menuMapHybrid label:@"Hybrid"];
     [lmi addItem:menuMapTerrain label:@"Terrain"];
+//  [lmi linkTogether:@[menuMapMap, menuMapSatellite, menuMapHybrid, menuMapTerrain]];
 
     [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
     [lmi addItem:menuDirections label:@"Directions"];
