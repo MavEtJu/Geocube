@@ -44,7 +44,7 @@
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
     // Initialize the global menu
-    menuGlobal = [[GlobalMenu alloc] init];
+    menuGlobal = [[SideMenu alloc] init];
 
     // Initialize the IOS File Transfer Manager - After fileManager
     IOSFTM = [[IOSFileTransfers alloc] init];

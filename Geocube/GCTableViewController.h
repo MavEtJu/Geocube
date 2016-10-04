@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, GlobalMenuDelegate>
+@interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
 {
     LocalMenuItems *lmi;
     BOOL hasCloseButton;

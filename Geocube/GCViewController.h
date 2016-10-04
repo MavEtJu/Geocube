@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCViewController : UIViewController <GlobalMenuDelegate, UIScrollViewDelegate>
+@interface GCViewController : UIViewController <SideMenuDelegate, UIScrollViewDelegate>
 {
     LocalMenuItems *lmi;
     BOOL hasCloseButton;

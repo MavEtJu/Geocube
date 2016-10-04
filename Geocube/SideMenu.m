@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GlobalMenu ()
+@interface SideMenu ()
 {
     NSMutableArray *items;
     LocalMenuItems *localMenuItems;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation GlobalMenu
+@implementation SideMenu
 
 - (void)buttonMenuGlobal:(id)sender
 {

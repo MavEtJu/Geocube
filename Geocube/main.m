@@ -20,7 +20,7 @@
  */
 
 // Global menu management
-GlobalMenu *menuGlobal;
+SideMenu *menuGlobal;
 
 // Database handle and cache
 database *db = nil;

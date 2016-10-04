@@ -78,7 +78,6 @@
 @class GCURLRequest;
 @class GCView;
 @class GCViewController;
-@class GlobalMenu;
 @class GroupsViewController;
 @class HelpAboutViewController;
 @class HelpDatabaseViewController;
@@ -142,6 +141,7 @@
 @class SettingsColoursViewController;
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
+@class SideMenu;
 @class StatisticsViewController;
 @class ThemeIOS;
 @class ThemeManager;

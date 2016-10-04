@@ -304,7 +304,7 @@
 		E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */; };
 		E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeIOS.m */; };
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
-		E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */; };
+		E85DAFDA1B453D4D00C738A8 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* SideMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCSimpleObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCSimpleObjects.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
@@ -888,8 +888,8 @@
 		E857600E1B85E04500F34483 /* ThemeIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeIOS.m; sourceTree = "<group>"; };
 		E85760131B85E08400F34483 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTemplate.h; sourceTree = "<group>"; };
 		E85760141B85E08400F34483 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTemplate.m; sourceTree = "<group>"; };
-		E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMenu.h; sourceTree = "<group>"; };
-		E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMenu.m; sourceTree = "<group>"; };
+		E85DAFD81B453D4D00C738A8 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
+		E85DAFD91B453D4D00C738A8 /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		E85FCA711CAC6EF3005D7AE1 /* GCSimpleObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSimpleObjects.h; sourceTree = "<group>"; };
@@ -2133,8 +2133,8 @@
 		E8E2F5541D02C4B4009170E3 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
-				E85DAFD81B453D4D00C738A8 /* GlobalMenu.h */,
-				E85DAFD91B453D4D00C738A8 /* GlobalMenu.m */,
+				E85DAFD81B453D4D00C738A8 /* SideMenu.h */,
+				E85DAFD91B453D4D00C738A8 /* SideMenu.m */,
 				E8E2F5551D02C4C8009170E3 /* LocalMenuItems.h */,
 				E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */,
 			);
@@ -3188,7 +3188,7 @@
 				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,
-				E85DAFDA1B453D4D00C738A8 /* GlobalMenu.m in Sources */,
+				E85DAFDA1B453D4D00C738A8 /* SideMenu.m in Sources */,
 				E87DF78B1D80B6F100F16B5A /* GCSwitch.m in Sources */,
 				E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */,
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,

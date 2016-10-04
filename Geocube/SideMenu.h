@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol GlobalMenuDelegate
+@protocol SideMenuDelegate
 
 - (void)performLocalMenuAction:(NSInteger)idx;
 
 @end
 
-@interface GlobalMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
+@interface SideMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
 
 @property (nonatomic, strong) VKSideMenu *menuGlobal;
 @property (nonatomic, strong) VKSideMenu *menuLocal;

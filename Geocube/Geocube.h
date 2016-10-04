@@ -23,7 +23,7 @@
 #define Geocube_Geocube_h
 
 // Global menu management
-extern GlobalMenu *menuGlobal;
+extern SideMenu *menuGlobal;
 
 // Database handle and cache
 extern database *db;
