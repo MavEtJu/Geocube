@@ -161,6 +161,8 @@
 
     [self changeTheme];
 
+    [waypointManager startDelegation:self];
+
     return self;
 }
 
@@ -348,6 +350,28 @@
 - (NSInteger)cellHeight
 {
     return [MapWaypointInfoView cellHeight];
+}
+
+#pragma -- WaypointManagerDelegate
+
+- (void)refreshWaypoints
+{
+    icon.image = [imageLibrary getType:waypoint];
+}
+
+- (void)addWaypoint:(dbWaypoint *)wp
+{
+    icon.image = [imageLibrary getType:waypoint];
+}
+
+- (void)updateWaypoint:(dbWaypoint *)wp
+{
+    icon.image = [imageLibrary getType:waypoint];
+}
+
+- (void)removeWaypoint:(dbWaypoint *)wp
+{
+    // Nothing!
 }
 
 @end
