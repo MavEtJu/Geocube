@@ -499,9 +499,8 @@ enum {
 
 #pragma mark -- Map menu related functions
 
-- (void)userInteraction
+- (void)labelClearAll
 {
-    followWhom = SHOW_NEITHER;
     [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
     [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
     [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
@@ -509,37 +508,33 @@ enum {
     [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
 }
 
+- (void)userInteraction
+{
+    followWhom = SHOW_NEITHER;
+    [self labelClearAll];
+}
+
 - (void)menuShowWhom:(NSInteger)whom
 {
+    [self labelClearAll];
+
     if (whom == SHOW_FOLLOWME) {
         followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:meLocation zoom:NO];
-        [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
-        [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-        [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
-        [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-        [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-        [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
-        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         followWhom = whom;
         meLocation = [LM coords];
         [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
-        [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-        [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
-        [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-        [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     }
 }
 
@@ -547,11 +542,8 @@ enum {
 {
     meLocation = [LM coords];
     followWhom = SHOW_FOLLOWMEZOOM;
+    [self labelClearAll];
     [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
-    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-    [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
     [map moveCameraTo:meLocation zoom:YES];
 }
 
@@ -559,10 +551,7 @@ enum {
 {
     meLocation = [LM coords];
     followWhom = SHOW_SEETARGET;
-    [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+    [self labelClearAll];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
     [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
 }
