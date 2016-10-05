@@ -170,7 +170,7 @@
 
 - (void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"SideMenu didSelectRow: %@", indexPath);
+    NSLog(@"globalMenu didSelectRow: %@", indexPath);
     if (sideMenu == self.menuGlobal) {
         NSLog(@"Switching to %ld", (long)indexPath.row);
         [configManager currentPageUpdate:indexPath.row];
