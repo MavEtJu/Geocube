@@ -1306,13 +1306,13 @@
 			path = objects;
 			sourceTree = "<group>";
 		};
-		E812CF531D01A07400C4E777 /* VKSizeMenu */ = {
+		E812CF531D01A07400C4E777 /* VKSideMenu */ = {
 			isa = PBXGroup;
 			children = (
 				E812CF541D01A09400C4E777 /* VKSideMenu.h */,
 				E812CF551D01A09400C4E777 /* VKSideMenu.m */,
 			);
-			name = VKSizeMenu;
+			name = VKSideMenu;
 			sourceTree = "<group>";
 		};
 		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
@@ -2344,7 +2344,7 @@
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E8371D4E1D101F9400C2F174 /* THLabel */,
-				E812CF531D01A07400C4E777 /* VKSizeMenu */,
+				E812CF531D01A07400C4E777 /* VKSideMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E82990471C87AF9000504421 /* XMLReader */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
