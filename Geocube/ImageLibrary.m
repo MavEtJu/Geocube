@@ -351,7 +351,7 @@
 - (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
 {
     CGSize size = img1.size;
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
 
     CGPoint pointImg1 = CGPointMake(0, 0);
     [img1 drawAtPoint:pointImg1];
@@ -622,7 +622,7 @@
 
 + (UIImage *)newPinHead:(UIColor *)color
 {
-    UIGraphicsBeginImageContext(CGSizeMake(15, 15));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(15, 15), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     /*
@@ -733,7 +733,7 @@
         width = 4 * 14;
     width += 4;
 
-    UIGraphicsBeginImageContext(CGSizeMake(width, 20));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, 20), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     /*
@@ -807,7 +807,7 @@
 + (UIImage *)circleWithColour:(UIColor *)c
 {
     NSInteger width = 25;
-    UIGraphicsBeginImageContext(CGSizeMake(width, 20));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, 20), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     /*

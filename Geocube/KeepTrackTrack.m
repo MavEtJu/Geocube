@@ -178,7 +178,7 @@ enum {
     NSInteger X = rect.size.width;
     NSInteger Y = rect.size.height;
 
-    UIGraphicsBeginImageContext(CGSizeMake(X, Y));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(X, Y), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     // Black background
@@ -241,7 +241,7 @@ enum {
     NSInteger X = rect.size.width;
     NSInteger Y = rect.size.height;
 
-    UIGraphicsBeginImageContext(CGSizeMake(X, Y));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(X, Y), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     // Black background
