@@ -21,9 +21,8 @@
 
 @interface MapWaypointInfoView : GCView <WaypointManagerDelegate>
 
-+ (NSInteger)cellHeight;
+//+ (NSInteger)cellHeight;
 - (NSInteger)cellHeight;
-- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v size:(NSInteger)sz;
 - (void)calculateRects;
 - (void)viewWillTransitionToSize;
 - (void)waypointData:(dbWaypoint *)wp;
