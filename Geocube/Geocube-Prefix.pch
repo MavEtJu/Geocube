@@ -235,12 +235,12 @@
 
 #import "GCPointAnnotation.h"
 #import "MapWaypointInfoView.h"
+#import "MapViewController.h"
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"
 #import "MapAppleCache.h"
 #import "MapOSM.h"
-#import "MapViewController.h"
 
 #import "ListTemplateViewController.h"
 #import "ListDNFViewController.h"
