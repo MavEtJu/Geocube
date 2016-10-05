@@ -95,13 +95,11 @@ enum {
     [lmi addItem:menuBrandGoogle label:@"Google Maps"];
     [lmi addItem:menuBrandApple label:@"Apple Maps"];
     [lmi addItem:menuBrandOSM label:@"OSM"];
-//  [lmi linkTogether:@[menuBrandGoogle, menuBrandApple, menuBrandOSM]];
 
     [lmi addItem:menuMapMap label:@"Map"];
     [lmi addItem:menuMapSatellite label:@"Satellite"];
     [lmi addItem:menuMapHybrid label:@"Hybrid"];
     [lmi addItem:menuMapTerrain label:@"Terrain"];
-//  [lmi linkTogether:@[menuMapMap, menuMapSatellite, menuMapHybrid, menuMapTerrain]];
 
     [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
     [lmi addItem:menuDirections label:@"Directions"];
@@ -117,19 +115,13 @@ enum {
         case MAPBRAND_GOOGLEMAPS:
             map = [[MapGoogle alloc] init:self];
             [lmi disableItem:menuBrandGoogle];
-            [lmi enableItem:menuBrandApple];
-            [lmi enableItem:menuBrandOSM];
             break;
         case MAPBRAND_APPLEMAPS:
             map = [[MapApple alloc] init:self];
-            [lmi enableItem:menuBrandGoogle];
             [lmi disableItem:menuBrandApple];
-            [lmi enableItem:menuBrandOSM];
             break;
         case MAPBRAND_OPENSTREETMAPS:
             map = [[MapOSM alloc] init:self];
-            [lmi enableItem:menuBrandGoogle];
-            [lmi enableItem:menuBrandApple];
             [lmi disableItem:menuBrandOSM];
             break;
     }
@@ -190,6 +182,22 @@ enum {
     [self recalculateRects];
 
     [self makeInfoView];
+
+    // This has to happen as last as it isn't initialized until the map is shown
+    switch ([map mapType]) {
+        case MAPTYPE_NORMAL:
+            [lmi disableItem:menuMapMap];
+            break;
+        case MAPTYPE_SATELLITE:
+            [lmi disableItem:menuMapSatellite];
+            break;
+        case MAPTYPE_HYBRID:
+            [lmi disableItem:menuMapHybrid];
+            break;
+        case MAPTYPE_TERRAIN:
+            [lmi disableItem:menuMapTerrain];
+            break;
+    }
 
     needsRefresh = YES;
     isVisible = NO;
@@ -630,11 +638,6 @@ enum {
 
 #pragma mark - Local menu related functions
 
-- (void)menuMapType:(GCMapType)maptype
-{
-    [map setMapType:maptype];
-}
-
 - (void)menuChangeMapbrand:(GCMapBrand)brand
 {
     CLLocationCoordinate2D currentCoords = [map currentCenter];
@@ -651,52 +654,50 @@ enum {
         [b removeFromSuperview];
     }
 
+    [lmi enableItem:menuBrandGoogle];
+    [lmi enableItem:menuBrandApple];
+    [lmi enableItem:menuBrandOSM];
     switch (brand) {
         case MAPBRAND_GOOGLEMAPS:
             NSLog(@"Switching to Google Maps");
             map = [[MapGoogle alloc] init:self];
-
-            [lmi enableItem:menuMapMap];
-            [lmi enableItem:menuMapSatellite];
-            [lmi enableItem:menuMapHybrid];
-            [lmi enableItem:menuMapTerrain];
-
             [lmi disableItem:menuBrandGoogle];
-            [lmi enableItem:menuBrandApple];
-            [lmi enableItem:menuBrandOSM];
             break;
 
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
             map = [[MapApple alloc] init:self];
-
-            [lmi enableItem:menuMapMap];
-            [lmi enableItem:menuMapSatellite];
-            [lmi enableItem:menuMapHybrid];
-            [lmi disableItem:menuMapTerrain];
-
-            [lmi enableItem:menuBrandGoogle];
             [lmi disableItem:menuBrandApple];
-            [lmi enableItem:menuBrandOSM];
             break;
 
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
             map = [[MapOSM alloc] init:self];
-
-            [lmi enableItem:menuMapMap];
-            [lmi disableItem:menuMapSatellite];
-            [lmi disableItem:menuMapHybrid];
-            [lmi disableItem:menuMapTerrain];
-
-            [lmi enableItem:menuBrandGoogle];
-            [lmi enableItem:menuBrandApple];
             [lmi disableItem:menuBrandOSM];
             break;
     }
     showBrand = brand;
     [configManager mapBrandUpdate:brand];
 
+    // Various map view options
+    if ([map mapHasViewMap] == FALSE)
+        [lmi disableItem:menuMapMap];
+    else
+        [lmi enableItem:menuMapMap];
+    if ([map mapHasViewSatellite] == FALSE)
+        [lmi disableItem:menuMapSatellite];
+    else
+        [lmi enableItem:menuMapSatellite];
+    if ([map mapHasViewHybrid] == FALSE)
+        [lmi disableItem:menuMapHybrid];
+    else
+        [lmi enableItem:menuMapHybrid];
+    if ([map mapHasViewTerrain] == FALSE)
+        [lmi disableItem:menuMapTerrain];
+    else
+        [lmi enableItem:menuMapTerrain];
+
+    // Just check if we can do this...
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuBrandGoogle];
 
@@ -718,6 +719,58 @@ enum {
     [map showBoundaries:showBoundaries];
 
     [self updateLocationManagerLocation];
+
+    // This has to happen as last as it isn't initialized until the map is shown
+    switch ([map mapType]) {
+        case MAPTYPE_NORMAL:
+            [lmi disableItem:menuMapMap];
+            break;
+        case MAPTYPE_SATELLITE:
+            [lmi disableItem:menuMapSatellite];
+            break;
+        case MAPTYPE_HYBRID:
+            [lmi disableItem:menuMapHybrid];
+            break;
+        case MAPTYPE_TERRAIN:
+            [lmi disableItem:menuMapTerrain];
+            break;
+    }
+
+}
+
+- (void)menuMapType:(GCMapType)maptype
+{
+    switch ([map mapType]) {
+        case MAPTYPE_NORMAL:
+            [lmi enableItem:menuMapMap];
+            break;
+        case MAPTYPE_SATELLITE:
+            [lmi enableItem:menuMapSatellite];
+            break;
+        case MAPTYPE_HYBRID:
+            [lmi enableItem:menuMapHybrid];
+            break;
+        case MAPTYPE_TERRAIN:
+            [lmi enableItem:menuMapTerrain];
+            break;
+    }
+
+    [map setMapType:maptype];
+
+    switch ([map mapType]) {
+        case MAPTYPE_NORMAL:
+            [lmi disableItem:menuMapMap];
+            break;
+        case MAPTYPE_SATELLITE:
+            [lmi disableItem:menuMapSatellite];
+            break;
+        case MAPTYPE_HYBRID:
+            [lmi disableItem:menuMapHybrid];
+            break;
+        case MAPTYPE_TERRAIN:
+            [lmi disableItem:menuMapTerrain];
+            break;
+    }
 }
 
 - (NSString *)translateURLType:(dbExternalMapURL *)url

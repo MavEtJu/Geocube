@@ -348,7 +348,7 @@
     [mapView removeAnnotations:coords];
 }
 
-- (void)setMapType:(NSInteger)mapType
+- (void)setMapType:(GCMapType)mapType
 {
     switch (mapType) {
         case MAPTYPE_NORMAL:
@@ -360,7 +360,27 @@
         case MAPTYPE_HYBRID:
             mapView.mapType = MKMapTypeHybrid;
             break;
+        case MAPTYPE_TERRAIN:
+            // Nothing, not supported here.
+            break;
     }
+}
+
+- (GCMapType)mapType
+{
+    switch (mapView.mapType) {
+        case MKMapTypeStandard:
+            return MAPTYPE_NORMAL;
+        case MKMapTypeSatellite:
+            return MAPTYPE_SATELLITE;
+        case MKMapTypeHybrid:
+            return MAPTYPE_HYBRID;
+
+        case MKMapTypeSatelliteFlyover:
+        case MKMapTypeHybridFlyover:
+            return -1;
+    }
+    return MAPTYPE_NORMAL;
 }
 
 - (void)addLineMeToWaypoint

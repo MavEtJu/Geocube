@@ -215,7 +215,7 @@
     [super openWaypointView:marker.userData];
 }
 
-- (void)setMapType:(NSInteger)mapType
+- (void)setMapType:(GCMapType)mapType
 {
     switch (mapType) {
         case MAPTYPE_NORMAL:
@@ -231,6 +231,25 @@
             mapView.mapType = kGMSTypeHybrid;
             break;
     }
+}
+
+- (GCMapType)mapType
+{
+    switch (mapView.mapType) {
+        case kGMSTypeNormal:
+            return MAPTYPE_NORMAL;
+        case kGMSTypeSatellite:
+            return MAPTYPE_SATELLITE;
+        case kGMSTypeTerrain:
+            return MAPTYPE_TERRAIN;
+        case kGMSTypeHybrid:
+            return MAPTYPE_HYBRID;
+
+        case kGMSTypeNone:
+            return -1;
+    }
+
+    return -1;
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
