@@ -314,13 +314,13 @@ enum {
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
-    labelMapFindMe.frame = CGRectMake(width - 6 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFindMe.frame = CGRectMake(width - 6 * 28 - 3, 3, imgwidth, imgheight);
 
-    labelMapFollowMe.frame = CGRectMake(width - 4.5 * 28 - 3, 3, imgwidth , imgheight);
-    labelMapShowBoth.frame = CGRectMake(width - 3.5 * 28 - 3, 3, imgwidth , imgheight);
-    labelMapSeeTarget.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFollowMe.frame = CGRectMake(width - 4.5 * 28 - 3, 3, imgwidth, imgheight);
+    labelMapShowBoth.frame = CGRectMake(width - 3.5 * 28 - 3, 3, imgwidth, imgheight);
+    labelMapSeeTarget.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth, imgheight);
 
-    labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth , imgheight);
+    labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth, imgheight);
 
     [map recalculateRects];
     [map updateMapScaleView];

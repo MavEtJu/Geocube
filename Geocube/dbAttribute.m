@@ -65,7 +65,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update attributes set label = ?, icon = ? where id = ?");
 
-        SET_VAR_TEXT(1 ,label);
+        SET_VAR_TEXT(1, label);
         SET_VAR_INT (2, icon);
         SET_VAR_INT (3, _id);
 
