@@ -208,6 +208,7 @@
         waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
         waypoint.wpt_symbol_id = waypoint.wpt_symbol._id;
         [dbWaypoint dbCreate:waypoint];
+        [waypointManager needsRefreshAdd:waypoint];
     } else {
         waypoint = [dbWaypoint dbGet:wpid];
     }
@@ -217,6 +218,7 @@
     waypoint.wpt_lat = [NSString stringWithFormat:@"%f", coordsRecordedLocation.latitude];
 
     waypoint.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
+    [waypointManager needsRefreshUpdate:waypoint];
 
     [waypoint finish];
     [waypoint dbUpdate];
