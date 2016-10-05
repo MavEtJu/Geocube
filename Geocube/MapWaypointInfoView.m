@@ -119,11 +119,13 @@
     // Difficulty rating
     labelRatingD = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelRatingD.font = [UIFont systemFontOfSize:10.0];
+    labelRatingD.textAlignment = NSTextAlignmentRight;
     [self addSubview:labelRatingD];
 
     // Terrain rating
     labelRatingT = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelRatingT.font = [UIFont systemFontOfSize:10.0];
+    labelRatingT.textAlignment = NSTextAlignmentRight;
     [self addSubview:labelRatingT];
 
     // Size
