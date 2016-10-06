@@ -296,23 +296,30 @@ enum {
 
             headerCell.accessoryType = UITableViewCellAccessoryNone;
             Coordinates *c = [[Coordinates alloc] init:waypoint.wpt_lat_float lon:waypoint.wpt_lon_float];
-            headerCell.lat.text = [c lat_degreesDecimalMinutes];
-            headerCell.lon.text = [c lon_degreesDecimalMinutes];
-            [headerCell setRatings:waypoint.gs_favourites terrain:waypoint.gs_rating_terrain difficulty:waypoint.gs_rating_difficulty];
+            headerCell.labelLatLon.text = [NSString stringWithFormat:@"%@ %@", [c lat_degreesDecimalMinutes], [c lon_degreesDecimalMinutes]];
+            if (waypoint.gs_rating_terrain == 0)
+                headerCell.labelRatingT.text = @"";
+            else
+                headerCell.labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", waypoint.gs_rating_terrain];
+            if (waypoint.gs_rating_difficulty == 0)
+                headerCell.labelRatingD.text = @"";
+            else
+                headerCell.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", waypoint.gs_rating_difficulty];
+            [headerCell setRatings:waypoint.gs_favourites];
 
             NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates];
-            headerCell.beardis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                                       (long)[Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates],
-                                       [Coordinates bearing2compass:bearing],
-                                       [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
-            headerCell.location.text = [waypoint makeLocaleStateCountry];
+            headerCell.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
+                                            (long)[Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates],
+                                            [Coordinates bearing2compass:bearing],
+                                            [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
+            headerCell.labelLocation.text = [waypoint makeLocaleStateCountry];
 
             headerCell.userInteractionEnabled = NO;
             if (waypoint.gs_container != nil)
-                headerCell.size.image = [imageLibrary get:waypoint.gs_container.icon];
+                headerCell.imageSize.image = [imageLibrary get:waypoint.gs_container.icon];
             else
-                headerCell.size.image = nil;
-            headerCell.icon.image = [imageLibrary getType:waypoint];
+                headerCell.imageSize.image = nil;
+            headerCell.imageIcon.image = [imageLibrary getType:waypoint];
 
             return headerCell;
         }

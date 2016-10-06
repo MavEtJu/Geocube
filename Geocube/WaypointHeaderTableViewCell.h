@@ -21,15 +21,16 @@
 
 @interface WaypointHeaderTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) UIImageView *icon;
-@property (nonatomic, retain) UIImageView *size;
-@property (nonatomic, retain) GCLabel *lat;
-@property (nonatomic, retain) GCLabel *lon;
-@property (nonatomic, retain) GCLabel *beardis;
-@property (nonatomic, retain) GCLabel *favourites;
-@property (nonatomic, retain) GCLabel *location;
+@property (nonatomic, retain) UIImageView *imageIcon;
+@property (nonatomic, retain) UIImageView *imageSize;
+@property (nonatomic, retain) GCLabel *labelLatLon;
+@property (nonatomic, retain) GCLabel *labelBearDis;
+@property (nonatomic, retain) GCLabel *labelFavourites;
+@property (nonatomic, retain) GCLabel *labelLocation;
+@property (nonatomic, retain) GCLabel *labelRatingD;
+@property (nonatomic, retain) GCLabel *labelRatingT;
 
 - (NSInteger)cellHeight;
-- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v;
+- (void)setRatings:(NSInteger)favourites;
 
 @end

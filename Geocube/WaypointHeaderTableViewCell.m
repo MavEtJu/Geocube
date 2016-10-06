@@ -21,22 +21,17 @@
 
 @interface WaypointHeaderTableViewCell ()
 {
-    UIImageView *imgFavouritesIV;
-    GCLabel *labelRatingD, *labelRatingT;
-    UIImageView *ratingD[5];
-    UIImageView *ratingT[5];
-    GCLabel *favourites;
-    UIImage *imgRatingOff, *imgRatingOn, *imgRatingHalf, *imgFavourites;
-    UIFont *font10;
+    GCImageView *imageFavourites;
+    GCLabel *labelFavourites;
 
     CGRect rectIcon;
-    CGRect rectFavourites;
+    CGRect rectImageFavourites;
+    CGRect rectLabelFavourites;
     CGRect rectSize;
     CGRect rectRatingsD;
     CGRect rectRatingsT;
 
-    CGRect rectLat;
-    CGRect rectLon;
+    CGRect rectLatLon;
     CGRect rectBearDis;
     CGRect rectLocation;
 }
@@ -45,7 +40,7 @@
 
 @implementation WaypointHeaderTableViewCell
 
-@synthesize icon, lat, lon, beardis, size, favourites, location;
+@synthesize imageIcon, labelLatLon, labelBearDis, imageSize, labelFavourites, labelLocation, labelRatingT, labelRatingD;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -63,37 +58,38 @@
      | Location         |         |
      +------------------+---------+
      */
-#define BORDER_SIDE 5
-#define BORDER_TOP 5
-#define ICON_WIDTH 30
-#define ICON_HEIGHT 30
-#define FAVOURITES_WIDTH 20
-#define FAVOURITES_HEIGHT 30
-#define STAR_WIDTH 19
-#define STAR_HEIGHT 18
-#define LAT_HEIGHT font10.lineHeight
-#define LON_HEIGHT font10.lineHeight
-#define BEARDIS_HEIGHT font10.lineHeight
-#define LOCATION_HEIGHT font10.lineHeight
+#define BORDER 5
+#define BORDER 5
+#define ICON_WIDTH imageIcon.image.size.width
+#define ICON_HEIGHT imageIcon.image.size.height
+#define FAVOURITES_WIDTH_IMAGE imageFavourites.image.size.width
+#define FAVOURITES_HEIGHT_IMAGE imageFavourites.image.size.height
+#define FAVOURITES_WIDTH_LABEL imageFavourites.image.size.width
+#define FAVOURITES_HEIGHT_LABEL labelFavourites.font.lineHeight
+#define RATINGD_HEIGHT labelRatingD.font.lineHeight
+#define RATINGT_HEIGHT labelRatingT.font.lineHeight
+#define LATLON_HEIGHT labelLatLon.font.lineHeight
+#define BEARDIS_HEIGHT labelBearDis.font.lineHeight
+#define LOCATION_HEIGHT labelLocation.font.lineHeight
+#define SIZE_HEIGHT imageSize.image.size.height
+#define SIZE_WIDTH imageSize.image.size.width
 
     // Icon
-    icon = [[UIImageView alloc] initWithFrame:rectIcon];
-    icon.image = [imageLibrary get:ImageTypes_TraditionalCache];
-    [self.contentView addSubview:icon];
+    imageIcon = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageIcon.image = [imageLibrary get:ImageTypes_TraditionalCache];
+    [self.contentView addSubview:imageIcon];
 
     // Favourites
-    imgFavouritesIV = [[UIImageView alloc] initWithFrame:rectFavourites];
-    imgFavouritesIV.image = imgFavourites;
-    [self.contentView addSubview:imgFavouritesIV];
-    imgFavouritesIV.hidden = TRUE;
-    CGRect r = rectFavourites;
-    r.size.height /= 2;
-    favourites = [[GCLabel alloc] initWithFrame:r];
-    favourites.font = [UIFont boldSystemFontOfSize:10];
-    favourites.backgroundColor = [UIColor clearColor];
-    favourites.textColor = [UIColor whiteColor];
-    favourites.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:favourites];
+    imageFavourites = [[GCImageView alloc] initWithFrame:CGRectZero];
+    imageFavourites.image = [imageLibrary get:ImageCacheView_favourites];
+    [self.contentView addSubview:imageFavourites];
+    imageFavourites.hidden = TRUE;
+    labelFavourites = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelFavourites.font = [UIFont boldSystemFontOfSize:10];
+    labelFavourites.backgroundColor = [UIColor clearColor];
+    labelFavourites.textColor = [UIColor whiteColor];
+    labelFavourites.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:labelFavourites];
 
     // ContainerSize
     /*
@@ -105,63 +101,38 @@
     [self.contentView addSubview:l];
      */
 
-    size = [[UIImageView alloc] initWithFrame:rectSize];
-    size.image = [imageLibrary get:ImageContainerSize_NotChosen];
-    [self.contentView addSubview:size];
+    imageSize = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageSize.image = [imageLibrary get:ImageContainerSize_NotChosen];
+    [self.contentView addSubview:imageSize];
 
     // Difficulty rating
-    r = rectRatingsD;
-    r.origin.x -= 10;
-    labelRatingD = [[GCLabel alloc] initWithFrame:r];
+    labelRatingD = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelRatingD.font = [UIFont systemFontOfSize:10.0];
-    labelRatingD.text = @"D";
+    labelRatingD.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:labelRatingD];
 
-    r = rectRatingsD;
-    r.size.width = STAR_WIDTH;
-    for (NSInteger i = 0; i < 5; i++) {
-        ratingD[i] = [[UIImageView alloc] initWithFrame:r];
-        ratingD[i].image = imgRatingOff;
-        [self.contentView addSubview:ratingD[i]];
-        r.origin.x += STAR_WIDTH;
-    }
-
     // Terrain rating
-    r = rectRatingsT;
-    r.origin.x -= 10;
-    labelRatingT = [[GCLabel alloc] initWithFrame:r];
-    labelRatingT.font = font10;
-    labelRatingT.text = @"T";
+    labelRatingT = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelRatingT.font = [UIFont systemFontOfSize:10];
+    labelRatingT.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:labelRatingT];
 
-    r = rectRatingsT;
-    r.size.width = STAR_WIDTH;
-    for (NSInteger i = 0; i < 5; i++) {
-        ratingT[i] = [[UIImageView alloc] initWithFrame:r];
-        ratingT[i].image = imgRatingOff;
-        [self.contentView addSubview:ratingT[i]];
-        r.origin.x += STAR_WIDTH;
-    }
-
-    // Lon
-    lon = [[GCLabel alloc] initWithFrame:rectLon];
-    lon.font = font10;
-    [self.contentView addSubview:lon];
-
-    // Lat
-    lat = [[GCLabel alloc] initWithFrame:rectLat];
-    lat.font = font10;
-    [self.contentView addSubview:lat];
+    // LatLon
+    labelLatLon = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelLatLon.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:labelLatLon];
 
     // BearDis
-    beardis = [[GCLabel alloc] initWithFrame:rectBearDis];
-    beardis.font = font10;
-    [self.contentView addSubview:beardis];
+    labelBearDis = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelBearDis.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:labelBearDis];
 
     // Location
-    location = [[GCLabel alloc] initWithFrame:rectLocation];
-    location.font = font10;
-    [self.contentView addSubview:location];
+    labelLocation = [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelLocation.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:labelLocation];
+
+    [self viewWillTransitionToSize];
 
     return self;
 }
@@ -170,100 +141,60 @@
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
-    font10 = [UIFont systemFontOfSize:10.0];
     NSInteger height = [self cellHeight];
 
-    imgRatingOff = [imageLibrary get:ImageCacheView_ratingOff];
-    imgRatingOn = [imageLibrary get:ImageCacheView_ratingOn];
-    imgRatingHalf = [imageLibrary get:ImageCacheView_ratingHalf];
-    imgFavourites = [imageLibrary get:ImageCacheView_favourites];
+    rectIcon = CGRectMake(BORDER, BORDER, ICON_WIDTH, ICON_HEIGHT);
+    rectLabelFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH_LABEL, BORDER + 4, FAVOURITES_WIDTH_LABEL, FAVOURITES_HEIGHT_LABEL);
+    rectImageFavourites = CGRectMake(width - 2 * BORDER - FAVOURITES_WIDTH_IMAGE, BORDER, FAVOURITES_WIDTH_IMAGE, FAVOURITES_HEIGHT_IMAGE);
 
-    rectIcon = CGRectMake(BORDER_SIDE, BORDER_TOP, ICON_WIDTH, ICON_HEIGHT);
-    rectFavourites = CGRectMake(width - 2 * BORDER_SIDE - FAVOURITES_WIDTH, BORDER_TOP, FAVOURITES_WIDTH, FAVOURITES_HEIGHT);
-    rectSize = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT - STAR_HEIGHT, 5 * STAR_WIDTH - FAVOURITES_WIDTH - BORDER_SIDE, STAR_HEIGHT);
-    rectRatingsD = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
-    rectRatingsT = CGRectMake(width - 2 * BORDER_SIDE - 5 * STAR_WIDTH, BORDER_TOP + FAVOURITES_HEIGHT + STAR_HEIGHT, 5 * STAR_WIDTH, STAR_HEIGHT);
+    rectSize = CGRectMake(width - 2 * BORDER - SIZE_WIDTH, [self cellHeight] - BORDER - RATINGT_HEIGHT - RATINGD_HEIGHT - SIZE_HEIGHT, SIZE_WIDTH, SIZE_HEIGHT);
+    rectRatingsD = CGRectMake(width - 2 * BORDER - 30, [self cellHeight] - BORDER - RATINGT_HEIGHT - RATINGD_HEIGHT, 30, RATINGD_HEIGHT);
+    rectRatingsT = CGRectMake(width - 2 * BORDER - 30, [self cellHeight] - BORDER - RATINGT_HEIGHT, 30, RATINGT_HEIGHT);
 
-    rectLat = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - LAT_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LAT_HEIGHT);
-    rectLon = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LON_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LON_HEIGHT);
-    rectBearDis = CGRectMake(BORDER_SIDE, height - BORDER_TOP - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, BEARDIS_HEIGHT);
-    rectLocation = CGRectMake(BORDER_SIDE, height - BORDER_TOP - LOCATION_HEIGHT, width - 2 * BORDER_SIDE - 5 * STAR_WIDTH - 10, LOCATION_HEIGHT);
+    rectLatLon = CGRectMake(BORDER, height - BORDER - LATLON_HEIGHT - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER - 30, LATLON_HEIGHT);
+    rectBearDis = CGRectMake(BORDER, height - BORDER - BEARDIS_HEIGHT - LOCATION_HEIGHT, width - 2 * BORDER - 30, BEARDIS_HEIGHT);
+    rectLocation = CGRectMake(BORDER, height - BORDER - LOCATION_HEIGHT, width - 2 * BORDER - 30, LOCATION_HEIGHT);
 }
 
 - (void)viewWillTransitionToSize
 {
     [self calculateRects];
-    icon.frame = rectIcon;
-    favourites.frame = rectFavourites;
-    size.frame = rectSize;
+    imageIcon.frame = rectIcon;
+    imageFavourites.frame = rectImageFavourites;
+    labelFavourites.frame = rectLabelFavourites;
+    imageSize.frame = rectSize;
     labelRatingD.frame = rectRatingsD;
     labelRatingT.frame = rectRatingsT;
-    lat.frame = rectLat;
-    lon.frame = rectLon;
-    beardis.frame = rectBearDis;
-    location.frame = rectLocation;
+    labelLatLon.frame = rectLatLon;
+    labelBearDis.frame = rectBearDis;
+    labelLocation.frame = rectLocation;
 }
 
 - (void)changeTheme
 {
-    [favourites changeTheme];
+    [imageFavourites changeTheme];
     [labelRatingT changeTheme];
     [labelRatingD changeTheme];
-    [lat changeTheme];
-    [lon changeTheme];
-    [beardis changeTheme];
-    [location changeTheme];
+    [labelLatLon changeTheme];
+    [labelBearDis changeTheme];
+    [labelLocation changeTheme];
 
     [super changeTheme];
 }
 
-- (void)setRatings:(NSInteger)favs terrain:(float)t difficulty:(float)d
+- (void)setRatings:(NSInteger)favs
 {
-    if (t != 0) {
-        labelRatingT.hidden = NO;
-        for (NSInteger i = 0; i < 5; i++)
-            ratingT[i].hidden = NO;
-
-        for (NSInteger i = 0; i < t; i++)
-            ratingT[i].image = imgRatingOn;
-        for (NSInteger i = t; i < 5; i++)
-            ratingT[i].image = imgRatingOff;
-        if (t - (int)t != 0)
-            ratingT[(int)t].image = imgRatingHalf;
-    } else {
-        for (NSInteger i = 0; i < 5; i++)
-            ratingT[i].hidden = YES;
-        labelRatingT.hidden = YES;
-    }
-
-    if (d != 0) {
-        labelRatingD.hidden = NO;
-        for (NSInteger i = 0; i < 5; i++)
-            ratingD[i].hidden = NO;
-
-        for (NSInteger i = 0; i < d; i++)
-            ratingD[i].image = imgRatingOn;
-        for (NSInteger i = d; i < 5; i++)
-            ratingD[i].image = imgRatingOff;
-        if (d - (int)d != 0)
-            ratingD[(int)d].image = imgRatingHalf;
-    } else {
-        for (NSInteger i = 0; i < 5; i++)
-            ratingD[i].hidden = YES;
-        labelRatingD.hidden = YES;
-    }
-
     if (favs != 0) {
-        favourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
-        imgFavouritesIV.hidden = NO;
+        labelFavourites.text = [NSString stringWithFormat:@"%ld", (long)favs];
+        imageFavourites.hidden = NO;
     } else {
-        imgFavouritesIV.hidden = YES;
+        imageFavourites.hidden = YES;
     }
 }
 
 - (NSInteger)cellHeight
 {
-    return BORDER_TOP * 2 + ICON_HEIGHT + LAT_HEIGHT + LON_HEIGHT + BEARDIS_HEIGHT + LOCATION_HEIGHT;
+    return BORDER * 2 + ICON_HEIGHT + LATLON_HEIGHT + BEARDIS_HEIGHT + LOCATION_HEIGHT;
 }
 
 @end
