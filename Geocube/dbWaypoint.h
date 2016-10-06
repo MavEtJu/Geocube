@@ -137,4 +137,6 @@ typedef NS_ENUM(NSInteger, Flag) {
 + (NSArray *)dbAllByFlag:(Flag)flag;
 + (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
+- (BOOL)hasGSData;
+
 @end

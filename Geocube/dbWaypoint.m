@@ -813,4 +813,10 @@
     return wps;
 }
 
+- (BOOL)hasGSData
+{
+    // If the difficulty or terrain is not zero, then pretend the Groundspeak specific data is available
+    return (gs_owner != nil);
+}
+
 @end
