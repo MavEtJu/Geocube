@@ -158,9 +158,12 @@
     waypoint = wp;
 
     labelDescription.text = wp.wpt_urlname;
-    if (wp.gs_owner == nil)
-        labelWhoWhen.text = [NSString stringWithFormat:@"Yours on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
-    else
+    if (wp.gs_owner == nil) {
+        if ([wp hasGSData] == YES)
+            labelWhoWhen.text = [NSString stringWithFormat:@"Yours on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+        else
+            labelWhoWhen.text = [NSString stringWithFormat:@"Placed on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+    } else
         labelWhoWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
 
     NSMutableString *nameText = [NSMutableString stringWithString:wp.wpt_name];
