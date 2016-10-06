@@ -46,8 +46,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-    [self calculateRects];
-
     /*
      +---+--------------+-----+---+
      | I |              | S XX| F |  Icon

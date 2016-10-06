@@ -21,19 +21,7 @@
 
 @interface WaypointTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) GCLabel *description;
-@property (nonatomic, retain) GCLabel *name;
-@property (nonatomic, retain) UIImageView *icon;
-@property (nonatomic, retain) GCLabel *country;
-@property (nonatomic, retain) GCLabel *stateCountry;
-@property (nonatomic, retain) GCLabel *bearing;
-@property (nonatomic, retain) GCLabel *compass;
-@property (nonatomic, retain) GCLabel *distance;
-@property (nonatomic, retain) GCLabel *labelSize;
-@property (nonatomic, retain) UIImageView *imageSize;
-
 - (NSInteger)cellHeight;
-+ (NSInteger)cellHeight;
-- (void)setRatings:(NSInteger)favourites terrain:(float)t difficulty:(float)v size:(NSInteger)sz;
+- (void)setWaypoint:(dbWaypoint *)wp;
 
 @end

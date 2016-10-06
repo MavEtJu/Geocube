@@ -27,6 +27,8 @@
 
     BOOL needsRefresh;
     BOOL isVisible;
+
+    NSInteger waypointCellHeight;
 }
 
 @end
@@ -93,6 +95,9 @@ enum {
 
     [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
+
+    WaypointTableViewCell *cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+    waypointCellHeight = [cell cellHeight];
 
     [self makeInfoView];
 
@@ -254,42 +259,15 @@ enum {
 - (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
-
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
-    cell.description.text = wp.wpt_urlname;
-    cell.name.text = wp.wpt_name;
-    cell.icon.image = [imageLibrary getType:wp];
-    if (wp.flag_highlight == YES)
-        cell.description.backgroundColor = [UIColor yellowColor];
-    else
-        cell.description.backgroundColor = [UIColor clearColor];
-
-    [cell setRatings:wp.gs_favourites terrain:wp.gs_rating_terrain difficulty:wp.gs_rating_difficulty size:wp.gs_container.icon];
-
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
-    cell.bearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
-    cell.compass.text = [Coordinates bearing2compass:bearing];
-    cell.distance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
-
-    cell.labelSize.text = wp.wpt_type.type_minor;
-    if (wp.gs_container.icon == 0) {
-        cell.labelSize.hidden = NO;
-        cell.imageSize.hidden = YES;
-    } else {
-        cell.labelSize.hidden = YES;
-        cell.imageSize.hidden = NO;
-    }
-
-    cell.stateCountry.text = [wp makeLocaleStateCountry];
-
-    [cell viewWillTransitionToSize];
+    [cell setWaypoint:wp];
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [WaypointTableViewCell cellHeight];
+    return waypointCellHeight;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
