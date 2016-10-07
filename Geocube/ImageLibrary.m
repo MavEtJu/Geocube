@@ -99,13 +99,13 @@
     [self addToLibrary:@"log - moved - 30x30" index:ImageLog_Moved];
     [self addToLibrary:@"log - announcement - 30x30" index:ImageLog_Announcement];
 
-    [self addToLibrary:@"container size - large - 70x20" index:ImageContainerSize_Large];
-    [self addToLibrary:@"container size - micro - 70x20" index:ImageContainerSize_Micro];
-    [self addToLibrary:@"container size - notchosen - 70x20" index:ImageContainerSize_NotChosen];
-    [self addToLibrary:@"container size - other - 70x20" index:ImageContainerSize_Other];
-    [self addToLibrary:@"container size - regular - 70x20" index:ImageContainerSize_Regular];
-    [self addToLibrary:@"container size - small - 70x20" index:ImageContainerSize_Small];
-    [self addToLibrary:@"container size - unknown - 70x20" index:ImageContainerSize_Virtual];
+    [self addToLibrary:@"container size - large - 35x11" index:ImageContainerSize_Large];
+    [self addToLibrary:@"container size - micro - 35x11" index:ImageContainerSize_Micro];
+    [self addToLibrary:@"container size - notchosen - 35x11" index:ImageContainerSize_NotChosen];
+    [self addToLibrary:@"container size - other - 35x11" index:ImageContainerSize_Other];
+    [self addToLibrary:@"container size - regular - 35x11" index:ImageContainerSize_Regular];
+    [self addToLibrary:@"container size - small - 35x11" index:ImageContainerSize_Small];
+    [self addToLibrary:@"container size - unknown - 35x11" index:ImageContainerSize_Virtual];
 
     [self addToLibrary:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
     [self addToLibrary:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
