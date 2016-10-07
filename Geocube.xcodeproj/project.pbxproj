@@ -506,6 +506,8 @@
 		E8FEDE5F1DA77F9D007C756B /* container size - unknown - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */; };
 		E8FEDE601DA77F9D007C756B /* container size - unknown - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */; };
 		E8FEDE611DA77F9D007C756B /* container size - unknown - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */; };
+		E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE621DA7A051007C756B /* ratings - favourites 20x30@2x.png */; };
+		E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE631DA7A051007C756B /* ratings - favourites 20x30@3x.png */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1270,6 +1272,8 @@
 		E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - unknown - 35x11.png"; path = "images/containers/container size - unknown - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - unknown - 35x11@2x.png"; path = "images/containers/container size - unknown - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - unknown - 35x11@3x.png"; path = "images/containers/container size - unknown - 35x11@3x.png"; sourceTree = "<group>"; };
+		E8FEDE621DA7A051007C756B /* ratings - favourites 20x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - favourites 20x30@2x.png"; path = "images/ratings/ratings - favourites 20x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE631DA7A051007C756B /* ratings - favourites 20x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ratings - favourites 20x30@3x.png"; path = "images/ratings/ratings - favourites 20x30@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1331,6 +1335,8 @@
 		E80732D21B60FA90007FDC29 /* ratings */ = {
 			isa = PBXGroup;
 			children = (
+				E8FEDE621DA7A051007C756B /* ratings - favourites 20x30@2x.png */,
+				E8FEDE631DA7A051007C756B /* ratings - favourites 20x30@3x.png */,
 				E82E65C01DA0797E00CFBDED /* ratings - favourites 20x30.png */,
 				E82E65C11DA0797E00CFBDED /* ratings - star base 95x18.png */,
 				E82E65C21DA0797E00CFBDED /* ratings - star half 18x18.png */,
@@ -1881,6 +1887,7 @@
 		E8740FCE1B4E9D49002527DA /* containers */ = {
 			isa = PBXGroup;
 			children = (
+				E8FEDE361DA776E9007C756B /* container size - 70x20 */,
 				E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */,
 				E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */,
 				E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */,
@@ -1902,7 +1909,17 @@
 				E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */,
 				E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */,
 				E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */,
-				E8FEDE361DA776E9007C756B /* container size - 70x20 */,
+				E82E664F1DA07C4900CFBDED /* container flag - archived - 24x24.png */,
+				E82E66501DA07C4900CFBDED /* container flag - cross dnf - 19x19.png */,
+				E82E66511DA07C4900CFBDED /* container flag - disabled - 24x24.png */,
+				E82E66521DA07C4900CFBDED /* container flag - in progress - 24x24.png */,
+				E82E66531DA07C4900CFBDED /* container flag - marked found - 24x21.png */,
+				E82E66541DA07C4900CFBDED /* container flag - marked found - 24x21@2x.png */,
+				E82E66551DA07C4900CFBDED /* container flag - marked found - 24x21@3x.png */,
+				E82E66561DA07C4900CFBDED /* container flag - owner - 24x24.png */,
+				E82E66571DA07C4900CFBDED /* container flag - owner - 24x24@2x.png */,
+				E82E66581DA07C4900CFBDED /* container flag - owner - 24x24@3x.png */,
+				E82E66591DA07C4900CFBDED /* container flag - tick found - 24x21.png */,
 			);
 			name = containers;
 			sourceTree = "<group>";
@@ -2094,17 +2111,6 @@
 				E86C65751B4BCE2E00E2ABFE /* cache icons */,
 				E8611A981B8ABC8F00B9D7C3 /* Compass */,
 				E8740FCE1B4E9D49002527DA /* containers */,
-				E82E664F1DA07C4900CFBDED /* container flag - archived - 24x24.png */,
-				E82E66501DA07C4900CFBDED /* container flag - cross dnf - 19x19.png */,
-				E82E66511DA07C4900CFBDED /* container flag - disabled - 24x24.png */,
-				E82E66521DA07C4900CFBDED /* container flag - in progress - 24x24.png */,
-				E82E66531DA07C4900CFBDED /* container flag - marked found - 24x21.png */,
-				E82E66541DA07C4900CFBDED /* container flag - marked found - 24x21@2x.png */,
-				E82E66551DA07C4900CFBDED /* container flag - marked found - 24x21@3x.png */,
-				E82E66561DA07C4900CFBDED /* container flag - owner - 24x24.png */,
-				E82E66571DA07C4900CFBDED /* container flag - owner - 24x24@2x.png */,
-				E82E66581DA07C4900CFBDED /* container flag - owner - 24x24@3x.png */,
-				E82E66591DA07C4900CFBDED /* container flag - tick found - 24x21.png */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E843A4E31BAD3F7800C58F1F /* logos */,
 				E8740FA31B4E86BB002527DA /* logs */,
@@ -2976,6 +2982,7 @@
 				E82E674A1DA07D0200CFBDED /* attributes - 32.png in Resources */,
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
 				E8FEDE5A1DA77F9D007C756B /* container size - regular - 35x11@2x.png in Resources */,
+				E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */,
 				E82E65BD1DA0794600CFBDED /* waypoint - question - 30x30.png in Resources */,
 				E82E65DC1DA079AE00CFBDED /* map - disabled - 15x15.png in Resources */,
 				E82E675A1DA07D0200CFBDED /* attributes - 48.png in Resources */,
@@ -2990,6 +2997,7 @@
 				E82E66DF1DA07CBE00CFBDED /* cache - virtual - 30x30.png in Resources */,
 				E82E67321DA07D0200CFBDED /* attributes - 07.png in Resources */,
 				E82E67621DA07D0200CFBDED /* attributes - 56.png in Resources */,
+				E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */,
 				E82E67451DA07D0200CFBDED /* attributes - 27.png in Resources */,
 				E82E667F1DA07C6F00CFBDED /* compass - red on blue compass - compass.png in Resources */,
 				E82E67641DA07D0200CFBDED /* attributes - 58.png in Resources */,
