@@ -544,6 +544,8 @@
 		E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */; };
 		E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAE1DA87DBB007C756B /* waypoint - finish - 30x30@2x.png */; };
 		E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAF1DA87DBB007C756B /* waypoint - finish - 30x30@3x.png */; };
+		E8FEDEB41DA88474007C756B /* waypoint - multi - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEB21DA88474007C756B /* waypoint - multi - 30x30@2x.png */; };
+		E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEB31DA88474007C756B /* waypoint - multi - 30x30@3x.png */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1346,6 +1348,8 @@
 		E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - trailhead - 30x30@3x.png"; path = "images/waypoints/waypoint - trailhead - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8FEDEAE1DA87DBB007C756B /* waypoint - finish - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - finish - 30x30@2x.png"; path = "images/waypoints/waypoint - finish - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8FEDEAF1DA87DBB007C756B /* waypoint - finish - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - finish - 30x30@3x.png"; path = "images/waypoints/waypoint - finish - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDEB21DA88474007C756B /* waypoint - multi - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - multi - 30x30@2x.png"; path = "images/waypoints/waypoint - multi - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDEB31DA88474007C756B /* waypoint - multi - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - multi - 30x30@3x.png"; path = "images/waypoints/waypoint - multi - 30x30@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1919,6 +1923,8 @@
 				E8FEDE981DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png */,
 				E8FEDE991DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png */,
 				E82E65B31DA0794600CFBDED /* waypoint - multi - 30x30.png */,
+				E8FEDEB21DA88474007C756B /* waypoint - multi - 30x30@2x.png */,
+				E8FEDEB31DA88474007C756B /* waypoint - multi - 30x30@3x.png */,
 				E82E65B41DA0794600CFBDED /* waypoint - parking - 30x30.png */,
 				E8FEDE9A1DA7C08A007C756B /* waypoint - parking - 30x30@2x.png */,
 				E8FEDE9B1DA7C08A007C756B /* waypoint - parking - 30x30@3x.png */,
@@ -3005,6 +3011,7 @@
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
 				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
+				E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
@@ -3094,6 +3101,7 @@
 				E82E677E1DA0D79A00CFBDED /* menu icon - find target@3x.png in Resources */,
 				E8C5863B1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png in Resources */,
 				E8A3B0BC1CD33BC600170D61 /* MHTabBarInactiveTab@2x.png in Resources */,
+				E8FEDEB41DA88474007C756B /* waypoint - multi - 30x30@2x.png in Resources */,
 				E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E82E66711DA07C4900CFBDED /* container size - small - 70x20.png in Resources */,
 				E82E667E1DA07C6F00CFBDED /* compass - red on blue compass - arrow.png in Resources */,
