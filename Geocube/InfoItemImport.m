@@ -128,7 +128,7 @@ y += __s__.font.lineHeight;
 - (void)setWaypoints
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelWaypoints.text = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", waypointsTotal, waypointsNew];
+        labelWaypoints.text = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)waypointsTotal, (long)waypointsNew];
     }];
 }
 - (void)setWaypointsNew:(NSInteger)i
@@ -145,7 +145,7 @@ y += __s__.font.lineHeight;
 - (void)setLogs
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelLogs.text = [NSString stringWithFormat:@"Logs: %ld (%ld new)", logsTotal, logsNew];
+        labelLogs.text = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)logsTotal, (long)logsNew];
     }];
 }
 - (void)setLogsNew:(NSInteger)i
@@ -162,7 +162,7 @@ y += __s__.font.lineHeight;
 - (void)setTrackables
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelTrackables.text = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", trackablesTotal, trackablesNew];
+        labelTrackables.text = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)trackablesTotal, (long)trackablesNew];
     }];
 }
 - (void)setTrackablesNew:(NSInteger)i

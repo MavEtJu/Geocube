@@ -67,9 +67,9 @@ NEEDS_OVERLOADING(calculateRects)
     NSInteger loc = lineObjectCount;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         if (lot <= 0)
-            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", loc];
+            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", (long)loc];
         else
-            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", loc, lot, 100 * loc / lot];
+            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", (long)loc, (long)lot, (long)(100 * loc / lot)];
     }];
 }
 - (void)setLineObjectCount:(NSInteger)count
