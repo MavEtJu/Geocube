@@ -530,6 +530,18 @@
 		E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE7B1DA7AD67007C756B /* map - pin stick - 35x42@3x.png */; };
 		E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE7C1DA7AD67007C756B /* map - tick found - 9x9@2x.png */; };
 		E8FEDE951DA7AD67007C756B /* map - tick found - 9x9@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE7D1DA7AD67007C756B /* map - tick found - 9x9@3x.png */; };
+		E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE961DA7C08A007C756B /* waypoint - flag - 30x30@2x.png */; };
+		E8FEDEA11DA7C08A007C756B /* waypoint - flag - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE971DA7C08A007C756B /* waypoint - flag - 30x30@3x.png */; };
+		E8FEDEA21DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE981DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png */; };
+		E8FEDEA31DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE991DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png */; };
+		E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9A1DA7C08A007C756B /* waypoint - parking - 30x30@2x.png */; };
+		E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9B1DA7C08A007C756B /* waypoint - parking - 30x30@3x.png */; };
+		E8FEDEA61DA7C08A007C756B /* waypoint - question - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9C1DA7C08A007C756B /* waypoint - question - 30x30@2x.png */; };
+		E8FEDEA71DA7C08A007C756B /* waypoint - question - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9D1DA7C08A007C756B /* waypoint - question - 30x30@3x.png */; };
+		E8FEDEA81DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9E1DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png */; };
+		E8FEDEA91DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9F1DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png */; };
+		E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAA1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png */; };
+		E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1318,6 +1330,18 @@
 		E8FEDE7B1DA7AD67007C756B /* map - pin stick - 35x42@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pin stick - 35x42@3x.png"; path = "images/map/map - pin stick - 35x42@3x.png"; sourceTree = "<group>"; };
 		E8FEDE7C1DA7AD67007C756B /* map - tick found - 9x9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9@2x.png"; path = "images/map/map - tick found - 9x9@2x.png"; sourceTree = "<group>"; };
 		E8FEDE7D1DA7AD67007C756B /* map - tick found - 9x9@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9@3x.png"; path = "images/map/map - tick found - 9x9@3x.png"; sourceTree = "<group>"; };
+		E8FEDE961DA7C08A007C756B /* waypoint - flag - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - flag - 30x30@2x.png"; path = "images/waypoints/waypoint - flag - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE971DA7C08A007C756B /* waypoint - flag - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - flag - 30x30@3x.png"; path = "images/waypoints/waypoint - flag - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDE981DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - manually entered - 30x30@2x.png"; path = "images/waypoints/waypoint - manually entered - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE991DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - manually entered - 30x30@3x.png"; path = "images/waypoints/waypoint - manually entered - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDE9A1DA7C08A007C756B /* waypoint - parking - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - parking - 30x30@2x.png"; path = "images/waypoints/waypoint - parking - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE9B1DA7C08A007C756B /* waypoint - parking - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - parking - 30x30@3x.png"; path = "images/waypoints/waypoint - parking - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDE9C1DA7C08A007C756B /* waypoint - question - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - question - 30x30@2x.png"; path = "images/waypoints/waypoint - question - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE9D1DA7C08A007C756B /* waypoint - question - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - question - 30x30@3x.png"; path = "images/waypoints/waypoint - question - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDE9E1DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - unknown - 30x30@2x.png"; path = "images/waypoints/waypoint - unknown - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDE9F1DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - unknown - 30x30@3x.png"; path = "images/waypoints/waypoint - unknown - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDEAA1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - trailhead - 30x30@2x.png"; path = "images/waypoints/waypoint - trailhead - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - trailhead - 30x30@3x.png"; path = "images/waypoints/waypoint - trailhead - 30x30@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1883,12 +1907,24 @@
 			children = (
 				E82E65B01DA0794600CFBDED /* waypoint - finish - 30x30.png */,
 				E82E65B11DA0794600CFBDED /* waypoint - flag - 30x30.png */,
+				E8FEDE961DA7C08A007C756B /* waypoint - flag - 30x30@2x.png */,
+				E8FEDE971DA7C08A007C756B /* waypoint - flag - 30x30@3x.png */,
 				E82E65B21DA0794600CFBDED /* waypoint - manually entered - 30x30.png */,
+				E8FEDE981DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png */,
+				E8FEDE991DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png */,
 				E82E65B31DA0794600CFBDED /* waypoint - multi - 30x30.png */,
 				E82E65B41DA0794600CFBDED /* waypoint - parking - 30x30.png */,
+				E8FEDE9A1DA7C08A007C756B /* waypoint - parking - 30x30@2x.png */,
+				E8FEDE9B1DA7C08A007C756B /* waypoint - parking - 30x30@3x.png */,
 				E82E65B51DA0794600CFBDED /* waypoint - question - 30x30.png */,
+				E8FEDE9C1DA7C08A007C756B /* waypoint - question - 30x30@2x.png */,
+				E8FEDE9D1DA7C08A007C756B /* waypoint - question - 30x30@3x.png */,
 				E82E65B61DA0794600CFBDED /* waypoint - trailhead - 30x30.png */,
+				E8FEDEAA1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png */,
+				E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */,
 				E82E65B71DA0794600CFBDED /* waypoint - unknown - 30x30.png */,
+				E8FEDE9E1DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png */,
+				E8FEDE9F1DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png */,
 			);
 			name = "waypoint view";
 			sourceTree = "<group>";
@@ -2833,6 +2869,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E82E66011DA079E500CFBDED /* log - needsarchiving - 30x30.png in Resources */,
+				E8FEDEA31DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png in Resources */,
 				E82E67481DA07D0200CFBDED /* attributes - 30.png in Resources */,
 				E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */,
 				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
@@ -2857,6 +2894,7 @@
 				E82E677D1DA0D79A00CFBDED /* menu icon - find target@2x.png in Resources */,
 				E82E65DF1DA079AE00CFBDED /* map - highlight - 21x21.png in Resources */,
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
+				E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */,
 				E8FEDE591DA77F9D007C756B /* container size - regular - 35x11.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
@@ -2895,6 +2933,7 @@
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
 				E82E65DD1DA079AE00CFBDED /* map - dnf stick - 35x42.png in Resources */,
 				E82E66041DA079E500CFBDED /* log - ownermaintenance - 30x30.png in Resources */,
+				E8FEDEA81DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png in Resources */,
 				E82E663B1DA07A8700CFBDED /* icons - smiley - 30x30.png in Resources */,
 				E82E67471DA07D0200CFBDED /* attributes - 29.png in Resources */,
 				E82E66811DA07C6F00CFBDED /* compass - white arrow on black@2x.png in Resources */,
@@ -2923,10 +2962,12 @@
 				E82E65FD1DA079E500CFBDED /* log - disabled - 18x18.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
 				E82E67821DA0D94300CFBDED /* menu icon - follow me@3x.png in Resources */,
+				E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */,
 				E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */,
 				E8FEDE8C1DA7AD67007C756B /* map - in progress - 18x18@2x.png in Resources */,
 				E82E65C61DA0797E00CFBDED /* ratings - star base 95x18.png in Resources */,
 				E82E676E1DA07D0200CFBDED /* attributes - unknown.png in Resources */,
+				E8FEDEA91DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png in Resources */,
 				E8FEDE891DA7AD67007C756B /* map - found stick - 35x42@3x.png in Resources */,
 				E8A3B0B91CD33BC600170D61 /* MHTabBarActiveTab@2x.png in Resources */,
 				E82E66671DA07C4900CFBDED /* container flag - marked found - 24x21@3x.png in Resources */,
@@ -2947,6 +2988,7 @@
 				E82E67581DA07D0200CFBDED /* attributes - 46.png in Resources */,
 				E8FEDE521DA77F9D007C756B /* container size - micro - 35x11@3x.png in Resources */,
 				E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
+				E8FEDEA61DA7C08A007C756B /* waypoint - question - 30x30@2x.png in Resources */,
 				E82E666D1DA07C4900CFBDED /* container size - micro - 70x20.png in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
@@ -3030,6 +3072,7 @@
 				E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */,
 				E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */,
 				E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */,
+				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
 				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,
 				E82E67791DA0D1E600CFBDED /* menu icon - find me@2x.png in Resources */,
@@ -3039,6 +3082,7 @@
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
 				E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */,
 				E82E67361DA07D0200CFBDED /* attributes - 11.png in Resources */,
+				E8FEDEA71DA7C08A007C756B /* waypoint - question - 30x30@3x.png in Resources */,
 				E82E67561DA07D0200CFBDED /* attributes - 44.png in Resources */,
 				E82E677E1DA0D79A00CFBDED /* menu icon - find target@3x.png in Resources */,
 				E8C5863B1DA12D2B0059DB7D /* container size - regular - 70x20@2x.png in Resources */,
@@ -3053,6 +3097,7 @@
 				E82E666F1DA07C4900CFBDED /* container size - other - 70x20.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
+				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
 				E8FEDE8F1DA7AD67007C756B /* map - marked found - 9x9@3x.png in Resources */,
 				E82E675E1DA07D0200CFBDED /* attributes - 52.png in Resources */,
 				E82E66001DA079E500CFBDED /* log - moved - 30x30.png in Resources */,
@@ -3071,6 +3116,7 @@
 				E897702F1BA39110000573FB /* Import Complete.wav in Resources */,
 				E82E66031DA079E500CFBDED /* log - note - 30x30.png in Resources */,
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
+				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
 				E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */,
 				E82E65E11DA079AE00CFBDED /* map - marked found - 9x9.png in Resources */,
 				E82E65F91DA079E500CFBDED /* log - archived - 30x30.png in Resources */,
@@ -3131,7 +3177,9 @@
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
 				E8C586381DA12D2B0059DB7D /* container size - notchosen - 70x20@3x.png in Resources */,
+				E8FEDEA21DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png in Resources */,
 				E8FEDE611DA77F9D007C756B /* container size - unknown - 35x11@3x.png in Resources */,
+				E8FEDEA11DA7C08A007C756B /* waypoint - flag - 30x30@3x.png in Resources */,
 				E82E67351DA07D0200CFBDED /* attributes - 10.png in Resources */,
 				E82E661E1DA07A5500CFBDED /* menu icon - follow me.png in Resources */,
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
