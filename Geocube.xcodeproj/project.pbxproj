@@ -542,6 +542,8 @@
 		E8FEDEA91DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE9F1DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png */; };
 		E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAA1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png */; };
 		E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */; };
+		E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAE1DA87DBB007C756B /* waypoint - finish - 30x30@2x.png */; };
+		E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEAF1DA87DBB007C756B /* waypoint - finish - 30x30@3x.png */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1342,6 +1344,8 @@
 		E8FEDE9F1DA7C08A007C756B /* waypoint - unknown - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - unknown - 30x30@3x.png"; path = "images/waypoints/waypoint - unknown - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8FEDEAA1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - trailhead - 30x30@2x.png"; path = "images/waypoints/waypoint - trailhead - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8FEDEAB1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - trailhead - 30x30@3x.png"; path = "images/waypoints/waypoint - trailhead - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDEAE1DA87DBB007C756B /* waypoint - finish - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - finish - 30x30@2x.png"; path = "images/waypoints/waypoint - finish - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8FEDEAF1DA87DBB007C756B /* waypoint - finish - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - finish - 30x30@3x.png"; path = "images/waypoints/waypoint - finish - 30x30@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1906,6 +1910,8 @@
 			isa = PBXGroup;
 			children = (
 				E82E65B01DA0794600CFBDED /* waypoint - finish - 30x30.png */,
+				E8FEDEAE1DA87DBB007C756B /* waypoint - finish - 30x30@2x.png */,
+				E8FEDEAF1DA87DBB007C756B /* waypoint - finish - 30x30@3x.png */,
 				E82E65B11DA0794600CFBDED /* waypoint - flag - 30x30.png */,
 				E8FEDE961DA7C08A007C756B /* waypoint - flag - 30x30@2x.png */,
 				E8FEDE971DA7C08A007C756B /* waypoint - flag - 30x30@3x.png */,
@@ -2999,6 +3005,7 @@
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
 				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
+				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
@@ -3095,6 +3102,7 @@
 				E82E67571DA07D0200CFBDED /* attributes - 45.png in Resources */,
 				E82E65D91DA079AE00CFBDED /* map - background - 35x42.png in Resources */,
 				E82E666F1DA07C4900CFBDED /* container size - other - 70x20.png in Resources */,
+				E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
 				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
