@@ -101,7 +101,7 @@
     }];
     markers = nil;
 
-    [circles enumerateObjectsUsingBlock:^(GMSCircle *c, NSUInteger idx, BOOL *stop) {
+    [circles enumerateObjectsUsingBlock:^(GCGMSCircle *c, NSUInteger idx, BOOL *stop) {
         c.map = nil;
         c = nil;
     }];
@@ -122,12 +122,13 @@
     return marker;
 }
 
-- (GMSCircle *)makeCircle:(dbWaypoint *)wp
+- (GCGMSCircle *)makeCircle:(dbWaypoint *)wp
 {
-    GMSCircle *circle = [GMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
+    GCGMSCircle *circle = [GCGMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
     circle.strokeColor = [UIColor blueColor];
     circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
     circle.map = mapView;
+    circle.userData = wp;
     return circle;
 }
 
@@ -150,8 +151,9 @@
     }];
 }
 
-- (void)addMarker:(dbWaypoint *)wp
+- (void)placeMarker:(dbWaypoint *)wp
 {
+    // Add a new marker
     __block BOOL found = NO;
     [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
         dbObject *o = (dbObject *)m.userData;
@@ -164,8 +166,10 @@
         return;
 
     [markers addObject:[self makeMarker:wp]];
+
+    // Add the boundary if needed
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        GMSCircle *circle = [self makeCircle:wp];
+        GCGMSCircle *circle = [self makeCircle:wp];
         circle.map = mapView;
         [circles addObject:circle];
     }
@@ -173,11 +177,13 @@
 
 - (void)removeMarker:(dbWaypoint *)wp
 {
+    // Remove an new marker
     __block NSUInteger idx = NSNotFound;
     [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idxx, BOOL *stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
+            m.map = nil;
             *stop = YES;
         }
     }];
@@ -185,6 +191,17 @@
         return;
 
     [markers removeObjectAtIndex:idx];
+
+    // Remove the boundary if needed
+    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        [circles enumerateObjectsUsingBlock:^(GCGMSCircle *c, NSUInteger idx, BOOL *stop) {
+            if (c.userData == wp) {
+                [circles removeObjectAtIndex:idx];
+                c.map = nil;
+                *stop = YES;
+            }
+        }];
+    }
 }
 
 - (void)updateMarker:(dbWaypoint *)wp
@@ -194,6 +211,7 @@
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
+            m.map = nil;
             *stop = YES;
         }
     }];
