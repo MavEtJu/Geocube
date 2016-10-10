@@ -66,7 +66,7 @@
 
 - (void)placeMarkers;
 - (void)removeMarkers;
-- (void)addMarker:(dbWaypoint *)wp;
+- (void)placeMarker:(dbWaypoint *)wp;
 - (void)removeMarker:(dbWaypoint *)wp;
 - (void)updateMarker:(dbWaypoint *)wp;
 

@@ -63,7 +63,7 @@ NEEDS_OVERLOADING_BOOL(mapHasViewHybrid)
 NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
 NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 NEEDS_OVERLOADING(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight)
-NEEDS_OVERLOADING(addMarker:(dbWaypoint *)wp)
+NEEDS_OVERLOADING(placeMarker:(dbWaypoint *)wp)
 NEEDS_OVERLOADING(removeMarker:(dbWaypoint *)wp)
 NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
