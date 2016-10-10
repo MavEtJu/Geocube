@@ -395,6 +395,7 @@
             wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
             wp.related_id = waypoint._id;
             wp.account_id = waypoint.account_id;
+            [wp finish];
             [dbWaypoint dbCreate:wp];
 
             [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
