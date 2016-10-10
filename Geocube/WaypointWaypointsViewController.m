@@ -121,6 +121,7 @@ enum {
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [waypointManager needsRefreshRemove:wp];
         [wp dbDelete];
         wps = [waypoint hasWaypoints];
         [self.tableView reloadData];
@@ -191,6 +192,7 @@ enum {
                     wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
                     wp.related_id = waypoint._id;
                     wp.account_id = waypoint.account_id;
+                    [wp finish];
                     [dbWaypoint dbCreate:wp];
 
                     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
@@ -216,6 +218,7 @@ enum {
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
+        textField.text = [NSString stringWithString:[Coordinates NiceLatitude:waypoint.coordinates.latitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLatitude = textField;
     }];
@@ -223,6 +226,7 @@ enum {
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
+        textField.text = [NSString stringWithString:[Coordinates NiceLongitude:waypoint.coordinates.longitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLongitude = textField;
     }];

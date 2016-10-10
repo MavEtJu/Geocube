@@ -173,7 +173,6 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [map initMap];
-    [map mapViewDidLoad];
     [map initCamera:LM.coords];
     [map mapViewDidLoad];
 
@@ -231,8 +230,8 @@ enum {
         [lmi enableItem:menuRemoveTarget];
 
     [map mapViewWillAppear];
-    [map removeMarkers];
-    [map placeMarkers];
+//    [map removeMarkers];
+//    [map placeMarkers];
 }
 
 
@@ -241,6 +240,7 @@ enum {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
     [map mapViewDidAppear];
+
     [LM startDelegation:self isNavigating:(showWhat == SHOW_ONEWAYPOINT)];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
@@ -264,8 +264,8 @@ enum {
     isVisible = YES;
     if (needsRefresh == YES) {
         [self refreshWaypointsData];
-        [map removeMarkers];
-        [map placeMarkers];
+//        [map removeMarkers];
+//        [map placeMarkers];
         needsRefresh = NO;
     }
 
@@ -285,7 +285,7 @@ enum {
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
-    [map removeMarkers];
+//    [map removeMarkers];
     [super viewDidDisappear:animated];
     [map mapViewDidDisappear];
 }
@@ -296,7 +296,6 @@ enum {
 
     [coordinator animateAlongsideTransition:^(id  _Nonnull context) {
                                      [self recalculateRects];
-                                     [map recalculateRects];
                                      [self viewWilltransitionToSize];
     }
                                  completion:nil
@@ -601,27 +600,24 @@ enum {
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [waypointsArray indexOfObject:wp];
-    if (idx == NSNotFound)
-        return;
-    [waypointsArray removeObjectAtIndex:idx];
+    if (idx != NSNotFound)
+        [waypointsArray removeObject:wp];
     [map removeMarker:wp];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [waypointsArray indexOfObject:wp];
-    if (idx != NSNotFound)
-        return;
-    [waypointsArray addObject:wp];
-    [map addMarker:wp];
+    if (idx == NSNotFound)
+        [waypointsArray addObject:wp];
+    [map placeMarker:wp];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
-        return;
-    [waypointsArray replaceObjectAtIndex:idx withObject:wp];
+        [waypointsArray addObject:wp];
     [map updateMarker:wp];
 }
 
@@ -635,7 +631,7 @@ enum {
     NSLog(@"currentZoom: %f", currentZoom);
 
     [self removeDistanceLabel];
-    [map removeMarkers];
+//    [map removeMarkers];
     [map removeCamera];
     [map removeMap];
 
@@ -700,7 +696,7 @@ enum {
     [self recalculateRects];
 
     [self refreshWaypointsData];
-    [map placeMarkers];
+//    [map placeMarkers];
 
     [map mapViewDidAppear];
     [self menuShowWhom:followWhom];

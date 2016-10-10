@@ -21,7 +21,7 @@
 
 @interface WaypointsOfflineListViewController ()
 {
-    NSMutableArray *waypoints;
+    NSArray *waypoints;
 
     NSInteger currentSortOrder;
 
@@ -178,7 +178,7 @@ enum {
     [self reloadDataMainQueue];
 }
 
-- (NSMutableArray *)resortCachesData:(NSMutableArray *)wps
+- (NSArray *)resortCachesData:(NSArray *)wps
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
@@ -305,30 +305,19 @@ enum {
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
-    NSUInteger idx = [waypoints indexOfObject:wp];
-    if (idx == NSNotFound)
-        return;
-    [waypoints removeObjectAtIndex:idx];
-    waypoints = [self resortCachesData:waypoints];
+    waypoints = [self resortCachesData:waypointManager.currentWaypoints];
     [self reloadDataMainQueue];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    if ([waypoints indexOfObject:wp] != NSNotFound)
-        return;
-    [waypoints addObject:wp];
-    waypoints = [self resortCachesData:waypoints];
+    waypoints = [self resortCachesData:waypointManager.currentWaypoints];
     [self reloadDataMainQueue];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
-    NSUInteger idx = [waypoints indexOfObject:wp];
-    if (idx == NSNotFound)
-        return;
-    [waypoints replaceObjectAtIndex:idx withObject:wp];
-    waypoints = [self resortCachesData:waypoints];
+    waypoints = [self resortCachesData:waypointManager.currentWaypoints];
     [self reloadDataMainQueue];
 }
 
