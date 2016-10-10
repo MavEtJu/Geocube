@@ -551,6 +551,7 @@
 		E8FEDEE71DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECF1DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png */; };
 		E8FEDEE81DA8EEE9007C756B /* cache - webcam - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDED01DA8EEE9007C756B /* cache - webcam - 30x30@2x.png */; };
 		E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDED11DA8EEE9007C756B /* cache - webcam - 30x30@3x.png */; };
+		E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FEDEEB1DAAE5E1007C756B /* GCCircle.m */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1360,6 +1361,8 @@
 		E8FEDECF1DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30@3x.png"; path = "images/caches/cache - unknowntype - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8FEDED01DA8EEE9007C756B /* cache - webcam - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@2x.png"; path = "images/caches/cache - webcam - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8FEDED11DA8EEE9007C756B /* cache - webcam - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@3x.png"; path = "images/caches/cache - webcam - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8FEDEEA1DAAE5E1007C756B /* GCCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCircle.h; sourceTree = "<group>"; };
+		E8FEDEEB1DAAE5E1007C756B /* GCCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCircle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1784,6 +1787,8 @@
 				E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
+				E8FEDEEA1DAAE5E1007C756B /* GCCircle.h */,
+				E8FEDEEB1DAAE5E1007C756B /* GCCircle.m */,
 			);
 			name = MapViewControllers;
 			sourceTree = "<group>";
@@ -3326,6 +3331,7 @@
 				E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */,
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
+				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,

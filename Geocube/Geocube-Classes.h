@@ -120,6 +120,7 @@
 @class MapTemplate;
 @class MapViewController;
 @class MapWaypointInfoView;
+@class GCCircle;
 @class MyClock;
 @class MyTools;
 @class NotesFieldnotesViewController;
