@@ -235,6 +235,7 @@
 
 #import "GCPointAnnotation.h"
 #import "GCCircle.h"
+#import "GCGMSCircle.h"
 #import "MapWaypointInfoView.h"
 #import "MapViewController.h"
 #import "MapTemplate.h"

@@ -50,12 +50,14 @@
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
 @class GCButton;
+@class GCCircle;
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCDictionaryGCA;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
 @class GCDictionaryObject;
+@class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
 @class GCMutableURLRequest;
@@ -120,7 +122,6 @@
 @class MapTemplate;
 @class MapViewController;
 @class MapWaypointInfoView;
-@class GCCircle;
 @class MyClock;
 @class MyTools;
 @class NotesFieldnotesViewController;

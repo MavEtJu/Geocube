@@ -19,12 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCCircle ()
+@interface GCGMSCircle : GMSCircle
+{
+    NSObject *userData;
+}
 
-@end
-
-@implementation GCCircle
-
-@synthesize waypoint;
+@property (nonatomic, retain) NSObject *userData;
 
 @end

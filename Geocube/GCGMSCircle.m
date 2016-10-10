@@ -19,12 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCCircle ()
+@interface GCGMSCircle ()
 
 @end
 
-@implementation GCCircle
+@implementation GCGMSCircle
 
-@synthesize waypoint;
+@synthesize userData;
 
 @end
