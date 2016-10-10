@@ -65,8 +65,6 @@
 {
     NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
     [delegates removeObject:_delegate];
-
-    NSLog(@"%@: stopping", [self class]);
 }
 
 - (void)needsRefreshAll
@@ -86,6 +84,8 @@
 
 - (void)needsRefreshAdd:(dbWaypoint *)wp
 {
+    [currentWaypoints addObject:wp];
+
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
@@ -97,6 +97,8 @@
 
 - (void)needsRefreshRemove:(dbWaypoint *)wp
 {
+    [currentWaypoints removeObject:wp];
+
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
@@ -108,6 +110,9 @@
 
 - (void)needsRefreshUpdate:(dbWaypoint *)wp
 {
+    NSUInteger idx = [currentWaypoints indexOfObject:wp];
+    [currentWaypoints replaceObjectAtIndex:idx withObject:wp];
+
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
