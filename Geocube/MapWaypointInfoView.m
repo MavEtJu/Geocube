@@ -271,7 +271,7 @@
 
     rectStateCountry = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + 3 * GCCODE_HEIGHT, width - 2 * BORDER - ICON_WIDTH - rectRatingD.size.width, DISTANCE_HEIGHT);
     rectCoordinates = CGRectMake(BORDER + ICON_WIDTH, BORDER + DESCRIPTION_HEIGHT + 4 * GCCODE_HEIGHT, width - 2 * BORDER - ICON_WIDTH - rectRatingD.size.width, COORDINATES_HEIGHT);
-    
+
     rectFavouritesLabel = rectFavouritesIV;
     rectFavouritesLabel.size.height /= 2;
 }
