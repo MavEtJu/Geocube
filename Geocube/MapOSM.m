@@ -63,15 +63,19 @@
 - (void)recalculateRects
 {
     [super recalculateRects];
+    [self redrawCreditsLabel];
+}
+
+- (void)mapViewDidAppear
+{
+    [self redrawCreditsLabel];
+}
+
+- (void)redrawCreditsLabel
+{
     CGRect r = self.mapvc.view.frame;
     NSLog(@"%@", [MyTools niceCGRect:r]);
     creditsLabel.frame = CGRectMake(2, r.size.height - 20, 200, 20);
-}
-
-- (void)mapViewWillAppear
-{
-    [super mapViewWillAppear];
-    [self recalculateRects];
 }
 
 - (void)mapViewDidLoad
