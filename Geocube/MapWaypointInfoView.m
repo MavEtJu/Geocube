@@ -314,6 +314,7 @@
 {
     if (favs != 0) {
         favouritesLabel.text = [NSString stringWithFormat:@"%ld", (long)favs];
+        favouritesLabel.textColor = [UIColor whiteColor];
         favouritesIV.hidden = NO;
     } else {
         favouritesLabel.text = nil;
