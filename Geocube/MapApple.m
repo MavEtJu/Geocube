@@ -110,6 +110,7 @@
     NSLog(@"%@/placeMarkers", [self class]);
     // Creates a marker in the center of the map.
     markers = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
+    circles = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
     [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         // Place a single pin
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
@@ -118,8 +119,15 @@
         annotation.waypoint = wp;
 
         [markers addObject:annotation];
+
+        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+            GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+            circle.waypoint = wp;
+            [circles addObject:circle];
+        }
     }];
     [mapView addAnnotations:markers];
+    [mapView addOverlays:circles];
 }
 
 - (void)removeMarkers
@@ -127,6 +135,9 @@
     NSLog(@"%@/removeMarkers", [self class]);
     [mapView removeAnnotations:markers];
     markers = nil;
+
+    [mapView removeOverlays:circles];
+    circles = nil;
 }
 
 - (void)placeMarker:(dbWaypoint *)wp
