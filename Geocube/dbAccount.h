@@ -53,10 +53,10 @@ typedef NS_ENUM(NSInteger, AccountProtocol) {
 @property (nonatomic, retain) NSString *gca_authenticate_url;
 @property (nonatomic) NSInteger distance_minimum;
 
+// Non database originated
 @property (nonatomic, readonly) BOOL canDoRemoteStuff;
-@property (nonatomic, retain) NSString *lastError;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
-//@property (nonatomic) NSInteger idx;    // Used in UserProfileViewController.m
+@property (nonatomic, retain) NSString *lastError;
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
