@@ -129,7 +129,7 @@
     markers = nil;
 }
 
-- (void)addMarker:(dbWaypoint *)wp
+- (void)placeMarker:(dbWaypoint *)wp
 {
     __block BOOL found = NO;
     [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idx, BOOL *stop) {
@@ -141,6 +141,7 @@
     if (found == YES)
         return;
 
+    // Take care of the waypoint
     GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
     CLLocationCoordinate2D coord = wp.coordinates;
     [annotation setCoordinate:coord];
@@ -148,10 +149,19 @@
 
     [markers addObject:annotation];
     [mapView addAnnotation:annotation];
+
+    // Take care of the boundary circles
+    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+        circle.waypoint = wp;
+        [circles addObject:circle];
+        [mapView addOverlay:circle];
+    }
 }
 
 - (void)removeMarker:(dbWaypoint *)wp
 {
+    // Take care of the waypoint
     __block GCPointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
     [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
@@ -166,10 +176,22 @@
 
     [markers removeObjectAtIndex:idx];
     [mapView removeAnnotation:annotiation];
+
+    // Take care of the boundary circles
+    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+        [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
+            if (c.waypoint._id == wp._id) {
+                [mapView removeOverlay:c];
+                [circles removeObject:c];
+                *stop = YES;
+            }
+        }];
+    }
 }
 
 - (void)updateMarker:(dbWaypoint *)wp
 {
+    // Take care of the waypoint
     __block GCPointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
     [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
@@ -190,6 +212,21 @@
     [markers replaceObjectAtIndex:idx withObject:newMarker];
     [mapView removeAnnotation:annotiation];
     [mapView addAnnotation:newMarker];
+
+    // Take care of the boundary circles
+    if (showBoundary == YES) {
+        [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
+            if (c.waypoint._id == wp._id) {
+                [mapView removeOverlay:c];
+                [circles removeObject:c];
+                *stop = YES;
+            }
+        }];
+        GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+        circle.waypoint = wp;
+        [circles addObject:circle];
+        [mapView addOverlay:circle];
+    }
 }
 
 - (void)showBoundaries:(BOOL)yesno
@@ -199,7 +236,8 @@
         circles = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
         [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-                MKCircle *circle = [MKCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                circle.waypoint = wp;
                 [circles addObject:circle];
             }
         }];
@@ -283,7 +321,7 @@
     }
 
     __block MKCircleRenderer *circleRenderer = nil;
-    [circles enumerateObjectsUsingBlock:^(MKCircle *c, NSUInteger idx, BOOL *stop) {
+    [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
         if (overlay == c) {
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
             circleRenderer.strokeColor = [UIColor blueColor];
