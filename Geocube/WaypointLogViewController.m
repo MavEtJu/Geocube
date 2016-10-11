@@ -75,7 +75,7 @@ enum {
     fp = NO;
     upload = YES;
     image = nil;
-    ratingSelected = 3;
+    ratingSelected = 0;
     self.delegateWaypoint = nil;
 
     NSInteger type = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
@@ -204,7 +204,10 @@ enum {
                         cell.keyLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
-                        cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
+                        if (ratingSelected != 0)
+                            cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
+                        else
+                            cell.valueLabel.text = @"No rating selected";
                     }
                     break;
                 }
@@ -446,6 +449,7 @@ enum {
 {
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:5];
     NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
+    [as addObject:@"No rating selected"];
     for (NSInteger i = r.location; i <= r.length; i++) {
         [as addObject:[NSString stringWithFormat:@"%ld out of %lu", (long)i, (unsigned long)r.length]];
     }
@@ -453,9 +457,9 @@ enum {
     [ActionSheetStringPicker
      showPickerWithTitle:@"Select a Rating"
      rows:as
-     initialSelection:ratingSelected - 1
+     initialSelection:ratingSelected
      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-         ratingSelected = selectedIndex + 1;
+         ratingSelected = selectedIndex;
          [self.tableView reloadData];
      }
      cancelBlock:^(ActionSheetStringPicker *picker) {
