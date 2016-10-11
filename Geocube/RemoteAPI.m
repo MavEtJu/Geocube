@@ -584,12 +584,12 @@
         if (json == nil)
             return REMOTEAPI_APIFAILED;
 
-        InfoItemImport *iii = [infoViewer addImport];
         NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];
         NSInteger done = 0;
         [iid setChunksTotal:(total / 20) + 1];
         if (total != 0) {
             GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+            InfoItemImport *iii = [infoViewer addImport];
             [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
@@ -598,6 +598,7 @@
                 json = [liveAPI GetMoreGeocaches:done downloadInfoItem:iid];
                 if ([json objectForKey:@"Geocaches"] != nil) {
                     GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+                    InfoItemImport *iii = [infoViewer addImport];
                     [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
                     [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
                 }
