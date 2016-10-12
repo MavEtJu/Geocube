@@ -24,14 +24,22 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
     REMOTEAPI_APIREFUSED,               // Couldn't connect to the API
     REMOTEAPI_APIFAILED,                // Invalid values returned
     REMOTEAPI_APIDISABLED,              // No authentication details
+    
+    REMOTEAPI_JSONINVALID,              // JSON couldn't be parsed cleanly
 
     REMOTEAPI_NOTPROCESSED,             // Not supported in this protocol
 
-    REMOTEAPI_CREATELOG_LOGFAILED,      // Unable to create the log
-    REMOTEAPI_CREATELOG_IMAGEFAILED,    // Unable to upload the image
-    REMOTEAPI_LOADWAYPOINT_LOADFAILED,  // Unable to load the waypoint
-    REMOTEAPI_LOADWAYPOINTS_LOADFAILED, // Unable to load the waypoints
-    REMOTEAPI_LISTQUERIES_LOADFAILED,   // Unable to load the list of queries
+    REMOTEAPI_USERSTATISTICS_LOADFAILED,    // Unable to load user statistics
+    REMOTEAPI_CREATELOG_LOGFAILED,          // Unable to create the log
+    REMOTEAPI_CREATELOG_IMAGEFAILED,        // Unable to upload the image
+    REMOTEAPI_LOADWAYPOINT_LOADFAILED,      // Unable to load the waypoint
+    REMOTEAPI_LOADWAYPOINTS_LOADFAILED,     // Unable to load the waypoints
+    REMOTEAPI_LISTQUERIES_LOADFAILED,       // Unable to load the list of queries
+    REMOTEAPI_PERSONALNOTE_UPDATEFAILED,    // Unable to update the personal note
+    REMOTEAPI_RETRIEVEQUERY_LOADFAILED,     // Unable to load the query
+    REMOTEAPI_TRACKABLES_FINDFAILED,        // Unable to find the trackable
+    REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED,// Unable to load the trackables inventory
+    REMOTEAPI_TRACKABLES_OWNEDLOADFAILED,   // Unable to load the trackables owned
 };
 
 @protocol RemoteAPIAuthenticationDelegate
@@ -54,10 +62,6 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 @property (nonatomic) NSInteger stats_found, stats_notfound;
 @property (nonatomic) id<RemoteAPIAuthenticationDelegate> authenticationDelegate;
 
-@property (nonatomic, retain) NSString *errorMsg;
-@property (nonatomic, retain) NSError *error;
-@property (nonatomic) NSInteger errorCode;
-
 - (instancetype)init:(dbAccount *)account;
 - (BOOL)Authenticate;
 - (BOOL)waypointSupportsPersonalNotes;
@@ -66,6 +70,17 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
+
+// Feedback from the network error and the data interpretation
+// - Network error: Connection refused, HTTP error
+// - API error: A failed request (status code)
+// - Data error: Interpretation of the returned data fails.
+- (void)setNetworkError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
+- (void)setAPIError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
+- (void)setDataError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
+- (NSString *)lastNetworkError;
+- (NSString *)lastAPIError;
+- (NSString *)lastDataError;
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoItemDowload *)iid;
 
@@ -80,8 +95,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoVIewr callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
 
-- (void)trackablesMine:(InfoItemDowload *)iid;
-- (void)trackablesInventory:(InfoItemDowload *)iid;
-- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(InfoItemDowload *)iid;
+- (RemoteAPIResult)trackablesMine:(InfoItemDowload *)iid;
+- (RemoteAPIResult)trackablesInventory:(InfoItemDowload *)iid;
+- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t downloadInfoItem:(InfoItemDowload *)iid;
 
 @end

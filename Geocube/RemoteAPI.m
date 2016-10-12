@@ -26,10 +26,14 @@
     RemoteAPI_GCA *gca;
     RemoteAPI_Template *protocol;
 
-    dbAccount *account;
+    NSString *errorStringNetwork;
+    NSString *errorStringAPI;
+    NSString *errorStringData;
+    RemoteAPIResult errorCodeNetwork;
+    RemoteAPIResult errorCodeAPI;
+    RemoteAPIResult errorCodeData;
 
-    NSString *clientMsg;
-    NSError *clientError;
+    dbAccount *account;
 
     NSInteger loadWaypointsLogs, loadWaypointsWaypoints;
 
@@ -42,7 +46,6 @@
 
 @synthesize account, oabb, authenticationDelegate;
 @synthesize stats_found, stats_notfound;
-@synthesize error, errorMsg, errorCode;
 
 - (instancetype)init:(dbAccount *)_account;
 {
@@ -79,6 +82,8 @@
     }
     return self;
 }
+
+// ----------------------------------------
 
 - (BOOL)Authenticate
 {
@@ -174,6 +179,8 @@
         [authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:_error];
 }
 
+// ----------------------------------------
+
 - (BOOL)commentSupportsPhotos
 {
     return [protocol commentSupportsPhotos];
@@ -204,11 +211,139 @@
     return [protocol waypointSupportsPersonalNotes];
 }
 
-- (void)alertError:(NSString *)msg code:(NSInteger)code
+// ----------------------------------------
+
+- (void)clearErrors
 {
-    clientMsg = msg;
-    clientError = [NSError errorWithDomain:errorDomain code:code userInfo:nil];
+    errorStringNetwork = nil;
+    errorStringAPI = nil;
+    errorStringData = nil;
+    errorCodeNetwork = REMOTEAPI_OK;
+    errorCodeAPI = REMOTEAPI_OK;
+    errorCodeData = REMOTEAPI_OK;
 }
+
+- (void)setNetworkError:(NSString *)errorString error:(RemoteAPIResult)errorCode
+{
+    errorStringNetwork = errorString;
+    errorCodeNetwork = errorCode;
+}
+
+- (void)setAPIError:(NSString *)errorString error:(RemoteAPIResult)errorCode
+{
+    errorStringAPI = errorString;
+    errorCodeAPI = errorCode;
+}
+
+- (void)setDataError:(NSString *)errorString error:(RemoteAPIResult)errorCode
+{
+    errorStringData = errorString;
+    errorCodeData = errorCode;
+}
+
+- (RemoteAPIResult)lastErrorCode
+{
+    if (errorCodeNetwork != REMOTEAPI_OK)
+        return errorCodeNetwork;
+    if (errorCodeAPI != REMOTEAPI_OK)
+        return errorCodeAPI;
+    if (errorCodeData != REMOTEAPI_OK)
+        return errorCodeData;
+    return REMOTEAPI_OK;
+}
+
+- (NSString *)lastNetworkError
+{
+    return errorStringNetwork;
+}
+
+- (NSString *)lastAPIError
+{
+    return errorStringAPI;
+}
+
+- (NSString *)lastDataError
+{
+    return errorStringData;
+}
+
+// ----------------------------------------
+
+#define GCA_CHECK_ACTIONSTATUS(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) \
+                return [self lastErrorCode]; \
+            \
+            NSNumber *num = [__json__ objectForKey:@"actionstatus"]; \
+            if (num == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[GCA] %@: No 'actionstatus' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+            if ([num integerValue] != 1) { \
+                NSString *s = [NSString stringWithFormat:@"[GCA] %@: 'actionstatus' was not 1 (%@)", __logsection__, num]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                return __failure__; \
+            } \
+        }
+
+#define GCA_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
+            __type__ *__varname__ = [__json__ objectForKey:__field__]; \
+            if (__varname__ == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[GCA] %@: No '%@' field returned", __logsection__, __field__]; \
+                [self setDataError:s error:__failure__]; \
+                NSLog(@"%@", s); \
+                return __failure__; \
+            }
+
+#define LIVEAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) \
+                return [self lastErrorCode]; \
+            NSDictionary *status = [__json__ objectForKey:@"Status"]; \
+            if (status == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+            NSNumber *num = [status objectForKey:@"StatusCode"]; \
+            if (num == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+            if ([num integerValue] != 0) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                return __failure__; \
+            } \
+        }
+
+#define LIVEAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
+            __type__ *__varname__ = [__json__ objectForKey:__field__]; \
+            if (__varname__ == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                [self setDataError:s error:__failure__]; \
+                NSLog(@"%@", s); \
+                return __failure__; \
+            }
+
+#define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) \
+                return [self lastErrorCode]; \
+            }
+
+#define OKAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
+            __type__ *__varname__ = [__json__ objectForKey:__field__]; \
+            if (__varname__ == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                [self setDataError:s error:__failure__]; \
+                NSLog(@"%@", s); \
+                return __failure__; \
+            }
 
 - (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
 {
@@ -233,6 +368,8 @@
  * recommendations_received
  */
 {
+    [self clearErrors];
+
     NSMutableDictionary *ret = [NSMutableDictionary dictionary];
     [ret setValue:@"" forKey:@"waypoints_found"];
     [ret setValue:@"" forKey:@"waypoints_notfound"];
@@ -244,9 +381,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
         GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username downloadInfoItem:iid];
-
-        if (dict == nil)
-            return REMOTEAPI_APIFAILED;
+        OKAPI_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
         [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
@@ -261,22 +396,22 @@
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
         NSDictionary *dict1 = [liveAPI GetYourUserProfile:iid];
+        LIVEAPI_CHECK_STATUS(dict1, @"UserStatistics/profile", REMOTEAPI_USERSTATISTICS_LOADFAILED);
         [iid setChunksCount:2];
         NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser:iid];
+        LIVEAPI_CHECK_STATUS(dict2, @"UserStatistics/favourited", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         if (dict1 == nil && dict2 == nil)
-            return REMOTEAPI_APIFAILED;
+            return [self lastErrorCode];
 
-        NSDictionary *d = [dict1 objectForKey:@"Profile"];
-        d = [d objectForKey:@"User"];
-        [self getNumber:ret from:d outKey:@"waypoints_hidden" inKey:@"HideCount"];
-        [self getNumber:ret from:d outKey:@"waypoints_found" inKey:@"FindCount"];
+        LIVEAPI_GET_VALUE(dict1, NSDictionary, d1, @"Profile", @"UserStatistics/d1", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+        d1 = [d1 objectForKey:@"User"];
+        [self getNumber:ret from:d1 outKey:@"waypoints_hidden" inKey:@"HideCount"];
+        [self getNumber:ret from:d1 outKey:@"waypoints_found" inKey:@"FindCount"];
 
-        d = [dict2 objectForKey:@"CacheCodes"];
-        if (d != nil) {
-            NSNumber *n = [NSNumber numberWithUnsignedInteger:[d count]];
-            [ret setValue:n forKey:@"recommendations_given"];
-        }
+        LIVEAPI_GET_VALUE(dict2, NSDictionary, d2, @"CacheCodes", @"UserStatistics/d2", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+        NSNumber *n = [NSNumber numberWithUnsignedInteger:[d2 count]];
+        [ret setValue:n forKey:@"recommendations_given"];
 
         *retDict = ret;
         return REMOTEAPI_OK;
@@ -285,12 +420,13 @@
     if (account.protocol == PROTOCOL_GCA) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
+
         NSDictionary *dict1 = [gca cacher_statistic__finds:username downloadInfoItem:iid];
         [iid setChunksCount:2];
         NSDictionary *dict2 = [gca cacher_statistic__hides:username downloadInfoItem:iid];
 
         if ([dict1 count] == 0 && [dict2 count] == 0)
-            return REMOTEAPI_APIFAILED;
+            return [self lastErrorCode];
 
         [self getNumber:ret from:dict1 outKey:@"waypoints_found" inKey:@"waypoints_found"];
         [self getNumber:ret from:dict2 outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
@@ -312,20 +448,8 @@
 
     if (account.protocol == PROTOCOL_LIVEAPI) {
         GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile downloadInfoItem:iid];
-        if (json == nil) {
-            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - json = nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [json valueForKeyPath:@"Status.StatusCode"];
-        if (num == nil) {
-            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - num = nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 0) {
-                NSLog(@"Return message for CreateFieldNoteAndPublish: %@", [json valueForKeyPath:@"Status.ExceptionDetails"]);
-            [self alertError:@"[LiveAPI] CreateLogNote/CreateFieldNoteAndPublish - num = nil" code:REMOTEAPI_CREATELOG_LOGFAILED];
-            return REMOTEAPI_CREATELOG_LOGFAILED;
-        }
+        LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
+
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_NONE)
                 return;
@@ -363,54 +487,41 @@
     }
 
     if (account.protocol == PROTOCOL_OKAPI) {
-        return [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite downloadInfoItem:iid];
+        GCDictionaryOKAPI *json = [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite downloadInfoItem:iid];
+        OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
+
+        OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
+        if ([success boolValue] == NO) {
+            NSString *s = @"[OKAPI] CreateLogNote: 'success' is not TRUE";
+            [self setDataError:s error:REMOTEAPI_CREATELOG_LOGFAILED];
+            NSLog(@"%@", s);
+            return REMOTEAPI_CREATELOG_LOGFAILED;
+        }
+        return REMOTEAPI_OK;
     }
 
     if (account.protocol == PROTOCOL_GCA) {
         GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating downloadInfoItem:iid];
+        GCA_CHECK_ACTIONSTATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
-        if (json == nil) {
-            [self alertError:@"[GCA] my_log_new/log: json == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [json objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] my_log_new/log: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] my_log_new/log: num != 1" code:REMOTEAPI_CREATELOG_LOGFAILED];
-            return REMOTEAPI_CREATELOG_LOGFAILED;
-        }
-
-        NSInteger log_id = [[json objectForKey:@"log"] integerValue];
+        GCA_GET_VALUE(json, NSNumber, plog_id, @"log", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+        NSInteger log_id = [plog_id integerValue];
         if (log_id == 0) {
-            [self alertError:@"[GCA] my_log_new/log: log_id == 0" code:REMOTEAPI_APIFAILED];
+            NSString *s = @"[GCA] CreateLogNote/log: 'log_id' returned was zero";
+            [self setDataError:s error:REMOTEAPI_CREATELOG_LOGFAILED];
+            NSLog(@"%@", s);
             return REMOTEAPI_CREATELOG_LOGFAILED;
         }
 
         if (image != nil) {
             json = [gca my_gallery_cache_add:waypoint.wpt_name log_id:log_id data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:iid];
-            if (json == nil) {
-                [self alertError:@"[GCA] my_log_new/image: json == nil" code:REMOTEAPI_APIFAILED];
-                return REMOTEAPI_APIFAILED;
-            }
-            NSNumber *num = [json objectForKey:@"actionstatus"];
-            if (num == nil) {
-                [self alertError:@"[GCA] my_log_new/image: num == nil" code:REMOTEAPI_APIFAILED];
-                return REMOTEAPI_APIFAILED;
-            }
-            if ([num integerValue] != 1) {
-                NSLog(@"Return message for my_gallery_cache_add: %@", [json objectForKey:@"msg"]);
-                [self alertError:@"[GCA] my_log_new/image: num != 1" code:REMOTEAPI_CREATELOG_IMAGEFAILED];
-                return REMOTEAPI_CREATELOG_IMAGEFAILED;
-            }
+            GCA_CHECK_ACTIONSTATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
         }
 
         return REMOTEAPI_OK;
     }
 
-    [self alertError:@"[GCA] my_log_new: Unknown protocol" code:REMOTEAPI_NOTPROCESSED];
+    [self setDataError:@"[RemoteAPI] CreateLogNote: Unknown protocol" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -422,9 +533,9 @@
     if (account.protocol == PROTOCOL_LIVEAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
-        NSDictionary *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name downloadInfoItem:iid];
-        if (json == nil)
-            return REMOTEAPI_APIFAILED;
+
+        GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name downloadInfoItem:iid];
+        LIVEAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
         [imp parseDictionary:json];
@@ -435,11 +546,13 @@
     if (account.protocol == PROTOCOL_OKAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
-        NSString *gpx = [okapi services_caches_formatters_gpx:waypoint.wpt_name downloadInfoItem:iid];
 
-        ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
+        GCDictionaryOKAPI *json = [okapi services_caches_geocache:waypoint.wpt_name downloadInfoItem:iid];
+        OKAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+
+        ImportOKAPIJSON *imp = [[ImportOKAPIJSON alloc] init:g account:a];
         [imp parseBefore];
-        [imp parseString:gpx];
+        [imp parseDictionary:json];
         [imp parseAfter];
 
         [waypointManager needsRefreshUpdate:waypoint];
@@ -448,21 +561,9 @@
     if (account.protocol == PROTOCOL_GCA) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
+
         GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name downloadInfoItem:iid];
-        if (json == nil) {
-            [self alertError:@"[GCA] loadWaypoint/cache__json: json == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [json objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] loadWaypoint/cache__json: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] loadWaypoint/cache__json: num != 1" code:REMOTEAPI_LOADWAYPOINT_LOADFAILED];
-            NSLog(@"Return message for cache__json: %@", [json objectForKey:@"msg"]);
-            return REMOTEAPI_LOADWAYPOINT_LOADFAILED;
-        }
+        GCA_CHECK_ACTIONSTATUS(json, @"loadWaypoint/cache__json", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
         ImportGCAJSON *imp = [[ImportGCAJSON alloc] init:g account:a];
         [imp parseBefore];
@@ -471,39 +572,18 @@
 
         [iid setChunksCount:2];
         json = [gca logs_cache:waypoint.wpt_name downloadInfoItem:iid];
-        if (json == nil) {
-            [self alertError:@"[GCA] loadWaypoint/logs_cache: json == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        num = [json objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] loadWaypoint/logs_cache: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] loadWaypoint/logs_cache: num != 1" code:REMOTEAPI_LOADWAYPOINT_LOADFAILED];
-            NSLog(@"Return message for logs_cache: %@", [json objectForKey:@"msg"]);
-            return REMOTEAPI_LOADWAYPOINT_LOADFAILED;
-        }
+        GCA_CHECK_ACTIONSTATUS(json, @"loadWaypoint/logs_cache", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+
         imp = [[ImportGCAJSON alloc] init:g account:a];
         [imp parseBefore];
         [imp parseDictionary:json];
         [imp parseAfter];
 
-        /*
-        NSString *gpx = [gca cache__gpx:waypoint.wpt_name];
-
-        ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
-        [imp parseBefore];
-        [imp parseString:[gpx description]];
-        [imp parseAfter];
-         */
-
         [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
 
-    [self alertError:@"[GCA] logs_cache: Unknown protocol" code:REMOTEAPI_NOTPROCESSED];
+    [self setDataError:@"[RemoteAPI] loadWaypoint: Unknown protocol" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -515,7 +595,7 @@
 
     if (account.protocol == PROTOCOL_GCA) {
         if ([account canDoRemoteStuff] == NO) {
-            [self alertError:@"[GCA] loadWaypoints: remote API is disabled" code:REMOTEAPI_APIDISABLED];
+            [self setAPIError:@"[GCA] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
         }
 
@@ -523,19 +603,7 @@
         [iid setChunksCount:1];
 
         GCDictionaryGCA *wps = [gca caches_gca:center downloadInfoItem:iid];
-        if (wps == nil) {
-            [self alertError:@"[GCA] caches_gca: wps == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [wps objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] caches_gca: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] caches_gca: num != 1" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_LOADWAYPOINTS_LOADFAILED;
-        }
+        GCA_CHECK_ACTIONSTATUS(wps, @"caches_gca", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport];
         [iii showLogs:NO];
@@ -581,21 +649,25 @@
         [iid setChunksCount:1];
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
         NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center downloadInfoItem:iid];
-        if (json == nil)
-            return REMOTEAPI_APIFAILED;
+        LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
-        NSInteger total = [[json objectForKey:@"TotalMatchingCaches"] integerValue];
+        LIVEAPI_GET_VALUE(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+        NSInteger total = [ptotal integerValue];
         NSInteger done = 0;
         [iid setChunksTotal:(total / 20) + 1];
         if (total != 0) {
             GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+            LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
             InfoItemImport *iii = [infoViewer addImport];
             [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
                 [iid setChunksCount:(done / 20) + 1];
                 done += 20;
+
                 json = [liveAPI GetMoreGeocaches:done downloadInfoItem:iid];
+                LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
                 if ([json objectForKey:@"Geocaches"] != nil) {
                     GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
                     InfoItemImport *iii = [infoViewer addImport];
@@ -623,8 +695,8 @@
         NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
         do {
             NSDictionary *json = [okapi services_caches_search_nearest:center offset:offset downloadInfoItem:iid];
-            if (json == nil)
-                return REMOTEAPI_APIFAILED;
+            OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
             more = [[json objectForKey:@"more"] boolValue];
             NSArray *rets = nil;
             NSObject *vs = [json objectForKey:@"results"];
@@ -641,8 +713,7 @@
         if ([wpcodes count] == 0)
             return REMOTEAPI_OK;
         NSDictionary *json = [okapi services_caches_geocaches:wpcodes downloadInfoItem:iid];
-        if (json == nil)
-            return REMOTEAPI_APIFAILED;
+        OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
         [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -667,8 +738,7 @@
 {
     if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:iid];
-        if (json == nil)
-            return REMOTEAPI_APIFAILED;
+        LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
         return REMOTEAPI_OK;
     }
 
@@ -688,8 +758,7 @@
     *qs = nil;
     if (account.protocol == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI GetPocketQueryList:iid];
-        if (json == nil)
-            return REMOTEAPI_APIFAILED;
+        LIVEAPI_CHECK_STATUS(json, @"listQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
 
@@ -712,22 +781,11 @@
 
     if (account.protocol == PROTOCOL_GCA) {
         NSDictionary *json = [gca my_query_list__json:iid];
-        if (json == nil) {
-            [self alertError:@"[GCA] ListQueries: json == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [json objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] ListQueries: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] ListQueries: num != 1" code:REMOTEAPI_LISTQUERIES_LOADFAILED];
-            return REMOTEAPI_LISTQUERIES_LOADFAILED;
-        }
+        GCA_CHECK_ACTIONSTATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
-        NSArray *pqs = [json objectForKey:@"queries"];
+        GCA_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+        
         [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
 
@@ -763,20 +821,17 @@
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
             NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoItem:iid];
-            if (json == nil)
-                break;
+            LIVEAPI_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
             NSInteger found = 0;
-            if (json != nil) {
-                if (result == nil)
-                    result = [NSMutableDictionary dictionaryWithDictionary:json];
+            if (result == nil)
+                result = [NSMutableDictionary dictionaryWithDictionary:json];
 
-                InfoItemImport *iii = [infoViewer addImport];
-                [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
+            InfoItemImport *iii = [infoViewer addImport];
+            [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
 
-                [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
-                found += [[json objectForKey:@"Geocaches"] count];
-            }
+            [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+            found += [[json objectForKey:@"Geocaches"] count];
 
             offset += found;
             tried += increase;
@@ -795,21 +850,9 @@
     if (account.protocol == PROTOCOL_GCA) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
-        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:iid];
 
-        if (json == nil) {
-            [self alertError:@"[GCA] retrieveQuery: json == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        NSNumber *num = [json objectForKey:@"actionstatus"];
-        if (num == nil) {
-            [self alertError:@"[GCA] retrieveQuery: num == nil" code:REMOTEAPI_APIFAILED];
-            return REMOTEAPI_APIFAILED;
-        }
-        if ([num integerValue] != 1) {
-            [self alertError:@"[GCA] retrieveQuery: num != 1" code:REMOTEAPI_LISTQUERIES_LOADFAILED];
-            return REMOTEAPI_LISTQUERIES_LOADFAILED;
-        }
+        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:iid];
+        GCA_CHECK_ACTIONSTATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport];
         [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
@@ -841,36 +884,48 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (void)trackablesMine:(InfoItemDowload *)iid
+- (RemoteAPIResult)trackablesMine:(InfoItemDowload *)iid
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
-        return;
+        return REMOTEAPI_NOTPROCESSED;
 
     [iid setChunksTotal:1];
     [iid setChunksCount:1];
+
     NSDictionary *json = [liveAPI GetOwnedTrackables:iid];
+    LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
+
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
+
+    return REMOTEAPI_OK;
 }
 
-- (void)trackablesInventory:(InfoItemDowload *)iid
+- (RemoteAPIResult)trackablesInventory:(InfoItemDowload *)iid
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
-        return;
+        return REMOTEAPI_NOTPROCESSED;
 
     [iid setChunksTotal:1];
     [iid setChunksCount:1];
+
     NSDictionary *json = [liveAPI GetUsersTrackables:iid];
+    LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
+
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
+
+    return REMOTEAPI_OK;
 }
 
-- (dbTrackable *)trackableFind:(NSString *)code downloadInfoItem:(InfoItemDowload *)iid
+- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t downloadInfoItem:(InfoItemDowload *)iid
 {
     if (account.protocol != PROTOCOL_LIVEAPI)
-        return nil;
+        return REMOTEAPI_NOTPROCESSED;
 
     NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
+    LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
+    
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 
@@ -880,14 +935,14 @@
     if ([refs count] != 0)
         ref = [refs objectAtIndex:0];
     if (ref == nil)
-        return nil;
+        return REMOTEAPI_OK;
 
-    dbTrackable *tb = [dbTrackable dbGetByRef:ref];
-    if ([tb.code isEqualToString:@""] == YES ) {
-        tb.code = code;
-        [tb dbUpdate];
+    *t = [dbTrackable dbGetByRef:ref];
+    if ([(*t).code isEqualToString:@""] == YES ) {
+        (*t).code = code;
+        [*t dbUpdate];
     }
-    return tb;
+    return REMOTEAPI_OK;
 }
 
 @end
