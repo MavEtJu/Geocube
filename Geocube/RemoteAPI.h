@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
     REMOTEAPI_APIREFUSED,               // Couldn't connect to the API
     REMOTEAPI_APIFAILED,                // Invalid values returned
     REMOTEAPI_APIDISABLED,              // No authentication details
-    
+
     REMOTEAPI_JSONINVALID,              // JSON couldn't be parsed cleanly
 
     REMOTEAPI_NOTPROCESSED,             // Not supported in this protocol

@@ -785,7 +785,7 @@
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
         GCA_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
-        
+
         [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
 
@@ -925,7 +925,7 @@
 
     NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
-    
+
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
     [imp parseDictionary:json];
 
