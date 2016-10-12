@@ -95,7 +95,9 @@
 {
     dict = [dict valueForKey:@"Status"];
     if (dict == nil) {
-        [remoteAPI.account disableRemoteAccess:@"No values returned."];
+        NSString *reason = @"No Status value given.";
+        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
     return [self checkStatusCode:dict];
@@ -105,17 +107,58 @@
 {
     NSNumber *n = [dict valueForKey:@"StatusCode"];
     if (n == nil) {
-        [remoteAPI.account disableRemoteAccess:@"No status code given."];
+        NSString *reason = @"No StatusCode value given.";
+        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
     if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
-        [remoteAPI.account disableRemoteAccess:[NSString stringWithFormat:@"StatusCode %@: %@", [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]]];
-        //remoteAPI.account.oauth_token = @"";
-        //[remoteAPI.account dbUpdateOAuthToken];
+        NSString *reason = [NSString stringWithFormat:@"StatusCode %@: %@", [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]];
+        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
 
     return YES;
+}
+
+- (GCDictionaryLiveAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+{
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        return nil;
+    }
+
+    if (response.statusCode != 200) {
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[NSString stringWithFormat:@"HTTP response statusCode: %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([self checkStatus:json] == NO) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_JSONINVALID];
+        return nil;
+    }
+
+    return json;
 }
 
 /**************************************************************************/
@@ -159,31 +202,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-
-    NSData *data = [retDict objectForKey:@"data"];
-    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
-    error = [retDict objectForKey:@"error"];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -193,30 +212,7 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
-
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-    NSData *data = [retDict objectForKey:@"data"];
-    NSHTTPURLResponse *response = [retDict objectForKey:@"reponse"];
-    NSError *error = [retDict objectForKey:@"error"];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -284,28 +280,8 @@
     //NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, (long)gslogtype, (long)date, [MyTools JSONEscape:note], (favourite == YES) ? @"true" : @"false"];
     //urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    GCDictionaryLiveAPI *retJson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return retJson;
-    }
-
-    return retJson;
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
+    return json;
 }
 
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
@@ -344,26 +320,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -411,26 +368,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -464,26 +402,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -493,26 +412,7 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -523,26 +423,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@", [MyTools urlEncode:remoteAPI.oabb.token], guid]];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -553,26 +434,7 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutSimple];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -592,26 +454,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatusCode:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -633,26 +476,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -674,26 +498,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -703,26 +508,7 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetTrackablesByTrackingNumber" parameters:[NSString stringWithFormat:@"accessToken=%@&trackingNumber=%@&trackableLogCount=0", [MyTools urlEncode:remoteAPI.oabb.token], code]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
@@ -760,26 +546,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    NSHTTPURLResponse *response = nil;
-    error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    if (error != nil || response.statusCode != 200) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
-        NSLog(@"error: %@", [error description]);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        return nil;
-    }
-
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
 }
 
