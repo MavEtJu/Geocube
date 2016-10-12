@@ -95,6 +95,50 @@
     return req;
 }
 
+- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+{
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSLog(@"retbody: %@", retbody);
+
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        return nil;
+    }
+    if (response.statusCode != 200) {
+        NSLog(@"statusCode: %ld", (long)response.statusCode);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    GCDictionaryOKAPI *json = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        return nil;
+    }
+
+    return json;
+}
+
+// -----------------------------------------------------
+
 - (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_users_byUsername");
@@ -103,79 +147,34 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
 
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-
-    NSData *data = [retDict objectForKey:@"data"];
-    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
-    NSError *error = [retDict objectForKey:@"error"];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
-
-    if (error != nil || response.statusCode != 200) {
-//        if (response.statusCode == 400) {
-//            [delegate alertError:@"OKAPI - Unable to submit request: No such user" error:error];
-//        } else {
-//            [delegate alertError:@"OKAPI - The server was unable to deal with the request" error:error];
-//        }
-        return nil;
-    }
-
-    GCDictionaryOKAPI *json = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
     return json;
 }
 
-- (NSInteger)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_logs_submit");
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/logs/submit" parameters:[NSString stringWithFormat:@"cache_code=%@&logtype=%@&comment_format=%@&comment=%@&when=%@&recommend=%@", [MyTools urlEncode:waypointName], [MyTools urlEncode:logtype], @"plaintext", [MyTools urlEncode:note], [MyTools urlEncode:dateLogged], favourite == YES ? @"true" : @"false"]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
-    if (error != nil || response.statusCode != 200) {
-//        [delegate alertError:@"OKAPI - Unable to submit request" error:error];
-        return 0;
-    }
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    BOOL success = [[json valueForKey:@"success"] boolValue];
-    if (success == NO) {
-//        [delegate alertError:[NSString stringWithFormat:@"OKAPI - %@", [json valueForKey:@"message"]] error:nil];
-        return 0;
-    }
-
-   return -1;
+    return json;
 }
 
-- (NSString *)services_caches_formatters_gpx:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
 {
-    NSLog(@"services_caches_formatters_gpx: %@", wpname);
+    NSLog(@"services_caches_geocache: %@", wpname);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/formatters/gpx" parameters:[NSString stringWithFormat:@"cache_codes=%@&ns_ground=true&latest_logs=true", [MyTools urlEncode:wpname]]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
-    return retbody;
+    return json;
 }
 
-- (NSDictionary *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
@@ -183,29 +182,12 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
 
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
-    NSData *data = [retDict objectForKey:@"data"];
-    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
-    NSError *error = [retDict objectForKey:@"error"];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
-
-    if (error != nil || response.statusCode != 200)
-        return nil;
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (error != nil)
-        return nil;
     return json;
 }
 
-- (NSDictionary *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 
@@ -213,17 +195,8 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/geocaches" parameters:[NSString stringWithFormat:@"cache_codes=%@&fields=%@", [self string_array:wpcodes], [self string_array:fields]]];
 
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error downloadInfoItem:iid];
-    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"error: %@", [error description]);
-    NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    NSLog(@"retbody: %@", retbody);
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
-    NSDictionary *json = [[NSDictionary alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
-    if (error != nil)
-        return nil;
     return json;
 }
 
