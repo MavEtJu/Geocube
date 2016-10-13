@@ -69,7 +69,7 @@
         [self hideInfoView];
 }
 
-- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
+- (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     __block BOOL failure = NO;
 
@@ -80,16 +80,14 @@
     InfoItemDowload *iid = [infoView addDownload];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid infoViewer:infoView callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid infoViewer:infoView callback:self];
 
     [infoView removeItem:iid];
     if ([infoView hasItems] == NO)
         [self hideInfoView];
 
-    if (ret == nil) {
-        failure = YES;
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
-    }
+    if (rv != REMOTEAPI_OK)
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.remoteAPI.lastError];
 
     return failure;
 }

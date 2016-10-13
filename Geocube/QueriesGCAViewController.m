@@ -97,7 +97,7 @@ enum {
         [self hideInfoView];
 }
 
-- (bool)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
+- (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     __block BOOL failure = NO;
 
@@ -142,13 +142,6 @@ enum {
             [self hideInfoView];
         failure = YES;
     }
-
-//    if (retjson == nil) {
-//        [self parseRetrievedQuery:retgpx group:group];
-//    } else {
-//        [self parseRetrievedQuery:retjson group:group];
-//        [self parseRetrievedQueryGPX:retgpx group:group];
-//    }
 
     return failure;
 }
