@@ -117,7 +117,7 @@
         [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
-    if (response.statusCode != 200) {
+    if (response.statusCode != 400 && response.statusCode != 200) {
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
