@@ -435,6 +435,9 @@
 		E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8D0311B67212000CC741A /* FilterOthersTableViewCell.m */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
+		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
+		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
+		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
@@ -1222,6 +1225,9 @@
 		E8EC073E1D39D898009B8EB1 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
 		E8EC07401D39E887009B8EB1 /* ImportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportManager.h; sourceTree = "<group>"; };
 		E8EC07411D39E887009B8EB1 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
+		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
+		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1926,6 +1932,9 @@
 				E82E669F1DA07CBE00CFBDED /* cache - podcast - 30x30.png */,
 				E82E66A01DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png */,
 				E82E66A11DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png */,
+				E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */,
+				E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */,
+				E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */,
 				E82E66A21DA07CBE00CFBDED /* cache - traditional - 30x30.png */,
 				E82E66A31DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png */,
 				E82E66A41DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png */,
@@ -3065,8 +3074,10 @@
 				E82E67661DA07D0200CFBDED /* attributes - 60.png in Resources */,
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
+				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
+				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
 				E82E66BF1DA07CBE00CFBDED /* cache - history - 30x30@2x.png in Resources */,
 				E82E66611DA07C4900CFBDED /* container flag - archived - 24x24.png in Resources */,
 				E82E66391DA07A8700CFBDED /* icons - sad - 30x30@3x.png in Resources */,
@@ -3207,6 +3218,7 @@
 				E82E66D91DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png in Resources */,
 				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
 				E82E66261DA07A5500CFBDED /* menu icon - show both.png in Resources */,
+				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,

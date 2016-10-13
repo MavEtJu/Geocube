@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageTypes_BurkeWills,          // 123
     ImageTypes_Night,               // 124
     ImageTypes_NFI,                 // 125
+    ImageTypes_Reverse,             // 126
 
     ImageWaypoints_FinalLocation = 200, // 200
     ImageWaypoints_Flag,                // 201
