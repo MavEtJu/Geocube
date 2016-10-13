@@ -857,7 +857,7 @@ enum {
         [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
         return;
     }
-    [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.lastError];
+    [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
 }
 
 - (void)menuViewRaw
