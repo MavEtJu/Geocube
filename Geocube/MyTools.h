@@ -67,6 +67,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 
 + (NSString *)urlEncode:(NSString *)in;
 + (NSString *)urlDecode:(NSString *)in;
++ (NSString *)urlParameterJoin:(NSDictionary *)in;
 + (NSString *)tickEscape:(NSString *)in;
 + (NSString *)JSONEscape:(NSString *)in;
 + (NSString *)HTMLEscape:(NSString *)in;

@@ -145,7 +145,12 @@
 
     NSArray *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url", @"uuid"];
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:[NSString stringWithFormat:@"username=%@&fields=%@", remoteAPI.account.accountname_string, [self string_array:fields]]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:remoteAPI.account.accountname_string forKey:@"username"];
+    [_dict setObject:[self string_array:fields] forKey:@"fields"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:params];
 
     GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
@@ -156,7 +161,16 @@
 {
     NSLog(@"services_logs_submit");
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/logs/submit" parameters:[NSString stringWithFormat:@"cache_code=%@&logtype=%@&comment_format=%@&comment=%@&when=%@&recommend=%@", [MyTools urlEncode:waypointName], [MyTools urlEncode:logtype], @"plaintext", [MyTools urlEncode:note], [MyTools urlEncode:dateLogged], favourite == YES ? @"true" : @"false"]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:waypointName] forKey:@"cache_code"];
+    [_dict setObject:[MyTools urlEncode:dateLogged] forKey:@"logtype"];
+    [_dict setObject:@"plaintext" forKey:@"comment_format"];
+    [_dict setObject:[MyTools urlEncode:note] forKey:@"comment"];
+    [_dict setObject:[MyTools urlEncode:dateLogged] forKey:@"when"];
+    [_dict setObject:(favourite == YES ? @"true" : @"false") forKey:@"recommend"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/logs/submit" parameters:params];
 
     GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
@@ -174,8 +188,16 @@
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
     float radius = configManager.mapSearchMaximumDistanceOKAPI / 1000;
+    NSString *centerString = [NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude];
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:[NSString stringWithFormat:@"center=%@&radius=%f&offset=%ld&limit=20", [MyTools urlEncode:[NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude]], radius, (long)offset]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:centerString forKey:@"center"];
+    [_dict setObject:[NSNumber numberWithFloat:radius] forKey:@"radius"];
+    [_dict setObject:[NSNumber numberWithInteger:offset] forKey:@"offset"];
+    [_dict setObject:@"20" forKey:@"limit"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:params];
 
     GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 
@@ -188,7 +210,12 @@
 
     NSArray *fields = @[@"code", @"name", @"names", @"location", @"type", @"status", @"url", @"owner", @"gc_code", @"is_found", @"is_not_found", @"founds", @"notfounds", @"willattends", @"size", @"size2", @"difficulty", @"terrain", @"trip_time", @"trip_distance", @"rating", @"rating_votes", @"recommendations", @"req_passwd", @"short_description", @"short_descriptions", @"description", @"descriptions", @"hint2", @"hints2", @"images", @"preview_image", @"attr_acodes", @"attrnames", @"attribution_note", @"latest_logs", @"my_notes", @"trackables_count", @"trackables", @"alt_wpts", @"country", @"state", @"protection_areas", @"last_found", @"last_modified", @"date_created", @"date_hidden", @"internal_id"];
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/geocaches" parameters:[NSString stringWithFormat:@"cache_codes=%@&fields=%@", [self string_array:wpcodes], [self string_array:fields]]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[self string_array:wpcodes] forKey:@"cache_codes"];
+    [_dict setObject:[self string_array:fields] forKey:@"fields"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/geocaches" parameters:params];
 
     GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
 

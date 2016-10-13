@@ -210,7 +210,11 @@
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:params];
 
     GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
@@ -410,7 +414,11 @@
 {
     NSLog(@"GetPocketQueryList");
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:[NSString stringWithFormat:@"accessToken=%@", [MyTools urlEncode:remoteAPI.oabb.token]]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:params];
 
     GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
@@ -420,7 +428,12 @@
 {
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@", [MyTools urlEncode:remoteAPI.oabb.token], guid]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:guid forKey:@"pocketQueryGuid"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:params];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
     GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
@@ -431,7 +444,14 @@
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:[NSString stringWithFormat:@"accessToken=%@&pocketQueryGuid=%@&startItem=%ld&maxItems=%ld", [MyTools urlEncode:remoteAPI.oabb.token], guid, (long)startItem, (long)numItems]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:guid forKey:@"pocketQueryGuid"];
+    [_dict setObject:[NSNumber numberWithInteger:startItem] forKey:@"startItem"];
+    [_dict setObject:[NSNumber numberWithInteger:numItems] forKey:@"maxItems"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:params];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutSimple];
 
     GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
@@ -506,7 +526,13 @@
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetTrackablesByTrackingNumber" parameters:[NSString stringWithFormat:@"accessToken=%@&trackingNumber=%@&trackableLogCount=0", [MyTools urlEncode:remoteAPI.oabb.token], code]];
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:code forKey:@"trackingNumber"];
+    [_dict setObject:@"0" forKey:@"trackableLogCount"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetTrackablesByTrackingNumber" parameters:params];
 
     GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
     return json;
