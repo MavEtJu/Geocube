@@ -26,13 +26,12 @@
 @implementation dbAccount
 
 @synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, geocube_id, revision, enabled, distance_minimum;
-@synthesize remoteAPI, canDoRemoteStuff, lastError;
+@synthesize remoteAPI, canDoRemoteStuff;
 
 - (void)finish
 {
     remoteAPI = [[RemoteAPI alloc] init:self];
     canDoRemoteStuff = 0;
-    lastError = nil;
     [super finish];
 
     /* Even if it is nil.... */
@@ -75,13 +74,11 @@
 - (void)disableRemoteAccess:(NSString *)reason
 {
     canDoRemoteStuff = NO;
-    lastError = reason;
 }
 
 - (void)enableRemoteAccess
 {
     canDoRemoteStuff = YES;
-    lastError = nil;
 }
 
 - (void)dbClearAuthentication

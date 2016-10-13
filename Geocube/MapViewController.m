@@ -943,7 +943,7 @@ enum {
     [infoView removeItem:iid];
 
     if (rv != REMOTEAPI_OK) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.lastError];
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.remoteAPI.lastError];
         return;
     }
 

@@ -154,7 +154,7 @@ NEEDS_OVERLOADING(clearFlags)
 
         NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:iid];
         if (rv != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.lastError];
+            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
             failure = YES;
             *stop = YES;
         }

@@ -84,21 +84,19 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
             account = a;
             if (a.canDoRemoteStuff == YES) {
                 NSArray *queries = nil;
-                [a.remoteAPI listQueries:&queries downloadInfoItem:nil];
-                if (qs == nil)
+                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries downloadInfoItem:nil];
+                if (rv != REMOTEAPI_OK)
                     failure = YES;
                 qs = queries;
             } else {
                 failure = YES;
-                if (account.lastError == nil)
-                    account.lastError = @"Account is currently not active";
             }
             *stop = YES;
         }
     }];
 
     if (failure == YES)
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.lastError];
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.remoteAPI.lastError];
 
     [self reloadDataMainQueue];
 }
@@ -236,7 +234,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
     BOOL failure = [self runRetrieveQuery:pq group:group];
 
     if (failure == YES)
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.remoteAPI.lastError];
 
     [self reloadDataMainQueue];
 }
