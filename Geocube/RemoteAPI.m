@@ -292,7 +292,7 @@
                 return REMOTEAPI_APIFAILED; \
             } \
             if ([num integerValue] != 1) { \
-                NSString *s = [NSString stringWithFormat:@"[GCA] %@: 'actionstatus' was not 1 (%@)", __logsection__, num]; \
+                NSString *s = [NSString stringWithFormat:@"[GCA] %@: 'actionstatus' was not 1 (%@)", __logsection__, [__json__ objectForKey:@"msg"]]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 return __failure__; \
@@ -510,7 +510,7 @@
 
         OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
         if ([success boolValue] == NO) {
-            NSString *s = @"[OKAPI] CreateLogNote: 'success' is not TRUE";
+            NSString *s = [NSString stringWithFormat:@"[OKAPI] CreateLogNote: 'success' is not TRUE: %@", [json objectForKey:@"message"]];
             [self setDataError:s error:REMOTEAPI_CREATELOG_LOGFAILED];
             NSLog(@"%@", s);
             return REMOTEAPI_CREATELOG_LOGFAILED;
@@ -569,7 +569,8 @@
         OKAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-        [d setObject:@[[json objectForKey:waypoint.wpt_name]] forKey:@"waypoints"];
+        NSArray *as = @[[json objectForKey:waypoint.wpt_name]];
+        [d setObject:as forKey:@"waypoints"];
         GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
         ImportOKAPIJSON *imp = [[ImportOKAPIJSON alloc] init:g account:a];
