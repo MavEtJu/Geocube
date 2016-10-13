@@ -166,12 +166,7 @@
 - (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"services_caches_geocache: %@", wpname);
-
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/formatters/gpx" parameters:[NSString stringWithFormat:@"cache_codes=%@&ns_ground=true&latest_logs=true", [MyTools urlEncode:wpname]]];
-
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest downloadInfoItem:iid];
-
-    return json;
+    return [self services_caches_geocaches:@[wpname] downloadInfoItem:iid];
 }
 
 - (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
