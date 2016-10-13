@@ -112,18 +112,35 @@ enum {
     [iid setDescription:[pq objectForKey:@"Name"]];
 
     [infoView setHeaderSuffix:@"1/2"];
-    [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid infoViewer:infoView callback:self];
+
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid infoViewer:infoView callback:self];
+    if (rv != REMOTEAPI_OK) {
+        [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the JSON data from the query" error:account.remoteAPI.lastError];
+        [infoView removeItem:iid];
+        if ([infoView hasItems] == NO)
+            [self hideInfoView];
+        return YES;
+    }
 
     [iid resetBytesChunks];
     [infoView setHeaderSuffix:@"2/2"];
-    [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:iid infoViewer:infoView callback:self];
+
+    rv = [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:iid infoViewer:infoView callback:self];
+    if (rv != REMOTEAPI_OK) {
+        [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the GPX data from the query" error:account.remoteAPI.lastError];
+        [infoView removeItem:iid];
+        if ([infoView hasItems] == NO)
+            [self hideInfoView];
+        return YES;
+    }
 
     [infoView removeItem:iid];
 
     if (retjson == nil && retgpx == nil) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.lastError];
+        [MyTools messageBox:self header:account.site text:@"Unable to retrieve any data from the query" error:account.remoteAPI.lastError];
+        if ([infoView hasItems] == NO)
+            [self hideInfoView];
         failure = YES;
-        return failure;
     }
 
 //    if (retjson == nil) {
