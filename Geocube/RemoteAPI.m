@@ -345,7 +345,14 @@
 #define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
-            }
+            NSDictionary *error = [__json__ objectForKey:@"error"]; \
+            if (error != nil) { \
+                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: Error response: (%@)", __logsection__, [error description]]; \
+                NSLog(@"%@", s); \
+                [self setAPIError:s error:REMOTEAPI_APIFAILED]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+        }
 
 #define OKAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
