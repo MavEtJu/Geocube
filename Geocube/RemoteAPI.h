@@ -81,6 +81,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (NSString *)lastNetworkError;
 - (NSString *)lastAPIError;
 - (NSString *)lastDataError;
+- (NSString *)lastError;
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoItemDowload *)iid;
 

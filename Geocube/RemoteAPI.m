@@ -267,6 +267,17 @@
     return errorStringData;
 }
 
+- (NSString *)lastError
+{
+    if (errorStringNetwork != nil)
+        return errorStringNetwork;
+    if (errorStringAPI != nil)
+        return errorStringAPI;
+    if (errorStringData != nil)
+        return errorStringData;
+    return @"No error";
+}
+
 // ----------------------------------------
 
 #define GCA_CHECK_ACTIONSTATUS(__json__, __logsection__, __failure__) { \
@@ -550,9 +561,13 @@
         GCDictionaryOKAPI *json = [okapi services_caches_geocache:waypoint.wpt_name downloadInfoItem:iid];
         OKAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        [d setObject:@[[json objectForKey:waypoint.wpt_name]] forKey:@"waypoints"];
+        GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+
         ImportOKAPIJSON *imp = [[ImportOKAPIJSON alloc] init:g account:a];
         [imp parseBefore];
-        [imp parseDictionary:json];
+        [imp parseDictionary:d2];
         [imp parseAfter];
 
         [waypointManager needsRefreshUpdate:waypoint];
