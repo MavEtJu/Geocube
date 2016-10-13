@@ -96,6 +96,11 @@
     return [d count];
 }
 
+- (NSString *)description
+{
+    return [d description];
+}
+
 @end
 
 /*****************************************/
