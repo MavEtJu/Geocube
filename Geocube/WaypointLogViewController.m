@@ -552,7 +552,7 @@ enum {
 
         return;
     } else {
-        [MyTools messageBox:self header:@"Log failed" text:@"This log has not been submitted yet." error:waypoint.account.lastError];
+        [MyTools messageBox:self header:@"Log failed" text:@"This log has not been submitted yet." error:waypoint.account.remoteAPI.lastError];
     }
 }
 
