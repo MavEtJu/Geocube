@@ -276,8 +276,16 @@ enum {
     NSDictionary *d = nil;
     NSInteger retValue = [a.remoteAPI UserStatistics:&d downloadInfoItem:iid];
 
-    if (retValue != REMOTEAPI_OK)
+    if (retValue != REMOTEAPI_OK) {
+        [infoView removeItem:iid];
+        if ([infoView hasItems] == NO)
+            [self hideInfoView];
+
+        NSString *header = [NSString stringWithFormat:@"Unable to load statistics for %@", a.site];
+        NSString *text = [NSString stringWithFormat:@"Returned error: %@", a.remoteAPI.lastError];
+        [MyTools messageBox:self header:header text:text];
         return;
+    }
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *aa, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a == aa) {
