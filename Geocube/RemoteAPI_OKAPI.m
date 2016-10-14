@@ -191,7 +191,7 @@
     NSString *centerString = [NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude];
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:centerString forKey:@"center"];
+    [_dict setObject:[MyTools urlEncode:centerString] forKey:@"center"];
     [_dict setObject:[NSNumber numberWithFloat:radius] forKey:@"radius"];
     [_dict setObject:[NSNumber numberWithInteger:offset] forKey:@"offset"];
     [_dict setObject:@"20" forKey:@"limit"];
