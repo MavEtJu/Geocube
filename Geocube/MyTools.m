@@ -336,7 +336,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
             [s appendString:@"&"];
         [s appendString:key];
         [s appendString:@"="];
-        [s appendString:value];
+        [s appendFormat:@"%@", value];
     }];
     return s;
 }
