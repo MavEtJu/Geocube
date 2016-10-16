@@ -330,13 +330,11 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 + (NSString *)urlParameterJoin:(NSDictionary *)in
 {
-    NSMutableString *s = [NSMutableString string];
-    [in enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+    [in enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
         if ([s length] != 0)
             [s appendString:@"&"];
-        [s appendString:key];
-        [s appendString:@"="];
-        [s appendFormat:@"%@", value];
+        [s appendFormat:@"%@=%@", key, value];
     }];
     return s;
 }
