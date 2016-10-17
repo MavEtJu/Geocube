@@ -499,6 +499,9 @@
     if (owner == YES)
         img = [self mergeOwner:img top:ImageMap_pinOwner];
 
+    if (inProgress == YES)
+        img = [self mergeOwner:img top:ImageMap_pinInProgress];
+
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageMap_pinMarkedFound];
     } else {
@@ -519,9 +522,6 @@
 
     if (markedDNF == YES)
         img = [self mergeDNF:img top:ImageMap_pinCrossDNF];
-
-    if (inProgress == YES)
-        img = [self mergeOwner:img top:ImageMap_pinInProgress];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
@@ -553,6 +553,9 @@
     if (owner == YES)
         img = [self mergeOwner:img top:ImageContainerFlag_owner];
 
+    if (inProgress == YES)
+        img = [self mergeArchived:img top:ImageContainerFlag_inProgress];
+
     if (markedFound == YES) {
         img = [self mergeFound:img top:ImageContainerFlag_markedFound];
     } else {
@@ -573,9 +576,6 @@
 
     if (markedDNF == YES)
         img = [self mergeDNF:img top:ImageContainerFlag_crossDNF];
-
-    if (inProgress == YES)
-        img = [self mergeArchived:img top:ImageContainerFlag_inProgress];
 
     if (disabled == YES)
         img = [self mergeDisabled:img top:ImageContainerFlag_outlineDisabled];
