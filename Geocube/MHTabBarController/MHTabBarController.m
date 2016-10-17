@@ -431,7 +431,6 @@ static const NSInteger TagOffset = 1000;
     UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
     UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(2, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
-    b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
     [self.view addSubview:b];
 
@@ -444,7 +443,6 @@ static const NSInteger TagOffset = 1000;
     imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
     b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(self.view.bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
-    b.backgroundColor = [UIColor redColor];
     [b setImage:imgMenu forState:UIControlStateNormal];
 
     [self.view addSubview:b];
