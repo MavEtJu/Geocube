@@ -329,11 +329,6 @@
     }
 }
 
-//+ (NSInteger)cellHeight
-//{
-//    return BORDER * 2 + DESCRIPTION_HEIGHT + 4 * GCCODE_HEIGHT;
-//}
-
 - (NSInteger)cellHeight
 {
     return BORDER * 2 + DESCRIPTION_HEIGHT + 4 * GCCODE_HEIGHT;
