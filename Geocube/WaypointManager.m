@@ -111,7 +111,8 @@
 - (void)needsRefreshUpdate:(dbWaypoint *)wp
 {
     NSUInteger idx = [currentWaypoints indexOfObject:wp];
-    [currentWaypoints replaceObjectAtIndex:idx withObject:wp];
+    if (idx != NSNotFound)
+        [currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
