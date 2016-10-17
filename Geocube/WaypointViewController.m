@@ -854,6 +854,7 @@ enum {
     if (retValue == REMOTEAPI_OK) {
         waypoint = [dbWaypoint dbGet:waypoint._id];
         [self reloadDataMainQueue];
+        [waypointManager needsRefreshUpdate:waypoint];
         [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
         return;
     }

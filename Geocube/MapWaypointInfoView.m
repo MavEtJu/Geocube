@@ -353,6 +353,7 @@
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
+    waypoint = wp;
     icon.image = [imageLibrary getType:waypoint];
 }
 
