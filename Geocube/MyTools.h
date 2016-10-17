@@ -86,6 +86,8 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error;
 
++ (UIColor *)randomColor;
+
 + (UIViewController *)topMostController;
 
 @end

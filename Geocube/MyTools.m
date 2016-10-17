@@ -534,6 +534,30 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     }];
 }
 
++ (UIColor *)randomColor
+{
+    switch (rand() % 17) {
+        case  0: return [UIColor redColor];
+        case  1: return [UIColor blackColor];
+        case  2: return [UIColor blueColor];
+        case  3: return [UIColor brownColor];
+        case  4: return [UIColor yellowColor];
+        case  5: return [UIColor cyanColor];
+        case  6: return [UIColor darkGrayColor];
+        case  7: return [UIColor darkTextColor];
+        case  8: return [UIColor grayColor];
+        case  9: return [UIColor greenColor];
+        case 10: return [UIColor lightGrayColor];
+        case 11: return [UIColor lightTextColor];
+        case 12: return [UIColor magentaColor];
+        case 13: return [UIColor orangeColor];
+        case 14: return [UIColor purpleColor];
+        case 15: return [UIColor redColor];
+        case 16: return [UIColor whiteColor];
+    }
+    return [UIColor clearColor];
+}
+
 ///////////////////////////////////////////
 
 //// Obtained from https://forums.developer.apple.com/thread/11519
