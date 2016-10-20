@@ -628,7 +628,8 @@
         GCDictionaryGCA *wps = [gca caches_gca:center downloadInfoItem:iid];
         GCA_CHECK_ACTIONSTATUS(wps, @"caches_gca", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
-        InfoItemImport *iii = [infoViewer addImport];
+        InfoItemImport *iii = [infoViewer addImport:NO];
+        [iii setDescription:@"Geocaching Australia JSON data (queued)"];
         [iii showLogs:NO];
         [iii showTrackables:NO];
         [callback remoteAPI_objectReadyToImport:iii object:wps group:group account:account];
@@ -656,6 +657,8 @@
         GCDictionaryGCA *gcajson = [[GCDictionaryGCA alloc] initWithDictionary:d];
 
         iii = [infoViewer addImport];
+        [iii expand:NO];
+        [iii setDescription:@"Geocaching Australia GPX data (queued)"];
         [iii showWaypoints:NO];
         [iii showTrackables:NO];
         [callback remoteAPI_objectReadyToImport:iii object:gcajson group:group account:account];
@@ -681,7 +684,8 @@
         if (total != 0) {
             GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
             LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-            InfoItemImport *iii = [infoViewer addImport];
+            InfoItemImport *iii = [infoViewer addImport:NO];
+            [iii setDescription:@"LiveAPI JSON data (queued)"];
             [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
             [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             do {
@@ -693,7 +697,8 @@
 
                 if ([json objectForKey:@"Geocaches"] != nil) {
                     GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
-                    InfoItemImport *iii = [infoViewer addImport];
+                    InfoItemImport *iii = [infoViewer addImport:NO];
+                    [iii setDescription:@"LiveAPI JSON (queued)"];
                     [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
                     [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
                 }
@@ -745,8 +750,9 @@
                 [wps addObject:wpjson];
         }];
 
-        InfoItemImport *iii = [infoViewer addImport];
+        InfoItemImport *iii = [infoViewer addImport:NO];
         [iii showTrackables:NO];
+        [iii setDescription:@"OKAPI JSON data (queued)"];
         GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
         [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
         *retObject = rv;
