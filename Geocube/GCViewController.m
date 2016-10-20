@@ -136,11 +136,15 @@
 
 - (void)calculateRects
 {
+    if (infoView != nil)
+        [infoView calculateRects];
     // Dummy for this class
 }
 
 - (void)viewWilltransitionToSize
 {
+    if (infoView != nil)
+        [infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 

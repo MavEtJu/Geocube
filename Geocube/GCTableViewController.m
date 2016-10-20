@@ -146,6 +146,8 @@
 
 - (void)viewWillTransitionToSize
 {
+    if (infoView != nil)
+        [infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 
