@@ -187,14 +187,12 @@
     // Items
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
-            NSLog(@">>>> %@, expanded: %ld, height: %ld", [ii class], (long)[ii isExpanded], height);
             if ([ii isExpanded] == NO)
                 ii.view.frame = CGRectMake(0, height, width, header.font.lineHeight);
             else
                 ii.view.frame = CGRectMake(0, height, width, ii.height);
             height += ii.view.frame.size.height;
         }];
-        NSLog(@">>>> %ld items, height: %ld", [items count], height);
     }
     self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
 }
