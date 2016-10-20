@@ -591,7 +591,7 @@
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;
-        [infoItemImport setLogsTotal:totalWaypointsCount];
+        [infoItemImport setLogsTotal:totalLogsCount];
     }];
 }
 
