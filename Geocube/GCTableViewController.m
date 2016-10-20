@@ -79,28 +79,24 @@
 
 - (void)hideInfoView
 {
-    infoView.hidden = YES;
-//    [UIView transitionWithView:infoView
-//                      duration:1.0
-//                       options:UIViewAnimationOptionTransitionCrossDissolve
-//                    animations:^{
-//                        infoView.hidden = YES;
-//                    }
-//                    completion:NULL];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        infoView.hidden = YES;
+    }];
 }
 
 - (void)showInfoView
 {
-    [self.view bringSubviewToFront:infoView];
-    infoView.hidden = NO;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        infoView.hidden = NO;
 
-    CGRect frame = infoView.frame;
-    CGRect bounds = self.view.superview.frame;
+        CGRect frame = infoView.frame;
+        CGRect bounds = self.view.superview.frame;
 
-    frame.origin.y = verticalContentOffset + bounds.size.height - frame.size.height;
-    infoView.frame = frame;
+        frame.origin.y = verticalContentOffset + bounds.size.height - frame.size.height;
+        infoView.frame = frame;
 
-    [self.view bringSubviewToFront:infoView];
+        [self.view bringSubviewToFront:infoView];
+    }];
 }
 
 - (void)buttonMenuLocal:(id)sender

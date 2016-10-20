@@ -58,22 +58,18 @@
 
 - (void)hideInfoView
 {
-//    [self.view sendSubviewToBack:infoView];
-    infoView.hidden = YES;
-//    [UIView transitionWithView:infoView
-//                      duration:1.0
-//                       options:UIViewAnimationOptionTransitionNone
-//                    animations:^{
-//                                infoView.hidden = YES;
-//                                }
-//                    completion:NULL];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        infoView.hidden = YES;
+    }];
 }
 
 - (void)showInfoView
 {
     NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
-    infoView.hidden = NO;
-    [self.view bringSubviewToFront:infoView];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        infoView.hidden = NO;
+        [self.view bringSubviewToFront:infoView];
+    }];
 }
 
 - (void)prepareCloseButton:(UIView *)view

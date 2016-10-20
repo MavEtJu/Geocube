@@ -106,13 +106,7 @@
         header.text = @"Imports";
         [self addSubview:header];
         [self addSubview:iii.view];
-//        [UIView transitionWithView:self
-//                          duration:0.5
-//                           options:UIViewAnimationOptionTransitionNone
-//                        animations:^{
-                                       [self calculateRects];
-//                                    }
-//                        completion:nil];
+        [self calculateRects];
     }];
 
     return iii;
@@ -140,13 +134,7 @@
         header.text = @"Downloads";
         [self addSubview:header];
         [self addSubview:iid.view];
-//        [UIView transitionWithView:self
-//                          duration:0.5
-//                           options:UIViewAnimationOptionTransitionNone
-//                        animations:^{
-                                       [self calculateRects];
-//                                    }
-//                        completion:nil];
+        [self calculateRects];
     }];
 
     return iid;
@@ -159,18 +147,9 @@
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//        [UIView transitionWithView:i.view duration:0.5 options:UIViewAnimationOptionTransitionNone
-//                         animations:^(void){
-                                        i.view.hidden = YES;
-//                                        i.view.backgroundColor = [UIColor clearColor];
-                                        [self calculateRects];
-//                                    }
-//                         completion:^(BOOL finished) {
-//                                        if (finished == YES) {
-                                            [i.view removeFromSuperview];
-//                                        }
-//                                    }
-//         ];
+        i.view.hidden = YES;
+        [self calculateRects];
+        [i.view removeFromSuperview];
     }];
 }
 
