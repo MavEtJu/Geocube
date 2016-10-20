@@ -25,9 +25,11 @@
 
 @implementation InfoItemImage
 
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+@synthesize height;
+
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
 {
-    self = [super init];
+    self = [super initWithInfoViewer:parent expanded:expanded];
 
     NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
     view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
@@ -71,6 +73,7 @@ y += __s__.font.lineHeight;
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
+    height = y;
 }
 
 @end

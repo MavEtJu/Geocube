@@ -23,7 +23,11 @@
 
 - (CGRect)rectFromBottom;
 - (void)calculateRects;
+- (void)viewWillTransitionToSize;
 
+- (InfoItemDowload *)addDownload:(BOOL)expanded;
+- (InfoItemImage *)addImage:(BOOL)expanded;
+- (InfoItemImport *)addImport:(BOOL)expanded;
 - (InfoItemDowload *)addDownload;
 - (InfoItemImage *)addImage;
 - (InfoItemImport *)addImport;

@@ -23,6 +23,7 @@
 {
     NSInteger bytesTotal, bytesCount;
     BOOL isLines;
+    BOOL isExpanded;
 }
 
 @end
@@ -35,9 +36,28 @@ NEEDS_OVERLOADING(calculateRects)
 
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent
 {
+    return [self initWithInfoViewer:parent expanded:YES];
+}
+
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
+{
     self = [super init];
     infoViewer = parent;
+    isExpanded = expanded;
     return self;
+}
+
+- (void)expand:(BOOL)yesno
+{
+    isExpanded = yesno;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [infoViewer viewWillTransitionToSize];
+    }];
+}
+
+- (BOOL)isExpanded
+{
+    return isExpanded;
 }
 
 - (void)setDescription:(NSString *)newDesc

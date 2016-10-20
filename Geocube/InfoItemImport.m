@@ -36,9 +36,11 @@
 
 @implementation InfoItemImport
 
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+@synthesize height;
+
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
 {
-    self = [super init];
+    self = [super initWithInfoViewer:parent expanded:expanded];
 
     NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
     view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
@@ -123,12 +125,19 @@ y += __s__.font.lineHeight;
 
     y += MARGIN;
     view.frame = CGRectMake(0, 0, width, y);
+    height = y;
 }
 
 - (void)setWaypoints
 {
+    NSString *s;
+    if (waypointsNew == 0)
+        s = [NSString stringWithFormat:@"Waypoints: %ld", (long)waypointsTotal];
+    else
+        s = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)waypointsTotal, (long)waypointsNew];
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelWaypoints.text = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)waypointsTotal, (long)waypointsNew];
+        labelWaypoints.text = s;
     }];
 }
 - (void)setWaypointsNew:(NSInteger)i
@@ -144,8 +153,13 @@ y += __s__.font.lineHeight;
 
 - (void)setLogs
 {
+    NSString *s;
+    if (logsNew == 0)
+        s = [NSString stringWithFormat:@"Logs: %ld", (long)logsTotal];
+    else
+        s = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)logsTotal, (long)logsNew];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelLogs.text = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)logsTotal, (long)logsNew];
+        labelLogs.text = s;
     }];
 }
 - (void)setLogsNew:(NSInteger)i
@@ -161,8 +175,13 @@ y += __s__.font.lineHeight;
 
 - (void)setTrackables
 {
+    NSString *s;
+    if (trackablesNew == 0)
+        s = [NSString stringWithFormat:@"Trackables: %ld", (long)trackablesTotal];
+    else
+        s = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)trackablesTotal, (long)trackablesNew];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelTrackables.text = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)trackablesTotal, (long)trackablesNew];
+        labelTrackables.text = s;
     }];
 }
 - (void)setTrackablesNew:(NSInteger)i

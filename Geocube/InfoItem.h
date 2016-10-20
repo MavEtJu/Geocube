@@ -39,13 +39,18 @@
 }
 
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent;
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded;
 
 @property (nonatomic) NSInteger _id;
 
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic, retain) InfoViewer *infoViewer;
+@property (nonatomic, readonly) NSInteger height;
 
 - (void)calculateRects;
+
+- (void)expand:(BOOL)yesno;
+- (BOOL)isExpanded;
 
 - (void)setDescription:(NSString *)newDesc;
 - (void)setURL:(NSString *)newURL;

@@ -52,8 +52,13 @@
 
 - (InfoItemImage *)addImage
 {
+    return [self addImage:YES];
+}
+
+- (InfoItemImage *)addImage:(BOOL)expanded
+{
     __block NSInteger max = 0;
-    InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self];
+    InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self expanded:expanded];
 
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
@@ -81,9 +86,13 @@
 
 - (InfoItemImport *)addImport
 {
-    __block NSInteger max = 0;
-    InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self];
+    return [self addImport:YES];
+}
 
+- (InfoItemImport *)addImport:(BOOL)expanded
+{
+    __block NSInteger max = 0;
+    InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self expanded:expanded];
 
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
@@ -111,7 +120,12 @@
 
 - (InfoItemDowload *)addDownload
 {
-    InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self];
+    return [self addDownload:YES];
+}
+
+- (InfoItemDowload *)addDownload:(BOOL)expanded
+{
+    InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self expanded:expanded];
 
     __block NSInteger max = 0;
     @synchronized (items) {
@@ -187,13 +201,21 @@
         return;
     }
 
+    // Header
     header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
     height += header.font.lineHeight;
+
+    // Items
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItemDowload *d, NSUInteger idx, BOOL *stop) {
-            d.view.frame = CGRectMake(0, height, width, d.view.frame.size.height);
-            height += d.view.frame.size.height;
+        [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
+            NSLog(@">>>> %@, expanded: %ld, height: %ld", [ii class], (long)[ii isExpanded], height);
+            if ([ii isExpanded] == NO)
+                ii.view.frame = CGRectMake(0, height, width, header.font.lineHeight);
+            else
+                ii.view.frame = CGRectMake(0, height, width, ii.height);
+            height += ii.view.frame.size.height;
         }];
+        NSLog(@">>>> %ld items, height: %ld", [items count], height);
     }
     self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
 }
@@ -205,6 +227,7 @@
             [d calculateRects];
         }];
     }
+    [self calculateRects];
 }
 
 - (void)changeTheme
