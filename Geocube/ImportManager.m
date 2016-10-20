@@ -78,6 +78,7 @@
     }
 
     @synchronized (self) {
+        [iii expand:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
         [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItemImport:iii];
     }
@@ -88,6 +89,10 @@
     [imp parseBefore];
 
     imp.run_options = run_options;
+    [iii setLineObjectTotal:0 isLines:NO];
+    [iii setWaypointsTotal:0];
+    [iii setLogsTotal:0];
+    [iii setTrackablesTotal:0];
 
     @autoreleasepool {
         if ([data isKindOfClass:[GCStringFilename class]] == YES) {
