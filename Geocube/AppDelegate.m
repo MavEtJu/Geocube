@@ -410,6 +410,8 @@
     }
 
     // Switch back to the last page the user was on.
+    if (configManager.currentPage >= [tabBars count])
+        [configManager currentPageUpdate:0];
     [self switchController:configManager.currentPage];
     MHTabBarController *currentTab = [tabBars objectAtIndex:configManager.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
