@@ -131,7 +131,9 @@
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN(0, cgid);
             cg = [dbc Group_get:cgid];
-            [cgs addObject:cg];
+            // cg should never be nil but can happen when the import has been aborted halfway.
+            if (cg != nil)
+                [cgs addObject:cg];
         }
         DB_FINISH;
     }
