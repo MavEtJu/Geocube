@@ -258,11 +258,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update accounts set accountname = ?, name_id = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
-        SET_VAR_TEXT(1, self.accountname_string);
-        SET_VAR_INT( 2, self.accountname_id);
-        SET_VAR_INT( 2, self.authentictation_name);
-        SET_VAR_INT( 2, self.authentictation_password);
-        SET_VAR_INT( 3, self._id);
+        SET_VAR_TEXT( 1, self.accountname_string);
+        SET_VAR_INT ( 2, self.accountname_id);
+        SET_VAR_TEXT( 3, self.authentictation_name);
+        SET_VAR_TEXT( 4, self.authentictation_password);
+        SET_VAR_INT ( 5, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
