@@ -25,7 +25,7 @@
 
 @implementation dbAccount
 
-@synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, geocube_id, revision, enabled, distance_minimum;
+@synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, geocube_id, revision, enabled, distance_minimum, authentictation_name, authentictation_password;
 @synthesize remoteAPI, canDoRemoteStuff;
 
 - (void)finish
@@ -95,7 +95,7 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum from accounts where id = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
@@ -122,6 +122,8 @@
             INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
             INT_FETCH (21, a.distance_minimum);
+            TEXT_FETCH(22, a.authentictation_name);
+            TEXT_FETCH(23, a.authentictation_password);
             [a finish];
         }
         DB_FINISH;
@@ -134,7 +136,7 @@
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum from accounts");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
@@ -160,6 +162,8 @@
             INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
             INT_FETCH (21, a.distance_minimum);
+            TEXT_FETCH(22, a.authentictation_name);
+            TEXT_FETCH(23, a.authentictation_password);
             [a finish];
             [ss addObject:a];
         }
@@ -178,7 +182,7 @@
     NSId __id;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -201,6 +205,8 @@
         SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
         SET_VAR_INT (21, self.distance_minimum);
+        SET_VAR_TEXT(22, self.authentictation_name);
+        SET_VAR_TEXT(23, self.authentictation_password);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -213,7 +219,7 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ?, enabled = ?, distance_minimum = ? where id = ?");
+        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -236,7 +242,9 @@
         SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
         SET_VAR_INT (21, self.distance_minimum);
-        SET_VAR_INT (22, self._id);
+        SET_VAR_TEXT(22, self.authentictation_name);
+        SET_VAR_TEXT(23, self.authentictation_password);
+        SET_VAR_INT (24, self._id);
 
         DB_CHECK_OKAY;
 
@@ -248,10 +256,12 @@
 - (void)dbUpdateAccount
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update accounts set accountname = ?, name_id = ? where id = ?");
+        DB_PREPARE(@"update accounts set accountname = ?, name_id = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
         SET_VAR_TEXT(1, self.accountname_string);
         SET_VAR_INT( 2, self.accountname_id);
+        SET_VAR_INT( 2, self.authentictation_name);
+        SET_VAR_INT( 2, self.authentictation_password);
         SET_VAR_INT( 3, self._id);
 
         DB_CHECK_OKAY;
@@ -310,7 +320,7 @@
     dbAccount *a = nil;
 
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum from accounts where site = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum from accounts, authentication_name, authentication_password where site = ?");
         SET_VAR_TEXT(1, site);
 
         DB_IF_STEP {
@@ -337,6 +347,8 @@
             INT_FETCH (19, a.accountname_id);
             BOOL_FETCH(20, a.enabled);
             INT_FETCH (21, a.distance_minimum);
+            TEXT_FETCH(22, a.authentictation_name);
+            TEXT_FETCH(23, a.authentictation_password);
             [a finish];
         }
         DB_FINISH;

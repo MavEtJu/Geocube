@@ -23,7 +23,8 @@ typedef NS_ENUM(NSInteger, AccountProtocol) {
     PROTOCOL_NONE = 0,
     PROTOCOL_LIVEAPI = 1,
     PROTOCOL_OKAPI = 2,
-    PROTOCOL_GCA = 3
+    PROTOCOL_GCA = 3,
+    PROTOCOL_GCA2 = 4
 };
 
 @interface dbAccount : dbObject
@@ -47,10 +48,14 @@ typedef NS_ENUM(NSInteger, AccountProtocol) {
 @property (nonatomic, retain) NSString *oauth_authorize_url;
 @property (nonatomic, retain) NSString *oauth_request_url;
 
+@property (nonatomic, retain) NSString *authentictation_name;
+@property (nonatomic, retain) NSString *authentictation_password;
+
 @property (nonatomic, retain) NSString *gca_cookie_name;
 @property (nonatomic, retain) NSString *gca_cookie_value;
 @property (nonatomic, retain) NSString *gca_callback_url;
 @property (nonatomic, retain) NSString *gca_authenticate_url;
+
 @property (nonatomic) NSInteger distance_minimum;
 
 // Non database originated
