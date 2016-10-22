@@ -42,6 +42,7 @@
 @synthesize compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
 @synthesize waypointListSortBy;
 @synthesize refreshWaypointAfterLog;
+@synthesize accountsSaveAuthenticationName, accountsSaveAuthenticationPassword;
 @synthesize gpsAdjustmentEnable, gpsAdjustmentLatitude, gpsAdjustmentLongitude;
 
 - (instancetype)init
@@ -144,6 +145,9 @@
 
     CHECK(@"waypoint_refreshafterlog", @"1");
 
+    CHECK(@"accounts_save_authenticationname", @"1");
+    CHECK(@"accounts_save_authenticationpassword", @"0");
+
     CHECK(@"gpsadjustment_enable", @"0");
     CHECK(@"gpsadjustment_latitude", @"0");
     CHECK(@"gpsadjustment_longitude", @"0");
@@ -208,6 +212,8 @@
     showStateAsAbbrevationIfLocaleExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
     waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
     refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
+    accountsSaveAuthenticationName = [[dbConfig dbGetByKey:@"accounts_save_authenticationname"].value boolValue];
+    accountsSaveAuthenticationPassword = [[dbConfig dbGetByKey:@"accounts_save_authenticationpassword"].value boolValue];
     gpsAdjustmentEnable = [[dbConfig dbGetByKey:@"gpsadjustment_enable"].value boolValue];
     gpsAdjustmentLongitude = [[dbConfig dbGetByKey:@"gpsadjustment_longitude"].value integerValue];
     gpsAdjustmentLatitude = [[dbConfig dbGetByKey:@"gpsadjustment_latitude"].value integerValue];
@@ -568,6 +574,17 @@
 {
     refreshWaypointAfterLog = value;
     [self BOOLUpdate:@"waypoint_refreshafterlog" value:value];
+}
+
+- (void)accountsSaveAuthenticationNameUpdate:(BOOL)value
+{
+    accountsSaveAuthenticationName = value;
+    [self BOOLUpdate:@"accounts_save_authenticationname" value:value];
+}
+- (void)accountsSaveAuthenticationPasswordUpdate:(BOOL)value
+{
+    accountsSaveAuthenticationPassword = value;
+    [self BOOLUpdate:@"accounts_save_authenticationpassword" value:value];
 }
 
 - (void)gpsAdjustmentEnableUpdate:(BOOL)value
