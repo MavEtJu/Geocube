@@ -114,7 +114,7 @@
     [self.contentView addSubview:imageViewFavourites];
     imageViewFavourites.hidden = TRUE;
 
-    labelFavourites= [[GCLabel alloc] initWithFrame:CGRectZero];
+    labelFavourites = [[GCLabel alloc] initWithFrame:CGRectZero];
     labelFavourites.backgroundColor = [UIColor clearColor];
     labelFavourites.font = [UIFont boldSystemFontOfSize:10];
     labelFavourites.textColor = [UIColor whiteColor];
