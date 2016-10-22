@@ -467,6 +467,14 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 37
+    a = @[
+    @"alter table accounts add column authentication_name text",
+    @"alter table accounts add column authentication_password text",
+    @"update accounts set authentication_name = '', authentication_password = ''",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql
