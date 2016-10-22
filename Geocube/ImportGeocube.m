@@ -187,6 +187,8 @@
             protocol_id = PROTOCOL_OKAPI;
         if ([protocol isEqualToString:@"GCA"] == YES)
             protocol_id = PROTOCOL_GCA;
+        if ([protocol isEqualToString:@"GCA2"] == YES)
+            protocol_id = PROTOCOL_GCA2;
         if ([protocol isEqualToString:@"LiveAPI"] == YES)
             protocol_id = PROTOCOL_LIVEAPI;
 
