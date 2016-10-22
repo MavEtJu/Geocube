@@ -76,6 +76,8 @@
     NSMutableArray *downloadSimpleTimeouts;
     NSMutableArray *downloadQueryTimeouts;
 
+    GCSwitch *AccountKeepUsername;
+    GCSwitch *AccountKeepPassword;
     GCSwitch *GPSAdjustmentEnable;
 }
 
@@ -256,6 +258,7 @@ enum sections {
     SECTION_KEEPTRACK,
     SECTION_MARKAS,
     SECTION_WAYPOINTS,
+    SECTION_ACCOUNTS,
     SECTION_GPSADJUSTMENT,
     SECTION_MAX,
 
@@ -332,6 +335,10 @@ enum sections {
     SECTION_WAYPOINTS_REFRESHAFTERLOG,
     SECTION_WAYPOINTS_MAX,
 
+    SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME = 0,
+    SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD,
+    SECTION_ACCOUNTS_MAX,
+
     SECTION_GPSADJUSTMENT_ENABLE = 0,
     SECTION_GPSADJUSTMENT_LATITUDE,
     SECTION_GPSADJUSTMENT_LONGITUDE,
@@ -364,6 +371,7 @@ enum sections {
         SECTION_MAX(MAPSEARCHMAXIMUM);
         SECTION_MAX(MARKAS);
         SECTION_MAX(WAYPOINTS);
+        SECTION_MAX(ACCOUNTS);
         SECTION_MAX(GPSADJUSTMENT);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
@@ -404,6 +412,8 @@ enum sections {
             return @"Mark as...";
         case SECTION_WAYPOINTS:
             return @"Waypoints";
+        case SECTION_ACCOUNTS:
+            return @"Accounts";
         case SECTION_GPSADJUSTMENT:
             return @"GPS Adjustments";
         default:
@@ -952,6 +962,33 @@ enum sections {
             break;
         }
 
+        case SECTION_ACCOUNTS: {
+            switch (indexPath.row) {
+                case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Save authenticate username";
+
+                    AccountKeepUsername = [[GCSwitch alloc] initWithFrame:CGRectZero];
+                    AccountKeepUsername.on = configManager.accountsSaveAuthenticationPassword;
+                    [AccountKeepUsername addTarget:self action:@selector(updateAccountKeepUsername:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = AccountKeepUsername;
+
+                    return cell;
+                }
+                case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Save authenticate password";
+
+                    AccountKeepPassword = [[GCSwitch alloc] initWithFrame:CGRectZero];
+                    AccountKeepPassword.on = configManager.accountsSaveAuthenticationPassword;
+                    [AccountKeepPassword addTarget:self action:@selector(updateAccountKeepPassword:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = AccountKeepPassword;
+
+                    return cell;
+                }
+            }
+        }
+
         case SECTION_GPSADJUSTMENT: {
             switch (indexPath.row) {
                 case SECTION_GPSADJUSTMENT_ENABLE: {
@@ -993,6 +1030,15 @@ enum sections {
 - (void)updateGPSAdjustmentEnable:(GCSwitch *)s
 {
     [configManager gpsAdjustmentEnableUpdate:s.on];
+}
+
+- (void)updateAccountKeepUsername:(GCSwitch *)s
+{
+    [configManager accountsSaveAuthenticationNameUpdate:s.on];
+}
+- (void)updateAccountKeepPassword:(GCSwitch *)s
+{
+    [configManager accountsSaveAuthenticationPasswordUpdate:s.on];
 }
 
 - (void)updateMarkasFoundDNFClearsTarget:(GCSwitch *)s
