@@ -157,6 +157,7 @@
 #import "GCOAuthBlackbox.h"
 #import "RemoteAPI_Template.h"
 #import "RemoteAPI_GCA.h"
+#import "RemoteAPI_GCA2.h"
 #import "RemoteAPI_LiveAPI.h"
 #import "RemoteAPI_OKAPI.h"
 #import "RemoteAPI.h"

@@ -285,6 +285,7 @@
 		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
 		E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */; };
 		E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */; };
+		E84E239A1DB9E8440079496D /* RemoteAPI_GCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */; };
 		E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85707931CA1EE0F00467CE0 /* ImportTemplate.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
@@ -930,6 +931,8 @@
 		E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGroundspeakViewController.m; sourceTree = "<group>"; };
 		E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGCAViewController.h; sourceTree = "<group>"; };
 		E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGCAViewController.m; sourceTree = "<group>"; };
+		E84E23981DB9E8440079496D /* RemoteAPI_GCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GCA2.h; sourceTree = "<group>"; };
+		E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GCA2.m; sourceTree = "<group>"; };
 		E85707921CA1EE0F00467CE0 /* ImportTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportTemplate.h; sourceTree = "<group>"; };
 		E85707931CA1EE0F00467CE0 /* ImportTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportTemplate.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
@@ -2672,6 +2675,8 @@
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
 				E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */,
 				E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */,
+				E84E23981DB9E8440079496D /* RemoteAPI_GCA2.h */,
+				E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */,
 				E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */,
 				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
 				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
@@ -3328,6 +3333,7 @@
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
+				E84E239A1DB9E8440079496D /* RemoteAPI_GCA2.m in Sources */,
 				E85FCA731CAC6EF3005D7AE1 /* GCSimpleObjects.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,

@@ -134,6 +134,7 @@
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
 @class RemoteAPI;
+@class RemoteAPI_GCA2;
 @class RemoteAPI_GCA;
 @class RemoteAPI_LiveAPI;
 @class RemoteAPI_OKAPI;
