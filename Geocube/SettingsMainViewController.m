@@ -966,10 +966,10 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-                    cell.textLabel.text = @"Save authenticate username";
+                    cell.textLabel.text = @"Save authentication username";
 
                     AccountKeepUsername = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    AccountKeepUsername.on = configManager.accountsSaveAuthenticationPassword;
+                    AccountKeepUsername.on = configManager.accountsSaveAuthenticationName;
                     [AccountKeepUsername addTarget:self action:@selector(updateAccountKeepUsername:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = AccountKeepUsername;
 
@@ -977,7 +977,7 @@ enum sections {
                 }
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
-                    cell.textLabel.text = @"Save authenticate password";
+                    cell.textLabel.text = @"Save authentication password";
 
                     AccountKeepPassword = [[GCSwitch alloc] initWithFrame:CGRectZero];
                     AccountKeepPassword.on = configManager.accountsSaveAuthenticationPassword;
