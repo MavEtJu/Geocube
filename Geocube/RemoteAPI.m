@@ -139,7 +139,7 @@
         }
 
         case PROTOCOL_GCA2:
-            if ([RemoteAPI_GCA2 authenticate:account] == YES) {
+            if ([gca2 authenticate:account] == YES) {
                 if (authenticationDelegate != nil)
                     [authenticationDelegate remoteAPI:self success:@"Obtained cookie"];
                 return YES;
@@ -470,6 +470,23 @@
         [self getNumber:ret from:dict2 outKey:@"waypoints_hidden" inKey:@"waypoints_hidden"];
         [self getNumber:ret from:dict2 outKey:@"recommendatons_received" inKey:@"recommendatons_received"];
         [self getNumber:ret from:dict2 outKey:@"recommendations_given" inKey:@"recommendations_given"];
+
+        *retDict = ret;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol == PROTOCOL_GCA2) {
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
+
+        NSDictionary *dict = [gca2 api_services_users_byusername:username downloadInfoItem:iid];
+        if (dict == nil)
+            return [self lastErrorCode];
+
+        [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
+        [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
+        [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
+        [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"rcmds_given"];
 
         *retDict = ret;
         return REMOTEAPI_OK;
@@ -828,8 +845,12 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA) {
-        NSDictionary *json = [gca my_query_list__json:iid];
+    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
+        NSDictionary *json;
+        if (account.protocol == PROTOCOL_GCA)
+            json = [gca my_query_list__json:iid];
+        if (account.protocol == PROTOCOL_GCA2)
+            json = [gca2 my_query_list__json:iid];
         GCA_CHECK_ACTIONSTATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
@@ -896,11 +917,15 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:iid];
+        NSDictionary *json;
+        if (account.protocol == PROTOCOL_GCA)
+            json = [gca my_query_json:_id downloadInfoItem:iid];
+        if (account.protocol == PROTOCOL_GCA2)
+            json = [gca2 my_query_json:_id downloadInfoItem:iid];
         GCA_CHECK_ACTIONSTATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport];
@@ -916,10 +941,14 @@
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
-        NSString *gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
+        NSString *gpx;
+        if (account.protocol == PROTOCOL_GCA)
+            gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
+        if (account.protocol == PROTOCOL_GCA2)
+            gpx = [gca2 my_query_gpx:_id downloadInfoItem:iid];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
 
