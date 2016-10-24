@@ -24,6 +24,7 @@
     RemoteAPI_LiveAPI *liveAPI;
     RemoteAPI_OKAPI *okapi;
     RemoteAPI_GCA *gca;
+    RemoteAPI_GCA2 *gca2;
     RemoteAPI_Template *protocol;
 
     NSString *errorStringNetwork;
@@ -63,6 +64,7 @@
     liveAPI = nil;
     okapi = nil;
     gca = nil;
+    gca2 = nil;
     switch (account.protocol) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
@@ -77,6 +79,10 @@
             gca.delegate = self;
             protocol = gca;
             break;
+        case PROTOCOL_GCA2:
+            gca2 = [[RemoteAPI_GCA2 alloc] init:self];
+            protocol = gca2;
+            break;
         default:
             break;
     }
@@ -87,47 +93,61 @@
 
 - (BOOL)Authenticate
 {
-    if (account.protocol == PROTOCOL_OKAPI || account.protocol == PROTOCOL_LIVEAPI) {
-        // Reset it
-        oabb = [[GCOAuthBlackbox alloc] init];
+    switch (account.protocol) {
+        case PROTOCOL_OKAPI:
+        case PROTOCOL_LIVEAPI:{
+            // Reset it
+            oabb = [[GCOAuthBlackbox alloc] init];
 
-        if (account.oauth_consumer_private == nil || [account.oauth_consumer_private isEqualToString:@""] == YES) {
-            [self oauthtripped:@"No OAuth client information is available." error:nil];
-            return NO;
+            if (account.oauth_consumer_private == nil || [account.oauth_consumer_private isEqualToString:@""] == YES) {
+                [self oauthtripped:@"No OAuth client information is available." error:nil];
+                return NO;
+            }
+
+            [oabb URLRequestToken:account.oauth_request_url];
+            [oabb URLAuthorize:account.oauth_authorize_url];
+            [oabb URLAccessToken:account.oauth_access_url];
+            [oabb consumerKey:account.oauth_consumer_public];
+            [oabb consumerSecret:account.oauth_consumer_private];
+
+            oabb.delegate = self;
+            [oabb obtainRequestToken];
+            if (oabb.token == nil) {
+                [self oauthtripped:@"No request token was returned." error:nil];
+                NSLog(@"%@ - token is nil after obtainRequestToken, not further authenticating", [self class]);
+                return NO;
+            }
+
+            NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
+
+            [browserViewController showBrowser];
+            [browserViewController prepare_oauth:oabb];
+            [browserViewController loadURL:url];
+            return YES;
         }
 
-        [oabb URLRequestToken:account.oauth_request_url];
-        [oabb URLAuthorize:account.oauth_authorize_url];
-        [oabb URLAccessToken:account.oauth_access_url];
-        [oabb consumerKey:account.oauth_consumer_public];
-        [oabb consumerSecret:account.oauth_consumer_private];
+        case PROTOCOL_GCA: {
+            // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
+            NSString *url = account.gca_authenticate_url;
 
-        oabb.delegate = self;
-        [oabb obtainRequestToken];
-        if (oabb.token == nil) {
-            [self oauthtripped:@"No request token was returned." error:nil];
-            NSLog(@"%@ - token is nil after obtainRequestToken, not further authenticating", [self class]);
-            return NO;
+            gca.delegate = self;
+
+            [browserViewController showBrowser];
+            [browserViewController prepare_gca:gca];
+            [browserViewController loadURL:url];
+            return YES;
         }
 
-        NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
+        case PROTOCOL_GCA2:
+            if ([RemoteAPI_GCA2 authenticate:account] == YES) {
+                if (authenticationDelegate != nil)
+                    [authenticationDelegate remoteAPI:self success:@"Obtained cookie"];
+                return YES;
+            } else
+                return NO;
 
-        [browserViewController showBrowser];
-        [browserViewController prepare_oauth:oabb];
-        [browserViewController loadURL:url];
-        return YES;
-    }
-
-    if (account.protocol == PROTOCOL_GCA) {
-        // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
-        NSString *url = account.gca_authenticate_url;
-
-        gca.delegate = self;
-
-        [browserViewController showBrowser];
-        [browserViewController prepare_gca:gca];
-        [browserViewController loadURL:url];
-        return YES;
+        case PROTOCOL_NONE:
+            return NO;
     }
 
     return NO;
@@ -141,7 +161,7 @@
     [browserViewController prepare_gca:nil];
     [browserViewController clearScreen];
 
-    if (authenticationDelegate)
+    if (authenticationDelegate != nil)
         [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
 
     [_AppDelegate switchController:RC_SETTINGS];
