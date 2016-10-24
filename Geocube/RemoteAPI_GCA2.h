@@ -21,6 +21,13 @@
 
 @interface RemoteAPI_GCA2 : RemoteAPI_Template
 
-+ (BOOL)authenticate:(dbAccount *)account;
+- (BOOL)authenticate:(dbAccount *)account;
+
+- (GCDictionaryGCA *)api_services_users_byusername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;;
+
+// glue for now
+- (GCDictionaryGCA *)my_query_list__json:(InfoItemDowload *)iid;
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
 
 @end

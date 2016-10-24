@@ -24,6 +24,8 @@
     RemoteAPI *remoteAPI;
     NSHTTPCookie *authCookie;
     NSString *prefix;
+    NSString *hostpart;
+    NSString *key;
 }
 
 @end
@@ -35,6 +37,8 @@
     self = [super init];
 
     prefix = @"http://geocaching.com.au/api/services";
+    hostpart = @"http://geocaching.com.au";
+    key = @"5809a0f637e86";
 
     remoteAPI = _remoteAPI;
     if (remoteAPI.account.gca_cookie_value != nil) {
@@ -86,7 +90,7 @@
     return NO;
 }
 
-+ (BOOL)authenticate:(dbAccount *)account
+- (BOOL)authenticate:(dbAccount *)account
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/login/login/", prefix]];
 
@@ -164,6 +168,172 @@
     [account enableRemoteAccess];
 
     return YES;
+}
+
+// --------------------------------------------------------------------------
+
+- (GCStringGPX *)performURLRequestGPX:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+{
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//  NSLog(@"error: %@", [error description]);
+//  NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//  NSLog(@"retbody: %@", retbody);
+
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        return nil;
+    }
+    if (response.statusCode != 400 && response.statusCode != 200) {
+        NSLog(@"statusCode: %ld", (long)response.statusCode);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    if ([data length] == 0) {
+        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return gpx;
+}
+
+- (GCDictionaryGCA *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+{
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//  NSLog(@"error: %@", [error description]);
+//  NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//  NSLog(@"retbody: %@", retbody);
+
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        return nil;
+    }
+    if (response.statusCode != 400 && response.statusCode != 200) {
+        NSLog(@"statusCode: %ld", (long)response.statusCode);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    if ([data length] == 0) {
+        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    GCDictionaryGCA *json = [[GCDictionaryGCA alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        return nil;
+    }
+
+    NSDictionary *e = [json objectForKey:@"error"];
+    if (e != nil) {
+        NSLog(@"error: %@", [e objectForKey:@"developer_message"]);
+        [remoteAPI setAPIError:[e objectForKey:@"developer_message"] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    return json;
+}
+
+- (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
+{
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?consumer_key=%@", prefix, suffix, key];
+    if (params != nil && [params count] != 0) {
+        NSString *ps = [MyTools urlParameterJoin:params];
+        [urlString appendFormat:@"&%@", ps];
+    }
+    return urlString;
+}
+
+- (NSString *)prepareOldURLString:(NSString *)suffix params:(NSDictionary *)params
+{
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", hostpart, suffix];
+    if (params != nil && [params count] != 0) {
+        NSString *ps = [MyTools urlParameterJoin:params];
+        [urlString appendFormat:@"&%@", ps];
+    }
+    return urlString;
+}
+
+// --------------------------------------------------------------------------
+
+- (GCDictionaryGCA *)api_services_users_byusername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
+{
+    NSLog(@"api_services_users_byusername");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[MyTools urlEncode:username] forKey:@"username"];
+
+    NSString *urlString = [self prepareURLString:@"/users/by_username/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+// Old stuff
+
+- (GCDictionaryGCA *)my_query_list__json:(InfoItemDowload *)iid
+{
+    NSLog(@"my_query_list__json");
+
+    NSString *urlString = [self prepareOldURLString:@"/my/query/list.json" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"my_query_json:%@", queryname);
+
+    NSString *urlString = [self prepareOldURLString:[NSString stringWithFormat:@"/my/query/json/%@", queryname] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"my_query_gpx:%@", queryname);
+
+    NSString *urlString = [self prepareOldURLString:[NSString stringWithFormat:@"/my/query/gpx/%@", queryname] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequestGPX:req downloadInfoItem:iid];
 }
 
 @end
