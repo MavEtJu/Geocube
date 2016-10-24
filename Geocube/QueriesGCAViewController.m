@@ -47,7 +47,7 @@ enum {
 {
     [bezelManager showBezel:self];
     [bezelManager setText:@"Downloading list of queries"];
-    [self reloadQueries:PROTOCOL_GCA];
+    [self reloadQueries:PROTOCOL_GCA2];
     [bezelManager removeBezel];
 }
 
