@@ -170,18 +170,29 @@ enum {
                          handler:^(UIAlertAction *action) {
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
-                             NSString *username = tf.text;
+                             NSString *geocachingname = tf.text;
+                             NSString *authenticatename = nil;
+                             NSString *authenticatepassword = nil;
 
-                             account.accountname_string = username;
+                             if (account.protocol == PROTOCOL_GCA2) {
+                                 tf = [alert.textFields objectAtIndex:1];
+                                 authenticatename = tf.text;
+                                 tf = [alert.textFields objectAtIndex:2];
+                                 authenticatepassword = tf.text;
+                             }
 
-                             dbName *n = [dbName dbGetByName:username account:account];
+                             account.accountname_string = geocachingname;
+
+                             dbName *n = [dbName dbGetByName:geocachingname account:account];
                              if (n == nil) {
-                                 n = [[dbName alloc] init:0 name:username code:nil account:account];
+                                 n = [[dbName alloc] init:0 name:geocachingname code:nil account:account];
                                  [n dbCreate];
                              }
 
                              account.accountname = n;
                              account.accountname_id = n._id;
+                             account.authentictation_name = authenticatename;
+                             account.authentictation_password = authenticatepassword;
                              [account dbUpdateAccount];
 
                              [self refreshAccountData];
@@ -191,7 +202,8 @@ enum {
                                  return;
 
                              account.remoteAPI.authenticationDelegate = self;
-                             [account.remoteAPI Authenticate];
+                             if ([account.remoteAPI Authenticate] == NO)
+                                 [MyTools messageBox:self header:@"Unable to authenticate" text:account.remoteAccessFailureReason];
                          }];
 
     UIAlertAction *forget = nil;
@@ -202,6 +214,8 @@ enum {
                       account.accountname_string = nil;
                       account.accountname_id = 0;
                       account.accountname = nil;
+                      account.authentictation_password = nil;
+                      account.authentictation_name = nil;
                       [account dbUpdateAccount];
                       [account dbClearAuthentication];
                       [self refreshAccountData];
@@ -221,8 +235,19 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = account.accountname_string;
-        textField.placeholder = @"Username";
+        textField.placeholder = @"Geocaching name";
     }];
+    if (account.protocol == PROTOCOL_GCA2) {
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.text = account.authentictation_name;
+            textField.placeholder = @"Authentication Name";
+        }];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.text = account.authentictation_password;
+            textField.secureTextEntry = YES;
+            textField.placeholder = @"Authentication Password";
+        }];
+    }
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
