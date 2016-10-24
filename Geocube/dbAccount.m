@@ -26,12 +26,12 @@
 @implementation dbAccount
 
 @synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, geocube_id, revision, enabled, distance_minimum, authentictation_name, authentictation_password;
-@synthesize remoteAPI, canDoRemoteStuff;
+@synthesize remoteAPI, canDoRemoteStuff, remoteAccessFailureReason;
 
 - (void)finish
 {
     remoteAPI = [[RemoteAPI alloc] init:self];
-    canDoRemoteStuff = 0;
+    canDoRemoteStuff = NO;
     [super finish];
 
     /* Even if it is nil.... */
@@ -58,13 +58,15 @@
             else
                 [self enableRemoteAccess];
             break;
+
         case PROTOCOL_GCA:
+        case PROTOCOL_GCA2:
             if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)
                 [self disableRemoteAccess:@"This account is currently not authenticated"];
             else
                 [self enableRemoteAccess];
             break;
-        default:
+
         case PROTOCOL_NONE:
             [self disableRemoteAccess:@"Unkown Protocol"];
             break;
@@ -74,11 +76,13 @@
 - (void)disableRemoteAccess:(NSString *)reason
 {
     canDoRemoteStuff = NO;
+    remoteAccessFailureReason = reason;
 }
 
 - (void)enableRemoteAccess
 {
     canDoRemoteStuff = YES;
+    remoteAccessFailureReason = nil;
 }
 
 - (void)dbClearAuthentication
@@ -205,8 +209,12 @@
         SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
         SET_VAR_INT (21, self.distance_minimum);
-        SET_VAR_TEXT(22, self.authentictation_name);
-        SET_VAR_TEXT(23, self.authentictation_password);
+        SET_VAR_TEXT(22, @"");
+        if (configManager.accountsSaveAuthenticationName == YES)
+            SET_VAR_TEXT(22, self.authentictation_name);
+        SET_VAR_TEXT(23, @"");
+        if (configManager.accountsSaveAuthenticationPassword == YES)
+            SET_VAR_TEXT(23, self.authentictation_password);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -242,8 +250,12 @@
         SET_VAR_INT (19, self.accountname_id);
         SET_VAR_BOOL(20, self.enabled);
         SET_VAR_INT (21, self.distance_minimum);
-        SET_VAR_TEXT(22, self.authentictation_name);
-        SET_VAR_TEXT(23, self.authentictation_password);
+        SET_VAR_TEXT(22, @"");
+        if (configManager.accountsSaveAuthenticationName == YES)
+            SET_VAR_TEXT(22, self.authentictation_name);
+        SET_VAR_TEXT(23, @"");
+        if (configManager.accountsSaveAuthenticationPassword == YES)
+            SET_VAR_TEXT(23, self.authentictation_password);
         SET_VAR_INT (24, self._id);
 
         DB_CHECK_OKAY;
@@ -260,8 +272,12 @@
 
         SET_VAR_TEXT( 1, self.accountname_string);
         SET_VAR_INT ( 2, self.accountname_id);
-        SET_VAR_TEXT( 3, self.authentictation_name);
-        SET_VAR_TEXT( 4, self.authentictation_password);
+        SET_VAR_TEXT( 3, @"");
+        if (configManager.accountsSaveAuthenticationName == YES)
+            SET_VAR_TEXT( 3, self.authentictation_name);
+        SET_VAR_TEXT( 4, @"");
+        if (configManager.accountsSaveAuthenticationPassword == YES)
+            SET_VAR_TEXT( 4, self.authentictation_password);
         SET_VAR_INT ( 5, self._id);
 
         DB_CHECK_OKAY;

@@ -61,6 +61,7 @@ typedef NS_ENUM(NSInteger, AccountProtocol) {
 // Non database originated
 @property (nonatomic, readonly) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) RemoteAPI *remoteAPI;
+@property (nonatomic, retain) NSString *remoteAccessFailureReason;
 
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
