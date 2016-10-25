@@ -53,6 +53,7 @@
 @class GCCircle;
 @class GCCloseButton;
 @class GCCoordsHistorical;
+@class GCDictionaryGCA2;
 @class GCDictionaryGCA;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
