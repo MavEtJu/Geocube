@@ -172,7 +172,7 @@
     wp.gs_country = nil;
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"description");
     wp.gs_long_desc_html = YES;
-    DICT_NSSTRING_KEY(dict, wp.wpt_date_placed, @"date_created");
+    DICT_NSSTRING_KEY(dict, wp.wpt_date_placed, @"date_hidden");
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"difficulty");
     DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"terrain");
     DICT_NSSTRING_KEY(dict, wp.gs_hint, @"hint2");
@@ -311,7 +311,6 @@
         [image dbLinkToWaypoint:wp._id type:IMAGECATEGORY_CACHE];
 
     [ImagesDownloadManager addToQueue:image];
-
 }
 
 - (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp
