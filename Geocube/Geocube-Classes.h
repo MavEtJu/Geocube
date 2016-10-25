@@ -88,6 +88,7 @@
 @class IOSFileTransfers;
 @class ImageLibrary;
 @class ImagesDownloadManager;
+@class ImportGCA2JSON;
 @class ImportGCAJSON;
 @class ImportGPX;
 @class ImportGeocube;

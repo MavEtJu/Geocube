@@ -20,25 +20,16 @@
  */
 
 @interface GCStringObject : NSString
+
 - (instancetype)initWithString:(NSString *)s;
 - (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
+
 @end
 
 @interface GCStringGPX : GCStringObject
+
 @end
 
 @interface GCStringFilename : GCStringObject
-@end
 
-@interface GCDictionaryObject : NSDictionary
-- (instancetype)initWithDictionary:(NSObject *)otherDictionary;
-@end
-
-@interface GCDictionaryGCA : GCDictionaryObject
-@end
-
-@interface GCDictionaryLiveAPI : GCDictionaryObject
-@end
-
-@interface GCDictionaryOKAPI : GCDictionaryObject
 @end

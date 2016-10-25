@@ -110,9 +110,11 @@
 
 #import "WaypointManager.h"
 
-#import "GCSimpleObjects.h"
+#import "GCDictionaryObjects.h"
+#import "GCStringObject.h"
 #import "ImportTemplate.h"
 #import "ImportGCAJSON.h"
+#import "ImportGCA2JSON.h"
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
 #import "ImportGeocube.h"

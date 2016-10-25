@@ -19,61 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*****************************************/
-
-@interface GCStringObject ()
-@end
-@implementation GCStringObject
-{
-    NSMutableString *sfn;
-}
-
-- (instancetype)initWithString:(NSString *)s
-{
-    self = [super init];
-    sfn = [NSMutableString stringWithString:s];
-    return self;
-}
-
-- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding
-{
-    self = [super init];
-    sfn = [[NSMutableString alloc] initWithData:data encoding:encoding];
-    return self;
-}
-
-- (NSUInteger)length
-{
-    return [sfn length];
-}
-
-- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding
-{
-    return [sfn dataUsingEncoding:encoding];
-}
-
-- (NSString *)description
-{
-    return sfn;
-}
-
-@end
-
-/*****************************************/
-
-@interface GCStringGPX ()
-@end
-@implementation GCStringGPX
-@end
-@interface GCStringFilename ()
-@end
-@implementation GCStringFilename
-@end
-
-/*****************************************/
-
 @interface GCDictionaryObject ()
+
 @end
+
 @implementation GCDictionaryObject
 {
     NSDictionary *d;
@@ -103,17 +52,34 @@
 
 @end
 
-/*****************************************/
-
 @interface GCDictionaryGCA ()
+
 @end
+
 @implementation GCDictionaryGCA
+
 @end
+
+@interface GCDictionaryGCA2 ()
+
+@end
+
+@implementation GCDictionaryGCA2
+
+@end
+
 @interface GCDictionaryLiveAPI ()
+
 @end
+
 @implementation GCDictionaryLiveAPI
+
 @end
+
 @interface GCDictionaryOKAPI ()
+
 @end
+
 @implementation GCDictionaryOKAPI
+
 @end
