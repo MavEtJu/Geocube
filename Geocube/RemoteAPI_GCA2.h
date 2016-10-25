@@ -23,11 +23,12 @@
 
 - (BOOL)authenticate:(dbAccount *)account;
 
-- (GCDictionaryGCA *)api_services_users_byusername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;;
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname downloadInfoItem:(InfoItemDowload *)iid;
 
 // glue for now
-- (GCDictionaryGCA *)my_query_list__json:(InfoItemDowload *)iid;
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
 - (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
 
 @end

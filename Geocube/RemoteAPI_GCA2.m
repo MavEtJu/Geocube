@@ -211,7 +211,7 @@
     return gpx;
 }
 
-- (GCDictionaryGCA *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA2 *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
@@ -246,7 +246,7 @@
         return nil;
     }
 
-    GCDictionaryGCA *json = [[GCDictionaryGCA alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    GCDictionaryGCA2 *json = [[GCDictionaryGCA2 alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
     if (error != nil) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -287,9 +287,9 @@
 
 // --------------------------------------------------------------------------
 
-- (GCDictionaryGCA *)api_services_users_byusername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid
 {
-    NSLog(@"api_services_users_byusername");
+    NSLog(@"api_services_users_by__username:%@", username);
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
     [params setObject:[MyTools urlEncode:username] forKey:@"username"];
@@ -301,9 +301,25 @@
     return [self performURLRequest:req downloadInfoItem:iid];
 }
 
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_caches_geocache:%@", wptname);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[MyTools urlEncode:wptname] forKey:@"cache_code"];
+    [params setObject:@"all" forKey:@"lpc"];
+    [params setObject:@"0" forKey:@"my_location"];
+
+    NSString *urlString = [self prepareURLString:@"/caches/geocache/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
 // Old stuff
 
-- (GCDictionaryGCA *)my_query_list__json:(InfoItemDowload *)iid
+- (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDowload *)iid
 {
     NSLog(@"my_query_list__json");
 
@@ -314,7 +330,7 @@
     return [self performURLRequest:req downloadInfoItem:iid];
 }
 
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA2 *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"my_query_json:%@", queryname);
 
