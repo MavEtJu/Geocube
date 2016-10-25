@@ -300,7 +300,7 @@
 
 // ----------------------------------------
 
-#define GCA_CHECK_ACTIONSTATUS(__json__, __logsection__, __failure__) { \
+#define GCA_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
             \
@@ -382,6 +382,28 @@
                 NSLog(@"%@", s); \
                 return __failure__; \
             }
+
+
+#define GCA2_CHECK_STATUS(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) \
+                return [self lastErrorCode]; \
+            NSDictionary *error = [__json__ objectForKey:@"error"]; \
+            if (error != nil) { \
+                NSString *s = [NSString stringWithFormat:@"[GCA2] %@: Error response: (%@)", __logsection__, [error description]]; \
+                NSLog(@"%@", s); \
+                [self setAPIError:s error:REMOTEAPI_APIFAILED]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+        }
+
+#define GCA2_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
+        __type__ *__varname__ = [__json__ objectForKey:__field__]; \
+        if (__varname__ == nil) { \
+            NSString *s = [NSString stringWithFormat:@"[GCA2] %@: No '%@' field returned", __logsection__, __field__]; \
+            [self setDataError:s error:__failure__]; \
+            NSLog(@"%@", s); \
+            return __failure__; \
+        }
 
 - (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
 {
@@ -479,9 +501,8 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *dict = [gca2 api_services_users_byusername:username downloadInfoItem:iid];
-        if (dict == nil)
-            return [self lastErrorCode];
+        NSDictionary *dict = [gca2 api_services_users_by__username:username downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
         [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
@@ -557,7 +578,7 @@
 
     if (account.protocol == PROTOCOL_GCA) {
         GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating downloadInfoItem:iid];
-        GCA_CHECK_ACTIONSTATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+        GCA_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
         GCA_GET_VALUE(json, NSNumber, plog_id, @"log", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
         NSInteger log_id = [plog_id integerValue];
@@ -570,7 +591,7 @@
 
         if (image != nil) {
             json = [gca my_gallery_cache_add:waypoint.wpt_name log_id:log_id data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:iid];
-            GCA_CHECK_ACTIONSTATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
+            GCA_CHECK_STATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
         }
 
         return REMOTEAPI_OK;
@@ -623,7 +644,7 @@
         [iid setChunksCount:1];
 
         GCDictionaryGCA *json = [gca cache__json:waypoint.wpt_name downloadInfoItem:iid];
-        GCA_CHECK_ACTIONSTATUS(json, @"loadWaypoint/cache__json", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+        GCA_CHECK_STATUS(json, @"loadWaypoint/cache__json", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
         ImportGCAJSON *imp = [[ImportGCAJSON alloc] init:g account:a];
         [imp parseBefore];
@@ -632,11 +653,31 @@
 
         [iid setChunksCount:2];
         json = [gca logs_cache:waypoint.wpt_name downloadInfoItem:iid];
-        GCA_CHECK_ACTIONSTATUS(json, @"loadWaypoint/logs_cache", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+        GCA_CHECK_STATUS(json, @"loadWaypoint/logs_cache", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
         imp = [[ImportGCAJSON alloc] init:g account:a];
         [imp parseBefore];
         [imp parseDictionary:json];
+        [imp parseAfter];
+
+        [waypointManager needsRefreshUpdate:waypoint];
+        return REMOTEAPI_OK;
+    }
+    if (account.protocol == PROTOCOL_GCA2) {
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
+
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_geocache:waypoint.wpt_name downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSArray *as = @[[json objectForKey:waypoint.wpt_name]];
+        [d setObject:as forKey:@"waypoints"];
+        GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+
+        ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:g account:a];
+        [imp parseBefore];
+        [imp parseDictionary:d2];
         [imp parseAfter];
 
         [waypointManager needsRefreshUpdate:waypoint];
@@ -663,7 +704,7 @@
         [iid setChunksCount:1];
 
         GCDictionaryGCA *wps = [gca caches_gca:center downloadInfoItem:iid];
-        GCA_CHECK_ACTIONSTATUS(wps, @"caches_gca", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+        GCA_CHECK_STATUS(wps, @"caches_gca", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport:NO];
         [iii setDescription:@"Geocaching Australia JSON data (queued)"];
@@ -847,11 +888,14 @@
 
     if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
         NSDictionary *json;
-        if (account.protocol == PROTOCOL_GCA)
+        if (account.protocol == PROTOCOL_GCA) {
             json = [gca my_query_list__json:iid];
-        if (account.protocol == PROTOCOL_GCA2)
+            GCA_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+        }
+        if (account.protocol == PROTOCOL_GCA2) {
             json = [gca2 my_query_list__json:iid];
-        GCA_CHECK_ACTIONSTATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+            GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+        }
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
         GCA_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
@@ -922,11 +966,14 @@
         [iid setChunksCount:1];
 
         NSDictionary *json;
-        if (account.protocol == PROTOCOL_GCA)
+        if (account.protocol == PROTOCOL_GCA) {
             json = [gca my_query_json:_id downloadInfoItem:iid];
-        if (account.protocol == PROTOCOL_GCA2)
+            GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
+        }
+        if (account.protocol == PROTOCOL_GCA2) {
             json = [gca2 my_query_json:_id downloadInfoItem:iid];
-        GCA_CHECK_ACTIONSTATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
+            GCA2_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+        }
 
         InfoItemImport *iii = [infoViewer addImport];
         [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
