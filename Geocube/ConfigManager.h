@@ -86,6 +86,7 @@
 @property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
 @property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceOKAPI;
+@property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGCA;
 
 @property (nonatomic, readonly) BOOL markasFoundDNFClearsTarget;
 @property (nonatomic, readonly) BOOL markasFoundMarksAllWaypoints;
@@ -159,6 +160,7 @@
 - (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
 - (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;
 - (void)mapSearchMaximumDistanceOKAPIUpdate:(NSInteger)value;
+- (void)mapSearchMaximumDistanceGCAUpdate:(NSInteger)value;
 - (void)orientationsAllowedUpdate:(NSInteger)value;
 - (void)markasFoundDNFClearsTargetUpdate:(BOOL)value;
 - (void)markasFoundMarksAllWaypointsUpdate:(BOOL)value;

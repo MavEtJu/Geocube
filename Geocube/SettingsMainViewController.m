@@ -295,6 +295,7 @@ enum sections {
     SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS = 0,
     SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA,
     SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI,
+    SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA,
     SECTION_MAPSEARCHMAXIMUM_MAX,
 
     SECTION_DYNAMICMAP_ENABLED = 0,
@@ -597,6 +598,13 @@ enum sections {
 
                     cell.textLabel.text = @"Distance in OKAPI search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
+                    return cell;
+                }
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Distance in GCA search radius";
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
@@ -1153,6 +1161,9 @@ enum sections {
                     break;
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
                     [self changeMapSearchMaximumDistanceOKAPI];
+                    break;
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
+                    [self changeMapSearchMaximumDistanceGCA];
                     break;
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
                     [self changeMapSearchMaximumNumberGCA];
@@ -1749,6 +1760,29 @@ enum sections {
 {
     NSInteger d = (1 + [selectedIndex integerValue]) * 250;
     [configManager mapSearchMaximumDistanceGSUpdate:d];
+    [self.tableView reloadData];
+}
+
+- (void)changeMapSearchMaximumDistanceGCA
+{
+    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    for (NSInteger d = 250; d < 10000; d += 250) {
+        [distances addObject:[MyTools niceDistance:d]];
+    }
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+                                            rows:distances
+                                initialSelection:(configManager.mapSearchMaximumDistanceGCA / 250) - 1
+                                          target:self
+                                   successAction:@selector(updateMapSearchMaximumDistanceGCA:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapSearchMaximumDistanceGCA:(NSNumber *)selectedIndex element:(id)element
+{
+    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
+    [configManager mapSearchMaximumDistanceGCAUpdate:d];
     [self.tableView reloadData];
 }
 

@@ -36,7 +36,7 @@
 @synthesize dynamicmapEnable, dynamicmapWalkingSpeed, dynamicmapWalkingDistance, dynamicmapCyclingSpeed, dynamicmapCyclingDistance, dynamicmapDrivingSpeed, dynamicmapDrivingDistance;
 @synthesize mapcacheEnable, mapcacheMaxAge, mapcacheMaxSize;
 @synthesize downloadImagesLogs, downloadImagesWaypoints, downloadImagesMobile, downloadQueriesMobile;
-@synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA;
+@synthesize mapSearchMaximumDistanceGS, mapSearchMaximumDistanceOKAPI, mapSearchMaximumNumberGCA, mapSearchMaximumDistanceGCA;
 @synthesize downloadTimeoutQuery, downloadTimeoutSimple;
 @synthesize markasFoundDNFClearsTarget, markasFoundMarksAllWaypoints, loggingRemovesMarkedAsFoundDNF;
 @synthesize compassAlwaysInPortraitMode, showCountryAsAbbrevation, showStateAsAbbrevation, showStateAsAbbrevationIfLocaleExists;
@@ -130,6 +130,7 @@
 
     CHECK(@"mapsearchmaximum_distancegs", @"5000");
     CHECK(@"mapsearchmaximum_distanceokapi", @"5000");
+    CHECK(@"mapsearchmaximum_distancegca", @"5000");
     CHECK(@"mapsearchmaximum_numbergca", @"50");
 
     CHECK(@"markas_founddnf_clearstarget", @"1");
@@ -203,6 +204,7 @@
     mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
     mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
     mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
+    mapSearchMaximumDistanceGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegca"].value integerValue];
     markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
     markasFoundMarksAllWaypoints = [[dbConfig dbGetByKey:@"markas_foundmarksallwaypoints"].value boolValue];
     loggingRemovesMarkedAsFoundDNF = [[dbConfig dbGetByKey:@"logging_removesmarkedasfounddnf"].value boolValue];
@@ -525,6 +527,11 @@
 {
     mapSearchMaximumDistanceOKAPI = value;
     [self NSIntegerUpdate:@"mapsearchmaximum_distanceokapi" value:value];
+}
+- (void)mapSearchMaximumDistanceGCAUpdate:(NSInteger)value
+{
+    mapSearchMaximumDistanceOKAPI = value;
+    [self NSIntegerUpdate:@"mapsearchmaximum_distancegca" value:value];
 }
 
 - (void)markasFoundDNFClearsTargetUpdate:(BOOL)value
