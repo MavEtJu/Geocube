@@ -25,6 +25,8 @@
 
 - (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
 - (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDowload *)iid;
 
 // glue for now
 - (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDowload *)iid;

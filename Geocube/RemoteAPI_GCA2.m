@@ -285,8 +285,6 @@
     return urlString;
 }
 
-// --------------------------------------------------------------------------
-
 - (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"api_services_users_by__username:%@", username);
@@ -316,6 +314,42 @@
 
     return [self performURLRequest:req downloadInfoItem:iid];
 }
+
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_caches_geocaches:%ld", (long)[wps count]);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[MyTools urlEncode:[wps componentsJoinedByString:@"|"]] forKey:@"cache_codes"];
+    [params setObject:@"30" forKey:@"lpc"];
+
+    NSString *urlString = [self prepareURLString:@"/caches/geocaches/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_caches_search_nearest:%@", [Coordinates NiceCoordinates:coords]);
+    
+    float radius = configManager.mapSearchMaximumDistanceGCA / 1000;
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSString *c = [NSString stringWithFormat:@"%f|%f", coords.latitude, coords.longitude];
+    [params setObject:[MyTools urlEncode:c] forKey:@"center"];
+    [params setObject:[NSNumber numberWithFloat:radius] forKey:@"radius"];
+    [params setObject:[MyTools urlEncode:@"Temporarily unavailable|Available"] forKey:@"status"];
+
+    NSString *urlString = [self prepareURLString:@"/search/nearest/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+// --------------------------------------------------------------------------
 
 // Old stuff
 

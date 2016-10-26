@@ -745,9 +745,49 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
-        if ([account canDoRemoteStuff] == NO)
+    if (account.protocol == PROTOCOL_GCA2) {
+        if ([account canDoRemoteStuff] == NO) {
+            [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
+        }
+
+        [iid setChunksTotal:2];
+        [iid setChunksCount:1];
+
+        NSDictionary *json = [gca2 api_services_caches_search_nearest:center downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+        GCA2_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+        if ([wpcodes count] == 0)
+            return REMOTEAPI_OK;
+
+        [iid setChunksCount:2];
+        json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+        OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+            [wps addObject:[json objectForKey:wpcode]];
+        }];
+        [d setObject:wps forKey:@"waypoints"];
+        GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+
+        ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:account];
+        [imp parseBefore];
+        [imp parseDictionary:d2];
+        [imp parseAfter];
+
+        [waypointManager needsRefreshAll];
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol == PROTOCOL_LIVEAPI) {
+        if ([account canDoRemoteStuff] == NO) {
+            [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+            return REMOTEAPI_APIDISABLED;
+        }
 
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
@@ -791,8 +831,10 @@
     }
 
     if (account.protocol == PROTOCOL_OKAPI) {
-        if ([account canDoRemoteStuff] == NO)
+        if ([account canDoRemoteStuff] == NO) {
+            [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
+        }
 
         [iid setChunksTotal:0];
         [iid setChunksCount:1];
