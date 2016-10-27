@@ -597,6 +597,7 @@
         return REMOTEAPI_OK;
     }
 
+#warning PROTOCOL_GCA2 not checked
     [self setDataError:@"[RemoteAPI] CreateLogNote: Unknown protocol" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
@@ -619,6 +620,7 @@
         [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
+
     if (account.protocol == PROTOCOL_OKAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
@@ -639,6 +641,7 @@
         [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
+
     if (account.protocol == PROTOCOL_GCA) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
@@ -663,6 +666,7 @@
         [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
+
     if (account.protocol == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
