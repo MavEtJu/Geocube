@@ -349,7 +349,6 @@
  }
      */
 
-    NSInteger logtype = [dbLogString wptTypeToLogType:wp.wpt_type_str];
     NSString *type;
     NSString *date;
     NSInteger dateSinceEpoch;
@@ -358,7 +357,7 @@
     NSString *comment;
     dbName *name;
     DICT_NSSTRING_KEY(dict, type, @"type");
-    dbLogString *ls = [dbLogString dbGetByAccountEventType:account logtype:logtype type:type];
+    dbLogString *logstring = [dbc LogString_get_bytype:wp.account logtype:wp.logstring_logtype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
     dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");
@@ -381,7 +380,7 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:date logger_id:name._id log:comment needstobelogged:NO];
     [l dbCreate];
     newLogsCount++;
     [infoItemImport setLogsNew:newLogsCount];
