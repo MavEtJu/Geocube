@@ -332,6 +332,9 @@
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
             NSDictionary *status = [__json__ objectForKey:@"Status"]; \
+            if (status == nil) \
+                if ([__json__ objectForKey:@"StatusCode"] != nil) \
+                    status = __json__; \
             if (status == nil) { \
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
                 NSLog(@"%@", s); \
