@@ -65,7 +65,7 @@
     okapi = nil;
     gca = nil;
     gca2 = nil;
-    switch (account.protocol) {
+    switch (account.protocol_id) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
             protocol = liveAPI;
@@ -93,7 +93,7 @@
 
 - (BOOL)Authenticate
 {
-    switch (account.protocol) {
+    switch (account.protocol_id) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:{
             // Reset it
@@ -440,7 +440,7 @@
     [ret setValue:@"" forKey:@"recommendations_given"];
     [ret setValue:@"" forKey:@"recommendations_received"];
 
-    if (account.protocol == PROTOCOL_OKAPI) {
+    if (account.protocol_id == PROTOCOL_OKAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
         GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username downloadInfoItem:iid];
@@ -455,7 +455,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
         NSDictionary *dict1 = [liveAPI GetYourUserProfile:iid];
@@ -480,7 +480,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol_id == PROTOCOL_GCA) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
 
@@ -500,7 +500,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
@@ -525,7 +525,7 @@
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
@@ -559,13 +559,13 @@
                 default:
                     NSAssert(NO, @"Unknown tb.logtype");
             }
-            dbLogString *ls = [dbLogString dbGetByAccountLogtypeDefault:account logtype:logtype default:dflt];
+            dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:account.protocol logtype:logtype default:dflt];
             [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged downloadInfoItem:iid];
         }];
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_OKAPI) {
+    if (account.protocol_id == PROTOCOL_OKAPI) {
         GCDictionaryOKAPI *json = [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite downloadInfoItem:iid];
         OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
@@ -579,7 +579,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol_id == PROTOCOL_GCA) {
         GCDictionaryGCA *json = [gca my_log_new:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note rating:rating downloadInfoItem:iid];
         GCA_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
@@ -600,7 +600,26 @@
         return REMOTEAPI_OK;
     }
 
-#warning PROTOCOL_GCA2 not checked
+    if (account.protocol_id == PROTOCOL_GCA2) {
+        NSMutableString *n = [NSMutableString stringWithString:note];
+        if (rating != 0)
+            [n appendFormat:@"\n*Overall Experience: %ld*\n", (long)rating];
+        if (favourite == YES)
+            [n appendFormat:@"\n*Recommended*\n"];
+        GCDictionaryGCA2 *json = [gca2 api_services_logs_submit:waypoint logtype:logstring.type comment:n when:dateLogged rating:rating recommended:favourite downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+
+        GCA2_GET_VALUE(json, NSDictionary, data, @"data", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+        GCA2_GET_VALUE(data, NSNumber, logid, @"log_uuid", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+
+        if (image != nil) {
+            json = [gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:iid];
+            GCA2_CHECK_STATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
+        }
+
+        return REMOTEAPI_OK;
+    }
+
     [self setDataError:@"[RemoteAPI] CreateLogNote: Unknown protocol" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
@@ -610,7 +629,7 @@
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
@@ -624,7 +643,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_OKAPI) {
+    if (account.protocol_id == PROTOCOL_OKAPI) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
@@ -645,7 +664,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol_id == PROTOCOL_GCA) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
 
@@ -670,7 +689,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
@@ -701,7 +720,7 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if (account.protocol == PROTOCOL_GCA) {
+    if (account.protocol_id == PROTOCOL_GCA) {
         if ([account canDoRemoteStuff] == NO) {
             [self setAPIError:@"[GCA] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
@@ -752,7 +771,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA2) {
         if ([account canDoRemoteStuff] == NO) {
             [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
@@ -790,7 +809,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         if ([account canDoRemoteStuff] == NO) {
             [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
@@ -837,7 +856,7 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_OKAPI) {
+    if (account.protocol_id == PROTOCOL_OKAPI) {
         if ([account canDoRemoteStuff] == NO) {
             [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
             return REMOTEAPI_APIDISABLED;
@@ -892,7 +911,7 @@
 
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDowload *)iid
 {
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
         return REMOTEAPI_OK;
@@ -912,7 +931,7 @@
      */
 
     *qs = nil;
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI GetPocketQueryList:iid];
         LIVEAPI_CHECK_STATUS(json, @"listQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
@@ -935,13 +954,13 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
         NSDictionary *json;
-        if (account.protocol == PROTOCOL_GCA) {
+        if (account.protocol_id == PROTOCOL_GCA) {
             json = [gca my_query_list__json:iid];
             GCA_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
         }
-        if (account.protocol == PROTOCOL_GCA2) {
+        if (account.protocol_id == PROTOCOL_GCA2) {
             json = [gca2 my_query_list__json:iid];
             GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
         }
@@ -970,7 +989,7 @@
 {
     *retObj = nil;
 
-    if (account.protocol == PROTOCOL_LIVEAPI) {
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
         NSMutableDictionary *result = nil;
         NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];
 
@@ -1010,16 +1029,16 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
         NSDictionary *json;
-        if (account.protocol == PROTOCOL_GCA) {
+        if (account.protocol_id == PROTOCOL_GCA) {
             json = [gca my_query_json:_id downloadInfoItem:iid];
             GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
         }
-        if (account.protocol == PROTOCOL_GCA2) {
+        if (account.protocol_id == PROTOCOL_GCA2) {
             json = [gca2 my_query_json:_id downloadInfoItem:iid];
             GCA2_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
         }
@@ -1037,13 +1056,13 @@
 - (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDowload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
-    if (account.protocol == PROTOCOL_GCA || account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
         NSString *gpx;
-        if (account.protocol == PROTOCOL_GCA)
+        if (account.protocol_id == PROTOCOL_GCA)
             gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
-        if (account.protocol == PROTOCOL_GCA2)
+        if (account.protocol_id == PROTOCOL_GCA2)
             gpx = [gca2 my_query_gpx:_id downloadInfoItem:iid];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
@@ -1060,7 +1079,7 @@
 
 - (RemoteAPIResult)trackablesMine:(InfoItemDowload *)iid
 {
-    if (account.protocol != PROTOCOL_LIVEAPI)
+    if (account.protocol_id != PROTOCOL_LIVEAPI)
         return REMOTEAPI_NOTPROCESSED;
 
     [iid setChunksTotal:1];
@@ -1077,7 +1096,7 @@
 
 - (RemoteAPIResult)trackablesInventory:(InfoItemDowload *)iid
 {
-    if (account.protocol != PROTOCOL_LIVEAPI)
+    if (account.protocol_id != PROTOCOL_LIVEAPI)
         return REMOTEAPI_NOTPROCESSED;
 
     [iid setChunksTotal:1];
@@ -1094,7 +1113,7 @@
 
 - (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t downloadInfoItem:(InfoItemDowload *)iid
 {
-    if (account.protocol != PROTOCOL_LIVEAPI)
+    if (account.protocol_id != PROTOCOL_LIVEAPI)
         return REMOTEAPI_NOTPROCESSED;
 
     NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
