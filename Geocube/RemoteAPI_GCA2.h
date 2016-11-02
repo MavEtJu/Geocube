@@ -29,6 +29,7 @@
 - (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDowload *)iid;
 - (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended downloadInfoItem:(InfoItemDowload *)iid;
 - (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItemDowload *)iid;
 
 // glue for now
 - (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDowload *)iid;

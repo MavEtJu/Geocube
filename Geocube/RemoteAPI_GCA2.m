@@ -413,6 +413,19 @@
     return [self performURLRequest:req downloadInfoItem:iid];
 }
 
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_caches_query_list");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/caches/query/list/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
 // --------------------------------------------------------------------------
 
 // Old stuff
