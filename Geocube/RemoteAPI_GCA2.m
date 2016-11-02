@@ -333,7 +333,7 @@
 - (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDowload *)iid
 {
     NSLog(@"api_services_caches_search_nearest:%@", [Coordinates NiceCoordinates:coords]);
-    
+
     float radius = configManager.mapSearchMaximumDistanceGCA / 1000;
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -345,6 +345,70 @@
     NSString *urlString = [self prepareURLString:@"/search/nearest/" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
+
+    NSMutableString *ps = [NSMutableString stringWithFormat:@""];
+    [ps appendFormat:@"consumer_key=%@", [MyTools urlEncode:key]];
+    [ps appendFormat:@"&cache_code=%@", [MyTools urlEncode:wp.wpt_name]];
+    [ps appendFormat:@"&logtype=%@", [MyTools urlEncode:logtype]];
+    [ps appendFormat:@"&comment=%@", [MyTools urlEncode:comment]];
+    [ps appendFormat:@"&when=%@", [MyTools urlEncode:dateLogged]];
+
+    NSString *urlString = [self prepareURLString:@"/logs/submit" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    return [self performURLRequest:req downloadInfoItem:iid];
+}
+
+- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription downloadInfoItem:(InfoItemDowload *)iid
+{
+    NSLog(@"api_services_logs_images_add:%ld", (long)logid);
+
+    NSString *urlString = [self prepareURLString:@"/logs/images/add" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+
+    NSString *boundary = @"YOUR_BOUNDARY_STRING";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [req addValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:20];
+    [params setObject:key forKey:@"consumer_key"];
+    [params setObject:logid forKey:@"log_uuid"];
+    [params setObject:imageCaption forKey:@"caption"];
+    [params setObject:imageDescription forKey:@"description"];
+    [params setObject:imgdata forKey:@"image"];
+
+    NSMutableData *body = [NSMutableData data];
+    [[params allKeys] enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL *stop) {
+        if ([k isEqualToString:@"image"] == YES) {
+            [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"photo.jpg\"\r\n", k] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[NSData dataWithData:[params objectForKey:k]]];
+
+            return;
+        }
+
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n%@", k, [params objectForKey:k]] dataUsingEncoding:NSUTF8StringEncoding]];
+    }];
+
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    req.HTTPBody = body;
 
     return [self performURLRequest:req downloadInfoItem:iid];
 }
