@@ -93,7 +93,7 @@ enum {
 - (void)menuUpdate
 {
     [self showInfoView];
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:@"Download trackables information"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {

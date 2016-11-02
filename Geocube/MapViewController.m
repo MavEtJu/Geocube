@@ -883,7 +883,7 @@ enum {
             return;
         accountsFound++;
 
-        InfoItemDowload *iid = [infoView addDownload];
+        InfoItemDownload *iid = [infoView addDownload];
         [iid setDescription:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -933,7 +933,7 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    InfoItemDowload *iid = [dict objectForKey:@"iid"];
+    InfoItemDownload *iid = [dict objectForKey:@"iid"];
     dbWaypoint *wp = [dict objectForKey:@"wp"];
     dbAccount *account = [dict objectForKey:@"account"];
 

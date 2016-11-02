@@ -25,10 +25,10 @@
 - (void)calculateRects;
 - (void)viewWillTransitionToSize;
 
-- (InfoItemDowload *)addDownload:(BOOL)expanded;
+- (InfoItemDownload *)addDownload:(BOOL)expanded;
 - (InfoItemImage *)addImage:(BOOL)expanded;
 - (InfoItemImport *)addImport:(BOOL)expanded;
-- (InfoItemDowload *)addDownload;
+- (InfoItemDownload *)addDownload;
 - (InfoItemImage *)addImage;
 - (InfoItemImport *)addImport;
 - (void)removeItem:(InfoItem *)did;

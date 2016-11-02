@@ -108,7 +108,7 @@ enum {
     seenJSON = NO;
 
     [self showInfoView];
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
     [infoView setHeaderSuffix:@"1/2"];

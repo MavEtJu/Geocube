@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoItemDowload ()
+@interface InfoItemDownload ()
 
 @end
 
-@implementation InfoItemDowload
+@implementation InfoItemDownload
 
 @synthesize height;
 

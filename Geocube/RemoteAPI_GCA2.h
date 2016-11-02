@@ -23,17 +23,17 @@
 
 - (BOOL)authenticate:(dbAccount *)account;
 
-- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItemDownload *)iid;
 
 // glue for now
-- (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDowload *)iid;
-- (GCDictionaryGCA2 *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDownload *)iid;
+- (GCDictionaryGCA2 *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid;
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid;
 
 @end

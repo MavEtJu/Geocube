@@ -143,7 +143,7 @@ NEEDS_OVERLOADING(clearFlags)
 - (void)runReloadWaypoints
 {
     [self showInfoView];
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setChunksTotal:[waypoints count]];
 
     __block BOOL failure = NO;

@@ -270,7 +270,7 @@ enum {
 
 - (void)runStatistics:(dbAccount *)a
 {
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:a.site];
 
     NSDictionary *d = nil;

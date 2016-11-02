@@ -133,7 +133,7 @@
                 [asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
 
-                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                InfoItemDownload *iid = [req objectForKey:@"downloadInfoItem"];
                 if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO) {
                     NSMutableData *d = [req objectForKey:@"data"];
                     [iid setBytesCount:[d length]];
@@ -159,7 +159,7 @@
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
 
-                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                InfoItemDownload *iid = [req objectForKey:@"downloadInfoItem"];
                 if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO)
                     [iid setBytesCount:[d length]];
 
@@ -181,7 +181,7 @@
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
 
-                InfoItemDowload *iid = [req objectForKey:@"downloadInfoItem"];
+                InfoItemDownload *iid = [req objectForKey:@"downloadInfoItem"];
                 if (iid != nil && [iid isKindOfClass:[NSNull class]] == NO)
                     [iid setBytesTotal:(NSInteger)response.expectedContentLength];
 

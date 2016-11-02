@@ -21,10 +21,10 @@
 
 @interface RemoteAPI_OKAPI : RemoteAPI_Template
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid;
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcode downloadInfoItem:(InfoItemDowload *)iid;
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcode downloadInfoItem:(InfoItemDownload *)iid;
 
 @end

@@ -77,7 +77,7 @@
     NSObject *ret;
 
     [self showInfoView];
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
     RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret downloadInfoItem:iid infoViewer:infoView callback:self];

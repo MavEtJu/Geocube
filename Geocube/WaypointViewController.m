@@ -840,7 +840,7 @@ enum {
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
     [self showInfoView];
-    InfoItemDowload *iid = [infoView addDownload];
+    InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
 
     NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint downloadInfoItem:iid];

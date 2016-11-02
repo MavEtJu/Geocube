@@ -112,14 +112,14 @@
     return iii;
 }
 
-- (InfoItemDowload *)addDownload
+- (InfoItemDownload *)addDownload
 {
     return [self addDownload:YES];
 }
 
-- (InfoItemDowload *)addDownload:(BOOL)expanded
+- (InfoItemDownload *)addDownload:(BOOL)expanded
 {
-    InfoItemDowload *iid = [[InfoItemDowload alloc] initWithInfoViewer:self expanded:expanded];
+    InfoItemDownload *iid = [[InfoItemDownload alloc] initWithInfoViewer:self expanded:expanded];
 
     __block NSInteger max = 0;
     @synchronized (items) {
@@ -200,7 +200,7 @@
 - (void)viewWillTransitionToSize
 {
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItemDowload *d, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItemDownload *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }

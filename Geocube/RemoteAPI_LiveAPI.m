@@ -130,7 +130,7 @@
     return YES;
 }
 
-- (GCDictionaryLiveAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDownload *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
@@ -171,7 +171,7 @@
 
 /**************************************************************************/
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoItemDownload *)iid
 {
     NSLog(@"GetYourUserProfile");
 
@@ -214,7 +214,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoItemDownload *)iid
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
@@ -228,7 +228,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
@@ -296,7 +296,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
@@ -336,7 +336,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
 
@@ -384,7 +384,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
@@ -418,7 +418,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoItemDownload *)iid
 {
     NSLog(@"GetPocketQueryList");
 
@@ -432,7 +432,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
@@ -448,7 +448,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
@@ -466,7 +466,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"UpdateCacheNote:%@", wpt_name);
 
@@ -486,7 +486,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoItemDownload *)iid
 {
     NSLog(@"GetUsersTrackables");
 
@@ -508,7 +508,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoItemDownload *)iid
 {
     NSLog(@"GetOwnedTrackables");
 
@@ -530,7 +530,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
@@ -546,7 +546,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"CreateTrackableLog:%@", tb.ref);
 

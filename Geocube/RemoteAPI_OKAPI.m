@@ -95,7 +95,7 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDownload *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
@@ -139,7 +139,7 @@
 
 // -----------------------------------------------------
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"services_users_byUsername");
 
@@ -157,7 +157,7 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"services_logs_submit");
 
@@ -177,13 +177,13 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"services_caches_geocache: %@", wpname);
     return [self services_caches_geocaches:@[wpname] downloadInfoItem:iid];
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
@@ -204,7 +204,7 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcodes downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 

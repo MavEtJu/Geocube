@@ -98,7 +98,7 @@
 @class ImportOKAPIJSON;
 @class ImportTemplate;
 @class InfoItem;
-@class InfoItemDowload;
+@class InfoItemDownload;
 @class InfoItemImage;
 @class InfoItemImport;
 @class InfoViewer;

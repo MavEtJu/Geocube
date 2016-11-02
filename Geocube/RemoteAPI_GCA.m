@@ -92,7 +92,7 @@
         [delegate GCAAuthSuccessful:cookie];
 }
 
-- (NSData *)loadDataForeground:(NSString *)urlString downloadInfoItem:(InfoItemDowload *)iid
+- (NSData *)loadDataForeground:(NSString *)urlString downloadInfoItem:(InfoItemDownload *)iid
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
@@ -113,12 +113,12 @@
     return data;
 }
 
-- (NSString *)loadJSONForeground:(NSString *)urlString downloadInfoItem:(InfoItemDowload *)iid
+- (NSString *)loadJSONForeground:(NSString *)urlString downloadInfoItem:(InfoItemDownload *)iid
 {
     return [[NSString alloc] initWithData:[self loadDataForeground:urlString downloadInfoItem:iid] encoding:NSUTF8StringEncoding];
 }
 
-- (NSArray *)loadPage:(NSString *)urlString downloadInfoItem:(InfoItemDowload *)iid
+- (NSArray *)loadPage:(NSString *)urlString downloadInfoItem:(InfoItemDownload *)iid
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
@@ -146,7 +146,7 @@
     return lines;
 }
 
-- (NSArray *)loadPageForeground:(NSString *)urlString downloadInfoItem:(InfoItemDowload *)iid
+- (NSArray *)loadPageForeground:(NSString *)urlString downloadInfoItem:(InfoItemDownload *)iid
 {
     NSURL *url = [NSURL URLWithString:urlString];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
@@ -174,7 +174,7 @@
     return lines;
 }
 
-- (NSArray *)postPageForm:(NSString *)baseUrl params:(NSDictionary *)params downloadInfoItem:(InfoItemDowload *)iid
+- (NSArray *)postPageForm:(NSString *)baseUrl params:(NSDictionary *)params downloadInfoItem:(InfoItemDownload *)iid
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -208,7 +208,7 @@
     return lines;
 }
 
-- (NSArray *)postPageMultiForm:(NSString *)baseUrl dataField:(NSString *)dataField params:(NSDictionary *)params downloadInfoItem:(InfoItemDowload *)iid
+- (NSArray *)postPageMultiForm:(NSString *)baseUrl dataField:(NSString *)dataField params:(NSDictionary *)params downloadInfoItem:(InfoItemDownload *)iid
 {
     NSMutableString *urlString = [NSMutableString stringWithString:baseUrl];
 
@@ -281,7 +281,7 @@
 
 // ------------------------------------------------
 
-- (GCDictionaryGCA *)my_query_list__json:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)my_query_list__json:(InfoItemDownload *)iid
 {
     NSLog(@"my_query_list__json");
 
@@ -299,7 +299,7 @@
     return json;
 }
 
-- (NSArray *)my_query:(InfoItemDowload *)iid
+- (NSArray *)my_query:(InfoItemDownload *)iid
 {
     NSLog(@"my_query");
     // Obsolete, do not use aymore
@@ -348,7 +348,7 @@
     return as;
 }
 
-- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)cacher_statistic__finds:(NSString *)name downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"cacher_statistics__finds:%@", name);
 
@@ -363,7 +363,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
-- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)cacher_statistic__hides:(NSString *)name downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"cacher_statistics__hides");
 
@@ -386,7 +386,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:ret];
 }
 
-- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCStringGPX *)cache__gpx:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"cache__gpx:%@", wpname);
 
@@ -395,7 +395,7 @@
     return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
 }
 
-- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"cache__json:%@", wpname);
 
@@ -415,7 +415,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)my_log_new:(NSString *)logtype waypointName:(NSString *)wpname dateLogged:(NSString *)dateLogged note:(NSString *)note rating:(NSInteger)rating downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"my_log_new:%@", wpname);
 
@@ -457,7 +457,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)_data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)my_gallery_cache_add:(NSString *)wpname log_id:(NSInteger)log_id data:(NSData *)_data caption:(NSString *)caption description:(NSString *)description downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"my_gallery_cache_add:%@", wpname);
 
@@ -492,7 +492,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)caches_gca:(CLLocationCoordinate2D)center downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"caches_gca:%@", [Coordinates NiceCoordinates:center]);
 
@@ -514,7 +514,7 @@
     return gcajson;
 }
 
-- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)logs_cache:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"logs_cache:%@", wpname);
 
@@ -534,7 +534,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+- (GCDictionaryGCA *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"my_query_json:%@", queryname);
 
@@ -556,7 +556,7 @@
     return [[GCDictionaryGCA alloc] initWithDictionary:json];
 }
 
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"my_query_gpx:%@", queryname);
 
@@ -566,7 +566,7 @@
     return [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
-- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(InfoItemDowload *)iid
+- (NSInteger)my_query_count:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"my_query_count:%@", queryname);
 
