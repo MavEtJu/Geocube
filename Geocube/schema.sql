@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.geocube");
-insert into config(key, value) values("version", "37");
+insert into config(key, value) values("version", "38");
 
 create table filters (
     id integer primary key,
@@ -256,6 +256,15 @@ create table travelbug2waypoint (
 create index travelbug2waypoint_idx_travelbug_id on travelbug2waypoint(travelbug_id);
 create index travelbug2waypoint_idx_cache_id on travelbug2waypoint(waypoint_id);
 
+create table protocols (
+    id integer primary key,
+    name text
+);
+insert into protocols(id, name) values(1, "LiveAPI");
+insert into protocols(id, name) values(2, "OKAPI");
+insert into protocols(id, name) values(3, "GCA");
+insert into protocols(id, name) values(4, "GCA2");
+
 create table accounts (
     id integer primary key,
     geocube_id integer,
@@ -267,7 +276,7 @@ create table accounts (
     url_queries text,
     accountname text,
     name_id integer,			-- points to names(id)
-    protocol integer,			-- 0 none, 1 groundspeak, 2 okapi, 3 GCA
+    protocol_id integer,		-- points to protocols(id)
     distance_minimum integer,
 
     authentication_name text,
@@ -366,7 +375,7 @@ create table log_strings (
     default_dropoff bool,
     default_pickup bool,
     default_discover bool,
-    account_id integer,		-- points to accounts(id)
+    protocol_id integer,	-- points to protocols(id)
     icon integer,
     found integer,
     forlogs bool

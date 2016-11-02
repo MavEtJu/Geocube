@@ -79,6 +79,7 @@
 #import "dbNotice.h"
 #import "dbPersonalNote.h"
 #import "dbPin.h"
+#import "dbProtocol.h"
 #import "dbQueryImport.h"
 #import "dbState.h"
 #import "dbSymbol.h"

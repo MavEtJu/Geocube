@@ -25,21 +25,26 @@
 
 @implementation dbLogString
 
-@synthesize _id, text, type, logtype, account, account_id, defaultNote, defaultFound, icon, found, forLogs, defaultVisit, defaultDropoff, defaultPickup, defaultDiscover;
+@synthesize _id, text, type, logtype, protocol_id, protocol, protocol_string, defaultNote, defaultFound, icon, found, forLogs, defaultVisit, defaultDropoff, defaultPickup, defaultDiscover;
 
 - (void)finish
 {
-    if (account == nil)
-        account = [dbc Account_get:account_id];
-    if (account_id == 0)
-        account_id = account._id;
+    if (protocol_id == 0) {
+        protocol = [dbProtocol dbGetByName:protocol_string];
+        protocol_id = protocol._id;
+    }
+    if (protocol_string == nil) {
+        protocol = [dbProtocol dbGet:protocol_id];
+        protocol_string = protocol.name;
+    }
+
     [super finish];
 }
 
 + (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
     NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
-    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, account_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
+    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
 
     @synchronized(db.dbaccess) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
@@ -49,7 +54,7 @@
             TEXT_FETCH( 1, ls.text);
             TEXT_FETCH( 2, ls.type);
             INT_FETCH ( 3, ls.logtype);
-            INT_FETCH ( 4, ls.account_id);
+            INT_FETCH ( 4, ls.protocol_id);
             BOOL_FETCH( 5, ls.defaultNote);
             BOOL_FETCH( 6, ls.defaultFound);
             INT_FETCH ( 7, ls.icon);
@@ -77,25 +82,25 @@
     return [dbLogString dbAllXXX:@""];
 }
 
-+ (NSArray *)dbAllByAccount:(dbAccount *)account
++ (NSArray *)dbAllByProtocol:(dbProtocol *)protocol
 {
-    return [dbLogString dbAllXXX:@"where account_id = ?"
+    return [dbLogString dbAllXXX:@"where protocol_id = ?"
                             keys:@"i"
-                          values:@[[NSNumber numberWithLongLong:account._id]]];
+                          values:@[[NSNumber numberWithLongLong:protocol._id]]];
 }
 
-+ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(LogStringLogType)logtype
++ (NSArray *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
 {
-    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ?"
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ?"
                             keys:@"ii"
-                          values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
+                          values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
 }
 
-+ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type;
 {
-    NSArray *lss = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
+    NSArray *lss = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
                                     keys:@"iis"
-                                  values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype], type]];
+                                  values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
     if (lss == nil)
         return nil;
     if ([lss count] == 0)
@@ -103,18 +108,18 @@
     return [lss objectAtIndex:0];
 }
 
-+ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(LogStringLogType)logtype
++ (NSArray *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
 {
-    return [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and forlogs = 1"
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1"
                             keys:@"ii"
-                          values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
+                          values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
 }
 
-+ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type
++ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type
 {
-    NSArray *as = [dbLogString dbAllXXX:@"where account_id = ? and logtype = ? and type = ?"
+    NSArray *as = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
                                    keys:@"iis"
-                                 values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype], type]];
+                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
     if (as == nil)
         return nil;
     if ([as count] == 0)
@@ -125,12 +130,12 @@
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"insert into log_strings(text, type, logtype, account_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, text);
         SET_VAR_TEXT( 2, type);
         SET_VAR_INT ( 3, logtype);
-        SET_VAR_INT ( 4, account_id);
+        SET_VAR_INT ( 4, protocol_id);
         SET_VAR_BOOL( 5, defaultNote);
         SET_VAR_BOOL( 6, defaultFound);
         SET_VAR_INT ( 7, icon);
@@ -152,12 +157,12 @@
 - (void)dbUpdate
 {
     @synchronized(db.dbaccess) {
-        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, account_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
+        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
 
         SET_VAR_TEXT( 1, text);
         SET_VAR_TEXT( 2, type);
         SET_VAR_INT ( 3, logtype);
-        SET_VAR_INT ( 4, account_id);
+        SET_VAR_INT ( 4, protocol_id);
         SET_VAR_BOOL( 5, defaultNote);
         SET_VAR_BOOL( 6, defaultFound);
         SET_VAR_INT ( 7, icon);
@@ -219,7 +224,7 @@
     return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
-+ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(LogStringLogType)logtype default:(NSInteger)dflt
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol logtype:(LogStringLogType)logtype default:(NSInteger)dflt
 {
     NSString *what = nil;
     switch (dflt) {
@@ -245,10 +250,10 @@
             NSAssert1(NO, @"Unknown default field: %ld", (long)dflt);
     }
 
-    NSString *where = [NSString stringWithFormat:@"where account_id = ? and logtype = ? and default_%@ = 1", what];
+    NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and logtype = ? and default_%@ = 1", what];
     NSArray *as = [dbLogString dbAllXXX:where
                                    keys:@"ii"
-                                 values:@[[NSNumber numberWithLongLong:account._id], [NSNumber numberWithInteger:logtype]]];
+                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
     if (as == nil)
         return nil;
     if ([as count] == 0)

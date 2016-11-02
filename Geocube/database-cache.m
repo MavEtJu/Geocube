@@ -33,7 +33,7 @@
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types, Locales;
+@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types, Locales, Protocols;
 @synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
 @synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown, Type_ManuallyEntered;
 
@@ -47,6 +47,7 @@
 - (void)loadCachableData
 {
     Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
+    Protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
     Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
     Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
     Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
@@ -288,11 +289,11 @@
     [Symbols addObject:cs];
 }
 
-- (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
+- (dbLogString *)LogString_get_bytype:(dbProtocol *)protocol logtype:(NSInteger)logtype type:(NSString *)type
 {
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
-        if (ls.account == account &&
+        if (ls.protocol_id == protocol._id &&
             ls.logtype == logtype &&
             [ls.text compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;

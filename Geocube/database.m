@@ -475,6 +475,25 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 38
+    a = @[
+    // Create new protocols table
+    @"create table protocols ( id integer primary key, name text )",
+    @"insert into protocols(id, name) values(1, 'LiveAPI')",
+    @"insert into protocols(id, name) values(2, 'OKAPI')",
+    @"insert into protocols(id, name) values(3, 'GCA')",
+    @"insert into protocols(id, name) values(4, 'GCA2')",
+    // Adjust accounts table
+    @"alter table accounts add column protocol_id integer",
+    @"update accounts set protocol_id = protocol",
+    // Adjust log_strings table
+    @"alter table log_strings add column protocol_id integer",
+    @"update log_strings set protocol_id = (select protocol_id from accounts where id = account_id)",
+    @"delete from log_strings where protocol_id = 2",
+
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

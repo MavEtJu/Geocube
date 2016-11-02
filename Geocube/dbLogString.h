@@ -42,8 +42,9 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
 
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) dbAccount *account;
-@property (nonatomic) NSId account_id;
+@property (nonatomic) dbProtocol *protocol;
+@property (nonatomic) NSString *protocol_string;
+@property (nonatomic) NSId protocol_id;
 @property (nonatomic) BOOL defaultNote;
 @property (nonatomic) BOOL defaultFound;
 @property (nonatomic) BOOL defaultVisit;
@@ -58,11 +59,11 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
 + (NSInteger)stringToLogtype:(NSString *)string;
 + (NSInteger)wptTypeToLogType:(NSString *)type_full;
 + (void)dbDeleteAll;
-+ (NSArray *)dbAllByAccount:(dbAccount *)account;
-+ (dbLogString *)dbGet_byAccountLogtypeType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
-+ (NSArray *)dbAllByAccountLogtype_All:(dbAccount *)account logtype:(LogStringLogType)logtype;
-+ (NSArray *)dbAllByAccountLogtype_LogOnly:(dbAccount *)account logtype:(LogStringLogType)logtype;
-+ (dbLogString *)dbGetByAccountEventType:(dbAccount *)account logtype:(LogStringLogType)logtype type:(NSString *)type;
-+ (dbLogString *)dbGetByAccountLogtypeDefault:(dbAccount *)account logtype:(LogStringLogType)logtype default:(NSInteger)dflt;
++ (NSArray *)dbAllByProtocol:(dbProtocol *)protocol;
++ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (NSArray *)dbAllByProtocolLogtype_All:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
++ (NSArray *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
++ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocl logtype:(LogStringLogType)logtype default:(NSInteger)dflt;
 
 @end

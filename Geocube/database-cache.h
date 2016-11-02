@@ -23,6 +23,7 @@
 
 // In memory database information
 @property (nonatomic, retain) NSMutableArray *Accounts;
+@property (nonatomic, retain) NSMutableArray *Protocols;
 @property (nonatomic, retain) NSMutableArray *Pins;
 @property (nonatomic, retain) NSMutableArray *Types;
 @property (nonatomic, retain) NSMutableArray *Groups;

@@ -196,6 +196,7 @@
 @class dbObject;
 @class dbPersonalNote;
 @class dbPin;
+@class dbProtocol;
 @class dbQueryImport;
 @class dbState;
 @class dbSymbol;

@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef NS_ENUM(NSInteger, AccountProtocol) {
-    PROTOCOL_NONE = 0,
-    PROTOCOL_LIVEAPI = 1,
-    PROTOCOL_OKAPI = 2,
-    PROTOCOL_GCA = 3,
-    PROTOCOL_GCA2 = 4
-};
-
 @interface dbAccount : dbObject
 
 @property (nonatomic, retain) NSString *site;
@@ -35,7 +27,9 @@ typedef NS_ENUM(NSInteger, AccountProtocol) {
 @property (nonatomic, retain) NSString *accountname_string;
 @property (nonatomic, retain) dbName *accountname;
 @property (nonatomic) NSId accountname_id;
-@property (nonatomic) AccountProtocol protocol;
+@property (nonatomic) NSId protocol_id;
+@property (nonatomic) dbProtocol *protocol;
+@property (nonatomic) NSString *protocol_string;
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger revision;
 @property (nonatomic) BOOL enabled;
