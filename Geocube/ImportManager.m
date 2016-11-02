@@ -67,6 +67,8 @@
     if ([data isKindOfClass:[GCStringFilename class]] == YES ||
         [data isKindOfClass:[GCStringGPX class]] == YES) {
         imp = [[ImportGPX alloc] init:group account:account];
+    } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
+        imp = [[ImportGCA2JSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
         imp = [[ImportGCAJSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
@@ -106,6 +108,9 @@
             [imp parseString:(NSString *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
             [iii setDescription:@"LiveAPI data"];
+            [imp parseDictionary:(NSDictionary *)data infoItemImport:iii];
+        } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
+            [iii setDescription:@"Geocaching Australia API data"];
             [imp parseDictionary:(NSDictionary *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
             [iii setDescription:@"Geocaching Australia data"];
