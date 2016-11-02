@@ -42,7 +42,7 @@
 #define KEY_VERSION_COUNTRIES       1
 #define KEY_VERSION_EXTERNALMAPS    1
 #define KEY_VERSION_KEYS            1
-#define KEY_VERSION_LOGSTRINGS      1
+#define KEY_VERSION_LOGSTRINGS      2
 #define KEY_VERSION_NOTICES         1
 #define KEY_VERSION_PINS            1
 #define KEY_VERSION_SITES           1

@@ -36,9 +36,7 @@
 {
     ImportGeocube *ig = [[ImportGeocube alloc] init];
     ig.iii = iii;
-    [ig parse:data];
-
-    return YES;
+    return [ig parse:data];
 }
 
 - (BOOL)parse:(NSData *)XMLdata
@@ -52,34 +50,34 @@
         return NO;
 
     if ((d = [xmlDictionary objectForKey:@"notices"]) != nil)
-        okay |= [self parseNotices:d];
+        okay &= [self parseNotices:d];
 
     if ((d = [xmlDictionary objectForKey:@"config"]) != nil)
         xmlDictionary = d;
     if ((d = [xmlDictionary objectForKey:@"sites"]) != nil)
-        okay |= [self parseSites:d];
+        okay &= [self parseSites:d];
     if ((d = [xmlDictionary objectForKey:@"keys"]) != nil)
-        okay |= [self parseKeys:d];
+        okay &= [self parseKeys:d];
     if ((d = [xmlDictionary objectForKey:@"externalmaps"]) != nil)
-        okay |= [self parseExternalMaps:d];
+        okay &= [self parseExternalMaps:d];
     if ((d = [xmlDictionary objectForKey:@"attributes"]) != nil)
-        okay |= [self parseAttributes:d];
+        okay &= [self parseAttributes:d];
     if ((d = [xmlDictionary objectForKey:@"countries"]) != nil)
-        okay |= [self parseCountries:d];
+        okay &= [self parseCountries:d];
     if ((d = [xmlDictionary objectForKey:@"states"]) != nil)
-        okay |= [self parseStates:d];
+        okay &= [self parseStates:d];
     if ((d = [xmlDictionary objectForKey:@"types"]) != nil)
-        okay |= [self parseTypes:d];
+        okay &= [self parseTypes:d];
     if ((d = [xmlDictionary objectForKey:@"pins"]) != nil)
-        okay |= [self parsePins:d];
+        okay &= [self parsePins:d];
     if ((d = [xmlDictionary objectForKey:@"bookmarks"]) != nil)
-        okay |= [self parseBookmarks:d];
+        okay &= [self parseBookmarks:d];
     if ((d = [xmlDictionary objectForKey:@"containers"]) != nil)
-        okay |= [self parseContainers:d];
+        okay &= [self parseContainers:d];
     if ((d = [xmlDictionary objectForKey:@"logstrings"]) != nil)
-        okay |= [self parseLogStrings:d];
+        okay &= [self parseLogStrings:d];
     if ((d = [xmlDictionary objectForKey:@"sqls"]) != nil)
-        okay |= [self parseSQL:d];
+        okay &= [self parseSQL:d];
 
     return okay;
 }
@@ -89,7 +87,7 @@
     NSNumber *version = [dict objectForKey:@"version"];
     NSString *revision = [dict objectForKey:@"revision"];
 
-    if ([version integerValue] > knownVersion) {
+    if ([version integerValue] != knownVersion) {
         NSLog(@"For %@: version retrieved was %@, while known version is %ld", revkey, version, (long)knownVersion);
         return NO;
     }
@@ -177,20 +175,12 @@
         KEY(site, oauth_url_authorize, @"oauth_url_authorize");
         KEY(site, oauth_url_request, @"oauth_url_request");
 
-        KEY(site, protocol, @"protocol");
+        KEY(site, protocol_string, @"protocol");
         KEY(site, url_queries, @"queries");
         KEY(site, url_website, @"website");
         KEY(site, distance, @"minimum_distance");
 
-        NSInteger protocol_id = PROTOCOL_NONE;
-        if ([protocol isEqualToString:@"OKAPI"] == YES)
-            protocol_id = PROTOCOL_OKAPI;
-        if ([protocol isEqualToString:@"GCA"] == YES)
-            protocol_id = PROTOCOL_GCA;
-        if ([protocol isEqualToString:@"GCA2"] == YES)
-            protocol_id = PROTOCOL_GCA2;
-        if ([protocol isEqualToString:@"LiveAPI"] == YES)
-            protocol_id = PROTOCOL_LIVEAPI;
+        dbProtocol *protocol = [dbProtocol dbGetByName:protocol_string];
 
         BOOL enabledBool = NO;
         if ([enabled isEqualToString:@"YES"] == YES)
@@ -203,7 +193,7 @@
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol = protocol_id;
+            a.protocol_id = protocol._id;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;
@@ -220,7 +210,7 @@
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol = protocol_id;
+            a.protocol_id = protocol._id;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;
@@ -544,40 +534,40 @@
     if ([self checkVersion:dict version:KEY_VERSION_LOGSTRINGS revisionKey:KEY_REVISION_LOGSTRINGS] == NO)
         return NO;
 
-    NSArray *accounts = [dict objectForKey:@"account"];
-    [iii setLineObjectTotal:[accounts count] isLines:NO];
-    [accounts enumerateObjectsUsingBlock:^(NSDictionary *accountdict, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray *protocols = [dict objectForKey:@"protocol"];
+    [iii setLineObjectTotal:[protocols count] isLines:NO];
+    [protocols enumerateObjectsUsingBlock:^(NSDictionary *protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
         [iii setLineObjectCount:idx + 1];
-        NSString *account_name = [accountdict objectForKey:@"name"];
-        dbAccount *_account = [dbAccount dbGetBySite:account_name];
+        NSString *protocol_name = [protocoldict objectForKey:@"name"];
+        dbProtocol *_protocol = [dbProtocol dbGetByName:protocol_name];
 
-        NSString *see = [accountdict objectForKey:@"see"];
-        if (see != nil) {
-            // Copy everything from $see to $account_name
-            dbAccount *seeAccount = [dbAccount dbGetBySite:see];
-            NSAssert1(seeAccount != nil, @"Unknown account: '%@'", see);
+//        NSString *see = [protocoldict objectForKey:@"see"];
+//        if (see != nil) {
+//            // Copy everything from $see to $account_name
+//            dbAccount *seeAccount = [dbAccount dbGetBySite:see];
+//            NSAssert1(seeAccount != nil, @"Unknown account: '%@'", see);
+//
+//            NSArray *as = [dbLogString dbAllByAccount:seeAccount];
+//
+//            [as enumerateObjectsUsingBlock:^(dbLogString *lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
+//                dbLogString *lsReplicate = [dbLogString dbGet_byAccountLogtypeType:_account logtype:lsOriginal.logtype type:lsOriginal.type];
+//
+//                lsOriginal.account = _account;
+//                lsOriginal.account_id = _account._id;
+//                if (lsReplicate == nil) {
+//                    lsOriginal._id = 0;
+//                    [lsOriginal dbCreate];
+//                } else {
+//                    lsOriginal._id = lsReplicate._id;
+//                    [lsOriginal dbUpdate];
+//                }
+//
+//            }];
+//
+//            return;
+//        }
 
-            NSArray *as = [dbLogString dbAllByAccount:seeAccount];
-
-            [as enumerateObjectsUsingBlock:^(dbLogString *lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
-                dbLogString *lsReplicate = [dbLogString dbGet_byAccountLogtypeType:_account logtype:lsOriginal.logtype type:lsOriginal.type];
-
-                lsOriginal.account = _account;
-                lsOriginal.account_id = _account._id;
-                if (lsReplicate == nil) {
-                    lsOriginal._id = 0;
-                    [lsOriginal dbCreate];
-                } else {
-                    lsOriginal._id = lsReplicate._id;
-                    [lsOriginal dbUpdate];
-                }
-
-            }];
-
-            return;
-        }
-
-        NSArray *logtypes = [accountdict objectForKey:@"logtype"];
+        NSArray *logtypes = [protocoldict objectForKey:@"logtype"];
         if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
             logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -605,14 +595,15 @@
                 }
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
-                dbLogString *ls = [dbLogString dbGetByAccountEventType:_account logtype:logtype type:type];
+                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:type];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
                     ls.text = text;
                     ls.type = type;
                     ls.logtype = logtype;
-                    ls.account = _account;
-                    ls.account_id = _account._id;
+                    ls.protocol = _protocol;
+                    ls.protocol_id = _protocol._id;
+                    ls.protocol_string = _protocol.name;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
                     ls.defaultVisit = defaultVisit;
