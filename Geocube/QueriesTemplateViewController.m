@@ -80,7 +80,7 @@ NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)gr
 
     __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol == protocol) {
+        if (a.protocol_id == protocol) {
             account = a;
             if (a.canDoRemoteStuff == YES) {
                 NSArray *queries = nil;

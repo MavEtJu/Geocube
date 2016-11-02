@@ -79,7 +79,7 @@ enum {
     self.delegateWaypoint = nil;
 
     NSInteger type = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
-    logstrings = [dbLogString dbAllByAccountLogtype_LogOnly:waypoint.account logtype:type];
+    logstrings = [dbLogString dbAllByProtocolLogtype_LogOnly:waypoint.account.protocol logtype:type];
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
         if (ls.defaultFound == YES) {
             logstring = ls;

@@ -97,7 +97,7 @@ enum {
     [iid setDescription:@"Download trackables information"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol == PROTOCOL_LIVEAPI) {
+        if (a.protocol_id == PROTOCOL_LIVEAPI) {
             // Get rid of any old data
             [tbs enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
                 tb.carrier = nil;

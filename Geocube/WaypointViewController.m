@@ -802,7 +802,7 @@ enum {
 {
     NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
     NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
-    dbLogString *logstring = [dbLogString dbGetByAccountLogtypeDefault:waypoint.account logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
+    dbLogString *logstring = [dbLogString dbGetByProtocolLogtypeDefault:waypoint.account.protocol logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
 
     [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO];
 }

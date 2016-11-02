@@ -174,7 +174,7 @@ enum {
                              NSString *authenticatename = nil;
                              NSString *authenticatepassword = nil;
 
-                             if (account.protocol == PROTOCOL_GCA2) {
+                             if (account.protocol_id == PROTOCOL_GCA2) {
                                  tf = [alert.textFields objectAtIndex:1];
                                  authenticatename = tf.text;
                                  tf = [alert.textFields objectAtIndex:2];
@@ -237,7 +237,7 @@ enum {
         textField.text = account.accountname_string;
         textField.placeholder = @"Geocaching name";
     }];
-    if (account.protocol == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA2) {
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = account.authentictation_name;
             textField.placeholder = @"Authentication Name";
