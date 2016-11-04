@@ -19,20 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef NS_ENUM(NSInteger, ProtocolId) {
-    PROTOCOL_NONE = 0,
-    PROTOCOL_LIVEAPI = 1,
-    PROTOCOL_OKAPI = 2,
-    PROTOCOL_GCA = 3,
-    PROTOCOL_GCA2 = 4,
-    PROTOCOL_GC = 5,
-};
+#import "RemoteAPI_Template.h"
 
-@interface dbProtocol : dbObject
-
-@property (nonatomic, retain) NSString *name;
-
-+ (dbProtocol *)dbGetByName:(NSString *)name;
-+ (dbProtocol *)dbGet:(NSId)_id;
+@interface RemoteAPI_GC : RemoteAPI_Template
 
 @end
