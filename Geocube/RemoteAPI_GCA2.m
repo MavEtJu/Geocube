@@ -426,41 +426,18 @@
     return [self performURLRequest:req downloadInfoItem:iid];
 }
 
-// --------------------------------------------------------------------------
-
-// Old stuff
-
-- (GCDictionaryGCA2 *)my_query_list__json:(InfoItemDownload *)iid
+- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId downloadInfoItem:(InfoItemDownload *)iid
 {
-    NSLog(@"my_query_list__json");
+    NSLog(@"api_services_caches_query_geocaches:%@", queryId);
 
-    NSString *urlString = [self prepareOldURLString:@"/my/query/list.json" params:nil];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:queryId forKey:@"query"];
+
+    NSString *urlString = [self prepareURLString:@"/caches/query/geocaches/" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     return [self performURLRequest:req downloadInfoItem:iid];
-}
-
-- (GCDictionaryGCA2 *)my_query_json:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid
-{
-    NSLog(@"my_query_json:%@", queryname);
-
-    NSString *urlString = [self prepareOldURLString:[NSString stringWithFormat:@"/my/query/json/%@", queryname] params:nil];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-
-    return [self performURLRequest:req downloadInfoItem:iid];
-}
-
-- (GCStringGPX *)my_query_gpx:(NSString *)queryname downloadInfoItem:(InfoItemDownload *)iid
-{
-    NSLog(@"my_query_gpx:%@", queryname);
-
-    NSString *urlString = [self prepareOldURLString:[NSString stringWithFormat:@"/my/query/gpx/%@", queryname] params:nil];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-
-    return [self performURLRequestGPX:req downloadInfoItem:iid];
 }
 
 @end
