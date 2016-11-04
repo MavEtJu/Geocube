@@ -30,6 +30,5 @@
 
 - (void)reloadQueries;
 - (void)reloadQueries:(NSInteger)protocol;
-- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group;
 
 @end

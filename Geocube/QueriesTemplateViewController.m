@@ -72,7 +72,6 @@ enum {
 }
 
 NEEDS_OVERLOADING(reloadQueries)
-NEEDS_OVERLOADING_BOOL(parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group)
 
 - (void)reloadQueries:(NSInteger)protocol
 {
