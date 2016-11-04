@@ -25,6 +25,7 @@
     RemoteAPI_OKAPI *okapi;
     RemoteAPI_GCA *gca;
     RemoteAPI_GCA2 *gca2;
+    RemoteAPI_GC *gc;
     RemoteAPI_Template *protocol;
 
     NSString *errorStringNetwork;
@@ -65,7 +66,9 @@
     okapi = nil;
     gca = nil;
     gca2 = nil;
-    switch (account.protocol_id) {
+    gc = nil;
+    ProtocolId pid = account.protocol_id;
+    switch (pid) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
             protocol = liveAPI;
@@ -83,7 +86,11 @@
             gca2 = [[RemoteAPI_GCA2 alloc] init:self];
             protocol = gca2;
             break;
-        default:
+        case PROTOCOL_GC:
+            gc = [[RemoteAPI_GC alloc] init:self];
+            protocol = gc;
+            break;
+        case PROTOCOL_NONE:
             break;
     }
     return self;
@@ -93,7 +100,8 @@
 
 - (BOOL)Authenticate
 {
-    switch (account.protocol_id) {
+    ProtocolId pid = account.protocol_id;
+    switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:{
             // Reset it
@@ -146,11 +154,37 @@
             } else
                 return NO;
 
+        case PROTOCOL_GC: {
+            // Load https://www.geocaching.com/login/?jump=/geocube and wait for the redirect to /geocube.
+            NSString *url = account.gca_authenticate_url;
+
+            gc.delegate = self;
+
+            [browserViewController showBrowser];
+            [browserViewController prepare_gc:gc];
+            [browserViewController loadURL:url];
+            return YES;
+        }
+
         case PROTOCOL_NONE:
             return NO;
     }
 
     return NO;
+}
+
+- (void)GCAuthSuccessful:(NSHTTPCookie *)cookie
+{
+    account.gca_cookie_value = [MyTools urlDecode:cookie.value];
+    [account dbUpdateCookieValue];
+
+    [browserViewController prepare_gc:nil];
+    [browserViewController clearScreen];
+
+    if (authenticationDelegate != nil)
+        [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
+
+    [_AppDelegate switchController:RC_SETTINGS];
 }
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie

@@ -31,6 +31,7 @@
 
     GCOAuthBlackbox *oabb;
     RemoteAPI_GCA *gca;
+    RemoteAPI_GC *gc;
     NSInteger networkActivityIndicator;
 }
 
@@ -133,7 +134,7 @@ enum {
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
     NSURLConnection *urlConnection;
 
-    if (oabb == nil && gca == nil) {
+    if (oabb == nil && gca == nil && gc == nil) {
         [self showActivity:YES];
         NSString *urlString = [[newRequest URL] absoluteString];
         NSLog(@"urlString: -%@-", urlString);
@@ -229,6 +230,25 @@ enum {
         return NO;
     }
 
+    // Geocaching.com Authentication related stuff
+    if (gc != nil &&
+        [url length] >= [gc.callback length] &&
+        [[url substringToIndex:[gc.callback length]] isEqualToString:gc.callback] == YES) {
+        NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
+
+        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+            if ([cookie.name isEqualToString:@"gspkauth"] == NO)
+                return;
+
+            [gc storeCookie:cookie];
+            *stop = YES;
+        }];
+
+        [self showActivity:-1];
+        return NO;
+    }
+
     [self showActivity:YES];
     return YES;
 }
@@ -241,6 +261,33 @@ enum {
 - (void)prepare_gca:(RemoteAPI_GCA *)_gca
 {
     gca = _gca;
+
+    NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
+
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+        if ([cookie.name isEqualToString:@"phpbb3mysql_data"] == NO)
+            return;
+
+        [cookiemgr deleteCookie:cookie];
+        *stop = YES;
+    }];
+}
+
+- (void)prepare_gc:(RemoteAPI_GC *)_gc
+{
+    gc = _gc;
+
+    NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = cookiemgr.cookies;
+
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+        if ([cookie.name isEqualToString:@"gspkauth"] == NO)
+            return;
+
+        [cookiemgr deleteCookie:cookie];
+        *stop = YES;
+    }];
 }
 
 

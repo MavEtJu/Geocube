@@ -21,6 +21,17 @@
 
 #import "RemoteAPI_Template.h"
 
-@interface RemoteAPI_GC : RemoteAPI_Template
+@protocol RemoteAPI_GCDelegate
+
+- (void)GCAuthSuccessful:(NSHTTPCookie *)cookie;
+
+@end
+
+@interface RemoteAPI_GC : RemoteAPI_Template<NSURLConnectionDataDelegate>
+
+@property (nonatomic) id<RemoteAPI_GCDelegate> delegate;
+@property (nonatomic, retain, readonly) NSString *callback;
+
+- (void)storeCookie:(NSHTTPCookie *)cookie;
 
 @end

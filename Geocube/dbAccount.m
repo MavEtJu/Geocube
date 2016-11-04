@@ -57,7 +57,8 @@
         return;
     }
 
-    switch (protocol._id) {
+    ProtocolId pid = protocol._id;
+    switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:
             if (oauth_token == nil || [oauth_token isEqualToString:@""] == YES ||
@@ -67,6 +68,7 @@
                 [self enableRemoteAccess];
             break;
 
+        case PROTOCOL_GC:
         case PROTOCOL_GCA:
         case PROTOCOL_GCA2:
             if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)
