@@ -21,7 +21,6 @@
 
 @interface QueriesGCAViewController ()
 {
-    BOOL seenJSON;
 }
 
 @end
@@ -51,19 +50,6 @@ enum {
     [bezelManager removeBezel];
 }
 
-- (BOOL)parseRetrievedQueryGPX:(NSObject *)query group:(dbGroup *)group
-{
-    [importManager addToQueue:query group:group account:account options:RUN_OPTION_LOGSONLY];
-    return YES;
-}
-
-
-- (BOOL)parseRetrievedQuery:(NSObject *)query group:(dbGroup *)group
-{
-    [importManager addToQueue:query group:group account:account options:RUN_OPTION_NONE];
-    return YES;
-}
-
 - (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -82,15 +68,7 @@ enum {
     InfoItemImport *iii = [dict objectForKey:@"iii"];
     dbAccount *a = [dict objectForKey:@"account"];
 
-    if ([o isKindOfClass:[GCStringGPX class]] == YES) {
-        if (seenJSON == YES)
-            [importManager process:o group:g account:a options:RUN_OPTION_LOGSONLY infoItemImport:iii];
-        else
-            [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
-    } else {
-        [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
-        seenJSON = YES;
-    }
+    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO)
@@ -99,49 +77,22 @@ enum {
 
 - (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
-    __block BOOL failure = NO;
-
-    // Download the query. The GPX file is also required since the JSON file doesn't contain the logs.
+    BOOL failure = NO;
     NSObject *retjson;
-    NSObject *retgpx;
-
-    seenJSON = NO;
 
     [self showInfoView];
     InfoItemDownload *iid = [infoView addDownload];
     [iid setDescription:[pq objectForKey:@"Name"]];
 
-    [infoView setHeaderSuffix:@"1/2"];
-
     RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid infoViewer:infoView callback:self];
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the JSON data from the query" error:account.remoteAPI.lastError];
-        [infoView removeItem:iid];
-        if ([infoView hasItems] == NO)
-            [self hideInfoView];
-        return YES;
-    }
-
-    [iid resetBytesChunks];
-    [infoView setHeaderSuffix:@"2/2"];
-
-    rv = [account.remoteAPI retrieveQuery_forcegpx:[pq objectForKey:@"Id"] group:group retObj:&retgpx downloadInfoItem:iid infoViewer:infoView callback:self];
-    if (rv != REMOTEAPI_OK) {
-        [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the GPX data from the query" error:account.remoteAPI.lastError];
-        [infoView removeItem:iid];
-        if ([infoView hasItems] == NO)
-            [self hideInfoView];
-        return YES;
+        failure = YES;
     }
 
     [infoView removeItem:iid];
-
-    if (retjson == nil && retgpx == nil) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve any data from the query" error:account.remoteAPI.lastError];
-        if ([infoView hasItems] == NO)
-            [self hideInfoView];
-        failure = YES;
-    }
+    if ([infoView hasItems] == NO)
+        [self hideInfoView];
 
     return failure;
 }
