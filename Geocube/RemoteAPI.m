@@ -909,6 +909,40 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+{
+    if (account.protocol_id == PROTOCOL_GCA2) {
+        if ([account canDoRemoteStuff] == NO) {
+            [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+            return REMOTEAPI_APIDISABLED;
+        }
+
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
+
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+        OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+            [wps addObject:[json objectForKey:wpcode]];
+        }];
+        [d setObject:wps forKey:@"waypoints"];
+        GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+
+        ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:account];
+        [imp parseBefore];
+        [imp parseDictionary:d2];
+        [imp parseAfter];
+
+        [waypointManager needsRefreshAll];
+        return REMOTEAPI_OK;
+    }
+
+    return REMOTEAPI_NOTPROCESSED;
+}
+
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDownload *)iid
 {
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
@@ -954,16 +988,9 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
-        NSDictionary *json;
-        if (account.protocol_id == PROTOCOL_GCA) {
-            json = [gca my_query_list__json:iid];
-            GCA_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
-        }
-        if (account.protocol_id == PROTOCOL_GCA2) {
-            json = [gca2 my_query_list__json:iid];
-            GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
-        }
+    if (account.protocol_id == PROTOCOL_GCA) {
+        NSDictionary *json = [gca my_query_list__json:iid];
+        GCA_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
         GCA_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
@@ -974,6 +1001,26 @@
             [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
             [d setValue:[pq objectForKey:@"queryid"] forKey:@"Id"];
 //            [d setValue:[NSNumber numberWithInteger:[gca my_query_count:[pq objectForKey:@"queryid"]]] forKey:@"Count"];
+
+            [as addObject:d];
+        }];
+
+        *qs = as;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GCA2) {
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_query_list:iid];
+        GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+
+        NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+        GCA2_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+
+        [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
+
+            [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
+            [d setValue:[pq objectForKey:@"queryid"] forKey:@"Id"];
 
             [as addObject:d];
         }];
@@ -1029,22 +1076,50 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
+    if (account.protocol_id == PROTOCOL_GCA) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *json;
-        if (account.protocol_id == PROTOCOL_GCA) {
-            json = [gca my_query_json:_id downloadInfoItem:iid];
-            GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LISTQUERIES_LOADFAILED);
-        }
-        if (account.protocol_id == PROTOCOL_GCA2) {
-            json = [gca2 my_query_json:_id downloadInfoItem:iid];
-            GCA2_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
-        }
+        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:iid];
+        GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport];
         [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
+
+        *retObj = json;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GCA2) {
+        [iid setChunksTotal:2];
+        [iid setChunksCount:1];
+
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_query_geocaches:_id downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(json, @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+
+        GCA2_GET_VALUE(json, NSArray, wps, @"geocaches", @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+
+        NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:[wps count]];
+        [wps enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL *stop) {
+            [wpcodes addObject:[wp objectForKey:@"waypoint"]];
+        }];
+
+        [iid setChunksCount:2];
+
+        json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+        GCA2_CHECK_STATUS(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSMutableArray *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+            [_wps addObject:[json objectForKey:wpcode]];
+        }];
+        [d setObject:_wps forKey:@"waypoints"];
+
+        GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+
+        InfoItemImport *iii = [infoViewer addImport];
+        [callback remoteAPI_objectReadyToImport:iii object:d2 group:group account:account];
 
         *retObj = json;
         return REMOTEAPI_OK;
@@ -1062,8 +1137,6 @@
         NSString *gpx;
         if (account.protocol_id == PROTOCOL_GCA)
             gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
-        if (account.protocol_id == PROTOCOL_GCA2)
-            gpx = [gca2 my_query_gpx:_id downloadInfoItem:iid];
         if (gpx == nil)
             return REMOTEAPI_APIFAILED;
 
