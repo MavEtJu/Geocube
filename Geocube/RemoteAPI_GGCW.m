@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_GC ()
+@interface RemoteAPI_GGCW ()
 {
     RemoteAPI *remoteAPI;
     NSHTTPCookie *authCookie;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation RemoteAPI_GC
+@implementation RemoteAPI_GGCW
 
 @synthesize delegate, callback;
 

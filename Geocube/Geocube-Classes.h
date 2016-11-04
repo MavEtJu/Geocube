@@ -55,6 +55,7 @@
 @class GCCoordsHistorical;
 @class GCDictionaryGCA2;
 @class GCDictionaryGCA;
+@class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
 @class GCDictionaryObject;
@@ -136,9 +137,9 @@
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
 @class RemoteAPI;
-@class RemoteAPI_GC;
 @class RemoteAPI_GCA2;
 @class RemoteAPI_GCA;
+@class RemoteAPI_GGCW;
 @class RemoteAPI_LiveAPI;
 @class RemoteAPI_OKAPI;
 @class RemoteAPI_Template;

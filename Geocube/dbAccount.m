@@ -68,7 +68,7 @@
                 [self enableRemoteAccess];
             break;
 
-        case PROTOCOL_GC:
+        case PROTOCOL_GGCW:
         case PROTOCOL_GCA:
         case PROTOCOL_GCA2:
             if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)

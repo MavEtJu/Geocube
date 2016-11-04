@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, ProtocolId) {
     PROTOCOL_OKAPI = 2,
     PROTOCOL_GCA = 3,
     PROTOCOL_GCA2 = 4,
-    PROTOCOL_GC = 5,
+    PROTOCOL_GGCW = 5,
 };
 
 @interface dbProtocol : dbObject

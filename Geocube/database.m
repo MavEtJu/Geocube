@@ -483,7 +483,7 @@
     @"insert into protocols(id, name) values(2, 'OKAPI')",
     @"insert into protocols(id, name) values(3, 'GCA')",
     @"insert into protocols(id, name) values(4, 'GCA2')",
-    @"insert into protocols(id, name) values(5, 'GC')",
+    @"insert into protocols(id, name) values(5, 'GGCW')",
     // Adjust accounts table
     @"alter table accounts add column protocol_id integer",
     @"update accounts set protocol_id = protocol",

@@ -28,6 +28,6 @@
 - (void)loadURLRequest:(NSURLRequest *)req;
 - (void)prepare_oauth:(GCOAuthBlackbox *)oabb;
 - (void)prepare_gca:(RemoteAPI_GCA *)gca;
-- (void)prepare_gc:(RemoteAPI_GC *)gc;
+- (void)prepare_ggcw:(RemoteAPI_GGCW *)ggcw;
 
 @end

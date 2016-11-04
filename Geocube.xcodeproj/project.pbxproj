@@ -36,7 +36,7 @@
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
-		E82302421DCC593F0032C5C6 /* RemoteAPI_GC.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302411DCC593F0032C5C6 /* RemoteAPI_GC.m */; };
+		E82302421DCC593F0032C5C6 /* RemoteAPI_GGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -656,8 +656,8 @@
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E820F2041B7DA451009FB999 /* TrackablesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesListViewController.h; sourceTree = "<group>"; };
 		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
-		E82302401DCC593F0032C5C6 /* RemoteAPI_GC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GC.h; sourceTree = "<group>"; };
-		E82302411DCC593F0032C5C6 /* RemoteAPI_GC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GC.m; sourceTree = "<group>"; };
+		E82302401DCC593F0032C5C6 /* RemoteAPI_GGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GGCW.h; sourceTree = "<group>"; };
+		E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GGCW.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -2689,8 +2689,8 @@
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
-				E82302401DCC593F0032C5C6 /* RemoteAPI_GC.h */,
-				E82302411DCC593F0032C5C6 /* RemoteAPI_GC.m */,
+				E82302401DCC593F0032C5C6 /* RemoteAPI_GGCW.h */,
+				E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */,
 				E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */,
 				E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */,
 				E84E23981DB9E8440079496D /* RemoteAPI_GCA2.h */,
@@ -3502,7 +3502,7 @@
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
-				E82302421DCC593F0032C5C6 /* RemoteAPI_GC.m in Sources */,
+				E82302421DCC593F0032C5C6 /* RemoteAPI_GGCW.m in Sources */,
 				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,

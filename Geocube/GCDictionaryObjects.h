@@ -40,3 +40,7 @@
 @interface GCDictionaryOKAPI : GCDictionaryObject
 
 @end
+
+@interface GCDictionaryGGCW : GCDictionaryObject
+
+@end

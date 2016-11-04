@@ -25,7 +25,7 @@
     RemoteAPI_OKAPI *okapi;
     RemoteAPI_GCA *gca;
     RemoteAPI_GCA2 *gca2;
-    RemoteAPI_GC *gc;
+    RemoteAPI_GGCW *ggcw;
     RemoteAPI_Template *protocol;
 
     NSString *errorStringNetwork;
@@ -66,7 +66,7 @@
     okapi = nil;
     gca = nil;
     gca2 = nil;
-    gc = nil;
+    ggcw = nil;
     ProtocolId pid = account.protocol_id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
@@ -86,9 +86,9 @@
             gca2 = [[RemoteAPI_GCA2 alloc] init:self];
             protocol = gca2;
             break;
-        case PROTOCOL_GC:
-            gc = [[RemoteAPI_GC alloc] init:self];
-            protocol = gc;
+        case PROTOCOL_GGCW:
+            ggcw = [[RemoteAPI_GGCW alloc] init:self];
+            protocol = ggcw;
             break;
         case PROTOCOL_NONE:
             break;
@@ -154,14 +154,14 @@
             } else
                 return NO;
 
-        case PROTOCOL_GC: {
+        case PROTOCOL_GGCW: {
             // Load https://www.geocaching.com/login/?jump=/geocube and wait for the redirect to /geocube.
             NSString *url = account.gca_authenticate_url;
 
-            gc.delegate = self;
+            ggcw.delegate = self;
 
             [browserViewController showBrowser];
-            [browserViewController prepare_gc:gc];
+            [browserViewController prepare_ggcw:ggcw];
             [browserViewController loadURL:url];
             return YES;
         }
@@ -178,7 +178,7 @@
     account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [account dbUpdateCookieValue];
 
-    [browserViewController prepare_gc:nil];
+    [browserViewController prepare_ggcw:nil];
     [browserViewController clearScreen];
 
     if (authenticationDelegate != nil)
@@ -442,6 +442,9 @@
             return __failure__; \
         }
 
+#define GC_CHECK_STATUS(__json__, __logsection__, __failure__) { \
+        }
+
 - (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
 {
     NSObject *o = [in objectForKey:inKey];
@@ -545,6 +548,20 @@
         [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
         [self getNumber:ret from:dict outKey:@"waypoints_notfound" inKey:@"caches_notfound"];
         [self getNumber:ret from:dict outKey:@"recommendations_given" inKey:@"rcmds_given"];
+
+        *retDict = ret;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GGCW) {
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
+
+        NSDictionary *dict = [ggcw my_default:username downloadInfoItem:iid];
+        GC_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+
+        [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
+        [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
 
         *retDict = ret;
         return REMOTEAPI_OK;

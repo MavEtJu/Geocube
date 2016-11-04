@@ -83,3 +83,7 @@
 @implementation GCDictionaryOKAPI
 
 @end
+
+@implementation GCDictionaryGGCW
+
+@end

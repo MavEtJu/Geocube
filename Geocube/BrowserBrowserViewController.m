@@ -31,7 +31,7 @@
 
     GCOAuthBlackbox *oabb;
     RemoteAPI_GCA *gca;
-    RemoteAPI_GC *gc;
+    RemoteAPI_GGCW *ggcw;
     NSInteger networkActivityIndicator;
 }
 
@@ -134,7 +134,7 @@ enum {
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
     NSURLConnection *urlConnection;
 
-    if (oabb == nil && gca == nil && gc == nil) {
+    if (oabb == nil && gca == nil && ggcw == nil) {
         [self showActivity:YES];
         NSString *urlString = [[newRequest URL] absoluteString];
         NSLog(@"urlString: -%@-", urlString);
@@ -231,9 +231,9 @@ enum {
     }
 
     // Geocaching.com Authentication related stuff
-    if (gc != nil &&
-        [url length] >= [gc.callback length] &&
-        [[url substringToIndex:[gc.callback length]] isEqualToString:gc.callback] == YES) {
+    if (ggcw != nil &&
+        [url length] >= [ggcw.callback length] &&
+        [[url substringToIndex:[ggcw.callback length]] isEqualToString:ggcw.callback] == YES) {
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
 
@@ -241,7 +241,7 @@ enum {
             if ([cookie.name isEqualToString:@"gspkauth"] == NO)
                 return;
 
-            [gc storeCookie:cookie];
+            [ggcw storeCookie:cookie];
             *stop = YES;
         }];
 
@@ -274,9 +274,9 @@ enum {
     }];
 }
 
-- (void)prepare_gc:(RemoteAPI_GC *)_gc
+- (void)prepare_ggcw:(RemoteAPI_GGCW *)_ggcw
 {
-    gc = _gc;
+    ggcw = _ggcw;
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray *cookies = cookiemgr.cookies;
