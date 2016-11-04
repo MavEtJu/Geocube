@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@interface dbProtocol ()
+{
+}
+
+@end
+
 @implementation dbProtocol
 
 @synthesize _id, name;
