@@ -275,16 +275,6 @@
     return urlString;
 }
 
-- (NSString *)prepareOldURLString:(NSString *)suffix params:(NSDictionary *)params
-{
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", hostpart, suffix];
-    if (params != nil && [params count] != 0) {
-        NSString *ps = [MyTools urlParameterJoin:params];
-        [urlString appendFormat:@"&%@", ps];
-    }
-    return urlString;
-}
-
 - (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"api_services_users_by__username:%@", username);
