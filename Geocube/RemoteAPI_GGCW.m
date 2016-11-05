@@ -110,6 +110,11 @@
 
 - (NSData *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDownload *)iid
 {
+    return [self performURLRequest:urlRequest returnRespose:nil downloadInfoItem:iid];
+}
+
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnRespose:(NSHTTPURLResponse **)returnHeader downloadInfoItem:(InfoItemDownload *)iid
+{
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
 
@@ -117,6 +122,8 @@
 
     NSData *data = [retDict objectForKey:@"data"];
     NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    if (returnHeader != nil)
+        *returnHeader = response;
     NSError *error = [retDict objectForKey:@"error"];
     NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"error: %@", [error description]);
@@ -257,6 +264,8 @@
 
 - (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
 {
+    NSLog(@"pocket_downloadpq:%@", guid);
+
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
     [params setObject:@"web" forKey:@"src"];
     [params setObject:guid forKey:@"g"];
@@ -268,6 +277,88 @@
     NSData *data = [self performURLRequest:req downloadInfoItem:iid];
     GCDataZIPFile *zipdata = [[GCDataZIPFile alloc] initWithData:data];
     return zipdata;
+}
+
+- (GCStringGPX *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"geocache:%@", wptname);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    /*
+     * When requesting /geocache/GCxxxx, it will return a 301 response to the full URL.
+     *
+     */
+
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/geocache/%@", wptname] params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+
+    // Expecting a 301.
+    if (resp.statusCode != 301)
+        return nil;
+    NSString *location = [resp.allHeaderFields objectForKey:@"Location"];
+
+    // Request the page with the data for the GPX file
+    url = [NSURL URLWithString:location];
+    req = [NSMutableURLRequest requestWithURL:url];
+    data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+#define GETVALUE(__string__, __varname__) \
+    NSString *__varname__ = nil; \
+    { \
+        NSString *re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
+        NSArray *nodes = [parser searchWithXPathQuery:re]; \
+        TFHppleElement *e = [nodes objectAtIndex:0]; \
+        __varname__ = [e.attributes objectForKey:@"value"]; \
+    }
+
+    GETVALUE(@"__EVENTTARGET", eventtarget);
+    GETVALUE(@"__EVENTARGUMENT", eventargument);
+    GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
+    GETVALUE(@"__VIEWSTATE", viewstate);
+    GETVALUE(@"__VIEWSTATE1", viewstate1);
+    GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+
+    // Grab the form data
+    // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+    /*
+     __EVENTTARGET:
+     __EVENTARGUMENT:
+     __VIEWSTATEFIELDCOUNT:
+     __VIEWSTATE: /
+     __VIEWSTATE1
+     __VIEWSTATEGENERATOR:
+     ctl00$ContentBody$btnGPXDL:
+     */
+
+    // And now request the GPX file
+    url = [NSURL URLWithString:location];
+    req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [req setValue:location forHTTPHeaderField:@"Referer"];
+
+    NSMutableString *ps = [NSMutableString stringWithFormat:@""];
+
+    [ps appendFormat:@"%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$btnGPXDL"], [MyTools urlEncode:@"GPX file"]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], [MyTools urlEncode:eventtarget]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], [MyTools urlEncode:eventargument]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:viewstatefieldcount]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:viewstate]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:viewstate1]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:viewstategenerator]];
+    req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    data = [self performURLRequest:req downloadInfoItem:iid];
+
+    GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return gpx;
 }
 
 @end
