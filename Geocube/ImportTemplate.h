@@ -54,6 +54,7 @@ enum {
 - (void)parseFile:(NSString *)filename;
 - (void)parseData:(NSData *)data;
 - (void)parseString:(NSString *)data;
+- (void)parseGPX:(GCStringGPX *)gpx;
 - (void)parseDictionary:(NSDictionary *)dict;
 - (void)parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii;
 - (void)parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii;

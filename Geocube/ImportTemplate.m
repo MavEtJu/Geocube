@@ -79,9 +79,13 @@
 {
     [self parseData:data infoItemImport:nil];
 }
-- (void)parseString:(NSString *)data
+- (void)parseString:(NSString *)string
 {
-    [self parseString:data infoItemImport:nil];
+    [self parseString:string infoItemImport:nil];
+}
+- (void)parseGPX:(GCStringGPX *)gpx
+{
+    [self parseString:[gpx _string] infoItemImport:nil];
 }
 - (void)parseDictionary:(NSDictionary *)dict
 {
