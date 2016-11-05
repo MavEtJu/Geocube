@@ -134,6 +134,7 @@
 @class NoticesViewController;
 @class PersonalNoteTableViewCell;
 @class QueriesGCAViewController;
+@class QueriesGGCWViewController;
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
 @class RemoteAPI;

@@ -442,7 +442,7 @@
             return __failure__; \
         }
 
-#define GC_CHECK_STATUS(__json__, __logsection__, __failure__) { \
+#define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
 
 - (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
@@ -558,7 +558,7 @@
         [iid setChunksCount:1];
 
         NSDictionary *dict = [ggcw my_default:username downloadInfoItem:iid];
-        GC_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+        GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
         [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
@@ -1073,6 +1073,22 @@
             [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
             [d setValue:[pq objectForKey:@"queryid"] forKey:@"Id"];
 
+            [as addObject:d];
+        }];
+
+        *qs = as;
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GGCW) {
+        GCDictionaryGGCW *dict = [ggcw pocket_default:iid];
+        GGCW_CHECK_STATUS(dict, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
+
+        NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+        [dict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *a, BOOL *stop) {
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
+            [d setValue:[a objectForKey:@"name"] forKey:@"Name"];
+            [d setValue:[a objectForKey:@"g"] forKey:@"Id"];
             [as addObject:d];
         }];
 

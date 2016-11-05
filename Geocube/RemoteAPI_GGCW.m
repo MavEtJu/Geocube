@@ -166,25 +166,25 @@
     // Find the data for the "Found" field.
     NSInteger iFound = 0;
     {
-    NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
-    TFHppleElement *child = [e.children objectAtIndex:0];
-    NSString *s = child.content;
-    NSString *sFound = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iFound = [sFound integerValue];
+        NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
+        NSArray *nodes = [parser searchWithXPathQuery:re];
+        TFHppleElement *e = [nodes objectAtIndex:0];
+        TFHppleElement *child = [e.children objectAtIndex:0];
+        NSString *s = child.content;
+        NSString *sFound = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+        iFound = [sFound integerValue];
     }
 
     // Find the data for the "Hidden" field.
     NSInteger iHidden = 0;
     {
-    NSString *re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
-    TFHppleElement *child = [e.children objectAtIndex:0];
-    NSString *s = child.content;
-    NSString *sHidden = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iHidden = [sHidden integerValue];
+        NSString *re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
+        NSArray *nodes = [parser searchWithXPathQuery:re];
+        TFHppleElement *e = [nodes objectAtIndex:0];
+        TFHppleElement *child = [e.children objectAtIndex:0];
+        NSString *s = child.content;
+        NSString *sHidden = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+        iHidden = [sHidden integerValue];
     }
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -193,6 +193,66 @@
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
     return dict;
+}
+
+- (GCDictionaryGGCW *)pocket_default:(InfoItemDownload *)iid
+{
+    NSLog(@"pocket_default");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/pocket/default.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+
+    //
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSMutableDictionary *ds = [NSMutableDictionary dictionaryWithCapacity:4];
+
+    // Find the data for the "Found" field.
+    {
+        NSString *re = @"//table[@id='uxOfflinePQTable']/tr/td/a";
+        NSArray *nodes = [parser searchWithXPathQuery:re];
+        [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+            NSString *s = e.content;
+            NSString *name = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSString *href = [e.attributes objectForKey:@"href"];
+            NSLog(@"%@ - %@", name, href);
+
+            // Get rid of non-URLs
+            if ([href containsString:@"downloadpq.ashx"] == NO)
+                return;
+
+            NSMutableString *g = [NSMutableString stringWithString:href];
+            NSRange r = [g rangeOfString:@"g="];
+            if (r.location != NSNotFound) {
+                r.length += r.location;
+                r.location = 0;
+                [g deleteCharactersInRange:r];
+            }
+            r = [g rangeOfString:@"&"];
+            if (r.location != NSNotFound) {
+                r.length = [g length] - r.location;
+                [g deleteCharactersInRange:r];
+            }
+
+            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+            [d setValue:name forKey:@"name"];
+            [d setValue:g forKey:@"g"];
+#warning XXX todo
+//            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochFromWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
+//            [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"size"];
+//            [d setValue:[pq objectForKey:@"PQCount"] forKey:@"waypointcount"];
+            [ds setObject:d forKey:name];
+        }];
+
+    }
+
+    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
+    return dict;
+
 }
 
 @end

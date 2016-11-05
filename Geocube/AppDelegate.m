@@ -394,6 +394,12 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
+                vc = [[QueriesGGCWViewController alloc] init];
+                vc.title = @"GGCW";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
                 vc = [[QueriesGCAViewController alloc] init];
                 vc.title = @"GCA";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];

@@ -171,6 +171,7 @@
 #import "QueriesTemplateViewController.h"
 #import "QueriesGroundspeakViewController.h"
 #import "QueriesGCAViewController.h"
+#import "QueriesGGCWViewController.h"
 
 #import "SettingsAccountsViewController.h"
 #import "SettingsColoursViewController.h"

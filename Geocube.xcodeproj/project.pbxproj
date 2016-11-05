@@ -41,6 +41,7 @@
 		E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302451DCD525E0032C5C6 /* TFHppleElement.m */; };
 		E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302461DCD525E0032C5C6 /* XPathQuery.m */; };
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
+		E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -669,6 +670,8 @@
 		E823024B1DCD52830032C5C6 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = TFHpple/TFHppleElement.h; sourceTree = "<group>"; };
 		E823024C1DCD52830032C5C6 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = TFHpple/XPathQuery.h; sourceTree = "<group>"; };
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		E823024F1DCD6C5C0032C5C6 /* QueriesGGCWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGGCWViewController.h; sourceTree = "<group>"; };
+		E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGGCWViewController.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1628,6 +1631,8 @@
 				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
 				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
 				E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */,
+				E823024F1DCD6C5C0032C5C6 /* QueriesGGCWViewController.h */,
+				E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */,
 				E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */,
 				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
 			);
@@ -3423,6 +3428,7 @@
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E8C5BB7B1C719EB1006222D5 /* WaypointTableViewCell.m in Sources */,
+				E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */,
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */,
 				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
