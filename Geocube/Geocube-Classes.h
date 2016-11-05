@@ -53,6 +53,8 @@
 @class GCCircle;
 @class GCCloseButton;
 @class GCCoordsHistorical;
+@class GCData;
+@class GCDataZIPFile;
 @class GCDictionaryGCA2;
 @class GCDictionaryGCA;
 @class GCDictionaryGGCW;

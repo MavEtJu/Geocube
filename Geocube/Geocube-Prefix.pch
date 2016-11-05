@@ -112,6 +112,7 @@
 
 #import "WaypointManager.h"
 
+#import "GCDataObjects.h"
 #import "GCDictionaryObjects.h"
 #import "GCStringObject.h"
 #import "ImportTemplate.h"

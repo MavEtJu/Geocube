@@ -42,6 +42,7 @@
 		E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302461DCD525E0032C5C6 /* XPathQuery.m */; };
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */; };
+		E82302561DCD8B3C0032C5C6 /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -672,6 +673,8 @@
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E823024F1DCD6C5C0032C5C6 /* QueriesGGCWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGGCWViewController.h; sourceTree = "<group>"; };
 		E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGGCWViewController.m; sourceTree = "<group>"; };
+		E82302541DCD8B3C0032C5C6 /* GCDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDataObjects.h; sourceTree = "<group>"; };
+		E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataObjects.m; sourceTree = "<group>"; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1772,6 +1775,8 @@
 				E8F7FF261D74507100AC7EE6 /* GCButton.m */,
 				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
 				E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */,
+				E82302541DCD8B3C0032C5C6 /* GCDataObjects.h */,
+				E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */,
 				E8F7FF221D744E9800AC7EE6 /* GCImageView.h */,
 				E8F7FF231D744E9800AC7EE6 /* GCImageView.m */,
 				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
@@ -3508,6 +3513,7 @@
 				E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */,
+				E82302561DCD8B3C0032C5C6 /* GCDataObjects.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */,
 				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
