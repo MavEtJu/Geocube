@@ -140,6 +140,13 @@
               "https://github.com/SVProgressHUD/SVProgressHUD\n"
               "SVProgressHUD is distributed under the terms and conditions of the MIT license (https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE.txt). The success, error and info icons are made by Freepik (http://www.freepik.com) from Flaticon (http://www.flaticon.com) and are licensed under Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/).",
 
+              @"TFHpple: Created by Geoffrey Grosenbach on 1/31/09, Copyright (c) 2009 Topfunky Corporation, http://topfunky.com\n"
+              "https://github.com/topfunky/hpple\n"
+              "MIT LICENSE\n"
+              "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n"
+              "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n"
+              "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+
               @"THLabel: Copyright (c) 2012-2016 Tobias Hagemann, tobiha.de\n"
               "https://github.com/MuscleRumble/THLabel\n"
               "This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.\n"

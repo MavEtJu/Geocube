@@ -45,6 +45,7 @@
 #import "Reachability.h"
 #import "SSZipArchive.h"
 #import "SVProgressHUD.h"
+#import "TFHpple.h"
 #import "THLabel.h"
 #import "VKSideMenu.h"
 #import "XMLDictionary.h"

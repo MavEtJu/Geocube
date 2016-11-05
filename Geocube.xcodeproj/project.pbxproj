@@ -37,6 +37,10 @@
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
 		E82302421DCC593F0032C5C6 /* RemoteAPI_GGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */; };
+		E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302441DCD525E0032C5C6 /* TFHpple.m */; };
+		E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302451DCD525E0032C5C6 /* TFHppleElement.m */; };
+		E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302461DCD525E0032C5C6 /* XPathQuery.m */; };
+		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82840F51B510AE10055EE59 /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82840F41B510AE10055EE59 /* dbContainer.m */; };
 		E82990461C87A36200504421 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990451C87A36200504421 /* ImportGeocube.m */; };
 		E829904A1C87AFA400504421 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82990491C87AFA400504421 /* XMLReader.m */; };
@@ -658,6 +662,13 @@
 		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
 		E82302401DCC593F0032C5C6 /* RemoteAPI_GGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GGCW.h; sourceTree = "<group>"; };
 		E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GGCW.m; sourceTree = "<group>"; };
+		E82302441DCD525E0032C5C6 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = TFHpple/TFHpple.m; sourceTree = "<group>"; };
+		E82302451DCD525E0032C5C6 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = TFHpple/TFHppleElement.m; sourceTree = "<group>"; };
+		E82302461DCD525E0032C5C6 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = TFHpple/XPathQuery.m; sourceTree = "<group>"; };
+		E823024A1DCD52830032C5C6 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = TFHpple/TFHpple.h; sourceTree = "<group>"; };
+		E823024B1DCD52830032C5C6 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = TFHpple/TFHppleElement.h; sourceTree = "<group>"; };
+		E823024C1DCD52830032C5C6 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = TFHpple/XPathQuery.h; sourceTree = "<group>"; };
+		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E82840F31B510AE10055EE59 /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbContainer.h; sourceTree = "<group>"; };
 		E82840F41B510AE10055EE59 /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbContainer.m; sourceTree = "<group>"; };
 		E82990441C87A36200504421 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
@@ -1408,6 +1419,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
 				E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */,
 				E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */,
 				E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */,
@@ -1429,6 +1441,7 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E823024D1DCD54520032C5C6 /* libxml2.tbd */,
 				E80F73761B53443000F35528 /* CoreLocation.framework */,
 				E80F73741B533F4D00F35528 /* MapKit.framework */,
 				88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */,
@@ -1496,6 +1509,19 @@
 				E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */,
 			);
 			name = "Notes and logs";
+			sourceTree = "<group>";
+		};
+		E82302431DCD52370032C5C6 /* TFHpple */ = {
+			isa = PBXGroup;
+			children = (
+				E823024A1DCD52830032C5C6 /* TFHpple.h */,
+				E82302441DCD525E0032C5C6 /* TFHpple.m */,
+				E823024B1DCD52830032C5C6 /* TFHppleElement.h */,
+				E82302451DCD525E0032C5C6 /* TFHppleElement.m */,
+				E823024C1DCD52830032C5C6 /* XPathQuery.h */,
+				E82302461DCD525E0032C5C6 /* XPathQuery.m */,
+			);
+			name = TFHpple;
 			sourceTree = "<group>";
 		};
 		E82990471C87AF9000504421 /* XMLReader */ = {
@@ -2577,6 +2603,7 @@
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
+				E82302431DCD52370032C5C6 /* TFHpple */,
 				E8371D4E1D101F9400C2F174 /* THLabel */,
 				E812CF531D01A07400C4E777 /* VKSideMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
@@ -3409,6 +3436,7 @@
 				E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */,
 				E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
+				E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */,
 				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,
 				E84E23A01DBF03A00079496D /* GCStringObject.m in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
@@ -3416,11 +3444,13 @@
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m in Sources */,
+				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
 				E8E8D00A1B6651BD00CC741A /* FilterDifficultyTableViewCell.m in Sources */,
 				E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */,
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
+				E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E80250ED1D2474B500F05772 /* MapWaypointInfoView.m in Sources */,
@@ -3743,10 +3773,21 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3772,10 +3813,21 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
