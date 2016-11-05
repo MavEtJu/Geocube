@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCStringObject : NSString
+@interface GCStringObject : NSObject
 
 - (instancetype)initWithString:(NSString *)s;
 - (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
