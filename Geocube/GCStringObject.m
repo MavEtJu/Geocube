@@ -42,17 +42,22 @@
     return self;
 }
 
-- (NSUInteger)length
-{
-    return [sfn length];
-}
-
 - (NSData *)dataUsingEncoding:(NSStringEncoding)encoding
 {
     return [sfn dataUsingEncoding:encoding];
 }
 
+- (NSUInteger)length
+{
+    return [sfn length];
+}
+
 - (NSString *)description
+{
+    return sfn;
+}
+
+- (NSString *)_string
 {
     return sfn;
 }

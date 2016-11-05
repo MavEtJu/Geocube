@@ -23,6 +23,10 @@
 
 - (instancetype)initWithString:(NSString *)s;
 - (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
+- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding;
+- (NSUInteger)length;
+- (NSString *)description;
+- (NSString *)_string;
 
 @end
 
