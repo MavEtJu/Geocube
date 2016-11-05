@@ -392,7 +392,7 @@
 
     NSString *urlString = [NSString stringWithFormat:@"http://geocaching.com.au/cache/%@.gpx", [MyTools urlEncode:wpname]];
     NSArray *lines = [self loadPage:urlString downloadInfoItem:iid];
-    return [GCStringGPX stringWithString:[lines componentsJoinedByString:@""]];
+    return [[GCStringGPX alloc] initWithString:[lines componentsJoinedByString:@""]];
 }
 
 - (GCDictionaryGCA *)cache__json:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid

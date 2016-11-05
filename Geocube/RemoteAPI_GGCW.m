@@ -103,7 +103,7 @@
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
     if (params != nil && [params count] != 0) {
         NSString *ps = [MyTools urlParameterJoin:params];
-        [urlString appendFormat:@"&%@", ps];
+        [urlString appendFormat:@"?%@", ps];
     }
     return urlString;
 }
@@ -241,7 +241,7 @@
             NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
             [d setValue:name forKey:@"name"];
             [d setValue:g forKey:@"g"];
-#warning XXX todo
+#warning XXX increase data returned
 //            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochFromWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
 //            [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"size"];
 //            [d setValue:[pq objectForKey:@"PQCount"] forKey:@"waypointcount"];
@@ -253,6 +253,21 @@
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
     return dict;
 
+}
+
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:@"web" forKey:@"src"];
+    [params setObject:guid forKey:@"g"];
+
+    NSString *urlString = [self prepareURLString:@"/pocket/downloadpq.ashx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    GCDataZIPFile *zipdata = [[GCDataZIPFile alloc] initWithData:data];
+    return zipdata;
 }
 
 @end

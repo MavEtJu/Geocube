@@ -1228,9 +1228,20 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
 
+        GCDataZIPFile *zipfile = [ggcw pocket_downloadpq:_id downloadInfoItem:iid];
+        GGCW_CHECK_STATUS(zipfile, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+
+        NSString *filename = [NSString stringWithFormat:@"%@.zip", _id];
+        [zipfile writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] atomically:YES];
+        GCStringFilename *zipfilename = [[GCStringFilename alloc] initWithString:filename];
+
+        InfoItemImport *iii = [infoViewer addImport];
+        [callback remoteAPI_objectReadyToImport:iii object:zipfilename group:group account:account];
+
+        *retObj = zipfile;
         return REMOTEAPI_OK;
     }
 
@@ -1243,7 +1254,7 @@
     if (account.protocol_id == PROTOCOL_GCA || account.protocol_id == PROTOCOL_GCA2) {
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
-        NSString *gpx;
+        GCStringGPX *gpx = nil;
         if (account.protocol_id == PROTOCOL_GCA)
             gpx = [gca my_query_gpx:_id downloadInfoItem:iid];
         if (gpx == nil)
@@ -1277,7 +1288,7 @@
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
         [imp parseDictionary:json];
-        
+
         return REMOTEAPI_OK;
     }
 

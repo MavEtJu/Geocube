@@ -36,5 +36,6 @@
 
 - (GCDictionaryGGCW *)my_default:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid;
 - (GCDictionaryGGCW *)pocket_default:(InfoItemDownload *)iid;
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 
 @end

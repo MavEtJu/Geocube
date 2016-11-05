@@ -47,7 +47,6 @@
 
 - (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
-#warning not done yet
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
@@ -65,8 +64,7 @@
     InfoItemImport *iii = [dict objectForKey:@"iii"];
     dbAccount *a = [dict objectForKey:@"account"];
 
-    GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:o];
-    [importManager process:d group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
+    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO)
