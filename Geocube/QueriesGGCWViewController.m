@@ -58,7 +58,6 @@
 
 - (void)parseQueryBG:(NSDictionary *)dict
 {
-#warning not done yet
     dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
     InfoItemImport *iii = [dict objectForKey:@"iii"];
