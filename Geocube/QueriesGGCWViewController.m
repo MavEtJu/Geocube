@@ -75,7 +75,6 @@
 
 - (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
-#warning not done yet
     __block BOOL failure = NO;
 
     // Download the query

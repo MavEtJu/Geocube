@@ -671,6 +671,13 @@
         return REMOTEAPI_OK;
     }
 
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
     [self setDataError:@"[RemoteAPI] CreateLogNote: Unknown protocol" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
@@ -758,6 +765,13 @@
         [imp parseAfter];
 
         [waypointManager needsRefreshUpdate:waypoint];
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
         return REMOTEAPI_OK;
     }
 
@@ -957,6 +971,13 @@
         return REMOTEAPI_OK;
     }
 
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -991,6 +1012,13 @@
         return REMOTEAPI_OK;
     }
 
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -999,6 +1027,13 @@
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
         NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
+        return REMOTEAPI_OK;
+    }
+
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
         return REMOTEAPI_OK;
     }
 
@@ -1192,6 +1227,13 @@
         return REMOTEAPI_OK;
     }
 
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -1214,68 +1256,99 @@
         return REMOTEAPI_OK;
     }
 
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
     return REMOTEAPI_NOTPROCESSED;
 }
 
 - (RemoteAPIResult)trackablesMine:(InfoItemDownload *)iid
 {
-    if (account.protocol_id != PROTOCOL_LIVEAPI)
-        return REMOTEAPI_NOTPROCESSED;
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
 
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+        NSDictionary *json = [liveAPI GetOwnedTrackables:iid];
+        LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
 
-    NSDictionary *json = [liveAPI GetOwnedTrackables:iid];
-    LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
+        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+        [imp parseDictionary:json];
+        
+        return REMOTEAPI_OK;
+    }
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
-    [imp parseDictionary:json];
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
 
-    return REMOTEAPI_OK;
+        return REMOTEAPI_OK;
+    }
+
+    return REMOTEAPI_NOTPROCESSED;
 }
 
 - (RemoteAPIResult)trackablesInventory:(InfoItemDownload *)iid
 {
-    if (account.protocol_id != PROTOCOL_LIVEAPI)
-        return REMOTEAPI_NOTPROCESSED;
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
 
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+        NSDictionary *json = [liveAPI GetUsersTrackables:iid];
+        LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
 
-    NSDictionary *json = [liveAPI GetUsersTrackables:iid];
-    LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
+        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+        [imp parseDictionary:json];
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
-    [imp parseDictionary:json];
+        return REMOTEAPI_OK;
+    }
 
-    return REMOTEAPI_OK;
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
+    return REMOTEAPI_NOTPROCESSED;
 }
 
 - (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t downloadInfoItem:(InfoItemDownload *)iid
 {
-    if (account.protocol_id != PROTOCOL_LIVEAPI)
-        return REMOTEAPI_NOTPROCESSED;
+    if (account.protocol_id == PROTOCOL_LIVEAPI) {
+        NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
+        LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
 
-    NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
-    LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
+        ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+        [imp parseDictionary:json];
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
-    [imp parseDictionary:json];
+        NSArray *refs = nil;
+        NSString *ref = nil;
+        DICT_ARRAY_PATH(json, refs, @"Trackables.Code");
+        if ([refs count] != 0)
+            ref = [refs objectAtIndex:0];
+        if (ref == nil)
+            return REMOTEAPI_OK;
 
-    NSArray *refs = nil;
-    NSString *ref = nil;
-    DICT_ARRAY_PATH(json, refs, @"Trackables.Code");
-    if ([refs count] != 0)
-        ref = [refs objectAtIndex:0];
-    if (ref == nil)
+        *t = [dbTrackable dbGetByRef:ref];
+        if ([(*t).code isEqualToString:@""] == YES ) {
+            (*t).code = code;
+            [*t dbUpdate];
+        }
         return REMOTEAPI_OK;
-
-    *t = [dbTrackable dbGetByRef:ref];
-    if ([(*t).code isEqualToString:@""] == YES ) {
-        (*t).code = code;
-        [*t dbUpdate];
     }
-    return REMOTEAPI_OK;
+
+    if (account.protocol_id == PROTOCOL_GGCW) {
+#warning XX not done yet
+        NSAssert(NO, @"Not done yet");
+
+        return REMOTEAPI_OK;
+    }
+
+    return REMOTEAPI_NOTPROCESSED;
 }
 
 @end
