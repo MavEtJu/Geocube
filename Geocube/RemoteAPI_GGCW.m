@@ -23,6 +23,8 @@
 {
     RemoteAPI *remoteAPI;
     NSHTTPCookie *authCookie;
+
+    NSString *prefix;
 }
 
 @end
@@ -34,6 +36,8 @@
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {
     self = [super init];
+
+    prefix = @"https://www.geocaching.com";
 
     remoteAPI = _remoteAPI;
     callback = remoteAPI.account.gca_callback_url;
@@ -90,6 +94,105 @@
 {
     if (delegate != nil)
         [delegate GCAuthSuccessful:cookie];
+}
+
+// ------------------------------------------------
+
+- (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
+{
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
+    if (params != nil && [params count] != 0) {
+        NSString *ps = [MyTools urlParameterJoin:params];
+        [urlString appendFormat:@"&%@", ps];
+    }
+    return urlString;
+}
+
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDownload *)iid
+{
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
+    NSData *data = [retDict objectForKey:@"data"];
+    NSHTTPURLResponse *response = [retDict objectForKey:@"response"];
+    NSError *error = [retDict objectForKey:@"error"];
+    NSString *retbody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"error: %@", [error description]);
+    //  NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //  NSLog(@"retbody: %@", retbody);
+
+    if (error != nil) {
+        NSLog(@"error: %@", [error description]);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        return nil;
+    }
+    if (response.statusCode != 200) {
+        NSLog(@"statusCode: %ld", (long)response.statusCode);
+        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"retbody: %@", retbody);
+        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    if ([data length] == 0) {
+        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        return nil;
+    }
+
+    return data;
+}
+
+// ------------------------------------------------
+
+- (GCDictionaryGGCW *)my_default:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"my_default:%@", username);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/my/default.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+
+    //
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    // Find the data for the "Found" field.
+    NSInteger iFound = 0;
+    {
+    NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+    TFHppleElement *child = [e.children objectAtIndex:0];
+    NSString *s = child.content;
+    NSString *sFound = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    iFound = [sFound integerValue];
+    }
+
+    // Find the data for the "Hidden" field.
+    NSInteger iHidden = 0;
+    {
+    NSString *re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+    TFHppleElement *child = [e.children objectAtIndex:0];
+    NSString *s = child.content;
+    NSString *sHidden = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    iHidden = [sHidden integerValue];
+    }
+
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
+    [d setObject:[NSNumber numberWithInteger:iFound] forKey:@"caches_found"];
+    [d setObject:[NSNumber numberWithInteger:iHidden] forKey:@"caches_hidden"];
+
+    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
+    return dict;
 }
 
 @end

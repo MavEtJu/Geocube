@@ -27,7 +27,7 @@
 
 @end
 
-@interface RemoteAPI_GGCW : RemoteAPI_Template<NSURLConnectionDataDelegate>
+@interface RemoteAPI_GGCW : RemoteAPI_Template <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id<RemoteAPI_GGCWDelegate> delegate;
 @property (nonatomic, retain, readonly) NSString *callback;
