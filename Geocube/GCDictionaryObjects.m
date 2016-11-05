@@ -84,6 +84,10 @@
 
 @end
 
+@interface GCDictionaryGGCW ()
+
+@end
+
 @implementation GCDictionaryGGCW
 
 @end
