@@ -769,9 +769,17 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        [iid setChunksTotal:1];
+        [iid setChunksCount:1];
 
+        GCStringGPX *gpx = [ggcw geocache:waypoint.wpt_name downloadInfoItem:iid];
+
+        ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
+        [imp parseBefore];
+        [imp parseGPX:gpx];
+        [imp parseAfter];
+
+        [waypointManager needsRefreshUpdate:waypoint];
         return REMOTEAPI_OK;
     }
 
