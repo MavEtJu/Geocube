@@ -25,6 +25,7 @@
     NSHTTPCookie *authCookie;
 
     NSString *prefix;
+    NSString *prefixTiles;
 }
 
 @end
@@ -33,11 +34,19 @@
 
 @synthesize delegate, callback;
 
+enum {
+    GGCW_NONE = 0,
+
+    GGCW_TILESERVERS,
+    GGCW_GGCWSERVER,
+};
+
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {
     self = [super init];
 
     prefix = @"https://www.geocaching.com";
+    prefixTiles = @"https://tiles%02d.geocaching.com%@";
 
     remoteAPI = _remoteAPI;
     callback = remoteAPI.account.gca_callback_url;
@@ -100,7 +109,23 @@
 
 - (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
 {
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
+    return [self prepareURLString:suffix params:params servers:GGCW_GGCWSERVER];
+}
+
+- (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params servers:(NSInteger)servers
+{
+    NSMutableString *urlString = nil;
+    switch (servers) {
+        case GGCW_GGCWSERVER:
+            urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
+            break;
+        case GGCW_TILESERVERS:
+            urlString = [NSMutableString stringWithFormat:prefixTiles, 1 + arc4random_uniform(4l), suffix];
+            break;
+        default:
+            NSAssert1(FALSE, @"Unknown server type: %ld", (long)servers);
+            break;
+    }
     if (params != nil && [params count] != 0) {
         NSString *ps = [MyTools urlParameterJoin:params];
         [urlString appendFormat:@"?%@", ps];
@@ -359,6 +384,183 @@
 
     GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return gpx;
+}
+
+- (GCDictionaryGGCW *)account_oauth_token:(InfoItemDownload *)iid
+{
+    NSLog(@"account_oauth_token:");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    /*
+     * When requesting /geocache/GCxxxx, it will return a 301 response to the full URL.
+     *
+     */
+
+    NSString *urlString = [self prepareURLString:@"/account/oauth/token" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)map:(InfoItemDownload *)iid
+{
+    NSLog(@"map");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    /*
+     * When requesting /geocache/GCxxxx, it will return a 301 response to the full URL.
+     *
+     */
+
+    NSString *urlString = [self prepareURLString:@"/map/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithCapacity:10];
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    // First find the usersession data
+    NSString *re = [NSString stringWithFormat:@"//script"];
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+        NSString *s = e.content;
+        NSRange r = [s rangeOfString:@"Groundspeak.UserSession"];
+        if (r.location == NSNotFound)
+            return;
+        /* 
+        new Groundspeak.UserSession('wo9e', {userOptions:'XPTf', sessionToken:'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
+         */
+        s = [s substringFromIndex:r.location + r.length + 1];
+        /*
+            'wo9e', {userOptions:'XPTf', sessionToken:'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
+         */
+        r = [s rangeOfString:@","];
+        NSString *username = [s substringWithRange:NSMakeRange(1, r.location - 2)];
+
+        r = [s rangeOfString:@"sessionToken:"];
+        s = [s substringFromIndex:r.location + r.length + 1];
+        /*
+            'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
+         */
+        r = [s rangeOfString:@","];
+        NSString *sessionToken = [s substringWithRange:NSMakeRange(0, r.location - 1)];
+
+        // Now store it
+        [json setObject:username forKey:@"usersession.username"];
+        [json setObject:sessionToken forKey:@"usersession.sessionToken"];
+
+        *stop = YES;
+
+    }];
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", x, y, z);
+
+
+    /*
+     * This is the tile info requested:
+     * x, y, z is the coordinates for the tile.
+     * k / st is the username, sessiontoken.
+     * _ is the time(NULL) * 1000.
+     * callback is the label for the returned data.
+     * ts is ?
+     
+    https://tiles04.geocaching.com/map.info?ts=2&x=15070&y=9841&z=14&k=wo9e&st=e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaSE7NYnMquJsMGoz5tapdJOdNLv3doYRV46MHwovgcHk0&ep=1&callback=jQuery19102689279553556684_1478429965122&_=1478429965123
+     */
+
+    NSString *jQueryCallback = [NSString stringWithFormat:@"jQuery%08d", arc4random_uniform(100000000l)];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[NSNumber numberWithInteger:2] forKey:@"ts"];
+    [params setObject:[NSNumber numberWithInteger:x] forKey:@"x"];
+    [params setObject:[NSNumber numberWithInteger:y] forKey:@"y"];
+    [params setObject:[NSNumber numberWithInteger:z] forKey:@"z"];
+    [params setObject:remoteAPI.account.ggcw_username forKey:@"k"];
+    [params setObject:remoteAPI.account.ggcw_sessiontoken forKey:@"st"];
+    [params setObject:jQueryCallback forKey:@"callback"];
+    [params setObject:[NSNumber numberWithInteger:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
+
+    NSString *urlString = [self prepareURLString:@"/map.info" params:params servers:GGCW_TILESERVERS];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    s = [MyTools removeJSONWrapper:s jsonWrapper:jQueryCallback];
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[s dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+    if (json == nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"map_details:%@", wpcode);
+
+    /*
+    https://tiles01.geocaching.com/map.details?i=GC41A7D&k=wo9e&st=e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaSE7NYnMquJsMGoz5tapdJOdNLv3doYRV46MHwovgcHk0&jsoncallback=jQuery19102689279553556684_1478429965124&_=1478429965131
+     */
+
+    NSString *jQueryCallback = [NSString stringWithFormat:@"jQuery%08d", arc4random_uniform(100000000l)];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:wpcode forKey:@"i"];
+    [params setObject:remoteAPI.account.ggcw_username forKey:@"k"];
+    [params setObject:remoteAPI.account.ggcw_sessiontoken forKey:@"st"];
+    [params setObject:jQueryCallback forKey:@"jsoncallback"];
+    [params setObject:[NSNumber numberWithInteger:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
+
+    NSString *urlString = [self prepareURLString:@"/map.details" params:params servers:GGCW_TILESERVERS];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    // Get JSON string without the jQueryCallback wrapper
+    NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    s = [MyTools removeJSONWrapper:s jsonWrapper:jQueryCallback];
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[s dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+    if (json == nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
 }
 
 @end

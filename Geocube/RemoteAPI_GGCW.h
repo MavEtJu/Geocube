@@ -38,5 +38,9 @@
 - (GCDictionaryGGCW *)pocket_default:(InfoItemDownload *)iid;
 - (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 - (GCStringGPX *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)account_oauth_token:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)map:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid;
 
 @end
