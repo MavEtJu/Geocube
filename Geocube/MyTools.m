@@ -567,7 +567,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
                          [UIColor orangeColor],
                          [UIColor purpleColor],
                          ];
-    return colours[rand() % [colours count]];
+    return colours[arc4random_uniform((uint32_t)[colours count])];
 }
 
 ///////////////////////////////////////////
