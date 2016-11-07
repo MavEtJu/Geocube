@@ -105,6 +105,13 @@
     return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
++ (NSInteger)millisecondsSinceEpoch
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000 + (tv.tv_usec / 1000);
+}
+
 + (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime
 {
     NSDate *date;
@@ -375,6 +382,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     [s replaceOccurrencesOfString:@"&ndash;" withString:@"–" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
     [s replaceOccurrencesOfString:@"&#039;" withString:@"'" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
     return s;
+}
+
++ (NSString *)removeJSONWrapper:(NSString *)s jsonWrapper:(NSString *)jQueryCallback
+{
+    NSString *t = [s substringFromIndex:[jQueryCallback length] + 1];
+    t = [t substringToIndex:[t length] - 2];
+    return t;
 }
 
 ///////////////////////////////////////////
