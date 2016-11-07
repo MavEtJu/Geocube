@@ -1026,14 +1026,14 @@
             [iid setChunksCount:idx + 1];
             [iid resetBytes];
             GCDictionaryGGCW *d = [ggcw map_details:wpcode downloadInfoItem:iid];
-            [waypoints setObject:d forKey:wpcode];
+            NSArray *data = [d objectForKey:@"data"];
+            [waypoints setObject:[data objectAtIndex:0] forKey:wpcode];
 
-        InfoItemImport *iii = [infoViewer addImport:NO];
-        [iii showTrackables:NO];
-        [iii setDescription:@"Geocaching.com data (queued)"];
-        GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
-        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
-
+            InfoItemImport *iii = [infoViewer addImport:NO];
+            [iii showTrackables:NO];
+            [iii setDescription:@"Geocaching.com data (queued)"];
+            GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
+            [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
         }];
 
 //        InfoItemImport *iii = [infoViewer addImport:NO];
@@ -1043,10 +1043,6 @@
 //        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
 
 //        *retObject = rv;
-
-#warning XX not done yet
-
-        NSAssert(NO, @"Not done yet");
 
         return REMOTEAPI_OK;
     }
