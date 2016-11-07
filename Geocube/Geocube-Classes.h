@@ -60,7 +60,7 @@
 @class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
-@class GCDictionaryObject;
+@class GCDictionary;
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
@@ -71,7 +71,7 @@
 @class GCSmallLabel;
 @class GCStringFilename;
 @class GCStringGPX;
-@class GCStringObject;
+@class GCString;
 @class GCSwitch;
 @class GCTableViewCell;
 @class GCTableViewCellFieldValue;

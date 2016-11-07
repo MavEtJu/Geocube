@@ -110,19 +110,19 @@
             [imp parseString:(NSString *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
             [iii setDescription:@"LiveAPI data"];
-            [imp parseDictionary:data infoItemImport:iii];
+            [imp parseDictionary:(GCDictionaryLiveAPI *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
             [iii setDescription:@"Geocaching Australia API data"];
-            [imp parseDictionary:data infoItemImport:iii];
+            [imp parseDictionary:(GCDictionaryGCA2 *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
             [iii setDescription:@"Geocaching Australia data"];
-            [imp parseDictionary:data infoItemImport:iii];
+            [imp parseDictionary:(GCDictionaryGCA *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
             [iii setDescription:@"OKAPI data"];
-            [imp parseDictionary:data infoItemImport:iii];
+            [imp parseDictionary:(GCDictionaryOKAPI *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
             [iii setDescription:@"Geocaching.com data"];
-            [imp parseDictionary:data infoItemImport:iii];
+            [imp parseDictionary:(GCDictionaryGGCW *)data infoItemImport:iii];
         } else {
             NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }

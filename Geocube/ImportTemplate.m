@@ -95,6 +95,6 @@
 NEEDS_OVERLOADING(parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii)
 NEEDS_OVERLOADING(parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii)
 NEEDS_OVERLOADING(parseString:(NSString *)data infoItemImport:(InfoItemImport *)iii)
-NEEDS_OVERLOADING(parseDictionary:(NSDictionary *)dict infoItemImport:(InfoItemImport *)iii)
+NEEDS_OVERLOADING(parseDictionary:(id)dict infoItemImport:(InfoItemImport *)iii)
 
 @end

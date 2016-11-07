@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCStringObject ()
+@interface GCString ()
 
 @end
 
-@implementation GCStringObject
+@implementation GCString
 {
     NSMutableString *sfn;
 }

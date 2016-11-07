@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCDictionaryObject : NSObject
+@interface GCDictionary : NSObject
 
 - (instancetype)initWithDictionary:(NSObject *)otherDictionary;
 - (NSString *)description;
@@ -30,22 +30,22 @@
 
 @end
 
-@interface GCDictionaryGCA : GCDictionaryObject
+@interface GCDictionaryGCA : GCDictionary
 
 @end
 
-@interface GCDictionaryGCA2 : GCDictionaryObject
+@interface GCDictionaryGCA2 : GCDictionary
 
 @end
 
-@interface GCDictionaryLiveAPI : GCDictionaryObject
+@interface GCDictionaryLiveAPI : GCDictionary
 
 @end
 
-@interface GCDictionaryOKAPI : GCDictionaryObject
+@interface GCDictionaryOKAPI : GCDictionary
 
 @end
 
-@interface GCDictionaryGGCW : GCDictionaryObject
+@interface GCDictionaryGGCW : GCDictionary
 
 @end

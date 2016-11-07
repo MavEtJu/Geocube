@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCDictionaryObject ()
+@interface GCDictionary ()
 
 @end
 
-@implementation GCDictionaryObject
+@implementation GCDictionary
 {
     NSDictionary *d;
 }
