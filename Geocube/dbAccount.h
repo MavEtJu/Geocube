@@ -50,6 +50,12 @@
 @property (nonatomic, retain) NSString *gca_callback_url;
 @property (nonatomic, retain) NSString *gca_authenticate_url;
 
+@property (nonatomic, retain) NSString *ggcw_token;
+@property (nonatomic) NSInteger ggcw_tokenexpires;
+@property (nonatomic, retain) NSString *ggcw_tokentype;
+@property (nonatomic, retain) NSString *ggcw_username;
+@property (nonatomic, retain) NSString *ggcw_sessiontoken;
+
 @property (nonatomic) NSInteger distance_minimum;
 
 // Non database originated
