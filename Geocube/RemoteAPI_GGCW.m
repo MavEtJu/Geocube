@@ -445,7 +445,7 @@ enum {
         NSRange r = [s rangeOfString:@"Groundspeak.UserSession"];
         if (r.location == NSNotFound)
             return;
-        /* 
+        /*
         new Groundspeak.UserSession('wo9e', {userOptions:'XPTf', sessionToken:'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
          */
         s = [s substringFromIndex:r.location + r.length + 1];
@@ -487,7 +487,7 @@ enum {
      * _ is the time(NULL) * 1000.
      * callback is the label for the returned data.
      * ts is ?
-     
+
     https://tiles04.geocaching.com/map.info?ts=2&x=15070&y=9841&z=14&k=wo9e&st=e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaSE7NYnMquJsMGoz5tapdJOdNLv3doYRV46MHwovgcHk0&ep=1&callback=jQuery19102689279553556684_1478429965122&_=1478429965123
      */
 
