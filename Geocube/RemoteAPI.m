@@ -368,7 +368,7 @@
             NSDictionary *status = [__json__ objectForKey:@"Status"]; \
             if (status == nil) \
                 if ([__json__ objectForKey:@"StatusCode"] != nil) \
-                    status = __json__; \
+                    status = [__json__ _dict]; \
             if (status == nil) { \
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
                 NSLog(@"%@", s); \
@@ -445,9 +445,21 @@
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
 
-- (void)getNumber:(NSDictionary *)out from:(NSDictionary *)in outKey:(NSString *)outKey inKey:(NSString *)inKey
+- (void)getNumber:(NSDictionary *)out from:(id)in outKey:(NSString *)outKey inKey:(NSString *)inKey
 {
-    NSObject *o = [in objectForKey:inKey];
+    NSObject *o = nil;
+    if ([in isKindOfClass:[NSDictionary class]] == YES)
+        o = [(NSDictionary *)in objectForKey:inKey];
+    else if ([in isKindOfClass:[GCDictionaryGCA class]] == YES)
+        o = [(GCDictionaryGCA *)in objectForKey:inKey];
+    else if ([in isKindOfClass:[GCDictionaryGCA2 class]] == YES)
+        o = [(GCDictionaryGCA2 *)in objectForKey:inKey];
+    else if ([in isKindOfClass:[GCDictionaryGGCW class]] == YES)
+        o = [(GCDictionaryGGCW *)in objectForKey:inKey];
+    else if ([in isKindOfClass:[GCDictionaryLiveAPI class]] == YES)
+        o = [(GCDictionaryLiveAPI *)in objectForKey:inKey];
+    else
+        NSAssert1(FALSE, @"Unknown class: %@", [in class]);
     if (o != nil) {
         NSNumber *n = [NSNumber numberWithInteger:[[in valueForKey:inKey] integerValue]];
         [out setValue:n forKey:outKey];
@@ -495,10 +507,10 @@
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
-        NSDictionary *dict1 = [liveAPI GetYourUserProfile:iid];
+        GCDictionaryLiveAPI *dict1 = [liveAPI GetYourUserProfile:iid];
         LIVEAPI_CHECK_STATUS(dict1, @"UserStatistics/profile", REMOTEAPI_USERSTATISTICS_LOADFAILED);
         [iid setChunksCount:2];
-        NSDictionary *dict2 = [liveAPI GetCacheIdsFavoritedByUser:iid];
+        GCDictionaryLiveAPI *dict2 = [liveAPI GetCacheIdsFavoritedByUser:iid];
         LIVEAPI_CHECK_STATUS(dict2, @"UserStatistics/favourited", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         if (dict1 == nil && dict2 == nil)
@@ -521,9 +533,9 @@
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
 
-        NSDictionary *dict1 = [gca cacher_statistic__finds:username downloadInfoItem:iid];
+        GCDictionaryGCA *dict1 = [gca cacher_statistic__finds:username downloadInfoItem:iid];
         [iid setChunksCount:2];
-        NSDictionary *dict2 = [gca cacher_statistic__hides:username downloadInfoItem:iid];
+        GCDictionaryGCA *dict2 = [gca cacher_statistic__hides:username downloadInfoItem:iid];
 
         if ([dict1 count] == 0 && [dict2 count] == 0)
             return [self lastErrorCode];
@@ -541,7 +553,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *dict = [gca2 api_services_users_by__username:username downloadInfoItem:iid];
+        GCDictionaryGCA2 *dict = [gca2 api_services_users_by__username:username downloadInfoItem:iid];
         GCA2_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -557,7 +569,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *dict = [ggcw my_default:username downloadInfoItem:iid];
+        GCDictionaryGGCW *dict = [ggcw my_default:username downloadInfoItem:iid];
         GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -820,7 +832,7 @@
             [iid setChunksCount:idx + 1];
             NSString *wpname = [wp objectForKey:@"waypoint"];
             [iid resetBytes];
-            NSDictionary *ls = [gca logs_cache:wpname downloadInfoItem:iid];
+            GCDictionaryGCA *ls = [gca logs_cache:wpname downloadInfoItem:iid];
             NSArray *lss = [ls objectForKey:@"logs"];
             [lss enumerateObjectsUsingBlock:^(NSDictionary *l, NSUInteger idx, BOOL * _Nonnull stop) {
                 [logs addObject:l];
@@ -853,7 +865,7 @@
         [iid setChunksTotal:2];
         [iid setChunksCount:1];
 
-        NSDictionary *json = [gca2 api_services_caches_search_nearest:center downloadInfoItem:iid];
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_search_nearest:center downloadInfoItem:iid];
         GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         GCA2_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -891,7 +903,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
         NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
-        NSDictionary *json = [liveAPI SearchForGeocaches_pointradius:center downloadInfoItem:iid];
+        GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_pointradius:center downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         LIVEAPI_GET_VALUE(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -941,7 +953,7 @@
         BOOL more = NO;
         NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
         do {
-            NSDictionary *json = [okapi services_caches_search_nearest:center offset:offset downloadInfoItem:iid];
+            GCDictionaryOKAPI *json = [okapi services_caches_search_nearest:center offset:offset downloadInfoItem:iid];
             OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             more = [[json objectForKey:@"more"] boolValue];
@@ -959,7 +971,7 @@
 
         if ([wpcodes count] == 0)
             return REMOTEAPI_OK;
-        NSDictionary *json = [okapi services_caches_geocaches:wpcodes downloadInfoItem:iid];
+        GCDictionaryOKAPI *json = [okapi services_caches_geocaches:wpcodes downloadInfoItem:iid];
         OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
@@ -980,7 +992,60 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
+        if (account.ggcw_username == nil) {
+            GCDictionaryGGCW *d = [ggcw map:iid];
+            account.ggcw_username = [d objectForKey:@"usersession.username"];
+            account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
+        }
+
+        NSInteger xmin = [Coordinates longitudeToTile:center.longitude zoom:14];
+        NSInteger ymin = [Coordinates latitudeToTile:center.latitude zoom:14];
+        NSInteger xmax = [Coordinates longitudeToTile:center.longitude zoom:14];
+        NSInteger ymax = [Coordinates latitudeToTile:center.latitude zoom:14];
+
+        [iid setChunksTotal:(ymax - ymin + 1) * (xmax - xmin + 1)];
+        NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
+        for (NSInteger y = ymin; y <= ymax; y++) {
+            for (NSInteger x = xmin; x <= xmax; x++) {
+                [iid setChunksCount:(ymax - y + 1) * (xmax - xmin + 1) + x];
+                [iid resetBytes];
+                GCDictionaryGGCW *d = [ggcw map_info:x y:y z:14 downloadInfoItem:iid];
+
+                NSDictionary *alldata = [d objectForKey:@"data"];
+                [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *wps, BOOL *stop) {
+                    NSDictionary *wp = [wps objectAtIndex:0];
+                    NSString *wpcode = [wp objectForKey:@"i"];
+                    [wpcodes setObject:wpcode forKey:wpcode];
+                }];
+            }
+        }
+
+        NSMutableDictionary *waypoints = [NSMutableDictionary dictionaryWithCapacity:[wpcodes count]];
+        [iid setChunksTotal:[wpcodes count]];
+        [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+            [iid setChunksCount:idx + 1];
+            [iid resetBytes];
+            GCDictionaryGGCW *d = [ggcw map_details:wpcode downloadInfoItem:iid];
+            [waypoints setObject:d forKey:wpcode];
+
+        InfoItemImport *iii = [infoViewer addImport:NO];
+        [iii showTrackables:NO];
+        [iii setDescription:@"Geocaching.com data (queued)"];
+        GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
+        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
+
+        }];
+
+//        InfoItemImport *iii = [infoViewer addImport:NO];
+//        [iii showTrackables:NO];
+//        [iii setDescription:@"Geocaching.com data (queued)"];
+//        GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
+//        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
+
+//        *retObject = rv;
+
 #warning XX not done yet
+
         NSAssert(NO, @"Not done yet");
 
         return REMOTEAPI_OK;
@@ -1033,7 +1098,7 @@
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note downloadInfoItem:(InfoItemDownload *)iid
 {
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:iid];
+        GCDictionaryLiveAPI *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
         return REMOTEAPI_OK;
     }
@@ -1060,7 +1125,7 @@
 
     *qs = nil;
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI GetPocketQueryList:iid];
+        GCDictionaryLiveAPI *json = [liveAPI GetPocketQueryList:iid];
         LIVEAPI_CHECK_STATUS(json, @"listQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
@@ -1083,7 +1148,7 @@
     }
 
     if (account.protocol_id == PROTOCOL_GCA) {
-        NSDictionary *json = [gca my_query_list__json:iid];
+        GCDictionaryGCA *json = [gca my_query_list__json:iid];
         GCA_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
         NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
@@ -1159,12 +1224,12 @@
         [iid setChunksCount:1];
         do {
             NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
-            NSDictionary *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoItem:iid];
+            GCDictionaryLiveAPI *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase downloadInfoItem:iid];
             LIVEAPI_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
             NSInteger found = 0;
             if (result == nil)
-                result = [NSMutableDictionary dictionaryWithDictionary:json];
+                result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
             InfoItemImport *iii = [infoViewer addImport];
             [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
@@ -1190,7 +1255,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *json = [gca my_query_json:_id downloadInfoItem:iid];
+        GCDictionaryGCA *json = [gca my_query_json:_id downloadInfoItem:iid];
         GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         InfoItemImport *iii = [infoViewer addImport];
@@ -1291,7 +1356,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *json = [liveAPI GetOwnedTrackables:iid];
+        GCDictionaryLiveAPI *json = [liveAPI GetOwnedTrackables:iid];
         LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
@@ -1316,7 +1381,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *json = [liveAPI GetUsersTrackables:iid];
+        GCDictionaryLiveAPI *json = [liveAPI GetUsersTrackables:iid];
         LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
@@ -1338,7 +1403,7 @@
 - (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t downloadInfoItem:(InfoItemDownload *)iid
 {
     if (account.protocol_id == PROTOCOL_LIVEAPI) {
-        NSDictionary *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
+        GCDictionaryLiveAPI *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
         LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
 
         ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
