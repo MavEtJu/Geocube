@@ -66,6 +66,8 @@ NSInteger hardwaremodel = hardwareModelUnknown;
 
 int main(int argc, char * argv[])
 {
+    srand((unsigned int)time(NULL));
+
     UIDevice *device = [UIDevice currentDevice];
     hardwaremodel = hardwareModelUnknown;
     if ([device.model containsString:@"iPad"] == YES)
