@@ -347,6 +347,7 @@
 		E89051781C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */; };
 		E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E890517A1C96BA0200220986 /* HelpHelpViewController.m */; };
 		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
+		E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */; };
 		E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* RemoteAPI_Template.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -1065,6 +1066,8 @@
 		E890517A1C96BA0200220986 /* HelpHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpHelpViewController.m; sourceTree = "<group>"; };
 		E891D27C1D2D2DDE00A17B17 /* ImportOKAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportOKAPIJSON.h; sourceTree = "<group>"; };
 		E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportOKAPIJSON.m; sourceTree = "<group>"; };
+		E891E78E1DD06EED00EC9066 /* ImportGGCWJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGGCWJSON.h; sourceTree = "<group>"; };
+		E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGGCWJSON.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* RemoteAPI_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_Template.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* RemoteAPI_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_Template.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -2796,6 +2799,8 @@
 				E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */,
 				E84E239B1DBEA9FA0079496D /* ImportGCA2JSON.h */,
 				E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */,
+				E891E78E1DD06EED00EC9066 /* ImportGGCWJSON.h */,
+				E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */,
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
 				E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */,
@@ -3591,6 +3596,7 @@
 				E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
+				E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */,
 				E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,

@@ -94,6 +94,7 @@
 @class ImagesDownloadManager;
 @class ImportGCA2JSON;
 @class ImportGCAJSON;
+@class ImportGGCWJSON;
 @class ImportGPX;
 @class ImportGeocube;
 @class ImportLiveAPIJSON;

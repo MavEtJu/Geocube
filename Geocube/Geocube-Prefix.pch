@@ -118,6 +118,7 @@
 #import "ImportTemplate.h"
 #import "ImportGCAJSON.h"
 #import "ImportGCA2JSON.h"
+#import "ImportGGCWJSON.h"
 #import "ImportGPX.h"
 #import "ImportLiveAPIJSON.h"
 #import "ImportGeocube.h"
