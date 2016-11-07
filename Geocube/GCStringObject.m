@@ -54,7 +54,7 @@
 
 - (NSString *)description
 {
-    return sfn;
+    return [sfn description];
 }
 
 - (NSString *)_string

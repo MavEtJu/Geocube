@@ -75,6 +75,8 @@
         imp = [[ImportLiveAPIJSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
         imp = [[ImportOKAPIJSON alloc] init:group account:account];
+    } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
+        imp = [[ImportGGCWJSON alloc] init:group account:account];
     } else {
         NSAssert1(NO, @"Unknown data class: %@", [data class]);
     }

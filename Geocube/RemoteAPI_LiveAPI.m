@@ -91,7 +91,7 @@
     return req;
 }
 
-- (BOOL)checkStatus:(NSDictionary *)_dict
+- (BOOL)checkStatus:(GCDictionaryLiveAPI *)_dict
 {
     /*
      * Normally the Status section is a part of the response, however for
@@ -101,7 +101,7 @@
     NSDictionary *dict = [_dict objectForKey:@"Status"];
     if (dict == nil)
         if ([_dict objectForKey:@"StatusCode"] != nil)
-            dict = _dict;
+            dict = [_dict _dict];
     if (dict == nil) {
         NSString *reason = @"No Status value given.";
         [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];

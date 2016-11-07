@@ -35,7 +35,7 @@
     return self;
 }
 
-- (NSObject *)objectForKey:(NSString *)aKey
+- (id)objectForKey:(NSString *)aKey
 {
     return [d objectForKey:aKey];
 }
@@ -53,6 +53,11 @@
 - (NSString *)description
 {
     return [d description];
+}
+
+- (NSDictionary *)_dict
+{
+    return d;
 }
 
 @end

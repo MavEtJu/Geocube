@@ -19,9 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCDictionaryObject : NSDictionary
+@interface GCDictionaryObject : NSObject
 
 - (instancetype)initWithDictionary:(NSObject *)otherDictionary;
+- (NSString *)description;
+- (NSUInteger)count;
+- (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL *stop))block;
+- (id)objectForKey:(NSString *)aKey;
+- (NSDictionary *)_dict;
 
 @end
 

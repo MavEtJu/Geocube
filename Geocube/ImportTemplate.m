@@ -87,7 +87,7 @@
 {
     [self parseString:[gpx _string] infoItemImport:nil];
 }
-- (void)parseDictionary:(NSDictionary *)dict
+- (void)parseDictionary:(id)dict
 {
     [self parseDictionary:dict infoItemImport:nil];
 }

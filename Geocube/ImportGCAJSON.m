@@ -35,7 +35,7 @@
     }
     if ([dict objectForKey:@"geocaches"] != nil) {
         [self parseBefore_caches];
-        [self parseData_caches:dict];
+        [self parseData_caches:[dict _dict]];
         [self parseAfter_caches];
     }
     if ([dict objectForKey:@"logs1"] != nil) {
@@ -45,7 +45,7 @@
     }
     if ([dict objectForKey:@"logs"] != nil) {
         [self parseBefore_logs];
-        [self parseData_logs:dict];
+        [self parseData_logs:[dict _dict]];
         [self parseAfter_logs];
     }
 }
