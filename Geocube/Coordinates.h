@@ -39,19 +39,26 @@
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
 - (NSInteger)bearing:(CLLocationCoordinate2D)c;
 
++ (NSInteger)latitudeToTile:(CLLocationDegrees)lat zoom:(NSInteger)zoom;
++ (NSInteger)longitudeToTile:(CLLocationDegrees)lon zoom:(NSInteger)zoom;
+
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
++ (NSString *)bearing2compass:(CLLocationDegrees)bearing;
+
 + (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
-+ (NSString *)bearing2compass:(CLLocationDegrees)bearing;
+
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;
 + (NSString *)NiceLatitude:(CLLocationDegrees)l;
 + (NSString *)NiceLongitude:(CLLocationDegrees)l;
 + (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l;
 + (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l;
+
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r;
+
 + (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2;
 
 + (NSInteger)scanForWaypoints:(NSArray *)lines waypoint:(NSObject *)waypoint view:(UIViewController *)vc;

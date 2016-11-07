@@ -415,4 +415,15 @@
     return found;
 }
 
+// From https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y
++ (NSInteger)latitudeToTile:(CLLocationDegrees)lat zoom:(NSInteger)zoom
+{
+    return floor((1 - log(tan([Coordinates degrees2rad:lat]) + 1 / cos([Coordinates degrees2rad:lat])) / M_PI) /2 * pow(2, zoom));
+}
+
++ (NSInteger)longitudeToTile:(CLLocationDegrees)lon zoom:(NSInteger)zoom
+{
+    return floor(((lon + 180) / 360) * pow(2, zoom));
+}
+
 @end
