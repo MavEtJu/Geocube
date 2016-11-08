@@ -96,12 +96,6 @@
     [infoItemImport setLineObjectCount:numberOfLines];
 }
 
-- (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
-    NSLog(@"Error parsing XML: %@", errorString);
-}
-
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     @autoreleasepool {
@@ -263,6 +257,7 @@
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGECATEGORY_LOG];
                 l.waypoint_id = currentWP._id;
+                [l finish];
 
                 __block NSId _id = 0;
                 dbLog *_l = [logIdGCId objectForKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
@@ -327,7 +322,6 @@
 
         // Deal with the completion of the log
         if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
-            [currentLog finish];
             [logs addObject:currentLog];
 
             inLog = NO;
@@ -530,7 +524,7 @@ bye:
     currentText = nil;
 }
 
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     @autoreleasepool {
         if (string == nil)
@@ -541,6 +535,17 @@ bye:
             [currentText appendString:string];
         return;
     }
+}
+
+- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)error
+{
+    NSLog(@"[%@] validationErrorOccurred: %@", [self class], error);
+}
+
+- (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
+    NSLog(@"Error parsing XML: %@ (%@)", errorString, parseError);
 }
 
 @end
