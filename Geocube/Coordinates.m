@@ -191,6 +191,25 @@
     return [self coordinatesPlusOffset:c offset:CLLocationCoordinate2DMake(-o.latitude, -o.longitude)];
 }
 
+// From http://stackoverflow.com/questions/7278094/moving-a-cllocation-by-x-meters
++ (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters
+{
+    CLLocationCoordinate2D target;
+    const double distRadians = distanceMeters / (6372797.6); // earth radius in meters
+
+    float lat1 = origin.latitude * M_PI / 180;
+    float lon1 = origin.longitude * M_PI / 180;
+
+    float lat2 = asin( sin(lat1) * cos(distRadians) + cos(lat1) * sin(distRadians) * cos(bearing));
+    float lon2 = lon1 + atan2( sin(bearing) * sin(distRadians) * cos(lat1),
+                              cos(distRadians) - sin(lat1) * sin(lat2) );
+
+    target.latitude = lat2 * 180 / M_PI;
+    target.longitude = lon2 * 180 / M_PI; // no need to normalize a heading in degrees to be within -179.999999° to 180.00000°
+
+    return target;
+}
+
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
