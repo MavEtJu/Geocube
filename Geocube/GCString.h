@@ -34,6 +34,10 @@
 
 @end
 
+@interface GCStringGPXGarmin : GCString
+
+@end
+
 @interface GCStringFilename : GCString
 
 @end

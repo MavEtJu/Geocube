@@ -72,6 +72,14 @@
 
 @end
 
+@interface GCStringGPXGarmin ()
+
+@end
+
+@implementation GCStringGPXGarmin
+
+@end
+
 @interface GCStringFilename ()
 
 @end
