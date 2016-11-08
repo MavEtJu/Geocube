@@ -484,6 +484,8 @@
     @"insert into protocols(id, name) values(3, 'GCA')",
     @"insert into protocols(id, name) values(4, 'GCA2')",
     @"insert into protocols(id, name) values(5, 'GGCW')",
+    @"insert into protocols(id, name) values(6, 'Geocaching.su')",
+    @"insert into protocols(id, name) values(7, 'TrigpointingUK')",
     // Adjust accounts table
     @"alter table accounts add column protocol_id integer",
     @"update accounts set protocol_id = protocol",

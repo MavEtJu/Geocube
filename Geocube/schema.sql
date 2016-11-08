@@ -265,6 +265,8 @@ insert into protocols(id, name) values(2, "OKAPI");
 insert into protocols(id, name) values(3, "GCA");
 insert into protocols(id, name) values(4, "GCA2");
 insert into protocols(id, name) values(5, "GGCW");
+insert into protocols(id, name) values(6, "Geocaching.su");
+insert into protocols(id, name) values(7, "TrigpointingUK");
 
 create table accounts (
     id integer primary key,
