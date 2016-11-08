@@ -50,6 +50,8 @@ enum {
 
     remoteAPI = _remoteAPI;
     callback = remoteAPI.account.gca_callback_url;
+    NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+
     if (remoteAPI.account.gca_cookie_value != nil) {
         authCookie = [NSHTTPCookie cookieWithProperties:
                       [NSDictionary
@@ -67,9 +69,27 @@ enum {
                        ]
                       ];
         // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
-        NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         [cookiemgr setCookie:authCookie];
     }
+
+
+    // Set-Cookie:        Send2GPS=garmin; expires=Tue, 07-Nov-2017 11:44:23 GMT; path=/
+    NSHTTPCookie *send2gps = [NSHTTPCookie cookieWithProperties:
+                              [NSDictionary
+                               dictionaryWithObjects:@[
+                                                       @"/",
+                                                       @"Send2GPS",
+                                                       @"garmin",
+                                                       @".geocaching.com"
+                                                       ] forKeys:@[
+                                                                   NSHTTPCookiePath,
+                                                                   NSHTTPCookieName,
+                                                                   NSHTTPCookieValue,
+                                                                   NSHTTPCookieDomain
+                                                                   ]
+                               ]
+                              ];
+    [cookiemgr setCookie:send2gps];
 
     return self;
 }
@@ -561,6 +581,46 @@ enum {
 
     GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
     return d;
+}
+
+- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"seek_sendtogps:%@", guid);
+    /*
+ https://www.geocaching.com/seek/sendtogps.aspx?guid=2e73eec0-835c-4b71-a1be-5ef498e01038&map=true
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:guid forKey:@"guid"];
+    [params setObject:@"true" forKey:@"map"];
+
+    NSString *urlString = [self prepareURLString:@"/seek/sendtogps.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    NSString *re = @"//textarea[@id='dataString']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+
+    NSString *s = e.raw;
+    NSRange r = [s rangeOfString:@">"];     // Find end of <textarea ....>
+    r.location++;
+    r.length = [s length] - [@"</textarea>" length] - r.location;
+    s = [s substringWithRange:r];
+
+    r = [s rangeOfString:@">"];     // Find end of <?xml ....>
+    r.location++;
+    r.length = [s length] - r.location;
+    s = [s substringWithRange:r];
+
+    GCStringGPXGarmin *gpx = [[GCStringGPXGarmin alloc] initWithString:s];
+    return gpx;
 }
 
 @end
