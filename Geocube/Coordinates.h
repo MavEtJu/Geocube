@@ -48,6 +48,7 @@
 
 + (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
++ (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters;
 
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;
