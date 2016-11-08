@@ -1020,20 +1020,20 @@
             }
         }
 
-        NSMutableDictionary *waypoints = [NSMutableDictionary dictionaryWithCapacity:[wpcodes count]];
         [iid setChunksTotal:[wpcodes count]];
         [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
             [iid setChunksCount:idx + 1];
             [iid resetBytes];
             GCDictionaryGGCW *d = [ggcw map_details:wpcode downloadInfoItem:iid];
             NSArray *data = [d objectForKey:@"data"];
-            [waypoints setObject:[data objectAtIndex:0] forKey:wpcode];
+            NSDictionary *dict = [data objectAtIndex:0];
+
+            GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] downloadInfoItem:iid];
 
             InfoItemImport *iii = [infoViewer addImport:NO];
             [iii showTrackables:NO];
-            [iii setDescription:@"Geocaching.com data (queued)"];
-            GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
-            [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
+            [iii setDescription:@"Geocaching.com GPX Garmin data (queued)"];
+            [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
         }];
 
 //        InfoItemImport *iii = [infoViewer addImport:NO];
