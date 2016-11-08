@@ -289,11 +289,11 @@
     [Symbols addObject:cs];
 }
 
-- (dbLogString *)LogString_get_bytype:(dbProtocol *)protocol logtype:(NSInteger)logtype type:(NSString *)type
+- (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
 {
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
-        if (ls.protocol_id == protocol._id &&
+        if (ls.protocol_id == account.protocol._id &&
             ls.logtype == logtype &&
             [ls.text compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;
