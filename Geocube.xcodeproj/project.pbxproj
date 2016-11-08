@@ -348,6 +348,7 @@
 		E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E890517A1C96BA0200220986 /* HelpHelpViewController.m */; };
 		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
 		E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */; };
+		E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */; };
 		E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* RemoteAPI_Template.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -1068,6 +1069,8 @@
 		E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportOKAPIJSON.m; sourceTree = "<group>"; };
 		E891E78E1DD06EED00EC9066 /* ImportGGCWJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGGCWJSON.h; sourceTree = "<group>"; };
 		E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGGCWJSON.m; sourceTree = "<group>"; };
+		E891E7911DD1660500EC9066 /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXGarmin.h; sourceTree = "<group>"; };
+		E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXGarmin.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* RemoteAPI_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_Template.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* RemoteAPI_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_Template.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -2803,6 +2806,8 @@
 				E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */,
 				E8F570CC1B40147E003F020C /* ImportGPX.h */,
 				E8F570CD1B40147E003F020C /* ImportGPX.m */,
+				E891E7911DD1660500EC9066 /* ImportGPXGarmin.h */,
+				E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */,
 				E81D242A1B9B06B7001E6027 /* ImportLiveAPIJSON.h */,
 				E81D242B1B9B06B7001E6027 /* ImportLiveAPIJSON.m */,
 				E891D27C1D2D2DDE00A17B17 /* ImportOKAPIJSON.h */,
@@ -3481,6 +3486,7 @@
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E80F73731B530C4600F35528 /* DownloadsImportsViewController.m in Sources */,
 				E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */,
+				E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,

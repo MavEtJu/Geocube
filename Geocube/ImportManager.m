@@ -67,6 +67,8 @@
     if ([data isKindOfClass:[GCStringFilename class]] == YES ||
         [data isKindOfClass:[GCStringGPX class]] == YES) {
         imp = [[ImportGPX alloc] init:group account:account];
+    } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
+        imp = [[ImportGPXGarmin alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
         imp = [[ImportGCA2JSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
@@ -107,6 +109,9 @@
             }];
         } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
             [iii setDescription:@"GPX data"];
+            [imp parseString:(NSString *)data infoItemImport:iii];
+        } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
+            [iii setDescription:@"GPX Garmin data"];
             [imp parseString:(NSString *)data infoItemImport:iii];
         } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
             [iii setDescription:@"LiveAPI data"];

@@ -55,12 +55,12 @@
 @class GCCoordsHistorical;
 @class GCData;
 @class GCDataZIPFile;
+@class GCDictionary;
 @class GCDictionaryGCA2;
 @class GCDictionaryGCA;
 @class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
-@class GCDictionary;
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
@@ -69,9 +69,10 @@
 @class GCPointAnnotation;
 @class GCScrollView;
 @class GCSmallLabel;
+@class GCString;
 @class GCStringFilename;
 @class GCStringGPX;
-@class GCString;
+@class GCStringGPXGarmin;
 @class GCSwitch;
 @class GCTableViewCell;
 @class GCTableViewCellFieldValue;
@@ -96,6 +97,7 @@
 @class ImportGCAJSON;
 @class ImportGGCWJSON;
 @class ImportGPX;
+@class ImportGPXGarmin;
 @class ImportGeocube;
 @class ImportLiveAPIJSON;
 @class ImportManager;
