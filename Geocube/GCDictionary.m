@@ -40,6 +40,11 @@
     return [d objectForKey:aKey];
 }
 
+- (id)valueForKey:(NSString *)aKey
+{
+    return [d valueForKey:aKey];
+}
+
 - (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL *stop))block
 {
     [d enumerateKeysAndObjectsUsingBlock:block];

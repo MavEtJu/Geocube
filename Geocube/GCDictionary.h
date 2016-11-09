@@ -26,6 +26,7 @@
 - (NSUInteger)count;
 - (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL *stop))block;
 - (id)objectForKey:(NSString *)aKey;
+- (id)valueForKey:(NSString *)aKey;
 - (NSDictionary *)_dict;
 
 @end
