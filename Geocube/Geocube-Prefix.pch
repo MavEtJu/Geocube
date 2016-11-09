@@ -126,6 +126,7 @@
 #import "ImportOKAPIJSON.h"
 #import "ExportGPX.h"
 
+#import "GCArray.h"
 #import "GCButton.h"
 #import "GCCloseBUtton.h"
 #import "GCImageView.h"

@@ -275,6 +275,7 @@
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
 		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
+		E83B77841DD3C4540059793C /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B77831DD3C4540059793C /* GCArray.m */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
@@ -921,6 +922,8 @@
 		E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesInventoryViewController.m; sourceTree = "<group>"; };
 		E8371D4F1D10202B00C2F174 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = THLabel/THLabel.h; sourceTree = "<group>"; };
 		E8371D501D10202B00C2F174 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = THLabel/THLabel.m; sourceTree = "<group>"; };
+		E83B77821DD3C4540059793C /* GCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCArray.h; sourceTree = "<group>"; };
+		E83B77831DD3C4540059793C /* GCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCArray.m; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -1626,6 +1629,13 @@
 			name = THLabel;
 			sourceTree = "<group>";
 		};
+		E83B77851DD3C45F0059793C /* Base types */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Base types";
+			sourceTree = "<group>";
+		};
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1777,14 +1787,19 @@
 		E85760161B85E08F00F34483 /* Base objects */ = {
 			isa = PBXGroup;
 			children = (
-				E8F7FF251D74507100AC7EE6 /* GCButton.h */,
-				E8F7FF261D74507100AC7EE6 /* GCButton.m */,
-				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
-				E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */,
+				E83B77821DD3C4540059793C /* GCArray.h */,
+				E83B77831DD3C4540059793C /* GCArray.m */,
 				E82302541DCD8B3C0032C5C6 /* GCDataObjects.h */,
 				E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */,
 				E85FCA711CAC6EF3005D7AE1 /* GCDictionary.h */,
 				E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */,
+				E84E239E1DBF03A00079496D /* GCString.h */,
+				E84E239F1DBF03A00079496D /* GCString.m */,
+				E83B77851DD3C45F0059793C /* Base types */,
+				E8F7FF251D74507100AC7EE6 /* GCButton.h */,
+				E8F7FF261D74507100AC7EE6 /* GCButton.m */,
+				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
+				E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */,
 				E8F7FF221D744E9800AC7EE6 /* GCImageView.h */,
 				E8F7FF231D744E9800AC7EE6 /* GCImageView.m */,
 				E847A58B1BA0425100BEFE83 /* GCLabel.h */,
@@ -1793,8 +1808,6 @@
 				E87D444A1BA6F6E800671FB9 /* GCScrollView.m */,
 				E847A5911BA0524E00BEFE83 /* GCSmallLabel.h */,
 				E847A5921BA0524E00BEFE83 /* GCSmallLabel.m */,
-				E84E239E1DBF03A00079496D /* GCString.h */,
-				E84E239F1DBF03A00079496D /* GCString.m */,
 				E87DF7891D80B6F100F16B5A /* GCSwitch.h */,
 				E87DF78A1D80B6F100F16B5A /* GCSwitch.m */,
 				E82FBB281B4613D70009AB6D /* GCTableViewController.h */,
@@ -3420,6 +3433,7 @@
 				E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */,
+				E83B77841DD3C4540059793C /* GCArray.m in Sources */,
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,

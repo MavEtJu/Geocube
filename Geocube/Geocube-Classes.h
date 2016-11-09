@@ -49,6 +49,7 @@
 @class FilterTextTableViewCell;
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
+@class GCArray;
 @class GCButton;
 @class GCCircle;
 @class GCCloseButton;
@@ -64,6 +65,7 @@
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
+@class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCPointAnnotation;
