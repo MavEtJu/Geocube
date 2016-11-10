@@ -420,15 +420,15 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"short_description"] == YES) {
-                    [currentWP setGs_short_desc:currentText]; // Can contain newlines
+                    [currentWP setGs_short_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"long_description"] == YES) {
-                    [currentWP setGs_long_desc:currentText]; // Can contain newlines
+                    [currentWP setGs_long_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"encoded_hints"] == YES) {
-                    [currentWP setGs_hint:currentText]; // Can contain newlines
+                    [currentWP setGs_hint:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"owner"] == YES) {
