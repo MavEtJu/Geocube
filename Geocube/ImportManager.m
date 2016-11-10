@@ -63,6 +63,14 @@
         }
     }
 
+    if ([data isKindOfClass:[GCArray class]] == YES) {
+        GCArray *as = (GCArray *)data;
+        [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL *stop) {
+            [self process:a group:group account:account options:runoptions infoItemImport:iii];
+        }];
+        return;
+    }
+
     ImportTemplate *imp;
     if ([data isKindOfClass:[GCStringFilename class]] == YES ||
         [data isKindOfClass:[GCStringGPX class]] == YES) {
