@@ -2442,13 +2442,6 @@
 			name = "GUI - base";
 			sourceTree = "<group>";
 		};
-		E8E4400C1D88A7CF00BECB49 /* Old cruft */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Old cruft";
-			sourceTree = "<group>";
-		};
 		E8E4400D1D88A85700BECB49 /* InfoViewer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2537,7 +2530,6 @@
 		E8EC073C1D39C526009B8EB1 /* Download managers */ = {
 			isa = PBXGroup;
 			children = (
-				E8E4400C1D88A7CF00BECB49 /* Old cruft */,
 				E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */,
 				E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */,
 				E8EC073D1D39D898009B8EB1 /* DownloadManager.h */,
