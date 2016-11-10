@@ -3797,11 +3797,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
@@ -3809,7 +3805,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
@@ -3837,11 +3832,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
@@ -3849,7 +3840,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
 					"${SDKROOT}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
