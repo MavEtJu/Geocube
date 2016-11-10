@@ -25,7 +25,6 @@
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
-		E80F73731B530C4600F35528 /* DownloadsImportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E812CF551D01A09400C4E777 /* VKSideMenu.m */; };
@@ -645,8 +644,6 @@
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
 		E80AEEBD1BA670B200106F7F /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
-		E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadsImportsViewController.h; sourceTree = "<group>"; };
-		E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadsImportsViewController.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E812CF541D01A09400C4E777 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
@@ -2448,8 +2445,6 @@
 		E8E4400C1D88A7CF00BECB49 /* Old cruft */ = {
 			isa = PBXGroup;
 			children = (
-				E80F73711B530C4600F35528 /* DownloadsImportsViewController.h */,
-				E80F73721B530C4600F35528 /* DownloadsImportsViewController.m */,
 			);
 			name = "Old cruft";
 			sourceTree = "<group>";
@@ -3498,7 +3493,6 @@
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
-				E80F73731B530C4600F35528 /* DownloadsImportsViewController.m in Sources */,
 				E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */,
 				E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
