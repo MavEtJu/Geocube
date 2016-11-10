@@ -34,7 +34,7 @@
     a = [NSMutableArray arrayWithCapacity:size];
     return self;
 }
-    
+
 - (instancetype)initWithArray:(NSArray *)array
 {
     self = [super init];
