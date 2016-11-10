@@ -27,6 +27,7 @@
 - (void)addObject:(id)object;
 - (id)objectAtIndex:(NSUInteger)idx;
 - (NSUInteger)count;
+- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL *stop))block;
 
 @end
 

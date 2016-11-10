@@ -62,6 +62,11 @@
     return [a objectAtIndex:idx];
 }
 
+- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL *stop))block;
+{
+    [a enumerateObjectsUsingBlock:block];
+}
+
 @end
 
 @interface GCMutableArray ()
