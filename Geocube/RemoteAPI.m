@@ -458,6 +458,8 @@
         o = [(GCDictionaryGGCW *)in objectForKey:inKey];
     else if ([in isKindOfClass:[GCDictionaryLiveAPI class]] == YES)
         o = [(GCDictionaryLiveAPI *)in objectForKey:inKey];
+    else if ([in isKindOfClass:[GCDictionaryOKAPI class]] == YES)
+        o = [(GCDictionaryOKAPI *)in objectForKey:inKey];
     else
         NSAssert1(FALSE, @"Unknown class: %@", [in class]);
     if (o != nil) {
@@ -998,56 +1000,107 @@
             account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
         }
 
-        NSInteger xmin = [Coordinates longitudeToTile:center.longitude zoom:14];
-        NSInteger ymin = [Coordinates latitudeToTile:center.latitude zoom:14];
-        NSInteger xmax = [Coordinates longitudeToTile:center.longitude zoom:14];
-        NSInteger ymax = [Coordinates latitudeToTile:center.latitude zoom:14];
+        CLLocationCoordinate2D ct = [Coordinates location:center bearing:0 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
+        CLLocationCoordinate2D cr = [Coordinates location:center bearing:1 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
+        CLLocationCoordinate2D cb = [Coordinates location:center bearing:2 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
+        CLLocationCoordinate2D cl = [Coordinates location:center bearing:3 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
 
+#define ZOOM    14
+        NSInteger xmin = [Coordinates longitudeToTile:cl.longitude zoom:ZOOM];
+        NSInteger ymax = [Coordinates latitudeToTile:cb.latitude zoom:ZOOM];
+        NSInteger xmax = [Coordinates longitudeToTile:cr.longitude zoom:ZOOM];
+        NSInteger ymin = [Coordinates latitudeToTile:ct.latitude zoom:ZOOM];
+
+        /*
+        // cx is the number of degrees in a single pixel of the 64 parts of a map tile.
+        CLLocationCoordinate2D cdiff = CLLocationCoordinate2DMake(
+                                       (ct.latitude - cb.latitude) / ((ymax - ymin + 1) * 64),
+                                       (cr.longitude - cl.longitude) / ((xmax - xmin + 1) * 64)
+                                                               );
+         */
+
+        InfoViewer *infoViewer = iid.infoViewer;
+        [infoViewer removeItem:iid];
+
+        NSMutableDictionary *wpcodesall = [NSMutableDictionary dictionaryWithCapacity:100];
         [iid setChunksTotal:(ymax - ymin + 1) * (xmax - xmin + 1)];
-        NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
         for (NSInteger y = ymin; y <= ymax; y++) {
             for (NSInteger x = xmin; x <= xmax; x++) {
-                [iid setChunksCount:(ymax - y + 1) * (xmax - xmin + 1) + x];
+                NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
+
+                iid = [infoViewer addDownload];
+                [iid setDescription:[NSString stringWithFormat:@"Tile (%ld, %ld)", x, y]];
+                [iid setChunksTotal:0];
+                [iid setChunksCount:1];
                 [iid resetBytes];
-                GCDictionaryGGCW *d = [ggcw map_info:x y:y z:14 downloadInfoItem:iid];
+                GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM downloadInfoItem:iid];
 
                 NSDictionary *alldata = [d objectForKey:@"data"];
                 [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *wps, BOOL *stop) {
-                    NSDictionary *wp = [wps objectAtIndex:0];
-                    NSString *wpcode = [wp objectForKey:@"i"];
-                    [wpcodes setObject:wpcode forKey:wpcode];
+                    NSDictionary *wpdata = [wps objectAtIndex:0];
+                    // Don't look at the same object twice
+                    NSString *wpdatai = [wpdata objectForKey:@"i"];
+                    if ([wpcodesall objectForKey:wpdatai] != nil)
+                        return;
+
+                    [wpcodes setObject:wpdata forKey:wpdatai];
+                    [wpcodesall setObject:@"0" forKey:wpdatai];
                 }];
+
+                [wpcodes setObject:group forKey:@"group"];
+                [wpcodes setObject:iid forKey:@"iid"];
+                [wpcodes setObject:callback forKey:@"callback"];
+                [self performSelectorInBackground:@selector(loadWaypoints_GGCWBackground:) withObject:wpcodes];
+
             }
         }
-
-        [iid setChunksTotal:[wpcodes count]];
-        [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
-            [iid setChunksCount:idx + 1];
-            [iid resetBytes];
-            GCDictionaryGGCW *d = [ggcw map_details:wpcode downloadInfoItem:iid];
-            NSArray *data = [d objectForKey:@"data"];
-            NSDictionary *dict = [data objectAtIndex:0];
-
-            GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] downloadInfoItem:iid];
-
-            InfoItemImport *iii = [infoViewer addImport:NO];
-            [iii showTrackables:NO];
-            [iii setDescription:@"Geocaching.com GPX Garmin data (queued)"];
-            [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
-        }];
-
-//        InfoItemImport *iii = [infoViewer addImport:NO];
-//        [iii showTrackables:NO];
-//        [iii setDescription:@"Geocaching.com data (queued)"];
-//        GCDictionaryGGCW *rv = [[GCDictionaryGGCW alloc] initWithDictionary:[NSDictionary dictionaryWithObject:waypoints forKey:@"mapwaypoints"]];
-//        [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
-
-//        *retObject = rv;
 
         return REMOTEAPI_OK;
     }
 
     return REMOTEAPI_NOTPROCESSED;
+}
+
+- (void)loadWaypoints_GGCWBackground:(NSMutableDictionary *)wpcodes
+{
+    id<RemoteAPIRetrieveQueryDelegate> callback = [wpcodes objectForKey:@"callback"];
+    InfoItemDownload *iid = [wpcodes objectForKey:@"iid"];
+    dbGroup *group = [wpcodes objectForKey:@"group"];
+    [wpcodes removeObjectForKey:@"iid"];
+    [wpcodes removeObjectForKey:@"callback"];
+    [wpcodes removeObjectForKey:@"group"];
+
+    GCMutableArray *gpxarray = [[GCMutableArray alloc] initWithCapacity:[wpcodes count]];
+
+    InfoViewer *iv = iid.infoViewer;
+    [iid setChunksTotal:[wpcodes count]];
+    [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+        [iid setChunksCount:idx + 1];
+        [iid resetBytes];
+
+        GCDictionaryGGCW *d = [ggcw map_details:wpcode downloadInfoItem:iid];
+        if (d == nil)
+            return;
+        NSArray *data = [d objectForKey:@"data"];
+        NSDictionary *dict = [data objectAtIndex:0];
+
+        GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] downloadInfoItem:iid];
+        if (gpx == nil)
+            return;
+
+        [gpxarray addObject:gpx];
+    }];
+
+    if ([gpxarray count] == 0) {
+        [iv removeItem:iid];
+        return;
+    }
+
+    InfoItemImport *iii = [iv addImport:NO];
+    [iii setDescription:@"Geocaching.com GPX Garmin data (queued)"];
+    [callback remoteAPI_objectReadyToImport:iii object:gpxarray group:group account:account];
+
+    [iv removeItem:iid];
 }
 
 - (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
