@@ -30,7 +30,6 @@
 @class Coordinates;
 @class DatabaseCache;
 @class DownloadManager;
-@class DownloadsImportsViewController;
 @class ExportGPX;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;

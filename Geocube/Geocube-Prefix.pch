@@ -150,7 +150,6 @@
 #import "InfoViewer.h"
 #import "DownloadManager.h"
 #import "ImportManager.h"
-#import "DownloadsImportsViewController.h"
 
 #import "WaypointHeaderTableViewCell.h"
 #import "WaypointTableViewCell.h"
