@@ -1134,13 +1134,6 @@
         return REMOTEAPI_OK;
     }
 
-    if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
-
-        return REMOTEAPI_OK;
-    }
-
     return REMOTEAPI_NOTPROCESSED;
 }
 
@@ -1386,13 +1379,6 @@
         [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
 
         *retObj = gpx;
-        return REMOTEAPI_OK;
-    }
-
-    if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
-
         return REMOTEAPI_OK;
     }
 
