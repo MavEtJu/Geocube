@@ -616,14 +616,11 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 + (void)sendTweet:(UIViewController *)vc text:(NSString *)text
 {
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         [tweetSheet setInitialText:text];
         [vc presentViewController:tweetSheet animated:YES completion:nil];
-    }
-    else
-    {
+    } else {
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Sorry"
                                   message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
