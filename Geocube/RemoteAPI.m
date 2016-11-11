@@ -1426,8 +1426,32 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        NSArray *tbs = [ggcw my_inventory:iid];
+        NSMutableArray *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
+        [iid resetBytesChunks];
+        [iid setChunksTotal:[tbs count]];
+        [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
+            [iid resetBytes];
+            [iid setChunksCount:idx + 1];
+            NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] downloadInfoItem:iid];
+
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
+            [dict setObject:[tb objectForKey:@"guid"] forKey:@"guid"];
+            [dict setObject:[tb objectForKey:@"name"] forKey:@"name"];
+            [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
+            [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+            [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
+            [dict setObject:[NSNumber numberWithInteger:account.accountname._id] forKey:@"carrier_id"];
+            [tbstot addObject:dict];
+        }];
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
+        [d setObject:tbstot forKey:@"trackables"];
+
+        GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
+
+        ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+        [imp parseDictionary:dict];
 
         return REMOTEAPI_OK;
     }

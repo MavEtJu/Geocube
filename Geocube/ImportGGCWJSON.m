@@ -33,6 +33,11 @@
         [self parseData_mapwaypoints:[dict objectForKey:@"mapwaypoints"]];
         [self parseAfter_mapwaypoints];
     }
+    if ([dict objectForKey:@"trackables"] != nil) {
+        [self parseBefore_trackables];
+        [self parseData_trackables:[dict objectForKey:@"trackables"]];
+        [self parseAfter_trackables];
+    }
 }
 
 - (void)parseBefore_mapwaypoints
@@ -133,6 +138,64 @@
     }
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
+}
+
+- (void)parseBefore_trackables
+{
+    NSLog(@"%@/parseBefore_trackables: Parsing initializing", [self class]);
+}
+
+- (void)parseAfter_trackables
+{
+    NSLog(@"%@/parseAfter_trackables: Parsing done", [self class]);
+}
+
+- (void)parseData_trackables:(NSArray *)trackables
+{
+    [infoItemImport setLineObjectTotal:[trackables count] isLines:NO];
+    [trackables enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
+        [self parseData_trackable:tb];
+        ++totalTrackablesCount;
+        [infoItemImport setWaypointsTotal:totalTrackablesCount];
+        [infoItemImport setLineObjectCount:idx + 1];
+    }];
+}
+
+- (void)parseData_trackable:(NSDictionary *)tbdata
+{
+/*
+{
+    "carrier_id" = 19971;
+    gccode = TB72XZA;
+    guid = "bc97d29d-facc-4818-8a49-4351602a37f5";
+    owner = "Delta_03";
+    id = 6140957;
+    name = "Team MavEtJu Goes Geocaching - Try 2";
+}
+ */
+
+    NSString *gccode= [tbdata objectForKey:@"gccode"];
+    dbTrackable *tb = [dbTrackable dbGetByRef:gccode];
+    if (tb == nil) {
+        tb = [[dbTrackable alloc] init];
+        tb.ref = gccode;
+    }
+
+    DICT_INTEGER_KEY(tbdata, tb.gc_id, @"id");
+    DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
+    DICT_INTEGER_KEY(tbdata, tb.carrier_id, @"carrier_id");
+    DICT_NSSTRING_KEY(tbdata, tb.owner_str, @"owner");
+    [dbName makeNameExist:tb.owner_str code:nil account:account];
+    [tb finish:account];
+
+    if (tb._id == 0) {
+        NSLog(@"Created trackable %@", tb.ref);
+        [tb dbCreate];
+        newTrackablesCount++;
+        [infoItemImport setTrackablesNew:newTrackablesCount];
+    } else {
+        [tb dbUpdate];
+    }
 }
 
 @end

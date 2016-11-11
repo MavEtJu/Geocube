@@ -623,4 +623,109 @@ enum {
     return gpx;
 }
 
+- (NSArray *)my_inventory:(InfoItemDownload *)iid
+{
+    NSLog(@"my_inventory");
+    /*
+     https://www.geocaching.com/my/inventory.aspx
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/my/inventory.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    NSString *re = @"//table[@class='Table NoBottomSpacing']/tbody/tr";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+
+    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *trs, NSUInteger idx, BOOL *stop) {
+        NSLog(@"trs: %ld", [trs.children count]);
+        TFHppleElement *tds = [trs.children objectAtIndex:1];
+        NSLog(@"tds: %ld", [tds.children count]);
+        TFHppleElement *td = [tds.children objectAtIndex:1];
+        /*
+         <a href="/track/details.aspx?guid=93201211-b611-4502-ac7d-e5a80b722067" class="lnk">
+         <img alt="" src="/images/wpttypes/sm/1893.gif"> <span>David´s Wildcoin</span></a>
+         */
+        NSString *href = [td.attributes objectForKey:@"href"];
+        NSRange r = [href rangeOfString:@"guid="];
+        NSString *guid = [href substringFromIndex:r.location + r.length];
+        TFHppleElement *name = [td.children objectAtIndex:3];
+
+        NSMutableDictionary *tb = [NSMutableDictionary dictionaryWithCapacity:3];
+        [tb setObject:href forKey:@"href"];
+        [tb setObject:name.content forKey:@"name"];
+        [tb setObject:guid forKey:@"guid"];
+
+        [tbs addObject:tb];
+
+        NSLog(@"Foo");
+    }];
+
+    return tbs;
+}
+
+- (NSDictionary *)track_details:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"track_details:%@", guid);
+    /*
+     https://www.geocaching.com/track/details.aspx?guid=93201211-b611-4502-ac7d-e5a80b722067
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:guid forKey:@"guid"];
+
+    NSString *urlString = [self prepareURLString:@"/track/details.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    /*
+     <span id="ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode"
+     class="CoordInfoCode">TB4HC6C</span>
+     */
+    NSString *re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSString *gccode = [[nodes objectAtIndex:0] content];
+
+    /*
+     <h4 class="BottomSpacing">
+     Tracking History (120589.7km&nbsp;) <a href="map_gm.aspx?ID=3801141" title='View Map'>View Map</a>
+     </h4>
+     */
+    re = @"//h4[@class='BottomSpacing']/a[@title='View Map']";
+    nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+    NSString *u = [e.attributes objectForKey:@"href"];
+    NSRange r = [u rangeOfString:@"ID="];
+    NSString *_id = [u substringFromIndex:r.location + r.length];
+
+    /*
+     <a id="ctl00_ContentBody_BugDetails_BugOwner" title="Visit&#32;User&#39;s&#32;Profile" href="https://www.geocaching.com/profile/?guid=5d41d7b7-c124-479b-965d-c7ca5d4799bb">Delta_03</a>
+     */
+    re = @"//a[@id='ctl00_ContentBody_BugDetails_BugOwner']";
+    nodes = [parser searchWithXPathQuery:re];
+    e = [nodes objectAtIndex:0];
+    NSString *owner = e.content;
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:1];
+    [dict setObject:gccode forKey:@"gccode"];
+    [dict setObject:_id forKey:@"id"];
+    [dict setObject:owner forKey:@"owner"];
+
+    return dict;
+}
+
 @end
