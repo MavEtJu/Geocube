@@ -31,6 +31,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Social/Social.h>
 
 #import <math.h>
 #import <sqlite3.h>

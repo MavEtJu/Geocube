@@ -22,7 +22,7 @@
 @interface SettingsMainViewController ()
 {
     GCSwitch *distanceMetric;
-    GCSwitch *themeGeosphere;
+    GCSwitch *sendTweets;
     GCSwitch *orientationPortrait, *orientationPortraitUpsideDown, *orientationLandscapeLeft, *orientationLandscapeRight;
     GCSwitch *soundDirection;
     GCSwitch *soundDistance;
@@ -285,6 +285,7 @@ enum sections {
     SECTION_MAPCOLOURS_MAX,
 
     SECTION_APPS_EXTERNALMAP = 0,
+    SECTION_APPS_TWITTER,
     SECTION_APPS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
@@ -461,6 +462,17 @@ enum sections {
                         }
                     }];
                     cell.detailTextLabel.text = name;
+                    return cell;
+                }
+                case SECTION_APPS_TWITTER: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    cell.textLabel.text = @"Offer to send tweets";
+
+                    sendTweets = [[GCSwitch alloc] initWithFrame:CGRectZero];
+                    sendTweets.on = configManager.distanceMetric;
+                    [sendTweets addTarget:self action:@selector(updateSendTweets:) forControlEvents:UIControlEventTouchUpInside];
+                    cell.accessoryView = sendTweets;
+
                     return cell;
                 }
             }
@@ -1104,6 +1116,11 @@ enum sections {
     [configManager distanceMetricUpdate:s.on];
     [self calculateDynamicmapSpeedsDistances];
     [self.tableView reloadData];
+}
+
+- (void)updateSendTweets:(GCSwitch *)s
+{
+    [configManager sendTweetsUpdate:s.on];
 }
 
 - (void)updateSoundDistance:(GCSwitch *)s

@@ -91,6 +91,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (UIColor *)randomColor;
 
 + (UIViewController *)topMostController;
++ (void)sendTweet:(UIViewController *)vc text:(NSString *)text;
 
 @end
 

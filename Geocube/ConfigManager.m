@@ -26,7 +26,7 @@
 @implementation ConfigManager
 
 @synthesize keyGMS, keyMapbox;
-@synthesize distanceMetric, currentWaypoint, currentPage, currentPageTab, currentTrack;
+@synthesize distanceMetric, sendTweets, currentWaypoint, currentPage, currentPageTab, currentTrack;
 @synthesize lastImportGroup, lastImportSource, lastAddedGroup;
 @synthesize mapExternal, mapBrand, mapTrackColour, mapDestinationColour, compassType, themeType, orientationsAllowed;
 @synthesize soundDirection, soundDistance;
@@ -73,6 +73,7 @@
         [dbConfig dbUpdateOrInsert:__key__ value:__default__]
 
     CHECK(@"distance_metric", @"1");
+    CHECK(@"send_tweets", @"1");
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
@@ -157,6 +158,7 @@
 - (void)loadValues
 {
     distanceMetric = [[dbConfig dbGetByKey:@"distance_metric"].value boolValue];
+    sendTweets = [[dbConfig dbGetByKey:@"send_tweets"].value boolValue];
     currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
@@ -275,6 +277,12 @@
 {
     distanceMetric = value;
     [self BOOLUpdate:@"distance_metric" value:value];
+}
+
+- (void)sendTweetsUpdate:(BOOL)value
+{
+    sendTweets = value;
+    [self BOOLUpdate:@"send_tweets" value:value];
 }
 
 - (void)currentWaypointUpdate:(NSString *)value

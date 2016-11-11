@@ -37,6 +37,7 @@
 
 // User settings
 @property (nonatomic, readonly) BOOL distanceMetric;
+@property (nonatomic, readonly) BOOL sendTweets;
 
 @property (nonatomic, readonly) NSInteger mapExternal;
 @property (nonatomic, readonly) NSInteger mapBrand;
@@ -116,6 +117,7 @@
 - (void)keyMapboxUpdate:(NSString *)value;
 
 - (void)distanceMetricUpdate:(BOOL)value;
+- (void)sendTweetsUpdate:(BOOL)value;
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
