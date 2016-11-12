@@ -45,6 +45,7 @@
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 - (NSArray *)my_inventory:(InfoItemDownload *)iid;
 - (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id downloadInfoItem:(InfoItemDownload *)iid;
+- (NSDictionary *)track_details:(NSString *)tracker downloadInfoItem:(InfoItemDownload *)iid;
 - (NSArray *)track_search:(InfoItemDownload *)iid;
 
 @end

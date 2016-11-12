@@ -1512,8 +1512,31 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        NSDictionary *d = [ggcw track_details:code downloadInfoItem:iid];
+
+        NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:1];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
+        [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
+        [dict setObject:[d objectForKey:@"name"] forKey:@"name"];
+        [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
+        [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+        [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
+        [dict setObject:[d objectForKey:@"code"] forKey:@"code"];
+        [tbs addObject:dict];
+
+        NSMutableDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:1];
+        [dd setObject:tbs forKey:@"trackables"];
+
+        GCDictionaryGGCW *dictggcw = [[GCDictionaryGGCW alloc] initWithDictionary:dd];
+
+        ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+        [imp parseDictionary:dictggcw];
+
+        *t = [dbTrackable dbGetByRef:[d objectForKey:@"gccode"]];
+        if ([(*t).code isEqualToString:@""] == YES ) {
+            (*t).code = code;
+            [*t dbUpdate];
+        }
 
         return REMOTEAPI_OK;
     }

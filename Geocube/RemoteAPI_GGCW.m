@@ -800,6 +800,88 @@ enum {
     return dict;
 }
 
+- (NSDictionary *)track_details:(NSString *)tracker downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"track_details:%@", tracker);
+    /*
+    https://www.geocaching.com/track/details.aspx?tracker=PC7XXX
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:tracker forKey:@"tracker"];
+
+    NSString *urlString = [self prepareURLString:@"/track/details.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    /*
+     <h2 class="WrapFix">
+     <img id="ctl00_ContentBody_BugTypeImage" class="TravelBugHeaderIcon" src="/images/wpttypes/21.gif"
+     alt="Travel Bug Dog Tag"/><span id="ctl00_ContentBody_lbHeading">Scary hook</span>
+     </h2>
+
+     */
+    NSString *re = @"//h2[@class='WrapFix']";
+    //re = @"//h2[@class='WrapFix']/img/span[@id='ct100_ContentBody_lbHeading']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+    e = [e.children objectAtIndex:3];
+    NSString *name = e.content;
+
+    /*
+    <a id="ctl00_ContentBody_BugDetails_BugOwner" title="Visit User's Profile"
+    href="https://www.geocaching.com/profile/?guid=f0b9f4ee-4aab-406e-bafb-4cf993826f2d">Drf</a>
+     */
+    re = @"//a[@id='ctl00_ContentBody_BugDetails_BugOwner']";
+    nodes = [parser searchWithXPathQuery:re];
+    NSString *owner = [[nodes objectAtIndex:0] content];
+
+    /*
+     <span id="ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode"
+     class="CoordInfoCode">TB3MBD0</span>
+     */
+    re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
+    nodes = [parser searchWithXPathQuery:re];
+    NSString *gccode = [[nodes objectAtIndex:0] content];
+
+    /*
+     <a id="ctl00_ContentBody_WatchLink" title="Watch This Trackable Item"
+     href="/my/watchlist.aspx?b=2966237">Watch This Trackable Item</a>
+     */
+    re = @"//a[@id='ctl00_ContentBody_WatchLink']";
+    nodes = [parser searchWithXPathQuery:re];
+    e = [nodes objectAtIndex:0];
+    NSString *s = [e.attributes objectForKey:@"href"];
+    NSRange r = [s rangeOfString:@"b="];
+    NSString *_id = [s substringFromIndex:r.location + r.length];
+
+    /*
+      <a id="ctl00_ContentBody_LogLink" title="Found&#32;it?&#32;Log&#32;it!" href="log.aspx?wid=a860f59b-7c62-458b-9ddd-adc5dade167b">Add a Log Entry</a></td>
+     */
+    re = @"//a[@id='ctl00_ContentBody_LogLink']";
+    nodes = [parser searchWithXPathQuery:re];
+    e = [nodes objectAtIndex:0];
+    NSString *href = [e.attributes objectForKey:@"href"];
+    r = [href rangeOfString:@"wid="];
+    NSString *guid = [href substringFromIndex:r.location + r.length];
+
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:5];
+    [dict setObject:name forKey:@"name"];
+    [dict setObject:owner forKey:@"owner"];
+    [dict setObject:gccode forKey:@"gccode"];
+    [dict setObject:tracker forKey:@"code"];
+    [dict setObject:_id forKey:@"id"];
+    [dict setObject:guid forKey:@"guid"];
+
+    return dict;
+}
+
 - (NSArray *)track_search:(InfoItemDownload *)iid
 {
     if (uid == nil)
