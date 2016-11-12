@@ -571,7 +571,7 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        GCDictionaryGGCW *dict = [ggcw my_default:username downloadInfoItem:iid];
+        GCDictionaryGGCW *dict = [ggcw my_default:iid];
         GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
         [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -1401,8 +1401,35 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        NSArray *tbs = [ggcw track_search:iid];
+        NSMutableArray *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
+        [iid resetBytesChunks];
+        [iid setChunksTotal:[tbs count]];
+        [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
+            [iid resetBytes];
+            [iid setChunksCount:idx + 1];
+            NSDictionary *d = [ggcw track_details:nil id:[tb objectForKey:@"id"] downloadInfoItem:iid];
+
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
+            [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
+            [dict setObject:[tb objectForKey:@"name"] forKey:@"name"];
+            [dict setObject:[tb objectForKey:@"id"] forKey:@"id"];
+            [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+            [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
+            if ([tb objectForKey:@"carrier"] != nil)
+                [dict setObject:[tb objectForKey:@"carrier"] forKey:@"carrier"];
+            if ([tb objectForKey:@"location"] != nil)
+                [dict setObject:[tb objectForKey:@"location"] forKey:@"location"];
+            [tbstot addObject:dict];
+        }];
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
+        [d setObject:tbstot forKey:@"trackables"];
+
+        GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
+
+        ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+        [imp parseDictionary:dict];
 
         return REMOTEAPI_OK;
     }
@@ -1433,7 +1460,7 @@
         [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
             [iid resetBytes];
             [iid setChunksCount:idx + 1];
-            NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] downloadInfoItem:iid];
+            NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] id:nil downloadInfoItem:iid];
 
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
             [dict setObject:[tb objectForKey:@"guid"] forKey:@"guid"];

@@ -166,6 +166,7 @@
 /*
 {
     "carrier_id" = 19971;
+    carrier = lillieb05;
     gccode = TB72XZA;
     guid = "bc97d29d-facc-4818-8a49-4351602a37f5";
     owner = "Delta_03";
@@ -184,6 +185,9 @@
     DICT_INTEGER_KEY(tbdata, tb.gc_id, @"id");
     DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
     DICT_INTEGER_KEY(tbdata, tb.carrier_id, @"carrier_id");
+    DICT_NSSTRING_KEY(tbdata, tb.carrier_str, @"carrier");
+    if (tb.carrier_str != nil)
+        [dbName makeNameExist:tb.carrier_str code:nil account:account];
     DICT_NSSTRING_KEY(tbdata, tb.owner_str, @"owner");
     [dbName makeNameExist:tb.owner_str code:nil account:account];
     [tb finish:account];

@@ -34,7 +34,7 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
-- (GCDictionaryGGCW *)my_default:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)my_default:(InfoItemDownload *)iid;
 - (GCDictionaryGGCW *)pocket_default:(InfoItemDownload *)iid;
 - (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 - (GCStringGPX *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid;
@@ -44,6 +44,7 @@
 - (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid;
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 - (NSArray *)my_inventory:(InfoItemDownload *)iid;
-- (NSDictionary *)track_details:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id downloadInfoItem:(InfoItemDownload *)iid;
+- (NSArray *)track_search:(InfoItemDownload *)iid;
 
 @end

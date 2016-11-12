@@ -26,6 +26,8 @@
 
     NSString *prefix;
     NSString *prefixTiles;
+
+    NSString *uid;
 }
 
 @end
@@ -200,10 +202,8 @@ enum {
 
 // ------------------------------------------------
 
-- (GCDictionaryGGCW *)my_default:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)my_default:(InfoItemDownload *)iid
 {
-    NSLog(@"my_default:%@", username);
-
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
     NSString *urlString = [self prepareURLString:@"/my/default.aspx" params:params];
@@ -216,6 +216,18 @@ enum {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
     // Find the data for the "Found" field.
+    /*
+     <div id="uxCacheFind" class="statbox">
+
+     <strong>
+     Finds
+     </strong>
+     <span class="statcount">
+     976
+     </span>
+
+     </div>
+     */
     NSInteger iFound = 0;
     {
         NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
@@ -228,6 +240,18 @@ enum {
     }
 
     // Find the data for the "Hidden" field.
+    /*
+     <div id="uxCacheHide" class="statbox">
+
+     <strong>
+     Hides
+     </strong>
+     <span class="statcount">
+     37
+     </span>
+
+     </div>
+     */
     NSInteger iHidden = 0;
     {
         NSString *re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
@@ -239,9 +263,44 @@ enum {
         iHidden = [sHidden integerValue];
     }
 
+    // Find the data for thea publicGuid
+    /*
+    <script type="text/javascript">
+    var serverParameters = {
+        'user:info': {
+        isLoggedIn: true,
+        username: "Team MavEtJu",
+        userType: "Premium",
+        publicGuid: "7d657fb4-351b-4321-8f39-a96fe85309a6",
+        avatarUrl: "https://img.geocaching.com/avatar/abdbf2c2-efdf-4e2b-8377-9d12c0bbc802.jpg"
+        },
+        'app:options': {
+        localRegion: "en-US"
+        }
+    }
+     */
+    {
+        NSString *re = @"//script";
+        NSArray *nodes = [parser searchWithXPathQuery:re];
+
+        [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+            NSRange r = [e.content rangeOfString:@"publicGuid: \""];
+            if (r.location == NSNotFound)
+                return;
+            NSString *s = [e.content substringFromIndex:r.location + r.length];
+            r = [s rangeOfString:@"\","];
+            s = [s substringToIndex:r.location];
+            uid = s;
+
+            *stop = YES;
+            return;
+        }];
+    }
+
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
     [d setObject:[NSNumber numberWithInteger:iFound] forKey:@"caches_found"];
     [d setObject:[NSNumber numberWithInteger:iHidden] forKey:@"caches_hidden"];
+    [d setObject:uid forKey:@"uid"];
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
     return dict;
@@ -666,22 +725,24 @@ enum {
         [tb setObject:guid forKey:@"guid"];
 
         [tbs addObject:tb];
-
-        NSLog(@"Foo");
     }];
 
     return tbs;
 }
 
-- (NSDictionary *)track_details:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"track_details:%@", guid);
     /*
      https://www.geocaching.com/track/details.aspx?guid=93201211-b611-4502-ac7d-e5a80b722067
+     https://www.geocaching.com/track/details.aspx?id=6103275
      */
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
-    [params setObject:guid forKey:@"guid"];
+    if (guid != nil)
+        [params setObject:guid forKey:@"guid"];
+    if (_id != nil)
+        [params setObject:_id forKey:@"id"];
 
     NSString *urlString = [self prepareURLString:@"/track/details.aspx" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -710,7 +771,7 @@ enum {
     TFHppleElement *e = [nodes objectAtIndex:0];
     NSString *u = [e.attributes objectForKey:@"href"];
     NSRange r = [u rangeOfString:@"ID="];
-    NSString *_id = [u substringFromIndex:r.location + r.length];
+    _id = [u substringFromIndex:r.location + r.length];
 
     /*
      <a id="ctl00_ContentBody_BugDetails_BugOwner" title="Visit&#32;User&#39;s&#32;Profile" href="https://www.geocaching.com/profile/?guid=5d41d7b7-c124-479b-965d-c7ca5d4799bb">Delta_03</a>
@@ -720,12 +781,120 @@ enum {
     e = [nodes objectAtIndex:0];
     NSString *owner = e.content;
 
+    /*
+      <a id="ctl00_ContentBody_LogLink" title="Found&#32;it?&#32;Log&#32;it!" href="log.aspx?wid=a860f59b-7c62-458b-9ddd-adc5dade167b">Add a Log Entry</a></td>
+     */
+    re = @"//a[@id='ctl00_ContentBody_LogLink']";
+    nodes = [parser searchWithXPathQuery:re];
+    e = [nodes objectAtIndex:0];
+    NSString *href = [e.attributes objectForKey:@"href"];
+    r = [href rangeOfString:@"wid="];
+    guid = [href substringFromIndex:r.location + r.length];
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:1];
     [dict setObject:gccode forKey:@"gccode"];
     [dict setObject:_id forKey:@"id"];
+    [dict setObject:guid forKey:@"guid"];
     [dict setObject:owner forKey:@"owner"];
 
     return dict;
+}
+
+- (NSArray *)track_search:(InfoItemDownload *)iid
+{
+    if (uid == nil)
+        [self my_default:iid];
+
+    NSLog(@"track_search:%@", uid);
+    /*
+     https://www.geocaching.com/track/search.aspx?o=1&uid=7d657fb4-351b-4321-8f39-a96fe85309a6
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:uid forKey:@"uid"];
+    [params setObject:@"1" forKey:@"o"];
+
+    NSString *urlString = [self prepareURLString:@"/track/search.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    /*
+     <tr>
+     <td>
+
+     </td>
+     <td>
+     <img src="/images/wpttypes/sm/6429.gif" alt="" />&nbsp;<a href="https://www.geocaching.com/track/details.aspx?id=5119741">2013 NSW Geocoin</a>
+     </td>
+     <td>
+     2016-09-27
+     </td>
+     <td>
+     <a href="https://www.geocaching.com/profile/?guid=7d657fb4-351b-4321-8f39-a96fe85309a6">Team MavEtJu</a>
+     </td>
+     <td>
+     <img src="/images/icons/reg_user.gif" /><a href="https://www.geocaching.com/profile/?guid=65cd3088-e22e-498f-90b0-5b03568a5d1a">lillieb05</a>
+     </td>
+     <td>
+     26591 km
+     </td>
+     </tr>
+
+     */
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
+    NSString *re = @"//table[@class='Table']/tbody/tr";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
+        NSArray *tds = tr.children;
+
+        // Get TB name
+        TFHppleElement *e = [tds objectAtIndex:3];
+        e = [e.children objectAtIndex:3];
+        NSString *name = e.content;
+        NSString *href = [e.attributes objectForKey:@"href"];
+        NSRange r = [href rangeOfString:@"id="];
+        NSString *_id = [href substringFromIndex:r.location + r.length];
+
+        // Get TB owner
+        e = [tds objectAtIndex:7];
+        e = [e.children objectAtIndex:1];
+        NSString *owner = e.content;
+
+        // Get person who carries or location hidden
+        NSString *carrier = nil;
+        NSString *location = nil;
+        e = [tds objectAtIndex:9];
+        e = [e.children objectAtIndex:1];
+        NSString *s = [e.attributes objectForKey:@"class"];
+
+        e = [tds objectAtIndex:9];
+        e = [e.children objectAtIndex:2];
+        if (s != nil && [s isEqualToString:@"CacheTypeIcon"] == YES) {
+            location = e.content;
+        } else {
+            carrier = e.content;
+        }
+
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+        [dict setObject:name forKey:@"name"];
+        [dict setObject:owner forKey:@"owner"];
+        [dict setObject:_id forKey:@"id"];
+        if (location != nil)
+            [dict setObject:location forKey:@"location"];
+        if (carrier != nil)
+            [dict setObject:carrier forKey:@"carrier"];
+
+        [tbs addObject:dict];
+    }];
+
+    return tbs;
 }
 
 @end
