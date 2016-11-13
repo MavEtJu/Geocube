@@ -383,7 +383,7 @@ enum {
     return zipdata;
 }
 
-- (GCStringGPX *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"geocache:%@", wptname);
 
@@ -422,13 +422,6 @@ enum {
         __varname__ = [e.attributes objectForKey:@"value"]; \
     }
 
-    GETVALUE(@"__EVENTTARGET", eventtarget);
-    GETVALUE(@"__EVENTARGUMENT", eventargument);
-    GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
-    GETVALUE(@"__VIEWSTATE", viewstate);
-    GETVALUE(@"__VIEWSTATE1", viewstate1);
-    GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
-
     // Grab the form data
     // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
     /*
@@ -440,26 +433,77 @@ enum {
      __VIEWSTATEGENERATOR:
      ctl00$ContentBody$btnGPXDL:
      */
+    GETVALUE(@"__EVENTTARGET", eventtarget);
+    GETVALUE(@"__EVENTARGUMENT", eventargument);
+    GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
+    GETVALUE(@"__VIEWSTATE", viewstate);
+    GETVALUE(@"__VIEWSTATE1", viewstate1);
+    GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+
+    /*
+     <script type="text/javascript">
+     //<![CDATA[
+     $(function() { ga('send', 'event', 'Geocaching', 'CacheDetailsMemberType', 'Premium'); });var isLoggedIn = true;
+     [...]
+     userToken = 'HIBNOFPFMBDN5ZI67KCJG5BX7L7HVAZQQJV7E32IEB6GYS7QLUIMVPKKJ4B2RZCIDUKJT7I6HS52UM6V3KTHUHADII7OKK5I7RXPDXODI64VCD6PZNQ2IYBFCKTXVADDLWJSPOOVXC7PZFZWB6PW6AFESW4BWYTWECLDXNZVTB65X5YYOJ5PBJKBTCXB3M4V6XCIXN37YGAHOTOO5WUIHVADXXNMFURURGXSMRVUHBFJBGNO27B3OCHFEB3GWX6U';
+     includeAvatars = true;
+     */
+    __block NSString *usertoken = nil;
+    NSString *re = @"//script";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+        if ([e.content containsString:@"userToken = '"] == NO)
+            return;
+
+        NSRange r = [e.content rangeOfString:@"userToken = '"];
+        NSString *s = [e.content substringFromIndex:r.location + r.length];
+        r = [s rangeOfString:@"'"];
+        s = [s substringToIndex:r.location];
+
+        usertoken = s;
+        *stop = YES;
+    }];
+
+    // And save everything
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:10];
+    [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
+    [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
+    [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
+    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
+    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
+    [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+    [dict setObject:location forKey:@"location"];
+    [dict setObject:usertoken forKey:@"usertoken"];
+
+    return dict;
+}
+
+- (GCStringGPX *)geocache_gpx:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"geocache_gpx:%@", wptname);
+
+    NSDictionary *gc = [self geocache:wptname downloadInfoItem:iid];
 
     // And now request the GPX file
-    url = [NSURL URLWithString:location];
-    req = [NSMutableURLRequest requestWithURL:url];
+    NSURL *url = [NSURL URLWithString:[gc objectForKey:@"location"]];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
     [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [req setValue:location forHTTPHeaderField:@"Referer"];
+    [req setValue:[gc objectForKey:@"location"] forHTTPHeaderField:@"Referer"];
 
     NSMutableString *ps = [NSMutableString stringWithFormat:@""];
 
     [ps appendFormat:@"%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$btnGPXDL"], [MyTools urlEncode:@"GPX file"]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], [MyTools urlEncode:eventtarget]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], [MyTools urlEncode:eventargument]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:viewstatefieldcount]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:viewstate]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:viewstate1]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:viewstategenerator]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], [MyTools urlEncode:[gc objectForKey:@"__EVENTTARGET"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], [MyTools urlEncode:[gc objectForKey:@"__EVENTARGUMENT"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE1"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
-    data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
 
     GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return gpx;
@@ -977,6 +1021,49 @@ enum {
     }];
 
     return tbs;
+}
+
+- (GCDictionaryGGCW *)seek_cache__details_SetUserCacheNote:(NSDictionary *)dict text:(NSString *)text downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"seek_cache__details_SetUserCacheNote");
+
+    NSMutableDictionary *dto = [NSMutableDictionary dictionaryWithCapacity:2];
+    [dto setObject:[dict objectForKey:@"usertoken"] forKey:@"ut"];
+    [dto setObject:text forKey:@"et"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setObject:dto forKey:@"dto"];
+
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    if (jsonData == nil)
+        NSLog(@"Got an error: %@", error);
+
+    NSString *urlString = [self prepareURLString:@"/seek/cache_details.aspx/SetUserCacheNote" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/json; charset=utf-8 " forHTTPHeaderField:@"Content-Type"];
+    [req setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [req setValue:[dict objectForKey:@"location"] forHTTPHeaderField:@"Referer"];
+
+    req.HTTPBody = jsonData;
+
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    if (data == nil)
+        return nil;
+
+    error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+    if ([json count] == 0)
+        return nil;
+    NSDictionary *d = [json objectForKey:@"d"];
+    if ([d objectForKey:@"success"] == [NSNumber numberWithBool:FALSE])
+        return nil;
+
+    GCDictionaryGGCW *retjson = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return retjson;
 }
 
 @end
