@@ -686,9 +686,13 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
-#warning XX not done yet
-        NSAssert(NO, @"Not done yet");
+        NSDictionary *dict = [ggcw geocache:waypoint.wpt_name downloadInfoItem:iid];
+        NSString *gc_id = [dict objectForKey:@"gc_id"];
+        dict = [ggcw seek_log__form:gc_id downloadInfoItem:iid];
+        [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite downloadInfoItem:iid];
 
+        NSAssert(NO, @"Not done yet");
+#warning XX not done yet
         return REMOTEAPI_OK;
     }
 

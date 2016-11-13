@@ -464,6 +464,18 @@ enum {
         *stop = YES;
     }];
 
+    /*
+     <a href="/seek/log.aspx?ID=4658218&lcn=1" id="ctl00_ContentBody_GeoNav_logButton" class="Button&#32;LogVisit">Log a new visit</a>
+     */
+    re = @"//a[@id='ctl00_ContentBody_GeoNav_logButton']";
+    nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e = [nodes objectAtIndex:0];
+    NSString *href = [e.attributes objectForKey:@"href"];
+    NSRange r = [href rangeOfString:@"ID="];
+    NSString *s = [href substringFromIndex:r.location + r.length ];
+    r = [s rangeOfString:@"&"];
+    NSString *gc_id = [s substringToIndex:r.location];
+
     // And save everything
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -475,6 +487,7 @@ enum {
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
     [dict setObject:location forKey:@"location"];
     [dict setObject:usertoken forKey:@"usertoken"];
+    [dict setObject:gc_id forKey:@"gc_id"];
 
     return dict;
 }
@@ -1042,7 +1055,7 @@ enum {
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
-    [req setValue:@"application/json; charset=utf-8 " forHTTPHeaderField:@"Content-Type"];
+    [req setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     [req setValue:[dict objectForKey:@"location"] forHTTPHeaderField:@"Referer"];
 
@@ -1064,6 +1077,140 @@ enum {
 
     GCDictionaryGGCW *retjson = [[GCDictionaryGGCW alloc] initWithDictionary:json];
     return retjson;
+}
+
+- (NSDictionary *)seek_log__form:(NSString *)gc_id downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"seek_log__form:%@", gc_id);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:@"1" forKey:@"lcn"];
+    [params setObject:gc_id forKey:@"ID"];
+
+    /*
+     *  https://www.geocaching.com/seek/log.aspx?ID=4658218&lcn=1
+     */
+
+    NSString *urlString = [self prepareURLString:@"/seek/log.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+#define GETVALUE(__string__, __varname__) \
+    NSString *__varname__ = nil; \
+    { \
+    NSString *re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
+    NSArray *nodes = [parser searchWithXPathQuery:re]; \
+    TFHppleElement *e = [nodes objectAtIndex:0]; \
+    __varname__ = [e.attributes objectForKey:@"value"]; \
+    }
+
+    // Grab the form data
+    // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+    /*
+     __EVENTTARGET:
+     __EVENTARGUMENT:
+     __LASTFOCUS
+     __VIEWSTATEFIELDCOUNT:
+     __VIEWSTATE: /
+     __VIEWSTATE1
+     __VIEWSTATEGENERATOR:
+     ctl00$ContentBody$btnGPXDL:
+     */
+    GETVALUE(@"__EVENTTARGET", eventtarget);
+    GETVALUE(@"__EVENTARGUMENT", eventargument);
+    GETVALUE(@"__LASTFOCUS", lastfocus);
+    GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
+    GETVALUE(@"__VIEWSTATE", viewstate);
+    GETVALUE(@"__VIEWSTATE1", viewstate1);
+    GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:6];
+    [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
+    [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
+    [dict setObject:lastfocus forKey:@"__LASTFOCUS"];
+    [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
+    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
+    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
+    [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+
+    return dict;
+}
+
+- (NSDictionary *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"seek_log__submit:%@", gc_id);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
+    [params setObject:gc_id forKey:@"ID"];
+    [params setObject:@"1" forKey:@"lcn"];
+
+    NSString *urlString = [self prepareURLString:@"/seek/log.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
+    note = [note stringByReplacingOccurrencesOfString:@"\x0a" withString:@"\x0d\x0a"];
+
+    /*
+     __EVENTTARGET:
+     __EVENTARGUMENT:
+     __LASTFOCUS:
+     __VIEWSTATEFIELDCOUNT:          2
+     __VIEWSTATE:
+     __VIEWSTATE1
+     __VIEWSTATEGENERATOR:           67865CB8
+     ctl00$ContentBody$LogBookPanel1$uxLogCreationSource:New
+     ctl00$ContentBody$LogBookPanel1$LogContainsHtml:
+     ctl00$ContentBody$LogBookPanel1$LogContainsUbb:
+     ctl00$ContentBody$LogBookPanel1$uxRawLogText:
+     ctl00$ContentBody$LogBookPanel1$IsEditLog:False
+     ctl00$ContentBody$LogBookPanel1$ddLogType:2
+     ctl00$ContentBody$LogBookPanel1$uxDateVisited:2016-11-13
+     ctl00$ContentBody$LogBookPanel1$uxLogInfo:foo?bar
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl01$ddlAction:3801141
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl02$ddlAction:6332346
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl03$ddlAction:5442234
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl04$ddlAction:6253802_Visited
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl05$ddlAction:169626
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl06$ddlAction:6103275
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl07$ddlAction:6140957
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnSelectedActions:6253802_Visited,
+     ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnCurrentFilter:
+     ctl00$ContentBody$LogBookPanel1$btnSubmitLog:Submit Log Entry
+     ctl00$ContentBody$uxVistOtherListingGC:
+     */
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+    [s appendFormat:@"%@=%@", @"__EVENTTARGET", [MyTools urlEncode:[dict objectForKey:@"__EVENTTARGET"]]];
+    [s appendFormat:@"&%@=%@", @"__EVENTARGUMENT", [MyTools urlEncode:[dict objectForKey:@"__EVENTARGUMENT"]]];
+    [s appendFormat:@"&%@=%@", @"__LASTFOCUS", [MyTools urlEncode:[dict objectForKey:@"__LASTFOCUS"]]];
+    [s appendFormat:@"&%@=%@", @"__VIEWSTATEFIELDCOUNT", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
+    [s appendFormat:@"&%@=%@", @"__VIEWSTATE", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE"]]];
+    [s appendFormat:@"&%@=%@", @"__VIEWSTATE1", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE1"]]];
+    [s appendFormat:@"&%@=%@", @"__VIEWSTATEGENERATOR", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEGENERATOR"]]];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogCreationSource", @"New"];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$LogContainsHtml", @""];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$LogContainsUbb", @""];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxRawLogText", @""];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$IsEditLog", @"False"];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$ddLogType", logstring_type];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxDateVisited", [MyTools urlEncode:dateLogged]];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogInfo", [MyTools urlEncode:note]];
+    if (favpoint == YES)
+        [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$chkAddToFavorites", @"on"];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl01$ddlAction", @"6253802_Visited"];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnCurrentFilter", @""];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$btnSubmitLog", [MyTools urlEncode:@"Submit Log Entry"]];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$uxVistOtherListingGC", @""];
+
+    req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    return nil;
 }
 
 @end
