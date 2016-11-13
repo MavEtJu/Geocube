@@ -786,7 +786,6 @@
         [iid setChunksTotal:1];
         [iid setChunksCount:1];
 
-        NSDictionary *dict = [ggcw geocache:waypoint.wpt_name downloadInfoItem:iid];
         GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name downloadInfoItem:iid];
 
         ImportGPX *imp = [[ImportGPX alloc] init:g account:a];
@@ -1149,6 +1148,9 @@
     if (account.protocol_id == PROTOCOL_GGCW) {
         NSDictionary *gc = [ggcw geocache:note.wp_name downloadInfoItem:iid];
         GCDictionaryGGCW *json = [ggcw seek_cache__details_SetUserCacheNote:gc text:note.note downloadInfoItem:iid];
+        NSNumber *success = [json objectForKey:@"success"];
+        if ([success boolValue] == NO)
+            return REMOTEAPI_PERSONALNOTE_UPDATEFAILED;
 
         return REMOTEAPI_OK;
     }
