@@ -56,6 +56,15 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 @end
 
 @interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, ProtocolGCADelegate, ProtocolGGCWDelegate>
+{
+    ProtocolGCA *gca;
+    ProtocolLiveAPI *liveAPI;
+    ProtocolOKAPI *okapi;
+    ProtocolGCA2 *gca2;
+    ProtocolGGCW *ggcw;
+
+    NSInteger loadWaypointsLogs, loadWaypointsWaypoints;
+}
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
@@ -78,10 +87,14 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (void)setNetworkError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
 - (void)setAPIError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
 - (void)setDataError:(NSString *)errorString error:(RemoteAPIResult)errorCode;
+- (void)clearErrors;
+- (RemoteAPIResult)lastErrorCode;
 - (NSString *)lastNetworkError;
 - (NSString *)lastAPIError;
 - (NSString *)lastDataError;
 - (NSString *)lastError;
+
+- (void)getNumber:(NSDictionary *)out from:(id)in outKey:(NSString *)outKey inKey:(NSString *)inKey;
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoItemDownload *)iid;
 

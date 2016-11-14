@@ -30,14 +30,7 @@
 
 - (void)finish
 {
-    remoteAPI = [[RemoteAPI alloc] init:self];
-    canDoRemoteStuff = NO;
     [super finish];
-
-    /* Even if it is nil.... */
-    dbName *n = [dbName dbGetByName:accountname_string account:self];
-    accountname = n;
-    accountname_id = n._id;
 
     if (protocol_string != nil) {
         protocol = [dbProtocol dbGetByName:protocol_string];
@@ -46,6 +39,31 @@
         protocol = [dbProtocol dbGet:protocol_id];
         protocol_string = protocol.name;
     }
+
+    remoteAPI = nil;
+    switch (protocol._id) {
+        case PROTOCOL_GCA:
+            remoteAPI = [[RemoteAPIGCA alloc] init:self];
+            break;
+        case PROTOCOL_GCA2:
+            remoteAPI = [[RemoteAPIGCA2 alloc] init:self];
+            break;
+        case PROTOCOL_GGCW:
+            remoteAPI = [[RemoteAPIGGCW alloc] init:self];
+            break;
+        case PROTOCOL_LIVEAPI:
+            remoteAPI = [[RemoteAPILiveAPI alloc] init:self];
+            break;
+        case PROTOCOL_OKAPI:
+            remoteAPI = [[RemoteAPIOKAPI alloc] init:self];
+            break;
+    }
+    canDoRemoteStuff = NO;
+
+    /* Even if it is nil.... */
+    dbName *n = [dbName dbGetByName:accountname_string account:self];
+    accountname = n;
+    accountname_id = n._id;
 
     [self checkRemoteAccess];
 }

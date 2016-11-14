@@ -379,6 +379,11 @@
 		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
 		E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */; };
 		E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6F6931C1E8EF100577088 /* dbPin.m */; };
+		E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */; };
+		E8B771D41DD9DA4E008B2F9E /* RemoteAPIGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */; };
+		E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */; };
+		E8B771D61DD9DA4E008B2F9E /* RemoteAPILiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */; };
+		E8B771D71DD9DA4E008B2F9E /* RemoteAPIOKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C522FA1B760DA300423BCE /* BrowserBrowserViewController.m */; };
 		E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB4C1C6DF12F006222D5 /* dbQueryImport.m */; };
@@ -1122,6 +1127,16 @@
 		E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbProtocol.m; sourceTree = "<group>"; };
 		E8B6F6921C1E8EF100577088 /* dbPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPin.h; sourceTree = "<group>"; };
 		E8B6F6931C1E8EF100577088 /* dbPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPin.m; sourceTree = "<group>"; };
+		E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGCA.h; sourceTree = "<group>"; };
+		E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIGCA.m; sourceTree = "<group>"; };
+		E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGCA2.h; sourceTree = "<group>"; };
+		E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIGCA2.m; sourceTree = "<group>"; };
+		E8B771CD1DD9DA4E008B2F9E /* RemoteAPIGGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGGCW.h; sourceTree = "<group>"; };
+		E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIGGCW.m; sourceTree = "<group>"; };
+		E8B771CF1DD9DA4E008B2F9E /* RemoteAPILiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPILiveAPI.h; sourceTree = "<group>"; };
+		E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPILiveAPI.m; sourceTree = "<group>"; };
+		E8B771D11DD9DA4E008B2F9E /* RemoteAPIOKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIOKAPI.h; sourceTree = "<group>"; };
+		E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIOKAPI.m; sourceTree = "<group>"; };
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C522F91B760DA300423BCE /* BrowserBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserBrowserViewController.h; sourceTree = "<group>"; };
@@ -2732,12 +2747,22 @@
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
-				E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */,
-				E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */,
+				E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */,
+				E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */,
+				E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */,
+				E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */,
+				E8B771CD1DD9DA4E008B2F9E /* RemoteAPIGGCW.h */,
+				E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */,
+				E8B771CF1DD9DA4E008B2F9E /* RemoteAPILiveAPI.h */,
+				E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */,
+				E8B771D11DD9DA4E008B2F9E /* RemoteAPIOKAPI.h */,
+				E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */,
 				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
 				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
 				E84E23981DB9E8440079496D /* ProtocolGCA2.h */,
 				E84E23991DB9E8440079496D /* ProtocolGCA2.m */,
+				E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */,
+				E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */,
 				E807A5F91B8BC9EB00EBA187 /* ProtocolLiveAPI.h */,
 				E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */,
 				E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */,
@@ -3406,6 +3431,7 @@
 				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
+				E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */,
@@ -3415,6 +3441,7 @@
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E8E440071D88A55500BECB49 /* InfoItemImport.m in Sources */,
+				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */,
@@ -3443,6 +3470,7 @@
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
+				E8B771D61DD9DA4E008B2F9E /* RemoteAPILiveAPI.m in Sources */,
 				E8C5BB7B1C719EB1006222D5 /* WaypointTableViewCell.m in Sources */,
 				E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */,
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
@@ -3473,6 +3501,7 @@
 				E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */,
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */,
+				E8B771D71DD9DA4E008B2F9E /* RemoteAPIOKAPI.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E80250ED1D2474B500F05772 /* MapWaypointInfoView.m in Sources */,
@@ -3504,6 +3533,7 @@
 				E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */,
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
+				E8B771D41DD9DA4E008B2F9E /* RemoteAPIGCA2.m in Sources */,
 				E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
