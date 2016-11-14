@@ -19,17 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPI_Template.h"
-
-@protocol RemoteAPI_GGCWDelegate
+@protocol ProtocolGGCWDelegate
 
 - (void)GCAuthSuccessful:(NSHTTPCookie *)cookie;
 
 @end
 
-@interface RemoteAPI_GGCW : RemoteAPI_Template <NSURLConnectionDataDelegate>
+@interface ProtocolGGCW : ProtocolTemplate <NSURLConnectionDataDelegate>
 
-@property (nonatomic) id<RemoteAPI_GGCWDelegate> delegate;
+@property (nonatomic) id<ProtocolGGCWDelegate> delegate;
 @property (nonatomic, retain, readonly) NSString *callback;
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;

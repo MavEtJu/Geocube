@@ -19,12 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_OKAPI : RemoteAPI_Template
+@interface ProtocolTemplate ()
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username downloadInfoItem:(InfoItemDownload *)iid;
-- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite downloadInfoItem:(InfoItemDownload *)iid;
-- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname downloadInfoItem:(InfoItemDownload *)iid;
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset downloadInfoItem:(InfoItemDownload *)iid;
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcode downloadInfoItem:(InfoItemDownload *)iid;
+@end
+
+@implementation ProtocolTemplate
+
+NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
+NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
+NEEDS_OVERLOADING_BOOL(commentSupportsRating)
+NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
+NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
+NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
+- (instancetype)init:(RemoteAPI *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end

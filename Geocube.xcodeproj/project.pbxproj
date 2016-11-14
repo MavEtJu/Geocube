@@ -19,8 +19,8 @@
 		E80732F31B626133007FDC29 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732F21B626133007FDC29 /* dbAccount.m */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E807A5F31B8BBF5E00EBA187 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */; };
-		E807A5F81B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */; };
-		E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */; };
+		E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */; };
+		E807A5FB1B8BC9EB00EBA187 /* ProtocolLiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */; };
 		E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */; };
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
@@ -35,7 +35,7 @@
 		E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E81D242F1B9BDB94001E6027 /* XMLDictionary.m */; };
 		E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82002281B7B1C04009AE50F /* NotesImagesViewController.m */; };
 		E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E820F2051B7DA451009FB999 /* TrackablesListViewController.m */; };
-		E82302421DCC593F0032C5C6 /* RemoteAPI_GGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */; };
+		E82302421DCC593F0032C5C6 /* ProtocolGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */; };
 		E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302441DCD525E0032C5C6 /* TFHpple.m */; };
 		E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302451DCD525E0032C5C6 /* TFHppleElement.m */; };
 		E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302461DCD525E0032C5C6 /* XPathQuery.m */; };
@@ -269,7 +269,7 @@
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
-		E832E7DF1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */; };
+		E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */; };
 		E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */; };
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
@@ -292,7 +292,7 @@
 		E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FCE1C531CD30000A6A0 /* FilterFlagsTableViewCell.m */; };
 		E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */; };
 		E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */; };
-		E84E239A1DB9E8440079496D /* RemoteAPI_GCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */; };
+		E84E239A1DB9E8440079496D /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E23991DB9E8440079496D /* ProtocolGCA2.m */; };
 		E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */; };
 		E84E23A01DBF03A00079496D /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E239F1DBF03A00079496D /* GCString.m */; };
 		E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85707931CA1EE0F00467CE0 /* ImportTemplate.m */; };
@@ -349,7 +349,7 @@
 		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
 		E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */; };
 		E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */; };
-		E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* RemoteAPI_Template.m */; };
+		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
@@ -631,10 +631,10 @@
 		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuthBlackbox.h; sourceTree = "<group>"; };
 		E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuthBlackbox.m; sourceTree = "<group>"; };
-		E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_OKAPI.h; sourceTree = "<group>"; };
-		E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_OKAPI.m; sourceTree = "<group>"; };
-		E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_LiveAPI.h; sourceTree = "<group>"; };
-		E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_LiveAPI.m; sourceTree = "<group>"; };
+		E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolOKAPI.h; sourceTree = "<group>"; };
+		E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolOKAPI.m; sourceTree = "<group>"; };
+		E807A5F91B8BC9EB00EBA187 /* ProtocolLiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolLiveAPI.h; sourceTree = "<group>"; };
+		E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolLiveAPI.m; sourceTree = "<group>"; };
 		E807A8551BBB88F500AE3C1B /* SettingsColoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColoursViewController.h; sourceTree = "<group>"; };
 		E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsColoursViewController.m; sourceTree = "<group>"; };
 		E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsColourViewController.h; sourceTree = "<group>"; };
@@ -662,8 +662,8 @@
 		E82002281B7B1C04009AE50F /* NotesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesImagesViewController.m; sourceTree = "<group>"; };
 		E820F2041B7DA451009FB999 /* TrackablesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesListViewController.h; sourceTree = "<group>"; };
 		E820F2051B7DA451009FB999 /* TrackablesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesListViewController.m; sourceTree = "<group>"; };
-		E82302401DCC593F0032C5C6 /* RemoteAPI_GGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GGCW.h; sourceTree = "<group>"; };
-		E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GGCW.m; sourceTree = "<group>"; };
+		E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGGCW.h; sourceTree = "<group>"; };
+		E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGGCW.m; sourceTree = "<group>"; };
 		E82302441DCD525E0032C5C6 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = TFHpple/TFHpple.m; sourceTree = "<group>"; };
 		E82302451DCD525E0032C5C6 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = TFHpple/TFHppleElement.m; sourceTree = "<group>"; };
 		E82302461DCD525E0032C5C6 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = TFHpple/XPathQuery.m; sourceTree = "<group>"; };
@@ -909,8 +909,8 @@
 		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
 		E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
 		E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
-		E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GCA.h; sourceTree = "<group>"; };
-		E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GCA.m; sourceTree = "<group>"; };
+		E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGCA.h; sourceTree = "<group>"; };
+		E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGCA.m; sourceTree = "<group>"; };
 		E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTemplateViewController.h; sourceTree = "<group>"; };
 		E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTemplateViewController.m; sourceTree = "<group>"; };
 		E8371D481D06A79500C2F174 /* TrackablesMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesMineViewController.h; sourceTree = "<group>"; };
@@ -956,8 +956,8 @@
 		E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGroundspeakViewController.m; sourceTree = "<group>"; };
 		E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesGCAViewController.h; sourceTree = "<group>"; };
 		E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGCAViewController.m; sourceTree = "<group>"; };
-		E84E23981DB9E8440079496D /* RemoteAPI_GCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_GCA2.h; sourceTree = "<group>"; };
-		E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_GCA2.m; sourceTree = "<group>"; };
+		E84E23981DB9E8440079496D /* ProtocolGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGCA2.h; sourceTree = "<group>"; };
+		E84E23991DB9E8440079496D /* ProtocolGCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGCA2.m; sourceTree = "<group>"; };
 		E84E239B1DBEA9FA0079496D /* ImportGCA2JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGCA2JSON.h; sourceTree = "<group>"; };
 		E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGCA2JSON.m; sourceTree = "<group>"; };
 		E84E239E1DBF03A00079496D /* GCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCString.h; sourceTree = "<group>"; };
@@ -1071,8 +1071,8 @@
 		E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGGCWJSON.m; sourceTree = "<group>"; };
 		E891E7911DD1660500EC9066 /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXGarmin.h; sourceTree = "<group>"; };
 		E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXGarmin.m; sourceTree = "<group>"; };
-		E89580191C643AD500282177 /* RemoteAPI_Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI_Template.h; sourceTree = "<group>"; };
-		E895801A1C643AD500282177 /* RemoteAPI_Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI_Template.m; sourceTree = "<group>"; };
+		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
+		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
 		E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTemplateViewController.m; sourceTree = "<group>"; };
 		E89580231C66E44900282177 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
@@ -2732,18 +2732,18 @@
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
-				E82302401DCC593F0032C5C6 /* RemoteAPI_GGCW.h */,
-				E82302411DCC593F0032C5C6 /* RemoteAPI_GGCW.m */,
-				E832E7DD1B8DB91A00A3CCF6 /* RemoteAPI_GCA.h */,
-				E832E7DE1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m */,
-				E84E23981DB9E8440079496D /* RemoteAPI_GCA2.h */,
-				E84E23991DB9E8440079496D /* RemoteAPI_GCA2.m */,
-				E807A5F91B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.h */,
-				E807A5FA1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m */,
-				E807A5F61B8BC9CF00EBA187 /* RemoteAPI_OKAPI.h */,
-				E807A5F71B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m */,
-				E89580191C643AD500282177 /* RemoteAPI_Template.h */,
-				E895801A1C643AD500282177 /* RemoteAPI_Template.m */,
+				E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */,
+				E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */,
+				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
+				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
+				E84E23981DB9E8440079496D /* ProtocolGCA2.h */,
+				E84E23991DB9E8440079496D /* ProtocolGCA2.m */,
+				E807A5F91B8BC9EB00EBA187 /* ProtocolLiveAPI.h */,
+				E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */,
+				E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */,
+				E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */,
+				E89580191C643AD500282177 /* ProtocolTemplate.h */,
+				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
 			);
 			name = "Network APIs";
 			sourceTree = "<group>";
@@ -3400,7 +3400,7 @@
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
-				E84E239A1DB9E8440079496D /* RemoteAPI_GCA2.m in Sources */,
+				E84E239A1DB9E8440079496D /* ProtocolGCA2.m in Sources */,
 				E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,
@@ -3425,7 +3425,7 @@
 				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
-				E807A5FB1B8BC9EB00EBA187 /* RemoteAPI_LiveAPI.m in Sources */,
+				E807A5FB1B8BC9EB00EBA187 /* ProtocolLiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,
 				E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */,
 				E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */,
@@ -3465,7 +3465,7 @@
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
-				E832E7DF1B8DB91A00A3CCF6 /* RemoteAPI_GCA.m in Sources */,
+				E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */,
 				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
@@ -3555,7 +3555,7 @@
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,
 				E8E8D01F1B66E75900CC741A /* RangeSlider.m in Sources */,
-				E82302421DCC593F0032C5C6 /* RemoteAPI_GGCW.m in Sources */,
+				E82302421DCC593F0032C5C6 /* ProtocolGGCW.m in Sources */,
 				E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */,
 				E82002291B7B1C04009AE50F /* NotesImagesViewController.m in Sources */,
 				E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */,
@@ -3565,7 +3565,7 @@
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
-				E807A5F81B8BC9CF00EBA187 /* RemoteAPI_OKAPI.m in Sources */,
+				E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
@@ -3586,7 +3586,7 @@
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
-				E895801B1C643AD500282177 /* RemoteAPI_Template.m in Sources */,
+				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
 				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,

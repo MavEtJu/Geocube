@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_GCA2 : RemoteAPI_Template
+@interface ProtocolGCA2 : ProtocolTemplate
 
 - (BOOL)authenticate:(dbAccount *)account;
 

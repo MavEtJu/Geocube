@@ -19,15 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol RemoteAPI_GCADelegate
+@protocol ProtocolGCADelegate
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie;
 
 @end
 
-@interface RemoteAPI_GCA : RemoteAPI_Template <NSURLConnectionDataDelegate>
+@interface ProtocolGCA : ProtocolTemplate <NSURLConnectionDataDelegate>
 
-@property (nonatomic) id<RemoteAPI_GCADelegate> delegate;
+@property (nonatomic) id<ProtocolGCADelegate> delegate;
 @property (nonatomic, retain, readonly) NSString *callback;
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;

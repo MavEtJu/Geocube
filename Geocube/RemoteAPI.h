@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 @end
 
-@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, RemoteAPI_GCADelegate, RemoteAPI_GGCWDelegate>
+@interface RemoteAPI : NSObject <GCOAuthBlackboxDelegate, ProtocolGCADelegate, ProtocolGGCWDelegate>
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;

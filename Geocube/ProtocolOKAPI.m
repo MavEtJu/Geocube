@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_OKAPI ()
+@interface ProtocolOKAPI ()
 {
     RemoteAPI *remoteAPI;
     NSString *okapi_prefix;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation RemoteAPI_OKAPI
+@implementation ProtocolOKAPI
 
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {

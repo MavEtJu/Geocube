@@ -163,12 +163,12 @@
 #import "BrowserUserViewController.h"
 
 #import "GCOAuthBlackbox.h"
-#import "RemoteAPI_Template.h"
-#import "RemoteAPI_GCA.h"
-#import "RemoteAPI_GCA2.h"
-#import "RemoteAPI_GGCW.h"
-#import "RemoteAPI_LiveAPI.h"
-#import "RemoteAPI_OKAPI.h"
+#import "ProtocolTemplate.h"
+#import "ProtocolGCA.h"
+#import "ProtocolGCA2.h"
+#import "ProtocolGGCW.h"
+#import "ProtocolLiveAPI.h"
+#import "ProtocolOKAPI.h"
 #import "RemoteAPI.h"
 #import "IOSFileTransfers.h"
 

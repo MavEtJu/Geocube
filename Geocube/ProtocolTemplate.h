@@ -19,18 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_Template ()
+@interface ProtocolTemplate : NSObject
 
-@end
-
-@implementation RemoteAPI_Template
-
-NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
-NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
-NEEDS_OVERLOADING_BOOL(commentSupportsRating)
-NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
-NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
-NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
-- (instancetype)init:(RemoteAPI *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
+- (BOOL)commentSupportsFavouritePoint;
+- (BOOL)commentSupportsPhotos;
+- (BOOL)commentSupportsRating;
+- (NSRange)commentSupportsRatingRange;
+- (BOOL)commentSupportsTrackables;
+- (BOOL)waypointSupportsPersonalNotes;
+- (instancetype)init:(RemoteAPI *)remoteAPI;
 
 @end

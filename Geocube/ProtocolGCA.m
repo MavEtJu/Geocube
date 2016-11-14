@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_GCA ()
+@interface ProtocolGCA ()
 {
     RemoteAPI *remoteAPI;
     NSHTTPCookie *authCookie;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation RemoteAPI_GCA
+@implementation ProtocolGCA
 
 @synthesize delegate, callback;
 

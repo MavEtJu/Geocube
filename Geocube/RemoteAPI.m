@@ -21,12 +21,12 @@
 
 @interface RemoteAPI ()
 {
-    RemoteAPI_LiveAPI *liveAPI;
-    RemoteAPI_OKAPI *okapi;
-    RemoteAPI_GCA *gca;
-    RemoteAPI_GCA2 *gca2;
-    RemoteAPI_GGCW *ggcw;
-    RemoteAPI_Template *protocol;
+    ProtocolLiveAPI *liveAPI;
+    ProtocolOKAPI *okapi;
+    ProtocolGCA *gca;
+    ProtocolGCA2 *gca2;
+    ProtocolGGCW *ggcw;
+    ProtocolTemplate *protocol;
 
     NSString *errorStringNetwork;
     NSString *errorStringAPI;
@@ -70,24 +70,24 @@
     ProtocolId pid = account.protocol_id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
-            liveAPI = [[RemoteAPI_LiveAPI alloc] init:self];
+            liveAPI = [[ProtocolLiveAPI alloc] init:self];
             protocol = liveAPI;
             break;
         case PROTOCOL_OKAPI:
-            okapi = [[RemoteAPI_OKAPI alloc] init:self];
+            okapi = [[ProtocolOKAPI alloc] init:self];
             protocol = okapi;
             break;
         case PROTOCOL_GCA:
-            gca = [[RemoteAPI_GCA alloc] init:self];
+            gca = [[ProtocolGCA alloc] init:self];
             gca.delegate = self;
             protocol = gca;
             break;
         case PROTOCOL_GCA2:
-            gca2 = [[RemoteAPI_GCA2 alloc] init:self];
+            gca2 = [[ProtocolGCA2 alloc] init:self];
             protocol = gca2;
             break;
         case PROTOCOL_GGCW:
-            ggcw = [[RemoteAPI_GGCW alloc] init:self];
+            ggcw = [[ProtocolGGCW alloc] init:self];
             protocol = ggcw;
             break;
         case PROTOCOL_NONE:

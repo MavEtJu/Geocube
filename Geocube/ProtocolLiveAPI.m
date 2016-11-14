@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_LiveAPI ()
+@interface ProtocolLiveAPI ()
 {
     RemoteAPI *remoteAPI;
     NSString *liveAPIPrefix;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation RemoteAPI_LiveAPI
+@implementation ProtocolLiveAPI
 
 - (instancetype)init:(RemoteAPI *)_remoteAPI
 {

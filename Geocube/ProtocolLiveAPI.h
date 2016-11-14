@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI_LiveAPI : RemoteAPI_Template
+@interface ProtocolLiveAPI : ProtocolTemplate
 
 - (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoItemDownload *)iid;
 - (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoItemDownload *)iid;

@@ -30,8 +30,8 @@
     NSString *urlHome;
 
     GCOAuthBlackbox *oabb;
-    RemoteAPI_GCA *gca;
-    RemoteAPI_GGCW *ggcw;
+    ProtocolGCA *gca;
+    ProtocolGGCW *ggcw;
     NSInteger networkActivityIndicator;
 }
 
@@ -258,7 +258,7 @@ enum {
     oabb = _oabb;
 }
 
-- (void)prepare_gca:(RemoteAPI_GCA *)_gca
+- (void)prepare_gca:(ProtocolGCA *)_gca
 {
     gca = _gca;
 
@@ -274,7 +274,7 @@ enum {
     }];
 }
 
-- (void)prepare_ggcw:(RemoteAPI_GGCW *)_ggcw
+- (void)prepare_ggcw:(ProtocolGGCW *)_ggcw
 {
     ggcw = _ggcw;
 
