@@ -1138,10 +1138,50 @@ enum {
     [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
 
+    /*
+    <select id="ctl00_ContentBody_LogBookPanel1_uxTrackables_repTravelBugs_ctl01_ddlAction"><option value="3801141">-
+    No Action -</option><option value="3801141_DroppedOff">Dropped Off</option><option
+    value="3801141_Visited">Visited</option></select></td>&#13;
+     */
+
+    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:10];
+    NSUInteger idx = 1;
+    while (1) {
+        NSString *re = [NSString stringWithFormat:@"//select[@name='ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl%02ld$ddlAction']", idx];
+        NSArray *nodes = [parser searchWithXPathQuery:re];
+        if ([nodes count] == 0)
+            break;
+
+        TFHppleElement *e = [nodes objectAtIndex:0];
+        NSString *name = [e.attributes objectForKey:@"name"];
+
+        __block NSString *gc_id = nil;
+        [e.children enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+            if ([e.tagName isEqualToString:@"option"] == NO)
+                return;
+            gc_id = [e.attributes objectForKey:@"value"];
+            if (gc_id == nil)
+                return;
+
+            NSRange r = [gc_id rangeOfString:@"_"];
+            if (r.location != NSNotFound)
+                gc_id = [gc_id substringToIndex:r.location - 1];
+            *stop = YES;
+        }];
+
+        NSMutableDictionary *tb = [NSMutableDictionary dictionaryWithCapacity:2];
+        [tb setObject:name forKey:@"name"];
+        [tb setObject:gc_id forKey:@"gc_id"];
+
+        [tbs addObject:tb];
+        idx++;
+    }
+    [dict setObject:tbs forKey:@"tbs"];
+
     return dict;
 }
 
-- (NSDictionary *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"seek_log__submit:%@", gc_id);
 
@@ -1203,7 +1243,24 @@ enum {
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogInfo", [MyTools urlEncode:note]];
     if (favpoint == YES)
         [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$chkAddToFavorites", @"on"];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl01$ddlAction", @"6253802_Visited"];
+
+    NSArray *tbs = [dict objectForKey:@"tbs"];
+    NSMutableString *actions = [NSMutableString stringWithString:@""];
+    [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
+        NSString *gc_id = [tb objectForKey:@"gc_id"];
+        NSString *name = [tb objectForKey:@"name"];
+
+        NSString *logstate = [trackables objectForKey:[NSNumber numberWithInteger:[gc_id integerValue]]];
+        if (logstate == nil) {
+            [s appendFormat:@"&%@=%@", name, gc_id];
+        } else {
+            [s appendFormat:@"&%@=%@_%@", name, gc_id, logstate];
+            [actions appendFormat:@",%@_%@", gc_id, logstate];
+        }
+        NSLog(@"foo");
+    }];
+    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnSelectedActions", actions];
+
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnCurrentFilter", @""];
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$btnSubmitLog", [MyTools urlEncode:@"Submit Log Entry"]];
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$uxVistOtherListingGC", @""];

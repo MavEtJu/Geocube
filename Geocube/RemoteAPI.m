@@ -686,13 +686,33 @@
     }
 
     if (account.protocol_id == PROTOCOL_GGCW) {
+
+        NSMutableDictionary *tbs = [NSMutableDictionary dictionaryWithCapacity:[trackables count]];
+        [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (tb.logtype == TRACKABLE_LOG_NONE)
+                return;
+            NSString *note = nil;
+            switch (tb.logtype) {
+                case TRACKABLE_LOG_VISIT:
+                    note = @"Visited";
+                    break;
+                case TRACKABLE_LOG_DROPOFF:
+                    note = @"DroppedOff";
+                    break;
+                default:
+                    note = nil;
+                    break;
+            }
+            if (note == nil)
+                return;
+            [tbs setObject:note forKey:[NSNumber numberWithInteger:tb.gc_id]];
+        }];
+
         NSDictionary *dict = [ggcw geocache:waypoint.wpt_name downloadInfoItem:iid];
         NSString *gc_id = [dict objectForKey:@"gc_id"];
         dict = [ggcw seek_log__form:gc_id downloadInfoItem:iid];
-        [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite downloadInfoItem:iid];
+        [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs downloadInfoItem:iid];
 
-        NSAssert(NO, @"Not done yet");
-#warning XX not done yet
         return REMOTEAPI_OK;
     }
 
