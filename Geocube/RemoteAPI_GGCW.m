@@ -102,7 +102,7 @@ enum {
 }
 - (BOOL)commentSupportsPhotos
 {
-    return YES;
+    return NO;
 }
 - (BOOL)commentSupportsRating
 {
