@@ -41,7 +41,7 @@
     }
 
     remoteAPI = nil;
-    switch (protocol._id) {
+    switch ((ProtocolId)protocol._id) {
         case PROTOCOL_GCA:
             remoteAPI = [[RemoteAPIGCA alloc] init:self];
             break;
@@ -56,6 +56,9 @@
             break;
         case PROTOCOL_OKAPI:
             remoteAPI = [[RemoteAPIOKAPI alloc] init:self];
+            break;
+        case PROTOCOL_NONE:
+            remoteAPI = nil;
             break;
     }
     canDoRemoteStuff = NO;
