@@ -97,7 +97,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL_ALL];
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_PHOTO];
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     lmi = nil;
 
     return self;
@@ -105,7 +105,7 @@ enum {
 
 - (void)viewDidLoad
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super viewDidLoad];
 }
 

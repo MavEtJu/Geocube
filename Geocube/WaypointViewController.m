@@ -90,7 +90,7 @@ enum {
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
 
-    hasCloseButton = canBeClosed;
+    self.hasCloseButton = canBeClosed;
 
     headerCell = nil;
 
@@ -112,7 +112,7 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     // Restore
-    if (hasCloseButton == NO)
+    if (self.hasCloseButton == NO)
         [self showWaypoint:waypointManager.currentWaypoint];
     [self makeInfoView];
 
@@ -635,13 +635,13 @@ enum {
 {
     if ([waypointManager currentWaypoint] != nil &&
         [[waypointManager currentWaypoint].wpt_name isEqualToString:waypoint.wpt_name] == YES) {
-        [waypointManager setCurrentWaypoint:nil];
+        [waypointManager setTheCurrentWaypoint:nil];
         [self showWaypoint:nil];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
 
-    [waypointManager setCurrentWaypoint:waypoint];
+    [waypointManager setTheCurrentWaypoint:waypoint];
     [self reloadDataMainQueue];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
@@ -705,7 +705,7 @@ enum {
                               [waypoint dbUpdateMarkedDNF];
                               [waypointManager needsRefreshUpdate:waypoint];
                               if (waypoint.flag_dnf == YES && waypoint == waypointManager.currentWaypoint)
-                                  [waypointManager setCurrentWaypoint:nil];
+                                  [waypointManager setTheCurrentWaypoint:nil];
                               [self.tableView reloadData];
                           }];
     UIAlertAction *found = [UIAlertAction
@@ -719,7 +719,7 @@ enum {
                                 waypoint.flag_markedfound = !waypoint.flag_markedfound;
                                 [waypoint dbUpdateMarkedFound];
                                 if (waypoint.flag_markedfound == YES && waypoint == waypointManager.currentWaypoint)
-                                    [waypointManager setCurrentWaypoint:nil];
+                                    [waypointManager setTheCurrentWaypoint:nil];
 
                                 if (waypoint.flag_markedfound == YES) {
                                     NSArray *wps = [waypoint hasWaypoints];
@@ -729,7 +729,7 @@ enum {
                                         wp.flag_markedfound = YES;
                                         [wp dbUpdateMarkedFound];
                                         if (waypoint == waypointManager.currentWaypoint)
-                                            [waypointManager setCurrentWaypoint:nil];
+                                            [waypointManager setTheCurrentWaypoint:nil];
                                     }];
                                 }
 

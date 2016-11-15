@@ -25,8 +25,6 @@
 
 @implementation RemoteAPIGGCW
 
-@synthesize account;
-
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
 
@@ -121,10 +119,10 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if (account.ggcw_username == nil) {
+    if (self.account.ggcw_username == nil) {
         GCDictionaryGGCW *d = [ggcw map:iid];
-        account.ggcw_username = [d objectForKey:@"usersession.username"];
-        account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
+        self.account.ggcw_username = [d objectForKey:@"usersession.username"];
+        self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
     }
 
     CLLocationCoordinate2D ct = [Coordinates location:center bearing:0 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
@@ -221,7 +219,7 @@
 
     InfoItemImport *iii = [iv addImport:NO];
     [iii setDescription:@"Geocaching.com GPX Garmin data (queued)"];
-    [callback remoteAPI_objectReadyToImport:iii object:gpxarray group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:gpxarray group:group account:self.account];
 
     [iv removeItem:iid];
 }
@@ -278,7 +276,7 @@
     GCStringFilename *zipfilename = [[GCStringFilename alloc] initWithString:filename];
 
     InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:zipfilename group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:zipfilename group:group account:self.account];
 
     *retObj = zipfile;
     return REMOTEAPI_OK;
@@ -314,7 +312,7 @@
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
 
-    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:self.account];
     [imp parseDictionary:dict];
 
     return REMOTEAPI_OK;
@@ -337,7 +335,7 @@
         [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
         [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
-        [dict setObject:[NSNumber numberWithInteger:account.accountname._id] forKey:@"carrier_id"];
+        [dict setObject:[NSNumber numberWithInteger:self.account.accountname._id] forKey:@"carrier_id"];
         [tbstot addObject:dict];
     }];
 
@@ -346,7 +344,7 @@
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
 
-    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:self.account];
     [imp parseDictionary:dict];
 
     return REMOTEAPI_OK;
@@ -371,7 +369,7 @@
 
     GCDictionaryGGCW *dictggcw = [[GCDictionaryGGCW alloc] initWithDictionary:dd];
 
-    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:account];
+    ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:self.account];
     [imp parseDictionary:dictggcw];
 
     *t = [dbTrackable dbGetByRef:[d objectForKey:@"gccode"]];

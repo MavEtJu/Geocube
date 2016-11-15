@@ -25,8 +25,6 @@
 
 @implementation dbFileImport
 
-@synthesize _id, filename, filesize, lastimport;
-
 + (NSId)dbCreate:(dbFileImport *)fi
 {
     NSId _id = 0;
@@ -51,10 +49,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update file_imports set filename = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
-        SET_VAR_TEXT(1, filename);
-        SET_VAR_INT (2, filesize);
-        SET_VAR_INT (3, lastimport);
-        SET_VAR_INT (4, _id);
+        SET_VAR_TEXT(1, self.filename);
+        SET_VAR_INT (2, self.filesize);
+        SET_VAR_INT (3, self.lastimport);
+        SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

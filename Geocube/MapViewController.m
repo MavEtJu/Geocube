@@ -51,8 +51,6 @@
 
 @implementation MapViewController
 
-@synthesize waypointsArray;
-
 enum {
     menuBrandGoogle,
     menuBrandApple,
@@ -161,7 +159,7 @@ enum {
         [lmi disableItem:menuExportVisible];
     }
 
-    waypointsArray = nil;
+    self.waypointsArray = nil;
     waypointCount = 0;
 
     return self;
@@ -576,17 +574,17 @@ enum {
     if (showWhat == SHOW_ONEWAYPOINT) {
         if (waypointManager.currentWaypoint != nil) {
             waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
-            waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
-            waypointCount = [waypointsArray count];
+            self.waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
+            waypointCount = [self.waypointsArray count];
         } else {
-            waypointsArray = nil;
+            self.waypointsArray = nil;
             waypointCount = 0;
         }
     }
 
     if (showWhat == SHOW_ALLWAYPOINTS) {
-        waypointsArray = [waypointManager currentWaypoints];
-        waypointCount = [waypointsArray count];
+        self.waypointsArray = [waypointManager currentWaypoints];
+        waypointCount = [self.waypointsArray count];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -599,25 +597,25 @@ enum {
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
-    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx != NSNotFound)
-        [waypointsArray removeObject:wp];
+        [self.waypointsArray removeObject:wp];
     [map removeMarker:wp];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
-        [waypointsArray addObject:wp];
+        [self.waypointsArray addObject:wp];
     [map placeMarker:wp];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
-    NSUInteger idx = [waypointsArray indexOfObject:wp];
+    NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
-        [waypointsArray addObject:wp];
+        [self.waypointsArray addObject:wp];
     [map updateMarker:wp];
 }
 
@@ -990,7 +988,7 @@ enum {
 - (void)menuRemoveTarget
 {
     [lmi disableItem:menuRemoveTarget];
-    [waypointManager setCurrentWaypoint:nil];
+    [waypointManager setTheCurrentWaypoint:nil];
 }
 
 - (void)menuExportVisible
@@ -1001,7 +999,7 @@ enum {
     NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
 
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
-    [waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp.coordinates.latitude > bottomLeft.latitude &&
             wp.coordinates.latitude < topRight.latitude &&
             wp.coordinates.longitude > bottomLeft.longitude &&

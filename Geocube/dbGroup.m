@@ -25,15 +25,13 @@
 
 @implementation dbGroup
 
-@synthesize _id, name, usergroup, selected, deletable;
-
-- (instancetype)init:(NSId)__id name:(NSString *)_name usergroup:(BOOL)_usergroup deletable:(BOOL)_deletable
+- (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup deletable:(BOOL)deletable
 {
     self = [super init];
-    _id = __id;
-    name = _name;
-    usergroup = _usergroup;
-    deletable = _deletable;
+    self._id = _id;
+    self.name = name;
+    self.usergroup = usergroup;
+    self.deletable = deletable;
     [self finish];
     return self;
 }
@@ -43,7 +41,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from group2waypoints where group_id = ?");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -198,7 +196,7 @@
         DB_PREPARE(@"update groups set name = ? where id = ?");
 
         SET_VAR_TEXT(1, newname);
-        SET_VAR_INT (2, _id);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

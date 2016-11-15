@@ -33,10 +33,6 @@
 
 @implementation DatabaseCache
 
-@synthesize Accounts, Containers, Countries, Groups, Pins, States, Types, Locales, Protocols;
-@synthesize Group_AllWaypoints, Group_AllWaypoints_Found, Group_AllWaypoints_NotFound, Group_AllWaypoints_ManuallyAdded, Group_AllWaypoints_Ignored, Group_LiveImport, Group_LastImport, Group_LastImportAdded, Group_ManualWaypoints;
-@synthesize Pin_Unknown, Type_Unknown, Container_Unknown, Attribute_Unknown, Symbol_Unknown, Type_ManuallyEntered;
-
 - (instancetype)init
 {
     self = [super init];
@@ -46,125 +42,125 @@
 // Load all waypoints and waypoint related data in memory
 - (void)loadCachableData
 {
-    Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
-    Protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
-    Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
-    Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
-    Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
-    Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
+    self.Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
+    self.Protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
+    self.Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
+    self.Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
+    self.Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
+    self.Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
     LogStrings = [NSMutableArray arrayWithArray:[dbLogString dbAll]];
-    Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
+    self.Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
     Attributes = [NSMutableArray arrayWithArray:[dbAttribute dbAll]];
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
-    Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
-    States = [NSMutableArray arrayWithArray:[dbState dbAll]];
-    Locales = [NSMutableArray arrayWithArray:[dbLocale dbAll]];
+    self.Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
+    self.States = [NSMutableArray arrayWithArray:[dbState dbAll]];
+    self.Locales = [NSMutableArray arrayWithArray:[dbLocale dbAll]];
 
-    Group_AllWaypoints = nil;
-    Group_AllWaypoints_Found = nil;
-    Group_AllWaypoints_NotFound = nil;
-    Group_AllWaypoints_ManuallyAdded = nil;
-    Group_AllWaypoints_Ignored = nil;
-    Group_LastImport = nil;
-    Group_LastImportAdded = nil;
-    Type_Unknown = nil;
-    Container_Unknown = nil;
+    self.Group_AllWaypoints = nil;
+    self.Group_AllWaypoints_Found = nil;
+    self.Group_AllWaypoints_NotFound = nil;
+    self.Group_AllWaypoints_ManuallyAdded = nil;
+    self.Group_AllWaypoints_Ignored = nil;
+    self.Group_LastImport = nil;
+    self.Group_LastImportAdded = nil;
+    self.Type_Unknown = nil;
+    self.Container_Unknown = nil;
 
-    [Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [self.Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints"] == YES) {
-            Group_AllWaypoints = cg;
+            self.Group_AllWaypoints = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Found"] == YES) {
-            Group_AllWaypoints_Found = cg;
+            self.Group_AllWaypoints_Found = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Not Found"] == YES) {
-            Group_AllWaypoints_NotFound = cg;
+            self.Group_AllWaypoints_NotFound = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Manually entered"] == YES) {
-            Group_AllWaypoints_ManuallyAdded = cg;
+            self.Group_AllWaypoints_ManuallyAdded = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"All Waypoints - Ignored"] == YES) {
-            Group_AllWaypoints_Ignored = cg;
+            self.Group_AllWaypoints_Ignored = cg;
             return;
         }
         if (cg.usergroup == YES && [cg.name isEqualToString:@"Live Import"] == YES) {
-            Group_LiveImport = cg;
+            self.Group_LiveImport = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"Last Import"] == YES) {
-            Group_LastImport = cg;
+            self.Group_LastImport = cg;
             return;
         }
         if (cg.usergroup == NO && [cg.name isEqualToString:@"Last Import - New"] == YES) {
-            Group_LastImportAdded = cg;
+            self.Group_LastImportAdded = cg;
             return;
         }
         if (cg.usergroup == YES && [cg.name isEqualToString:@"Manual waypoints"] == YES) {
-            Group_ManualWaypoints = cg;
+            self.Group_ManualWaypoints = cg;
             return;
         }
     }];
-    NSAssert(Group_AllWaypoints != nil, @"Group_AllWaypoints");
-    NSAssert(Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
-    NSAssert(Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
-    NSAssert(Group_AllWaypoints_ManuallyAdded != nil, @"Group_AllWaypoints_ManuallyAdded");
-    NSAssert(Group_AllWaypoints_Ignored != nil, @"Group_AllWaypoints_Ignored");
-    NSAssert(Group_LiveImport != nil, @"Group_LiveImport");
-    NSAssert(Group_LastImport != nil, @"Group_LastImport");
-    NSAssert(Group_LastImportAdded != nil, @"Group_LastImportAdded");
-    NSAssert(Group_ManualWaypoints != nil, @"Group_ManualWaypoints");
+    NSAssert(self.Group_AllWaypoints != nil, @"Group_AllWaypoints");
+    NSAssert(self.Group_AllWaypoints_Found != nil, @"Group_AllWaypoints_Found");
+    NSAssert(self.Group_AllWaypoints_NotFound != nil, @"Group_AllWaypoints_NotFound");
+    NSAssert(self.Group_AllWaypoints_ManuallyAdded != nil, @"Group_AllWaypoints_ManuallyAdded");
+    NSAssert(self.Group_AllWaypoints_Ignored != nil, @"Group_AllWaypoints_Ignored");
+    NSAssert(self.Group_LiveImport != nil, @"Group_LiveImport");
+    NSAssert(self.Group_LastImport != nil, @"Group_LastImport");
+    NSAssert(self.Group_LastImportAdded != nil, @"Group_LastImportAdded");
+    NSAssert(self.Group_ManualWaypoints != nil, @"Group_ManualWaypoints");
 
-    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([c.size isEqualToString:@"Unknown"] == YES) {
-            Container_Unknown = c;
+            self.Container_Unknown = c;
             *stop = YES;
         }
     }];
     // You cannot do this until the configuration files are loaded.
     // NSAssert(Container_Unknown != nil, @"Container_Unknown");
 
-    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+    [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_major isEqualToString:@"*"] == YES)
-            Type_Unknown = ct;
+            self.Type_Unknown = ct;
         if ([ct.type_major isEqualToString:@"Waypoint"] == YES && [ct.type_minor isEqualToString:@"Manually entered"] == YES)
-            Type_ManuallyEntered = ct;
+            self.Type_ManuallyEntered = ct;
     }];
-    if ([Types count] != 0) {
-        NSAssert(Type_Unknown != nil, @"Type_Unknown");
-        if (Type_ManuallyEntered == nil)
-            Type_ManuallyEntered = Type_Unknown;
+    if ([self.Types count] != 0) {
+        NSAssert(self.Type_Unknown != nil, @"Type_Unknown");
+        if (self.Type_ManuallyEntered == nil)
+            self.Type_ManuallyEntered = self.Type_Unknown;
     }
 
-    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
-        if ([pt.description isEqualToString:@"*"] == YES) {
-            Pin_Unknown = pt;
+    [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+        if ([pt.desc isEqualToString:@"*"] == YES) {
+            self.Pin_Unknown = pt;
             *stop = YES;
         }
     }];
-    if ([Pins count] != 0)
-        NSAssert(Pin_Unknown != nil, @"Pin_Unknown");
+    if ([self.Pins count] != 0)
+        NSAssert(self.Pin_Unknown != nil, @"Pin_Unknown");
 
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
         if ([s.symbol isEqualToString:@"*"] == YES) {
-            Symbol_Unknown = s;
+            self.Symbol_Unknown = s;
             *stop = YES;
         }
     }];
     if ([Symbols count] != 0)
-        NSAssert(Symbol_Unknown != nil, @"Symbol_Unknown");
+        NSAssert(self.Symbol_Unknown != nil, @"Symbol_Unknown");
 
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if ([a.label isEqualToString:@"Unknown"] == YES) {
-            Attribute_Unknown = a;
+            self.Attribute_Unknown = a;
             *stop = YES;
         }
     }];
     if ([Attributes count] != 0)
-        NSAssert(Attribute_Unknown != nil, @"Attribute_Unknown");
+        NSAssert(self.Attribute_Unknown != nil, @"Attribute_Unknown");
 
     Names = [NSMutableDictionary dictionaryWithCapacity:200];
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *name, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -175,7 +171,7 @@
 - (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor
 {
     __block dbType *_ct = nil;
-    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+    [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_major isEqualToString:major] == YES &&
             [ct.type_minor isEqualToString:minor] == YES) {
             _ct = ct;
@@ -183,63 +179,63 @@
         }
     }];
     if (_ct == nil)
-        return Type_Unknown;
+        return self.Type_Unknown;
     return _ct;
 }
 
 - (dbType *)Type_get_byminor:(NSString *)minor
 {
     __block dbType *_ct = nil;
-    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+    [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_minor isEqualToString:minor] == YES) {
             _ct = ct;
             *stop = YES;
         }
     }];
     if (_ct == nil)
-        return Type_Unknown;
+        return self.Type_Unknown;
     return _ct;
 }
 
 - (dbType *)Type_get:(NSId)_id
 {
     __block dbType *_ct = nil;
-    [Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
+    [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if (ct._id == _id) {
             _ct = ct;
             *stop = YES;
         }
     }];
     if (_ct == nil)
-        return Type_Unknown;
+        return self.Type_Unknown;
     return _ct;
 }
 
 - (void)Type_add:(dbType *)type
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:Types];
+    NSMutableArray *as = [NSMutableArray arrayWithArray:self.Types];
     [as addObject:type];
-    Types = as;
+    self.Types = as;
 }
 
 - (dbPin *)Pin_get:(NSId)_id
 {
     __block dbPin *_pt = nil;
-    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+    [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if (pt._id == _id) {
             _pt = pt;
             *stop = YES;
         }
     }];
     if (_pt == nil)
-        return Pin_Unknown;
+        return self.Pin_Unknown;
     return _pt;
 }
 
 - (dbPin *)Pin_get_nilokay:(NSId)_id
 {
     __block dbPin *_pt = nil;
-    [Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+    [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if (pt._id == _id) {
             _pt = pt;
             *stop = YES;
@@ -250,9 +246,9 @@
 
 - (void)Pin_add:(dbPin *)pin
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:Pins];
+    NSMutableArray *as = [NSMutableArray arrayWithArray:self.Pins];
     [as addObject:pin];
-    Pins = as;
+    self.Pins = as;
 }
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
@@ -265,7 +261,7 @@
         }
     }];
     if (_lt == nil)
-        return Symbol_Unknown;
+        return self.Symbol_Unknown;
     return _lt;
 }
 
@@ -279,7 +275,7 @@
         }
     }];
     if (_lt == nil)
-        return Symbol_Unknown;
+        return self.Symbol_Unknown;
     return _lt;
 }
 
@@ -325,7 +321,7 @@
 - (dbGroup *)Group_get:(NSId)_id
 {
     __block dbGroup *_g = nil;
-    [Groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
+    [self.Groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
         if (g._id == _id) {
             _g = g;
             *stop = YES;
@@ -336,18 +332,18 @@
 
 - (void)Group_add:(dbGroup *)group
 {
-    [Groups addObject:group];
+    [self.Groups addObject:group];
 }
 
 - (void)Group_delete:(dbGroup *)group
 {
-    [Groups removeObject:group];
+    [self.Groups removeObject:group];
 }
 
 - (dbContainer *)Container_get:(NSId)_id
 {
     __block dbContainer *_c = nil;
-    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
+    [self.Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         if (c._id == _id) {
             _c = c;
             *stop = YES;
@@ -359,7 +355,7 @@
 - (dbContainer *)Container_get_bysize:(NSString *)size
 {
     __block dbContainer *_c = nil;
-    [Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
+    [self.Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         if ([c.size isEqualToString:size] == YES) {
             _c = c;
             *stop = YES;
@@ -402,7 +398,7 @@
 - (dbCountry *)Country_get_byNameCode:(NSString *)name
 {
     __block dbCountry *_c = nil;
-    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+    [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if ([c.name isEqualToString:name] == YES || [c.code isEqualToString:name] == YES) {
             _c = c;
             *stop = YES;
@@ -414,7 +410,7 @@
 - (dbCountry *)Country_get:(NSId)_id
 {
     __block dbCountry *_c = nil;
-    [Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+    [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if (c._id == _id) {
             _c = c;
             *stop = YES;
@@ -425,13 +421,13 @@
 
 - (void)Country_add:(dbCountry *)country
 {
-    [Countries addObject:country];
+    [self.Countries addObject:country];
 }
 
 - (dbState *)State_get_byNameCode:(NSString *)name
 {
     __block dbState *_s = nil;
-    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+    [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if ([s.name isEqualToString:name] == YES || [s.code isEqualToString:name] == YES) {
             _s = s;
             *stop = YES;
@@ -443,7 +439,7 @@
 - (dbState *)State_get:(NSId)_id
 {
     __block dbState *_s = nil;
-    [States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+    [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if (s._id == _id) {
             _s = s;
             *stop = YES;
@@ -454,13 +450,13 @@
 
 - (void)State_add:(dbState *)state
 {
-    [States addObject:state];
+    [self.States addObject:state];
 }
 
 - (dbLocale *)Locale_get_byName:(NSString *)name
 {
     __block dbLocale *_l = nil;
-    [Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
+    [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if ([l.name isEqualToString:name] == YES) {
             _l = l;
             *stop = YES;
@@ -472,7 +468,7 @@
 - (dbLocale *)Locale_get:(NSId)_id
 {
     __block dbLocale *_l = nil;
-    [Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
+    [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if (l._id == _id) {
             _l = l;
             *stop = YES;
@@ -483,7 +479,7 @@
 
 - (void)Locale_add:(dbLocale *)l
 {
-    [Locales addObject:l];
+    [self.Locales addObject:l];
 }
 
 - (void)AccountsReload
@@ -492,7 +488,7 @@
 
     [newAccounts enumerateObjectsUsingBlock:^(dbAccount *newAccount, NSUInteger idx, BOOL *stop) {
         __block BOOL found = NO;
-        [Accounts enumerateObjectsUsingBlock:^(dbAccount *oldAccount, NSUInteger idx, BOOL *stop) {
+        [self.Accounts enumerateObjectsUsingBlock:^(dbAccount *oldAccount, NSUInteger idx, BOOL *stop) {
             if (newAccount.geocube_id == oldAccount.geocube_id) {
                 oldAccount.gca_cookie_name = newAccount.gca_cookie_name;
                 oldAccount.gca_cookie_value = newAccount.gca_cookie_value;
@@ -520,14 +516,14 @@
             }
         }];
         if (found == NO)
-            [Accounts addObject:newAccount];
+            [self.Accounts addObject:newAccount];
     }];
 }
 
 - (dbAccount *)Account_get:(NSId)_id
 {
     __block dbAccount *_a;
-    [Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+    [self.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
         if (a._id == _id) {
             _a = a;
             *stop = YES;
@@ -539,7 +535,7 @@
 - (BOOL)Account_isOwner:(dbWaypoint *)wp
 {
     __block BOOL found = NO;
-    [Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+    [self.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
         if (wp.gs_owner_id == 0)
             return;
         if (a.accountname_id == wp.gs_owner_id) {

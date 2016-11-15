@@ -21,7 +21,6 @@
 
 @interface MapTemplate : NSObject
 {
-    MapViewController *mapvc;
     LXMapScaleView *mapScaleView;
     BOOL showBoundary;
 }

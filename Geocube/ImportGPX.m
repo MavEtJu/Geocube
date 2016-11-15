@@ -64,7 +64,7 @@
 
 - (void)parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii
 {
-    runOption_LogsOnly = (run_options & RUN_OPTION_LOGSONLY) != 0;
+    runOption_LogsOnly = (self.run_options & RUN_OPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);
 
     infoItemImport = iii;
@@ -74,7 +74,7 @@
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     numberOfLines = [MyTools numberOfLines:s];
 
-    NSLog(@"run_options: %ld", (long)run_options);
+    NSLog(@"run_options: %ld", (long)self.run_options);
 
     [rssParser setDelegate:self];
     [rssParser setShouldProcessNamespaces:NO];

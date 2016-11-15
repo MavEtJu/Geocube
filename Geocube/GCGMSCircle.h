@@ -20,9 +20,6 @@
  */
 
 @interface GCGMSCircle : GMSCircle
-{
-    NSObject *userData;
-}
 
 @property (nonatomic, retain) NSObject *userData;
 

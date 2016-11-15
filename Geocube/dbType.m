@@ -25,12 +25,10 @@
 
 @implementation dbType
 
-@synthesize _id, type_major, type_minor, type_full, icon, pin_id, pin, selected, hasBoundary;
-
 - (void)finish
 {
-    type_full = [NSString stringWithFormat:@"%@|%@", type_major, type_minor];
-    pin = [dbc Pin_get:pin_id];
+    self.type_full = [NSString stringWithFormat:@"%@|%@", self.type_major, self.type_minor];
+    self.pin = [dbc Pin_get:self.pin_id];
 
     [super finish];
 }
@@ -60,24 +58,21 @@
 
 - (NSId)dbCreate
 {
-    NSId __id;
-
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id, has_boundary) values(?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT(1, type_major);
-        SET_VAR_TEXT(2, type_minor);
-        SET_VAR_INT (3, icon);
-        SET_VAR_INT (4, pin_id);
-        SET_VAR_BOOL(5, hasBoundary);
+        SET_VAR_TEXT(1, self.type_major);
+        SET_VAR_TEXT(2, self.type_minor);
+        SET_VAR_INT (3, self.icon);
+        SET_VAR_INT (4, self.pin_id);
+        SET_VAR_BOOL(5, self.hasBoundary);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
 
-    _id = __id;
-    return __id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -85,12 +80,12 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ?, has_boundary = ? where id = ?");
 
-        SET_VAR_TEXT(1, type_major);
-        SET_VAR_TEXT(2, type_minor);
-        SET_VAR_INT (3, icon);
-        SET_VAR_INT (4, pin_id);
-        SET_VAR_INT (5, hasBoundary);
-        SET_VAR_INT (6, _id);
+        SET_VAR_TEXT(1, self.type_major);
+        SET_VAR_TEXT(2, self.type_minor);
+        SET_VAR_INT (3, self.icon);
+        SET_VAR_INT (4, self.pin_id);
+        SET_VAR_INT (5, self.hasBoundary);
+        SET_VAR_INT (6, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

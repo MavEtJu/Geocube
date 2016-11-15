@@ -62,9 +62,6 @@ OSStatus RenderTone(
 
 @interface AudioFeedback ()
 {
-    double frequency;
-    double sampleRate;
-    double theta;
     AudioComponentInstance toneUnit;
 }
 
@@ -72,15 +69,13 @@ OSStatus RenderTone(
 
 @implementation AudioFeedback
 
-@synthesize theta, frequency, sampleRate;
-
 - (instancetype)init
 {
     self = [super init];
 
-    theta = 0;
-    sampleRate = 44100;
-    frequency = 340;
+    self.theta = 0;
+    self.sampleRate = 44100;
+    self.frequency = 340;
 
     return self;
 }
@@ -121,7 +116,7 @@ OSStatus RenderTone(
     const int four_bytes_per_float = 4;
     const int eight_bits_per_byte = 8;
     AudioStreamBasicDescription streamFormat;
-    streamFormat.mSampleRate = sampleRate;
+    streamFormat.mSampleRate = self.sampleRate;
     streamFormat.mFormatID = kAudioFormatLinearPCM;
     streamFormat.mFormatFlags =
     kAudioFormatFlagsNativeFloatPacked | kAudioFormatFlagIsNonInterleaved;
@@ -139,9 +134,9 @@ OSStatus RenderTone(
     NSAssert1(err == noErr, @"Error setting stream format: %hd", err);
 }
 
-- (void)setFrequency:(double)f
+- (void)setTheFrequency:(double)f
 {
-    frequency = f;
+    self.frequency = f;
 }
 
 - (void)togglePlay:(BOOL)on

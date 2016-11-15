@@ -66,7 +66,7 @@
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
 
-    mapvc.view = mapView;
+    self.mapvc.view = mapView;
 
     mapScaleView = [LXMapScaleView mapScaleForGMSMapView:mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
@@ -143,7 +143,7 @@
     // Add the new markers to the map
     markers = [NSMutableArray arrayWithCapacity:20];
     circles = [NSMutableArray arrayWithCapacity:20];
-    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         [markers addObject:[self makeMarker:wp]];
 
         if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
@@ -377,7 +377,7 @@
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
 {
     if (gesture == YES)
-        [mapvc userInteraction];
+        [self.mapvc userInteraction];
 
     // Update the ruler
     [mapScaleView update];
@@ -390,7 +390,7 @@
 
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    [mapvc addNewWaypoint:coordinate];
+    [self.mapvc addNewWaypoint:coordinate];
 }
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker

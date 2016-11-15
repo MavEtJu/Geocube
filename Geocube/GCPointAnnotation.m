@@ -25,6 +25,4 @@
 
 @implementation GCPointAnnotation
 
-@synthesize waypoint;
-
 @end

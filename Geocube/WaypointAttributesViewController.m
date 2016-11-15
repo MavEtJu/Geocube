@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super viewDidLoad];
 }
 

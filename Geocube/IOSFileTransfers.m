@@ -29,8 +29,6 @@
 
 @implementation IOSFileTransfers
 
-@synthesize delegate;
-
 enum {
     iCloudNone = 0,
     iCloudUpload,
@@ -44,7 +42,7 @@ enum {
 
     currentICloud = iCloudNone;
     ICloudVC = nil;
-    delegate = nil;
+    self.delegate = nil;
 
     return self;
 }
@@ -85,7 +83,7 @@ enum {
     [fileManager moveItemAtPath:fromFile toPath:toFile error:nil];
     NSLog(@"Importing from AirDrop or attachment: %@", file);
 
-    [delegate refreshFilelist];
+    [self.delegate refreshFilelist];
 }
 
 #pragma mark - iTunes related functions
@@ -113,7 +111,7 @@ enum {
         NSLog(@"Importing from iTunes: %@", file);
     }];
 
-    [delegate refreshFilelist];
+    [self.delegate refreshFilelist];
 }
 
 #pragma mark - iCloud related functions
@@ -161,7 +159,7 @@ enum {
 
         if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
             [MyTools messageBox:ICloudVC header:@"Download complete" text:@"You can find the saved file in the Files menu"];
-            [delegate refreshFilelist];
+            [self.delegate refreshFilelist];
         } else {
             [MyTools messageBox:ICloudVC header:@"Download failed" text:[NSString stringWithFormat:@"Error message: %@", error]];
         }

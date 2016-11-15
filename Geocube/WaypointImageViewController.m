@@ -38,8 +38,6 @@
 
 @implementation WaypointImageViewController
 
-@synthesize delegate;
-
 enum {
     menuUploadAirdrop,
     menuUploadICloud,
@@ -58,7 +56,7 @@ enum {
     [lmi addItem:menuUploadICloud label:@"iCloud"];
     [lmi addItem:menuDeletePhoto label:@"Delete photo"];
     image = nil;
-    delegate = nil;
+    self.delegate = nil;
 
     return self;
 }
@@ -128,16 +126,16 @@ enum {
 
 - (void)swipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    if (delegate != nil) {
-        [delegate WaypointImage_swipeToUp];
+    if (self.delegate != nil) {
+        [self.delegate WaypointImage_swipeToUp];
         [self loadImage];
     }
 }
 
 - (void)swipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    if (delegate != nil) {
-        [delegate WaypointImage_swipeToDown];
+    if (self.delegate != nil) {
+        [self.delegate WaypointImage_swipeToDown];
         [self loadImage];
     }
 }
@@ -290,7 +288,7 @@ enum {
             return;
         case menuDeletePhoto:
             [fileManager removeItemAtPath:[MyTools ImageFile:img.datafile] error:nil];
-            [delegate WaypointImage_refreshTable];
+            [self.delegate WaypointImage_refreshTable];
             [self.navigationController popViewControllerAnimated:YES];
             return;
     }

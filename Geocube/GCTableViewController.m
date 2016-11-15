@@ -29,8 +29,6 @@
 
 @implementation GCTableViewController
 
-@synthesize numberOfItemsInRow, hasCloseButton;
-
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -39,7 +37,7 @@
     self.numberOfItemsInRow = 3;
 
     closeButton = nil;
-    hasCloseButton = NO;
+    self.hasCloseButton = NO;
 
     return self;
 }
@@ -64,7 +62,7 @@
 {
     [super viewDidLoad];
     [self changeTheme];
-    if (hasCloseButton == YES) {
+    if (self.hasCloseButton == YES) {
         UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
         swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
         [self.view addGestureRecognizer:swipeToRight];
@@ -107,7 +105,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (hasCloseButton == YES)
+    if (self.hasCloseButton == YES)
         [self.view bringSubviewToFront:closeButton];
 }
 
@@ -120,7 +118,7 @@
     [menuGlobal defineLocalMenu:lmi forVC:self];
 
     // Add a close button to the view
-    if (hasCloseButton == YES && closeButton == nil) {
+    if (self.hasCloseButton == YES && closeButton == nil) {
         GCCloseButton *b = [GCCloseButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:b];
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];

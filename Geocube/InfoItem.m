@@ -30,8 +30,6 @@
 
 @implementation InfoItem
 
-@synthesize view, _id, infoViewer;
-
 NEEDS_OVERLOADING(calculateRects)
 
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent
@@ -42,7 +40,7 @@ NEEDS_OVERLOADING(calculateRects)
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
 {
     self = [super init];
-    infoViewer = parent;
+    self.infoViewer = parent;
     isExpanded = expanded;
     return self;
 }
@@ -51,7 +49,7 @@ NEEDS_OVERLOADING(calculateRects)
 {
     isExpanded = yesno;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [infoViewer viewWillTransitionToSize];
+        [self.infoViewer viewWillTransitionToSize];
     }];
 }
 

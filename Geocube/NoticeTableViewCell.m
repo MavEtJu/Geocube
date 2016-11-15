@@ -30,8 +30,6 @@
 
 @implementation NoticeTableViewCell
 
-@synthesize noteLabel, senderLabel, dateLabel, seen, notice;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -39,19 +37,19 @@
     [self calculateRects];
 
     // Sender
-    senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
-    [senderLabel bold:YES];
-    [self.contentView addSubview:senderLabel];
+    self.senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
+    [self.senderLabel bold:YES];
+    [self.contentView addSubview:self.senderLabel];
 
     // Date
-    dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
-    [dateLabel bold:YES];
-    [self.contentView addSubview:dateLabel];
+    self.dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
+    [self.dateLabel bold:YES];
+    [self.contentView addSubview:self.dateLabel];
 
     // Note
-    noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
-    noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.contentView addSubview:noteLabel];
+    self.noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
+    self.noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.contentView addSubview:self.noteLabel];
 
     self.userInteractionEnabled = YES;
 
@@ -82,40 +80,40 @@
 
 - (void)calculateCellHeight
 {
-    notice.cellHeight = noteLabel.frame.size.height + senderLabel.frame.size.height + 10;
+    self.notice.cellHeight = self.noteLabel.frame.size.height + self.senderLabel.frame.size.height + 10;
 }
 
 - (void)viewWillTransitionToSize
 {
     [self calculateRects];
-    dateLabel.frame = rectDate;
-    senderLabel.frame = rectSender;
-    noteLabel.frame = rectNote;
-    [noteLabel sizeToFit];
+    self.dateLabel.frame = rectDate;
+    self.senderLabel.frame = rectSender;
+    self.noteLabel.frame = rectNote;
+    [self.noteLabel sizeToFit];
     [self calculateCellHeight];
 }
 
 - (void)setNote:(NSString *)noteString
 {
-    noteLabel.frame = rectNote;
-    noteLabel.text = noteString;
-    [noteLabel sizeToFit];
+    self.noteLabel.frame = rectNote;
+    self.noteLabel.text = noteString;
+    [self.noteLabel sizeToFit];
 }
 
 - (void)setURL:(NSString *)urlString
 {
-    noteLabel.frame = rectNote;
-    NSMutableString *s = [NSMutableString stringWithString:noteLabel.text];
+    self.noteLabel.frame = rectNote;
+    NSMutableString *s = [NSMutableString stringWithString:self.noteLabel.text];
     [s appendFormat:@"\n\n--> Press to open link <--"];
-    noteLabel.text = s;
-    [noteLabel sizeToFit];
+    self.noteLabel.text = s;
+    [self.noteLabel sizeToFit];
 }
 
 - (void)changeTheme
 {
-    [senderLabel changeTheme];
-    [dateLabel changeTheme];
-    [noteLabel changeTheme];
+    [self.senderLabel changeTheme];
+    [self.dateLabel changeTheme];
+    [self.noteLabel changeTheme];
 
     [themeManager changeThemeArray:[self.contentView subviews]];
     [super changeTheme];

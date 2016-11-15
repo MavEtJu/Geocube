@@ -25,8 +25,6 @@
 
 @implementation RemoteAPIOKAPI
 
-@synthesize account;
-
 #define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
@@ -130,7 +128,7 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if ([account canDoRemoteStuff] == NO) {
+    if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
@@ -173,7 +171,7 @@
     [iii showTrackables:NO];
     [iii setDescription:@"OKAPI JSON data (queued)"];
     GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
-    [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:rv group:group account:self.account];
     *retObject = rv;
 
     return REMOTEAPI_OK;

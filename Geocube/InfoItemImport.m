@@ -36,15 +36,13 @@
 
 @implementation InfoItemImport
 
-@synthesize height;
-
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
 {
     self = [super initWithInfoViewer:parent expanded:expanded];
 
     NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
-    view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
-    view.backgroundColor = [UIColor lightGrayColor];
+    self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
+    self.view.backgroundColor = [UIColor lightGrayColor];
 
     labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -57,11 +55,11 @@
     showTrackables = YES;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [view addSubview:labelDesc];
-        [view addSubview:labelLinesObjects];
-        [view addSubview:labelWaypoints];
-        [view addSubview:labelLogs];
-        [view addSubview:labelTrackables];
+        [self.view addSubview:labelDesc];
+        [self.view addSubview:labelLinesObjects];
+        [self.view addSubview:labelWaypoints];
+        [self.view addSubview:labelLogs];
+        [self.view addSubview:labelTrackables];
         [self calculateRects];
     }];
 
@@ -124,8 +122,8 @@ y += __s__.font.lineHeight;
         labelTrackables.frame = CGRectZero;
 
     y += MARGIN;
-    view.frame = CGRectMake(0, 0, width, y);
-    height = y;
+    self.view.frame = CGRectMake(0, 0, width, y);
+    self.height = y;
 }
 
 - (void)setWaypoints

@@ -21,69 +21,68 @@
 
 @interface dbAccount ()
 
+@property (nonatomic, readwrite) BOOL canDoRemoteStuff;
+
 @end
 
 @implementation dbAccount
-
-@synthesize _id, site, url_site, accountname, accountname_id, accountname_string, url_queries, oauth_consumer_private, oauth_consumer_public, protocol, protocol_id, protocol_string, oauth_token_secret, oauth_token, oauth_access_url, oauth_authorize_url, oauth_request_url, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, ggcw_token, ggcw_tokentype, ggcw_tokenexpires, geocube_id, revision, enabled, distance_minimum, authentictation_name, authentictation_password;
-@synthesize remoteAPI, canDoRemoteStuff, remoteAccessFailureReason;
 
 - (void)finish
 {
     [super finish];
 
-    if (protocol_string != nil) {
-        protocol = [dbProtocol dbGetByName:protocol_string];
-        protocol_id = protocol._id;
+    if (self.protocol_string != nil) {
+        self.protocol = [dbProtocol dbGetByName:self.protocol_string];
+        self.protocol_id = self.protocol._id;
     } else {
-        protocol = [dbProtocol dbGet:protocol_id];
-        protocol_string = protocol.name;
+        self.protocol = [dbProtocol dbGet:self.protocol_id];
+        self.protocol_string = self.protocol.name;
     }
 
-    remoteAPI = nil;
-    switch ((ProtocolId)protocol._id) {
+    self.remoteAPI = nil;
+    switch ((ProtocolId)self.protocol._id) {
         case PROTOCOL_GCA:
-            remoteAPI = [[RemoteAPIGCA alloc] init:self];
+            self.remoteAPI = [[RemoteAPIGCA alloc] init:self];
             break;
         case PROTOCOL_GCA2:
-            remoteAPI = [[RemoteAPIGCA2 alloc] init:self];
+            self.remoteAPI = [[RemoteAPIGCA2 alloc] init:self];
             break;
         case PROTOCOL_GGCW:
-            remoteAPI = [[RemoteAPIGGCW alloc] init:self];
+            self.remoteAPI = [[RemoteAPIGGCW alloc] init:self];
             break;
         case PROTOCOL_LIVEAPI:
-            remoteAPI = [[RemoteAPILiveAPI alloc] init:self];
+            self.remoteAPI = [[RemoteAPILiveAPI alloc] init:self];
             break;
         case PROTOCOL_OKAPI:
-            remoteAPI = [[RemoteAPIOKAPI alloc] init:self];
+            self.remoteAPI = [[RemoteAPIOKAPI alloc] init:self];
             break;
         case PROTOCOL_NONE:
-            remoteAPI = nil;
+            self.remoteAPI = nil;
             break;
     }
-    canDoRemoteStuff = NO;
+    self.canDoRemoteStuff = NO;
 
     /* Even if it is nil.... */
-    dbName *n = [dbName dbGetByName:accountname_string account:self];
-    accountname = n;
-    accountname_id = n._id;
+    dbName *n = [dbName dbGetByName:self.accountname_string account:self];
+    self.accountname = n;
+    self.accountname_id = n._id;
 
     [self checkRemoteAccess];
 }
 
 - (void)checkRemoteAccess
 {
-    if (enabled == NO) {
+    if (self.enabled == NO) {
         [self disableRemoteAccess:@"This account is not enabled"];
         return;
     }
 
-    ProtocolId pid = protocol._id;
+    ProtocolId pid = self.protocol._id;
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:
-            if (oauth_token == nil || [oauth_token isEqualToString:@""] == YES ||
-                oauth_token_secret == nil || [oauth_token_secret isEqualToString:@""] == YES)
+            if (self.oauth_token == nil || [self.oauth_token isEqualToString:@""] == YES ||
+                self.oauth_token_secret == nil || [self.oauth_token_secret isEqualToString:@""] == YES)
                 [self disableRemoteAccess:@"This account is currenlty not authenticated"];
             else
                 [self enableRemoteAccess];
@@ -92,7 +91,7 @@
         case PROTOCOL_GGCW:
         case PROTOCOL_GCA:
         case PROTOCOL_GCA2:
-            if (gca_cookie_value == nil || [gca_cookie_value isEqualToString:@""] == YES)
+            if (self.gca_cookie_value == nil || [self.gca_cookie_value isEqualToString:@""] == YES)
                 [self disableRemoteAccess:@"This account is currently not authenticated"];
             else
                 [self enableRemoteAccess];
@@ -106,21 +105,21 @@
 
 - (void)disableRemoteAccess:(NSString *)reason
 {
-    canDoRemoteStuff = NO;
-    remoteAccessFailureReason = reason;
+    self.canDoRemoteStuff = NO;
+    self.remoteAccessFailureReason = reason;
 }
 
 - (void)enableRemoteAccess
 {
-    canDoRemoteStuff = YES;
-    remoteAccessFailureReason = nil;
+    self.canDoRemoteStuff = YES;
+    self.remoteAccessFailureReason = nil;
 }
 
 - (void)dbClearAuthentication
 {
-    oauth_token = nil;
-    oauth_token_secret = nil;
-    gca_cookie_value = nil;
+    self.oauth_token = nil;
+    self.oauth_token_secret = nil;
+    self.gca_cookie_value = nil;
     [self dbUpdateCookieValue];
     [self dbUpdateOAuthToken];
 }

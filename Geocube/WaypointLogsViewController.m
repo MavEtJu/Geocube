@@ -72,7 +72,7 @@ enum {
 
 - (void)viewDidLoad
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 

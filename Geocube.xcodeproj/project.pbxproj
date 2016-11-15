@@ -2757,6 +2757,8 @@
 				E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */,
 				E8B771D11DD9DA4E008B2F9E /* RemoteAPIOKAPI.h */,
 				E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */,
+				E89580191C643AD500282177 /* ProtocolTemplate.h */,
+				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
 				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
 				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
 				E84E23981DB9E8440079496D /* ProtocolGCA2.h */,
@@ -2767,8 +2769,6 @@
 				E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */,
 				E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */,
 				E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */,
-				E89580191C643AD500282177 /* ProtocolTemplate.h */,
-				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
 			);
 			name = "Network APIs";
 			sourceTree = "<group>";

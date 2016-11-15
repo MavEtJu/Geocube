@@ -25,13 +25,11 @@
 
 @implementation dbTrackElement
 
-@synthesize _id, track_id, track, coords, lat_int, lat, lon_int, lon, height, timestamp_epoch, restart;
-
 - (void)finish
 {
-    lat = lat_int / 1000000.0;
-    lon = lon_int / 1000000.0;
-    coords = CLLocationCoordinate2DMake(lat, lon);
+    self.lat = self.lat_int / 1000000.0;
+    self.lon = self.lon_int / 1000000.0;
+    self.coords = CLLocationCoordinate2DMake(self.lat, self.lon);
 
     [super finish];
 }
@@ -67,18 +65,18 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT (1, track_id);
-        SET_VAR_INT (2, lat_int);
-        SET_VAR_INT (3, lon_int);
-        SET_VAR_INT (4, height);
-        SET_VAR_INT (5, timestamp_epoch);
-        SET_VAR_BOOL(6, restart);
+        SET_VAR_INT (1, self.track_id);
+        SET_VAR_INT (2, self.lat_int);
+        SET_VAR_INT (3, self.lon_int);
+        SET_VAR_INT (4, self.height);
+        SET_VAR_INT (5, self.timestamp_epoch);
+        SET_VAR_BOOL(6, self.restart);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 + (dbTrackElement *)createElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart

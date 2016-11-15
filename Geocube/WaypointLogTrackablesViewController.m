@@ -54,7 +54,7 @@ enum {
     [lmi addItem:menuPickup label:@"Pick up"];
     [lmi addItem:menuDiscover label:@"Discover"];
 
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     _delegate = nil;
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];

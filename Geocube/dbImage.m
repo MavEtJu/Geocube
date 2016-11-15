@@ -25,15 +25,13 @@
 
 @implementation dbImage
 
-@synthesize _id, url, name, datafile;
-
-- (instancetype)init:(NSString *)_url name:(NSString *)_name datafile:(NSString *)_datafile
+- (instancetype)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile
 {
     self = [super init];
 
-    url = _url;
-    datafile = _datafile;
-    name = _name;
+    self.url = url;
+    self.datafile = datafile;
+    self.name = name;
 
     [self finish];
 
@@ -155,7 +153,7 @@
         DB_PREPARE(@"select id from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp_id);
-        SET_VAR_INT(2, _id);
+        SET_VAR_INT(2, self._id);
 
         DB_IF_STEP {
             linked = YES;
@@ -170,7 +168,7 @@
     @synchronized (db.dbaccess) {
         DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
         SET_VAR_INT(2, wp_id);
         SET_VAR_INT(3, type);
 
@@ -214,7 +212,7 @@
 
 - (UIImage *)imageGet
 {
-    return [UIImage imageWithContentsOfFile:[MyTools ImageFile:datafile]];
+    return [UIImage imageWithContentsOfFile:[MyTools ImageFile:self.datafile]];
 }
 
 + (NSString *)filename:(NSString *)url
@@ -228,7 +226,7 @@
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp_id);
-        SET_VAR_INT(2, _id);
+        SET_VAR_INT(2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -237,7 +235,7 @@
 
 - (BOOL)imageHasBeenDowloaded
 {
-    return [fileManager fileExistsAtPath:[MyTools ImageFile:datafile]];
+    return [fileManager fileExistsAtPath:[MyTools ImageFile:self.datafile]];
 }
 
 @end

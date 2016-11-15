@@ -21,9 +21,9 @@
 
 @interface MapAppleCache : MKTileOverlay
 
-@property (nonatomic, readonly) NSInteger hits;
-@property (nonatomic, readonly) NSInteger misses;
-@property (nonatomic, readonly) NSInteger saves;
+@property (nonatomic) NSInteger hits;
+@property (nonatomic) NSInteger misses;
+@property (nonatomic) NSInteger saves;
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix;
 + (void)cleanupCache;

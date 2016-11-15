@@ -26,7 +26,7 @@
 @property (nonatomic) double theta;
 
 - (void)togglePlay:(BOOL)on;
-- (void)setFrequency:(double)frequency;
+- (void)setTheFrequency:(double)frequency;
 
 @end
 

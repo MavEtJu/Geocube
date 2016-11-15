@@ -57,7 +57,7 @@ enum {
 
 - (void)viewDidLoad
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }

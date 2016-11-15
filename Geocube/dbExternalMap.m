@@ -29,25 +29,23 @@
 
 @implementation dbExternalMap
 
-@synthesize _id;
-
 - (NSId)dbCreate
 {
-    NSId __id;
+    NSId _id;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into externalmaps(geocube_id, enabled, name) values(?, ?, ?)");
 
-        SET_VAR_INT (1, _geocube_id);
-        SET_VAR_BOOL(2, _enabled);
-        SET_VAR_TEXT(3, _name);
+        SET_VAR_INT (1, self.geocube_id);
+        SET_VAR_BOOL(2, self.enabled);
+        SET_VAR_TEXT(3, self.name);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id)
+        DB_GET_LAST_ID(_id)
         DB_FINISH;
     }
 
-    return __id;
+    return _id;
 }
 
 - (void)dbUpdate
@@ -55,10 +53,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update externalmaps set geocube_id = ?, enabled = ?, name = ? where id = ?");
 
-        SET_VAR_INT (1, _geocube_id);
-        SET_VAR_BOOL(2, _enabled);
-        SET_VAR_TEXT(3, _name);
-        SET_VAR_INT (4, _id);
+        SET_VAR_INT (1, self.geocube_id);
+        SET_VAR_BOOL(2, self.enabled);
+        SET_VAR_TEXT(3, self.name);
+        SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -110,7 +108,7 @@
 
 - (NSArray *)getURLs
 {
-    return [dbExternalMapURL dbAllByExternalMap:_id];
+    return [dbExternalMapURL dbAllByExternalMap:self._id];
 }
 
 + (NSInteger)dbCount
@@ -122,8 +120,6 @@
 
 @implementation dbExternalMapURL
 
-@synthesize _id;
-
 - (void)finish
 {
     [super finish];
@@ -131,22 +127,22 @@
 
 - (NSId)dbCreate
 {
-    NSId __id;
+    NSId _id;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into externalmap_urls(externalmap_id, model, type, url) values(?, ?, ?, ?)");
 
-        SET_VAR_INT (1, _externalMap_id);
-        SET_VAR_TEXT(2, _model);
-        SET_VAR_INT (3, _type);
-        SET_VAR_TEXT(4, _url);
+        SET_VAR_INT (1, self.externalMap_id);
+        SET_VAR_TEXT(2, self.model);
+        SET_VAR_INT (3, self.type);
+        SET_VAR_TEXT(4, self.url);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id)
+        DB_GET_LAST_ID(_id)
         DB_FINISH;
     }
 
-    return __id;
+    return _id;
 }
 
 - (void)dbUpdate
@@ -154,11 +150,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update externalmap_urls set externalmap_id = ?, model = ?, type = ?, url = ? where id = ?");
 
-        SET_VAR_INT (1, _externalMap_id);
-        SET_VAR_TEXT(2, _model);
-        SET_VAR_INT (3, _type);
-        SET_VAR_TEXT(4, _url);
-        SET_VAR_INT( 5, _id);
+        SET_VAR_INT (1, self.externalMap_id);
+        SET_VAR_TEXT(2, self.model);
+        SET_VAR_INT (3, self.type);
+        SET_VAR_TEXT(4, self.url);
+        SET_VAR_INT( 5, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

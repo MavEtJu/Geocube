@@ -29,8 +29,6 @@
 
 @implementation PersonalNoteTableViewCell
 
-@synthesize logLabel, nameLabel, personalNote;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -38,15 +36,15 @@
     [self calculateRects];
 
     // Name
-    nameLabel = [[GCSmallLabel alloc] initWithFrame:rectName];
-    [nameLabel bold:YES];
-    [self.contentView addSubview:nameLabel];
+    self.nameLabel = [[GCSmallLabel alloc] initWithFrame:rectName];
+    [self.nameLabel bold:YES];
+    [self.contentView addSubview:self.nameLabel];
 
     // Log
-    logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
-    logLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [logLabel sizeToFit];
-    [self.contentView addSubview:logLabel];
+    self.logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
+    self.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.logLabel sizeToFit];
+    [self.contentView addSubview:self.logLabel];
 
     [self changeTheme];
 
@@ -75,31 +73,31 @@
 
 - (void)calculateCellHeight
 {
-    personalNote.cellHeight = nameLabel.frame.size.height + logLabel.frame.size.height + 10;
+    self.personalNote.cellHeight = self.nameLabel.frame.size.height + self.logLabel.frame.size.height + 10;
 }
 
 - (void)viewWillTransitionToSize
 {
     [self calculateRects];
-    nameLabel.frame = rectName;
-    logLabel.frame = rectLog;
-    [logLabel sizeToFit];
+    self.nameLabel.frame = rectName;
+    self.logLabel.frame = rectLog;
+    [self.logLabel sizeToFit];
     [self calculateCellHeight];
 }
 
 - (void)changeTheme
 {
-    [nameLabel changeTheme];
-    [logLabel changeTheme];
+    [self.nameLabel changeTheme];
+    [self.logLabel changeTheme];
 
     [super changeTheme];
 }
 
 - (void)setLogString:(NSString *)logString
 {
-    logLabel.frame = rectLog;
-    logLabel.text = logString;
-    [logLabel sizeToFit];
+    self.logLabel.frame = rectLog;
+    self.logLabel.text = logString;
+    [self.logLabel sizeToFit];
 }
 
 @end

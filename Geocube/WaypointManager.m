@@ -27,24 +27,24 @@
     NSMutableArray *delegates;
 }
 
+@property (nonatomic, retain, readwrite) dbWaypoint *currentWaypoint;
+
 @end
 
 @implementation WaypointManager
-
-@synthesize currentWaypoint, currentWaypoints;
 
 - (instancetype)init
 {
     self = [super init];
     NSLog(@"%@: starting", [self class]);
 
-    currentWaypoints = nil;
-    currentWaypoint = nil;
+    self.currentWaypoints = nil;
+    self.currentWaypoint = nil;
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DMake(0, 0);
 
     if ([configManager.currentWaypoint isEqualToString:@""] == NO)
-        currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:configManager.currentWaypoint]];
+        self.currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:configManager.currentWaypoint]];
 
     [LM startDelegation:self isNavigating:NO];
 
@@ -84,7 +84,7 @@
 
 - (void)needsRefreshAdd:(dbWaypoint *)wp
 {
-    [currentWaypoints addObject:wp];
+    [self.currentWaypoints addObject:wp];
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
@@ -97,7 +97,7 @@
 
 - (void)needsRefreshRemove:(dbWaypoint *)wp
 {
-    [currentWaypoints removeObject:wp];
+    [self.currentWaypoints removeObject:wp];
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
@@ -110,9 +110,9 @@
 
 - (void)needsRefreshUpdate:(dbWaypoint *)wp
 {
-    NSUInteger idx = [currentWaypoints indexOfObject:wp];
+    NSUInteger idx = [self.currentWaypoints indexOfObject:wp];
     if (idx != NSNotFound)
-        [currentWaypoints replaceObjectAtIndex:idx withObject:wp];
+        [self.currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         // Doing this via the main queue because Google Map Service insists on it.
@@ -674,7 +674,7 @@
         }
 
         NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
-        currentWaypoints = caches;
+        self.currentWaypoints = caches;
         needsRefresh = NO;
     }
 }
@@ -709,16 +709,16 @@
     }
 }
 
-- (void)setCurrentWaypoint:(dbWaypoint *)wp
+- (void)setTheCurrentWaypoint:(dbWaypoint *)wp
 {
-    currentWaypoint = wp;
+    self.currentWaypoint = wp;
     [configManager currentWaypointUpdate:wp.wpt_name];
 }
 
 - (dbWaypoint *)waypoint_byId:(NSId)_id
 {
     __block dbWaypoint *cwp = nil;
-    [currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp._id == _id) {
             cwp = wp;
             *stop = YES;
@@ -730,7 +730,7 @@
 - (dbWaypoint *)waypoint_byName:(NSString *)name
 {
     __block dbWaypoint *cwp = nil;
-    [currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([wp.wpt_name isEqualToString:name] == YES) {
             cwp = wp;
             *stop = YES;

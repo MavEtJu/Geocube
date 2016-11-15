@@ -25,8 +25,6 @@
 
 @implementation dbObject
 
-@synthesize _id;
-
 NEEDS_OVERLOADING(dbUpdate)
 NEEDS_OVERLOADING(dbDelete)
 - (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }

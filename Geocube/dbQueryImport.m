@@ -25,13 +25,11 @@
 
 @implementation dbQueryImport
 
-@synthesize _id, name, lastimport, filesize, account_id, account;
-
 - (void)finish
 {
     [super finish];
-    if (account == nil)
-        account = [dbAccount dbGet:account_id];
+    if (self.account == nil)
+        self.account = [dbAccount dbGet:self.account_id];
 }
 
 + (NSId)dbCreate:(dbQueryImport *)qi
@@ -59,11 +57,11 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update query_imports set account_id = ?, name = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
-        SET_VAR_INT (1, account_id);
-        SET_VAR_TEXT(2, name);
-        SET_VAR_INT (3, filesize);
-        SET_VAR_INT (4, lastimport);
-        SET_VAR_INT (5, _id);
+        SET_VAR_INT (1, self.account_id);
+        SET_VAR_TEXT(2, self.name);
+        SET_VAR_INT (3, self.filesize);
+        SET_VAR_INT (4, self.lastimport);
+        SET_VAR_INT (5, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

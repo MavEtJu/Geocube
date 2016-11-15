@@ -25,8 +25,6 @@
 
 @implementation dbTrack
 
-@synthesize _id, name, dateStart, dateStop;
-
 + (dbTrack *)dbGet:(NSId)id
 {
     dbTrack *t;
@@ -74,15 +72,15 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into tracks(name, startedon, stoppedon) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_INT (2, dateStart);
-        SET_VAR_INT (3, dateStop);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_INT (2, self.dateStart);
+        SET_VAR_INT (3, self.dateStop);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -90,10 +88,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update tracks set name = ?, startedon = ?, stoppedon = ? where id = ?");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_INT (2, dateStart);
-        SET_VAR_INT (3, dateStop);
-        SET_VAR_INT (4, _id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_INT (2, self.dateStart);
+        SET_VAR_INT (3, self.dateStop);
+        SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -110,7 +108,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from tracks where id = ?");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

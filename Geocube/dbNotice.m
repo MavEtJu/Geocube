@@ -25,25 +25,23 @@
 
 @implementation dbNotice
 
-@synthesize _id, note, sender, seen, date, url, cellHeight, geocube_id;
-
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into notices(note, sender, date, seen, geocube_id, url) values(?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT(1, note);
-        SET_VAR_TEXT(2, sender);
-        SET_VAR_TEXT(3, date);
-        SET_VAR_BOOL(4, seen);
-        SET_VAR_INT (5, geocube_id);
-        SET_VAR_TEXT(6, url);
+        SET_VAR_TEXT(1, self.note);
+        SET_VAR_TEXT(2, self.sender);
+        SET_VAR_TEXT(3, self.date);
+        SET_VAR_BOOL(4, self.seen);
+        SET_VAR_INT (5, self.geocube_id);
+        SET_VAR_TEXT(6, self.url);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id)
+        DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 + (NSArray *)dbAll

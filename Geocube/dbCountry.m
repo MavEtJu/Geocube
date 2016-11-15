@@ -25,15 +25,13 @@
 
 @implementation dbCountry
 
-@synthesize _id, name, code;
-
-- (instancetype)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code
+- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code
 {
     self = [super init];
 
-    _id = __id;
-    name = _name;
-    code = _code;
+    self._id = _id;
+    self.name = name;
+    self.code = code;
 
     [self finish];
     return self;
@@ -115,9 +113,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update countries set name = ?, code = ? where id = ?");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, code);
-        SET_VAR_INT (3, _id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.code);
+        SET_VAR_INT (3, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

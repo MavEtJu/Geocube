@@ -25,15 +25,13 @@
 
 @implementation InfoItemImage
 
-@synthesize height;
-
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
 {
     self = [super initWithInfoViewer:parent expanded:expanded];
 
     NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
-    view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
-    view.backgroundColor = [UIColor lightGrayColor];
+    self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
+    self.view.backgroundColor = [UIColor lightGrayColor];
 
     labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
     labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -41,10 +39,10 @@
     labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [view addSubview:labelDesc];
-        [view addSubview:labelURL];
-        [view addSubview:labelQueue];
-        [view addSubview:labelBytes];
+        [self.view addSubview:labelDesc];
+        [self.view addSubview:labelURL];
+        [self.view addSubview:labelQueue];
+        [self.view addSubview:labelBytes];
         [self calculateRects];
     }];
 
@@ -72,8 +70,8 @@ y += __s__.font.lineHeight;
     INDENT_RESIZE(labelBytes);
 
     y += MARGIN;
-    view.frame = CGRectMake(0, 0, width, y);
-    height = y;
+    self.view.frame = CGRectMake(0, 0, width, y);
+    self.height = y;
 }
 
 @end

@@ -41,7 +41,7 @@
 - (void)needsRefreshRemove:(dbWaypoint *)wp;
 - (void)needsRefreshAdd:(dbWaypoint *)wp;
 - (void)needsRefreshUpdate:(dbWaypoint *)wp;
-- (void)setCurrentWaypoint:(dbWaypoint *)wp;
+- (void)setTheCurrentWaypoint:(dbWaypoint *)wp;
 - (void)startDelegation:(id<WaypointManagerDelegate>)_delegate;
 - (void)stopDelegation:(id<WaypointManagerDelegate>)_delegate;
 

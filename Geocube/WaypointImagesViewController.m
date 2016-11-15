@@ -34,8 +34,6 @@
 
 @implementation WaypointImagesViewController
 
-@synthesize overlayView;
-
 enum {
     SECTION_USER = 0,
     SECTION_WAYPOINT,
@@ -68,7 +66,7 @@ enum {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
         [lmi disableItem:menuMakePhoto];
 
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];

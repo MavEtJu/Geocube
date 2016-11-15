@@ -20,9 +20,6 @@
  */
 
 @interface GCCircle : MKCircle
-{
-    dbWaypoint *waypoint;
-}
 
 @property (nonatomic, retain) dbWaypoint *waypoint;
 

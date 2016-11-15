@@ -25,15 +25,13 @@
 
 @implementation dbContainer
 
-@synthesize _id, size, icon, gc_id, selected;
-
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id size:(NSString *)_size icon:(NSInteger)_icon
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id size:(NSString *)size icon:(NSInteger)icon
 {
     self = [super init];
-    _id = __id;
-    gc_id = _gc_id;
-    size = _size;
-    icon = _icon;
+    self._id = _id;
+    self.gc_id = gc_id;
+    self.size = size;
+    self.icon = icon;
     [self finish];
     return self;
 }
@@ -43,10 +41,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update containers set size = ?, icon = ?, gc_id = ? where id = ?");
 
-        SET_VAR_TEXT( 1, size);
-        SET_VAR_INT ( 2, icon);
-        SET_VAR_INT ( 3, gc_id);
-        SET_VAR_INT ( 4, _id);
+        SET_VAR_TEXT( 1, self.size);
+        SET_VAR_INT ( 2, self.icon);
+        SET_VAR_INT ( 3, self.gc_id);
+        SET_VAR_INT ( 4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

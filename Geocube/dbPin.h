@@ -23,7 +23,7 @@
 
 @property (nonatomic, retain) NSString *rgb;
 @property (nonatomic, retain) NSString *rgb_default;
-@property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *desc;
 
 @property (nonatomic, retain) UIColor *colour;
 @property (nonatomic, retain) UIImage *img;

@@ -21,7 +21,6 @@
 
 @interface ImagesDownloadManager ()
 {
-    NSMutableArray *todo;
     NSInteger downloaded;
 
     dbImage *imgToDownload;
@@ -40,8 +39,6 @@
 @end
 
 @implementation ImagesDownloadManager
-
-@synthesize todo, delegate;
 
 - (instancetype)init
 {
@@ -84,7 +81,7 @@
 
     // Queued files to download
 
-    todo = [NSMutableArray arrayWithCapacity:20];
+    self.todo = [NSMutableArray arrayWithCapacity:20];
 
     running = 0;
     downloaded = 0;
@@ -107,12 +104,12 @@
     while (TRUE) {
         imgToDownload = nil;
 
-        NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[todo count]);
+        NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[self.todo count]);
         @synchronized (imagesDownloadManager) {
-            [delegate imagesDownloadManager_setQueuedImages:[todo count]];
-            [delegate imagesDownloadManager_setDownloadedImages:downloaded];
-            if ([todo count] != 0)
-                imgToDownload = [todo objectAtIndex:0];
+            [self.delegate imagesDownloadManager_setQueuedImages:[self.todo count]];
+            [self.delegate imagesDownloadManager_setDownloadedImages:downloaded];
+            if ([self.todo count] != 0)
+                imgToDownload = [self.todo objectAtIndex:0];
         }
         // After 10 attempts stop, enough for now
         if (--running == 0) {
@@ -134,7 +131,7 @@
         if ([imgToDownload imageHasBeenDowloaded] == YES) {
             NSLog(@"%@/run: Already found %@", [self class], imgToDownload.datafile);
             @synchronized (imagesDownloadManager) {
-                [todo removeObjectAtIndex:0];
+                [self.todo removeObjectAtIndex:0];
             }
             continue;
         }
@@ -155,7 +152,7 @@
         }
 
         @synchronized (imagesDownloadManager) {
-            [todo removeObjectAtIndex:0];
+            [self.todo removeObjectAtIndex:0];
         }
         downloaded++;
     }

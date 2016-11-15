@@ -25,16 +25,14 @@
 
 @implementation dbAttribute
 
-@synthesize _id, icon, label, gc_id, _YesNo;
-
-- (instancetype)init:(NSId)__id gc_id:(NSId)_gc_id label:(NSString *)_label icon:(NSInteger)_icon
+- (instancetype)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon
 {
     self = [super init];
 
-    icon = _icon;
-    label = _label;
-    gc_id = _gc_id;
-    _id = __id;
+    self.icon = icon;
+    self.label = label;
+    self.gc_id = gc_id;
+    self._id = _id;
 
     [self finish];
     return self;
@@ -65,9 +63,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update attributes set label = ?, icon = ? where id = ?");
 
-        SET_VAR_TEXT(1, label);
-        SET_VAR_INT (2, icon);
-        SET_VAR_INT (3, _id);
+        SET_VAR_TEXT(1, self.label);
+        SET_VAR_INT (2, self.icon);
+        SET_VAR_INT (3, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -76,21 +74,21 @@
 
 - (NSId)dbCreate
 {
-    NSId __id;
+    NSId _id;
 
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into attributes(label, gc_id, icon) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, label);
-        SET_VAR_INT (2, gc_id);
-        SET_VAR_INT (3, icon);
+        SET_VAR_TEXT(1, self.label);
+        SET_VAR_INT (2, self.gc_id);
+        SET_VAR_INT (3, self.icon);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
-        _id = __id;
+        DB_GET_LAST_ID(_id);
+        self._id = _id;
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 + (NSInteger)dbCount
@@ -120,7 +118,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values(?, ?, ?)");
 
-        SET_VAR_INT (1, _id);
+        SET_VAR_INT (1, self._id);
         SET_VAR_INT (2, wp_id);
         SET_VAR_BOOL(3, YesNo);
 

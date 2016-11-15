@@ -34,8 +34,6 @@
 
 @implementation KeyboardCoordinateView
 
-@synthesize targetTextInput;
-
 - (instancetype)initWithIsLatitude:(BOOL)_isLatitude
 {
     self = [super initWithFrame:CGRectMake(0, 0, 100, 160)];

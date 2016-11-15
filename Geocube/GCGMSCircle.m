@@ -25,6 +25,4 @@
 
 @implementation GCGMSCircle
 
-@synthesize userData;
-
 @end

@@ -32,16 +32,14 @@ ThemeManager *themeManager;
 
 @implementation ThemeManager
 
-@synthesize themeNames;
-
 - (instancetype)init
 {
     self = [super init];
 
-    themeNames = @[
-                   @"Default iOS theme",
-                   @"Geocube night theme",
-                  ];
+    self.themeNames = @[
+                        @"Default iOS theme",
+                        @"Geocube night theme",
+                        ];
 
     return self;
 }

@@ -30,8 +30,6 @@
 
 @implementation MapAppleCache
 
-@synthesize hits, misses, saves;
-
 + (NSString *)createPrefix:(NSString *)_prefix;
 {
     NSString *p = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
@@ -148,9 +146,9 @@
 
     shortprefix = _prefix;
     prefix = [MapAppleCache createPrefix:_prefix];
-    hits = 0;
-    misses = 0;
-    saves = 0;
+    self.hits = 0;
+    self.misses = 0;
+    self.saves = 0;
     now = [NSDate date];    // Just give them all todays date
 
     return self;
@@ -183,9 +181,9 @@
             if (error == nil) {
                 [tileData writeToFile:cachefile atomically:NO];
                 NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
-                saves++;
+                self.saves++;
             }
-            misses++;
+            self.misses++;
             result(tileData, error);
         }];
         return;
@@ -193,7 +191,7 @@
 
     __block NSData *d = [NSData dataWithContentsOfFile:cachefile];
     NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
-    hits++;
+    self.hits++;
     result(d, nil);
 }
 

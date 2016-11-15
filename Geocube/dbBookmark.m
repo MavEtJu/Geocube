@@ -25,16 +25,14 @@
 
 @implementation dbBookmark
 
-@synthesize _id, url, name, import_id;
-
-- (instancetype)init:(NSId)__id name:(NSString *)_name url:(NSString *)_url import_id:(NSInteger)_import_id
+- (instancetype)init:(NSId)_id name:(NSString *)name url:(NSString *)url import_id:(NSInteger)import_id
 {
     self = [super init];
 
-    _id = __id;
-    name = _name;
-    url = _url;
-    import_id = _import_id;
+    self._id = _id;
+    self.name = name;
+    self.url = url;
+    self.import_id = import_id;
 
     [self finish];
     return self;
@@ -108,10 +106,10 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update bookmarks set name = ?, url = ?, import_id = ? where id = ?");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, url);
-        SET_VAR_INT (3, import_id);
-        SET_VAR_INT (4, _id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.url);
+        SET_VAR_INT (3, self.import_id);
+        SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -123,7 +121,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from bookmarks where id = ?");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

@@ -22,96 +22,96 @@
 @interface ConfigManager : NSObject
 
 // System settings
-@property (nonatomic, readonly, retain) NSString *currentWaypoint;
-@property (nonatomic, readonly) NSInteger currentPage;
-@property (nonatomic, readonly) NSInteger currentPageTab;
+@property (nonatomic, retain) NSString *currentWaypoint;
+@property (nonatomic) NSInteger currentPage;
+@property (nonatomic) NSInteger currentPageTab;
 
-@property (nonatomic, readonly) NSId currentTrack;
+@property (nonatomic) NSId currentTrack;
 
-@property (nonatomic, readonly) NSInteger lastImportSource;
-@property (nonatomic, readonly) NSInteger lastImportGroup;
-@property (nonatomic, readonly) NSInteger lastAddedGroup;
+@property (nonatomic) NSInteger lastImportSource;
+@property (nonatomic) NSInteger lastImportGroup;
+@property (nonatomic) NSInteger lastAddedGroup;
 
-@property (nonatomic, readonly) NSString *keyGMS;
-@property (nonatomic, readonly) NSString *keyMapbox;
+@property (nonatomic) NSString *keyGMS;
+@property (nonatomic) NSString *keyMapbox;
 
 // User settings
-@property (nonatomic, readonly) BOOL distanceMetric;
-@property (nonatomic, readonly) BOOL sendTweets;
+@property (nonatomic) BOOL distanceMetric;
+@property (nonatomic) BOOL sendTweets;
 
-@property (nonatomic, readonly) NSInteger mapExternal;
-@property (nonatomic, readonly) NSInteger mapBrand;
-@property (nonatomic, readonly) UIColor  *mapTrackColour;
-@property (nonatomic, readonly) UIColor  *mapDestinationColour;
-@property (nonatomic, readonly) NSInteger compassType;
-@property (nonatomic, readonly) NSInteger themeType;
+@property (nonatomic) NSInteger mapExternal;
+@property (nonatomic) NSInteger mapBrand;
+@property (nonatomic) UIColor  *mapTrackColour;
+@property (nonatomic) UIColor  *mapDestinationColour;
+@property (nonatomic) NSInteger compassType;
+@property (nonatomic) NSInteger themeType;
 
-@property (nonatomic, readonly) BOOL soundDirection;
-@property (nonatomic, readonly) BOOL soundDistance;
+@property (nonatomic) BOOL soundDirection;
+@property (nonatomic) BOOL soundDistance;
 
-@property (nonatomic, readonly) BOOL keeptrackAutoRotate;
-@property (nonatomic, readonly) float keeptrackTimeDeltaMin;
-@property (nonatomic, readonly) float keeptrackTimeDeltaMax;
-@property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMin;
-@property (nonatomic, readonly) NSInteger keeptrackDistanceDeltaMax;
-@property (nonatomic, readonly) NSInteger keeptrackPurgeAge;
-@property (nonatomic, readonly) NSInteger keeptrackSync;
+@property (nonatomic) BOOL keeptrackAutoRotate;
+@property (nonatomic) float keeptrackTimeDeltaMin;
+@property (nonatomic) float keeptrackTimeDeltaMax;
+@property (nonatomic) NSInteger keeptrackDistanceDeltaMin;
+@property (nonatomic) NSInteger keeptrackDistanceDeltaMax;
+@property (nonatomic) NSInteger keeptrackPurgeAge;
+@property (nonatomic) NSInteger keeptrackSync;
 
-@property (nonatomic, readonly) BOOL mapClustersEnable;
-@property (nonatomic, readonly) float mapClustersZoomLevel;
-@property (nonatomic, readonly) BOOL mapRotateToBearing;
+@property (nonatomic) BOOL mapClustersEnable;
+@property (nonatomic) float mapClustersZoomLevel;
+@property (nonatomic) BOOL mapRotateToBearing;
 
-@property (nonatomic, readonly, retain) UIFont *GCLabelFont;
-@property (nonatomic, readonly, retain) UIFont *GCSmallFont;
-@property (nonatomic, readonly, retain) UIFont *GCTextblockFont;
+@property (nonatomic, retain) UIFont *GCLabelFont;
+@property (nonatomic, retain) UIFont *GCSmallFont;
+@property (nonatomic, retain) UIFont *GCTextblockFont;
 
 @property (nonatomic) BOOL dynamicmapEnable;    // Not read-only
-@property (nonatomic, readonly) NSInteger dynamicmapWalkingSpeed;
-@property (nonatomic, readonly) NSInteger dynamicmapWalkingDistance;
-@property (nonatomic, readonly) NSInteger dynamicmapCyclingSpeed;
-@property (nonatomic, readonly) NSInteger dynamicmapCyclingDistance;
-@property (nonatomic, readonly) NSInteger dynamicmapDrivingSpeed;
-@property (nonatomic, readonly) NSInteger dynamicmapDrivingDistance;
+@property (nonatomic) NSInteger dynamicmapWalkingSpeed;
+@property (nonatomic) NSInteger dynamicmapWalkingDistance;
+@property (nonatomic) NSInteger dynamicmapCyclingSpeed;
+@property (nonatomic) NSInteger dynamicmapCyclingDistance;
+@property (nonatomic) NSInteger dynamicmapDrivingSpeed;
+@property (nonatomic) NSInteger dynamicmapDrivingDistance;
 
-@property (nonatomic, readonly) BOOL mapcacheEnable;
-@property (nonatomic, readonly) NSInteger mapcacheMaxAge;
-@property (nonatomic, readonly) NSInteger mapcacheMaxSize;
+@property (nonatomic) BOOL mapcacheEnable;
+@property (nonatomic) NSInteger mapcacheMaxAge;
+@property (nonatomic) NSInteger mapcacheMaxSize;
 
-@property (nonatomic, readonly) BOOL downloadImagesLogs;
-@property (nonatomic, readonly) BOOL downloadImagesWaypoints;
-@property (nonatomic, readonly) BOOL downloadImagesMobile;
-@property (nonatomic, readonly) BOOL downloadQueriesMobile;
-@property (nonatomic, readonly) NSInteger downloadTimeoutSimple;
-@property (nonatomic, readonly) NSInteger downloadTimeoutQuery;
+@property (nonatomic) BOOL downloadImagesLogs;
+@property (nonatomic) BOOL downloadImagesWaypoints;
+@property (nonatomic) BOOL downloadImagesMobile;
+@property (nonatomic) BOOL downloadQueriesMobile;
+@property (nonatomic) NSInteger downloadTimeoutSimple;
+@property (nonatomic) NSInteger downloadTimeoutQuery;
 
-@property (nonatomic, readonly) NSInteger mapSearchMaximumNumberGCA;
-@property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGS;
-@property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceOKAPI;
-@property (nonatomic, readonly) NSInteger mapSearchMaximumDistanceGCA;
+@property (nonatomic) NSInteger mapSearchMaximumNumberGCA;
+@property (nonatomic) NSInteger mapSearchMaximumDistanceGS;
+@property (nonatomic) NSInteger mapSearchMaximumDistanceOKAPI;
+@property (nonatomic) NSInteger mapSearchMaximumDistanceGCA;
 
-@property (nonatomic, readonly) BOOL markasFoundDNFClearsTarget;
-@property (nonatomic, readonly) BOOL markasFoundMarksAllWaypoints;
-@property (nonatomic, readonly) BOOL loggingRemovesMarkedAsFoundDNF;
+@property (nonatomic) BOOL markasFoundDNFClearsTarget;
+@property (nonatomic) BOOL markasFoundMarksAllWaypoints;
+@property (nonatomic) BOOL loggingRemovesMarkedAsFoundDNF;
 
-@property (nonatomic, readonly) BOOL compassAlwaysInPortraitMode;
-@property (nonatomic, readonly) BOOL showCountryAsAbbrevation;
-@property (nonatomic, readonly) BOOL showStateAsAbbrevation;
-@property (nonatomic, readonly) BOOL showStateAsAbbrevationIfLocaleExists;
+@property (nonatomic) BOOL compassAlwaysInPortraitMode;
+@property (nonatomic) BOOL showCountryAsAbbrevation;
+@property (nonatomic) BOOL showStateAsAbbrevation;
+@property (nonatomic) BOOL showStateAsAbbrevationIfLocaleExists;
 
-@property (nonatomic, readonly) NSInteger waypointListSortBy;
-@property (nonatomic, readonly) BOOL refreshWaypointAfterLog;
+@property (nonatomic) NSInteger waypointListSortBy;
+@property (nonatomic) BOOL refreshWaypointAfterLog;
 
-@property (nonatomic, readonly) BOOL accountsSaveAuthenticationName;
-@property (nonatomic, readonly) BOOL accountsSaveAuthenticationPassword;
+@property (nonatomic) BOOL accountsSaveAuthenticationName;
+@property (nonatomic) BOOL accountsSaveAuthenticationPassword;
 
-@property (nonatomic, readonly) BOOL gpsAdjustmentEnable;
-@property (nonatomic, readonly) NSInteger gpsAdjustmentLatitude;
-@property (nonatomic, readonly) NSInteger gpsAdjustmentLongitude;
+@property (nonatomic) BOOL gpsAdjustmentEnable;
+@property (nonatomic) NSInteger gpsAdjustmentLatitude;
+@property (nonatomic) NSInteger gpsAdjustmentLongitude;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
-@property (nonatomic, readonly) NSInteger orientationsAllowed;
+@property (nonatomic) NSInteger orientationsAllowed;
 
 - (void)keyGMSUpdate:(NSString *)value;
 - (void)keyMapboxUpdate:(NSString *)value;

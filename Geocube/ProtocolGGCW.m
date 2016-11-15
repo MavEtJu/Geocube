@@ -30,11 +30,11 @@
     NSString *uid;
 }
 
+@property (nonatomic, retain, readwrite) NSString *callback;
+
 @end
 
 @implementation ProtocolGGCW
-
-@synthesize delegate, callback;
 
 enum {
     GGCW_NONE = 0,
@@ -51,7 +51,7 @@ enum {
     prefixTiles = @"https://tiles%02d.geocaching.com%@";
 
     remoteAPI = _remoteAPI;
-    callback = remoteAPI.account.gca_callback_url;
+    self.callback = remoteAPI.account.gca_callback_url;
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 
     if (remoteAPI.account.gca_cookie_value != nil) {
@@ -123,8 +123,8 @@ enum {
 
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
-    if (delegate != nil)
-        [delegate GCAuthSuccessful:cookie];
+    if (self.delegate != nil)
+        [self.delegate GCAuthSuccessful:cookie];
 }
 
 // ------------------------------------------------

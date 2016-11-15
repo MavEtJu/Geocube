@@ -25,7 +25,6 @@
 @property (nonatomic, retain) UIImageView *imageSize;
 @property (nonatomic, retain) GCLabel *labelLatLon;
 @property (nonatomic, retain) GCLabel *labelBearDis;
-@property (nonatomic, retain) GCLabel *labelFavourites;
 @property (nonatomic, retain) GCLabel *labelLocation;
 @property (nonatomic, retain) GCLabel *labelRatingD;
 @property (nonatomic, retain) GCLabel *labelRatingT;

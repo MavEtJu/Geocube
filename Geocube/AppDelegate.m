@@ -27,9 +27,6 @@
 
 @implementation AppDelegate
 
-@synthesize tabBars, currentTabBar;
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _AppDelegate = self;
@@ -92,13 +89,13 @@
     UINavigationController *nav;
     UIViewController *vc;
 
-    tabBars = [[NSMutableArray alloc] initWithCapacity:RC_MAX];
+    self.tabBars = [[NSMutableArray alloc] initWithCapacity:RC_MAX];
 
 #define TABBARCONTROLLER(index, __controllers__) { \
     MHTabBarController *tbc = [[MHTabBarController alloc] init]; \
     tbc.delegate = self; \
     tbc.viewControllers = __controllers__; \
-    [tabBars addObject:tbc]; \
+    [self.tabBars addObject:tbc]; \
     }
 
     for (NSInteger i = 0; i < RC_MAX; i++) {
@@ -416,10 +413,10 @@
     }
 
     // Switch back to the last page the user was on.
-    if (configManager.currentPage >= [tabBars count])
+    if (configManager.currentPage >= [self.tabBars count])
         [configManager currentPageUpdate:0];
     [self switchController:configManager.currentPage];
-    MHTabBarController *currentTab = [tabBars objectAtIndex:configManager.currentPage];
+    MHTabBarController *currentTab = [self.tabBars objectAtIndex:configManager.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
     NSInteger cpt = configManager.currentPageTab;
@@ -441,7 +438,7 @@
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
     if (db == nil) {
         [self switchController:RC_NOTICES];
-        currentTab = [tabBars objectAtIndex:RC_NOTICES];
+        currentTab = [self.tabBars objectAtIndex:RC_NOTICES];
         cpt = VC_NOTICES_NOTICES;
         [currentTab setSelectedIndex:cpt animated:YES];
         [NoticesViewController AccountsNeedToBeInitialized];
@@ -456,14 +453,14 @@
 - (void)switchController:(NSInteger)idx
 {
     NSLog(@"AppDelegate: Switching to TB %ld", (long)idx);
-    currentTabBar = idx;
-    self.window.rootViewController = [tabBars objectAtIndex:idx];
+    self.currentTabBar = idx;
+    self.window.rootViewController = [self.tabBars objectAtIndex:idx];
     [self.window makeKeyAndVisible];
 }
 
 - (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [tabBars enumerateObjectsUsingBlock:^(MHTabBarController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBars enumerateObjectsUsingBlock:^(MHTabBarController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
         [vc resizeController:size coordinator:coordinator];
     }];
 }

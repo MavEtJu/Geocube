@@ -25,77 +25,75 @@
 
 @implementation dbLog
 
-@synthesize _id, gc_id, waypoint, waypoint_id, logstring_id, logstring_string, logstring, datetime, datetime_epoch, logger_gsid, logger_id, logger, logger_str, log, cellHeight, needstobelogged;
-
-- (instancetype)init:(NSInteger)_gc_id
+- (instancetype)init:(NSInteger)gc_id
 {
     self = [super init];
-    gc_id = _gc_id;
-    needstobelogged = NO;
+    self.gc_id = gc_id;
+    self.needstobelogged = NO;
     return self;
 }
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)_gc_id waypoint_id:(NSId)_wpid logstring_id:(NSId)_lsid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)_needstobelogged
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSString *)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged
 {
     self = [super init];
-    _id = __id;
-    gc_id = _gc_id;
-    waypoint_id = _wpid;
-    logstring_id = _lsid;
-    datetime = _datetime;
-    logger_id = _logger_id;
-    log = _log;
-    needstobelogged= _needstobelogged;
+    self._id = _id;
+    self.gc_id = gc_id;
+    self.waypoint_id = wpid;
+    self.logstring_id = lsid;
+    self.datetime = datetime;
+    self.logger_id = logger_id;
+    self.log = log;
+    self.needstobelogged= needstobelogged;
 
     [self finish];
 
-    cellHeight = 0;
+    self.cellHeight = 0;
 
     return self;
 }
 
 - (void)finish
 {
-    waypoint = [dbWaypoint dbGet:waypoint_id]; // This can be nil when an import is happening
-    datetime_epoch = [MyTools secondsSinceEpochFromISO8601:datetime];
+    self.waypoint = [dbWaypoint dbGet:self.waypoint_id]; // This can be nil when an import is happening
+    self.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:self.datetime];
 
-    if (logstring_id == 0) {
-        logstring = [dbc LogString_get_bytype:waypoint.account logtype:waypoint.logstring_logtype type:logstring_string];
-        logstring_id = logstring._id;
+    if (self.logstring_id == 0) {
+        self.logstring = [dbc LogString_get_bytype:self.waypoint.account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
+        self.logstring_id = self.logstring._id;
     } else {
-        logstring = [dbc LogString_get:logstring_id];
-        logstring_string = logstring.text;
+        self.logstring = [dbc LogString_get:self.logstring_id];
+        self.logstring_string = self.logstring.text;
     }
 
-    if (logger == nil) {
-        if (logger_id != 0) {
-            logger = [dbName dbGet:logger_id];
-            logger_str = logger.name;
+    if (self.logger == nil) {
+        if (self.logger_id != 0) {
+            self.logger = [dbName dbGet:self.logger_id];
+            self.logger_str = self.logger.name;
         }
-        if (logger_str != nil) {
-            if (logger_gsid == nil)
-                logger = [dbName dbGetByName:logger_str account:waypoint.account];
+        if (self.logger_str != nil) {
+            if (self.logger_gsid == nil)
+                self.logger = [dbName dbGetByName:self.logger_str account:self.waypoint.account];
             else
-                logger = [dbName dbGetByNameCode:logger_str code:logger_gsid account:waypoint.account];
-            logger_id = logger._id;
+                self.logger = [dbName dbGetByNameCode:self.logger_str code:self.logger_gsid account:self.waypoint.account];
+            self.logger_id = self.logger._id;
         }
-        if (logger_gsid == nil)
-            logger_gsid = logger.code;
+        if (self.logger_gsid == nil)
+            self.logger_gsid = self.logger.code;
     }
 
-    if (logstring_string == nil) {
-        if (logstring != nil) {
-            logstring_string = logstring.text;
-            logstring_id = logstring._id;
-        } else if (logstring_id != 0) {
-            logstring = [dbc LogString_get:logstring_id];
-            logstring_string = logstring.text;
+    if (self.logstring_string == nil) {
+        if (self.logstring != nil) {
+            self.logstring_string = self.logstring.text;
+            self.logstring_id = self.logstring._id;
+        } else if (self.logstring_id != 0) {
+            self.logstring = [dbc LogString_get:self.logstring_id];
+            self.logstring_string = self.logstring.text;
         }
     }
-    if (logstring == nil) {
-        if (logstring_id != 0) {
-            logstring = [dbc LogString_get:logstring_id];
-            logstring_string = logstring.text;
+    if (self.logstring == nil) {
+        if (self.logstring_id != 0) {
+            self.logstring = [dbc LogString_get:self.logstring_id];
+            self.logstring_string = self.logstring.text;
         }
     }
 
@@ -173,15 +171,15 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
 
-        SET_VAR_INT (1, logstring_id);
-        SET_VAR_INT (2, waypoint_id);
-        SET_VAR_TEXT(3, datetime);
-        SET_VAR_INT (4, datetime_epoch);
-        SET_VAR_INT (5, logger_id);
-        SET_VAR_TEXT(6, log);
-        SET_VAR_INT (7, gc_id);
-        SET_VAR_INT (8, _id);
-        SET_VAR_BOOL(9, needstobelogged);
+        SET_VAR_INT (1, self.logstring_id);
+        SET_VAR_INT (2, self.waypoint_id);
+        SET_VAR_TEXT(3, self.datetime);
+        SET_VAR_INT (4, self.datetime_epoch);
+        SET_VAR_INT (5, self.logger_id);
+        SET_VAR_TEXT(6, self.log);
+        SET_VAR_INT (7, self.gc_id);
+        SET_VAR_INT (8, self._id);
+        SET_VAR_BOOL(9, self.needstobelogged);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -194,7 +192,7 @@
         DB_PREPARE(@"update logs set waypoint_id = ? where id = ?");
 
         SET_VAR_INT(1, c_id);
-        SET_VAR_INT(2, _id);
+        SET_VAR_INT(2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -206,8 +204,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update logs set log = ? where id = ?");
 
-        SET_VAR_TEXT(1, log);
-        SET_VAR_INT (2, _id);
+        SET_VAR_TEXT(1, self.log);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

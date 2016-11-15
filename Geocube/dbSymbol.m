@@ -25,13 +25,11 @@
 
 @implementation dbSymbol
 
-@synthesize _id, symbol;
-
-- (instancetype)init:(NSId)__id symbol:(NSString *)_symbol
+- (instancetype)init:(NSId)_id symbol:(NSString *)symbol
 {
     self = [super init];
-    _id = __id;
-    symbol = _symbol;
+    self._id = _id;
+    self.symbol = symbol;
     [self finish];
     return self;
 }
@@ -80,7 +78,7 @@
 
 - (NSId)dbCreate
 {
-    return [dbSymbol dbCreate:symbol];
+    return [dbSymbol dbCreate:self.symbol];
 }
 
 + (NSId)dbCreate:(NSString *)symbol

@@ -26,8 +26,6 @@
 
 @implementation GCTableViewCellKeyValue
 
-@synthesize keyLabel, valueLabel;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -43,15 +41,15 @@
     CGRect rectValue = CGRectMake(frame.origin.x + 100, frame.origin.y, frame.size.width - 10 * 10, frame.size.height);
 
     // Name
-    keyLabel = [[GCLabel alloc] initWithFrame:rectKey];
-    keyLabel.font = font;
-    keyLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:keyLabel];
+    self.keyLabel = [[GCLabel alloc] initWithFrame:rectKey];
+    self.keyLabel.font = font;
+    self.keyLabel.textAlignment = NSTextAlignmentLeft;
+    [self.contentView addSubview:self.keyLabel];
 
-    valueLabel = [[GCLabel alloc] initWithFrame:rectValue];
-    valueLabel.font = font;
-    valueLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:valueLabel];
+    self.valueLabel = [[GCLabel alloc] initWithFrame:rectValue];
+    self.valueLabel.font = font;
+    self.valueLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:self.valueLabel];
 
     [self changeTheme];
 
@@ -60,8 +58,8 @@
 
 - (void)changeTheme
 {
-    [keyLabel changeTheme];
-    [valueLabel changeTheme];
+    [self.keyLabel changeTheme];
+    [self.valueLabel changeTheme];
 
     [super changeTheme];
 }

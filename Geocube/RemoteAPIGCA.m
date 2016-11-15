@@ -25,8 +25,6 @@
 
 @implementation RemoteAPIGCA
 
-@synthesize account;
-
 #define GCA_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
@@ -153,7 +151,7 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if ([account canDoRemoteStuff] == NO) {
+    if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[GCA] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
@@ -168,7 +166,7 @@
     [iii setDescription:@"Geocaching Australia JSON data (queued)"];
     [iii showLogs:NO];
     [iii showTrackables:NO];
-    [callback remoteAPI_objectReadyToImport:iii object:wps group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:wps group:group account:self.account];
     NSMutableArray *logs = [NSMutableArray arrayWithCapacity:50];
     NSArray *ws = [wps objectForKey:@"geocaches"];
 
@@ -197,7 +195,7 @@
     [iii setDescription:@"Geocaching Australia GPX data (queued)"];
     [iii showWaypoints:NO];
     [iii showTrackables:NO];
-    [callback remoteAPI_objectReadyToImport:iii object:gcajson group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:gcajson group:group account:self.account];
 
     *retObject = gcajson;
     return REMOTEAPI_OK;
@@ -244,7 +242,7 @@
     GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:json group:group account:self.account];
 
     *retObj = json;
     return REMOTEAPI_OK;
@@ -261,7 +259,7 @@
         return REMOTEAPI_APIFAILED;
 
     InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:self.account];
 
     *retObj = gpx;
     return REMOTEAPI_OK;

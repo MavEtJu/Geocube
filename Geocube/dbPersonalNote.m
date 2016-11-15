@@ -25,21 +25,19 @@
 
 @implementation dbPersonalNote
 
-@synthesize _id, note, wp_name, cellHeight;
-
 - (NSId)dbCreate
 {
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into personal_notes(wp_name, note) values(?, ?)");
 
-        SET_VAR_TEXT(1, wp_name);
-        SET_VAR_TEXT(2, note);
+        SET_VAR_TEXT(1, self.wp_name);
+        SET_VAR_TEXT(2, self.note);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id)
+        DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -47,9 +45,9 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update personal_notes set wp_name = ?, note = ? where id = ?");
 
-        SET_VAR_TEXT(1, wp_name);
-        SET_VAR_TEXT(2, note);
-        SET_VAR_INT (3, _id);
+        SET_VAR_TEXT(1, self.wp_name);
+        SET_VAR_TEXT(2, self.note);
+        SET_VAR_INT (3, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -123,7 +121,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"delete from personal_notes where id = ?");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

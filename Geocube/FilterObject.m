@@ -25,15 +25,13 @@
 
 @implementation FilterObject
 
-@synthesize name, expanded, cellHeight, tvc;
-
-- (instancetype)init:(NSString *)_name
+- (instancetype)init:(NSString *)name
 {
     self = [super init];
 
-    name = _name;
-    expanded = NO;
-    cellHeight = 0;
+    self.name = name;
+    self.expanded = NO;
+    self.cellHeight = 0;
 
     return self;
 }

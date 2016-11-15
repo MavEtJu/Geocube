@@ -21,8 +21,6 @@
 
 @interface ImportTemplate : NSObject
 {
-    NSInteger run_options;
-
     NSInteger newWaypointsCount;
     NSInteger totalWaypointsCount;
 

@@ -25,12 +25,4 @@
 
 @implementation ThemeTemplate
 
-@synthesize textColor, backgroundColor;
-@synthesize labelTextColor, labelTextColorDisabled, labelBackgroundColor;
-@synthesize viewBackgroundColor, viewControllerBackgroundColour;
-@synthesize tableViewBackgroundColor;
-@synthesize tableViewCellBackgroundColor;
-@synthesize svProgressHUDStyle;
-@synthesize switchTintColor, switchOnTintColor, switchThumbTintColor;
-
 @end

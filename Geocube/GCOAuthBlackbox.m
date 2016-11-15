@@ -27,7 +27,6 @@
     NSString *consumerSecret;
     NSString *signatureMethod;
     NSString *version;
-    NSString *callback;
     NSString *signature;
     NSString *tokenSecret;
     NSString *verifier;
@@ -45,11 +44,12 @@
     NSString *server;
 }
 
+@property (nonatomic, retain, readwrite) NSString *token;
+@property (nonatomic, retain, readwrite) NSString *callback;
+
 @end
 
 @implementation GCOAuthBlackbox
-
-@synthesize token, delegate, callback;
 
 - (instancetype)init
 {
@@ -61,10 +61,10 @@
     timestamp = nonce;
     signatureMethod = @"HMAC-SHA1";
     version = @"1.0";
-    callback = @"http://geocube/authentication";
+    self.callback = @"http://geocube/authentication";
     signature = nil;
     body = nil;
-    token = nil;
+    self.token = nil;
     tokenSecret = nil;
     verifier = nil;
 
@@ -72,7 +72,7 @@
     URLAuthorize = nil;
     URLAccessToken = nil;
 
-    delegate = nil;
+    self.delegate = nil;
     server = nil;
 
     return self;
@@ -113,12 +113,12 @@
 
 - (void)URLCallback:(NSString *)s
 {
-    callback = s;
+    self.callback = s;
 }
 
 - (void)token:(NSString *)s
 {
-    token = s;
+    self.token = s;
 }
 
 - (void)tokenSecret:(NSString *)s
@@ -162,10 +162,10 @@
     [oauth appendFormat:@", oauth_timestamp=\"%@\"", timestamp];
     [oauth appendFormat:@", oauth_signature_method=\"%@\"", signatureMethod];
     [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlEncode:version]];
-    if (callback != nil)
-        [oauth appendFormat:@", oauth_callback=\"%@\"", [MyTools urlEncode:callback]];
-    if (token != nil)
-        [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlEncode:token]];
+    if (self.callback != nil)
+        [oauth appendFormat:@", oauth_callback=\"%@\"", [MyTools urlEncode:self.callback]];
+    if (self.token != nil)
+        [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlEncode:self.token]];
     if (verifier != nil)
         [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlEncode:verifier]];
 
@@ -181,7 +181,7 @@
 
     GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:AccessTokenURL];
 
-    callback = nil;
+    self.callback = nil;
     NSString *oauth = [self oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
@@ -196,10 +196,10 @@
 
     if (error != nil || response.statusCode != 200) {
         NSLog(@"%@ - token is nil after obtainAccessToken, not further authenticating", [self class]);
-        if (delegate != nil)
-            [delegate oauthtripped:@"Unable to obtain access token."  error:error];
+        if (self.delegate != nil)
+            [self.delegate oauthtripped:@"Unable to obtain access token."  error:error];
         tokenSecret = nil;
-        token = nil;
+        self.token = nil;
         return;
     }
 
@@ -213,12 +213,12 @@
         NSString *value = [ss objectAtIndex:1];
 
         if ([key isEqualToString:@"oauth_token"] == YES)
-            token = [MyTools urlDecode:value];
+            self.token = [MyTools urlDecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
             tokenSecret = [MyTools urlDecode:value];
     }];
-    if (delegate != nil)
-        [delegate oauthdanced:token secret:tokenSecret];
+    if (self.delegate != nil)
+        [self.delegate oauthdanced:self.token secret:tokenSecret];
 }
 
 - (void)obtainRequestToken
@@ -240,10 +240,10 @@
 
     if (error != nil || response.statusCode != 200) {
         NSLog(@"%@ - Unable to obtain request token, aborting", [self class]);
-        token = nil;
+        self.token = nil;
         tokenSecret = nil;
-        if (delegate != nil)
-            [delegate oauthtripped:@"Unable to obtain request token, aborting" error:error];
+        if (self.delegate != nil)
+            [self.delegate oauthtripped:@"Unable to obtain request token, aborting" error:error];
         return;
     }
 
@@ -258,12 +258,12 @@
         NSString *value = [ss objectAtIndex:1];
 
         if ([key isEqualToString:@"oauth_token"] == YES)
-            token = [MyTools urlDecode:value];
+            self.token = [MyTools urlDecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
             tokenSecret = [MyTools urlDecode:value];
     }];
 
-    NSLog(@"token: %@", token);
+    NSLog(@"token: %@", self.token);
     NSLog(@"token_secret: %@", tokenSecret);
 }
 
@@ -280,7 +280,7 @@
     NSString *query = [request.URL query];
     url = [url substringToIndex:(url.length - [query length] - 1)];
 
-    if ([[url substringToIndex:[callback length]] isEqualToString:callback] == YES) {
+    if ([[url substringToIndex:[self.callback length]] isEqualToString:self.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
         [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
             NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
@@ -288,12 +288,12 @@
             NSString *value = [ss objectAtIndex:1];
 
             if ([key isEqualToString:@"oauth_token"] == YES)
-                token = [MyTools urlDecode:value];
+                self.token = [MyTools urlDecode:value];
             if ([key isEqualToString:@"oauth_verifier"] == YES)
                 verifier = [MyTools urlDecode:value];
         }];
 
-        NSLog(@"token: %@", token);
+        NSLog(@"token: %@", self.token);
         NSLog(@"verifier: %@", verifier);
 
         [self obtainAccessToken];
@@ -348,12 +348,12 @@
     [paramDict setValue:timestamp forKey:@"oauth_timestamp"];
     [paramDict setValue:version forKey:@"oauth_version"];
 
-    if (callback != nil)
-        [paramDict setValue:callback forKey:@"oauth_callback"];
+    if (self.callback != nil)
+        [paramDict setValue:self.callback forKey:@"oauth_callback"];
     if (verifier != nil)
         [paramDict setValue:verifier forKey:@"oauth_verifier"];
-    if (token != nil)
-        [paramDict setValue:token forKey:@"oauth_token"];
+    if (self.token != nil)
+        [paramDict setValue:self.token forKey:@"oauth_token"];
 
     NSArray *order = [[paramDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
         return [a compare:b];

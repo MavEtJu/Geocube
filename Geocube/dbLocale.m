@@ -25,8 +25,6 @@
 
 @implementation dbLocale
 
-@synthesize _id, name;
-
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
@@ -101,8 +99,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update locales set name = ? where id = ?");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_INT (2, _id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_INT (2, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

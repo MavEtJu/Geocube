@@ -61,7 +61,7 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
-    mapvc.view = mapView;
+    self.mapvc.view = mapView;
 
     /* Add the scale ruler */
     mapScaleView = [LXMapScaleView mapScaleForAMSMapView:mapView];
@@ -84,7 +84,7 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:mapView];
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
 
-    [mapvc addNewWaypoint:touchMapCoordinate];
+    [self.mapvc addNewWaypoint:touchMapCoordinate];
 }
 
 - (void)removeMap
@@ -109,9 +109,9 @@
 {
     NSLog(@"%@/placeMarkers", [self class]);
     // Creates a marker in the center of the map.
-    markers = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
-    circles = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
-    [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    markers = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
+    circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         // Place a single pin
         GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
         CLLocationCoordinate2D coord = wp.coordinates;
@@ -244,8 +244,8 @@
 {
     if (yesno == YES) {
         showBoundary = YES;
-        circles = [NSMutableArray arrayWithCapacity:[mapvc.waypointsArray count]];
-        [mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
+        [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
                 GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
@@ -515,7 +515,7 @@
     BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
 
     if (mapChangedFromUserInteraction)
-        [mapvc userInteraction];
+        [self.mapvc userInteraction];
 
     // Update the ruler
     [mapScaleView update];

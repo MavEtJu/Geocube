@@ -25,15 +25,13 @@
 
 @implementation ImportTemplate
 
-@synthesize run_options;
-
 - (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
 {
     self = [super init];
 
     group = _group;
     account = _account;
-    run_options = RUN_OPTION_NONE;
+    self.run_options = RUN_OPTION_NONE;
 
     newWaypointsCount = 0;
     totalWaypointsCount = 0;

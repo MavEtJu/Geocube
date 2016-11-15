@@ -31,8 +31,6 @@
 
 @implementation LogTableViewCell
 
-@synthesize logtypeImage, datetimeLabel, loggerLabel, logLabel, log;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -40,26 +38,26 @@
     [self calculateRects];
 
     // Image
-    logtypeImage = [[UIImageView alloc] initWithFrame:rectLogtype];
-    logtypeImage.image = [imageLibrary get:ImageTypes_TraditionalCache];
+    self.logtypeImage = [[UIImageView alloc] initWithFrame:rectLogtype];
+    self.logtypeImage.image = [imageLibrary get:ImageTypes_TraditionalCache];
     //icon.backgroundColor = [UIColor yellowColor];
-    [self.contentView addSubview:logtypeImage];
+    [self.contentView addSubview:self.logtypeImage];
 
     // Date
-    datetimeLabel = [[GCSmallLabel alloc] initWithFrame:rectDatetime];
-    [datetimeLabel bold:YES];
-    [self.contentView addSubview:datetimeLabel];
+    self.datetimeLabel = [[GCSmallLabel alloc] initWithFrame:rectDatetime];
+    [self.datetimeLabel bold:YES];
+    [self.contentView addSubview:self.datetimeLabel];
 
     // Logger
-    loggerLabel = [[GCSmallLabel alloc] initWithFrame:rectLogger];
-    [loggerLabel bold:YES];
-    loggerLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:loggerLabel];
+    self.loggerLabel = [[GCSmallLabel alloc] initWithFrame:rectLogger];
+    [self.loggerLabel bold:YES];
+    self.loggerLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:self.loggerLabel];
 
     // Log
-    logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
-    logLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.contentView addSubview:logLabel];
+    self.logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
+    self.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.contentView addSubview:self.logLabel];
 
     [self changeTheme];
 
@@ -93,32 +91,32 @@
 
 - (void)setLogString:(NSString *)logString
 {
-    logLabel.frame = rectLog;
-    logLabel.text = logString;
-    [logLabel sizeToFit];
+    self.logLabel.frame = rectLog;
+    self.logLabel.text = logString;
+    [self.logLabel sizeToFit];
 }
 
 - (void)calculateCellHeight
 {
-    log.cellHeight = logLabel.frame.size.height + loggerLabel.frame.size.height + 10;
+    self.log.cellHeight = self.logLabel.frame.size.height + self.loggerLabel.frame.size.height + 10;
 }
 
 - (void)viewWillTransitionToSize
 {
     [self calculateRects];
-    logtypeImage.frame = rectLogtype;
-    datetimeLabel.frame = rectDatetime;
-    loggerLabel.frame = rectLogger;
-    logLabel.frame = rectLog;
-    [logLabel sizeToFit];
+    self.logtypeImage.frame = rectLogtype;
+    self.datetimeLabel.frame = rectDatetime;
+    self.loggerLabel.frame = rectLogger;
+    self.logLabel.frame = rectLog;
+    [self.logLabel sizeToFit];
     [self calculateCellHeight];
 }
 
 - (void)changeTheme
 {
-    [datetimeLabel changeTheme];
-    [loggerLabel changeTheme];
-    [logLabel changeTheme];
+    [self.datetimeLabel changeTheme];
+    [self.loggerLabel changeTheme];
+    [self.logLabel changeTheme];
 
     [super changeTheme];
 }

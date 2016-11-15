@@ -25,16 +25,14 @@
 
 @implementation dbName
 
-@synthesize _id, name, code, account_id, account;
-
-- (instancetype)init:(NSId)__id name:(NSString *)_name code:(NSString *)_code account:(dbAccount *)_account
+- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
     self = [super init];
 
-    _id = __id;
-    name = _name;
-    code = _code;
-    account = _account;
+    self._id = _id;
+    self.name = name;
+    self.code = code;
+    self.account = account;
 
     [self finish];
     return self;
@@ -42,10 +40,10 @@
 
 - (void)finish
 {
-    if (account == nil)
-        account = [dbc Account_get:account_id];
-    if (account_id == 0)
-        account_id = account._id;
+    if (self.account == nil)
+        self.account = [dbc Account_get:self.account_id];
+    if (self.account_id == 0)
+        self.account_id = self.account._id;
     [super finish];
 }
 
@@ -187,8 +185,8 @@
 
 - (NSId)dbCreate
 {
-    NSId i = [dbName dbCreate:name code:code account:account];
-    _id = i;
+    NSId i = [dbName dbCreate:self.name code:self.code account:self.account];
+    self._id = i;
     return i;
 }
 

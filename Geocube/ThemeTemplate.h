@@ -20,45 +20,25 @@
  */
 
 @interface ThemeTemplate : NSObject
-{
-    UIColor *backgroundColor;
-    UIColor *textColor;
 
-    UIColor *labelTextColor;
-    UIColor *labelTextColorDisabled;
-    UIColor *labelBackgroundColor;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) UIColor *textColor;
 
-    UIColor *viewBackgroundColor;
-    UIColor *viewControllerBackgroundColour;
+@property (nonatomic, retain) UIColor *labelBackgroundColor;
+@property (nonatomic, retain) UIColor *labelTextColor;
+@property (nonatomic, retain) UIColor *labelTextColorDisabled;
 
-    UIColor *tableViewBackgroundColor;
-    UIColor *tableViewCellBackgroundColor;
+@property (nonatomic, retain) UIColor *viewBackgroundColor;
+@property (nonatomic, retain) UIColor *viewControllerBackgroundColour;
 
-    SVProgressHUDStyle svProgressHUDStyle;
+@property (nonatomic, retain) UIColor *tableViewBackgroundColor;
 
-    UIColor *switchTintColor;
-    UIColor *switchOnTintColor;
-    UIColor *switchThumbTintColor;
-}
+@property (nonatomic, retain) UIColor *tableViewCellBackgroundColor;
 
-@property (readonly, nonatomic, retain) UIColor *backgroundColor;
-@property (readonly, nonatomic, retain) UIColor *textColor;
+@property (nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
 
-@property (readonly, nonatomic, retain) UIColor *labelBackgroundColor;
-@property (readonly, nonatomic, retain) UIColor *labelTextColor;
-@property (readonly, nonatomic, retain) UIColor *labelTextColorDisabled;
-
-@property (readonly, nonatomic, retain) UIColor *viewBackgroundColor;
-@property (readonly, nonatomic, retain) UIColor *viewControllerBackgroundColour;
-
-@property (readonly, nonatomic, retain) UIColor *tableViewBackgroundColor;
-
-@property (readonly, nonatomic, retain) UIColor *tableViewCellBackgroundColor;
-
-@property (readonly, nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
-
-@property (readonly, nonatomic, retain) UIColor *switchTintColor;
-@property (readonly, nonatomic, retain) UIColor *switchOnTintColor;
-@property (readonly, nonatomic, retain) UIColor *switchThumbTintColor;
+@property (nonatomic, retain) UIColor *switchTintColor;
+@property (nonatomic, retain) UIColor *switchOnTintColor;
+@property (nonatomic, retain) UIColor *switchThumbTintColor;
 
 @end

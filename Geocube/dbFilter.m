@@ -25,14 +25,12 @@
 
 @implementation dbFilter
 
-@synthesize _id, key, value;
-
-- (instancetype)init:(NSId)__id key:(NSString *)_key value:(NSString *)_value
+- (instancetype)init:(NSId)_id key:(NSString *)key value:(NSString *)value
 {
     self = [super init];
-    _id = __id;
-    key = _key;
-    value = _value;
+    self._id = _id;
+    self.key = _key;
+    self.value = _value;
     [self finish];
     return self;
 }
@@ -62,8 +60,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update filters set value = ? where key = ?");
 
-        SET_VAR_TEXT(1, value);
-        SET_VAR_TEXT(2, key);
+        SET_VAR_TEXT(1, self.value);
+        SET_VAR_TEXT(2, self.key);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -77,8 +75,8 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into filters(key, value) values(?, ?)");
 
-        SET_VAR_TEXT(1, key);
-        SET_VAR_TEXT(2, value);
+        SET_VAR_TEXT(1, self.key);
+        SET_VAR_TEXT(2, self.value);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id)

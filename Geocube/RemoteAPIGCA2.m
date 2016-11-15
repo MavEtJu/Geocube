@@ -25,8 +25,6 @@
 
 @implementation RemoteAPIGCA2
 
-@synthesize account;
-
 #define GCA2_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
@@ -137,7 +135,7 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if ([account canDoRemoteStuff] == NO) {
+    if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
@@ -165,7 +163,7 @@
     [d setObject:wps forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:account];
+    ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:self.account];
     [imp parseBefore];
     [imp parseDictionary:d2];
     [imp parseAfter];
@@ -176,7 +174,7 @@
 
 - (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
-    if ([account canDoRemoteStuff] == NO) {
+    if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
@@ -195,7 +193,7 @@
     [d setObject:wps forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:account];
+    ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:self.account];
     [imp parseBefore];
     [imp parseDictionary:d2];
     [imp parseAfter];
@@ -266,7 +264,7 @@
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
     InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:d2 group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:d2 group:group account:self.account];
 
     *retObj = json;
     return REMOTEAPI_OK;
@@ -282,7 +280,7 @@
         return REMOTEAPI_APIFAILED;
 
     InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:account];
+    [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:self.account];
 
     *retObj = gpx;
     return REMOTEAPI_OK;

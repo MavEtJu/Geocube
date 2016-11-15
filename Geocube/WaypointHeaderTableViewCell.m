@@ -40,8 +40,6 @@
 
 @implementation WaypointHeaderTableViewCell
 
-@synthesize imageIcon, labelLatLon, labelBearDis, imageSize, labelFavourites, labelLocation, labelRatingT, labelRatingD;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -58,24 +56,24 @@
      */
 #define BORDER 5
 #define BORDER 5
-#define ICON_WIDTH imageIcon.image.size.width
-#define ICON_HEIGHT imageIcon.image.size.height
+#define ICON_WIDTH self.imageIcon.image.size.width
+#define ICON_HEIGHT self.imageIcon.image.size.height
 #define FAVOURITES_WIDTH_IMAGE imageFavourites.image.size.width
 #define FAVOURITES_HEIGHT_IMAGE imageFavourites.image.size.height
 #define FAVOURITES_WIDTH_LABEL imageFavourites.image.size.width
 #define FAVOURITES_HEIGHT_LABEL labelFavourites.font.lineHeight
-#define RATINGD_HEIGHT labelRatingD.font.lineHeight
-#define RATINGT_HEIGHT labelRatingT.font.lineHeight
-#define LATLON_HEIGHT labelLatLon.font.lineHeight
-#define BEARDIS_HEIGHT labelBearDis.font.lineHeight
-#define LOCATION_HEIGHT labelLocation.font.lineHeight
-#define SIZE_HEIGHT imageSize.image.size.height
-#define SIZE_WIDTH imageSize.image.size.width
+#define RATINGD_HEIGHT self.labelRatingD.font.lineHeight
+#define RATINGT_HEIGHT self.labelRatingT.font.lineHeight
+#define LATLON_HEIGHT self.labelLatLon.font.lineHeight
+#define BEARDIS_HEIGHT self.labelBearDis.font.lineHeight
+#define LOCATION_HEIGHT self.labelLocation.font.lineHeight
+#define SIZE_HEIGHT self.imageSize.image.size.height
+#define SIZE_WIDTH self.imageSize.image.size.width
 
     // Icon
-    imageIcon = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imageIcon.image = [imageLibrary get:ImageTypes_TraditionalCache];
-    [self.contentView addSubview:imageIcon];
+    self.imageIcon = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.imageIcon.image = [imageLibrary get:ImageTypes_TraditionalCache];
+    [self.contentView addSubview:self.imageIcon];
 
     // Favourites
     imageFavourites = [[GCImageView alloc] initWithFrame:CGRectZero];
@@ -99,36 +97,36 @@
     [self.contentView addSubview:l];
      */
 
-    imageSize = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imageSize.image = [imageLibrary get:ImageContainerSize_NotChosen];
-    [self.contentView addSubview:imageSize];
+    self.imageSize = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.imageSize.image = [imageLibrary get:ImageContainerSize_NotChosen];
+    [self.contentView addSubview:self.imageSize];
 
     // Difficulty rating
-    labelRatingD = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelRatingD.font = [UIFont systemFontOfSize:10.0];
-    labelRatingD.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:labelRatingD];
+    self.labelRatingD = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelRatingD.font = [UIFont systemFontOfSize:10.0];
+    self.labelRatingD.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:self.labelRatingD];
 
     // Terrain rating
-    labelRatingT = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelRatingT.font = [UIFont systemFontOfSize:10];
-    labelRatingT.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:labelRatingT];
+    self.labelRatingT = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelRatingT.font = [UIFont systemFontOfSize:10];
+    self.labelRatingT.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:self.labelRatingT];
 
     // LatLon
-    labelLatLon = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelLatLon.font = [UIFont systemFontOfSize:10];
-    [self.contentView addSubview:labelLatLon];
+    self.labelLatLon = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelLatLon.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:self.labelLatLon];
 
     // BearDis
-    labelBearDis = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelBearDis.font = [UIFont systemFontOfSize:10];
-    [self.contentView addSubview:labelBearDis];
+    self.labelBearDis = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelBearDis.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:self.labelBearDis];
 
     // Location
-    labelLocation = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelLocation.font = [UIFont systemFontOfSize:10];
-    [self.contentView addSubview:labelLocation];
+    self.labelLocation = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelLocation.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:self.labelLocation];
 
     [self viewWillTransitionToSize];
 
@@ -157,25 +155,25 @@
 - (void)viewWillTransitionToSize
 {
     [self calculateRects];
-    imageIcon.frame = rectIcon;
+    self.imageIcon.frame = rectIcon;
     imageFavourites.frame = rectImageFavourites;
     labelFavourites.frame = rectLabelFavourites;
-    imageSize.frame = rectSize;
-    labelRatingD.frame = rectRatingsD;
-    labelRatingT.frame = rectRatingsT;
-    labelLatLon.frame = rectLatLon;
-    labelBearDis.frame = rectBearDis;
-    labelLocation.frame = rectLocation;
+    self.imageSize.frame = rectSize;
+    self.labelRatingD.frame = rectRatingsD;
+    self.labelRatingT.frame = rectRatingsT;
+    self.labelLatLon.frame = rectLatLon;
+    self.labelBearDis.frame = rectBearDis;
+    self.labelLocation.frame = rectLocation;
 }
 
 - (void)changeTheme
 {
     [imageFavourites changeTheme];
-    [labelRatingT changeTheme];
-    [labelRatingD changeTheme];
-    [labelLatLon changeTheme];
-    [labelBearDis changeTheme];
-    [labelLocation changeTheme];
+    [self.labelRatingT changeTheme];
+    [self.labelRatingD changeTheme];
+    [self.labelLatLon changeTheme];
+    [self.labelBearDis changeTheme];
+    [self.labelLocation changeTheme];
 
     [super changeTheme];
 }

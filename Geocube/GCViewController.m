@@ -21,15 +21,12 @@
 
 @interface GCViewController ()
 {
-    NSInteger numberOfItemsInRow;
     GCCloseButton *closeButton;
 }
 
 @end
 
 @implementation GCViewController
-
-@synthesize numberOfItemsInRow;
 
 - (instancetype)init
 {

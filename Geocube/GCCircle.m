@@ -25,6 +25,4 @@
 
 @implementation GCCircle
 
-@synthesize waypoint;
-
 @end

@@ -233,7 +233,7 @@
     NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
     waypoint = [dbWaypoint dbGet:wpid];
 
-    [waypointManager setCurrentWaypoint:waypoint];
+    [waypointManager setTheCurrentWaypoint:waypoint];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];

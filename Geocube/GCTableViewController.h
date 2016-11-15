@@ -22,7 +22,6 @@
 @interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
 {
     LocalMenuItems *lmi;
-    BOOL hasCloseButton;
     InfoViewer *infoView;
 }
 

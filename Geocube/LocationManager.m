@@ -30,19 +30,19 @@
     NSInteger lastSync;
 }
 
+@property (nonatomic, readwrite) BOOL useGPS;
+
 @end
 
 @implementation LocationManager
-
-@synthesize useGPS, altitude, accuracy, coords, direction, delegates, speed, coordsHistorical;
 
 - (instancetype)init
 {
     self = [super init];
 
-    coordsHistorical = [NSMutableArray arrayWithCapacity:1000];
+    self.coordsHistorical = [NSMutableArray arrayWithCapacity:1000];
     lastHistory = [NSDate date];
-    speed = 0;
+    self.speed = 0;
 
     /* Initiate the location manager */
     _LM = [[CLLocationManager alloc] init];
@@ -51,10 +51,10 @@
     _LM.headingFilter = 1;
     _LM.delegate = self;
 
-    coords = _LM.location.coordinate;
+    self.coords = _LM.location.coordinate;
 
-    delegates = [NSMutableArray arrayWithCapacity:5];
-    useGPS = YES;
+    self.delegates = [NSMutableArray arrayWithCapacity:5];
+    self.useGPS = YES;
 
     lastSync = 0;
     historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
@@ -68,21 +68,21 @@
 - (void)updateDataDelegate
 {
     // Disable updates when not needed.
-    if (useGPS == NO)
+    if (self.useGPS == NO)
         return;
 
-    if ([delegates count] == 0)
+    if ([self.delegates count] == 0)
         return;
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         [delegate updateLocationManagerLocation];
     }];
 }
 
 - (void)updateHistoryDelegate
 {
-    if ([delegates count] == 0)
+    if ([self.delegates count] == 0)
         return;
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
         if ([delegate respondsToSelector:@selector(updateLocationManagerHistory)])
             [delegate updateLocationManagerHistory];
     }];
@@ -100,7 +100,7 @@
     [_LM startUpdatingLocation];
 
     if (_delegate != nil) {
-        [delegates addObject:_delegate];
+        [self.delegates addObject:_delegate];
         [_delegate updateLocationManagerLocation];
         if ([_delegate respondsToSelector:@selector(updateLocationManagerHistory)])
             [_delegate updateLocationManagerHistory];
@@ -110,9 +110,9 @@
 - (void)stopDelegation:(id)_delegate
 {
     NSLog(@"LocationManager: stopping for %@", [_delegate class]);
-    [delegates removeObject:_delegate];
+    [self.delegates removeObject:_delegate];
 
-    if ([delegates count] > 0)
+    if ([self.delegates count] > 0)
         return;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
@@ -122,17 +122,17 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if (useGPS == NO)
+    if (self.useGPS == NO)
         return;
 
     // Keep track of new values
-    altitude = manager.location.altitude;
-    coords = newLocation.coordinate;
-    accuracy = newLocation.horizontalAccuracy;
+    self.altitude = manager.location.altitude;
+    self.coords = newLocation.coordinate;
+    self.accuracy = newLocation.horizontalAccuracy;
 
     // If the location hasn't changed, don't do anything at all.
-    if ([coordsHistorical count] != 0) {
-        GCCoordsHistorical *chLast = [coordsHistorical objectAtIndex:[coordsHistorical count] - 1];
+    if ([self.coordsHistorical count] != 0) {
+        GCCoordsHistorical *chLast = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 1];
         if (chLast.coord.longitude == newLocation.coordinate.longitude &&
             chLast.coord.latitude == newLocation.coordinate.latitude) {
             return;
@@ -147,15 +147,15 @@
     ch.when = td;
     ch.coord = newLocation.coordinate;
 
-    [coordsHistorical addObject:ch];
+    [self.coordsHistorical addObject:ch];
 
     // Calculate speed over the last ten units.
-    if ([coordsHistorical count] > 10) {
-        GCCoordsHistorical *ch0 = [coordsHistorical objectAtIndex:[coordsHistorical count] - 10];
+    if ([self.coordsHistorical count] > 10) {
+        GCCoordsHistorical *ch0 = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 10];
         td = ch.when - ch0.when;
         float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
         if (td != 0)
-            speed = distance / td;
+            self.speed = distance / td;
     }
 
     // Send out the location and direction changes
@@ -170,7 +170,7 @@
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (configManager.currentTrack != 0) {
-            dbTrackElement *te = [dbTrackElement createElement:coords height:altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
+            dbTrackElement *te = [dbTrackElement createElement:self.coords height:self.altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
             [historyData addObject:te];
             if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
                 [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -182,48 +182,42 @@
         }
     }
 
-    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
+    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:self.coords], (long)LM.direction, LM.speed);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    if (useGPS == NO)
+    if (self.useGPS == NO)
         return;
 
-    altitude = manager.location.altitude;
-    coords = manager.location.coordinate;
-    direction = newHeading.trueHeading;
+    self.altitude = manager.location.altitude;
+    self.coords = manager.location.coordinate;
+    self.direction = newHeading.trueHeading;
 
     // NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
 
     [self updateDataDelegate];
 }
 
-- (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords
+- (void)useGPS:(BOOL)useGPS coordinates:(CLLocationCoordinate2D)newcoords
 {
-    if (_useGPS == YES) {
-        useGPS = YES;
+    if (useGPS == YES) {
+        self.useGPS = YES;
         [self updateDataDelegate];
     } else {
-        coords = newcoords;
+        self.coords = newcoords;
         // First tell the others, then disable.
         [self updateDataDelegate];
-        useGPS = NO;
+        self.useGPS = NO;
     }
 }
 
 @end
 
 @interface GCCoordsHistorical ()
-{
-    NSTimeInterval when;
-    CLLocationCoordinate2D coord;
-}
 
 @end
 
 @implementation GCCoordsHistorical
-
-@synthesize when, coord;
 
 @end

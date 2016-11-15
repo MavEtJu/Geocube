@@ -25,8 +25,6 @@
 
 @implementation GCTableViewCellFieldValue
 
-@synthesize fieldLabel, valueLabel;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -37,13 +35,13 @@
     frame.size.width -= 2 * 10;
 
     // Name
-    fieldLabel = [[GCLabel alloc] initWithFrame:frame];
-    [self.contentView addSubview:fieldLabel];
+    self.fieldLabel = [[GCLabel alloc] initWithFrame:frame];
+    [self.contentView addSubview:self.fieldLabel];
 
-    valueLabel = [[GCLabel alloc] initWithFrame:frame];
-    valueLabel.textAlignment = NSTextAlignmentRight;
-    valueLabel.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:valueLabel];
+    self.valueLabel = [[GCLabel alloc] initWithFrame:frame];
+    self.valueLabel.textAlignment = NSTextAlignmentRight;
+    self.valueLabel.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:self.valueLabel];
 
     [self changeTheme];
 
@@ -55,12 +53,12 @@
     [super viewWillTransitionToSize];
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    CGRect labelFrame = fieldLabel.frame;
+    CGRect labelFrame = self.fieldLabel.frame;
 
     labelFrame.size.width = bounds.size.width - 2 * 10;
 
-    fieldLabel.frame = labelFrame;
-    valueLabel.frame = labelFrame;
+    self.fieldLabel.frame = labelFrame;
+    self.valueLabel.frame = labelFrame;
 }
 
 - (void)changeTheme
@@ -72,7 +70,7 @@
     [themeManager changeThemeArray:[self.contentView subviews]];
 
     // Ugh hack because the frame of the value label and the field label overlap
-    valueLabel.backgroundColor = [UIColor clearColor];
+    self.valueLabel.backgroundColor = [UIColor clearColor];
 }
 
 @end

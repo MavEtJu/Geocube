@@ -25,8 +25,6 @@
 
 @implementation dbTrackable
 
-@synthesize _id, name, ref, gc_id, carrier, carrier_str, carrier_id, owner, owner_str, owner_id, waypoint_name, logtype, code;
-
 - (void)finish
 {
     NSAssert(NO, @"Use finish:account");
@@ -34,19 +32,19 @@
 
 - (void)finish:(dbAccount *)account;
 {
-    if (carrier_id != 0)
-        carrier = [dbName dbGet:carrier_id];
-    if (carrier_str != nil)
-        carrier = [dbName dbGetByName:carrier_str account:account];
-    carrier_id = carrier._id;
-    carrier_str = carrier.name;
+    if (self.carrier_id != 0)
+        self.carrier = [dbName dbGet:self.carrier_id];
+    if (self.carrier_str != nil)
+        self.carrier = [dbName dbGetByName:self.carrier_str account:account];
+    self.carrier_id = self.carrier._id;
+    self.carrier_str = self.carrier.name;
 
-    if (owner_id != 0)
-        owner = [dbName dbGet:owner_id];
-    if (owner_str != nil)
-        owner = [dbName dbGetByName:owner_str account:account];
-    owner_id = owner._id;
-    owner_str = owner.name;
+    if (self.owner_id != 0)
+        self.owner = [dbName dbGet:self.owner_id];
+    if (self.owner_str != nil)
+        self.owner = [dbName dbGetByName:self.owner_str account:account];
+    self.owner_id = self.owner._id;
+    self.owner_str = self.owner.name;
     [super finish];
 }
 
@@ -67,7 +65,7 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
-        SET_VAR_INT(1, _id);
+        SET_VAR_INT(1, self._id);
         SET_VAR_INT(2, wp_id);
 
         DB_CHECK_OKAY;
@@ -230,15 +228,15 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
 
-        SET_VAR_INT (1, gc_id);
-        SET_VAR_TEXT(2, ref);
-        SET_VAR_TEXT(3, name);
-        SET_VAR_INT (4, carrier_id);
-        SET_VAR_INT (5, owner_id);
-        SET_VAR_TEXT(6, waypoint_name);
-        SET_VAR_INT (7, logtype);
-        SET_VAR_TEXT(8, code);
-        SET_VAR_INT (9, _id);
+        SET_VAR_INT (1, self.gc_id);
+        SET_VAR_TEXT(2, self.ref);
+        SET_VAR_TEXT(3, self.name);
+        SET_VAR_INT (4, self.carrier_id);
+        SET_VAR_INT (5, self.owner_id);
+        SET_VAR_TEXT(6, self.waypoint_name);
+        SET_VAR_INT (7, self.logtype);
+        SET_VAR_TEXT(8, self.code);
+        SET_VAR_INT (9, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

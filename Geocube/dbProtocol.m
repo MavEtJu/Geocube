@@ -25,8 +25,6 @@
 
 @implementation dbProtocol
 
-@synthesize _id, name;
-
 + (NSArray *)dbAll
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];

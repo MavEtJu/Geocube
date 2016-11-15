@@ -37,28 +37,25 @@
 
 @implementation RemoteAPITemplate
 
-@synthesize account, oabb, authenticationDelegate;
-@synthesize stats_found, stats_notfound;
-
-- (instancetype)init:(dbAccount *)_account;
+- (instancetype)init:(dbAccount *)account;
 {
     self = [super init];
 
     errorDomain = [NSString stringWithFormat:@"%@", [self class]];
-    account = _account;
+    self.account = account;
 
-    oabb = [[GCOAuthBlackbox alloc] init];
-    [oabb token:account.oauth_token];
-    [oabb tokenSecret:account.oauth_token_secret];
-    [oabb consumerKey:account.oauth_consumer_public];
-    [oabb consumerSecret:account.oauth_consumer_private];
+    self.oabb = [[GCOAuthBlackbox alloc] init];
+    [self.oabb token:self.account.oauth_token];
+    [self.oabb tokenSecret:self.account.oauth_token_secret];
+    [self.oabb consumerKey:self.account.oauth_consumer_public];
+    [self.oabb consumerSecret:self.account.oauth_consumer_private];
 
     liveAPI = nil;
     okapi = nil;
     gca = nil;
     gca2 = nil;
     ggcw = nil;
-    ProtocolId pid = account.protocol_id;
+    ProtocolId pid = self.account.protocol_id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[ProtocolLiveAPI alloc] init:self];
@@ -91,43 +88,43 @@
 
 - (BOOL)Authenticate
 {
-    ProtocolId pid = account.protocol_id;
+    ProtocolId pid = self.account.protocol_id;
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:{
             // Reset it
-            oabb = [[GCOAuthBlackbox alloc] init];
+            self.oabb = [[GCOAuthBlackbox alloc] init];
 
-            if (account.oauth_consumer_private == nil || [account.oauth_consumer_private isEqualToString:@""] == YES) {
+            if (self.account.oauth_consumer_private == nil || [self.account.oauth_consumer_private isEqualToString:@""] == YES) {
                 [self oauthtripped:@"No OAuth client information is available." error:nil];
                 return NO;
             }
 
-            [oabb URLRequestToken:account.oauth_request_url];
-            [oabb URLAuthorize:account.oauth_authorize_url];
-            [oabb URLAccessToken:account.oauth_access_url];
-            [oabb consumerKey:account.oauth_consumer_public];
-            [oabb consumerSecret:account.oauth_consumer_private];
+            [self.oabb URLRequestToken:self.account.oauth_request_url];
+            [self.oabb URLAuthorize:self.account.oauth_authorize_url];
+            [self.oabb URLAccessToken:self.account.oauth_access_url];
+            [self.oabb consumerKey:self.account.oauth_consumer_public];
+            [self.oabb consumerSecret:self.account.oauth_consumer_private];
 
-            oabb.delegate = self;
-            [oabb obtainRequestToken];
-            if (oabb.token == nil) {
+            self.oabb.delegate = self;
+            [self.oabb obtainRequestToken];
+            if (self.oabb.token == nil) {
                 [self oauthtripped:@"No request token was returned." error:nil];
                 NSLog(@"%@ - token is nil after obtainRequestToken, not further authenticating", [self class]);
                 return NO;
             }
 
-            NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", account.oauth_authorize_url, [MyTools urlEncode:oabb.token]];
+            NSString *url = [NSString stringWithFormat:@"%@?oauth_token=%@", self.account.oauth_authorize_url, [MyTools urlEncode:self.oabb.token]];
 
             [browserViewController showBrowser];
-            [browserViewController prepare_oauth:oabb];
+            [browserViewController prepare_oauth:self.oabb];
             [browserViewController loadURL:url];
             return YES;
         }
 
         case PROTOCOL_GCA: {
             // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
-            NSString *url = account.gca_authenticate_url;
+            NSString *url = self.account.gca_authenticate_url;
 
             gca.delegate = self;
 
@@ -138,16 +135,16 @@
         }
 
         case PROTOCOL_GCA2:
-            if ([gca2 authenticate:account] == YES) {
-                if (authenticationDelegate != nil)
-                    [authenticationDelegate remoteAPI:self success:@"Obtained cookie"];
+            if ([gca2 authenticate:self.account] == YES) {
+                if (self.authenticationDelegate != nil)
+                    [self.authenticationDelegate remoteAPI:self success:@"Obtained cookie"];
                 return YES;
             } else
                 return NO;
 
         case PROTOCOL_GGCW: {
             // Load https://www.geocaching.com/login/?jump=/geocube and wait for the redirect to /geocube.
-            NSString *url = account.gca_authenticate_url;
+            NSString *url = self.account.gca_authenticate_url;
 
             ggcw.delegate = self;
 
@@ -166,44 +163,44 @@
 
 - (void)GCAuthSuccessful:(NSHTTPCookie *)cookie
 {
-    account.gca_cookie_value = [MyTools urlDecode:cookie.value];
-    [account dbUpdateCookieValue];
+    self.account.gca_cookie_value = [MyTools urlDecode:cookie.value];
+    [self.account dbUpdateCookieValue];
 
     [browserViewController prepare_ggcw:nil];
     [browserViewController clearScreen];
 
-    if (authenticationDelegate != nil)
-        [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
+    if (self.authenticationDelegate != nil)
+        [self.authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
 
     [_AppDelegate switchController:RC_SETTINGS];
 }
 
 - (void)GCAAuthSuccessful:(NSHTTPCookie *)cookie
 {
-    account.gca_cookie_value = [MyTools urlDecode:cookie.value];
-    [account dbUpdateCookieValue];
+    self.account.gca_cookie_value = [MyTools urlDecode:cookie.value];
+    [self.account dbUpdateCookieValue];
 
     [browserViewController prepare_gca:nil];
     [browserViewController clearScreen];
 
-    if (authenticationDelegate != nil)
-        [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
+    if (self.authenticationDelegate != nil)
+        [self.authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
 
     [_AppDelegate switchController:RC_SETTINGS];
 }
 
 - (void)oauthdanced:(NSString *)token secret:(NSString *)secret
 {
-    account.oauth_token = token;
-    account.oauth_token_secret = secret;
-    [account dbUpdateOAuthToken];
+    self.account.oauth_token = token;
+    self.account.oauth_token_secret = secret;
+    [self.account dbUpdateOAuthToken];
     //oabb = nil;
 
     [browserViewController prepare_oauth:nil];
     [browserViewController clearScreen];
 
-    if (authenticationDelegate)
-        [authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
+    if (self.authenticationDelegate)
+        [self.authenticationDelegate remoteAPI:self success:@"Obtained requestToken"];
 
     [_AppDelegate switchController:RC_SETTINGS];
 }
@@ -211,17 +208,17 @@
 - (void)oauthtripped:(NSString *)reason error:(NSError *)_error
 {
     NSLog(@"tripped: %@", reason);
-    account.oauth_token = nil;
-    account.oauth_token_secret = nil;
-    [account dbUpdateOAuthToken];
-    oabb = nil;
+    self.account.oauth_token = nil;
+    self.account.oauth_token_secret = nil;
+    [self.account dbUpdateOAuthToken];
+    self.oabb = nil;
 
     [browserViewController prepare_oauth:nil];
     [browserViewController clearScreen];
 
     [_AppDelegate switchController:RC_SETTINGS];
-    if (authenticationDelegate)
-        [authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:_error];
+    if (self.authenticationDelegate)
+        [self.authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:_error];
 }
 
 // ----------------------------------------
@@ -350,7 +347,7 @@
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict downloadInfoItem:(InfoItemDownload *)iid
 {
-    return [self UserStatistics:account.accountname_string retDict:retDict downloadInfoItem:iid];
+    return [self UserStatistics:self.account.accountname_string retDict:retDict downloadInfoItem:iid];
 }
 
 - (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict downloadInfoItem:(InfoItemDownload *)iid

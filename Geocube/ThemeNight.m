@@ -33,24 +33,24 @@
     UIColor *fgColor = [UIColor lightTextColor];
     UIColor *clearColor = [UIColor clearColor];
 
-    labelTextColor = fgColor;
-    labelTextColorDisabled = [UIColor darkGrayColor];
-    labelBackgroundColor = clearColor;
+    self.labelTextColor = fgColor;
+    self.labelTextColorDisabled = [UIColor darkGrayColor];
+    self.labelBackgroundColor = clearColor;
 
-    backgroundColor = bgColor;
-    textColor = fgColor;
+    self.backgroundColor = bgColor;
+    self.textColor = fgColor;
 
-    tableViewBackgroundColor = bgColor;
-    tableViewCellBackgroundColor = bgColor;
+    self.tableViewBackgroundColor = bgColor;
+    self.tableViewCellBackgroundColor = bgColor;
 
-    viewBackgroundColor = bgColor;
-    viewControllerBackgroundColour = bgColor;
+    self.viewBackgroundColor = bgColor;
+    self.viewControllerBackgroundColour = bgColor;
 
-    svProgressHUDStyle = SVProgressHUDStyleLight;
+    self.svProgressHUDStyle = SVProgressHUDStyleLight;
 
-    switchTintColor = [UIColor darkGrayColor];
-    switchOnTintColor = [UIColor darkGrayColor];
-    switchThumbTintColor = [UIColor lightGrayColor];
+    self.switchTintColor = [UIColor darkGrayColor];
+    self.switchOnTintColor = [UIColor darkGrayColor];
+    self.switchThumbTintColor = [UIColor lightGrayColor];
 
     return self;
 }

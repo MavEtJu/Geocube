@@ -27,7 +27,6 @@
 
 @interface WaypointImagesViewController : GCTableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WaypointImageViewControllerDelegate>
 
-@property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 
 - (instancetype)init:(dbWaypoint *)wp;

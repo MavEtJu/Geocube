@@ -29,8 +29,6 @@
 
 @implementation QueriesTemplateViewController
 
-@synthesize queriesString, queryString, account;
-
 enum {
     menuReload,
     menuMax
@@ -107,7 +105,7 @@ NEEDS_OVERLOADING(reloadQueries)
     if (qs == nil)
         return @"";
     NSInteger c = [qs count];
-    return [NSString stringWithFormat:@"%ld Available %@", (unsigned long)c, c == 1 ? queryString : queriesString];
+    return [NSString stringWithFormat:@"%ld Available %@", (unsigned long)c, c == 1 ? self.queryString : self.queriesString];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView

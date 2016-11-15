@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, GCThemeType) {
 
 @interface ThemeManager : NSObject
 
-@property (nonatomic, retain, readonly) NSArray *themeNames;
+@property (nonatomic, retain) NSArray *themeNames;
 
 - (GCThemeType)currentTheme;
 - (void)setTheme:(GCThemeType)nr;

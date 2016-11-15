@@ -25,8 +25,6 @@
 
 @implementation RemoteAPILiveAPI
 
-@synthesize account;
-
 #define LIVEAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \
@@ -145,7 +143,7 @@
             default:
                 NSAssert(NO, @"Unknown tb.logtype");
         }
-        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:account.protocol logtype:logtype default:dflt];
+        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:self.account.protocol logtype:logtype default:dflt];
         [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged downloadInfoItem:iid];
     }];
     return REMOTEAPI_OK;
@@ -175,7 +173,7 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if ([account canDoRemoteStuff] == NO) {
+    if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
@@ -195,7 +193,7 @@
         LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemImport *iii = [infoViewer addImport:NO];
         [iii setDescription:@"LiveAPI JSON data (queued)"];
-        [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
+        [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:self.account];
         [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         do {
             [iid setChunksCount:(done / 20) + 1];
@@ -208,7 +206,7 @@
                 GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
                 InfoItemImport *iii = [infoViewer addImport:NO];
                 [iii setDescription:@"LiveAPI JSON (queued)"];
-                [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:account];
+                [callback remoteAPI_objectReadyToImport:iii object:livejson group:group account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
         } while (done < total);
@@ -285,7 +283,7 @@
             result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
         InfoItemImport *iii = [infoViewer addImport];
-        [callback remoteAPI_objectReadyToImport:iii object:json group:group account:account];
+        [callback remoteAPI_objectReadyToImport:iii object:json group:group account:self.account];
 
         [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         found += [[json objectForKey:@"Geocaches"] count];
@@ -312,7 +310,7 @@
     GCDictionaryLiveAPI *json = [liveAPI GetOwnedTrackables:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
     [imp parseDictionary:json];
 
     return REMOTEAPI_OK;
@@ -326,7 +324,7 @@
     GCDictionaryLiveAPI *json = [liveAPI GetUsersTrackables:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
     [imp parseDictionary:json];
 
     return REMOTEAPI_OK;
@@ -337,7 +335,7 @@
     GCDictionaryLiveAPI *json = [liveAPI GetTrackablesByTrackingNumber:code downloadInfoItem:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:account];
+    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
     [imp parseDictionary:json];
 
     NSArray *refs = nil;

@@ -21,9 +21,6 @@
 
 @interface InfoItem : NSObject
 {
-    NSInteger _id;
-
-    GCView *view;
     NSInteger viewHeight;
 
     GCSmallLabel *labelDesc;
@@ -41,11 +38,10 @@
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent;
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded;
 
-@property (nonatomic) NSInteger _id;
-
+@property (nonatomic) NSId _id;
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic, retain) InfoViewer *infoViewer;
-@property (nonatomic, readonly) NSInteger height;
+@property (nonatomic) NSInteger height;
 
 - (void)calculateRects;
 

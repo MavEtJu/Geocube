@@ -50,7 +50,7 @@ enum {
     name = @"A new name";
     coords = [LM coords];
 
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
 
     return self;
 }

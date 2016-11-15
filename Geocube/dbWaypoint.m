@@ -25,12 +25,6 @@
 
 @implementation dbWaypoint
 
-@synthesize _id, related_id;
-@synthesize wpt_name, wpt_description, wpt_url, wpt_urlname, wpt_lat, wpt_lon, wpt_date_placed, wpt_type_str, wpt_symbol_str, wpt_lat_int, wpt_lon_int, wpt_lat_float, wpt_lon_float, wpt_date_placed_epoch, wpt_type_id, wpt_type, wpt_symbol_id, wpt_symbol;
-@synthesize logstring_logtype, coordinates, calculatedDistance, calculatedBearing, logStatus, flag_highlight, account, account_id, flag_ignore, flag_markedfound, flag_inprogress, flag_dnf, date_lastlog_epoch, date_lastimport_epoch, coordinatesUncorrected;
-@synthesize gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_country, gs_country_id, gs_country_str, gs_state, gs_state_id, gs_state_str, gs_short_desc_html, gs_short_desc, gs_long_desc_html, gs_long_desc, gs_hint, gs_container, gs_container_str, gs_container_id, gs_archived, gs_available, gs_placed_by, gs_owner_gsid, gs_owner, gs_owner_id, gs_owner_str, gs_date_found;
-@synthesize gca_locale, gca_locale_id, gca_locale_str;
-
 - (instancetype)init
 {
     self = [self init:0];
@@ -107,150 +101,150 @@
 - (void)finish
 {
     // Conversions from the data retrieved
-    wpt_lat_float = [wpt_lat floatValue];
-    wpt_lon_float = [wpt_lon floatValue];
-    wpt_lat_int = wpt_lat_float * 1000000;
-    wpt_lon_int = wpt_lon_float * 1000000;
+    self.wpt_lat_float = [self.wpt_lat floatValue];
+    self.wpt_lon_float = [self.wpt_lon floatValue];
+    self.wpt_lat_int = self.wpt_lat_float * 1000000;
+    self.wpt_lon_int = self.wpt_lon_float * 1000000;
 
-    wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:wpt_date_placed];
+    self.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:self.wpt_date_placed];
 
-    coordinates = CLLocationCoordinate2DMake([wpt_lat floatValue], [wpt_lon floatValue]);
+    self.coordinates = CLLocationCoordinate2DMake([self.wpt_lat floatValue], [self.wpt_lon floatValue]);
 
     // Adjust cache types
-    if (wpt_type == nil) {
-        if (wpt_type_str != nil) {
-            NSArray *as = [wpt_type_str componentsSeparatedByString:@"|"];
+    if (self.wpt_type == nil) {
+        if (self.wpt_type_str != nil) {
+            NSArray *as = [self.wpt_type_str componentsSeparatedByString:@"|"];
             if ([as count] == 2) {
                 // Geocache|Traditional Cache
-                wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
+                self.wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
             } else {
                 // Traditional Cache
                 [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
-                    if ([t.type_minor isEqualToString:wpt_type_str] == YES) {
-                        wpt_type = t;
+                    if ([t.type_minor isEqualToString:self.wpt_type_str] == YES) {
+                        self.wpt_type = t;
                         *stop = YES;
                     }
                 }];
-                if (wpt_type == nil)
-                    wpt_type = [dbc Type_get_byname:@"Geocache" minor:@"*"];
+                if (self.wpt_type == nil)
+                    self.wpt_type = [dbc Type_get_byname:@"Geocache" minor:@"*"];
             }
-            wpt_type_id = wpt_type._id;
+            self.wpt_type_id = self.wpt_type._id;
         }
-        if (wpt_type_id != 0) {
-            wpt_type = [dbc Type_get:wpt_type_id];
-            wpt_type_str = wpt_type.type_full;
+        if (self.wpt_type_id != 0) {
+            self.wpt_type = [dbc Type_get:self.wpt_type_id];
+            self.wpt_type_str = self.wpt_type.type_full;
         }
     }
 
     // Adjust cache symbol
-    if (wpt_symbol == nil) {
-        if (wpt_symbol_str != nil) {
-            wpt_symbol = [dbc Symbol_get_bysymbol:wpt_symbol_str];
-            wpt_symbol_id = wpt_symbol._id;
+    if (self.wpt_symbol == nil) {
+        if (self.wpt_symbol_str != nil) {
+            self.wpt_symbol = [dbc Symbol_get_bysymbol:self.wpt_symbol_str];
+            self.wpt_symbol_id = self.wpt_symbol._id;
         }
-        if (wpt_symbol_id != 0) {
-            wpt_symbol = [dbc Symbol_get:wpt_symbol_id];
-            wpt_symbol_str = wpt_symbol.symbol;
+        if (self.wpt_symbol_id != 0) {
+            self.wpt_symbol = [dbc Symbol_get:self.wpt_symbol_id];
+            self.wpt_symbol_str = self.wpt_symbol.symbol;
         }
     }
 
-    if (account_id != 0)
-        account = [dbc Account_get:account_id];
-    if (account != nil)
-        account_id = account._id;
+    if (self.account_id != 0)
+        self.account = [dbc Account_get:self.account_id];
+    if (self.account != nil)
+        self.account_id = self.account._id;
 
     // Adjust container size
-    if (gs_container == nil) {
-        if (gs_container_str != nil) {
-            gs_container = [dbc Container_get_bysize:gs_container_str];
-            gs_container_id = gs_container._id;
+    if (self.gs_container == nil) {
+        if (self.gs_container_str != nil) {
+            self.gs_container = [dbc Container_get_bysize:self.gs_container_str];
+            self.gs_container_id = self.gs_container._id;
         }
-        if (gs_container_id != 0) {
-            gs_container = [dbc Container_get:gs_container_id];
-            gs_container_str = gs_container.size;
+        if (self.gs_container_id != 0) {
+            self.gs_container = [dbc Container_get:self.gs_container_id];
+            self.gs_container_str = self.gs_container.size;
         }
     }
 
-    if (gs_owner == nil) {
-        if (gs_owner_str != nil) {
-            if (gs_owner_gsid == nil)
-                gs_owner = [dbName dbGetByName:gs_owner_str account:self.account];
+    if (self.gs_owner == nil) {
+        if (self.gs_owner_str != nil) {
+            if (self.gs_owner_gsid == nil)
+                self.gs_owner = [dbName dbGetByName:self.gs_owner_str account:self.account];
             else
-                gs_owner = [dbName dbGetByNameCode:gs_owner_str code:gs_owner_gsid account:self.account];
-            gs_owner_id = gs_owner._id;
+                self.gs_owner = [dbName dbGetByNameCode:self.gs_owner_str code:self.gs_owner_gsid account:self.account];
+            self.gs_owner_id = self.gs_owner._id;
         }
-        if (gs_owner_id != 0) {
-            gs_owner = [dbc Name_get:gs_owner_id];
-            gs_owner_str = gs_owner.name;
-        }
-    }
-
-    if (gs_state == nil) {
-        if (gs_state_str != nil) {
-            gs_state = [dbc State_get_byNameCode:gs_state_str];
-            gs_state_id = gs_state._id;
-        }
-        if (gs_state_id != 0) {
-            gs_state = [dbc State_get:gs_state_id];
-            gs_state_str = gs_state.name;
+        if (self.gs_owner_id != 0) {
+            self.gs_owner = [dbc Name_get:self.gs_owner_id];
+            self.gs_owner_str = self.gs_owner.name;
         }
     }
 
-    if (gs_country == nil) {
-        if (gs_country_str != nil) {
-            gs_country = [dbc Country_get_byNameCode:gs_country_str];
-            gs_country_id = gs_country._id;
+    if (self.gs_state == nil) {
+        if (self.gs_state_str != nil) {
+            self.gs_state = [dbc State_get_byNameCode:self.gs_state_str];
+            self.gs_state_id = self.gs_state._id;
         }
-        if (gs_country_id != 0) {
-            gs_country = [dbc Country_get:gs_country_id];
-            gs_country_str = gs_country.name;
-        }
-    }
-
-    if (gca_locale == nil) {
-        if (gca_locale_str != nil) {
-            gca_locale = [dbc Locale_get_byName:gca_locale_str];
-            gca_locale_id = gca_locale._id;
-        }
-        if (gca_locale_id != 0) {
-            gca_locale = [dbc Locale_get:gca_locale_id];
-            gca_locale_str = gca_locale.name;
+        if (self.gs_state_id != 0) {
+            self.gs_state = [dbc State_get:self.gs_state_id];
+            self.gs_state_str = self.gs_state.name;
         }
     }
 
-    logstring_logtype = [dbLogString wptTypeToLogType:wpt_type.type_full];
+    if (self.gs_country == nil) {
+        if (self.gs_country_str != nil) {
+            self.gs_country = [dbc Country_get_byNameCode:self.gs_country_str];
+            self.gs_country_id = self.gs_country._id;
+        }
+        if (self.gs_country_id != 0) {
+            self.gs_country = [dbc Country_get:self.gs_country_id];
+            self.gs_country_str = self.gs_country.name;
+        }
+    }
+
+    if (self.gca_locale == nil) {
+        if (self.gca_locale_str != nil) {
+            self.gca_locale = [dbc Locale_get_byName:self.gca_locale_str];
+            self.gca_locale_id = self.gca_locale._id;
+        }
+        if (self.gca_locale_id != 0) {
+            self.gca_locale = [dbc Locale_get:self.gca_locale_id];
+            self.gca_locale_str = self.gca_locale.name;
+        }
+    }
+
+    self.logstring_logtype = [dbLogString wptTypeToLogType:self.wpt_type.type_full];
 
     [super finish];
 }
 
 - (NSInteger)hasLogs
 {
-    return [dbLog dbCountByWaypoint:_id];
+    return [dbLog dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasAttributes
 {
-    return [dbAttribute dbCountByWaypoint:_id];
+    return [dbAttribute dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasFieldNotes
 {
-    return [[dbLog dbAllByWaypointLogged:_id] count];
+    return [[dbLog dbAllByWaypointLogged:self._id] count];
 }
 
 - (NSInteger)hasImages
 {
-    return [dbImage dbCountByWaypoint:_id];
+    return [dbImage dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasPersonalNotes
 {
-    return [dbTrackable dbCountByWaypoint:_id];
+    return [dbTrackable dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasInventory
 {
-    return [dbTrackable dbCountByWaypoint:_id];
+    return [dbTrackable dbCountByWaypoint:self._id];
 }
 
 - (NSArray *)hasWaypoints
@@ -282,7 +276,7 @@
         currentPrefix = [self.wpt_name substringToIndex:2];
         NSString *sql = [NSString stringWithFormat:@"%%%@", currentSuffix];
         SET_VAR_TEXT(1, sql);
-        SET_VAR_INT (2, account_id);
+        SET_VAR_INT (2, self.account_id);
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN (0, __id);
@@ -531,50 +525,50 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_lat_int = ?, wpt_lon_int = ?, wpt_date_placed = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, related_id = ? where id = ?");
 
-        SET_VAR_TEXT  ( 1, wpt_name);
-        SET_VAR_TEXT  ( 2, wpt_description);
-        SET_VAR_TEXT  ( 3, wpt_lat);
-        SET_VAR_TEXT  ( 4, wpt_lon);
-        SET_VAR_INT   ( 5, wpt_lat_int);
-        SET_VAR_INT   ( 6, wpt_lon_int);
-        SET_VAR_TEXT  ( 7, wpt_date_placed);
-        SET_VAR_INT   ( 8, wpt_date_placed_epoch);
-        SET_VAR_TEXT  ( 9, wpt_url);
-        SET_VAR_INT   (10, wpt_type_id);
-        SET_VAR_INT   (11, wpt_symbol_id);
-        SET_VAR_TEXT  (12, wpt_urlname);
+        SET_VAR_TEXT  ( 1, self.wpt_name);
+        SET_VAR_TEXT  ( 2, self.wpt_description);
+        SET_VAR_TEXT  ( 3, self.wpt_lat);
+        SET_VAR_TEXT  ( 4, self.wpt_lon);
+        SET_VAR_INT   ( 5, self.wpt_lat_int);
+        SET_VAR_INT   ( 6, self.wpt_lon_int);
+        SET_VAR_TEXT  ( 7, self.wpt_date_placed);
+        SET_VAR_INT   ( 8, self.wpt_date_placed_epoch);
+        SET_VAR_TEXT  ( 9, self.wpt_url);
+        SET_VAR_INT   (10, self.wpt_type_id);
+        SET_VAR_INT   (11, self.wpt_symbol_id);
+        SET_VAR_TEXT  (12, self.wpt_urlname);
 
-        SET_VAR_INT   (13, logStatus);
-        SET_VAR_BOOL  (14, flag_highlight);
-        SET_VAR_INT   (15, account_id);
-        SET_VAR_BOOL  (16, flag_ignore);
+        SET_VAR_INT   (13, self.logStatus);
+        SET_VAR_BOOL  (14, self.flag_highlight);
+        SET_VAR_INT   (15, self.account_id);
+        SET_VAR_BOOL  (16, self.flag_ignore);
 
-        SET_VAR_INT   (17, gs_country_id);
-        SET_VAR_INT   (18, gs_state_id);
-        SET_VAR_DOUBLE(19, gs_rating_difficulty);
-        SET_VAR_DOUBLE(20, gs_rating_terrain);
-        SET_VAR_INT   (21, gs_favourites);
-        SET_VAR_BOOL  (22, gs_long_desc_html);
-        SET_VAR_TEXT  (23, gs_long_desc);
-        SET_VAR_BOOL  (24, gs_short_desc_html);
-        SET_VAR_TEXT  (25, gs_short_desc);
-        SET_VAR_TEXT  (26, gs_hint);
-        SET_VAR_INT   (27, gs_container_id);
-        SET_VAR_BOOL  (28, gs_archived);
-        SET_VAR_BOOL  (29, gs_available);
-        SET_VAR_INT   (30, gs_owner_id);
-        SET_VAR_TEXT  (31, gs_placed_by);
+        SET_VAR_INT   (17, self.gs_country_id);
+        SET_VAR_INT   (18, self.gs_state_id);
+        SET_VAR_DOUBLE(19, self.gs_rating_difficulty);
+        SET_VAR_DOUBLE(20, self.gs_rating_terrain);
+        SET_VAR_INT   (21, self.gs_favourites);
+        SET_VAR_BOOL  (22, self.gs_long_desc_html);
+        SET_VAR_TEXT  (23, self.gs_long_desc);
+        SET_VAR_BOOL  (24, self.gs_short_desc_html);
+        SET_VAR_TEXT  (25, self.gs_short_desc);
+        SET_VAR_TEXT  (26, self.gs_hint);
+        SET_VAR_INT   (27, self.gs_container_id);
+        SET_VAR_BOOL  (28, self.gs_archived);
+        SET_VAR_BOOL  (29, self.gs_available);
+        SET_VAR_INT   (30, self.gs_owner_id);
+        SET_VAR_TEXT  (31, self.gs_placed_by);
 
-        SET_VAR_BOOL  (32, flag_markedfound);
-        SET_VAR_BOOL  (33, flag_inprogress);
-        SET_VAR_INT   (34, gs_date_found);
-        SET_VAR_BOOL  (35, flag_dnf);
-        SET_VAR_INT   (36, date_lastlog_epoch);
-        SET_VAR_INT   (37, gca_locale_id);
-        SET_VAR_INT   (38, date_lastimport_epoch);
-        SET_VAR_INT   (39, related_id);
+        SET_VAR_BOOL  (32, self.flag_markedfound);
+        SET_VAR_BOOL  (33, self.flag_inprogress);
+        SET_VAR_INT   (34, self.gs_date_found);
+        SET_VAR_BOOL  (35, self.flag_dnf);
+        SET_VAR_INT   (36, self.date_lastlog_epoch);
+        SET_VAR_INT   (37, self.gca_locale_id);
+        SET_VAR_INT   (38, self.date_lastimport_epoch);
+        SET_VAR_INT   (39, self.related_id);
 
-        SET_VAR_INT   (40, _id);
+        SET_VAR_INT   (40, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -740,20 +734,20 @@
 - (NSString *)makeLocaleStateCountry
 {
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (gca_locale != nil)
-        [s appendFormat:@"%@", gca_locale.name];
-    if (gs_state != nil) {
+    if (self.gca_locale != nil)
+        [s appendFormat:@"%@", self.gca_locale.name];
+    if (self.gs_state != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        if (configManager.showStateAsAbbrevationIfLocaleExists == YES && gca_locale != nil)
-            [s appendFormat:@"%@", gs_state.code];
+        if (configManager.showStateAsAbbrevationIfLocaleExists == YES && self.gca_locale != nil)
+            [s appendFormat:@"%@", self.gs_state.code];
         else
-            [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? gs_state.code : gs_state.name];
+            [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? self.gs_state.code : self.gs_state.name];
     }
-    if (gs_country != nil) {
+    if (self.gs_country != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? gs_country.code : gs_country.name];
+        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? self.gs_country.code : self.gs_country.name];
     }
     return s;
 }
@@ -816,7 +810,7 @@
 - (BOOL)hasGSData
 {
     // If the difficulty or terrain is not zero, then pretend the Groundspeak specific data is available
-    return (gs_owner != nil);
+    return (self.gs_owner != nil);
 }
 
 @end

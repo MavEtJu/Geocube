@@ -54,7 +54,7 @@ enum {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
         [lmi disableItem:menuMakePhoto];
 
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     _delegate = nil;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;

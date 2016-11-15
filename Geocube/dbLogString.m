@@ -25,17 +25,15 @@
 
 @implementation dbLogString
 
-@synthesize _id, text, type, logtype, protocol_id, protocol, protocol_string, defaultNote, defaultFound, icon, found, forLogs, defaultVisit, defaultDropoff, defaultPickup, defaultDiscover;
-
 - (void)finish
 {
-    if (protocol_id == 0) {
-        protocol = [dbProtocol dbGetByName:protocol_string];
-        protocol_id = protocol._id;
+    if (self.protocol_id == 0) {
+        self.protocol = [dbProtocol dbGetByName:self.protocol_string];
+        self.protocol_id = self.protocol._id;
     }
-    if (protocol_string == nil) {
-        protocol = [dbProtocol dbGet:protocol_id];
-        protocol_string = protocol.name;
+    if (self.protocol_string == nil) {
+        self.protocol = [dbProtocol dbGet:self.protocol_id];
+        self.protocol_string = self.protocol.name;
     }
 
     [super finish];
@@ -132,26 +130,26 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"insert into log_strings(text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT( 1, text);
-        SET_VAR_TEXT( 2, type);
-        SET_VAR_INT ( 3, logtype);
-        SET_VAR_INT ( 4, protocol_id);
-        SET_VAR_BOOL( 5, defaultNote);
-        SET_VAR_BOOL( 6, defaultFound);
-        SET_VAR_INT ( 7, icon);
-        SET_VAR_BOOL( 8, forLogs);
-        SET_VAR_INT ( 9, found);
-        SET_VAR_BOOL(10, defaultVisit);
-        SET_VAR_BOOL(11, defaultDropoff);
-        SET_VAR_BOOL(12, defaultPickup);
-        SET_VAR_BOOL(13, defaultDiscover);
+        SET_VAR_TEXT( 1, self.text);
+        SET_VAR_TEXT( 2, self.type);
+        SET_VAR_INT ( 3, self.logtype);
+        SET_VAR_INT ( 4, self.protocol_id);
+        SET_VAR_BOOL( 5, self.defaultNote);
+        SET_VAR_BOOL( 6, self.defaultFound);
+        SET_VAR_INT ( 7, self.icon);
+        SET_VAR_BOOL( 8, self.forLogs);
+        SET_VAR_INT ( 9, self.found);
+        SET_VAR_BOOL(10, self.defaultVisit);
+        SET_VAR_BOOL(11, self.defaultDropoff);
+        SET_VAR_BOOL(12, self.defaultPickup);
+        SET_VAR_BOOL(13, self.defaultDiscover);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
 
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -159,20 +157,20 @@
     @synchronized(db.dbaccess) {
         DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
 
-        SET_VAR_TEXT( 1, text);
-        SET_VAR_TEXT( 2, type);
-        SET_VAR_INT ( 3, logtype);
-        SET_VAR_INT ( 4, protocol_id);
-        SET_VAR_BOOL( 5, defaultNote);
-        SET_VAR_BOOL( 6, defaultFound);
-        SET_VAR_INT ( 7, icon);
-        SET_VAR_BOOL( 8, forLogs);
-        SET_VAR_INT ( 9, found);
-        SET_VAR_BOOL(10, defaultVisit);
-        SET_VAR_BOOL(11, defaultDropoff);
-        SET_VAR_BOOL(12, defaultPickup);
-        SET_VAR_BOOL(13, defaultDiscover);
-        SET_VAR_INT (14, _id);
+        SET_VAR_TEXT( 1, self.text);
+        SET_VAR_TEXT( 2, self.type);
+        SET_VAR_INT ( 3, self.logtype);
+        SET_VAR_INT ( 4, self.protocol_id);
+        SET_VAR_BOOL( 5, self.defaultNote);
+        SET_VAR_BOOL( 6, self.defaultFound);
+        SET_VAR_INT ( 7, self.icon);
+        SET_VAR_BOOL( 8, self.forLogs);
+        SET_VAR_INT ( 9, self.found);
+        SET_VAR_BOOL(10, self.defaultVisit);
+        SET_VAR_BOOL(11, self.defaultDropoff);
+        SET_VAR_BOOL(12, self.defaultPickup);
+        SET_VAR_BOOL(13, self.defaultDiscover);
+        SET_VAR_INT (14, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

@@ -25,18 +25,18 @@
     NSHTTPCookie *authCookie;
 }
 
+@property (nonatomic, retain, readwrite) NSString *callback;
+
 @end
 
 @implementation ProtocolGCA
-
-@synthesize delegate, callback;
 
 - (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 
     remoteAPI = _remoteAPI;
-    callback = remoteAPI.account.gca_callback_url;
+    self.callback = remoteAPI.account.gca_callback_url;
     if (remoteAPI.account.gca_cookie_value != nil) {
         authCookie = [NSHTTPCookie cookieWithProperties:
                       [NSDictionary
@@ -88,8 +88,8 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
-    if (delegate != nil)
-        [delegate GCAAuthSuccessful:cookie];
+    if (self.delegate != nil)
+        [self.delegate GCAAuthSuccessful:cookie];
 }
 
 - (NSData *)loadDataForeground:(NSString *)urlString downloadInfoItem:(InfoItemDownload *)iid

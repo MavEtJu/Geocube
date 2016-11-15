@@ -30,14 +30,12 @@
 
 @implementation database
 
-@synthesize dbaccess, db;
-
 - (instancetype)init
 {
     self = [super init];
 
-    dbaccess = self;
-    db = nil;
+    self.dbaccess = self;
+    self.db = nil;
 
     return self;
 }
@@ -76,7 +74,9 @@
     [self checkAndCreateDatabase];
 
     // Determine version of the distribution database
+    sqlite3 *db;
     sqlite3_open([dbempty UTF8String], &db);
+    self.db = db;
     dbConfig *c_empty = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(db);
 
@@ -88,6 +88,7 @@
 
     // Determine version of the active database
     sqlite3_open([dbname UTF8String], &db);
+    self.db = db;
     dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(db);
 
@@ -108,6 +109,7 @@
     }
 
     sqlite3_open([dbname UTF8String], &db);
+    self.db = db;
 }
 
 - (void)checkAndCreateDatabase
@@ -129,7 +131,7 @@
 
 - (void)dealloc
 {
-    sqlite3_close(db);
+    sqlite3_close(self.db);
 }
 
 - (NSInteger)getDatabaseSize
