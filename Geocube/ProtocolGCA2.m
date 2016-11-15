@@ -21,7 +21,7 @@
 
 @interface ProtocolGCA2 ()
 {
-    RemoteAPI *remoteAPI;
+    RemoteAPITemplate *remoteAPI;
     NSHTTPCookie *authCookie;
     NSString *prefix;
     NSString *hostpart;
@@ -32,7 +32,7 @@
 
 @implementation ProtocolGCA2
 
-- (instancetype)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 

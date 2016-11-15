@@ -21,7 +21,7 @@
 
 @interface ProtocolGGCW ()
 {
-    RemoteAPI *remoteAPI;
+    RemoteAPITemplate *remoteAPI;
     NSHTTPCookie *authCookie;
 
     NSString *prefix;
@@ -43,7 +43,7 @@ enum {
     GGCW_GGCWSERVER,
 };
 
-- (instancetype)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 

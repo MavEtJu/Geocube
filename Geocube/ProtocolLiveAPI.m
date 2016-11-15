@@ -21,7 +21,7 @@
 
 @interface ProtocolLiveAPI ()
 {
-    RemoteAPI *remoteAPI;
+    RemoteAPITemplate *remoteAPI;
     NSString *liveAPIPrefix;
 }
 
@@ -29,7 +29,7 @@
 
 @implementation ProtocolLiveAPI
 
-- (instancetype)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 

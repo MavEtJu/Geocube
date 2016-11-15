@@ -149,12 +149,12 @@
 @class QueriesGGCWViewController;
 @class QueriesGroundspeakViewController;
 @class QueriesTemplateViewController;
-@class RemoteAPI;
 @class RemoteAPIGCA2;
 @class RemoteAPIGCA;
 @class RemoteAPIGGCW;
 @class RemoteAPILiveAPI;
 @class RemoteAPIOKAPI;
+@class RemoteAPITemplate;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;
 @class SettingsColoursViewController;

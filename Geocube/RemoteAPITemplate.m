@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPI ()
+@interface RemoteAPITemplate ()
 {
     ProtocolTemplate *protocol;
 
@@ -30,14 +30,12 @@
     RemoteAPIResult errorCodeAPI;
     RemoteAPIResult errorCodeData;
 
-    dbAccount *account;
-
     NSString *errorDomain;
 }
 
 @end
 
-@implementation RemoteAPI
+@implementation RemoteAPITemplate
 
 @synthesize account, oabb, authenticationDelegate;
 @synthesize stats_found, stats_notfound;

@@ -21,7 +21,7 @@
 
 @interface ProtocolGCA ()
 {
-    RemoteAPI *remoteAPI;
+    RemoteAPITemplate *remoteAPI;
     NSHTTPCookie *authCookie;
 }
 
@@ -31,7 +31,7 @@
 
 @synthesize delegate, callback;
 
-- (instancetype)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 

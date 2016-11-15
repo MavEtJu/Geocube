@@ -252,7 +252,7 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)remoteAPI:(RemoteAPI *)api failure:(NSString *)failure error:(NSError *)error
+- (void)remoteAPI:(RemoteAPITemplate *)api failure:(NSString *)failure error:(NSError *)error
 {
     NSMutableString *msg = [NSMutableString stringWithString:failure];
     [msg appendString:@" This means that you cannot obtain information for this account."];
@@ -269,7 +269,7 @@ enum {
     [self.tableView reloadData];
 }
 
-- (void)remoteAPI:(RemoteAPI *)api success:(NSString *)success;
+- (void)remoteAPI:(RemoteAPITemplate *)api success:(NSString *)success;
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [MyTools messageBox:self header:@"Authentication sucessful" text:@"Yay!"];

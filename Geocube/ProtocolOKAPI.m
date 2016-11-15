@@ -21,7 +21,7 @@
 
 @interface ProtocolOKAPI ()
 {
-    RemoteAPI *remoteAPI;
+    RemoteAPITemplate *remoteAPI;
     NSString *okapi_prefix;
 }
 
@@ -29,7 +29,7 @@
 
 @implementation ProtocolOKAPI
 
-- (instancetype)init:(RemoteAPI *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
 {
     self = [super init];
 

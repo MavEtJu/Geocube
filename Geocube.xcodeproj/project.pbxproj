@@ -268,7 +268,7 @@
 		E82E678A1DA0F42200CFBDED /* menu icon - show both@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E67881DA0F42200CFBDED /* menu icon - show both@3x.png */; };
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
-		E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */; };
+		E832E7DA1B8D173D00A3CCF6 /* RemoteAPITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */; };
 		E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */; };
 		E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */; };
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
@@ -912,8 +912,8 @@
 		E82FBB281B4613D70009AB6D /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
 		E82FBB291B4613D70009AB6D /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
 		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
-		E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
-		E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
+		E832E7D81B8D173D00A3CCF6 /* RemoteAPITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPITemplate.h; sourceTree = "<group>"; };
+		E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPITemplate.m; sourceTree = "<group>"; };
 		E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGCA.h; sourceTree = "<group>"; };
 		E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGCA.m; sourceTree = "<group>"; };
 		E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTemplateViewController.h; sourceTree = "<group>"; };
@@ -2745,8 +2745,8 @@
 				E88144211C840C5400940820 /* IOSFileTransfers.m */,
 				E807A5F11B8BBF5E00EBA187 /* GCOAuthBlackbox.h */,
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
-				E832E7D81B8D173D00A3CCF6 /* RemoteAPI.h */,
-				E832E7D91B8D173D00A3CCF6 /* RemoteAPI.m */,
+				E832E7D81B8D173D00A3CCF6 /* RemoteAPITemplate.h */,
+				E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */,
 				E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */,
 				E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */,
 				E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */,
@@ -3568,7 +3568,7 @@
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
-				E832E7DA1B8D173D00A3CCF6 /* RemoteAPI.m in Sources */,
+				E832E7DA1B8D173D00A3CCF6 /* RemoteAPITemplate.m in Sources */,
 				E80AEEBE1BA670B200106F7F /* GCView.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,

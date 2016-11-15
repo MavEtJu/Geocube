@@ -27,6 +27,6 @@
 - (NSRange)commentSupportsRatingRange;
 - (BOOL)commentSupportsTrackables;
 - (BOOL)waypointSupportsPersonalNotes;
-- (instancetype)init:(RemoteAPI *)remoteAPI;
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI;
 
 @end

@@ -169,7 +169,7 @@
 #import "ProtocolGGCW.h"
 #import "ProtocolLiveAPI.h"
 #import "ProtocolOKAPI.h"
-#import "RemoteAPI.h"
+#import "RemoteAPITemplate.h"
 #import "RemoteAPIGCA.h"
 #import "RemoteAPIGCA2.h"
 #import "RemoteAPIGGCW.h"
