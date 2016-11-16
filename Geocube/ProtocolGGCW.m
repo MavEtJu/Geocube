@@ -47,6 +47,8 @@ enum {
 {
     self = [super init];
 
+    NSLog(@"GGCW:%p", (__bridge void *)self);
+
     prefix = @"https://www.geocaching.com";
     prefixTiles = @"https://tiles%02d.geocaching.com%@";
 
@@ -124,7 +126,25 @@ enum {
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
     if (self.delegate != nil)
-        [self.delegate GCAuthSuccessful:cookie];
+        [self.delegate GGCWAuthSuccessful:cookie];
+
+    NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    authCookie = [NSHTTPCookie cookieWithProperties:
+                  [NSDictionary dictionaryWithObjects:@[
+                                           @"/",
+                                           remoteAPI.account.gca_cookie_name,
+                                           [MyTools urlEncode:remoteAPI.account.gca_cookie_value],
+                                           @".geocaching.com" //remoteAPI.account.url_site
+                                       ] forKeys:@[
+                                           NSHTTPCookiePath,
+                                           NSHTTPCookieName,
+                                           NSHTTPCookieValue,
+                                           NSHTTPCookieDomain
+                                       ]
+                   ]
+                  ];
+    // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
+    [cookiemgr setCookie:authCookie];
 }
 
 // ------------------------------------------------

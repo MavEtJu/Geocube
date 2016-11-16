@@ -161,7 +161,7 @@
     return NO;
 }
 
-- (void)GCAuthSuccessful:(NSHTTPCookie *)cookie
+- (void)GGCWAuthSuccessful:(NSHTTPCookie *)cookie
 {
     self.account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [self.account dbUpdateCookieValue];

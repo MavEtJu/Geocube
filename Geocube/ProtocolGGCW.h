@@ -21,7 +21,7 @@
 
 @protocol ProtocolGGCWDelegate
 
-- (void)GCAuthSuccessful:(NSHTTPCookie *)cookie;
+- (void)GGCWAuthSuccessful:(NSHTTPCookie *)cookie;
 
 @end
 
