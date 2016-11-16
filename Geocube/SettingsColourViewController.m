@@ -54,7 +54,7 @@
     self.view = contentView;
 
     GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, frame.size.width, 20)];
-    l.text = pin.description;
+    l.text = pin.desc;
     [self.view addSubview:l];
     y += 20;
 

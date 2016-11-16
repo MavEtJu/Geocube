@@ -70,7 +70,7 @@ enum {
     GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     dbPin *p = [pins objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", p.description];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", p.desc];
     cell.imageView.image = p.img;
 
     return cell;
