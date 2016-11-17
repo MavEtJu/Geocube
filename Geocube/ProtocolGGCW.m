@@ -195,6 +195,14 @@ enum {
     return data;
 }
 
+#define CHECK_ARRAY(__a__, min, __bail__) \
+    if ([__a__ count] < min) \
+        goto __bail__;
+
+#define CHECK_RANGE(__r__, __bail__) \
+    if (__r__.location == NSNotFound) \
+        goto __bail__;
+
 // ------------------------------------------------
 
 - (GCDictionaryGGCW *)my_default:(InfoItemDownload *)iid
@@ -223,16 +231,22 @@ enum {
 
      </div>
      */
+
+    NSInteger iHidden = 0;
     NSInteger iFound = 0;
-    {
-        NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
-        NSArray *nodes = [parser searchWithXPathQuery:re];
-        TFHppleElement *e = [nodes objectAtIndex:0];
-        TFHppleElement *child = [e.children objectAtIndex:0];
-        NSString *s = child.content;
-        NSString *sFound = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-        iFound = [sFound integerValue];
-    }
+    TFHppleElement *e;
+    NSString *s;
+
+    NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail1);
+    e = [nodes objectAtIndex:0];
+    CHECK_ARRAY(e.children, 1, bail1);
+    e = [e.children objectAtIndex:0];
+    s = e.content;
+    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    iFound = [s integerValue];
+bail1:
 
     // Find the data for the "Hidden" field.
     /*
@@ -247,16 +261,16 @@ enum {
 
      </div>
      */
-    NSInteger iHidden = 0;
-    {
-        NSString *re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
-        NSArray *nodes = [parser searchWithXPathQuery:re];
-        TFHppleElement *e = [nodes objectAtIndex:0];
-        TFHppleElement *child = [e.children objectAtIndex:0];
-        NSString *s = child.content;
-        NSString *sHidden = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-        iHidden = [sHidden integerValue];
-    }
+    re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
+    nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail2);
+    e = [nodes objectAtIndex:0];
+    CHECK_ARRAY(e.children, 1, bail2);
+    e = [e.children objectAtIndex:0];
+    s = e.content;
+    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    iHidden = [s integerValue];
+bail2:
 
     // Find the data for thea publicGuid
     /*
@@ -274,23 +288,22 @@ enum {
         }
     }
      */
-    {
-        NSString *re = @"//script";
-        NSArray *nodes = [parser searchWithXPathQuery:re];
-
-        [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
-            NSRange r = [e.content rangeOfString:@"publicGuid: \""];
-            if (r.location == NSNotFound)
-                return;
-            NSString *s = [e.content substringFromIndex:r.location + r.length];
-            r = [s rangeOfString:@"\","];
-            s = [s substringToIndex:r.location];
-            uid = s;
-
-            *stop = YES;
+    re = @"//script";
+    nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+        NSRange r = [e.content rangeOfString:@"publicGuid: \""];
+        if (r.location == NSNotFound)
             return;
-        }];
-    }
+        NSString *s = [e.content substringFromIndex:r.location + r.length];
+        r = [s rangeOfString:@"\","];
+        CHECK_RANGE(r, bail);
+        s = [s substringToIndex:r.location];
+        uid = s;
+
+        *stop = YES;
+    bail:
+        return;
+    }];
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
     [d setObject:[NSNumber numberWithInteger:iFound] forKey:@"caches_found"];
@@ -333,8 +346,16 @@ enum {
     NSString *re = @"//table[@id='uxOfflinePQTable']/tr";
     NSArray *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
-        if ([tr.children count] < 10)
-            return;
+        TFHppleElement *e;
+        NSString *guid = nil;
+        NSString *name = nil;
+        NSString *count = nil;
+        NSString *size = nil;
+        NSRange r;
+        NSMutableDictionary *d;
+
+        CHECK_ARRAY(tr.children, 10, bail);
+
         /*
          <td>
          <img src="/images/icons/16/bookmark_pq.png" alt="Bookmark Pocket Query" />
@@ -342,37 +363,45 @@ enum {
          Great Southern Road</a>
          </td>
          */
-        TFHppleElement *tds = [tr.children objectAtIndex:5];
-        TFHppleElement *e = [tds.children objectAtIndex:3];
-        NSString *guid = [e.attributes objectForKey:@"href"];
-        NSRange r = [guid rangeOfString:@"g="];
+        e = [tr.children objectAtIndex:5];
+        CHECK_ARRAY(e.children, 4, bail);
+        e = [e.children objectAtIndex:3];
+        guid = [e.attributes objectForKey:@"href"];
+        r = [guid rangeOfString:@"g="];
+        CHECK_RANGE(r, bail);
         guid = [guid substringFromIndex:r.location + r.length];
         r = [guid rangeOfString:@"&"];
+        CHECK_RANGE(r, bail);
         guid = [guid substringToIndex:r.location];
 
+        CHECK_ARRAY(e.children, 1, bail);
         e = [e.children objectAtIndex:0];
-        NSString *name = [e.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        name = [e.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
         /*
          <td class="AlignRight"> 30.85 KB </td>
          */
-        TFHppleElement *td = [tr.children objectAtIndex:7];
-        td = [td.children objectAtIndex:0];
-        NSString *size = [td.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        e = [tr.children objectAtIndex:7];
+        CHECK_ARRAY(e.children, 1, bail);
+        e = [e.children objectAtIndex:0];
+        size = [e.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
         /*
          <td class="AlignCenter"> 20 </td>
          */
-        td = [tr.children objectAtIndex:9];
-        td = [td.children objectAtIndex:0];
-        NSString *count = [td.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        e = [tr.children objectAtIndex:9];
+        CHECK_ARRAY(e.children, 1, bail);
+        e = [e.children objectAtIndex:0];
+        count = [e.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        d = [NSMutableDictionary dictionaryWithCapacity:10];
         [d setValue:name forKey:@"name"];
         [d setValue:guid forKey:@"g"];
         [d setValue:size forKey:@"size"];
         [d setValue:count forKey:@"count"];
         [ds setObject:d forKey:name];
+bail:
+        NSLog(@"foo");
     }];
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
@@ -427,13 +456,11 @@ enum {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
 #define GETVALUE(__string__, __varname__) \
-    NSString *__varname__ = nil; \
-    { \
-        NSString *re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
-        NSArray *nodes = [parser searchWithXPathQuery:re]; \
-        TFHppleElement *e = [nodes objectAtIndex:0]; \
-        __varname__ = [e.attributes objectForKey:@"value"]; \
-    }
+    re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
+    nodes = [parser searchWithXPathQuery:re]; \
+    CHECK_ARRAY(nodes, 1, bail1); \
+    e = [nodes objectAtIndex:0]; \
+    __varname__ = [e.attributes objectForKey:@"value"]; \
 
     // Grab the form data
     // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
@@ -446,12 +473,24 @@ enum {
      __VIEWSTATEGENERATOR:
      ctl00$ContentBody$btnGPXDL:
      */
+    NSString *eventtarget = nil;
+    NSString *eventargument = nil;
+    NSString *viewstatefieldcount = nil;
+    NSString *viewstate = nil;
+    NSString *viewstate1 = nil;
+    NSString *viewstategenerator = nil;
+
+    NSString *re;
+    NSArray *nodes;
+    TFHppleElement *e;
     GETVALUE(@"__EVENTTARGET", eventtarget);
     GETVALUE(@"__EVENTARGUMENT", eventargument);
     GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
     GETVALUE(@"__VIEWSTATE", viewstate);
     GETVALUE(@"__VIEWSTATE1", viewstate1);
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+bail1:
+    NSLog(@"");
 
     /*
      <script type="text/javascript">
@@ -462,34 +501,49 @@ enum {
      includeAvatars = true;
      */
     __block NSString *usertoken = nil;
-    NSString *re = @"//script";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    re = @"//script";
+    nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
         if ([e.content containsString:@"userToken = '"] == NO)
             return;
 
+        NSString *s;
+
         NSRange r = [e.content rangeOfString:@"userToken = '"];
-        NSString *s = [e.content substringFromIndex:r.location + r.length];
+        CHECK_RANGE(r, bail);
+        s = [e.content substringFromIndex:r.location + r.length];
         r = [s rangeOfString:@"'"];
+        CHECK_RANGE(r, bail);
         s = [s substringToIndex:r.location];
 
         usertoken = s;
         *stop = YES;
+    bail:
+        return;
     }];
 
     /*
      <a href="/seek/log.aspx?ID=4658218&lcn=1" id="ctl00_ContentBody_GeoNav_logButton" class="Button&#32;LogVisit">Log a new visit</a>
      */
+    NSString *href;
+    NSString *gc_id;
+    NSString *s;
+    NSRange r;
     re = @"//a[@id='ctl00_ContentBody_GeoNav_logButton']";
     nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
-    NSString *href = [e.attributes objectForKey:@"href"];
-    NSRange r = [href rangeOfString:@"ID="];
-    NSString *s = [href substringFromIndex:r.location + r.length ];
+    CHECK_ARRAY(nodes, 1, bail2);
+    e = [nodes objectAtIndex:0];
+    href = [e.attributes objectForKey:@"href"];
+    r = [href rangeOfString:@"ID="];
+    CHECK_RANGE(r, bail2);
+    s = [href substringFromIndex:r.location + r.length ];
     r = [s rangeOfString:@"&"];
-    NSString *gc_id = [s substringToIndex:r.location];
+    CHECK_RANGE(r, bail2);
+    gc_id = [s substringToIndex:r.location];
 
     // And save everything
+bail2:
+    NSLog(@"");
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:10];
     [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
@@ -601,23 +655,29 @@ enum {
         /*
             'wo9e', {userOptions:'XPTf', sessionToken:'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
          */
+        NSString *username;
+        NSString *sessionToken;
         r = [s rangeOfString:@","];
-        NSString *username = [s substringWithRange:NSMakeRange(1, r.location - 2)];
+        CHECK_RANGE(r, bail);
+        username = [s substringWithRange:NSMakeRange(1, r.location - 2)];
 
         r = [s rangeOfString:@"sessionToken:"];
+        CHECK_RANGE(r, bail);
         s = [s substringFromIndex:r.location + r.length + 1];
         /*
             'e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaYKLU-1ltM2d_CTr-bM3TK71F14-I0jNX-g43E74GPPt0', subscriberType: 3, enablePersonalization: true });\
          */
         r = [s rangeOfString:@","];
-        NSString *sessionToken = [s substringWithRange:NSMakeRange(0, r.location - 1)];
+        CHECK_RANGE(r, bail);
+        sessionToken = [s substringWithRange:NSMakeRange(0, r.location - 1)];
 
         // Now store it
         [json setObject:username forKey:@"usersession.username"];
         [json setObject:sessionToken forKey:@"usersession.sessionToken"];
 
         *stop = YES;
-
+    bail:
+        return;
     }];
 
     GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
@@ -735,10 +795,16 @@ enum {
 
     NSString *re = @"//textarea[@id='dataString']";
     NSArray *nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
+    TFHppleElement *e;
+    NSString *s;
+    NSRange r;
+    GCStringGPXGarmin *gpx = nil;
 
-    NSString *s = e.raw;
-    NSRange r = [s rangeOfString:@">"];     // Find end of <textarea ....>
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+
+    s = e.raw;
+    r = [s rangeOfString:@">"];     // Find end of <textarea ....>
     r.location++;
     r.length = [s length] - [@"</textarea>" length] - r.location;
     s = [s substringWithRange:r];
@@ -748,7 +814,8 @@ enum {
     r.length = [s length] - r.location;
     s = [s substringWithRange:r];
 
-    GCStringGPXGarmin *gpx = [[GCStringGPXGarmin alloc] initWithString:s];
+    gpx = [[GCStringGPXGarmin alloc] initWithString:s];
+bail:
     return gpx;
 }
 
@@ -776,25 +843,36 @@ enum {
 
     NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *trs, NSUInteger idx, BOOL *stop) {
-        NSLog(@"trs: %ld", [trs.children count]);
-        TFHppleElement *tds = [trs.children objectAtIndex:1];
-        NSLog(@"tds: %ld", [tds.children count]);
-        TFHppleElement *td = [tds.children objectAtIndex:1];
+        TFHppleElement *tds;
+        TFHppleElement *td;
+        NSString *href;
+        NSRange r;
+        NSString *guid;
+        TFHppleElement *name;
+        NSMutableDictionary *tb;
+
+        CHECK_ARRAY(trs.children, 2, bail);
+        tds = [trs.children objectAtIndex:1];
+        CHECK_ARRAY(tds.children, 2, bail);
+        td = [tds.children objectAtIndex:1];
         /*
          <a href="/track/details.aspx?guid=93201211-b611-4502-ac7d-e5a80b722067" class="lnk">
          <img alt="" src="/images/wpttypes/sm/1893.gif"> <span>David´s Wildcoin</span></a>
          */
-        NSString *href = [td.attributes objectForKey:@"href"];
-        NSRange r = [href rangeOfString:@"guid="];
-        NSString *guid = [href substringFromIndex:r.location + r.length];
-        TFHppleElement *name = [td.children objectAtIndex:3];
+        href = [td.attributes objectForKey:@"href"];
+        r = [href rangeOfString:@"guid="];
+        CHECK_RANGE(r, bail);
+        guid = [href substringFromIndex:r.location + r.length];
+        name = [td.children objectAtIndex:3];
 
-        NSMutableDictionary *tb = [NSMutableDictionary dictionaryWithCapacity:3];
+        tb = [NSMutableDictionary dictionaryWithCapacity:3];
         [tb setObject:href forKey:@"href"];
         [tb setObject:name.content forKey:@"name"];
         [tb setObject:guid forKey:@"guid"];
 
         [tbs addObject:tb];
+    bail:
+        return;
     }];
 
     return tbs;
@@ -827,9 +905,20 @@ enum {
      <span id="ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode"
      class="CoordInfoCode">TB4HC6C</span>
      */
-    NSString *re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
-    NSString *gccode = [[nodes objectAtIndex:0] content];
+    NSString *re;
+    NSArray *nodes;
+    NSString *gccode;
+    NSMutableDictionary *dict;
+    NSString *owner;
+    NSString *href;
+    NSString *u;
+    NSRange r;
+    TFHppleElement *e;
+
+    re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
+    nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
+    gccode = [[nodes objectAtIndex:0] content];
 
     /*
      <h4 class="BottomSpacing">
@@ -838,9 +927,11 @@ enum {
      */
     re = @"//h4[@class='BottomSpacing']/a[@title='View Map']";
     nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
-    NSString *u = [e.attributes objectForKey:@"href"];
-    NSRange r = [u rangeOfString:@"ID="];
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+    u = [e.attributes objectForKey:@"href"];
+    r = [u rangeOfString:@"ID="];
+    CHECK_RANGE(r, bail);
     _id = [u substringFromIndex:r.location + r.length];
 
     /*
@@ -848,25 +939,29 @@ enum {
      */
     re = @"//a[@id='ctl00_ContentBody_BugDetails_BugOwner']";
     nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
     e = [nodes objectAtIndex:0];
-    NSString *owner = e.content;
+    owner = e.content;
 
     /*
       <a id="ctl00_ContentBody_LogLink" title="Found&#32;it?&#32;Log&#32;it!" href="log.aspx?wid=a860f59b-7c62-458b-9ddd-adc5dade167b">Add a Log Entry</a></td>
      */
     re = @"//a[@id='ctl00_ContentBody_LogLink']";
     nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
     e = [nodes objectAtIndex:0];
-    NSString *href = [e.attributes objectForKey:@"href"];
+    href = [e.attributes objectForKey:@"href"];
     r = [href rangeOfString:@"wid="];
+    CHECK_RANGE(r, bail);
     guid = [href substringFromIndex:r.location + r.length];
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:1];
+    dict = [NSMutableDictionary dictionaryWithCapacity:1];
     [dict setObject:gccode forKey:@"gccode"];
     [dict setObject:_id forKey:@"id"];
     [dict setObject:guid forKey:@"guid"];
     [dict setObject:owner forKey:@"owner"];
 
+bail:
     return dict;
 }
 
@@ -888,21 +983,34 @@ enum {
     if (data == nil)
         return nil;
 
-
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     /*
      <h2 class="WrapFix">
      <img id="ctl00_ContentBody_BugTypeImage" class="TravelBugHeaderIcon" src="/images/wpttypes/21.gif"
      alt="Travel Bug Dog Tag"/><span id="ctl00_ContentBody_lbHeading">Scary hook</span>
      </h2>
-
      */
-    NSString *re = @"//h2[@class='WrapFix']";
+    NSString *re;
+    NSArray *nodes;
+    TFHppleElement *e;
+    NSString *name;
+    NSString *owner;
+    NSString *gccode;
+    NSString *_id;
+    NSString *guid;
+    NSString *href;
+    NSString *s;
+    NSRange r;
+    NSMutableDictionary *dict = nil;
+
+    re = @"//h2[@class='WrapFix']";
     //re = @"//h2[@class='WrapFix']/img/span[@id='ct100_ContentBody_lbHeading']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
-    TFHppleElement *e = [nodes objectAtIndex:0];
+    nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+    CHECK_ARRAY(e.children, 4, bail);
     e = [e.children objectAtIndex:3];
-    NSString *name = e.content;
+    name = e.content;
 
     /*
     <a id="ctl00_ContentBody_BugDetails_BugOwner" title="Visit User's Profile"
@@ -910,7 +1018,8 @@ enum {
      */
     re = @"//a[@id='ctl00_ContentBody_BugDetails_BugOwner']";
     nodes = [parser searchWithXPathQuery:re];
-    NSString *owner = [[nodes objectAtIndex:0] content];
+    CHECK_ARRAY(nodes, 1, bail);
+    owner = [[nodes objectAtIndex:0] content];
 
     /*
      <span id="ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode"
@@ -918,7 +1027,7 @@ enum {
      */
     re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
     nodes = [parser searchWithXPathQuery:re];
-    NSString *gccode = [[nodes objectAtIndex:0] content];
+    gccode = [[nodes objectAtIndex:0] content];
 
     /*
      <a id="ctl00_ContentBody_WatchLink" title="Watch This Trackable Item"
@@ -926,22 +1035,26 @@ enum {
      */
     re = @"//a[@id='ctl00_ContentBody_WatchLink']";
     nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
     e = [nodes objectAtIndex:0];
-    NSString *s = [e.attributes objectForKey:@"href"];
-    NSRange r = [s rangeOfString:@"b="];
-    NSString *_id = [s substringFromIndex:r.location + r.length];
+    s = [e.attributes objectForKey:@"href"];
+    r = [s rangeOfString:@"b="];
+    CHECK_RANGE(r, bail);
+    _id = [s substringFromIndex:r.location + r.length];
 
     /*
       <a id="ctl00_ContentBody_LogLink" title="Found&#32;it?&#32;Log&#32;it!" href="log.aspx?wid=a860f59b-7c62-458b-9ddd-adc5dade167b">Add a Log Entry</a></td>
      */
     re = @"//a[@id='ctl00_ContentBody_LogLink']";
     nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
     e = [nodes objectAtIndex:0];
-    NSString *href = [e.attributes objectForKey:@"href"];
+    href = [e.attributes objectForKey:@"href"];
     r = [href rangeOfString:@"wid="];
-    NSString *guid = [href substringFromIndex:r.location + r.length];
+    CHECK_RANGE(r, bail);
+    guid = [href substringFromIndex:r.location + r.length];
 
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:5];
+    dict = [[NSMutableDictionary alloc] initWithCapacity:5];
     [dict setObject:name forKey:@"name"];
     [dict setObject:owner forKey:@"owner"];
     [dict setObject:gccode forKey:@"gccode"];
@@ -949,6 +1062,7 @@ enum {
     [dict setObject:_id forKey:@"id"];
     [dict setObject:guid forKey:@"guid"];
 
+bail:
     return dict;
 }
 
@@ -1005,28 +1119,47 @@ enum {
     NSArray *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
         NSArray *tds = tr.children;
+        NSMutableDictionary *dict;
+        NSString *name;
+        NSString *href;
+        NSRange r;
+        NSString *_id;
+        NSString *owner;
+        NSString *carrier;
+        NSString *location;
+        NSString *s;
+        TFHppleElement *e;
 
         // Get TB name
-        TFHppleElement *e = [tds objectAtIndex:3];
+        CHECK_ARRAY(tds, 4, bail);
+        e = [tds objectAtIndex:3];
+        CHECK_ARRAY(e.children, 4, bail);
         e = [e.children objectAtIndex:3];
-        NSString *name = e.content;
-        NSString *href = [e.attributes objectForKey:@"href"];
-        NSRange r = [href rangeOfString:@"id="];
-        NSString *_id = [href substringFromIndex:r.location + r.length];
+        name = e.content;
+        href = [e.attributes objectForKey:@"href"];
+        r = [href rangeOfString:@"id="];
+        CHECK_RANGE(r, bail);
+        _id = [href substringFromIndex:r.location + r.length];
 
         // Get TB owner
+        CHECK_ARRAY(tds, 8, bail);
         e = [tds objectAtIndex:7];
+        CHECK_ARRAY(e.children, 2, bail);
         e = [e.children objectAtIndex:1];
-        NSString *owner = e.content;
+        owner = e.content;
 
         // Get person who carries or location hidden
-        NSString *carrier = nil;
-        NSString *location = nil;
+        carrier = nil;
+        location = nil;
+        CHECK_ARRAY(tds, 10, bail);
         e = [tds objectAtIndex:9];
+        CHECK_ARRAY(e.children, 2, bail);
         e = [e.children objectAtIndex:1];
-        NSString *s = [e.attributes objectForKey:@"class"];
+        s = [e.attributes objectForKey:@"class"];
 
+        CHECK_ARRAY(tds, 10, bail);
         e = [tds objectAtIndex:9];
+        CHECK_ARRAY(e.children, 3, bail);
         e = [e.children objectAtIndex:2];
         if (s != nil && [s isEqualToString:@"CacheTypeIcon"] == YES) {
             location = e.content;
@@ -1034,7 +1167,7 @@ enum {
             carrier = e.content;
         }
 
-        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+        dict = [NSMutableDictionary dictionaryWithCapacity:5];
         [dict setObject:name forKey:@"name"];
         [dict setObject:owner forKey:@"owner"];
         [dict setObject:_id forKey:@"id"];
@@ -1044,6 +1177,8 @@ enum {
             [dict setObject:carrier forKey:@"carrier"];
 
         [tbs addObject:dict];
+    bail:
+        return;
     }];
 
     return tbs;
@@ -1114,13 +1249,11 @@ enum {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
 #define GETVALUE(__string__, __varname__) \
-    NSString *__varname__ = nil; \
-    { \
-    NSString *re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
-    NSArray *nodes = [parser searchWithXPathQuery:re]; \
-    TFHppleElement *e = [nodes objectAtIndex:0]; \
-    __varname__ = [e.attributes objectForKey:@"value"]; \
-    }
+    re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
+    nodes = [parser searchWithXPathQuery:re]; \
+    CHECK_ARRAY(nodes, 1, bail); \
+    e = [nodes objectAtIndex:0]; \
+    __varname__ = [e.attributes objectForKey:@"value"];
 
     // Grab the form data
     // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
@@ -1134,6 +1267,18 @@ enum {
      __VIEWSTATEGENERATOR:
      ctl00$ContentBody$btnGPXDL:
      */
+    NSString *eventtarget = nil;
+    NSString *eventargument = nil;
+    NSString *viewstatefieldcount = nil;
+    NSString *viewstate = nil;
+    NSString *viewstate1 = nil;
+    NSString *lastfocus = nil;
+    NSString *viewstategenerator = nil;
+    NSMutableDictionary *dict;
+    NSString *re;
+    NSArray *nodes;
+    TFHppleElement *e;
+
     GETVALUE(@"__EVENTTARGET", eventtarget);
     GETVALUE(@"__EVENTARGUMENT", eventargument);
     GETVALUE(@"__LASTFOCUS", lastfocus);
@@ -1142,7 +1287,7 @@ enum {
     GETVALUE(@"__VIEWSTATE1", viewstate1);
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:6];
+    dict = [NSMutableDictionary dictionaryWithCapacity:6];
     [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
     [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
     [dict setObject:lastfocus forKey:@"__LASTFOCUS"];
@@ -1150,6 +1295,8 @@ enum {
     [dict setObject:viewstate forKey:@"__VIEWSTATE"];
     [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+bail:
+    NSLog(@"");
 
     /*
     <select id="ctl00_ContentBody_LogBookPanel1_uxTrackables_repTravelBugs_ctl01_ddlAction"><option value="3801141">-
