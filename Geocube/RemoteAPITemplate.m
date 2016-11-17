@@ -223,35 +223,12 @@
 
 // ----------------------------------------
 
-- (BOOL)commentSupportsPhotos
-{
-    return [protocol commentSupportsPhotos];
-}
-
-- (BOOL)commentSupportsTrackables
-{
-    return [protocol commentSupportsTrackables];
-}
-
-- (BOOL)commentSupportsRating
-{
-    return [protocol commentSupportsRating];
-}
-
-- (NSRange)commentSupportsRatingRange
-{
-    return [protocol commentSupportsRatingRange];
-}
-
-- (BOOL)commentSupportsFavouritePoint
-{
-    return [protocol commentSupportsFavouritePoint];
-}
-
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return [protocol waypointSupportsPersonalNotes];
-}
+NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
+NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
+NEEDS_OVERLOADING_BOOL(commentSupportsRating)
+NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
+NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
+NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
 
 // ----------------------------------------
 

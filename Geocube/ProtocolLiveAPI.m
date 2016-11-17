@@ -39,27 +39,6 @@
     return self;
 }
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return YES;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return YES;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (BOOL)commentSupportsTrackables
-{
-    return YES;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return YES;
-}
-
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", liveAPIPrefix, url];

@@ -25,6 +25,27 @@
 
 @implementation RemoteAPILiveAPI
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return YES;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return YES;
+}
+- (BOOL)commentSupportsRating
+{
+    return NO;
+}
+- (BOOL)commentSupportsTrackables
+{
+    return YES;
+}
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return YES;
+}
+
 #define LIVEAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \

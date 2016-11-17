@@ -25,12 +25,6 @@
 
 @implementation ProtocolTemplate
 
-NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
-NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
-NEEDS_OVERLOADING_BOOL(commentSupportsRating)
-NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
-NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
-NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
 - (instancetype)init:(RemoteAPITemplate *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end

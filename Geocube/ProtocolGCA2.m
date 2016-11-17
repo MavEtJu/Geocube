@@ -65,31 +65,6 @@
     return self;
 }
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return NO;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return YES;
-}
-- (BOOL)commentSupportsRating
-{
-    return YES;
-}
-- (NSRange)commentSupportsRatingRange
-{
-    return NSMakeRange(1, 5);
-}
-- (BOOL)commentSupportsTrackables
-{
-    return NO;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return NO;
-}
-
 - (BOOL)authenticate:(dbAccount *)account
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/login/login/", prefix]];

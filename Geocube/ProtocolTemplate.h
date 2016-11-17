@@ -21,12 +21,6 @@
 
 @interface ProtocolTemplate : NSObject
 
-- (BOOL)commentSupportsFavouritePoint;
-- (BOOL)commentSupportsPhotos;
-- (BOOL)commentSupportsRating;
-- (NSRange)commentSupportsRatingRange;
-- (BOOL)commentSupportsTrackables;
-- (BOOL)waypointSupportsPersonalNotes;
 - (instancetype)init:(RemoteAPITemplate *)remoteAPI;
 
 @end

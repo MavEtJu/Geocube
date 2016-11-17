@@ -25,6 +25,31 @@
 
 @implementation RemoteAPIGCA2
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return NO;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return YES;
+}
+- (BOOL)commentSupportsRating
+{
+    return YES;
+}
+- (NSRange)commentSupportsRatingRange
+{
+    return NSMakeRange(1, 5);
+}
+- (BOOL)commentSupportsTrackables
+{
+    return NO;
+}
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return NO;
+}
+
 #define GCA2_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \

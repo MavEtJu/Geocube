@@ -39,27 +39,6 @@
     return self;
 }
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return NO;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return NO;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (BOOL)commentSupportsTrackables
-{
-    return NO;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return NO;
-}
-
 - (NSString *)string_array:(NSArray *)fields
 {
     return [MyTools urlEncode:[fields componentsJoinedByString:@"|"]];

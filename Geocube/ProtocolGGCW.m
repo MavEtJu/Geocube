@@ -98,31 +98,6 @@ enum {
     return self;
 }
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return YES;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return NO;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (NSRange)commentSupportsRatingRange
-{
-    return NSMakeRange(0, 0);
-}
-- (BOOL)commentSupportsTrackables
-{
-    return YES;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return YES;
-}
-
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
     if (self.delegate != nil)

@@ -25,6 +25,27 @@
 
 @implementation RemoteAPIOKAPI
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return NO;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return NO;
+}
+- (BOOL)commentSupportsRating
+{
+    return NO;
+}
+- (BOOL)commentSupportsTrackables
+{
+    return NO;
+}
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return NO;
+}
+
 #define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \
                 return [self lastErrorCode]; \

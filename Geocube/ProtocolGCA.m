@@ -61,31 +61,6 @@
     return self;
 }
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return NO;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return YES;
-}
-- (BOOL)commentSupportsRating
-{
-    return YES;
-}
-- (NSRange)commentSupportsRatingRange
-{
-    return NSMakeRange(1, 5);
-}
-- (BOOL)commentSupportsTrackables
-{
-    return NO;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return NO;
-}
-
 - (void)storeCookie:(NSHTTPCookie *)cookie
 {
     if (self.delegate != nil)

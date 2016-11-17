@@ -25,6 +25,31 @@
 
 @implementation RemoteAPIGGCW
 
+- (BOOL)commentSupportsFavouritePoint
+{
+    return YES;
+}
+- (BOOL)commentSupportsPhotos
+{
+    return NO;
+}
+- (BOOL)commentSupportsRating
+{
+    return NO;
+}
+- (NSRange)commentSupportsRatingRange
+{
+    return NSMakeRange(0, 0);
+}
+- (BOOL)commentSupportsTrackables
+{
+    return YES;
+}
+- (BOOL)waypointSupportsPersonalNotes
+{
+    return YES;
+}
+
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
 
