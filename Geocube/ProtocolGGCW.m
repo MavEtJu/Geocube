@@ -700,8 +700,9 @@ bail2:
     https://tiles04.geocaching.com/map.info?ts=2&x=15070&y=9841&z=14&k=wo9e&st=e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaSE7NYnMquJsMGoz5tapdJOdNLv3doYRV46MHwovgcHk0&ep=1&callback=jQuery19102689279553556684_1478429965122&_=1478429965123
      */
 
-    NSString *jQueryCallback = [NSString stringWithFormat:@"jQuery%08d", arc4random_uniform(100000000l)];
+    NSString *jQueryCallback = [NSString stringWithFormat:@"jQuery%08d_%lu", arc4random_uniform(100000000l), [MyTools millisecondsSinceEpoch]];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[NSNumber numberWithInteger:1] forKey:@"ep"];
     [params setObject:[NSNumber numberWithInteger:2] forKey:@"ts"];
     [params setObject:[NSNumber numberWithInteger:x] forKey:@"x"];
     [params setObject:[NSNumber numberWithInteger:y] forKey:@"y"];
