@@ -254,6 +254,18 @@
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
         [d setValue:[a objectForKey:@"name"] forKey:@"Name"];
         [d setValue:[a objectForKey:@"g"] forKey:@"Id"];
+        [d setValue:[a objectForKey:@"count"] forKey:@"Count"];
+
+        NSString *ssize = [a objectForKey:@"size"];
+        NSInteger nsize = [ssize integerValue];
+        NSRange r = [ssize rangeOfString:@"KB"];
+        if (r.location != NSNotFound)
+            nsize *= 1024;
+        r = [ssize rangeOfString:@"MB"];
+        if (r.location != NSNotFound)
+            nsize *= 1024 * 1024;
+
+        [d setValue:[NSNumber numberWithInteger:nsize] forKey:@"Size"];
         [as addObject:d];
     }];
 

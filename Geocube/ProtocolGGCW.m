@@ -342,48 +342,66 @@ enum {
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     NSMutableDictionary *ds = [NSMutableDictionary dictionaryWithCapacity:4];
 
-    // Find the data for the "Found" field.
-    {
-        NSString *re = @"//table[@id='uxOfflinePQTable']/tr/td/a";
-        NSArray *nodes = [parser searchWithXPathQuery:re];
-        [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
-            NSString *s = e.content;
-            NSString *name = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            NSString *href = [e.attributes objectForKey:@"href"];
-            NSLog(@"%@ - %@", name, href);
+    /*
+     <table id="uxOfflinePQTable" class="PocketQueryListTable Table">
+     <tr id="ctl00_ContentBody_PQDownloadList_uxDownloadPQList_ctl01_trPQDownloadRow">
+     <td> <input type="checkbox" onclick="checkTopCBDL();" value="15095476" id="chk15095476" /> </td>
+     <td> 1. </td>
+     <td>
+     <img src="/images/icons/16/bookmark_pq.png" alt="Bookmark Pocket Query" />
+     <a href="/pocket/downloadpq.ashx?g=e4c29eef-f9f6-4954-9830-e886c08f8f8a&src=web">
+     Great Southern Road</a>
+     </td>
+     <td class="AlignRight"> 30.85 KB </td>
+     <td class="AlignCenter"> 20 </td>
+     */
+    NSString *re = @"//table[@id='uxOfflinePQTable']/tr";
+    NSArray *nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
+        if ([tr.children count] < 10)
+            return;
+        /*
+         <td>
+         <img src="/images/icons/16/bookmark_pq.png" alt="Bookmark Pocket Query" />
+         <a href="/pocket/downloadpq.ashx?g=e4c29eef-f9f6-4954-9830-e886c08f8f8a&src=web">
+         Great Southern Road</a>
+         </td>
+         */
+        TFHppleElement *tds = [tr.children objectAtIndex:5];
+        TFHppleElement *e = [tds.children objectAtIndex:3];
+        NSString *guid = [e.attributes objectForKey:@"href"];
+        NSRange r = [guid rangeOfString:@"g="];
+        guid = [guid substringFromIndex:r.location + r.length];
+        r = [guid rangeOfString:@"&"];
+        guid = [guid substringToIndex:r.location];
 
-            // Get rid of non-URLs
-            if ([href containsString:@"downloadpq.ashx"] == NO)
-                return;
+        e = [e.children objectAtIndex:0];
+        NSString *name = [e.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-            NSMutableString *g = [NSMutableString stringWithString:href];
-            NSRange r = [g rangeOfString:@"g="];
-            if (r.location != NSNotFound) {
-                r.length += r.location;
-                r.location = 0;
-                [g deleteCharactersInRange:r];
-            }
-            r = [g rangeOfString:@"&"];
-            if (r.location != NSNotFound) {
-                r.length = [g length] - r.location;
-                [g deleteCharactersInRange:r];
-            }
+        /*
+         <td class="AlignRight"> 30.85 KB </td>
+         */
+        TFHppleElement *td = [tr.children objectAtIndex:7];
+        td = [td.children objectAtIndex:0];
+        NSString *size = [td.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-            NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-            [d setValue:name forKey:@"name"];
-            [d setValue:g forKey:@"g"];
-#warning XXX increase data returned
-//            [d setValue:[NSNumber numberWithInteger:[MyTools secondsSinceEpochFromWindows:[pq objectForKey:@"DateLastGenerated"]]] forKey:@"DateTime"];
-//            [d setValue:[pq objectForKey:@"FileSizeInBytes"] forKey:@"size"];
-//            [d setValue:[pq objectForKey:@"PQCount"] forKey:@"waypointcount"];
-            [ds setObject:d forKey:name];
-        }];
+        /*
+         <td class="AlignCenter"> 20 </td>
+         */
+        td = [tr.children objectAtIndex:9];
+        td = [td.children objectAtIndex:0];
+        NSString *count = [td.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    }
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        [d setValue:name forKey:@"name"];
+        [d setValue:guid forKey:@"g"];
+        [d setValue:size forKey:@"size"];
+        [d setValue:count forKey:@"count"];
+        [ds setObject:d forKey:name];
+    }];
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
     return dict;
-
 }
 
 - (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
