@@ -805,11 +805,13 @@ bail2:
 
     s = e.raw;
     r = [s rangeOfString:@">"];     // Find end of <textarea ....>
+    CHECK_RANGE(r, bail);
     r.location++;
     r.length = [s length] - [@"</textarea>" length] - r.location;
     s = [s substringWithRange:r];
 
     r = [s rangeOfString:@">"];     // Find end of <?xml ....>
+    CHECK_RANGE(r, bail);
     r.location++;
     r.length = [s length] - r.location;
     s = [s substringWithRange:r];
