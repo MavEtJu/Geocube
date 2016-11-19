@@ -1295,7 +1295,7 @@ bail:
 #define GETVALUE(__string__, __varname__) \
     re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
     nodes = [parser searchWithXPathQuery:re]; \
-    CHECK_ARRAY(nodes, 1, bail); \
+    CHECK_ARRAY(nodes, 1, bail1); \
     e = [nodes objectAtIndex:0]; \
     __varname__ = [e.attributes objectForKey:@"value"];
 
@@ -1339,7 +1339,7 @@ bail:
     [dict setObject:viewstate forKey:@"__VIEWSTATE"];
     [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
-bail:
+bail1:
     NSLog(@"");
 
     /*
