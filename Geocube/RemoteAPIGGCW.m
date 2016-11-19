@@ -144,10 +144,12 @@
     loadWaypointsWaypoints = 0;
     *retObject = nil;
 
-    if (self.account.ggcw_username == nil) {
-        GCDictionaryGGCW *d = [ggcw map:iid];
-        self.account.ggcw_username = [d objectForKey:@"usersession.username"];
-        self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
+    GCDictionaryGGCW *d = [ggcw map:iid];
+    self.account.ggcw_username = [d objectForKey:@"usersession.username"];
+    self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
+    if (self.account.ggcw_username == nil || self.account.ggcw_sessiontoken == nil) {
+        [self setAPIError:@"Unknown to obtain username or session token" error:REMOTEAPI_APIFAILED];
+        return REMOTEAPI_APIFAILED;
     }
 
     CLLocationCoordinate2D ct = [Coordinates location:center bearing:0 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
@@ -182,6 +184,9 @@
             [iid setChunksTotal:0];
             [iid setChunksCount:1];
             [iid resetBytes];
+            // Without requesting the map tile image the map.info returns sometimes a 204. No idea why.
+            [ggcw map_png:x y:y z:ZOOM downloadInfoItem:iid];
+            // Now we can (safely?) request the map info details.
             GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM downloadInfoItem:iid];
 
             NSDictionary *alldata = [d objectForKey:@"data"];
