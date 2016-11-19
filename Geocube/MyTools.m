@@ -426,20 +426,22 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 + (BOOL)hasWifiNetwork
 {
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    [reachability startNotifier];
-    NetworkStatus status = [reachability currentReachabilityStatus];
-    [reachability stopNotifier];
+    @synchronized (self) {
+        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        [reachability startNotifier];
+        NetworkStatus status = [reachability currentReachabilityStatus];
+        [reachability stopNotifier];
 
-    switch (status) {
-        case NotReachable:
-            return NO;
-        case ReachableViaWiFi:
-            return YES;
-        case ReachableViaWWAN:
-            return NO;
+        switch (status) {
+            case NotReachable:
+                return NO;
+            case ReachableViaWiFi:
+                return YES;
+            case ReachableViaWWAN:
+                return NO;
+        }
+        return NO;
     }
-    return NO;
 }
 
 + (BOOL)hasMobileNetwork
