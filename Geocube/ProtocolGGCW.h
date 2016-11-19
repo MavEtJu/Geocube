@@ -40,6 +40,7 @@
 - (GCDictionaryGGCW *)account_oauth_token:(InfoItemDownload *)iid;
 - (GCDictionaryGGCW *)map:(InfoItemDownload *)iid;
 - (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid;
+- (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid;
 - (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid;
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid;
 - (NSArray *)my_inventory:(InfoItemDownload *)iid;

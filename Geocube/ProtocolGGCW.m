@@ -136,9 +136,13 @@ enum {
         case GGCW_GGCWSERVER:
             urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
             break;
-        case GGCW_TILESERVERS:
-            urlString = [NSMutableString stringWithFormat:prefixTiles, 1 + arc4random_uniform(4l), suffix];
+        case GGCW_TILESERVERS: {
+            // Make sure that the tile server chosen is the same for every x andy coordinate.
+            NSInteger ts = [[params objectForKey:@"x"] integerValue] +
+                           [[params objectForKey:@"y"] integerValue];
+            urlString = [NSMutableString stringWithFormat:prefixTiles, ts % 4 + 1, suffix];
             break;
+        }
         default:
             NSAssert1(FALSE, @"Unknown server type: %ld", (long)servers);
             break;
@@ -716,6 +720,9 @@ bail2:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
+    NSString *urlReferer = [self prepareURLString:@"/map/" params:nil servers:GGCW_GGCWSERVER];
+    [req setValue:urlReferer forHTTPHeaderField: @"Referer"];
+
     NSData *data = [self performURLRequest:req downloadInfoItem:iid];
     if (data == nil)
         return nil;
@@ -732,6 +739,40 @@ bail2:
 
     GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
     return d;
+}
+
+- (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid
+{
+    NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", x, y, z);
+
+
+    /*
+     * This is the tile info requested:
+     * x, y, z is the coordinates for the tile.
+     * k / st is the username, sessiontoken.
+     * ts is ?
+
+     https://tiles01.geocaching.com/map.png?ts=2&x=15071&y=9837&z=14&k=wo9e&st=e6kWt3zylUp-j41PyBHXbhF8XdK0ghbimG4xtcf4Jomq_rOa45e7fMQib5Py7jLEc64oYex-pj5HGmAUuVjMaV2Rn0ybLHXZh5v6r3w-pmUVufXUYTnzguxIfUUVjuE40&ep=1
+
+     */
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    [params setObject:[NSNumber numberWithInteger:2] forKey:@"ts"];
+    [params setObject:[NSNumber numberWithInteger:x] forKey:@"x"];
+    [params setObject:[NSNumber numberWithInteger:y] forKey:@"y"];
+    [params setObject:[NSNumber numberWithInteger:z] forKey:@"z"];
+    [params setObject:remoteAPI.account.ggcw_username forKey:@"k"];
+    [params setObject:remoteAPI.account.ggcw_sessiontoken forKey:@"st"];
+
+    NSString *urlString = [self prepareURLString:@"/map.png" params:params servers:GGCW_TILESERVERS];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSString *urlReferer = [self prepareURLString:@"/map/" params:nil servers:GGCW_GGCWSERVER];
+    [req setValue:urlReferer forHTTPHeaderField: @"Referer"];
+
+    [self performURLRequest:req downloadInfoItem:iid];
+    return nil;
 }
 
 - (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid
