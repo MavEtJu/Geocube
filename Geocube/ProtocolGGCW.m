@@ -1385,7 +1385,7 @@ bail1:
     return dict;
 }
 
-- (NSDictionary *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables downloadInfoItem:(InfoItemDownload *)iid
+- (NSString *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables downloadInfoItem:(InfoItemDownload *)iid
 {
     NSLog(@"seek_log__submit:%@", gc_id);
 
@@ -1471,7 +1471,11 @@ bail1:
 
     req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [self performURLRequest:req downloadInfoItem:iid];
-    return nil;
+    NSString *ss = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([ss containsString:@"View Geocache Log"] == NO)
+        return nil;
+
+    return ss;
 }
 
 @end
