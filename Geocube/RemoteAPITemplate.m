@@ -55,7 +55,7 @@
     gca = nil;
     gca2 = nil;
     ggcw = nil;
-    ProtocolId pid = self.account.protocol_id;
+    ProtocolId pid = (ProtocolId)self.account.protocol_id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[ProtocolLiveAPI alloc] init:self];
@@ -88,7 +88,7 @@
 
 - (BOOL)Authenticate
 {
-    ProtocolId pid = self.account.protocol_id;
+    ProtocolId pid = (ProtocolId)self.account.protocol_id;
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:{

@@ -38,7 +38,7 @@
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent;
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded;
 
-@property (nonatomic) NSId _id;
+@property (nonatomic) NSInteger _id;
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic, retain) InfoViewer *infoViewer;
 @property (nonatomic) NSInteger height;

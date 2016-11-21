@@ -108,7 +108,7 @@
         }
         if (note == nil)
             return;
-        [tbs setObject:note forKey:[NSNumber numberWithInteger:tb.gc_id]];
+        [tbs setObject:note forKey:[NSNumber numberWithLongLong:tb.gc_id]];
     }];
 
     NSDictionary *dict = [ggcw geocache:waypoint.wpt_name downloadInfoItem:iid];
@@ -180,7 +180,7 @@
             NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
 
             iid = [infoViewer addDownload];
-            [iid setDescription:[NSString stringWithFormat:@"Tile (%ld, %ld)", x, y]];
+            [iid setDescription:[NSString stringWithFormat:@"Tile (%ld, %ld)", (long)x, (long)y]];
             [iid setChunksTotal:0];
             [iid setChunksCount:1];
             [iid resetBytes];
@@ -377,7 +377,7 @@
         [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
         [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
-        [dict setObject:[NSNumber numberWithInteger:self.account.accountname._id] forKey:@"carrier_id"];
+        [dict setObject:[NSNumber numberWithLongLong:self.account.accountname._id] forKey:@"carrier_id"];
         [tbstot addObject:dict];
     }];
 

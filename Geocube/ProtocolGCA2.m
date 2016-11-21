@@ -99,7 +99,7 @@
         return NO;
     }
     if (response.statusCode != 200 && response.statusCode != 400) {
-        [account disableRemoteAccess:[NSString stringWithFormat:@"statusCode != (200|400) (%ld)", response.statusCode]];
+        [account disableRemoteAccess:[NSString stringWithFormat:@"statusCode != (200|400) (%ld)", (long)response.statusCode]];
         return NO;
     }
     if (data == nil) {

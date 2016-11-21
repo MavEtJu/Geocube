@@ -77,7 +77,7 @@
         return;
     }
 
-    ProtocolId pid = self.protocol._id;
+    ProtocolId pid = (ProtocolId)self.protocol._id;
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:
