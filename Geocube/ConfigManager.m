@@ -64,6 +64,7 @@
 
     CHECK(@"key_gms", @"");
     CHECK(@"key_mapbox", @"");
+    CHECK(@"key_gca-api", @"");
 
     CHECK(@"map_external", @"1");
     CHECK(@"map_brand", @"0");
@@ -177,6 +178,7 @@
     self.mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
     self.keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
     self.keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
+    self.keyGCAAPI = [dbConfig dbGetByKey:@"key_gca-api"].value;
     self.downloadImagesLogs = [[dbConfig dbGetByKey:@"download_images_logs"].value boolValue];
     self.downloadImagesWaypoints = [[dbConfig dbGetByKey:@"download_images_waypoints"].value boolValue];
     self.downloadImagesMobile = [[dbConfig dbGetByKey:@"download_images_mobile"].value boolValue];
@@ -465,6 +467,11 @@
 {
     self.keyMapbox = value;
     [self NSStringUpdate:@"key_mapbox" value:value];
+}
+- (void)keyGCAAPIUpdate:(NSString *)value
+{
+    self.keyGCAAPI = value;
+    [self NSStringUpdate:@"key_gca-api" value:value];
 }
 
 - (void)downloadImagesLogsUpdate:(BOOL)value

@@ -34,6 +34,7 @@
 
 @property (nonatomic) NSString *keyGMS;
 @property (nonatomic) NSString *keyMapbox;
+@property (nonatomic) NSString *keyGCAAPI;
 
 // User settings
 @property (nonatomic) BOOL distanceMetric;
@@ -115,6 +116,7 @@
 
 - (void)keyGMSUpdate:(NSString *)value;
 - (void)keyMapboxUpdate:(NSString *)value;
+- (void)keyGCAAPIUpdate:(NSString *)value;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)sendTweetsUpdate:(BOOL)value;

@@ -240,12 +240,12 @@
         NSString *text = [key objectForKey:@"text"];
         text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-        if ([site isEqualToString:@"googlemaps"] == YES) {
+        if ([site isEqualToString:@"googlemaps"] == YES)
             [configManager keyGMSUpdate:text];
-        }
-        if ([site isEqualToString:@"mapbox"] == YES) {
+        if ([site isEqualToString:@"mapbox"] == YES)
             [configManager keyMapboxUpdate:text];
-        }
+        if ([site isEqualToString:@"gca-api"] == YES)
+            [configManager keyGCAAPIUpdate:text];
     }];
 
     return YES;
