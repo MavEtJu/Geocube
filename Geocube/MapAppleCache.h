@@ -24,6 +24,7 @@
 @property (nonatomic) NSInteger hits;
 @property (nonatomic) NSInteger misses;
 @property (nonatomic) NSInteger saves;
+@property (nonatomic) NSInteger notfounds;
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix;
 + (void)cleanupCache;

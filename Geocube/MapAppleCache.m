@@ -39,8 +39,8 @@
     if ([_prefix isEqualToString:@""] == YES)
         return p;
 
-    // The has directories be z % 10, y % 10, x % 10
-    for (NSInteger z = 1; z < 20; z++) {
+    // The has directories be z, y % 10, x % 10
+    for (NSInteger z = 1; z <= 20; z++) {
         for (NSInteger y = 0; y < 10; y++) {
             for (NSInteger x = 0; x < 10; x++) {
                 NSString *d = [NSString stringWithFormat:@"%@/%ld/%ld/%ld", p, (long)z, (long)y, (long)x];
@@ -162,7 +162,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)path.z % 10, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)path.z, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
     if (configManager.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
@@ -179,9 +179,16 @@
 
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             if (error == nil) {
-                [tileData writeToFile:cachefile atomically:NO];
-                NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
-                self.saves++;
+                NSString *s = [[NSString alloc] initWithData:tileData encoding:NSUTF8StringEncoding];
+                if ([s containsString:@"404 Not Found"] == YES) {
+                    NSLog(@"Tile (%ld, %ld, %ld) not found", (long)path.z, (long)path.y, (long)path.x);
+                    tileData = nil;
+                    self.notfounds++;
+                } else {
+                    [tileData writeToFile:cachefile atomically:NO];
+                    NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
+                    self.saves++;
+                }
             }
             self.misses++;
             result(tileData, error);
