@@ -280,18 +280,6 @@
                 TABBARCONTROLLER(RC_STATISTICS, controllers)
                 break;
 
-            case RC_NOTICES:
-                controllers = [NSMutableArray array];
-
-                vc = [[NoticesViewController alloc] init];
-                vc.title = @"Notices";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
-                TABBARCONTROLLER(RC_NOTICES, controllers)
-                break;
-
             case RC_SETTINGS:
                 controllers = [NSMutableArray array];
 
@@ -327,6 +315,12 @@
 
                 vc = [[HelpHelpViewController alloc] init];
                 vc.title = @"Help";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[NoticesViewController alloc] init];
+                vc.title = @"Notices";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
@@ -437,9 +431,9 @@
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
     if (db == nil) {
-        [self switchController:RC_NOTICES];
-        currentTab = [self.tabBars objectAtIndex:RC_NOTICES];
-        cpt = VC_NOTICES_NOTICES;
+        [self switchController:RC_HELP];
+        currentTab = [self.tabBars objectAtIndex:RC_HELP];
+        cpt = VC_HELP_NOTICES;
         [currentTab setSelectedIndex:cpt animated:YES];
         [NoticesViewController AccountsNeedToBeInitialized];
     }
