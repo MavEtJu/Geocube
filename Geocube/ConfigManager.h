@@ -41,7 +41,7 @@
 @property (nonatomic) BOOL sendTweets;
 
 @property (nonatomic) NSInteger mapExternal;
-@property (nonatomic) NSInteger mapBrand;
+@property (nonatomic) NSString *mapBrandDefault;
 @property (nonatomic) UIColor  *mapTrackColour;
 @property (nonatomic) UIColor  *mapDestinationColour;
 @property (nonatomic) NSInteger compassType;
@@ -128,7 +128,7 @@
 - (void)lastImportGroupUpdate:(NSInteger)value;
 - (void)lastImportSourceUpdate:(NSInteger)value;
 - (void)mapExternalUpdate:(NSInteger)value;
-- (void)mapBrandUpdate:(NSInteger)value;
+- (void)mapBrandDefaultUpdate:(NSString *)value;
 - (void)mapTrackColourUpdate:(NSString *)value;
 - (void)mapDestinationColourUpdate:(NSString *)value;
 - (void)compassTypeUpdate:(NSInteger)value;

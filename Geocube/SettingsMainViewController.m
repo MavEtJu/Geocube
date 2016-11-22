@@ -36,6 +36,8 @@
 
     NSArray *compassTypes;
     NSArray *externalMapTypes;
+    NSArray *mapBrandsCodes;
+    NSArray *mapBrandsNames;
 
     NSArray *orientationStrings;
     NSArray *orientationValues;
@@ -110,6 +112,11 @@ enum {
 
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
+
+    NSDictionary *mapBrands = [NSDictionary dictionaryWithObjects:@[@"Google Maps", @"Apple Maps", @"OpenStreetMaps"] forKeys:@[@"google", @"apple", @"osm"]];
+    mapBrandsCodes = [mapBrands allKeys];
+    NSMutableArray *values = [NSMutableArray arrayWithArray:[mapBrands objectsForKeys:mapBrandsCodes notFoundMarker:@""]];
+    mapBrandsNames = values;
 
     orientationStrings = @[
                            @"Portrait",
@@ -277,7 +284,8 @@ enum sections {
     SECTION_COMPASS_ALWAYSPORTRAIT = 0,
     SECTION_COMPASS_MAX,
 
-    SECTION_MAPS_ROTATE_TO_BEARING = 0,
+    SECTION_MAPS_DEFAULTBRAND = 0,
+    SECTION_MAPS_ROTATE_TO_BEARING,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -580,6 +588,22 @@ enum sections {
 
         case SECTION_MAPS: {   // Maps
             switch (indexPath.row) {
+                case SECTION_MAPS_DEFAULTBRAND: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Default map";
+                    __block NSString *value = nil;
+                    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
+                            value = [mapBrandsNames objectAtIndex:idx];
+                            *stop = YES;
+                            return;
+                        }
+                    }];
+                    cell.detailTextLabel.text = value;
+
+                    return cell;
+                }
                 case SECTION_MAPS_ROTATE_TO_BEARING: {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
 
@@ -1189,6 +1213,9 @@ enum sections {
             return;
         case SECTION_MAPS:
             switch (indexPath.row) {
+                case SECTION_MAPS_DEFAULTBRAND:
+                    [self changeMapsDefaultBrand];
+                    break;
             }
             return;
         case SECTION_DYNAMICMAP:
@@ -1894,6 +1921,33 @@ enum sections {
 }
 
 /* ********************************************************************************* */
+
+- (void)changeMapsDefaultBrand
+{
+    __block NSInteger initial = 0;
+    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
+            initial = idx;
+            *stop = YES;
+        }
+    }];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Default Map"
+                                            rows:mapBrandsNames
+                                initialSelection:initial
+                                          target:self
+                                   successAction:@selector(updateMapsDefaultBrand:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateMapsDefaultBrand:(NSNumber *)selectedIndex element:(id)element
+{
+    NSString *code = [mapBrandsCodes objectAtIndex:[selectedIndex integerValue]];;
+    [configManager mapBrandDefaultUpdate:code];
+    [self.tableView reloadData];
+}
 
 - (void)changeAppsExternalMap
 {

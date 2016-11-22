@@ -67,7 +67,7 @@
     CHECK(@"key_gca-api", @"");
 
     CHECK(@"map_external", @"1");
-    CHECK(@"map_brand", @"0");
+    CHECK(@"map_branddefault", @"apple");
     CHECK(@"map_track_colour", @"00F0F0");
     CHECK(@"map_destination_colour", @"FF0000");
 
@@ -148,7 +148,7 @@
     self.lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     self.lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
     self.mapExternal = [[dbConfig dbGetByKey:@"map_external"].value integerValue];
-    self.mapBrand = [[dbConfig dbGetByKey:@"map_brand"].value integerValue];
+    self.mapBrandDefault = [dbConfig dbGetByKey:@"map_branddefault"].value;
     self.mapTrackColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
     self.mapDestinationColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
     self.compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
@@ -311,10 +311,10 @@
     self.mapExternal = value;
     [self NSIntegerUpdate:@"map_external" value:value];
 }
-- (void)mapBrandUpdate:(NSInteger)value
+- (void)mapBrandDefaultUpdate:(NSString *)value
 {
-    self.mapBrand = value;
-    [self NSIntegerUpdate:@"map_brand" value:value];
+    self.mapBrandDefault = value;
+    [self NSStringUpdate:@"map_branddefault" value:value];
 }
 - (void)mapTrackColourUpdate:(NSString *)value
 {

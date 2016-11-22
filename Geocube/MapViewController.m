@@ -80,12 +80,18 @@ enum {
 {
     self = [super init];
 
+    // Default map brand
+    if ([configManager.mapBrandDefault isEqualToString:@"google"] == YES)
+        showBrand = MAPBRAND_GOOGLEMAPS;
+    if ([configManager.mapBrandDefault isEqualToString:@"apple"] == YES)
+        showBrand = MAPBRAND_APPLEMAPS;
+    if ([configManager.mapBrandDefault isEqualToString:@"osm"] == YES)
+        showBrand = MAPBRAND_OPENSTREETMAPS;
+
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         hasGMS = NO;
-
-    showBrand = configManager.mapBrand;
     if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
         showBrand = MAPBRAND_APPLEMAPS;
 
@@ -660,7 +666,6 @@ enum {
             break;
     }
     showBrand = brand;
-    [configManager mapBrandUpdate:brand];
 
     // Various map view options
     if ([map mapHasViewMap] == FALSE)
