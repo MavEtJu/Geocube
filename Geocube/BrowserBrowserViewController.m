@@ -42,6 +42,7 @@
 enum {
     menuGoHome,
     menuEnterURL,
+    menuOpenInSafari,
     menuMax
 };
 
@@ -52,6 +53,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuGoHome label:@"Go home"];
     [lmi addItem:menuEnterURL label:@"Enter URL"];
+    [lmi addItem:menuOpenInSafari label:@"Open in Safari"];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;
@@ -371,6 +373,9 @@ enum {
         case menuEnterURL:
             [self menuEnterURL];
             return;
+        case menuOpenInSafari:
+            [self menuOpenInSafari];
+            return;
     }
     [super performLocalMenuAction:index];
 }
@@ -408,6 +413,12 @@ enum {
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuOpenInSafari
+{
+    NSURL *url = [NSURL URLWithString:urlHome];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end
