@@ -1687,17 +1687,6 @@
 			name = Groups;
 			sourceTree = "<group>";
 		};
-		E857078B1CA1E68600467CE0 /* Notices */ = {
-			isa = PBXGroup;
-			children = (
-				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
-				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
-				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
-				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
-			);
-			name = Notices;
-			sourceTree = "<group>";
-		};
 		E857078C1CA1E68F00467CE0 /* Trackables */ = {
 			isa = PBXGroup;
 			children = (
@@ -2341,10 +2330,14 @@
 				E8A7FA9E1B78408A003F4132 /* HelpAboutViewController.m */,
 				E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */,
 				E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */,
-				E8F408571B57510400FBA858 /* HelpImagesViewController.h */,
-				E8F408581B57510400FBA858 /* HelpImagesViewController.m */,
 				E89051791C96BA0200220986 /* HelpHelpViewController.h */,
 				E890517A1C96BA0200220986 /* HelpHelpViewController.m */,
+				E8F408571B57510400FBA858 /* HelpImagesViewController.h */,
+				E8F408581B57510400FBA858 /* HelpImagesViewController.m */,
+				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
+				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
+				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
+				E880379E1B9467E90053AD01 /* NoticesViewController.m */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -2802,7 +2795,6 @@
 				E8FD610D1BE8C46100859A58 /* Files */,
 				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
-				E857078B1CA1E68600467CE0 /* Notices */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 			);
