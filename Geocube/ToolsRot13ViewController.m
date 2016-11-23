@@ -57,14 +57,14 @@
     [self calculateRects];
 
     labelInput = [[UITextView alloc] initWithFrame:rectInput];
-    labelInput.text = @"Input: gnat";
+    labelInput.text = @"Enter your text here...";
     labelInput.backgroundColor = [UIColor lightGrayColor];
     labelInput.delegate = self;
     [labelInput selectAll:self];
     [self.view addSubview:labelInput];
 
     labelOutput = [[UITextView alloc] initWithFrame:rectOutput];
-    labelOutput.text = @"Output: tang";
+    labelOutput.text = @"Ragre lbhe grkg urer...";
     labelOutput.backgroundColor = [UIColor lightGrayColor];
     labelOutput.userInteractionEnabled = NO;
     [self.view addSubview:labelOutput];
