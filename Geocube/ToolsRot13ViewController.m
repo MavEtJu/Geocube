@@ -66,7 +66,8 @@
     labelOutput = [[UITextView alloc] initWithFrame:rectOutput];
     labelOutput.text = @"Ragre lbhe grkg urer...";
     labelOutput.backgroundColor = [UIColor lightGrayColor];
-    labelOutput.userInteractionEnabled = NO;
+    labelOutput.userInteractionEnabled = YES;
+    labelOutput.delegate = self;
     [self.view addSubview:labelOutput];
 
     buttonClear = [GCButton buttonWithType:UIButtonTypeSystem];
@@ -122,6 +123,13 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     labelOutput.text = [self rot13:labelInput.text];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView == labelOutput)
+        return NO;
+    return YES;
 }
 
 - (NSString *)rot13:(NSString *)input
