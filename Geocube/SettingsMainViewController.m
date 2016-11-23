@@ -1944,7 +1944,7 @@ enum sections {
 
 - (void)updateMapsDefaultBrand:(NSNumber *)selectedIndex element:(id)element
 {
-    NSString *code = [mapBrandsCodes objectAtIndex:[selectedIndex integerValue]];;
+    NSString *code = [mapBrandsCodes objectAtIndex:[selectedIndex integerValue]];
     [configManager mapBrandDefaultUpdate:code];
     [self.tableView reloadData];
 }
