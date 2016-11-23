@@ -43,6 +43,7 @@ enum {
     RC_FILES,
     RC_STATISTICS,
     RC_BROWSER,
+    RC_TOOLS,
     RC_SETTINGS,
     RC_HELP,
     RC_MAX,
@@ -108,4 +109,8 @@ enum {
     VC_LISTS_DNF,
     VC_LISTS_INPROGRESS,
     VC_LISTS_IGNORE,
+
+    VC_TOOLS_GPSSMOOTH = 0,
+    VC_TOOLS_ROT13,
+    VC_TOOLS_MAX,
 };

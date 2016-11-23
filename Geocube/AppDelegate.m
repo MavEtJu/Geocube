@@ -400,6 +400,24 @@
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
 
+            case RC_TOOLS:
+                controllers = [NSMutableArray array];
+
+                vc = [[ToolsGPSViewController alloc] init];
+                vc.title = @"GPS";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                vc = [[ToolsRot13ViewController alloc] init];
+                vc.title = @"Rot13";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
+                TABBARCONTROLLER(RC_QUERIES, controllers)
+                break;
+
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 

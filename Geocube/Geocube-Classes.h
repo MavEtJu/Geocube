@@ -166,6 +166,8 @@
 @class ThemeManager;
 @class ThemeNight;
 @class ThemeTemplate;
+@class ToolsGPSViewController;
+@class ToolsRot13ViewController;
 @class TrackablesInventoryViewController;
 @class TrackablesListViewController;
 @class TrackablesMineViewController;

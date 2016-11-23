@@ -260,6 +260,9 @@
 #import "MapAppleCache.h"
 #import "MapOSM.h"
 
+#import "ToolsRot13ViewController.h"
+#import "ToolsGPSViewController.h"
+
 #import "ListTemplateViewController.h"
 #import "ListDNFViewController.h"
 #import "ListFoundViewController.h"

@@ -354,6 +354,8 @@
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */; };
+		E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
 		E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B01CD33BC600170D61 /* MHTabBarActiveTab.png */; };
@@ -1084,6 +1086,10 @@
 		E89580241C66E44900282177 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E89D15691DE55F7500ED14B3 /* ToolsRot13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsRot13ViewController.h; sourceTree = "<group>"; };
+		E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsRot13ViewController.m; sourceTree = "<group>"; };
+		E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsGPSViewController.h; sourceTree = "<group>"; };
+		E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsGPSViewController.m; sourceTree = "<group>"; };
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
 		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
@@ -2225,6 +2231,17 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		E89D15681DE55F4F00ED14B3 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				E89D15691DE55F7500ED14B3 /* ToolsRot13ViewController.h */,
+				E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */,
+				E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */,
+				E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2795,6 +2812,7 @@
 				E8FD610D1BE8C46100859A58 /* Files */,
 				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
+				E89D15681DE55F4F00ED14B3 /* Tools */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 			);
@@ -3435,6 +3453,7 @@
 				E8E440071D88A55500BECB49 /* InfoItemImport.m in Sources */,
 				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
+				E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */,
 				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
@@ -3628,6 +3647,7 @@
 				E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,
 				E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */,
+				E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */,
 				E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */,
 				E847A5931BA0524E00BEFE83 /* GCSmallLabel.m in Sources */,
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
