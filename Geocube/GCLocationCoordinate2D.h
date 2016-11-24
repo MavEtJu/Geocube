@@ -19,8 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCViewController.h"
+@interface GCLocationCoordinate2D : NSObject
 
-@interface ToolsGPSViewController : GCViewController <LocationManagerDelegate>
+@property (nonatomic) CLLocationDegrees lat;
+@property (nonatomic) CLLocationDegrees lon;
 
 @end

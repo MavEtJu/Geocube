@@ -252,6 +252,7 @@
 #import "GCPointAnnotation.h"
 #import "GCCircle.h"
 #import "GCGMSCircle.h"
+#import "GCLocationCoordinate2D.h"
 #import "MapWaypointInfoView.h"
 #import "MapViewController.h"
 #import "MapTemplate.h"

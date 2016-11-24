@@ -64,6 +64,7 @@
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
+@class GCLocatationCoordinate2D;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

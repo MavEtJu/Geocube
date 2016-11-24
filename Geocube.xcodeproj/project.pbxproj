@@ -356,6 +356,7 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */; };
 		E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */; };
+		E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */; };
 		E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */; };
 		E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */; };
 		E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A3B0B01CD33BC600170D61 /* MHTabBarActiveTab.png */; };
@@ -1090,6 +1091,8 @@
 		E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsRot13ViewController.m; sourceTree = "<group>"; };
 		E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsGPSViewController.h; sourceTree = "<group>"; };
 		E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsGPSViewController.m; sourceTree = "<group>"; };
+		E89D15701DE6AD9500ED14B3 /* GCLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLocationCoordinate2D.h; sourceTree = "<group>"; };
+		E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLocationCoordinate2D.m; sourceTree = "<group>"; };
 		E8A386771BBBFD830003DE49 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E8A386781BBBFD830003DE49 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
 		E8A3867A1BBBFE5A0003DE49 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
@@ -1656,6 +1659,8 @@
 				E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */,
 				E85FCA711CAC6EF3005D7AE1 /* GCDictionary.h */,
 				E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */,
+				E89D15701DE6AD9500ED14B3 /* GCLocationCoordinate2D.h */,
+				E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */,
 				E84E239E1DBF03A00079496D /* GCString.h */,
 				E84E239F1DBF03A00079496D /* GCString.m */,
 			);
@@ -3499,6 +3504,7 @@
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */,
 				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,
+				E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */,
 				E84E23A01DBF03A00079496D /* GCString.m in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
