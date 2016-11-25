@@ -152,17 +152,17 @@ enum {
     NSInteger height16 = bounds.size.height / 18;
     NSInteger height = 16.8 * height16;
 
-    gpsMapRect = CGRectMake(0, height16, width, 14 * height16);
+    gpsMapRect = CGRectMake(smallLabelLineHeight, smallLabelLineHeight, width - 2 * smallLabelLineHeight, height - 5 * smallLabelLineHeight);
 
-    coordsMinXRect = CGRectMake(0 * width16, width16, smallLabelLineHeight, 15 * height16);
-    coordsMaxXRect = CGRectMake(15 * width16, width16, smallLabelLineHeight, 15 * height16);
+    coordsMinXRect = CGRectMake( 0 * width16, width16, smallLabelLineHeight, 15 * height16);
+    coordsMaxXRect = CGRectMake(width - smallLabelLineHeight, width16, smallLabelLineHeight, 15 * height16);
 
-    coordsMinYRect = CGRectMake(0, 15 * height16, width, smallLabelLineHeight);
-    coordsMaxYRect = CGRectMake(0, 0, width, smallLabelLineHeight);
+    coordsMaxYRect = CGRectMake(0,  0, width, smallLabelLineHeight);
+    coordsMinYRect = CGRectMake(0, height - 4 * smallLabelLineHeight, width, smallLabelLineHeight);
 
     coordsLastRect = CGRectMake(0, height - 3 * smallLabelLineHeight, width, smallLabelLineHeight);
-    coordsAvgRect = CGRectMake(0, height - 2 * smallLabelLineHeight, width, smallLabelLineHeight);
-    distanceRect = CGRectMake(0, height - 1 * smallLabelLineHeight, width, smallLabelLineHeight);
+    coordsAvgRect = CGRectMake( 0, height - 2 * smallLabelLineHeight, width, smallLabelLineHeight);
+    distanceRect = CGRectMake(  0, height - 1 * smallLabelLineHeight, width, smallLabelLineHeight);
 }
 
 - (void)viewWilltransitionToSize
