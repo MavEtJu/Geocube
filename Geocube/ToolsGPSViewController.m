@@ -51,6 +51,8 @@
 
 enum {
     menuRestart,
+    menuCopyCoordsAvg,
+    menuCopyCoordsLast,
     menuMax,
 };
 
@@ -60,6 +62,8 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuRestart label:@"Restart"];
+    [lmi addItem:menuCopyCoordsAvg label:@"Copy Average Coords"];
+    [lmi addItem:menuCopyCoordsLast label:@"Copy Last Coords"];
 
     return self;
 }
@@ -235,6 +239,7 @@ enum {
         CGContextStrokeRect(context, CGRectMake(xx - c.accuracy / 2.0, yy - c.accuracy / 2.0, c.accuracy, c.accuracy));
 
         // All accuracies over 30 m get one count, everything below gets (30-accuracy) counts.
+        // Also the newer measurements get a higher weight.
         avg.lat += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy)) * c.lat;
         avg.lon += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy)) * c.lon;
         countavg += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy));
@@ -322,6 +327,13 @@ enum {
     }
 }
 
+- (void)copyCoords:(NSString *)c
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = c;
+    [MyTools messageBox:self header:@"Copy successful" text:@"The coordinates have been copied to the clipboard."];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     // Go back home
@@ -329,6 +341,14 @@ enum {
         case menuRestart:
             [coords removeAllObjects];
             [self updateLocationManagerLocation];
+            return;
+
+        case menuCopyCoordsLast:
+            [self copyCoords:coordsLast.text];
+            return;
+
+        case menuCopyCoordsAvg:
+            [self copyCoords:coordsAvg.text];
             return;
     }
 
