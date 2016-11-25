@@ -25,14 +25,24 @@
 
     UIImageView *gpsMap;
 
-    GCLabel *coordsMin;
-    GCLabel *coordsMax;
-    GCLabel *coordsAvg;
+    GCSmallLabel *coordsMinX;
+    GCSmallLabel *coordsMinY;
+    GCSmallLabel *coordsMaxX;
+    GCSmallLabel *coordsMaxY;
+    GCSmallLabel *coordsAvg;
+    GCSmallLabel *coordsLast;
+    GCSmallLabel *distance;
 
     CGRect gpsMapRect;
-    CGRect coordsMinRect;
-    CGRect coordsMaxRect;
+    CGRect coordsMinXRect;
+    CGRect coordsMinYRect;
+    CGRect coordsMaxXRect;
+    CGRect coordsMaxYRect;
     CGRect coordsAvgRect;
+    CGRect coordsLastRect;
+    CGRect distanceRect;
+
+    float smallLabelLineHeight;
 }
 
 @end
@@ -67,7 +77,8 @@ enum {
     self.view = contentView;
     [self.view sizeToFit];
 
-    [self calculateRects];
+    GCSmallLabel *l = [[GCSmallLabel alloc] initWithFrame:coordsMinXRect];
+    smallLabelLineHeight = l.font.lineHeight;
 
     coords = [NSMutableArray arrayWithCapacity:100];
 
@@ -75,20 +86,48 @@ enum {
     gpsMap.image = [self createGPSMap];
     [self.view addSubview:gpsMap];
 
-    coordsMin = [[GCLabel alloc] initWithFrame:coordsMinRect];
-    coordsMin.text = @"Min";
-    coordsMin.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:coordsMin];
+    coordsMinX = [[GCSmallLabel alloc] initWithFrame:coordsMinXRect];
+    coordsMinX.text = @"MinX";
+    coordsMinX.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    coordsMinX.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:coordsMinX];
 
-    coordsMax = [[GCLabel alloc] initWithFrame:coordsMaxRect];
-    coordsMax.text = @"Max";
-    coordsMax.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:coordsMax];
+    coordsMinY = [[GCSmallLabel alloc] initWithFrame:coordsMinYRect];
+    coordsMinY.text = @"MinY";
+    coordsMinY.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:coordsMinY];
 
-    coordsAvg = [[GCLabel alloc] initWithFrame:coordsAvgRect];
+    coordsMaxX = [[GCSmallLabel alloc] initWithFrame:coordsMaxXRect];
+    coordsMaxX.text = @"MaxX";
+    coordsMaxX.transform = CGAffineTransformMakeRotation(M_PI_2);
+    coordsMaxX.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:coordsMaxX];
+
+    coordsMaxY = [[GCSmallLabel alloc] initWithFrame:coordsMaxYRect];
+    coordsMaxY.text = @"MaxY";
+    coordsMaxY.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:coordsMaxY];
+
+    coordsAvg = [[GCSmallLabel alloc] initWithFrame:coordsAvgRect];
     coordsAvg.text = @"avg";
     coordsAvg.textAlignment = NSTextAlignmentCenter;
+    coordsAvg.textColor = [UIColor redColor];
     [self.view addSubview:coordsAvg];
+
+    coordsLast = [[GCSmallLabel alloc] initWithFrame:coordsLastRect];
+    coordsLast.text = @"last";
+    coordsLast.textAlignment = NSTextAlignmentCenter;
+    coordsLast.textColor = [UIColor greenColor];
+    [self.view addSubview:coordsLast];
+
+    distance = [[GCSmallLabel alloc] initWithFrame:distanceRect];
+    distance.text = @"last";
+    distance.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:distance];
+
+    [self viewWilltransitionToSize];
+
+    [self performSelectorInBackground:@selector(updateEverySecond) withObject:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -105,12 +144,35 @@ enum {
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
+    NSInteger width16 = bounds.size.width / 16;
     NSInteger height16 = bounds.size.height / 18;
+    NSInteger height = 16.8 * height16;
 
     gpsMapRect = CGRectMake(0, height16, width, 14 * height16);
-    coordsMinRect = CGRectMake(0, 0, width, height16);
-    coordsMaxRect = CGRectMake(0, 15 * height16, width, height16);
-    coordsAvgRect = CGRectMake(0, 8 * height16, width, height16);
+
+    coordsMinXRect = CGRectMake(0 * width16, width16, smallLabelLineHeight, 15 * height16);
+    coordsMaxXRect = CGRectMake(15 * width16, width16, smallLabelLineHeight, 15 * height16);
+
+    coordsMinYRect = CGRectMake(0, 15 * height16, width, smallLabelLineHeight);
+    coordsMaxYRect = CGRectMake(0, 0, width, smallLabelLineHeight);
+
+    coordsLastRect = CGRectMake(0, height - 3 * smallLabelLineHeight, width, smallLabelLineHeight);
+    coordsAvgRect = CGRectMake(0, height - 2 * smallLabelLineHeight, width, smallLabelLineHeight);
+    distanceRect = CGRectMake(0, height - 1 * smallLabelLineHeight, width, smallLabelLineHeight);
+}
+
+- (void)viewWilltransitionToSize
+{
+    [self calculateRects];
+    coordsMinX.frame = coordsMinXRect;
+    coordsMaxX.frame = coordsMaxXRect;
+    coordsMinY.frame = coordsMinYRect;
+    coordsMaxY.frame = coordsMaxYRect;
+    coordsAvg.frame = coordsAvgRect;
+    coordsLast.frame = coordsLastRect;
+    distance.frame = distanceRect;
+
+    gpsMap.frame = gpsMapRect;
 }
 
 - (UIImage *)createGPSMap
@@ -125,8 +187,10 @@ enum {
         y3 = MAX(y3, c.lat);
     }];
 
-    coordsMin.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(y0, x0)];
-    coordsMax.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(y3, x3)];
+    coordsMinX.text = [Coordinates NiceLongitude:x0];
+    coordsMaxX.text = [Coordinates NiceLongitude:x3];
+    coordsMinY.text = [Coordinates NiceLatitude:y0];
+    coordsMaxY.text = [Coordinates NiceLatitude:y3];
 
     x0 -= .0001;
     y0 -= .0001;
@@ -160,25 +224,46 @@ enum {
      *        x' = (x - x0) * ratioX
      */
 
+    // Al coordinates. The older the coordinates, the lighters they will be.
     GCLocationCoordinate2D *avg = [[GCLocationCoordinate2D alloc] init];
     CGContextSetLineWidth(context, 1);
-    CGContextSetFillColorWithColor(context, [[UIColor blueColor] CGColor]);
+    __block NSInteger countavg = 0;
     [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D *c, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:(1.0 - 1.0 * (idx + 1) / [coords count]) alpha:1] CGColor]);
         CGFloat xx = [self xtrack:c.lon x0:x0 X:X x3:x3];
         CGFloat yy = [self ytrack:c.lat y0:y0 Y:Y y3:y3];
-        CGContextFillRect(context, CGRectMake(xx, yy, 5, 5));
-        avg.lat += c.lat;
-        avg.lon += c.lon;
-    }];
+        CGContextStrokeRect(context, CGRectMake(xx - c.accuracy / 2.0, yy - c.accuracy / 2.0, c.accuracy, c.accuracy));
 
-    coordsAvg.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(avg.lat / [coords count], avg.lon / [coords count])];
+        // All accuracies over 30 m get one count, everything below gets (30-accuracy) counts.
+        avg.lat += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy)) * c.lat;
+        avg.lon += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy)) * c.lon;
+        countavg += idx * (1 + (c.accuracy > 30 ? 0 : 30 - c.accuracy));
+    }];
+    avg.lat /= countavg;
+    avg.lon /= countavg;
+
+    // Last coordinates in green
+    GCLocationCoordinate2D *last = [coords lastObject];
+    CGContextSetStrokeColorWithColor(context, [[UIColor greenColor] CGColor]);
+    CGFloat xx = [self xtrack:last.lon x0:x0 X:X x3:x3];
+    CGFloat yy = [self ytrack:last.lat y0:y0 Y:Y y3:y3];
+    CGContextStrokeRect(context, CGRectMake(xx - last.accuracy / 2.0, yy - last.accuracy / 2.0, last.accuracy, last.accuracy));
+
+    // Average coordinates in red
     CGContextSetFillColorWithColor(context, [[UIColor redColor] CGColor]);
     if ([coords count] != 0) {
-        CGFloat xx = [self xtrack:(avg.lon / [coords count]) x0:x0 X:X x3:x3];
-        CGFloat yy = [self ytrack:(avg.lat / [coords count]) y0:y0 Y:Y y3:y3];
-        CGContextFillRect(context, CGRectMake(xx, yy, 5, 5));
+        CGFloat xx = [self xtrack:avg.lon x0:x0 X:X x3:x3];
+        CGFloat yy = [self ytrack:avg.lat y0:y0 Y:Y y3:y3];
+        CGContextFillRect(context, CGRectMake(xx - 2, yy - 2, 4, 4));
     }
+    CGContextStrokePath(context);
 
+    // Update text
+    coordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(last.lat, last.lon)], [MyTools niceDistance:last.accuracy]];
+    coordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(avg.lat, avg.lon)]];
+    distance.text = [NSString stringWithFormat:@"Last distance to average: %@", [MyTools niceDistance:[Coordinates coordinates2distance:CLLocationCoordinate2DMake(avg.lat, avg.lon) to:CLLocationCoordinate2DMake(last.lat, last.lon)]]];
+
+    // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
@@ -199,9 +284,42 @@ enum {
     GCLocationCoordinate2D *c = [[GCLocationCoordinate2D alloc] init];
     c.lat = LM.coords.latitude;
     c.lon = LM.coords.longitude;
+    c.accuracy = LM.accuracy;
+
+    if (c.lat == 0 && c.lon == 0)
+        return;
+
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    c.tv = tv;
+
     [coords addObject:c];
-    
-    gpsMap.image = [self createGPSMap];
+    while ([coords count] > 100)
+        [coords removeObjectAtIndex:0];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        gpsMap.image = [self createGPSMap];
+    }];
+}
+
+- (void)updateEverySecond
+{
+    while ([coords count] == 0) {
+        [NSThread sleepForTimeInterval:1];
+    }
+    while (1) {
+        [NSThread sleepForTimeInterval:1.0];
+
+        GCLocationCoordinate2D *c = [coords lastObject];
+        long lastc = c.tv.tv_sec;
+        long now = time(NULL);
+
+        // Only make a new data point if the poll was more than one second away.
+        if (now - lastc < 1)
+            continue;
+
+        [self updateLocationManagerLocation];
+    }
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
