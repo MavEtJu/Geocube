@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@interface GCLocationCoordinate2D ()
+
+@end
+
 @implementation GCLocationCoordinate2D
 
 @end
