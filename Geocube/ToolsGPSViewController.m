@@ -136,6 +136,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [LM startDelegation:self isNavigating:YES];
     stopTimer = NO;
     [self performSelectorInBackground:@selector(updateEverySecond) withObject:nil];
 }
@@ -144,12 +145,9 @@ enum {
 {
     [super viewWillDisappear:animated];
     stopTimer = YES;
+    [LM stopDelegation:self];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [LM startDelegation:self isNavigating:YES];
-}
 
 - (void)viewDidDisappear:(BOOL)animated
 {
