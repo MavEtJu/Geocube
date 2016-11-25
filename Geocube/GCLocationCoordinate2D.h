@@ -23,5 +23,7 @@
 
 @property (nonatomic) CLLocationDegrees lat;
 @property (nonatomic) CLLocationDegrees lon;
+@property (nonatomic) CLLocationAccuracy accuracy;
+@property (nonatomic) struct timeval tv;
 
 @end
