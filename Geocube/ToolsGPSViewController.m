@@ -43,6 +43,7 @@
     CGRect distanceRect;
 
     float smallLabelLineHeight;
+    BOOL stopTimer;
 }
 
 @end
@@ -130,8 +131,19 @@ enum {
     [self.view addSubview:distance];
 
     [self viewWilltransitionToSize];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    stopTimer = NO;
     [self performSelectorInBackground:@selector(updateEverySecond) withObject:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    stopTimer = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -311,8 +323,12 @@ enum {
 {
     while ([coords count] == 0) {
         [NSThread sleepForTimeInterval:1];
+        if (stopTimer == YES)
+            return;
     }
     while (1) {
+        if (stopTimer == YES)
+            return;
         [NSThread sleepForTimeInterval:1.0];
 
         GCLocationCoordinate2D *c = [coords lastObject];
