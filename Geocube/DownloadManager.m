@@ -39,14 +39,14 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem downloadInfoItem:(InfoItem *)iti
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 {
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
     [req setObject:urlRequest forKey:@"urlRequest"];
     [req setObject:sem forKey:@"semaphore"];
-    [req setObject:(iti == nil ? [NSNull null] : iti) forKey:@"downloadInfoItem"];
-    if (iti != nil)
-        [iti setURL:urlRequest.URL.absoluteString];
+    [req setObject:(iv == nil ? [NSNull null] : iv) forKey:@"infoItem"];
+    if (iv != nil)
+        [iv setURL:ivi url:urlRequest.URL.absoluteString];
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
@@ -71,9 +71,9 @@
     return req;
 }
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error downloadInfoItem:(InfoItem *)iti
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 {
-    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error downloadInfoItem:iti];
+    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error infoViewer:iv ivi:ivi];
 }
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
@@ -105,10 +105,10 @@
     return result;
 }
 
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr downloadInfoItem:(InfoItem *)iti
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iti];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv ivi:ivi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];

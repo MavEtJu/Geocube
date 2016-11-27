@@ -163,4 +163,32 @@ NEEDS_OVERLOADING(calculateRects)
     [self setChunks];
 }
 
+- (void)setWaypointsNew:(NSInteger)i
+{
+}
+- (void)setWaypointsTotal:(NSInteger)i
+{
+}
+- (void)setTrackablesNew:(NSInteger)i
+{
+}
+- (void)setTrackablesTotal:(NSInteger)i
+{
+}
+- (void)setLogsNew:(NSInteger)i
+{
+}
+- (void)setLogsTotal:(NSInteger)i
+{
+}
+- (void)showWaypoints:(BOOL)yesno
+{
+}
+- (void)showLogs:(BOOL)yesno
+{
+}
+- (void)showTrackables:(BOOL)yesno
+{
+}
+
 @end

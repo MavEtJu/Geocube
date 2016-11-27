@@ -270,11 +270,11 @@ enum {
 
 - (void)runStatistics:(dbAccount *)a
 {
-    InfoItemDownload *iid = [infoView addDownload];
-    [iid setDescription:a.site];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setDescription:iid description:a.site];
 
     NSDictionary *d = nil;
-    NSInteger retValue = [a.remoteAPI UserStatistics:&d downloadInfoItem:iid];
+    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:infoView ivi:iid];
 
     if (retValue != REMOTEAPI_OK) {
         [infoView removeItem:iid];

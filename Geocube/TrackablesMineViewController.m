@@ -93,8 +93,8 @@ enum {
 - (void)menuUpdate
 {
     [self showInfoView];
-    InfoItemDownload *iid = [infoView addDownload];
-    [iid setDescription:@"Download trackables information"];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setDescription:iid description:@"Download trackables information"];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if ((a.protocol_id == PROTOCOL_LIVEAPI || a.protocol_id == PROTOCOL_GGCW) && a.canDoRemoteStuff) {
@@ -106,7 +106,7 @@ enum {
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];
-            [a.remoteAPI trackablesMine:iid];
+            [a.remoteAPI trackablesMine:infoView ivi:iid];
             tbs = [dbTrackable dbAllMine];
             [self reloadDataMainQueue];
             *stop = YES;

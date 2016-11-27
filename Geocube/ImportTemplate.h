@@ -35,8 +35,9 @@
     dbAccount *account;
     dbGroup *group;
 
-    InfoItemImport *infoItemImport;
-}
+    InfoViewer *infoViewer;
+    InfoItemID ivi;
+};
 
 enum {
     RUN_OPTION_NONE = 0,
@@ -54,9 +55,9 @@ enum {
 - (void)parseString:(NSString *)data;
 - (void)parseGPX:(GCStringGPX *)gpx;
 - (void)parseDictionary:(GCDictionary *)dict;
-- (void)parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii;
-- (void)parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii;
-- (void)parseString:(NSString *)data infoItemImport:(InfoItemImport *)iii;
-- (void)parseDictionary:(GCDictionary *)dict infoItemImport:(InfoItemImport *)iii;
+- (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (void)parseString:(NSString *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (void)parseDictionary:(GCDictionary *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 
 @end

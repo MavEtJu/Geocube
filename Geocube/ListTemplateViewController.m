@@ -143,16 +143,16 @@ NEEDS_OVERLOADING(clearFlags)
 - (void)runReloadWaypoints
 {
     [self showInfoView];
-    InfoItemDownload *iid = [infoView addDownload];
-    [iid setChunksTotal:[waypoints count]];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setChunksTotal:iid total:[waypoints count]];
 
     __block BOOL failure = NO;
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [iid resetBytes];
+        [infoView resetBytes:iid];
         [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
-        [iid setDescription:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
+        [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:iid];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
             failure = YES;

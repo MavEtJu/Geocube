@@ -23,6 +23,7 @@
 {
     NSMutableArray *items;
     GCLabel *header;
+    InfoItemID maxid;
 }
 
 @end
@@ -38,6 +39,7 @@
     header.backgroundColor = [UIColor lightGrayColor];
 
     items = [NSMutableArray arrayWithCapacity:5];
+    maxid = 1;
 
     [self calculateRects];
     [self changeTheme];
@@ -50,21 +52,17 @@
     return ([items count] != 0);
 }
 
-- (InfoItemImage *)addImage
+- (NSInteger)addImage
 {
     return [self addImage:YES];
 }
 
-- (InfoItemImage *)addImage:(BOOL)expanded
+- (NSInteger)addImage:(BOOL)expanded
 {
-    __block NSInteger max = 0;
     InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self expanded:expanded];
 
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
-            max = MAX(max, d._id);
-        }];
-        iii._id = max + 1;
+        iii._id = maxid++;
         [items addObject:iii];
     }
 
@@ -72,33 +70,22 @@
         header.text = @"Images";
         [self addSubview:header];
         [self addSubview:iii.view];
-//        [UIView transitionWithView:self
-//                          duration:0.5
-//                           options:UIViewAnimationOptionTransitionNone
-//                        animations:^{
-                                       [self calculateRects];
-//                                    }
-//                        completion:nil];
     }];
 
-    return iii;
+    return iii._id;
 }
 
-- (InfoItemImport *)addImport
+- (NSInteger)addImport
 {
     return [self addImport:YES];
 }
 
-- (InfoItemImport *)addImport:(BOOL)expanded
+- (NSInteger)addImport:(BOOL)expanded
 {
-    __block NSInteger max = 0;
     InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self expanded:expanded];
 
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
-            max = MAX(max, d._id);
-        }];
-        iii._id = max + 1;
+        iii._id = maxid++;
         [items addObject:iii];
     }
 
@@ -109,24 +96,20 @@
         [self calculateRects];
     }];
 
-    return iii;
+    return iii._id;
 }
 
-- (InfoItemDownload *)addDownload
+- (NSInteger)addDownload
 {
     return [self addDownload:YES];
 }
 
-- (InfoItemDownload *)addDownload:(BOOL)expanded
+- (NSInteger)addDownload:(BOOL)expanded
 {
     InfoItemDownload *iid = [[InfoItemDownload alloc] initWithInfoViewer:self expanded:expanded];
 
-    __block NSInteger max = 0;
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
-            max = MAX(max, d._id);
-        }];
-        iid._id = max + 1;
+        iid._id = maxid++;
         [items addObject:iid];
     }
 
@@ -137,19 +120,26 @@
         [self calculateRects];
     }];
 
-    return iid;
+    return iid._id;
 }
 
-- (void)removeItem:(InfoItem *)i
+- (void)removeItem:(InfoItemID)_id
 {
+    __block InfoItem *ii;
     @synchronized (items) {
-        [items removeObject:i];
+        [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
+            if (_ii._id == _id) {
+                [items removeObjectAtIndex:idx];
+                ii = _ii;
+                *stop = YES;
+            }
+        }];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        i.view.hidden = YES;
+        ii.view.hidden = YES;
         [self calculateRects];
-        [i.view removeFromSuperview];
+        [ii.view removeFromSuperview];
     }];
 }
 
@@ -211,6 +201,136 @@
 {
     [super changeTheme];
     self.backgroundColor = [UIColor lightGrayColor];
+}
+
+// -----------------------------------------------------
+
+- (InfoItem *)findInfoItem:(InfoItemID)_id
+{
+    __block InfoItem *ii = nil;
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
+            if (_ii._id == _id) {
+                ii = _ii;
+                *stop = YES;
+            }
+        }];
+    }
+    return ii;
+}
+
+- (void)calculateRects:(InfoItemID)_id
+{
+    [[self findInfoItem:_id] calculateRects];
+}
+
+- (void)expand:(InfoItemID)_id yesno:(BOOL)yesno
+{
+    [[self findInfoItem:_id] expand:yesno];
+}
+- (BOOL)isExpanded:(InfoItemID)_id
+{
+    return [[self findInfoItem:_id] isExpanded];
+}
+
+- (void)setDescription:(InfoItemID)_id description:(NSString *)newDesc
+{
+    [[self findInfoItem:_id] setDescription:newDesc];
+}
+
+- (void)setURL:(InfoItemID)_id url:(NSString *)newURL
+{
+    [[self findInfoItem:_id] setURL:newURL];
+}
+
+- (void)setQueueSize:(InfoItemID)_id queueSize:(NSInteger)queueSize
+{
+    [[self findInfoItem:_id] setQueueSize:queueSize];
+}
+
+- (void)resetBytes:(InfoItemID)_id
+{
+    [[self findInfoItem:_id] resetBytes];
+}
+
+- (void)resetBytesChunks:(InfoItemID)_id
+{
+    [[self findInfoItem:_id] resetBytesChunks];
+}
+
+- (void)setBytesTotal:(InfoItemID)_id total:(NSInteger)newTotal
+{
+    [[self findInfoItem:_id] setBytesTotal:newTotal];
+}
+
+- (void)setBytesCount:(InfoItemID)_id count:(NSInteger)newCount
+{
+    [[self findInfoItem:_id] setBytesCount:newCount];
+}
+
+- (void)setChunksTotal:(InfoItemID)_id total:(NSInteger)newTotal
+{
+    [[self findInfoItem:_id] setChunksTotal:newTotal];
+}
+
+- (void)setChunksCount:(InfoItemID)_id count:(NSInteger)newCount
+{
+    [[self findInfoItem:_id] setChunksCount:newCount];
+}
+
+- (void)setLineObjectCount:(InfoItemID)_id count:(NSInteger)count
+{
+    [[self findInfoItem:_id] setLineObjectCount:count];
+}
+
+- (void)setLineObjectTotal:(InfoItemID)_id total:(NSInteger)total isLines:(BOOL)isLines
+{
+    [[self findInfoItem:_id] setLineObjectTotal:total isLines:isLines];
+}
+
+- (void)setWaypointsTotal:(InfoItemID)_id total:(NSInteger)i
+{
+    [[self findInfoItem:_id] setWaypointsTotal:i];
+}
+
+- (void)setWaypointsNew:(InfoItemID)_id new:(NSInteger)i
+{
+    [[self findInfoItem:_id] setWaypointsNew:i];
+}
+
+- (void)setLogsTotal:(InfoItemID)_id total:(NSInteger)i
+{
+    [[self findInfoItem:_id] setLogsTotal:i];
+}
+
+- (void)setLogsNew:(InfoItemID)_id new:(NSInteger)i
+{
+    [[self findInfoItem:_id] setLogsNew:i];
+}
+
+- (void)setTrackablesNew:(InfoItemID)_id new:(NSInteger)i
+{
+    [[self findInfoItem:_id] setTrackablesNew:i];
+}
+
+- (void)setTrackablesTotal:(InfoItemID)_id total:(NSInteger)i
+{
+    [[self findInfoItem:_id] setTrackablesTotal:i];
+}
+
+- (void)showWaypoints:(InfoItemID)_id yesno:(BOOL)yesno
+{
+    [[self findInfoItem:_id] showWaypoints:yesno];
+}
+
+- (void)showLogs:(InfoItemID)_id yesno:(BOOL)yesno
+{
+    [[self findInfoItem:_id] showLogs:yesno];
+}
+
+- (void)showTrackables:(InfoItemID)_id yesno:(BOOL)yesno
+{
+    [[self findInfoItem:_id] showTrackables:yesno];
 }
 
 @end

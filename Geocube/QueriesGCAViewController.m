@@ -50,12 +50,13 @@ enum {
     [bezelManager removeBezel];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
-    [d setObject:iii forKey:@"iii"];
+    [d setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
+    [d setObject:iv forKey:@"infoViewer"];
     [d setObject:a forKey:@"account"];
 
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
@@ -65,10 +66,11 @@ enum {
 {
     dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItemImport *iii = [dict objectForKey:@"iii"];
+    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
+    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     dbAccount *a = [dict objectForKey:@"account"];
 
-    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
+    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO)
@@ -81,10 +83,10 @@ enum {
     NSObject *retjson;
 
     [self showInfoView];
-    InfoItemDownload *iid = [infoView addDownload];
-    [iid setDescription:[pq objectForKey:@"Name"]];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson downloadInfoItem:iid infoViewer:infoView callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson infoViewer:infoView ivi:iid callback:self];
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the JSON data from the query" error:account.remoteAPI.lastError];
         failure = YES;

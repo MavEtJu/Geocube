@@ -431,13 +431,13 @@ enum {
 
     // XXX group them by account
     [self showInfoView];
-    InfoItemDownload *iid = [infoView addDownload];
+    InfoItemID iid = [infoView addDownload];
 
     __block BOOL failure = NO;
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [iid setDescription:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
+        [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
         [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
-        [iid resetBytesChunks];
+        [infoView resetBytesChunks:iid];
 
         // Just ignore this stuff
         if (wp.account == nil)
@@ -446,7 +446,7 @@ enum {
         if ([wp.account canDoRemoteStuff] == NO)
             return;
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp downloadInfoItem:iid];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
             failure = YES;

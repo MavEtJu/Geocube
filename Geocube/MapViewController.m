@@ -886,12 +886,12 @@ enum {
             return;
         accountsFound++;
 
-        InfoItemDownload *iid = [infoView addDownload];
-        [iid setDescription:account.site];
+        InfoItemID iid = [infoView addDownload];
+        [infoView setDescription:iid description:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
         [d setObject:wp forKey:@"wp"];
-        [d setObject:iid forKey:@"iid"];
+        [d setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
         [d setObject:account forKey:@"account"];
 
         [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
@@ -904,12 +904,13 @@ enum {
     }
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:iii forKey:@"iii"];
+    [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
+    [dict setObject:iv forKey:@"infoViewer"];
     [dict setObject:o forKey:@"object"];
     [dict setObject:group forKey:@"group"];
     [dict setObject:a forKey:@"account"];
@@ -921,9 +922,10 @@ enum {
     dbGroup *g = [dict objectForKey:@"group"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItemImport *iii = [dict objectForKey:@"iii"];
+    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
+    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
 
-    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoItemImport:iii];
+    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO) {
@@ -936,12 +938,12 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    InfoItemDownload *iid = [dict objectForKey:@"iid"];
+    InfoItemID iid = [[dict objectForKey:@"iid"] integerValue];
     dbWaypoint *wp = [dict objectForKey:@"wp"];
     dbAccount *account = [dict objectForKey:@"account"];
 
     NSObject *d;
-    NSInteger rv = [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d downloadInfoItem:iid infoViewer:infoView group:dbc.Group_LiveImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d infoViewer:infoView ivi:iid group:dbc.Group_LiveImport callback:self];
 
     [infoView removeItem:iid];
 

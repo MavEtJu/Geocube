@@ -154,16 +154,15 @@ enum {
     return urlString;
 }
 
-- (NSData *)performURLRequest:(NSURLRequest *)urlRequest downloadInfoItem:(InfoItemDownload *)iid
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
-    return [self performURLRequest:urlRequest returnRespose:nil downloadInfoItem:iid];
+    return [self performURLRequest:urlRequest returnRespose:nil infoViewer:iv ivi:ivi];
 }
 
-- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnRespose:(NSHTTPURLResponse **)returnHeader downloadInfoItem:(InfoItemDownload *)iid
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnRespose:(NSHTTPURLResponse **)returnHeader infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem downloadInfoItem:iid];
-
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv ivi:ivi];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -209,7 +208,7 @@ enum {
 
 // ------------------------------------------------
 
-- (GCDictionaryGGCW *)my_default:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)my_default:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
@@ -217,7 +216,7 @@ enum {
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
@@ -318,7 +317,7 @@ bail2:
     return dict;
 }
 
-- (GCDictionaryGGCW *)pocket_default:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)pocket_default:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"pocket_default");
 
@@ -328,7 +327,7 @@ bail2:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
@@ -412,7 +411,7 @@ bail:
     return dict;
 }
 
-- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"pocket_downloadpq:%@", guid);
 
@@ -424,12 +423,12 @@ bail:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     GCDataZIPFile *zipdata = [[GCDataZIPFile alloc] initWithData:data];
     return zipdata;
 }
 
-- (NSDictionary *)geocache:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"geocache:%@", wptname);
 
@@ -445,7 +444,7 @@ bail:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv ivi:ivi];
 
     // Expecting a 301.
     if (resp.statusCode != 301)
@@ -455,7 +454,7 @@ bail:
     // Request the page with the data for the GPX file
     url = [NSURL URLWithString:location];
     req = [NSMutableURLRequest requestWithURL:url];
-    data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+    data = [self performURLRequest:req returnRespose:&resp infoViewer:iv ivi:ivi];
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
@@ -563,11 +562,11 @@ bail2:
     return dict;
 }
 
-- (GCStringGPX *)geocache_gpx:(NSString *)wptname downloadInfoItem:(InfoItemDownload *)iid
+- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"geocache_gpx:%@", wptname);
 
-    NSDictionary *gc = [self geocache:wptname downloadInfoItem:iid];
+    NSDictionary *gc = [self geocache:wptname infoViewer:iv ivi:ivi];
 
     // And now request the GPX file
     NSURL *url = [NSURL URLWithString:[gc objectForKey:@"location"]];
@@ -587,13 +586,13 @@ bail2:
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
 
     GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return gpx;
 }
 
-- (GCDictionaryGGCW *)account_oauth_token:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)account_oauth_token:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"account_oauth_token:");
 
@@ -609,7 +608,7 @@ bail2:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -622,7 +621,7 @@ bail2:
     return d;
 }
 
-- (GCDictionaryGGCW *)map:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)map:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"map");
 
@@ -637,7 +636,7 @@ bail2:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -688,7 +687,7 @@ bail2:
     return d;
 }
 
-- (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", (long)x, (long)y, (long)z);
 
@@ -723,7 +722,7 @@ bail2:
     NSString *urlReferer = [self prepareURLString:@"/map/" params:nil servers:GGCW_GGCWSERVER];
     [req setValue:urlReferer forHTTPHeaderField: @"Referer"];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -741,7 +740,7 @@ bail2:
     return d;
 }
 
-- (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z downloadInfoItem:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", (long)x, (long)y, (long)z);
 
@@ -771,11 +770,11 @@ bail2:
     NSString *urlReferer = [self prepareURLString:@"/map/" params:nil servers:GGCW_GGCWSERVER];
     [req setValue:urlReferer forHTTPHeaderField: @"Referer"];
 
-    [self performURLRequest:req downloadInfoItem:iid];
+    [self performURLRequest:req infoViewer:iv ivi:ivi];
     return nil;
 }
 
-- (GCDictionaryGGCW *)map_details:(NSString *)wpcode downloadInfoItem:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)map_details:(NSString *)wpcode infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"map_details:%@", wpcode);
 
@@ -795,7 +794,7 @@ bail2:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -814,7 +813,7 @@ bail2:
     return d;
 }
 
-- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid downloadInfoItem:(InfoItemDownload *)iid
+- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"seek_sendtogps:%@", guid);
     /*
@@ -829,7 +828,7 @@ bail2:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -863,7 +862,7 @@ bail:
     return gpx;
 }
 
-- (NSArray *)my_inventory:(InfoItemDownload *)iid
+- (NSArray *)my_inventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"my_inventory");
     /*
@@ -876,7 +875,7 @@ bail:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -922,7 +921,7 @@ bail:
     return tbs;
 }
 
-- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"track_details:%@", guid);
     /*
@@ -940,7 +939,7 @@ bail:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -1009,7 +1008,7 @@ bail:
     return dict;
 }
 
-- (NSDictionary *)track_details:(NSString *)tracker downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)track_details:(NSString *)tracker infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"track_details:%@", tracker);
     /*
@@ -1023,7 +1022,7 @@ bail:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -1110,10 +1109,10 @@ bail:
     return dict;
 }
 
-- (NSArray *)track_search:(InfoItemDownload *)iid
+- (NSArray *)track_search:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     if (uid == nil)
-        [self my_default:iid];
+        [self my_default:iv ivi:ivi];
 
     NSLog(@"track_search:%@", uid);
     /*
@@ -1128,7 +1127,7 @@ bail:
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -1228,7 +1227,7 @@ bail:
     return tbs;
 }
 
-- (GCDictionaryGGCW *)seek_cache__details_SetUserCacheNote:(NSDictionary *)dict text:(NSString *)text downloadInfoItem:(InfoItemDownload *)iid
+- (GCDictionaryGGCW *)seek_cache__details_SetUserCacheNote:(NSDictionary *)dict text:(NSString *)text infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"seek_cache__details_SetUserCacheNote");
 
@@ -1253,7 +1252,7 @@ bail:
 
     req.HTTPBody = jsonData;
 
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     if (data == nil)
         return nil;
 
@@ -1271,7 +1270,7 @@ bail:
     return retjson;
 }
 
-- (NSDictionary *)seek_log__form:(NSString *)gc_id downloadInfoItem:(InfoItemDownload *)iid
+- (NSDictionary *)seek_log__form:(NSString *)gc_id infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"seek_log__form:%@", gc_id);
 
@@ -1288,7 +1287,7 @@ bail:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnRespose:&resp downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv ivi:ivi];
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
@@ -1385,7 +1384,7 @@ bail1:
     return dict;
 }
 
-- (NSString *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables downloadInfoItem:(InfoItemDownload *)iid
+- (NSString *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"seek_log__submit:%@", gc_id);
 
@@ -1470,7 +1469,7 @@ bail1:
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$uxVistOtherListingGC", @""];
 
     req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [self performURLRequest:req downloadInfoItem:iid];
+    NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
     NSString *ss = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([ss containsString:@"View Geocache Log"] == NO)
         return nil;

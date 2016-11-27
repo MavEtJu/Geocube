@@ -25,9 +25,10 @@
 
 @implementation ImportGCA2JSON
 
-- (void)parseDictionary:(GCDictionaryGCA2 *)dict infoItemImport:(InfoItemImport *)iii
+- (void)parseDictionary:(GCDictionaryGCA2 *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
-    infoItemImport = iii;
+    infoViewer = iv;
+    ivi = iii;
     if ([dict objectForKey:@"waypoints"] != nil) {
         [self parseBefore_waypoints];
         [self parseData_waypoints:[dict objectForKey:@"waypoints"]];
@@ -47,12 +48,12 @@
 
 - (void)parseData_waypoints:(NSArray *)waypoints
 {
-    [infoItemImport setLineObjectTotal:[waypoints count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[waypoints count] isLines:NO];
     [waypoints enumerateObjectsUsingBlock:^(NSDictionary *waypoint, NSUInteger idx, BOOL *stop) {
         [self parseData_waypoint:(NSDictionary *)waypoint];
         ++totalWaypointsCount;
-        [infoItemImport setWaypointsTotal:totalWaypointsCount];
-        [infoItemImport setLineObjectCount:idx + 1];
+        [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
     }];
 }
 
@@ -254,7 +255,7 @@
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];
         newWaypointsCount++;
-        [infoItemImport setWaypointsNew:newWaypointsCount];
+        [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
     } else {
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
@@ -324,11 +325,11 @@
 - (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp
 {
     NSArray *alllogs = [dbLog dbAllByWaypoint:wp._id];
-    [infoItemImport setLogsTotal:[alllogs count]];
+    [infoViewer setLogsTotal:ivi total:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];
         totalLogsCount++;
-        [infoItemImport setLogsTotal:totalLogsCount];
+        [infoViewer setLogsTotal:ivi total:totalLogsCount];
     }];
 }
 
@@ -383,16 +384,16 @@
     dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:date logger_id:name._id log:comment needstobelogged:NO];
     [l dbCreate];
     newLogsCount++;
-    [infoItemImport setLogsNew:newLogsCount];
+    [infoViewer setLogsNew:ivi new:newLogsCount];
 }
 
 - (void)parseData_trackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
 {
-    [infoItemImport setTrackablesTotal:[trackables count]];
+    [infoViewer setTrackablesTotal:ivi total:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:trackable waypoint:wp];
         totalTrackablesCount++;
-        [infoItemImport setTrackablesTotal:totalTrackablesCount];
+        [infoViewer setTrackablesTotal:ivi total:totalTrackablesCount];
     }];
 }
 

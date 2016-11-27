@@ -71,7 +71,7 @@
             return __failure__; \
         }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict downloadInfoItem:(InfoItemDownload *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -89,10 +89,10 @@
     [ret setValue:@"" forKey:@"recommendations_given"];
     [ret setValue:@"" forKey:@"recommendations_received"];
 
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:1];
+    [iv setChunksCount:ivi count:1];
 
-    GCDictionaryGCA2 *dict = [gca2 api_services_users_by__username:username downloadInfoItem:iid];
+    GCDictionaryGCA2 *dict = [gca2 api_services_users_by__username:username infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -104,7 +104,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables downloadInfoItem:(InfoItemDownload *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray *)trackables infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -115,29 +115,29 @@
         [n appendFormat:@"\n*Overall Experience: %ld*\n", (long)rating];
     if (favourite == YES)
         [n appendFormat:@"\n*Recommended*\n"];
-    GCDictionaryGCA2 *json = [gca2 api_services_logs_submit:waypoint logtype:logstring.type comment:n when:dateLogged rating:rating recommended:favourite downloadInfoItem:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_logs_submit:waypoint logtype:logstring.type comment:n when:dateLogged rating:rating recommended:favourite infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
     GCA2_GET_VALUE(json, NSDictionary, data, @"data", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
     GCA2_GET_VALUE(data, NSNumber, logid, @"log_uuid", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
     if (image != nil) {
-        json = [gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription downloadInfoItem:iid];
+        json = [gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription infoViewer:iv ivi:ivi];
         GCA2_CHECK_STATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
     }
 
     return REMOTEAPI_OK;
  }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint downloadInfoItem:(InfoItemDownload *)iid
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:1];
+    [iv setChunksCount:ivi count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocache:waypoint.wpt_name downloadInfoItem:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocache:waypoint.wpt_name infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -154,7 +154,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -165,10 +165,10 @@
         return REMOTEAPI_APIDISABLED;
     }
 
-    [iid setChunksTotal:2];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:2];
+    [iv setChunksCount:ivi count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_search_nearest:center downloadInfoItem:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_caches_search_nearest:center infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     GCA2_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -176,8 +176,8 @@
     if ([wpcodes count] == 0)
         return REMOTEAPI_OK;
 
-    [iid setChunksCount:2];
-    json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+    [iv setChunksCount:ivi count:2];
+    json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -197,17 +197,17 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
 
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:1];
+    [iv setChunksCount:ivi count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -227,7 +227,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray **)qs downloadInfoItem:(InfoItemDownload *)iid
+- (RemoteAPIResult)listQueries:(NSArray **)qs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     /* Returns: array of dicts of
      * - Name
@@ -238,7 +238,7 @@
      */
 
     *qs = nil;
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_list:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_list:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
@@ -257,14 +257,14 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
 
-    [iid setChunksTotal:2];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:2];
+    [iv setChunksCount:ivi count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_geocaches:_id downloadInfoItem:iid];
+    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_geocaches:_id infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     GCA2_GET_VALUE(json, NSArray, wps, @"geocaches", @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
@@ -274,9 +274,9 @@
         [wpcodes addObject:[wp objectForKey:@"waypoint"]];
     }];
 
-    [iid setChunksCount:2];
+    [iv setChunksCount:ivi count:2];
 
-    json = [gca2 api_services_caches_geocaches:wpcodes downloadInfoItem:iid];
+    json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -288,24 +288,24 @@
 
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:d2 group:group account:self.account];
+    InfoItemID iii = [iv addImport];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
 
     *retObj = json;
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj downloadInfoItem:(InfoItemDownload *)iid infoViewer:(InfoViewer *)infoViewer callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     *retObj = nil;
-    [iid setChunksTotal:1];
-    [iid setChunksCount:1];
+    [iv setChunksTotal:ivi total:1];
+    [iv setChunksCount:ivi count:1];
     GCStringGPX *gpx = nil;
     if (gpx == nil)
         return REMOTEAPI_APIFAILED;
 
-    InfoItemImport *iii = [infoViewer addImport];
-    [callback remoteAPI_objectReadyToImport:iii object:gpx group:group account:self.account];
+    InfoItemID iii = [iv addImport];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:group account:self.account];
 
     *retObj = gpx;
     return REMOTEAPI_OK;

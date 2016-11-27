@@ -47,7 +47,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (void)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoItemImport:(InfoItemImport *)iii
+- (void)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
@@ -66,7 +66,7 @@
     if ([data isKindOfClass:[GCArray class]] == YES) {
         GCArray *as = (GCArray *)data;
         [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL *stop) {
-            [self process:a group:group account:account options:runoptions infoItemImport:iii];
+            [self process:a group:group account:account options:runoptions infoViewer:iv ivi:ivi];
         }];
         return;
     }
@@ -92,50 +92,50 @@
     }
 
     @synchronized (self) {
-        [iii expand:YES];
+        [iv expand:ivi yesno:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
-        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItemImport:iii];
+        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv ivi:ivi];
     }
 }
 
-- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(NSInteger)run_options infoItemImport:(InfoItemImport *)iii
+- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(NSInteger)run_options infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
     [imp parseBefore];
 
     imp.run_options = run_options;
-    [iii setLineObjectTotal:0 isLines:NO];
-    [iii setWaypointsTotal:0];
-    [iii setLogsTotal:0];
-    [iii setTrackablesTotal:0];
+    [iv setLineObjectTotal:iii total:0 isLines:NO];
+    [iv setWaypointsTotal:iii total:0];
+    [iv setLogsTotal:iii total:0];
+    [iv setTrackablesTotal:iii total:0];
 
     @autoreleasepool {
         if ([data isKindOfClass:[GCStringFilename class]] == YES) {
             [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
-                [iii setDescription:filename];
-                [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoItemImport:iii];
+                [iv setDescription:iii description:filename];
+                [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv ivi:iii];
                 [waypointManager needsRefreshAll];
             }];
         } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
-            [iii setDescription:@"GPX data"];
-            [imp parseString:(NSString *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"GPX data"];
+            [imp parseString:(NSString *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
-            [iii setDescription:@"GPX Garmin data"];
-            [imp parseString:(NSString *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"GPX Garmin data"];
+            [imp parseString:(NSString *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-            [iii setDescription:@"LiveAPI data"];
-            [imp parseDictionary:(GCDictionaryLiveAPI *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"LiveAPI data"];
+            [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
-            [iii setDescription:@"Geocaching Australia API data"];
-            [imp parseDictionary:(GCDictionaryGCA2 *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"Geocaching Australia API data"];
+            [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
-            [iii setDescription:@"Geocaching Australia data"];
-            [imp parseDictionary:(GCDictionaryGCA *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"Geocaching Australia data"];
+            [imp parseDictionary:(GCDictionaryGCA *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-            [iii setDescription:@"OKAPI data"];
-            [imp parseDictionary:(GCDictionaryOKAPI *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"OKAPI data"];
+            [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
-            [iii setDescription:@"Geocaching.com data"];
-            [imp parseDictionary:(GCDictionaryGGCW *)data infoItemImport:iii];
+            [iv setDescription:iii description:@"Geocaching.com data"];
+            [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv ivi:iii];
         } else {
             NSAssert1(NO, @"Unknown data object type: %@", [data class]);
         }

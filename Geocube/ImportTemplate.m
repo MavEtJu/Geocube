@@ -71,28 +71,28 @@
 
 - (void)parseFile:(NSString *)filename
 {
-    [self parseFile:filename infoItemImport:nil];
+    [self parseFile:filename infoViewer:nil ivi:0];
 }
 - (void)parseData:(NSData *)data
 {
-    [self parseData:data infoItemImport:nil];
+    [self parseData:data infoViewer:nil ivi:0];
 }
 - (void)parseString:(NSString *)string
 {
-    [self parseString:string infoItemImport:nil];
+    [self parseString:string infoViewer:nil ivi:0];
 }
 - (void)parseGPX:(GCStringGPX *)gpx
 {
-    [self parseString:[gpx _string] infoItemImport:nil];
+    [self parseString:[gpx _string] infoViewer:nil ivi:0];
 }
 - (void)parseDictionary:(id)dict
 {
-    [self parseDictionary:dict infoItemImport:nil];
+    [self parseDictionary:dict infoViewer:nil ivi:0];
 }
 
-NEEDS_OVERLOADING(parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii)
-NEEDS_OVERLOADING(parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii)
-NEEDS_OVERLOADING(parseString:(NSString *)data infoItemImport:(InfoItemImport *)iii)
-NEEDS_OVERLOADING(parseDictionary:(id)dict infoItemImport:(InfoItemImport *)iii)
+NEEDS_OVERLOADING(parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi)
+NEEDS_OVERLOADING(parseData:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi)
+NEEDS_OVERLOADING(parseString:(NSString *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi)
+NEEDS_OVERLOADING(parseDictionary:(id)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi)
 
 @end

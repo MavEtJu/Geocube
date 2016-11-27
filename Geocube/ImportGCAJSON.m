@@ -25,9 +25,10 @@
 
 @implementation ImportGCAJSON
 
-- (void)parseDictionary:(GCDictionaryGCA *)dict infoItemImport:(InfoItemImport *)iii
+- (void)parseDictionary:(GCDictionaryGCA *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
-    infoItemImport = iii;
+    infoViewer = iv;
+    ivi = iii;
     if ([dict objectForKey:@"geocaches1"] != nil) {
         [self parseBefore_caches];
         [self parseData_caches:[dict objectForKey:@"geocaches1"]];
@@ -80,12 +81,12 @@
 
 - (void)parseGeocaches:(NSArray *)as
 {
-    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
-        [infoItemImport setWaypointsTotal:totalWaypointsCount];
-        [infoItemImport setLineObjectCount:idx + 1];
+        [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
     }];
 }
 
@@ -196,7 +197,7 @@
         [dbWaypoint dbCreate:wp];
         [group dbAddWaypoint:wp._id];
         newWaypointsCount++;
-        [infoItemImport setWaypointsNew:newWaypointsCount];
+        [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
     } else {
         NSLog(@"%@: Updating %@", [self class], wpname);
         [wp dbUpdate];
@@ -231,12 +232,12 @@
 
 - (void)parseLogs:(NSArray *)as
 {
-    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d];
         totalLogsCount++;
-        [infoItemImport setLineObjectCount:idx + 1];
-        [infoItemImport setLogsTotal:totalLogsCount];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
+        [infoViewer setLogsTotal:ivi total:totalLogsCount];
     }];
 }
 
@@ -275,7 +276,7 @@
     if (_id == 0) {
         [dbLog dbCreate:t];
         newLogsCount++;
-        [infoItemImport setLogsNew:newLogsCount];
+        [infoViewer setLogsNew:ivi new:newLogsCount];
     } else {
         t._id = _id;
         [t dbUpdate];

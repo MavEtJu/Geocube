@@ -132,18 +132,17 @@ enum {
 
 - (void)downloadImagesLogs
 {
-    InfoItemImage *iii = [infoView addImage];
-    [iii setDescription:@"Images from the logs"];
+    InfoItemID iii = [infoView addImage];
+    [infoView setDescription:iii description:@"Images from the logs"];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        [iii setQueueSize:[logImages count] - idx];
+        [infoView setQueueSize:iii queueSize:[logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
-            [self downloadImage:img infoImageItem:iii];
+            [self downloadImage:img infoViewer:infoView ivi:iii];
         }
     }];
 
-    [iii setQueueSize:0];
-    iii.view.backgroundColor = [UIColor redColor];
+    [infoView setQueueSize:iii queueSize:0];
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO) {
         [self hideInfoView];
@@ -153,17 +152,16 @@ enum {
 
 - (void)downloadImagesCache
 {
-    InfoItemImage *iii = [infoView addImage];
-    [iii setDescription:@"Images from the waypoint"];
+    InfoItemID iii = [infoView addImage];
+    [infoView setDescription:iii description:@"Images from the waypoint"];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
-        [iii setQueueSize:[cacheImages count] - idx];
+        [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
-            [self downloadImage:img infoImageItem:iii];
+            [self downloadImage:img infoViewer:infoView ivi:iii];
     }];
 
-    [iii setQueueSize:0];
-    iii.view.backgroundColor = [UIColor greenColor];
+    [infoView setQueueSize:iii queueSize:0];
     [infoView removeItem:iii];
 
     if ([infoView hasItems] == NO) {
@@ -172,14 +170,14 @@ enum {
     }
 }
 
-- (void)downloadImage:(dbImage *)image infoImageItem:iii
+- (void)downloadImage:(dbImage *)image infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSURL *url = [NSURL URLWithString:image.url];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error downloadInfoItem:iii];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv ivi:ivi];
 
     if (data == nil || response.statusCode != 200)
         return;

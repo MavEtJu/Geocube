@@ -27,21 +27,23 @@
 
 + (BOOL)parse:(NSData *)data
 {
-    return [self parse:data infoItemImport:nil];
+    return [self parse:data infoViewer:nil ivi:0];
 }
 
-+ (BOOL)parse:(NSData *)data infoItemImport:(InfoItemImport *)iii
++ (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     ImportGeocube *ig = [[ImportGeocube alloc] init];
-    ig.iii = iii;
-    return [ig parse:data];
+    return [ig parse:data infoViewer:iv ivi:ivi];
 }
 
-- (BOOL)parse:(NSData *)XMLdata
+- (BOOL)parse:(NSData *)XMLdata infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
     NSError *error;
     NSDictionary *d;
     BOOL okay = YES;
+
+    infoViewer = iv;
+    ivi = iii;
 
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:XMLdata error:&error];
     if (xmlDictionary == nil)

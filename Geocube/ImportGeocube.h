@@ -51,7 +51,7 @@
 
 @property (nonatomic, retain) InfoItemImport *iii;
 
-+ (BOOL)parse:(NSData *)data infoItemImport:(InfoItemImport *)iii;
++ (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 + (BOOL)parse:(NSData *)data;
 
 @end

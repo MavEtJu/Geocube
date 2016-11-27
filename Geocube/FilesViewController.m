@@ -310,11 +310,11 @@ enum {
 - (void)fileImportGeocube:(NSString *)fn
 {
     [self showInfoView];
-    InfoItemImport *iii = [infoView addImport];
-    [iii setDescription:[NSString stringWithFormat:@"Geocube import of %@", fn]];
+    InfoItemID iii = [infoView addImport];
+    [infoView setDescription:iii description:[NSString stringWithFormat:@"Geocube import of %@", fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
-    if ([ImportGeocube parse:data infoItemImport:iii] == NO) {
+    if ([ImportGeocube parse:data infoViewer:infoView ivi:iii] == NO) {
         [MyTools messageBox:self header:@"Import failed" text:[NSString stringWithFormat:@"There was a problem importing the file %@.", fn]];
     } else {
         [MyTools messageBox:self header:@"Import successful" text:@"The import was successful."];
@@ -455,10 +455,10 @@ enum {
     NSString *filename = [dict objectForKey:@"filename"];
 
     [self showInfoView];
-    InfoItemImport *iii = [infoView addImport];
-    [iii setDescription:filename];
+    InfoItemID iii = [infoView addImport];
+    [infoView setDescription:iii description:filename];
 
-    [importManager process:sfn group:group account:account options:options infoItemImport:iii];
+    [importManager process:sfn group:group account:account options:options infoViewer:infoView ivi:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO) {

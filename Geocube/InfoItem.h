@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+typedef NSInteger InfoItemID;
+
 @interface InfoItem : NSObject
 {
     NSInteger viewHeight;
@@ -38,7 +40,7 @@
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent;
 - (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded;
 
-@property (nonatomic) NSInteger _id;
+@property (nonatomic) InfoItemID _id;
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic, retain) InfoViewer *infoViewer;
 @property (nonatomic) NSInteger height;
@@ -61,5 +63,16 @@
 - (void)setChunksCount:(NSInteger)newCount;
 - (void)setLineObjectCount:(NSInteger)count;
 - (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)isLines;
+
+- (void)setWaypointsTotal:(NSInteger)i;
+- (void)setWaypointsNew:(NSInteger)i;
+- (void)setLogsTotal:(NSInteger)i;
+- (void)setLogsNew:(NSInteger)i;
+- (void)setTrackablesNew:(NSInteger)i;
+- (void)setTrackablesTotal:(NSInteger)i;
+
+- (void)showWaypoints:(BOOL)yesno;
+- (void)showLogs:(BOOL)yesno;
+- (void)showTrackables:(BOOL)yesno;
 
 @end

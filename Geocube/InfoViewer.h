@@ -25,14 +25,44 @@
 - (void)calculateRects;
 - (void)viewWillTransitionToSize;
 
-- (InfoItemDownload *)addDownload:(BOOL)expanded;
-- (InfoItemImage *)addImage:(BOOL)expanded;
-- (InfoItemImport *)addImport:(BOOL)expanded;
-- (InfoItemDownload *)addDownload;
-- (InfoItemImage *)addImage;
-- (InfoItemImport *)addImport;
-- (void)removeItem:(InfoItem *)did;
+- (InfoItemID)addDownload:(BOOL)expanded;
+- (InfoItemID)addImage:(BOOL)expanded;
+- (InfoItemID)addImport:(BOOL)expanded;
+- (InfoItemID)addDownload;
+- (InfoItemID)addImage;
+- (InfoItemID)addImport;
+- (void)removeItem:(InfoItemID)_id;
 - (void)setHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasItems;
+
+- (void)calculateRects:(InfoItemID)_id;
+
+- (void)expand:(InfoItemID)_id yesno:(BOOL)yesno;
+- (BOOL)isExpanded:(InfoItemID)_id;
+
+- (void)setDescription:(InfoItemID)_id description:(NSString *)newDesc;
+- (void)setURL:(InfoItemID)_id url:(NSString *)newURL;
+- (void)setQueueSize:(InfoItemID)_id queueSize:(NSInteger)queueSize;
+
+- (void)resetBytes:(InfoItemID)_id;
+- (void)resetBytesChunks:(InfoItemID)_id;
+
+- (void)setBytesTotal:(InfoItemID)_id total:(NSInteger)newTotal;
+- (void)setBytesCount:(InfoItemID)_id count:(NSInteger)newCount;
+- (void)setChunksTotal:(InfoItemID)_id total:(NSInteger)newTotal;
+- (void)setChunksCount:(InfoItemID)_id count:(NSInteger)newCount;
+- (void)setLineObjectCount:(InfoItemID)_id count:(NSInteger)count;
+- (void)setLineObjectTotal:(InfoItemID)_id total:(NSInteger)total isLines:(BOOL)isLines;
+
+- (void)setWaypointsTotal:(InfoItemID)_id total:(NSInteger)i;
+- (void)setWaypointsNew:(InfoItemID)_id new:(NSInteger)i;
+- (void)setLogsTotal:(InfoItemID)_id total:(NSInteger)i;
+- (void)setLogsNew:(InfoItemID)_id new:(NSInteger)i;
+- (void)setTrackablesNew:(InfoItemID)_id new:(NSInteger)i;
+- (void)setTrackablesTotal:(InfoItemID)_id total:(NSInteger)i;
+
+- (void)showWaypoints:(InfoItemID)_id yesno:(BOOL)yesno;
+- (void)showLogs:(InfoItemID)_id yesno:(BOOL)yesno;
+- (void)showTrackables:(InfoItemID)_id yesno:(BOOL)yesno;
 
 @end

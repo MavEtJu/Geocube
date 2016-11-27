@@ -53,11 +53,12 @@
 {
 }
 
-- (void)parseDictionary:(NSDictionary *)dict infoItemImport:(InfoItemImport *)iii
+- (void)parseDictionary:(NSDictionary *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
     GCLog(@"Parsing data");
 
-    infoItemImport = iii;
+    infoViewer = iv;
+    ivi = iii;
 
     if ([dict objectForKey:@"Geocaches"] != nil) {
         [self parseBefore_geocaches];
@@ -73,15 +74,15 @@
 
 - (void)parseGeocaches:(NSArray *)as
 {
-    [infoItemImport setLineObjectTotal:[as count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
 
-        [infoItemImport setLineObjectCount:idx];
-        [infoItemImport setWaypointsTotal:totalWaypointsCount];
+        [infoViewer setLineObjectCount:ivi count:idx];
+        [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
     }];
-    [infoItemImport setLineObjectCount:[as count]];
+    [infoViewer setLineObjectCount:ivi count:[as count]];
 }
 - (void)parseGeocache:(NSDictionary *)dict
 {
@@ -259,7 +260,7 @@
         GCLog(@"Creating %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];
         newWaypointsCount++;
-        [infoItemImport setWaypointsNew:newWaypointsCount];
+        [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
     } else {
         GCLog(@"Updating %@", wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
@@ -307,7 +308,7 @@
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
         totalTrackablesCount++;
-        [infoItemImport setTrackablesTotal:totalTrackablesCount];
+        [infoViewer setTrackablesTotal:ivi total:totalTrackablesCount];
     }];
 }
 
@@ -426,7 +427,7 @@
     if (_id == 0) {
         [dbTrackable dbCreate:tb];
         newTrackablesCount++;
-        [infoItemImport setTrackablesNew:newTrackablesCount];
+        [infoViewer setTrackablesNew:ivi new:newTrackablesCount];
     } else {
         // The code isn't always updated while we do have it.
         // In that case save it from the previous one.
@@ -509,7 +510,7 @@
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
         totalWaypointsCount++;
-        [infoItemImport setWaypointsTotal:totalWaypointsCount];
+        [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
     }];
 }
 
@@ -578,7 +579,7 @@
         [dbWaypoint dbCreate:awp];
         [group dbAddWaypoint:awp._id];
         newWaypointsCount++;
-        [infoItemImport setWaypointsNew:newWaypointsCount];
+        [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
@@ -591,7 +592,7 @@
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;
-        [infoItemImport setLogsTotal:totalLogsCount];
+        [infoViewer setLogsTotal:ivi total:totalLogsCount];
     }];
 }
 
@@ -672,7 +673,7 @@
     if (l_id == 0) {
         [l dbCreate];
         newLogsCount++;
-        [infoItemImport setLogsNew:newLogsCount];
+        [infoViewer setLogsNew:ivi new:newLogsCount];
     }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_LOG];

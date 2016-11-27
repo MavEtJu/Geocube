@@ -46,7 +46,7 @@
 
 @implementation ImportGPXGarmin
 
-- (void)parseFile:(NSString *)filename infoItemImport:(InfoItemImport *)iii
+- (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
@@ -54,20 +54,21 @@
     NSLog(@"%@: Parsing %@", [self class], filename);
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
-    [self parseData:data infoItemImport:iii];
+    [self parseData:data infoViewer:iv ivi:iii];
 }
 
-- (void)parseString:(NSString *)string infoItemImport:(InfoItemImport *)iii
+- (void)parseString:(NSString *)string infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
-    [self parseData:[string dataUsingEncoding:NSUTF8StringEncoding] infoItemImport:iii];
+    [self parseData:[string dataUsingEncoding:NSUTF8StringEncoding] infoViewer:iv ivi:iii];
 }
 
-- (void)parseData:(NSData *)data infoItemImport:(InfoItemImport *)iii
+- (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
     runOption_LogsOnly = (self.run_options & RUN_OPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);
 
-    infoItemImport = iii;
+    infoViewer = iv;
+    ivi = iii;
 
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
 
@@ -89,11 +90,11 @@
     inImageCache = NO;
     logIdGCId = [dbLog dbAllIdGCId];
 
-    [infoItemImport setLineObjectTotal:numberOfLines isLines:YES];
+    [infoViewer setLineObjectTotal:ivi total:numberOfLines isLines:YES];
     @autoreleasepool {
         [rssParser parse];
     }
-    [infoItemImport setLineObjectCount:numberOfLines];
+    [infoViewer setLineObjectCount:ivi count:numberOfLines];
 }
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -188,7 +189,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if (parser.lineNumber % 25 == 0)
-        [infoItemImport setLineObjectCount:parser.lineNumber];
+        [infoViewer setLineObjectCount:ivi count:parser.lineNumber];
 
     @autoreleasepool {
         index--;
@@ -207,12 +208,12 @@
             // Determine if it is a new waypoint or an existing one
             currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
             totalWaypointsCount++;
-            [infoItemImport setWaypointsTotal:totalWaypointsCount];
+            [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
             if (runOption_LogsOnly == NO) {
                 if (currentWP._id == 0) {
                     [dbWaypoint dbCreate:currentWP];
                     newWaypointsCount++;
-                    [infoItemImport setWaypointsNew:newWaypointsCount];
+                    [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
 
                     // Update the group
                     [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
@@ -254,7 +255,7 @@
 
                 if (_id == 0) {
                     newLogsCount++;
-                    [infoItemImport setLogsNew:newLogsCount];
+                    [infoViewer setLogsNew:ivi new:newLogsCount];
                     [l finish];
                     [l dbCreate];
                     [logIdGCId setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
@@ -263,7 +264,7 @@
                     [l dbUpdateNote];
                 }
                 totalLogsCount++;
-                [infoItemImport setLogsTotal:totalLogsCount];
+                [infoViewer setLogsTotal:ivi total:totalLogsCount];
             }];
 
             if (runOption_LogsOnly == NO) {
@@ -279,7 +280,7 @@
                     [tb finish:account];
                     if (_id == 0) {
                         newTrackablesCount++;
-                        [infoItemImport setTrackablesNew:newTrackablesCount];
+                        [infoViewer setTrackablesNew:ivi new:newTrackablesCount];
                         [tb dbCreate];
                     } else {
                         tb._id = _id;
@@ -287,7 +288,7 @@
                     }
                     [tb dbLinkToWaypoint:currentWP._id];
                     totalTrackablesCount++;
-                    [infoItemImport setTrackablesTotal:totalTrackablesCount];
+                    [infoViewer setTrackablesTotal:ivi total:totalTrackablesCount];
                 }];
             }
 

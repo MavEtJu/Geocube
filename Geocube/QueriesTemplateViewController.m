@@ -81,7 +81,7 @@ NEEDS_OVERLOADING(reloadQueries)
             account = a;
             if (a.canDoRemoteStuff == YES) {
                 NSArray *queries = nil;
-                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries downloadInfoItem:nil];
+                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil ivi:0];
                 if (rv != REMOTEAPI_OK)
                     failure = YES;
                 qs = queries;
@@ -237,7 +237,7 @@ NEEDS_OVERLOADING(reloadQueries)
 }
 
 NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group)
-NEEDS_OVERLOADING(remoteAPI_objectReadyToImport:(InfoItemImport *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account)
+NEEDS_OVERLOADING(remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account)
 
 #pragma mark - Local menu related functions
 
