@@ -113,10 +113,10 @@
         return NO;
 
     NSArray *notices = [dict objectForKey:@"notice"];
-    [self.iii setLineObjectTotal:[notices count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[notices count] isLines:NO];
     [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
 
 #define KEY(__dict__, __var__, __key__) \
     NSString *__var__ = [[__dict__ objectForKey:__key__] objectForKey:@"text"]; \
@@ -157,9 +157,9 @@
     NSArray *sites = [dict objectForKey:@"site"];
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
         sites = @[sites];
-    [self.iii setLineObjectTotal:[sites count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[sites count] isLines:NO];
     [sites enumerateObjectsUsingBlock:^(NSDictionary *site, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *_id = [site objectForKey:@"id"];
         NSString *revision = [site objectForKey:@"revision"];
         NSString *_site = [site objectForKey:@"site"];
@@ -235,9 +235,9 @@
         return NO;
 
     NSArray *keys = [dict objectForKey:@"key"];
-    [self.iii setLineObjectTotal:[keys count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[keys count] isLines:NO];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *site = [key objectForKey:@"site"];
         NSString *text = [key objectForKey:@"text"];
         text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -259,7 +259,7 @@
         return NO;
 
     NSArray *keys = [dict objectForKey:@"externalmap"];
-    [self.iii setLineObjectTotal:[keys count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[keys count] isLines:NO];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger gc_id = [[key objectForKey:@"id"] integerValue];
         NSString *enabled = [key objectForKey:@"enabled"];
@@ -309,9 +309,9 @@
         return NO;
 
     NSArray *attrs = [dict objectForKey:@"attribute"];
-    [self.iii setLineObjectTotal:[attrs count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[attrs count] isLines:NO];
     [attrs enumerateObjectsUsingBlock:^(NSDictionary *attr, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSInteger gc_id = [[attr objectForKey:@"gc_id"] integerValue];
         NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
         NSString *label = [attr objectForKey:@"label"];
@@ -340,9 +340,9 @@
         return NO;
 
     NSArray *states = [dict objectForKey:@"state"];
-    [self.iii setLineObjectTotal:[states count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[states count] isLines:NO];
     [states enumerateObjectsUsingBlock:^(NSDictionary *state, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
 
@@ -367,9 +367,9 @@
         return NO;
 
     NSArray *countries = [dict objectForKey:@"country"];
-    [self.iii setLineObjectTotal:[countries count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[countries count] isLines:NO];
     [countries enumerateObjectsUsingBlock:^(NSDictionary *country, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
 
@@ -394,9 +394,9 @@
         return NO;
 
     NSArray *types = [dict objectForKey:@"type"];
-    [self.iii setLineObjectTotal:[types count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[types count] isLines:NO];
     [types enumerateObjectsUsingBlock:^(NSDictionary *type, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *major = [type objectForKey:@"major"];
         NSString *minor = [type objectForKey:@"minor"];
         NSInteger icon = [[type objectForKey:@"icon"] integerValue];
@@ -437,9 +437,9 @@
         return NO;
 
     NSArray *pins = [dict objectForKey:@"pin"];
-    [self.iii setLineObjectTotal:[pins count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[pins count] isLines:NO];
     [pins enumerateObjectsUsingBlock:^(NSDictionary *pin, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *description = [pin objectForKey:@"description"];
         NSString *rgb = [pin objectForKey:@"rgb"];
         NSInteger _id = [[pin objectForKey:@"id"] integerValue];
@@ -471,9 +471,9 @@
         return NO;
 
     NSArray *bookmarks = [dict objectForKey:@"bookmark"];
-    [self.iii setLineObjectTotal:[bookmarks count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[bookmarks count] isLines:NO];
     [bookmarks enumerateObjectsUsingBlock:^(NSDictionary *bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *description = [bookmark objectForKey:@"description"];
         NSString *url = [bookmark objectForKey:@"url"];
         NSInteger import_id = [[bookmark objectForKey:@"id"] integerValue];
@@ -503,9 +503,9 @@
         return NO;
 
     NSArray *containers = [dict objectForKey:@"container"];
-    [self.iii setLineObjectTotal:[containers count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[containers count] isLines:NO];
     [containers enumerateObjectsUsingBlock:^(NSDictionary *container, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *label = [container objectForKey:@"label"];
         NSInteger gc_id = [[container objectForKey:@"gc_id"] integerValue];
         NSInteger icon = [[container objectForKey:@"icon"] integerValue];
@@ -535,9 +535,9 @@
         return NO;
 
     NSArray *protocols = [dict objectForKey:@"protocol"];
-    [self.iii setLineObjectTotal:[protocols count] isLines:NO];
+    [infoViewer setLineObjectTotal:ivi total:[protocols count] isLines:NO];
     [protocols enumerateObjectsUsingBlock:^(NSDictionary *protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.iii setLineObjectCount:idx + 1];
+        [infoViewer setLineObjectCount:ivi count:idx + 1];
         NSString *protocol_name = [protocoldict objectForKey:@"name"];
         dbProtocol *_protocol = [dbProtocol dbGetByName:protocol_name];
 
