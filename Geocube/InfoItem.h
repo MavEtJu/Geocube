@@ -36,11 +36,14 @@ typedef NS_ENUM(NSInteger, InfoItemType) {
 @property (nonatomic, retain) GCView *view;
 @property (nonatomic, retain) InfoViewer *infoViewer;
 @property (nonatomic) NSInteger height;
+@property (nonatomic, readonly) BOOL needsRefresh;
+@property (nonatomic, readonly) BOOL needsRecalculate;
 
 - (void)calculateRects;
 
 - (void)expand:(BOOL)yesno;
 - (BOOL)isExpanded;
+- (void)refresh;
 
 - (void)setDescription:(NSString *)newDesc;
 - (void)setURL:(NSString *)newURL;

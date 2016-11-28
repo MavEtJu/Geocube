@@ -44,7 +44,25 @@
     [self calculateRects];
     [self changeTheme];
 
+    [self performSelectorInBackground:@selector(refreshItems) withObject:nil];
+
     return self;
+}
+
+- (void)refreshItems
+{
+    while (1) {
+        [NSThread sleepForTimeInterval:0.1];
+
+        @synchronized (items) {
+            [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
+                if (ii.needsRefresh == YES) {
+                    NSLog(@".");
+                    [ii refresh];
+                }
+            }];
+        }
+    }
 }
 
 - (BOOL)hasItems

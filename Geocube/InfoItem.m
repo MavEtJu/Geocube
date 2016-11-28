@@ -21,19 +21,24 @@
 
 @interface InfoItem ()
 {
-    NSInteger bytesTotal, bytesCount;
     BOOL isLines;
     BOOL isExpanded;
     InfoItemType type;
 
     NSInteger viewHeight;
 
-    NSInteger objectCount, objectTotal;
-    NSInteger lineObjectCount, lineObjectTotal;
-    NSInteger chunksTotal, chunksCount;
-    NSInteger logsNew, logsTotal;
-    NSInteger waypointsNew, waypointsTotal;
-    NSInteger trackablesNew, trackablesTotal;
+    NSInteger nextObjectCount, nextObjectTotal;
+    NSInteger nextLineObjectCount, nextLineObjectTotal;
+    NSInteger nextChunksCount, nextChunksTotal;
+    NSInteger nextBytesCount, nextBytesTotal;
+
+    NSInteger nextLogsNew, nextLogsTotal;
+    NSInteger nextWaypointsNew, nextWaypointsTotal;
+    NSInteger nextTrackablesNew, nextTrackablesTotal;
+
+    NSString *nextBytes, *nextObjects, *nextChunks;
+    NSString *nextDesc, *nextURL, *nextWaypoints;
+    NSString *nextQueue, *nextLinesObjects, *nextLogs, *nextTrackables;
 
     GCSmallLabel *labelDesc;
     GCSmallLabel *labelURL;
@@ -47,6 +52,9 @@
 
     BOOL showLogs, showWaypoints, showTrackables;
 }
+
+@property (nonatomic) BOOL needsRefresh;
+@property (nonatomic) BOOL needsRecalculate;
 
 @end
 
@@ -145,8 +153,6 @@
     INDENT_RESIZE(labelLogs);
     INDENT_RESIZE(labelTrackables);
     INDENT_RESIZE(labelWaypoints);
-    INDENT_RESIZE(labelBytes);
-    INDENT_RESIZE(labelChunks);
     INDENT_RESIZE(labelQueue);
 
     y += MARGIN;
@@ -157,9 +163,7 @@
 - (void)expand:(BOOL)yesno
 {
     isExpanded = yesno;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.infoViewer viewWillTransitionToSize];
-    }];
+    self.needsRecalculate = YES;
 }
 
 - (BOOL)isExpanded
@@ -167,47 +171,69 @@
     return isExpanded;
 }
 
+- (void)refresh
+{
+    if (self.needsRefresh == NO)
+        return;
+
+#define UPDATE(__label__, __var__) \
+    if (__var__ != nil) { \
+        __label__.text = __var__; \
+        __var__ = nil; \
+    }
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        UPDATE(labelDesc, nextDesc);
+        UPDATE(labelURL, nextURL);
+        UPDATE(labelChunks, nextChunks);
+        UPDATE(labelBytes, nextBytes);
+        UPDATE(labelLinesObjects, nextLinesObjects);
+        UPDATE(labelLogs, nextLogs);
+        UPDATE(labelTrackables, nextTrackables);
+        UPDATE(labelWaypoints, nextWaypoints);
+        UPDATE(labelQueue, nextQueue);
+    }];
+
+    self.needsRefresh = NO;
+}
+
 - (void)setDescription:(NSString *)newDesc
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelDesc.text = newDesc;
-    }];
+    nextDesc = newDesc;
+    self.needsRefresh = YES;
 }
 
 - (void)setURL:(NSString *)newURL
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelURL.text = newURL;
-    }];
+    nextURL = newURL;
+    self.needsRefresh = YES;
 }
 
 - (void)setQueueSize:(NSInteger)queueSize
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelQueue.text = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
-    }];
+    nextQueue = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
+    self.needsRefresh = YES;
 }
 
 - (void)showLinesObjects
 {
-    NSInteger lot = lineObjectTotal;
-    NSInteger loc = lineObjectCount;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (lot <= 0)
-            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", (long)loc];
-        else
-            labelLinesObjects.text = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", (long)loc, (long)lot, (long)(100 * loc / lot)];
-    }];
+    NSInteger lot = nextObjectTotal;
+    NSInteger loc = nextObjectCount;
+    if (lot <= 0)
+        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", (long)loc];
+    else
+        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", (long)loc, (long)lot, (long)(100 * loc / lot)];
+    self.needsRefresh = YES;
 }
 - (void)setLineObjectCount:(NSInteger)count
 {
-    lineObjectCount = count;
+    nextLineObjectCount = count;
     [self showLinesObjects];
 }
 - (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)_isLines
 {
+    nextLineObjectTotal = total;
     isLines = _isLines;
-    lineObjectTotal = total;
     [self showLinesObjects];
 }
 
@@ -219,28 +245,26 @@
 
 - (void)showBytes
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        NSInteger bt = bytesTotal;
-        NSInteger bc = bytesCount;
-        if (bc < 0)
-            labelBytes.text = @"Bytes: -";
-        else if (bt <= 0)
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
-        else
-            labelBytes.text = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
-    }];
+    NSInteger bt = nextBytesTotal;
+    NSInteger bc = nextBytesCount;
+    if (bc < 0)
+        nextBytes = @"Bytes: -";
+    else if (bt <= 0)
+        nextBytes = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
+    else
+        nextBytes = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
+    self.needsRefresh = YES;
 }
 - (void)setBytesTotal:(NSInteger)newTotal
 {
-    bytesTotal = newTotal;
+    nextBytesTotal = newTotal;
     [self showBytes];
 }
 - (void)setBytesCount:(NSInteger)newCount
 {
-    bytesCount = newCount;
+    nextBytesCount = newCount;
     [self showBytes];
 }
-
 
 - (void)resetBytesChunks
 {
@@ -252,113 +276,100 @@
 
 - (void)setChunks
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (chunksCount < 0)
-            labelChunks.text = @"Chunks: -";
-        else if (chunksTotal == 0)
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld", (long)chunksCount];
-        else
-            labelChunks.text = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)chunksCount, (long)chunksTotal];
-    }];
+    if (nextChunksCount < 0)
+        nextChunks = @"Chunks: -";
+    else if (nextChunksTotal == 0)
+        nextChunks = [NSString stringWithFormat:@"Chunks: %ld", (long)nextChunksCount];
+    else
+        nextChunks = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)nextChunksCount, (long)nextChunksTotal];
+    self.needsRefresh = YES;
 }
 - (void)setChunksTotal:(NSInteger)newTotal
 {
-    chunksTotal = newTotal;
+    nextChunksTotal = newTotal;
     [self setChunks];
 }
 - (void)setChunksCount:(NSInteger)newCount
 {
-    chunksCount = newCount;
+    nextChunksCount = newCount;
     [self setChunks];
 }
 
 - (void)showWaypoints:(BOOL)yesno
 {
     showWaypoints = yesno;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self calculateRects];
-    }];
+    self.needsRecalculate = YES;
 }
 
 - (void)showLogs:(BOOL)yesno
 {
     showLogs = yesno;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self calculateRects];
-    }];
+    self.needsRecalculate = YES;
 }
 
 - (void)showTrackables:(BOOL)yesno
 {
     showTrackables = yesno;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self calculateRects];
-    }];
+    self.needsRecalculate = YES;
 }
 - (void)setWaypoints
 {
-    NSString *s;
-    if (waypointsNew == 0)
-        s = [NSString stringWithFormat:@"Waypoints: %ld", (long)waypointsTotal];
+    if (nextWaypointsNew == 0)
+        nextWaypoints = [NSString stringWithFormat:@"Waypoints: %ld", (long)nextWaypointsTotal];
     else
-        s = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)waypointsTotal, (long)waypointsNew];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelWaypoints.text = s;
-    }];
+        nextWaypoints = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)nextWaypointsTotal, (long)nextWaypointsNew];
+    self.needsRefresh = YES;
 }
 - (void)setWaypointsNew:(NSInteger)i
 {
-    waypointsNew = i;
+    nextWaypointsNew = i;
     [self setWaypoints];
 }
 - (void)setWaypointsTotal:(NSInteger)i
 {
-    waypointsTotal = i;
+    nextWaypointsTotal = i;
     [self setWaypoints];
 }
 
 - (void)setLogs
 {
     NSString *s;
-    if (logsNew == 0)
-        s = [NSString stringWithFormat:@"Logs: %ld", (long)logsTotal];
+    if (nextLogsNew == 0)
+        s = [NSString stringWithFormat:@"Logs: %ld", (long)nextLogsTotal];
     else
-        s = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)logsTotal, (long)logsNew];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelLogs.text = s;
-    }];
+        s = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)nextLogsTotal, (long)nextLogsNew];
+    nextLogs = s;
+    [self needsRefresh];
 }
 - (void)setLogsNew:(NSInteger)i
 {
-    logsNew = i;
+    nextLogsNew = i;
     [self setLogs];
 }
 - (void)setLogsTotal:(NSInteger)i
 {
-    logsTotal = i;
+    nextLogsTotal = i;
     [self setLogs];
 }
 
 - (void)setTrackables
 {
     NSString *s;
-    if (trackablesNew == 0)
-        s = [NSString stringWithFormat:@"Trackables: %ld", (long)trackablesTotal];
+    if (nextTrackablesNew == 0)
+        s = [NSString stringWithFormat:@"Trackables: %ld", (long)nextTrackablesTotal];
     else
-        s = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)trackablesTotal, (long)trackablesNew];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        labelTrackables.text = s;
-    }];
+        s = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)nextTrackablesTotal, (long)nextTrackablesNew];
+    nextTrackables = s;
+    self.needsRefresh = YES;
 }
 - (void)setTrackablesNew:(NSInteger)i
 {
-    trackablesNew = i;
+    nextTrackablesNew = i;
     [self setTrackables];
 }
 - (void)setTrackablesTotal:(NSInteger)i
 {
-    trackablesTotal = i;
+    nextTrackablesTotal = i;
     [self setTrackables];
 }
 
