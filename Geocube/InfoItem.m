@@ -24,25 +24,134 @@
     NSInteger bytesTotal, bytesCount;
     BOOL isLines;
     BOOL isExpanded;
+    InfoItemType type;
+
+    NSInteger viewHeight;
+
+    NSInteger objectCount, objectTotal;
+    NSInteger lineObjectCount, lineObjectTotal;
+    NSInteger chunksTotal, chunksCount;
+    NSInteger logsNew, logsTotal;
+    NSInteger waypointsNew, waypointsTotal;
+    NSInteger trackablesNew, trackablesTotal;
+
+    GCSmallLabel *labelDesc;
+    GCSmallLabel *labelURL;
+    GCSmallLabel *labelChunks;
+    GCSmallLabel *labelBytes;
+    GCSmallLabel *labelLinesObjects;
+    GCSmallLabel *labelQueue;
+    GCSmallLabel *labelTrackables;
+    GCSmallLabel *labelLogs;
+    GCSmallLabel *labelWaypoints;
+
+    BOOL showLogs, showWaypoints, showTrackables;
 }
 
 @end
 
 @implementation InfoItem
 
-NEEDS_OVERLOADING(calculateRects)
-
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)_type
 {
-    return [self initWithInfoViewer:parent expanded:YES];
+    return [self initWithInfoViewer:parent type:_type expanded:YES];
 }
 
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)_type expanded:(BOOL)expanded
 {
     self = [super init];
     self.infoViewer = parent;
     isExpanded = expanded;
+    type = _type;
+
+    switch (type) {
+        case INFOITEM_DOWNLOAD: {
+            NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
+            self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
+            self.view.backgroundColor = [UIColor lightGrayColor];
+
+            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.view addSubview:labelDesc];
+                [self.view addSubview:labelURL];
+                [self.view addSubview:labelChunks];
+                [self.view addSubview:labelBytes];
+                [self calculateRects];
+            }];
+
+            break;
+        }
+
+        case INFOITEM_IMPORT: {
+            NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
+            self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
+            self.view.backgroundColor = [UIColor lightGrayColor];
+
+            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelTrackables = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelLogs = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelWaypoints = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+            showLogs = YES;
+            showWaypoints = YES;
+            showTrackables = YES;
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.view addSubview:labelDesc];
+                [self.view addSubview:labelLinesObjects];
+                [self.view addSubview:labelWaypoints];
+                [self.view addSubview:labelLogs];
+                [self.view addSubview:labelTrackables];
+                [self calculateRects];
+            }];
+        }
+
+        case INFOITEM_IMAGE:
+            break;
+    }
+
     return self;
+}
+
+- (void)calculateRects
+{
+#define MARGIN  5
+#define INDENT  10
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    NSInteger y = MARGIN;
+
+#define LABEL_RESIZE(__s__) \
+    if (__s__ != nil) { \
+        __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
+        y += __s__.font.lineHeight; \
+    }
+#define INDENT_RESIZE(__s__) \
+    if (__s__ != nil) { \
+        __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
+        y += __s__.font.lineHeight; \
+    }
+
+    INDENT_RESIZE(labelDesc);
+    INDENT_RESIZE(labelURL);
+    INDENT_RESIZE(labelChunks);
+    INDENT_RESIZE(labelBytes);
+    INDENT_RESIZE(labelLinesObjects);
+    INDENT_RESIZE(labelLogs);
+    INDENT_RESIZE(labelTrackables);
+    INDENT_RESIZE(labelWaypoints);
+    INDENT_RESIZE(labelBytes);
+    INDENT_RESIZE(labelChunks);
+    INDENT_RESIZE(labelQueue);
+
+    y += MARGIN;
+    self.view.frame = CGRectMake(0, 0, width, y);
+    self.height = y;
 }
 
 - (void)expand:(BOOL)yesno
@@ -163,32 +272,94 @@ NEEDS_OVERLOADING(calculateRects)
     [self setChunks];
 }
 
+- (void)showWaypoints:(BOOL)yesno
+{
+    showWaypoints = yesno;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
+}
+
+- (void)showLogs:(BOOL)yesno
+{
+    showLogs = yesno;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
+}
+
+- (void)showTrackables:(BOOL)yesno
+{
+    showTrackables = yesno;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
+}
+- (void)setWaypoints
+{
+    NSString *s;
+    if (waypointsNew == 0)
+        s = [NSString stringWithFormat:@"Waypoints: %ld", (long)waypointsTotal];
+    else
+        s = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)waypointsTotal, (long)waypointsNew];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelWaypoints.text = s;
+    }];
+}
 - (void)setWaypointsNew:(NSInteger)i
 {
+    waypointsNew = i;
+    [self setWaypoints];
 }
 - (void)setWaypointsTotal:(NSInteger)i
 {
+    waypointsTotal = i;
+    [self setWaypoints];
 }
-- (void)setTrackablesNew:(NSInteger)i
+
+- (void)setLogs
 {
-}
-- (void)setTrackablesTotal:(NSInteger)i
-{
+    NSString *s;
+    if (logsNew == 0)
+        s = [NSString stringWithFormat:@"Logs: %ld", (long)logsTotal];
+    else
+        s = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)logsTotal, (long)logsNew];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelLogs.text = s;
+    }];
 }
 - (void)setLogsNew:(NSInteger)i
 {
+    logsNew = i;
+    [self setLogs];
 }
 - (void)setLogsTotal:(NSInteger)i
 {
+    logsTotal = i;
+    [self setLogs];
 }
-- (void)showWaypoints:(BOOL)yesno
+
+- (void)setTrackables
 {
+    NSString *s;
+    if (trackablesNew == 0)
+        s = [NSString stringWithFormat:@"Trackables: %ld", (long)trackablesTotal];
+    else
+        s = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)trackablesTotal, (long)trackablesNew];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        labelTrackables.text = s;
+    }];
 }
-- (void)showLogs:(BOOL)yesno
+- (void)setTrackablesNew:(NSInteger)i
 {
+    trackablesNew = i;
+    [self setTrackables];
 }
-- (void)showTrackables:(BOOL)yesno
+- (void)setTrackablesTotal:(NSInteger)i
 {
+    trackablesTotal = i;
+    [self setTrackables];
 }
 
 @end

@@ -59,7 +59,7 @@
 
 - (NSInteger)addImage:(BOOL)expanded
 {
-    InfoItemImage *iii = [[InfoItemImage alloc] initWithInfoViewer:self expanded:expanded];
+    InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMAGE expanded:expanded];
 
     @synchronized (items) {
         iii._id = maxid++;
@@ -82,7 +82,7 @@
 
 - (NSInteger)addImport:(BOOL)expanded
 {
-    InfoItemImport *iii = [[InfoItemImport alloc] initWithInfoViewer:self expanded:expanded];
+    InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMPORT expanded:expanded];
 
     @synchronized (items) {
         iii._id = maxid++;
@@ -106,7 +106,7 @@
 
 - (NSInteger)addDownload:(BOOL)expanded
 {
-    InfoItemDownload *iid = [[InfoItemDownload alloc] initWithInfoViewer:self expanded:expanded];
+    InfoItem *iid = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_DOWNLOAD expanded:expanded];
 
     @synchronized (items) {
         iid._id = maxid++;
@@ -190,7 +190,7 @@
 - (void)viewWillTransitionToSize
 {
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItemDownload *d, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }

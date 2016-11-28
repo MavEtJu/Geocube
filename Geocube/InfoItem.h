@@ -21,24 +21,16 @@
 
 typedef NSInteger InfoItemID;
 
+typedef NS_ENUM(NSInteger, InfoItemType) {
+    INFOITEM_DOWNLOAD = 1,
+    INFOITEM_IMPORT,
+    INFOITEM_IMAGE,
+};
+
 @interface InfoItem : NSObject
-{
-    NSInteger viewHeight;
 
-    GCSmallLabel *labelDesc;
-    GCSmallLabel *labelBytes;
-
-    NSInteger objectCount, objectTotal;
-    NSInteger lineObjectCount, lineObjectTotal;
-    NSInteger chunksTotal, chunksCount;
-    GCSmallLabel *labelLinesObjects;
-    GCSmallLabel *labelQueue;
-    GCSmallLabel *labelURL;
-    GCSmallLabel *labelChunks;
-}
-
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent;
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent expanded:(BOOL)expanded;
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)type;
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)type expanded:(BOOL)expanded;
 
 @property (nonatomic) InfoItemID _id;
 @property (nonatomic, retain) GCView *view;
