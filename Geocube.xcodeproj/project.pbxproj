@@ -2436,6 +2436,61 @@
 			name = CCHMapClusterController;
 			sourceTree = "<group>";
 		};
+		E8E0A6561DEE2250004A885D /* GCA */ = {
+			isa = PBXGroup;
+			children = (
+				E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */,
+				E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */,
+				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
+				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
+			);
+			name = GCA;
+			sourceTree = "<group>";
+		};
+		E8E0A6571DEE2255004A885D /* GCA2 */ = {
+			isa = PBXGroup;
+			children = (
+				E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */,
+				E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */,
+				E84E23981DB9E8440079496D /* ProtocolGCA2.h */,
+				E84E23991DB9E8440079496D /* ProtocolGCA2.m */,
+			);
+			name = GCA2;
+			sourceTree = "<group>";
+		};
+		E8E0A6581DEE225A004A885D /* GGCW */ = {
+			isa = PBXGroup;
+			children = (
+				E8B771CD1DD9DA4E008B2F9E /* RemoteAPIGGCW.h */,
+				E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */,
+				E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */,
+				E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */,
+			);
+			name = GGCW;
+			sourceTree = "<group>";
+		};
+		E8E0A6591DEE225F004A885D /* OKAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E8B771D11DD9DA4E008B2F9E /* RemoteAPIOKAPI.h */,
+				E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */,
+				E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */,
+				E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */,
+			);
+			name = OKAPI;
+			sourceTree = "<group>";
+		};
+		E8E0A65A1DEE2264004A885D /* LiveAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E8B771CF1DD9DA4E008B2F9E /* RemoteAPILiveAPI.h */,
+				E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */,
+				E807A5F91B8BC9EB00EBA187 /* ProtocolLiveAPI.h */,
+				E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */,
+			);
+			name = LiveAPI;
+			sourceTree = "<group>";
+		};
 		E8E2F5541D02C4B4009170E3 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -2747,28 +2802,13 @@
 				E807A5F21B8BBF5E00EBA187 /* GCOAuthBlackbox.m */,
 				E832E7D81B8D173D00A3CCF6 /* RemoteAPITemplate.h */,
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */,
-				E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */,
-				E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */,
-				E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */,
-				E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */,
-				E8B771CD1DD9DA4E008B2F9E /* RemoteAPIGGCW.h */,
-				E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */,
-				E8B771CF1DD9DA4E008B2F9E /* RemoteAPILiveAPI.h */,
-				E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */,
-				E8B771D11DD9DA4E008B2F9E /* RemoteAPIOKAPI.h */,
-				E8B771D21DD9DA4E008B2F9E /* RemoteAPIOKAPI.m */,
 				E89580191C643AD500282177 /* ProtocolTemplate.h */,
 				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
-				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
-				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
-				E84E23981DB9E8440079496D /* ProtocolGCA2.h */,
-				E84E23991DB9E8440079496D /* ProtocolGCA2.m */,
-				E82302401DCC593F0032C5C6 /* ProtocolGGCW.h */,
-				E82302411DCC593F0032C5C6 /* ProtocolGGCW.m */,
-				E807A5F91B8BC9EB00EBA187 /* ProtocolLiveAPI.h */,
-				E807A5FA1B8BC9EB00EBA187 /* ProtocolLiveAPI.m */,
-				E807A5F61B8BC9CF00EBA187 /* ProtocolOKAPI.h */,
-				E807A5F71B8BC9CF00EBA187 /* ProtocolOKAPI.m */,
+				E8E0A6561DEE2250004A885D /* GCA */,
+				E8E0A6571DEE2255004A885D /* GCA2 */,
+				E8E0A6581DEE225A004A885D /* GGCW */,
+				E8E0A65A1DEE2264004A885D /* LiveAPI */,
+				E8E0A6591DEE225F004A885D /* OKAPI */,
 			);
 			name = "Network APIs";
 			sourceTree = "<group>";
