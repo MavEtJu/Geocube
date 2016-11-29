@@ -38,7 +38,7 @@
 {
     NSMutableArray *tes = [NSMutableArray arrayWithCapacity:500];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, track_id, lat_int, lon_int, height, timestamp, restart from trackelements where track_id = ? order by timestamp");
 
         SET_VAR_INT(1, track_id);
@@ -62,7 +62,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, self.track_id);
@@ -99,7 +99,7 @@
 
 + (void)dbDeleteByTrack:(NSId)trackId
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from trackelements where track_id = ?");
 
         SET_VAR_INT(1, trackId);

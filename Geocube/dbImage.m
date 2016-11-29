@@ -42,7 +42,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, img.url);
@@ -61,7 +61,7 @@
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, url, datafile, filename from images");
 
         DB_WHILE_STEP {
@@ -87,7 +87,7 @@
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, url, datafile, filename from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");
 
         SET_VAR_INT(1, wp_id);
@@ -130,7 +130,7 @@
 {
     dbImage *img;
 
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"select id, url, datafile, filename from images where url = ?");
 
         SET_VAR_TEXT(1, url);
@@ -149,7 +149,7 @@
 - (BOOL)dbLinkedtoWaypoint:(NSId)wp_id
 {
     BOOL linked = NO;
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"select id from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -165,7 +165,7 @@
 
 - (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
 
         SET_VAR_INT(1, self._id);
@@ -180,7 +180,7 @@
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
     NSInteger linked = 0;
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ? and type = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -197,7 +197,7 @@
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id
 {
     NSInteger linked = 0;
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -222,7 +222,7 @@
 
 - (void)dbUnlinkFromWaypoint:(NSId)wp_id
 {
-    @synchronized (db.dbaccess) {
+    @synchronized (db) {
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp_id);

@@ -38,7 +38,7 @@
 
 - (void)dbEmpty
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from group2waypoints where group_id = ?");
 
         SET_VAR_INT(1, self._id);
@@ -53,7 +53,7 @@
 {
     dbGroup *cg;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, usergroup, deletable from groups where name = ?");
 
         SET_VAR_TEXT(1, name);
@@ -74,7 +74,7 @@
 {
     dbGroup *cg;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, usergroup, deletable from groups where id = ?");
 
         SET_VAR_INT(1, _id);
@@ -95,7 +95,7 @@
 {
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, usergroup, deletable from groups");
 
         DB_WHILE_STEP {
@@ -121,7 +121,7 @@
     NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbGroup *cg;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select group_id from group2waypoints where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -142,7 +142,7 @@
 {
     NSInteger count = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from group2waypoints where group_id = ?");
 
         SET_VAR_INT(1, self._id);
@@ -160,7 +160,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into groups(name, usergroup, deletable) values(?, ?, 1)");
 
         SET_VAR_TEXT(1, _name);
@@ -180,7 +180,7 @@
 
 + (void)dbDelete:(NSId)_id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from groups where id = ?");
 
         SET_VAR_INT(1, _id);
@@ -192,7 +192,7 @@
 
 - (void)dbUpdateName:(NSString *)newname
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update groups set name = ? where id = ?");
 
         SET_VAR_TEXT(1, newname);
@@ -205,7 +205,7 @@
 
 - (void)dbAddWaypoint:(NSId)__id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into group2waypoints(group_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(1, self._id);
@@ -218,7 +218,7 @@
 
 - (void)dbRemoveWaypoint:(NSId)__id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from group2waypoints where group_id = ? and waypoint_id = ?");
 
         SET_VAR_INT(1, self._id);
@@ -241,7 +241,7 @@
 {
     NSInteger count = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from group2waypoints where group_id = ? and waypoint_id = ?");
 
         SET_VAR_INT(1, self._id);

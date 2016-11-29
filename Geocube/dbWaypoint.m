@@ -269,7 +269,7 @@
                          @"OC", // OpenCaching DE/FR/IT
                        ];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, wpt_name from waypoints where wpt_name like ? and (account_id = ? or account_id = 0)")
 
         currentSuffix = [self.wpt_name substringFromIndex:2];
@@ -315,7 +315,7 @@
 
     NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, related_id from waypoints wp %@", where];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
@@ -442,7 +442,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id from waypoints where wpt_name = ?");
 
         SET_VAR_TEXT( 1, name);
@@ -467,7 +467,7 @@
 + (void)dbCreate:(dbWaypoint *)wp
 {
     NSId _id = 0;
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, related_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT  ( 1, wp.wpt_name);
@@ -522,7 +522,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_lat_int = ?, wpt_lon_int = ?, wpt_date_placed = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, related_id = ? where id = ?");
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
@@ -582,7 +582,7 @@
     [clock clockShowAndReset:@"start"];
 
     // Make all not logged
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ?");
         SET_VAR_INT(1, LOGSTATUS_NOTLOGGED);
         DB_CHECK_OKAY;
@@ -591,7 +591,7 @@
     [clock clockShowAndReset:@"1"];
 
     // Find all the logs about non-found caches and mark these caches as not found.
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found = 0 and (id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
         SET_VAR_INT(1, LOGSTATUS_NOTFOUND);
         DB_CHECK_OKAY;
@@ -600,7 +600,7 @@
     [clock clockShowAndReset:@"2"];
 
     // Find all the logs about found caches and mark these caches as found.
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))");
         SET_VAR_INT(1, LOGSTATUS_FOUND);
         DB_CHECK_OKAY;
@@ -609,7 +609,7 @@
     [clock clockShowAndReset:@"3"];
 
 //    // Find all the waypoints and their waypoints
-//    @synchronized(db.dbaccess) {
+//    @synchronized(db) {
 //        NSArray *waypoints = [dbWaypoint dbAllFound];
 //        NSLog(@"Checking %ld waypoints", [waypoints count]);
 //        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *waypoint, NSUInteger idx, BOOL *stop) {
@@ -635,7 +635,7 @@
 //    [clock clockShowAndReset:@"4"];
 
     // Set the time of the last log in the waypoint
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set date_lastlog_epoch = (select max(l.datetime_epoch) from logs l where l.waypoint_id = waypoints.id);");
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -645,7 +645,7 @@
 
 - (void)dbUpdateLogStatus
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ? where id = ?");
         SET_VAR_INT(1, self.logStatus);
         SET_VAR_INT(2, self._id);
@@ -656,7 +656,7 @@
 
 - (void)dbUpdateHighlight
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_highlight);
@@ -669,7 +669,7 @@
 
 - (void)dbUpdateIgnore
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_ignore);
@@ -682,7 +682,7 @@
 
 - (void)dbUpdateMarkedFound
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set markedfound = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_markedfound);
@@ -695,7 +695,7 @@
 
 - (void)dbUpdateMarkedDNF
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set dnfed = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_dnf);
@@ -708,7 +708,7 @@
 
 - (void)dbUpdateInProgress
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update waypoints set inprogress = ? where id = ?");
 
         SET_VAR_BOOL(1, self.flag_inprogress);
@@ -721,7 +721,7 @@
 
 - (void)dbDelete
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from waypoints where id = ?");
 
         SET_VAR_INT(1, self._id);

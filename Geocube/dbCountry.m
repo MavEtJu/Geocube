@@ -41,7 +41,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code from countries");
 
         DB_WHILE_STEP {
@@ -65,7 +65,7 @@
 {
     dbCountry *c;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code from countries where id = ?");
 
         SET_VAR_INT(1, _id);
@@ -85,7 +85,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into countries(name, code) values(?, ?)");
 
         SET_VAR_TEXT(1, name);
@@ -110,7 +110,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update countries set name = ?, code = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);

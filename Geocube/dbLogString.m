@@ -44,7 +44,7 @@
     NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
         DB_WHILE_STEP {
             dbLogString *ls = [[dbLogString alloc] init];
@@ -127,7 +127,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into log_strings(text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.text);
@@ -154,7 +154,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.text);
@@ -179,7 +179,7 @@
 
 + (void)dbDeleteAll
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from log_strings");
 
         DB_CHECK_OKAY;

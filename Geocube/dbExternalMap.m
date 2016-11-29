@@ -33,7 +33,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into externalmaps(geocube_id, enabled, name) values(?, ?, ?)");
 
         SET_VAR_INT (1, self.geocube_id);
@@ -50,7 +50,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update externalmaps set geocube_id = ?, enabled = ?, name = ? where id = ?");
 
         SET_VAR_INT (1, self.geocube_id);
@@ -67,7 +67,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps order by geocube_id");
 
         DB_WHILE_STEP {
@@ -87,7 +87,7 @@
 {
     dbExternalMap *em;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps where geocube_id = ?");
 
         SET_VAR_INT (1, geocube_id);
@@ -129,7 +129,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into externalmap_urls(externalmap_id, model, type, url) values(?, ?, ?, ?)");
 
         SET_VAR_INT (1, self.externalMap_id);
@@ -147,7 +147,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update externalmap_urls set externalmap_id = ?, model = ?, type = ?, url = ? where id = ?");
 
         SET_VAR_INT (1, self.externalMap_id);
@@ -165,7 +165,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, externalmap_id, model, type, url from externalmap_urls where externalmap_id = ?");
 
         SET_VAR_INT(1, map_id);
@@ -187,7 +187,7 @@
 
 + (void)dbDeleteByExternalMap:(NSId)map_id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from externalmap_urls where externalmap_id = ?")
 
         SET_VAR_INT(1, map_id);

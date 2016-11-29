@@ -39,7 +39,7 @@
 {
     dbFilter *c;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, key, value from filters where key = ?");
 
         SET_VAR_TEXT(1, _key);
@@ -57,7 +57,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update filters set value = ? where key = ?");
 
         SET_VAR_TEXT(1, self.value);
@@ -72,7 +72,7 @@
 {
     NSId __id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into filters(key, value) values(?, ?)");
 
         SET_VAR_TEXT(1, self.key);
@@ -102,7 +102,7 @@
 
 + (void)dbAllClear
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from filters");
         DB_CHECK_OKAY;
         DB_FINISH;

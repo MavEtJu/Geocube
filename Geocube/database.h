@@ -29,7 +29,6 @@
 
 @interface database : NSObject
 
-@property (nonatomic, retain)id dbaccess;
 @property (nonatomic)sqlite3 *db;
 
 - (instancetype)init;

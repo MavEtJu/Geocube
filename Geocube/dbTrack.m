@@ -29,7 +29,7 @@
 {
     dbTrack *t;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, startedon, stoppedon from tracks where id = ?");
         SET_VAR_INT(1, id);
 
@@ -50,7 +50,7 @@
 {
     NSMutableArray *ts = [NSMutableArray arrayWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, startedon, stoppedon from tracks order by startedon desc");
 
         DB_WHILE_STEP {
@@ -69,7 +69,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into tracks(name, startedon, stoppedon) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, self.name);
@@ -85,7 +85,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update tracks set name = ?, startedon = ?, stoppedon = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
@@ -105,7 +105,7 @@
 
 - (void)dbDelete
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from tracks where id = ?");
 
         SET_VAR_INT(1, self._id);

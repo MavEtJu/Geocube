@@ -37,7 +37,7 @@
 
 - (void)dbUpdateRGB
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update pins set rgb = ? where id = ?");
 
         SET_VAR_TEXT(1, self.rgb);
@@ -54,7 +54,7 @@
 {
     NSMutableArray *ps = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, description, rgb, rgb_default from pins");
 
         DB_WHILE_STEP {
@@ -73,7 +73,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into pins(id, description, rgb, rgb_default) values(?, ?, ?, ?)");
 
         SET_VAR_INT (1, self._id);
@@ -91,7 +91,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update pins set description = ?, rgb_default = ? where id = ?");
 
         SET_VAR_TEXT(1, self.desc);

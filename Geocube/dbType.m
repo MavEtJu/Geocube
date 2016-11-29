@@ -37,7 +37,7 @@
 {
     NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types");
 
         DB_WHILE_STEP {
@@ -58,7 +58,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id, has_boundary) values(?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, self.type_major);
@@ -77,7 +77,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ?, has_boundary = ? where id = ?");
 
         SET_VAR_TEXT(1, self.type_major);
@@ -96,7 +96,7 @@
 {
     dbType *t = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types where type_minor = ? and type_major = ?");
 
         SET_VAR_TEXT(1, minor);

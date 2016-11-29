@@ -128,7 +128,7 @@
 {
     dbAccount *a = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
@@ -169,7 +169,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts");
 
         DB_WHILE_STEP {
@@ -215,7 +215,7 @@
 {
     NSId __id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
@@ -256,7 +256,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.site);
@@ -297,7 +297,7 @@
 
 - (void)dbUpdateAccount
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update accounts set accountname = ?, name_id = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.accountname_string);
@@ -317,7 +317,7 @@
 
 - (void)dbUpdateOAuthConsumer
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ? where id = ?");
 
         SET_VAR_TEXT(1, self.oauth_consumer_public);
@@ -334,7 +334,7 @@
 
 - (void)dbUpdateOAuthToken
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update accounts set oauth_token = ?, oauth_token_secret = ? where id = ?");
 
         SET_VAR_TEXT(1, self.oauth_token);
@@ -349,7 +349,7 @@
 
 - (void)dbUpdateCookieValue
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update accounts set gca_cookie_value = ? where id = ?");
 
         SET_VAR_TEXT(1, self.gca_cookie_value);
@@ -365,7 +365,7 @@
 {
     dbAccount *a = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts where site = ?");
         SET_VAR_TEXT(1, site);
 

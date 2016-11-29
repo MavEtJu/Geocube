@@ -27,7 +27,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into notices(note, sender, date, seen, geocube_id, url) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, self.note);
@@ -48,7 +48,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices order by seen, date desc, id");
 
         DB_WHILE_STEP {
@@ -73,7 +73,7 @@
 {
     dbNotice *n = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices where geocube_id = ? order by seen, geocube_id desc");
 
         SET_VAR_INT(1, geocube_id);
@@ -96,7 +96,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ?, url = ? where id = ?");
 
         SET_VAR_BOOL(1, self.seen);
@@ -114,7 +114,7 @@
 + (NSInteger)dbCount
 {
     NSInteger c = 0;
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(*) from notices");
         DB_IF_STEP {
             INT_FETCH(0, c);
@@ -127,7 +127,7 @@
 + (NSInteger)countUnread
 {
     NSInteger c = 0;
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(*) from notices set seen = 0");
         DB_IF_STEP {
             INT_FETCH(0, c);

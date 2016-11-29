@@ -105,7 +105,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id from logs where gc_id = ? and waypoint_id in (select id from waypoints where account_id = ?) order by datetime_epoch desc");
 
         SET_VAR_INT(1, _gc_id);
@@ -123,7 +123,7 @@
 {
     NSMutableDictionary *ss = [NSMutableDictionary dictionaryWithCapacity:4000];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, gc_id from logs order by datetime_epoch desc");
 
         DB_WHILE_STEP {
@@ -146,7 +146,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, log.waypoint_id);
@@ -168,7 +168,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
 
         SET_VAR_INT (1, self.logstring_id);
@@ -188,7 +188,7 @@
 
 - (void)dbUpdateWaypoint:(NSId)c_id;
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update logs set waypoint_id = ? where id = ?");
 
         SET_VAR_INT(1, c_id);
@@ -201,7 +201,7 @@
 
 - (void)dbUpdateNote
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update logs set log = ? where id = ?");
 
         SET_VAR_TEXT(1, self.log);
@@ -216,7 +216,7 @@
 {
     NSInteger count = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from logs where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -234,7 +234,7 @@
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
 
         SET_VAR_INT(1, _wp_id);
@@ -262,7 +262,7 @@
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
 
         SET_VAR_INT(1, wp_id);
@@ -290,7 +290,7 @@
 {
     NSInteger c = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from logs where waypoint_id = ? and log like ?");
 
         SET_VAR_INT( 1, wp._id);

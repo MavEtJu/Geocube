@@ -50,7 +50,7 @@
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -62,7 +62,7 @@
 
 - (void)dbLinkToWaypoint:(NSId)wp_id
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(1, self._id);
@@ -77,7 +77,7 @@
 {
     NSInteger count = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from travelbug2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -98,7 +98,7 @@
 
     NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
@@ -161,7 +161,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id from travelbugs where gc_id = ?");
 
         SET_VAR_INT(1, _gc_id);
@@ -203,7 +203,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, tb.gc_id);
@@ -225,7 +225,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
 
         SET_VAR_INT (1, self.gc_id);

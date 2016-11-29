@@ -42,7 +42,7 @@
 {
     dbBookmark *a = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks where id = ?");
         SET_VAR_INT(1, _id);
 
@@ -62,7 +62,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks");
 
         DB_WHILE_STEP {
@@ -87,7 +87,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into bookmarks(name, url, import_id) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, bm.name);
@@ -103,7 +103,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update bookmarks set name = ?, url = ?, import_id = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
@@ -118,7 +118,7 @@
 
 - (void)dbDelete
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from bookmarks where id = ?");
 
         SET_VAR_INT(1, self._id);
@@ -132,7 +132,7 @@
 {
     dbBookmark *a = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks where import_id = ?");
         SET_VAR_INT(1, import_id);
 

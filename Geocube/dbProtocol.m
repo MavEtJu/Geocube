@@ -29,7 +29,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name from protocols order by id");
 
         DB_WHILE_STEP {
@@ -52,7 +52,7 @@
 {
     dbProtocol *p;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name from protocols where id = ?");
 
         SET_VAR_INT(1, _id);
@@ -71,7 +71,7 @@
 {
     dbProtocol *p;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name from protocols where name = ?");
 
         SET_VAR_TEXT(1, name);

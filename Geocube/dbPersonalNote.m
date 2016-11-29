@@ -27,7 +27,7 @@
 
 - (NSId)dbCreate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into personal_notes(wp_name, note) values(?, ?)");
 
         SET_VAR_TEXT(1, self.wp_name);
@@ -42,7 +42,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update personal_notes set wp_name = ?, note = ? where id = ?");
 
         SET_VAR_TEXT(1, self.wp_name);
@@ -58,7 +58,7 @@
 {
     dbPersonalNote *pn = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, wp_name, note from personal_notes where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -79,7 +79,7 @@
 {
     dbPersonalNote *pn = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, wp_name, note from personal_notes where wp_name = ?");
 
         SET_VAR_TEXT(1, wpname);
@@ -100,7 +100,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, wp_name, note from personal_notes");
 
         DB_WHILE_STEP {
@@ -118,7 +118,7 @@
 
 - (void)dbDelete
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from personal_notes where id = ?");
 
         SET_VAR_INT(1, self._id);

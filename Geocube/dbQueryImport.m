@@ -36,7 +36,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into query_imports(account_id, name, filesize, last_import_epoch) values(?, ?, ?, ?)");
 
         SET_VAR_INT (1, qi.account_id);
@@ -54,7 +54,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update query_imports set account_id = ?, name = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
         SET_VAR_INT (1, self.account_id);
@@ -72,7 +72,7 @@
 {
     NSMutableArray *qis = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, account_id, name, filesize, last_import_epoch from query_imports");
 
         DB_WHILE_STEP {

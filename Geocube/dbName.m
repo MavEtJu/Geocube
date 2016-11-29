@@ -51,7 +51,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names");
 
         DB_WHILE_STEP {
@@ -72,7 +72,7 @@
 {
     dbName *s;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where id = ?");
 
         SET_VAR_INT(1, _id);
@@ -94,7 +94,7 @@
 {
     dbName *s = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where name = ? and code = ? and account_id = ?");
 
         SET_VAR_TEXT(1, name);
@@ -118,7 +118,7 @@
 {
     dbName *s = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where code = ? and account_id = ?");
 
         SET_VAR_TEXT(1, code);
@@ -141,7 +141,7 @@
 {
     dbName *s = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where name = ? and account_id = ?");
 
         SET_VAR_TEXT(1, name);
@@ -164,7 +164,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into names(name, code, account_id) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, name);
@@ -192,7 +192,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update names set name = ?, code = ?, account_id = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);

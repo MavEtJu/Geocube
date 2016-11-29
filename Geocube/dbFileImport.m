@@ -29,7 +29,7 @@
 {
     NSId _id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into file_imports(filename, filesize, last_import_epoch) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, fi.filename);
@@ -46,7 +46,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update file_imports set filename = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
         SET_VAR_TEXT(1, self.filename);
@@ -63,7 +63,7 @@
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, filename, filesize, last_import_epoch from file_imports");
 
         DB_WHILE_STEP {

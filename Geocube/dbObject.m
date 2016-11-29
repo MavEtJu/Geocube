@@ -49,7 +49,7 @@ NEEDS_OVERLOADING(dbDelete)
 {
     NSInteger c = -1;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         NSString *sql = [NSString stringWithFormat:@"select count(id) from %@", table];
         DB_PREPARE(sql);
 

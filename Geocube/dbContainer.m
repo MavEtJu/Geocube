@@ -38,7 +38,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update containers set size = ?, icon = ?, gc_id = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.size);
@@ -55,7 +55,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, size, icon, gc_id from containers");
 
         DB_WHILE_STEP {
@@ -80,7 +80,7 @@
 {
     dbContainer *a = nil;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, size, icon, gc_id from containers where gc_id = ?");
         SET_VAR_INT(1, gc_id);
 
@@ -100,7 +100,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into containers(size, icon, gc_id) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, c.size);

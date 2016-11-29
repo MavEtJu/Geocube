@@ -39,7 +39,7 @@
 {
     dbConfig *c;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, key, value from config where key = ?");
 
         SET_VAR_TEXT(1, _key);
@@ -60,7 +60,7 @@
 {
     NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, key, value from config");
 
         DB_WHILE_STEP {
@@ -78,7 +78,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update config set value = ? where key = ?");
 
         SET_VAR_TEXT(1, self.value);
@@ -93,7 +93,7 @@
 {
     NSId __id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into config(key, value) values(?, ?)");
 
         SET_VAR_TEXT(1, self.key);

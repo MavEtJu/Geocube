@@ -42,7 +42,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select id, label, gc_id, icon from attributes");
 
         DB_WHILE_STEP {
@@ -60,7 +60,7 @@
 
 - (void)dbUpdate
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"update attributes set label = ?, icon = ? where id = ?");
 
         SET_VAR_TEXT(1, self.label);
@@ -76,7 +76,7 @@
 {
     NSId _id;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into attributes(label, gc_id, icon) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, self.label);
@@ -102,7 +102,7 @@
 {
     NSId __id = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from attribute2waypoints where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -115,7 +115,7 @@
 
 - (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNo
 {
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values(?, ?, ?)");
 
         SET_VAR_INT (1, self._id);
@@ -138,7 +138,7 @@
             [sql appendString:@","];
         [sql appendFormat:@"(%ld, %ld, %d)", (long)attr._id, (long)wp_id, YesNo];
     }];
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(sql);
 
         DB_CHECK_OKAY;
@@ -150,7 +150,7 @@
 {
     NSInteger count = 0;
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from attribute2waypoints where waypoint_id = ?");
 
         SET_VAR_INT(1, wp_id);
@@ -168,7 +168,7 @@
 {
     NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db.dbaccess) {
+    @synchronized(db) {
         DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");
 
         SET_VAR_INT( 1, wp_id);

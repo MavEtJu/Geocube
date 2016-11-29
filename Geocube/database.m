@@ -34,7 +34,6 @@
 {
     self = [super init];
 
-    self.dbaccess = self;
     self.db = nil;
 
     return self;
@@ -172,7 +171,7 @@
     if (version > [upgradeSteps count])
         NSAssert1(false, @"performUpgrade: Unknown destination version: %ld", (long)version);
 
-    @synchronized(self.dbaccess) {
+    @synchronized(db) {
         __block sqlite3_stmt *req;
 
         DB_PREPARE(@"begin");
@@ -503,7 +502,7 @@
 
 - (void)singleStatement:(NSString *)sql
 {
-    @synchronized(self.dbaccess) {
+    @synchronized(db) {
         sqlite3_stmt *req;
 
         DB_PREPARE(@"begin");
@@ -521,7 +520,7 @@
 
 - (void)cleanupAfterDelete
 {
-    @synchronized(self.dbaccess) {
+    @synchronized(db) {
         sqlite3_stmt *req;
 
         // Delete all logs from caches not longer in an usergroup (should be zero)
