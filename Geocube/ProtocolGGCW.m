@@ -217,6 +217,8 @@ enum {
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
@@ -328,6 +330,8 @@ bail2:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
@@ -424,6 +428,9 @@ bail:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
+
     GCDataZIPFile *zipdata = [[GCDataZIPFile alloc] initWithData:data];
     return zipdata;
 }
@@ -455,6 +462,8 @@ bail:
     url = [NSURL URLWithString:location];
     req = [NSMutableURLRequest requestWithURL:url];
     data = [self performURLRequest:req returnRespose:&resp infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
@@ -587,6 +596,8 @@ bail2:
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
 
     GCStringGPX *gpx = [[GCStringGPX alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return gpx;
@@ -1288,6 +1299,8 @@ bail:
 
     NSHTTPURLResponse *resp = nil;
     NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
@@ -1470,6 +1483,9 @@ bail1:
 
     req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [self performURLRequest:req infoViewer:iv ivi:ivi];
+    if (data == nil)
+        return nil;
+
     NSString *ss = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([ss containsString:@"View Geocache Log"] == NO)
         return nil;
