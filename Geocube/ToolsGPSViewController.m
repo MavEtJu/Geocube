@@ -192,6 +192,11 @@ enum {
 - (UIImage *)createGPSMap
 {
     UIImage *img = nil;
+    NSInteger X = gpsMapRect.size.width;
+    NSInteger Y = gpsMapRect.size.height;
+
+    if (X == 0 && Y == 0)
+        return nil;
 
     __block CGFloat x0 = +180, x3 = -180, y0 = +180, y3 = -180;
     [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D *c, NSUInteger idx, BOOL *stop) {
@@ -210,9 +215,6 @@ enum {
     y0 -= .0001;
     x3 += .0001;
     y3 += .0001;
-
-    NSInteger X = gpsMapRect.size.width;
-    NSInteger Y = gpsMapRect.size.height;
 
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(X, Y), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
