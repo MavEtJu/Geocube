@@ -63,7 +63,7 @@
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     dbAccount *a = [dict objectForKey:@"account"];
 
-    GCDictionaryLiveAPI *d = [[GCDictionaryLiveAPI alloc] initWithDictionary:o];
+    GCDictionaryLiveAPI *d = (GCDictionaryLiveAPI *)o;
     [importManager process:d group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
 
     [infoView removeItem:iii];
