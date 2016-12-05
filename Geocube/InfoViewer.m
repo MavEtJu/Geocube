@@ -60,6 +60,10 @@
                     NSLog(@".");
                     [ii refresh];
                 }
+                if (ii.needsRecalculate == YES) {
+                    NSLog(@"!");
+                    [ii recalculate];
+                }
             }];
         }
     }
