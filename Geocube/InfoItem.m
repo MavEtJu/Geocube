@@ -27,7 +27,6 @@
 
     NSInteger viewHeight;
 
-    NSInteger nextObjectCount, nextObjectTotal;
     NSInteger nextLineObjectCount, nextLineObjectTotal;
     NSInteger nextChunksCount, nextChunksTotal;
     NSInteger nextBytesCount, nextBytesTotal;
@@ -145,15 +144,17 @@
         y += __s__.font.lineHeight; \
     }
 
-    INDENT_RESIZE(labelDesc);
-    INDENT_RESIZE(labelURL);
-    INDENT_RESIZE(labelChunks);
-    INDENT_RESIZE(labelBytes);
-    INDENT_RESIZE(labelLinesObjects);
-    INDENT_RESIZE(labelLogs);
-    INDENT_RESIZE(labelTrackables);
-    INDENT_RESIZE(labelWaypoints);
-    INDENT_RESIZE(labelQueue);
+    if (isExpanded == YES) {
+        INDENT_RESIZE(labelDesc);
+        INDENT_RESIZE(labelURL);
+        INDENT_RESIZE(labelChunks);
+        INDENT_RESIZE(labelBytes);
+        INDENT_RESIZE(labelLinesObjects);
+        INDENT_RESIZE(labelLogs);
+        INDENT_RESIZE(labelTrackables);
+        INDENT_RESIZE(labelWaypoints);
+        INDENT_RESIZE(labelQueue);
+    }
 
     y += MARGIN;
     self.view.frame = CGRectMake(0, 0, width, y);
@@ -169,6 +170,17 @@
 - (BOOL)isExpanded
 {
     return isExpanded;
+}
+
+- (void)recalculate
+{
+    if (self.needsRecalculate == NO)
+        return;
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self calculateRects];
+    }];
+    self.needsRecalculate = NO;
 }
 
 - (void)refresh
@@ -217,8 +229,8 @@
 
 - (void)showLinesObjects
 {
-    NSInteger lot = nextObjectTotal;
-    NSInteger loc = nextObjectCount;
+    NSInteger lot = nextLineObjectTotal;
+    NSInteger loc = nextLineObjectCount;
     if (lot <= 0)
         nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", (long)loc];
     else

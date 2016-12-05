@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, InfoItemType) {
 - (void)expand:(BOOL)yesno;
 - (BOOL)isExpanded;
 - (void)refresh;
+- (void)recalculate;
 
 - (void)setDescription:(NSString *)newDesc;
 - (void)setURL:(NSString *)newURL;
