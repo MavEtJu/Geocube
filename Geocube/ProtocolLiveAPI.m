@@ -136,8 +136,9 @@
         return nil;
     }
 
-    GCDictionaryLiveAPI *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([self checkStatus:json] == NO) {
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    GCDictionaryLiveAPI *liveapijson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+    if ([self checkStatus:liveapijson] == NO) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
@@ -145,7 +146,7 @@
         return nil;
     }
 
-    return json;
+    return liveapijson;
 }
 
 /**************************************************************************/
