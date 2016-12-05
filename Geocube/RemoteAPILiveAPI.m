@@ -303,7 +303,7 @@
         if (result == nil)
             result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
-        InfoItemID iii = [iv addImport];
+        InfoItemID iii = [iv addImport:NO];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
 
         [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
