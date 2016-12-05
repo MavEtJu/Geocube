@@ -216,7 +216,7 @@
         [wps addObject:[json objectForKey:wpcode]];
     }];
     [d setObject:wps forKey:@"waypoints"];
-    GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+    GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
     ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:self.account];
     [imp parseBefore];
@@ -286,7 +286,7 @@
     }];
     [d setObject:_wps forKey:@"waypoints"];
 
-    GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+    GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
     InfoItemID iii = [iv addImport];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
