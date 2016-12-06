@@ -35,6 +35,9 @@
 
 @property (nonatomic, retain) UIColor *tableViewCellBackgroundColor;
 
+@property (nonatomic, retain) UIColor *tabBarBackgroundColor;
+@property (nonatomic, retain) UIColor *tabBarForegroundColor;
+
 @property (nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
 
 @property (nonatomic, retain) UIColor *switchTintColor;

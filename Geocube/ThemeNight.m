@@ -46,6 +46,9 @@
     self.viewBackgroundColor = bgColor;
     self.viewControllerBackgroundColour = bgColor;
 
+    self.tabBarBackgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.10 alpha:1];
+    self.tabBarForegroundColor = fgColor;
+
     self.svProgressHUDStyle = SVProgressHUDStyleLight;
 
     self.switchTintColor = [UIColor darkGrayColor];
