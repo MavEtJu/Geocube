@@ -106,9 +106,6 @@
 @class ImportOKAPIJSON;
 @class ImportTemplate;
 @class InfoItem;
-//@class InfoItemDownload;
-//@class InfoItemImage;
-//@class InfoItemImport;
 @class InfoViewer;
 @class KeepTrackCar;
 @class KeepTrackHeightScroller;
