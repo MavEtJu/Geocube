@@ -55,6 +55,9 @@
     self.switchOnTintColor = [UIColor darkGrayColor];
     self.switchThumbTintColor = [UIColor lightGrayColor];
 
+    self.menuLocalIcon = [imageLibrary get:ImageIcon_LocalMenuNight];
+    self.menuGlobalIcon = [imageLibrary get:ImageIcon_GlobalMenuNight];
+
     return self;
 }
 

@@ -58,6 +58,9 @@
     self.switchOnTintColor = switch_.onTintColor;
     self.switchThumbTintColor = switch_.thumbTintColor;
 
+    self.menuLocalIcon = [imageLibrary get:ImageIcon_LocalMenuDefault];
+    self.menuGlobalIcon = [imageLibrary get:ImageIcon_GlobalMenuDefault];
+
     return self;
 }
 

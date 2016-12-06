@@ -140,8 +140,10 @@
     [self addToLibrary:@"icons - dead - 30x30" index:ImageIcon_Dead];
     [self addToLibrary:@"icons - target - 30x30" index:ImageIcon_Target];
 
-    [self addToLibrary:@"menu icon - global" index:ImageIcon_GlobalMenu];
-    [self addToLibrary:@"menu icon - local" index:ImageIcon_LocalMenu];
+    [self addToLibrary:@"menu icon - global - default" index:ImageIcon_GlobalMenuDefault];
+    [self addToLibrary:@"menu icon - local - default" index:ImageIcon_LocalMenuDefault];
+    [self addToLibrary:@"menu icon - global - night" index:ImageIcon_GlobalMenuNight];
+    [self addToLibrary:@"menu icon - local - night" index:ImageIcon_LocalMenuNight];
     [self addToLibrary:@"menu icon - close" index:ImageIcon_CloseButton];
     [self addToLibrary:@"menu icon - see target" index:ImageIcon_SeeTarget];
     [self addToLibrary:@"menu icon - show both" index:ImageIcon_ShowBoth];

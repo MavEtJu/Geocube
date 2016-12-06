@@ -393,7 +393,7 @@ static const NSInteger TagOffset = 1000;
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                      UIButton *b = localMenuButton;
-                                     UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+                                     UIImage *imgMenu = currentTheme.menuLocalIcon;
                                      b.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
                                  }
                                  completion:nil
@@ -405,7 +405,7 @@ static const NSInteger TagOffset = 1000;
     [super viewWillAppear:animated];
     CGRect bounds = self.view.bounds;
     UIButton *b = localMenuButton;
-    UIImage *imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    UIImage *imgMenu = currentTheme.menuLocalIcon;
     b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 }
 
@@ -416,7 +416,7 @@ static const NSInteger TagOffset = 1000;
 - (void)addMenus
 {
     /***** Global Menu ****/
-    UIImage *imgMenu = [imageLibrary get:ImageIcon_GlobalMenu];
+    UIImage *imgMenu = currentTheme.menuGlobalIcon;
     UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(2, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     [b setImage:imgMenu forState:UIControlStateNormal];
@@ -428,7 +428,7 @@ static const NSInteger TagOffset = 1000;
     /***** Global Menu ****/
 
     /***** Local Menu ****/
-    imgMenu = [imageLibrary get:ImageIcon_LocalMenu];
+    imgMenu = currentTheme.menuLocalIcon;
     b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(self.view.bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     [b setImage:imgMenu forState:UIControlStateNormal];
@@ -448,6 +448,8 @@ static const NSInteger TagOffset = 1000;
         [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
     }
     tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
+    globalMenuButton.imageView.image = currentTheme.menuGlobalIcon;
+    localMenuButton.imageView.image = currentTheme.menuLocalIcon;
 }
 
 @end

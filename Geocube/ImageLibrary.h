@@ -197,8 +197,10 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageIcon_Dead,
     ImageIcon_Target,
 
-    ImageIcon_GlobalMenu,
-    ImageIcon_LocalMenu,
+    ImageIcon_GlobalMenuDefault,
+    ImageIcon_LocalMenuDefault,
+    ImageIcon_GlobalMenuNight,
+    ImageIcon_LocalMenuNight,
     ImageIcon_CloseButton,
     ImageIcon_ShowBoth,
     ImageIcon_SeeTarget,

@@ -44,4 +44,7 @@
 @property (nonatomic, retain) UIColor *switchOnTintColor;
 @property (nonatomic, retain) UIColor *switchThumbTintColor;
 
+@property (nonatomic, retain) UIImage *menuLocalIcon;
+@property (nonatomic, retain) UIImage *menuGlobalIcon;
+
 @end

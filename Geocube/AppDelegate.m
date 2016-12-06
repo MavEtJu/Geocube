@@ -73,12 +73,12 @@
     audioFeedback = [[AudioFeedback alloc] init];
     [audioFeedback togglePlay:configManager.soundDirection];
 
-    // Initialize the theme - after configurationManager
-    themeManager = [[ThemeManager alloc] init];
-    [themeManager setTheme:configManager.themeType];
-
     // Initialize the image library
     imageLibrary = [[ImageLibrary alloc] init];
+
+    // Initialize the theme - after configurationManager, imageLibrary
+    themeManager = [[ThemeManager alloc] init];
+    [themeManager setTheme:configManager.themeType];
 
     // Waypoint Manager - after configurationManager, LM, db, imageLibrary
     waypointManager = [[WaypointManager alloc] init];
