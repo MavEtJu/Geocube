@@ -42,6 +42,7 @@ static const NSInteger TagOffset = 1000;
 	CGRect rect = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.tabBarHeight);
 	tabButtonsContainerView = [[UIView alloc] initWithFrame:rect];
 	tabButtonsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
 	[self.view addSubview:tabButtonsContainerView];
 
 	rect.origin.y = self.tabBarHeight;
@@ -107,7 +108,7 @@ static const NSInteger TagOffset = 1000;
 	{
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 		button.tag = TagOffset + index;
-		button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		button.titleLabel.font = [UIFont systemFontOfSize:14];
 		button.titleLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 
 		UIOffset offset = viewController.tabBarItem.titlePositionAdjustment;
@@ -153,21 +154,19 @@ static const NSInteger TagOffset = 1000;
 	NSUInteger index = 0;
 	NSUInteger count = [self.viewControllers count];
 
-	CGRect rect = CGRectMake(0.0f, 0.0f, floorf(self.view.bounds.size.width / count), self.tabBarHeight);
+	CGRect rect = CGRectMake(globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * globalMenuButton.frame.size.width) / count), self.tabBarHeight);
+//	rect = CGRectMake(0, 0.0f, floorf((self.view.bounds.size.width) / count), self.tabBarHeight);
 
 	indicatorImageView.hidden = YES;
 
 	NSArray *buttons = [tabButtonsContainerView subviews];
 	for (UIButton *button in buttons)
 	{
-		if (index == count - 1)
-			rect.size.width = self.view.bounds.size.width - rect.origin.x;
-
 		button.frame = rect;
 		rect.origin.x += rect.size.width;
 
 		if (index == self.selectedIndex)
-			[self centerIndicatorOnButton:button];
+		    [self centerIndicatorOnButton:button];
 
 		++index;
 	}
@@ -358,30 +357,36 @@ static const NSInteger TagOffset = 1000;
 
 - (void)selectTabButton:(UIButton *)button
 {
-	[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//	[button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
-	UIImage *image = [[UIImage imageNamed:@"MHTabBarActiveTab"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-	[button setBackgroundImage:image forState:UIControlStateNormal];
-	[button setBackgroundImage:image forState:UIControlStateHighlighted];
+//	UIImage *image = [[UIImage imageNamed:@"MHTabBarActiveTab"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+//	[button setBackgroundImage:image forState:UIControlStateNormal];
+//	[button setBackgroundImage:image forState:UIControlStateHighlighted];
+    [button setBackgroundColor:currentTheme.tabBarBackgroundColor];
+    [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
 	
-	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[button setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.5f] forState:UIControlStateNormal];
+//	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//	[button setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.5f] forState:UIControlStateNormal];
 }
 
 - (void)deselectTabButton:(UIButton *)button
 {
-	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 
-	UIImage *image = [[UIImage imageNamed:@"MHTabBarInactiveTab"] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
-	[button setBackgroundImage:image forState:UIControlStateNormal];
-	[button setBackgroundImage:image forState:UIControlStateHighlighted];
+//	UIImage *image = [[UIImage imageNamed:@"MHTabBarInactiveTab"] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+//	[button setBackgroundImage:image forState:UIControlStateNormal];
+//	[button setBackgroundImage:image forState:UIControlStateHighlighted];
+    [button setBackgroundColor:currentTheme.tabBarBackgroundColor];
+    [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
 
-	[button setTitleColor:[UIColor colorWithRed:175/255.0f green:85/255.0f blue:58/255.0f alpha:1.0f] forState:UIControlStateNormal];
-	[button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//	[button setTitleColor:[UIColor colorWithRed:175/255.0f green:85/255.0f blue:58/255.0f alpha:1.0f] forState:UIControlStateNormal];
+//    [button setTitleColor:currentTheme.labelTextColor forState:UIControlStateNormal];
+//	[button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 - (CGFloat)tabBarHeight
 {
+    return 3 * [UIFont systemFontOfSize:14].lineHeight;
 	return 44.0f;
 }
 
