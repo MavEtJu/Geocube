@@ -281,6 +281,7 @@
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
 		E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402BB1BFEABD600EFFD13 /* MapOSM.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
+		E84725CF1DF7558F00CFF99B /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725CE1DF7558F00CFF99B /* MHTabBarIndicator@3x.png */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
 		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
 		E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58F1BA04AF400BEFE83 /* GCTextblock.m */; };
@@ -939,6 +940,7 @@
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
+		E84725CE1DF7558F00CFF99B /* MHTabBarIndicator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@3x.png"; path = "MHTabBarController/MHTabBarIndicator@3x.png"; sourceTree = "<group>"; };
 		E847A5801B9E875B00BEFE83 /* dbFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFileImport.h; sourceTree = "<group>"; };
 		E847A5811B9E875B00BEFE83 /* dbFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFileImport.m; sourceTree = "<group>"; };
 		E847A58B1BA0425100BEFE83 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
@@ -2259,6 +2261,7 @@
 				E8A3B0B51CD33BC600170D61 /* MHTabBarInactiveTab@2x.png */,
 				E8A3B0B61CD33BC600170D61 /* MHTabBarIndicator.png */,
 				E8A3B0B71CD33BC600170D61 /* MHTabBarIndicator@2x.png */,
+				E84725CE1DF7558F00CFF99B /* MHTabBarIndicator@3x.png */,
 			);
 			name = MHTabBarController;
 			sourceTree = "<group>";
@@ -3102,6 +3105,7 @@
 				E82E667C1DA07C6F00CFBDED /* compass - airplane - compass.png in Resources */,
 				E82E67421DA07D0200CFBDED /* attributes - 24.png in Resources */,
 				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
+				E84725CF1DF7558F00CFF99B /* MHTabBarIndicator@3x.png in Resources */,
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
