@@ -42,6 +42,7 @@
 
 // XX Temporary to make things compile
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator;
+- (void)changeTheme;
 
 @end
 
