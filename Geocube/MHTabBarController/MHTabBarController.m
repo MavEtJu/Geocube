@@ -43,12 +43,14 @@ static const NSInteger TagOffset = 1000;
 	tabButtonsContainerView = [[UIView alloc] initWithFrame:rect];
 	tabButtonsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
+//    tabButtonsContainerView.backgroundColor = [UIColor redColor];
 	[self.view addSubview:tabButtonsContainerView];
 
 	rect.origin.y = self.tabBarHeight;
 	rect.size.height = self.view.bounds.size.height - self.tabBarHeight;
 	contentContainerView = [[UIView alloc] initWithFrame:rect];
 	contentContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    contentContainerView.backgroundColor = [UIColor blueColor];
 	[self.view addSubview:contentContainerView];
 
 	indicatorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MHTabBarIndicator"]];
@@ -63,6 +65,16 @@ static const NSInteger TagOffset = 1000;
 - (void)viewWillLayoutSubviews
 {
 	[super viewWillLayoutSubviews];
+    tabButtonsContainerView.frame = CGRectMake(tabButtonsContainerView.frame.origin.x, tabButtonsContainerView.frame.origin.y, tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
+    tabButtonsContainerView.frame = CGRectMake(0, 0, tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
+    contentContainerView.frame = CGRectMake(0, tabButtonsContainerView.frame.size.height, contentContainerView.frame.size.width, self.view.frame.size.height - tabButtonsContainerView.frame.size.height);
+
+    CGSize size = self.view.frame.size;
+    UIImage *imgMenu = currentTheme.menuLocalIcon;
+    localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    imgMenu = currentTheme.menuGlobalIcon;
+    globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+
 	[self layoutTabButtons];
 }
 
@@ -114,7 +126,7 @@ static const NSInteger TagOffset = 1000;
         [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
 
 		UIOffset offset = viewController.tabBarItem.titlePositionAdjustment;
-		button.titleEdgeInsets = UIEdgeInsetsMake(offset.vertical, offset.horizontal, 0.0f, 0.0f);
+		button.titleEdgeInsets = UIEdgeInsetsMake(offset.vertical + 20, offset.horizontal, 0.0f, 0.0f);
 		button.imageEdgeInsets = viewController.tabBarItem.imageInsets;
 		[button setTitle:viewController.tabBarItem.title forState:UIControlStateNormal];
 		[button setImage:viewController.tabBarItem.image forState:UIControlStateNormal];
@@ -155,6 +167,7 @@ static const NSInteger TagOffset = 1000;
 {
 	NSUInteger index = 0;
 	NSUInteger count = [self.viewControllers count];
+    BOOL portrait = (self.view.bounds.size.width < self.view.bounds.size.height);
 
 	CGRect rect = CGRectMake(globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * globalMenuButton.frame.size.width) / count), self.tabBarHeight);
 //	rect = CGRectMake(0, 0.0f, floorf((self.view.bounds.size.width) / count), self.tabBarHeight);
@@ -166,6 +179,11 @@ static const NSInteger TagOffset = 1000;
 	{
 		button.frame = rect;
 		rect.origin.x += rect.size.width;
+
+        if (portrait == YES)
+    		button.titleEdgeInsets = UIEdgeInsetsMake(20, 0, 0.0f, 0.0f);
+        else
+    		button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0.0f, 0.0f);
 
 		if (index == self.selectedIndex)
 		    [self centerIndicatorOnButton:button];
@@ -369,8 +387,13 @@ static const NSInteger TagOffset = 1000;
 
 - (CGFloat)tabBarHeight
 {
-    return 3 * [UIFont systemFontOfSize:14].lineHeight;
-	return 44.0f;
+    // landscape
+    if (self.view.bounds.size.width > self.view.bounds.size.height)
+        return 32;
+//        return 2 * [UIFont systemFontOfSize:14].lineHeight;
+    // portrait
+    return 44;
+//    return 3 * [UIFont systemFontOfSize:14].lineHeight;
 }
 
 // ---------------- Added ----
@@ -392,9 +415,10 @@ static const NSInteger TagOffset = 1000;
     [_AppDelegate resizeControllers:size coordinator:coordinator];
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     UIButton *b = localMenuButton;
                                      UIImage *imgMenu = currentTheme.menuLocalIcon;
-                                     b.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+                                     localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+                                     imgMenu = currentTheme.menuGlobalIcon;
+                                     globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
                                  }
                                  completion:nil
      ];
