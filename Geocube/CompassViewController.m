@@ -216,91 +216,53 @@
     UIFont *f = [UIFont systemFontOfSize:14];
     NSInteger textHeight = f.lineHeight;
 
-    if (height > width) {
-        /*
-         +------+-------+------+
-         |Icon  |GC Code| Size |
-         |      |Coordin|Rating|
-         +------+-------+------+
-         |       Distance      |
-         |                     |
-         |      Compass        |
-         |                     |
-         |                     |
-         |      Cache Name     |
-         +------+-------+------+
-         |Accura|My coor|Altitu|
-         |      |       |      |
-         +------+-------+------+
-         */
+    /*
+     +------+-------+------+
+     |Icon  |GC Code| Size |
+     |      |Coordin|Rating|
+     +------+-------+------+
+     |       Distance      |
+     |                     |
+     |      Compass        |
+     |                     |
+     |                     |
+     |      Cache Name     |
+     +------+-------+------+
+     |Accura|My coor|Altitu|
+     |      |       |      |
+     +------+-------+------+
+     */
 
-        NSInteger width3 = width / 3;
+    NSInteger width3 = width / 3;
 
-        rectIcon = CGRectMake(width3 / 2 - wpIconIV.image.size.width, 3.5 * textHeight / 2 - wpIconIV
-                              .image.size.height, 2 * wpIconIV.image.size.width, 2 * wpIconIV.image.size.height);
-        rectName = CGRectMake(width3, 0 * textHeight, width3, textHeight);
-        rectCoordLat = CGRectMake(width3, 1.5 * textHeight, width3, textHeight);
-        rectCoordLon = CGRectMake(width3, 2.5 * textHeight, width3, textHeight);
-        rectSize = CGRectMake(2 * width3, 0 * textHeight, width3, textHeight);
-        rectRatingD = CGRectMake(2 * width3, 1.5 * textHeight, width3, textHeight);
-        rectRatingT = CGRectMake(2 * width3, 2.5 * textHeight, width3, textHeight);
+    rectIcon = CGRectMake(width3 / 2 - wpIconIV.image.size.width, 3.5 * textHeight / 2 - wpIconIV
+                          .image.size.height, 2 * wpIconIV.image.size.width, 2 * wpIconIV.image.size.height);
+    rectName = CGRectMake(width3, 0 * textHeight, width3, textHeight);
+    rectCoordLat = CGRectMake(width3, 1 * textHeight, width3, textHeight);
+    rectCoordLon = CGRectMake(width3, 2 * textHeight, width3, textHeight);
+    rectSize = CGRectMake(2 * width3, 0 * textHeight, width3, textHeight);
+    rectRatingD = CGRectMake(2 * width3, 1 * textHeight, width3, textHeight);
+    rectRatingT = CGRectMake(2 * width3, 2 * textHeight, width3, textHeight);
 
-        rectDistance = CGRectMake(0, 4 * textHeight, 3 * width3, textHeight);
-        rectDescription = CGRectMake(0, height - 5 * textHeight, 3 * width3, textHeight);
-        rectCompass = CGRectMake(0, 5 * textHeight, 3 * width3, rectDescription.origin.y - rectDistance.origin.y);
-        if (rectCompass.size.height < rectCompass.size.width)
-            rectCompass.size.width = rectCompass.size.height;
-        else
-            rectCompass.size.height = rectCompass.size.width;
-        rectCompass.origin.x = (width - rectCompass.size.width) / 2;
+    rectDistance = CGRectMake(0, 3.5 * textHeight, 3 * width3, textHeight);
+    rectDescription = CGRectMake(0, height - 4 * textHeight, 3 * width3, textHeight);
+    rectCompass = CGRectMake(0, rectDistance.origin.y + rectDistance.size.height, 3 * width3, rectDescription.origin.y - (rectDistance.origin.y + rectDistance.size.height));
+    NSLog(@"%@\n", [MyTools niceCGRect:rectCompass]);
+    if (rectCompass.size.height < rectCompass.size.width)
+        rectCompass.size.width = rectCompass.size.height;
+    else
+        rectCompass.size.height = rectCompass.size.width;
+    rectCompass.origin.x = (width - rectCompass.size.width) / 2;
+    rectCompass.origin.y = (rectDistance.origin.y + rectDistance.size.height) + (rectDescription.origin.y - (rectDistance.origin.y + rectDistance.size.height) - rectCompass.size.height) / 2;
 
-        rectAccuracyText = CGRectMake(0, height - 3.5 * textHeight, width3, 1 * textHeight);
-        rectAccuracy = CGRectMake(0, height - 2 * textHeight, width3, textHeight);
-        rectMyLocation = CGRectMake(width3, height - 3.5 * textHeight, width3, textHeight);
-        rectMyLat = CGRectMake(width3, height - 2 * textHeight, width3, textHeight);
-        rectMyLon = CGRectMake(width3, height - 1 * textHeight, width3, textHeight);
-        rectAltitudeText = CGRectMake(2 * width3, height - 3.5 * textHeight, width3, textHeight);
-        rectAltitude = CGRectMake(2 * width3, height - 2 * textHeight, width3, textHeight);
+    rectAccuracyText = CGRectMake(0, height - 3 * textHeight, width3, 1 * textHeight);
+    rectAccuracy = CGRectMake(0, height - 2 * textHeight, width3, textHeight);
+    rectMyLocation = CGRectMake(width3, height - 3 * textHeight, width3, textHeight);
+    rectMyLat = CGRectMake(width3, height - 2 * textHeight, width3, textHeight);
+    rectMyLon = CGRectMake(width3, height - 1 * textHeight, width3, textHeight);
+    rectAltitudeText = CGRectMake(2 * width3, height - 3 * textHeight, width3, textHeight);
+    rectAltitude = CGRectMake(2 * width3, height - 2 * textHeight, width3, textHeight);
 
-    } else {
-        /*
-         +---------+------------+-------+
-         | Coordin |  GC Code   | My coo|
-         |         |            |       |
-         | Icon    |  Compass   | Dista |
-         |         |            |       |
-         | Size    |            | Accur |
-         | Rating  | Cache Name | Altit |
-         +---------+------------+-------+
-         */
-
-        NSInteger width5 = width / 5;
-
-        rectName = CGRectMake(0, 0.5, width5, textHeight);
-        rectCoordLat = CGRectMake(0, 1.5 * textHeight, width5, textHeight);
-        rectCoordLon = CGRectMake(0, 2.5 * textHeight, width5, textHeight);
-        rectIcon = CGRectMake(width5 / 2 - wpIconIV.image.size.width, height / 2 - wpIconIV.image.size.height, 2 * wpIconIV.image.size.width, 2 * wpIconIV.image.size.height);
-        rectSize = CGRectMake(0, height - 4 * textHeight, width5, textHeight);
-        rectRatingD = CGRectMake(0, height - 3 * textHeight, width5, textHeight);
-        rectRatingT = CGRectMake(0, height - 2 * textHeight, width5, textHeight);
-
-        rectDescription = CGRectMake(width5, height - 2 * textHeight, 3 * width5, textHeight);
-        rectCompass = CGRectMake(width5, 0, 3 * width5, height - 1.5 * textHeight);
-        if (rectCompass.size.height < rectCompass.size.width)
-            rectCompass.size.width = rectCompass.size.height;
-        else
-            rectCompass.size.height = rectCompass.size.width;
-        rectCompass.origin.x = (width - rectCompass.size.width) / 2;
-
-        rectMyLocation = CGRectMake(width - width5, 0, width5, textHeight);
-        rectMyLat = CGRectMake(width - width5, 1 * textHeight, width5, textHeight);
-        rectMyLon = CGRectMake(width - width5, 2 * textHeight, width5, textHeight);
-        rectDistance = CGRectMake(width - width5, height / 2 - textHeight, width5, textHeight);
-        rectAccuracyText = CGRectMake(width - width5, height - 5 * textHeight, width5, textHeight);
-        rectAccuracy = CGRectMake(width - width5, height - 4 * textHeight, width5, textHeight);
-        rectAltitudeText = CGRectMake(width - width5, height - 3 * textHeight, width5, textHeight);
-        rectAltitude = CGRectMake(width - width5, height - 2 * textHeight, width5, textHeight);
-    }
 }
 
 - (void)viewWilltransitionToSize
