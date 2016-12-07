@@ -390,24 +390,26 @@
 - (void)deviceDidRotate:(NSNotification *)notification
 {
     currentOrienation = [[UIDevice currentDevice] orientation];
+    bearingAdjustment = 0;
+    return;
 
-    switch (currentOrienation) {
-        case UIDeviceOrientationFaceUp:
-        case UIDeviceOrientationFaceDown:
-        case UIDeviceOrientationUnknown:
-        case UIDeviceOrientationPortrait:
-            bearingAdjustment = 0;
-            break;
-        case UIDeviceOrientationLandscapeLeft:
-            bearingAdjustment = - M_PI / 2;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            bearingAdjustment = M_PI / 2;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            bearingAdjustment = M_PI;
-            break;
-    }
+//    switch (currentOrienation) {
+//        case UIDeviceOrientationFaceUp:
+//        case UIDeviceOrientationFaceDown:
+//        case UIDeviceOrientationUnknown:
+//        case UIDeviceOrientationPortrait:
+//            bearingAdjustment = 0;
+//            break;
+//        case UIDeviceOrientationLandscapeLeft:
+//            bearingAdjustment = - M_PI / 2;
+//            break;
+//        case UIDeviceOrientationLandscapeRight:
+//            bearingAdjustment = M_PI / 2;
+//            break;
+//        case UIDeviceOrientationPortraitUpsideDown:
+//            bearingAdjustment = M_PI;
+//            break;
+//    }
 }
 
 
