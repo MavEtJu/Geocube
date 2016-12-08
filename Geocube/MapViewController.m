@@ -30,7 +30,7 @@
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
 
-    GCMapHowMany showWhat; /* SHOW_ONECACHE | SHOW_ALLCACHES */
+    GCMapHowMany showWhat; /* SHOW_ONECACHE | SHOW_ALLCACHES | SHOW_LIVEMAPS */
     GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
     GCMapBrand showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
@@ -158,10 +158,13 @@ enum {
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:menuBrandGoogle];
 
-    showWhat = mapWhat; /* SHOW_ONECACHE or SHOW_ALLCACHES */
+    showWhat = mapWhat; /* SHOW_ONECACHE, SHOW_ALLCACHES or SHOW_LIVEMAPS */
     followWhom = (showWhat == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
     if (showWhat == SHOW_ONEWAYPOINT) {
         [lmi disableItem:menuLoadWaypoints];
+        [lmi disableItem:menuExportVisible];
+    }
+    if (showWhat == SHOW_LIVEMAPS) {
         [lmi disableItem:menuExportVisible];
     }
 
@@ -234,8 +237,6 @@ enum {
         [lmi enableItem:menuRemoveTarget];
 
     [map mapViewWillAppear];
-//    [map removeMarkers];
-//    [map placeMarkers];
 }
 
 
@@ -245,7 +246,7 @@ enum {
     [super viewDidAppear:animated];
     [map mapViewDidAppear];
 
-    [LM startDelegation:self isNavigating:(showWhat == SHOW_ONEWAYPOINT)];
+    [LM startDelegation:self isNavigating:((showWhat == SHOW_ONEWAYPOINT) || (showWhat == SHOW_LIVEMAPS))];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
 
@@ -268,8 +269,6 @@ enum {
     isVisible = YES;
     if (needsRefresh == YES) {
         [self refreshWaypointsData];
-//        [map removeMarkers];
-//        [map placeMarkers];
         needsRefresh = NO;
     }
 
@@ -500,6 +499,11 @@ enum {
     [newController setCoordinates:coords];
 }
 
+- (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o
+{
+    NSLog(@"remoteAPI_loadWaypointsByBoundingBox_returned");
+}
+
 #pragma mark -- Map menu related functions
 
 - (void)labelClearAll
@@ -591,6 +595,11 @@ enum {
     if (showWhat == SHOW_ALLWAYPOINTS) {
         self.waypointsArray = [waypointManager currentWaypoints];
         waypointCount = [self.waypointsArray count];
+    }
+
+    if (showWhat == SHOW_LIVEMAPS) {
+        self.waypointsArray = [NSMutableArray array];
+        waypointCount = 0;
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

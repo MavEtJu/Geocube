@@ -49,6 +49,7 @@
 @class FilterTypesTableViewCell;
 @class FiltersViewController;
 @class GCArray;
+@class GCBoundingBox;
 @class GCButton;
 @class GCCircle;
 @class GCCloseButton;

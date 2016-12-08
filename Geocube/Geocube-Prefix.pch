@@ -246,6 +246,7 @@
 #import "GroupsViewController.h"
 #import "StatisticsViewController.h"
 
+#import "GCBoundingBox.h"
 #import "GCPointAnnotation.h"
 #import "GCCircle.h"
 #import "GCGMSCircle.h"

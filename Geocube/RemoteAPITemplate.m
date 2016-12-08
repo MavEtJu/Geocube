@@ -401,4 +401,9 @@ NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
     return REMOTEAPI_NOTPROCESSED;
 }
 
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+{
+    return REMOTEAPI_NOTPROCESSED;
+}
+
 @end

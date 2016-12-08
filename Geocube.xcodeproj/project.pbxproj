@@ -288,6 +288,7 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
+		E84725EA1DF9269100CFF99B /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725E91DF9269100CFF99B /* GCBoundingBox.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
 		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
 		E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58F1BA04AF400BEFE83 /* GCTextblock.m */; };
@@ -953,6 +954,8 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
+		E84725E81DF9269100CFF99B /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBoundingBox.h; sourceTree = "<group>"; };
+		E84725E91DF9269100CFF99B /* GCBoundingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCBoundingBox.m; sourceTree = "<group>"; };
 		E847A5801B9E875B00BEFE83 /* dbFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFileImport.h; sourceTree = "<group>"; };
 		E847A5811B9E875B00BEFE83 /* dbFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFileImport.m; sourceTree = "<group>"; };
 		E847A58B1BA0425100BEFE83 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
@@ -1818,6 +1821,8 @@
 		E85760161B85E08F00F34483 /* Base objects */ = {
 			isa = PBXGroup;
 			children = (
+				E84725E81DF9269100CFF99B /* GCBoundingBox.h */,
+				E84725E91DF9269100CFF99B /* GCBoundingBox.m */,
 				E8F7FF251D74507100AC7EE6 /* GCButton.h */,
 				E8F7FF261D74507100AC7EE6 /* GCButton.m */,
 				E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */,
@@ -3547,6 +3552,7 @@
 				E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */,
 				E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */,
 				E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */,
+				E84725EA1DF9269100CFF99B /* GCBoundingBox.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
 				E82990461C87A36200504421 /* ImportGeocube.m in Sources */,
 				E8E8D0131B66524A00CC741A /* FilterSizesTableViewCell.m in Sources */,
