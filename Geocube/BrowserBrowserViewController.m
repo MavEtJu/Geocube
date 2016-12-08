@@ -265,6 +265,7 @@ enum {
     gca = _gca;
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+#warning XXX - crashes after importing clean configuration
     NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
 
     [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
