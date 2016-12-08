@@ -245,7 +245,7 @@
     rectRatingT = CGRectMake(2 * width3, 2 * textHeight, width3, textHeight);
 
     rectDistance = CGRectMake(0, 3.5 * textHeight, 3 * width3, textHeight);
-    rectDescription = CGRectMake(0, height - 4 * textHeight, 3 * width3, textHeight);
+    rectDescription = CGRectMake(0, height - 4.5 * textHeight, 3 * width3, textHeight);
     rectCompass = CGRectMake(0, rectDistance.origin.y + rectDistance.size.height, 3 * width3, rectDescription.origin.y - (rectDistance.origin.y + rectDistance.size.height));
     NSLog(@"%@\n", [MyTools niceCGRect:rectCompass]);
     if (rectCompass.size.height < rectCompass.size.width)
