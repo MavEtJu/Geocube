@@ -270,7 +270,7 @@
 		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
 		E83B77841DD3C4540059793C /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B77831DD3C4540059793C /* GCArray.m */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
-		E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapViewController.m */; };
+		E84402B51BFA7D6000EFFD13 /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
 		E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402BB1BFEABD600EFFD13 /* MapOSM.m */; };
@@ -289,6 +289,9 @@
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E84725EA1DF9269100CFF99B /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725E91DF9269100CFF99B /* GCBoundingBox.m */; };
+		E84725EF1DFE6F5800CFF99B /* MapLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */; };
+		E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */; };
+		E84725F51DFF3B0500CFF99B /* MapAllWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725F41DFF3B0500CFF99B /* MapAllWPViewController.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
 		E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58C1BA0425100BEFE83 /* GCLabel.m */; };
 		E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A58F1BA04AF400BEFE83 /* GCTextblock.m */; };
@@ -930,8 +933,8 @@
 		E83B77831DD3C4540059793C /* GCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCArray.m; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
-		E84402B31BFA7D6000EFFD13 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		E84402B41BFA7D6000EFFD13 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
+		E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplateViewController.m; sourceTree = "<group>"; };
 		E84402B61BFEABD600EFFD13 /* MapApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapApple.h; sourceTree = "<group>"; };
 		E84402B71BFEABD600EFFD13 /* MapApple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapApple.m; sourceTree = "<group>"; };
 		E84402B81BFEABD600EFFD13 /* MapGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapGoogle.h; sourceTree = "<group>"; };
@@ -956,6 +959,12 @@
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
 		E84725E81DF9269100CFF99B /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBoundingBox.h; sourceTree = "<group>"; };
 		E84725E91DF9269100CFF99B /* GCBoundingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCBoundingBox.m; sourceTree = "<group>"; };
+		E84725ED1DFE6F5800CFF99B /* MapLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLiveViewController.h; sourceTree = "<group>"; };
+		E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLiveViewController.m; sourceTree = "<group>"; };
+		E84725F01DFE6F6E00CFF99B /* MapOneWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOneWPViewController.h; sourceTree = "<group>"; };
+		E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOneWPViewController.m; sourceTree = "<group>"; };
+		E84725F31DFF3B0500CFF99B /* MapAllWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAllWPViewController.h; sourceTree = "<group>"; };
+		E84725F41DFF3B0500CFF99B /* MapAllWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAllWPViewController.m; sourceTree = "<group>"; };
 		E847A5801B9E875B00BEFE83 /* dbFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFileImport.h; sourceTree = "<group>"; };
 		E847A5811B9E875B00BEFE83 /* dbFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFileImport.m; sourceTree = "<group>"; };
 		E847A58B1BA0425100BEFE83 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
@@ -1688,6 +1697,38 @@
 			name = logos;
 			sourceTree = "<group>";
 		};
+		E84725EB1DFE6ED900CFF99B /* Map sources */ = {
+			isa = PBXGroup;
+			children = (
+				E8D569FE1B54E35D001A0F8E /* MapTemplate.h */,
+				E8D569FF1B54E35D001A0F8E /* MapTemplate.m */,
+				E84402B61BFEABD600EFFD13 /* MapApple.h */,
+				E84402B71BFEABD600EFFD13 /* MapApple.m */,
+				E84402B81BFEABD600EFFD13 /* MapGoogle.h */,
+				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
+				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
+				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
+				E8DD39511C40AFB500407705 /* MapAppleCache.h */,
+				E8DD39521C40AFB500407705 /* MapAppleCache.m */,
+			);
+			name = "Map sources";
+			sourceTree = "<group>";
+		};
+		E84725EC1DFE6EE100CFF99B /* MapViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */,
+				E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */,
+				E84725ED1DFE6F5800CFF99B /* MapLiveViewController.h */,
+				E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */,
+				E84725F01DFE6F6E00CFF99B /* MapOneWPViewController.h */,
+				E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */,
+				E84725F31DFF3B0500CFF99B /* MapAllWPViewController.h */,
+				E84725F41DFF3B0500CFF99B /* MapAllWPViewController.m */,
+			);
+			name = MapViewControllers;
+			sourceTree = "<group>";
+		};
 		E84D6FD01C5826140000A6A0 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
@@ -1876,21 +1917,11 @@
 			name = "compass - XXX";
 			sourceTree = "<group>";
 		};
-		E867E8381B535A3A00CB126A /* MapViewControllers */ = {
+		E867E8381B535A3A00CB126A /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				E84402B31BFA7D6000EFFD13 /* MapViewController.h */,
-				E84402B41BFA7D6000EFFD13 /* MapViewController.m */,
-				E8D569FE1B54E35D001A0F8E /* MapTemplate.h */,
-				E8D569FF1B54E35D001A0F8E /* MapTemplate.m */,
-				E84402B61BFEABD600EFFD13 /* MapApple.h */,
-				E84402B71BFEABD600EFFD13 /* MapApple.m */,
-				E84402B81BFEABD600EFFD13 /* MapGoogle.h */,
-				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
-				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
-				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
-				E8DD39511C40AFB500407705 /* MapAppleCache.h */,
-				E8DD39521C40AFB500407705 /* MapAppleCache.m */,
+				E84725EC1DFE6EE100CFF99B /* MapViewControllers */,
+				E84725EB1DFE6ED900CFF99B /* Map sources */,
 				E80250EB1D2474B500F05772 /* MapWaypointInfoView.h */,
 				E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
@@ -1900,7 +1931,7 @@
 				E8FEDEED1DAC2DD2007C756B /* GCGMSCircle.h */,
 				E8FEDEEE1DAC2DD2007C756B /* GCGMSCircle.m */,
 			);
-			name = MapViewControllers;
+			name = Maps;
 			sourceTree = "<group>";
 		};
 		E867E83C1B53D61C00CB126A /* attributes - XXX */ = {
@@ -2536,7 +2567,7 @@
 				E85760161B85E08F00F34483 /* Base objects */,
 				E8740FE91B509540002527DA /* TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
-				E867E8381B535A3A00CB126A /* MapViewControllers */,
+				E867E8381B535A3A00CB126A /* Maps */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E8E4400D1D88A85700BECB49 /* InfoViewer */,
 				E8EC073C1D39C526009B8EB1 /* Download managers */,
@@ -3498,6 +3529,7 @@
 				E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */,
 				E880379C1B915CEE0053AD01 /* GCURLRequest.m in Sources */,
 				E8D7BA4F1BC67CDC001B0805 /* CCHMapClusterOperation.m in Sources */,
+				E84725F51DFF3B0500CFF99B /* MapAllWPViewController.m in Sources */,
 				E84E239A1DB9E8440079496D /* ProtocolGCA2.m in Sources */,
 				E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
@@ -3515,6 +3547,7 @@
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
+				E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */,
 				E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */,
@@ -3533,6 +3566,7 @@
 				E88974BC1B6EBF9500703E80 /* ConfigManager.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
+				E84725EF1DFE6F5800CFF99B /* MapLiveViewController.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
@@ -3599,7 +3633,7 @@
 				E8C5BB771C719EB1006222D5 /* WaypointLogViewController.m in Sources */,
 				E8A386791BBBFD830003DE49 /* NKOColorPickerView.m in Sources */,
 				E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */,
-				E84402B51BFA7D6000EFFD13 /* MapViewController.m in Sources */,
+				E84402B51BFA7D6000EFFD13 /* MapTemplateViewController.m in Sources */,
 				E87DF7841D7EDFE000F16B5A /* SVProgressHUD.m in Sources */,
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E8E8D0101B66521600CC741A /* FilterFavouritesTableViewCell.m in Sources */,

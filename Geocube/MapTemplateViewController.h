@@ -19,7 +19,26 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate, RemoteAPIRetrieveQueryDelegate, RemoteAPILoadWaypointsByBoundingBoxDelegate>
+@interface MapTemplateViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
+
+enum {
+    MVCmenuBrandGoogle,
+    MVCmenuBrandApple,
+    MVCmenuBrandOSM,
+    MVCmenuMapMap,
+    MVCmenuMapSatellite,
+    MVCmenuMapHybrid,
+    MVCmenuMapTerrain,
+    MVCmenuLoadWaypoints,
+    MVCmenuDirections,
+    MVCmenuAutoZoom,
+    MVCmenuRecenter,
+    MVCmenuUseGPS,
+    MVCmenuRemoveTarget,
+    MVCmenuShowBoundaries,
+    MVCmenuExportVisible,
+    MVCmenuMax,
+};
 
 typedef NS_ENUM(NSInteger, GCMapHowMany) {
     SHOW_ONEWAYPOINT = 1,
@@ -49,6 +68,8 @@ typedef NS_ENUM(NSInteger, GCMapBrand) {
 };
 
 @property (nonatomic, retain) NSMutableArray *waypointsArray;
+@property (nonatomic, retain) MapTemplate *map;
+@property (nonatomic) NSInteger waypointCount;
 
 - (instancetype)init:(GCMapHowMany)mapWhat;
 - (void)userInteraction;

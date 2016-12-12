@@ -65,7 +65,7 @@ NEEDS_OVERLOADING(placeMarker:(dbWaypoint *)wp)
 NEEDS_OVERLOADING(removeMarker:(dbWaypoint *)wp)
 NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
-- (instancetype)init:(MapViewController *)mvc
+- (instancetype)init:(MapTemplateViewController *)mvc
 {
     self = [super init];
 

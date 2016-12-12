@@ -19,10 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapViewController ()
+@interface MapTemplateViewController ()
 {
-    MapTemplate *map;
-
     THLabel *distanceLabel;
     UIButton *labelMapFollowMe;
     UIButton *labelMapShowBoth;
@@ -38,7 +36,6 @@
     CLLocationDirection meBearing;
     BOOL useGPS;
 
-    NSInteger waypointCount;
 
     BOOL hasGMS;
     BOOL showBoundaries;
@@ -49,26 +46,7 @@
 
 @end
 
-@implementation MapViewController
-
-enum {
-    menuBrandGoogle,
-    menuBrandApple,
-    menuBrandOSM,
-    menuMapMap,
-    menuMapSatellite,
-    menuMapHybrid,
-    menuMapTerrain,
-    menuLoadWaypoints,
-    menuDirections,
-    menuAutoZoom,
-    menuRecenter,
-    menuUseGPS,
-    menuRemoveTarget,
-    menuShowBoundaries,
-    menuExportVisible,
-    menuMax,
-};
+@implementation MapTemplateViewController
 
 - (instancetype)init
 {
@@ -95,81 +73,74 @@ enum {
     if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
         showBrand = MAPBRAND_APPLEMAPS;
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuBrandGoogle label:@"Google Maps"];
-    [lmi addItem:menuBrandApple label:@"Apple Maps"];
-    [lmi addItem:menuBrandOSM label:@"OSM"];
+    lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
+    [lmi addItem:MVCmenuBrandGoogle label:@"Google Maps"];
+    [lmi addItem:MVCmenuBrandApple label:@"Apple Maps"];
+    [lmi addItem:MVCmenuBrandOSM label:@"OSM"];
 
-    [lmi addItem:menuMapMap label:@"Map"];
-    [lmi addItem:menuMapSatellite label:@"Satellite"];
-    [lmi addItem:menuMapHybrid label:@"Hybrid"];
-    [lmi addItem:menuMapTerrain label:@"Terrain"];
+    [lmi addItem:MVCmenuMapMap label:@"Map"];
+    [lmi addItem:MVCmenuMapSatellite label:@"Satellite"];
+    [lmi addItem:MVCmenuMapHybrid label:@"Hybrid"];
+    [lmi addItem:MVCmenuMapTerrain label:@"Terrain"];
 
-    [lmi addItem:menuLoadWaypoints label:@"Load Waypoints"];
-    [lmi addItem:menuDirections label:@"Directions"];
-    [lmi addItem:menuRemoveTarget label:@"Remove Target"];
-    [lmi addItem:menuRecenter label:@"Recenter"];
-    [lmi addItem:menuUseGPS label:@"Use GPS"];
-    [lmi addItem:menuExportVisible label:@"Export Visible"];
+    [lmi addItem:MVCmenuLoadWaypoints label:@"Load Waypoints"];
+    [lmi addItem:MVCmenuDirections label:@"Directions"];
+    [lmi addItem:MVCmenuRemoveTarget label:@"Remove Target"];
+    [lmi addItem:MVCmenuRecenter label:@"Recenter"];
+    [lmi addItem:MVCmenuUseGPS label:@"Use GPS"];
+    [lmi addItem:MVCmenuExportVisible label:@"Export Visible"];
 
     showBoundaries = NO;
-    [lmi addItem:menuShowBoundaries label:@"Show Boundaries"];
+    [lmi addItem:MVCmenuShowBoundaries label:@"Show Boundaries"];
 
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
-            map = [[MapGoogle alloc] init:self];
-            [lmi disableItem:menuBrandGoogle];
+            self.map = [[MapGoogle alloc] init:self];
+            [lmi disableItem:MVCmenuBrandGoogle];
             break;
         case MAPBRAND_APPLEMAPS:
-            map = [[MapApple alloc] init:self];
-            [lmi disableItem:menuBrandApple];
+            self.map = [[MapApple alloc] init:self];
+            [lmi disableItem:MVCmenuBrandApple];
             break;
         case MAPBRAND_OPENSTREETMAPS:
-            map = [[MapOSM alloc] init:self];
-            [lmi disableItem:menuBrandOSM];
+            self.map = [[MapOSM alloc] init:self];
+            [lmi disableItem:MVCmenuBrandOSM];
             break;
     }
 
     // Various map view options
-    if ([map mapHasViewMap] == FALSE)
-        [lmi disableItem:menuMapMap];
-    if ([map mapHasViewSatellite] == FALSE)
-        [lmi disableItem:menuMapSatellite];
-    if ([map mapHasViewHybrid] == FALSE)
-        [lmi disableItem:menuMapHybrid];
-    if ([map mapHasViewTerrain] == FALSE)
-        [lmi disableItem:menuMapTerrain];
+    if ([self.map mapHasViewMap] == FALSE)
+        [lmi disableItem:MVCmenuMapMap];
+    if ([self.map mapHasViewSatellite] == FALSE)
+        [lmi disableItem:MVCmenuMapSatellite];
+    if ([self.map mapHasViewHybrid] == FALSE)
+        [lmi disableItem:MVCmenuMapHybrid];
+    if ([self.map mapHasViewTerrain] == FALSE)
+        [lmi disableItem:MVCmenuMapTerrain];
 
     if (waypointManager.currentWaypoint == nil)
-        [lmi disableItem:menuRemoveTarget];
+        [lmi disableItem:MVCmenuRemoveTarget];
 
     if (configManager.dynamicmapEnable == YES) {
-        [lmi addItem:menuAutoZoom label:@"No AutoZoom"];
+        [lmi addItem:MVCmenuAutoZoom label:@"No AutoZoom"];
     } else {
-        [lmi addItem:menuAutoZoom label:@"Auto Zoom"];
+        [lmi addItem:MVCmenuAutoZoom label:@"Auto Zoom"];
     }
 
     useGPS = LM.useGPS;
     if (useGPS == YES)
-        [lmi disableItem:menuUseGPS];
+        [lmi disableItem:MVCmenuUseGPS];
     else
-        [lmi disableItem:menuUseGPS];
+        [lmi disableItem:MVCmenuUseGPS];
 
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
-        [lmi disableItem:menuBrandGoogle];
+        [lmi disableItem:MVCmenuBrandGoogle];
 
     showWhat = mapWhat; /* SHOW_ONECACHE, SHOW_ALLCACHES or SHOW_LIVEMAPS */
     followWhom = (showWhat == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
-    if (showWhat == SHOW_ONEWAYPOINT) {
-        [lmi disableItem:menuLoadWaypoints];
-        [lmi disableItem:menuExportVisible];
-    }
-    if (showWhat == SHOW_LIVEMAPS) {
-        [lmi disableItem:menuExportVisible];
-    }
 
     self.waypointsArray = nil;
-    waypointCount = 0;
+    self.waypointCount = 0;
 
     return self;
 }
@@ -179,9 +150,9 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [map initMap];
-    [map initCamera:LM.coords];
-    [map mapViewDidLoad];
+    [self.map initMap];
+    [self.map initCamera:LM.coords];
+    [self.map mapViewDidLoad];
 
     [self initDistanceLabel];
     [self initMapIcons];
@@ -190,18 +161,18 @@ enum {
     [self makeInfoView];
 
     // This has to happen as last as it isn't initialized until the map is shown
-    switch ([map mapType]) {
+    switch ([self.map mapType]) {
         case MAPTYPE_NORMAL:
-            [lmi disableItem:menuMapMap];
+            [lmi disableItem:MVCmenuMapMap];
             break;
         case MAPTYPE_SATELLITE:
-            [lmi disableItem:menuMapSatellite];
+            [lmi disableItem:MVCmenuMapSatellite];
             break;
         case MAPTYPE_HYBRID:
-            [lmi disableItem:menuMapHybrid];
+            [lmi disableItem:MVCmenuMapHybrid];
             break;
         case MAPTYPE_TERRAIN:
-            [lmi disableItem:menuMapTerrain];
+            [lmi disableItem:MVCmenuMapTerrain];
             break;
     }
 
@@ -218,7 +189,7 @@ enum {
     if (hasGMS == NO) {
         if (configManager.keyGMS != nil && [configManager.keyGMS isEqualToString:@""] == NO) {
             hasGMS = YES;
-            [lmi enableItem:menuBrandGoogle];
+            [lmi enableItem:MVCmenuBrandGoogle];
             [GMSServices provideAPIKey:configManager.keyGMS];
         }
     }
@@ -226,17 +197,17 @@ enum {
     // Enable GPS Menu?
     useGPS = LM.useGPS;
     if (useGPS == YES)
-        [lmi disableItem:menuUseGPS];
+        [lmi disableItem:MVCmenuUseGPS];
     else
-        [lmi enableItem:menuUseGPS];
+        [lmi enableItem:MVCmenuUseGPS];
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
-        [lmi disableItem:menuRemoveTarget];
+        [lmi disableItem:MVCmenuRemoveTarget];
     else
-        [lmi enableItem:menuRemoveTarget];
+        [lmi enableItem:MVCmenuRemoveTarget];
 
-    [map mapViewWillAppear];
+    [self.map mapViewWillAppear];
 }
 
 
@@ -244,7 +215,7 @@ enum {
 {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
-    [map mapViewDidAppear];
+    [self.map mapViewDidAppear];
 
     [LM startDelegation:self isNavigating:((showWhat == SHOW_ONEWAYPOINT) || (showWhat == SHOW_LIVEMAPS))];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
@@ -272,8 +243,8 @@ enum {
         needsRefresh = NO;
     }
 
-    if ([map waypointInfoViewIsShown] == YES)
-        [map showWaypointInfo];
+    if ([self.map waypointInfoViewIsShown] == YES)
+        [self.map showWaypointInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -281,16 +252,16 @@ enum {
     NSLog(@"%@/viewWillDisappear", [self class]);
     [LM stopDelegation:self];
     [super viewWillDisappear:animated];
-    [map mapViewWillDisappear];
+    [self.map mapViewWillDisappear];
     isVisible = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
-//    [map removeMarkers];
+//    [self.map removeMarkers];
     [super viewDidDisappear:animated];
-    [map mapViewDidDisappear];
+    [self.map mapViewDidDisappear];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -324,8 +295,8 @@ enum {
 
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth, imgheight);
 
-    [map recalculateRects];
-    [map updateMapScaleView];
+    [self.map recalculateRects];
+    [self.map updateMapScaleView];
 }
 
 - (void)initDistanceLabel
@@ -453,27 +424,27 @@ enum {
     if (fabs(meBearing - [LM direction]) > 5) {
         meBearing = [LM direction];
         if (configManager.mapRotateToBearing == YES)
-            [map updateMyBearing:meBearing];
+            [self.map updateMyBearing:meBearing];
     }
 
     // Move the map around to match current location
     switch (followWhom) {
         case SHOW_FOLLOWMEZOOM:
-            [map moveCameraTo:meLocation zoom:YES];
+            [self.map moveCameraTo:meLocation zoom:YES];
             break;
         case SHOW_FOLLOWME:
-            [map moveCameraTo:meLocation zoom:NO];
+            [self.map moveCameraTo:meLocation zoom:NO];
             break;
         case SHOW_SHOWBOTH:
-            [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
             break;
         default:
             break;
     }
 
-    [map removeLineMeToWaypoint];
+    [self.map removeLineMeToWaypoint];
     if (waypointManager.currentWaypoint != nil)
-        [map addLineMeToWaypoint];
+        [self.map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
         NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
@@ -487,8 +458,8 @@ enum {
 
 - (void)updateLocationManagerHistory
 {
-    [map removeHistory];
-    [map addHistory];
+    [self.map removeHistory];
+    [self.map addHistory];
 }
 
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords
@@ -497,11 +468,6 @@ enum {
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
     [newController setCoordinates:coords];
-}
-
-- (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o
-{
-    NSLog(@"remoteAPI_loadWaypointsByBoundingBox_returned");
 }
 
 #pragma mark -- Map menu related functions
@@ -528,19 +494,19 @@ enum {
     if (whom == SHOW_FOLLOWME) {
         followWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:meLocation zoom:NO];
+        [self.map moveCameraTo:meLocation zoom:NO];
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         followWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
+        [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         followWhom = whom;
         meLocation = [LM coords];
-        [map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+        [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
     }
 }
@@ -551,7 +517,7 @@ enum {
     followWhom = SHOW_FOLLOWMEZOOM;
     [self labelClearAll];
     [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
-    [map moveCameraTo:meLocation zoom:YES];
+    [self.map moveCameraTo:meLocation zoom:YES];
 }
 
 - (void)menuFindTarget
@@ -560,7 +526,7 @@ enum {
     followWhom = SHOW_SEETARGET;
     [self labelClearAll];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
-    [map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
+    [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
 }
 
 #pragma mark - Waypoint manager callbacks
@@ -574,48 +540,14 @@ enum {
     }
 }
 
-- (void)refreshWaypointsData
-{
-    [bezelManager showBezel:self];
-    [bezelManager setText:@"Refreshing database"];
-
-    [waypointManager applyFilters:LM.coords];
-
-    if (showWhat == SHOW_ONEWAYPOINT) {
-        if (waypointManager.currentWaypoint != nil) {
-            waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
-            self.waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
-            waypointCount = [self.waypointsArray count];
-        } else {
-            self.waypointsArray = nil;
-            waypointCount = 0;
-        }
-    }
-
-    if (showWhat == SHOW_ALLWAYPOINTS) {
-        self.waypointsArray = [waypointManager currentWaypoints];
-        waypointCount = [self.waypointsArray count];
-    }
-
-    if (showWhat == SHOW_LIVEMAPS) {
-        self.waypointsArray = [NSMutableArray array];
-        waypointCount = 0;
-    }
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [map removeMarkers];
-        [map placeMarkers];
-    }];
-
-    [bezelManager removeBezel];
-}
+NEEDS_OVERLOADING(refreshWaypointsData)
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx != NSNotFound)
         [self.waypointsArray removeObject:wp];
-    [map removeMarker:wp];
+    [self.map removeMarker:wp];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
@@ -623,7 +555,7 @@ enum {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
         [self.waypointsArray addObject:wp];
-    [map placeMarker:wp];
+    [self.map placeMarker:wp];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
@@ -631,77 +563,77 @@ enum {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
         [self.waypointsArray addObject:wp];
-    [map updateMarker:wp];
+    [self.map updateMarker:wp];
 }
 
 #pragma mark - Local menu related functions
 
 - (void)menuChangeMapbrand:(GCMapBrand)brand
 {
-    CLLocationCoordinate2D currentCoords = [map currentCenter];
-    double currentZoom = [map currentZoom];
+    CLLocationCoordinate2D currentCoords = [self.map currentCenter];
+    double currentZoom = [self.map currentZoom];
     NSLog(@"currentCoords: %@", [Coordinates NiceCoordinates:currentCoords]);
     NSLog(@"currentZoom: %f", currentZoom);
 
     [self removeDistanceLabel];
 //    [map removeMarkers];
-    [map removeCamera];
-    [map removeMap];
+    [self.map removeCamera];
+    [self.map removeMap];
 
     for (UIView *b in self.view.subviews) {
         [b removeFromSuperview];
     }
 
-    [lmi enableItem:menuBrandGoogle];
-    [lmi enableItem:menuBrandApple];
-    [lmi enableItem:menuBrandOSM];
+    [lmi enableItem:MVCmenuBrandGoogle];
+    [lmi enableItem:MVCmenuBrandApple];
+    [lmi enableItem:MVCmenuBrandOSM];
     switch (brand) {
         case MAPBRAND_GOOGLEMAPS:
             NSLog(@"Switching to Google Maps");
-            map = [[MapGoogle alloc] init:self];
-            [lmi disableItem:menuBrandGoogle];
+            self.map = [[MapGoogle alloc] init:self];
+            [lmi disableItem:MVCmenuBrandGoogle];
             break;
 
         case MAPBRAND_APPLEMAPS:
             NSLog(@"Switching to Apple Maps");
-            map = [[MapApple alloc] init:self];
-            [lmi disableItem:menuBrandApple];
+            self.map = [[MapApple alloc] init:self];
+            [lmi disableItem:MVCmenuBrandApple];
             break;
 
         case MAPBRAND_OPENSTREETMAPS:
             NSLog(@"Switching to OpenStreet Maps");
-            map = [[MapOSM alloc] init:self];
-            [lmi disableItem:menuBrandOSM];
+            self.map = [[MapOSM alloc] init:self];
+            [lmi disableItem:MVCmenuBrandOSM];
             break;
     }
     showBrand = brand;
 
     // Various map view options
-    if ([map mapHasViewMap] == FALSE)
-        [lmi disableItem:menuMapMap];
+    if ([self.map mapHasViewMap] == FALSE)
+        [lmi disableItem:MVCmenuMapMap];
     else
-        [lmi enableItem:menuMapMap];
-    if ([map mapHasViewSatellite] == FALSE)
-        [lmi disableItem:menuMapSatellite];
+        [lmi enableItem:MVCmenuMapMap];
+    if ([self.map mapHasViewSatellite] == FALSE)
+        [lmi disableItem:MVCmenuMapSatellite];
     else
-        [lmi enableItem:menuMapSatellite];
-    if ([map mapHasViewHybrid] == FALSE)
-        [lmi disableItem:menuMapHybrid];
+        [lmi enableItem:MVCmenuMapSatellite];
+    if ([self.map mapHasViewHybrid] == FALSE)
+        [lmi disableItem:MVCmenuMapHybrid];
     else
-        [lmi enableItem:menuMapHybrid];
-    if ([map mapHasViewTerrain] == FALSE)
-        [lmi disableItem:menuMapTerrain];
+        [lmi enableItem:MVCmenuMapHybrid];
+    if ([self.map mapHasViewTerrain] == FALSE)
+        [lmi disableItem:MVCmenuMapTerrain];
     else
-        [lmi enableItem:menuMapTerrain];
+        [lmi enableItem:MVCmenuMapTerrain];
 
     // Just check if we can do this...
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
-        [lmi disableItem:menuBrandGoogle];
+        [lmi disableItem:MVCmenuBrandGoogle];
 
-    [map initMap];
-    [map mapViewDidLoad];
-    [map initCamera:currentCoords];
-    [map moveCameraTo:currentCoords zoomLevel:currentZoom];
+    [self.map initMap];
+    [self.map mapViewDidLoad];
+    [self.map initCamera:currentCoords];
+    [self.map moveCameraTo:currentCoords zoomLevel:currentZoom];
 
     [self initDistanceLabel];
     [self initMapIcons];
@@ -710,26 +642,26 @@ enum {
     [self refreshWaypointsData];
 //    [map placeMarkers];
 
-    [map mapViewDidAppear];
+    [self.map mapViewDidAppear];
     [self menuShowWhom:followWhom];
 
-    [map showBoundaries:showBoundaries];
+    [self.map showBoundaries:showBoundaries];
 
     [self updateLocationManagerLocation];
 
     // This has to happen as last as it isn't initialized until the map is shown
-    switch ([map mapType]) {
+    switch ([self.map mapType]) {
         case MAPTYPE_NORMAL:
-            [lmi disableItem:menuMapMap];
+            [lmi disableItem:MVCmenuMapMap];
             break;
         case MAPTYPE_SATELLITE:
-            [lmi disableItem:menuMapSatellite];
+            [lmi disableItem:MVCmenuMapSatellite];
             break;
         case MAPTYPE_HYBRID:
-            [lmi disableItem:menuMapHybrid];
+            [lmi disableItem:MVCmenuMapHybrid];
             break;
         case MAPTYPE_TERRAIN:
-            [lmi disableItem:menuMapTerrain];
+            [lmi disableItem:MVCmenuMapTerrain];
             break;
     }
 
@@ -737,35 +669,35 @@ enum {
 
 - (void)menuMapType:(GCMapType)maptype
 {
-    switch ([map mapType]) {
+    switch ([self.map mapType]) {
         case MAPTYPE_NORMAL:
-            [lmi enableItem:menuMapMap];
+            [lmi enableItem:MVCmenuMapMap];
             break;
         case MAPTYPE_SATELLITE:
-            [lmi enableItem:menuMapSatellite];
+            [lmi enableItem:MVCmenuMapSatellite];
             break;
         case MAPTYPE_HYBRID:
-            [lmi enableItem:menuMapHybrid];
+            [lmi enableItem:MVCmenuMapHybrid];
             break;
         case MAPTYPE_TERRAIN:
-            [lmi enableItem:menuMapTerrain];
+            [lmi enableItem:MVCmenuMapTerrain];
             break;
     }
 
-    [map setMapType:maptype];
+    [self.map setMapType:maptype];
 
-    switch ([map mapType]) {
+    switch ([self.map mapType]) {
         case MAPTYPE_NORMAL:
-            [lmi disableItem:menuMapMap];
+            [lmi disableItem:MVCmenuMapMap];
             break;
         case MAPTYPE_SATELLITE:
-            [lmi disableItem:menuMapSatellite];
+            [lmi disableItem:MVCmenuMapSatellite];
             break;
         case MAPTYPE_HYBRID:
-            [lmi disableItem:menuMapHybrid];
+            [lmi disableItem:MVCmenuMapHybrid];
             break;
         case MAPTYPE_TERRAIN:
-            [lmi disableItem:menuMapTerrain];
+            [lmi disableItem:MVCmenuMapTerrain];
             break;
     }
 }
@@ -876,115 +808,32 @@ enum {
 {
     configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
     if (configManager.dynamicmapEnable == YES) {
-        [lmi changeItem:menuAutoZoom label:@"No AutoZoom"];
+        [lmi changeItem:MVCmenuAutoZoom label:@"No AutoZoom"];
     } else {
-        [lmi changeItem:menuAutoZoom label:@"AutoZoom"];
+        [lmi changeItem:MVCmenuAutoZoom label:@"AutoZoom"];
     }
-}
-
-- (void)menuLoadWaypoints
-{
-    dbWaypoint *wp = [[dbWaypoint alloc] init];
-    wp.coordinates = [map currentCenter];
-    [self showInfoView];
-
-    NSArray *accounts = [dbc Accounts];
-    __block NSInteger accountsFound = 0;
-    [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([account canDoRemoteStuff] == NO)
-            return;
-        accountsFound++;
-
-        InfoItemID iid = [infoView addDownload];
-        [infoView setDescription:iid description:account.site];
-
-        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
-        [d setObject:wp forKey:@"wp"];
-        [d setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
-        [d setObject:account forKey:@"account"];
-
-        [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
-    }];
-
-
-    if (accountsFound == 0) {
-        [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
-        return;
-    }
-}
-
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
-{
-    // We are already in a background thread, but don't want to delay the next request until this one is processed.
-
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
-    [dict setObject:iv forKey:@"infoViewer"];
-    [dict setObject:o forKey:@"object"];
-    [dict setObject:group forKey:@"group"];
-    [dict setObject:a forKey:@"account"];
-    [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];
-}
-
-- (void)importObjectBG:(NSDictionary *)dict
-{
-    dbGroup *g = [dict objectForKey:@"group"];
-    dbAccount *a = [dict objectForKey:@"account"];
-    NSObject *o = [dict objectForKey:@"object"];
-    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
-    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
-
-    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
-
-    [infoView removeItem:iii];
-    if ([infoView hasItems] == NO) {
-        [self hideInfoView];
-
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefreshAll];
-    }
-}
-
-- (void)runLoadWaypoints:(NSMutableDictionary *)dict
-{
-    InfoItemID iid = [[dict objectForKey:@"iid"] integerValue];
-    dbWaypoint *wp = [dict objectForKey:@"wp"];
-    dbAccount *account = [dict objectForKey:@"account"];
-
-    NSObject *d;
-    NSInteger rv = [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d infoViewer:infoView ivi:iid group:dbc.Group_LiveImport callback:self];
-
-    [infoView removeItem:iid];
-
-    if (rv != REMOTEAPI_OK) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.remoteAPI.lastError];
-        return;
-    }
-
-    if ([infoView hasItems] == NO)
-        [self hideInfoView];
 }
 
 - (void)menuRecenter
 {
-    [lmi enableItem:menuUseGPS];
+    [lmi enableItem:MVCmenuUseGPS];
 
     useGPS = NO;
-    [LM useGPS:NO coordinates:[map currentCenter]];
+    [LM useGPS:NO coordinates:[self.map currentCenter]];
 
-    meLocation = [map currentCenter];
+    meLocation = [self.map currentCenter];
     followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
 - (void)menuUseGPS
 {
-    [lmi disableItem:menuUseGPS];
+    [lmi disableItem:MVCmenuUseGPS];
 
     useGPS = YES;
     [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
 
-    meLocation = [map currentCenter];
+    meLocation = [self.map currentCenter];
     followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
@@ -993,24 +842,24 @@ enum {
 {
     if (showBoundaries == NO) {
         showBoundaries = YES;
-        [lmi changeItem:menuShowBoundaries label:@"Hide boundaries"];
+        [lmi changeItem:MVCmenuShowBoundaries label:@"Hide boundaries"];
     } else {
         showBoundaries = NO;
-        [lmi changeItem:menuShowBoundaries label:@"Show boundaries"];
+        [lmi changeItem:MVCmenuShowBoundaries label:@"Show boundaries"];
     }
-    [map showBoundaries:showBoundaries];
+    [self.map showBoundaries:showBoundaries];
 }
 
 - (void)menuRemoveTarget
 {
-    [lmi disableItem:menuRemoveTarget];
+    [lmi disableItem:MVCmenuRemoveTarget];
     [waypointManager setTheCurrentWaypoint:nil];
 }
 
 - (void)menuExportVisible
 {
     CLLocationCoordinate2D bottomLeft, topRight;
-    [map currentRectangle:&bottomLeft topRight:&topRight];
+    [self.map currentRectangle:&bottomLeft topRight:&topRight];
     NSLog(@"bottomLeft: %@", [Coordinates NiceCoordinates:bottomLeft]);
     NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
 
@@ -1027,56 +876,58 @@ enum {
         [ExportGPX exports:wps];
 }
 
+NEEDS_OVERLOADING(menuLoadWaypoints)
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
-        case menuMapMap: /* Map view */
+        case MVCmenuMapMap: /* Map view */
             [self menuMapType:MAPTYPE_NORMAL];
             return;
-        case menuMapSatellite: /* Satellite view */
+        case MVCmenuMapSatellite: /* Satellite view */
             [self menuMapType:MAPTYPE_SATELLITE];
             return;
-        case menuMapHybrid: /* Hybrid view */
+        case MVCmenuMapHybrid: /* Hybrid view */
             [self menuMapType:MAPTYPE_HYBRID];
             return;
-        case menuMapTerrain: /* Terrain view */
+        case MVCmenuMapTerrain: /* Terrain view */
             [self menuMapType:MAPTYPE_TERRAIN];
             return;
 
-        case menuDirections:
+        case MVCmenuDirections:
             [self menuDirections];
             return;
-        case menuAutoZoom:
+        case MVCmenuAutoZoom:
             [self menuAutoZoom];
             return;
-        case menuLoadWaypoints:
+        case MVCmenuLoadWaypoints:
             [self menuLoadWaypoints];
             return;
 
-        case menuBrandGoogle:
+        case MVCmenuBrandGoogle:
             [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
             return;
-        case menuBrandApple:
+        case MVCmenuBrandApple:
             [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
             return;
-        case menuBrandOSM:
+        case MVCmenuBrandOSM:
             [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
             return;
 
-        case menuRecenter:
+        case MVCmenuRecenter:
             [self menuRecenter];
             return;
-        case menuUseGPS:
+        case MVCmenuUseGPS:
             [self menuUseGPS];
             return;
 
-        case menuShowBoundaries:
+        case MVCmenuShowBoundaries:
             [self menuShowBoundaries];
             return;
-        case menuRemoveTarget:
+        case MVCmenuRemoveTarget:
             [self menuRemoveTarget];
             return;
-        case menuExportVisible:
+        case MVCmenuExportVisible:
             [self menuExportVisible];
             return;
     }

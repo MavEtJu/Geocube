@@ -25,7 +25,7 @@
     BOOL showBoundary;
 }
 
-@property (nonatomic, retain) MapViewController *mapvc;
+@property (nonatomic, retain) MapTemplateViewController *mapvc;
 @property (nonatomic) BOOL circlesShown;
 
 - (void)mapViewWillAppear;
@@ -35,7 +35,7 @@
 - (void)mapViewDidLoad;
 - (void)recalculateRects;
 
-- (instancetype)init:(MapViewController *)mvc;
+- (instancetype)init:(MapTemplateViewController *)mvc;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
 

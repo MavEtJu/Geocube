@@ -115,7 +115,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[MapViewController alloc] init:SHOW_ONEWAYPOINT];
+                vc = [[MapOneWPViewController alloc] init:SHOW_ONEWAYPOINT];
                 vc.title = @"Map";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
@@ -127,7 +127,7 @@
             case RC_LIVEMAPS:
                 controllers = [NSMutableArray array];
 
-                vc = [[MapViewController alloc] init:SHOW_LIVEMAPS];
+                vc = [[MapLiveViewController alloc] init:SHOW_LIVEMAPS];
                 vc.title = @"Map";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
@@ -151,7 +151,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[MapViewController alloc] init:SHOW_ALLWAYPOINTS];
+                vc = [[MapAllWPViewController alloc] init:SHOW_ALLWAYPOINTS];
                 vc.title = @"Map";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
