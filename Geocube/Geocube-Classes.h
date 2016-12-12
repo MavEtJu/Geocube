@@ -123,12 +123,15 @@
 @class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;
+@class MapAllWPViewController;
 @class MapApple;
 @class MapAppleCache;
 @class MapGoogle;
+@class MapLiveViewController;
 @class MapOSM;
+@class MapOneWPViewController;
 @class MapTemplate;
-@class MapViewController;
+@class MapTemplateViewController;
 @class MapWaypointInfoView;
 @class MyClock;
 @class MyTools;
