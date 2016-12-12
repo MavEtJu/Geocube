@@ -28,8 +28,6 @@
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
 
-    GCMapHowMany showWhat; /* SHOW_ONECACHE | SHOW_ALLCACHES | SHOW_LIVEMAPS */
-    GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
     GCMapBrand showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
 
     CLLocationCoordinate2D meLocation;
@@ -49,12 +47,6 @@
 @implementation MapTemplateViewController
 
 - (instancetype)init
-{
-    NSAssert(FALSE, @"Don't call this one");
-    return nil;
-}
-
-- (instancetype)init:(GCMapHowMany)mapWhat
 {
     self = [super init];
 
@@ -136,9 +128,6 @@
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         [lmi disableItem:MVCmenuBrandGoogle];
 
-    showWhat = mapWhat; /* SHOW_ONECACHE, SHOW_ALLCACHES or SHOW_LIVEMAPS */
-    followWhom = (showWhat == SHOW_ONEWAYPOINT) ? SHOW_SHOWBOTH : SHOW_FOLLOWME;
-
     self.waypointsArray = nil;
     self.waypointCount = 0;
 
@@ -211,13 +200,13 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating
 {
     NSLog(@"%@/viewDidAppear", [self class]);
     [super viewDidAppear:animated];
     [self.map mapViewDidAppear];
 
-    [LM startDelegation:self isNavigating:((showWhat == SHOW_ONEWAYPOINT) || (showWhat == SHOW_LIVEMAPS))];
+    [LM startDelegation:self isNavigating:isNavigating];
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
 
@@ -350,7 +339,7 @@
     [labelMapFindTarget setImage:[imageLibrary get:ImageIcon_FindTarget] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindTarget];
 
-    switch (followWhom) {
+    switch (self.followWhom) {
         case SHOW_FOLLOWME:
             [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
             [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
@@ -428,7 +417,7 @@
     }
 
     // Move the map around to match current location
-    switch (followWhom) {
+    switch (self.followWhom) {
         case SHOW_FOLLOWMEZOOM:
             [self.map moveCameraTo:meLocation zoom:YES];
             break;
@@ -483,7 +472,7 @@
 
 - (void)userInteraction
 {
-    followWhom = SHOW_NEITHER;
+    self.followWhom = SHOW_NEITHER;
     [self labelClearAll];
 }
 
@@ -492,19 +481,19 @@
     [self labelClearAll];
 
     if (whom == SHOW_FOLLOWME) {
-        followWhom = whom;
+        self.followWhom = whom;
         meLocation = [LM coords];
         [self.map moveCameraTo:meLocation zoom:NO];
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
-        followWhom = whom;
+        self.followWhom = whom;
         meLocation = [LM coords];
         [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
-        followWhom = whom;
+        self.followWhom = whom;
         meLocation = [LM coords];
         [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
@@ -514,7 +503,7 @@
 - (void)menuFindMe
 {
     meLocation = [LM coords];
-    followWhom = SHOW_FOLLOWMEZOOM;
+    self.followWhom = SHOW_FOLLOWMEZOOM;
     [self labelClearAll];
     [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
     [self.map moveCameraTo:meLocation zoom:YES];
@@ -523,7 +512,7 @@
 - (void)menuFindTarget
 {
     meLocation = [LM coords];
-    followWhom = SHOW_SEETARGET;
+    self.followWhom = SHOW_SEETARGET;
     [self labelClearAll];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
     [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
@@ -643,7 +632,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
 //    [map placeMarkers];
 
     [self.map mapViewDidAppear];
-    [self menuShowWhom:followWhom];
+    [self menuShowWhom:self.followWhom];
 
     [self.map showBoundaries:showBoundaries];
 
@@ -822,7 +811,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
     [LM useGPS:NO coordinates:[self.map currentCenter]];
 
     meLocation = [self.map currentCenter];
-    followWhom = SHOW_NEITHER;
+    self.followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
@@ -834,7 +823,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
     [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
 
     meLocation = [self.map currentCenter];
-    followWhom = SHOW_NEITHER;
+    self.followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 

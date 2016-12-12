@@ -25,14 +25,20 @@
 
 @implementation MapOneWPViewController
 
-- (instancetype)init:(GCMapHowMany)mapWhat
+- (instancetype)init
 {
-    self = [super init:mapWhat];
+    self = [super init];
+    self.followWhom = SHOW_SHOWBOTH;
 
     [lmi disableItem:MVCmenuLoadWaypoints];
     [lmi disableItem:MVCmenuExportVisible];
 
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated isNavigating:YES];
 }
 
 - (void)refreshWaypointsData

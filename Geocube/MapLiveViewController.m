@@ -25,9 +25,10 @@
 
 @implementation MapLiveViewController
 
-- (instancetype)init:(GCMapHowMany)mapWhat
+- (instancetype)init
 {
-    self = [super init:mapWhat];
+    self = [super init];
+    self.followWhom = SHOW_FOLLOWME;
 
     [lmi disableItem:MVCmenuExportVisible];
 
@@ -36,7 +37,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewDidAppear:animated isNavigating:YES];
 
     [self updateLiveMaps];
 }

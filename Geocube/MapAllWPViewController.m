@@ -25,11 +25,17 @@
 
 @implementation MapAllWPViewController
 
-- (instancetype)init:(GCMapHowMany)mapWhat
+- (instancetype)init
 {
-    self = [super init:mapWhat];
+    self = [super init];
+    self.followWhom = SHOW_SHOWBOTH;
 
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated isNavigating:NO];
 }
 
 - (void)refreshWaypointsData
