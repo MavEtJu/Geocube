@@ -650,7 +650,7 @@ enum {
     [cvc showWaypoint:waypointManager.currentWaypoint];
 
     nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_MAP];
-    MapViewController *mvc = [nvc.viewControllers objectAtIndex:0];
+    MapTemplateViewController *mvc = [nvc.viewControllers objectAtIndex:0];
     [mvc refreshWaypointsData];
 
     [_AppDelegate switchController:RC_NAVIGATE];
