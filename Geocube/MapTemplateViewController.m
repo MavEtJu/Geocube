@@ -469,7 +469,11 @@
     [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)userInteraction
+- (void)userInteractionFinished
+{
+}
+
+- (void)userInteractionStart
 {
     self.followWhom = SHOW_NEITHER;
     [self labelClearAll];

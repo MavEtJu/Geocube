@@ -377,15 +377,15 @@
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
 {
     if (gesture == YES)
-        [self.mapvc userInteraction];
+        [self.mapvc userInteractionStart];
 
     // Update the ruler
     [mapScaleView update];
 }
 
-- (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position
+- (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(nonnull GMSCameraPosition *)position
 {
-    [mapScaleView update];
+    [self.mapvc userInteractionFinished];
 }
 
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate

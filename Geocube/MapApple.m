@@ -528,10 +528,18 @@
     BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
 
     if (mapChangedFromUserInteraction)
-        [self.mapvc userInteraction];
+        [self.mapvc userInteractionStart];
 
     // Update the ruler
     [mapScaleView update];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
+
+    if (mapChangedFromUserInteraction)
+        [self.mapvc userInteractionFinished];
 }
 
 @end

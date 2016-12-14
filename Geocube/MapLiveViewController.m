@@ -20,6 +20,10 @@
  */
 
 @interface MapLiveViewController ()
+{
+    struct timeval lastMapUpdate;
+    BOOL updateCountIsActive;
+}
 
 @end
 
@@ -32,6 +36,8 @@
 
     [lmi disableItem:MVCmenuExportVisible];
     self.waypointsArray = [NSMutableArray arrayWithCapacity:100];
+
+    updateCountIsActive = NO;
 
     return self;
 }
@@ -86,7 +92,8 @@
 
     NSObject *retObj;
 
-    [account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self];
+    if ([account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self] == REMOTEAPI_NOTPROCESSED)
+        [infoView removeItem:iid];
 }
 
 - (void)updateLiveMaps
@@ -138,6 +145,36 @@
     }];
 
     [bezelManager removeBezel];
+}
+
+- (void)userInteractionFinished
+{
+    [super userInteractionFinished];
+
+    @synchronized (self) {
+        gettimeofday(&lastMapUpdate, NULL);
+        if (updateCountIsActive == NO)
+            [self performSelectorInBackground:@selector(updateCountTimeout) withObject:nil];
+    }
+}
+
+- (void)updateCountTimeout
+{
+    struct timeval now;
+    struct timeval diff;
+
+    updateCountIsActive = YES;
+    while (TRUE) {
+        [NSThread sleepForTimeInterval:0.1];
+        @synchronized ((self)) {
+            gettimeofday(&now, NULL);
+            diff = [MyTools timevalDifference:lastMapUpdate t1:now];
+            if (diff.tv_sec >= 1)
+                break;
+        }
+    }
+    [self updateLiveMaps];
+    updateCountIsActive = NO;
 }
 
 @end

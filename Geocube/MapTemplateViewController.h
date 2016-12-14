@@ -72,7 +72,8 @@ typedef NS_ENUM(NSInteger, GCMapBrand) {
 @property (nonatomic) GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
 
 - (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating;
-- (void)userInteraction;
+- (void)userInteractionStart;
+- (void)userInteractionFinished;
 - (void)refreshWaypointsData;
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords;
 
