@@ -51,10 +51,8 @@
     if (waypointManager.currentWaypoint != nil) {
         waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
         self.waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
-        self.waypointCount = [self.waypointsArray count];
     } else {
         self.waypointsArray = nil;
-        self.waypointCount = 0;
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

@@ -19,8 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCPointAnnotation : MKPointAnnotation
+@interface GCWaypointAnnotation ()
 
-@property (nonatomic, retain) dbWaypoint *waypoint;
+@end
+
+@implementation GCWaypointAnnotation
 
 @end

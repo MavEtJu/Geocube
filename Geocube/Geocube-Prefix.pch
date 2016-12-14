@@ -247,9 +247,11 @@
 #import "StatisticsViewController.h"
 
 #import "GCBoundingBox.h"
-#import "GCPointAnnotation.h"
+#import "GCWaypointAnnotation.h"
+#import "GCLiveWaypointAnnotation.h"
 #import "GCCircle.h"
 #import "GCGMSCircle.h"
+#import "LiveWaypoint.h"
 #import "GCLocationCoordinate2D.h"
 #import "MapWaypointInfoView.h"
 #import "MapTemplateViewController.h"

@@ -69,7 +69,6 @@ typedef NS_ENUM(NSInteger, GCMapBrand) {
 
 @property (nonatomic, retain) NSMutableArray *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;
-@property (nonatomic) NSInteger waypointCount;
 @property (nonatomic) GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
 
 - (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating;

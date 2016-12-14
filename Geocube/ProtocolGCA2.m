@@ -284,11 +284,16 @@
 
 - (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
+    return [self api_services_caches_geocaches:wps logs:30 infoViewer:iv ivi:ivi];
+}
+
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+{
     NSLog(@"api_services_caches_geocaches:%ld", (long)[wps count]);
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
     [params setObject:[MyTools urlEncode:[wps componentsJoinedByString:@"|"]] forKey:@"cache_codes"];
-    [params setObject:@"30" forKey:@"lpc"];
+    [params setObject:[NSNumber numberWithInteger:numlogs] forKey:@"lpc"];
 
     NSString *urlString = [self prepareURLString:@"/caches/geocaches/" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -310,6 +315,22 @@
     [params setObject:[MyTools urlEncode:@"Temporarily unavailable|Available"] forKey:@"status"];
 
     NSString *urlString = [self prepareURLString:@"/search/nearest/" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req infoViewer:iv ivi:ivi];
+}
+
+- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+{
+    NSLog(@"api_services_search_bbox");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSString *c = [NSString stringWithFormat:@"%f|%f|%f|%f", bb.bottomLat, bb.leftLon, bb.topLat, bb.rightLon];
+    [params setObject:[MyTools urlEncode:c] forKey:@"bbox"];
+    [params setObject:[MyTools urlEncode:@"Temporarily unavailable|Available"] forKey:@"status"];
+
+    NSString *urlString = [self prepareURLString:@"/search/bbox/" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 

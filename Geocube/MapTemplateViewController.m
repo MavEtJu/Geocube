@@ -129,7 +129,6 @@
         [lmi disableItem:MVCmenuBrandGoogle];
 
     self.waypointsArray = nil;
-    self.waypointCount = 0;
 
     return self;
 }

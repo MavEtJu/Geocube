@@ -31,6 +31,7 @@
     self.followWhom = SHOW_FOLLOWME;
 
     [lmi disableItem:MVCmenuExportVisible];
+    self.waypointsArray = [NSMutableArray arrayWithCapacity:100];
 
     return self;
 }
@@ -42,9 +43,39 @@
     [self updateLiveMaps];
 }
 
-- (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o
+- (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o account:(dbAccount *)account
 {
-    NSLog(@"remoteAPI_loadWaypointsByBoundingBox_returned");
+    NSLog(@"remoteAPI_loadWaypointsByBoundingBox_returned:%@", [o class]);
+
+    if ([o isKindOfClass:[GCDictionaryGCA2 class]] == YES)
+        [self importGCDictionaryGCA2:(GCDictionaryGCA2 *)o infoViewer:iv ivi:ivi account:account];
+
+    [iv removeItem:ivi];
+    if ([iv hasItems] == NO)
+        [self hideInfoView];
+}
+
+- (void)importGCDictionaryGCA2:(GCDictionaryGCA2 *)d infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi account:(dbAccount *)account
+{
+    NSArray *wps = [d objectForKey:@"waypoints"];
+    [wps enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+        LiveWaypoint *wp = [[LiveWaypoint alloc] init];
+        NSLog(@"wptname: %ld", idx);
+        DICT_NSSTRING_KEY(dict, wp.name, @"name");
+        DICT_NSSTRING_KEY(dict, wp.code, @"code");
+
+        NSString *l;
+        DICT_NSSTRING_KEY(dict, l, @"location");
+        NSArray *ls = [l componentsSeparatedByString:@"|"];
+        wp.coords_lat = [ls objectAtIndex:0];
+        wp.coords_lon = [ls objectAtIndex:1];
+
+        wp.account = account;
+        [wp finish];
+        [self.waypointsArray addObject:wp];
+    }];
+
+    [self refreshWaypointsData];
 }
 
 - (void)runUpdateLiveMaps:(NSDictionary *)dict
@@ -90,7 +121,6 @@
         [self performSelectorInBackground:@selector(runUpdateLiveMaps:) withObject:d];
     }];
 
-
     if (accountsFound == 0) {
         [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
         return;
@@ -100,12 +130,7 @@
 - (void)refreshWaypointsData
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Refreshing database"];
-
-    [waypointManager applyFilters:LM.coords];
-
-    self.waypointsArray = [NSMutableArray array];
-    self.waypointCount = 0;
+    [bezelManager setText:@"Refreshing map"];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.map removeMarkers];

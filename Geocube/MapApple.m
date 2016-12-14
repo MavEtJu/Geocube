@@ -21,7 +21,7 @@
 
 @interface MapApple ()
 {
-    GCPointAnnotation *me;
+    GCWaypointAnnotation *me;
     NSMutableArray *markers;
     NSMutableArray *circles;
 
@@ -111,19 +111,32 @@
     // Creates a marker in the center of the map.
     markers = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
     circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
-    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        // Place a single pin
-        GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
-        CLLocationCoordinate2D coord = wp.coordinates;
-        [annotation setCoordinate:coord];
-        annotation.waypoint = wp;
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(NSObject *o, NSUInteger idx, BOOL *stop) {
+        if ([o isKindOfClass:[dbWaypoint class]] == YES) {
+            dbWaypoint *wp = (dbWaypoint *)o;
+            // Place a single pin
+            GCWaypointAnnotation *annotation = [[GCWaypointAnnotation alloc] init];
+            CLLocationCoordinate2D coord = wp.coordinates;
+            [annotation setCoordinate:coord];
+            annotation.waypoint = wp;
 
-        [markers addObject:annotation];
+            [markers addObject:annotation];
 
-        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-            GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
-            circle.waypoint = wp;
-            [circles addObject:circle];
+            if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+                GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                circle.waypoint = wp;
+                [circles addObject:circle];
+            }
+        }
+        if ([o isKindOfClass:[LiveWaypoint class]] == YES) {
+            LiveWaypoint *wp = (LiveWaypoint *)o;
+
+            GCLiveWaypointAnnotation *annotation = [[GCLiveWaypointAnnotation alloc] init];
+            CLLocationCoordinate2D coord = wp.coords;
+            [annotation setCoordinate:coord];
+            annotation.waypoint = wp;
+
+            [markers addObject:annotation];
         }
     }];
     [mapView addAnnotations:markers];
@@ -143,7 +156,7 @@
 - (void)placeMarker:(dbWaypoint *)wp
 {
     __block BOOL found = NO;
-    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idx, BOOL *stop) {
         if (wp._id == m.waypoint._id) {
             found = YES;
             *stop = YES;
@@ -153,7 +166,7 @@
         return;
 
     // Take care of the waypoint
-    GCPointAnnotation *annotation = [[GCPointAnnotation alloc] init];
+    GCWaypointAnnotation *annotation = [[GCWaypointAnnotation alloc] init];
     CLLocationCoordinate2D coord = wp.coordinates;
     [annotation setCoordinate:coord];
     annotation.waypoint = wp;
@@ -173,9 +186,9 @@
 - (void)removeMarker:(dbWaypoint *)wp
 {
     // Take care of the waypoint
-    __block GCPointAnnotation *annotiation;
+    __block GCWaypointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idxx, BOOL *stop) {
         if (wp._id == m.waypoint._id) {
             annotiation = m;
             idx = idxx;
@@ -203,9 +216,9 @@
 - (void)updateMarker:(dbWaypoint *)wp
 {
     // Take care of the waypoint
-    __block GCPointAnnotation *annotiation;
+    __block GCWaypointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GCPointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idxx, BOOL *stop) {
         if (wp._id == m.waypoint._id) {
             annotiation = m;
             idx = idxx;
@@ -215,7 +228,7 @@
     if (annotiation == nil)
         return;
 
-    GCPointAnnotation *newMarker = [[GCPointAnnotation alloc] init];
+    GCWaypointAnnotation *newMarker = [[GCWaypointAnnotation alloc] init];
     CLLocationCoordinate2D coord = wp.coordinates;
     [newMarker setCoordinate:coord];
     newMarker.waypoint = wp;
@@ -262,7 +275,7 @@
 
 - (void)openWaypointInfo:(id)sender
 {
-    GCPointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
+    GCWaypointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
     [self openWaypointView:ann.waypoint];
 }
 
@@ -275,8 +288,8 @@
     }
 
     // If it is a waypoint, add an image to it.
-    if ([annotation isKindOfClass:[GCPointAnnotation class]] == YES) {
-        GCPointAnnotation *a = annotation;
+    if ([annotation isKindOfClass:[GCWaypointAnnotation class]] == YES) {
+        GCWaypointAnnotation *a = annotation;
 
         MKAnnotationView *dropPin = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"waypoints"];
         if (dropPin == nil)
@@ -293,8 +306,8 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
-        GCPointAnnotation *pa = (GCPointAnnotation *)view.annotation;
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+        GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
         [self updateWaypointInfo:pa.waypoint];
         [self showWaypointInfo];
     }
@@ -302,7 +315,7 @@
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view.annotation isKindOfClass:[GCPointAnnotation class]]) {
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         [self hideWaypointInfo];
     }
 }

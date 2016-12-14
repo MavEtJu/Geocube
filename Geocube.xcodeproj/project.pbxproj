@@ -320,7 +320,7 @@
 		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
-		E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */; };
+		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
 		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */; };
 		E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */; };
@@ -468,6 +468,8 @@
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
+		E8F4199B1E013A5000BF10E4 /* LiveWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */; };
+		E8F4199E1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
@@ -1021,8 +1023,8 @@
 		E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionary.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
 		E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellRightImage.m; sourceTree = "<group>"; };
-		E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPointAnnotation.h; sourceTree = "<group>"; };
-		E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPointAnnotation.m; sourceTree = "<group>"; };
+		E8611A8F1B8899A700B9D7C3 /* GCWaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCWaypointAnnotation.h; sourceTree = "<group>"; };
+		E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWaypointAnnotation.m; sourceTree = "<group>"; };
 		E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDatabaseViewController.h; sourceTree = "<group>"; };
 		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
 		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellFieldValue.h; sourceTree = "<group>"; };
@@ -1309,6 +1311,10 @@
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
+		E8F419991E013A5000BF10E4 /* LiveWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveWaypoint.h; sourceTree = "<group>"; };
+		E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveWaypoint.m; sourceTree = "<group>"; };
+		E8F4199C1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLiveWaypointAnnotation.h; sourceTree = "<group>"; };
+		E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLiveWaypointAnnotation.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1924,12 +1930,16 @@
 				E84725EB1DFE6ED900CFF99B /* Map sources */,
 				E80250EB1D2474B500F05772 /* MapWaypointInfoView.h */,
 				E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */,
-				E8611A8F1B8899A700B9D7C3 /* GCPointAnnotation.h */,
-				E8611A901B8899A700B9D7C3 /* GCPointAnnotation.m */,
+				E8F4199C1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.h */,
+				E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */,
+				E8611A8F1B8899A700B9D7C3 /* GCWaypointAnnotation.h */,
+				E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */,
 				E8FEDEEA1DAAE5E1007C756B /* GCCircle.h */,
 				E8FEDEEB1DAAE5E1007C756B /* GCCircle.m */,
 				E8FEDEED1DAC2DD2007C756B /* GCGMSCircle.h */,
 				E8FEDEEE1DAC2DD2007C756B /* GCGMSCircle.m */,
+				E8F419991E013A5000BF10E4 /* LiveWaypoint.h */,
+				E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -3545,6 +3555,7 @@
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
+				E8F4199B1E013A5000BF10E4 /* LiveWaypoint.m in Sources */,
 				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */,
@@ -3603,6 +3614,7 @@
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */,
+				E8F4199E1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m in Sources */,
 				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
@@ -3706,7 +3718,7 @@
 				E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
-				E8611A911B8899A700B9D7C3 /* GCPointAnnotation.m in Sources */,
+				E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */,
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E84D6FC61C52367B0000A6A0 /* ListHighlightViewController.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,

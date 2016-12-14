@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAllWPViewController : MapTemplateViewController <RemoteAPIRetrieveQueryDelegate>
+@interface LiveWaypoint : NSObject
+
+@property (nonatomic, retain) dbAccount *account;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *code;
+@property (nonatomic, retain) NSString *coords_lat;
+@property (nonatomic, retain) NSString *coords_lon;
+@property (nonatomic) CLLocationCoordinate2D coords;
+
+- (void)finish;
 
 @end

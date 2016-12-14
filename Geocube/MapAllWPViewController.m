@@ -46,7 +46,6 @@
     [waypointManager applyFilters:LM.coords];
 
     self.waypointsArray = [waypointManager currentWaypoints];
-    self.waypointCount = [self.waypointsArray count];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.map removeMarkers];
@@ -134,7 +133,7 @@
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.remoteAPI.lastError];
         return;
     }
-    
+
     if ([infoView hasItems] == NO)
         [self hideInfoView];
 }

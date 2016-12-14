@@ -65,11 +65,11 @@
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
+@class GCLiveWaypointAnnotation;
 @class GCLocationCoordinate2D;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
-@class GCPointAnnotation;
 @class GCScrollView;
 @class GCSmallLabel;
 @class GCString;
@@ -88,6 +88,7 @@
 @class GCURLRequest;
 @class GCView;
 @class GCViewController;
+@class GCWaypointAnnotation;
 @class GroupsViewController;
 @class HelpAboutViewController;
 @class HelpDatabaseViewController;
@@ -120,6 +121,7 @@
 @class ListIgnoredViewController;
 @class ListInProgressViewController;
 @class ListTemplateViewController;
+@class LiveWaypoint;
 @class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;

@@ -172,7 +172,6 @@
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     GCA2_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-
     if ([wpcodes count] == 0)
         return REMOTEAPI_OK;
 
@@ -200,7 +199,7 @@
 - (RemoteAPIResult)loadWaypointsByCodes:(NSArray *)wpcodes retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[GCA2] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:@"[GCA2] loadWaypointsByCodes: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         return REMOTEAPI_APIDISABLED;
     }
 
@@ -208,7 +207,7 @@
     [iv setChunksCount:ivi count:1];
 
     GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
-    GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    GCA2_CHECK_STATUS(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
     NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
@@ -222,6 +221,41 @@
     [imp parseBefore];
     [imp parseDictionary:d2];
     [imp parseAfter];
+
+    [waypointManager needsRefreshAll];
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+{
+    if ([self.account canDoRemoteStuff] == NO) {
+        [self setAPIError:@"[GCA2] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        return REMOTEAPI_APIDISABLED;
+    }
+
+    [iv setChunksTotal:ivi total:2];
+    [iv setChunksCount:ivi count:1];
+
+    GCDictionaryGCA2 *json = [gca2 api_services_search_bbox:bb infoViewer:iv ivi:ivi];
+    GCA2_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+    GCA2_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    if ([wpcodes count] == 0)
+        return REMOTEAPI_OK;
+
+    [iv setChunksCount:ivi count:2];
+    json = [gca2 api_services_caches_geocaches:wpcodes logs:0 infoViewer:iv ivi:ivi];
+    GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+        [wps addObject:[json objectForKey:wpcode]];
+    }];
+    [d setObject:wps forKey:@"waypoints"];
+
+    GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
+    [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:ivi object:d2 account:self.account];
 
     [waypointManager needsRefreshAll];
     return REMOTEAPI_OK;

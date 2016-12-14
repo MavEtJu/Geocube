@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAllWPViewController : MapTemplateViewController <RemoteAPIRetrieveQueryDelegate>
+@interface GCLiveWaypointAnnotation ()
+
+@end
+
+@implementation GCLiveWaypointAnnotation
 
 @end

@@ -19,10 +19,21 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCPointAnnotation ()
+@interface LiveWaypoint ()
 
 @end
 
-@implementation GCPointAnnotation
+@implementation LiveWaypoint
+
+- (void)finish
+{
+    Coordinates *c = [[Coordinates alloc] init:[self.coords_lat floatValue] lon:[self.coords_lon floatValue]];
+    self.coords = CLLocationCoordinate2DMake(c.lat, c.lon);
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"(%@) %@ at %@", self.code, self.name, [Coordinates NiceCoordinates:self.coords]];
+}
 
 @end
