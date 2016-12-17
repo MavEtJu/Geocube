@@ -23,6 +23,7 @@
 {
     struct timeval lastMapUpdate;
     BOOL updateCountIsActive;
+    CLLocationCoordinate2D lastMapBottomLeft, lastMapTopRight;
 }
 
 @end
@@ -46,7 +47,7 @@
 {
     [super viewDidAppear:animated isNavigating:YES];
 
-    [self updateLiveMaps];
+    [self startUpdateCount];
 }
 
 - (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o account:(dbAccount *)account
@@ -150,7 +151,11 @@
 - (void)userInteractionFinished
 {
     [super userInteractionFinished];
+    [self startUpdateCount];
+}
 
+- (void)startUpdateCount
+{
     @synchronized (self) {
         gettimeofday(&lastMapUpdate, NULL);
         if (updateCountIsActive == NO)
@@ -173,8 +178,41 @@
                 break;
         }
     }
-    [self updateLiveMaps];
+
+    CLLocationCoordinate2D bl, tr;
+
+    [self.map currentRectangle:&bl topRight:&tr];
+    if ([self hasMovedMoreThanEnough:lastMapBottomLeft prevTopRight:lastMapTopRight newBottomLeft:bl newTopRight:tr] == YES) {
+        lastMapBottomLeft = bl;
+        lastMapTopRight = tr;
+        [self updateLiveMaps];
+    }
+
     updateCountIsActive = NO;
+}
+
+- (BOOL)hasMovedMoreThanEnough:(CLLocationCoordinate2D)blo prevTopRight:(CLLocationCoordinate2D)tro newBottomLeft:(CLLocationCoordinate2D)bln newTopRight:(CLLocationCoordinate2D)trn
+{
+    // Centers
+    CLLocationCoordinate2D cn = CLLocationCoordinate2DMake((bln.latitude + trn.latitude) / 2, (bln.longitude + trn.longitude) / 2);
+    CLLocationCoordinate2D co = CLLocationCoordinate2DMake((blo.latitude + tro.latitude) / 2, (blo.longitude + tro.longitude) / 2);
+    // Difference in centers
+    CLLocationCoordinate2D cdiff = CLLocationCoordinate2DMake(fabs(co.latitude - cn.latitude), fabs(co.longitude - cn.longitude));
+    // Size of boundary boxes
+    CLLocationCoordinate2D sizenew = CLLocationCoordinate2DMake(fabs(bln.latitude - cn.latitude), fabs(bln.longitude - cn.longitude));
+    CLLocationCoordinate2D sizeold = CLLocationCoordinate2DMake(fabs(blo.latitude - co.latitude), fabs(blo.longitude - co.longitude));
+
+    NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    NSLog(@"sizenew:(%@)", [Coordinates NiceCoordinates:sizenew]);
+    NSLog(@"sizeold:(%@)", [Coordinates NiceCoordinates:sizeold]);
+    NSLog(@"cdiff:  (%@)", [Coordinates NiceCoordinates:cdiff]);
+    // If the difference in center
+    if (cdiff.latitude > sizenew.latitude || cdiff.latitude > sizeold.latitude)
+        return YES;
+    if (cdiff.longitude > sizenew.longitude || cdiff.longitude > sizeold.longitude)
+        return YES;
+
+    return NO;
 }
 
 @end
