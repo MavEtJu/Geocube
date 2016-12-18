@@ -25,4 +25,11 @@
 
 @implementation GCBoundingBox
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"(%@)-(%@)",
+            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.bottomLat, self.leftLon)], 
+            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.topLat, self.rightLon)]];
+}
+
 @end
