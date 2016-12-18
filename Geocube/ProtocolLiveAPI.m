@@ -364,6 +364,60 @@
     return json;
 }
 
+- (GCDictionaryLiveAPI *)SearchForGeocaches_boundbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+{
+    NSLog(@"SearchForGeocaches_boundbox:%@", [bb description]);
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
+    [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
+
+    /*
+     * {
+     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
+     *  "Viewport":{
+     *    "BottomRight":{
+     *      "Latitude":1.26743233E+15,
+     *      "Longitude":1.26743233E+15
+     *    },
+     *    "TopLeft":{
+     *      "Latitude":1.26743233E+15,
+     *      "Longitude":1.26743233E+15
+     *    }
+     *  },
+     *  "GeocacheLogCount": 20,
+     *  "IsLite": false,
+     *  "MaxPerPage": 20,
+     *  "TrackableLogCount": 1
+     * }
+     */
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
+
+    NSDictionary *br = [NSMutableDictionary dictionaryWithCapacity:2];
+    [br setValue:[NSNumber numberWithFloat:bb.bottomLat] forKey:@"Latitude"];
+    [br setValue:[NSNumber numberWithFloat:bb.rightLon] forKey:@"Longitude"];
+    NSDictionary *tl = [NSMutableDictionary dictionaryWithCapacity:2];
+    [tl setValue:[NSNumber numberWithFloat:bb.topLat] forKey:@"Latitude"];
+    [tl setValue:[NSNumber numberWithFloat:bb.leftLon] forKey:@"Longitude"];
+
+    NSDictionary *viewport = [NSMutableDictionary dictionaryWithCapacity:2];
+    [viewport setValue:br forKey:@"BottomRight"];
+    [viewport setValue:tl forKey:@"TopLeft"];
+    [_dict setValue:viewport forKey:@"Viewport"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    return json;
+}
+
 - (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
