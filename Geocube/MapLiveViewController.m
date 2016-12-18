@@ -56,6 +56,8 @@
 
     if ([o isKindOfClass:[GCDictionaryGCA2 class]] == YES)
         [self importGCDictionaryGCA2:(GCDictionaryGCA2 *)o infoViewer:iv ivi:ivi account:account];
+    else if ([o isKindOfClass:[GCDictionaryLiveAPI class]] == YES)
+        [self importGCDictionaryLiveAPI:(GCDictionaryLiveAPI *)o infoViewer:iv ivi:ivi account:account];
 
     [iv removeItem:ivi];
     if ([iv hasItems] == NO)
@@ -85,6 +87,27 @@
     [self refreshWaypointsData];
 }
 
+- (void)importGCDictionaryLiveAPI:(GCDictionaryLiveAPI *)d infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi account:(dbAccount *)account
+{
+    NSArray *wps = [d objectForKey:@"Geocaches"];
+    [wps enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+        LiveWaypoint *wp = [[LiveWaypoint alloc] init];
+        NSLog(@"wptname: %ld", idx);
+        DICT_NSSTRING_KEY(dict, wp.name, @"Name");
+        DICT_NSSTRING_KEY(dict, wp.code, @"Code");
+
+        DICT_NSSTRING_KEY(dict, wp.coords_lat, @"Latitude");
+        DICT_NSSTRING_KEY(dict, wp.coords_lon, @"Longitude");
+
+        wp.account = account;
+        [wp finish];
+        [self.waypointsArray addObject:wp];
+
+    }];
+
+    [self refreshWaypointsData];
+}
+
 - (void)runUpdateLiveMaps:(NSDictionary *)dict
 {
     GCBoundingBox *bb = [dict objectForKey:@"bb"];
@@ -93,7 +116,7 @@
 
     NSObject *retObj;
 
-    if ([account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self] == REMOTEAPI_NOTPROCESSED)
+    if ([account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self] != REMOTEAPI_OK)
         [infoView removeItem:iid];
 }
 
