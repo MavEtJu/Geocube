@@ -210,7 +210,7 @@
     NSInteger done = 0;
     [iv setChunksTotal:ivi total:(total / 20) + 1];
     if (total != 0) {
-        GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+        GCDictionaryLiveAPI *livejson = json;
         LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
@@ -224,10 +224,62 @@
             LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             if ([json objectForKey:@"Geocaches"] != nil) {
-                GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:json];
+                GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:@"LiveAPI JSON (queued)"];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
+                [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+            }
+        } while (done < total);
+    }
+
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
+    [d setObject:wps forKey:@"Geocaches"];
+    GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
+    *retObject = livejson;
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+{
+    loadWaypointsLogs = 0;
+    loadWaypointsWaypoints = 0;
+    *retObject = nil;
+
+    if ([self.account canDoRemoteStuff] == NO) {
+        [self setAPIError:@"[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        return REMOTEAPI_APIDISABLED;
+    }
+
+    [iv setChunksTotal:ivi total:1];
+    [iv setChunksCount:ivi count:1];
+    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
+    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_boundbox:bb infoViewer:iv ivi:ivi];
+    LIVEAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+    LIVEAPI_GET_VALUE(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    NSInteger total = [ptotal integerValue];
+    NSInteger done = 0;
+    [iv setChunksTotal:ivi total:(total / 20) + 1];
+    if (total != 0) {
+        GCDictionaryLiveAPI *livejson = json;
+        LIVEAPI_CHECK_STATUS(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+        InfoItemID iii = [iv addImport:NO];
+        [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+        [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:iii object:livejson account:self.account];
+        [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+        do {
+            [iv setChunksCount:ivi count:(done / 20) + 1];
+            done += 20;
+
+            json = [liveAPI GetMoreGeocaches:done infoViewer:iv ivi:ivi];
+            LIVEAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+            if ([json objectForKey:@"Geocaches"] != nil) {
+                GCDictionaryLiveAPI *livejson = json;
+                InfoItemID iii = [iv addImport:NO];
+                [iv setDescription:iii description:@"LiveAPI JSON (queued)"];
+                [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:iii object:livejson account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
         } while (done < total);
