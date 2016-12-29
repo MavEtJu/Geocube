@@ -133,6 +133,12 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
+                vc = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
+                vc.title = @"Waypoint";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
                 TABBARCONTROLLER(RC_NAVIGATE, controllers)
                 break;
 
