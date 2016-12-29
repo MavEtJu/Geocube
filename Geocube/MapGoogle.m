@@ -348,7 +348,14 @@
 - (CLLocationCoordinate2D)currentCenter
 {
     CGPoint point = mapView.center;
-    return [mapView.projection coordinateForPoint:point];
+    __block CLLocationCoordinate2D loc;
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        loc = [mapView.projection coordinateForPoint:point];
+        dispatch_semaphore_signal(sem);
+    }];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    return loc;
 }
 
 - (double)currentZoom
@@ -359,7 +366,15 @@
 
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
 {
-    GMSVisibleRegion visibleRegion = mapView.projection.visibleRegion;
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+
+    __block GMSVisibleRegion visibleRegion;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        visibleRegion = mapView.projection.visibleRegion;
+        dispatch_semaphore_signal(sem);
+    }];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:visibleRegion];
 
     // we've got what we want, but here are NE and SW points
