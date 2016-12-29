@@ -54,6 +54,7 @@
     CGRect rectSetAsTarget;
 
     dbWaypoint *waypoint;
+    LiveWaypoint *liveWaypoint;
 }
 
 @end
@@ -153,9 +154,47 @@
     return self;
 }
 
+- (void)clearLabels;
+{
+    labelDescription.text = @"";
+    labelWhoWhen.text = @"";
+    labelGCCode.text = @"";
+    labelRatingD.text = @"";
+    labelRatingT.text = @"";
+    labelBearing.text = @"";
+    labelCoordinates.text = @"";
+    labelSize.text = @"";
+    labelStateCountry.text = @"";
+}
+
+- (void)liveWaypointData:(LiveWaypoint *)wp
+{
+    [self clearLabels];
+    waypoint = nil;
+    liveWaypoint = wp;
+
+    labelDescription.text = wp.name;
+
+    NSMutableString *codeText = [NSMutableString stringWithString:wp.code];
+    if (wp.account.site != nil)
+        [codeText appendFormat:@" (%@)", wp.account.site];
+    labelGCCode.text = codeText;
+
+    NSInteger b = [Coordinates coordinates2bearing:LM.coords to:wp.coords];
+    labelBearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)b, [Coordinates bearing2compass:b], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coords]]];
+    labelCoordinates.text = [Coordinates NiceCoordinates:wp.coords];
+
+    if (wp.ratingD != 0)
+        labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.ratingD];
+    if (wp.ratingT != 0)
+        labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", wp.ratingT];
+}
+
 - (void)waypointData:(dbWaypoint *)wp
 {
+    [self clearLabels];
     waypoint = wp;
+    liveWaypoint = nil;
 
     labelDescription.text = wp.wpt_urlname;
     if (wp.gs_owner == nil) {
@@ -179,12 +218,8 @@
 
     if (wp.gs_rating_terrain != 0)
         labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", wp.gs_rating_terrain];
-    else
-        labelRatingT.text = @"";
     if (wp.gs_rating_difficulty != 0)
         labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
-    else
-        labelRatingD.text = @"";
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
     NSInteger b = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
