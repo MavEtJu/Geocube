@@ -311,11 +311,17 @@
         [self updateWaypointInfo:pa.waypoint];
         [self showWaypointInfo];
     }
+    if ([view.annotation isKindOfClass:[GCLiveWaypointAnnotation class]]) {
+        GCLiveWaypointAnnotation *lpa = (GCLiveWaypointAnnotation *)view.annotation;
+        [self updateLiveWaypointInfo:lpa.waypoint];
+        [self showWaypointInfo];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]] ||
+        [view.annotation isKindOfClass:[GCLiveWaypointAnnotation class]]) {
         [self hideWaypointInfo];
     }
 }
