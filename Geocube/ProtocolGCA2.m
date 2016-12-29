@@ -221,7 +221,12 @@
         return nil;
     }
 
-    GCDictionaryGCA2 *json = [[GCDictionaryGCA2 alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]];
+    NSObject *d = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([d isKindOfClass:[NSDictionary class]] == NO) {
+        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        return nil;
+    }
+    GCDictionaryGCA2 *json = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
     if (error != nil) {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
