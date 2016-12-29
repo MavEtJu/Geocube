@@ -26,5 +26,6 @@
 - (void)calculateRects;
 - (void)viewWillTransitionToSize;
 - (void)waypointData:(dbWaypoint *)wp;
+- (void)liveWaypointData:(LiveWaypoint *)wp;
 
 @end
