@@ -68,20 +68,44 @@
 {
     NSArray *wps = [d objectForKey:@"waypoints"];
     [wps enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
-        LiveWaypoint *wp = [[LiveWaypoint alloc] init];
-        NSLog(@"wptname: %ld", idx);
-        DICT_NSSTRING_KEY(dict, wp.name, @"name");
-        DICT_NSSTRING_KEY(dict, wp.code, @"code");
+        NSString *wptcode;
+        DICT_NSSTRING_KEY(dict, wptcode, @"code");
+        NSLog(@"wptcode #%ld: %@", idx, wptcode);
 
-        NSString *l;
-        DICT_NSSTRING_KEY(dict, l, @"location");
-        NSArray *ls = [l componentsSeparatedByString:@"|"];
-        wp.coords_lat = [ls objectAtIndex:0];
-        wp.coords_lon = [ls objectAtIndex:1];
+        NSId wpid = [dbWaypoint dbGetByName:wptcode];
+        if (wpid == 0) {
+            LiveWaypoint *wp = [[LiveWaypoint alloc] init];
+            wp.code = wptcode;
+            DICT_NSSTRING_KEY(dict, wp.name, @"name");
 
-        wp.account = account;
-        [wp finish];
-        [self.waypointsArray addObject:wp];
+            DICT_FLOAT_KEY(dict, wp.ratingD, @"difficulty");
+            DICT_FLOAT_KEY(dict, wp.ratingT, @"terrain");
+
+            NSString *l;
+            DICT_NSSTRING_KEY(dict, l, @"location");
+            NSArray *ls = [l componentsSeparatedByString:@"|"];
+            wp.coords_lat = [ls objectAtIndex:0];
+            wp.coords_lon = [ls objectAtIndex:1];
+
+            wp.account = account;
+            [wp finish];
+            [self.waypointsArray addObject:wp];
+        } else {
+            dbWaypoint *wp = [dbWaypoint dbGet:wpid];
+            DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"name");
+
+            DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"difficulty");
+            DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"terrain");
+
+            NSString *l;
+            DICT_NSSTRING_KEY(dict, l, @"location");
+            NSArray *ls = [l componentsSeparatedByString:@"|"];
+            wp.wpt_lat = [ls objectAtIndex:0];
+            wp.wpt_lon = [ls objectAtIndex:1];
+
+            [wp finish];
+            [self.waypointsArray addObject:wp];
+        }
     }];
 
     [self refreshWaypointsData];
@@ -91,17 +115,38 @@
 {
     NSArray *wps = [d objectForKey:@"Geocaches"];
     [wps enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
-        LiveWaypoint *wp = [[LiveWaypoint alloc] init];
-        NSLog(@"wptname: %ld", idx);
-        DICT_NSSTRING_KEY(dict, wp.name, @"Name");
-        DICT_NSSTRING_KEY(dict, wp.code, @"Code");
+        __block NSString *wptcode;
+        DICT_NSSTRING_KEY(dict, wptcode, @"Code");
+        NSLog(@"wptname #%ld: %@", idx, wptcode);
 
-        DICT_NSSTRING_KEY(dict, wp.coords_lat, @"Latitude");
-        DICT_NSSTRING_KEY(dict, wp.coords_lon, @"Longitude");
+        NSId wpid = [dbWaypoint dbGetByName:wptcode];
+        if (wpid == 0) {
+            LiveWaypoint *wp = [[LiveWaypoint alloc] init];
+            wp.code = wptcode;
+            DICT_NSSTRING_KEY(dict, wp.code, @"Name");
 
-        wp.account = account;
-        [wp finish];
-        [self.waypointsArray addObject:wp];
+            DICT_NSSTRING_KEY(dict, wp.coords_lat, @"Latitude");
+            DICT_NSSTRING_KEY(dict, wp.coords_lon, @"Longitude");
+
+            DICT_FLOAT_KEY(dict, wp.ratingD, @"Difficulty");
+            DICT_FLOAT_KEY(dict, wp.ratingT, @"Terrain");
+
+            wp.account = account;
+            [wp finish];
+            [self.waypointsArray addObject:wp];
+        } else {
+            dbWaypoint *wp = [dbWaypoint dbGet:wpid];
+            DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"Name");
+
+            DICT_NSSTRING_KEY(dict, wp.wpt_lat, @"Latitude");
+            DICT_NSSTRING_KEY(dict, wp.wpt_lon, @"Longitude");
+
+            DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"Difficulty");
+            DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"Terrain");
+
+            [wp finish];
+            [self.waypointsArray addObject:wp];
+        }
 
     }];
 
@@ -116,8 +161,10 @@
 
     NSObject *retObj;
 
-    if ([account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self] != REMOTEAPI_OK)
-        [infoView removeItem:iid];
+    [account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&retObj infoViewer:infoView ivi:iid callback:self];
+    [infoView removeItem:iid];
+    if ([infoView hasItems] == NO)
+        [self hideInfoView];
 }
 
 - (void)updateLiveMaps
