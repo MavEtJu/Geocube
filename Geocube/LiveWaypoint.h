@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString *code;
 @property (nonatomic, retain) NSString *coords_lat;
 @property (nonatomic, retain) NSString *coords_lon;
+@property (nonatomic) float ratingD, ratingT;
 @property (nonatomic) CLLocationCoordinate2D coords;
 
 - (void)finish;
