@@ -81,6 +81,9 @@
             DICT_FLOAT_KEY(dict, wp.ratingD, @"difficulty");
             DICT_FLOAT_KEY(dict, wp.ratingT, @"terrain");
 
+            DICT_NSSTRING_KEY(dict, wp.container_str, @"size2");
+//            DICT_NSSTRING_KEY(dict, wp.type_str, @"type");
+
             NSString *l;
             DICT_NSSTRING_KEY(dict, l, @"location");
             NSArray *ls = [l componentsSeparatedByString:@"|"];

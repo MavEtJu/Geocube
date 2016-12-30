@@ -28,6 +28,9 @@
 @property (nonatomic, retain) NSString *coords_lon;
 @property (nonatomic) float ratingD, ratingT;
 @property (nonatomic) CLLocationCoordinate2D coords;
+@property (nonatomic) NSId container_id;
+@property (nonatomic, retain) NSString *container_str;
+@property (nonatomic, retain) dbContainer *container;
 
 - (void)finish;
 

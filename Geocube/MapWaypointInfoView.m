@@ -188,6 +188,8 @@
         labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.ratingD];
     if (wp.ratingT != 0)
         labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", wp.ratingT];
+
+    [self setRatings:0 size:wp.container.icon];
 }
 
 - (void)waypointData:(dbWaypoint *)wp

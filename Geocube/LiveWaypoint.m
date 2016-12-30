@@ -29,6 +29,18 @@
 {
     Coordinates *c = [[Coordinates alloc] init:[self.coords_lat floatValue] lon:[self.coords_lon floatValue]];
     self.coords = CLLocationCoordinate2DMake(c.lat, c.lon);
+
+    // Adjust container size
+    if (self.container == nil) {
+        if (self.container_str != nil) {
+            self.container = [dbc Container_get_bysize:self.container_str];
+            self.container_id = self.container._id;
+        }
+        if (self.container_id != 0) {
+            self.container = [dbc Container_get:self.container_id];
+            self.container_str = self.container.size;
+        }
+    }
 }
 
 - (NSString *)description
