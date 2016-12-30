@@ -123,7 +123,7 @@
         if (wpid == 0) {
             LiveWaypoint *wp = [[LiveWaypoint alloc] init];
             wp.code = wptcode;
-            DICT_NSSTRING_KEY(dict, wp.code, @"Name");
+            DICT_NSSTRING_KEY(dict, wp.name, @"Name");
 
             DICT_NSSTRING_KEY(dict, wp.coords_lat, @"Latitude");
             DICT_NSSTRING_KEY(dict, wp.coords_lon, @"Longitude");
