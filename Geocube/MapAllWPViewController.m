@@ -23,6 +23,9 @@
 
 @end
 
+// The maximum size for the bounding box is from the Groundspeak LiveAPI where it is 100km max.
+#define MAXSIZE 95000
+
 @implementation MapAllWPViewController
 
 - (instancetype)init
@@ -61,9 +64,8 @@
 
     [self.map currentRectangle:&bl topRight:&tr];
     NSInteger dist = [Coordinates coordinates2distance:bl to:tr];
-    if ([Coordinates coordinates2distance:bl to:tr] > 95000) {
-        [MyTools messageBox:self header:@"Adjustment" text:@"The distance to the top right of the map and the bottom left of the map has been reduced to a maximum of 100 kilometers"];
-        NSLog(@"Dist: %ld", dist);
+    if ([Coordinates coordinates2distance:bl to:tr] > MAXSIZE) {
+        [MyTools messageBox:self header:@"Adjustment" text:[NSString stringWithFormat:@"The distance to the top right of the map and the bottom left of the map has been reduced from %@ to a maximum of %@", [MyTools niceDistance:dist], [MyTools niceDistance:MAXSIZE]]];
         do {
             CLLocationCoordinate2D tbl = bl;
             CLLocationCoordinate2D ttr = tr;
@@ -73,8 +75,7 @@
             tr.longitude = (tbl.longitude + ttr.longitude * 19) / 20;
             tr.latitude = (tbl.latitude + ttr.latitude * 19) / 20;
             dist = [Coordinates coordinates2distance:bl to:tr];
-            NSLog(@"Dist: %@ - %ld", [MyTools niceDistance:dist], dist);
-        } while ([Coordinates coordinates2distance:bl to:tr] > 95000);
+        } while ([Coordinates coordinates2distance:bl to:tr] > MAXSIZE);
     }
 
     GCBoundingBox *bb = [[GCBoundingBox alloc] init];
