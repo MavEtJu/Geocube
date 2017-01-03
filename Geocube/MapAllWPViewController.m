@@ -58,7 +58,25 @@
 - (void)menuLoadWaypoints
 {
     CLLocationCoordinate2D bl, tr;
+
     [self.map currentRectangle:&bl topRight:&tr];
+    NSInteger dist = [Coordinates coordinates2distance:bl to:tr];
+    if ([Coordinates coordinates2distance:bl to:tr] > 95000) {
+        [MyTools messageBox:self header:@"Adjustment" text:@"The distance to the top right of the map and the bottom left of the map has been reduced to a maximum of 100 kilometers"];
+        NSLog(@"Dist: %ld", dist);
+        do {
+            CLLocationCoordinate2D tbl = bl;
+            CLLocationCoordinate2D ttr = tr;
+            // Adjust at 5% per side for every iteration
+            bl.longitude = (tbl.longitude * 19 + ttr.longitude) / 20;
+            bl.latitude = (tbl.latitude * 19 + ttr.latitude) / 20;
+            tr.longitude = (tbl.longitude + ttr.longitude * 19) / 20;
+            tr.latitude = (tbl.latitude + ttr.latitude * 19) / 20;
+            dist = [Coordinates coordinates2distance:bl to:tr];
+            NSLog(@"Dist: %@ - %ld", [MyTools niceDistance:dist], dist);
+        } while ([Coordinates coordinates2distance:bl to:tr] > 95000);
+    }
+
     GCBoundingBox *bb = [[GCBoundingBox alloc] init];
     bb.leftLon = bl.longitude;
     bb.rightLon = tr.longitude;
