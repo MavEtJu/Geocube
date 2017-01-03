@@ -244,7 +244,7 @@
         return REMOTEAPI_OK;
 
     [iv setChunksCount:ivi count:2];
-    json = [gca2 api_services_caches_geocaches:wpcodes logs:0 infoViewer:iv ivi:ivi];
+    json = [gca2 api_services_caches_geocaches:wpcodes logs:30 infoViewer:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
