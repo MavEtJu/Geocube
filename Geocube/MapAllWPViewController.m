@@ -57,8 +57,14 @@
 
 - (void)menuLoadWaypoints
 {
-    dbWaypoint *wp = [[dbWaypoint alloc] init];
-    wp.coordinates = [self.map currentCenter];
+    CLLocationCoordinate2D bl, tr;
+    [self.map currentRectangle:&bl topRight:&tr];
+    GCBoundingBox *bb = [[GCBoundingBox alloc] init];
+    bb.leftLon = bl.longitude;
+    bb.rightLon = tr.longitude;
+    bb.topLat = tr.latitude;
+    bb.bottomLat = bl.latitude;
+
     [self showInfoView];
 
     NSArray *accounts = [dbc Accounts];
@@ -72,13 +78,12 @@
         [infoView setDescription:iid description:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
-        [d setObject:wp forKey:@"wp"];
+        [d setObject:bb forKey:@"boundingbox"];
         [d setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
         [d setObject:account forKey:@"account"];
 
         [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
     }];
-
 
     if (accountsFound == 0) {
         [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
@@ -86,7 +91,7 @@
     }
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -94,8 +99,8 @@
     [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
     [dict setObject:iv forKey:@"infoViewer"];
     [dict setObject:o forKey:@"object"];
-    [dict setObject:group forKey:@"group"];
-    [dict setObject:a forKey:@"account"];
+    [dict setObject:dbc.Group_LiveImport forKey:@"group"];
+    [dict setObject:account forKey:@"account"];
     [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];
 }
 
@@ -121,11 +126,11 @@
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
     InfoItemID iid = [[dict objectForKey:@"iid"] integerValue];
-    dbWaypoint *wp = [dict objectForKey:@"wp"];
+    GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
     NSObject *d;
-    NSInteger rv = [account.remoteAPI loadWaypoints:wp.coordinates retObj:&d infoViewer:infoView ivi:iid group:dbc.Group_LiveImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&d infoViewer:infoView ivi:iid callback:self];
 
     [infoView removeItem:iid];
 
