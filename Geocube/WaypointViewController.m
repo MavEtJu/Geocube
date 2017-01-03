@@ -86,7 +86,7 @@ enum {
     [lmi addItem:menuViewRaw label:@"Raw data"];
     [lmi addItem:menuSetAsTarget label:@"Set target"];
     [lmi addItem:menuLogThisWaypoint label:@"Log waypoint"];
-    [lmi addItem:menuOpenInBrowser label:@"Open browser"];
+    [lmi addItem:menuOpenInBrowser label:@"Open in browser"];
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
 
