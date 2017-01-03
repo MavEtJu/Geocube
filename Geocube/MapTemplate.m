@@ -174,23 +174,6 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
         return;
     }
 
-    if (_AppDelegate.currentTabBar == RC_LIVEMAPS) {
-        // Find the right tab and the right navigation view controller
-        tb = [_AppDelegate.tabBars objectAtIndex:RC_LIVEMAPS];
-        nvc = [tb.viewControllers objectAtIndex:VC_LIVEMAPS_WAYPOINT];
-
-        // Pick the right view controller
-        WaypointViewController *cvc = [nvc.viewControllers objectAtIndex:0];
-
-        // Make sure there is nothing extra on it
-        [cvc showWaypoint:wp];
-
-        // Bring the right tab to the front.
-        [tb setSelectedIndex:VC_LIVEMAPS_WAYPOINT animated:YES];
-
-        return;
-    }
-
 }
 
 - (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin
@@ -289,12 +272,6 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 {
     [wpInfoView waypointData:wp];
 }
-
-- (void)updateLiveWaypointInfo:(LiveWaypoint *)wp
-{
-    [wpInfoView liveWaypointData:wp];
-}
-
 
 - (void)initWaypointInfo
 {

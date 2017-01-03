@@ -124,24 +124,6 @@
                 TABBARCONTROLLER(RC_NAVIGATE, controllers)
                 break;
 
-            case RC_LIVEMAPS:
-                controllers = [NSMutableArray array];
-
-                vc = [[MapLiveViewController alloc] init];
-                vc.title = @"Map";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
-                vc = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:NO];
-                vc.title = @"Waypoint";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
-                TABBARCONTROLLER(RC_NAVIGATE, controllers)
-                break;
-
             case RC_WAYPOINTS:
                 controllers = [NSMutableArray array];
 

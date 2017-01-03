@@ -73,7 +73,6 @@
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
             MATCH(RC_NAVIGATE, @"Navigate");
-            MATCH(RC_LIVEMAPS, @"Live Maps");
             MATCH(RC_WAYPOINTS, @"Waypoints");
             MATCH(RC_KEEPTRACK, @"Keep Track");
             MATCH(RC_NOTESANDLOGS, @"Notes + Logs");

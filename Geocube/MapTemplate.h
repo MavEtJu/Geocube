@@ -79,7 +79,6 @@
 - (void)showWaypointInfo;
 - (void)initWaypointInfo;
 - (void)updateWaypointInfo:(dbWaypoint *)wp;
-- (void)updateLiveWaypointInfo:(LiveWaypoint *)wp;
 - (void)openWaypointInfo:(id)sender;
 - (BOOL)waypointInfoViewIsShown;
 

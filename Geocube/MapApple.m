@@ -128,16 +128,6 @@
                 [circles addObject:circle];
             }
         }
-        if ([o isKindOfClass:[LiveWaypoint class]] == YES) {
-            LiveWaypoint *wp = (LiveWaypoint *)o;
-
-            GCLiveWaypointAnnotation *annotation = [[GCLiveWaypointAnnotation alloc] init];
-            CLLocationCoordinate2D coord = wp.coords;
-            [annotation setCoordinate:coord];
-            annotation.waypoint = wp;
-
-            [markers addObject:annotation];
-        }
     }];
     [mapView addAnnotations:markers];
     [mapView addOverlays:circles];
@@ -311,17 +301,11 @@
         [self updateWaypointInfo:pa.waypoint];
         [self showWaypointInfo];
     }
-    if ([view.annotation isKindOfClass:[GCLiveWaypointAnnotation class]]) {
-        GCLiveWaypointAnnotation *lpa = (GCLiveWaypointAnnotation *)view.annotation;
-        [self updateLiveWaypointInfo:lpa.waypoint];
-        [self showWaypointInfo];
-    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]] ||
-        [view.annotation isKindOfClass:[GCLiveWaypointAnnotation class]]) {
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         [self hideWaypointInfo];
     }
 }

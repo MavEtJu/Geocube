@@ -65,7 +65,6 @@
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
-@class GCLiveWaypointAnnotation;
 @class GCLocationCoordinate2D;
 @class GCMutableArray;
 @class GCMutableURLRequest;
@@ -121,7 +120,6 @@
 @class ListIgnoredViewController;
 @class ListInProgressViewController;
 @class ListTemplateViewController;
-@class LiveWaypoint;
 @class LocalMenuItems;
 @class LocationManager;
 @class LogTableViewCell;
@@ -129,7 +127,6 @@
 @class MapApple;
 @class MapAppleCache;
 @class MapGoogle;
-@class MapLiveViewController;
 @class MapOSM;
 @class MapOneWPViewController;
 @class MapTemplate;

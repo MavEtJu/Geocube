@@ -289,7 +289,6 @@
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E84725EA1DF9269100CFF99B /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725E91DF9269100CFF99B /* GCBoundingBox.m */; };
-		E84725EF1DFE6F5800CFF99B /* MapLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */; };
 		E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */; };
 		E84725F51DFF3B0500CFF99B /* MapAllWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84725F41DFF3B0500CFF99B /* MapAllWPViewController.m */; };
 		E847A5821B9E875B00BEFE83 /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E847A5811B9E875B00BEFE83 /* dbFileImport.m */; };
@@ -441,6 +440,7 @@
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DD39531C40AFB500407705 /* MapAppleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DD39521C40AFB500407705 /* MapAppleCache.m */; };
 		E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */; };
+		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
 		E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E88D911BF06D9500E90F8D /* LocationManager.m */; };
 		E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFEB1B639A4600CC741A /* SettingsAccountsViewController.m */; };
 		E8E8CFFA1B6588C600CC741A /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E8CFF91B6588C600CC741A /* FiltersViewController.m */; };
@@ -468,10 +468,7 @@
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
 		E8F408591B57510400FBA858 /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F408581B57510400FBA858 /* HelpImagesViewController.m */; };
-		E8F4199B1E013A5000BF10E4 /* LiveWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */; };
-		E8F4199E1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
-		E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5705B1B3F7255003F020C /* AppDelegate.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
 		E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570911B3F7CAE003F020C /* libz.dylib */; };
@@ -961,8 +958,6 @@
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
 		E84725E81DF9269100CFF99B /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBoundingBox.h; sourceTree = "<group>"; };
 		E84725E91DF9269100CFF99B /* GCBoundingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCBoundingBox.m; sourceTree = "<group>"; };
-		E84725ED1DFE6F5800CFF99B /* MapLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLiveViewController.h; sourceTree = "<group>"; };
-		E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLiveViewController.m; sourceTree = "<group>"; };
 		E84725F01DFE6F6E00CFF99B /* MapOneWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOneWPViewController.h; sourceTree = "<group>"; };
 		E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOneWPViewController.m; sourceTree = "<group>"; };
 		E84725F31DFF3B0500CFF99B /* MapAllWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAllWPViewController.h; sourceTree = "<group>"; };
@@ -1262,6 +1257,7 @@
 		E8DD39521C40AFB500407705 /* MapAppleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleCache.m; sourceTree = "<group>"; };
 		E8E2F5551D02C4C8009170E3 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMenuItems.h; sourceTree = "<group>"; };
 		E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMenuItems.m; sourceTree = "<group>"; };
+		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8E88D901BF06D9500E90F8D /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		E8E88D911BF06D9500E90F8D /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E8E8CFEA1B639A4600CC741A /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsAccountsViewController.h; sourceTree = "<group>"; };
@@ -1311,15 +1307,10 @@
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8F408571B57510400FBA858 /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpImagesViewController.h; sourceTree = "<group>"; };
 		E8F408581B57510400FBA858 /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpImagesViewController.m; sourceTree = "<group>"; };
-		E8F419991E013A5000BF10E4 /* LiveWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveWaypoint.h; sourceTree = "<group>"; };
-		E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveWaypoint.m; sourceTree = "<group>"; };
-		E8F4199C1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLiveWaypointAnnotation.h; sourceTree = "<group>"; };
-		E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLiveWaypointAnnotation.m; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8F5705A1B3F7255003F020C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E8F5705B1B3F7255003F020C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1634,7 +1625,7 @@
 			children = (
 				E8E2F5541D02C4B4009170E3 /* Menus */,
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
-				E8F5705B1B3F7255003F020C /* AppDelegate.m */,
+				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
 				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
 				E87DF7861D7F6D6900F16B5A /* BezelManager.h */,
@@ -1725,8 +1716,6 @@
 			children = (
 				E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */,
 				E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */,
-				E84725ED1DFE6F5800CFF99B /* MapLiveViewController.h */,
-				E84725EE1DFE6F5800CFF99B /* MapLiveViewController.m */,
 				E84725F01DFE6F6E00CFF99B /* MapOneWPViewController.h */,
 				E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */,
 				E84725F31DFF3B0500CFF99B /* MapAllWPViewController.h */,
@@ -1930,16 +1919,12 @@
 				E84725EB1DFE6ED900CFF99B /* Map sources */,
 				E80250EB1D2474B500F05772 /* MapWaypointInfoView.h */,
 				E80250EC1D2474B500F05772 /* MapWaypointInfoView.m */,
-				E8F4199C1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.h */,
-				E8F4199D1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCWaypointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */,
 				E8FEDEEA1DAAE5E1007C756B /* GCCircle.h */,
 				E8FEDEEB1DAAE5E1007C756B /* GCCircle.m */,
 				E8FEDEED1DAC2DD2007C756B /* GCGMSCircle.h */,
 				E8FEDEEE1DAC2DD2007C756B /* GCGMSCircle.m */,
-				E8F419991E013A5000BF10E4 /* LiveWaypoint.h */,
-				E8F4199A1E013A5000BF10E4 /* LiveWaypoint.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -3547,6 +3532,7 @@
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */,
+				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */,
@@ -3555,7 +3541,6 @@
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
-				E8F4199B1E013A5000BF10E4 /* LiveWaypoint.m in Sources */,
 				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */,
@@ -3577,7 +3562,6 @@
 				E88974BC1B6EBF9500703E80 /* ConfigManager.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
-				E84725EF1DFE6F5800CFF99B /* MapLiveViewController.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
@@ -3593,7 +3577,6 @@
 				E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */,
 				E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */,
 				E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */,
-				E8F5705C1B3F7255003F020C /* AppDelegate.m in Sources */,
 				E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */,
 				E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */,
 				E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */,
@@ -3614,7 +3597,6 @@
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
 				E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */,
-				E8F4199E1E0144CE00BF10E4 /* GCLiveWaypointAnnotation.m in Sources */,
 				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
