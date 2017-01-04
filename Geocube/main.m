@@ -61,21 +61,9 @@ ImportManager *importManager = nil;
 //
 AppDelegate *_AppDelegate;
 
-// Hardware models
-NSInteger hardwaremodel = hardwareModelUnknown;
-
 int main(int argc, char * argv[])
 {
     srand((unsigned int)time(NULL));
-
-    UIDevice *device = [UIDevice currentDevice];
-    hardwaremodel = hardwareModelUnknown;
-    if ([device.model containsString:@"iPad"] == YES)
-        hardwaremodel = hardwareModelIPad;
-    if ([device.model containsString:@"iPhone"] == YES)
-        hardwaremodel = hardwareModelIPhone;
-    if ([device.model containsString:@"iPod"] == YES)
-        hardwaremodel = hardwareModelIPod;
 
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

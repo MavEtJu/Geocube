@@ -64,13 +64,4 @@ extern ImportManager *importManager;
 //
 extern AppDelegate *_AppDelegate;
 
-// Hardware models
-enum {
-    hardwareModelUnknown = 0,
-    hardwareModelIPod,
-    hardwareModelIPad,
-    hardwareModelIPhone
-};
-extern NSInteger hardwaremodel;
-
 #endif
