@@ -35,6 +35,7 @@
 
 enum {
     menuAddWaypoint,
+    menuCleanup,
     menuMax
 };
 
@@ -47,6 +48,7 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddWaypoint label:@"Add waypoint"];
+    [lmi addItem:menuCleanup label:@"Remove dupes"];
 
     self.delegateWaypoint = nil;
 
@@ -148,9 +150,52 @@ enum {
         case menuAddWaypoint:
             [self newWaypoint];
             return;
+        case menuCleanup:
+            [self cleanup];
+            return;
     }
 
     [super performLocalMenuAction:index];
+}
+
+- (void)cleanup
+{
+    // Find which waypoints are duplicates
+    NSMutableArray *nwps = [NSMutableArray arrayWithCapacity:[wps count]];
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
+        __block BOOL found = NO;
+        [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
+            if (wp1.wpt_lat_int == wp2.wpt_lat_int &&
+                wp1.wpt_lon_int == wp2.wpt_lon_int) {
+                found = YES;
+                *stop2 = YES;
+            }
+        }];
+        if (found == NO)
+            [nwps addObject:wp1];
+    }];
+
+    // Find which waypoints are unique and don't delete them
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        __block BOOL found = NO;
+        [nwps enumerateObjectsUsingBlock:^(dbWaypoint *nwp, NSUInteger idx2, BOOL *stop2) {
+            if (nwp._id == wp._id) {
+                found = YES;
+                *stop2 = YES;
+            }
+        }];
+        if (found == NO) {
+            [wp dbDelete];
+            [waypointManager needsRefreshRemove:wp];
+        }
+    }];
+
+    wps = nwps;
+    [self.tableView reloadData];
+
+    if (self.delegateWaypoint != nil)
+        [self.delegateWaypoint WaypointWaypoints_refreshTable];
+
 }
 
 - (void)newWaypoint
