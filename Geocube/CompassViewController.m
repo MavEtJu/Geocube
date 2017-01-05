@@ -32,8 +32,6 @@
     GCLabel *wpLatLabel;
     GCLabel *wpLonLabel;
     UIImageView *containerSizeIV;
-    UIImageView *ratingDIV;
-    UIImageView *ratingTIV;
     GCLabel *myLocationLabel;
     GCLabel *myLatLabel;
     GCLabel *myLonLabel;
@@ -42,6 +40,8 @@
     GCLabel *altitudeTextLabel;
     GCLabel *altitudeLabel;
     GCLabel *distanceLabel;
+    GCLabel *ratingDLabel;
+    GCLabel *ratingTLabel;
 
     NSInteger width;
 
@@ -134,13 +134,17 @@
     containerSizeIV.image = [imageLibrary get:ImageContainerSize_NotChosen];
     [self.view addSubview:containerSizeIV];
 
-    ratingDIV = [[UIImageView alloc] initWithFrame:rectRatingD];
-    ratingDIV.image = [imageLibrary get:ImageCacheView_ratingBase];
-    [self.view addSubview:ratingDIV];
+    ratingDLabel = [[GCLabel alloc] initWithFrame:rectRatingD];
+    ratingDLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    ratingDLabel.textAlignment = NSTextAlignmentRight;
+    ratingDLabel.text = [NSString stringWithFormat:@"D: %0.1f", waypointManager.currentWaypoint.gs_rating_difficulty];
+    [self.view addSubview:ratingDLabel];
 
-    ratingTIV = [[UIImageView alloc] initWithFrame:rectRatingT];
-    ratingTIV.image = [imageLibrary get:ImageCacheView_ratingBase];
-    [self.view addSubview:ratingTIV];
+    ratingTLabel = [[GCLabel alloc] initWithFrame:rectRatingT];
+    ratingTLabel.font = [UIFont systemFontOfSize:FONTSIZE];
+    ratingTLabel.textAlignment = NSTextAlignmentRight;
+    ratingTLabel.text = [NSString stringWithFormat:@"T: %0.1f", waypointManager.currentWaypoint.gs_rating_terrain];
+    [self.view addSubview:ratingTLabel];
 
     myLocationLabel = [[GCLabel alloc] initWithFrame:rectMyLocation];
     myLocationLabel.text = @"My location";
@@ -272,8 +276,8 @@
     wpLatLabel.frame = rectCoordLat;
     wpLonLabel.frame = rectCoordLon;
     containerSizeIV.frame = rectSize;
-    ratingDIV.frame = rectRatingD;
-    ratingTIV.frame = rectRatingT;
+    ratingDLabel.frame = rectRatingD;
+    ratingTLabel.frame = rectRatingT;
 
     myLocationLabel.frame = rectMyLocation;
     myLatLabel.frame = rectMyLat;
@@ -307,17 +311,15 @@
     if (waypointManager.currentWaypoint == nil) {
         wpIconIV.hidden = YES;
         containerSizeIV.hidden = YES;
-        ratingDIV.hidden = YES;
-        ratingTIV.hidden = YES;
+        ratingDLabel.hidden = YES;
+        ratingTLabel.hidden = YES;
     } else {
         wpIconIV.hidden = NO;
         containerSizeIV.hidden = NO;
-        ratingDIV.hidden = NO;
-        ratingTIV.hidden = NO;
+        ratingDLabel.hidden = NO;
+        ratingTLabel.hidden = NO;
         wpIconIV.image = [imageLibrary getType:waypointManager.currentWaypoint];
         containerSizeIV.image = [imageLibrary get:waypointManager.currentWaypoint.gs_container.icon];
-        ratingDIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.gs_rating_difficulty];
-        ratingTIV.image = [imageLibrary getRating:waypointManager.currentWaypoint.gs_rating_terrain];
     }
 
     altitudeLabel.text = @"";
