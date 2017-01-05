@@ -126,7 +126,7 @@ enum {
         [waypointManager needsRefreshRemove:wp];
         [wp dbDelete];
         wps = [waypoint hasWaypoints];
-        [self.tableView reloadData];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointWaypoints_refreshTable];
     }

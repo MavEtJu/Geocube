@@ -119,9 +119,9 @@ enum {
 {
     dbGroup *cg = [cgs objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete && cg.deletable == YES) {
-        [self groupDelete:cg];
+        [self groupDelete:cg forceReload:NO];
         [self refreshGroupData];
-        [self.tableView reloadData];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
@@ -164,7 +164,7 @@ enum {
                              handler:^(UIAlertAction * action)
                              {
                                  //Do some thing here
-                                 [self groupDelete:cg];
+                                 [self groupDelete:cg forceReload:YES];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *cancel = [UIAlertAction
@@ -217,14 +217,15 @@ enum {
     }
 }
 
-- (void)groupDelete:(dbGroup *)cg
+- (void)groupDelete:(dbGroup *)cg forceReload:(BOOL)forceReload
 {
     [cg dbDelete];
     [db cleanupAfterDelete];
     [waypointManager needsRefreshAll];
     [dbc Group_delete:cg];
     [self refreshGroupData];
-    [self.tableView reloadData];
+    if (forceReload == YES)
+        [self.tableView reloadData];
 }
 
 - (void)groupRename:(dbGroup *)cg

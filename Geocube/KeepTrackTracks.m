@@ -108,10 +108,15 @@ enum {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [dbTrackElement dbDeleteByTrack:t._id];
         [t dbDelete];
-        tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
-        [self.tableView reloadData];
+        [tracks removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
+
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
 #pragma mark - Local menu related functions
 

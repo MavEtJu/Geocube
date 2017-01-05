@@ -24,7 +24,6 @@
     NSMutableArray *filesNames;
     NSMutableArray *filesSizes;
     NSMutableArray *filesDates;
-    NSInteger filesCount;
     NSArray *fileImports;
 }
 
@@ -78,7 +77,6 @@ enum {
     }];
 
     fileImports = [dbFileImport dbAll];
-    filesCount = [filesNames count];
 
     [self refreshControl];
 }
@@ -90,12 +88,12 @@ enum {
     [self.tableView reloadData];
 }
 
+// Part of IOSFileTransfersDelegate
 - (void)refreshFilelist
 {
     [self refreshFileData];
     [self.tableView reloadData];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -113,7 +111,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return filesCount;
+    return [filesNames count];
 }
 
 // Return a cell for the index path
@@ -145,7 +143,6 @@ enum {
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return YES if you want the specified item to be editable.
     return YES;
 }
 
@@ -154,7 +151,8 @@ enum {
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *fn = [filesNames objectAtIndex:indexPath.row];
-        [self fileDelete:fn];
+        [self fileDelete:fn forceReload:NO];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
@@ -173,7 +171,7 @@ enum {
                              actionWithTitle:@"Delete"
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action) {
-                                 [self fileDelete:fn];
+                                 [self fileDelete:fn forceReload:YES];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *import = nil;
@@ -274,14 +272,15 @@ enum {
     [IOSFTM uploadICloud:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] vc:self];
 }
 
-- (void)fileDelete:(NSString *)filename
+- (void)fileDelete:(NSString *)filename forceReload:(BOOL)forceReload
 {
     NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
     NSLog(@"Removing file '%@'", fullname);
     [fileManager removeItemAtPath:fullname error:nil];
 
     [self refreshFileData];
-    [self.tableView reloadData];
+    if (forceReload == YES)
+        [self.tableView reloadData];
 }
 
 - (void)fileUnzip:(NSString *)filename

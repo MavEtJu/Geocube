@@ -232,7 +232,7 @@ enum {
         [img dbUnlinkFromWaypoint:waypoint._id];
 
         userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
-        [self.tableView reloadData];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointImages_refreshTable];
     }
