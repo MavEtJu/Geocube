@@ -19,17 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCBoundingBox ()
+@interface WaypointWaypointsTableViewCell : GCTableViewCell
 
-@end
+@property (nonatomic, retain) GCLabel *nameLabel;
+@property (nonatomic, retain) GCLabel *codeLabel;
+@property (nonatomic, retain) GCLabel *coordinatesLabel;
+@property (nonatomic, retain) GCImageView *iconImage;
 
-@implementation GCBoundingBox
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"(%@)-(%@)",
-            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.bottomLat, self.leftLon)],
-            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.topLat, self.rightLon)]];
-}
+- (NSInteger)cellHeight;
 
 @end

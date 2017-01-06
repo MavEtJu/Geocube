@@ -52,7 +52,7 @@ enum {
 
     self.delegateWaypoint = nil;
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[WaypointWaypointsTableViewCell class] forCellReuseIdentifier:THISCELL];
 
     return self;
 }
@@ -86,23 +86,27 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    WaypointWaypointsTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = wp.wpt_urlname;
-    cell.detailTextLabel.text = wp.wpt_name;
-    cell.imageView.image = [imageLibrary getType:wp];
+    cell.iconImage.image = [imageLibrary getType:wp];
+    cell.nameLabel.text = wp.wpt_urlname;
+    cell.codeLabel.text = wp.wpt_name;
+    cell.coordinatesLabel.text = [Coordinates NiceCoordinates:wp.coordinates];
+    [cell viewWillTransitionToSize];
 
     if (wp._id == waypoint._id) {
         cell.userInteractionEnabled = NO;
-        cell.textLabel.textColor = [UIColor lightGrayColor];
-        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.nameLabel.textColor = [UIColor lightGrayColor];
+        cell.codeLabel.textColor = [UIColor lightGrayColor];
+        cell.coordinatesLabel.textColor = [UIColor lightGrayColor];
     } else {
         cell.userInteractionEnabled = YES;
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+        cell.nameLabel.textColor = [UIColor darkGrayColor];
+        cell.codeLabel.textColor = [UIColor darkGrayColor];
+        cell.coordinatesLabel.textColor = [UIColor darkGrayColor];
     }
 
     return cell;

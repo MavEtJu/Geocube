@@ -190,6 +190,7 @@
 @class WaypointTableViewCell;
 @class WaypointTrackablesViewController;
 @class WaypointViewController;
+@class WaypointWaypointsTableViewCell;
 @class WaypointWaypointsViewController;
 @class WaypointsOfflineListViewController;
 @class database;

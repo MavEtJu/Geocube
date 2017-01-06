@@ -190,6 +190,7 @@
 #import "NotesPersonalNotesViewController.h"
 
 #import "WaypointWaypointsViewController.h"
+#import "WaypointWaypointsTableViewCell.h"
 #import "WaypointAttributesViewController.h"
 #import "WaypointDescriptionViewController.h"
 #import "WaypointGroupsViewController.h"
