@@ -188,7 +188,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;

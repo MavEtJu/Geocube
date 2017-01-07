@@ -349,7 +349,7 @@ NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     return REMOTEAPI_NOTPROCESSED;
 }
