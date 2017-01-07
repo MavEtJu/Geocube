@@ -183,6 +183,23 @@
     return json;
 }
 
+- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+{
+    NSLog(@"services_caches_search_bbox:%@", [bbox description]);
+
+    NSString *str = [NSString stringWithFormat:@"%f|%f|%f|%f", bbox.bottomLat, bbox.leftLon, bbox.topLat, bbox.rightLon];
+
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+    [_dict setObject:[MyTools urlEncode:str] forKey:@"bbox"];
+    NSString *params = [MyTools urlParameterJoin:_dict];
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/bbox" parameters:params];
+
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+
+    return json;
+}
+
 - (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcodes infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);

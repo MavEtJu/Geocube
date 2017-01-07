@@ -24,7 +24,8 @@
 - (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcode infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 
 @end
