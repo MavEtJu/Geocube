@@ -328,7 +328,7 @@
 
 - (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
-    NSLog(@"api_services_search_bbox");
+    NSLog(@"api_services_search_bbox:%@", [bb description]);
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
     NSString *c = [NSString stringWithFormat:@"%f|%f|%f|%f", bb.bottomLat, bb.leftLon, bb.topLat, bb.rightLon];
