@@ -143,7 +143,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoints:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -195,6 +195,41 @@
     [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:rv group:group account:self.account];
     *retObject = rv;
 
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+{
+    if ([self.account canDoRemoteStuff] == NO) {
+        [self setAPIError:@"[OKAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        return REMOTEAPI_APIDISABLED;
+    }
+
+    [iv setChunksTotal:ivi total:2];
+    [iv setChunksCount:ivi count:1];
+
+    GCDictionaryOKAPI *json = [okapi services_caches_search_bbox:bb infoViewer:iv ivi:ivi];
+    OKAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+    OKAPI_GET_VALUE(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    if ([wpcodes count] == 0)
+        return REMOTEAPI_OK;
+
+    [iv setChunksCount:ivi count:2];
+    json = [okapi services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
+    OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+        [wps addObject:[json objectForKey:wpcode]];
+    }];
+    [d setObject:wps forKey:@"waypoints"];
+
+    GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
+    [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:ivi object:d2 account:self.account];
+
+    [waypointManager needsRefreshAll];
     return REMOTEAPI_OK;
 }
 
