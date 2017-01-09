@@ -38,7 +38,6 @@
     GCLabel *labelCurrentLocationCoordinates;
     GCLabel *labelDistance;
     GCLabel *labelDirection;
-    UIButton *buttonRemember;
     UIButton *buttonSetAsTarget;
 }
 
@@ -46,11 +45,19 @@
 
 @implementation KeepTrackCar
 
+enum {
+    menuRememberLocation,
+    menuClearCoordinates,
+    menuMax
+};
+
 - (instancetype)init
 {
     self = [super init];
 
-    lmi = nil;
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuRememberLocation label:@"Remember location"];
+    [lmi addItem:menuClearCoordinates label:@"Clear coordinates"];
 
     return self;
 }
@@ -94,12 +101,6 @@
     labelDirection = [[GCLabel alloc] initWithFrame:rectDirection];
     labelDirection.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelDirection];
-
-    buttonRemember = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonRemember.frame = rectButtonRemember;
-    [buttonRemember setTitle:@"Remember current location" forState:UIControlStateNormal];
-    [buttonRemember addTarget:self action:@selector(remember:) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:buttonRemember];
 
     buttonSetAsTarget = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonSetAsTarget.frame = rectButtonSetAsTarget;
@@ -164,18 +165,18 @@
     labelRecordedLocationCoordinates.frame = rectRecordedLocationCoordinates;
     labelDirection.frame = rectDirection;
     labelDistance.frame = rectDistance;
-    buttonRemember.frame = rectButtonRemember;
     buttonSetAsTarget.frame = rectButtonSetAsTarget;
 }
 
 - (void)updateLocationManagerLocation
 {
     labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
-    labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
     if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
+        labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
         labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
         labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
     } else {
+        labelRecordedLocationCoordinates.text = @"-";
         labelDistance.text = @"Distance: -";
         labelDirection.text = @"Direction: -";
     }
@@ -193,7 +194,7 @@
     [LM stopDelegation:self];
 }
 
-- (void)remember:(UIButton *)b
+- (void)remember
 {
     coordsRecordedLocation = [LM coords];
     [self updateLocationManagerLocation];
@@ -253,6 +254,26 @@
     [tb setSelectedIndex:VC_NAVIGATE_COMPASS animated:YES];
 
     return;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    switch (index) {
+        case menuRememberLocation:
+            [self remember];
+            return;
+        case menuClearCoordinates:
+            coordsRecordedLocation = CLLocationCoordinate2DMake(0, 0);
+            [self updateLocationManagerLocation];
+            NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
+            dbWaypoint *wp = [dbWaypoint dbGet:wpid];
+            [wp dbDelete];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
 }
 
 @end
