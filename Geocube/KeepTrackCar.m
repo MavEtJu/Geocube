@@ -172,8 +172,13 @@
 {
     labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
     labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
-    labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
-    labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
+    if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
+        labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
+        labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
+    } else {
+        labelDistance.text = @"Distance: -";
+        labelDirection.text = @"Direction: -";
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
