@@ -320,8 +320,8 @@ enum {
     __block BOOL inSegment = NO;
 
     NSMutableString *o = [NSMutableString stringWithString:@""];
-    [o appendString:@"<?xml version=\"1.1\" encoding=\"UTF-8\" ?>\n"];
-    [o appendString:@"<gpx version=\"1.1\" creator=\"Geocube\">\n"];
+    [o appendString:@"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"];
+    [o appendString:@"<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" creator=\"Geocube\" version=\"1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\">\n"];
     [o appendString:@"\t<metadata>\n"];
     [o appendFormat:@"\t\t<time>%@</time>\n", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:te.timestamp_epoch]];
     [o appendString:@"\t</metadata>\n"];
