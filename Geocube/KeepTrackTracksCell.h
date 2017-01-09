@@ -23,5 +23,8 @@
 
 @property (nonatomic, retain) NSString *trackName;
 @property (nonatomic) NSInteger dateStart;
+@property (nonatomic) NSInteger distance;
+
+- (void)finish;
 
 @end

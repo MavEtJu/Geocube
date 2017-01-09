@@ -87,6 +87,19 @@ enum {
     cell.trackName = t.name;
     cell.dateStart = t.dateStart;
 
+    NSArray *tes = [dbTrackElement dbAllByTrack:t._id];
+    __block CGFloat distance = 0;
+    __block dbTrackElement *te_prev = nil;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (te_prev != nil && te.restart == NO) {
+            distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
+        }
+        te_prev = te;
+    }];
+    cell.distance = distance;
+
+    [cell finish];
+
     return cell;
 }
 

@@ -36,9 +36,12 @@
     return self;
 }
 
-- (void)setDateStart:(NSInteger)dateStart
+- (void)finish
 {
-    self.detailTextLabel.text = [MyTools dateTimeString_YYYY_MM_DD:dateStart];
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%@, started on %@",
+                                 [MyTools niceDistance:self.distance],
+                                 [MyTools dateTimeString_YYYY_MM_DD:self.dateStart]
+                                 ];
 }
 
 - (void)setTrackName:(NSString *)trackName
