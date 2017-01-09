@@ -268,7 +268,7 @@
 
     NSArray *images = [dict objectForKey:@"images"];
     if ([images count] != 0)
-        [self parseData_images:images waypoint:wp];
+        [self parseData_images:images waypoint:wp type:IMAGECATEGORY_CACHE];
 
     NSArray *trackables = [dict objectForKey:@"trackables"];
     if ([trackables count] != 0)
@@ -279,16 +279,16 @@
         [self parseData_logs:logs waypoint:wp];
 }
 
-- (void)parseData_images:(NSArray *)images waypoint:(dbWaypoint *)wp
+- (void)parseData_images:(NSArray *)images waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
 {
     NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"Image number %ld", (unsigned long)idx);
-        [self parseData_image:image waypoint:wp];
+        [self parseData_image:image waypoint:wp type:imagetype];
     }];
 }
 
-- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
 {
     /*
      {
@@ -317,7 +317,7 @@
     }
 
     if ([image dbLinkedtoWaypoint:wp._id] == NO)
-        [image dbLinkToWaypoint:wp._id type:IMAGECATEGORY_CACHE];
+        [image dbLinkToWaypoint:wp._id type:imagetype];
 
     [ImagesDownloadManager addToQueue:image];
 }
@@ -377,6 +377,10 @@
             *stop = YES;
         }
     }];
+
+    NSArray *images = [dict objectForKey:@"images"];
+    if ([images count] != 0)
+        [self parseData_images:images waypoint:wp type:IMAGECATEGORY_LOG];
 
     if (found == YES)
         return;
