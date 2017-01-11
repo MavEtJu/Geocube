@@ -68,18 +68,17 @@
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
 
-#define BORDER 2
+    NSInteger offset = 16;
+    NSInteger labelWidth = width - 2 * offset;
 
-    NSInteger labelWidth = width - self.imageView.image.size.width;
-
-    NSInteger y = 0 + 1;
-    rectFileName = CGRectMake(BORDER, y, labelWidth, self.labelFileName.font.lineHeight);
+    NSInteger y = 0;
+    rectFileName = CGRectMake(offset, y, labelWidth, self.labelFileName.font.lineHeight);
     y += self.labelFileName.font.lineHeight + 1;
-    rectFileSize = CGRectMake(BORDER, y, labelWidth, self.labelFileSize.font.lineHeight);
+    rectFileSize = CGRectMake(offset, y, labelWidth, self.labelFileSize.font.lineHeight);
     y += self.labelFileSize.font.lineHeight + 1;
-    rectFileDateTime = CGRectMake(BORDER, y, labelWidth, self.labelFileDateTime.font.lineHeight);
+    rectFileDateTime = CGRectMake(offset, y, labelWidth, self.labelFileDateTime.font.lineHeight);
     y += self.labelFileDateTime.font.lineHeight + 1;
-    rectLastImport = CGRectMake(BORDER, y, labelWidth, self.labelLastImport.font.lineHeight);
+    rectLastImport = CGRectMake(offset, y, labelWidth, self.labelLastImport.font.lineHeight);
     y += self.labelLastImport.font.lineHeight + 1;
 }
 
@@ -104,7 +103,7 @@
 
 - (NSInteger)cellHeight
 {
-    return self.labelLastImport.frame.size.height + self.labelLastImport.frame.origin.y + BORDER;
+    return self.labelLastImport.frame.size.height + self.labelLastImport.frame.origin.y + 2;
 }
 
 @end
