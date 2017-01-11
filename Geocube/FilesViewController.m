@@ -142,7 +142,7 @@ enum {
 
     cell.labelFileName.text = fn;
     cell.labelFileSize.text = [NSString stringWithFormat:@"File size: %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelFileDateTime.text = [NSString stringWithFormat:@"The age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelFileDateTime.text = [NSString stringWithFormat:@"File age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
