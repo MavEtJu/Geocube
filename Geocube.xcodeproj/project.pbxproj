@@ -25,6 +25,7 @@
 		E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */; };
 		E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEB01BA5983A00106F7F /* ThemeNight.m */; };
 		E80AEEBE1BA670B200106F7F /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AEEBD1BA670B200106F7F /* GCView.m */; };
+		E80F680E1E25D33B00BA6FA9 /* FilesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E80F680D1E25D33B00BA6FA9 /* FilesViewCell.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E812CF551D01A09400C4E777 /* VKSideMenu.m */; };
@@ -660,6 +661,8 @@
 		E80AEEB01BA5983A00106F7F /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNight.m; sourceTree = "<group>"; };
 		E80AEEBC1BA670B200106F7F /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
 		E80AEEBD1BA670B200106F7F /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
+		E80F680C1E25D33B00BA6FA9 /* FilesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewCell.h; sourceTree = "<group>"; };
+		E80F680D1E25D33B00BA6FA9 /* FilesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewCell.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E812CF541D01A09400C4E777 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
@@ -2956,6 +2959,8 @@
 			children = (
 				E8DA95CD1B426B71003E46A4 /* FilesViewController.h */,
 				E8DA95CE1B426B71003E46A4 /* FilesViewController.m */,
+				E80F680C1E25D33B00BA6FA9 /* FilesViewCell.h */,
+				E80F680D1E25D33B00BA6FA9 /* FilesViewCell.m */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -3533,6 +3538,7 @@
 				E84E239A1DB9E8440079496D /* ProtocolGCA2.m in Sources */,
 				E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
+				E80F680E1E25D33B00BA6FA9 /* FilesViewCell.m in Sources */,
 				E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */,
 				E8740FDF1B4F87D2002527DA /* dbLog.m in Sources */,
 				E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */,

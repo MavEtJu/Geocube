@@ -60,7 +60,6 @@ NEEDS_OVERLOADING(clearFlags)
     WaypointTableViewCell *cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
     waypointCellHeight = [cell cellHeight];
 
-
     [self makeInfoView];
 }
 

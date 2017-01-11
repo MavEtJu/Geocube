@@ -25,6 +25,8 @@
     NSMutableArray *filesSizes;
     NSMutableArray *filesDates;
     NSArray *fileImports;
+
+    NSInteger cellHeight;
 }
 
 @end
@@ -43,8 +45,11 @@ enum {
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[FilesViewCell class] forCellReuseIdentifier:THISCELL];
     [self refreshFileData];
+
+    FilesViewCell *cell = [[FilesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
+    cellHeight = [cell cellHeight];
 
     // Make sure we get told when a new file is here
     IOSFTM.delegate = self;
@@ -117,7 +122,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    FilesViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     NSString *fn = [filesNames objectAtIndex:indexPath.row];
     NSNumber *fs = [filesSizes objectAtIndex:indexPath.row];
@@ -133,17 +138,23 @@ enum {
 
     NSString *imported = @"";
     if (fi != nil)
-        imported = [NSString stringWithFormat:@"(Imported %@)", [MyTools niceTimeDifference:fi.lastimport]];
+        imported = [NSString stringWithFormat:@"Last imported on %@", [MyTools niceTimeDifference:fi.lastimport]];
 
-    cell.textLabel.text = fn;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@ %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]], [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]], imported];
-
+    cell.labelFileName.text = fn;
+    cell.labelFileSize.text = [NSString stringWithFormat:@"File size: %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
+    cell.labelFileDateTime.text = [NSString stringWithFormat:@"The age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelLastImport.text = imported;
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return cellHeight;
 }
 
 // Override to support editing the table view.
