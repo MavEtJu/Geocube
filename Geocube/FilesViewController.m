@@ -25,13 +25,11 @@
     NSMutableArray *filesSizes;
     NSMutableArray *filesDates;
     NSArray *fileImports;
-
-    NSInteger cellHeight;
 }
 
 @end
 
-#define THISCELL @"FilesViewControllerCell"
+#define THISCELL @"FilesTableViewCell"
 
 @implementation FilesViewController
 
@@ -44,12 +42,14 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[FilesViewCell class] forCellReuseIdentifier:THISCELL];
-    [self refreshFileData];
 
-    FilesViewCell *cell = [[FilesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-    cellHeight = [cell cellHeight];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FilesTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
+
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self refreshFileData];
 
     // Make sure we get told when a new file is here
     IOSFTM.delegate = self;
@@ -93,6 +93,12 @@ enum {
     [self.tableView reloadData];
 }
 
+- (void)viewWillTransitionToSize
+{
+    [super viewWillTransitionToSize];
+    [self.tableView reloadData];
+}
+
 // Part of IOSFileTransfersDelegate
 - (void)refreshFilelist
 {
@@ -122,7 +128,9 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilesViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    FilesTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+
+    cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 
     NSString *fn = [filesNames objectAtIndex:indexPath.row];
     NSNumber *fs = [filesSizes objectAtIndex:indexPath.row];
@@ -140,9 +148,9 @@ enum {
     if (fi != nil)
         imported = [NSString stringWithFormat:@"Last imported on %@", [MyTools niceTimeDifference:fi.lastimport]];
 
-    cell.labelFileName.text = fn;
-    cell.labelFileSize.text = [NSString stringWithFormat:@"File size: %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelFileDateTime.text = [NSString stringWithFormat:@"File age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelFilename.text = fn;
+    cell.labelSize.text = [NSString stringWithFormat:@"File size: %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:@"File age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
@@ -150,11 +158,6 @@ enum {
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return cellHeight;
 }
 
 // Override to support editing the table view.

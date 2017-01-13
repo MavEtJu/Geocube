@@ -19,13 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilesViewCell : GCTableViewCell
+@interface FilesTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) GCLabel *labelFileName;
-@property (nonatomic, retain) GCLabel *labelFileSize;
-@property (nonatomic, retain) GCLabel *labelFileDateTime;
-@property (nonatomic, retain) GCLabel *labelLastImport;
-
-- (NSInteger)cellHeight;
+@property (weak, nonatomic) IBOutlet GCLabel *labelFilename;
+@property (weak, nonatomic) IBOutlet GCLabel *labelSize;
+@property (weak, nonatomic) IBOutlet GCLabel *labelDateTime;
+@property (weak, nonatomic) IBOutlet GCLabel *labelLastImport;
 
 @end

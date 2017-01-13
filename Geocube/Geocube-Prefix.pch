@@ -235,7 +235,7 @@
 #import "KeepTrackTrack.h"
 #import "KeepTrackTracks.h"
 
-#import "FilesViewCell.h"
+#import "FilesTableViewCell.h"
 #import "FilesViewController.h"
 
 #import "TrackablesListViewController.h"
