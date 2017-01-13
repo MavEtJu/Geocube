@@ -2447,8 +2447,6 @@
 		E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */ = {
 			isa = PBXGroup;
 			children = (
-				E89C39881E289A5900BB60CA /* ActionSheetMultipleStringPicker.h */,
-				E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */,
 				E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */,
 				E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */,
 				E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */,
@@ -2460,6 +2458,8 @@
 				E8D569EB1B54A108001A0F8E /* ActionSheetDistancePicker.m */,
 				E8D569EC1B54A108001A0F8E /* ActionSheetLocalePicker.h */,
 				E8D569ED1B54A108001A0F8E /* ActionSheetLocalePicker.m */,
+				E89C39881E289A5900BB60CA /* ActionSheetMultipleStringPicker.h */,
+				E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */,
 				E8D569EE1B54A108001A0F8E /* ActionSheetPicker.h */,
 				E8D569EF1B54A108001A0F8E /* ActionSheetStringPicker.h */,
 				E8D569F01B54A108001A0F8E /* ActionSheetStringPicker.m */,
