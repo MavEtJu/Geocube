@@ -364,6 +364,7 @@
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E89C398A1E289A5900BB60CA /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */; };
 		E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */; };
 		E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */; };
 		E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */; };
@@ -1110,6 +1111,8 @@
 		E89580241C66E44900282177 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E89C39881E289A5900BB60CA /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = ActionSheetPicker/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = ActionSheetPicker/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
 		E89D15691DE55F7500ED14B3 /* ToolsRot13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsRot13ViewController.h; sourceTree = "<group>"; };
 		E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsRot13ViewController.m; sourceTree = "<group>"; };
 		E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsGPSViewController.h; sourceTree = "<group>"; };
@@ -2444,6 +2447,8 @@
 		E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */ = {
 			isa = PBXGroup;
 			children = (
+				E89C39881E289A5900BB60CA /* ActionSheetMultipleStringPicker.h */,
+				E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */,
 				E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */,
 				E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */,
 				E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */,
@@ -3548,6 +3553,7 @@
 				E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
+				E89C398A1E289A5900BB60CA /* ActionSheetMultipleStringPicker.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */,
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
