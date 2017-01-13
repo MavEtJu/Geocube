@@ -623,13 +623,23 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
         [tweetSheet setInitialText:text];
         [vc presentViewController:tweetSheet animated:YES completion:nil];
     } else {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Sorry"
-                                  message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
-                                  delegate:self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
+
+        UIAlertController *alert= [UIAlertController
+                                   alertControllerWithTitle:@"Sorry"
+                                   message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *close = [UIAlertAction
+                                actionWithTitle:@"Close"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction *action) {
+                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                }];
+
+        [alert addAction:close];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
+        }];
     }
 }
 
