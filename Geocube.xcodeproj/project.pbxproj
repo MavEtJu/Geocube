@@ -365,6 +365,8 @@
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89C398A1E289A5900BB60CA /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */; };
+		E89C398E1E28A01400BB60CA /* QueriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */; };
+		E89C398F1E28A01400BB60CA /* QueriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */; };
 		E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */; };
 		E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */; };
 		E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */; };
@@ -1113,6 +1115,9 @@
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89C39881E289A5900BB60CA /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = ActionSheetPicker/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
 		E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = ActionSheetPicker/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		E89C398B1E28A01400BB60CA /* QueriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTableViewCell.h; sourceTree = "<group>"; };
+		E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTableViewCell.m; sourceTree = "<group>"; };
+		E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueriesTableViewCell.xib; sourceTree = "<group>"; };
 		E89D15691DE55F7500ED14B3 /* ToolsRot13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsRot13ViewController.h; sourceTree = "<group>"; };
 		E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsRot13ViewController.m; sourceTree = "<group>"; };
 		E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsGPSViewController.h; sourceTree = "<group>"; };
@@ -1746,6 +1751,9 @@
 				E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */,
 				E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */,
 				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
+				E89C398B1E28A01400BB60CA /* QueriesTableViewCell.h */,
+				E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */,
+				E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */,
 			);
 			name = Queries;
 			sourceTree = "<group>";
@@ -3407,6 +3415,7 @@
 				E82E663F1DA07A8700CFBDED /* icons - target - 30x30@2x.png in Resources */,
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
 				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
+				E89C398F1E28A01400BB60CA /* QueriesTableViewCell.xib in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
 				E8FEDE801DA7AD67007C756B /* map - background - 35x42@2x.png in Resources */,
 				E82E674B1DA07D0200CFBDED /* attributes - 33.png in Resources */,
@@ -3719,6 +3728,7 @@
 				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
 				E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
+				E89C398E1E28A01400BB60CA /* QueriesTableViewCell.m in Sources */,
 				E8ABA0951E277CF20080D5FE /* FilesTableViewCell.m in Sources */,
 				E8E8CFEC1B639A4600CC741A /* SettingsAccountsViewController.m in Sources */,
 				E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */,

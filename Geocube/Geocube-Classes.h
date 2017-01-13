@@ -150,6 +150,7 @@
 @class QueriesGCAViewController;
 @class QueriesGGCWViewController;
 @class QueriesGroundspeakViewController;
+@class QueriesTableViewCell;
 @class QueriesTemplateViewController;
 @class RemoteAPIGCA2;
 @class RemoteAPIGCA;

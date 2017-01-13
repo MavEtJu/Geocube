@@ -34,7 +34,7 @@ enum {
     menuMax
 };
 
-#define THISCELL @"QueriesTableCells"
+#define THISCELL @"QueriesTableViewCells"
 
 - (instancetype)init
 {
@@ -51,7 +51,11 @@ enum {
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"QueriesTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     [self makeInfoView];
 
@@ -122,48 +126,41 @@ NEEDS_OVERLOADING(reloadQueries)
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    QueriesTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     NSString *name = [pq objectForKey:@"Name"];
-    cell.textLabel.text = name;
+    cell.labelQueryname.text = name;
 
     NSInteger size = 0;
-    NSMutableString *detail = [NSMutableString stringWithString:@""];
+    cell.labelWaypoints.text = @"";
     if ([pq objectForKey:@"Count"] != nil) {
         NSInteger count = [[pq objectForKey:@"Count" ] integerValue];
-        if ([detail isEqualToString:@""] == NO)
-            [detail appendString:@" - "];
         size = count;
         if (count >= 0)
-            [detail appendFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
+            cell.labelWaypoints.text = [NSString stringWithFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
     }
+    cell.labelSize.text = @"";
     if ([pq objectForKey:@"Size"] != nil) {
-        if ([detail isEqualToString:@""] == NO)
-            [detail appendString:@" - "];
         size = [[pq objectForKey:@"Size"] integerValue];
-        [detail appendString:[MyTools niceFileSize:size]];
+        cell.labelSize.text = [NSString stringWithFormat:@"Download size: %@", [MyTools niceFileSize:size]];
     }
+    cell.labelDateTime.text = @"";
     if ([pq objectForKey:@"DateTime"] != nil) {
-        if ([detail isEqualToString:@""] == NO)
-            [detail appendString:@" - "];
         NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[[pq objectForKey:@"DateTime"] integerValue]];
-        [detail appendString:date];
+        cell.labelDateTime.text = [NSString stringWithFormat:@"Date created: ", date];
     }
 
+    cell.labelLastImport.text = @"";
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
         if (qi.account_id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
-            if ([detail isEqualToString:@""] == NO)
-                [detail appendString:@" - "];
-            [detail appendFormat:@"Last import on %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
+            cell.labelLastImport.text = [NSString stringWithFormat:@"Last import on %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
             *stop = YES;
         }
     }];
-
-    cell.detailTextLabel.text = detail;
 
     return cell;
 }
