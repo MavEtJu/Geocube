@@ -28,7 +28,7 @@
 
 @implementation KeepTrackTracks
 
-#define THISCELL @"KeepTrackTracksCell"
+#define THISCELL @"KeepTracksTrackTableViewCell"
 
 enum {
     menuAddATrack,
@@ -42,7 +42,10 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddATrack label:@"Start new track"];
 
-    [self.tableView registerClass:[KeepTrackTracksCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:@"KeepTracksTrackTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     return self;
 }
@@ -80,12 +83,12 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KeepTrackTracksCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    KeepTracksTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
 
-    cell.trackName = t.name;
-    cell.dateStart = t.dateStart;
+    cell.labelTrackName.text = t.name;
+    cell.labelDateTimeStart.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:t.dateStart];
 
     NSArray *tes = [dbTrackElement dbAllByTrack:t._id];
     __block CGFloat distance = 0;
@@ -96,9 +99,7 @@ enum {
         }
         te_prev = te;
     }];
-    cell.distance = distance;
-
-    [cell finish];
+    cell.labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:distance]];
 
     return cell;
 }

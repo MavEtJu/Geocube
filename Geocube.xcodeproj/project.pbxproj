@@ -367,6 +367,8 @@
 		E89C398A1E289A5900BB60CA /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C39891E289A5900BB60CA /* ActionSheetMultipleStringPicker.m */; };
 		E89C398E1E28A01400BB60CA /* QueriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */; };
 		E89C398F1E28A01400BB60CA /* QueriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */; };
+		E89C39931E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E89C39911E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m */; };
+		E89C39941E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89C39921E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib */; };
 		E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */; };
 		E89D156E1DE55F8600ED14B3 /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D156D1DE55F8600ED14B3 /* ToolsGPSViewController.m */; };
 		E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D15711DE6AD9500ED14B3 /* GCLocationCoordinate2D.m */; };
@@ -492,7 +494,6 @@
 		E8F570CB1B4008DD003F020C /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CA1B4008DD003F020C /* dbType.m */; };
 		E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570CD1B40147E003F020C /* ImportGPX.m */; };
 		E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */; };
-		E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */; };
 		E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */; };
 		E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF231D744E9800AC7EE6 /* GCImageView.m */; };
 		E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF261D74507100AC7EE6 /* GCButton.m */; };
@@ -1118,6 +1119,9 @@
 		E89C398B1E28A01400BB60CA /* QueriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTableViewCell.h; sourceTree = "<group>"; };
 		E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesTableViewCell.m; sourceTree = "<group>"; };
 		E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueriesTableViewCell.xib; sourceTree = "<group>"; };
+		E89C39901E29B0B400BB60CA /* KeepTracksTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTracksTrackTableViewCell.h; sourceTree = "<group>"; };
+		E89C39911E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTracksTrackTableViewCell.m; sourceTree = "<group>"; };
+		E89C39921E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeepTracksTrackTableViewCell.xib; sourceTree = "<group>"; };
 		E89D15691DE55F7500ED14B3 /* ToolsRot13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsRot13ViewController.h; sourceTree = "<group>"; };
 		E89D156A1DE55F7500ED14B3 /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsRot13ViewController.m; sourceTree = "<group>"; };
 		E89D156C1DE55F8600ED14B3 /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsGPSViewController.h; sourceTree = "<group>"; };
@@ -1357,8 +1361,6 @@
 		E8F570CD1B40147E003F020C /* ImportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPX.m; sourceTree = "<group>"; };
 		E8F6BE741BB8C78F009EA037 /* LXMapScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXMapScaleView.h; path = LXMapScaleView/LXMapScaleView.h; sourceTree = "<group>"; };
 		E8F6BE751BB8C78F009EA037 /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
-		E8F7FF101D5C8B7800AC7EE6 /* KeepTrackTracksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTracksCell.h; sourceTree = "<group>"; };
-		E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracksCell.m; sourceTree = "<group>"; };
 		E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLocale.h; sourceTree = "<group>"; };
 		E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLocale.m; sourceTree = "<group>"; };
 		E8F7FF221D744E9800AC7EE6 /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCImageView.h; sourceTree = "<group>"; };
@@ -2390,8 +2392,9 @@
 				E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */,
 				E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */,
 				E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */,
-				E8F7FF101D5C8B7800AC7EE6 /* KeepTrackTracksCell.h */,
-				E8F7FF111D5C8B7800AC7EE6 /* KeepTrackTracksCell.m */,
+				E89C39901E29B0B400BB60CA /* KeepTracksTrackTableViewCell.h */,
+				E89C39911E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m */,
+				E89C39921E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib */,
 			);
 			name = "Keep Track";
 			sourceTree = "<group>";
@@ -3153,6 +3156,7 @@
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
 				E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */,
 				E8FEDE591DA77F9D007C756B /* container size - regular - 35x11.png in Resources */,
+				E89C39941E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib in Resources */,
 				E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
@@ -3599,6 +3603,7 @@
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
 				E8E8D02C1B6720F100CC741A /* FilterDateTableViewCell.m in Sources */,
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
+				E89C39931E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E8B771D61DD9DA4E008B2F9E /* RemoteAPILiveAPI.m in Sources */,
@@ -3666,7 +3671,6 @@
 				E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */,
 				E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */,
 				E8B771D41DD9DA4E008B2F9E /* RemoteAPIGCA2.m in Sources */,
-				E8F7FF121D5C8B7800AC7EE6 /* KeepTrackTracksCell.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,

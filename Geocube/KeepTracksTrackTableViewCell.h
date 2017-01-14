@@ -19,34 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackTracksCell ()
+@interface KeepTracksTrackTableViewCell : GCTableViewCell
 
-@end
-
-@implementation KeepTrackTracksCell
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-
-    self.userInteractionEnabled = YES;
-
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)finish
-{
-    self.detailTextLabel.text = [NSString stringWithFormat:@"%@, started on %@",
-                                 [MyTools niceDistance:self.distance],
-                                 [MyTools dateTimeString_YYYY_MM_DD:self.dateStart]
-                                 ];
-}
-
-- (void)setTrackName:(NSString *)trackName
-{
-    self.textLabel.text = trackName;
-}
+@property (weak, nonatomic) IBOutlet GCLabel *labelTrackName;
+@property (weak, nonatomic) IBOutlet GCLabel *labelDateTimeStart;
+@property (weak, nonatomic) IBOutlet GCLabel *labelDistance;
 
 @end

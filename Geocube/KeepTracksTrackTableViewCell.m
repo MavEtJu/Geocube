@@ -19,12 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackTracksCell : GCTableViewCell
+@interface KeepTracksTrackTableViewCell ()
 
-@property (nonatomic, retain) NSString *trackName;
-@property (nonatomic) NSInteger dateStart;
-@property (nonatomic) NSInteger distance;
+@end
 
-- (void)finish;
+@implementation KeepTracksTrackTableViewCell
 
 @end
