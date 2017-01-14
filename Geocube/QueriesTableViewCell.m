@@ -25,4 +25,20 @@
 
 @implementation QueriesTableViewCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelDateTime changeTheme];
+    [self.labelWaypoints changeTheme];
+    [self.labelLastImport changeTheme];
+    [self.labelSize changeTheme];
+    [self.labelQueryname changeTheme];
+}
+
 @end

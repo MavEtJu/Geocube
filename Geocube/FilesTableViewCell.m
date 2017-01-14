@@ -25,9 +25,19 @@
 
 @implementation FilesTableViewCell
 
-- (void)viewWillTransitionToSize
+- (void)awakeFromNib
 {
-    [self layoutSubviews];
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelSize changeTheme];
+    [self.labelLastImport changeTheme];
+    [self.labelDateTime changeTheme];
+    [self.labelFilename changeTheme];
 }
 
 @end

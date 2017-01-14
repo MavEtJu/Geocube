@@ -25,4 +25,18 @@
 
 @implementation KeepTracksTrackTableViewCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelDistance changeTheme];
+    [self.labelDateTimeStart changeTheme];
+    [self.labelTrackName changeTheme];
+}
+
 @end
