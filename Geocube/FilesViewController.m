@@ -146,11 +146,11 @@ enum {
 
     NSString *imported = @"";
     if (fi != nil)
-        imported = [NSString stringWithFormat:@"Last imported on %@", [MyTools niceTimeDifference:fi.lastimport]];
+        imported = [NSString stringWithFormat:@"Last imported: %@", [MyTools niceTimeDifference:fi.lastimport]];
 
     cell.labelFilename.text = fn;
     cell.labelSize.text = [NSString stringWithFormat:@"File size: %@", [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"File age is %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:@"File age: %@.", [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
