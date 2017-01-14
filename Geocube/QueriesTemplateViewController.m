@@ -149,7 +149,7 @@ NEEDS_OVERLOADING(reloadQueries)
     cell.labelDateTime.text = @"";
     if ([pq objectForKey:@"DateTime"] != nil) {
         NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[[pq objectForKey:@"DateTime"] integerValue]];
-        cell.labelDateTime.text = [NSString stringWithFormat:@"Date created: ", date];
+        cell.labelDateTime.text = [NSString stringWithFormat:@"Date created: %@", date];
     }
 
     cell.labelLastImport.text = @"";
