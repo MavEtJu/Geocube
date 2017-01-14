@@ -157,7 +157,7 @@ NEEDS_OVERLOADING(reloadQueries)
         if (qi.account_id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
-            cell.labelLastImport.text = [NSString stringWithFormat:@"Last import on %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
+            cell.labelLastImport.text = [NSString stringWithFormat:@"Last import: %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
             *stop = YES;
         }
     }];

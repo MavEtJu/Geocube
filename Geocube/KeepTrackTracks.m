@@ -175,7 +175,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Name of the new track";
-        textField.text = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
+        textField.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss];
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -202,7 +202,7 @@ enum {
 
     if ([newdate isEqualToString:olddate] == NO) {
         dbTrack *t = [[dbTrack alloc] init];
-        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss]];
+        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss]];
         t.dateStart = time(NULL);
         t.dateStop = 0;
         [t dbCreate];
