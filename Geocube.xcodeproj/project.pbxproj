@@ -1707,6 +1707,33 @@
 			name = "Base type objects";
 			sourceTree = "<group>";
 		};
+		E83C204B1E2D84DD006C523E /* Waypoint Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
+				E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */,
+				E8C5BB521C719EB1006222D5 /* WaypointDescriptionViewController.h */,
+				E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */,
+				E8C5BB541C719EB1006222D5 /* WaypointGroupsViewController.h */,
+				E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */,
+				E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */,
+				E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */,
+				E8C5BB5E1C719EB1006222D5 /* WaypointLogsViewController.h */,
+				E8C5BB5F1C719EB1006222D5 /* WaypointLogsViewController.m */,
+				E8C5BB621C719EB1006222D5 /* WaypointPersonalNoteViewController.h */,
+				E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */,
+				E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */,
+				E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */,
+				E8C5BB6A1C719EB1006222D5 /* WaypointTrackablesViewController.h */,
+				E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */,
+				E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */,
+				E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */,
+				E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */,
+				E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */,
+			);
+			name = "Waypoint Subviews";
+			sourceTree = "<group>";
+		};
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1826,29 +1853,12 @@
 		E85707911CA1E7CE00467CE0 /* Single Waypoint */ = {
 			isa = PBXGroup;
 			children = (
-				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
 				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
 				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
-				E8C5BB501C719EB1006222D5 /* WaypointAttributesViewController.h */,
-				E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */,
-				E8C5BB521C719EB1006222D5 /* WaypointDescriptionViewController.h */,
-				E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */,
-				E8C5BB541C719EB1006222D5 /* WaypointGroupsViewController.h */,
-				E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */,
-				E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */,
-				E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */,
-				E8C5BB5E1C719EB1006222D5 /* WaypointLogsViewController.h */,
-				E8C5BB5F1C719EB1006222D5 /* WaypointLogsViewController.m */,
-				E8C5BB621C719EB1006222D5 /* WaypointPersonalNoteViewController.h */,
-				E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */,
-				E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */,
-				E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */,
-				E8C5BB6A1C719EB1006222D5 /* WaypointTrackablesViewController.h */,
-				E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */,
-				E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */,
-				E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */,
-				E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */,
-				E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */,
+				E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */,
+				E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */,
+				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
+				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
 			name = "Single Waypoint";
 			sourceTree = "<group>";
@@ -2225,8 +2235,6 @@
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
-				E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */,
-				E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */,
 				E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */,
 				E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */,
 				E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */,
