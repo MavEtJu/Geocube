@@ -194,7 +194,7 @@
 @class WaypointViewController;
 @class WaypointWaypointsTableViewCell;
 @class WaypointWaypointsViewController;
-@class WaypointsOfflineListViewController;
+@class WaypointsOfflineListTableViewCell;
 @class database;
 @class dbAccount;
 @class dbAttribute;

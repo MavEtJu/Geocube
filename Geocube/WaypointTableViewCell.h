@@ -21,7 +21,6 @@
 
 @interface WaypointTableViewCell : GCTableViewCell
 
-- (NSInteger)cellHeight;
 - (void)setWaypoint:(dbWaypoint *)wp;
 
 @end

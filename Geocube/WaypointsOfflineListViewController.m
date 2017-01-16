@@ -27,13 +27,11 @@
 
     BOOL needsRefresh;
     BOOL isVisible;
-
-    NSInteger waypointCellHeight;
 }
 
 @end
 
-#define THISCELL @"cachetableviewcell"
+#define THISCELL @"WaypointTableViewCell"
 
 @implementation WaypointsOfflineListViewController
 
@@ -92,10 +90,10 @@ enum {
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WaypointTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
 
-    WaypointTableViewCell *cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-    waypointCellHeight = [cell cellHeight];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     [self makeInfoView];
 
@@ -261,11 +259,6 @@ enum {
     [cell setWaypoint:wp];
 
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return waypointCellHeight;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

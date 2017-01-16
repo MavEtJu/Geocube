@@ -35,7 +35,7 @@ enum {
     menuMax
 };
 
-#define THISCELL @"CacheTableViewCell"
+#define THISCELL @"WaypointTableViewCell"
 
 NEEDS_OVERLOADING(clearFlags)
 
@@ -55,10 +55,11 @@ NEEDS_OVERLOADING(clearFlags)
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
 
-    WaypointTableViewCell *cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
-    waypointCellHeight = [cell cellHeight];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WaypointTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     [self makeInfoView];
 }
