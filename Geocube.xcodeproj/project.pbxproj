@@ -1794,6 +1794,8 @@
 		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				E8C5BB681C719EB1006222D5 /* WaypointTableViewCell.h */,
+				E8C5BB691C719EB1006222D5 /* WaypointTableViewCell.m */,
 				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
 				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
@@ -2225,8 +2227,6 @@
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */,
 				E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */,
-				E8C5BB681C719EB1006222D5 /* WaypointTableViewCell.h */,
-				E8C5BB691C719EB1006222D5 /* WaypointTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";

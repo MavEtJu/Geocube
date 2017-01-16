@@ -34,7 +34,6 @@
 @end
 
 #define THISCELL @"cachetableviewcell"
-#define THISCELL_HEADER @"cachetableviewcellHeader"
 
 @implementation WaypointsOfflineListViewController
 
@@ -94,7 +93,6 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[WaypointTableViewCell class] forCellReuseIdentifier:THISCELL];
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
 
     WaypointTableViewCell *cell = [[WaypointTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL];
     waypointCellHeight = [cell cellHeight];
