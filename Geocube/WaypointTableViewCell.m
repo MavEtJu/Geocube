@@ -44,7 +44,7 @@
 {
     [super awakeFromNib];
     [self changeTheme];
-    _ivFavourites.image = [imageLibrary get:ImageCacheView_favourites];
+    self.ivFavourites.image = [imageLibrary get:ImageCacheView_favourites];
 }
 
 - (void)changeTheme
