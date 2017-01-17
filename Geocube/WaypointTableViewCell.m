@@ -49,14 +49,15 @@
 
 - (void)changeTheme
 {
+    [self.labelDescription changeTheme];
     [self.labelCode changeTheme];
-    [self.labelLocation changeTheme];
-    [self.labelDistance changeTheme];
+    [self.labelWhoWhen changeTheme];
     [self.labelBearing changeTheme];
+    [self.labelDistance changeTheme];
     [self.labelDirection changeTheme];
+    [self.labelLocation changeTheme];
     [self.labelTerrain changeTheme];
     [self.labelDifficulty changeTheme];
-    [self.labelWhoWhen changeTheme];
 
     [super changeTheme];
 }
