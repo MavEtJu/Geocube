@@ -21,8 +21,37 @@
 
 @interface WaypointHeaderHeaderView ()
 
+@property (weak, nonatomic) IBOutlet GCLabel *labelName;
+@property (weak, nonatomic) IBOutlet GCLabel *labelWhoWhen;
+@property (weak, nonatomic) IBOutlet GCLabel *labelCode;
+@property (weak, nonatomic) IBOutlet GCLabel *labelLastImport;
+
 @end
 
 @implementation WaypointHeaderHeaderView
+
+- (void)setWaypoint:(dbWaypoint *)waypoint
+{
+    UIColor *bgColor = [UIColor clearColor];
+    if (waypoint.flag_highlight == YES)
+        bgColor = [UIColor yellowColor];
+
+    self.labelName.text = waypoint.wpt_urlname;
+    self.labelName.backgroundColor = bgColor;
+
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+    if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
+        [s appendFormat:@"by %@", waypoint.gs_owner_str];
+    if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
+        [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
+    self.labelWhoWhen.text = s;
+    self.labelWhoWhen.backgroundColor = bgColor;
+
+    self.labelCode.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
+    self.labelCode.backgroundColor = bgColor;
+
+    self.labelLastImport.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
+    self.labelLastImport.backgroundColor = bgColor;
+}
 
 @end

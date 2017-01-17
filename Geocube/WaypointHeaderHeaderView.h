@@ -21,9 +21,6 @@
 
 @interface WaypointHeaderHeaderView : UITableViewHeaderFooterView
 
-@property (weak, nonatomic) IBOutlet GCLabel *labelName;
-@property (weak, nonatomic) IBOutlet GCLabel *labelWhoWhen;
-@property (weak, nonatomic) IBOutlet GCLabel *labelCode;
-@property (weak, nonatomic) IBOutlet GCLabel *labelLastImport;
+- (void)setWaypoint:(dbWaypoint *)waypoint;
 
 @end

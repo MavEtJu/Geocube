@@ -232,28 +232,7 @@ enum {
         return [super tableView:tableView viewForHeaderInSection:section];
 
     WaypointHeaderHeaderView *hv = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:THISHEADER_HEADER];
-
-    UIColor *bgColor = [UIColor clearColor];
-    if (waypoint.flag_highlight == YES)
-       bgColor = [UIColor yellowColor];
-
-    hv.labelName.text = waypoint.wpt_urlname;
-    hv.labelName.backgroundColor = bgColor;
-
-    NSMutableString *s = [NSMutableString stringWithString:@""];
-    if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
-        [s appendFormat:@"by %@", waypoint.gs_owner_str];
-    if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
-        [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
-    hv.labelWhoWhen.text = s;
-    hv.labelWhoWhen.backgroundColor = bgColor;
-    
-    hv.labelCode.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
-    hv.labelCode.backgroundColor = bgColor;
-
-    hv.labelLastImport.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
-    hv.labelLastImport.backgroundColor = bgColor;
-
+    [hv setWaypoint:waypoint];
     return hv;
 }
 
