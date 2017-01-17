@@ -273,6 +273,8 @@
 		E83C204A1E2C8DF7006C523E /* WaypointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */; };
 		E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */; };
 		E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */; };
+		E83C20581E2E2651006C523E /* WaypointHeaderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */; };
+		E83C205A1E2E266C006C523E /* WaypointHeaderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
@@ -945,6 +947,9 @@
 		E83C204E1E2DAADC006C523E /* WaypointHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHeaderTableViewCell.h; sourceTree = "<group>"; };
 		E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHeaderTableViewCell.m; sourceTree = "<group>"; };
 		E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		E83C20561E2E2651006C523E /* WaypointHeaderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHeaderHeaderView.h; sourceTree = "<group>"; };
+		E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHeaderHeaderView.m; sourceTree = "<group>"; };
+		E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointHeaderHeaderView.xib; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
@@ -1860,6 +1865,9 @@
 				E83C204E1E2DAADC006C523E /* WaypointHeaderTableViewCell.h */,
 				E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */,
 				E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */,
+				E83C20561E2E2651006C523E /* WaypointHeaderHeaderView.h */,
+				E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */,
+				E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */,
 				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
@@ -3295,6 +3303,7 @@
 				E82E67311DA07D0200CFBDED /* attributes - 06.png in Resources */,
 				E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */,
 				E82E65C81DA0797E00CFBDED /* ratings - star off 18x18.png in Resources */,
+				E83C205A1E2E266C006C523E /* WaypointHeaderHeaderView.xib in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
 				E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
@@ -3689,6 +3698,7 @@
 				E8B771D41DD9DA4E008B2F9E /* RemoteAPIGCA2.m in Sources */,
 				E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */,
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
+				E83C20581E2E2651006C523E /* WaypointHeaderHeaderView.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
 				E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */,
 				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,

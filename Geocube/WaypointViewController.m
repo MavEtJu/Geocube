@@ -56,6 +56,7 @@ enum {
     WAYPOINT_ACTIONS_MAX,
 };
 
+#define THISHEADER_HEADER @"Waypointheader_header"
 #define THISCELL_HEADER @"Waypointtablecell_header"
 #define THISCELL_DATA @"Waypointtablecell_data"
 #define THISCELL_ACTIONS @"Waypointtablecell_actions"
@@ -101,7 +102,7 @@ enum {
 {
     waypoint = _wp;
     headerCell = nil;
-    headerCellHeight = 55;
+    headerCellHeight = 60;
 
     [self reloadDataMainQueue];
 }
@@ -117,6 +118,9 @@ enum {
     [self makeInfoView];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"WaypointHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
+
+    UINib *sectionHeaderNib = [UINib nibWithNibName:@"WaypointHeaderHeaderView" bundle:nil];
+    [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 20;
@@ -227,61 +231,30 @@ enum {
     if (section != WAYPOINT_HEADER)
         return [super tableView:tableView viewForHeaderInSection:section];
 
-    NSInteger width = tableView.bounds.size.width;
-    NSInteger y = 2;
+    WaypointHeaderHeaderView *hv = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:THISHEADER_HEADER];
 
-    GCView *headerView = [[GCView alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
-    GCLabel *l;
-
-    UIColor *backgroundColor = [UIColor clearColor];
+    UIColor *bgColor = [UIColor clearColor];
     if (waypoint.flag_highlight == YES)
-       backgroundColor = [UIColor yellowColor];
+       bgColor = [UIColor yellowColor];
 
-    l = [[GCLabel alloc] initWithFrame:CGRectZero];
-    l.text = waypoint.wpt_urlname;
-    l.font = [UIFont boldSystemFontOfSize:14];
-    l.textAlignment = NSTextAlignmentCenter;
-    l.backgroundColor = backgroundColor;
-    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
-    [headerView addSubview:l];
-    y += l.font.lineHeight;
+    hv.labelName.text = waypoint.wpt_urlname;
+    hv.labelName.backgroundColor = bgColor;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectZero];
     NSMutableString *s = [NSMutableString stringWithString:@""];
     if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
         [s appendFormat:@"by %@", waypoint.gs_owner_str];
     if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
         [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
-    l.text = s;
-    l.font = [UIFont systemFontOfSize:10];
-    l.textAlignment = NSTextAlignmentCenter;
-    l.backgroundColor = backgroundColor;
-    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
-    [headerView addSubview:l];
-    y += l.font.lineHeight;
+    hv.labelWhoWhen.text = s;
+    hv.labelWhoWhen.backgroundColor = bgColor;
+    
+    hv.labelCode.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
+    hv.labelCode.backgroundColor = bgColor;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectZero];
-    l.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
-    l.font = [UIFont systemFontOfSize:12];
-    l.textAlignment = NSTextAlignmentCenter;
-    l.backgroundColor = backgroundColor;
-    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
-    [headerView addSubview:l];
-    y += l.font.lineHeight;
+    hv.labelLastImport.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
+    hv.labelLastImport.backgroundColor = bgColor;
 
-    l = [[GCLabel alloc] initWithFrame:CGRectZero];
-    l.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
-    l.font = [UIFont systemFontOfSize:10];
-    l.textAlignment = NSTextAlignmentCenter;
-    l.backgroundColor = backgroundColor;
-    l.frame = CGRectMake(0, y, width, l.font.lineHeight);
-    [headerView addSubview:l];
-    y += l.font.lineHeight;
-
-    y += 2;
-    headerCellHeight = y;
-
-    return headerView;
+    return hv;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -205,6 +205,7 @@
 #import "WaypointRawViewController.h"
 #import "WaypointPersonalNoteViewController.h"
 #import "WaypointTrackablesViewController.h"
+#import "WaypointHeaderHeaderView.h"
 #import "WaypointViewController.h"
 #import "WaypointAddViewController.h"
 

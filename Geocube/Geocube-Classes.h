@@ -178,6 +178,7 @@
 @class WaypointAttributesViewController;
 @class WaypointDescriptionViewController;
 @class WaypointGroupsViewController;
+@class WaypointHeaderHeaderView;
 @class WaypointHeaderTableViewCell;
 @class WaypointHintViewController;
 @class WaypointImageViewController;
@@ -194,7 +195,6 @@
 @class WaypointViewController;
 @class WaypointWaypointsTableViewCell;
 @class WaypointWaypointsViewController;
-@class WaypointsOfflineListTableViewCell;
 @class database;
 @class dbAccount;
 @class dbAttribute;
