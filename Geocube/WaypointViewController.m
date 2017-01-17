@@ -116,7 +116,11 @@ enum {
         [self showWaypoint:waypointManager.currentWaypoint];
     [self makeInfoView];
 
-    [self.tableView registerClass:[WaypointHeaderTableViewCell class] forCellReuseIdentifier:THISCELL_HEADER];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WaypointHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
+
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
+
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
     [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 }
@@ -291,35 +295,11 @@ enum {
 {
     switch (indexPath.section) {
         case WAYPOINT_HEADER: {
-            if (headerCell == nil)
-                headerCell = [[WaypointHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:THISCELL_HEADER];
+            headerCell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_HEADER];
 
             headerCell.accessoryType = UITableViewCellAccessoryNone;
-            Coordinates *c = [[Coordinates alloc] init:waypoint.wpt_lat_float lon:waypoint.wpt_lon_float];
-            headerCell.labelLatLon.text = [NSString stringWithFormat:@"%@ %@", [c lat_degreesDecimalMinutes], [c lon_degreesDecimalMinutes]];
-            if (waypoint.gs_rating_terrain == 0)
-                headerCell.labelRatingT.text = @"";
-            else
-                headerCell.labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", waypoint.gs_rating_terrain];
-            if (waypoint.gs_rating_difficulty == 0)
-                headerCell.labelRatingD.text = @"";
-            else
-                headerCell.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", waypoint.gs_rating_difficulty];
-            [headerCell setRatings:waypoint.gs_favourites];
-
-            NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates];
-            headerCell.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                                            (long)[Coordinates coordinates2bearing:LM.coords to:waypoint.coordinates],
-                                            [Coordinates bearing2compass:bearing],
-                                            [MyTools niceDistance:[Coordinates coordinates2distance:waypoint.coordinates to:LM.coords]]];
-            headerCell.labelLocation.text = [waypoint makeLocaleStateCountry];
-
+            [headerCell setWaypoint:waypoint];
             headerCell.userInteractionEnabled = NO;
-            if (waypoint.gs_container != nil)
-                headerCell.imageSize.image = [imageLibrary get:waypoint.gs_container.icon];
-            else
-                headerCell.imageSize.image = nil;
-            headerCell.imageIcon.image = [imageLibrary getType:waypoint];
 
             return headerCell;
         }
@@ -570,13 +550,6 @@ enum {
 
             return;
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == WAYPOINT_HEADER)
-        return [headerCell cellHeight];
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Local menu related functions

@@ -271,6 +271,8 @@
 		E83B77841DD3C4540059793C /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B77831DD3C4540059793C /* GCArray.m */; };
 		E83C20491E2C8DF7006C523E /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */; };
 		E83C204A1E2C8DF7006C523E /* WaypointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */; };
+		E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */; };
+		E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
@@ -413,7 +415,6 @@
 		E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB511C719EB1006222D5 /* WaypointAttributesViewController.m */; };
 		E8C5BB701C719EB1006222D5 /* WaypointDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */; };
 		E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */; };
-		E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */; };
 		E8C5BB731C719EB1006222D5 /* WaypointHintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */; };
 		E8C5BB741C719EB1006222D5 /* WaypointImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB5B1C719EB1006222D5 /* WaypointImagesViewController.m */; };
 		E8C5BB751C719EB1006222D5 /* WaypointImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB5D1C719EB1006222D5 /* WaypointImageViewController.m */; };
@@ -941,6 +942,9 @@
 		E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTableViewCell.h; sourceTree = "<group>"; };
 		E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTableViewCell.m; sourceTree = "<group>"; };
 		E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointTableViewCell.xib; sourceTree = "<group>"; };
+		E83C204E1E2DAADC006C523E /* WaypointHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHeaderTableViewCell.h; sourceTree = "<group>"; };
+		E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHeaderTableViewCell.m; sourceTree = "<group>"; };
+		E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
@@ -1202,8 +1206,6 @@
 		E8C5BB531C719EB1006222D5 /* WaypointDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointDescriptionViewController.m; sourceTree = "<group>"; };
 		E8C5BB541C719EB1006222D5 /* WaypointGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointGroupsViewController.h; sourceTree = "<group>"; };
 		E8C5BB551C719EB1006222D5 /* WaypointGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointGroupsViewController.m; sourceTree = "<group>"; };
-		E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHeaderTableViewCell.h; sourceTree = "<group>"; };
-		E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHeaderTableViewCell.m; sourceTree = "<group>"; };
 		E8C5BB581C719EB1006222D5 /* WaypointHintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHintViewController.h; sourceTree = "<group>"; };
 		E8C5BB591C719EB1006222D5 /* WaypointHintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHintViewController.m; sourceTree = "<group>"; };
 		E8C5BB5A1C719EB1006222D5 /* WaypointImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointImagesViewController.h; sourceTree = "<group>"; };
@@ -1855,8 +1857,9 @@
 			children = (
 				E8740F991B4E3C6A002527DA /* WaypointViewController.h */,
 				E8740F9A1B4E3C6A002527DA /* WaypointViewController.m */,
-				E8C5BB561C719EB1006222D5 /* WaypointHeaderTableViewCell.h */,
-				E8C5BB571C719EB1006222D5 /* WaypointHeaderTableViewCell.m */,
+				E83C204E1E2DAADC006C523E /* WaypointHeaderTableViewCell.h */,
+				E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */,
+				E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */,
 				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
@@ -3203,6 +3206,7 @@
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
+				E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */,
 				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
 				E82E65DD1DA079AE00CFBDED /* map - dnf stick - 35x42.png in Resources */,
@@ -3596,9 +3600,9 @@
 				E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */,
 				E83B77841DD3C4540059793C /* GCArray.m in Sources */,
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
-				E8C5BB721C719EB1006222D5 /* WaypointHeaderTableViewCell.m in Sources */,
 				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
+				E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* ProtocolLiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,
 				E8C5BB6F1C719EB1006222D5 /* WaypointAttributesViewController.m in Sources */,
