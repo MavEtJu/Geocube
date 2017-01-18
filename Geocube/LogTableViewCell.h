@@ -21,12 +21,6 @@
 
 @interface LogTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) UIImageView *logtypeImage;
-@property (nonatomic, retain) GCSmallLabel *datetimeLabel;
-@property (nonatomic, retain) GCSmallLabel *loggerLabel;
-@property (nonatomic, retain) GCTextblock *logLabel;
-@property (nonatomic, retain) dbLog *log;
-
-- (void)setLogString:(NSString *)logString;
+- (void)setLog:(dbLog *)log;
 
 @end

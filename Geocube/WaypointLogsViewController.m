@@ -30,7 +30,7 @@
 
 @end
 
-#define THISCELL @"WaypointLogsViewControllerCell"
+#define THISCELL @"LogTableViewCell"
 
 @implementation WaypointLogsViewController
 
@@ -47,7 +47,10 @@ enum {
     mineOnly = NO;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[LogTableViewCell class] forCellReuseIdentifier:THISCELL];
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"LogTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 
@@ -99,25 +102,12 @@ enum {
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbLog *l = [logs objectAtIndex:indexPath.row];
-    cell.datetimeLabel.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:l.datetime_epoch];
-    cell.loggerLabel.text = l.logger.name;
-    cell.logtypeImage.image = [imageLibrary get:l.logstring.icon];
 
-    [cell setLogString:l.log];
-    [cell.contentView sizeToFit];
+    dbLog *l = [logs objectAtIndex:indexPath.row];
+    [cell setLog:l];
     [cell setUserInteractionEnabled:YES];
 
-    cell.log = l;
-    [cell viewWillTransitionToSize];
-
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    dbLog *l = [logs objectAtIndex:indexPath.row];
-    return l.cellHeight;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

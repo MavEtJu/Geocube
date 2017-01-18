@@ -20,105 +20,36 @@
  */
 
 @interface LogTableViewCell ()
-{
-    CGRect rectLogtype;
-    CGRect rectDatetime;
-    CGRect rectLogger;
-    CGRect rectLog;
-}
+
+@property (nonatomic, retain) IBOutlet UIImageView *ivLogType;
+@property (nonatomic, retain) IBOutlet GCLabel *labelDateTime;
+@property (nonatomic, retain) IBOutlet GCLabel *labelLogger;
+@property (nonatomic, retain) IBOutlet GCLabel *labelLog;
 
 @end
 
 @implementation LogTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    [self calculateRects];
-
-    // Image
-    self.logtypeImage = [[UIImageView alloc] initWithFrame:rectLogtype];
-    self.logtypeImage.image = [imageLibrary get:ImageTypes_TraditionalCache];
-    //icon.backgroundColor = [UIColor yellowColor];
-    [self.contentView addSubview:self.logtypeImage];
-
-    // Date
-    self.datetimeLabel = [[GCSmallLabel alloc] initWithFrame:rectDatetime];
-    [self.datetimeLabel bold:YES];
-    [self.contentView addSubview:self.datetimeLabel];
-
-    // Logger
-    self.loggerLabel = [[GCSmallLabel alloc] initWithFrame:rectLogger];
-    [self.loggerLabel bold:YES];
-    self.loggerLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:self.loggerLabel];
-
-    // Log
-    self.logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
-    self.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.contentView addSubview:self.logLabel];
-
+    [super awakeFromNib];
     [self changeTheme];
-
-    return self;
-}
-
-- (void)calculateRects
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
-    /*
-     +---+------+-----------------+
-     | I | date | by Name         |  logtypeImage
-     +---+------+-----------------|
-     | Log                        |
-     |                            |
-     +----------------------------+
-     */
-#define BORDER 10
-#define IMAGE_WIDTH 10
-#define DATE_WIDTH 150
-
-    NSInteger height_name = configManager.GCSmallFont.lineHeight;
-
-    rectLogtype = CGRectMake(BORDER, BORDER, IMAGE_WIDTH, height_name);
-    rectDatetime = CGRectMake(BORDER + IMAGE_WIDTH + BORDER, BORDER, DATE_WIDTH, height_name);
-    rectLogger = CGRectMake(BORDER + IMAGE_WIDTH + DATE_WIDTH, BORDER, width - 2 * BORDER - DATE_WIDTH - height_name, height_name);
-    rectLog = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 30);
-}
-
-- (void)setLogString:(NSString *)logString
-{
-    self.logLabel.frame = rectLog;
-    self.logLabel.text = logString;
-    [self.logLabel sizeToFit];
-}
-
-- (void)calculateCellHeight
-{
-    self.log.cellHeight = self.logLabel.frame.size.height + self.loggerLabel.frame.size.height + 10;
-}
-
-- (void)viewWillTransitionToSize
-{
-    [self calculateRects];
-    self.logtypeImage.frame = rectLogtype;
-    self.datetimeLabel.frame = rectDatetime;
-    self.loggerLabel.frame = rectLogger;
-    self.logLabel.frame = rectLog;
-    [self.logLabel sizeToFit];
-    [self calculateCellHeight];
 }
 
 - (void)changeTheme
 {
-    [self.datetimeLabel changeTheme];
-    [self.loggerLabel changeTheme];
-    [self.logLabel changeTheme];
-
     [super changeTheme];
+    [self.labelLog changeTheme];
+    [self.labelLogger changeTheme];
+    [self.labelDateTime changeTheme];
+}
+
+- (void)setLog:(dbLog *)log
+{
+    self.labelDateTime.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];
+    self.labelLogger.text = log.logger.name;
+    self.ivLogType.image = [imageLibrary get:log.logstring.icon];
+    self.labelLog.text = log.log;
 }
 
 @end

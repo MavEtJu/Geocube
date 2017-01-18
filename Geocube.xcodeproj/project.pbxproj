@@ -275,6 +275,7 @@
 		E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */; };
 		E83C20581E2E2651006C523E /* WaypointHeaderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */; };
 		E83C205A1E2E266C006C523E /* WaypointHeaderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */; };
+		E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C205B1E2F0695006C523E /* LogTableViewCell.xib */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84402B51BFA7D6000EFFD13 /* MapTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B41BFA7D6000EFFD13 /* MapTemplateViewController.m */; };
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
@@ -950,6 +951,7 @@
 		E83C20561E2E2651006C523E /* WaypointHeaderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointHeaderHeaderView.h; sourceTree = "<group>"; };
 		E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointHeaderHeaderView.m; sourceTree = "<group>"; };
 		E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointHeaderHeaderView.xib; sourceTree = "<group>"; };
+		E83C205B1E2F0695006C523E /* LogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogTableViewCell.xib; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E84402B31BFA7D6000EFFD13 /* MapTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplateViewController.h; sourceTree = "<group>"; };
@@ -2244,6 +2246,7 @@
 			children = (
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
+				E83C205B1E2F0695006C523E /* LogTableViewCell.xib */,
 				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
 				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */,
@@ -3332,6 +3335,7 @@
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
+				E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */,
 				E8FEDED41DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png in Resources */,
 				E8FEDE911DA7AD67007C756B /* map - own overlay - 18x18@3x.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
