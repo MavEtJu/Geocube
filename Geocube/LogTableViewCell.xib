@@ -27,17 +27,17 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gj-nb-FRE" customClass="GCLabel">
-                        <rect key="frame" x="30" y="0.0" width="150" height="15"/>
+                        <rect key="frame" x="40" y="0.0" width="335" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Qq8-yX-wff"/>
-                            <constraint firstAttribute="width" constant="150" id="fEE-e6-txP"/>
+                            <constraint firstAttribute="width" constant="335" id="fEE-e6-txP"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - finder" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTF-rT-2ef" customClass="GCLabel">
-                        <rect key="frame" x="180" y="0.0" width="187" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - finder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTF-rT-2ef" customClass="GCLabel">
+                        <rect key="frame" x="40" y="15" width="375" height="15"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -50,16 +50,16 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="leading" secondItem="if4-uz-SEu" secondAttribute="trailing" id="1So-Ri-B57"/>
+                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="leading" secondItem="if4-uz-SEu" secondAttribute="trailing" constant="10" id="1So-Ri-B57"/>
                     <constraint firstAttribute="bottom" secondItem="4Jn-02-ceg" secondAttribute="bottom" constant="2.5" id="Erp-79-WLg"/>
                     <constraint firstItem="if4-uz-SEu" firstAttribute="leading" secondItem="qNh-nK-oIr" secondAttribute="leading" id="Fzo-54-zdX"/>
-                    <constraint firstItem="MTF-rT-2ef" firstAttribute="trailing" secondItem="4Jn-02-ceg" secondAttribute="trailing" id="J82-jM-TwD"/>
-                    <constraint firstItem="MTF-rT-2ef" firstAttribute="leading" secondItem="8Gj-nb-FRE" secondAttribute="trailing" id="O0x-Ov-ENZ"/>
+                    <constraint firstItem="MTF-rT-2ef" firstAttribute="trailing" secondItem="4Jn-02-ceg" secondAttribute="trailing" constant="48" id="J82-jM-TwD"/>
+                    <constraint firstItem="MTF-rT-2ef" firstAttribute="leading" secondItem="8Gj-nb-FRE" secondAttribute="trailing" constant="-335" id="O0x-Ov-ENZ"/>
                     <constraint firstItem="if4-uz-SEu" firstAttribute="top" secondItem="8Gj-nb-FRE" secondAttribute="top" id="Qkl-mb-Rtm"/>
                     <constraint firstItem="4Jn-02-ceg" firstAttribute="top" secondItem="8Gj-nb-FRE" secondAttribute="bottom" constant="19" id="Tlf-ur-0t5"/>
-                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="baseline" secondItem="MTF-rT-2ef" secondAttribute="baseline" id="VGH-1Y-dIU"/>
-                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="firstBaseline" secondItem="MTF-rT-2ef" secondAttribute="firstBaseline" id="WY7-dn-Cpj"/>
-                    <constraint firstItem="MTF-rT-2ef" firstAttribute="trailing" secondItem="qNh-nK-oIr" secondAttribute="trailingMargin" id="aVx-zx-KZF"/>
+                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="baseline" secondItem="MTF-rT-2ef" secondAttribute="baseline" constant="-15" id="VGH-1Y-dIU"/>
+                    <constraint firstItem="8Gj-nb-FRE" firstAttribute="firstBaseline" secondItem="MTF-rT-2ef" secondAttribute="firstBaseline" constant="-15" id="WY7-dn-Cpj"/>
+                    <constraint firstItem="MTF-rT-2ef" firstAttribute="trailing" secondItem="qNh-nK-oIr" secondAttribute="trailingMargin" constant="48" id="aVx-zx-KZF"/>
                     <constraint firstItem="if4-uz-SEu" firstAttribute="top" secondItem="qNh-nK-oIr" secondAttribute="top" id="cuM-ar-omA"/>
                     <constraint firstItem="4Jn-02-ceg" firstAttribute="leading" secondItem="qNh-nK-oIr" secondAttribute="leadingMargin" id="ecz-Yk-mEV"/>
                     <constraint firstItem="4Jn-02-ceg" firstAttribute="top" secondItem="if4-uz-SEu" secondAttribute="bottom" constant="4" id="qTe-Z2-J2o"/>
