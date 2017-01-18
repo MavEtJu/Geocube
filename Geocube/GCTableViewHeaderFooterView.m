@@ -19,8 +19,32 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointHeaderHeaderView : GCTableViewHeaderFooterView
+@interface GCTableViewHeaderFooterView ()
 
-- (void)setWaypoint:(dbWaypoint *)waypoint;
+@end
+
+@implementation GCTableViewHeaderFooterView
+
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)prepareForReuse
+{
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+//    self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+    self.contentView.backgroundColor = [UIColor redColor];
+
+    [themeManager changeThemeArray:self.subviews];
+}
 
 @end

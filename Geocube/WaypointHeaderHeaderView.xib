@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jij-qc-g8L" customClass="UITableViewHeaderFooterView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jij-qc-g8L" customClass="GCTableViewHeaderFooterView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuq-FK-xUH" customClass="GCLabel">

@@ -84,6 +84,7 @@
 @class GCTableViewCellSubtitleRightImage;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
+@class GCTableViewHeaderFooterView;
 @class GCTextblock;
 @class GCURLRequest;
 @class GCView;

@@ -127,6 +127,7 @@
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellFieldValue.h"
 #import "GCTableViewCellKeyValue.h"
+#import "GCTableViewHeaderFooterView.h"
 #import "GCTextblock.h"
 #import "GCView.h"
 

@@ -19,8 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointHeaderHeaderView : GCTableViewHeaderFooterView
+@interface GCTableViewHeaderFooterView : UITableViewHeaderFooterView
 
-- (void)setWaypoint:(dbWaypoint *)waypoint;
+- (void)changeTheme;
 
 @end
