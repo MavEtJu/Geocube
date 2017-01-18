@@ -102,21 +102,4 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
-    dbLog *l = [[dbLog dbAllByWaypointLogged:wp._id] objectAtIndex:indexPath.row];
-
-    __block CGFloat height = 0;
-
-    [logs enumerateObjectsUsingBlock:^(dbLog *ls, NSUInteger idx, BOOL *stop) {
-        if (ls._id == l._id && ls.cellHeight != 0) {
-            height = ls.cellHeight;
-            *stop = YES;
-        }
-    }];
-
-    return height;
-}
-
 @end
