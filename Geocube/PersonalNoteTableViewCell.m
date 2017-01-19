@@ -25,79 +25,30 @@
     CGRect rectName;
 }
 
+@property (nonatomic, retain) IBOutlet GCLabel *labelNote;
+@property (nonatomic, retain) IBOutlet GCLabel *labelCode;
+
 @end
 
 @implementation PersonalNoteTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    [self calculateRects];
-
-    // Name
-    self.nameLabel = [[GCSmallLabel alloc] initWithFrame:rectName];
-    [self.nameLabel bold:YES];
-    [self.contentView addSubview:self.nameLabel];
-
-    // Log
-    self.logLabel = [[GCTextblock alloc] initWithFrame:rectLog];
-    self.logLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.logLabel sizeToFit];
-    [self.contentView addSubview:self.logLabel];
-
+    [super awakeFromNib];
     [self changeTheme];
-
-    return self;
-}
-
-- (void)calculateRects
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
-    /*
-     +---+------+-----------------+
-     | Name                       |
-     +---+------+-----------------|
-     | Log                        |
-     |                            |
-     +----------------------------+
-     */
-#define BORDER 10
-
-    NSInteger height = configManager.GCSmallFont.lineHeight;
-    rectName = CGRectMake(BORDER, BORDER, width - 2 * BORDER, height);
-    rectLog = CGRectMake(BORDER, BORDER + height, width - 2 * BORDER, 30);
-}
-
-- (void)calculateCellHeight
-{
-    self.personalNote.cellHeight = self.nameLabel.frame.size.height + self.logLabel.frame.size.height + 10;
-}
-
-- (void)viewWillTransitionToSize
-{
-    [self calculateRects];
-    self.nameLabel.frame = rectName;
-    self.logLabel.frame = rectLog;
-    [self.logLabel sizeToFit];
-    [self calculateCellHeight];
 }
 
 - (void)changeTheme
 {
-    [self.nameLabel changeTheme];
-    [self.logLabel changeTheme];
-
     [super changeTheme];
+    [self.labelCode changeTheme];
+    [self.labelNote changeTheme];
 }
 
-- (void)setLogString:(NSString *)logString
+- (void)setNote:(dbPersonalNote *)pn
 {
-    self.logLabel.frame = rectLog;
-    self.logLabel.text = logString;
-    [self.logLabel sizeToFit];
+    self.labelCode.text = pn.wp_name;
+    self.labelNote.text = pn.note;
 }
 
 @end

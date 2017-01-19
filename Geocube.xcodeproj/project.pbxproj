@@ -318,7 +318,6 @@
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
 		E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFE1B849BE600F34483 /* dbPersonalNote.m */; };
 		E85760021B84A8E200F34483 /* NotesPersonalNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */; };
-		E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */; };
 		E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760071B85DB5500F34483 /* GCTableViewCell.m */; };
 		E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */; };
 		E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E857600E1B85E04500F34483 /* ThemeIOS.m */; };
@@ -333,6 +332,8 @@
 		E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
 		E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */; };
+		E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */; };
+		E86C4AAB1E30D250004526E2 /* PersonalNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */; };
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
@@ -1025,8 +1026,6 @@
 		E8575FFE1B849BE600F34483 /* dbPersonalNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPersonalNote.m; sourceTree = "<group>"; };
 		E85760001B84A8E200F34483 /* NotesPersonalNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesPersonalNotesViewController.h; sourceTree = "<group>"; };
 		E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesPersonalNotesViewController.m; sourceTree = "<group>"; };
-		E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNoteTableViewCell.h; sourceTree = "<group>"; };
-		E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNoteTableViewCell.m; sourceTree = "<group>"; };
 		E85760061B85DB5500F34483 /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCell.h; sourceTree = "<group>"; };
 		E85760071B85DB5500F34483 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
 		E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellWithSubtitle.h; sourceTree = "<group>"; };
@@ -1055,6 +1054,9 @@
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
 		E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsTableViewCell.h; sourceTree = "<group>"; };
 		E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointWaypointsTableViewCell.m; sourceTree = "<group>"; };
+		E86C4AA71E30D250004526E2 /* PersonalNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNoteTableViewCell.h; sourceTree = "<group>"; };
+		E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNoteTableViewCell.m; sourceTree = "<group>"; };
+		E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalNoteTableViewCell.xib; sourceTree = "<group>"; };
 		E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLibrary.h; sourceTree = "<group>"; };
 		E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibrary.m; sourceTree = "<group>"; };
 		E86C65AA1B4D431100E2ABFE /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "database-cache.h"; sourceTree = "<group>"; };
@@ -1589,6 +1591,9 @@
 				E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */,
 				E85760001B84A8E200F34483 /* NotesPersonalNotesViewController.h */,
 				E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */,
+				E86C4AA71E30D250004526E2 /* PersonalNoteTableViewCell.h */,
+				E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */,
+				E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */,
 			);
 			name = "Notes and logs";
 			sourceTree = "<group>";
@@ -2252,8 +2257,6 @@
 				E8740FEA1B509575002527DA /* LogTableViewCell.h */,
 				E8740FEB1B509575002527DA /* LogTableViewCell.m */,
 				E83C205B1E2F0695006C523E /* LogTableViewCell.xib */,
-				E85760031B85719200F34483 /* PersonalNoteTableViewCell.h */,
-				E85760041B85719200F34483 /* PersonalNoteTableViewCell.m */,
 				E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */,
 				E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */,
 				E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */,
@@ -3220,6 +3223,7 @@
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
+				E86C4AAB1E30D250004526E2 /* PersonalNoteTableViewCell.xib in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
 				E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */,
@@ -3614,7 +3618,6 @@
 				E89D156B1DE55F7500ED14B3 /* ToolsRot13ViewController.m in Sources */,
 				E8E8D0321B67212000CC741A /* FilterOthersTableViewCell.m in Sources */,
 				E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */,
-				E85760051B85719200F34483 /* PersonalNoteTableViewCell.m in Sources */,
 				E857600F1B85E04500F34483 /* ThemeIOS.m in Sources */,
 				E83B77841DD3C4540059793C /* GCArray.m in Sources */,
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
@@ -3784,6 +3787,7 @@
 				E8F570AD1B3FE5C6003F020C /* database.m in Sources */,
 				E8D7BA501BC67CDC001B0805 /* CCHMapTree.m in Sources */,
 				E8C5BB701C719EB1006222D5 /* WaypointDescriptionViewController.m in Sources */,
+				E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */,
 				E89580251C66E44900282177 /* Reachability.m in Sources */,
 				E881441F1C82663D00940820 /* ListDNFViewController.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,

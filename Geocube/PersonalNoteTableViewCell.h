@@ -21,10 +21,6 @@
 
 @interface PersonalNoteTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) GCTextblock *logLabel;
-@property (nonatomic, retain) GCSmallLabel *nameLabel;
-@property (nonatomic, retain) dbPersonalNote *personalNote;
-
-- (void)setLogString:(NSString *)logString;
+- (void)setNote:(dbPersonalNote *)pn;
 
 @end

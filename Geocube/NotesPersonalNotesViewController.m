@@ -29,14 +29,17 @@
 
 @implementation NotesPersonalNotesViewController
 
-#define THISCELL @"NotesPersonalNotesViewcell"
+#define THISCELL @"PersonalNoteTableViewCell"
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[PersonalNoteTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PersonalNoteTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
+
     lmi = nil;
 
     pns = [dbPersonalNote dbAll];
@@ -81,30 +84,9 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
-
-    cell.nameLabel.text = pn.wp_name;
-
-    [cell setLogString:pn.note];
-
-    CGRect f = cell.frame;
-    f.size.height = cell.logLabel.frame.size.height + cell.nameLabel.frame.size.height + 10;
-    cell.frame = f;
-
-    pn.cellHeight = f.size.height;
-
-    cell.personalNote = pn;
-
-    [cell viewWillTransitionToSize];
+    [cell setNote:pn];
 
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
-    if (pn == nil)
-        return 0;
-    return pn.cellHeight;
 }
 
 @end

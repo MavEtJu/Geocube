@@ -23,7 +23,6 @@
 
 @property (nonatomic, retain) NSString *wp_name;
 @property (nonatomic, retain) NSString *note;
-@property (nonatomic) NSInteger cellHeight;
 
 + (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname;
 
