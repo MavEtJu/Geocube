@@ -102,7 +102,6 @@ enum {
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-
     dbLog *l = [logs objectAtIndex:indexPath.row];
     [cell setLog:l];
     [cell setUserInteractionEnabled:YES];
