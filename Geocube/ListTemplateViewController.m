@@ -20,9 +20,6 @@
  */
 
 @interface ListTemplateViewController ()
-{
-    NSInteger waypointCellHeight;
-}
 
 @end
 
