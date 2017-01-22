@@ -108,11 +108,6 @@ NEEDS_OVERLOADING(clearFlags)
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return waypointCellHeight;
-}
-
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
