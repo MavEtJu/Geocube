@@ -73,7 +73,7 @@
 
     rectIconImage = CGRectMake(BORDER, BORDER, self.iconImage.image.size.width, self.iconImage.image.size.height);
     NSInteger labelOffset = rectIconImage.origin.x + rectIconImage.size.width;
-    NSLog(@"labeloffset: %ld", labelOffset);
+    NSLog(@"labeloffset: %ld", (long)labelOffset);
 
     NSInteger y = 0 + 1;
     rectName = CGRectMake(labelOffset, y, labelWidth, self.nameLabel.font.lineHeight);
