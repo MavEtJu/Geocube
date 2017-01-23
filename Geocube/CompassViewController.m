@@ -26,7 +26,6 @@
 
     NSInteger width;
 
-    float oldCompass;
     UIDeviceOrientation currentOrienation;
     float bearingAdjustment;
 }
@@ -204,7 +203,6 @@
     float newCompass = -LM.direction * M_PI / 180.0f + bearingAdjustment;
 
     self.ivGPSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
-    oldCompass = newCompass;
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
     float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
@@ -215,7 +213,8 @@
     } else {
         self.ivGPSCompassLine.hidden = NO;
 
-        self.ivGPSCompassBackground.transform = CGAffineTransformMakeRotation(fBearing);
+        NSLog(@"Bearing: %f", fBearing);
+        self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
         self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
 
