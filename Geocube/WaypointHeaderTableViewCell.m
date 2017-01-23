@@ -83,7 +83,7 @@
     } else {
         self.ivFavourites.hidden = NO;
         self.labelFavourites.hidden = NO;
-        self.labelFavourites.text = [NSString stringWithFormat:@"%ld", wp.gs_favourites];
+        self.labelFavourites.text = [NSString stringWithFormat:@"%ld", (long)wp.gs_favourites];
     }
 
     self.labelSize.text = wp.wpt_type.type_minor;
