@@ -334,6 +334,8 @@
 		E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */; };
 		E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */; };
 		E86C4AAB1E30D250004526E2 /* PersonalNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */; };
+		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
+		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */; };
 		E86C65AC1B4D431100E2ABFE /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AB1B4D431100E2ABFE /* database-cache.m */; };
 		E86C65AE1B4DCC6900E2ABFE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C65AD1B4DCC6900E2ABFE /* dbObject.m */; };
@@ -439,7 +441,6 @@
 		E8D569FB1B54A108001A0F8E /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F21B54A108001A0F8E /* DistancePickerView.m */; };
 		E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569F41B54A108001A0F8E /* SWActionSheet.m */; };
 		E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569FF1B54E35D001A0F8E /* MapTemplate.m */; };
-		E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D56A071B551FB5001A0F8E /* CompassViewController.m */; };
 		E8D7BA491BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */; };
 		E8D7BA4A1BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA331BC67CDC001B0805 /* CCHFadeInOutMapAnimator.m */; };
 		E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA361BC67CDC001B0805 /* CCHMapClusterAnnotation.m */; };
@@ -1057,6 +1058,9 @@
 		E86C4AA71E30D250004526E2 /* PersonalNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNoteTableViewCell.h; sourceTree = "<group>"; };
 		E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNoteTableViewCell.m; sourceTree = "<group>"; };
 		E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalNoteTableViewCell.xib; sourceTree = "<group>"; };
+		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
+		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
+		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
 		E86C65A51B4BD44000E2ABFE /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLibrary.h; sourceTree = "<group>"; };
 		E86C65A61B4BD44000E2ABFE /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibrary.m; sourceTree = "<group>"; };
 		E86C65AA1B4D431100E2ABFE /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "database-cache.h"; sourceTree = "<group>"; };
@@ -1258,8 +1262,6 @@
 		E8D569F41B54A108001A0F8E /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
 		E8D569FE1B54E35D001A0F8E /* MapTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTemplate.h; sourceTree = "<group>"; };
 		E8D569FF1B54E35D001A0F8E /* MapTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTemplate.m; sourceTree = "<group>"; };
-		E8D56A061B551FB5001A0F8E /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
-		E8D56A071B551FB5001A0F8E /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E8D7BA301BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHCenterOfMassMapClusterer.h; path = CCHMapClusterController/CCHCenterOfMassMapClusterer.h; sourceTree = "<group>"; };
 		E8D7BA311BC67CDC001B0805 /* CCHCenterOfMassMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHCenterOfMassMapClusterer.m; path = CCHMapClusterController/CCHCenterOfMassMapClusterer.m; sourceTree = "<group>"; };
 		E8D7BA321BC67CDC001B0805 /* CCHFadeInOutMapAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHFadeInOutMapAnimator.h; path = CCHMapClusterController/CCHFadeInOutMapAnimator.h; sourceTree = "<group>"; };
@@ -1850,8 +1852,9 @@
 		E857078F1CA1E77B00467CE0 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
-				E8D56A061B551FB5001A0F8E /* CompassViewController.h */,
-				E8D56A071B551FB5001A0F8E /* CompassViewController.m */,
+				E86C4AAC1E321822004526E2 /* CompassViewController.h */,
+				E86C4AAD1E321822004526E2 /* CompassViewController.m */,
+				E86C4AAE1E321822004526E2 /* CompassView.xib */,
 			);
 			name = Navigate;
 			sourceTree = "<group>";
@@ -3192,6 +3195,7 @@
 				E89C39941E29B0B400BB60CA /* KeepTracksTrackTableViewCell.xib in Resources */,
 				E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
+				E86C4AB01E321822004526E2 /* CompassView.xib in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
 				E82E66C21DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png in Resources */,
 				E8FEDED31DA8EEE9007C756B /* cache - beacon - 30x30@3x.png in Resources */,
@@ -3623,6 +3627,7 @@
 				E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */,
 				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
+				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* ProtocolLiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,
@@ -3732,7 +3737,6 @@
 				E82302561DCD8B3C0032C5C6 /* GCDataObjects.m in Sources */,
 				E8E8D0261B6720A300CC741A /* FilterDirectionTableViewCell.m in Sources */,
 				E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */,
-				E8D56A081B551FB5001A0F8E /* CompassViewController.m in Sources */,
 				E88037A21B946D1F0053AD01 /* dbNotice.m in Sources */,
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
