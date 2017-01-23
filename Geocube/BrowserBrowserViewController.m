@@ -419,7 +419,7 @@ enum {
 - (void)menuOpenInSafari
 {
     NSURL *url = [NSURL URLWithString:urlHome];
-    [[UIApplication sharedApplication] openURL:url];
+    [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
 }
 
 @end

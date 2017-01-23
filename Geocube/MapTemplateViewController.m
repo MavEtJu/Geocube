@@ -791,7 +791,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
             return;
         }
 
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
         return;
     }];
 }
