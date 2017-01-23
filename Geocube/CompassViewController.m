@@ -213,7 +213,6 @@
     } else {
         self.ivGPSCompassLine.hidden = NO;
 
-        NSLog(@"Bearing: %f", fBearing);
         self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
         self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
     }
