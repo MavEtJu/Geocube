@@ -188,7 +188,7 @@
                 InfoViewer *iv = [req objectForKey:@"infoViewer"];
                 InfoItemID iid = [[req objectForKey:@"ivi"] integerValue];
                 if (iv != nil && [iv isKindOfClass:[NSNull class]] == NO)
-                    [iv setBytesTotal:iid total:response.expectedContentLength];
+                    [iv setBytesTotal:iid total:(long)response.expectedContentLength];
 
                 *stop = YES;
                 return;
