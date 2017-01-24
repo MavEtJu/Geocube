@@ -225,7 +225,7 @@
         //NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
         [audioFeedback setTheFrequency:freq];
     }
-    
+
 }
 
 @end
