@@ -38,6 +38,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    // The analyze feature of Xcode will throw here a false positive on:
+    // The 'viewDidAppear:' instance method in UIViewController subclass 'MapAllWPViewController' is missing a [super viewDidAppear:] call
     [super viewDidAppear:animated isNavigating:YES];
 }
 

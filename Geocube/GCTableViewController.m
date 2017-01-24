@@ -167,19 +167,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
+    NSAssert(FALSE, @"This method should not have been called");
     return 0;
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
+    NSAssert(FALSE, @"This method should not have been called");
     return 0;
 }
 
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    NSAssert(FALSE, @"This method should not have been called");
+    return [[UITableViewCell alloc] init];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

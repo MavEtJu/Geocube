@@ -151,6 +151,7 @@ enum {
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [LM stopDelegation:self];
 }
 
