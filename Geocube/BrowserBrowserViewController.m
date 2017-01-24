@@ -23,9 +23,6 @@
 {
     UIWebView *webView;
 
-    NSMutableData *receivedData;
-    //NSURLConnection *urlConnection;
-    NSString *suggestedFilename;
     NSMutableURLRequest *req;
     NSString *urlHome;
 
@@ -64,6 +61,12 @@ enum {
     networkActivityIndicator = 0;
 
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self makeInfoView];
 }
 
 - (void)showBrowser
@@ -132,9 +135,7 @@ enum {
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)newRequest navigationType:(UIWebViewNavigationType)navigationType
 {
-    receivedData = nil;
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
-    NSURLConnection *urlConnection;
 
     if (oabb == nil && gca == nil && ggcw == nil) {
         [self showActivity:YES];
@@ -144,14 +145,14 @@ enum {
         // Download Pocket Queries from geocaching.com
         if ([urlString containsString:@"geocaching.com/"] == YES &&
             [urlString containsString:@"/pocket/downloadpq.ashx"] == YES) {
-            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
             return NO;
         }
 
         // Download queries from Geocaching Australia
         if ([urlString containsString:@"geocaching.com.au/my/query/gpx/"] == YES ||
             [urlString containsString:@"geocaching.com.au/my/query/zip/"] == YES) {
-            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
             return NO;
         }
 
@@ -159,14 +160,14 @@ enum {
         if ([urlString containsString:@"opencaching"] == YES &&
             [urlString containsString:@"search.php"] == YES &&
             [urlString containsString:@"output=gpxgc"] == YES) {
-            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
             return NO;
         }
 
         // Download a single GPX file from geocaching.com
         if ([urlString containsString:@"geocaching.com/geocache"] == YES &&
             [[newRequest HTTPMethod] isEqualToString:@"POST"] == YES) {
-            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
             return NO;
         }
 
@@ -174,7 +175,7 @@ enum {
         if ([[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".zip"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".xml"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".gpx"] == YES) {
-            urlConnection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
             return NO;
         }
 
@@ -255,6 +256,37 @@ enum {
     return YES;
 }
 
+- (void)downloadBG:(NSString *)urlString
+{
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:URL];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+
+    [self showInfoView];
+    InfoItemID iii = [infoView addDownload];
+    [infoView setDescription:iii description:@"Downloading query"];
+
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView ivi:iii];
+    [self showActivity:NO];
+    [self saveDataToFile:data response:response error:error];
+
+    [infoView removeItem:iii];
+    [self hideInfoView];
+}
+
+- (void)saveDataToFile:data response:(NSURLResponse *)response error:(NSError *)error
+{
+    if (data == nil)
+        return;
+
+    NSInteger length = [data length];
+    NSLog(@"Received %ld bytes", (long)length);
+    [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], response.suggestedFilename] atomically:NO];
+
+    [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], response.suggestedFilename]];
+}
+
 - (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
 {
     oabb = _oabb;
@@ -293,30 +325,6 @@ enum {
     }];
 }
 
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSString *mime = [response MIMEType];
-
-    NSArray *mimeTypes = @[@"application/gpx", @"application/gpx+xml", @"application/zip", @"text/xml"];
-    NSLog(@"Found mime type: %@", mime);
-
-    [self showActivity:NO];
-
-    [mimeTypes enumerateObjectsUsingBlock:^(NSString *mimeType, NSUInteger idx, BOOL *stop) {
-        if ([mime isEqualToString:mimeType] == YES) {
-            NSLog(@"Found mime type: %@", mime);
-            receivedData = [NSMutableData dataWithCapacity:0];
-            suggestedFilename = response.suggestedFilename;
-            [webView stopLoading];
-            [bezelManager showBezel:self];
-            [bezelManager setText:[NSString stringWithFormat:@"Loading data for %@", suggestedFilename]];
-            *stop = YES;
-        }
-    }];
-}
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if ([error code] == NSURLErrorCancelled)
@@ -335,31 +343,6 @@ enum {
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self showActivity:-1];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)_data
-{
-    if (receivedData == nil)
-        return;
-    [receivedData appendData:_data];
-    NSLog(@"Size: %ld - %ld", (long)[receivedData length], (long)[_data length]);
-    [bezelManager setText:[NSString stringWithFormat:@"Loading %@ for %@", [MyTools niceFileSize:[receivedData length]], suggestedFilename]];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (receivedData == nil)
-        return;
-
-    NSInteger length = [receivedData length];
-    NSLog(@"Received %ld bytes", (long)length);
-    [receivedData writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], suggestedFilename] atomically:NO];
-
-    [bezelManager removeBezel];
-    [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], suggestedFilename]];
-
-    receivedData = nil;
-    //urlConnection = nil;
 }
 
 #pragma mark - Local menu related functions
