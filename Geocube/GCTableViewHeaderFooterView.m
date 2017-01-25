@@ -41,7 +41,7 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
+    self.contentView.backgroundColor = currentTheme.tableViewCellBackgroundColor;
 
     [themeManager changeThemeArray:self.subviews];
 }
