@@ -51,6 +51,8 @@
     [self.labelLocation changeTheme];
     [self.labelRatingD changeTheme];
     [self.labelRatingT changeTheme];
+    // the labelFavourites does not follow the theme rules.
+    // [self.labelFavourites changeTheme];
     [self.labelSize changeTheme];
 }
 

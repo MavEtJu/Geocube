@@ -58,6 +58,8 @@
     [self.labelLocation changeTheme];
     [self.labelTerrain changeTheme];
     [self.labelDifficulty changeTheme];
+    // the labelFavourites does not follow the theme rules.
+    // [self.labelFavourites changeTheme];
 
     [super changeTheme];
 }
