@@ -51,7 +51,6 @@
     [self.labelLocation changeTheme];
     [self.labelRatingD changeTheme];
     [self.labelRatingT changeTheme];
-    [self.labelFavourites changeTheme];
     [self.labelSize changeTheme];
 }
 
