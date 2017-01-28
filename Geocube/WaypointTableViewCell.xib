@@ -80,7 +80,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-RO-UWK" customClass="GCImageView">
-                        <rect key="frame" x="10" y="0.0" width="30" height="30"/>
+                        <rect key="frame" x="5" y="0.0" width="30" height="30"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="13" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deP-oh-fKb" customClass="GCLabel">
                         <rect key="frame" x="10" y="46" width="30" height="13"/>
@@ -122,7 +122,7 @@
                     <constraint firstAttribute="bottom" secondItem="aMH-ID-Ah6" secondAttribute="bottom" constant="5" id="oy6-9o-WmV"/>
                     <constraint firstItem="uMi-0w-CPd" firstAttribute="top" secondItem="PAb-iH-Cib" secondAttribute="bottom" id="qeM-De-idW"/>
                     <constraint firstItem="fVs-uO-RAV" firstAttribute="top" secondItem="b8C-P0-FBr" secondAttribute="bottom" id="vZM-Fm-47j"/>
-                    <constraint firstItem="rGc-RO-UWK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="vbz-Fd-LzP"/>
+                    <constraint firstItem="rGc-RO-UWK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="vbz-Fd-LzP"/>
                     <constraint firstItem="deP-oh-fKb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="wFN-Wm-AAP"/>
                     <constraint firstItem="29H-J4-UGw" firstAttribute="top" secondItem="uMi-0w-CPd" secondAttribute="bottom" id="z1R-Pm-MBd"/>
                 </constraints>
