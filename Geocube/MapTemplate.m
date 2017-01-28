@@ -275,7 +275,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
     /* Add the info window */
     CGRect maprect = self.mapvc.view.frame;
     maprect.origin.y = maprect.size.height - [MapWaypointInfoView viewHeight];
-    maprect.size.height = [MapWaypointInfoView viewHeight];;
+    maprect.size.height = [MapWaypointInfoView viewHeight];
     wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
     [self.mapvc.view addSubview:wpInfoView];
     [self.mapvc.view sendSubviewToBack:wpInfoView];
