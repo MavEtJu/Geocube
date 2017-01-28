@@ -205,7 +205,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 - (void)recalculateRects
 {
     CGRect frame = self.mapvc.view.frame;
-    CGRect rect = CGRectMake(0, frame.size.height - [wpInfoView cellHeight], frame.size.width, [wpInfoView cellHeight]);
+    CGRect rect = CGRectMake(0, frame.size.height - [MapWaypointInfoView viewHeight], frame.size.width, [MapWaypointInfoView viewHeight]);
     wpInfoView.frame = rect;
 
     UIButton *b = [wpInfoViewButtons objectAtIndex:0];
@@ -214,9 +214,6 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
     b = [wpInfoViewButtons objectAtIndex:1];
     b.frame = CGRectMake(0, wpInfoView.frame.origin.y, 30, 30);
-
-    [wpInfoView calculateRects];
-    [wpInfoView viewWillTransitionToSize];
 }
 
 - (void)updateMapScaleView
@@ -270,13 +267,16 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 - (void)updateWaypointInfo:(dbWaypoint *)wp
 {
-    [wpInfoView waypointData:wp];
+    [wpInfoView setWaypoint:wp];
 }
 
 - (void)initWaypointInfo
 {
     /* Add the info window */
-    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:CGRectZero];
+    CGRect maprect = self.mapvc.view.frame;
+    maprect.origin.y = maprect.size.height - [MapWaypointInfoView viewHeight];
+    maprect.size.height = [MapWaypointInfoView viewHeight];;
+    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
     [self.mapvc.view addSubview:wpInfoView];
     [self.mapvc.view sendSubviewToBack:wpInfoView];
 

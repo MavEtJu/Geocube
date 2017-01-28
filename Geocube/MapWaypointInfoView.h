@@ -21,10 +21,7 @@
 
 @interface MapWaypointInfoView : GCView <WaypointManagerDelegate>
 
-//+ (NSInteger)cellHeight;
-- (NSInteger)cellHeight;
-- (void)calculateRects;
-- (void)viewWillTransitionToSize;
-- (void)waypointData:(dbWaypoint *)wp;
+- (void)setWaypoint:(dbWaypoint *)wp;
++ (NSInteger)viewHeight;
 
 @end

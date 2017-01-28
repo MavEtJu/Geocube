@@ -25,9 +25,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="20" placeholderIntrinsicHeight="29" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-ae-XBp" customClass="GCImageView">
-                        <rect key="frame" x="290" y="0.0" width="20" height="29"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAb-iH-Cib" customClass="GCLabel">
                         <rect key="frame" x="40" y="21" width="240" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -64,8 +61,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="35" placeholderIntrinsicHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KXm-Ev-gFj" customClass="GCImageView">
-                        <rect key="frame" x="275" y="34" width="35" height="10"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="20" placeholderIntrinsicHeight="29" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-ae-XBp" customClass="GCImageView">
+                        <rect key="frame" x="290" y="0.0" width="20" height="29"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="20" placeholderIntrinsicHeight="21" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRR-xh-Hfd" customClass="GCLabel">
                         <rect key="frame" x="284" y="3" width="20" height="21"/>
@@ -73,6 +70,9 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="35" placeholderIntrinsicHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="KXm-Ev-gFj" customClass="GCImageView">
+                        <rect key="frame" x="275" y="34" width="35" height="10"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="13" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8C-P0-FBr" customClass="GCLabel">
                         <rect key="frame" x="220" y="33" width="90" height="13"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
