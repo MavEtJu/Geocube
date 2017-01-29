@@ -494,7 +494,24 @@
     @"alter table log_strings add column protocol_id integer",
     @"update log_strings set protocol_id = (select protocol_id from accounts where id = account_id)",
     @"delete from log_strings where protocol_id = 2",
+    ];
+    [upgradeSteps addObject:a];
 
+    // Version 39
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.2.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.2.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.2.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.2.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.2.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.2.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.2.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.2.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.2.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.2.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.2.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.2.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.2.geocube' where key = 'url_logstrings'",
     ];
     [upgradeSteps addObject:a];
 
