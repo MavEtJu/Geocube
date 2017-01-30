@@ -296,6 +296,8 @@
     *retObj = nil;
 
     [iv setChunksTotal:ivi total:2];
+
+    // Download the query
     [iv setChunksCount:ivi count:1];
 
     GCDictionaryGCA2 *json = [gca2 api_services_caches_query_geocaches:_id infoViewer:iv ivi:ivi];
@@ -308,6 +310,7 @@
         [wpcodes addObject:[wp objectForKey:@"waypoint"]];
     }];
 
+    // Download the waypoint information
     [iv setChunksCount:ivi count:2];
 
     json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
