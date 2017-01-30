@@ -115,7 +115,6 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 - (RemoteAPIResult)listQueries:(NSArray **)qs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback;
 
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv ivi:(InfoItemID)ivi;

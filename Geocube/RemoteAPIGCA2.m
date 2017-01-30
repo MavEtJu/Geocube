@@ -332,20 +332,4 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
-{
-    *retObj = nil;
-    [iv setChunksTotal:ivi total:1];
-    [iv setChunksCount:ivi count:1];
-    GCStringGPX *gpx = nil;
-    if (gpx == nil)
-        return REMOTEAPI_APIFAILED;
-
-    InfoItemID iii = [iv addImport];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:group account:self.account];
-
-    *retObj = gpx;
-    return REMOTEAPI_OK;
-}
-
 @end

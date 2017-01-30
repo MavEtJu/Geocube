@@ -381,11 +381,6 @@ NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery_forcegpx:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
-{
-    return REMOTEAPI_NOTPROCESSED;
-}
-
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     return REMOTEAPI_NOTPROCESSED;
