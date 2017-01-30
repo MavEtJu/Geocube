@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Query" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-rs-5Iz" customClass="GCLabel">
                         <rect key="frame" x="8" y="8" width="304" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -51,22 +51,21 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4c1-pZ-hac"/>
-                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="trailing" secondItem="8gz-SZ-4nB" secondAttribute="trailing" id="5vF-NY-Lby"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="X8D-HP-k5Y" secondAttribute="bottom" constant="2" id="AAj-Y1-pj1"/>
-                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="top" secondItem="UWs-q0-afM" secondAttribute="bottom" id="Ds9-y8-UEr"/>
-                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="top" secondItem="8gz-SZ-4nB" secondAttribute="bottom" id="H1o-Hj-Qh4"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="HuJ-ku-ZF1"/>
-                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="trailing" secondItem="8gz-SZ-4nB" secondAttribute="trailing" id="SLk-fv-OQX"/>
-                    <constraint firstItem="UWs-q0-afM" firstAttribute="top" secondItem="qGS-rs-5Iz" secondAttribute="bottom" id="YI9-oD-uUz"/>
-                    <constraint firstItem="UWs-q0-afM" firstAttribute="leading" secondItem="CDs-Ed-1CP" secondAttribute="leading" id="bQW-tC-ER3"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="UWs-q0-afM" secondAttribute="trailing" id="kfL-fA-ego"/>
-                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="top" secondItem="CDs-Ed-1CP" secondAttribute="bottom" id="ksf-vq-JZg"/>
-                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="leading" secondItem="8gz-SZ-4nB" secondAttribute="leading" id="piE-Qh-f8X"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="UWs-q0-afM" secondAttribute="leading" id="ryH-zO-Jkt"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="sKu-DU-pWB"/>
-                    <constraint firstItem="UWs-q0-afM" firstAttribute="trailing" secondItem="CDs-Ed-1CP" secondAttribute="trailing" id="tVK-w1-yPa"/>
-                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="leading" secondItem="8gz-SZ-4nB" secondAttribute="leading" id="y76-tZ-ktp"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="UWs-q0-afM" secondAttribute="leading" id="1Ks-Jj-YCG"/>
+                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="top" secondItem="8gz-SZ-4nB" secondAttribute="bottom" id="A82-Rj-rNx"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="AAX-73-Lpu"/>
+                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="trailing" secondItem="8gz-SZ-4nB" secondAttribute="trailing" id="GlD-ai-8TX"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="JUN-OI-6SL"/>
+                    <constraint firstItem="UWs-q0-afM" firstAttribute="top" secondItem="qGS-rs-5Iz" secondAttribute="bottom" id="KOw-T8-bZc"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Pdz-3K-TFI"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="UWs-q0-afM" secondAttribute="trailing" id="WX9-wT-4wo"/>
+                    <constraint firstItem="UWs-q0-afM" firstAttribute="trailing" secondItem="CDs-Ed-1CP" secondAttribute="trailing" id="Wsb-4a-BCd"/>
+                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="top" secondItem="CDs-Ed-1CP" secondAttribute="bottom" id="YjP-9d-HxF"/>
+                    <constraint firstItem="UWs-q0-afM" firstAttribute="leading" secondItem="CDs-Ed-1CP" secondAttribute="leading" id="ZVk-2f-iaT"/>
+                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="top" secondItem="UWs-q0-afM" secondAttribute="bottom" id="ppT-cn-Hhv"/>
+                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="leading" secondItem="8gz-SZ-4nB" secondAttribute="leading" id="sL3-Lm-K4f"/>
+                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="trailing" secondItem="X8D-HP-k5Y" secondAttribute="trailing" id="tsZ-Db-EDN"/>
+                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="leading" secondItem="X8D-HP-k5Y" secondAttribute="leading" id="v5j-20-rDZ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
