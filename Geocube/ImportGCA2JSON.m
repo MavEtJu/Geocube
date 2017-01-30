@@ -319,7 +319,7 @@
     if ([image dbLinkedtoWaypoint:wp._id] == NO)
         [image dbLinkToWaypoint:wp._id type:imagetype];
 
-    [ImagesDownloadManager addToQueue:image];
+    [ImagesDownloadManager addToQueue:image imageType:imagetype];
 }
 
 - (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp

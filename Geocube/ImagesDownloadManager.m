@@ -249,7 +249,7 @@
     return YES;
 }
 
-+ (void)addToQueue:(dbImage *)img
++ (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType
 {
     // Do not download images if disabled.
     if (configManager.downloadImagesWaypoints == NO)
@@ -257,6 +257,14 @@
 
     // Do not download anything unless Wifi is required and available.
     if (configManager.downloadImagesMobile == NO && [MyTools hasWifiNetwork] == NO)
+        return;
+
+    // Check if the image type is a log and if it needs to be downloaded
+    if (configManager.downloadImagesLogs == NO && imageType == IMAGECATEGORY_LOG)
+        return;
+
+    // Check if the image type is a waypoint image and if it needs to be downloaded
+    if (configManager.downloadImagesWaypoints == NO && imageType == IMAGECATEGORY_CACHE)
         return;
 
     [self addToQueueImmediately:img];

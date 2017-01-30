@@ -475,7 +475,8 @@
         img = [[dbImage alloc] init:url name:name datafile:df];
         [dbImage dbCreate:img];
     }
-    [ImagesDownloadManager addToQueue:img];
+
+    [ImagesDownloadManager addToQueue:img imageType:imageSource];
 
     if ([img dbLinkedtoWaypoint:wp._id] == NO)
         [img dbLinkToWaypoint:wp._id type:imageSource];
