@@ -443,14 +443,14 @@
         [tb dbLinkToWaypoint:wp._id];
 }
 
-- (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
+- (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
 {
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseImage:d waypoint:wp imageSource:imageSource];
     }];
 }
 
-- (void)parseImage:(NSDictionary *)dict waypoint:(dbWaypoint *)wp imageSource:(NSInteger)imageSource
+- (void)parseImage:(NSDictionary *)dict waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
 {
     /*
      {
