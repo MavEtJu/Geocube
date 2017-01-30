@@ -19,20 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol ImagesDownloadManagerDelegate
-
-- (void)imagesDownloadManager_setQueuedImages:(NSInteger)v;
-- (void)imagesDownloadManager_setDownloadedImages:(NSInteger)v;
-
-@end
-
 @interface ImagesDownloadManager : NSObject
 
 + (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type;
 + (BOOL)downloadImage:(NSId)wp_id url:(NSString *)url name:(NSString *)name type:(NSInteger)type;
 + (void)addToQueue:(dbImage *)img;
 + (void)addToQueueImmediately:(dbImage *)img;
-
-@property (nonatomic, retain) id<ImagesDownloadManagerDelegate> delegate;
 
 @end

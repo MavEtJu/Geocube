@@ -106,8 +106,6 @@
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[self.todo count]);
         @synchronized (imagesDownloadManager) {
-            [self.delegate imagesDownloadManager_setQueuedImages:[self.todo count]];
-            [self.delegate imagesDownloadManager_setDownloadedImages:downloaded];
             if ([self.todo count] != 0)
                 imgToDownload = [self.todo objectAtIndex:0];
         }
