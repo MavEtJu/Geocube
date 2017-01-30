@@ -305,28 +305,44 @@
 
     GCA2_GET_VALUE(json, NSArray, wps, @"geocaches", @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
-    NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:[wps count]];
+    // Find the chunks...
+    NSMutableArray *wpchunks = [NSMutableArray arrayWithCapacity:1 + [wps count] / 100];
+    __block NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:100];
     [wps enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL *stop) {
+        if (idx % 100 == 0 && [wps count] != 0) {
+            [wpchunks addObject:wpcodes];
+            wpcodes = [NSMutableArray arrayWithCapacity:100];
+        }
         [wpcodes addObject:[wp objectForKey:@"waypoint"]];
     }];
+    if ([wps count] != 0)
+        [wpchunks addObject:wpcodes];
 
     // Download the waypoint information
-    [iv setChunksCount:ivi count:2];
+    [iv setChunksTotal:ivi total:1 + [wpchunks count]];
 
-    json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
-    GCA2_CHECK_STATUS(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+    NSEnumerator *eWpchunk = [wpchunks objectEnumerator];
+    wpcodes = nil;
+    NSUInteger idx = 0;
+    while ((wpcodes = [eWpchunk nextObject]) != nil) {
 
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSMutableArray *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
-    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
-        [_wps addObject:[json objectForKey:wpcode]];
-    }];
-    [d setObject:_wps forKey:@"waypoints"];
+        [iv setChunksCount:ivi count:1 + ++idx];
 
-    GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
+        GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
+        GCA2_CHECK_STATUS(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
-    InfoItemID iii = [iv addImport];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSMutableArray *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+            [_wps addObject:[json objectForKey:wpcode]];
+        }];
+        [d setObject:_wps forKey:@"waypoints"];
+
+        GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
+
+        InfoItemID iii = [iv addImport];
+        [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
+    }
 
     *retObj = json;
     return REMOTEAPI_OK;
