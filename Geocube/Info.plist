@@ -80,7 +80,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>After all, you are looking for the location of the waypoint!</string>
+	<string>After all, you are looking for the location of that waypoint!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Use this if you want also keep track of where you are.</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIFileSharingEnabled</key>

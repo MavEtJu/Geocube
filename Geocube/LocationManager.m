@@ -59,8 +59,12 @@
     lastSync = 0;
     historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
 
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    CLAuthorizationStatus stat = [CLLocationManager authorizationStatus];
+    if (stat == kCLAuthorizationStatusNotDetermined ||
+        stat == kCLAuthorizationStatusRestricted ||
+        stat == kCLAuthorizationStatusDenied)
         [_LM requestWhenInUseAuthorization];
+//        [_LM requestAlwaysAuthorization];
 
     return self;
 }
