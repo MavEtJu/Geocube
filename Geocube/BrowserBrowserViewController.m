@@ -332,7 +332,7 @@ enum {
 
     NSLog(@"Error for WEBVIEW: %@", [error description]);
 
-    // Ignore "Fame Load Interrupted" errors. Seen after app store links.
+    // Ignore "Frame Load Interrupted" errors. Seen after app store links.
     if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"])
         return;
 
