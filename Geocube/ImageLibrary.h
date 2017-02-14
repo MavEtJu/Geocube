@@ -64,25 +64,25 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageWaypoints_ManuallyEntered,     // 209
     ImageNFI,
 
-    ImageLog_DidNotFind = 400,
-    ImageLog_Enabled,
-    ImageLog_Found,
-    ImageLog_NeedsArchiving,
-    ImageLog_NeedsMaintenance,
-    ImageLog_OwnerMaintenance,
-    ImageLog_ReviewerNote,
-    ImageLog_Published,
-    ImageLog_Archived,
-    ImageLog_Disabled,
-    ImageLog_Unarchived,
-    ImageLog_Coordinates,
-    ImageLog_WebcamPhoto,
-    ImageLog_Note,
-    ImageLog_Attended,
-    ImageLog_WillAttend,
-    ImageLog_Unknown,
-    ImageLog_Moved,
-    ImageLog_Announcement,
+    ImageLog_DidNotFind = 400,      // 400
+    ImageLog_Enabled,               // 401
+    ImageLog_Found,                 // 402
+    ImageLog_NeedsArchiving,        // 403
+    ImageLog_NeedsMaintenance,      // 404
+    ImageLog_OwnerMaintenance,      // 405
+    ImageLog_ReviewerNote,          // 406
+    ImageLog_Published,             // 407
+    ImageLog_Archived,              // 408
+    ImageLog_Disabled,              // 409
+    ImageLog_Unarchived,            // 410
+    ImageLog_Coordinates,           // 411
+    ImageLog_WebcamPhoto,           // 412
+    ImageLog_Note,                  // 413
+    ImageLog_Attended,              // 414
+    ImageLog_WillAttend,            // 415
+    ImageLog_Unknown,               // 416
+    ImageLog_Moved,                 // 417
+    ImageLog_Announcement,          // 418
 
     ImageContainerSize_Large = 450,
     ImageContainerSize_Micro,
