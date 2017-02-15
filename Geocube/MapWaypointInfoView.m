@@ -22,7 +22,6 @@
 @interface MapWaypointInfoView ()
 {
     UIImage *imgFavourites, *imgSize;
-    GCButton *setAsTarget;
 
     dbWaypoint *waypoint;
 }
@@ -32,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet GCImageView *ivContainer;
 @property (weak, nonatomic) IBOutlet GCImageView *ivSize;
 @property (weak, nonatomic) IBOutlet GCLabel *labelSize;
+@property (weak, nonatomic) IBOutlet GCImageView *ivTarget;
 
 @property (weak, nonatomic) IBOutlet GCLabel *labelDescription;
 @property (weak, nonatomic) IBOutlet GCLabel *labelWhoWhen;
@@ -40,6 +40,9 @@
 @property (weak, nonatomic) IBOutlet GCLabel *labelStateCountry;
 @property (weak, nonatomic) IBOutlet GCLabel *labelRatingD;
 @property (weak, nonatomic) IBOutlet GCLabel *labelRatingT;
+
+@property (weak, nonatomic) IBOutlet GCButton *buttonOverlay;
+@property (weak, nonatomic) IBOutlet GCButton *buttonSetAsTarget;
 
 @end
 
@@ -56,6 +59,9 @@
     [self addSubview:firstViewUIView];
 
     self.ivFavourites.image = imgFavourites;
+    self.ivTarget.image = [imageLibrary get:ImageIcon_Target];
+    [self.buttonOverlay addTarget:self action:@selector(actionShowWaypoint:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonSetAsTarget addTarget:self action:@selector(actionSetAsTarget:) forControlEvents:UIControlEventTouchDown];
 
     [self changeTheme];
 
@@ -122,7 +128,12 @@
     self.labelStateCountry.text = [wp makeLocaleStateCountry];
 }
 
-- (void)setAsTarget:(UIButton *)setAsTarget
+- (void)actionShowWaypoint:(UIButton *)showWaypoint
+{
+    [self.parentMap openWaypointView:waypoint];
+}
+
+- (void)actionSetAsTarget:(UIButton *)setAsTarget
 {
     [waypointManager setTheCurrentWaypoint:waypoint];
 
