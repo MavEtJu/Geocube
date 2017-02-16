@@ -30,23 +30,35 @@
 
 @implementation MyClock
 
-- (instancetype)initClock:(NSString *)_title
+/**
+ * Initalizes the clock with a certain prefix
+ *
+ * @param title Prefix to be used in logs
+ * @return an MyClock object
+ */
+- (instancetype)initClock:(NSString *)title
 {
     self = [super init];
 
-    clockTitle = _title;
+    clockTitle = title;
     gettimeofday(&clock, NULL);
     [self clockShowAndReset];
 
     return self;
 }
 
+/// Displays the clock and resets to zero
 - (void)clockShowAndReset
 {
     [self clockShowAndReset:nil];
 }
 
-- (void)clockShowAndReset:(NSString *)title
+/**
+ * Displays the clock and resets to zero
+ *
+ * @param suffix Extra text to be displayed before the time
+ */
+- (void)clockShowAndReset:(NSString *)suffix
 {
     struct timeval now1, now, diff;
     gettimeofday(&now1, NULL);
@@ -63,13 +75,14 @@
         return;
 
     NSMutableString *t = [NSMutableString stringWithString:clockTitle];
-    if (title != nil) {
+    if (suffix != nil) {
         [t appendString:@":"];
-        [t appendString:title];
+        [t appendString:suffix];
     }
     NSLog(@"CLOCK: %@ %ld.%06d", t, diff.tv_sec, diff.tv_usec);
 }
 
+/// Determine to show the clock or not when clockShowAndReset has been called
 - (void)clockEnable:(BOOL)yesno
 {
     clockEnabled = yesno;

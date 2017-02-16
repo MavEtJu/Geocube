@@ -26,7 +26,7 @@
 
 @implementation MyTools
 
-// Returns the location where the app can read and write to files
+/// Returns the location where the app can read and write to files
 + (NSString *)DocumentRoot
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -35,27 +35,27 @@
     return documentsDirectory;
 }
 
-// Returns the location where the app has installed the various files
+/// Returns the location where the app has installed the various files
 + (NSString *)DataDistributionDirectory
 {
     return [[NSBundle mainBundle] resourcePath];
 }
 
-// Returns the location where the files distibuted by the app will be installed for the user
+/// Returns the location where the files distibuted by the app will be installed for the user
 + (NSString *)FilesDir
 {
     NSString *s = [[NSString alloc] initWithFormat:@"%@/files", [self DocumentRoot]];
     return s;
 }
 
-// Returns the location where the images downloaded will be
+/// Returns the location where the images downloaded will be
 + (NSString *)ImagesDir
 {
     NSString *s = [[NSString alloc] initWithFormat:@"%@/images", [self DocumentRoot]];
     return s;
 }
 
-// Returns the location where a downloaded image will be
+/// Returns the location where a downloaded image will be
 + (NSString *)ImageFile:(NSString *)imgFile;
 {
     NSString *s = [[NSString alloc] initWithFormat:@"%@/%@/%@/%@",
@@ -69,6 +69,7 @@
 
 ///////////////////////////////////////////
 
+/// Returns the difference between t1 and t0
 + (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1
 {
     struct timeval ret;
@@ -83,12 +84,26 @@
     return ret;
 }
 
+/**
+ * Return the number of seconds since Epoch from a Windows epoch string
+ * The Windows string is in the format of "/Date(1413702000000-0700)/"
+ *
+ * @param datatime The windows epoch string
+ * @return The Unix epoch string
+ */
 + (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime
 {
     // /Date(1413702000000-0700)/
     return [[datetime substringFromIndex:6] integerValue] / 1000;
 }
 
+/**
+ * Return the NSDate object from an ISO8601 string
+ *
+ * @param string The ISO8601 string
+ * @param format The format of the ISO8601 string
+ * @return The NSData object
+ */
 + (NSDate *)dateFromISO8601String:(NSString *)string format:(char *)format
 {
     if (string == nil)
@@ -105,6 +120,7 @@
     return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
+/// Returns the number of milliseconds for the current time
 + (NSInteger)millisecondsSinceEpoch
 {
     struct timeval tv;
@@ -112,6 +128,13 @@
     return tv.tv_sec * 1000 + (tv.tv_usec / 1000);
 }
 
+/**
+ * Analyze the datetime string and return the epoch value for it.
+ * The string can be YYYY-MM-DD or YYYY-MM-DDTHH:MM:SSZ
+ *
+ * @param datetime The datetime string
+ * @return Number of seconds since epoch for the given datetime string
+ */
 + (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime
 {
     NSDate *date;
@@ -123,6 +146,13 @@
     return [date timeIntervalSince1970];
 }
 
+/**
+ * Returns the datetime string for the specified epoch time
+ *
+ * @param seconds The number of seconds since epoch
+ * @param format The requested format for the return string
+ * @return The datetime string
+ */
 + (NSString *)dateTimeStringFormat:(NSInteger)seconds format:(NSString *)format
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
@@ -130,7 +160,6 @@
     [dateFormatter setDateFormat:format];
     return [dateFormatter stringFromDate:date];
 }
-
 
 #define TIME(__method__, __format__) \
     + (NSString *)__method__ { \
@@ -149,6 +178,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Convert a plain text string into a HTML string... Kind off
 + (NSString *)simpleHTML:(NSString *)plainText
 {
     if (plainText == nil)
@@ -161,6 +191,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return s;
 }
 
+/// Remove all tags from an HTML string
 + (NSString *)stripHTML:(NSString *)l
 {
     NSRange r;
@@ -170,6 +201,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return s;
 }
 
+/// Count the number of lines in a string
 + (NSInteger)numberOfLines:(NSString *)s
 {
     NSInteger lineNum = 0;
@@ -185,6 +217,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Returns the number as a nicely formatted string with spaces every three digits
 + (NSString *)niceNumber:(NSInteger)i
 {
     NSMutableString *sin = [NSMutableString stringWithFormat:@"%ld", (long)i];
@@ -202,6 +235,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return sout;
 }
 
+/// Returns the number as a nicely formatted string with bytes, Kb, Mb etc
 + (NSString *)niceFileSize:(NSInteger)i
 {
     if (i < 1024)
@@ -219,11 +253,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return [NSString stringWithFormat:@"%ld Mb", (long)(i / (1024 * 1024))];
 }
 
+/// Returns the number as a nicely formatted string with meters, km, miles etc
 + (NSString *)niceDistance:(NSInteger)m
 {
     return [MyTools niceDistance:m isMetric:configManager.distanceMetric];
 }
 
+/// Returns the number as a nicely formatted string with meters, km, miles etc
 + (NSString *)niceDistance:(NSInteger)m isMetric:(BOOL)isMetric
 {
     if (isMetric == YES) {
@@ -248,6 +284,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return [NSString stringWithFormat:@"%ld miles", (long)(m / 1609.3)];
 }
 
+/// Returns the number as a nicely formatted string with km/h or mph
 + (NSString *)niceSpeed:(NSInteger)kmph
 {
     return [MyTools niceSpeed:kmph isMetric:configManager.distanceMetric];
@@ -265,6 +302,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     }
 }
 
+/// Returns the number as a nicely formatted string with seconds, hours, minutes etc ago
 + (NSString *)niceTimeDifference:(NSInteger)i
 {
     long diff = time(NULL) - i;
@@ -292,16 +330,19 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return [NSString stringWithFormat:@"%ld year%@ ago", diff, diff == 1 ? @"" : @"s"];
 }
 
+/// Returns the number as a nicely formatted string for orgin and size
 + (NSString *)niceCGRect:(CGRect)r
 {
     return [NSString stringWithFormat:@"(%0.0f, %0.0f), (%0.0f x %0.0f)", r.origin.x, r.origin.y, r.size.width, r.size.height];
 }
 
+/// Returns the number as a nicely formatted string for size
 + (NSString *)niceCGSize:(CGSize)s
 {
     return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
 }
 
+/// Returns the number as a nicely formatted string in percentage form
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 {
     return [NSString stringWithFormat:@"%0.0f%%", 100.0 * value / total];
@@ -309,6 +350,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Return an percent encoded URL with %xx for non-alphanumeric characters
 + (NSString *)urlEncode:(NSString *)in
 {
     NSMutableString *output = [NSMutableString string];
@@ -330,11 +372,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return output;
 }
 
+/// Return an string with percent encoding changed into normal characters
 + (NSString *)urlDecode:(NSString *)in
 {
     return [in stringByRemovingPercentEncoding];
 }
 
+/// Join a dictionary for URL encoding
 + (NSString *)urlParameterJoin:(NSDictionary *)in
 {
     NSMutableString *s = [NSMutableString stringWithString:@""];
@@ -346,11 +390,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return s;
 }
 
+/// Escape the " in a string with \"
 + (NSString *)tickEscape:(NSString *)in
 {
     return [in stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
+/// Escape the " and / in a string with \" and \/
 + (NSString *)JSONEscape:(NSString *)in
 {
     NSMutableString *s = [NSMutableString stringWithString:in];
@@ -359,6 +405,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return [NSString stringWithString:s];
 }
 
+/// Escape the &, < and > in a string with &amp, &lt; and &gt;
 + (NSString *)HTMLEscape:(NSString *)in
 {
     if (in == nil)
@@ -370,6 +417,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return s;
 }
 
+/// Remove a set of & escaped values with their normal character values
 + (NSString *)HTMLUnescape:(NSString *)in
 {
     if (in == nil)
@@ -384,6 +432,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return s;
 }
 
+/// Remove the first and last character from a JSON string
 + (NSString *)removeJSONWrapper:(NSString *)s jsonWrapper:(NSString *)jQueryCallback
 {
     NSString *t = [s substringFromIndex:[jQueryCallback length] + 1];
@@ -393,6 +442,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
 + (BOOL)checkCoordinate:(NSString *)text
 {
     // As long as it matches any of these, it is fine:
@@ -410,6 +460,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Return a non-existing waypoint code based on the prefix supplied
 + (NSString *)makeNewWaypoint:(NSString *)prefix
 {
     NSString *name;
@@ -424,6 +475,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Checks if the Wifi interface is connected to the Internet
 + (BOOL)hasWifiNetwork
 {
     @synchronized (self) {
@@ -444,6 +496,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     }
 }
 
+/// Checks if the Mobile interface is connected to the Internet
 + (BOOL)hasMobileNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
@@ -462,6 +515,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return NO;
 }
 
+/// Check if there is any network conencted to the Internet
 + (BOOL)hasAnyNetwork
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
@@ -482,6 +536,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Play a sound file
 + (void)playSoundFile:(NSString *)filename extension:(NSString *)extension
 {
     /* Crappy way to do sound but will work for now */
@@ -497,6 +552,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     AudioServicesPlaySystemSound(soundFileObject);
 }
 
+/// Play one of the defined sounds
 + (void)playSound:(PlaySound)reason
 {
     switch (reason) {
@@ -510,6 +566,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Show up a message box with a header and a text
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text
 {
     UIAlertController *alert= [UIAlertController
@@ -530,6 +587,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     }];
 }
 
+/// Show up a message box with a header, a text and an error string
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error
 {
     UIAlertController *alert= [UIAlertController
@@ -550,6 +608,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     }];
 }
 
+/// Returns a random UIColor object (not black)
 + (UIColor *)randomColor
 {
     NSArray *colours = @[
@@ -605,6 +664,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 
 ///////////////////////////////////////////
 
+/// Return the top UIViewController for this view
 + (UIViewController *)topMostController
 {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -616,6 +676,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return topController;
 }
 
+/// Send a Tweet through the iOS Twitter interface
 + (void)sendTweet:(UIViewController *)vc text:(NSString *)text
 {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
