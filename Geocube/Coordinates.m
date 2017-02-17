@@ -28,6 +28,7 @@
 
 @implementation Coordinates
 
+/// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
 {
     self = [super init];
@@ -35,6 +36,7 @@
     coords.longitude= _lon;
     return self;
 }
+/// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
 - (instancetype)init:(CLLocationCoordinate2D)_coords           // { -34.02787, 151.07357 }
 {
     self = [super init];
@@ -42,25 +44,31 @@
     coords.longitude= _coords.longitude;
     return self;
 }
+
+/// Returns -34.02787
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
     return [NSString stringWithFormat:@"%9.5f", coords.latitude];
 }
+/// Returns 151.07357
 - (NSString *)lon_decimalDegreesSigned     // 151.07357
 {
     return [NSString stringWithFormat:@"%9.5f", coords.longitude];
 }
+/// Returns S 34.02787
 - (NSString *)lat_decimalDegreesCardinal   // S 34.02787
 {
     NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
     return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.latitude)];
 
 }
+/// Returns E 151.07357
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
     NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
     return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.longitude)];
 }
+/// Returns S 34° 1.672'
 - (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
 {
     NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
@@ -69,6 +77,7 @@
     float mins = modff(fabs(coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
+/// Returns E 151° 4.414'
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
 {
     NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
@@ -77,6 +86,7 @@
     float mins = modff(fabs(coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
+/// Returns S 34 1.672
 - (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
 {
     NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
@@ -85,6 +95,7 @@
     float mins = modff(fabs(coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
+/// Returns E 151 4.414
 - (NSString *)lon_degreesDecimalMinutesSimple    // E 151 4.414
 {
     NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
@@ -93,6 +104,7 @@
     float mins = modff(fabs(coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
+/// Returns S 34° 01' 40"
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {
     NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
@@ -102,6 +114,7 @@
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
+/// Returns E 151° 04' 25"
 - (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
 {
     NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
@@ -111,36 +124,43 @@
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
+/// Returns lat value
 - (CLLocationDegrees)lat
 {
     return coords.latitude;
 }
+/// Returns lon value
 - (CLLocationDegrees)lon
 {
     return coords.longitude;
 }
 
+/// Returns calculated distance towards coordinates c
 - (NSInteger)distance:(CLLocationCoordinate2D)c
 {
     return [Coordinates coordinates2distance:coords to:c];
 }
 
+/// Returns bearing towards coordinates c
 - (NSInteger)bearing:(CLLocationCoordinate2D)c
 {
     return [Coordinates coordinates2bearing:coords to:c];
 }
 
 
+/// Returns radians value of a degree value
 + (CLLocationDegrees)toRadians:(CLLocationDegrees)f
 {
     return f * M_PI / 180;
 }
 
+/// Returns degree value of a radins value
 + (CLLocationDegrees)toDegrees:(CLLocationDegrees)f
 {
     return 180 * f / M_PI;
 }
 
+/// Returns the coordinates of c plus o
 + (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
@@ -186,11 +206,13 @@
     return CLLocationCoordinate2DMake(φ, λ);
 }
 
+/// Returns the coordinate of c minus o
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o
 {
     return [self coordinatesPlusOffset:c offset:CLLocationCoordinate2DMake(-o.latitude, -o.longitude)];
 }
 
+/// Returns the coordinates of c plus distanceMeters at bearing
 // From http://stackoverflow.com/questions/7278094/moving-a-cllocation-by-x-meters
 + (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters
 {
@@ -210,6 +232,7 @@
     return target;
 }
 
+/// Returns distance in meters between coordinates c1 and c2
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
@@ -226,6 +249,7 @@
     return d;
 }
 
+/// Returns bearing between coordinates c1 and c2
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
     // From http://www.movable-type.co.uk/scripts/latlong.html
@@ -241,6 +265,7 @@
 }
 
 
+/// Returns compass direction for bearing
 + (NSString *)bearing2compass:(CLLocationDegrees)bearing
 {
     NSString *point;
@@ -267,50 +292,59 @@
     return point;
 }
 
+/// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 + (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
 }
 
+/// Returns string with coordinates like N 1 2.3 E 4 5.6
 + (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesSimple], [co lon_degreesDecimalMinutesSimple]];
 }
 
+/// Returns string with latitude like N 1° 2.3'
 + (NSString *)NiceLatitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutes];
 }
+/// Returns string with longitude like E 1° 2.3'
 + (NSString *)NiceLongitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutes];
 }
 
+/// Returns string with latitude like N 1 2.3
 + (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutesSimple];
 }
+/// Returns string with longitude like E 1 2.3
 + (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutesSimple];
 }
 
+/// Convert degrees to radians
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d
 {
     return d * M_PI / 180.0;
 }
 
+/// Convert radians to degrees
 + (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r
 {
     return 180.8 * r / M_PI;
 }
 
+/// Convert S 34 1.672 to a float value
 + (float)degreesDecimalMinutes2degrees:(NSString *)ddm
 {
     NSScanner *scanner = [NSScanner scannerWithString:ddm];
@@ -346,6 +380,7 @@
     return 0;
 }
 
+/// init with a S 34 1.672, E 151 4.414 string
 - (instancetype)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
 {
     self = [super init];
@@ -356,6 +391,7 @@
     return self;
 }
 
+/// Return a boundary which is 10% bigger than the entered
 + (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2
 {
     CLLocationDegrees left, right, top, bottom;
@@ -371,6 +407,7 @@
     d2->longitude = bottom - (top - bottom) * 0.1;
 }
 
+/// Search for something which looks like a coordinate string
 + (NSInteger)scanForWaypoints:(NSArray *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
 {
     NSError *e = nil;
@@ -434,12 +471,15 @@
     return found;
 }
 
-// From https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y
+/// Convert a latitude and zoom level to a value for the tilename
+/// From https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y
 + (NSInteger)latitudeToTile:(CLLocationDegrees)lat zoom:(NSInteger)zoom
 {
     return floor((1 - log(tan([Coordinates degrees2rad:lat]) + 1 / cos([Coordinates degrees2rad:lat])) / M_PI) /2 * pow(2, zoom));
 }
 
+/// Convert a longitude and zoom level to a value for the tilename
+/// From https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y
 + (NSInteger)longitudeToTile:(CLLocationDegrees)lon zoom:(NSInteger)zoom
 {
     return floor(((lon + 180) / 360) * pow(2, zoom));
