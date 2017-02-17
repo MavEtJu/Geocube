@@ -366,10 +366,10 @@ enum {
 
 - (void)menuEnterURL
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Enter URL"
-                               message:nil
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Enter URL"
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

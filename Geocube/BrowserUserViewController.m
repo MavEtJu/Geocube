@@ -168,10 +168,10 @@ enum {
 
 - (void)bookmarkEdit:(dbBookmark *)bm
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Update bookmark"
-                               message:@"Enter the bookmark"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update bookmark"
+                                message:@"Enter the bookmark"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -215,10 +215,10 @@ enum {
 
 - (void)addBookmark
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Create bookmark"
-                               message:@"Enter the bookmark details"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Create bookmark"
+                                message:@"Enter the bookmark details"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

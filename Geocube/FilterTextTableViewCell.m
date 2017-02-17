@@ -217,10 +217,10 @@
 
 - (void)finishText:(UIButton *)b
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Change field"
-                               message:@"New field"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Change field"
+                                message:@"New field"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

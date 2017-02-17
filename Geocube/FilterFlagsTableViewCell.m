@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valueMarkedAsFound = FILTER_FLAGS_NOTCHECKED;
     valueMarkedAsDNF = FILTER_FLAGS_NOTCHECKED;
     valueIgnored = FILTER_FLAGS_NOTCHECKED;
-    valueInProgress =FILTER_FLAGS_NOTCHECKED;
+    valueInProgress = FILTER_FLAGS_NOTCHECKED;
     valueLoggedAsFound = FILTER_FLAGS_NOTCHECKED;
     valueLoggedAsDNF = FILTER_FLAGS_NOTCHECKED;
 

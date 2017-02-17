@@ -569,10 +569,10 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 /// Show up a message box with a header and a text
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:header
-                               message:text
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:header
+                                message:text
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *close = [UIAlertAction
                             actionWithTitle:@"Close"
@@ -590,10 +590,10 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 /// Show up a message box with a header, a text and an error string
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:header
-                               message:[NSString stringWithFormat:@"%@\nError: %@", text, error]
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:header
+                                message:[NSString stringWithFormat:@"%@\nError: %@", text, error]
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *close = [UIAlertAction
                             actionWithTitle:@"Close"
@@ -685,10 +685,10 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
         [vc presentViewController:tweetSheet animated:YES completion:nil];
     } else {
 
-        UIAlertController *alert= [UIAlertController
-                                   alertControllerWithTitle:@"Sorry"
-                                   message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
-                                   preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Sorry"
+                                    message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+                                    preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction *close = [UIAlertAction
                                 actionWithTitle:@"Close"

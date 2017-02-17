@@ -103,10 +103,10 @@ enum {
 {
     dbImage *img = [images objectAtIndex:indexPath.row];
 
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Photo details"
-                               message:@"Edit the photo caption and description"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Photo details"
+                                message:@"Edit the photo caption and description"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

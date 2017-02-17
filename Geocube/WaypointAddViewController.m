@@ -136,10 +136,10 @@ enum {
 
 - (void)updateCode
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Update waypoint"
-                               message:@"Update waypoint code"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update waypoint"
+                                message:@"Update waypoint code"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -171,10 +171,10 @@ enum {
 
 - (void)updateName
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Update waypoint"
-                               message:@"Update waypoint name"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update waypoint"
+                                message:@"Update waypoint name"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -206,10 +206,10 @@ enum {
 
 - (void)updateCoords
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Update waypoint"
-                               message:@"Please enter the coordinates"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update waypoint"
+                                message:@"Please enter the coordinates"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

@@ -584,10 +584,10 @@ enum {
 
 - (void)menuDeleteWaypoint
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Delete waypoint"
-                               message:@"Are you sure?"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Delete waypoint"
+                                message:@"Are you sure?"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *yes = [UIAlertAction
                           actionWithTitle:@"Yes"
@@ -613,10 +613,10 @@ enum {
 
 - (void)menuMarkAs
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Waypoint flags"
-                               message:@"Mark as..."
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Waypoint flags"
+                                message:@"Mark as..."
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *dnf = [UIAlertAction
                           actionWithTitle:(waypoint.flag_dnf == YES) ? @"Remove mark as DNF" : @"Mark as DNF"

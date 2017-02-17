@@ -1316,10 +1316,10 @@ enum sections {
         message = @"Adjust latitude by";
     else
         message = @"Adjust longitude by";
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:message
-                               message:@"Please enter the adjustment in millimeters"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:message
+                                message:@"Please enter the adjustment in millimeters"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -1377,10 +1377,10 @@ enum sections {
             message = @"Change the time interval to sync the track data";
             break;
     }
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Update value"
-                               message:message
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update value"
+                                message:message
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

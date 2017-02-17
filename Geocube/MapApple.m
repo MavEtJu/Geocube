@@ -468,8 +468,8 @@
 - (void)removeHistory
 {
     [mapView removeOverlay:lineHistory];
-    viewLineHistory= nil;
-    lineHistory= nil;
+    viewLineHistory = nil;
+    lineHistory = nil;
 }
 
 - (CLLocationCoordinate2D)currentCenter

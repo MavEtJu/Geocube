@@ -384,10 +384,10 @@ enum {
 {
     NSArray *orders = [WaypointsOfflineListViewController sortByOrder];
 
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Sort by"
-                               message:nil
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Sort by"
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
         UIAlertAction *action = [UIAlertAction

@@ -146,10 +146,10 @@ enum {
 
 - (void)startNewTrack
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Start a new track"
-                               message:@""
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Start a new track"
+                                message:@""
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

@@ -90,7 +90,7 @@ enum {
     trackables = [NSMutableArray arrayWithArray:[dbTrackable dbAllInventory]];
 
     NSDate *d = [NSDate date];
-    NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     date = [dateFormatter stringFromDate:d];
 
@@ -401,7 +401,7 @@ enum {
 
 - (void)dateWasSelected:(NSDate *)d element:(UIButton *)b
 {
-    NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     date = [dateFormatter stringFromDate:d];
     [self.tableView reloadData];

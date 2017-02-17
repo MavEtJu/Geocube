@@ -43,7 +43,7 @@
     self.datetime = datetime;
     self.logger_id = logger_id;
     self.log = log;
-    self.needstobelogged= needstobelogged;
+    self.needstobelogged = needstobelogged;
 
     [self finish];
 

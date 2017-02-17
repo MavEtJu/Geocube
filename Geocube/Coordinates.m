@@ -33,7 +33,7 @@
 {
     self = [super init];
     coords.latitude = _lat;
-    coords.longitude= _lon;
+    coords.longitude = _lon;
     return self;
 }
 /// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
@@ -41,7 +41,7 @@
 {
     self = [super init];
     coords.latitude = _coords.latitude;
-    coords.longitude= _coords.longitude;
+    coords.longitude = _coords.longitude;
     return self;
 }
 

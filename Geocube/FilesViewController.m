@@ -174,10 +174,10 @@ enum {
 {
     NSString *fn = [filesNames objectAtIndex:indexPath.row];
 
-    UIAlertController *view= [UIAlertController
-                              alertControllerWithTitle:fn
-                              message:@"Choose you action"
-                              preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:fn
+                               message:@"Choose you action"
+                               preferredStyle:UIAlertControllerStyleActionSheet];
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
@@ -482,10 +482,10 @@ enum {
 
 - (void)fileRename:(NSString *)filename
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Rename file"
-                               message:[NSString stringWithFormat:@"Rename %@ to", filename]
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Rename file"
+                                message:[NSString stringWithFormat:@"Rename %@ to", filename]
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

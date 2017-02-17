@@ -134,10 +134,10 @@ enum {
 
     dbGroup *cg = [cgs objectAtIndex:indexPath.row];
 
-    UIAlertController *view=   [UIAlertController
-                                alertControllerWithTitle:cg.name
-                                message:@"Select you choice"
-                                preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:cg.name
+                               message:@"Select you choice"
+                               preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *empty = [UIAlertAction
                             actionWithTitle:@"Empty"
@@ -230,10 +230,10 @@ enum {
 
 - (void)groupRename:(dbGroup *)cg
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Rename group"
-                               message:[NSString stringWithFormat:@"Rename %@ to", cg.name]
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Rename group"
+                                message:[NSString stringWithFormat:@"Rename %@ to", cg.name]
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -291,10 +291,10 @@ enum {
 
 - (void)newGroup
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Add a group"
-                               message:@"Name of the new group"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Add a group"
+                                message:@"Name of the new group"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"

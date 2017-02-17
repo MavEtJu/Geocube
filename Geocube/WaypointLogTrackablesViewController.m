@@ -149,10 +149,10 @@ enum {
 
 - (void)trackableContainerAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Trackable action"
-                               message:@""
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Trackable action"
+                                message:@""
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ignore = [UIAlertAction
                                actionWithTitle:@"Ignore"
@@ -195,10 +195,10 @@ enum {
 
 - (void)trackableCarrierAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Trackable action"
-                               message:@""
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Trackable action"
+                                message:@""
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *noaction = [UIAlertAction
                                actionWithTitle:@"No action"
@@ -257,10 +257,10 @@ enum {
 
 - (void)menuPickup
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Pick up a trackable"
-                               message:@"Enter the code as found on the trackable"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Pick up a trackable"
+                                message:@"Enter the code as found on the trackable"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"Pick up"
@@ -310,10 +310,10 @@ enum {
 
 - (void)menuDiscover
 {
-    UIAlertController *alert= [UIAlertController
-                               alertControllerWithTitle:@"Discover a trackable"
-                               message:@"Enter the code as found on the trackable"
-                               preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Discover a trackable"
+                                message:@"Enter the code as found on the trackable"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"Discover"

@@ -176,7 +176,7 @@
 }
  */
 
-    NSString *gccode= [tbdata objectForKey:@"gccode"];
+    NSString *gccode = [tbdata objectForKey:@"gccode"];
     dbTrackable *tb = [dbTrackable dbGetByRef:gccode];
     if (tb == nil) {
         tb = [[dbTrackable alloc] init];

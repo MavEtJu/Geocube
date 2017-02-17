@@ -131,7 +131,7 @@
 
     s = [self configGet:@"placed_compare"];
     if (s == nil)
-        comparePlaced= FILTER_DATE_AFTER;
+        comparePlaced = FILTER_DATE_AFTER;
     else
         comparePlaced = [s integerValue];
 
@@ -206,7 +206,7 @@
 
 - (void)dateWasSelected:(NSDate *)date element:(UIButton *)b
 {
-    NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     NSString *dateFromString = [dateFormatter stringFromDate:date];
 
