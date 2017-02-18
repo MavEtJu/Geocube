@@ -22,9 +22,10 @@
 @interface ListTemplateViewController : GCTableViewController
 {
     NSInteger flag;
-    NSArray *waypoints;
+    NSMutableArray *waypoints;
 }
 
 - (void)clearFlags;
+- (void)removeMark:(NSInteger)idx;
 
 @end

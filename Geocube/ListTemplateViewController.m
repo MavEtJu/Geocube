@@ -35,6 +35,7 @@ enum {
 #define THISCELL @"WaypointTableViewCell"
 
 NEEDS_OVERLOADING(clearFlags)
+NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 
 - (instancetype)init
 {
@@ -64,7 +65,7 @@ NEEDS_OVERLOADING(clearFlags)
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    waypoints = [dbWaypoint dbAllByFlag:flag];
+    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
     [self.tableView reloadData];
 
     if ([waypoints count] == 0)
@@ -117,12 +118,31 @@ NEEDS_OVERLOADING(clearFlags)
     [self.navigationController pushViewController:newController animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self removeMark:indexPath.row];
+        [waypoints removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Remove mark";
+}
+
 #pragma mark - Local menu related functions
 
 - (void)menuClearFlags
 {
     [self clearFlags];
-    waypoints = @[];
+    [waypoints removeAllObjects];
     [self.tableView reloadData];
     [waypointManager needsRefreshAll];
 }
@@ -155,7 +175,7 @@ NEEDS_OVERLOADING(clearFlags)
     [infoView removeItem:iid];
     [self hideInfoView];
 
-    waypoints = [dbWaypoint dbAllByFlag:flag];
+    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
 
     [self reloadDataMainQueue];
     [waypointManager needsRefreshAll];

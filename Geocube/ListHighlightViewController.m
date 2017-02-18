@@ -31,6 +31,13 @@
     flag = FLAGS_HIGHLIGHTED;
 }
 
+- (void)removeMark:(NSInteger)idx
+{
+    dbWaypoint *wp = [waypoints objectAtIndex:idx];
+    wp.flag_highlight = NO;
+    [wp dbUpdateHighlight];
+}
+
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {

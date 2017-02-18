@@ -31,6 +31,13 @@
     flag = FLAGS_MARKEDFOUND;
 }
 
+- (void)removeMark:(NSInteger)idx
+{
+    dbWaypoint *wp = [waypoints objectAtIndex:idx];
+    wp.flag_markedfound = NO;
+    [wp dbUpdateMarkedFound];
+}
+
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {

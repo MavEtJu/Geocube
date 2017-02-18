@@ -31,6 +31,13 @@
     flag = FLAGS_INPROGRESS;
 }
 
+- (void)removeMark:(NSInteger)idx
+{
+    dbWaypoint *wp = [waypoints objectAtIndex:idx];
+    wp.flag_inprogress = NO;
+    [wp dbUpdateInProgress];
+}
+
 - (void)clearFlags
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
