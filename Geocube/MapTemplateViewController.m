@@ -85,6 +85,8 @@
     showBoundaries = NO;
     [lmi addItem:MVCmenuShowBoundaries label:@"Show Boundaries"];
 
+    [lmi addItem:MVCmenuRemoveHistory label:@"Remove History"];
+
     switch (showBrand) {
         case MAPBRAND_GOOGLEMAPS:
             self.map = [[MapGoogle alloc] init:self];
@@ -868,11 +870,17 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         [ExportGPX exports:wps];
 }
 
+- (void)menuRemoveHistory
+{
+    [LM clearCoordsHistorical];
+}
+
 NEEDS_OVERLOADING(menuLoadWaypoints)
 
 - (void)performLocalMenuAction:(NSInteger)index
 {
-    switch (index) {
+    MVMenuItem item = index;
+    switch (item) {
         case MVCmenuMapMap: /* Map view */
             [self menuMapType:MAPTYPE_NORMAL];
             return;
@@ -922,6 +930,12 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
         case MVCmenuExportVisible:
             [self menuExportVisible];
             return;
+        case MVCmenuRemoveHistory:
+            [self menuRemoveHistory];
+            return;
+
+        case MVCmenuMax:
+            break;
     }
 
     [super performLocalMenuAction:index];

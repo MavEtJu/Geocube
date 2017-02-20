@@ -21,7 +21,7 @@
 
 @interface MapTemplateViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
 
-enum {
+typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuBrandGoogle,
     MVCmenuBrandApple,
     MVCmenuBrandOSM,
@@ -37,6 +37,7 @@ enum {
     MVCmenuRemoveTarget,
     MVCmenuShowBoundaries,
     MVCmenuExportVisible,
+    MVCmenuRemoveHistory,
     MVCmenuMax,
 };
 

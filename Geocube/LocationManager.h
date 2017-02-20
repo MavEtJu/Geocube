@@ -45,6 +45,7 @@
 - (void)stopDelegation:(id<LocationManagerDelegate>)delegate;
 - (void)updateDataDelegate;
 - (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords;
+- (void)clearCoordsHistorical;
 
 @end
 
