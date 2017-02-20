@@ -129,6 +129,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         [self removeMark:indexPath.row];
         [waypoints removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView reloadData];
     }
 }
 
