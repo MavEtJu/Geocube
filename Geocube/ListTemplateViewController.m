@@ -126,6 +126,9 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+        [waypointManager needsRefreshUpdate:wp];
+
         [self removeMark:indexPath.row];
         [waypoints removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
