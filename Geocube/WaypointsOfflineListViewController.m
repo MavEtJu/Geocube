@@ -427,7 +427,7 @@ enum {
     __block BOOL failure = NO;
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
-        [infoView setHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+        [infoView setDownloadHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
         [infoView resetBytesChunks:iid];
 
         // Just ignore this stuff

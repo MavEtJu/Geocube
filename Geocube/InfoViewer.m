@@ -21,8 +21,12 @@
 
 @interface InfoViewer ()
 {
-    NSMutableArray *items;
-    GCLabel *header;
+    NSMutableArray *imageItems;
+    NSMutableArray *downloadItems;
+    NSMutableArray *importItems;
+    GCLabel *imageHeader;
+    GCLabel *downloadHeader;
+    GCLabel *importHeader;
     InfoItemID maxid;
 }
 
@@ -34,11 +38,24 @@
 {
     self = [super initWithFrame:frame];
 
-    header = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
-    header.text = @"?";
-    header.backgroundColor = [UIColor lightGrayColor];
+    imageHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    imageHeader.text = @"Images";
+    imageHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:imageHeader];
 
-    items = [NSMutableArray arrayWithCapacity:5];
+    downloadHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    downloadHeader.text = @"Downloads";
+    downloadHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:downloadHeader];
+
+    importHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    importHeader.text = @"Imports";
+    importHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:importHeader];
+
+    importItems = [NSMutableArray arrayWithCapacity:5];
+    downloadItems = [NSMutableArray arrayWithCapacity:5];
+    imageItems = [NSMutableArray arrayWithCapacity:5];
     maxid = 1;
 
     [self calculateRects];
@@ -54,24 +71,31 @@
     while (1) {
         [NSThread sleepForTimeInterval:0.1];
 
-        @synchronized (items) {
-            [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
-                if (ii.needsRefresh == YES) {
-                    NSLog(@".");
-                    [ii refresh];
-                }
-                if (ii.needsRecalculate == YES) {
-                    NSLog(@"!");
-                    [ii recalculate];
-                }
-            }];
-        }
+        [self refreshItems:imageItems];
+        [self refreshItems:downloadItems];
+        [self refreshItems:importItems];
+    }
+}
+
+- (void)refreshItems:(NSArray *)items
+{
+    @synchronized (items) {
+        [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
+            if (ii.needsRefresh == YES) {
+                NSLog(@".");
+                [ii refresh];
+            }
+            if (ii.needsRecalculate == YES) {
+                NSLog(@"!");
+                [ii recalculate];
+            }
+        }];
     }
 }
 
 - (BOOL)hasItems
 {
-    return ([items count] != 0);
+    return ([imageItems count] + [downloadItems count] + [importItems count] != 0);
 }
 
 - (NSInteger)addImage
@@ -83,15 +107,14 @@
 {
     InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMAGE expanded:expanded];
 
-    @synchronized (items) {
+    @synchronized (imageItems) {
         iii._id = maxid++;
-        [items addObject:iii];
+        [imageItems addObject:iii];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        header.text = @"Images";
-        [self addSubview:header];
         [self addSubview:iii.view];
+        [self calculateRects];
     }];
 
     return iii._id;
@@ -106,14 +129,12 @@
 {
     InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMPORT expanded:expanded];
 
-    @synchronized (items) {
+    @synchronized (importItems) {
         iii._id = maxid++;
-        [items addObject:iii];
+        [importItems addObject:iii];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        header.text = @"Imports";
-        [self addSubview:header];
         [self addSubview:iii.view];
         [self calculateRects];
     }];
@@ -130,14 +151,12 @@
 {
     InfoItem *iid = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_DOWNLOAD expanded:expanded];
 
-    @synchronized (items) {
+    @synchronized (downloadItems) {
         iid._id = maxid++;
-        [items addObject:iid];
+        [downloadItems addObject:iid];
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        header.text = @"Downloads";
-        [self addSubview:header];
         [self addSubview:iid.view];
         [self calculateRects];
     }];
@@ -146,6 +165,13 @@
 }
 
 - (void)removeItem:(InfoItemID)_id
+{
+    [self removeItem:_id from:imageItems];
+    [self removeItem:_id from:downloadItems];
+    [self removeItem:_id from:importItems];
+}
+
+- (void)removeItem:(InfoItemID)_id from:(NSMutableArray *)items
 {
     __block InfoItem *ii;
     @synchronized (items) {
@@ -165,10 +191,24 @@
     }];
 }
 
-- (void)setHeaderSuffix:(NSString *)suffix
+- (void)setImageHeaderSuffix:(NSString *)suffix
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        header.text = [NSString stringWithFormat:@"Downloads (%@)", suffix];
+        imageHeader.text = [NSString stringWithFormat:@"Images (%@)", suffix];
+    }];
+}
+
+- (void)setDownloadHeaderSuffix:(NSString *)suffix
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        downloadHeader.text = [NSString stringWithFormat:@"Downloads (%@)", suffix];
+    }];
+}
+
+- (void)setImportHeaderSuffix:(NSString *)suffix
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        importHeader.text = [NSString stringWithFormat:@"Imports (%@)", suffix];
     }];
 }
 
@@ -183,14 +223,23 @@
 
 - (void)calculateRects
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
     __block NSInteger height = 0;
 
-    if ([items count] == 0) {
+    if ([self hasItems] == NO) {
         self.frame = [self rectFromBottom];
         return;
     }
+
+    height += [self calculateRects:imageItems header:imageHeader height:height];
+    height += [self calculateRects:downloadItems header:downloadHeader height:height];
+    height += [self calculateRects:importItems header:importHeader height:height];
+}
+
+- (NSInteger)calculateRects:(NSArray *)items header:(GCLabel *)header height:(NSInteger)heightOffset
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+    __block NSInteger height = heightOffset;
 
     // Header
     header.frame = CGRectMake(5, height, width - 5, header.font.lineHeight);
@@ -207,16 +256,25 @@
         }];
     }
     self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
+
+    return height;
 }
 
 - (void)viewWillTransitionToSize
+{
+    [self viewWillTransitionToSize:imageItems];
+    [self viewWillTransitionToSize:downloadItems];
+    [self viewWillTransitionToSize:importItems];
+    [self calculateRects];
+}
+
+- (void)viewWillTransitionToSize:(NSArray *)items
 {
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
             [d calculateRects];
         }];
     }
-    [self calculateRects];
 }
 
 - (void)changeTheme
@@ -229,7 +287,22 @@
 
 - (InfoItem *)findInfoItem:(InfoItemID)_id
 {
+    InfoItem *ii = nil;
+
+    ii = [self findInfoItem:imageItems infoItem:_id];
+    if (ii != nil)
+        return ii;
+    ii = [self findInfoItem:downloadItems infoItem:_id];
+    if (ii != nil)
+        return ii;
+    ii = [self findInfoItem:importItems infoItem:_id];
+    return ii;
+}
+
+- (InfoItem *)findInfoItem:(NSArray *)items infoItem:(InfoItemID)_id
+{
     __block InfoItem *ii = nil;
+
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
             if (_ii._id == _id) {

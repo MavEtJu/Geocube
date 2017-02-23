@@ -116,6 +116,8 @@
                 [self.view addSubview:labelTrackables];
                 [self calculateRects];
             }];
+
+            break;
         }
 
         case INFOITEM_IMAGE:

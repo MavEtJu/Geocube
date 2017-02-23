@@ -32,7 +32,9 @@
 - (InfoItemID)addImage;
 - (InfoItemID)addImport;
 - (void)removeItem:(InfoItemID)_id;
-- (void)setHeaderSuffix:(NSString *)suffix;
+- (void)setImageHeaderSuffix:(NSString *)suffix;
+- (void)setDownloadHeaderSuffix:(NSString *)suffix;
+- (void)setImportHeaderSuffix:(NSString *)suffix;
 - (BOOL)hasItems;
 
 - (void)calculateRects:(InfoItemID)_id;
