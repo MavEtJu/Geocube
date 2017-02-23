@@ -309,13 +309,13 @@
     NSMutableArray *wpchunks = [NSMutableArray arrayWithCapacity:1 + [wps count] / 100];
     __block NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:100];
     [wps enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL *stop) {
-        if (idx % 100 == 0 && [wps count] != 0) {
+        if (idx % 100 == 0 && [wpcodes count] != 0) {
             [wpchunks addObject:wpcodes];
             wpcodes = [NSMutableArray arrayWithCapacity:100];
         }
         [wpcodes addObject:[wp objectForKey:@"waypoint"]];
     }];
-    if ([wps count] != 0)
+    if ([wpcodes count] != 0)
         [wpchunks addObject:wpcodes];
 
     // Download the waypoint information
