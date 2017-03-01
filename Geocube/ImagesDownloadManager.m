@@ -217,6 +217,18 @@
 
         imgtag = [imgtag substringToIndex:r.location];
 
+        if ([[imgtag substringToIndex:5] isEqualToString:@"file:"] == YES) {
+            NSLog(@"%@/parse: file:// URL", [self class]);
+            continue;
+        }
+
+        if ([[imgtag substringToIndex:5] isEqualToString:@"data:"] == YES) {
+            if ([self downloadImage:wp_id url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
+                found++;
+            NSLog(@"%@/parse: Found image: data:-URL", [self class]);
+            continue;
+        }
+
         if ([self downloadImage:wp_id url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
             found++;
         NSLog(@"%@/parse: Found image: %@", [self class], imgtag);
