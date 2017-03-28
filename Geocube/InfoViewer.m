@@ -38,17 +38,17 @@
 {
     self = [super initWithFrame:frame];
 
-    imageHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    imageHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
     imageHeader.text = @"Images";
     imageHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:imageHeader];
 
-    downloadHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    downloadHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
     downloadHeader.text = @"Downloads";
     downloadHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:downloadHeader];
 
-    importHeader = [[GCLabel alloc] initWithFrame:[self rectFromBottom]];
+    importHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
     importHeader.text = @"Imports";
     importHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:importHeader];
@@ -87,7 +87,8 @@
             }
             if (ii.needsRecalculate == YES) {
                 NSLog(@"!");
-                [ii recalculate];
+//                [ii recalculate];
+//                [self calculateRects];
             }
         }];
     }
@@ -173,7 +174,7 @@
 
 - (void)removeItem:(InfoItemID)_id from:(NSMutableArray *)items
 {
-    __block InfoItem *ii;
+    __block InfoItem *ii = nil;
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
             if (_ii._id == _id) {
@@ -184,11 +185,12 @@
         }];
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        ii.view.hidden = YES;
-        [self calculateRects];
-        [ii.view removeFromSuperview];
-    }];
+    if (ii != nil) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [ii.view removeFromSuperview];
+            [self calculateRects];
+        }];
+    }
 }
 
 - (void)setImageHeaderSuffix:(NSString *)suffix
@@ -223,6 +225,8 @@
 
 - (void)calculateRects
 {
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
     __block NSInteger height = 0;
 
     if ([self hasItems] == NO) {
@@ -233,6 +237,8 @@
     height += [self calculateRects:imageItems header:imageHeader height:height];
     height += [self calculateRects:downloadItems header:downloadHeader height:height];
     height += [self calculateRects:importItems header:importHeader height:height];
+
+    self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
 }
 
 - (NSInteger)calculateRects:(NSArray *)items header:(GCLabel *)header height:(NSInteger)heightOffset
@@ -255,9 +261,8 @@
             height += ii.view.frame.size.height;
         }];
     }
-    self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
 
-    return height;
+    return height - heightOffset;
 }
 
 - (void)viewWillTransitionToSize

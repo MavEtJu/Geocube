@@ -71,11 +71,11 @@
     isExpanded = expanded;
     type = _type;
 
+isExpanded = YES;
+
     switch (type) {
         case INFOITEM_DOWNLOAD: {
-            NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
-            self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
-            self.view.backgroundColor = [UIColor lightGrayColor];
+            self.view = [[GCView alloc] initWithFrame:CGRectZero];
 
             labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -94,9 +94,7 @@
         }
 
         case INFOITEM_IMPORT: {
-            NSLog(@"rectFromBottom: %@", [MyTools niceCGRect:[parent rectFromBottom]]);
-            self.view = [[GCView alloc] initWithFrame:[parent rectFromBottom]];
-            self.view.backgroundColor = [UIColor lightGrayColor];
+            self.view = [[GCView alloc] initWithFrame:CGRectZero];
 
             labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
