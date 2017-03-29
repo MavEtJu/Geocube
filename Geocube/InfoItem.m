@@ -71,11 +71,10 @@
     isExpanded = expanded;
     type = _type;
 
-isExpanded = YES;
-
     switch (type) {
         case INFOITEM_DOWNLOAD: {
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
+            self.view.backgroundColor = [UIColor lightGrayColor];
 
             labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -95,6 +94,7 @@ isExpanded = YES;
 
         case INFOITEM_IMPORT: {
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
+            self.view.backgroundColor = [UIColor lightGrayColor];
 
             labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
@@ -154,6 +154,8 @@ isExpanded = YES;
         INDENT_RESIZE(labelTrackables);
         INDENT_RESIZE(labelWaypoints);
         INDENT_RESIZE(labelQueue);
+    } else {
+        INDENT_RESIZE(labelDesc);
     }
 
     y += MARGIN;
@@ -177,9 +179,8 @@ isExpanded = YES;
     if (self.needsRecalculate == NO)
         return;
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self calculateRects];
-    }];
+    // This doesn't need to go on the main thread as this is done by the calling function.
+    [self calculateRects];
     self.needsRecalculate = NO;
 }
 
