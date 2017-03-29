@@ -341,6 +341,7 @@
         GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
         InfoItemID iii = [iv addImport];
+        [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
     }
 

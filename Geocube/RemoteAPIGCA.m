@@ -267,6 +267,7 @@
     GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     InfoItemID iii = [iv addImport];
+    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
 
     *retObj = json;
@@ -284,6 +285,7 @@
         return REMOTEAPI_APIFAILED;
 
     InfoItemID iii = [iv addImport];
+    [iv setDescription:iii description:@"Geocaching Australia GPX data (queued)"];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:group account:self.account];
 
     *retObj = gpx;

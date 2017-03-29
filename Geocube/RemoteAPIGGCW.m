@@ -320,6 +320,7 @@
     GCStringFilename *zipfilename = [[GCStringFilename alloc] initWithString:filename];
 
     InfoItemID iii = [iv addImport];
+    [iv setDescription:iii description:@"Geocaching.com Pocket Query data (queued)"];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:zipfilename group:group account:self.account];
 
     *retObj = zipfile;

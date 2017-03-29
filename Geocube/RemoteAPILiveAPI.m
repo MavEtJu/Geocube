@@ -356,6 +356,7 @@
             result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
         InfoItemID iii = [iv addImport:NO];
+        [iv setDescription:iii description:@"LiveAPI data (queued)"];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
 
         [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
