@@ -87,8 +87,10 @@
             }
             if (ii.needsRecalculate == YES) {
                 NSLog(@"!");
-//                [ii recalculate];
-//                [self calculateRects];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [ii recalculate];
+                    [self calculateRects];
+                }];
             }
         }];
     }
