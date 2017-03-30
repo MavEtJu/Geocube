@@ -226,7 +226,7 @@
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
-                [iv setDescription:iii description:@"LiveAPI JSON (queued)"];
+                [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
@@ -278,7 +278,7 @@
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
-                [iv setDescription:iii description:@"LiveAPI JSON (queued)"];
+                [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
                 [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:iii object:livejson account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
