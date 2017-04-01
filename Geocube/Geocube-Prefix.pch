@@ -134,7 +134,6 @@
 #import "InfoItem.h"
 #import "InfoViewer.h"
 #import "DownloadManager.h"
-#import "ImportManager.h"
 
 #import "GCDataObjects.h"
 #import "GCDictionary.h"
@@ -149,6 +148,8 @@
 #import "ImportGeocube.h"
 #import "ImportOKAPIJSON.h"
 #import "ExportGPX.h"
+
+#import "ImportManager.h"
 
 #import "WaypointHeaderTableViewCell.h"
 #import "WaypointTableViewCell.h"
