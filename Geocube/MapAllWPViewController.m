@@ -20,6 +20,10 @@
  */
 
 @interface MapAllWPViewController ()
+{
+    NSMutableArray<dbWaypoint *> *oldWaypoints;
+    NSMutableArray<NSString *> *newWaypoints;
+}
 
 @end
 
@@ -86,6 +90,11 @@
     bb.topLat = tr.latitude;
     bb.bottomLat = bl.latitude;
 
+    NSLog(@"Boundingbox: %@ x %@", [Coordinates NiceCoordinates:bl], [Coordinates NiceCoordinates:tr]);
+
+    oldWaypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
+    newWaypoints = [NSMutableArray arrayWithCapacity:[oldWaypoints count]];
+
     [self showInfoView];
 
     NSArray *accounts = [dbc Accounts];
@@ -112,6 +121,38 @@
     }
 }
 
+- (void)loadOtherWaypoints:(NSArray<dbWaypoint *> *)waypoints infoViewer:(InfoViewer *)iv group:(dbGroup *)group
+{
+    if ([waypoints count] == 0) {
+        [self hideInfoView];
+        [dbWaypoint dbUpdateLogStatus];
+        [waypointManager needsRefreshAll];
+        return;
+    };
+
+    NSArray *accounts = [dbc Accounts];
+    [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([account canDoRemoteStuff] == NO)
+            return;
+
+        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            if (wp.account_id == account._id)
+                [wps addObject:wp];
+        }];
+
+        if ([wps count] == 0)
+            return;
+
+        InfoItemID iii = [infoView addDownload:NO];
+        NSMutableArray *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
+        [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            [wpnames addObject:wp.wpt_name];
+        }];
+        [account.remoteAPI loadWaypointsByCodes:wpnames retObj:nil infoViewer:iv ivi:iii group:group callback:self];
+    }];
+}
+
 - (void)remoteAPI_loadWaypointsByBoundingBox_returned:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
@@ -133,14 +174,27 @@
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
 
-    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
+    NSArray *wps = [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
+    @synchronized (newWaypoints) {
+        [newWaypoints addObjectsFromArray:wps];
+    }
 
-    [infoView removeItem:iii];
-    if ([infoView hasItems] == NO) {
-        [self hideInfoView];
+    [iv removeItem:iii];
 
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefreshAll];
+    // Last one should be cleaning up
+    if ([iv hasItems] == NO) {
+        // Find the waypoints which were not updated
+        NSMutableArray *wps = [NSMutableArray arrayWithArray:oldWaypoints];
+        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
+            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
+                if ([wpo.wpt_name isEqualToString:wpn] == YES) {
+                    [wps removeObjectAtIndex:oidx];
+                    *stop = YES;
+                }
+            }];
+        }];
+
+        [self loadOtherWaypoints:wps infoViewer:iv group:g];
     }
 }
 
