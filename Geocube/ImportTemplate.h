@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol ImportDelegate
+
+- (void)Import_WaypointProcessed:(dbWaypoint *)wp;
+
+@end
+
 @interface ImportTemplate : NSObject
 {
     NSInteger newWaypointsCount;
@@ -45,6 +51,7 @@ enum {
 };
 
 @property (nonatomic) NSInteger run_options;
+@property (nonatomic, retain) id<ImportDelegate> delegate;
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;
 

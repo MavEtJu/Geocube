@@ -238,6 +238,8 @@
                     if ([group dbContainsWaypoint:currentWP._id] == NO)
                         [group dbAddWaypoint:currentWP._id];
                 }
+                [self.delegate Import_WaypointProcessed:currentWP];
+
                 [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
                 if (currentWP.gs_long_desc != nil)
                     newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];

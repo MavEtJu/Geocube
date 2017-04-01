@@ -294,6 +294,8 @@
         }
     }
 
+    [self.delegate Import_WaypointProcessed:wp];
+
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
     [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
@@ -586,6 +588,8 @@
         awp._id = wpold._id;
         [awp dbUpdate];
     }
+
+    [self.delegate Import_WaypointProcessed:awp];
 }
 
 - (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp

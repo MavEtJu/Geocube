@@ -227,6 +227,8 @@
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
     }
+    [self.delegate Import_WaypointProcessed:wp];
+
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 

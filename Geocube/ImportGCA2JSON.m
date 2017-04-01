@@ -50,6 +50,8 @@
 {
     [infoViewer setLineObjectTotal:ivi total:[waypoints count] isLines:NO];
     [waypoints enumerateObjectsUsingBlock:^(NSDictionary *waypoint, NSUInteger idx, BOOL *stop) {
+        if ([waypoint isKindOfClass:[NSNull class]] == YES)
+            return;
         [self parseData_waypoint:(NSDictionary *)waypoint];
         ++totalWaypointsCount;
         [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
@@ -262,6 +264,8 @@
     }
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
+
+    [self.delegate Import_WaypointProcessed:wp];
 
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
