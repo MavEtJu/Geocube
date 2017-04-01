@@ -217,6 +217,11 @@
     [super finish];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ - %@ - %@", self.wpt_name, [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.wpt_lat_float, self.wpt_lon_float)], self.wpt_urlname];
+}
+
 - (NSInteger)hasLogs
 {
     return [dbLog dbCountByWaypoint:self._id];
