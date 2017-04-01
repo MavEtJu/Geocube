@@ -23,6 +23,8 @@
 {
     NSMutableArray *filenames;
     NSMutableArray *filenamesToBeRemoved;
+
+    NSMutableArray *processedWaypoints;
 }
 
 @end
@@ -32,6 +34,8 @@
 - (instancetype)init
 {
     self = [super init];
+
+    processedWaypoints = [NSMutableArray arrayWithCapacity:100];
 
     return self;
 }
@@ -47,7 +51,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (void)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (NSArray *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
@@ -68,7 +72,7 @@
         [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL *stop) {
             [self process:a group:group account:account options:runoptions infoViewer:iv ivi:ivi];
         }];
-        return;
+        return processedWaypoints;
     }
 
     ImportTemplate *imp;
@@ -91,11 +95,15 @@
         NSAssert1(NO, @"Unknown data class: %@", [data class]);
     }
 
+    imp.delegate = self;
+
     @synchronized (self) {
         [iv expand:ivi yesno:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
         [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv ivi:ivi];
     }
+
+    return processedWaypoints;
 }
 
 - (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(NSInteger)run_options infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
@@ -151,6 +159,11 @@
 - (void)resetImports
 {
 //    [downloadsImportsViewController resetImports];
+}
+
+- (void)Import_WaypointProcessed:(dbWaypoint *)wp
+{
+    [processedWaypoints addObject:wp.wpt_name];
 }
 
 @end

@@ -19,10 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImportManager : NSObject <SSZipArchiveDelegate>
+@interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
 
 - (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
-- (void)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (NSArray *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 
 - (void)resetImports;
 
