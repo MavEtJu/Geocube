@@ -25,6 +25,9 @@
 
 @implementation RemoteAPIGCA
 
+#define IMPORTMSG_JSON   @"Geocaching Australia JSON data (queued)"
+#define IMPORTMSG_GPX    @"Geocaching Australia GPX data (queued)"
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return NO;
@@ -187,7 +190,7 @@
     GCA_CHECK_STATUS(wps, @"caches_gca", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_JSON];
     [iv showLogs:iii yesno:NO];
     [iv showTrackables:iii yesno:NO];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:wps group:group account:self.account];
@@ -216,7 +219,7 @@
 
     iii = [iv addImport];
     [iv expand:iii yesno:NO];
-    [iv setDescription:iii description:@"Geocaching Australia GPX data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_GPX];
     [iv showWaypoints:iii yesno:NO];
     [iv showTrackables:iii yesno:NO];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gcajson group:group account:self.account];
@@ -263,7 +266,7 @@
     GCA_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     InfoItemID iii = [iv addImport];
-    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_JSON];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
 
     return REMOTEAPI_OK;
@@ -279,7 +282,7 @@
         return REMOTEAPI_APIFAILED;
 
     InfoItemID iii = [iv addImport];
-    [iv setDescription:iii description:@"Geocaching Australia GPX data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_GPX];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:group account:self.account];
 
     return REMOTEAPI_OK;

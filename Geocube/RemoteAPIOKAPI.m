@@ -25,6 +25,8 @@
 
 @implementation RemoteAPIOKAPI
 
+#define IMPORTMSG   @"OKAPI JSON data (queued)"
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return NO;
@@ -135,7 +137,7 @@
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"OKAPI JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:g account:a];
 
     return REMOTEAPI_OK;
@@ -187,7 +189,7 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv showTrackables:iii yesno:NO];
-    [iv setDescription:iii description:@"OKAPI JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
     GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
     [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:rv group:group account:self.account];
 
@@ -223,7 +225,10 @@
     [d setObject:wps forKey:@"waypoints"];
 
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
-    [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:d2 group:nil account:self.account];
+
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:IMPORTMSG];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:nil account:self.account];
 
     return REMOTEAPI_OK;
 }

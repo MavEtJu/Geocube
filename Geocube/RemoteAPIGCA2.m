@@ -25,6 +25,8 @@
 
 @implementation RemoteAPIGCA2
 
+#define IMPORTMSG   @"Geocaching Australia JSON data (queued)"
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return NO;
@@ -146,7 +148,7 @@
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:g account:a];
 
     return REMOTEAPI_OK;
@@ -185,7 +187,7 @@
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
 
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
 
@@ -214,7 +216,7 @@
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:nil];
 
     return REMOTEAPI_OK;
@@ -247,9 +249,11 @@
         [wps addObject:[json objectForKey:wpcode]];
     }];
     [d setObject:wps forKey:@"waypoints"];
-
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
-    [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:d2 group:nil account:self.account];
+
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:IMPORTMSG];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:nil account:self.account];
 
     [waypointManager needsRefreshAll];
     return REMOTEAPI_OK;
@@ -333,7 +337,7 @@
         GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
         InfoItemID iii = [iv addImport];
-        [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
+        [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
     }
 

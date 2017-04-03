@@ -25,6 +25,10 @@
 
 @implementation RemoteAPIGGCW
 
+#define IMPORTMSG_GPX   @"Geocaching.com GPX Garmin data (queued)"
+#define IMPORTMSG_PQ    @"Geocaching.com Pocket Query data (queued)"
+
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return YES;
@@ -130,7 +134,7 @@
     GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv ivi:ivi];
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_GPX];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:g account:a];
 
     return REMOTEAPI_OK;
@@ -247,7 +251,7 @@
     }
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"Geocaching.com GPX Garmin data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_GPX];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpxarray group:group account:self.account];
 
     [iv removeItem:iid];
@@ -315,11 +319,10 @@
     GCStringFilename *zipfilename = [[GCStringFilename alloc] initWithString:filename];
 
     InfoItemID iii = [iv addImport];
-    [iv setDescription:iii description:@"Geocaching.com Pocket Query data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG_PQ];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:zipfilename group:group account:self.account];
 
     return REMOTEAPI_OK;
-
 }
 
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi

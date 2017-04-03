@@ -25,6 +25,8 @@
 
 @implementation RemoteAPILiveAPI
 
+#define IMPORTMSG   @"LiveAPI JSON data (queued)"
+
 - (BOOL)commentSupportsFavouritePoint
 {
     return YES;
@@ -182,7 +184,7 @@
     LIVEAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+    [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:g account:a];
 
     return REMOTEAPI_OK;
@@ -212,7 +214,7 @@
         GCDictionaryLiveAPI *livejson = json;
         LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
-        [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+        [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
         [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         do {
@@ -225,7 +227,7 @@
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
-                [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+                [iv setDescription:iii description:IMPORTMSG];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
@@ -259,7 +261,7 @@
         GCDictionaryLiveAPI *livejson = json;
         LIVEAPI_CHECK_STATUS(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
-        [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+        [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
         [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         do {
@@ -272,7 +274,7 @@
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
-                [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+                [iv setDescription:iii description:IMPORTMSG];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
@@ -344,7 +346,7 @@
             result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
         InfoItemID iii = [iv addImport:NO];
-        [iv setDescription:iii description:@"LiveAPI data (queued)"];
+        [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
 
         [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
