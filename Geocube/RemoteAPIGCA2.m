@@ -226,7 +226,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[GCA2] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
@@ -255,7 +255,7 @@
     [d setObject:wps forKey:@"waypoints"];
 
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
-    [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:ivi object:d2 account:self.account];
+    [callback remoteAPI_loadWaypoints_returned:iv ivi:ivi object:d2 account:self.account];
 
     [waypointManager needsRefreshAll];
     return REMOTEAPI_OK;

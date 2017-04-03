@@ -19,6 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAllWPViewController : MapTemplateViewController <RemoteAPILoadWaypointsByBoundingBoxDelegate, RemoteAPIRetrieveQueryDelegate>
+@interface MapAllWPViewController : MapTemplateViewController <RemoteAPILoadWaypointsDelegate>
 
 @end

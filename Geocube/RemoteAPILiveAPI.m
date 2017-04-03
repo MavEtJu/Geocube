@@ -240,7 +240,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsByBoundingBoxDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPILoadWaypointsDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -266,7 +266,7 @@
         LIVEAPI_CHECK_STATUS(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
-        [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:iii object:livejson account:self.account];
+        [callback remoteAPI_loadWaypoints_returned:iv ivi:iii object:livejson account:self.account];
         [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
@@ -279,7 +279,7 @@
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
-                [callback remoteAPI_loadWaypointsByBoundingBox_returned:iv ivi:iii object:livejson account:self.account];
+                [callback remoteAPI_loadWaypoints_returned:iv ivi:iii object:livejson account:self.account];
                 [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
             }
         } while (done < total);
