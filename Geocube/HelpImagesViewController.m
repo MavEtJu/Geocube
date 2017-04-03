@@ -265,7 +265,9 @@ enum {
 
         return cell;
     }
-    return nil;
+
+    // Not reached
+    abort();
 }
 
 @end

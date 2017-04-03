@@ -399,7 +399,8 @@ enum {
             }
     }
 
-    return nil;
+    // Not reached
+    abort();
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

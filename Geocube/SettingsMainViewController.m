@@ -1068,7 +1068,8 @@ enum sections {
 
     }
 
-    return nil;
+    // Not reached
+    abort();
 }
 
 - (void)updateGPSAdjustmentEnable:(GCSwitch *)s
