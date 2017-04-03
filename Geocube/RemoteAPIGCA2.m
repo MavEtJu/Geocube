@@ -185,12 +185,11 @@
     [d setObject:wps forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    ImportGCA2JSON *imp = [[ImportGCA2JSON alloc] init:group account:self.account];
-    [imp parseBefore];
-    [imp parseDictionary:d2];
-    [imp parseAfter];
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:@"Geocaching Australia JSON data (queued)"];
 
-    [waypointManager needsRefreshAll];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
+
     return REMOTEAPI_OK;
 }
 
