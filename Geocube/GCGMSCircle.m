@@ -25,4 +25,6 @@
 
 @implementation GCGMSCircle
 
+@dynamic userData;
+
 @end
