@@ -777,7 +777,7 @@ enum {
 {
     [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
     [waypointManager needsRefreshUpdate:waypoint];
-    
+
     waypoint = [dbWaypoint dbGet:waypoint._id];
     [self reloadDataMainQueue];
     [waypointManager needsRefreshUpdate:waypoint];
