@@ -59,7 +59,6 @@
 @class GCDataZIPFile;
 @class GCDictionary;
 @class GCDictionaryGCA2;
-@class GCDictionaryGCA;
 @class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;

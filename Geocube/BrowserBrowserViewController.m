@@ -214,25 +214,6 @@ enum {
         return NO;
     }
 
-    // Geocaching Australia Authentication related stuff
-    if (gca != nil &&
-        [url length] >= [gca.callback length] &&
-        [[url substringToIndex:[gca.callback length]] isEqualToString:gca.callback] == YES) {
-        NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
-
-        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
-            if ([cookie.name isEqualToString:@"phpbb3mysql_data"] == NO)
-                return;
-
-            [gca storeCookie:cookie];
-            *stop = YES;
-        }];
-
-        [self showActivity:-1];
-        return NO;
-    }
-
     // Geocaching.com Authentication related stuff
     if (ggcw != nil &&
         [url length] >= [ggcw.callback length] &&

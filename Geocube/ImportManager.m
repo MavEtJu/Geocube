@@ -83,8 +83,6 @@
         imp = [[ImportGPXGarmin alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
         imp = [[ImportGCA2JSON alloc] init:group account:account];
-    } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
-        imp = [[ImportGCAJSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
         imp = [[ImportLiveAPIJSON alloc] init:group account:account];
     } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
@@ -135,9 +133,6 @@
         } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
             [iv setDescription:iii description:@"Geocaching Australia API data"];
             [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv ivi:iii];
-        } else if ([data isKindOfClass:[GCDictionaryGCA class]] == YES) {
-            [iv setDescription:iii description:@"Geocaching Australia data"];
-            [imp parseDictionary:(GCDictionaryGCA *)data infoViewer:iv ivi:iii];
         } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
             [iv setDescription:iii description:@"OKAPI data"];
             [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv ivi:iii];

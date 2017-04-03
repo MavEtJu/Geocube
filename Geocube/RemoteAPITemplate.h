@@ -55,9 +55,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 @end
 
-@interface RemoteAPITemplate : NSObject <GCOAuthBlackboxDelegate, ProtocolGCADelegate, ProtocolGGCWDelegate>
+@interface RemoteAPITemplate : NSObject <GCOAuthBlackboxDelegate, ProtocolGGCWDelegate>
 {
-    ProtocolGCA *gca;
     ProtocolLiveAPI *liveAPI;
     ProtocolOKAPI *okapi;
     ProtocolGCA2 *gca2;

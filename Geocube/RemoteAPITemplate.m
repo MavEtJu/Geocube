@@ -52,7 +52,6 @@
 
     liveAPI = nil;
     okapi = nil;
-    gca = nil;
     gca2 = nil;
     ggcw = nil;
     ProtocolId pid = (ProtocolId)self.account.protocol_id;
@@ -66,9 +65,7 @@
             protocol = okapi;
             break;
         case PROTOCOL_GCA:
-            gca = [[ProtocolGCA alloc] init:self];
-            gca.delegate = self;
-            protocol = gca;
+            NSAssert(FALSE, @"Obsolete protocol: PROTOCOL_GCA");
             break;
         case PROTOCOL_GCA2:
             gca2 = [[ProtocolGCA2 alloc] init:self];
@@ -123,14 +120,7 @@
         }
 
         case PROTOCOL_GCA: {
-            // Load http://geocaching.com.au/login/?jump=/geocube and wait for the redirect to /geocube.
-            NSString *url = self.account.gca_authenticate_url;
-
-            gca.delegate = self;
-
-            [browserViewController showBrowser];
-            [browserViewController prepare_gca:gca];
-            [browserViewController loadURL:url];
+            NSAssert(FALSE, @"Obsolete protocol: PROTOCOL_GCA");
             return YES;
         }
 
@@ -304,8 +294,6 @@ NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
     NSObject *o = nil;
     if ([in isKindOfClass:[NSDictionary class]] == YES)
         o = [(NSDictionary *)in objectForKey:inKey];
-    else if ([in isKindOfClass:[GCDictionaryGCA class]] == YES)
-        o = [(GCDictionaryGCA *)in objectForKey:inKey];
     else if ([in isKindOfClass:[GCDictionaryGCA2 class]] == YES)
         o = [(GCDictionaryGCA2 *)in objectForKey:inKey];
     else if ([in isKindOfClass:[GCDictionaryGGCW class]] == YES)

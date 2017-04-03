@@ -67,14 +67,6 @@
 
 @end
 
-@interface GCDictionaryGCA ()
-
-@end
-
-@implementation GCDictionaryGCA
-
-@end
-
 @interface GCDictionaryGCA2 ()
 
 @end

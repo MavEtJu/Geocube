@@ -42,7 +42,7 @@
     self.remoteAPI = nil;
     switch ((ProtocolId)self.protocol._id) {
         case PROTOCOL_GCA:
-            self.remoteAPI = [[RemoteAPIGCA alloc] init:self];
+            NSAssert(FALSE, @"Obsolete protocol: PROTOCOL_GCA");
             break;
         case PROTOCOL_GCA2:
             self.remoteAPI = [[RemoteAPIGCA2 alloc] init:self];

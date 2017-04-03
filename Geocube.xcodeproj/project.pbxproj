@@ -264,7 +264,6 @@
 		E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB261B4613C20009AB6D /* GCViewController.m */; };
 		E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82FBB291B4613D70009AB6D /* GCTableViewController.m */; };
 		E832E7DA1B8D173D00A3CCF6 /* RemoteAPITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */; };
-		E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */; };
 		E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */; };
 		E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D491D06A79500C2F174 /* TrackablesMineViewController.m */; };
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
@@ -411,7 +410,6 @@
 		E8ABA0961E277CF20080D5FE /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */; };
 		E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */; };
 		E8B6F6941C1E8EF100577088 /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6F6931C1E8EF100577088 /* dbPin.m */; };
-		E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */; };
 		E8B771D41DD9DA4E008B2F9E /* RemoteAPIGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */; };
 		E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771CE1DD9DA4E008B2F9E /* RemoteAPIGGCW.m */; };
 		E8B771D61DD9DA4E008B2F9E /* RemoteAPILiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B771D01DD9DA4E008B2F9E /* RemoteAPILiveAPI.m */; };
@@ -508,7 +506,6 @@
 		E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF261D74507100AC7EE6 /* GCButton.m */; };
 		E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF2B1D75645800AC7EE6 /* MyClock.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
-		E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */; };
 		E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */; };
 		E8FEDE4E1DA77F9D007C756B /* container size - large - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */; };
 		E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */; };
@@ -935,8 +932,6 @@
 		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
 		E832E7D81B8D173D00A3CCF6 /* RemoteAPITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPITemplate.h; sourceTree = "<group>"; };
 		E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPITemplate.m; sourceTree = "<group>"; };
-		E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGCA.h; sourceTree = "<group>"; };
-		E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGCA.m; sourceTree = "<group>"; };
 		E833B7301C522EA600B9FB45 /* ListTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTemplateViewController.h; sourceTree = "<group>"; };
 		E833B7311C522EA600B9FB45 /* ListTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTemplateViewController.m; sourceTree = "<group>"; };
 		E8371D481D06A79500C2F174 /* TrackablesMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackablesMineViewController.h; sourceTree = "<group>"; };
@@ -1200,8 +1195,6 @@
 		E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbProtocol.m; sourceTree = "<group>"; };
 		E8B6F6921C1E8EF100577088 /* dbPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPin.h; sourceTree = "<group>"; };
 		E8B6F6931C1E8EF100577088 /* dbPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPin.m; sourceTree = "<group>"; };
-		E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGCA.h; sourceTree = "<group>"; };
-		E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIGCA.m; sourceTree = "<group>"; };
 		E8B771CB1DD9DA4E008B2F9E /* RemoteAPIGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGCA2.h; sourceTree = "<group>"; };
 		E8B771CC1DD9DA4E008B2F9E /* RemoteAPIGCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIGCA2.m; sourceTree = "<group>"; };
 		E8B771CD1DD9DA4E008B2F9E /* RemoteAPIGGCW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIGGCW.h; sourceTree = "<group>"; };
@@ -1391,8 +1384,6 @@
 		E8F7FF2B1D75645800AC7EE6 /* MyClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClock.m; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
-		E8F9913F1C197ECC00D360F1 /* ImportGCAJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGCAJSON.h; sourceTree = "<group>"; };
-		E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGCAJSON.m; sourceTree = "<group>"; };
 		E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11.png"; path = "images/containers/container size - large - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@2x.png"; path = "images/containers/container size - large - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@3x.png"; path = "images/containers/container size - large - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2553,17 +2544,6 @@
 			name = CCHMapClusterController;
 			sourceTree = "<group>";
 		};
-		E8E0A6561DEE2250004A885D /* GCA */ = {
-			isa = PBXGroup;
-			children = (
-				E8B771C91DD9DA4E008B2F9E /* RemoteAPIGCA.h */,
-				E8B771CA1DD9DA4E008B2F9E /* RemoteAPIGCA.m */,
-				E832E7DD1B8DB91A00A3CCF6 /* ProtocolGCA.h */,
-				E832E7DE1B8DB91A00A3CCF6 /* ProtocolGCA.m */,
-			);
-			name = GCA;
-			sourceTree = "<group>";
-		};
 		E8E0A6571DEE2255004A885D /* GCA2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2921,7 +2901,6 @@
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */,
 				E89580191C643AD500282177 /* ProtocolTemplate.h */,
 				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
-				E8E0A6561DEE2250004A885D /* GCA */,
 				E8E0A6571DEE2255004A885D /* GCA2 */,
 				E8E0A6581DEE225A004A885D /* GGCW */,
 				E8E0A65A1DEE2264004A885D /* LiveAPI */,
@@ -2980,8 +2959,6 @@
 			children = (
 				E8A3B0BF1CDB241600170D61 /* ExportGPX.h */,
 				E8A3B0C01CDB241600170D61 /* ExportGPX.m */,
-				E8F9913F1C197ECC00D360F1 /* ImportGCAJSON.h */,
-				E8F991401C197ECC00D360F1 /* ImportGCAJSON.m */,
 				E84E239B1DBEA9FA0079496D /* ImportGCA2JSON.h */,
 				E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */,
 				E891E78E1DD06EED00EC9066 /* ImportGGCWJSON.h */,
@@ -3620,7 +3597,6 @@
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
-				E8B771D31DD9DA4E008B2F9E /* RemoteAPIGCA.m in Sources */,
 				E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */,
 				E87D44481BA6A44800671FB9 /* ThemeManager.m in Sources */,
 				E84725F21DFE6F6E00CFF99B /* MapOneWPViewController.m in Sources */,
@@ -3677,7 +3653,6 @@
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
-				E832E7DF1B8DB91A00A3CCF6 /* ProtocolGCA.m in Sources */,
 				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
@@ -3812,7 +3787,6 @@
 				E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */,
-				E8F991411C197ECC00D360F1 /* ImportGCAJSON.m in Sources */,
 				E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */,
 				E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,

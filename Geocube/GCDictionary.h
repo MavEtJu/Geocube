@@ -31,10 +31,6 @@
 
 @end
 
-@interface GCDictionaryGCA : GCDictionary
-
-@end
-
 @interface GCDictionaryGCA2 : GCDictionary
 
 @end
