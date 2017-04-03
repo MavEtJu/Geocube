@@ -142,7 +142,6 @@
 @class NoticesViewController;
 @class PersonalNoteTableViewCell;
 @class ProtocolGCA2;
-@class ProtocolGCA;
 @class ProtocolGGCW;
 @class ProtocolLiveAPI;
 @class ProtocolOKAPI;
@@ -153,7 +152,6 @@
 @class QueriesTableViewCell;
 @class QueriesTemplateViewController;
 @class RemoteAPIGCA2;
-@class RemoteAPIGCA;
 @class RemoteAPIGGCW;
 @class RemoteAPILiveAPI;
 @class RemoteAPIOKAPI;

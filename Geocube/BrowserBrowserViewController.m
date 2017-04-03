@@ -27,7 +27,6 @@
     NSString *urlHome;
 
     GCOAuthBlackbox *oabb;
-    ProtocolGCA *gca;
     ProtocolGGCW *ggcw;
     NSInteger networkActivityIndicator;
 }
@@ -137,7 +136,7 @@ enum {
 {
     req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
 
-    if (oabb == nil && gca == nil && ggcw == nil) {
+    if (oabb == nil && ggcw == nil) {
         [self showActivity:YES];
         NSString *urlString = [[newRequest URL] absoluteString];
         NSLog(@"urlString: -%@-", urlString);
@@ -271,23 +270,6 @@ enum {
 - (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
 {
     oabb = _oabb;
-}
-
-- (void)prepare_gca:(ProtocolGCA *)_gca
-{
-    gca = _gca;
-
-    NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-#warning XXX - crashes after importing clean configuration
-    NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
-
-    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
-        if ([cookie.name isEqualToString:@"phpbb3mysql_data"] == NO)
-            return;
-
-        [cookiemgr deleteCookie:cookie];
-        *stop = YES;
-    }];
 }
 
 - (void)prepare_ggcw:(ProtocolGGCW *)_ggcw

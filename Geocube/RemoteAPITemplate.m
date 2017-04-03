@@ -170,7 +170,6 @@
     self.account.gca_cookie_value = [MyTools urlDecode:cookie.value];
     [self.account dbUpdateCookieValue];
 
-    [browserViewController prepare_gca:nil];
     [browserViewController clearScreen];
 
     if (self.authenticationDelegate != nil)

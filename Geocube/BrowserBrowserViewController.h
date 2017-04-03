@@ -27,7 +27,6 @@
 - (void)loadURL:(NSString *)urlString;
 - (void)loadURLRequest:(NSURLRequest *)req;
 - (void)prepare_oauth:(GCOAuthBlackbox *)oabb;
-- (void)prepare_gca:(ProtocolGCA *)gca;
 - (void)prepare_ggcw:(ProtocolGGCW *)ggcw;
 
 @end
