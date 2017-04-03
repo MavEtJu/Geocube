@@ -48,7 +48,7 @@
     return YES;
 }
 
-- (BOOL)mapHasViewHybrid
+- (BOOL)mapHasViewHybridMapAerial
 {
     return YES;
 }
@@ -245,7 +245,7 @@
         case MAPTYPE_TERRAIN:
             mapView.mapType = kGMSTypeTerrain;
             break;
-        case MAPTYPE_HYBRID:
+        case MAPTYPE_HYBRIDMAPAERIAL:
             mapView.mapType = kGMSTypeHybrid;
             break;
     }
@@ -261,7 +261,7 @@
         case kGMSTypeTerrain:
             return MAPTYPE_TERRAIN;
         case kGMSTypeHybrid:
-            return MAPTYPE_HYBRID;
+            return MAPTYPE_HYBRIDMAPAERIAL;
 
         case kGMSTypeNone:
             return -1;

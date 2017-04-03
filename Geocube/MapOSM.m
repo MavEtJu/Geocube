@@ -39,7 +39,7 @@
     return NO;
 }
 
-- (BOOL)mapHasViewHybrid
+- (BOOL)mapHasViewHybridMapAerial
 {
     return NO;
 }

@@ -43,7 +43,7 @@
 
 - (BOOL)mapHasViewMap;
 - (BOOL)mapHasViewAerial;
-- (BOOL)mapHasViewHybrid;
+- (BOOL)mapHasViewHybridMapAerial;
 - (BOOL)mapHasViewTerrain;
 
 - (void)initMap;

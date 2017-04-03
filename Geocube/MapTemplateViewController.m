@@ -72,7 +72,7 @@
 
     [lmi addItem:MVCmenuMapMap label:@"Map"];
     [lmi addItem:MVCmenuMapAerial label:@"Aerial"];
-    [lmi addItem:MVCmenuMapHybrid label:@"Hybrid"];
+    [lmi addItem:MVCmenuMapHybridMapAerial label:@"Map/Aerial"];
     [lmi addItem:MVCmenuMapTerrain label:@"Terrain"];
 
     [lmi addItem:MVCmenuLoadWaypoints label:@"Load Waypoints"];
@@ -107,8 +107,8 @@
         [lmi disableItem:MVCmenuMapMap];
     if ([self.map mapHasViewAerial] == FALSE)
         [lmi disableItem:MVCmenuMapAerial];
-    if ([self.map mapHasViewHybrid] == FALSE)
-        [lmi disableItem:MVCmenuMapHybrid];
+    if ([self.map mapHasViewHybridMapAerial] == FALSE)
+        [lmi disableItem:MVCmenuMapHybridMapAerial];
     if ([self.map mapHasViewTerrain] == FALSE)
         [lmi disableItem:MVCmenuMapTerrain];
 
@@ -158,8 +158,8 @@
         case MAPTYPE_AERIAL:
             [lmi disableItem:MVCmenuMapAerial];
             break;
-        case MAPTYPE_HYBRID:
-            [lmi disableItem:MVCmenuMapHybrid];
+        case MAPTYPE_HYBRIDMAPAERIAL:
+            [lmi disableItem:MVCmenuMapHybridMapAerial];
             break;
         case MAPTYPE_TERRAIN:
             [lmi disableItem:MVCmenuMapTerrain];
@@ -611,10 +611,10 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         [lmi disableItem:MVCmenuMapAerial];
     else
         [lmi enableItem:MVCmenuMapAerial];
-    if ([self.map mapHasViewHybrid] == FALSE)
-        [lmi disableItem:MVCmenuMapHybrid];
+    if ([self.map mapHasViewHybridMapAerial] == FALSE)
+        [lmi disableItem:MVCmenuMapHybridMapAerial];
     else
-        [lmi enableItem:MVCmenuMapHybrid];
+        [lmi enableItem:MVCmenuMapHybridMapAerial];
     if ([self.map mapHasViewTerrain] == FALSE)
         [lmi disableItem:MVCmenuMapTerrain];
     else
@@ -651,8 +651,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_AERIAL:
             [lmi disableItem:MVCmenuMapAerial];
             break;
-        case MAPTYPE_HYBRID:
-            [lmi disableItem:MVCmenuMapHybrid];
+        case MAPTYPE_HYBRIDMAPAERIAL:
+            [lmi disableItem:MVCmenuMapHybridMapAerial];
             break;
         case MAPTYPE_TERRAIN:
             [lmi disableItem:MVCmenuMapTerrain];
@@ -670,8 +670,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_AERIAL:
             [lmi enableItem:MVCmenuMapAerial];
             break;
-        case MAPTYPE_HYBRID:
-            [lmi enableItem:MVCmenuMapHybrid];
+        case MAPTYPE_HYBRIDMAPAERIAL:
+            [lmi enableItem:MVCmenuMapHybridMapAerial];
             break;
         case MAPTYPE_TERRAIN:
             [lmi enableItem:MVCmenuMapTerrain];
@@ -687,8 +687,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_AERIAL:
             [lmi disableItem:MVCmenuMapAerial];
             break;
-        case MAPTYPE_HYBRID:
-            [lmi disableItem:MVCmenuMapHybrid];
+        case MAPTYPE_HYBRIDMAPAERIAL:
+            [lmi disableItem:MVCmenuMapHybridMapAerial];
             break;
         case MAPTYPE_TERRAIN:
             [lmi disableItem:MVCmenuMapTerrain];
@@ -887,8 +887,8 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
         case MVCmenuMapAerial: /* Aerial view */
             [self menuMapType:MAPTYPE_AERIAL];
             return;
-        case MVCmenuMapHybrid: /* Hybrid view */
-            [self menuMapType:MAPTYPE_HYBRID];
+        case MVCmenuMapHybridMapAerial: /* Hybrid view */
+            [self menuMapType:MAPTYPE_HYBRIDMAPAERIAL];
             return;
         case MVCmenuMapTerrain: /* Terrain view */
             [self menuMapType:MAPTYPE_TERRAIN];

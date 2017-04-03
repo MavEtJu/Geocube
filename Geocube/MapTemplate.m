@@ -56,7 +56,7 @@ NEEDS_OVERLOADING(addHistory)
 - (GCMapType)mapType { NEEDS_OVERLOADING_ASSERT; return 0; }
 NEEDS_OVERLOADING_BOOL(mapHasViewMap)
 NEEDS_OVERLOADING_BOOL(mapHasViewAerial)
-NEEDS_OVERLOADING_BOOL(mapHasViewHybrid)
+NEEDS_OVERLOADING_BOOL(mapHasViewHybridMapAerial)
 NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
 NEEDS_OVERLOADING(openWaypointInfo:(id)sender)
 NEEDS_OVERLOADING(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight)
