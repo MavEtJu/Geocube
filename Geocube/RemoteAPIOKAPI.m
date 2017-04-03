@@ -141,11 +141,10 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
-    *retObject = nil;
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
@@ -191,12 +190,11 @@
     [iv setDescription:iii description:@"OKAPI JSON data (queued)"];
     GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
     [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:rv group:group account:self.account];
-    *retObject = rv;
 
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[OKAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
@@ -227,7 +225,6 @@
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
     [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:d2 group:nil account:self.account];
 
-    [waypointManager needsRefreshAll];
     return REMOTEAPI_OK;
 }
 

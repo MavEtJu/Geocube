@@ -149,7 +149,7 @@
         [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
             [wpnames addObject:wp.wpt_name];
         }];
-        [account.remoteAPI loadWaypointsByCodes:wpnames retObj:nil infoViewer:iv ivi:iii group:group callback:self];
+        [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:iv ivi:iii group:group callback:self];
     }];
 }
 
@@ -204,8 +204,7 @@
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    NSObject *d;
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb retObj:&d infoViewer:infoView ivi:iid callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid callback:self];
 
     [infoView removeItem:iid];
 

@@ -80,13 +80,12 @@ enum {
 - (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
 {
     BOOL failure = NO;
-    NSObject *retjson;
 
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&retjson infoViewer:infoView ivi:iid callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView ivi:iid callback:self];
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the JSON data from the query" error:account.remoteAPI.lastError];
         failure = YES;

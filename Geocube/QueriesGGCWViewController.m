@@ -77,13 +77,11 @@
     __block BOOL failure = NO;
 
     // Download the query
-    NSObject *ret;
-
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group retObj:&ret infoViewer:infoView ivi:iid callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView ivi:iid callback:self];
 
     [infoView removeItem:iid];
     if ([infoView hasItems] == NO)

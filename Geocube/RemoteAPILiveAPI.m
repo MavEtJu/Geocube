@@ -188,11 +188,10 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
-    *retObject = nil;
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
@@ -233,18 +232,13 @@
         } while (done < total);
     }
 
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
-    [d setObject:wps forKey:@"Geocaches"];
-    GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
-    *retObject = livejson;
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
-    *retObject = nil;
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
@@ -285,10 +279,6 @@
         } while (done < total);
     }
 
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:1];
-    [d setObject:wps forKey:@"Geocaches"];
-    GCDictionaryLiveAPI *livejson = [[GCDictionaryLiveAPI alloc] initWithDictionary:d];
-    *retObject = livejson;
     return REMOTEAPI_OK;
 }
 
@@ -332,10 +322,8 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
-    *retObj = nil;
-
     NSMutableDictionary *result = nil;
     NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];
 
@@ -372,7 +360,6 @@
 
     [result setObject:geocaches forKey:@"Geocaches"];
 
-    *retObj = result;
     return REMOTEAPI_OK;
 }
 
