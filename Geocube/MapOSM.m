@@ -34,7 +34,7 @@
     return YES;
 }
 
-- (BOOL)mapHasViewSatellite
+- (BOOL)mapHasViewAerial
 {
     return NO;
 }

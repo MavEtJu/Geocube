@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuBrandApple,
     MVCmenuBrandOSM,
     MVCmenuMapMap,
-    MVCmenuMapSatellite,
+    MVCmenuMapAerial,
     MVCmenuMapHybrid,
     MVCmenuMapTerrain,
     MVCmenuLoadWaypoints,
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, GCMapFollow) {
 
 typedef NS_ENUM(NSInteger, GCMapType) {
     MAPTYPE_NORMAL = 0,
-    MAPTYPE_SATELLITE,
+    MAPTYPE_AERIAL,
     MAPTYPE_HYBRID,
     MAPTYPE_TERRAIN,
 };

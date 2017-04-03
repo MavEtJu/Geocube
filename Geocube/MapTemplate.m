@@ -55,7 +55,7 @@ NEEDS_OVERLOADING(addHistory)
 - (double)currentZoom { NEEDS_OVERLOADING_ASSERT; return 0; }
 - (GCMapType)mapType { NEEDS_OVERLOADING_ASSERT; return 0; }
 NEEDS_OVERLOADING_BOOL(mapHasViewMap)
-NEEDS_OVERLOADING_BOOL(mapHasViewSatellite)
+NEEDS_OVERLOADING_BOOL(mapHasViewAerial)
 NEEDS_OVERLOADING_BOOL(mapHasViewHybrid)
 NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
 NEEDS_OVERLOADING(openWaypointInfo:(id)sender)

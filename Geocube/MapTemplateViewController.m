@@ -71,7 +71,7 @@
     [lmi addItem:MVCmenuBrandOSM label:@"OSM"];
 
     [lmi addItem:MVCmenuMapMap label:@"Map"];
-    [lmi addItem:MVCmenuMapSatellite label:@"Satellite"];
+    [lmi addItem:MVCmenuMapAerial label:@"Aerial"];
     [lmi addItem:MVCmenuMapHybrid label:@"Hybrid"];
     [lmi addItem:MVCmenuMapTerrain label:@"Terrain"];
 
@@ -105,8 +105,8 @@
     // Various map view options
     if ([self.map mapHasViewMap] == FALSE)
         [lmi disableItem:MVCmenuMapMap];
-    if ([self.map mapHasViewSatellite] == FALSE)
-        [lmi disableItem:MVCmenuMapSatellite];
+    if ([self.map mapHasViewAerial] == FALSE)
+        [lmi disableItem:MVCmenuMapAerial];
     if ([self.map mapHasViewHybrid] == FALSE)
         [lmi disableItem:MVCmenuMapHybrid];
     if ([self.map mapHasViewTerrain] == FALSE)
@@ -155,8 +155,8 @@
         case MAPTYPE_NORMAL:
             [lmi disableItem:MVCmenuMapMap];
             break;
-        case MAPTYPE_SATELLITE:
-            [lmi disableItem:MVCmenuMapSatellite];
+        case MAPTYPE_AERIAL:
+            [lmi disableItem:MVCmenuMapAerial];
             break;
         case MAPTYPE_HYBRID:
             [lmi disableItem:MVCmenuMapHybrid];
@@ -607,10 +607,10 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         [lmi disableItem:MVCmenuMapMap];
     else
         [lmi enableItem:MVCmenuMapMap];
-    if ([self.map mapHasViewSatellite] == FALSE)
-        [lmi disableItem:MVCmenuMapSatellite];
+    if ([self.map mapHasViewAerial] == FALSE)
+        [lmi disableItem:MVCmenuMapAerial];
     else
-        [lmi enableItem:MVCmenuMapSatellite];
+        [lmi enableItem:MVCmenuMapAerial];
     if ([self.map mapHasViewHybrid] == FALSE)
         [lmi disableItem:MVCmenuMapHybrid];
     else
@@ -648,8 +648,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_NORMAL:
             [lmi disableItem:MVCmenuMapMap];
             break;
-        case MAPTYPE_SATELLITE:
-            [lmi disableItem:MVCmenuMapSatellite];
+        case MAPTYPE_AERIAL:
+            [lmi disableItem:MVCmenuMapAerial];
             break;
         case MAPTYPE_HYBRID:
             [lmi disableItem:MVCmenuMapHybrid];
@@ -667,8 +667,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_NORMAL:
             [lmi enableItem:MVCmenuMapMap];
             break;
-        case MAPTYPE_SATELLITE:
-            [lmi enableItem:MVCmenuMapSatellite];
+        case MAPTYPE_AERIAL:
+            [lmi enableItem:MVCmenuMapAerial];
             break;
         case MAPTYPE_HYBRID:
             [lmi enableItem:MVCmenuMapHybrid];
@@ -684,8 +684,8 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         case MAPTYPE_NORMAL:
             [lmi disableItem:MVCmenuMapMap];
             break;
-        case MAPTYPE_SATELLITE:
-            [lmi disableItem:MVCmenuMapSatellite];
+        case MAPTYPE_AERIAL:
+            [lmi disableItem:MVCmenuMapAerial];
             break;
         case MAPTYPE_HYBRID:
             [lmi disableItem:MVCmenuMapHybrid];
@@ -884,8 +884,8 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
         case MVCmenuMapMap: /* Map view */
             [self menuMapType:MAPTYPE_NORMAL];
             return;
-        case MVCmenuMapSatellite: /* Satellite view */
-            [self menuMapType:MAPTYPE_SATELLITE];
+        case MVCmenuMapAerial: /* Aerial view */
+            [self menuMapType:MAPTYPE_AERIAL];
             return;
         case MVCmenuMapHybrid: /* Hybrid view */
             [self menuMapType:MAPTYPE_HYBRID];

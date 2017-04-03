@@ -42,7 +42,7 @@
 // To be implemented by inherited classes:
 
 - (BOOL)mapHasViewMap;
-- (BOOL)mapHasViewSatellite;
+- (BOOL)mapHasViewAerial;
 - (BOOL)mapHasViewHybrid;
 - (BOOL)mapHasViewTerrain;
 
