@@ -98,7 +98,6 @@
 @class ImageLibrary;
 @class ImagesDownloadManager;
 @class ImportGCA2JSON;
-@class ImportGCAJSON;
 @class ImportGGCWJSON;
 @class ImportGPX;
 @class ImportGPXGarmin;
