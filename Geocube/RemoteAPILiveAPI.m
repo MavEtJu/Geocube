@@ -170,7 +170,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -181,10 +181,10 @@
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name infoViewer:iv ivi:ivi];
     LIVEAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
-    ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:g account:a];
-    [imp parseDictionary:json];
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:@"LiveAPI JSON data (queued)"];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:g account:a];
 
-    [waypointManager needsRefreshUpdate:waypoint];
     return REMOTEAPI_OK;
 }
 

@@ -761,29 +761,30 @@ enum {
 
 - (void)runRefreshWaypoint
 {
-    [menuGlobal enableMenus:NO];
-    [MHTabBarController enableMenus:NO controllerFrom:self];
-
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
 
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid];
-
-    [menuGlobal enableMenus:YES];
-    [MHTabBarController enableMenus:YES controllerFrom:self];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid callback:self];
 
     [infoView removeItem:iid];
-    [self hideInfoView];
 
-    if (retValue == REMOTEAPI_OK) {
-        waypoint = [dbWaypoint dbGet:waypoint._id];
-        [self reloadDataMainQueue];
-        [waypointManager needsRefreshUpdate:waypoint];
-        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
-        return;
-    }
-    [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
+    if (retValue != REMOTEAPI_OK)
+        [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
+}
+
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+{
+    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+    [waypointManager needsRefreshUpdate:waypoint];
+    
+    waypoint = [dbWaypoint dbGet:waypoint._id];
+    [self reloadDataMainQueue];
+    [waypointManager needsRefreshUpdate:waypoint];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+
+    [iv removeItem:ivi];
+    [self hideInfoView];
 }
 
 - (void)menuViewRaw

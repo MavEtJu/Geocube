@@ -118,7 +118,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -134,12 +134,10 @@
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    ImportOKAPIJSON *imp = [[ImportOKAPIJSON alloc] init:g account:a];
-    [imp parseBefore];
-    [imp parseDictionary:d2];
-    [imp parseAfter];
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:@"OKAPI JSON data (queued)"];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:g account:a];
 
-    [waypointManager needsRefreshUpdate:waypoint];
     return REMOTEAPI_OK;
 }
 

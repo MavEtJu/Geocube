@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ListTemplateViewController : GCTableViewController
+@interface ListTemplateViewController : GCTableViewController <RemoteAPIDownloadDelegate>
 {
     NSInteger flag;
     NSMutableArray *waypoints;

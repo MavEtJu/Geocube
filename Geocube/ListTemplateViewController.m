@@ -168,7 +168,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         [infoView setDownloadHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
         [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid callback:self];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
             failure = YES;
@@ -177,6 +177,13 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     }];
 
     [infoView removeItem:iid];
+}
+
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+{
+    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+
+    [iv removeItem:ivi];
     [self hideInfoView];
 
     waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
@@ -184,8 +191,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [self reloadDataMainQueue];
     [waypointManager needsRefreshAll];
 
-    if (failure == NO)
-        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

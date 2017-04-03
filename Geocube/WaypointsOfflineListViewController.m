@@ -437,23 +437,29 @@ enum {
         if ([wp.account canDoRemoteStuff] == NO)
             return;
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid];
+        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid callback:self];
         if (rv != REMOTEAPI_OK) {
             [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
             failure = YES;
             *stop = YES;
         }
 
-        [waypointManager needsRefreshUpdate:wp];
     }];
+
+    [infoView removeItem:iid];
+}
+
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+{
+    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+    [waypointManager needsRefreshAll];
 
     [self reloadDataMainQueue];
 
-    [infoView removeItem:iid];
+    [infoView removeItem:ivi];
     [self hideInfoView];
 
-    if (failure == NO)
-        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 }
 
 @end
