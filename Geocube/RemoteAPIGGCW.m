@@ -138,7 +138,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center retObj:(NSObject **)retObject infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
@@ -215,7 +215,7 @@
 
 - (void)loadWaypoints_GGCWBackground:(NSMutableDictionary *)wpcodes
 {
-    id<RemoteAPIRetrieveQueryDelegate> callback = [wpcodes objectForKey:@"callback"];
+    id<RemoteAPIDownloadDelegate> callback = [wpcodes objectForKey:@"callback"];
     InfoItemID iid = [[wpcodes objectForKey:@"iid"] integerValue];
     InfoViewer *iv = [wpcodes objectForKey:@"iv"];
     dbGroup *group = [wpcodes objectForKey:@"group"];
@@ -305,7 +305,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIRetrieveQueryDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group retObj:(NSObject **)retObj infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     *retObj = nil;
 
