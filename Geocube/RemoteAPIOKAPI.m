@@ -140,6 +140,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:g account:a];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -193,6 +194,7 @@
     GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
     [callback remoteAPI_objectReadyToImport:iv ivi:ivi object:rv group:group account:self.account];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -230,6 +232,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:nil account:self.account];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 

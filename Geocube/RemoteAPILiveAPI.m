@@ -187,11 +187,13 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:g account:a];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
 - (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
+    NSInteger chunks = 0;
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
 
@@ -202,7 +204,6 @@
 
     [iv setChunksTotal:ivi total:1];
     [iv setChunksCount:ivi count:1];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_pointradius:center infoViewer:iv ivi:ivi];
     LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
@@ -216,7 +217,7 @@
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
-        [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+        chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
             done += 20;
@@ -229,16 +230,18 @@
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
-                [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+                chunks++;
             }
         } while (done < total);
     }
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
+    NSInteger chunks = 0;
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
 
@@ -249,7 +252,6 @@
 
     [iv setChunksTotal:ivi total:1];
     [iv setChunksCount:ivi count:1];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_boundbox:bb infoViewer:iv ivi:ivi];
     LIVEAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
@@ -263,7 +265,7 @@
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
-        [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+        chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
             done += 20;
@@ -276,11 +278,12 @@
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
                 [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
-                [wps addObjectsFromArray:[json objectForKey:@"Geocaches"]];
+                chunks++;
             }
         } while (done < total);
     }
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -326,8 +329,7 @@
 
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
-    NSMutableDictionary *result = nil;
-    NSMutableArray *geocaches = [NSMutableArray arrayWithCapacity:1000];
+    NSInteger chunks = 0;
 
     NSInteger max = 0;
     NSInteger tried = 0;
@@ -342,14 +344,12 @@
         LIVEAPI_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         NSInteger found = 0;
-        if (result == nil)
-            result = [NSMutableDictionary dictionaryWithDictionary:[json _dict]];
 
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
+        chunks++;
 
-        [geocaches addObjectsFromArray:[json objectForKey:@"Geocaches"]];
         found += [[json objectForKey:@"Geocaches"] count];
 
         offset += found;
@@ -360,8 +360,7 @@
     } while (tried < max);
     [iv setChunksTotal:ivi total:1 + (max / increase)];
 
-    [result setObject:geocaches forKey:@"Geocaches"];
-
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 

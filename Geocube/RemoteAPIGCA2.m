@@ -151,6 +151,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:g account:a];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -188,9 +189,9 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
-
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -219,6 +220,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:nil];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -255,7 +257,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:nil account:self.account];
 
-    [waypointManager needsRefreshAll];
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -291,6 +293,7 @@
 
 - (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
 {
+    NSInteger chunks = 0;
     [iv setChunksTotal:ivi total:2];
 
     // Download the query
@@ -339,8 +342,10 @@
         InfoItemID iii = [iv addImport];
         [iv setDescription:iii description:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:iv ivi:iii object:d2 group:group account:self.account];
+        chunks++;
     }
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 

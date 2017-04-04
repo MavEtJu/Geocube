@@ -137,11 +137,13 @@
     [iv setDescription:iii description:IMPORTMSG_GPX];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:g account:a];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
 - (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
+    NSInteger chunks = 0;
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
 
@@ -207,10 +209,11 @@
             [wpcodes setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
             [wpcodes setObject:callback forKey:@"callback"];
             [self performSelectorInBackground:@selector(loadWaypoints_GGCWBackground:) withObject:wpcodes];
-
+            chunks++;
         }
     }
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -322,6 +325,7 @@
     [iv setDescription:iii description:IMPORTMSG_PQ];
     [callback remoteAPI_objectReadyToImport:iv ivi:iii object:zipfilename group:group account:self.account];
 
+    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
