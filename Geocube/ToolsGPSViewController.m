@@ -21,7 +21,7 @@
 
 @interface ToolsGPSViewController ()
 {
-    NSMutableArray *coords;
+    NSMutableArray<GCLocationCoordinate2D *> *coords;
 
     UIImageView *gpsMap;
 
