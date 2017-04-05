@@ -21,9 +21,9 @@
 
 @interface HelpImagesViewController ()
 {
-    NSMutableArray *imgs;
-    NSMutableArray *names;
-    NSMutableArray *numbers;
+    NSMutableArray<UIImage *> *imgs;
+    NSMutableArray<NSString *> *names;
+    NSMutableArray<NSNumber *> *numbers;
     NSInteger imgCount;
 }
 

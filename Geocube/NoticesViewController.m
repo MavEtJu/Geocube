@@ -21,7 +21,7 @@
 
 @interface NoticesViewController ()
 {
-    NSArray *notices;
+    NSArray<dbNotice *> *notices;
 }
 
 @end

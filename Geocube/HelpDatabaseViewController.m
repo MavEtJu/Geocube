@@ -21,9 +21,9 @@
 
 @interface HelpDatabaseViewController ()
 {
-    NSArray *fields1;
-    NSArray *values1;
-    NSArray *config;
+    NSArray<NSString *> *fields1;
+    NSArray<NSNumber *> *values1;
+    NSArray<dbConfig *> *config;
 }
 
 @end
@@ -174,7 +174,7 @@ enum {
             if ([o isKindOfClass:[NSNumber class]] == YES)
                 cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
             else
-                cell.valueLabel.text = [values1 objectAtIndex:indexPath.row];
+                cell.valueLabel.text = [[values1 objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }

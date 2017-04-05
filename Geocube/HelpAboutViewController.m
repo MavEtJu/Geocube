@@ -22,8 +22,8 @@
 @interface HelpAboutViewController ()
 {
     NSInteger width;
-    NSArray *texts;
-    NSMutableArray *heights;
+    NSArray<NSString *> *texts;
+    NSMutableArray<NSNumber *> *heights;
 }
 
 @end
