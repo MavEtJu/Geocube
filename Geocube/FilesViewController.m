@@ -21,10 +21,10 @@
 
 @interface FilesViewController ()
 {
-    NSMutableArray *filesNames;
-    NSMutableArray *filesSizes;
-    NSMutableArray *filesDates;
-    NSArray *fileImports;
+    NSMutableArray<NSString *> *filesNames;
+    NSMutableArray<NSNumber *> *filesSizes;
+    NSMutableArray<NSDate *> *filesDates;
+    NSArray<dbFileImport *> *fileImports;
 }
 
 @end
