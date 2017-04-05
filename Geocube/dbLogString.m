@@ -39,9 +39,9 @@
     [super finish];
 }
 
-+ (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
++ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
-    NSMutableArray *lss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
 
     @synchronized(db) {
@@ -70,24 +70,24 @@
     return lss;
 }
 
-+ (NSArray *)dbAllXXX:(NSString *)where
++ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where
 {
     return [dbLogString dbAllXXX:where keys:nil values:nil];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbLogString *> *)dbAll
 {
     return [dbLogString dbAllXXX:@""];
 }
 
-+ (NSArray *)dbAllByProtocol:(dbProtocol *)protocol
++ (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol
 {
     return [dbLogString dbAllXXX:@"where protocol_id = ?"
                             keys:@"i"
                           values:@[[NSNumber numberWithLongLong:protocol._id]]];
 }
 
-+ (NSArray *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
 {
     return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ?"
                             keys:@"ii"
@@ -106,7 +106,7 @@
     return [lss objectAtIndex:0];
 }
 
-+ (NSArray *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
 {
     return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1"
                             keys:@"ii"

@@ -33,9 +33,9 @@
     [super finish];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbType *> *)dbAll
 {
-    NSMutableArray *ts = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbType *> *ts = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types");

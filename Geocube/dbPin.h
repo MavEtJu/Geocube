@@ -28,6 +28,7 @@
 @property (nonatomic, retain) UIColor *colour;
 @property (nonatomic, retain) UIImage *img;
 
++ (NSArray<dbPin *> *)dbAll;
 - (void)dbUpdateRGB;
 
 @end

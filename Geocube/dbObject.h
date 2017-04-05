@@ -28,7 +28,7 @@
 
 - (void)finish;
 
-+ (NSArray *)dbAll;
++ (NSArray<dbObject *> *)dbAll;
 + (dbObject *)dbGet:(NSId)_id;
 - (void)dbUpdate;
 - (NSId)dbCreate;

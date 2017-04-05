@@ -30,6 +30,7 @@
 @property (nonatomic) BOOL hasBoundary;
 @property (nonatomic) BOOL selected;
 
++ (NSArray<dbType *> *)dbAll;
 + (dbType *)dbGetByMajor:(NSString *)major minor:(NSString *)minor;
 
 @end

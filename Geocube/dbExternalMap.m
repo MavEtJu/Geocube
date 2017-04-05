@@ -63,9 +63,9 @@
     }
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbExternalMap *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbExternalMap *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps order by geocube_id");
@@ -106,7 +106,7 @@
     return em;
 }
 
-- (NSArray *)getURLs
+- (NSArray<dbExternalMapURL *> *)getURLs
 {
     return [dbExternalMapURL dbAllByExternalMap:self._id];
 }
@@ -161,9 +161,9 @@
     }
 }
 
-+ (NSArray *)dbAllByExternalMap:(NSId)map_id
++ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbExternalMapURL *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, externalmap_id, model, type, url from externalmap_urls where externalmap_id = ?");

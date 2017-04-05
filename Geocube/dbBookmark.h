@@ -25,6 +25,7 @@
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSInteger import_id;
 
++ (NSArray<dbBookmark *> *)dbAll;
 + (NSId)dbCreate:(dbBookmark *)bm;
 + (dbBookmark *)dbGetByImport:(NSInteger)import_id;
 

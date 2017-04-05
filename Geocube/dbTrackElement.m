@@ -34,9 +34,9 @@
     [super finish];
 }
 
-+ (NSArray *)dbAllByTrack:(NSId)track_id
++ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)track_id
 {
-    NSMutableArray *tes = [NSMutableArray arrayWithCapacity:500];
+    NSMutableArray<dbTrackElement *> *tes = [NSMutableArray arrayWithCapacity:500];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, track_id, lat_int, lon_int, height, timestamp, restart from trackelements where track_id = ? order by timestamp");

@@ -43,8 +43,9 @@ typedef NS_ENUM(NSInteger, TrackableLog) {
 @property (nonatomic, retain) NSString *waypoint_name;
 @property (nonatomic) TrackableLog logtype;
 
-+ (NSArray *)dbAllMine;
-+ (NSArray *)dbAllInventory;
++ (NSArray<dbTrackable *> *)dbAll;
++ (NSArray<dbTrackable *> *)dbAllMine;
++ (NSArray<dbTrackable *> *)dbAllInventory;
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
 - (void)dbLinkToWaypoint:(NSId)wp_id;
 + (dbTrackable *)dbGet:(NSId)_id;
@@ -54,7 +55,7 @@ typedef NS_ENUM(NSInteger, TrackableLog) {
 + (dbTrackable *)dbGetByCode:(NSString *)code;
 + (dbTrackable *)dbGetByRef:(NSString *)ref;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id;
++ (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id;
 - (void)finish:(dbAccount *)account;
 
 @end

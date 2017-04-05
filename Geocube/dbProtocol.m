@@ -25,9 +25,9 @@
 
 @implementation dbProtocol
 
-+ (NSArray *)dbAll
++ (NSArray<dbProtocol *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbProtocol *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name from protocols order by id");

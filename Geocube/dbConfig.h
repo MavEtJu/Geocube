@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) NSString *value;
 
++ (NSArray<dbConfig *> *)dbAll;
 - (instancetype)init:(NSId)_id key:(NSString *)key value:(NSString *)value;
 + (dbConfig *)dbGetByKey:(NSString *)key;
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value;

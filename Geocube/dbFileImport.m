@@ -59,9 +59,9 @@
     }
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbFileImport *> *)dbAll
 {
-    NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbFileImport *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, filename, filesize, last_import_epoch from file_imports");

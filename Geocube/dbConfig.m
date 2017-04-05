@@ -56,9 +56,9 @@
 }
 
 
-+ (NSArray *)dbAll
++ (NSArray<dbConfig *> *)dbAll
 {
-    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<dbConfig *> *ss = [NSMutableArray arrayWithCapacity:10];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, key, value from config");

@@ -23,7 +23,7 @@
 
 @property (nonatomic, retain) NSString *name;
 
-+ (NSArray *)dbAll;
++ (NSArray<dbLocale *> *)dbAll;
 + (void)makeNameExist:(NSString *)name;
 + (dbLocale *)dbGet:(NSId)_id;
 + (NSId)dbCreate:(NSString *)name;

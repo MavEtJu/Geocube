@@ -37,9 +37,9 @@
     return self;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbCountry *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbCountry *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code from countries");

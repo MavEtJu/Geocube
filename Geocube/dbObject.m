@@ -28,7 +28,7 @@
 NEEDS_OVERLOADING(dbUpdate)
 NEEDS_OVERLOADING(dbDelete)
 - (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
-+ (NSArray *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
++ (NSArray<dbObject *> *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
 + (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
 + (NSInteger)dbCount { NEEDS_OVERLOADING_ASSERT; return -1; }
 

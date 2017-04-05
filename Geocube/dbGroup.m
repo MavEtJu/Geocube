@@ -91,9 +91,9 @@
     return cg;
 }
 
-+ (NSMutableArray *)dbAll
++ (NSMutableArray<dbGroup *> *)dbAll
 {
-    NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbGroup *> *cgs = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, usergroup, deletable from groups");
@@ -116,9 +116,9 @@
     return [dbGroup dbCount:@"groups"];
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbGroup *> *)dbAllByWaypoint:(NSId)wp_id
 {
-    NSMutableArray *cgs = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbGroup *> *cgs = [[NSMutableArray alloc] initWithCapacity:20];
     dbGroup *cg;
 
     @synchronized(db) {

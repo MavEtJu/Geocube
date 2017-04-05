@@ -25,6 +25,7 @@
 @property (nonatomic) BOOL enabled;
 @property (nonatomic, retain) NSString *name;
 
++ (NSArray<dbExternalMap *> *)dbAll;
 + (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id;
 
 @end
@@ -37,7 +38,7 @@
 @property (nonatomic) NSInteger type;
 @property (nonatomic, retain) NSString *url;
 
-+ (NSArray *)dbAllByExternalMap:(NSId)map_id;
++ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id;
 + (void)dbDeleteByExternalMap:(NSId)map_id;
 
 @end

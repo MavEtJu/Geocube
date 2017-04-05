@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, ProtocolId) {
 
 @property (nonatomic, retain) NSString *name;
 
++ (NSArray<dbProtocol *> *)dbAll;
 + (dbProtocol *)dbGetByName:(NSString *)name;
 + (dbProtocol *)dbGet:(NSId)_id;
 

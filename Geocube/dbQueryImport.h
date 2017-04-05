@@ -27,6 +27,7 @@
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
++ (NSArray<dbQueryImport *> *)dbAll;
 + (NSId)dbCreate:(dbQueryImport *)qi;
 - (void)dbUpdate;
 

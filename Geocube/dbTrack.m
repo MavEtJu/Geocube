@@ -46,9 +46,9 @@
     return t;
 }
 
-+ (NSMutableArray *)dbAll
++ (NSMutableArray<dbTrack *> *)dbAll
 {
-    NSMutableArray *ts = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<dbTrack *> *ts = [NSMutableArray arrayWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, startedon, stoppedon from tracks order by startedon desc");

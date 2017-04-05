@@ -44,9 +44,9 @@
     return self._id;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbNotice *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:5];
+    NSMutableArray<dbNotice *> *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices order by seen, date desc, id");

@@ -58,9 +58,9 @@
     return a;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbBookmark *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks");

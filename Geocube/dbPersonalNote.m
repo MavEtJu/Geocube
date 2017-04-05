@@ -96,9 +96,9 @@
     return pn;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbPersonalNote *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbPersonalNote *>*ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, wp_name, note from personal_notes");

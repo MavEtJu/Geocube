@@ -28,10 +28,11 @@
 
 - (instancetype)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon;
 
++ (NSArray<dbAttribute *> *)dbAll;
 - (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO;
 + (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray *)attrs YesNo:(BOOL)YesNo;
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id;
++ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id;
 
 @end

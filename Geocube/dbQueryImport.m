@@ -68,9 +68,9 @@
     }
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbQueryImport *> *)dbAll
 {
-    NSMutableArray *qis = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbQueryImport *> *qis = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, account_id, name, filesize, last_import_epoch from query_imports");

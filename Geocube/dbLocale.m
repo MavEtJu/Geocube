@@ -25,9 +25,9 @@
 
 @implementation dbLocale
 
-+ (NSArray *)dbAll
++ (NSArray<dbLocale *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLocale *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name from locales");

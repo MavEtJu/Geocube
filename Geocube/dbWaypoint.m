@@ -252,11 +252,11 @@
     return [dbTrackable dbCountByWaypoint:self._id];
 }
 
-- (NSArray *)hasWaypoints
+- (NSArray<dbWaypoint *> *)hasWaypoints
 {
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:20];
     NSString *currentSuffix, *currentPrefix, *otherPrefix;
-    NSArray *GCCodes = @[
+    NSArray<NSString *> *GCCodes = @[
                          @"GA", // Geocaching Australia
                          @"MY", // Geocube internal
                          @"TP", // Geocaching Australia Trigpoint
@@ -313,9 +313,9 @@
     return wps;
 }
 
-+ (NSMutableArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
++ (NSMutableArray<dbWaypoint *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbWaypoint *> *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
 
     NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_lat_int, wpt_lon_int, wpt_date_placed, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, related_id from waypoints wp %@", where];
@@ -377,12 +377,12 @@
     }
     return wps;
 }
-+ (NSMutableArray *)dbAllXXX:(NSString *)where
++ (NSMutableArray<dbWaypoint *> *)dbAllXXX:(NSString *)where
 {
     return [dbWaypoint dbAllXXX:where keys:nil values:nil];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbWaypoint *> *)dbAll
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@""];
     return wps;
@@ -393,25 +393,25 @@
     return [dbWaypoint dbCount:@"waypoints"];
 }
 
-+ (NSArray *)dbAllNotFound
++ (NSArray<dbWaypoint *> *)dbAllNotFound
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))"];
     return wps;
 }
 
-+ (NSArray *)dbAllFound
++ (NSArray<dbWaypoint *> *)dbAllFound
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))"];
     return wps;
 }
 
-+ (NSArray *)dbAllIgnored
++ (NSArray<dbWaypoint *> *)dbAllIgnored
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where ignore = 1"];
     return wps;
 }
 
-+ (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt
++ (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt
 {
     // -34040000 < wpt_lat_int and wpt_lat_int < 34050000 and 151093000 < wpt_lon_int and wpt_lon_int < 1510950000;
     return [dbWaypoint dbAllXXX:@"where ? < wpt_lat_int and wpt_lat_int < ? and ? < wpt_lon_int and wpt_lon_int < ?"
@@ -422,7 +422,7 @@
                                   [NSNumber numberWithFloat:1000000 * rt.longitude]]];
 }
 
-+ (NSArray *)dbAllInGroups:(NSArray *)groups
++ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray *)groups
 {
     NSMutableString *keys = [NSMutableString stringWithString:@""];
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:[groups count]];
@@ -770,25 +770,25 @@
     return nil;
 }
 
-+ (NSArray *)waypointsWithImages
++ (NSArray<dbWaypoint *> *)waypointsWithImages
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from image2waypoint where type = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:IMAGECATEGORY_USER]] ];
     return wps;
 }
 
-+ (NSArray *)waypointsWithLogs
++ (NSArray<dbWaypoint *> *)waypointsWithLogs
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs)"];
     return wps;
 }
 
-+ (NSArray *)waypointsWithMyLogs
++ (NSArray<dbWaypoint *> *)waypointsWithMyLogs
 {
     NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
     return wps;
 }
 
-+ (NSArray *)dbAllByFlag:(Flag)flag
++ (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag
 {
     NSArray *wps = nil;
 

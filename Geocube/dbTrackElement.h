@@ -35,7 +35,7 @@
 @property (nonatomic) BOOL restart;
 
 + (dbTrackElement *)createElement:(CLLocationCoordinate2D)coords height:(NSInteger)altitude restart:(BOOL)restart;
-+ (NSArray *)dbAllByTrack:(NSId)_track_id;
++ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)_track_id;
 + (void)dbDeleteByTrack:(NSId)trackId;
 
 @end

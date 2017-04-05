@@ -47,9 +47,9 @@
     [super finish];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbName *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbName *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names");

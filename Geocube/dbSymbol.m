@@ -34,9 +34,9 @@
     return self;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbSymbol *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbSymbol *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, symbol from symbols");

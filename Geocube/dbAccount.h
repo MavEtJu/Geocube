@@ -63,6 +63,7 @@
 @property (nonatomic, retain) RemoteAPITemplate *remoteAPI;
 @property (nonatomic, retain) NSString *remoteAccessFailureReason;
 
++ (NSArray<dbAccount *> *)dbAll;
 + (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
 - (void)dbUpdateOAuthConsumer;

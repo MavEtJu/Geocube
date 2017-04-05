@@ -29,8 +29,8 @@
 @property (nonatomic) BOOL selected;
 
 - (void)dbEmpty;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id;
-+ (NSMutableArray *)dbAll;
++ (NSArray<dbGroup *> *)dbAllByWaypoint:(NSId)wp_id;
++ (NSMutableArray<dbGroup *> *)dbAll;
 + (dbGroup *)dbGet:(NSId)_id;
 + (dbGroup *)dbGetByName:(NSString *)name;
 + (void)dbDelete:(NSId)__id;

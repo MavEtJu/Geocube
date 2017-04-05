@@ -92,9 +92,9 @@
 }
 
 
-+ (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
++ (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
 {
-    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<dbTrackable *> *tbs = [NSMutableArray arrayWithCapacity:20];
 
     NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
 
@@ -120,22 +120,22 @@
     return tbs;
 }
 
-+ (NSArray *)dbAllXXX:(NSString *)where
++ (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where
 {
     return [dbTrackable dbAllXXX:where keys:nil values:nil];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbTrackable *> *)dbAll
 {
     return [self dbAllXXX:@""];
 }
 
-+ (NSArray *)dbAllMine
++ (NSArray<dbTrackable *> *)dbAllMine
 {
     return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
 }
 
-+ (NSArray *)dbAllInventory
++ (NSArray<dbTrackable *> *)dbAllInventory
 {
     return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
 }
@@ -151,7 +151,7 @@
     return [dbTrackable dbCount:@"travelbugs"];
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id
 {
     NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)"];
     return [self dbAllXXX:sql keys:@"i" values:@[[NSNumber numberWithLongLong:wp_id]]];

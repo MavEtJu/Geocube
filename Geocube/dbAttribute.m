@@ -38,9 +38,9 @@
     return self;
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbAttribute *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, label, gc_id, icon from attributes");
@@ -164,9 +164,9 @@
     return count;
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");

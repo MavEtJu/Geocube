@@ -114,11 +114,11 @@ typedef NS_ENUM(NSInteger, Flag) {
 + (NSId)dbGetByName:(NSString *)name;
 + (void)dbCreate:(dbWaypoint *)wp;
 - (void)dbUpdate;
-+ (NSArray *)dbAll;
-+ (NSArray *)dbAllFound;
-+ (NSArray *)dbAllNotFound;
-+ (NSArray *)dbAllIgnored;
-+ (NSArray *)dbAllInGroups:(NSArray *)groups;
++ (NSArray<dbWaypoint *> *)dbAll;
++ (NSArray<dbWaypoint *> *)dbAllFound;
++ (NSArray<dbWaypoint *> *)dbAllNotFound;
++ (NSArray<dbWaypoint *> *)dbAllIgnored;
++ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 
 + (void)dbUpdateLogStatus;
@@ -131,11 +131,11 @@ typedef NS_ENUM(NSInteger, Flag) {
 
 - (NSString *)makeLocaleStateCountry;
 + (NSString *)makeName:(NSString *)suffix;
-+ (NSArray *)waypointsWithImages;
-+ (NSArray *)waypointsWithLogs;
-+ (NSArray *)waypointsWithMyLogs;
-+ (NSArray *)dbAllByFlag:(Flag)flag;
-+ (NSArray *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
++ (NSArray<dbWaypoint *> *)waypointsWithImages;
++ (NSArray<dbWaypoint *> *)waypointsWithLogs;
++ (NSArray<dbWaypoint *> *)waypointsWithMyLogs;
++ (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag;
++ (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
 - (BOOL)hasGSData;
 

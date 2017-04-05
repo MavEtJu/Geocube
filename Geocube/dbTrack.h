@@ -25,6 +25,7 @@
 @property (nonatomic) NSInteger dateStart;
 @property (nonatomic) NSInteger dateStop;
 
++ (NSArray<dbTrack *> *)dbAll;
 + (dbTrack *)dbGet:(NSId)id;
 
 @end

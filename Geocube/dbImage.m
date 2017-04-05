@@ -57,9 +57,9 @@
     return _id;
 }
 
-+ (NSArray *)dbAll:(NSId)_wp_id
++ (NSArray<dbImage *> *)dbAll:(NSId)_wp_id
 {
-    NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbImage *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, url, datafile, filename from images");

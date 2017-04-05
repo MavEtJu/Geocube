@@ -29,6 +29,7 @@
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger cellHeight;
 
++ (NSArray<dbNotice *> *)dbAll;
 + (NSInteger)countUnread;
 + (dbNotice *)dbGetByGCId:(NSInteger)geocube_id;
 

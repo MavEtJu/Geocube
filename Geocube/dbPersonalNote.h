@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString *wp_name;
 @property (nonatomic, retain) NSString *note;
 
++ (NSArray<dbPersonalNote *> *)dbAll;
 + (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname;
 
 @end

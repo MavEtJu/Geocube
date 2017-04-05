@@ -50,9 +50,9 @@
     self.img = [ImageLibrary newPinHead:self.colour];
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbPin *> *)dbAll
 {
-    NSMutableArray *ps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbPin *> *ps = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, description, rgb, rgb_default from pins");

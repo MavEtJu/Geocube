@@ -51,9 +51,9 @@
     }
 }
 
-+ (NSArray *)dbAll
++ (NSArray<dbContainer *> *)dbAll
 {
-    NSMutableArray *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbContainer *>*ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, size, icon, gc_id from containers");

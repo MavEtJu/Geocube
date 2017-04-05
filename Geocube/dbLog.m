@@ -230,7 +230,7 @@
     return count;
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)_wp_id
++ (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)_wp_id
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
@@ -258,7 +258,7 @@
     return ls;
 }
 
-+ (NSArray *)dbAllByWaypointLogged:(NSId)wp_id
++ (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
 {
     NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
