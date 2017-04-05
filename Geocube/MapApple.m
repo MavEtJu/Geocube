@@ -22,8 +22,8 @@
 @interface MapApple ()
 {
     GCWaypointAnnotation *me;
-    NSMutableArray *markers;
-    NSMutableArray *circles;
+    NSMutableArray<GCWaypointAnnotation *> *markers;
+    NSMutableArray<GCCircle *> *circles;
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineRenderer *viewLineMeToWaypoint;

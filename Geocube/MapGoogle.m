@@ -25,8 +25,8 @@
 {
     GMSMapView *mapView;
     GMSMarker *me;
-    NSMutableArray *markers;
-    NSMutableArray *circles;
+    NSMutableArray<GMSMarker *> *markers;
+    NSMutableArray<GCGMSCircle *> *circles;
 
     GMSPolyline *lineMeToWaypoint;
     GMSPolyline *lineHistory;
