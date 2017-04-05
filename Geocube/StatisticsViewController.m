@@ -22,8 +22,8 @@
 @interface StatisticsViewController ()
 {
     UIScrollView *contentView;
-    NSMutableArray *accountViews;
-    NSMutableArray *accountDictionaries;
+    NSMutableArray<GCView *> *accountViews;
+    NSMutableArray<NSMutableDictionary *> *accountDictionaries;
     GCView *totalView;
     NSMutableDictionary *totalDictionary;
 
