@@ -21,7 +21,7 @@
 
 @interface SettingsColoursViewController ()
 {
-    NSMutableArray *pins;
+    NSMutableArray<dbPin *> *pins;
 }
 
 @end

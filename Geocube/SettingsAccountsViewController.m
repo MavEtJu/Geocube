@@ -21,7 +21,7 @@
 
 @interface SettingsAccountsViewController ()
 {
-    NSArray *accounts;
+    NSArray<dbAccount *> *accounts;
     NSInteger accountsCount;
 }
 

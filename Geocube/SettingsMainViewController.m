@@ -34,33 +34,33 @@
     float mapClustersZoomlevel;
     GCSwitch *mapRotateToBearing;
 
-    NSArray *compassTypes;
-    NSArray *externalMapTypes;
-    NSArray *mapBrandsCodes;
-    NSArray *mapBrandsNames;
+    NSArray<NSString *> *compassTypes;
+    NSArray<NSString *> *externalMapTypes;
+    NSArray<NSString *> *mapBrandsCodes;
+    NSArray<NSString *> *mapBrandsNames;
 
-    NSArray *orientationStrings;
-    NSArray *orientationValues;
+    NSArray<NSString *> *orientationStrings;
+    NSArray<NSNumber *> *orientationValues;
 
-    NSMutableArray *speedsWalkingMetric;
-    NSMutableArray *speedsCyclingMetric;
-    NSMutableArray *speedsDrivingMetric;
-    NSMutableArray *speedsWalking;
-    NSMutableArray *speedsCycling;
-    NSMutableArray *speedsDriving;
+    NSMutableArray<NSNumber *> *speedsWalkingMetric;
+    NSMutableArray<NSNumber *> *speedsCyclingMetric;
+    NSMutableArray<NSNumber *> *speedsDrivingMetric;
+    NSMutableArray<NSString *> *speedsWalking;
+    NSMutableArray<NSString *> *speedsCycling;
+    NSMutableArray<NSString *> *speedsDriving;
 
-    NSMutableArray *distancesWalkingMetric;
-    NSMutableArray *distancesCyclingMetric;
-    NSMutableArray *distancesDrivingMetric;
-    NSMutableArray *distancesWalking;
-    NSMutableArray *distancesCycling;
-    NSMutableArray *distancesDriving;
+    NSMutableArray<NSNumber *> *distancesWalkingMetric;
+    NSMutableArray<NSNumber *> *distancesCyclingMetric;
+    NSMutableArray<NSNumber *> *distancesDrivingMetric;
+    NSMutableArray<NSString *> *distancesWalking;
+    NSMutableArray<NSString *> *distancesCycling;
+    NSMutableArray<NSString *> *distancesDriving;
 
     GCSwitch *mapcacheEnable;
     NSInteger mapcacheMaxAge;
     NSInteger mapcacheMaxSize;
     NSArray *mapcacheMaxAgeValues;
-    NSArray *mapcacheMaxSizeValues;
+    NSArray<NSString *> *mapcacheMaxSizeValues;
 
     GCSwitch *compassAlwaysInPortraitMode;
     GCSwitch *markasFoundDNFClearsTarget;
@@ -75,8 +75,8 @@
     GCSwitch *downloadImagesLogs;
     GCSwitch *downloadImagesMobile;
     GCSwitch *downloadQueriesMobile;
-    NSMutableArray *downloadSimpleTimeouts;
-    NSMutableArray *downloadQueryTimeouts;
+    NSMutableArray<NSString *> *downloadSimpleTimeouts;
+    NSMutableArray<NSString *> *downloadQueryTimeouts;
 
     GCSwitch *AccountKeepUsername;
     GCSwitch *AccountKeepPassword;
