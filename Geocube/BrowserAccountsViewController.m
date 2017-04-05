@@ -21,7 +21,7 @@
 
 @interface BrowserAccountsViewController ()
 {
-    NSMutableArray *accounts;
+    NSMutableArray<dbAccount *> *accounts;
 }
 
 @end

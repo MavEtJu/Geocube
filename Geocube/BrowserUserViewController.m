@@ -21,7 +21,7 @@
 
 @interface BrowserUserViewController ()
 {
-    NSArray *bms;
+    NSArray<dbBookmark *> *bms;
 }
 
 @end
