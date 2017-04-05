@@ -21,7 +21,7 @@
 
 @interface KeepTrackTracks ()
 {
-    NSMutableArray *tracks;
+    NSMutableArray<dbTrack *> *tracks;
 }
 
 @end

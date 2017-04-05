@@ -24,8 +24,8 @@
 @interface KeepTrackHeightScroller ()
 {
     dbTrack *track;
-    NSArray *tes;
-    NSArray *timestamps;
+    NSArray<dbTrackElement *> *tes;
+    NSArray<NSNumber *> *timestamps;
 
     UIScrollView *sv;
     UIImage *image;
