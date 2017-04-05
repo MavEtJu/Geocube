@@ -21,7 +21,7 @@
 
 @interface DownloadManager ()
 {
-    NSMutableArray *asyncRequests;
+    NSMutableArray<NSMutableDictionary *> *asyncRequests;
 }
 
 @end

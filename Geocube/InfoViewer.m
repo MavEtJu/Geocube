@@ -21,9 +21,9 @@
 
 @interface InfoViewer ()
 {
-    NSMutableArray *imageItems;
-    NSMutableArray *downloadItems;
-    NSMutableArray *importItems;
+    NSMutableArray<InfoItem *> *imageItems;
+    NSMutableArray<InfoItem *> *downloadItems;
+    NSMutableArray<InfoItem *> *importItems;
     GCLabel *imageHeader;
     GCLabel *downloadHeader;
     GCLabel *importHeader;

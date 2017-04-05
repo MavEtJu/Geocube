@@ -21,10 +21,10 @@
 
 @interface ImportManager ()
 {
-    NSMutableArray *filenames;
-    NSMutableArray *filenamesToBeRemoved;
+    NSMutableArray<NSString *> *filenames;
+    NSMutableArray<NSString *> *filenamesToBeRemoved;
 
-    NSMutableArray *processedWaypoints;
+    NSMutableArray<NSString *> *processedWaypoints;
 }
 
 @end
