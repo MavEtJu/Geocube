@@ -21,8 +21,8 @@
 
 @interface NotesFieldnotesViewController ()
 {
-    NSArray *waypointsWithLogs;
-    NSMutableArray *logs;
+    NSArray<dbWaypoint *> *waypointsWithLogs;
+    NSMutableArray<dbLog *> *logs;
 }
 
 @end

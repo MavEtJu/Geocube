@@ -21,7 +21,7 @@
 
 @interface NotesImagesViewController ()
 {
-    NSArray *waypointsWithImages;
+    NSArray<dbWaypoint *> *waypointsWithImages;
 }
 
 @end

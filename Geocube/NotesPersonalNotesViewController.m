@@ -21,8 +21,8 @@
 
 @interface NotesPersonalNotesViewController ()
 {
-    NSArray *pns;
-    NSMutableArray *notes;
+    NSArray<dbPersonalNote *> *pns;
+    NSMutableArray<NSString *> *notes;
 }
 
 @end
