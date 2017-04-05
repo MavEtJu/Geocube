@@ -21,7 +21,7 @@
 
 @interface WaypointGroupsViewController ()
 {
-    NSMutableArray *ugs, *sgs;
+    NSMutableArray<dbGroup *> *ugs, *sgs;
     dbWaypoint *waypoint;
 }
 

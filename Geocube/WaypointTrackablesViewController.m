@@ -21,7 +21,7 @@
 
 @interface WaypointTrackablesViewController ()
 {
-    NSMutableArray *tbs;
+    NSMutableArray<dbTrackable *> *tbs;
     dbWaypoint *waypoint;
 }
 

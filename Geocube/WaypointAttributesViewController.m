@@ -21,7 +21,7 @@
 
 @interface WaypointAttributesViewController ()
 {
-    NSMutableArray *attrs;
+    NSMutableArray<dbAttribute *> *attrs;
     dbWaypoint *waypoint;
 }
 

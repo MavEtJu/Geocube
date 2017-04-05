@@ -23,7 +23,7 @@
 {
     BOOL mineOnly;
     dbWaypoint *waypoint;
-    NSArray *logs;
+    NSArray<dbLog *> *logs;
 
     dbLog *selectedLog;
 }

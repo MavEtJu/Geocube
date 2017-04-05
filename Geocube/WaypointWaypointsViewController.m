@@ -21,7 +21,7 @@
 
 @interface WaypointWaypointsViewController ()
 {
-    NSArray *wps;
+    NSArray<dbWaypoint *> *wps;
     dbWaypoint *waypoint;
     UITextField *tfLatitude, *tfLongitude;
     UIAlertAction *okButton;
