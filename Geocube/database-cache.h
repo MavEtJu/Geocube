@@ -22,15 +22,15 @@
 @interface DatabaseCache : NSObject
 
 // In memory database information
-@property (nonatomic, retain) NSMutableArray *Accounts;
-@property (nonatomic, retain) NSMutableArray *Protocols;
-@property (nonatomic, retain) NSMutableArray *Pins;
-@property (nonatomic, retain) NSMutableArray *Types;
-@property (nonatomic, retain) NSMutableArray *Groups;
-@property (nonatomic, retain) NSMutableArray *Containers;
-@property (nonatomic, retain) NSMutableArray *Countries;
-@property (nonatomic, retain) NSMutableArray *States;
-@property (nonatomic, retain) NSMutableArray *Locales;
+@property (nonatomic, retain) NSMutableArray<dbAccount *> *Accounts;
+@property (nonatomic, retain) NSMutableArray<dbProtocol *> *Protocols;
+@property (nonatomic, retain) NSMutableArray<dbPin *> *Pins;
+@property (nonatomic, retain) NSMutableArray<dbType *> *Types;
+@property (nonatomic, retain) NSMutableArray<dbGroup *> *Groups;
+@property (nonatomic, retain) NSMutableArray<dbContainer *> *Containers;
+@property (nonatomic, retain) NSMutableArray<dbCountry *> *Countries;
+@property (nonatomic, retain) NSMutableArray<dbState *> *States;
+@property (nonatomic, retain) NSMutableArray<dbLocale *> *Locales;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;

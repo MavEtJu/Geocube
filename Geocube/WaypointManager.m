@@ -430,10 +430,10 @@
             NSString *description = [self configGet:@"text_description"];
             NSString *logs = [self configGet:@"text_logs"];
 
-            __block NSMutableArray *countries = nil;
-            __block NSMutableArray *states = nil;
-            __block NSMutableArray *locales = nil;
-            __block NSMutableArray *owners = nil;
+            __block NSMutableArray<dbCountry *> *countries = nil;
+            __block NSMutableArray<dbState *> *states = nil;
+            __block NSMutableArray<dbLocale *> *locales = nil;
+            __block NSMutableArray<dbName *> *owners = nil;
 
             if (country != nil && [country isEqualToString:@""] == NO) {
                 countries = [NSMutableArray arrayWithCapacity:20];
@@ -455,7 +455,7 @@
 
             if (locale != nil && [locale isEqualToString:@""] == NO) {
                 locales = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Locales] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
+                [[dbc Locales] enumerateObjectsUsingBlock:^(dbLocale *c, NSUInteger idx, BOOL *stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:locale])
                         [locales addObject:c];
                 }];
@@ -487,7 +487,7 @@
 
                 if (locales != nil) {
                     __block BOOL matched = NO;
-                    [locales enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+                    [locales enumerateObjectsUsingBlock:^(dbLocale *s, NSUInteger idx, BOOL *stop) {
                         if (s._id == wp.gca_locale_id) {
                             matched = YES;
                             *stop = YES;
