@@ -21,7 +21,7 @@
 
 @interface FilterGroupsTableViewCell ()
 {
-    NSArray *groups;
+    NSArray<dbGroup *> *groups;
 }
 
 @end

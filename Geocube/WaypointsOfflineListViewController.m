@@ -21,7 +21,7 @@
 
 @interface WaypointsOfflineListViewController ()
 {
-    NSArray *waypoints;
+    NSArray<dbWaypoint *> *waypoints;
 
     NSInteger currentSortOrder;
 
@@ -342,7 +342,7 @@ enum {
     [self.navigationController pushViewController:newController animated:YES];
 }
 
-+ (NSArray *)sortByOrder
++ (NSArray<NSString *> *)sortByOrder
 {
     NSMutableArray *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
     for (NSInteger i = 0; i < SORTORDER_MAX; i++) {

@@ -21,7 +21,7 @@
 
 @interface FilterDirectionTableViewCell ()
 {
-    NSArray *directions;
+    NSArray<NSString *> *directions;
     FilterDirection direction;
     NSString *directionString;
     UIButton *directionButton;

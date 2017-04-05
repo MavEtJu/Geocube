@@ -21,7 +21,7 @@
 
 @interface FiltersViewController ()
 {
-    NSMutableArray *filters;
+    NSMutableArray<FilterObject *> *filters;
 }
 
 @end

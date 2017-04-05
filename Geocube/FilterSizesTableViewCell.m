@@ -21,7 +21,7 @@
 
 @interface FilterSizesTableViewCell ()
 {
-    NSArray *containers;
+    NSArray<dbContainer *> *containers;
 }
 
 @end

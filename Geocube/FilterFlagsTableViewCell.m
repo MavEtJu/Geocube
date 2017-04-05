@@ -39,14 +39,14 @@
     FilterFlag valueLoggedAsDNF;
     FilterFlag valueOwner;
 
-    NSArray *valuesHighlighted;
-    NSArray *valuesMarkedAsFound;
-    NSArray *valuesMarkedAsDNF;
-    NSArray *valuesIgnored;
-    NSArray *valuesInProgress;
-    NSArray *valuesLoggedAsFound;
-    NSArray *valuesLoggedAsDNF;
-    NSArray *valuesOwner;
+    NSArray<NSString *> *valuesHighlighted;
+    NSArray<NSString *> *valuesMarkedAsFound;
+    NSArray<NSString *> *valuesMarkedAsDNF;
+    NSArray<NSString *> *valuesIgnored;
+    NSArray<NSString *> *valuesInProgress;
+    NSArray<NSString *> *valuesLoggedAsFound;
+    NSArray<NSString *> *valuesLoggedAsDNF;
+    NSArray<NSString *> *valuesOwner;
 }
 
 @end

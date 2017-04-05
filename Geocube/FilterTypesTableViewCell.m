@@ -21,7 +21,7 @@
 
 @interface FilterTypesTableViewCell ()
 {
-    NSArray *types;
+    NSArray<dbType *> *types;
 }
 
 @end
