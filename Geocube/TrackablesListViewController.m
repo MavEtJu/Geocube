@@ -21,7 +21,7 @@
 
 @interface TrackablesListViewController ()
 {
-    NSArray *tbs;
+    NSArray<dbTrackable *> *tbs;
 }
 
 @end

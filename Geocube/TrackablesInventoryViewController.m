@@ -21,7 +21,7 @@
 
 @interface TrackablesInventoryViewController ()
 {
-    NSArray *tbs;
+    NSArray<dbTrackable *> *tbs;
 }
 
 @end

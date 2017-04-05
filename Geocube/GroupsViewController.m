@@ -22,7 +22,7 @@
 @interface GroupsViewController ()
 {
     NSInteger cgCount;
-    NSArray *cgs;
+    NSArray<dbGroup *> *cgs;
     BOOL showUsers;
 }
 
