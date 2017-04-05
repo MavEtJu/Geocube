@@ -25,6 +25,8 @@
 
     WaypointHeaderTableViewCell *headerCell;
     NSInteger headerCellHeight;
+    NSInteger chunksDownloaded;
+    NSInteger chunksProcessed;
 }
 
 @end
@@ -766,6 +768,8 @@ enum {
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
 
+    chunksDownloaded = 0;
+    chunksProcessed = 0;
     NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid callback:self];
 
     [infoView removeItem:iid];
@@ -776,15 +780,30 @@ enum {
 
 - (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
-    [waypointManager needsRefreshUpdate:waypoint];
+    @synchronized (self) {
+        chunksDownloaded++;
+    }
 
+    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+    [iv removeItem:ivi];
+
+    @synchronized (self) {
+        chunksProcessed++;
+    }
+}
+
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv numberOfChunks:(NSInteger)numberOfChunks
+{
+    while (chunksProcessed != numberOfChunks) {
+        [NSThread sleepForTimeInterval:0.1];
+    }
+
+    [waypointManager needsRefreshUpdate:waypoint];
     waypoint = [dbWaypoint dbGet:waypoint._id];
     [self reloadDataMainQueue];
     [waypointManager needsRefreshUpdate:waypoint];
     [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 
-    [iv removeItem:ivi];
     [self hideInfoView];
 }
 

@@ -20,6 +20,10 @@
  */
 
 @interface ListTemplateViewController ()
+{
+    NSInteger chunksProcessed;
+    NSInteger chunksDownloaded;
+}
 
 @end
 
@@ -159,39 +163,60 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 - (void)runReloadWaypoints
 {
     [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
-    [infoView setChunksTotal:iid total:[waypoints count]];
+
+    chunksProcessed = 0;
+    chunksDownloaded = 0;
 
     __block BOOL failure = NO;
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoView resetBytes:iid];
-        [infoView setDownloadHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[waypoints count]]];
-        [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading %@", wp.wpt_name]];
+    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
+        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (wp.account_id == account._id)
+                [wps addObject:wp.wpt_name];
+        }];
+        if ([wps count] == 0)
+            return;
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid callback:self];
+        InfoItemID iid = [infoView addDownload];
+        [infoView setChunksTotal:iid total:[wps count]];
+        [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
+
+        NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView ivi:iid group:dbc.Group_LastImport callback:self];
         if (rv != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
+            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
             failure = YES;
             *stop = YES;
         }
+        [infoView removeItem:iid];
     }];
-
-    [infoView removeItem:iid];
 }
 
 - (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+    @synchronized (self) {
+        chunksDownloaded++;
+    }
 
+    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
     [iv removeItem:ivi];
-    [self hideInfoView];
+
+    @synchronized (self) {
+        chunksProcessed++;
+    }
+}
+
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv numberOfChunks:(NSInteger)numberOfChunks
+{
+    while (chunksProcessed != numberOfChunks) {
+        [NSThread sleepForTimeInterval:0.1];
+    }
 
     waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
-
-    [self reloadDataMainQueue];
     [waypointManager needsRefreshAll];
-
+    [self reloadDataMainQueue];
     [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+
+    [self hideInfoView];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
