@@ -22,8 +22,8 @@
 @interface WaypointLogTrackablesViewController ()
 {
     dbWaypoint *waypoint;
-    NSMutableArray *tbs;
-    NSMutableArray *logtypes;
+    NSMutableArray<dbTrackable *> *tbs;
+    NSMutableArray<NSNumber *> *logtypes;
 }
 
 @end

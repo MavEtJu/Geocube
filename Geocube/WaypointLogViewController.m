@@ -22,7 +22,7 @@
 @interface WaypointLogViewController ()
 {
     dbWaypoint *waypoint;
-    NSArray *logstrings;
+    NSArray<dbLogString *> *logstrings;
     dbLogString *logstring;
     NSString *note;
     NSString *date;
@@ -31,7 +31,7 @@
     NSString *imageCaption;
     NSString *imageLongText;
 
-    NSMutableArray *trackables;
+    NSMutableArray<dbTrackable *> *trackables;
 
     NSInteger ratingSelected;
     BOOL fp, upload;

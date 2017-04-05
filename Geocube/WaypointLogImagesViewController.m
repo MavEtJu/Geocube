@@ -22,7 +22,7 @@
 @interface WaypointLogImagesViewController ()
 {
     dbWaypoint *waypoint;
-    NSArray *images;
+    NSArray<dbImage *> *images;
 
     UITableView *parentTable;
     UIImagePickerController *imagePickerController;

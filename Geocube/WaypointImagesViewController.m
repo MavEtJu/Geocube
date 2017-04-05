@@ -22,9 +22,9 @@
 @interface WaypointImagesViewController ()
 {
     dbWaypoint *waypoint;
-    NSArray *userImages;
-    NSArray *logImages;
-    NSArray *cacheImages;
+    NSArray<dbImage *> *userImages;
+    NSArray<dbImage *> *logImages;
+    NSArray<dbImage *> *cacheImages;
 
     NSIndexPath *currentIndexPath;
     WaypointImageViewController *ivc;
