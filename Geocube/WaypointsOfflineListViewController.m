@@ -174,7 +174,7 @@ enum {
     [self reloadDataMainQueue];
 }
 
-- (NSArray *)resortCachesData:(NSArray *)wps
+- (NSArray<dbWaypoint *> *)resortCachesData:(NSArray<dbWaypoint *> *)wps
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];

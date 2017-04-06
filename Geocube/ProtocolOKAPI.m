@@ -39,7 +39,7 @@
     return self;
 }
 
-- (NSString *)string_array:(NSArray *)fields
+- (NSString *)string_array:(NSArray<NSString *> *)fields
 {
     return [MyTools urlEncode:[fields componentsJoinedByString:@"|"]];
 }

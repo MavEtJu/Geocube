@@ -72,7 +72,7 @@
     }
 }
 
-- (void)parseGeocaches:(NSArray *)as
+- (void)parseGeocaches:(NSArray<NSDictionary *> *)as
 {
     [infoViewer setLineObjectTotal:ivi total:[as count] isLines:NO];
     [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
@@ -303,7 +303,7 @@
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_CACHE];
 }
 
-- (void)parseTrackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
+- (void)parseTrackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
     if (wp != nil)
         [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
@@ -445,7 +445,7 @@
         [tb dbLinkToWaypoint:wp._id];
 }
 
-- (void)parseImages:(NSArray *)attributes waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
+- (void)parseImages:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
 {
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseImage:d waypoint:wp imageSource:imageSource];
@@ -484,7 +484,7 @@
         [img dbLinkToWaypoint:wp._id type:imageSource];
 }
 
-- (void)parseAttributes:(NSArray *)attributes waypoint:(dbWaypoint *)wp
+- (void)parseAttributes:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp
 {
     [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
@@ -508,7 +508,7 @@
     [a dbLinkToWaypoint:wp._id YesNo:yesNo];
 }
 
-- (void)parseAdditionalWaypoints:(NSArray *)wps waypoint:(dbWaypoint *)wp
+- (void)parseAdditionalWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
 {
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
@@ -592,7 +592,7 @@
     [self.delegate Import_WaypointProcessed:awp];
 }
 
-- (void)parseLogs:(NSArray *)logs waypoint:(dbWaypoint *)wp
+- (void)parseLogs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];

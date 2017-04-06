@@ -153,7 +153,7 @@
     NSLog(@"%@/parseAfter_trackables: Parsing done", [self class]);
 }
 
-- (void)parseData_trackables:(NSArray *)trackables
+- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables
 {
     [infoViewer setLineObjectTotal:ivi total:[trackables count] isLines:NO];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {

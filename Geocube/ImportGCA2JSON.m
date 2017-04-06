@@ -46,7 +46,7 @@
     NSLog(@"%@/parseAfter_waypoints: Parsing done", [self class]);
 }
 
-- (void)parseData_waypoints:(NSArray *)waypoints
+- (void)parseData_waypoints:(NSArray<NSDictionary *> *)waypoints
 {
     [infoViewer setLineObjectTotal:ivi total:[waypoints count] isLines:NO];
     [waypoints enumerateObjectsUsingBlock:^(NSDictionary *waypoint, NSUInteger idx, BOOL *stop) {
@@ -283,7 +283,7 @@
         [self parseData_logs:logs waypoint:wp];
 }
 
-- (void)parseData_images:(NSArray *)images waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
+- (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
 {
     NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -326,7 +326,7 @@
     [ImagesDownloadManager addToQueue:image imageType:imagetype];
 }
 
-- (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp
+- (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
     NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
     [infoViewer setLogsTotal:ivi total:[alllogs count]];
@@ -337,7 +337,7 @@
     }];
 }
 
-- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypoint *)wp logs:(NSArray *)logs
+- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypoint *)wp logs:(NSArray<dbLog *> *)logs
 {
 /*
  {
@@ -395,7 +395,7 @@
     [infoViewer setLogsNew:ivi new:newLogsCount];
 }
 
-- (void)parseData_trackables:(NSArray *)trackables waypoint:(dbWaypoint *)wp
+- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
     [infoViewer setTrackablesTotal:ivi total:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {

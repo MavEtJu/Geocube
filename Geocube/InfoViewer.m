@@ -77,7 +77,7 @@
     }
 }
 
-- (void)refreshItems:(NSArray *)items
+- (void)refreshItems:(NSArray<InfoItem *> *)items
 {
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
@@ -174,7 +174,7 @@
     [self removeItem:_id from:importItems];
 }
 
-- (void)removeItem:(InfoItemID)_id from:(NSMutableArray *)items
+- (void)removeItem:(InfoItemID)_id from:(NSMutableArray<InfoItem *> *)items
 {
     __block InfoItem *ii = nil;
     @synchronized (items) {
@@ -243,7 +243,7 @@
     self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
 }
 
-- (NSInteger)calculateRects:(NSArray *)items header:(GCLabel *)header height:(NSInteger)heightOffset
+- (NSInteger)calculateRects:(NSArray<InfoItem *> *)items header:(GCLabel *)header height:(NSInteger)heightOffset
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
@@ -275,7 +275,7 @@
     [self calculateRects];
 }
 
-- (void)viewWillTransitionToSize:(NSArray *)items
+- (void)viewWillTransitionToSize:(NSArray<InfoItem *> *)items
 {
     @synchronized (items) {
         [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
@@ -306,7 +306,7 @@
     return ii;
 }
 
-- (InfoItem *)findInfoItem:(NSArray *)items infoItem:(InfoItemID)_id
+- (InfoItem *)findInfoItem:(NSArray<InfoItem *> *)items infoItem:(InfoItemID)_id
 {
     __block InfoItem *ii = nil;
 

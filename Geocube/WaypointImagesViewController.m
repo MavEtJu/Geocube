@@ -382,7 +382,7 @@ enum {
     [self.tableView reloadData];
 }
 
-- (void)deleteAllPhotos:(NSArray *)images
+- (void)deleteAllPhotos:(NSArray<dbImage *> *)images
 {
     [images enumerateObjectsUsingBlock:^(dbImage *image, NSUInteger idx, BOOL * _Nonnull stop) {
         [fileManager removeItemAtPath:[MyTools ImageFile:image.datafile] error:nil];
