@@ -41,9 +41,8 @@
     makeMenuMax = max;
 
     for (NSInteger i = 0; i < max; i++) {
+        [makeMenuItems addObject:@""];
         NSNumber *b = [NSNumber numberWithBool:FALSE];
-        [makeMenuItems addObject:[b description]];
-        b = [NSNumber numberWithBool:FALSE];
         [makeMenuDisableds addObject:b];
     }
 
@@ -52,7 +51,7 @@
 
 - (void)addItem:(NSInteger)idx label:(NSString *)label
 {
-    if ([[makeMenuItems objectAtIndex:idx] isKindOfClass:[NSNumber class]] == NO)
+    if ([[makeMenuItems objectAtIndex:idx] isEqualToString:@""] == NO)
         NSAssert1(FALSE, @"Menuitem %ld already found!", (long)idx);
     NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
     [makeMenuItems replaceObjectAtIndex:idx withObject:label];
@@ -60,8 +59,8 @@
 
 - (void)changeItem:(NSInteger)idx label:(NSString *)label
 {
-    if ([makeMenuItems objectAtIndex:idx] == nil)
-        NSAssert1(FALSE, @"Menuitem %ld already found!", (long)idx);
+    if ([[makeMenuItems objectAtIndex:idx] isEqualToString:@""] == YES)
+        NSAssert1(FALSE, @"Menuitem %ld not yet defined!", (long)idx);
     NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
     [makeMenuItems replaceObjectAtIndex:idx withObject:label];
 }
