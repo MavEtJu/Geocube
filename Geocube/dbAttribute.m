@@ -127,7 +127,7 @@
     }
 }
 
-+ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray *)attrs YesNo:(BOOL)YesNo
++ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo
 {
     if ([attrs count] == 0)
         return;

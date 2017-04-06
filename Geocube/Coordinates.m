@@ -408,7 +408,7 @@
 }
 
 /// Search for something which looks like a coordinate string
-+ (NSInteger)scanForWaypoints:(NSArray *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
++ (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
 {
     NSError *e = nil;
     __block NSInteger found = 0;

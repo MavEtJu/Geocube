@@ -51,7 +51,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (NSArray *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];

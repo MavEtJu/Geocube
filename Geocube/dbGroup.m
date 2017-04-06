@@ -229,7 +229,7 @@
     }
 }
 
-- (void)dbAddWaypoints:(NSArray *)waypoints
+- (void)dbAddWaypoints:(NSArray<dbWaypoint *> *)waypoints
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
         [self dbAddWaypoint:wp._id];

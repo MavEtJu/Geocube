@@ -22,7 +22,7 @@
 @interface ListTemplateViewController : GCTableViewController <RemoteAPIDownloadDelegate>
 {
     NSInteger flag;
-    NSMutableArray *waypoints;
+    NSMutableArray<dbWaypoint *> *waypoints;
 }
 
 - (void)clearFlags;

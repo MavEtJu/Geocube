@@ -873,7 +873,7 @@ bail:
     return gpx;
 }
 
-- (NSArray *)my_inventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (NSArray<NSDictionary *> *)my_inventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"my_inventory");
     /*
@@ -1120,7 +1120,7 @@ bail:
     return dict;
 }
 
-- (NSArray *)track_search:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     if (uid == nil)
         [self my_default:iv ivi:ivi];

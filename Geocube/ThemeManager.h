@@ -35,6 +35,6 @@ typedef NS_ENUM(NSInteger, GCThemeType) {
 - (void)setTheme:(GCThemeType)nr;
 - (void)changeThemeView:(UIView *)v;
 - (void)changeThemeViewController:(UIViewController *)v;
-- (void)changeThemeArray:(NSArray *)vs;
+- (void)changeThemeArray:(NSArray<UIView *> *)vs;
 
 @end

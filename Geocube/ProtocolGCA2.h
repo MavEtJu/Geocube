@@ -25,8 +25,8 @@
 
 - (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;

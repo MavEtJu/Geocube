@@ -422,7 +422,7 @@
                                   [NSNumber numberWithFloat:1000000 * rt.longitude]]];
 }
 
-+ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray *)groups
++ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray<dbGroup *> *)groups
 {
     NSMutableString *keys = [NSMutableString stringWithString:@""];
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:[groups count]];

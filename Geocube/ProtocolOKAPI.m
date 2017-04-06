@@ -200,7 +200,7 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray *)wpcodes infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 

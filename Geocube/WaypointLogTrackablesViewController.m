@@ -38,7 +38,7 @@ enum {
     menuMax
 };
 
-- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray *)_tbs
+- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray<dbTrackable *> *)_tbs
 {
     self = [super init];
 

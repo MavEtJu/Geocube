@@ -27,7 +27,7 @@
 
 @interface WaypointLogTrackablesViewController : GCTableViewController
 
-- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray *)tbs;
+- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray<dbTrackable *> *)tbs;
 
 @property (nonatomic, retain) id<WaypointLogTrackablesDelegate> delegate;
 

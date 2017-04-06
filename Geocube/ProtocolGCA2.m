@@ -287,12 +287,12 @@
     return [self performURLRequest:req infoViewer:iv ivi:ivi];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     return [self api_services_caches_geocaches:wps logs:30 infoViewer:iv ivi:ivi];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSLog(@"api_services_caches_geocaches:%ld", (long)[wps count]);
 

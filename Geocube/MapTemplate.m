@@ -175,7 +175,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
 
 }
 
-- (void)openWaypointsPicker:(NSArray *)names origin:(UIView *)origin
+- (void)openWaypointsPicker:(NSArray<NSString *> *)names origin:(UIView *)origin
 {
     NSAssert(NO, @"XXX");
     NSLog(@"amount: %lu", (unsigned long)[names count]);
@@ -192,7 +192,8 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
      rows:descs
      initialSelection:0
      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
-         [self openWaypointView:[names objectAtIndex:selectedIndex]];
+         dbWaypoint *wp = [waypointManager waypoint_byName:[names objectAtIndex:selectedIndex]];
+         [self openWaypointView:wp];
      }
      cancelBlock:^(ActionSheetStringPicker *picker) {
          NSLog(@"Block Picker Canceled");

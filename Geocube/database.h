@@ -109,7 +109,7 @@
     if (sqlite3_step(req) != SQLITE_DONE) \
         DB_ASSERT_STEP
 
-// + (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
+// + (NSArray*)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray*)values
 #define DB_PREPARE_KEYSVALUES(__sql__, __keys__, __values__) \
     DB_PREPARE(sql); \
     if (__keys__ != nil) { \

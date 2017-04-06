@@ -107,7 +107,7 @@ typedef NS_ENUM(NSInteger, Flag) {
 - (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;
 - (NSInteger)hasAttributes;
-- (NSArray *)hasWaypoints;
+- (NSArray<dbWaypoint *> *)hasWaypoints;
 - (NSInteger)hasInventory;
 - (NSInteger)hasImages;
 
@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, Flag) {
 + (NSArray<dbWaypoint *> *)dbAllFound;
 + (NSArray<dbWaypoint *> *)dbAllNotFound;
 + (NSArray<dbWaypoint *> *)dbAllIgnored;
-+ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray *)groups;
++ (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray<dbGroup *> *)groups;
 + (dbWaypoint *)dbGet:(NSId)id;
 
 + (void)dbUpdateLogStatus;

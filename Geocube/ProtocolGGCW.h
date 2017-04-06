@@ -43,10 +43,10 @@
 - (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGGCW *)map_details:(NSString *)wpcode infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (NSArray *)my_inventory:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (NSArray<NSDictionary *> *)my_inventory:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (NSDictionary *)track_details:(NSString *)tracker infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (NSArray *)track_search:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (GCDictionaryGGCW *)seek_cache__details_SetUserCacheNote:(NSDictionary *)dict text:(NSString *)text infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (NSDictionary *)seek_log__form:(NSString *)gc_id infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
 - (NSString *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)tbs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;

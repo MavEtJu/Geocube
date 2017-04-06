@@ -351,7 +351,7 @@ NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray **)qs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)listQueries:(NSArray <NSDictionary *>**)qs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     /* Returns: array of dicts of
      * - Name

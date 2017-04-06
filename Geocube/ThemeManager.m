@@ -140,7 +140,7 @@ ThemeManager *themeManager;
     [self changeTheme_:v];
 }
 
-- (void)changeThemeArray:(NSArray *)vs
+- (void)changeThemeArray:(NSArray<UIView *> *)vs
 {
     [vs enumerateObjectsUsingBlock:^(UIView *v, NSUInteger idx, BOOL *stop) {
         [self changeTheme_:v];

@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
 - (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type;
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type;
++ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type;
 - (BOOL)imageHasBeenDowloaded;
 - (UIImage *)imageGet;
 + (NSString *)filename:(NSString *)url;

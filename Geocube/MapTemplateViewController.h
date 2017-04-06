@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, GCMapBrand) {
     MAPBRAND_OPENSTREETMAPS,
 };
 
-@property (nonatomic, retain) NSMutableArray *waypointsArray;
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;
 @property (nonatomic) GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
 

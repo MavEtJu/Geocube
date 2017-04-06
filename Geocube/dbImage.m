@@ -83,7 +83,7 @@
     return [dbImage dbCount:@"images"];
 }
 
-+ (NSArray *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
++ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
     NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
 

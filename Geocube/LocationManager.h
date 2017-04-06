@@ -31,14 +31,14 @@
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
-@property (nonatomic, retain) NSMutableArray *delegates;
+@property (nonatomic, retain) NSMutableArray<id> *delegates;
 @property (nonatomic) float speed;
 
 @property (nonatomic) CLLocationAccuracy accuracy;
 @property (nonatomic) CLLocationDistance altitude;
 @property (nonatomic) CLLocationDirection direction;
 @property (nonatomic) CLLocationCoordinate2D coords;
-@property (nonatomic) NSMutableArray *coordsHistorical;
+@property (nonatomic) NSMutableArray<GCCoordsHistorical *> *coordsHistorical;
 @property (nonatomic, readonly) BOOL useGPS;
 
 - (void)startDelegation:(id<LocationManagerDelegate>)delegate isNavigating:(BOOL)isNavigating;
