@@ -26,7 +26,7 @@
     NSDate *lastHistory;
     CLLocationCoordinate2D coordsHistoricalLast;
 
-    NSMutableArray *historyData;
+    NSMutableArray<dbTrackElement *> *historyData;
     NSInteger lastSync;
 }
 

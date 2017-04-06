@@ -21,7 +21,7 @@
 
 @interface SideMenu ()
 {
-    NSMutableArray *items;
+    NSMutableArray<NSString *> *items;
     LocalMenuItems *localMenuItems;
     id localMenuTarget;
 

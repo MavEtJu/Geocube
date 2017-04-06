@@ -24,7 +24,7 @@
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
 
-    NSMutableArray *delegates;
+    NSMutableArray<id> *delegates;
 }
 
 @property (nonatomic, retain, readwrite) dbWaypoint *currentWaypoint;

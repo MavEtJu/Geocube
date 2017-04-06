@@ -31,7 +31,7 @@
 @interface WaypointManager : NSObject <LocationManagerDelegate>
 
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
-@property (nonatomic, retain) NSMutableArray *currentWaypoints;
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *currentWaypoints;
 
 - (instancetype)init;
 - (void)applyFilters:(CLLocationCoordinate2D)coords;

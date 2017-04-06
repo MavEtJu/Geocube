@@ -23,8 +23,8 @@
 
 @interface LocalMenuItems ()
 {
-    NSMutableArray *makeMenuItems;
-    NSMutableArray *makeMenuDisableds;
+    NSMutableArray<NSNumber *> *makeMenuItems;
+    NSMutableArray<NSNumber *> *makeMenuDisableds;
     NSInteger makeMenuMax;
 }
 

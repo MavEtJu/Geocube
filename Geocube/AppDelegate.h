@@ -21,7 +21,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, MHTabBarControllerDelegate>
 
-@property (nonatomic, retain) NSMutableArray *tabBars;
+@property (nonatomic, retain) NSMutableArray<MHTabBarController *> *tabBars;
 @property (nonatomic) NSInteger currentTabBar;
 @property (nonatomic, strong) UIWindow *window;
 
