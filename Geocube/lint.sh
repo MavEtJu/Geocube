@@ -62,6 +62,10 @@ echo "Method definitions should have a space between [-+] and name:"
 grep "^[-+]\S" *.m
 
 echo
+echo "Make sure that NSArray knows which class it represent:"
+grep 'NSArray ' $(ls -1 *.h | grep -v GCArray.h)
+
+echo
 echo "Empty lines after beginning of a function:"
 grep -n -A 1 ^{ *.m  | grep -v '^--$' | grep -- -$
 
