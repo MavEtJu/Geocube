@@ -92,7 +92,7 @@
 }
 
 
-+ (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
++ (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbTrackable *> *tbs = [NSMutableArray arrayWithCapacity:20];
 

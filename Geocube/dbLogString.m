@@ -39,7 +39,7 @@
     [super finish];
 }
 
-+ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray *)values
++ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
