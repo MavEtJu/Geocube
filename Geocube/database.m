@@ -194,7 +194,7 @@
     upgradeSteps = [NSMutableArray arrayWithCapacity:10];
 
     // Version 0
-    NSArray *a = @[
+    NSArray<NSString *> *a = @[
         // Nothing
     ];
     [upgradeSteps addObject:a];

@@ -96,9 +96,9 @@
 
 + (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type;
 {
-    NSArray *lss = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
-                                    keys:@"iis"
-                                  values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
+    NSArray<dbLogString *> *lss = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
+                                                   keys:@"iis"
+                                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
     if (lss == nil)
         return nil;
     if ([lss count] == 0)
@@ -115,9 +115,9 @@
 
 + (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type
 {
-    NSArray *as = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
-                                   keys:@"iis"
-                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
+    NSArray<dbLogString *> *as = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
+                                                  keys:@"iis"
+                                                values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
     if (as == nil)
         return nil;
     if ([as count] == 0)
@@ -249,9 +249,9 @@
     }
 
     NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and logtype = ? and default_%@ = 1", what];
-    NSArray *as = [dbLogString dbAllXXX:where
-                                   keys:@"ii"
-                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
+    NSArray<dbLogString *> *as = [dbLogString dbAllXXX:where
+                                                  keys:@"ii"
+                                                values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
     if (as == nil)
         return nil;
     if ([as count] == 0)

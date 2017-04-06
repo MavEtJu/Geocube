@@ -325,7 +325,7 @@ enum {
                 case WAYPOINT_DATA_ADDITIONALWAYPOINTS: {
                     cell.textLabel.text = @"Additional Waypoints";
 
-                    NSArray *wps = [waypoint hasWaypoints];
+                    NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
                     if ([wps count] <= 1)
                         tc = currentTheme.labelTextColorDisabled;
                     else
@@ -650,7 +650,7 @@ enum {
                                     [waypointManager setTheCurrentWaypoint:nil];
 
                                 if (waypoint.flag_markedfound == YES) {
-                                    NSArray *wps = [waypoint hasWaypoints];
+                                    NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
                                     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                                         if (wp._id == waypoint._id)
                                             return;

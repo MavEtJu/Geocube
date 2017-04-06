@@ -157,7 +157,7 @@ enum {
 
 - (void)scanForWaypoints
 {
-    NSArray *lines = [note.note componentsSeparatedByString:@"\n"];
+    NSArray<NSString *> *lines = [note.note componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
 }
 

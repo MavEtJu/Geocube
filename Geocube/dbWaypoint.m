@@ -113,7 +113,7 @@
     // Adjust cache types
     if (self.wpt_type == nil) {
         if (self.wpt_type_str != nil) {
-            NSArray *as = [self.wpt_type_str componentsSeparatedByString:@"|"];
+            NSArray<NSString *> *as = [self.wpt_type_str componentsSeparatedByString:@"|"];
             if ([as count] == 2) {
                 // Geocache|Traditional Cache
                 self.wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
@@ -384,7 +384,7 @@
 
 + (NSArray<dbWaypoint *> *)dbAll
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@""];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@""];
     return wps;
 }
 
@@ -395,19 +395,19 @@
 
 + (NSArray<dbWaypoint *> *)dbAllNotFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))"];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))"];
     return wps;
 }
 
 + (NSArray<dbWaypoint *> *)dbAllFound
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))"];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))"];
     return wps;
 }
 
 + (NSArray<dbWaypoint *> *)dbAllIgnored
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where ignore = 1"];
+    NSArray<dbWaypoint *>*wps = [dbWaypoint dbAllXXX:@"where ignore = 1"];
     return wps;
 }
 
@@ -463,7 +463,7 @@
 
 + (dbWaypoint *)dbGet:(NSId)_id
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where wp.id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where wp.id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
     if ([wps count] == 0)
         return nil;
     return [wps objectAtIndex:0];
@@ -613,31 +613,33 @@
     }
     [clock clockShowAndReset:@"3"];
 
-//    // Find all the waypoints and their waypoints
-//    @synchronized(db) {
-//        NSArray *waypoints = [dbWaypoint dbAllFound];
-//        NSLog(@"Checking %ld waypoints", [waypoints count]);
-//        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *waypoint, NSUInteger idx, BOOL *stop) {
-//            NSArray *wps = [waypoint hasWaypoints];
-//            if ([wps count] <= 1)
-//                return;
-//            NSMutableString *ids = [NSMutableString string];
-//            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-//                if (wp.logStatus == LOGSTATUS_FOUND)
-//                    return;
-//                if ([ids isEqualToString:@""] == NO)
-//                    [ids appendFormat:@" or id = %ld", (long)wp._id];
-//                else
-//                    [ids appendFormat:@"id = %ld", (long)wp._id];
-//            }];
-//            NSString *sql = [NSString stringWithFormat:@"update waypoints set log_status = ? where %@", ids];
-//            DB_PREPARE(sql);
-//            SET_VAR_INT(1, LOGSTATUS_FOUND);
-//            DB_CHECK_OKAY;
-//            DB_FINISH;
-//        }];
-//    }
-//    [clock clockShowAndReset:@"4"];
+    /*
+    // Find all the waypoints and their waypoints
+    @synchronized(db) {
+        NSArray<dbWaypoint *> *waypoints = [dbWaypoint dbAllFound];
+        NSLog(@"Checking %ld waypoints", [waypoints count]);
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *waypoint, NSUInteger idx, BOOL *stop) {
+            NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
+            if ([wps count] <= 1)
+                return;
+            NSMutableString *ids = [NSMutableString string];
+            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.logStatus == LOGSTATUS_FOUND)
+                    return;
+                if ([ids isEqualToString:@""] == NO)
+                    [ids appendFormat:@" or id = %ld", (long)wp._id];
+                else
+                    [ids appendFormat:@"id = %ld", (long)wp._id];
+            }];
+            NSString *sql = [NSString stringWithFormat:@"update waypoints set log_status = ? where %@", ids];
+            DB_PREPARE(sql);
+            SET_VAR_INT(1, LOGSTATUS_FOUND);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }];
+    }
+    [clock clockShowAndReset:@"4"];
+     */
 
     // Set the time of the last log in the waypoint
     @synchronized(db) {
@@ -772,25 +774,25 @@
 
 + (NSArray<dbWaypoint *> *)waypointsWithImages
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from image2waypoint where type = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:IMAGECATEGORY_USER]] ];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from image2waypoint where type = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:IMAGECATEGORY_USER]] ];
     return wps;
 }
 
 + (NSArray<dbWaypoint *> *)waypointsWithLogs
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs)"];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs)"];
     return wps;
 }
 
 + (NSArray<dbWaypoint *> *)waypointsWithMyLogs
 {
-    NSArray *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];
     return wps;
 }
 
 + (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag
 {
-    NSArray *wps = nil;
+    NSArray<dbWaypoint *> *wps = nil;
 
     switch (flag) {
         case FLAGS_HIGHLIGHTED:

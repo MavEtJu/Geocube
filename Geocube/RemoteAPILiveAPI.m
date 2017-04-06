@@ -310,7 +310,7 @@
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
 
-    NSArray *pqs = [json objectForKey:@"PocketQueryList"];
+    NSArray<NSDictionary *> *pqs = [json objectForKey:@"PocketQueryList"];
     [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
 
@@ -400,7 +400,7 @@
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
     [imp parseDictionary:json];
 
-    NSArray *refs = nil;
+    NSArray<NSString *> *refs = nil;
     NSString *ref = nil;
     DICT_ARRAY_PATH(json, refs, @"Trackables.Code");
     if ([refs count] != 0)

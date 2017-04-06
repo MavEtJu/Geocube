@@ -243,7 +243,7 @@ enum {
     NSString *s;
 
     NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     CHECK_ARRAY(nodes, 1, bail1);
     e = [nodes objectAtIndex:0];
     CHECK_ARRAY(e.children, 1, bail1);
@@ -351,7 +351,7 @@ bail2:
      <td class="AlignCenter"> 20 </td>
      */
     NSString *re = @"//table[@id='uxOfflinePQTable']/tr";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
         TFHppleElement *e;
         NSString *guid = nil;
@@ -493,7 +493,7 @@ bail:
     NSString *viewstategenerator = nil;
 
     NSString *re;
-    NSArray *nodes;
+    NSArray<TFHppleElement *> *nodes;
     TFHppleElement *e;
     GETVALUE(@"__EVENTTARGET", eventtarget);
     GETVALUE(@"__EVENTARGUMENT", eventargument);
@@ -656,7 +656,7 @@ bail2:
 
     // First find the usersession data
     NSString *re = [NSString stringWithFormat:@"//script"];
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
         NSString *s = e.content;
         NSRange r = [s rangeOfString:@"Groundspeak.UserSession"];
@@ -846,7 +846,7 @@ bail2:
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
     NSString *re = @"//textarea[@id='dataString']";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     TFHppleElement *e;
     NSString *s;
     NSRange r;
@@ -893,7 +893,7 @@ bail:
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
     NSString *re = @"//table[@class='Table NoBottomSpacing']/tbody/tr";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
 
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *trs, NSUInteger idx, BOOL *stop) {
@@ -960,7 +960,7 @@ bail:
      class="CoordInfoCode">TB4HC6C</span>
      */
     NSString *re;
-    NSArray *nodes;
+    NSArray<TFHppleElement *> *nodes;
     NSString *gccode;
     NSMutableDictionary *dict;
     NSString *owner;
@@ -1045,7 +1045,7 @@ bail:
      </h2>
      */
     NSString *re;
-    NSArray *nodes;
+    NSArray<TFHppleElement *> *nodes;
     TFHppleElement *e;
     NSString *name;
     NSString *owner;
@@ -1170,9 +1170,9 @@ bail:
 
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:20];
     NSString *re = @"//table[@class='Table']/tbody/tr";
-    NSArray *nodes = [parser searchWithXPathQuery:re];
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
-        NSArray *tds = tr.children;
+        NSArray<TFHppleElement *> *tds = tr.children;
         NSMutableDictionary *dict;
         NSString *name;
         NSString *href;
@@ -1332,7 +1332,7 @@ bail:
     NSString *viewstategenerator = nil;
     NSMutableDictionary *dict;
     NSString *re;
-    NSArray *nodes;
+    NSArray<TFHppleElement *> *nodes;
     TFHppleElement *e;
 
     GETVALUE(@"__EVENTTARGET", eventtarget);
@@ -1364,7 +1364,7 @@ bail1:
     NSUInteger idx = 1;
     while (1) {
         NSString *re = [NSString stringWithFormat:@"//select[@name='ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl%02ld$ddlAction']", (unsigned long)idx];
-        NSArray *nodes = [parser searchWithXPathQuery:re];
+        NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
         if ([nodes count] == 0)
             break;
 
@@ -1460,7 +1460,7 @@ bail1:
     if (favpoint == YES)
         [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$chkAddToFavorites", @"on"];
 
-    NSArray *tbs = [dict objectForKey:@"tbs"];
+    NSArray<NSDictionary *> *tbs = [dict objectForKey:@"tbs"];
     NSMutableString *actions = [NSMutableString stringWithString:@""];
     [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
         NSString *gc_id = [tb objectForKey:@"gc_id"];

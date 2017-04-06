@@ -143,7 +143,7 @@
     GCA2_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSArray *as = @[[json objectForKey:waypoint.wpt_name]];
+    NSArray<NSDictionary *> *as = @[[json objectForKey:waypoint.wpt_name]];
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 

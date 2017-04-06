@@ -208,7 +208,7 @@
     // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
 
     [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
-        NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
+        NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
         NSString *key = [ss objectAtIndex:0];
         NSString *value = [ss objectAtIndex:1];
 
@@ -253,7 +253,7 @@
     // oauth_callback_confirmed=true
 
     [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
-        NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
+        NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
         NSString *key = [ss objectAtIndex:0];
         NSString *value = [ss objectAtIndex:1];
 
@@ -283,7 +283,7 @@
     if ([[url substringToIndex:[self.callback length]] isEqualToString:self.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
         [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
-            NSArray *ss = [keyvalue componentsSeparatedByString:@"="];
+            NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
             NSString *key = [ss objectAtIndex:0];
             NSString *value = [ss objectAtIndex:1];
 
@@ -325,18 +325,18 @@
         NSString *query = [url.URL query];
         NSLog(@"query: %@", query);
 
-        NSArray *queries = [query componentsSeparatedByString:@"&"];
+        NSArray<NSString *> *queries = [query componentsSeparatedByString:@"&"];
         [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
-            NSArray *ss = [s componentsSeparatedByString:@"="];
+            NSArray<NSString *> *ss = [s componentsSeparatedByString:@"="];
             [paramDict setValue:[MyTools urlDecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
     }
 
     // - From the HTTP body
     {
-        NSArray *queries = [body componentsSeparatedByString:@"&"];
+        NSArray<NSString *> *queries = [body componentsSeparatedByString:@"&"];
         [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
-            NSArray *ss = [s componentsSeparatedByString:@"="];
+            NSArray<NSString *> *ss = [s componentsSeparatedByString:@"="];
             [paramDict setValue:[MyTools urlDecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
     }
@@ -355,7 +355,7 @@
     if (self.token != nil)
         [paramDict setValue:self.token forKey:@"oauth_token"];
 
-    NSArray *order = [[paramDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
+    NSArray<NSString *> *order = [[paramDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
         return [a compare:b];
     }];
 

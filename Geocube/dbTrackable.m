@@ -142,7 +142,7 @@
 
 + (dbTrackable *)dbGet:(NSId)_id
 {
-    NSArray *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
+    NSArray<dbTrackable *> *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
     return [as objectAtIndex:0];
 }
 
@@ -176,7 +176,7 @@
 
 + (dbTrackable *)dbGetByCode:(NSString *)code
 {
-    NSArray *tbs = [self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]];
+    NSArray<dbTrackable *> *tbs = [self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]];
     if (tbs == nil)
         return nil;
     if ([tbs count] == 0)
@@ -186,7 +186,7 @@
 
 + (dbTrackable *)dbGetByRef:(NSString *)ref
 {
-    NSArray *tbs = [self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]];
+    NSArray<dbTrackable *> *tbs = [self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]];
     if (tbs == nil)
         return nil;
     if ([tbs count] == 0)

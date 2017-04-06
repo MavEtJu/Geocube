@@ -139,7 +139,7 @@
         LINE_S(@"groundspeak:owner", wp.gs_owner_str);
         LINE_S(@"groundspeak:type", wp.wpt_type.type_minor);
 
-        NSArray *as = [dbAttribute dbAllByWaypoint:wp._id];
+        NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp._id];
         if ([as count] == 0) {
             [lines addObject:@"<groundspeak:attributes />"];
         } else {
@@ -172,7 +172,7 @@
 
         LINE_S(@"groundspeak:encoded_hints", wp.gs_hint);
 
-        NSArray *logs = [dbLog dbAllByWaypoint:wp._id];
+        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
         if ([logs count] == 0) {
             [lines addObject:@"<groundspeak:logs />"];
         } else {

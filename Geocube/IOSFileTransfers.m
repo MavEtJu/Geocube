@@ -52,18 +52,18 @@ enum {
 - (void)uploadAirdrop:(NSString *)path vc:(UIViewController *)vc
 {
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path isDirectory:NO];
-    NSArray *objectsToShare = @[url];
+    NSArray<NSURL *> *objectsToShare = @[url];
 
     UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
 
     // Exclude all activities except AirDrop.
-    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
-                                    UIActivityTypePostToWeibo,
-                                    UIActivityTypeMessage, UIActivityTypeMail,
-                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
-                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    NSArray<UIActivityType> *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                                    UIActivityTypePostToWeibo,
+                                                    UIActivityTypeMessage, UIActivityTypeMail,
+                                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+                                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
     controller.excludedActivityTypes = excludedActivities;
 
     // Present the controller
@@ -74,7 +74,7 @@ enum {
 
 - (void)importAirdropAttachment:(NSURL *)url
 {
-    NSArray *as = [url pathComponents];
+    NSArray<NSString *> *as = [url pathComponents];
     NSString *file = [as objectAtIndex:[as count] - 1];
 
     NSString *fromFile = [NSString stringWithFormat:@"%@/Inbox/%@", [MyTools DocumentRoot], file];
@@ -90,7 +90,7 @@ enum {
 
 - (void)cleanupITunes
 {
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
+    NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
 
     [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
         /*

@@ -73,7 +73,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
-    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
+    NSArray<dbImage *> *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = img.name;
@@ -86,7 +86,7 @@
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
-    NSArray *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
+    NSArray<dbImage *> *imgs = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
     WaypointImageViewController *newController = [[WaypointImageViewController alloc] init];

@@ -29,7 +29,7 @@
 /// Returns the location where the app can read and write to files
 + (NSString *)DocumentRoot
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // create path to theDirectory
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return documentsDirectory;
@@ -611,7 +611,7 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 /// Returns a random UIColor object (not black)
 + (UIColor *)randomColor
 {
-    NSArray *colours = @[
+    NSArray<UIColor *> *colours = @[
                          [UIColor redColor],
                          [UIColor whiteColor],
                          [UIColor blueColor],

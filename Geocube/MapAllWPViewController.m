@@ -97,7 +97,7 @@
 
     [self showInfoView];
 
-    NSArray *accounts = [dbc Accounts];
+    NSArray<dbAccount *> *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([account canDoRemoteStuff] == NO)
@@ -130,7 +130,7 @@
         return;
     };
 
-    NSArray *accounts = [dbc Accounts];
+    NSArray<dbAccount *> *accounts = [dbc Accounts];
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([account canDoRemoteStuff] == NO)
             return;
@@ -174,7 +174,7 @@
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
 
-    NSArray *wps = [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
+    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
     @synchronized (newWaypoints) {
         [newWaypoints addObjectsFromArray:wps];
     }

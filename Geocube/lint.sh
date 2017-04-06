@@ -67,7 +67,9 @@ grep 'NSArray ' $(ls -1 *.h | grep -v GCArray.h)
 grep 'NSMutableArray ' $(ls -1 *.h | grep -v GCArray.h)
 grep -n "^[\-\+].*NSArray " *.m
 grep -n "^[\-\+].*NSMutableArray " *.m
-grep -n " NSMutableArray " $(ls -1 *.h | grep -v GCArray.m)
+grep -n " NSMutableArray " $(ls -1 *.m | grep -v GCArray.m)
+grep -n " NSArray " $(ls -1 *.m | grep -v GCArray.m)
+
 
 echo
 echo "Empty lines after beginning of a function:"

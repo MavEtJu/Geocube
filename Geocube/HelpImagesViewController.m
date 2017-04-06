@@ -132,7 +132,7 @@ enum {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     if (indexPath.section == IMAGES_PINS_ONE) {
-        NSArray *pins = [dbc Pins];
+        NSArray<dbPin *> *pins = [dbc Pins];
         dbPin *pin = [pins objectAtIndex:1];
 
         switch (indexPath.row) {
@@ -233,7 +233,7 @@ enum {
     }
 
     if (indexPath.section == IMAGES_PINS_ALL) {
-        NSArray *pins = [dbc Pins];
+        NSArray<dbPin *> *pins = [dbc Pins];
         dbPin *pin = [pins objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
@@ -242,7 +242,7 @@ enum {
     }
 
     if (indexPath.section == IMAGES_TYPES_ALL) {
-        NSArray *types = [dbc Types];
+        NSArray<dbType *> *types = [dbc Types];
         dbType *type = [types objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];

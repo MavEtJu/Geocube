@@ -132,7 +132,7 @@
     OKAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSArray *as = @[[json objectForKey:waypoint.wpt_name]];
+    NSArray<NSDictionary *> *as = @[[json objectForKey:waypoint.wpt_name]];
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
@@ -164,7 +164,7 @@
         OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
         more = [[json objectForKey:@"more"] boolValue];
-        NSArray *rets = nil;
+        NSArray<NSString *> *rets = nil;
         NSObject *vs = [json objectForKey:@"results"];
         if ([vs isKindOfClass:[NSString class]] == YES)
             rets = @[vs];

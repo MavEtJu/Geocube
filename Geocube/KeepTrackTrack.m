@@ -160,7 +160,7 @@ enum {
 {
     UIImage *img = nil;
 
-    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSArray<dbTrackElement *>*tes = [dbTrackElement dbAllByTrack:track._id];
 
     __block CGFloat ymin = +100000, ymax = -100000;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -224,7 +224,7 @@ enum {
 {
     UIImage *img = nil;
 
-    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track._id];
 
     __block CGFloat x0 = +180000000, x3 = -180000000, y0 = +180000000, y3 = -180000000;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -315,7 +315,7 @@ enum {
 
 - (void)trackExport
 {
-    NSArray *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track._id];
     dbTrackElement *te = [tes objectAtIndex:0];
     __block BOOL inSegment = NO;
 

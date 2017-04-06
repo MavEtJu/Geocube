@@ -193,7 +193,7 @@
             GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM infoViewer:iv ivi:iid];
 
             NSDictionary *alldata = [d objectForKey:@"data"];
-            [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *wps, BOOL *stop) {
+            [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray<NSDictionary *> *wps, BOOL *stop) {
                 NSDictionary *wpdata = [wps objectAtIndex:0];
                 // Don't look at the same object twice
                 NSString *wpdatai = [wpdata objectForKey:@"i"];
@@ -238,7 +238,7 @@
         GCDictionaryGGCW *d = [ggcw map_details:wpcode infoViewer:iv ivi:iid];
         if (d == nil)
             return;
-        NSArray *data = [d objectForKey:@"data"];
+        NSArray<NSDictionary *> *data = [d objectForKey:@"data"];
         NSDictionary *dict = [data objectAtIndex:0];
 
         GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] infoViewer:iv ivi:iid];
@@ -331,7 +331,7 @@
 
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
-    NSArray *tbs = [ggcw track_search:iv ivi:ivi];
+    NSArray<NSDictionary *> *tbs = [ggcw track_search:iv ivi:ivi];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:ivi];
     [iv setChunksTotal:ivi total:[tbs count]];
@@ -366,7 +366,7 @@
 
 - (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
-    NSArray *tbs = [ggcw my_inventory:iv ivi:ivi];
+    NSArray<NSDictionary *>*tbs = [ggcw my_inventory:iv ivi:ivi];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:ivi];
     [iv setChunksTotal:ivi total:[tbs count]];

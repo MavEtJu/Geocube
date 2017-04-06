@@ -744,7 +744,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
 
         NSLog(@"Opening %@ for external navigation", em.name);
 
-        NSArray *urls = [dbExternalMapURL dbAllByExternalMap:em._id];
+        NSArray<dbExternalMapURL *> *urls = [dbExternalMapURL dbAllByExternalMap:em._id];
         __block dbExternalMapURL *urlCurrent = nil;
         __block dbExternalMapURL *urlDestination = nil;
 

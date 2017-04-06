@@ -22,7 +22,7 @@
 @interface HelpDatabaseViewController ()
 {
     NSArray<NSString *> *fields1;
-    NSArray<NSNumber *> *values1;
+    NSArray<NSString *> *values1;
     NSArray<dbConfig *> *config;
 }
 
@@ -64,62 +64,62 @@ enum {
 
 - (void)reloadNumbers
 {
-    NSMutableArray<NSObject *> *vs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *vs = [NSMutableArray arrayWithCapacity:20];
     NSMutableArray<NSString *> *fs = [NSMutableArray arrayWithCapacity:20];
 
     [fs addObject:@"Database size"];
     [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
 
     [fs addObject:@"Accounts"];
-    [vs addObject:[NSNumber numberWithInteger:[dbAccount dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbAccount dbCount]] stringValue]];
     [fs addObject:@"Attributes"];
-    [vs addObject:[NSNumber numberWithInteger:[dbAttribute dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbAttribute dbCount]] stringValue]];
     [fs addObject:@"Bookmarks"];
-    [vs addObject:[NSNumber numberWithInteger:[dbBookmark dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbBookmark dbCount]] stringValue]];
     [fs addObject:@"Config"];
-    [vs addObject:[NSNumber numberWithInteger:[dbConfig dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbConfig dbCount]] stringValue]];
     [fs addObject:@"Countries"];
-    [vs addObject:[NSNumber numberWithInteger:[dbCountry dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbCountry dbCount]] stringValue]];
     [fs addObject:@"Containers"];
-    [vs addObject:[NSNumber numberWithInteger:[dbContainer dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbContainer dbCount]] stringValue]];
     [fs addObject:@"ExternalMaps"];
-    [vs addObject:[NSNumber numberWithInteger:[dbExternalMap dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbExternalMap dbCount]] stringValue]];
     [fs addObject:@"ExternalMapURLs"];
-    [vs addObject:[NSNumber numberWithInteger:[dbExternalMapURL dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbExternalMapURL dbCount]] stringValue]];
     [fs addObject:@"FileImports"];
-    [vs addObject:[NSNumber numberWithInteger:[dbFileImport dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbFileImport dbCount]] stringValue]];
     [fs addObject:@"Filters"];
-    [vs addObject:[NSNumber numberWithInteger:[dbFilter dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbFilter dbCount]] stringValue]];
     [fs addObject:@"Groups"];
-    [vs addObject:[NSNumber numberWithInteger:[dbGroup dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbGroup dbCount]] stringValue]];
     [fs addObject:@"Images"];
-    [vs addObject:[NSNumber numberWithInteger:[dbImage dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbImage dbCount]] stringValue]];
     [fs addObject:@"Logs"];
-    [vs addObject:[NSNumber numberWithInteger:[dbLog dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLog dbCount]] stringValue]];
     [fs addObject:@"LogStrings"];
-    [vs addObject:[NSNumber numberWithInteger:[dbLogString dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLogString dbCount]] stringValue]];
     [fs addObject:@"Names"];
-    [vs addObject:[NSNumber numberWithInteger:[dbName dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbName dbCount]] stringValue]];
     [fs addObject:@"Notices"];
-    [vs addObject:[NSNumber numberWithInteger:[dbNotice dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbNotice dbCount]] stringValue]];
     [fs addObject:@"Personal Notes"];
-    [vs addObject:[NSNumber numberWithInteger:[dbPersonalNote dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbPersonalNote dbCount]] stringValue]];
     [fs addObject:@"QueryImports"];
-    [vs addObject:[NSNumber numberWithInteger:[dbQueryImport dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbQueryImport dbCount]] stringValue]];
     [fs addObject:@"States"];
-    [vs addObject:[NSNumber numberWithInteger:[dbState dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbState dbCount]] stringValue]];
     [fs addObject:@"Symbols"];
-    [vs addObject:[NSNumber numberWithInteger:[dbSymbol dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbSymbol dbCount]] stringValue]];
     [fs addObject:@"Trackables"];
-    [vs addObject:[NSNumber numberWithInteger:[dbTrackable dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbTrackable dbCount]] stringValue]];
     [fs addObject:@"TrackElements"];
-    [vs addObject:[NSNumber numberWithInteger:[dbTrackElement dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbTrackElement dbCount]] stringValue]];
     [fs addObject:@"Tracks"];
-    [vs addObject:[NSNumber numberWithInteger:[dbTrack dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbTrack dbCount]] stringValue]];
     [fs addObject:@"Types"];
-    [vs addObject:[NSNumber numberWithInteger:[dbType dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbType dbCount]] stringValue]];
     [fs addObject:@"Waypoints"];
-    [vs addObject:[NSNumber numberWithInteger:[dbWaypoint dbCount]]];
+    [vs addObject:[[NSNumber numberWithInteger:[dbWaypoint dbCount]] stringValue]];
     fields1 = fs;
     values1 = vs;
 

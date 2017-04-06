@@ -59,7 +59,7 @@
     GCSwitch *mapcacheEnable;
     NSInteger mapcacheMaxAge;
     NSInteger mapcacheMaxSize;
-    NSArray *mapcacheMaxAgeValues;
+    NSArray<NSString *> *mapcacheMaxAgeValues;
     NSArray<NSString *> *mapcacheMaxSizeValues;
 
     GCSwitch *compassAlwaysInPortraitMode;
@@ -949,7 +949,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Sort waypoints default by...";
-                    NSArray *order = [WaypointsOfflineListViewController sortByOrder];
+                    NSArray<NSString *> *order = [WaypointsOfflineListViewController sortByOrder];
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
 
                     return cell;
@@ -1482,7 +1482,7 @@ enum sections {
 
 - (void)changeDynamicmapSpeed:(NSInteger)row
 {
-    NSArray *speeds = nil;
+    NSArray<NSString *> *speeds = nil;
     NSString *title = nil;
     NSString *currentSpeed = nil;
     SEL successAction = nil;
@@ -1545,7 +1545,7 @@ enum sections {
 
 - (void)changeDynamicmapDistance:(NSInteger)row
 {
-    NSArray *distances = nil;
+    NSArray<NSString *> *distances = nil;
     NSString *title = nil;
     NSString *currentDistance = nil;
     SEL successAction = nil;
@@ -1952,7 +1952,7 @@ enum sections {
 
 - (void)changeAppsExternalMap
 {
-    NSArray *maps = [dbExternalMap dbAll];
+    NSArray<dbExternalMap *> *maps = [dbExternalMap dbAll];
     __block NSInteger initial = 0;
     [maps enumerateObjectsUsingBlock:^(dbExternalMap *map, NSUInteger idx, BOOL * _Nonnull stop) {
         if (map.geocube_id == configManager.mapExternal) {
@@ -1973,7 +1973,7 @@ enum sections {
 
 - (void)updateAppsExternalMap:(NSNumber *)selectedIndex element:(id)element
 {
-    NSArray *maps = [dbExternalMap dbAll];
+    NSArray<dbExternalMap *> *maps = [dbExternalMap dbAll];
     dbExternalMap *map = [maps objectAtIndex:[selectedIndex integerValue]];
     [configManager mapExternalUpdate:map.geocube_id];
     [self.tableView reloadData];

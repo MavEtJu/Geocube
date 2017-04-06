@@ -431,7 +431,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    NSArray *as = [cleanText componentsSeparatedByString:@"|"];
+                    NSArray<NSString *> *as = [cleanText componentsSeparatedByString:@"|"];
                     if ([as count] == 1)
                         [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
                     else

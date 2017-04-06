@@ -145,7 +145,7 @@ enum {
     if (selectedLog == nil)
         return;
 
-    NSArray *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
+    NSArray<NSString *> *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
 }
 

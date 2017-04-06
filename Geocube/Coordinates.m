@@ -420,7 +420,7 @@
         NSString *NS = nil;
         NSString *EW = nil;
 
-        NSArray *matches = [rns matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+        NSArray<NSTextCheckingResult *> *matches = [rns matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match rangeAtIndex:1];
             NS = [line substringWithRange:range];

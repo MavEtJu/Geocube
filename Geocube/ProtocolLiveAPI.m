@@ -304,7 +304,7 @@
     [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
     [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
 
-    NSArray *cachecode = @[wpname];
+    NSArray<NSString *> *cachecode = @[wpname];
     NSDictionary *cachecodes = [NSDictionary dictionaryWithObject:cachecode forKey:@"CacheCodes"];
     [_dict setValue:cachecodes forKey:@"CacheCode"];
 

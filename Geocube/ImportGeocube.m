@@ -112,7 +112,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_NOTICES revisionKey:KEY_REVISION_NOTICES] == NO)
         return NO;
 
-    NSArray *notices = [dict objectForKey:@"notice"];
+    NSArray<NSDictionary *> *notices = [dict objectForKey:@"notice"];
     [infoViewer setLineObjectTotal:ivi total:[notices count] isLines:NO];
     [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
@@ -154,7 +154,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_SITES revisionKey:KEY_REVISION_SITES] == NO)
         return NO;
 
-    NSArray *sites = [dict objectForKey:@"site"];
+    NSArray<NSDictionary *> *sites = [dict objectForKey:@"site"];
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
         sites = @[sites];
     [infoViewer setLineObjectTotal:ivi total:[sites count] isLines:NO];
@@ -234,7 +234,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_KEYS revisionKey:KEY_REVISION_KEYS] == NO)
         return NO;
 
-    NSArray *keys = [dict objectForKey:@"key"];
+    NSArray<NSDictionary *> *keys = [dict objectForKey:@"key"];
     [infoViewer setLineObjectTotal:ivi total:[keys count] isLines:NO];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -258,7 +258,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_EXTERNALMAPS revisionKey:KEY_REVISION_EXTERNALMAPS] == NO)
         return NO;
 
-    NSArray *keys = [dict objectForKey:@"externalmap"];
+    NSArray<NSDictionary *> *keys = [dict objectForKey:@"externalmap"];
     [infoViewer setLineObjectTotal:ivi total:[keys count] isLines:NO];
     [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger gc_id = [[key objectForKey:@"id"] integerValue];
@@ -283,7 +283,7 @@
         }
         [dbExternalMapURL dbDeleteByExternalMap:em._id];
 
-        NSArray *urls = [key objectForKey:@"url"];
+        NSArray<NSDictionary *> *urls = [key objectForKey:@"url"];
         [urls enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *model = [dict objectForKey:@"model"];
             NSInteger type = [[dict objectForKey:@"type"] integerValue];
@@ -308,7 +308,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_ATTRIBUTES revisionKey:KEY_REVISION_ATTRIBUTES] == NO)
         return NO;
 
-    NSArray *attrs = [dict objectForKey:@"attribute"];
+    NSArray<NSDictionary *> *attrs = [dict objectForKey:@"attribute"];
     [infoViewer setLineObjectTotal:ivi total:[attrs count] isLines:NO];
     [attrs enumerateObjectsUsingBlock:^(NSDictionary *attr, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -339,7 +339,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_STATES revisionKey:KEY_REVISION_STATES] == NO)
         return NO;
 
-    NSArray *states = [dict objectForKey:@"state"];
+    NSArray<NSDictionary *> *states = [dict objectForKey:@"state"];
     [infoViewer setLineObjectTotal:ivi total:[states count] isLines:NO];
     [states enumerateObjectsUsingBlock:^(NSDictionary *state, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -366,7 +366,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_COUNTRIES revisionKey:KEY_REVISION_COUNTRIES] == NO)
         return NO;
 
-    NSArray *countries = [dict objectForKey:@"country"];
+    NSArray<NSDictionary *> *countries = [dict objectForKey:@"country"];
     [infoViewer setLineObjectTotal:ivi total:[countries count] isLines:NO];
     [countries enumerateObjectsUsingBlock:^(NSDictionary *country, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -393,7 +393,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_TYPES revisionKey:KEY_REVISION_TYPES] == NO)
         return NO;
 
-    NSArray *types = [dict objectForKey:@"type"];
+    NSArray<NSDictionary *> *types = [dict objectForKey:@"type"];
     [infoViewer setLineObjectTotal:ivi total:[types count] isLines:NO];
     [types enumerateObjectsUsingBlock:^(NSDictionary *type, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -436,7 +436,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_PINS revisionKey:KEY_REVISION_PINS] == NO)
         return NO;
 
-    NSArray *pins = [dict objectForKey:@"pin"];
+    NSArray<NSDictionary *> *pins = [dict objectForKey:@"pin"];
     [infoViewer setLineObjectTotal:ivi total:[pins count] isLines:NO];
     [pins enumerateObjectsUsingBlock:^(NSDictionary *pin, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -470,7 +470,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_BOOKMARKS revisionKey:KEY_REVISION_BOOKMARKS] == NO)
         return NO;
 
-    NSArray *bookmarks = [dict objectForKey:@"bookmark"];
+    NSArray<NSDictionary *> *bookmarks = [dict objectForKey:@"bookmark"];
     [infoViewer setLineObjectTotal:ivi total:[bookmarks count] isLines:NO];
     [bookmarks enumerateObjectsUsingBlock:^(NSDictionary *bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -502,7 +502,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_CONTAINERS revisionKey:KEY_REVISION_CONTAINERS] == NO)
         return NO;
 
-    NSArray *containers = [dict objectForKey:@"container"];
+    NSArray<NSDictionary *> *containers = [dict objectForKey:@"container"];
     [infoViewer setLineObjectTotal:ivi total:[containers count] isLines:NO];
     [containers enumerateObjectsUsingBlock:^(NSDictionary *container, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -534,7 +534,7 @@
     if ([self checkVersion:dict version:KEY_VERSION_LOGSTRINGS revisionKey:KEY_REVISION_LOGSTRINGS] == NO)
         return NO;
 
-    NSArray *protocols = [dict objectForKey:@"protocol"];
+    NSArray<NSDictionary *> *protocols = [dict objectForKey:@"protocol"];
     [infoViewer setLineObjectTotal:ivi total:[protocols count] isLines:NO];
     [protocols enumerateObjectsUsingBlock:^(NSDictionary *protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:ivi count:idx + 1];
@@ -547,7 +547,7 @@
 //            dbAccount *seeAccount = [dbAccount dbGetBySite:see];
 //            NSAssert1(seeAccount != nil, @"Unknown account: '%@'", see);
 //
-//            NSArray *as = [dbLogString dbAllByAccount:seeAccount];
+//            NSArray<dbLogString *> *as = [dbLogString dbAllByAccount:seeAccount];
 //
 //            [as enumerateObjectsUsingBlock:^(dbLogString *lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
 //                dbLogString *lsReplicate = [dbLogString dbGet_byAccountLogtypeType:_account logtype:lsOriginal.logtype type:lsOriginal.type];
@@ -567,13 +567,13 @@
 //            return;
 //        }
 
-        NSArray *logtypes = [protocoldict objectForKey:@"logtype"];
+        NSArray<NSDictionary *> *logtypes = [protocoldict objectForKey:@"logtype"];
         if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
             logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
             NSInteger logtype = [dbLogString stringToLogtype:logtype_type];
-            NSArray *logs = [logtypedict objectForKey:@"log"];
+            NSArray<NSDictionary *> *logs = [logtypedict objectForKey:@"log"];
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *text = [logdict objectForKey:@"string"];
                 NSString *type = [logdict objectForKey:@"type"];

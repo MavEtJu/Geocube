@@ -210,7 +210,7 @@
 
     NSString *location;
     DICT_NSSTRING_KEY(dict, location, @"location");
-    NSArray *cs = [location componentsSeparatedByString:@"|"];
+    NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
     wp.wpt_lat = [cs objectAtIndex:0];
     wp.wpt_lon = [cs objectAtIndex:1];
 
@@ -255,15 +255,15 @@
         }
     }
 
-    NSArray *images = [dict objectForKey:@"images"];
+    NSArray<NSDictionary *> *images = [dict objectForKey:@"images"];
     if ([images count] != 0)
         [self parseData_images:images waypoint:wp];
 
-    NSArray *trackables = [dict objectForKey:@"trackables"];
+    NSArray<NSDictionary *> *trackables = [dict objectForKey:@"trackables"];
     if ([trackables count] != 0)
         [self parseData_trackables:trackables waypoint:wp];
 
-    NSArray *logs = [dict objectForKey:@"latest_logs"];
+    NSArray<NSDictionary *> *logs = [dict objectForKey:@"latest_logs"];
     if ([logs count] != 0)
         [self parseData_logs:logs waypoint:wp];
 
@@ -318,7 +318,7 @@
 
 - (void)parseData_logs:(NSArray *)logs waypoint:(dbWaypoint *)wp
 {
-    NSArray *alllogs = [dbLog dbAllByWaypoint:wp._id];
+    NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
     [infoViewer setLogsTotal:ivi total:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];

@@ -170,13 +170,13 @@ typedef sqlite3_int64 NSId;
     }
 
 #define DICT_ARRAY_KEY(__dict__, __a__, __key__) { \
-    NSArray<NSObject *> *__b__ = [__dict__ objectForKey:__key__]; \
+    NSArray*__b__ = [__dict__ objectForKey:__key__]; \
     if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
         __b__ = @[]; \
     __a__ = __b__; \
     }
 #define DICT_ARRAY_PATH(__dict__, __a__, __path__) { \
-    NSArray<NSObject *> *__b__ = [__dict__ valueForKeyPath:__path__]; \
+    NSArray*__b__ = [__dict__ valueForKeyPath:__path__]; \
     if ([__b__ isKindOfClass:[NSNull class]] == TRUE) \
         __b__ = @[]; \
     __a__ = __b__; \

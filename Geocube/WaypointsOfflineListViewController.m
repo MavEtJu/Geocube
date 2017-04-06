@@ -382,7 +382,7 @@ enum {
 
 - (void)menuSortBy
 {
-    NSArray *orders = [WaypointsOfflineListViewController sortByOrder];
+    NSArray<NSString *> *orders = [WaypointsOfflineListViewController sortByOrder];
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Sort by"
@@ -418,7 +418,7 @@ enum {
 
 - (void)runReloadWaypoints
 {
-    NSArray *wps = [NSArray arrayWithArray:waypoints];
+    NSArray<dbWaypoint *> *wps = [NSArray arrayWithArray:waypoints];
 
     // XXX group them by account
     [self showInfoView];

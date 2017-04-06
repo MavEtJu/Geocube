@@ -79,7 +79,7 @@
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *cookies = [cookiemgr cookiesForURL:req.URL];
+    NSArray<NSHTTPCookie *> *cookies = [cookiemgr cookiesForURL:req.URL];
     [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *c, NSUInteger idx, BOOL *stop) {
         if ([c.name isEqualToString:account.gca_cookie_name] == YES)
             [cookiemgr deleteCookie:c];

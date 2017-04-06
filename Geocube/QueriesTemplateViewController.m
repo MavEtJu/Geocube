@@ -21,8 +21,8 @@
 
 @interface QueriesTemplateViewController ()
 {
-    NSArray *qs;
-    NSArray *qis;
+    NSArray<NSDictionary *> *qs;
+    NSArray<dbQueryImport *> *qis;
 }
 
 @end
@@ -84,7 +84,7 @@ NEEDS_OVERLOADING(reloadQueries)
         if (a.protocol_id == protocol) {
             account = a;
             if (a.canDoRemoteStuff == YES) {
-                NSArray *queries = nil;
+                NSArray<NSDictionary *> *queries = nil;
                 RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil ivi:0];
                 if (rv != REMOTEAPI_OK)
                     failure = YES;

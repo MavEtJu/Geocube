@@ -89,7 +89,7 @@ enum {
     cell.labelTrackName.text = t.name;
     cell.labelDateTimeStart.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:t.dateStart];
 
-    NSArray *tes = [dbTrackElement dbAllByTrack:t._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t._id];
     __block CGFloat distance = 0;
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -212,7 +212,7 @@ enum {
 
 + (void)trackAutoPurge
 {
-    NSArray *tracks = [dbTrack dbAll];
+    NSArray<dbTrack *> *tracks = [dbTrack dbAll];
     time_t cutoff = time(NULL) - configManager.keeptrackPurgeAge * 86400;
 
     [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
