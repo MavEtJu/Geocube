@@ -23,7 +23,7 @@
 
 @interface LocalMenuItems ()
 {
-    NSMutableArray<NSNumber *> *makeMenuItems;
+    NSMutableArray<NSString *> *makeMenuItems;
     NSMutableArray<NSNumber *> *makeMenuDisableds;
     NSInteger makeMenuMax;
 }
@@ -42,7 +42,7 @@
 
     for (NSInteger i = 0; i < max; i++) {
         NSNumber *b = [NSNumber numberWithBool:FALSE];
-        [makeMenuItems addObject:b];
+        [makeMenuItems addObject:[b description]];
         b = [NSNumber numberWithBool:FALSE];
         [makeMenuDisableds addObject:b];
     }

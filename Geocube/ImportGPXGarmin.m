@@ -21,13 +21,13 @@
 
 @interface ImportGPXGarmin ()
 {
-    NSArray *files;
+    NSArray<NSString *> *files;
 
     NSMutableDictionary *logIdGCId;
-    NSMutableArray *attributesYES, *attributesNO;
-    NSMutableArray *logs;
-    NSMutableArray *trackables;
-    NSMutableArray *imagesLog, *imagesCache;
+    NSMutableArray<dbAttribute *> *attributesYES, *attributesNO;
+    NSMutableArray<dbLog *> *logs;
+    NSMutableArray<dbTrackable *> *trackables;
+    NSMutableArray<dbImage *> *imagesLog, *imagesCache;
     NSInteger index;
     NSInteger inItem, inLog, inTrackable, inGroundspeak, inImageLog, inImageCache;
     NSMutableString *currentText;

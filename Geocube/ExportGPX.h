@@ -22,6 +22,6 @@
 @interface ExportGPX : NSObject
 
 + (void)export:(dbWaypoint *)wp;
-+ (void)exports:(NSArray *)wps;
++ (void)exports:(NSArray<dbWaypoint *> *)wps;
 
 @end

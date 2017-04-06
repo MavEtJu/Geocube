@@ -21,7 +21,7 @@
 
 @interface ExportGPX ()
 {
-    NSMutableArray *lines;
+    NSMutableArray<NSString *> *lines;
 }
 
 @end
@@ -37,7 +37,7 @@
     [e writeToFile:[NSString stringWithFormat:@"Export - %@.gpx", [MyTools dateTimeString_YYYYMMDD_hhmmss]]];
 }
 
-+ (void)exports:(NSArray *)wps
++ (void)exports:(NSArray<dbWaypoint *>*)wps
 {
     ExportGPX *e = [[ExportGPX alloc] init];
     [e header];
