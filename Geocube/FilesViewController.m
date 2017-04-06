@@ -65,7 +65,7 @@ enum {
 {
     // Count files in FilesDir
 
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
+    NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
     filesNames = [NSMutableArray arrayWithCapacity:20];
     filesDates = [NSMutableArray arrayWithCapacity:20];
     filesSizes = [NSMutableArray arrayWithCapacity:20];
@@ -375,8 +375,8 @@ enum {
     }
 
     // Show all user groups.
-    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == 0)
             return;
@@ -401,8 +401,8 @@ enum {
 
 - (void)fileImport2:(NSInteger)row group:(dbGroup *)group view:(UITableViewCell *)tablecell
 {
-    NSMutableArray *accounts = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray *accountNames = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
         if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
             return;

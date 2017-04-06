@@ -158,7 +158,7 @@
     [iv setChunksCount:ivi count:1];
     NSInteger offset = 0;
     BOOL more = NO;
-    NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *wpcodes = [NSMutableArray arrayWithCapacity:20];
     do {
         GCDictionaryOKAPI *json = [okapi services_caches_search_nearest:center offset:offset infoViewer:iv ivi:ivi];
         OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -181,7 +181,7 @@
     GCDictionaryOKAPI *json = [okapi services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
     OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
-    NSMutableArray *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
+    NSMutableArray<NSDictionary *> *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
     [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *wpjson = [json objectForKey:wpcode];
         if (wpjson != nil)
@@ -220,7 +220,7 @@
     OKAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
     [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];

@@ -64,8 +64,8 @@ enum {
 
 - (void)reloadNumbers
 {
-    NSMutableArray *vs = [NSMutableArray arrayWithCapacity:20];
-    NSMutableArray *fs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSObject *> *vs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *fs = [NSMutableArray arrayWithCapacity:20];
 
     [fs addObject:@"Database size"];
     [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];

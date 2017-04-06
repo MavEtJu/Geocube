@@ -285,7 +285,7 @@
     GCDictionaryGGCW *dict = [ggcw pocket_default:iv ivi:ivi];
     GGCW_CHECK_STATUS(dict, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
     [dict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *a, BOOL *stop) {
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
         [d setValue:[a objectForKey:@"name"] forKey:@"Name"];
@@ -332,7 +332,7 @@
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSArray *tbs = [ggcw track_search:iv ivi:ivi];
-    NSMutableArray *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
+    NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:ivi];
     [iv setChunksTotal:ivi total:[tbs count]];
     [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
@@ -367,7 +367,7 @@
 - (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
 {
     NSArray *tbs = [ggcw my_inventory:iv ivi:ivi];
-    NSMutableArray *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
+    NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:ivi];
     [iv setChunksTotal:ivi total:[tbs count]];
     [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
@@ -400,7 +400,7 @@
 {
     NSDictionary *d = [ggcw track_details:code infoViewer:iv ivi:ivi];
 
-    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:1];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
     [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
     [dict setObject:[d objectForKey:@"name"] forKey:@"name"];

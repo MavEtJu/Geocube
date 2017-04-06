@@ -56,7 +56,7 @@ enum {
      * Then show the accounts which are not enabled and do not have an username.
      */
     NSArray *as = [dbc Accounts];
-    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[as count]];
+    NSMutableArray<dbAccount *> *bs = [NSMutableArray arrayWithCapacity:[as count]];
 
     [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.enabled == YES && (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO))

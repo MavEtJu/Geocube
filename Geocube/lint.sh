@@ -65,9 +65,9 @@ echo
 echo "Make sure that NSArray knows which class it represent:"
 grep 'NSArray ' $(ls -1 *.h | grep -v GCArray.h)
 grep 'NSMutableArray ' $(ls -1 *.h | grep -v GCArray.h)
-grep "^[\-\+].*NSArray " *.m
-grep "^[\-\+].*NSMutableArray " *.m
-
+grep -n "^[\-\+].*NSArray " *.m
+grep -n "^[\-\+].*NSMutableArray " *.m
+grep -n " NSMutableArray " $(ls -1 *.h | grep -v GCArray.m)
 
 echo
 echo "Empty lines after beginning of a function:"

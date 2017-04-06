@@ -384,7 +384,7 @@
     CLLocationCoordinate2D d1, d2;
     [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2];
 
-    NSMutableArray *coords = [NSMutableArray arrayWithCapacity:2];
+    NSMutableArray<MKPointAnnotation *> *coords = [NSMutableArray arrayWithCapacity:2];
     MKPointAnnotation *annotation;
 
     annotation = [[MKPointAnnotation alloc] init];

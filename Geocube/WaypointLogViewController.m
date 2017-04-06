@@ -353,7 +353,7 @@ enum {
 - (void)changeType
 {
     __block NSInteger selected;
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:[logstrings count]];
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:[logstrings count]];
 
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls == logstring)
@@ -447,7 +447,7 @@ enum {
 
 - (void)changeRating
 {
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:5];
     NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
     [as addObject:@"No rating selected"];
     for (NSInteger i = r.location; i <= r.length; i++) {

@@ -180,7 +180,7 @@
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
     [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
@@ -209,7 +209,7 @@
     GCA2_CHECK_STATUS(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
     [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
@@ -246,7 +246,7 @@
     GCA2_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+    NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
     [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
@@ -275,7 +275,7 @@
     GCDictionaryGCA2 *json = [gca2 api_services_caches_query_list:iv ivi:ivi];
     GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
     GCA2_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -305,8 +305,8 @@
     GCA2_GET_VALUE(json, NSArray, wps, @"geocaches", @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     // Find the chunks...
-    NSMutableArray *wpchunks = [NSMutableArray arrayWithCapacity:1 + [wps count] / 100];
-    __block NSMutableArray *wpcodes = [NSMutableArray arrayWithCapacity:100];
+    NSMutableArray<NSArray <NSString *>*> *wpchunks = [NSMutableArray arrayWithCapacity:1 + [wps count] / 100];
+    __block NSMutableArray<NSString *> *wpcodes = [NSMutableArray arrayWithCapacity:100];
     [wps enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL *stop) {
         if (idx % 100 == 0 && [wpcodes count] != 0) {
             [wpchunks addObject:wpcodes];
@@ -331,7 +331,7 @@
         GCA2_CHECK_STATUS(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-        NSMutableArray *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
+        NSMutableArray<NSDictionary *> *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
         [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
             [_wps addObject:[json objectForKey:wpcode]];
         }];

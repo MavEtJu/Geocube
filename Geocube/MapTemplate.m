@@ -180,7 +180,7 @@ NEEDS_OVERLOADING(updateMarker:(dbWaypoint *)wp)
     NSAssert(NO, @"XXX");
     NSLog(@"amount: %lu", (unsigned long)[names count]);
 
-    NSMutableArray *descs = [NSMutableArray arrayWithCapacity:[names count]];
+    NSMutableArray<NSString *> *descs = [NSMutableArray arrayWithCapacity:[names count]];
     [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
         dbWaypoint *wp = [waypointManager waypoint_byName:name];
 

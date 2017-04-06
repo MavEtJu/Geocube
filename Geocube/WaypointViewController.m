@@ -737,8 +737,8 @@ enum {
 
 - (void)addToGroup
 {
-    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:10];
-    NSMutableArray *groupNames = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == 0)
             return;

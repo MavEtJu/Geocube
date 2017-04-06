@@ -67,7 +67,7 @@ enum {
 
 - (void)refreshGroupData
 {
-    NSMutableArray *ws = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbGroup *> *ws = [[NSMutableArray alloc] initWithCapacity:20];
 
     [dbc.Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == showUsers)

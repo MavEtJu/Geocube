@@ -115,7 +115,7 @@ enum {
 
     NSDictionary *mapBrands = [NSDictionary dictionaryWithObjects:@[@"Google Maps", @"Apple Maps", @"OpenStreetMaps"] forKeys:@[@"google", @"apple", @"osm"]];
     mapBrandsCodes = [mapBrands allKeys];
-    NSMutableArray *values = [NSMutableArray arrayWithArray:[mapBrands objectsForKeys:mapBrandsCodes notFoundMarker:@""]];
+    NSMutableArray<NSString *> *values = [NSMutableArray arrayWithArray:[mapBrands objectsForKeys:mapBrandsCodes notFoundMarker:@""]];
     mapBrandsNames = values;
 
     orientationStrings = @[
@@ -151,7 +151,7 @@ enum {
 {
     [super viewDidAppear:animated];
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:20];
     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:em.name];
     }];
@@ -161,7 +161,7 @@ enum {
 
 - (void)calculateMapcache
 {
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 0; i < 7; i++) {
         [as addObject:[NSString stringWithFormat:@"%ld day%@", (long)i, i == 1 ? @"" : @"s"]];
     }
@@ -1787,7 +1787,7 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceGS
 {
-    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
@@ -1810,7 +1810,7 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceGCA
 {
-    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
@@ -1833,7 +1833,7 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceOKAPI
 {
-    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
@@ -1856,7 +1856,7 @@ enum sections {
 
 - (void)changeMapSearchMaximumNumberGCA
 {
-    NSMutableArray *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+    NSMutableArray<NSNumber *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 10; d < 200; d += 10) {
         [distances addObject:[NSNumber numberWithInteger:d]];
     }

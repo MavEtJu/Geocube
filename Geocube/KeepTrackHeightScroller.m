@@ -188,7 +188,7 @@ enum {
     CGContextAddLineToPoint(context, _X(x), Y - _Y(y) + 0.5); \
     CGContextStrokePath(context);
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:X];
+    NSMutableArray<NSNumber *> *as = [NSMutableArray arrayWithCapacity:X];
 
     /* Draw lines */
     CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);

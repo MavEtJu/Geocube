@@ -135,7 +135,7 @@
         if ([account canDoRemoteStuff] == NO)
             return;
 
-        NSMutableArray *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
+        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (wp.account_id == account._id)
                 [wps addObject:wp];
@@ -145,7 +145,7 @@
             return;
 
         InfoItemID iii = [infoView addDownload:NO];
-        NSMutableArray *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
+        NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
         [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
             [wpnames addObject:wp.wpt_name];
         }];
@@ -184,7 +184,7 @@
     // Last one should be cleaning up
     if ([iv hasItems] == NO) {
         // Find the waypoints which were not updated
-        NSMutableArray *wps = [NSMutableArray arrayWithArray:oldWaypoints];
+        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithArray:oldWaypoints];
         [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
             [wps enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
                 if ([wpo.wpt_name isEqualToString:wpn] == YES) {

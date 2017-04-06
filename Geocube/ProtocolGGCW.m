@@ -895,7 +895,7 @@ bail:
     NSString *re = @"//table[@class='Table NoBottomSpacing']/tbody/tr";
     NSArray *nodes = [parser searchWithXPathQuery:re];
 
-    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
+    NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *trs, NSUInteger idx, BOOL *stop) {
         TFHppleElement *tds;
         TFHppleElement *td;
@@ -1168,7 +1168,7 @@ bail:
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
-    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:20];
     NSString *re = @"//table[@class='Table']/tbody/tr";
     NSArray *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
@@ -1360,7 +1360,7 @@ bail1:
     value="3801141_Visited">Visited</option></select></td>&#13;
      */
 
-    NSMutableArray *tbs = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:10];
     NSUInteger idx = 1;
     while (1) {
         NSString *re = [NSString stringWithFormat:@"//select[@name='ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl%02ld$ddlAction']", (unsigned long)idx];

@@ -22,10 +22,9 @@
 @interface DatabaseCache ()
 {
     // In memory database information
-    NSMutableArray *LogTypes;
-    NSMutableArray *Attributes;
-    NSMutableArray *Symbols;
-    NSMutableArray *LogStrings;
+    NSMutableArray<dbAttribute *> *Attributes;
+    NSMutableArray<dbSymbol *> *Symbols;
+    NSMutableArray<dbLogString *> *LogStrings;
     NSMutableDictionary *Names;
 }
 
@@ -213,7 +212,7 @@
 
 - (void)Type_add:(dbType *)type
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:self.Types];
+    NSMutableArray<dbType *> *as = [NSMutableArray arrayWithArray:self.Types];
     [as addObject:type];
     self.Types = as;
 }
@@ -246,7 +245,7 @@
 
 - (void)Pin_add:(dbPin *)pin
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:self.Pins];
+    NSMutableArray<dbPin *> *as = [NSMutableArray arrayWithArray:self.Pins];
     [as addObject:pin];
     self.Pins = as;
 }
@@ -313,7 +312,7 @@
 
 - (void)LogString_add:(dbLogString *)logstring
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:LogStrings];
+    NSMutableArray<dbLogString *> *as = [NSMutableArray arrayWithArray:LogStrings];
     [as addObject:logstring];
     LogStrings = as;
 }
@@ -390,7 +389,7 @@
 
 - (void)Attribute_add:(dbAttribute *)attr
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:Attributes];
+    NSMutableArray<dbAttribute *> *as = [NSMutableArray arrayWithArray:Attributes];
     [as addObject:attr];
     Attributes = as;
 }
@@ -484,7 +483,7 @@
 
 - (void)AccountsReload
 {
-    NSMutableArray *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
+    NSMutableArray<dbAccount *> *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
 
     [newAccounts enumerateObjectsUsingBlock:^(dbAccount *newAccount, NSUInteger idx, BOOL *stop) {
         __block BOOL found = NO;

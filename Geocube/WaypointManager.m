@@ -132,8 +132,8 @@
         if (needsRefresh != YES)
             return;
 
-        NSMutableArray *caches;
-        NSMutableArray *after;
+        NSMutableArray<dbWaypoint *> *caches;
+        NSMutableArray<dbWaypoint *> *after;
         MyClock *clock = [[MyClock alloc] initClock:@"filter"];
         [clock clockEnable:YES];
 
@@ -148,7 +148,7 @@
         __block NSString *c_groups = [self configGet:@"groups_enabled"];
         __block NSString *c_distance = [self configGet:@"distance_enabled"];
         if (c_groups != nil && [c_groups boolValue] == YES) {
-            __block NSMutableArray *groups = [NSMutableArray arrayWithCapacity:20];
+            __block NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:20];
             [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"groups_group_%ld", (long)group._id]];
                 if (c == nil || [c boolValue] == NO)

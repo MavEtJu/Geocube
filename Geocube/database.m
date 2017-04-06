@@ -23,7 +23,7 @@
 {
     NSString *dbname, *dbempty;
 
-    NSMutableArray *upgradeSteps;
+    NSMutableArray<NSArray <NSString *> *> *upgradeSteps;
 }
 
 @end

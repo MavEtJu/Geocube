@@ -232,7 +232,7 @@
 
 + (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)_wp_id
 {
-    NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
@@ -260,7 +260,7 @@
 
 + (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
 {
-    NSMutableArray *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");

@@ -34,7 +34,7 @@
 
 - (void)start;
 
-@property (nonatomic, retain) NSMutableArray *todo;
+@property (nonatomic, retain) NSMutableArray<dbImage *> *todo;
 
 @end
 
@@ -81,7 +81,7 @@
 
     // Queued files to download
 
-    self.todo = [NSMutableArray arrayWithCapacity:20];
+    self.todo = [NSMutableArray<dbImage *> arrayWithCapacity:20];
 
     running = 0;
     downloaded = 0;

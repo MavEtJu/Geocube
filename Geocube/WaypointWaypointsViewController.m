@@ -165,7 +165,7 @@ enum {
 - (void)cleanup
 {
     // Find which waypoints are duplicates
-    NSMutableArray *nwps = [NSMutableArray arrayWithCapacity:[wps count]];
+    NSMutableArray<dbWaypoint *> *nwps = [NSMutableArray arrayWithCapacity:[wps count]];
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {

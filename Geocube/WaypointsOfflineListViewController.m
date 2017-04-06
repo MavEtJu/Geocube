@@ -157,7 +157,7 @@ enum {
 
 - (void)refreshCachesData:(NSString *)searchString
 {
-    NSMutableArray *_wps = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbWaypoint *> *_wps = [[NSMutableArray alloc] initWithCapacity:20];
     MyClock *clock = [[MyClock alloc] initClock:@"refreshCachesData"];
 
     [waypointManager applyFilters:LM.coords];
@@ -344,7 +344,7 @@ enum {
 
 + (NSArray<NSString *> *)sortByOrder
 {
-    NSMutableArray *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
+    NSMutableArray<NSString *> *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
     for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
 #define CASE(__order__, __title__) \
     case __order__: \

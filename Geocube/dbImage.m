@@ -85,7 +85,7 @@
 
 + (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
-    NSMutableArray *is = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbImage *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, url, datafile, filename from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");

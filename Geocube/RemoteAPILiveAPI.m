@@ -308,7 +308,7 @@
     GCDictionaryLiveAPI *json = [liveAPI GetPocketQueryList:iv ivi:ivi];
     LIVEAPI_CHECK_STATUS(json, @"listQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
-    NSMutableArray *as = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
 
     NSArray *pqs = [json objectForKey:@"PocketQueryList"];
     [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {

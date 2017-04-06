@@ -857,7 +857,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
     NSLog(@"bottomLeft: %@", [Coordinates NiceCoordinates:bottomLeft]);
     NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
 
-    NSMutableArray *wps = [NSMutableArray arrayWithCapacity:200];
+    NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:200];
     [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp.coordinates.latitude > bottomLeft.latitude &&
             wp.coordinates.latitude < topRight.latitude &&

@@ -425,7 +425,7 @@
 + (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray<dbGroup *> *)groups
 {
     NSMutableString *keys = [NSMutableString stringWithString:@""];
-    NSMutableArray *values = [NSMutableArray arrayWithCapacity:[groups count]];
+    NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:[groups count]];
     NSMutableString *where = [NSMutableString stringWithString:@""];
     [groups enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
         if ([where isEqualToString:@""] == NO)

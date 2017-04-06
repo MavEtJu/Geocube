@@ -85,7 +85,7 @@
 
     // Initialize the tabbar controllers
 
-    NSMutableArray *controllers;
+    NSMutableArray<UINavigationController *> *controllers;
     UINavigationController *nav;
     UIViewController *vc;
 
