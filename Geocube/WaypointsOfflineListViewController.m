@@ -143,7 +143,7 @@ enum {
         [_wps addObject:wp];
     }];
 
-    waypoints = [WaypointSorter resortWaypoints:waypoints sortOrder:currentSortOrder];
+    waypoints = [WaypointSorter resortWaypoints:_wps sortOrder:currentSortOrder];
 
     [self reloadDataMainQueue];
 }
