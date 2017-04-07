@@ -187,6 +187,7 @@
 @class WaypointManager;
 @class WaypointPersonalNoteViewController;
 @class WaypointRawViewController;
+@class WaypointSorter;
 @class WaypointTableViewCell;
 @class WaypointTrackablesViewController;
 @class WaypointViewController;

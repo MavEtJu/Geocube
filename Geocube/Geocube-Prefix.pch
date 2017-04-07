@@ -105,6 +105,7 @@
 #import "ImagesDownloadManager.h"
 #import "ConfigManager.h"
 #import "AudioFeedback.h"
+#import "WaypointSorter.h"
 
 #import "LocationManager.h"
 #import "GCTableViewController.h"

@@ -23,6 +23,7 @@
 {
     NSInteger chunksProcessed;
     NSInteger chunksDownloaded;
+    SortOrder currentSortOrder;
 }
 
 @end
@@ -32,6 +33,7 @@
 enum {
     menuClearFlags,
     menuReloadWaypoints,
+    menuSortBy,
     menuExportGPX,
     menuMax
 };
@@ -49,6 +51,9 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [lmi addItem:menuClearFlags label:@"Clear list"];
     [lmi addItem:menuReloadWaypoints label:@"Reload Waypoints"];
     [lmi addItem:menuExportGPX label:@"Export GPX"];
+    [lmi addItem:menuSortBy label:@"Sort By"];
+
+    currentSortOrder = SORTORDER_DISTANCE_ASC;
 
     return self;
 }
@@ -69,7 +74,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
+    waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:[dbWaypoint dbAllByFlag:flag] sortOrder:currentSortOrder]];
     [self.tableView reloadData];
 
     if ([waypoints count] == 0)
@@ -219,6 +224,37 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [self hideInfoView];
 }
 
+- (void)menuSortBy
+{
+    NSArray<NSString *> *orders = [WaypointSorter sortOrders];
+
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Sort by"
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
+        UIAlertAction *action = [UIAlertAction
+                                 actionWithTitle:[orders objectAtIndex:i]
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     currentSortOrder = i;
+                                     waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:waypoints sortOrder:currentSortOrder]];
+                                     [self.tableView reloadData];
+                                 }];
+        [alert addAction:action];
+    }
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
@@ -231,6 +267,9 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         case menuExportGPX:
             [ExportGPX exports:waypoints];
             [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
+            return;
+        case menuSortBy:
+            [self menuSortBy];
             return;
     }
 

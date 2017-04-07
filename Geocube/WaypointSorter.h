@@ -1,0 +1,40 @@
+//
+//  WaypointSorting.h
+//  Geocube
+//
+//  Created by Edwin Groothuis on 7/4/17.
+//  Copyright © 2017 Edwin Groothuis. All rights reserved.
+//
+
+typedef NS_ENUM(NSInteger, SortOrder) {
+    SORTORDER_DISTANCE_ASC = 0,
+    SORTORDER_DISTANCE_DESC,
+    SORTORDER_DIRECTION_ASC,
+    SORTORDER_DIRECTION_DESC,
+    SORTORDER_TYPE,
+    SORTORDER_CONTAINER,
+    SORTORDER_FAVOURITES_ASC,
+    SORTORDER_FAVOURITES_DESC,
+    SORTORDER_TERRAIN_ASC,
+    SORTORDER_TERRAIN_DESC,
+    SORTORDER_DIFFICULTY_ASC,
+    SORTORDER_DIFFICULTY_DESC,
+    SORTORDER_NAME_ASC,
+    SORTORDER_NAME_DESC,
+    SORTORDER_CODE_ASC,
+    SORTORDER_CODE_DESC,
+    SORTORDER_DATE_FOUND_OLDESTFIRST,
+    SORTORDER_DATE_FOUND_NEWESTFIRST,
+    SORTORDER_DATE_LASTLOG_OLDESTFIRST,
+    SORTORDER_DATE_LASTLOG_NEWESTFIRST,
+    SORTORDER_DATE_HIDDEN_OLDESTFIRST,
+    SORTORDER_DATE_HIDDEN_NEWESTFIRST,
+    SORTORDER_MAX,
+};
+
+@interface WaypointSorter : NSObject
+
++ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps sortOrder:(SortOrder)newSortOrder;
++ (NSArray<NSString *> *)sortOrders;
+
+@end

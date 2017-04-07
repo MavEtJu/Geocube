@@ -282,6 +282,7 @@
 		E84402BC1BFEABD600EFFD13 /* MapApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B71BFEABD600EFFD13 /* MapApple.m */; };
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
 		E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402BB1BFEABD600EFFD13 /* MapOSM.m */; };
+		E8457F2E1E971ADE005A6347 /* WaypointSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8457F2D1E971ADE005A6347 /* WaypointSorter.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E84725CF1DF7558F00CFF99B /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725CE1DF7558F00CFF99B /* MHTabBarIndicator@3x.png */; };
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
@@ -964,6 +965,8 @@
 		E84402B91BFEABD600EFFD13 /* MapGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapGoogle.m; sourceTree = "<group>"; };
 		E84402BA1BFEABD600EFFD13 /* MapOSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOSM.h; sourceTree = "<group>"; };
 		E84402BB1BFEABD600EFFD13 /* MapOSM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOSM.m; sourceTree = "<group>"; };
+		E8457F2C1E971ADE005A6347 /* WaypointSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointSorter.h; sourceTree = "<group>"; };
+		E8457F2D1E971ADE005A6347 /* WaypointSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointSorter.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -1753,6 +1756,15 @@
 			name = logos;
 			sourceTree = "<group>";
 		};
+		E8457F2B1E971AC8005A6347 /* Sorting */ = {
+			isa = PBXGroup;
+			children = (
+				E8457F2C1E971ADE005A6347 /* WaypointSorter.h */,
+				E8457F2D1E971ADE005A6347 /* WaypointSorter.m */,
+			);
+			name = Sorting;
+			sourceTree = "<group>";
+		};
 		E84725EB1DFE6ED900CFF99B /* Map sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2177,6 +2189,7 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
+				E8457F2B1E971AC8005A6347 /* Sorting */,
 				E89051751C8AE1B600220986 /* Logging */,
 				E89051741C8AE1AE00220986 /* Images */,
 				E85707911CA1E7CE00467CE0 /* Single Waypoint */,
@@ -3628,6 +3641,7 @@
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E89C39931E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
+				E8457F2E1E971ADE005A6347 /* WaypointSorter.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E83C20491E2C8DF7006C523E /* WaypointTableViewCell.m in Sources */,
 				E8B771D61DD9DA4E008B2F9E /* RemoteAPILiveAPI.m in Sources */,
