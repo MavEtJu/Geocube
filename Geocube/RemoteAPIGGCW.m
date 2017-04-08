@@ -57,6 +57,10 @@
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
 
+#define GGCW_CHECK_STATUS_CB(__json__, __logsection__, __failure__) { \
+            [callback remoteAPI_failed:iv identifier:identifier]; \
+        }
+
 - (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 /* Returns:
  * waypoints_found
@@ -123,7 +127,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -135,13 +139,13 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpx group:g account:a];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:gpx group:g account:a];
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     loadWaypointsLogs = 0;
@@ -152,6 +156,7 @@
     self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
     if (self.account.ggcw_username == nil || self.account.ggcw_sessiontoken == nil) {
         [self setAPIError:@"Unknown to obtain username or session token" error:REMOTEAPI_APIFAILED];
+        [callback remoteAPI_failed:iv identifier:identifier];
         return REMOTEAPI_APIFAILED;
     }
 
@@ -197,8 +202,10 @@
                 NSDictionary *wpdata = [wps objectAtIndex:0];
                 // Don't look at the same object twice
                 NSString *wpdatai = [wpdata objectForKey:@"i"];
-                if ([wpcodesall objectForKey:wpdatai] != nil)
+                if ([wpcodesall objectForKey:wpdatai] != nil) {
+                    [callback remoteAPI_failed:iv identifier:identifier];
                     return;
+                }
 
                 [wpcodes setObject:wpdata forKey:wpdatai];
                 [wpcodesall setObject:@"0" forKey:wpdatai];
@@ -208,12 +215,13 @@
             [wpcodes setObject:iv forKey:@"iv"];
             [wpcodes setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
             [wpcodes setObject:callback forKey:@"callback"];
+            [wpcodes setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
             [self performSelectorInBackground:@selector(loadWaypoints_GGCWBackground:) withObject:wpcodes];
             chunks++;
         }
     }
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -223,10 +231,12 @@
     InfoItemID iid = [[wpcodes objectForKey:@"iid"] integerValue];
     InfoViewer *iv = [wpcodes objectForKey:@"iv"];
     dbGroup *group = [wpcodes objectForKey:@"group"];
+    NSNumber *identifier = [wpcodes objectForKey:@"identifier"];
     [wpcodes removeObjectForKey:@"iid"];
     [wpcodes removeObjectForKey:@"iv"];
     [wpcodes removeObjectForKey:@"callback"];
     [wpcodes removeObjectForKey:@"group"];
+    [wpcodes removeObjectForKey:@"identifier"];
 
     GCMutableArray *gpxarray = [[GCMutableArray alloc] initWithCapacity:[wpcodes count]];
 
@@ -236,26 +246,31 @@
         [iv resetBytes:iid];
 
         GCDictionaryGGCW *d = [ggcw map_details:wpcode infoViewer:iv ivi:iid];
-        if (d == nil)
+        if (d == nil) {
+            [callback remoteAPI_failed:iv identifier:[identifier integerValue]];
             return;
+        }
         NSArray<NSDictionary *> *data = [d objectForKey:@"data"];
         NSDictionary *dict = [data objectAtIndex:0];
 
         GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] infoViewer:iv ivi:iid];
-        if (gpx == nil)
+        if (gpx == nil) {
+            [callback remoteAPI_failed:iv identifier:[identifier integerValue]];
             return;
+        }
 
         [gpxarray addObject:gpx];
     }];
 
     if ([gpxarray count] == 0) {
         [iv removeItem:iid];
+        [callback remoteAPI_finishedDownloads:iv identifier:[identifier integerValue] numberOfChunks:0];
         return;
     }
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:gpxarray group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:[identifier integerValue] object:gpxarray group:group account:self.account];
 
     [iv removeItem:iid];
 }
@@ -323,9 +338,9 @@
 
     InfoItemID iii = [iv addImport];
     [iv setDescription:iii description:IMPORTMSG_PQ];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:zipfilename group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:0 object:zipfilename group:group account:self.account];
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:iv identifier:0 numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 

@@ -85,6 +85,49 @@
                 return __failure__; \
             }
 
+#define LIVEAPI_CHECK_STATUS_CB(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) { \
+                [callback remoteAPI_failed:iv identifier:identifier]; \
+                return [self lastErrorCode]; \
+            } \
+            NSDictionary *status = [__json__ objectForKey:@"Status"]; \
+            if (status == nil) \
+                if ([__json__ objectForKey:@"StatusCode"] != nil) \
+                    status = [__json__ _dict]; \
+            if (status == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                [callback remoteAPI_failed:iv identifier:identifier]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+            NSNumber *num = [status objectForKey:@"StatusCode"]; \
+            if (num == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                [callback remoteAPI_failed:iv identifier:identifier]; \
+                return REMOTEAPI_APIFAILED; \
+            } \
+            if ([num integerValue] != 0) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                [callback remoteAPI_failed:iv identifier:identifier]; \
+                return __failure__; \
+            } \
+        }
+
+#define LIVEAPI_GET_VALUE_CB(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
+            __type__ *__varname__ = [__json__ objectForKey:__field__]; \
+            if (__varname__ == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                [self setDataError:s error:__failure__]; \
+                NSLog(@"%@", s); \
+                [callback remoteAPI_failed:iv identifier:identifier]; \
+                return __failure__; \
+            }
+
 - (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
 /* Returns:
  * waypoints_found
@@ -172,7 +215,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
@@ -181,17 +224,36 @@
     [iv setChunksCount:ivi count:1];
 
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name infoViewer:iv ivi:ivi];
-    LIVEAPI_CHECK_STATUS(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:g account:a];
+    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:g account:a];
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+{
+    NSInteger dlcount = 1;
+    [iv setChunksTotal:ivi total:[wpcodes count]];
+
+    for (NSString *wpcode in wpcodes) {
+        [iv setChunksCount:ivi count:dlcount++];
+        GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:wpcode infoViewer:iv ivi:ivi];
+        LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
+
+        InfoItemID iii = [iv addImport:NO];
+        [iv setDescription:iii description:IMPORTMSG];
+        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:group account:self.account];
+    };
+
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:[wpcodes count]];
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     loadWaypointsLogs = 0;
@@ -199,47 +261,48 @@
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [callback remoteAPI_failed:iv identifier:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
     [iv setChunksTotal:ivi total:1];
     [iv setChunksCount:ivi count:1];
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_pointradius:center infoViewer:iv ivi:ivi];
-    LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
-    LIVEAPI_GET_VALUE(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    LIVEAPI_GET_VALUE_CB(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
     NSInteger total = [ptotal integerValue];
     NSInteger done = 0;
     [iv setChunksTotal:ivi total:(total / 20) + 1];
     if (total != 0) {
         GCDictionaryLiveAPI *livejson = json;
-        LIVEAPI_CHECK_STATUS(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+        LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:group account:self.account];
         chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
             done += 20;
 
             json = [liveAPI GetMoreGeocaches:done infoViewer:iv ivi:ivi];
-            LIVEAPI_CHECK_STATUS(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+            LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
-                [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:group account:self.account];
+                [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:group account:self.account];
                 chunks++;
             }
         } while (done < total);
     }
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     loadWaypointsLogs = 0;
@@ -247,43 +310,44 @@
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [callback remoteAPI_failed:iv identifier:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
     [iv setChunksTotal:ivi total:1];
     [iv setChunksCount:ivi count:1];
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_boundbox:bb infoViewer:iv ivi:ivi];
-    LIVEAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
-    LIVEAPI_GET_VALUE(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    LIVEAPI_GET_VALUE_CB(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
     NSInteger total = [ptotal integerValue];
     NSInteger done = 0;
     [iv setChunksTotal:ivi total:(total / 20) + 1];
     if (total != 0) {
         GCDictionaryLiveAPI *livejson = json;
-        LIVEAPI_CHECK_STATUS(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+        LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
+        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:nil account:self.account];
         chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
             done += 20;
 
             json = [liveAPI GetMoreGeocaches:done infoViewer:iv ivi:ivi];
-            LIVEAPI_CHECK_STATUS(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+            LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
-                [callback remoteAPI_objectReadyToImport:iv ivi:iii object:livejson group:nil account:self.account];
+                [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:nil account:self.account];
                 chunks++;
             }
         } while (done < total);
     }
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -327,7 +391,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
 
@@ -341,13 +405,13 @@
     do {
         NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
         GCDictionaryLiveAPI *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase infoViewer:iv ivi:ivi];
-        LIVEAPI_CHECK_STATUS(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
+        LIVEAPI_CHECK_STATUS_CB(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         NSInteger found = 0;
 
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii object:json group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:group account:self.account];
         chunks++;
 
         found += [[json objectForKey:@"Geocaches"] count];
@@ -360,7 +424,7 @@
     } while (tried < max);
     [iv setChunksTotal:ivi total:1 + (max / increase)];
 
-    [callback remoteAPI_finishedDownloads:iv numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
