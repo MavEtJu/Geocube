@@ -283,6 +283,7 @@
 		E84402BD1BFEABD600EFFD13 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402B91BFEABD600EFFD13 /* MapGoogle.m */; };
 		E84402BE1BFEABD600EFFD13 /* MapOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E84402BB1BFEABD600EFFD13 /* MapOSM.m */; };
 		E8457F2E1E971ADE005A6347 /* WaypointSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8457F2D1E971ADE005A6347 /* WaypointSorter.m */; };
+		E8457F311E989ABB005A6347 /* RemoteAPIProcessingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E8457F301E989ABB005A6347 /* RemoteAPIProcessingGroup.m */; };
 		E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E8467C8D1B4E04EE00FFA253 /* Coordinates.m */; };
 		E84725CF1DF7558F00CFF99B /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725CE1DF7558F00CFF99B /* MHTabBarIndicator@3x.png */; };
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
@@ -967,6 +968,8 @@
 		E84402BB1BFEABD600EFFD13 /* MapOSM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOSM.m; sourceTree = "<group>"; };
 		E8457F2C1E971ADE005A6347 /* WaypointSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointSorter.h; sourceTree = "<group>"; };
 		E8457F2D1E971ADE005A6347 /* WaypointSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointSorter.m; sourceTree = "<group>"; };
+		E8457F2F1E989ABB005A6347 /* RemoteAPIProcessingGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPIProcessingGroup.h; sourceTree = "<group>"; };
+		E8457F301E989ABB005A6347 /* RemoteAPIProcessingGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPIProcessingGroup.m; sourceTree = "<group>"; };
 		E8467C8C1B4E04EE00FFA253 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E8467C8D1B4E04EE00FFA253 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -2914,6 +2917,8 @@
 				E832E7D91B8D173D00A3CCF6 /* RemoteAPITemplate.m */,
 				E89580191C643AD500282177 /* ProtocolTemplate.h */,
 				E895801A1C643AD500282177 /* ProtocolTemplate.m */,
+				E8457F2F1E989ABB005A6347 /* RemoteAPIProcessingGroup.h */,
+				E8457F301E989ABB005A6347 /* RemoteAPIProcessingGroup.m */,
 				E8E0A6571DEE2255004A885D /* GCA2 */,
 				E8E0A6581DEE225A004A885D /* GGCW */,
 				E8E0A65A1DEE2264004A885D /* LiveAPI */,
@@ -3724,6 +3729,7 @@
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */,
 				E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */,
+				E8457F311E989ABB005A6347 /* RemoteAPIProcessingGroup.m in Sources */,
 				E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */,
 				E8F570CE1B40147E003F020C /* ImportGPX.m in Sources */,
 				E890517B1C96BA0200220986 /* HelpHelpViewController.m in Sources */,
