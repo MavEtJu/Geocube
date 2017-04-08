@@ -234,8 +234,9 @@ NEEDS_OVERLOADING(reloadQueries)
 }
 
 NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group)
-NEEDS_OVERLOADING(remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account)
-NEEDS_OVERLOADING(remoteAPI_finishedDownloads:(InfoViewer *)iv numberOfChunks:(NSInteger)numberOfChunks)
+NEEDS_OVERLOADING(remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)iii identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account)
+NEEDS_OVERLOADING(remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks)
+NEEDS_OVERLOADING(remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier)
 
 #pragma mark - Local menu related functions
 

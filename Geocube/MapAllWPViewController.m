@@ -149,11 +149,11 @@
         [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
             [wpnames addObject:wp.wpt_name];
         }];
-        [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:iv ivi:iii group:group callback:self];
+        [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:iv ivi:iii identifier:account._id group:group callback:self];
     }];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -174,7 +174,7 @@
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
 
-    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
+    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NONE infoViewer:iv ivi:iii];
     @synchronized (newWaypoints) {
         [newWaypoints addObjectsFromArray:wps];
     }
@@ -204,7 +204,7 @@
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid identifier:0 callback:self];
 
     [infoView removeItem:iid];
 

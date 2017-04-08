@@ -770,7 +770,7 @@ enum {
 
     chunksDownloaded = 0;
     chunksProcessed = 0;
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid callback:self];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid identifier:0 callback:self];
 
     [infoView removeItem:iid];
 
@@ -778,13 +778,13 @@ enum {
         [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     @synchronized (self) {
         chunksDownloaded++;
     }
 
-    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:iv ivi:ivi];
     [iv removeItem:ivi];
 
     @synchronized (self) {
@@ -792,11 +792,13 @@ enum {
     }
 }
 
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv numberOfChunks:(NSInteger)numberOfChunks
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    while (chunksProcessed != numberOfChunks) {
+    while (chunksProcessed != -1 && chunksProcessed != numberOfChunks) {
         [NSThread sleepForTimeInterval:0.1];
     }
+    if (chunksProcessed == -1)
+        return;
 
     [waypointManager needsRefreshUpdate:waypoint];
     waypoint = [dbWaypoint dbGet:waypoint._id];
@@ -805,6 +807,12 @@ enum {
     [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
 
     [self hideInfoView];
+}
+
+- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+{
+    chunksProcessed = -1;
+    // Nothing
 }
 
 - (void)menuViewRaw

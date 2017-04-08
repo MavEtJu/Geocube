@@ -50,7 +50,7 @@ enum {
     [bezelManager removeBezel];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
@@ -58,6 +58,7 @@ enum {
     [d setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
     [d setObject:iv forKey:@"infoViewer"];
     [d setObject:a forKey:@"account"];
+    [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
 }
@@ -69,12 +70,22 @@ enum {
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     dbAccount *a = [dict objectForKey:@"account"];
+    NSNumber *identifier = [dict objectForKey:@"identifier"];
 
-    [importManager process:o group:g account:a options:RUN_OPTION_NONE infoViewer:iv ivi:iii];
+    [importManager process:o group:g account:a options:IMPORTOPTION_NONE infoViewer:iv ivi:iii];
 
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO)
         [self hideInfoView];
+}
+
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+{
+#warning XXX remoteAPI_finishedDownloadsmissing
+}
+- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+{
+#warning XXX remoteAPI_failed missing
 }
 
 - (BOOL)runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group
