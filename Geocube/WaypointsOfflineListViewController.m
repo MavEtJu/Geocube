@@ -27,6 +27,8 @@
 
     BOOL needsRefresh;
     BOOL isVisible;
+
+    RemoteAPIProcessingGroup *processing;
 }
 
 @end
@@ -54,6 +56,8 @@ enum {
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuSortBy label:@"Sort By"];
     [lmi addItem:menuReloadWaypoints label:@"Reload waypoints"];
+
+    processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -291,55 +295,149 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
+//- (void)menuReloadWaypoints
+//{
+//    [self performSelectorInBackground:@selector(runReloadWaypoints) withObject:nil];
+//}
+//
+//- (void)runReloadWaypoints
+//{
+//    NSArray<dbWaypoint *> *wps = [NSArray arrayWithArray:waypoints];
+//
+//    // XXX group them by account
+//    [self showInfoView];
+//    InfoItemID iid = [infoView addDownload];
+//
+//    __block BOOL failure = NO;
+//    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
+//        [infoView setDownloadHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
+//        [infoView resetBytesChunks:iid];
+//
+//        // Just ignore this stuff
+//        if (wp.account == nil)
+//            return;
+//
+//        if ([wp.account canDoRemoteStuff] == NO)
+//            return;
+//
+//        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid identifier:0 callback:self];
+//        if (rv != REMOTEAPI_OK) {
+//            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
+//            failure = YES;
+//            *stop = YES;
+//        }
+//
+//    }];
+//
+//    [infoView removeItem:iid];
+//}
+//
+//- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+//{
+//    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:iv ivi:ivi];
+//    [waypointManager needsRefreshAll];
+//
+//    [self reloadDataMainQueue];
+//
+//    [infoView removeItem:ivi];
+//    [self hideInfoView];
+//
+//    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+//}
+
+
+////////////////////////
+
 - (void)menuReloadWaypoints
 {
-    [self performSelectorInBackground:@selector(runReloadWaypoints) withObject:nil];
-}
-
-- (void)runReloadWaypoints
-{
-    NSArray<dbWaypoint *> *wps = [NSArray arrayWithArray:waypoints];
-
-    // XXX group them by account
     [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
 
-    __block BOOL failure = NO;
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", wp.wpt_name]];
-        [infoView setDownloadHeaderSuffix:[NSString stringWithFormat:@"%ld / %ld", (long)(idx + 1), (long)[wps count]]];
-        [infoView resetBytesChunks:iid];
+    [processing clearAll];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
 
-        // Just ignore this stuff
-        if (wp.account == nil)
+    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
+        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (wp.account_id == account._id)
+                [wps addObject:wp.wpt_name];
+        }];
+        if ([wps count] == 0)
             return;
 
-        if ([wp.account canDoRemoteStuff] == NO)
-            return;
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+        [dict setObject:wps forKey:@"waypoints"];
+        [dict setObject:account forKey:@"account"];
 
-        NSInteger rv = [wp.account.remoteAPI loadWaypoint:wp infoViewer:infoView ivi:iid callback:self];
-        if (rv != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:wp.account.remoteAPI.lastError];
-            failure = YES;
-            *stop = YES;
-        }
-
+        [processing addIdentifier:account._id];
+        [self performSelectorInBackground:@selector(runReloadWaypoints:) withObject:dict];
     }];
 
+    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+}
+
+- (void)waitForDownloadsToFinish
+{
+    while ([processing hasIdentifiers] == YES) {
+        [NSThread sleepForTimeInterval:0.1];
+    }
+    NSLog(@"PROCESSING: Nothing pending");
+
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+
+    [waypointManager needsRefreshAll];
+    [self reloadDataMainQueue];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+
+    [self hideInfoView];
+}
+
+- (void)runReloadWaypoints:(NSDictionary *)dict
+{
+    NSArray<NSString *> *wps = [dict objectForKey:@"waypoints"];
+    dbAccount *account = [dict objectForKey:@"account"];
+
+    InfoItemID iid = [infoView addDownload];
+    [infoView setChunksTotal:iid total:[wps count]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
+
+    NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView ivi:iid identifier:account._id group:dbc.Group_LastImport callback:self];
+    if (rv != REMOTEAPI_OK)
+        [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    [importManager process:o group:group account:account options:RUN_OPTION_NONE infoViewer:iv ivi:ivi];
-    [waypointManager needsRefreshAll];
+    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    [processing increaseDownloadedChunks:identifier];
 
-    [self reloadDataMainQueue];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:iv ivi:ivi];
+    [iv removeItem:ivi];
 
-    [infoView removeItem:ivi];
-    [self hideInfoView];
+    NSLog(@"PROCESSING: Processed %ld", identifier);
+    [processing increaseProcessedChunks:identifier];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
+    }
+}
 
-    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+{
+    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    [processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
+    }
+}
+
+- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+{
+    NSLog(@"PROCESSING: Failed %ld", identifier);
+    [processing removeIdentifier:identifier];
 }
 
 @end
