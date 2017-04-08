@@ -64,7 +64,7 @@
 
 - (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
 {
-    runOption_LogsOnly = (self.run_options & RUN_OPTION_LOGSONLY) != 0;
+    runOption_LogsOnly = (self.run_options & IMPORTOPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);
 
     infoViewer = iv;

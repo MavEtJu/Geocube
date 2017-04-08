@@ -428,7 +428,7 @@ enum {
             [dict setObject:filename forKey:@"filename"];
             [dict setObject:group forKey:@"group"];
             [dict setObject:[accounts objectAtIndex:selectedIndex] forKey:@"account"];
-            [dict setObject:[NSNumber numberWithInt:RUN_OPTION_NONE] forKey:@"options"];
+            [dict setObject:[NSNumber numberWithInt:IMPORTOPTION_NONE] forKey:@"options"];
 
             [self performSelectorInBackground:@selector(fileImportBG:) withObject:dict];
 

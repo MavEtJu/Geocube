@@ -31,7 +31,7 @@
 
     group = _group;
     account = _account;
-    self.run_options = RUN_OPTION_NONE;
+    self.run_options = IMPORTOPTION_NONE;
 
     newWaypointsCount = 0;
     totalWaypointsCount = 0;
@@ -51,6 +51,7 @@
 - (void)parseBefore
 {
     NSLog(@"%@: Parsing initializing", [self class]);
+
     [dbc.Group_LastImport dbEmpty];
     [dbc.Group_LastImportAdded dbEmpty];
     [db cleanupAfterDelete];
@@ -59,6 +60,7 @@
 - (void)parseAfter
 {
     NSLog(@"%@: Parsing done", [self class]);
+
     [[dbc Group_AllWaypoints_Found] dbEmpty];
     [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
     [[dbc Group_AllWaypoints_NotFound] dbEmpty];

@@ -38,23 +38,10 @@
 
 - (void)parseBefore_caches
 {
-    NSLog(@"%@: Parsing initializing", [self class]);
-    [dbc.Group_LastImport dbEmpty];
-    [dbc.Group_LastImportAdded dbEmpty];
-    [db cleanupAfterDelete];
 }
 
 - (void)parseAfter_caches
 {
-    NSLog(@"%@: Parsing done", [self class]);
-    [[dbc Group_AllWaypoints_Found] dbEmpty];
-    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
-    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
-    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
-    [[dbc Group_AllWaypoints_Ignored] dbEmpty];
-    [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
-    [db cleanupAfterDelete];
-    [dbWaypoint dbUpdateLogStatus];
 }
 
 - (void)parseData_caches:(NSArray<NSDictionary *> *)caches
