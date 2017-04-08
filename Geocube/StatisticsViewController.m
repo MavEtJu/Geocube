@@ -139,6 +139,7 @@ enum {
     NSInteger width = bounds.size.width;
     NSInteger y = 0;
 
+#warning This should be done in the main thread...
     [v.subviews enumerateObjectsUsingBlock:^(UIView *cv, NSUInteger idx, BOOL * _Nonnull stop) {
         [cv removeFromSuperview];
     }];
