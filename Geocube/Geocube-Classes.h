@@ -154,6 +154,7 @@
 @class RemoteAPIGGCW;
 @class RemoteAPILiveAPI;
 @class RemoteAPIOKAPI;
+@class RemoteAPIProcessingGroup;
 @class RemoteAPITemplate;
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;

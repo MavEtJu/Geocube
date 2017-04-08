@@ -168,6 +168,7 @@
 #import "ProtocolLiveAPI.h"
 #import "ProtocolOKAPI.h"
 #import "RemoteAPITemplate.h"
+#import "RemoteAPIProcessingGroup.h"
 #import "RemoteAPIGCA2.h"
 #import "RemoteAPIGGCW.h"
 #import "RemoteAPILiveAPI.h"
