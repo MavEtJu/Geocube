@@ -27,23 +27,10 @@
 
 - (void)parseBefore_geocaches
 {
-    GCLog(@"Parsing initializing");
-    [dbc.Group_LastImport dbEmpty];
-    [dbc.Group_LastImportAdded dbEmpty];
-    [db cleanupAfterDelete];
 }
 
 - (void)parseAfter_geocaches
 {
-    GCLog(@"Parsing done");
-    [[dbc Group_AllWaypoints_Found] dbEmpty];
-    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
-    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
-    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
-    [[dbc Group_AllWaypoints_Ignored] dbEmpty];
-    [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
-    [db cleanupAfterDelete];
-    [dbWaypoint dbUpdateLogStatus];
 }
 
 - (void)parseBefore_trackables
