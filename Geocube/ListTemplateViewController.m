@@ -193,7 +193,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         [NSThread sleepForTimeInterval:0.1];
     }
     NSLog(@"PROCESSING: Nothing pending");
-    
+
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
 
     waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
