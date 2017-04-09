@@ -1801,14 +1801,14 @@
 		E84D6FD01C5826140000A6A0 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
+				E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */,
+				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
 				E84D6FD11C5826810000A6A0 /* QueriesGroundspeakViewController.h */,
 				E84D6FD21C5826810000A6A0 /* QueriesGroundspeakViewController.m */,
 				E84D6FD41C58268E0000A6A0 /* QueriesGCAViewController.h */,
 				E84D6FD51C58268E0000A6A0 /* QueriesGCAViewController.m */,
 				E823024F1DCD6C5C0032C5C6 /* QueriesGGCWViewController.h */,
 				E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */,
-				E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */,
-				E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */,
 				E89C398B1E28A01400BB60CA /* QueriesTableViewCell.h */,
 				E89C398C1E28A01400BB60CA /* QueriesTableViewCell.m */,
 				E89C398D1E28A01400BB60CA /* QueriesTableViewCell.xib */,
