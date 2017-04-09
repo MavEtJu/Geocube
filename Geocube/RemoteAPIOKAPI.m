@@ -239,8 +239,10 @@
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     OKAPI_GET_VALUE_CB(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-    if ([wpcodes count] == 0)
+    if ([wpcodes count] == 0) {
+        [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:0];
         return REMOTEAPI_OK;
+    }
 
     [iv setChunksCount:ivi count:2];
     json = [okapi services_caches_geocaches:wpcodes infoViewer:iv ivi:ivi];
