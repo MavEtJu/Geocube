@@ -23,6 +23,8 @@
 {
     NSMutableArray<dbWaypoint *> *oldWaypoints;
     NSMutableArray<NSString *> *newWaypoints;
+
+    RemoteAPIProcessingGroup *processing;
 }
 
 @end
@@ -36,6 +38,8 @@
 {
     self = [super init];
     self.followWhom = SHOW_SHOWBOTH;
+
+    processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -96,6 +100,9 @@
     newWaypoints = [NSMutableArray arrayWithCapacity:[oldWaypoints count]];
 
     [self showInfoView];
+    [processing clearAll];
+
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
 
     NSArray<dbAccount *> *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
@@ -119,6 +126,18 @@
         [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
         return;
     }
+
+    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+}
+
+- (void)waitForDownloadsToFinish
+{
+    while ([processing hasIdentifiers] == YES) {
+        [NSThread sleepForTimeInterval:0.1];
+    }
+    NSLog(@"PROCESSING: Nothing pending");
+
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
 }
 
 - (void)loadOtherWaypoints:(NSArray<dbWaypoint *> *)waypoints infoViewer:(InfoViewer *)iv group:(dbGroup *)group
@@ -157,12 +176,16 @@
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
+    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    [processing increaseDownloadedChunks:identifier];
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
     [dict setObject:iv forKey:@"infoViewer"];
     [dict setObject:o forKey:@"object"];
     [dict setObject:dbc.Group_LiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
+    [dict setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
     [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];
 }
 
@@ -173,30 +196,39 @@
     NSObject *o = [dict objectForKey:@"object"];
     InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
+    NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NONE infoViewer:iv ivi:iii];
+    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:iv ivi:iii];
     @synchronized (newWaypoints) {
         [newWaypoints addObjectsFromArray:wps];
     }
 
+    NSLog(@"PROCESSING: Processed %ld", identifier);
+    [processing increaseProcessedChunks:identifier];
     [iv removeItem:iii];
 
-    // Last one should be cleaning up
-    if ([iv hasItems] == NO) {
-        // Find the waypoints which were not updated
-        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithArray:oldWaypoints];
-        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
-            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
-                if ([wpo.wpt_name isEqualToString:wpn] == YES) {
-                    [wps removeObjectAtIndex:oidx];
-                    *stop = YES;
-                }
-            }];
-        }];
-
-        [self loadOtherWaypoints:wps infoViewer:iv group:g];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
     }
 }
+
+//    // Last one should be cleaning up
+//    if ([iv hasItems] == NO) {
+//        // Find the waypoints which were not updated
+//        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithArray:oldWaypoints];
+//        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
+//            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
+//                if ([wpo.wpt_name isEqualToString:wpn] == YES) {
+//                    [wps removeObjectAtIndex:oidx];
+//                    *stop = YES;
+//                }
+//            }];
+//        }];
+//
+//        [self loadOtherWaypoints:wps infoViewer:iv group:g];
+//    }
+//}
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
@@ -204,7 +236,9 @@
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid identifier:0 callback:self];
+    [processing addIdentifier:account._id];
+
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid identifier:account._id callback:self];
 
     [infoView removeItem:iid];
 
@@ -212,9 +246,22 @@
         [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.remoteAPI.lastError];
         return;
     }
+}
 
-    if ([infoView hasItems] == NO)
-        [self hideInfoView];
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+{
+    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    [processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
+    }
+}
+
+- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+{
+    NSLog(@"PROCESSING: Failed %ld", identifier);
+    [processing removeIdentifier:identifier];
 }
 
 @end
