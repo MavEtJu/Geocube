@@ -23,6 +23,8 @@
 {
     NSArray<NSDictionary *> *qs;
     NSArray<dbQueryImport *> *qis;
+
+    RemoteAPIProcessingGroup *processing;
 }
 
 @end
@@ -42,6 +44,8 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReload label:@"Reload"];
+
+    processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -172,8 +176,12 @@ NEEDS_OVERLOADING(reloadQueries)
         return;
     }
 
+    [processing clearAll];
+    [self showInfoView];
+
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
     [self performSelectorInBackground:@selector(doRunRetrieveQuery:) withObject:pq];
+    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
@@ -199,8 +207,21 @@ NEEDS_OVERLOADING(reloadQueries)
         [foundqi dbUpdate];
     }
     qis = [dbQueryImport dbAll];
+}
 
-    return;
+- (void)waitForDownloadsToFinish
+{
+    while ([processing hasIdentifiers] == YES) {
+        [NSThread sleepForTimeInterval:0.1];
+    }
+    NSLog(@"PROCESSING: Nothing pending");
+
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+
+    [self reloadDataMainQueue];
+    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+
+    [self hideInfoView];
 }
 
 - (dbGroup *)makeGroupExist:(NSString *)name
@@ -224,19 +245,71 @@ NEEDS_OVERLOADING(reloadQueries)
 
 - (void)doRunRetrieveQuery:(NSDictionary *)pq
 {
+    [processing addIdentifier:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
+
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
-    BOOL failure = [self runRetrieveQuery:pq group:group];
 
-    if (failure == YES)
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the query" error:account.remoteAPI.lastError];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
-    [self reloadDataMainQueue];
+    [processing addIdentifier:0];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView ivi:iid identifier:0 callback:self];
+    if (rv != REMOTEAPI_OK)
+        [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the data from the query" error:account.remoteAPI.lastError];
+
+    [infoView removeItem:iid];
 }
 
-NEEDS_OVERLOADING_BOOL(runRetrieveQuery:(NSDictionary *)pq group:(dbGroup *)group)
-NEEDS_OVERLOADING(remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)iii identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account)
-NEEDS_OVERLOADING(remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks)
-NEEDS_OVERLOADING(remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier)
+- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+{
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
+    [d setObject:group forKey:@"group"];
+    [d setObject:o forKey:@"object"];
+    [d setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
+    [d setObject:iv forKey:@"infoViewer"];
+    [d setObject:a forKey:@"account"];
+    [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+
+    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    [processing increaseDownloadedChunks:identifier];
+    [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
+}
+
+- (void)parseQueryBG:(NSDictionary *)dict
+{
+    dbGroup *g = [dict objectForKey:@"group"];
+    NSObject *o = [dict objectForKey:@"object"];
+    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
+    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
+    dbAccount *a = [dict objectForKey:@"account"];
+    NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
+
+    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:iv ivi:iii];
+    [infoView removeItem:iii];
+
+    NSLog(@"PROCESSING: Processed %ld", identifier);
+    [processing increaseProcessedChunks:identifier];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
+    }
+}
+
+- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+{
+    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    [processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([processing hasAllProcessed:identifier] == YES) {
+        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        [processing removeIdentifier:identifier];
+    }
+}
+- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+{
+    NSLog(@"PROCESSING: Failed %ld", identifier);
+    [processing removeIdentifier:identifier];
+}
 
 #pragma mark - Local menu related functions
 
