@@ -181,6 +181,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         [dict setObject:account forKey:@"account"];
 
         [processing addIdentifier:account._id];
+        NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
         [self performSelectorInBackground:@selector(runReloadWaypoints:) withObject:dict];
     }];
 
@@ -189,9 +190,9 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 
 - (void)waitForDownloadsToFinish
 {
-    while ([processing hasIdentifiers] == YES) {
+    do {
         [NSThread sleepForTimeInterval:0.1];
-    }
+    } while ([processing hasIdentifiers] == YES);
     NSLog(@"PROCESSING: Nothing pending");
 
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
@@ -213,7 +214,6 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [infoView setChunksTotal:iid total:[wps count]];
     [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
 
-    NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
     NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView ivi:iid identifier:account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
