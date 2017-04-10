@@ -25,6 +25,7 @@
     NSMutableArray<NSString *> *newWaypoints;
 
     RemoteAPIProcessingGroup *processing;
+    NSInteger currentRun;
 }
 
 @end
@@ -34,12 +35,19 @@
 
 @implementation MapAllWPViewController
 
+enum {
+    RUN_NONE = 0,
+    RUN_BOUNDINGBOX,
+    RUN_INDIVIDUAL,
+};
+
 - (instancetype)init
 {
     self = [super init];
     self.followWhom = SHOW_SHOWBOTH;
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
+    currentRun = RUN_NONE;
 
     return self;
 }
@@ -71,6 +79,8 @@
 - (void)menuLoadWaypoints
 {
     CLLocationCoordinate2D bl, tr;
+
+    currentRun = RUN_BOUNDINGBOX;
 
     [self.map currentRectangle:&bl topRight:&tr];
     NSInteger dist = [Coordinates coordinates2distance:bl to:tr];
@@ -137,42 +147,69 @@
     }
     NSLog(@"PROCESSING: Nothing pending");
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
-}
+    if (currentRun == RUN_BOUNDINGBOX) {
+        // Now need to find all the waypoints which weren't found
+        NSMutableArray<dbWaypoint *> *waypoints = [NSMutableArray arrayWithArray:oldWaypoints];
+        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
+                if ([wpo.wpt_name isEqualToString:wpn] == YES) {
+                    [waypoints removeObjectAtIndex:oidx];
+                    *stop = YES;
+                }
+            }];
+        }];
 
-- (void)loadOtherWaypoints:(NSArray<dbWaypoint *> *)waypoints infoViewer:(InfoViewer *)iv group:(dbGroup *)group
-{
-    if ([waypoints count] == 0) {
-        [self hideInfoView];
-        [dbWaypoint dbUpdateLogStatus];
-        [waypointManager needsRefreshAll];
+        currentRun = RUN_INDIVIDUAL;
+
+        // Clean up if there is nothing to see
+        if ([waypoints count] == 0) {
+            [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+            [waypointManager needsRefreshAll];
+            currentRun = RUN_NONE;
+            [self hideInfoView];
+            return;
+        };
+
+        NSArray<dbAccount *> *accounts = [dbc Accounts];
+        [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([account canDoRemoteStuff] == NO)
+                return;
+
+            NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                if (wp.account_id == account._id)
+                    [wps addObject:wp];
+            }];
+
+            if ([wps count] == 0)
+                return;
+
+            InfoItemID iid = [infoView addDownload:YES];
+            [infoView setDescription:iid description:account.site];
+            NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
+            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                [wpnames addObject:wp.wpt_name];
+            }];
+            [processing addIdentifier:account._id];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView ivi:iid identifier:account._id group:dbc.Group_LiveImport callback:self];
+        }];
+
+        [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+
         return;
-    };
+    }
 
-    NSArray<dbAccount *> *accounts = [dbc Accounts];
-    [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([account canDoRemoteStuff] == NO)
-            return;
+    if (currentRun == RUN_INDIVIDUAL) {
+        [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+        [waypointManager needsRefreshAll];
+        currentRun = RUN_NONE;
+        [self hideInfoView];
 
-        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            if (wp.account_id == account._id)
-                [wps addObject:wp];
-        }];
-
-        if ([wps count] == 0)
-            return;
-
-        InfoItemID iii = [infoView addDownload:NO];
-        NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
-        [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-            [wpnames addObject:wp.wpt_name];
-        }];
-        [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:iv ivi:iii identifier:account._id group:group callback:self];
-    }];
+        return;
+    }
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -181,7 +218,6 @@
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
-    [dict setObject:iv forKey:@"infoViewer"];
     [dict setObject:o forKey:@"object"];
     [dict setObject:dbc.Group_LiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
@@ -194,41 +230,23 @@
     dbGroup *g = [dict objectForKey:@"group"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:iv ivi:iii];
+    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView ivi:iii];
     @synchronized (newWaypoints) {
         [newWaypoints addObjectsFromArray:wps];
     }
 
     NSLog(@"PROCESSING: Processed %ld", identifier);
     [processing increaseProcessedChunks:identifier];
-    [iv removeItem:iii];
+    [infoView removeItem:iii];
 
     if ([processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", identifier);
         [processing removeIdentifier:identifier];
     }
 }
-
-//    // Last one should be cleaning up
-//    if ([iv hasItems] == NO) {
-//        // Find the waypoints which were not updated
-//        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithArray:oldWaypoints];
-//        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
-//            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
-//                if ([wpo.wpt_name isEqualToString:wpn] == YES) {
-//                    [wps removeObjectAtIndex:oidx];
-//                    *stop = YES;
-//                }
-//            }];
-//        }];
-//
-//        [self loadOtherWaypoints:wps infoViewer:iv group:g];
-//    }
-//}
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
@@ -248,7 +266,7 @@
     }
 }
 
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
@@ -258,7 +276,7 @@
     }
 }
 
-- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+- (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", identifier);
     [processing removeIdentifier:identifier];
