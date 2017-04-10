@@ -89,7 +89,7 @@ NEEDS_OVERLOADING(reloadQueries)
             account = a;
             if (a.canDoRemoteStuff == YES) {
                 NSArray<NSDictionary *> *queries = nil;
-                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil ivi:0];
+                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0];
                 if (rv != REMOTEAPI_OK)
                     failure = YES;
                 qs = queries;
@@ -216,7 +216,7 @@ NEEDS_OVERLOADING(reloadQueries)
     }
     NSLog(@"PROCESSING: Nothing pending");
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
 
     [self reloadDataMainQueue];
     [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
@@ -246,7 +246,7 @@ NEEDS_OVERLOADING(reloadQueries)
 - (void)doRunRetrieveQuery:(NSDictionary *)pq
 {
     [processing addIdentifier:0];
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
 
@@ -254,19 +254,19 @@ NEEDS_OVERLOADING(reloadQueries)
     [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
     [processing addIdentifier:0];
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView ivi:iid identifier:0 callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView iiDownload:iid identifier:0 callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the data from the query" error:account.remoteAPI.lastError];
 
     [infoView removeItem:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
-    [d setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
+    [d setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
     [d setObject:a forKey:@"account"];
     [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
@@ -283,7 +283,7 @@ NEEDS_OVERLOADING(reloadQueries)
     dbAccount *a = [dict objectForKey:@"account"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView ivi:iii];
+    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
     [infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", identifier);

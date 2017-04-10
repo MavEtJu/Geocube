@@ -275,7 +275,7 @@ enum {
     [infoView setDescription:iid description:a.site];
 
     NSDictionary *d = nil;
-    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:infoView ivi:iid];
+    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:infoView iiDownload:iid];
 
     if (retValue != REMOTEAPI_OK) {
         [infoView removeItem:iid];

@@ -112,7 +112,7 @@ enum {
     [self showInfoView];
     [processing clearAll];
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     NSArray<dbAccount *> *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
@@ -163,7 +163,7 @@ enum {
 
         // Clean up if there is nothing to see
         if ([waypoints count] == 0) {
-            [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+            [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
             [waypointManager needsRefreshAll];
             currentRun = RUN_NONE;
             [self hideInfoView];
@@ -191,7 +191,7 @@ enum {
                 [wpnames addObject:wp.wpt_name];
             }];
             [processing addIdentifier:account._id];
-            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView ivi:iid identifier:account._id group:dbc.Group_LiveImport callback:self];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:account._id group:dbc.Group_LiveImport callback:self];
         }];
 
         [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
@@ -200,7 +200,7 @@ enum {
     }
 
     if (currentRun == RUN_INDIVIDUAL) {
-        [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+        [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
         [waypointManager needsRefreshAll];
         currentRun = RUN_NONE;
         [self hideInfoView];
@@ -209,7 +209,7 @@ enum {
     }
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -217,7 +217,7 @@ enum {
     [processing increaseDownloadedChunks:identifier];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
+    [dict setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
     [dict setObject:o forKey:@"object"];
     [dict setObject:dbc.Group_LiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
@@ -233,7 +233,7 @@ enum {
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView ivi:iii];
+    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView iiImport:iii];
     @synchronized (newWaypoints) {
         [newWaypoints addObjectsFromArray:wps];
     }
@@ -256,7 +256,7 @@ enum {
 
     [processing addIdentifier:account._id];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView ivi:iid identifier:account._id callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView iiDownload:iid identifier:account._id callback:self];
 
     [infoView removeItem:iid];
 

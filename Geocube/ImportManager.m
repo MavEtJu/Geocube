@@ -51,7 +51,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
@@ -70,7 +70,7 @@
     if ([data isKindOfClass:[GCArray class]] == YES) {
         GCArray *as = (GCArray *)data;
         [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL *stop) {
-            [self process:a group:group account:account options:runoptions infoViewer:iv ivi:ivi];
+            [self process:a group:group account:account options:runoptions infoViewer:iv iiImport:iii];
         }];
         return processedWaypoints;
     }
@@ -99,15 +99,15 @@
     imp.delegate = self;
 
     @synchronized (self) {
-        [iv expand:ivi yesno:YES];
+        [iv expand:iii yesno:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
-        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv ivi:ivi];
+        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv iiImport:iii];
     }
 
     return processedWaypoints;
 }
 
-- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
+- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
     imp.run_options = run_options;
 
@@ -126,27 +126,27 @@
             if ([data isKindOfClass:[GCStringFilename class]] == YES) {
                 [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
                     [iv setDescription:iii description:filename];
-                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv ivi:iii];
+                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv iiImport:iii];
                     [waypointManager needsRefreshAll];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
                 [iv setDescription:iii description:@"GPX data"];
-                [imp parseString:(NSString *)data infoViewer:iv ivi:iii];
+                [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
                 [iv setDescription:iii description:@"GPX Garmin data"];
-                [imp parseString:(NSString *)data infoViewer:iv ivi:iii];
+                [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
                 [iv setDescription:iii description:@"LiveAPI data"];
-                [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv ivi:iii];
+                [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
                 [iv setDescription:iii description:@"Geocaching Australia API data"];
-                [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv ivi:iii];
+                [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
                 [iv setDescription:iii description:@"OKAPI data"];
-                [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv ivi:iii];
+                [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
                 [iv setDescription:iii description:@"Geocaching.com data"];
-                [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv ivi:iii];
+                [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv iiImport:iii];
             } else {
                 NSAssert1(NO, @"Unknown data object type: %@", [data class]);
             }

@@ -74,10 +74,10 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv ivi:ivi];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv iiDownload:iid];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -118,7 +118,7 @@
 
 // -----------------------------------------------------
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_users_byUsername");
 
@@ -131,12 +131,12 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/users/user" parameters:params];
 
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
 
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_logs_submit");
 
@@ -151,18 +151,18 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/logs/submit" parameters:params];
 
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
 
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_caches_geocache: %@", wpname);
-    return [self services_caches_geocaches:@[wpname] infoViewer:iv ivi:ivi];
+    return [self services_caches_geocaches:@[wpname] infoViewer:iv iiDownload:iid];
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
 
@@ -178,12 +178,12 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:params];
 
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
 
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_caches_search_bbox:%@", [bbox description]);
 
@@ -195,12 +195,12 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/bbox" parameters:params];
 
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
 
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 
@@ -213,7 +213,7 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/geocaches" parameters:params];
 
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv ivi:ivi];
+    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
 
     return json;
 }

@@ -42,7 +42,7 @@
     dbGroup *group;
 
     InfoViewer *infoViewer;
-    InfoItemID ivi;
+    InfoItemID iiImport;
 };
 
 // Needs to be defined here instead of in ImportManager.
@@ -66,9 +66,9 @@ typedef NS_ENUM(NSInteger, ImportOptions) {
 - (void)parseString:(NSString *)data;
 - (void)parseGPX:(GCStringGPX *)gpx;
 - (void)parseDictionary:(GCDictionary *)dict;
-- (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (void)parseString:(NSString *)data infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (void)parseDictionary:(GCDictionary *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
+- (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
+- (void)parseString:(NSString *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
+- (void)parseDictionary:(GCDictionary *)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
 
 @end

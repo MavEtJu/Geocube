@@ -106,7 +106,7 @@ enum {
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];
-            [a.remoteAPI trackablesMine:infoView ivi:iid];
+            [a.remoteAPI trackablesMine:infoView iiDownload:iid];
             tbs = [dbTrackable dbAllMine];
             [self reloadDataMainQueue];
             *stop = YES;

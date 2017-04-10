@@ -23,15 +23,15 @@
 
 - (BOOL)authenticate:(dbAccount *)account;
 
-- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoViewer *)iv ivi:(InfoItemID)ivi;
-- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi;
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 @end

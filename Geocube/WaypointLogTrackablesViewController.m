@@ -271,7 +271,7 @@ enum {
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.protocol_id == PROTOCOL_LIVEAPI) {
-                                         [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil ivi:0];
+                                         [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
                                      }
                                  }];
@@ -324,7 +324,7 @@ enum {
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if ((a.protocol_id == PROTOCOL_LIVEAPI || a.protocol_id == PROTOCOL_GGCW) && [a canDoRemoteStuff] == YES) {
-                                         [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil ivi:0];
+                                         [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
                                      }
                                  }];

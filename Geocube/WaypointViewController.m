@@ -770,7 +770,7 @@ enum {
 
     chunksDownloaded = 0;
     chunksProcessed = 0;
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView ivi:iid identifier:0 callback:self];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView iiDownload:iid identifier:0 callback:self];
 
     [infoView removeItem:iid];
 
@@ -778,14 +778,14 @@ enum {
         [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     @synchronized (self) {
         chunksDownloaded++;
     }
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:infoView ivi:ivi];
-    [infoView removeItem:ivi];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:infoView iiImport:iii];
+    [infoView removeItem:iii];
 
     @synchronized (self) {
         chunksProcessed++;

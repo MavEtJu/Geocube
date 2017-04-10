@@ -107,7 +107,7 @@ enum {
                 [tb dbUpdate];
             }];
 
-            [a.remoteAPI trackablesInventory:infoView ivi:iid];
+            [a.remoteAPI trackablesInventory:infoView iiDownload:iid];
             tbs = [dbTrackable dbAllInventory];
             [self reloadDataMainQueue];
             *stop = YES; }

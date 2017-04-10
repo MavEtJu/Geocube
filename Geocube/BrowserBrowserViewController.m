@@ -244,14 +244,14 @@ enum {
     NSError *error = nil;
 
     [self showInfoView];
-    InfoItemID iii = [infoView addDownload];
-    [infoView setDescription:iii description:@"Downloading query"];
+    InfoItemID iid = [infoView addDownload];
+    [infoView setDescription:iid description:@"Downloading query"];
 
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView ivi:iii];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView iiDownload:iid];
     [self showActivity:NO];
     [self saveDataToFile:data response:response error:error];
 
-    [infoView removeItem:iii];
+    [infoView removeItem:iid];
     [self hideInfoView];
 }
 

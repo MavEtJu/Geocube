@@ -61,7 +61,7 @@
             [callback remoteAPI_failed:iv identifier:identifier]; \
         }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -79,10 +79,10 @@
     [ret setValue:@"" forKey:@"recommendations_given"];
     [ret setValue:@"" forKey:@"recommendations_received"];
 
-    [iv setChunksTotal:ivi total:1];
-    [iv setChunksCount:ivi count:1];
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
 
-    GCDictionaryGGCW *dict = [ggcw my_default:iv ivi:ivi];
+    GCDictionaryGGCW *dict = [ggcw my_default:iv iiDownload:iid];
     GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -92,7 +92,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -119,39 +119,39 @@
         [tbs setObject:note forKey:[NSNumber numberWithLongLong:tb.gc_id]];
     }];
 
-    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv ivi:ivi];
+    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
     NSString *gc_id = [dict objectForKey:@"gc_id"];
-    dict = [ggcw seek_log__form:gc_id infoViewer:iv ivi:ivi];
-    [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs infoViewer:iv ivi:ivi];
+    dict = [ggcw seek_log__form:gc_id infoViewer:iv iiDownload:iid];
+    [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs infoViewer:iv iiDownload:iid];
 
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.Group_LiveImport;
 
-    [iv setChunksTotal:ivi total:1];
-    [iv setChunksCount:ivi count:1];
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
 
-    GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv ivi:ivi];
+    GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv iiDownload:iid];
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:gpx group:g account:a];
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:g account:a];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     loadWaypointsLogs = 0;
     loadWaypointsWaypoints = 0;
 
-    GCDictionaryGGCW *d = [ggcw map:iv ivi:ivi];
+    GCDictionaryGGCW *d = [ggcw map:iv iiDownload:iid];
     self.account.ggcw_username = [d objectForKey:@"usersession.username"];
     self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
     if (self.account.ggcw_username == nil || self.account.ggcw_sessiontoken == nil) {
@@ -179,10 +179,10 @@
      );
      */
 
-    [iv removeItem:ivi];
+    [iv removeItem:iid];
 
     NSMutableDictionary *wpcodesall = [NSMutableDictionary dictionaryWithCapacity:100];
-    [iv setChunksTotal:ivi total:(ymax - ymin + 1) * (xmax - xmin + 1)];
+    [iv setChunksTotal:iid total:(ymax - ymin + 1) * (xmax - xmin + 1)];
     for (NSInteger y = ymin; y <= ymax; y++) {
         for (NSInteger x = xmin; x <= xmax; x++) {
             NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
@@ -193,9 +193,9 @@
             [iv setChunksCount:iid count:1];
             [iv resetBytes:iid];
             // Without requesting the map tile image the map.info returns sometimes a 204. No idea why.
-            [ggcw map_png:x y:y z:ZOOM infoViewer:iv ivi:iid];
+            [ggcw map_png:x y:y z:ZOOM infoViewer:iv iiDownload:iid];
             // Now we can (safely?) request the map info details.
-            GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM infoViewer:iv ivi:iid];
+            GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM infoViewer:iv iiDownload:iid];
 
             NSDictionary *alldata = [d objectForKey:@"data"];
             [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray<NSDictionary *> *wps, BOOL *stop) {
@@ -245,7 +245,7 @@
         [iv setChunksCount:iid count:idx + 1];
         [iv resetBytes:iid];
 
-        GCDictionaryGGCW *d = [ggcw map_details:wpcode infoViewer:iv ivi:iid];
+        GCDictionaryGGCW *d = [ggcw map_details:wpcode infoViewer:iv iiDownload:iid];
         if (d == nil) {
             [callback remoteAPI_failed:identifier];
             return;
@@ -253,7 +253,7 @@
         NSArray<NSDictionary *> *data = [d objectForKey:@"data"];
         NSDictionary *dict = [data objectAtIndex:0];
 
-        GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] infoViewer:iv ivi:iid];
+        GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] infoViewer:iv iiDownload:iid];
         if (gpx == nil) {
             [callback remoteAPI_failed:identifier];
             return;
@@ -270,15 +270,15 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:gpxarray group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpxarray group:group account:self.account];
 
     [iv removeItem:iid];
 }
 
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSDictionary *gc = [ggcw geocache:note.wp_name infoViewer:iv ivi:ivi];
-    GCDictionaryGGCW *json = [ggcw seek_cache__details_SetUserCacheNote:gc text:note.note infoViewer:iv ivi:ivi];
+    NSDictionary *gc = [ggcw geocache:note.wp_name infoViewer:iv iiDownload:iid];
+    GCDictionaryGGCW *json = [ggcw seek_cache__details_SetUserCacheNote:gc text:note.note infoViewer:iv iiDownload:iid];
     NSNumber *success = [json objectForKey:@"success"];
     if ([success boolValue] == NO)
         return REMOTEAPI_PERSONALNOTE_UPDATEFAILED;
@@ -286,7 +286,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     /* Returns: array of dicts of
      * - Name
@@ -297,7 +297,7 @@
      */
 
     *qs = nil;
-    GCDictionaryGGCW *dict = [ggcw pocket_default:iv ivi:ivi];
+    GCDictionaryGGCW *dict = [ggcw pocket_default:iv iiDownload:iid];
     GGCW_CHECK_STATUS(dict, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
@@ -324,12 +324,12 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
-    [iv setChunksTotal:ivi total:1];
-    [iv setChunksCount:ivi count:1];
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
 
-    GCDataZIPFile *zipfile = [ggcw pocket_downloadpq:_id infoViewer:iv ivi:ivi];
+    GCDataZIPFile *zipfile = [ggcw pocket_downloadpq:_id infoViewer:iv iiDownload:iid];
     GGCW_CHECK_STATUS(zipfile, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     NSString *filename = [NSString stringWithFormat:@"%@.zip", _id];
@@ -338,22 +338,22 @@
 
     InfoItemID iii = [iv addImport];
     [iv setDescription:iii description:IMPORTMSG_PQ];
-    [callback remoteAPI_objectReadyToImport:0 ivi:iii object:zipfilename group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:0 iiImport:iii object:zipfilename group:group account:self.account];
 
     [callback remoteAPI_finishedDownloads:0 numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackablesMine:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)trackablesMine:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSArray<NSDictionary *> *tbs = [ggcw track_search:iv ivi:ivi];
+    NSArray<NSDictionary *> *tbs = [ggcw track_search:iv iiDownload:iid];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
-    [iv resetBytesChunks:ivi];
-    [iv setChunksTotal:ivi total:[tbs count]];
+    [iv resetBytesChunks:iid];
+    [iv setChunksTotal:iid total:[tbs count]];
     [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
-        [iv resetBytes:ivi];
-        [iv setChunksCount:ivi count:idx + 1];
-        NSDictionary *d = [ggcw track_details:nil id:[tb objectForKey:@"id"] infoViewer:iv ivi:ivi];
+        [iv resetBytes:iid];
+        [iv setChunksCount:iid count:idx + 1];
+        NSDictionary *d = [ggcw track_details:nil id:[tb objectForKey:@"id"] infoViewer:iv iiDownload:iid];
 
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
         [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
@@ -379,16 +379,16 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSArray<NSDictionary *>*tbs = [ggcw my_inventory:iv ivi:ivi];
+    NSArray<NSDictionary *>*tbs = [ggcw my_inventory:iv iiDownload:iid];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
-    [iv resetBytesChunks:ivi];
-    [iv setChunksTotal:ivi total:[tbs count]];
+    [iv resetBytesChunks:iid];
+    [iv setChunksTotal:iid total:[tbs count]];
     [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
-        [iv resetBytes:ivi];
-        [iv setChunksCount:ivi count:idx + 1];
-        NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] id:nil infoViewer:iv ivi:ivi];
+        [iv resetBytes:iid];
+        [iv setChunksCount:iid count:idx + 1];
+        NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] id:nil infoViewer:iv iiDownload:iid];
 
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
         [dict setObject:[tb objectForKey:@"guid"] forKey:@"guid"];
@@ -411,9 +411,9 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSDictionary *d = [ggcw track_details:code infoViewer:iv ivi:ivi];
+    NSDictionary *d = [ggcw track_details:code infoViewer:iv iiDownload:iid];
 
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:1];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];

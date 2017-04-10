@@ -165,7 +165,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [self showInfoView];
 
     [processing clearAll];
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil ivi:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
         NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
@@ -195,7 +195,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     } while ([processing hasIdentifiers] == YES);
     NSLog(@"PROCESSING: Nothing pending");
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil ivi:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
 
     waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
     [waypointManager needsRefreshAll];
@@ -214,19 +214,19 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [infoView setChunksTotal:iid total:[wps count]];
     [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView ivi:iid identifier:account._id group:dbc.Group_LastImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", identifier);
     [processing increaseDownloadedChunks:identifier];
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView ivi:ivi];
-    [infoView removeItem:ivi];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
+    [infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", identifier);
     [processing increaseProcessedChunks:identifier];

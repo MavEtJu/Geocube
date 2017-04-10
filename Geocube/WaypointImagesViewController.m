@@ -138,7 +138,7 @@ enum {
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
-            [self downloadImage:img infoViewer:infoView ivi:iii];
+            [self downloadImage:img infoViewer:infoView iiImage:iii];
         }
     }];
 
@@ -158,7 +158,7 @@ enum {
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
-            [self downloadImage:img infoViewer:infoView ivi:iii];
+            [self downloadImage:img infoViewer:infoView iiImage:iii];
     }];
 
     [infoView setQueueSize:iii queueSize:0];
@@ -170,14 +170,14 @@ enum {
     }
 }
 
-- (void)downloadImage:(dbImage *)image infoViewer:(InfoViewer *)iv ivi:(InfoItemID)ivi
+- (void)downloadImage:(dbImage *)image infoViewer:(InfoViewer *)iv iiImage:(InfoItemID)iii
 {
     NSURL *url = [NSURL URLWithString:image.url];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv ivi:ivi];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv iiDownload:iii];
 
     if (data == nil || response.statusCode != 200)
         return;

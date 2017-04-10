@@ -25,10 +25,10 @@
 
 @implementation ImportGGCWJSON
 
-- (void)parseDictionary:(GCDictionaryGGCW *)dict infoViewer:(InfoViewer *)iv ivi:(InfoItemID)iii
+- (void)parseDictionary:(GCDictionaryGGCW *)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
     infoViewer = iv;
-    ivi = iii;
+    iiImport = iii;
     if ([dict objectForKey:@"mapwaypoints"] != nil) {
         [self parseBefore_mapwaypoints];
         [self parseData_mapwaypoints:[dict objectForKey:@"mapwaypoints"]];
@@ -53,13 +53,13 @@
 
 - (void)parseData_mapwaypoints:(NSDictionary *)waypoints
 {
-    [infoViewer setLineObjectTotal:ivi total:[waypoints count] isLines:NO];
+    [infoViewer setLineObjectTotal:iiImport total:[waypoints count] isLines:NO];
     __block NSInteger idx = 0;
     [waypoints enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *wp, BOOL *stop) {
         [self parseData_mapwaypoint:wp];
         ++totalWaypointsCount;
-        [infoViewer setWaypointsTotal:ivi total:totalWaypointsCount];
-        [infoViewer setLineObjectCount:ivi count:++idx];
+        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
+        [infoViewer setLineObjectCount:iiImport count:++idx];
     }];
 }
 
@@ -132,7 +132,7 @@
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [dbWaypoint dbCreate:wp];
         newWaypointsCount++;
-        [infoViewer setWaypointsNew:ivi new:newWaypointsCount];
+        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
@@ -155,12 +155,12 @@
 
 - (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables
 {
-    [infoViewer setLineObjectTotal:ivi total:[trackables count] isLines:NO];
+    [infoViewer setLineObjectTotal:iiImport total:[trackables count] isLines:NO];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
         [self parseData_trackable:tb];
         ++totalTrackablesCount;
-        [infoViewer setWaypointsTotal:ivi total:totalTrackablesCount];
-        [infoViewer setLineObjectCount:ivi count:idx + 1];
+        [infoViewer setWaypointsTotal:iiImport total:totalTrackablesCount];
+        [infoViewer setLineObjectCount:iiImport count:idx + 1];
     }];
 }
 
@@ -199,7 +199,7 @@
         NSLog(@"Created trackable %@", tb.ref);
         [tb dbCreate];
         newTrackablesCount++;
-        [infoViewer setTrackablesNew:ivi new:newTrackablesCount];
+        [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
     } else {
         [tb dbUpdate];
     }
