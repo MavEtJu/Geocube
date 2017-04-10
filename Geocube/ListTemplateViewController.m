@@ -220,13 +220,13 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [infoView removeItem:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", identifier);
     [processing increaseDownloadedChunks:identifier];
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:iv ivi:ivi];
-    [iv removeItem:ivi];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView ivi:ivi];
+    [infoView removeItem:ivi];
 
     NSLog(@"PROCESSING: Processed %ld", identifier);
     [processing increaseProcessedChunks:identifier];
@@ -236,7 +236,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     }
 }
 
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
@@ -246,7 +246,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     }
 }
 
-- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+- (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", identifier);
     [processing removeIdentifier:identifier];

@@ -71,7 +71,7 @@
 
 #define OKAPI_CHECK_STATUS_CB(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) { \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return [self lastErrorCode]; \
             } \
             NSDictionary *error = [__json__ objectForKey:@"error"]; \
@@ -79,7 +79,7 @@
                 NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: Error response: (%@)", __logsection__, [error description]]; \
                 NSLog(@"%@", s); \
                 [self setAPIError:s error:REMOTEAPI_APIFAILED]; \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return REMOTEAPI_APIFAILED; \
             } \
         }
@@ -90,7 +90,7 @@
                 NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: No '%@' field returned", __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return __failure__; \
             }
 
@@ -163,9 +163,9 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:d2 group:g account:a];
+    [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:d2 group:g account:a];
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -176,7 +176,7 @@
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:iv identifier:identifier];
+        [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
@@ -218,9 +218,9 @@
     [iv showTrackables:iii yesno:NO];
     [iv setDescription:iii description:IMPORTMSG];
     GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
-    [callback remoteAPI_objectReadyToImport:iv ivi:ivi identifier:identifier object:rv group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:identifier ivi:ivi object:rv group:group account:self.account];
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -228,7 +228,7 @@
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[OKAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:iv identifier:identifier];
+        [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
@@ -240,7 +240,7 @@
 
     OKAPI_GET_VALUE_CB(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
     if ([wpcodes count] == 0) {
-        [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:0];
+        [callback remoteAPI_finishedDownloads:identifier numberOfChunks:0];
         return REMOTEAPI_OK;
     }
 
@@ -259,9 +259,9 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:d2 group:nil account:self.account];
+    [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:d2 group:nil account:self.account];
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 

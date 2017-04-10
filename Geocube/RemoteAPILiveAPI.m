@@ -87,7 +87,7 @@
 
 #define LIVEAPI_CHECK_STATUS_CB(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) { \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return [self lastErrorCode]; \
             } \
             NSDictionary *status = [__json__ objectForKey:@"Status"]; \
@@ -98,7 +98,7 @@
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return REMOTEAPI_APIFAILED; \
             } \
             NSNumber *num = [status objectForKey:@"StatusCode"]; \
@@ -106,14 +106,14 @@
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return REMOTEAPI_APIFAILED; \
             } \
             if ([num integerValue] != 0) { \
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return __failure__; \
             } \
         }
@@ -124,7 +124,7 @@
                 NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No '%@' field returned", __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
-                [callback remoteAPI_failed:iv identifier:identifier]; \
+                [callback remoteAPI_failed:identifier]; \
                 return __failure__; \
             }
 
@@ -228,9 +228,9 @@
 
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:g account:a];
+    [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:json group:g account:a];
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
@@ -246,10 +246,10 @@
 
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:json group:group account:self.account];
     };
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:[wpcodes count]];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wpcodes count]];
     return REMOTEAPI_OK;
 }
 
@@ -261,7 +261,7 @@
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:iv identifier:identifier];
+        [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
@@ -279,7 +279,7 @@
         LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:livejson group:group account:self.account];
         chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
@@ -292,13 +292,13 @@
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
-                [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:group account:self.account];
+                [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:livejson group:group account:self.account];
                 chunks++;
             }
         } while (done < total);
     }
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -310,7 +310,7 @@
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:@"[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:iv identifier:identifier];
+        [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
 
@@ -328,7 +328,7 @@
         LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:nil account:self.account];
+        [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:livejson group:nil account:self.account];
         chunks++;
         do {
             [iv setChunksCount:ivi count:(done / 20) + 1];
@@ -341,13 +341,13 @@
                 GCDictionaryLiveAPI *livejson = json;
                 InfoItemID iii = [iv addImport:NO];
                 [iv setDescription:iii description:IMPORTMSG];
-                [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:livejson group:nil account:self.account];
+                [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:livejson group:nil account:self.account];
                 chunks++;
             }
         } while (done < total);
     }
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
@@ -411,7 +411,7 @@
 
         InfoItemID iii = [iv addImport:NO];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:iv ivi:iii identifier:identifier object:json group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:identifier ivi:iii object:json group:group account:self.account];
         chunks++;
 
         found += [[json objectForKey:@"Geocaches"] count];
@@ -424,7 +424,7 @@
     } while (tried < max);
     [iv setChunksTotal:ivi total:1 + (max / increase)];
 
-    [callback remoteAPI_finishedDownloads:iv identifier:identifier numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 

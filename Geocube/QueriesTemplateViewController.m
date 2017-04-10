@@ -261,13 +261,12 @@ NEEDS_OVERLOADING(reloadQueries)
     [infoView removeItem:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
     [d setObject:[NSNumber numberWithInteger:ivi] forKey:@"iii"];
-    [d setObject:iv forKey:@"infoViewer"];
     [d setObject:a forKey:@"account"];
     [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
@@ -281,11 +280,10 @@ NEEDS_OVERLOADING(reloadQueries)
     dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
-    InfoViewer *iv = [dict objectForKey:@"infoViewer"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:iv ivi:iii];
+    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView ivi:iii];
     [infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", identifier);
@@ -296,7 +294,7 @@ NEEDS_OVERLOADING(reloadQueries)
     }
 }
 
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
@@ -305,7 +303,7 @@ NEEDS_OVERLOADING(reloadQueries)
         [processing removeIdentifier:identifier];
     }
 }
-- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+- (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", identifier);
     [processing removeIdentifier:identifier];

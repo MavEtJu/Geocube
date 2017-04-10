@@ -778,21 +778,21 @@ enum {
         [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
 }
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     @synchronized (self) {
         chunksDownloaded++;
     }
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:iv ivi:ivi];
-    [iv removeItem:ivi];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:infoView ivi:ivi];
+    [infoView removeItem:ivi];
 
     @synchronized (self) {
         chunksProcessed++;
     }
 }
 
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
+- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     while (chunksProcessed != -1 && chunksProcessed != numberOfChunks) {
         [NSThread sleepForTimeInterval:0.1];
@@ -809,7 +809,7 @@ enum {
     [self hideInfoView];
 }
 
-- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier
+- (void)remoteAPI_failed:(NSInteger)identifier
 {
     chunksProcessed = -1;
     // Nothing

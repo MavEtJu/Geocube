@@ -51,9 +51,9 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 @protocol RemoteAPIDownloadDelegate
 
-- (void)remoteAPI_objectReadyToImport:(InfoViewer *)iv ivi:(InfoItemID)ivi identifier:(NSInteger)identifier object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account;
-- (void)remoteAPI_finishedDownloads:(InfoViewer *)iv identifier:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks;
-- (void)remoteAPI_failed:(InfoViewer *)iv identifier:(NSInteger)identifier;
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier ivi:(InfoItemID)ivi object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account;
+- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks;
+- (void)remoteAPI_failed:(NSInteger)identifier;
 
 @end
 
