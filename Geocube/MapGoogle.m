@@ -348,13 +348,8 @@
 - (CLLocationCoordinate2D)currentCenter
 {
     CGPoint point = mapView.center;
-    __block CLLocationCoordinate2D loc;
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        loc = [mapView.projection coordinateForPoint:point];
-        dispatch_semaphore_signal(sem);
-    }];
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    CLLocationCoordinate2D loc;
+    loc = [mapView.projection coordinateForPoint:point];
     return loc;
 }
 
