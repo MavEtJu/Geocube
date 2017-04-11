@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Licenses:"
-grep -c GNU *.[mh]  | grep -v 3$
+grep -c GNU $(ls -1 *.[mh] | grep -v PSPDFUIKitMainThreadGuard.m) | grep -v 3$
 
 echo
 echo "DB_PREPARE / DB_FINISH:"
@@ -18,6 +18,10 @@ echo "Classes:"
 grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
 grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
+
+echo
+echo "Copyright:"
+grep -c "2015, 2016, 2017" $(ls -1 *.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
 echo "Spaces at the end:"
