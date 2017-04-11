@@ -24,6 +24,8 @@
 - (CGRect)rectFromBottom;
 - (void)calculateRects;
 - (void)viewWillTransitionToSize;
+- (void)show:(NSInteger)contentOffset;
+- (void)hide;
 
 - (InfoItemID)addDownload:(BOOL)expanded;
 - (InfoItemID)addImage:(BOOL)expanded;

@@ -77,24 +77,13 @@
 
 - (void)hideInfoView
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-        infoView.hidden = YES;
-    }];
+    [infoView hide];
 }
 
 - (void)showInfoView
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-        infoView.hidden = NO;
-
-        CGRect frame = infoView.frame;
-        CGRect bounds = self.view.superview.frame;
-
-        frame.origin.y = verticalContentOffset + bounds.size.height - frame.size.height;
-        infoView.frame = frame;
-
-        [self.view bringSubviewToFront:infoView];
-    }];
+    NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
+    [infoView show:verticalContentOffset];
 }
 
 - (void)buttonMenuLocal:(id)sender

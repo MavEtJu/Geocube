@@ -28,6 +28,7 @@
     GCLabel *downloadHeader;
     GCLabel *importHeader;
     InfoItemID maxid;
+    BOOL stopUpdating;
 }
 
 @end
@@ -61,9 +62,33 @@
     [self calculateRects];
     [self changeTheme];
 
-    [self performSelectorInBackground:@selector(refreshItems) withObject:nil];
+    stopUpdating = YES;
 
     return self;
+}
+
+- (void)show:(NSInteger)contentOffset
+{
+    stopUpdating = NO;
+    [self performSelectorInBackground:@selector(refreshItems) withObject:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        CGRect frame = self.frame;
+        CGRect bounds = self.superview.frame;
+
+        frame.origin.y = contentOffset + bounds.size.height - frame.size.height;
+        self.frame = frame;
+
+        self.hidden = NO;
+        [self.superview bringSubviewToFront:self];
+    }];
+}
+
+- (void)hide
+{
+    stopUpdating = YES;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+        self.hidden = YES;
+    }];
 }
 
 - (void)refreshItems
@@ -74,6 +99,9 @@
         [self refreshItems:imageItems];
         [self refreshItems:downloadItems];
         [self refreshItems:importItems];
+
+        if (stopUpdating == YES)
+            break;
     }
 }
 

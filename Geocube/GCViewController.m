@@ -55,18 +55,15 @@
 
 - (void)hideInfoView
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-        infoView.hidden = YES;
-    }];
+    [infoView hide];
 }
 
 - (void)showInfoView
 {
     NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-        infoView.hidden = NO;
-        [self.view bringSubviewToFront:infoView];
-    }];
+    if (infoView.superview == nil)
+        [self.view addSubview:infoView];
+    [infoView show:0];
 }
 
 - (void)prepareCloseButton:(UIView *)view
