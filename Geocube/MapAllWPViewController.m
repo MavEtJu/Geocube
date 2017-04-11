@@ -159,8 +159,6 @@ enum {
             }];
         }];
 
-        currentRun = RUN_INDIVIDUAL;
-
         // Clean up if there is nothing to see
         if ([waypoints count] == 0) {
             [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
@@ -170,6 +168,9 @@ enum {
             return;
         };
 
+        currentRun = RUN_INDIVIDUAL;
+
+        // Deal with the waypoints by account
         NSArray<dbAccount *> *accounts = [dbc Accounts];
         [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([account canDoRemoteStuff] == NO)
