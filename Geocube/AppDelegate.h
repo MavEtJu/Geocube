@@ -99,7 +99,7 @@ enum {
 
     VC_HELP_ABOUT = 0,
     VC_HELP_HELP,
-    VC_HELP_NOTICES = 0,
+    VC_HELP_NOTICES,
     VC_HELP_IMAGES,
     VC_HELP_DATABASE,
     VC_HELP_MAX,
