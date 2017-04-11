@@ -190,8 +190,8 @@ enum {
             [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 [wpnames addObject:wp.wpt_name];
             }];
-            [processing addIdentifier:account._id];
-            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:account._id group:dbc.Group_LiveImport callback:self];
+            [processing addIdentifier:(long)account._id];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LiveImport callback:self];
         }];
 
         [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
@@ -213,7 +213,7 @@ enum {
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
-    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -238,12 +238,12 @@ enum {
         [newWaypoints addObjectsFromArray:wps];
     }
 
-    NSLog(@"PROCESSING: Processed %ld", identifier);
+    NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];
     [infoView removeItem:iii];
 
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
@@ -254,9 +254,9 @@ enum {
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    [processing addIdentifier:account._id];
+    [processing addIdentifier:(long)account._id];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView iiDownload:iid identifier:account._id callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView iiDownload:iid identifier:(long)account._id callback:self];
 
     [infoView removeItem:iid];
 
@@ -268,17 +268,17 @@ enum {
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
-    NSLog(@"PROCESSING: Failed %ld", identifier);
+    NSLog(@"PROCESSING: Failed %ld", (long)identifier);
     [processing removeIdentifier:identifier];
 }
 

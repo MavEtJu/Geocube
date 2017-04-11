@@ -270,7 +270,7 @@ NEEDS_OVERLOADING(reloadQueries)
     [d setObject:a forKey:@"account"];
     [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
-    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
     [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
 }
@@ -286,26 +286,26 @@ NEEDS_OVERLOADING(reloadQueries)
     [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
     [infoView removeItem:iii];
 
-    NSLog(@"PROCESSING: Processed %ld", identifier);
+    NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
-    NSLog(@"PROCESSING: Failed %ld", identifier);
+    NSLog(@"PROCESSING: Failed %ld", (long)identifier);
     [processing removeIdentifier:identifier];
 }
 

@@ -73,7 +73,7 @@
 - (BOOL)hasIdentifier:(NSInteger)identifier
 {
     @synchronized (self) {
-        return [expected objectForKey:[NSNumber numberWithInteger:identifier]];
+        return [expected objectForKey:[NSNumber numberWithInteger:identifier]] != nil;
     }
 }
 

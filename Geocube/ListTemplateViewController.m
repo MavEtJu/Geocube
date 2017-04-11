@@ -180,7 +180,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
         [dict setObject:wps forKey:@"waypoints"];
         [dict setObject:account forKey:@"account"];
 
-        [processing addIdentifier:account._id];
+        [processing addIdentifier:(long)account._id];
         NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
         [self performSelectorInBackground:@selector(runReloadWaypoints:) withObject:dict];
     }];
@@ -214,7 +214,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [infoView setChunksTotal:iid total:[wps count]];
     [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:account._id group:dbc.Group_LastImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
@@ -222,33 +222,33 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    NSLog(@"PROCESSING: Downloaded %ld", identifier);
+    NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
     [infoView removeItem:iii];
 
-    NSLog(@"PROCESSING: Processed %ld", identifier);
+    NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    NSLog(@"PROCESSING: Expecting %ld for %ld", numberOfChunks, identifier);
+    NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", identifier);
+        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
-    NSLog(@"PROCESSING: Failed %ld", identifier);
+    NSLog(@"PROCESSING: Failed %ld", (long)identifier);
     [processing removeIdentifier:identifier];
 }
 
