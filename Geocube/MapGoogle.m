@@ -363,12 +363,8 @@
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 
-    __block GMSVisibleRegion visibleRegion;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        visibleRegion = mapView.projection.visibleRegion;
-        dispatch_semaphore_signal(sem);
-    }];
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    GMSVisibleRegion visibleRegion;
+    visibleRegion = mapView.projection.visibleRegion;
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:visibleRegion];
 
