@@ -361,8 +361,6 @@
 
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
 {
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-
     GMSVisibleRegion visibleRegion;
     visibleRegion = mapView.projection.visibleRegion;
 
