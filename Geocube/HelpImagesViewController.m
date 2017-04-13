@@ -98,7 +98,7 @@ enum {
         return [[dbc Pins] count];
     if (section == IMAGES_TYPES_ALL)
         return [[dbc Types] count];
-    if (section == IMAGES_PINS_ONE)
+    if (section == IMAGES_PINS_ONE && [[dbc Pins] count] != 0)
         return 10;
     if (section == IMAGES_TYPES_ONE)
         return 10;
