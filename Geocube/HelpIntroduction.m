@@ -27,21 +27,23 @@
 
 + (void)showIntro:(AppDelegate *)appDelegate
 {
-    KxIntroViewPage *page0 = [KxIntroViewPage introViewPageWithTitle: @"Hello from SampleApp"
-                                                          withDetail: @"Look at this example of using the intro screen! Gradient background, full screen support and more."
-                                                           withImage: [UIImage imageNamed:@"sun"]];
+    KxIntroViewPage *page0 = [KxIntroViewPage introViewPageWithTitle: @"Welcome to Geocube"
+                                                          withDetail: @"Please go through this quick introduction to understand the UI."
+                                                           withImage: [UIImage imageNamed:@"GC - logo - 512x512"]];
 
-    KxIntroViewPage *page1 = [KxIntroViewPage introViewPageWithTitle: @"What's new"
-                                                          withDetail: @"List of new features\n\n- feature #1\n- feature #2\n- feature #3\n- feature #4\n- feature #5"
-                                                           withImage: [UIImage imageNamed:@"tor"]];
+    KxIntroViewPage *page1 = [KxIntroViewPage introViewPageWithTitle: @"Menus and tabs"
+                                                          withDetail: @"The red arrow is the global menu.\nThe brown arrow is the local menu.\nThe green arrows are the tabs.\nThe menu can be larger than your screen, don't forget to scroll up!"
+                                                           withImage: [UIImage imageNamed:@"Menu - 640x623"]];
 
-    KxIntroViewPage *page2 = [KxIntroViewPage introViewPageWithTitle: @"Lorem Ipsum passage"
-                                                          withDetail: @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!"
-                                                           withImage: nil];
+    KxIntroViewPage *page2 = [KxIntroViewPage introViewPageWithTitle: @"How to close a window"
+                                                          withDetail: @"When you see a close button at the top left, you can either tap it or swipe left on page.\n\n(Does the left swipe not work? Tap the close button!)"
+                                                           withImage: [UIImage imageNamed:@"Close Window - 640x430"]];
 
-    page1.detailLabel.textAlignment = NSTextAlignmentLeft;
+    KxIntroViewPage *page3 = [KxIntroViewPage introViewPageWithTitle: @"Map icons"
+                                                          withDetail: @"- Follow me with auto-zoom.\n- Follow me, do not zoom.\n- Show both me and the target.\n- Show target, do not zoom.\n- Show target and zoom in.\n\nTry them when you are at the map!"
+                                                           withImage: [UIImage imageNamed:@"Map icons - 362x86"]];
 
-    KxIntroViewController *vc = [[KxIntroViewController alloc ] initWithPages:@[ page0, page1, page2 ]];
+    KxIntroViewController *vc = [[KxIntroViewController alloc ] initWithPages:@[page0, page1, page2, page3]];
 
     vc.introView.animatePageChanges = YES;
     vc.introView.gradientBackground = YES;
