@@ -80,12 +80,9 @@
                 fullScreenLayout: (BOOL) fullScreenLayout
 {    
     if (fullScreenLayout) {
-        
-        self.wantsFullScreenLayout = YES;
         UIApplication *app = [UIApplication sharedApplication];
         if (!app.statusBarHidden) {
             _needRestoreStatusBar = YES;
-            [app setStatusBarHidden:YES withAnimation:NO];
         }
     }
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -120,10 +117,6 @@
         }
     }
     
-    if (_needRestoreStatusBar) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app setStatusBarHidden:NO withAnimation:YES];
-    }
 }
 
 @end
