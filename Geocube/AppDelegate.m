@@ -459,6 +459,8 @@
     // Cleanup imported information from iTunes -- after the viewcontroller has been generated
     [IOSFTM cleanupITunes];
 
+    [HelpIntroduction showIntro:self];
+
     return YES;
 }
 

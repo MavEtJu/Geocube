@@ -94,6 +94,7 @@
 @class HelpDatabaseViewController;
 @class HelpHelpViewController;
 @class HelpImagesViewController;
+@class HelpIntroduction;
 @class IOSFileTransfers;
 @class ImageLibrary;
 @class ImagesDownloadManager;

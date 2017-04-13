@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */; };
 		E80250EA1D17CADA00F05772 /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E80250E91D17CADA00F05772 /* dbLogString.m */; };
+		E80413911E9EF73D001FD7BF /* KxIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = E804138C1E9EF73D001FD7BF /* KxIntroView.m */; };
+		E80413921E9EF73D001FD7BF /* KxIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E804138E1E9EF73D001FD7BF /* KxIntroViewController.m */; };
+		E80413931E9EF73D001FD7BF /* KxIntroViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E80413901E9EF73D001FD7BF /* KxIntroViewPage.m */; };
+		E80413961E9EFA52001FD7BF /* HelpIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = E80413951E9EFA52001FD7BF /* HelpIntroduction.m */; };
 		E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B851B68E9D100DD44CC /* dbFilter.m */; };
 		E8045B891B697A3B00DD44CC /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8045B881B697A3B00DD44CC /* WaypointManager.m */; };
 		E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732B51B5FA352007FDC29 /* dbWaypoint.m */; };
@@ -641,6 +645,14 @@
 		E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogTrackablesViewController.m; sourceTree = "<group>"; };
 		E80250E81D17CADA00F05772 /* dbLogString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogString.h; sourceTree = "<group>"; };
 		E80250E91D17CADA00F05772 /* dbLogString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogString.m; sourceTree = "<group>"; };
+		E804138B1E9EF73D001FD7BF /* KxIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxIntroView.h; path = kxintro/KxIntroView.h; sourceTree = "<group>"; };
+		E804138C1E9EF73D001FD7BF /* KxIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KxIntroView.m; path = kxintro/KxIntroView.m; sourceTree = "<group>"; };
+		E804138D1E9EF73D001FD7BF /* KxIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxIntroViewController.h; path = kxintro/KxIntroViewController.h; sourceTree = "<group>"; };
+		E804138E1E9EF73D001FD7BF /* KxIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KxIntroViewController.m; path = kxintro/KxIntroViewController.m; sourceTree = "<group>"; };
+		E804138F1E9EF73D001FD7BF /* KxIntroViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxIntroViewPage.h; path = kxintro/KxIntroViewPage.h; sourceTree = "<group>"; };
+		E80413901E9EF73D001FD7BF /* KxIntroViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KxIntroViewPage.m; path = kxintro/KxIntroViewPage.m; sourceTree = "<group>"; };
+		E80413941E9EFA52001FD7BF /* HelpIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpIntroduction.h; sourceTree = "<group>"; };
+		E80413951E9EFA52001FD7BF /* HelpIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpIntroduction.m; sourceTree = "<group>"; };
 		E8045B841B68E9D100DD44CC /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFilter.h; sourceTree = "<group>"; };
 		E8045B851B68E9D100DD44CC /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFilter.m; sourceTree = "<group>"; };
 		E8045B871B697A3B00DD44CC /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
@@ -1541,6 +1553,19 @@
 				237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E804138A1E9EF71E001FD7BF /* kxintro */ = {
+			isa = PBXGroup;
+			children = (
+				E804138B1E9EF73D001FD7BF /* KxIntroView.h */,
+				E804138C1E9EF73D001FD7BF /* KxIntroView.m */,
+				E804138D1E9EF73D001FD7BF /* KxIntroViewController.h */,
+				E804138E1E9EF73D001FD7BF /* KxIntroViewController.m */,
+				E804138F1E9EF73D001FD7BF /* KxIntroViewPage.h */,
+				E80413901E9EF73D001FD7BF /* KxIntroViewPage.m */,
+			);
+			name = kxintro;
 			sourceTree = "<group>";
 		};
 		E80732D21B60FA90007FDC29 /* ratings */ = {
@@ -2469,6 +2494,8 @@
 				E890517A1C96BA0200220986 /* HelpHelpViewController.m */,
 				E8F408571B57510400FBA858 /* HelpImagesViewController.h */,
 				E8F408581B57510400FBA858 /* HelpImagesViewController.m */,
+				E80413941E9EFA52001FD7BF /* HelpIntroduction.h */,
+				E80413951E9EFA52001FD7BF /* HelpIntroduction.m */,
 				E88037A31B94FA7B0053AD01 /* NoticeTableViewCell.h */,
 				E88037A41B94FA7B0053AD01 /* NoticeTableViewCell.m */,
 				E880379D1B9467E90053AD01 /* NoticesViewController.h */,
@@ -2796,6 +2823,7 @@
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
+				E804138A1E9EF71E001FD7BF /* kxintro */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
@@ -3693,6 +3721,7 @@
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,
 				E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */,
 				E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */,
+				E80413961E9EFA52001FD7BF /* HelpIntroduction.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
@@ -3747,6 +3776,7 @@
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
 				E832E7DA1B8D173D00A3CCF6 /* RemoteAPITemplate.m in Sources */,
 				E80AEEBE1BA670B200106F7F /* GCView.m in Sources */,
+				E80413911E9EF73D001FD7BF /* KxIntroView.m in Sources */,
 				E8E8D0161B6653E600CC741A /* FilterTableViewCell.m in Sources */,
 				E8E8D0231B67208800CC741A /* FilterDistanceTableViewCell.m in Sources */,
 				E87D444B1BA6F6E800671FB9 /* GCScrollView.m in Sources */,
@@ -3795,6 +3825,7 @@
 				E881441F1C82663D00940820 /* ListDNFViewController.m in Sources */,
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
+				E80413921E9EF73D001FD7BF /* KxIntroViewController.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
@@ -3808,6 +3839,7 @@
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */,
 				E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */,
+				E80413931E9EF73D001FD7BF /* KxIntroViewPage.m in Sources */,
 				E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
