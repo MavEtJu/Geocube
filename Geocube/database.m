@@ -73,11 +73,13 @@
     [self checkAndCreateDatabase];
 
     // Determine version of the distribution database
-    sqlite3 *db;
-    sqlite3_open([dbempty UTF8String], &db);
-    self.db = db;
+    sqlite3 *tdb;
+    sqlite3_open([dbempty UTF8String], &tdb);
+    self.db = tdb;
     dbConfig *c_empty = [dbConfig dbGetByKey:KEY_VERSION_DB];
-    sqlite3_close(db);
+    sqlite3_close(tdb);
+    self.db = nil;
+    tdb = nil;
 
     // If the empty database version is 0, reinitialize.
     if ([c_empty.value isEqualToString:@"0"] == YES) {
@@ -86,16 +88,19 @@
     }
 
     // Determine version of the active database
-    sqlite3_open([dbname UTF8String], &db);
-    self.db = db;
+    sqlite3_open([dbname UTF8String], &tdb);
+    self.db = tdb;
     dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
-    sqlite3_close(db);
+    sqlite3_close(tdb);
+    self.db = nil;
+    tdb = nil;
 
     // If the active version is different from the distribution version, then reinitialize.
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty database is newer, upgrading");
-        sqlite3_open([dbname UTF8String], &db);
+        sqlite3_open([dbname UTF8String], &tdb);
+        self.db = tdb;
 
         NSInteger version = [c_real.value integerValue];
         NSLog(@"Upgrading from %ld", (long)version);
@@ -104,11 +109,13 @@
         c_real.value = c_empty.value;
         [c_real dbUpdate];
 
-        sqlite3_close(db);
+        sqlite3_close(tdb);
+        self.db = nil;
+        tdb = nil;
     }
 
-    sqlite3_open([dbname UTF8String], &db);
-    self.db = db;
+    sqlite3_open([dbname UTF8String], &tdb);
+    self.db = tdb;
 }
 
 - (void)checkAndCreateDatabase
