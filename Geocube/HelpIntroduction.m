@@ -27,23 +27,29 @@
 
 + (void)showIntro:(AppDelegate *)appDelegate
 {
-    KxIntroViewPage *page0 = [KxIntroViewPage introViewPageWithTitle: @"Welcome to Geocube"
-                                                          withDetail: @"Please go through this quick introduction to understand the UI."
-                                                           withImage: [UIImage imageNamed:@"GC - logo - 512x512"]];
+    KxIntroViewPage *page;
+    NSMutableArray *pages = [NSMutableArray arrayWithCapacity:10];
+    page = [KxIntroViewPage introViewPageWithTitle: @"Welcome to Geocube"
+                                        withDetail: @"Please go through this quick introduction to understand the UI."
+                                         withImage: [UIImage imageNamed:@"GC - logo - 512x512"]];
+    [pages addObject:page];
 
-    KxIntroViewPage *page1 = [KxIntroViewPage introViewPageWithTitle: @"Menus and tabs"
-                                                          withDetail: @"The red arrow is the global menu.\nThe brown arrow is the local menu.\nThe green arrows are the tabs.\nThe menu can be larger than your screen, don't forget to scroll up!"
-                                                           withImage: [UIImage imageNamed:@"Menu - 640x623"]];
+    page = [KxIntroViewPage introViewPageWithTitle: @"Menus and tabs"
+                                        withDetail: @"The red arrow points to the global menu.\nThe brown arrow points to the local menu.\nThe green arrows point to the tabs.\nThe menu can be larger than your screen, you can scroll in it!"
+                                         withImage: [UIImage imageNamed:@"Menu - 640x623"]];
+    [pages addObject:page];
 
-    KxIntroViewPage *page2 = [KxIntroViewPage introViewPageWithTitle: @"How to close a window"
-                                                          withDetail: @"When you see a close button at the top left, you can either tap it or swipe left on page.\n\n(Does the left swipe not work? Tap the close button!)"
-                                                           withImage: [UIImage imageNamed:@"Close Window - 640x430"]];
+    page = [KxIntroViewPage introViewPageWithTitle: @"How to close a window"
+                                        withDetail: @"When you see a close button at the top left, you can either tap it or swipe left on page to close it.\n\n(Does the left swipe not work? Tap the close button!)"
+                                         withImage: [UIImage imageNamed:@"Close Window - 640x430"]];
+    [pages addObject:page];
 
-    KxIntroViewPage *page3 = [KxIntroViewPage introViewPageWithTitle: @"Map icons"
-                                                          withDetail: @"- Follow me with auto-zoom.\n- Follow me, do not zoom.\n- Show both me and the target.\n- Show target, do not zoom.\n- Show target and zoom in.\n\nTry them when you are at the map!"
-                                                           withImage: [UIImage imageNamed:@"Map icons - 362x86"]];
+    page = [KxIntroViewPage introViewPageWithTitle: @"Map icons"
+                                        withDetail: @"- Follow me with auto-zoom.\n- Follow me, do not zoom.\n- Show both me and the target.\n- Show target, do not zoom.\n- Show target and zoom in.\n\nTry them when you are at the map!"
+                                         withImage: [UIImage imageNamed:@"Map icons - 362x86"]];
+    [pages addObject:page];
 
-    KxIntroViewController *vc = [[KxIntroViewController alloc ] initWithPages:@[page0, page1, page2, page3]];
+    KxIntroViewController *vc = [[KxIntroViewController alloc ] initWithPages:pages];
 
     vc.introView.animatePageChanges = YES;
     vc.introView.gradientBackground = YES;
