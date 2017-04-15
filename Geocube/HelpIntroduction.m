@@ -49,7 +49,7 @@
                                          withImage: [UIImage imageNamed:@"Map icons - 362x86"]];
     [pages addObject:page];
 
-    KxIntroViewController *vc = [[KxIntroViewController alloc ] initWithPages:pages];
+    KxIntroViewController *vc = [[KxIntroViewController alloc] initWithPages:pages];
 
     vc.introView.animatePageChanges = YES;
     vc.introView.gradientBackground = YES;
