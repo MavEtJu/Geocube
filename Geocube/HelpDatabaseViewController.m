@@ -211,6 +211,4 @@ enum {
     [MyTools messageBox:self header:@"Backup saved" text:[NSString stringWithFormat:@"You can find the dump in the Files section as %@", file]];
 }
 
-
-
 @end

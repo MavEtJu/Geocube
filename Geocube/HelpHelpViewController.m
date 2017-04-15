@@ -25,6 +25,21 @@
 
 @implementation HelpHelpViewController
 
+enum {
+    menuIntroduction,
+    menuMax
+};
+
+- (instancetype)init
+{
+    self = [super init];
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuIntroduction label:@"Show Introduction"];
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,6 +61,19 @@
     t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     [self.view addSubview:t];
+}
+
+
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    switch (index) {
+        case menuIntroduction:
+            [HelpIntroduction showIntro:_AppDelegate];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
 }
 
 @end

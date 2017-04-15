@@ -35,7 +35,7 @@
     [pages addObject:page];
 
     page = [KxIntroViewPage introViewPageWithTitle: @"Menus and tabs"
-                                        withDetail: @"The red arrow points to the global menu.\nThe brown arrow points to the local menu.\nThe green arrows point to the tabs.\nThe menu can be larger than your screen, you can scroll in it!"
+                                        withDetail: @"The red arrow points to the global menu.\nThe brown arrow points to the local menu for this tab.\nThe green arrows point to the tabs.\nThe menu can be larger than your screen, you can scroll in it!"
                                          withImage: [UIImage imageNamed:@"Menu - 640x623"]];
     [pages addObject:page];
 
@@ -47,6 +47,11 @@
     page = [KxIntroViewPage introViewPageWithTitle: @"Map icons"
                                         withDetail: @"- Follow me with auto-zoom.\n- Follow me, do not zoom.\n- Show both me and the target.\n- Show target, do not zoom.\n- Show target and zoom in.\n\nTry them when you are at the map!"
                                          withImage: [UIImage imageNamed:@"Map icons - 362x86"]];
+    [pages addObject:page];
+
+    page = [KxIntroViewPage introViewPageWithTitle: @"Happy geocaching!"
+                                        withDetail: @"You can watch this introduction again in the Help tab of the Help menu."
+                                         withImage: [UIImage imageNamed:@"GC - logo - 512x512"]];
     [pages addObject:page];
 
     KxIntroViewController *vc = [[KxIntroViewController alloc] initWithPages:pages];
