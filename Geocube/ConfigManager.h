@@ -109,6 +109,8 @@
 @property (nonatomic) NSInteger gpsAdjustmentLatitude;
 @property (nonatomic) NSInteger gpsAdjustmentLongitude;
 
+@property (nonatomic) BOOL introSeen;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -180,5 +182,6 @@
 - (void)gpsAdjustmentEnableUpdate:(BOOL)value;
 - (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value;
 - (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
+- (void)introSeenUpdate:(BOOL)value;
 
 @end

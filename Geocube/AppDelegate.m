@@ -459,7 +459,9 @@
     // Cleanup imported information from iTunes -- after the viewcontroller has been generated
     [IOSFTM cleanupITunes];
 
-    [HelpIntroduction showIntro:self];
+    // Show the introduction
+    if (configManager.introSeen == NO)
+        [HelpIntroduction showIntro:self];
 
     return YES;
 }

@@ -28,7 +28,7 @@
 + (void)showIntro:(AppDelegate *)appDelegate
 {
     KxIntroViewPage *page;
-    NSMutableArray *pages = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<KxIntroViewPage *> *pages = [NSMutableArray arrayWithCapacity:10];
     page = [KxIntroViewPage introViewPageWithTitle: @"Welcome to Geocube"
                                         withDetail: @"Please go through this quick introduction to understand the UI."
                                          withImage: [UIImage imageNamed:@"GC - logo - 512x512"]];
@@ -56,6 +56,8 @@
 
     //[vc presentInView:self.window.rootViewController.view];
     [vc presentInViewController:appDelegate.window.rootViewController fullScreenLayout:YES];
+
+    [configManager introSeenUpdate:TRUE];
 }
 
 @end
