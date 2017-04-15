@@ -548,7 +548,7 @@ bail1:
     href = [e.attributes objectForKey:@"href"];
     r = [href rangeOfString:@"ID="];
     CHECK_RANGE(r, bail2);
-    s = [href substringFromIndex:r.location + r.length ];
+    s = [href substringFromIndex:r.location + r.length];
     r = [s rangeOfString:@"&"];
     CHECK_RANGE(r, bail2);
     gc_id = [s substringToIndex:r.location];

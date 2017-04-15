@@ -71,7 +71,7 @@
     buttonDatePlaced.frame = rect;
     [buttonDatePlaced addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDatePlaced];
-    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochPlaced ] element:buttonDatePlaced];
+    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochPlaced] element:buttonDatePlaced];
 
     y += 20;
 
@@ -95,7 +95,7 @@
     buttonDateLastLog.frame = rect;
     [buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDateLastLog];
-    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog ] element:buttonDateLastLog];
+    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog] element:buttonDateLastLog];
 
     y += 20;
 

@@ -28,6 +28,10 @@ echo "Spaces at the end:"
 grep -n "[	 ]$" *.m *.h
 
 echo
+echo "Spaces before ]:"
+grep -n "[^ ] ]" *.m
+
+echo
 echo "Empty lines at the end:"
 for i in *.m *.h; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
 

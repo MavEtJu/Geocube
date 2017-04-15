@@ -123,7 +123,7 @@
                 continue;
 
             found++;
-            if ([[dict objectForKey:NSFileModificationDate ] timeIntervalSince1970] < oldest) {
+            if ([[dict objectForKey:NSFileModificationDate] timeIntervalSince1970] < oldest) {
                 NSLog(@"%@ - Removing %@", [self class], filename);
                 [fileManager removeItemAtPath:fullfilename error:&error];
                 deletedSize++;

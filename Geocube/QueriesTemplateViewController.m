@@ -140,7 +140,7 @@ NEEDS_OVERLOADING(reloadQueries)
     NSInteger size = 0;
     cell.labelWaypoints.text = @"";
     if ([pq objectForKey:@"Count"] != nil) {
-        NSInteger count = [[pq objectForKey:@"Count" ] integerValue];
+        NSInteger count = [[pq objectForKey:@"Count"] integerValue];
         size = count;
         if (count >= 0)
             cell.labelWaypoints.text = [NSString stringWithFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
