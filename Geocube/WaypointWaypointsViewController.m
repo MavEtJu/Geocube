@@ -144,7 +144,6 @@ enum {
     return YES;
 }
 
-
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

@@ -159,6 +159,4 @@ OSStatus RenderTone(
     }
 }
 
-
-
 @end

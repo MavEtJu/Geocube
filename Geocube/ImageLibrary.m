@@ -764,7 +764,6 @@
      *  9 .........xxxxxxx.........
      */
 
-
     CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] CGColor]);
     NSInteger w = width - 1;
     VLINE(0    ,  7, 12);
@@ -794,7 +793,6 @@
 
     HLINE( 0, 9, width - 10);
     HLINE(19, 9, width - 10);
-
 
     UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
     l.text = [NSString stringWithFormat:@"%ld", (long)num];

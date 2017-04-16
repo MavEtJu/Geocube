@@ -34,7 +34,6 @@
     CLLocationDirection meBearing;
     BOOL useGPS;
 
-
     BOOL hasGMS;
     BOOL showBoundaries;
 
@@ -199,7 +198,6 @@
 
     [self.map mapViewWillAppear];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating
 {
@@ -401,7 +399,6 @@
     }
 
 }
-
 
 /* Delegated from GCLocationManager */
 - (void)updateLocationManagerLocation

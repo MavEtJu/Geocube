@@ -303,7 +303,6 @@ enum {
     [self.tableView reloadData];
 }
 
-
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
@@ -406,7 +405,6 @@ enum {
     date = [dateFormatter stringFromDate:d];
     [self.tableView reloadData];
 }
-
 
 - (void)changeNote
 {

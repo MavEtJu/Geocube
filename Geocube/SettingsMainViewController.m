@@ -1782,7 +1782,6 @@ enum sections {
     [self.tableView reloadData];
 }
 
-
 /* ********************************************************************************* */
 
 - (void)changeMapSearchMaximumDistanceGS

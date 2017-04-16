@@ -48,7 +48,6 @@
     }
 }
 
-
 + (dbGroup *)dbGetByName:(NSString *)name
 {
     dbGroup *cg;
@@ -235,7 +234,6 @@
         [self dbAddWaypoint:wp._id];
     }];
 }
-
 
 - (BOOL)dbContainsWaypoint:(NSId)c_id
 {

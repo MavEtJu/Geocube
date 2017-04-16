@@ -128,7 +128,6 @@
     [self.coordsHistorical removeAllObjects];
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     if (self.useGPS == NO)

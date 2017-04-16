@@ -99,5 +99,4 @@
     [browserViewController loadURL:a.url_queries];
 }
 
-
 @end

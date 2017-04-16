@@ -100,7 +100,6 @@
     [super finish];
 }
 
-
 + (NSId)dbGetIdByGC:(NSInteger)_gc_id account:(dbAccount *)account
 {
     NSId _id = 0;

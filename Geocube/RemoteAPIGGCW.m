@@ -28,7 +28,6 @@
 #define IMPORTMSG_GPX   @"Geocaching.com GPX Garmin data (queued)"
 #define IMPORTMSG_PQ    @"Geocaching.com Pocket Query data (queued)"
 
-
 - (BOOL)commentSupportsFavouritePoint
 {
     return YES;

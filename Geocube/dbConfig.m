@@ -55,7 +55,6 @@
     return c;
 }
 
-
 + (NSArray<dbConfig *> *)dbAll
 {
     NSMutableArray<dbConfig *> *ss = [NSMutableArray arrayWithCapacity:10];

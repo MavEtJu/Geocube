@@ -266,7 +266,6 @@
     }
 }
 
-
 - (UITextRange *)textRangeForRange:(NSRange)range
 {
     UITextPosition *startPos = [self.targetTextInput positionFromPosition:self.targetTextInput.beginningOfDocument offset:range.location];
@@ -283,8 +282,5 @@
     NSUInteger length = [self.targetTextInput offsetFromPosition:textRange.start toPosition:textRange.end];
     return NSMakeRange(location, length);
 }
-
-
-
 
 @end

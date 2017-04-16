@@ -294,7 +294,6 @@
     }
 }
 
-
 - (void)dbUpdateAccount
 {
     @synchronized(db) {

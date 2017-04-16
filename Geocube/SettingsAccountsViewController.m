@@ -279,7 +279,6 @@ enum {
     [self.tableView reloadData];
 }
 
-
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

@@ -78,10 +78,13 @@ grep -n "^[-+].*NSMutableArray " $(ls -1 *.m | grep -v GCArray.m)
 grep -n " NSMutableArray " $(ls -1 *.m | grep -v GCArray.m)
 grep -n " NSArray " $(ls -1 *.m | grep -v GCArray.m)
 
-
 echo
 echo "Empty lines after beginning of a function:"
 grep -n -A 1 ^{ *.m  | grep -v '^--$' | grep -- -$
+
+echo
+echo "Double empty lines:"
+for i in *.h *.m; do perl -e '$f=$ARGV[0];@a=<>;chomp(@a);$i=-1;$c=0;foreach $l (@a) { $c++; if ($l eq "") { print "$f:$c\n" if ($i==$c-1); $i=$c; }}' $i; done
 
 echo
 echo "Double ;;'s:"

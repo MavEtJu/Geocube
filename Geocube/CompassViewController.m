@@ -47,7 +47,6 @@
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPContainer;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPSize;
 
-
 @end
 
 @implementation CompassViewController
@@ -147,7 +146,6 @@
     [LM startDelegation:self isNavigating:TRUE];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
@@ -185,7 +183,6 @@
     //            break;
     //    }
 }
-
 
 /* Receive data from the location manager */
 - (void)updateLocationManagerLocation

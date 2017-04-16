@@ -26,7 +26,6 @@
 #define	DB_NAME         @"database.db"
 #define KEY_VERSION_DB  @"version"
 
-
 @interface database : NSObject
 
 @property (nonatomic)sqlite3 *db;
@@ -86,7 +85,6 @@
 #define SET_VAR_DOUBLE(col, string) \
     if (sqlite3_bind_double(req, col, string) != SQLITE_OK) \
         NSAssert1(0, @"SET_VAR_DOUBLE: %s", sqlite3_errmsg(db.db));
-
 
 #define DB_ASSERT(__s__) \
     NSAssert3(0, @"%s/%@: %s", __FUNCTION__, __s__, sqlite3_errmsg(db.db))

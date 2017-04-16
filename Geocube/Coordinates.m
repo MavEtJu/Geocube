@@ -147,7 +147,6 @@
     return [Coordinates coordinates2bearing:coords to:c];
 }
 
-
 /// Returns radians value of a degree value
 + (CLLocationDegrees)toRadians:(CLLocationDegrees)f
 {
@@ -263,7 +262,6 @@
     NSInteger brng = [self toDegrees:atan2(y, x)];
     return (brng + 360) % 360;
 }
-
 
 /// Returns compass direction for bearing
 + (NSString *)bearing2compass:(CLLocationDegrees)bearing

@@ -264,7 +264,6 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

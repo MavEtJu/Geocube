@@ -43,7 +43,6 @@
     return ss;
 }
 
-
 + (void)makeNameExist:(NSString *)name
 {
     if ([dbc Locale_get_byName:name] == nil) {

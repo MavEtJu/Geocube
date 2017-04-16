@@ -337,7 +337,6 @@ enum {
     [self hideInfoView];
 }
 
-
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
     // If the suffix is .geocube, import it as a Geocube datafile

@@ -32,5 +32,4 @@
     [themeManager changeThemeArray:[self subviews]];
 }
 
-
 @end

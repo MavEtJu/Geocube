@@ -29,5 +29,4 @@
 - (instancetype)init:(NSString *)name;
 + (FilterObject *)init:(NSString *)name;
 
-
 @end

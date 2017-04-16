@@ -242,5 +242,4 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 + (NSString *)ColorToRGB:(UIColor *)c;
 + (UIImage *)circleWithColour:(UIColor *)c;
 
-
 @end

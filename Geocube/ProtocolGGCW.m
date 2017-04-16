@@ -76,7 +76,6 @@ enum {
         [cookiemgr setCookie:authCookie];
     }
 
-
     // Set-Cookie:        Send2GPS=garmin; expires=Tue, 07-Nov-2017 11:44:23 GMT; path=/
     NSHTTPCookie *send2gps = [NSHTTPCookie cookieWithProperties:
                               [NSDictionary
@@ -702,7 +701,6 @@ bail2:
 {
     NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", (long)x, (long)y, (long)z);
 
-
     /*
      * This is the tile info requested:
      * x, y, z is the coordinates for the tile.
@@ -754,7 +752,6 @@ bail2:
 - (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"map_info(x,y,z): (%ld,%ld,%ld)", (long)x, (long)y, (long)z);
-
 
     /*
      * This is the tile info requested:

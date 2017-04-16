@@ -46,7 +46,6 @@
  * [oabb obtainRequestToken];
  */
 
-
 @interface GCOAuthBlackbox : NSObject <UIWebViewDelegate>
 
 @property (nonatomic, retain, readonly) NSString *token;
