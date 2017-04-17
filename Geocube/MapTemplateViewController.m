@@ -56,6 +56,8 @@
         showBrand = MAPBRAND_APPLEMAPS;
     if ([configManager.mapBrandDefault isEqualToString:@"osm"] == YES)
         showBrand = MAPBRAND_OPENSTREETMAPS;
+    if ([configManager.mapBrandDefault isEqualToString:@"esri_worldtopo"] == YES)
+        showBrand = MAPBRAND_ESRI_WORLDTOPO;
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
@@ -68,6 +70,7 @@
     [lmi addItem:MVCmenuBrandGoogle label:@"Google Maps"];
     [lmi addItem:MVCmenuBrandApple label:@"Apple Maps"];
     [lmi addItem:MVCmenuBrandOSM label:@"OSM"];
+    [lmi addItem:MVCmenuBrandESRIWorldTopo label:@"ESRI Topo"];
 
     [lmi addItem:MVCmenuMapMap label:@"Map"];
     [lmi addItem:MVCmenuMapAerial label:@"Aerial"];
@@ -98,6 +101,10 @@
         case MAPBRAND_OPENSTREETMAPS:
             self.map = [[MapOSM alloc] init:self];
             [lmi disableItem:MVCmenuBrandOSM];
+            break;
+        case MAPBRAND_ESRI_WORLDTOPO:
+            self.map = [[MapESRIWorldTopo alloc] init:self];
+            [lmi disableItem:MVCmenuBrandESRIWorldTopo];
             break;
     }
 
@@ -596,6 +603,12 @@ NEEDS_OVERLOADING(refreshWaypointsData)
             self.map = [[MapOSM alloc] init:self];
             [lmi disableItem:MVCmenuBrandOSM];
             break;
+
+        case MAPBRAND_ESRI_WORLDTOPO:
+            NSLog(@"Switching to ESRI WorldTopo");
+            self.map = [[MapESRIWorldTopo alloc] init:self];
+            [lmi disableItem:MVCmenuBrandESRIWorldTopo];
+            break;
     }
     showBrand = brand;
 
@@ -909,6 +922,9 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
             return;
         case MVCmenuBrandOSM:
             [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
+            return;
+        case MVCmenuBrandESRIWorldTopo:
+            [self menuChangeMapbrand:MAPBRAND_ESRI_WORLDTOPO];
             return;
 
         case MVCmenuRecenter:

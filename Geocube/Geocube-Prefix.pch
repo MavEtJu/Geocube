@@ -268,7 +268,9 @@
 #import "MapApple.h"
 #import "MapGoogle.h"
 #import "MapAppleCache.h"
+#import "MapAppleTemplate.h"
 #import "MapOSM.h"
+#import "MapESRIWorldTopo.h"
 
 #import "ToolsRot13ViewController.h"
 #import "ToolsGPSViewController.h"

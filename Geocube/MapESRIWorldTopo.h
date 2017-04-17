@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapOSM ()
-
-@end
-
-@implementation MapOSM
-
-- (void)initMap
-{
-    self.creditsText = @"© OpenStreetMap";
-    self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = @"OSM";
-    [super initMap];
-    self.maxZoom = 18.62;
-}
+@interface MapESRIWorldTopo : MapAppleTemplate
 
 @end

@@ -61,6 +61,8 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
+    self.maxZoom = 20;
+
     self.mapvc.view = mapView;
 
     /* Add the scale ruler */
@@ -513,7 +515,7 @@
     return found;
 }
 
-- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+- (void)mapView:(MKMapView *)thisMapView regionWillChangeAnimated:(BOOL)animated
 {
     BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
 
@@ -524,12 +526,17 @@
     [mapScaleView update];
 }
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+- (void)mapView:(MKMapView *)thisMapView regionDidChangeAnimated:(BOOL)animated
 {
     BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
 
     if (mapChangedFromUserInteraction)
         [self.mapvc userInteractionFinished];
+
+    // Constrain zoom levels
+    NSLog(@"Zoomlevel:%lf", self.currentZoom);
+    if (self.currentZoom > self.maxZoom)
+        [self moveCameraTo:[self currentCenter] zoomLevel:self.maxZoom];
 }
 
 @end

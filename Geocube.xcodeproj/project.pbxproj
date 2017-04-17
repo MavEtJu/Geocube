@@ -370,6 +370,8 @@
 		E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E88144211C840C5400940820 /* IOSFileTransfers.m */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
+		E882583A1EA4D37200FCF9B2 /* MapESRIWorldTopo.m in Sources */ = {isa = PBXBuildFile; fileRef = E88258391EA4D37200FCF9B2 /* MapESRIWorldTopo.m */; };
+		E882583D1EA4DDBC00FCF9B2 /* MapAppleTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E882583C1EA4DDBC00FCF9B2 /* MapAppleTemplate.m */; };
 		E88974BC1B6EBF9500703E80 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BB1B6EBF9500703E80 /* ConfigManager.m */; };
 		E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88974BE1B6EC78900703E80 /* SettingsMainViewController.m */; };
 		E88FD8F31B4160A700D0CCE7 /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E88FD8F21B4160A700D0CCE7 /* dbGroup.m */; };
@@ -1133,6 +1135,10 @@
 		E88144211C840C5400940820 /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSFileTransfers.m; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
+		E88258381EA4D37200FCF9B2 /* MapESRIWorldTopo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapESRIWorldTopo.h; sourceTree = "<group>"; };
+		E88258391EA4D37200FCF9B2 /* MapESRIWorldTopo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapESRIWorldTopo.m; sourceTree = "<group>"; };
+		E882583B1EA4DDBC00FCF9B2 /* MapAppleTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAppleTemplate.h; sourceTree = "<group>"; };
+		E882583C1EA4DDBC00FCF9B2 /* MapAppleTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAppleTemplate.m; sourceTree = "<group>"; };
 		E88974BA1B6EBF9500703E80 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		E88974BB1B6EBF9500703E80 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		E88974BD1B6EC78900703E80 /* SettingsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainViewController.h; sourceTree = "<group>"; };
@@ -1821,8 +1827,12 @@
 				E84402B71BFEABD600EFFD13 /* MapApple.m */,
 				E84402B81BFEABD600EFFD13 /* MapGoogle.h */,
 				E84402B91BFEABD600EFFD13 /* MapGoogle.m */,
+				E882583B1EA4DDBC00FCF9B2 /* MapAppleTemplate.h */,
+				E882583C1EA4DDBC00FCF9B2 /* MapAppleTemplate.m */,
 				E84402BA1BFEABD600EFFD13 /* MapOSM.h */,
 				E84402BB1BFEABD600EFFD13 /* MapOSM.m */,
+				E88258381EA4D37200FCF9B2 /* MapESRIWorldTopo.h */,
+				E88258391EA4D37200FCF9B2 /* MapESRIWorldTopo.m */,
 				E8DD39511C40AFB500407705 /* MapAppleCache.h */,
 				E8DD39521C40AFB500407705 /* MapAppleCache.m */,
 			);
@@ -3877,8 +3887,10 @@
 				E82FBB271B4613C20009AB6D /* GCViewController.m in Sources */,
 				E81304041B5C4EB1006DF300 /* dbSymbol.m in Sources */,
 				E87E474D1B82D6B3005606A2 /* NotesFieldnotesViewController.m in Sources */,
+				E882583A1EA4D37200FCF9B2 /* MapESRIWorldTopo.m in Sources */,
 				E8371D4A1D06A79500C2F174 /* TrackablesMineViewController.m in Sources */,
 				E85760081B85DB5500F34483 /* GCTableViewCell.m in Sources */,
+				E882583D1EA4DDBC00FCF9B2 /* MapAppleTemplate.m in Sources */,
 				E8A3B0C11CDB241600170D61 /* ExportGPX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

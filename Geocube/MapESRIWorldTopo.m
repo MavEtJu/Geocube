@@ -19,19 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapOSM ()
+@interface MapESRIWorldTopo ()
 
 @end
 
-@implementation MapOSM
+@implementation MapESRIWorldTopo
 
 - (void)initMap
 {
     self.creditsText = @"© OpenStreetMap";
-    self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = @"OSM";
+    self.tileServerTemplate = @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png";
+    self.cachePrefix = @"ESRIWorldTopo";
     [super initMap];
-    self.maxZoom = 18.62;
+    self.maxZoom = 15.61;
 }
 
 @end

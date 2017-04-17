@@ -24,4 +24,6 @@
     MKMapView *mapView;
 }
 
+@property (nonatomic) double maxZoom;
+
 @end

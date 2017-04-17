@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuBrandGoogle,
     MVCmenuBrandApple,
     MVCmenuBrandOSM,
+    MVCmenuBrandESRIWorldTopo,
     MVCmenuMapMap,
     MVCmenuMapAerial,
     MVCmenuMapHybridMapAerial,
@@ -66,6 +67,7 @@ typedef NS_ENUM(NSInteger, GCMapBrand) {
     MAPBRAND_GOOGLEMAPS = 0,
     MAPBRAND_APPLEMAPS,
     MAPBRAND_OPENSTREETMAPS,
+    MAPBRAND_ESRI_WORLDTOPO,
 };
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;

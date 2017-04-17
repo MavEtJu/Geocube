@@ -19,19 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapOSM ()
+@interface MapAppleTemplate : MapApple
 
-@end
-
-@implementation MapOSM
-
-- (void)initMap
-{
-    self.creditsText = @"© OpenStreetMap";
-    self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = @"OSM";
-    [super initMap];
-    self.maxZoom = 18.62;
-}
+@property (nonatomic, retain) NSString *creditsText;
+@property (nonatomic, retain) NSString *tileServerTemplate;
+@property (nonatomic, retain) NSString *cachePrefix;
 
 @end

@@ -127,6 +127,8 @@
 @class MapAllWPViewController;
 @class MapApple;
 @class MapAppleCache;
+@class MapAppleTemplate;
+@class MapESRIWorldTopo;
 @class MapGoogle;
 @class MapOSM;
 @class MapOneWPViewController;
