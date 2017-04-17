@@ -119,7 +119,7 @@
 
 #import "GCArray.h"
 #import "GCButton.h"
-#import "GCCloseBUtton.h"
+#import "GCCloseButton.h"
 #import "GCImageView.h"
 #import "GCLabel.h"
 #import "GCSmallLabel.h"
