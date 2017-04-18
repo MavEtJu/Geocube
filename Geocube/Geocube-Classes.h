@@ -128,6 +128,7 @@
 @class MapApple;
 @class MapAppleCache;
 @class MapAppleTemplate;
+@class MapBrand;
 @class MapESRIWorldTopo;
 @class MapGoogle;
 @class MapOSM;

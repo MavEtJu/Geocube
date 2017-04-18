@@ -35,7 +35,7 @@
 - (void)mapViewDidLoad;
 - (void)recalculateRects;
 
-- (instancetype)init:(MapTemplateViewController *)mvc;
+- (instancetype)initMapObject:(MapTemplateViewController *)mvc;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
 

@@ -63,16 +63,15 @@ typedef NS_ENUM(NSInteger, GCMapType) {
     MAPTYPE_TERRAIN,
 };
 
-typedef NS_ENUM(NSInteger, GCMapBrand) {
-    MAPBRAND_GOOGLEMAPS = 0,
-    MAPBRAND_APPLEMAPS,
-    MAPBRAND_OPENSTREETMAPS,
-    MAPBRAND_ESRI_WORLDTOPO,
-};
+#define MAPBRAND_APPLEMAPS  @"Apple Maps"
+#define MAPBRAND_GOOGLEMAPS @"Google Maps"
+#define MAPBRAND_OSM        @"OSM"
+#define MAPBRAND_ESRI_WORLDTOPO @"ESRI WorldTopo"
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;
 @property (nonatomic) GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
+@property (nonatomic, retain) MapBrand *currentMapBrand;
 
 - (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating;
 - (void)userInteractionStart;

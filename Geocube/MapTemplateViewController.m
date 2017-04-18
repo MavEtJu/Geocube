@@ -28,8 +28,6 @@
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
 
-    GCMapBrand showBrand; /* MAPBRAND_GOOGLEMAPS | MAPBRAND_APPLEMAPS | MAPBRAND_OPENSTREETMAPS */
-
     CLLocationCoordinate2D meLocation;
     CLLocationDirection meBearing;
     BOOL useGPS;
@@ -39,6 +37,8 @@
 
     BOOL isVisible;
     BOOL needsRefresh;
+
+    NSMutableDictionary *mapBrands;
 }
 
 @end
@@ -49,28 +49,34 @@
 {
     self = [super init];
 
+    mapBrands = [NSMutableDictionary dictionaryWithCapacity:10];
+    [mapBrands setObject:[MapBrand mapBrandWithData:[MapGoogle class] menuItem:MVCmenuBrandGoogle defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS] forKey:MAPBRAND_GOOGLEMAPS];
+    [mapBrands setObject:[MapBrand mapBrandWithData:[MapApple class] menuItem:MVCmenuBrandApple defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS] forKey:MAPBRAND_APPLEMAPS];
+    [mapBrands setObject:[MapBrand mapBrandWithData:[MapOSM class] menuItem:MVCmenuBrandOSM defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM] forKey:MAPBRAND_OSM];
+    [mapBrands setObject:[MapBrand mapBrandWithData:[MapESRIWorldTopo class] menuItem:MVCmenuBrandESRIWorldTopo defaultString:@"esri_worldtopo" menuLabel:@"ESRI WorldTopo" key:MAPBRAND_ESRI_WORLDTOPO] forKey:MAPBRAND_ESRI_WORLDTOPO];
+
     // Default map brand
-    if ([configManager.mapBrandDefault isEqualToString:@"google"] == YES)
-        showBrand = MAPBRAND_GOOGLEMAPS;
-    if ([configManager.mapBrandDefault isEqualToString:@"apple"] == YES)
-        showBrand = MAPBRAND_APPLEMAPS;
-    if ([configManager.mapBrandDefault isEqualToString:@"osm"] == YES)
-        showBrand = MAPBRAND_OPENSTREETMAPS;
-    if ([configManager.mapBrandDefault isEqualToString:@"esri_worldtopo"] == YES)
-        showBrand = MAPBRAND_ESRI_WORLDTOPO;
+    self.currentMapBrand = nil;
+    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL *stop) {
+        if ([configManager.mapBrandDefault isEqualToString:mb.defaultString] == YES) {
+            self.currentMapBrand = mb;
+            *stop = YES;
+        }
+    }];
+    if (self.currentMapBrand == nil)
+        self.currentMapBrand = [mapBrands objectForKey:@"applemaps"];
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
     if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
         hasGMS = NO;
-    if (showBrand == MAPBRAND_GOOGLEMAPS && hasGMS == NO)
-        showBrand = MAPBRAND_APPLEMAPS;
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
+        self.currentMapBrand = [mapBrands objectForKey:@"applemaps"];
 
     lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
-    [lmi addItem:MVCmenuBrandGoogle label:@"Google Maps"];
-    [lmi addItem:MVCmenuBrandApple label:@"Apple Maps"];
-    [lmi addItem:MVCmenuBrandOSM label:@"OSM"];
-    [lmi addItem:MVCmenuBrandESRIWorldTopo label:@"ESRI Topo"];
+    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL * _Nonnull stop) {
+        [lmi addItem:mb.menuItem label:mb.menuLabel];
+    }];
 
     [lmi addItem:MVCmenuMapMap label:@"Map"];
     [lmi addItem:MVCmenuMapAerial label:@"Aerial"];
@@ -89,24 +95,8 @@
 
     [lmi addItem:MVCmenuRemoveHistory label:@"Remove History"];
 
-    switch (showBrand) {
-        case MAPBRAND_GOOGLEMAPS:
-            self.map = [[MapGoogle alloc] init:self];
-            [lmi disableItem:MVCmenuBrandGoogle];
-            break;
-        case MAPBRAND_APPLEMAPS:
-            self.map = [[MapApple alloc] init:self];
-            [lmi disableItem:MVCmenuBrandApple];
-            break;
-        case MAPBRAND_OPENSTREETMAPS:
-            self.map = [[MapOSM alloc] init:self];
-            [lmi disableItem:MVCmenuBrandOSM];
-            break;
-        case MAPBRAND_ESRI_WORLDTOPO:
-            self.map = [[MapESRIWorldTopo alloc] init:self];
-            [lmi disableItem:MVCmenuBrandESRIWorldTopo];
-            break;
-    }
+    self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
+    [lmi disableItem:self.currentMapBrand.menuItem];
 
     // Various map view options
     if ([self.map mapHasViewMap] == FALSE)
@@ -566,7 +556,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
 
 #pragma mark - Local menu related functions
 
-- (void)menuChangeMapbrand:(GCMapBrand)brand
+- (void)menuChangeMapbrand:(MapBrand *)mapBrand
 {
     CLLocationCoordinate2D currentCoords = [self.map currentCenter];
     double currentZoom = [self.map currentZoom];
@@ -582,36 +572,13 @@ NEEDS_OVERLOADING(refreshWaypointsData)
         [b removeFromSuperview];
     }
 
-    [lmi enableItem:MVCmenuBrandGoogle];
-    [lmi enableItem:MVCmenuBrandApple];
-    [lmi enableItem:MVCmenuBrandOSM];
-    [lmi enableItem:MVCmenuBrandESRIWorldTopo];
-    switch (brand) {
-        case MAPBRAND_GOOGLEMAPS:
-            NSLog(@"Switching to Google Maps");
-            self.map = [[MapGoogle alloc] init:self];
-            [lmi disableItem:MVCmenuBrandGoogle];
-            break;
-
-        case MAPBRAND_APPLEMAPS:
-            NSLog(@"Switching to Apple Maps");
-            self.map = [[MapApple alloc] init:self];
-            [lmi disableItem:MVCmenuBrandApple];
-            break;
-
-        case MAPBRAND_OPENSTREETMAPS:
-            NSLog(@"Switching to OpenStreet Maps");
-            self.map = [[MapOSM alloc] init:self];
-            [lmi disableItem:MVCmenuBrandOSM];
-            break;
-
-        case MAPBRAND_ESRI_WORLDTOPO:
-            NSLog(@"Switching to ESRI WorldTopo");
-            self.map = [[MapESRIWorldTopo alloc] init:self];
-            [lmi disableItem:MVCmenuBrandESRIWorldTopo];
-            break;
-    }
-    showBrand = brand;
+    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL * _Nonnull stop) {
+        [lmi enableItem:mb.menuItem];
+    }];
+    NSLog(@"Switching to %@", mapBrand.key);
+    self.map = [[mapBrand.mapObject alloc] initMapObject:self];
+    [lmi disableItem:mapBrand.menuItem];
+    self.currentMapBrand = mapBrand;
 
     // Various map view options
     if ([self.map mapHasViewMap] == FALSE)
@@ -915,19 +882,6 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
             [self menuLoadWaypoints];
             return;
 
-        case MVCmenuBrandGoogle:
-            [self menuChangeMapbrand:MAPBRAND_GOOGLEMAPS];
-            return;
-        case MVCmenuBrandApple:
-            [self menuChangeMapbrand:MAPBRAND_APPLEMAPS];
-            return;
-        case MVCmenuBrandOSM:
-            [self menuChangeMapbrand:MAPBRAND_OPENSTREETMAPS];
-            return;
-        case MVCmenuBrandESRIWorldTopo:
-            [self menuChangeMapbrand:MAPBRAND_ESRI_WORLDTOPO];
-            return;
-
         case MVCmenuRecenter:
             [self menuRecenter];
             return;
@@ -950,6 +904,15 @@ NEEDS_OVERLOADING(menuLoadWaypoints)
 
         case MVCmenuMax:
             break;
+
+        default:
+            [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand * _Nonnull mb, BOOL * _Nonnull stop) {
+                if (item == mb.menuItem) {
+                    [self menuChangeMapbrand:mb];
+                    *stop = YES;
+                }
+            }];
+            return;
     }
 
     [super performLocalMenuAction:index];

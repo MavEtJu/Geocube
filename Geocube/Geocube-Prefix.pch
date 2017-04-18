@@ -262,6 +262,7 @@
 #import "GCLocationCoordinate2D.h"
 #import "MapWaypointInfoView.h"
 #import "MapTemplateViewController.h"
+#import "MapBrand.h"
 #import "MapAllWPViewController.h"
 #import "MapOneWPViewController.h"
 #import "MapTemplate.h"
