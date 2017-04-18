@@ -95,7 +95,7 @@
 {
     if (self.presentingViewController) {
         
-        [self dismissViewControllerAnimated:!finished completion:NO];
+        [self dismissViewControllerAnimated:!finished completion:nil];
         
     } else if (self.view.superview) {
         
