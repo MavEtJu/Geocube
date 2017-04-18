@@ -585,6 +585,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
     [lmi enableItem:MVCmenuBrandGoogle];
     [lmi enableItem:MVCmenuBrandApple];
     [lmi enableItem:MVCmenuBrandOSM];
+    [lmi enableItem:MVCmenuBrandESRIWorldTopo];
     switch (brand) {
         case MAPBRAND_GOOGLEMAPS:
             NSLog(@"Switching to Google Maps");
