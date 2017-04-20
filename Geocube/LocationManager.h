@@ -43,7 +43,7 @@
 
 - (void)startDelegation:(id<LocationManagerDelegate>)delegate isNavigating:(BOOL)isNavigating;
 - (void)stopDelegation:(id<LocationManagerDelegate>)delegate;
-- (void)updateDataDelegate;
+- (void)updateDataDelegates;
 - (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords;
 - (void)clearCoordsHistorical;
 

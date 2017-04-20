@@ -69,7 +69,7 @@
     return self;
 }
 
-- (void)updateDataDelegate
+- (void)updateDataDelegates
 {
     // Disable updates when not needed.
     if (self.useGPS == NO)
@@ -167,7 +167,7 @@
     }
 
     // Send out the location and direction changes
-    [self updateDataDelegate];
+    [self updateDataDelegates];
 
     // Update the historical track.
     // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
@@ -204,18 +204,18 @@
 
     // NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
 
-    [self updateDataDelegate];
+    [self updateDataDelegates];
 }
 
 - (void)useGPS:(BOOL)useGPS coordinates:(CLLocationCoordinate2D)newcoords
 {
     if (useGPS == YES) {
         self.useGPS = YES;
-        [self updateDataDelegate];
+        [self updateDataDelegates];
     } else {
         self.coords = newcoords;
         // First tell the others, then disable.
-        [self updateDataDelegate];
+        [self updateDataDelegates];
         self.useGPS = NO;
     }
 }
