@@ -29,6 +29,8 @@
     MKPolylineRenderer *viewLineMeToWaypoint;
     MKPolyline *lineHistory;
     MKPolylineRenderer *viewLineHistory;
+
+    BOOL modifyingMap;
 }
 
 @end
@@ -61,7 +63,7 @@
     mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
-    self.maxZoom = 20;
+    self.minimumAltitude = 0;
 
     self.mapvc.view = mapView;
 
@@ -368,6 +370,11 @@
 - (void)setZoomLevel:(NSUInteger)zoomLevel
 {
     [self moveCameraTo:mapView.centerCoordinate zoomLevel:zoomLevel];
+    if (mapView.camera.altitude < self.minimumAltitude && modifyingMap == NO) {
+        modifyingMap = YES;
+        mapView.camera.altitude = self.minimumAltitude;
+        modifyingMap = NO;
+    }
 }
 
 - (double)currentZoom
@@ -379,26 +386,28 @@
 {
     MKCoordinateSpan span = MKCoordinateSpanMake(0, 360 / pow(2, zoomLevel) * mapView.frame.size.width / 256);
     [mapView setRegion:MKCoordinateRegionMake(coord, span) animated:NO];
+
+    if (mapView.camera.altitude < self.minimumAltitude && modifyingMap == NO) {
+        modifyingMap = YES;
+        mapView.camera.altitude = self.minimumAltitude;
+        modifyingMap = NO;
+    }
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
-    CLLocationCoordinate2D d1, d2;
-    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2];
-
     NSMutableArray<MKPointAnnotation *> *coords = [NSMutableArray arrayWithCapacity:2];
     MKPointAnnotation *annotation;
 
     annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:d1];
+    [annotation setCoordinate:c1];
     [coords addObject:annotation];
 
     annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:d2];
+    [annotation setCoordinate:c2];
     [coords addObject:annotation];
 
     [mapView showAnnotations:coords animated:YES];
-
     [mapView removeAnnotations:coords];
 }
 
@@ -534,9 +543,12 @@
         [self.mapvc userInteractionFinished];
 
     // Constrain zoom levels
-    NSLog(@"Zoomlevel:%lf", self.currentZoom);
-    if (self.currentZoom > self.maxZoom)
-        [self moveCameraTo:[self currentCenter] zoomLevel:self.maxZoom];
+    NSLog(@"camera.altitude:%lf", mapView.camera.altitude);
+    if (self.minimumAltitude > mapView.camera.altitude && modifyingMap == NO) {
+        modifyingMap = YES;
+        mapView.camera.altitude = self.minimumAltitude;
+        modifyingMap = NO;
+    }
 }
 
 @end

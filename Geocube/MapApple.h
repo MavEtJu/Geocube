@@ -24,6 +24,6 @@
     MKMapView *mapView;
 }
 
-@property (nonatomic) double maxZoom;
+@property (nonatomic) double minimumAltitude;
 
 @end

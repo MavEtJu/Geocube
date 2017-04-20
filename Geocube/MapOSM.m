@@ -31,7 +31,7 @@
     self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
     self.cachePrefix = @"OSM";
     [super initMap];
-    self.maxZoom = 18.62;
+    self.minimumAltitude = 276;
 }
 
 @end
