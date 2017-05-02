@@ -64,7 +64,6 @@
         stat == kCLAuthorizationStatusRestricted ||
         stat == kCLAuthorizationStatusDenied)
         [_LM requestWhenInUseAuthorization];
-//        [_LM requestAlwaysAuthorization];
 
     return self;
 }
