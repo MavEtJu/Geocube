@@ -65,8 +65,10 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 
 #define MAPBRAND_APPLEMAPS  @"Apple Maps"
 #define MAPBRAND_GOOGLEMAPS @"Google Maps"
-#define MAPBRAND_OSM        @"OSM"
+#define MAPBRAND_OSM        @"OpenStreetMap"
 #define MAPBRAND_ESRI_WORLDTOPO @"ESRI WorldTopo"
+
+
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;
@@ -78,5 +80,6 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 - (void)userInteractionFinished;
 - (void)refreshWaypointsData;
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords;
++ (NSDictionary *)initMapBrands;
 
 @end

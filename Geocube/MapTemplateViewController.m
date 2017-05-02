@@ -38,22 +38,29 @@
     BOOL isVisible;
     BOOL needsRefresh;
 
-    NSMutableDictionary *mapBrands;
+    NSDictionary *mapBrands;
 }
 
 @end
 
 @implementation MapTemplateViewController
 
-- (instancetype)init
++ (NSDictionary *)initMapBrands
 {
-    self = [super init];
-
-    mapBrands = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSMutableDictionary *mapBrands = [NSMutableDictionary dictionaryWithCapacity:10];
     [mapBrands setObject:[MapBrand mapBrandWithData:[MapGoogle class] menuItem:MVCmenuBrandGoogle defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS] forKey:MAPBRAND_GOOGLEMAPS];
     [mapBrands setObject:[MapBrand mapBrandWithData:[MapApple class] menuItem:MVCmenuBrandApple defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS] forKey:MAPBRAND_APPLEMAPS];
     [mapBrands setObject:[MapBrand mapBrandWithData:[MapOSM class] menuItem:MVCmenuBrandOSM defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM] forKey:MAPBRAND_OSM];
     [mapBrands setObject:[MapBrand mapBrandWithData:[MapESRIWorldTopo class] menuItem:MVCmenuBrandESRIWorldTopo defaultString:@"esri_worldtopo" menuLabel:@"ESRI WorldTopo" key:MAPBRAND_ESRI_WORLDTOPO] forKey:MAPBRAND_ESRI_WORLDTOPO];
+
+    return mapBrands;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+
+    mapBrands = [MapTemplateViewController initMapBrands];
 
     // Default map brand
     self.currentMapBrand = nil;

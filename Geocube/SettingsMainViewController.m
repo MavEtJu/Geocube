@@ -113,10 +113,15 @@ enum {
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
 
-    NSDictionary *mapBrands = [NSDictionary dictionaryWithObjects:@[@"Google Maps", @"Apple Maps", @"OpenStreetMaps"] forKeys:@[@"google", @"apple", @"osm"]];
-    mapBrandsCodes = [mapBrands allKeys];
-    NSMutableArray<NSString *> *values = [NSMutableArray arrayWithArray:[mapBrands objectsForKeys:mapBrandsCodes notFoundMarker:@""]];
-    mapBrandsNames = values;
+    NSDictionary *mapBrands = [MapTemplateViewController initMapBrands];
+    NSMutableArray *codes = [NSMutableArray arrayWithCapacity:[mapBrands count]];
+    NSMutableArray *names = [NSMutableArray arrayWithCapacity:[mapBrands count]];
+    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mp, BOOL *stop) {
+        [codes addObject:mp.defaultString];
+        [names addObject:mp.key];
+    }];
+    mapBrandsCodes = codes;
+    mapBrandsNames = names;
 
     orientationStrings = @[
                            @"Portrait",
