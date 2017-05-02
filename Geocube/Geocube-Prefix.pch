@@ -110,6 +110,7 @@
 #import "AudioFeedback.h"
 #import "WaypointSorter.h"
 
+#import "GCCoordsHistorical.h"
 #import "LocationManager.h"
 #import "GCTableViewController.h"
 #import "GCURLRequest.h"

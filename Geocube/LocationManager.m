@@ -174,11 +174,12 @@
     float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
     td = ch.when - lastHistory.timeIntervalSince1970;
     if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
+        BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
         [self updateHistoryDelegate];
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (configManager.currentTrack != 0) {
-            dbTrackElement *te = [dbTrackElement createElement:self.coords height:self.altitude restart:(td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax)];
+            dbTrackElement *te = [dbTrackElement createElement:self.coords height:self.altitude restart:jump];
             [historyData addObject:te];
             if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
                 [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -219,13 +220,5 @@
         self.useGPS = NO;
     }
 }
-
-@end
-
-@interface GCCoordsHistorical ()
-
-@end
-
-@implementation GCCoordsHistorical
 
 @end

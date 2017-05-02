@@ -321,6 +321,7 @@
 		E84E239A1DB9E8440079496D /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E23991DB9E8440079496D /* ProtocolGCA2.m */; };
 		E84E239D1DBEA9FA0079496D /* ImportGCA2JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */; };
 		E84E23A01DBF03A00079496D /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E239F1DBF03A00079496D /* GCString.m */; };
+		E85279EF1EB88EBC00EFDA2A /* GCCoordsHistorical.m in Sources */ = {isa = PBXBuildFile; fileRef = E85279EE1EB88EBC00EFDA2A /* GCCoordsHistorical.m */; };
 		E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85707931CA1EE0F00467CE0 /* ImportTemplate.m */; };
 		E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FF81B8466D900F34483 /* YIPopupTextView.m */; };
 		E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8575FFA1B8466D900F34483 /* YISSTextView.m */; };
@@ -1041,6 +1042,8 @@
 		E84E239C1DBEA9FA0079496D /* ImportGCA2JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGCA2JSON.m; sourceTree = "<group>"; };
 		E84E239E1DBF03A00079496D /* GCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCString.h; sourceTree = "<group>"; };
 		E84E239F1DBF03A00079496D /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCString.m; sourceTree = "<group>"; };
+		E85279ED1EB88EBC00EFDA2A /* GCCoordsHistorical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCoordsHistorical.h; sourceTree = "<group>"; };
+		E85279EE1EB88EBC00EFDA2A /* GCCoordsHistorical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCoordsHistorical.m; sourceTree = "<group>"; };
 		E85707921CA1EE0F00467CE0 /* ImportTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportTemplate.h; sourceTree = "<group>"; };
 		E85707931CA1EE0F00467CE0 /* ImportTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportTemplate.m; sourceTree = "<group>"; };
 		E8575FF71B8466D900F34483 /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
@@ -2048,6 +2051,8 @@
 				E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */,
 				E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */,
 				E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */,
+				E85279ED1EB88EBC00EFDA2A /* GCCoordsHistorical.h */,
+				E85279EE1EB88EBC00EFDA2A /* GCCoordsHistorical.m */,
 				E8611A8F1B8899A700B9D7C3 /* GCWaypointAnnotation.h */,
 				E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */,
 				E8FEDEEA1DAAE5E1007C756B /* GCCircle.h */,
@@ -3827,6 +3832,7 @@
 				E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
 				E8FEDEEF1DAC2DD2007C756B /* GCGMSCircle.m in Sources */,
+				E85279EF1EB88EBC00EFDA2A /* GCCoordsHistorical.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,

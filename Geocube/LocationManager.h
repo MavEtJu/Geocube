@@ -48,10 +48,3 @@
 - (void)clearCoordsHistorical;
 
 @end
-
-@interface GCCoordsHistorical : NSObject
-
-@property (nonatomic) NSTimeInterval when;
-@property (nonatomic) CLLocationCoordinate2D coord;
-
-@end
