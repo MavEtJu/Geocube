@@ -355,16 +355,15 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
 {
     CLLocationCoordinate2D t = coord;
+    mapView.centerCoordinate = coord;
 
     if (zoom == YES) {
         NSInteger span = [self calculateSpan];
 
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(t, span, span);
-        MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-        [mapView setRegion:adjustedRegion animated:NO];
+        mapView.camera.altitude = [MapApple altitudeForSpan:span];
     }
 
-    [mapView setCenterCoordinate:t animated:YES];
+    mapView.camera.centerCoordinate = t;
 }
 
 - (void)setZoomLevel:(NSUInteger)zoomLevel
@@ -382,10 +381,34 @@
     return log2(360 * ((mapView.frame.size.width / 256) / mapView.region.span.longitudeDelta));
 }
 
++ (double)altitudeForSpan:(double)span
+{
+    double adjacent = span / 2;
+    double height = adjacent / tan([Coordinates degrees2rad:15]);
+    return height;
+}
+
++ (double)determineAltitudeForRectangle:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 viewPort:(CGRect)viewPort
+{
+    // Determine the borders
+    CLLocationCoordinate2D UL = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ?  c1.longitude : c2.longitude);
+    CLLocationCoordinate2D UR = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude > c2.longitude ? c1.longitude : c2.longitude);
+    CLLocationCoordinate2D LL = CLLocationCoordinate2DMake(c1.latitude < c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ? c1.longitude : c2.longitude);
+
+    CLLocationDistance dLon = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(UR));
+    CLLocationDistance dLat = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(LL));
+
+    float ratio = viewPort.size.height / viewPort.size.width;
+
+    if (dLat > dLon) // More above each other than besides each other
+        return [self altitudeForSpan:dLat];
+    // More besides each other than above each other
+    return [self altitudeForSpan:dLon * ratio];
+}
+
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
-    MKCoordinateSpan span = MKCoordinateSpanMake(0, 360 / pow(2, zoomLevel) * mapView.frame.size.width / 256);
-    [mapView setRegion:MKCoordinateRegionMake(coord, span) animated:NO];
+    mapView.camera.centerCoordinate = coord;
 
     if (mapView.camera.altitude < self.minimumAltitude && modifyingMap == NO) {
         modifyingMap = YES;
@@ -396,19 +419,18 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
-    NSMutableArray<MKPointAnnotation *> *coords = [NSMutableArray arrayWithCapacity:2];
-    MKPointAnnotation *annotation;
+    CLLocationCoordinate2D c = CLLocationCoordinate2DMake((c1.latitude + c2.latitude) / 2, (c1.longitude + c2.longitude) / 2);
+    mapView.camera.centerCoordinate = c;
 
-    annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:c1];
-    [coords addObject:annotation];
+    CLLocationCoordinate2D d1, d2;
+    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:20];
+    mapView.camera.altitude = [MapApple determineAltitudeForRectangle:d1 c2:d2 viewPort:self.mapvc.view.frame];
 
-    annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:c2];
-    [coords addObject:annotation];
-
-    [mapView showAnnotations:coords animated:YES];
-    [mapView removeAnnotations:coords];
+    if (mapView.camera.altitude < self.minimumAltitude && modifyingMap == NO) {
+        modifyingMap = YES;
+        mapView.camera.altitude = self.minimumAltitude;
+        modifyingMap = NO;
+    }
 }
 
 - (void)setMapType:(GCMapType)mapType
