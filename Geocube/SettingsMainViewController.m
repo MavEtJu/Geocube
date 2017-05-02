@@ -114,8 +114,8 @@ enum {
     [self calculateMapcache];
 
     NSDictionary *mapBrands = [MapTemplateViewController initMapBrands];
-    NSMutableArray *codes = [NSMutableArray arrayWithCapacity:[mapBrands count]];
-    NSMutableArray *names = [NSMutableArray arrayWithCapacity:[mapBrands count]];
+    NSMutableArray<NSString *> *codes = [NSMutableArray arrayWithCapacity:[mapBrands count]];
+    NSMutableArray<NSString *> *names = [NSMutableArray arrayWithCapacity:[mapBrands count]];
     [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mp, BOOL *stop) {
         [codes addObject:mp.defaultString];
         [names addObject:mp.key];
