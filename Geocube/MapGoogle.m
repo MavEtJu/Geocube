@@ -301,7 +301,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
     CLLocationCoordinate2D d1, d2;
-    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2];
+    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:10];
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
     [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
