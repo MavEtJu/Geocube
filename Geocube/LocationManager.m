@@ -52,6 +52,7 @@
     _LM.delegate = self;
 
     self.coords = _LM.location.coordinate;
+    NSLog(@"LocationManager: Starting at %@", [Coordinates NiceCoordinates:self.coords]);
 
     self.delegates = [NSMutableArray arrayWithCapacity:5];
     self.useGPS = YES;
