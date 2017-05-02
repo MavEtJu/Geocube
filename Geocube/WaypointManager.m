@@ -702,7 +702,7 @@
         NSInteger filterDistanceM = [[self configGet:@"distance_distanceM"] integerValue] + 1000 * [[self configGet:@"distance_distanceKm"] integerValue];
         NSInteger realDistanceM = [Coordinates coordinates2distance:lastCoordinates to:LM.coords];
         if (realDistanceM > filterDistanceM / 4) {
-            NSLog(@"Updating filter: %ld - %ld", (long)realDistanceM, (long)filterDistanceM);
+            NSLog(@"WaypointManager:updateLocationManagerLocation: Updating filter: %ld meters > %ld meters", (long)realDistanceM, (long)filterDistanceM);
             [self needsRefreshAll];
             lastCoordinates = LM.coords;
         }
