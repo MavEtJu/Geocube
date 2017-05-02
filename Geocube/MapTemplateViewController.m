@@ -427,7 +427,12 @@
             [self.map moveCameraTo:meLocation zoom:NO];
             break;
         case SHOW_SHOWBOTH:
-            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            if (waypointManager.currentWaypoint != nil)
+                [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            else {
+                [self menuShowWhom:SHOW_FOLLOWME];
+                [self.map moveCameraTo:meLocation zoom:NO];
+            }
             break;
         default:
             break;
