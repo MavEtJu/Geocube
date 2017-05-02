@@ -390,7 +390,7 @@
 }
 
 /// Return a boundary which is 10% bigger than the entered
-+ (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2
++ (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2 boundaryPercentage:(NSInteger)boundaryPercentage
 {
     CLLocationDegrees left, right, top, bottom;
 
@@ -399,10 +399,10 @@
     top = MAX(c1.longitude, c2.longitude);
     bottom = MIN(c1.longitude, c2.longitude);
 
-    d1->latitude = left - (right - left) * 0.1;
-    d2->latitude = right + (right - left) * 0.1;
-    d1->longitude = top + (top - bottom) * 0.1;
-    d2->longitude = bottom - (top - bottom) * 0.1;
+    d1->latitude = left - (right - left) * boundaryPercentage / 100.0;
+    d2->latitude = right + (right - left) * boundaryPercentage / 100.0;
+    d1->longitude = top + (top - bottom) * boundaryPercentage / 100.0;
+    d2->longitude = bottom - (top - bottom) * boundaryPercentage / 100.0;
 }
 
 /// Search for something which looks like a coordinate string
