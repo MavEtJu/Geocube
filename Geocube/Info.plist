@@ -62,7 +62,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>13</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.sports</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -79,10 +79,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>After all, you are looking for the location of that waypoint!</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app can use the camera for adding images to waypoints</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Use this if you want also keep track of where you are.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>After all, you are looking for the location of that waypoint!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app can use the photo library to add images to waypoints</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIFileSharingEnabled</key>
@@ -149,9 +153,5 @@
 			</dict>
 		</dict>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>This app can use the camera for adding images to waypoints</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app can use the photo library to add images to waypoints</string>
 </dict>
 </plist>
