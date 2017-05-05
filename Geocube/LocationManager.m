@@ -82,13 +82,13 @@
     }];
 }
 
-- (void)updateHistoryDelegate
+- (void)updateHistoryDelegate:(GCCoordsHistorical *)ch
 {
     if ([self.delegates count] == 0)
         return;
     [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
-        if ([delegate respondsToSelector:@selector(updateLocationManagerHistory)])
-            [delegate updateLocationManagerHistory];
+        if ([delegate respondsToSelector:@selector(updateLocationManagerHistory:)])
+            [delegate updateLocationManagerHistory:ch];
     }];
 }
 
@@ -106,8 +106,8 @@
     if (_delegate != nil) {
         [self.delegates addObject:_delegate];
         [_delegate updateLocationManagerLocation];
-        if ([_delegate respondsToSelector:@selector(updateLocationManagerHistory)])
-            [_delegate updateLocationManagerHistory];
+        if ([_delegate respondsToSelector:@selector(updateLocationManagerHistory:)])
+            [_delegate updateLocationManagerHistory:nil];
     }
 }
 
@@ -154,6 +154,7 @@
     GCCoordsHistorical *ch = [[GCCoordsHistorical alloc] init];
     ch.when = td;
     ch.coord = newLocation.coordinate;
+    ch.restart = NO;
 
     [self.coordsHistorical addObject:ch];
 
@@ -175,7 +176,10 @@
     td = ch.when - lastHistory.timeIntervalSince1970;
     if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
         BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
-        [self updateHistoryDelegate];
+        if (jump)
+            ch.restart = YES;
+        [self updateHistoryDelegate:ch];
+
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (configManager.currentTrack != 0) {

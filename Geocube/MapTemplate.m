@@ -50,7 +50,8 @@ NEEDS_OVERLOADING(removeLineMeToWaypoint)
 NEEDS_OVERLOADING(setMapType:(GCMapType)mapType)
 NEEDS_OVERLOADING(updateMyPosition:(CLLocationCoordinate2D)c)
 NEEDS_OVERLOADING(removeHistory)
-NEEDS_OVERLOADING(addHistory)
+NEEDS_OVERLOADING(showHistory)
+NEEDS_OVERLOADING(addHistory:(GCCoordsHistorical *)ch)
 - (CLLocationCoordinate2D)currentCenter { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
 - (double)currentZoom { NEEDS_OVERLOADING_ASSERT; return 0; }
 - (GCMapType)mapType { NEEDS_OVERLOADING_ASSERT; return 0; }

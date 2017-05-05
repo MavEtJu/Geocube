@@ -25,7 +25,7 @@
 
 @optional
 
-- (void)updateLocationManagerHistory;
+- (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch;
 
 @end
 

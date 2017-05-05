@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define COORDHISTORYSIZE    100
+
 @interface MapApple ()
 {
     GCWaypointAnnotation *me;
@@ -27,8 +29,10 @@
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineRenderer *viewLineMeToWaypoint;
-    MKPolyline *lineHistory;
-    MKPolylineRenderer *viewLineHistory;
+    NSMutableArray <MKPolyline *> *linesHistory;
+    NSMutableArray <MKPolylineRenderer *> *viewLinesHistory;
+    CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
+    NSInteger historyCoordsIdx;
 
     BOOL modifyingMap;
 }
@@ -78,6 +82,10 @@
     [mapView addGestureRecognizer:lpgr];
 
     [self initWaypointInfo];
+    linesHistory = [NSMutableArray arrayWithCapacity:100];
+    viewLinesHistory = [NSMutableArray arrayWithCapacity:100];
+    historyCoordsIdx = 0;
+    [self showHistory];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -327,16 +335,15 @@
         return viewLineMeToWaypoint;
     }
 
-    if (overlay == lineHistory) {
-        if (viewLineHistory == nil) {
-            viewLineHistory = [[MKPolylineRenderer alloc] initWithPolyline:lineHistory];
-            viewLineHistory.fillColor = configManager.mapTrackColour;
-            viewLineHistory.strokeColor = configManager.mapTrackColour;
-            viewLineHistory.lineWidth = 5;
+    __block MKPolylineRenderer *vlHistory = nil;
+    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (overlay == lh) {
+            vlHistory = [viewLinesHistory objectAtIndex:idx];
+            *stop = YES;
         }
-
-        return viewLineHistory;
-    }
+    }];
+    if (vlHistory != nil)
+        return vlHistory;
 
     __block MKCircleRenderer *circleRenderer = nil;
     [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
@@ -348,8 +355,10 @@
             *stop = YES;
         }
     }];
+    if (circleRenderer != nil)
+        return circleRenderer;
 
-    return circleRenderer;
+    return nil;
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
@@ -485,24 +494,66 @@
     lineMeToWaypoint = nil;
 }
 
-- (void)addHistory
+- (void)showHistory
 {
-    CLLocationCoordinate2D coordinateArray[[LM.coordsHistorical count]];
 
-    NSInteger idx = 0;
-    for (GCCoordsHistorical *mho in LM.coordsHistorical) {
-        coordinateArray[idx++] = mho.coord;
+#define ADDPATH(__coords__, __count__) { \
+        MKPolyline *lh = [MKPolyline polylineWithCoordinates:__coords__ count:__count__]; \
+        \
+        MKPolylineRenderer *vlHistory = [[MKPolylineRenderer alloc] initWithPolyline:lh]; \
+        vlHistory.fillColor = configManager.mapTrackColour; \
+        vlHistory.strokeColor = configManager.mapTrackColour; \
+        vlHistory.lineWidth = 5; \
+        \
+        [viewLinesHistory addObject:vlHistory]; \
+        [linesHistory addObject:lh]; \
+        [mapView addOverlay:lh]; \
     }
 
-    lineHistory = [MKPolyline polylineWithCoordinates:coordinateArray count:[LM.coordsHistorical count]];
-    [mapView addOverlay:lineHistory];
+    __block CLLocationCoordinate2D *coordinateArray = calloc([LM.coordsHistorical count], sizeof(CLLocationCoordinate2D));
+    __block NSInteger counter = 0;
+    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (mho.restart == NO) {
+            coordinateArray[counter++] = mho.coord;
+            return;
+        }
+
+        ADDPATH(coordinateArray, counter)
+        counter = 0;
+    }];
+    if (counter != 0)
+        ADDPATH(coordinateArray, counter)
+        
+    free(coordinateArray);
+
+    historyCoords[0] = LM.coords;
+    historyCoordsIdx = 1;
+    ADDPATH(historyCoords, historyCoordsIdx)
+}
+
+- (void)addHistory:(GCCoordsHistorical *)ch
+{
+    if (ch.restart == NO && historyCoordsIdx < COORDHISTORYSIZE - 1) {
+        historyCoords[historyCoordsIdx++] = ch.coord;
+        [mapView removeOverlay:[linesHistory lastObject]];
+        [linesHistory removeLastObject];
+        [viewLinesHistory removeLastObject];
+    } else {
+        historyCoordsIdx = 0;
+        historyCoords[historyCoordsIdx++] = ch.coord;
+    }
+    ADDPATH(historyCoords, historyCoordsIdx)
 }
 
 - (void)removeHistory
 {
-    [mapView removeOverlay:lineHistory];
-    viewLineHistory = nil;
-    lineHistory = nil;
+    NSLog(@"removing %ld history", (long)[linesHistory count]);
+    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mapView removeOverlay:lh];
+    }];
+    [viewLinesHistory removeAllObjects];
+    [linesHistory removeAllObjects];
+    historyCoordsIdx = 0;
 }
 
 - (CLLocationCoordinate2D)currentCenter

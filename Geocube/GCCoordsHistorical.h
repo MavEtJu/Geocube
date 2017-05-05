@@ -23,5 +23,6 @@
 
 @property (nonatomic) NSTimeInterval when;
 @property (nonatomic) CLLocationCoordinate2D coord;
+@property (nonatomic) BOOL restart;
 
 @end

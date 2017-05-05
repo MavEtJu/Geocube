@@ -73,7 +73,8 @@
 - (void)removeLineMeToWaypoint;
 
 - (void)removeHistory;
-- (void)addHistory;
+- (void)showHistory;
+- (void)addHistory:(GCCoordsHistorical *)ch;
 
 - (void)hideWaypointInfo;
 - (void)showWaypointInfo;

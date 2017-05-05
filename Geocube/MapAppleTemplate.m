@@ -94,9 +94,8 @@
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
 - (MKOverlayRenderer *)mapView:(MKMapView *)mv rendererForOverlay:(id)ol
 {
-    if (ol == overlay) {
+    if (ol == overlay)
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
-    }
     return [super mapView:mv rendererForOverlay:ol];
 }
 

@@ -29,7 +29,8 @@
     NSMutableArray<GCGMSCircle *> *circles;
 
     GMSPolyline *lineMeToWaypoint;
-    GMSPolyline *lineHistory;
+    NSMutableArray <GMSPolyline *> *linesHistory;
+    GMSMutablePath *lastPathHistory;
 
     dbWaypoint *wpSelected;
 }
@@ -75,6 +76,10 @@
 
     wpSelected = nil;
     [self initWaypointInfo];
+
+    linesHistory = [NSMutableArray arrayWithCapacity:100];
+    lastPathHistory = [GMSMutablePath path];
+    [self showHistory];
 }
 
 - (void)removeMap
@@ -326,23 +331,65 @@
     lineMeToWaypoint.map = nil;
 }
 
-- (void)addHistory
+- (void)showHistory
 {
-    GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
-
     [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
-        [pathMeToWaypoint addCoordinate:mho.coord];
+        if (mho.restart == NO) {
+            [lastPathHistory addCoordinate:mho.coord];
+            return;
+        }
+
+#define ADDPATH(__path__, __line__) \
+        GMSPolyline *__line__ = [GMSPolyline polylineWithPath:__path__]; \
+        __line__.strokeWidth = 2.f; \
+        __line__.strokeColor = configManager.mapTrackColour; \
+        __line__.map = mapView;
+
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+
+        [lastPathHistory removeAllCoordinates];
     }];
 
-    lineHistory = [GMSPolyline polylineWithPath:pathMeToWaypoint];
-    lineHistory.strokeWidth = 2.f;
-    lineHistory.strokeColor = configManager.mapTrackColour;
-    lineHistory.map = mapView;
+    if ([lastPathHistory count] != 0) {
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+    }
+}
+
+- (void)addHistory:(GCCoordsHistorical *)ch
+{
+    /*
+     * If it is not a restart, then remove the last linesHistory, add a new entry to the path and add the path to the linesHistory.
+     * If it is a restart, then just clear the path and add it to the linesHistory.
+     */
+    if (ch.restart == YES) {
+        [lastPathHistory removeAllCoordinates];
+    } else {
+        [linesHistory lastObject].map = nil;
+        [linesHistory removeLastObject];
+    }
+
+    [lastPathHistory addCoordinate:ch.coord];
+
+    ADDPATH(lastPathHistory, lineHistory)
+    [linesHistory addObject:lineHistory];
+
+    if ([lastPathHistory count] == 200) {
+        lastPathHistory = [GMSMutablePath path];
+        [lastPathHistory addCoordinate:ch.coord];
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+    }
 }
 
 - (void)removeHistory
 {
-    lineHistory.map = nil;
+    for (GMSPolyline *lh in linesHistory) {
+        lh.map = nil;
+    };
+    [linesHistory removeAllObjects];
+    [lastPathHistory removeAllCoordinates];
 }
 
 - (CLLocationCoordinate2D)currentCenter

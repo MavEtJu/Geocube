@@ -452,10 +452,14 @@
     }
 }
 
-- (void)updateLocationManagerHistory
+- (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch
 {
-    [self.map removeHistory];
-    [self.map addHistory];
+    if (ch == nil) {
+        [self.map removeHistory];
+        [self.map showHistory];
+    } else {
+        [self.map addHistory:ch];
+    }
 }
 
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords
@@ -863,6 +867,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
 - (void)menuRemoveHistory
 {
     [LM clearCoordsHistorical];
+    [self.map removeHistory];
 }
 
 NEEDS_OVERLOADING(menuLoadWaypoints)
