@@ -45,5 +45,6 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
 - (UIImage *)imageGet;
 + (NSString *)filename:(NSString *)url;
 - (void)dbUnlinkFromWaypoint:(NSId)wp_id;
++ (void)dbUnlinkFromWaypoint:(NSId)wp_id;
 
 @end

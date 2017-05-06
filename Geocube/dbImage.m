@@ -233,6 +233,18 @@
     }
 }
 
++ (void)dbUnlinkFromWaypoint:(NSId)wp_id
+{
+    @synchronized (db) {
+        DB_PREPARE(@"delete from image2waypoint where waypoint_id = ?");
+
+        SET_VAR_INT(1, wp_id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (BOOL)imageHasBeenDowloaded
 {
     return [fileManager fileExistsAtPath:[MyTools ImageFile:self.datafile]];
