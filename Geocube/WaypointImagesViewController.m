@@ -126,13 +126,15 @@ enum {
 - (void)downloadImages
 {
     [self showInfoView];
-    [self performSelectorInBackground:@selector(downloadImagesLogs) withObject:nil];
-    [self performSelectorInBackground:@selector(downloadImagesCache) withObject:nil];
+    NSNumber *iiiLogs = [NSNumber numberWithInteger:[infoView addImage]];
+    NSNumber *iiiCache = [NSNumber numberWithInteger:[infoView addImage]];
+    [self performSelectorInBackground:@selector(downloadImagesLogs:) withObject:iiiLogs];
+    [self performSelectorInBackground:@selector(downloadImagesCache:) withObject:iiiCache];
 }
 
-- (void)downloadImagesLogs
+- (void)downloadImagesLogs:(NSNumber *)iii_
 {
-    InfoItemID iii = [infoView addImage];
+    InfoItemID iii = [iii_ integerValue];
     [infoView setDescription:iii description:@"Images from the logs"];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
@@ -150,9 +152,9 @@ enum {
     }
 }
 
-- (void)downloadImagesCache
+- (void)downloadImagesCache:(NSNumber *)iii_
 {
-    InfoItemID iii = [infoView addImage];
+    InfoItemID iii = [iii_ integerValue];
     [infoView setDescription:iii description:@"Images from the waypoint"];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {

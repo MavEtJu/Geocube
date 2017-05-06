@@ -119,6 +119,21 @@
         }
 
         case INFOITEM_IMAGE:
+            self.view = [[GCView alloc] initWithFrame:CGRectZero];
+            self.view.backgroundColor = [UIColor lightGrayColor];
+
+            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.view addSubview:labelDesc];
+                [self.view addSubview:labelQueue];
+                [self.view addSubview:labelURL];
+                [self.view addSubview:labelBytes];
+                [self calculateRects];
+            }];
             break;
     }
 
@@ -147,13 +162,13 @@
     if (isExpanded == YES) {
         INDENT_RESIZE(labelDesc);
         INDENT_RESIZE(labelURL);
+        INDENT_RESIZE(labelQueue);
         INDENT_RESIZE(labelChunks);
         INDENT_RESIZE(labelBytes);
         INDENT_RESIZE(labelLinesObjects);
         INDENT_RESIZE(labelLogs);
         INDENT_RESIZE(labelTrackables);
         INDENT_RESIZE(labelWaypoints);
-        INDENT_RESIZE(labelQueue);
     } else {
         INDENT_RESIZE(labelDesc);
     }
