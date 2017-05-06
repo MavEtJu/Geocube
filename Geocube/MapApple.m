@@ -428,18 +428,28 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
 {
-    CLLocationCoordinate2D c = CLLocationCoordinate2DMake((c1.latitude + c2.latitude) / 2, (c1.longitude + c2.longitude) / 2);
-    mapView.camera.centerCoordinate = c;
-
     CLLocationCoordinate2D d1, d2;
-    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:20];
-    mapView.camera.altitude = [MapApple determineAltitudeForRectangle:d1 c2:d2 viewPort:self.mapvc.view.frame];
+    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:10];
 
-    if (mapView.camera.altitude < self.minimumAltitude && modifyingMap == NO) {
-        modifyingMap = YES;
+    /*
+     * If the altitude needed for the camera is too low, just set the center and the minimum altitude.
+     * Otherwise set the rectangle with a proper edge.
+     */
+
+    if ([MapApple determineAltitudeForRectangle:d1 c2:d2 viewPort:self.mapvc.view.frame] < self.minimumAltitude) {
+        CLLocationCoordinate2D c = CLLocationCoordinate2DMake((c1.latitude + c2.latitude) / 2, (c1.longitude + c2.longitude) / 2);
+        mapView.camera.centerCoordinate = c;
         mapView.camera.altitude = self.minimumAltitude;
-        modifyingMap = NO;
+        return;
     }
+
+    MKMapPoint annotationPoint1 = MKMapPointForCoordinate(d1);
+    MKMapPoint annotationPoint2 = MKMapPointForCoordinate(d2);
+    MKMapRect pointRect1 = MKMapRectMake(annotationPoint1.x, annotationPoint1.y, 0, 0);
+    MKMapRect pointRect2 = MKMapRectMake(annotationPoint2.x, annotationPoint2.y, 0, 0);
+    MKMapRect zoomRect = MKMapRectUnion(pointRect1, pointRect2);
+
+    [mapView setVisibleMapRect:zoomRect edgePadding:UIEdgeInsetsMake(30, 30, 30, 30) animated:NO];
 }
 
 - (void)setMapType:(GCMapType)mapType
@@ -616,7 +626,6 @@
         [self.mapvc userInteractionFinished];
 
     // Constrain zoom levels
-    NSLog(@"camera.altitude:%lf", mapView.camera.altitude);
     if (self.minimumAltitude > mapView.camera.altitude && modifyingMap == NO) {
         modifyingMap = YES;
         mapView.camera.altitude = self.minimumAltitude;
