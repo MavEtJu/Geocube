@@ -179,6 +179,14 @@ enum {
     NSError *error = nil;
     NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv iiDownload:iii];
 
+    if (response.statusCode == 301) {
+        url = [NSURL URLWithString:[response.allHeaderFields objectForKey:@"Location"]];
+        req = [GCURLRequest requestWithURL:url];
+        response = nil;
+        error = nil;
+        data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv iiDownload:iii];
+    }
+
     if (data == nil || response.statusCode != 200)
         return;
 
