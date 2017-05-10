@@ -206,8 +206,6 @@ enum {
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
 
-    [sv setNeedsLayout];  [sv layoutIfNeeded];
-    NSLog(@"%@ %d %f %f", sv.site.text, y, sv.frame.size.height, sv.bounds.size.height);
     sv.frame = CGRectMake(0, 0, width, y);
 
     [self resizeAccounts:sv];
