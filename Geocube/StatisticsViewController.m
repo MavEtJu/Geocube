@@ -22,9 +22,9 @@
 @interface StatisticsViewController ()
 {
     UIScrollView *contentView;
-    NSMutableArray<GCView *> *accountViews;
+    NSMutableArray<StatisticsSingleView *> *accountViews;
     NSMutableArray<NSMutableDictionary *> *accountDictionaries;
-    GCView *totalView;
+    StatisticsSingleView *totalView;
     NSMutableDictionary *totalDictionary;
 
     BOOL hasbeenstarted;
@@ -68,9 +68,9 @@ enum {
     accountViews = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        GCView *v = [[GCView alloc] initWithFrame:CGRectZero];
-        [self.view addSubview:v];
-        [accountViews addObject:v];
+        StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:sv];
+        [accountViews addObject:sv];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionary];
         [d setObject:@"Not yet polled" forKey:@"status"];
@@ -80,7 +80,7 @@ enum {
             [d setObject:@"No remote API available" forKey:@"status"];
     }];
 
-    totalView = [[GCView alloc] initWithFrame:CGRectZero];
+    totalView = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:totalView];
 
     totalDictionary = [NSMutableDictionary dictionary];
@@ -101,120 +101,116 @@ enum {
 
 - (void)showAccounts
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
     [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
     [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
     [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
     [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
     [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
 
-    __block NSInteger y = 0;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        GCView *v = [accountViews objectAtIndex:idx];
+        StatisticsSingleView *sv = [accountViews objectAtIndex:idx];
         NSDictionary *d = [accountDictionaries objectAtIndex:idx];
 
+        sv.site.text = a.site;
+
         if (a.accountname == nil) {
-            v.frame = CGRectZero;
-        } else {
-            [self showAccount:a.site view:v dict:d];
-            v.frame = CGRectMake(0, y, width, v.frame.size.height);
-            y += v.frame.size.height;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                sv.frame = CGRectZero;
+                [self resizeAccounts:sv];
+            }];
+            return;
         }
 
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self showAccount:a.site view:sv dict:d];
+        }];
     }];
 
-    y += 10;
-    [self showAccount:@"Totals" view:totalView dict:totalDictionary];
-    totalView.frame = CGRectMake(0, y, width, totalView.frame.size.height);
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self showAccount:@"Totals" view:totalView dict:totalDictionary];
+    }];
+}
+
+- (void)resizeAccounts:(StatisticsSingleView *)sv
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+
+    __block NSInteger y = 0;
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+        StatisticsSingleView *sv = [accountViews objectAtIndex:idx];
+
+        sv.frame = CGRectMake(0, y, sv.frame.size.width, sv.frame.size.height);
+        y += sv.frame.size.height;
+    }];
+    totalView.frame = CGRectMake(0, y, totalView.frame.size.width, totalView.frame.size.height);
     y += totalView.frame.size.height;
 
     contentView.contentSize = CGSizeMake(width, y);
 }
 
-- (void)showAccount:(NSString *)site view:(GCView *)v dict:(NSDictionary *)d
+- (void)showAccount:(NSString *)site view:(StatisticsSingleView *)sv dict:(NSDictionary *)d
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
     NSInteger y = 0;
 
-#warning This should be done in the main thread...
-    [v.subviews enumerateObjectsUsingBlock:^(UIView *cv, NSUInteger idx, BOOL * _Nonnull stop) {
-        [cv removeFromSuperview];
-    }];
-
-#define MARGIN  5
-#define INDENT  10
-
-#define LABEL_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN, y, width - 2 * MARGIN, __s__.font.lineHeight); \
-    y += __s__.font.lineHeight;
-#define INDENT_RESIZE(__s__) \
-    __s__.frame = CGRectMake(MARGIN + INDENT, y, width - 2 * MARGIN - INDENT, __s__.font.lineHeight); \
-    y += __s__.font.lineHeight;
-
-    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectZero];
-    l.text = site;
-    LABEL_RESIZE(l);
-    [v addSubview:l];
-    NSInteger yh = l.font.lineHeight;
+    sv.site.text = site;
+    y += sv.site.frame.size.height;
 
     NSObject *o = [d objectForKey:@"status"];
     if ([o isKindOfClass:[NSString class]] == YES) {
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        l.text = [NSString stringWithFormat:@"%@", o];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.status.text = [NSString stringWithFormat:@"%@", o];
+        y += sv.status.frame.size.height;
+    } else
+        sv.status.text = @"";
 
     o = [d valueForKey:@"waypoints_found"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_found" with:o];
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        [l setText:[NSString stringWithFormat:@"Found: %@", o]];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.wpsFound.text = [NSString stringWithFormat:@"Found: %@", o];
+        y += sv.wpsFound.frame.size.height;
+    } else
+        sv.wpsFound.text = @"";
 
     o = [d valueForKey:@"waypoints_notfound"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_notfound" with:o];
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        [l setText:[NSString stringWithFormat:@"Not found: %@", o]];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.wpsDNF.text = [NSString stringWithFormat:@"Not found: %@", o];
+        y += sv.wpsDNF.frame.size.height;
+    } else
+        sv.wpsDNF.text = @"";
 
     o = [d valueForKey:@"waypoints_hidden"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"waypoints_hidden" with:o];
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        [l setText:[NSString stringWithFormat:@"Hidden: %@", o]];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.wpsHidden.text = [NSString stringWithFormat:@"Hidden: %@", o];
+        y += sv.wpsHidden.frame.size.height;
+    } else
+        sv.wpsHidden.text = @"";
 
     o = [d valueForKey:@"recommendations_given"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"recommendations_given" with:o];
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        [l setText:[NSString stringWithFormat:@"Recommendations given: %@", o]];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.recommendationsGiven.text = [NSString stringWithFormat:@"Recommendations given: %@", o];
+        y += sv.recommendationsGiven.frame.size.height;
+    } else
+        sv.recommendationsGiven.text = @"";
 
     o = [d valueForKey:@"recommendations_received"];
     if ([o isKindOfClass:[NSNumber class]] == YES) {
         [self updateTotal:@"recommendations_received" with:o];
-        l = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-        [l setText:[NSString stringWithFormat:@"Recommendations received: %@", o]];
-        INDENT_RESIZE(l);
-        [v addSubview:l];
-    }
+        sv.recommendationsReceived.text = [NSString stringWithFormat:@"Recommendations received: %@", o];
+        y += sv.recommendationsReceived.frame.size.height;
+    } else
+        sv.recommendationsReceived.text = @"";
 
-    y += yh / 2;
-    v.frame = CGRectMake(0, 0, width, y);
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+
+    [sv setNeedsLayout];  [sv layoutIfNeeded];
+    NSLog(@"%@ %d %f %f", sv.site.text, y, sv.frame.size.height, sv.bounds.size.height);
+    sv.frame = CGRectMake(0, 0, width, y);
+
+    [self resizeAccounts:sv];
 }
 
 - (void)updateTotal:(NSString *)key with:(NSObject *)_value

@@ -166,6 +166,7 @@
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
 @class SideMenu;
+@class StatisticsSingleView;
 @class StatisticsViewController;
 @class ThemeIOS;
 @class ThemeManager;
