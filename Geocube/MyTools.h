@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)simpleHTML:(NSString *)plainText;
 + (NSInteger)numberOfLines:(NSString *)s;
 
++ (NSString *)niceCGPoint:(CGPoint)p;
 + (NSString *)niceCGRect:(CGRect)r;
 + (NSString *)niceCGSize:(CGSize)s;
 + (NSString *)niceNumber:(NSInteger)i;

@@ -330,7 +330,13 @@ TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
     return [NSString stringWithFormat:@"%ld year%@ ago", diff, diff == 1 ? @"" : @"s"];
 }
 
-/// Returns the number as a nicely formatted string for orgin and size
+/// Returns the number as a nicely formatted string for origin
++ (NSString *)niceCGPoint:(CGPoint)p;
+{
+    return [NSString stringWithFormat:@"(%0.0f, %0.0f)", p.x, p.y];
+}
+
+/// Returns the number as a nicely formatted string for origin and size
 + (NSString *)niceCGRect:(CGRect)r
 {
     return [NSString stringWithFormat:@"(%0.0f, %0.0f), (%0.0f x %0.0f)", r.origin.x, r.origin.y, r.size.width, r.size.height];
