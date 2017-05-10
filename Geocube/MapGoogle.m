@@ -29,7 +29,7 @@
     NSMutableArray<GCGMSCircle *> *circles;
 
     GMSPolyline *lineMeToWaypoint;
-    NSMutableArray <GMSPolyline *> *linesHistory;
+    NSMutableArray<GMSPolyline *> *linesHistory;
     GMSMutablePath *lastPathHistory;
 
     dbWaypoint *wpSelected;

@@ -29,8 +29,8 @@
 
     MKPolyline *lineMeToWaypoint;
     MKPolylineRenderer *viewLineMeToWaypoint;
-    NSMutableArray <MKPolyline *> *linesHistory;
-    NSMutableArray <MKPolylineRenderer *> *viewLinesHistory;
+    NSMutableArray<MKPolyline *> *linesHistory;
+    NSMutableArray<MKPolylineRenderer *> *viewLinesHistory;
     CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
     NSInteger historyCoordsIdx;
 
@@ -506,7 +506,6 @@
 
 - (void)showHistory
 {
-
 #define ADDPATH(__coords__, __count__) { \
         MKPolyline *lh = [MKPolyline polylineWithCoordinates:__coords__ count:__count__]; \
         \
@@ -533,7 +532,7 @@
     }];
     if (counter != 0)
         ADDPATH(coordinateArray, counter)
-        
+
     free(coordinateArray);
 
     historyCoords[0] = LM.coords;
