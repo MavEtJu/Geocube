@@ -24,7 +24,6 @@
     UIScrollView *contentView;
     NSMutableArray<StatisticsSingleView *> *accountViews;
     NSMutableArray<NSMutableDictionary *> *accountDictionaries;
-    StatisticsSingleView *totalView;
     NSMutableDictionary *totalDictionary;
 
     BOOL hasbeenstarted;
@@ -47,8 +46,6 @@ enum {
     [lmi addItem:menuReload label:@"Reload"];
 
     accountViews = nil;
-    totalView = nil;
-
     hasbeenstarted = NO;
 
     return self;
@@ -61,33 +58,9 @@ enum {
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = currentTheme.viewBackgroundColor;
     self.view = contentView;
 
-    accountDictionaries = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
-    accountViews = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
-
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
-        [self.view addSubview:sv];
-        [accountViews addObject:sv];
-
-        NSMutableDictionary *d = [NSMutableDictionary dictionary];
-        [d setObject:@"Not yet polled" forKey:@"status"];
-        [accountDictionaries addObject:d];
-
-        if (a.enabled == NO)
-            [d setObject:@"No remote API available" forKey:@"status"];
-    }];
-
-    totalView = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:totalView];
-
-    totalDictionary = [NSMutableDictionary dictionary];
-
-    [self makeInfoView];
-
-    [self showAccounts];
+    [self createViews];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -99,120 +72,162 @@ enum {
     }
 }
 
-- (void)showAccounts
+- (void)createViews
 {
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
+    accountDictionaries = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
+    accountViews = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        StatisticsSingleView *sv = [accountViews objectAtIndex:idx];
-        NSDictionary *d = [accountDictionaries objectAtIndex:idx];
+        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+        [d setObject:@"Not yet polled" forKey:@"status"];
+        [d setObject:a.site forKey:@"site"];
+        [d setObject:a forKey:@"account"];
+        [accountDictionaries addObject:d];
 
+        if (a.enabled == NO)
+            [d setObject:@"No remote API available" forKey:@"status"];
+
+        StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
         sv.site.text = a.site;
+        [self.view addSubview:sv];
+        [accountViews addObject:sv];
+        [d setObject:sv forKey:@"view"];
+    }];
 
-        if (a.accountname == nil) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                sv.frame = CGRectZero;
-                [self resizeAccounts:sv];
-            }];
+    totalDictionary = [NSMutableDictionary dictionary];
+    [totalDictionary setObject:@"Total" forKey:@"site"];
+    [totalDictionary setObject:@"Not yet computed" forKey:@"status"];
+    [self clearTotal];
+    [accountDictionaries addObject:totalDictionary];
+
+    StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
+    [totalDictionary setObject:sv forKey:@"view"];
+    [self.view addSubview:sv];
+
+    [self makeInfoView];
+
+    [self showViews];
+}
+
+- (void)clearTotal
+{
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
+    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
+}
+
+- (void)loadStatistics
+{
+    [self showInfoView];
+
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([a canDoRemoteStuff] == NO)
+            return;
+
+        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
+        [d removeObjectForKey:@"waypoints_found"];
+        [d removeObjectForKey:@"waypoints_notfound"];
+        [d removeObjectForKey:@"waypoints_hidden"];
+        [d removeObjectForKey:@"recommendations_given"];
+        [d removeObjectForKey:@"recommendations_received"];
+
+        if (a.enabled == NO) {
+            [d setObject:@"Remote API is not enabled" forKey:@"status"];
             return;
         }
 
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self showAccount:a.site view:sv dict:d];
-        }];
+        if (a.canDoRemoteStuff == NO) {
+            [d setObject:@"Remote API is not available" forKey:@"status"];
+            return;
+        }
+
+        [self performSelectorInBackground:@selector(runStatistics:) withObject:d];
+        [d setObject:@"Polling..." forKey:@"status"];
     }];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self showAccount:@"Totals" view:totalView dict:totalDictionary];
-    }];
+    [self showViews];
 }
 
-- (void)resizeAccounts:(StatisticsSingleView *)sv
+- (void)resizeViews
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
     __block NSInteger y = 0;
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        StatisticsSingleView *sv = [accountViews objectAtIndex:idx];
-
+    [accountDictionaries enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull ad, NSUInteger idx, BOOL * _Nonnull stop) {
+        StatisticsSingleView *sv = [ad objectForKey:@"view"];
         sv.frame = CGRectMake(0, y, sv.frame.size.width, sv.frame.size.height);
         y += sv.frame.size.height;
     }];
-    totalView.frame = CGRectMake(0, y, totalView.frame.size.width, totalView.frame.size.height);
-    y += totalView.frame.size.height;
-
-    contentView.contentSize = CGSizeMake(width, y);
-}
-
-- (void)showAccount:(NSString *)site view:(StatisticsSingleView *)sv dict:(NSDictionary *)d
-{
-    NSInteger y = 0;
-
-    sv.site.text = site;
-    y += sv.site.frame.size.height;
-
-    NSObject *o = [d objectForKey:@"status"];
-    if ([o isKindOfClass:[NSString class]] == YES) {
-        sv.status.text = [NSString stringWithFormat:@"%@", o];
-        y += sv.status.frame.size.height;
-    } else
-        sv.status.text = @"";
-
-    o = [d valueForKey:@"waypoints_found"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        [self updateTotal:@"waypoints_found" with:o];
-        sv.wpsFound.text = [NSString stringWithFormat:@"Found: %@", o];
-        y += sv.wpsFound.frame.size.height;
-    } else
-        sv.wpsFound.text = @"";
-
-    o = [d valueForKey:@"waypoints_notfound"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        [self updateTotal:@"waypoints_notfound" with:o];
-        sv.wpsDNF.text = [NSString stringWithFormat:@"Not found: %@", o];
-        y += sv.wpsDNF.frame.size.height;
-    } else
-        sv.wpsDNF.text = @"";
-
-    o = [d valueForKey:@"waypoints_hidden"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        [self updateTotal:@"waypoints_hidden" with:o];
-        sv.wpsHidden.text = [NSString stringWithFormat:@"Hidden: %@", o];
-        y += sv.wpsHidden.frame.size.height;
-    } else
-        sv.wpsHidden.text = @"";
-
-    o = [d valueForKey:@"recommendations_given"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        [self updateTotal:@"recommendations_given" with:o];
-        sv.recommendationsGiven.text = [NSString stringWithFormat:@"Recommendations given: %@", o];
-        y += sv.recommendationsGiven.frame.size.height;
-    } else
-        sv.recommendationsGiven.text = @"";
-
-    o = [d valueForKey:@"recommendations_received"];
-    if ([o isKindOfClass:[NSNumber class]] == YES) {
-        [self updateTotal:@"recommendations_received" with:o];
-        sv.recommendationsReceived.text = [NSString stringWithFormat:@"Recommendations received: %@", o];
-        y += sv.recommendationsReceived.frame.size.height;
-    } else
-        sv.recommendationsReceived.text = @"";
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
+    contentView.contentSize = CGSizeMake(width, y);
+}
+
+- (void)showViews
+{
+    [self clearTotal];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [accountDictionaries enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull ad, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self showView:ad];
+            if (ad != totalDictionary)
+                [self updateTotals:ad];
+        }];
+        [self resizeViews];
+    }];
+}
+
+- (void)showView:(NSMutableDictionary *)ad
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSInteger width = bounds.size.width;
+
+    NSInteger y = 0;
+
+    StatisticsSingleView *sv = [ad objectForKey:@"view"];
+    dbAccount *a = [ad objectForKey:@"account"];
+
+    if (a != nil && a.accountname == nil) {
+        sv.frame = CGRectZero;
+        return;
+    }
+
+#define ADD(__key__, __field__, __prefix__) \
+    o = [ad objectForKey:__key__]; \
+    if (o != nil) { \
+        sv.__field__.text = [NSString stringWithFormat:@"%@%@", __prefix__, o]; \
+        [sv.__field__ sizeToFit]; \
+        y += sv.__field__.frame.size.height; \
+    } else \
+        sv.__field__.text = @"";
+
+    NSObject *o;
+
+    ADD(@"site", site, @"");
+    ADD(@"status", status, @"");
+    ADD(@"waypoints_found", wpsFound, @"Waypoints found: ");
+    ADD(@"waypoints_notfound", wpsDNF, @"Waypoints not found: ");
+    ADD(@"waypoints_hidden", wpsHidden, @"Waypoints hidden: ");
+    ADD(@"recommendations_given", recommendationsGiven, @"Recommendations given: ");
+    ADD(@"recommendations_received", recommendationsReceived, @"Recommendations received: ");
 
     sv.frame = CGRectMake(0, 0, width, y);
+}
 
-    [self resizeAccounts:sv];
+- (void)updateTotals:(NSDictionary *)ad
+{
+    [totalDictionary removeObjectForKey:@"status"];
+    [self updateTotal:@"waypoints_found" with:[ad valueForKey:@"waypoints_found"]];
+    [self updateTotal:@"waypoints_notfound" with:[ad valueForKey:@"waypoints_notfound"]];
+    [self updateTotal:@"waypoints_hidden" with:[ad valueForKey:@"waypoints_hidden"]];
+    [self updateTotal:@"recommendations_given" with:[ad valueForKey:@"recommendations_given"]];
+    [self updateTotal:@"recommendations_received" with:[ad valueForKey:@"recommendations_received"]];
 }
 
 - (void)updateTotal:(NSString *)key with:(NSObject *)_value
 {
+    if (_value == nil)
+        return;
     if ([_value isKindOfClass:[NSNumber class]] == NO)
         return;
     NSNumber *value = (NSNumber *)_value;
@@ -225,50 +240,13 @@ enum {
     [totalDictionary setObject:[NSNumber numberWithInteger:i] forKey:key];
 }
 
-- (void)loadStatistics
-{
-    __block NSInteger count = 0;
-
-    [self showInfoView];
-
-    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        // If there is nothing, do not show.
-        if ([a canDoRemoteStuff] == NO)
-            return;
-
-        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
-        [d removeAllObjects];
-        count++;
-
-        if (a.enabled == NO) {
-            [d setObject:@"Remote API is not enabled" forKey:@"status"];
-            return;
-        }
-
-        if (a.canDoRemoteStuff == NO) {
-            [d setObject:@"Remote API is not available" forKey:@"status"];
-            return;
-        }
-
-        [self performSelectorInBackground:@selector(runStatistics:) withObject:a];
-        [d setObject:@"Polling..." forKey:@"status"];
-    }];
-
-    if (count == 0) {
-        [self hideInfoView];
-        [MyTools messageBox:self header:@"No statistics loaded" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
-        return;
-    }
-
-    [self showAccounts];
-}
-
-- (void)runStatistics:(dbAccount *)a
+- (void)runStatistics:(NSMutableDictionary *)ad
 {
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:a.site];
+    [infoView setDescription:iid description:[ad objectForKey:@"site"]];
 
-    NSDictionary *d = nil;
+    dbAccount *a = [ad objectForKey:@"account"];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:infoView iiDownload:iid];
 
     if (retValue != REMOTEAPI_OK) {
@@ -282,22 +260,17 @@ enum {
         return;
     }
 
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *aa, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a == aa) {
-
-            NSMutableDictionary *dd = [accountDictionaries objectAtIndex:idx];
-            [d enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSObject *obj, BOOL *stop) {
-                [dd setObject:obj forKey:key];
-            }];
-            [dd removeObjectForKey:@"status"];
-            *stop = YES;
-        }
+    [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSObject * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSNumber class]] == YES)
+            [ad setObject:obj forKey:key];
     }];
+
+    [ad removeObjectForKey:@"status"];
 
     [infoView removeItem:iid];
     if ([infoView hasItems] == NO)
         [self hideInfoView];
-    [self showAccounts];
+    [self showViews];
 }
 
 #pragma mark - Local menu related functions

@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet GCLabel *wpsDNF;
 @property (weak, nonatomic) IBOutlet GCLabel *recommendationsGiven;
 @property (weak, nonatomic) IBOutlet GCLabel *recommendationsReceived;
+@property (weak, nonatomic) IBOutlet GCLabel *xxx;
 
 @end

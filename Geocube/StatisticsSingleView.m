@@ -34,8 +34,6 @@
 
     [self changeTheme];
 
-    self.site.text = @"Foo";
-
     return self;
 }
 
