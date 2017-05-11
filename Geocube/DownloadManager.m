@@ -124,7 +124,9 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
+#ifdef GC_VERBOSE
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
+#endif
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -144,7 +146,9 @@
                 }
 
                 *stop = YES;
+#ifdef GC_VERBOSE
                 NSLog(@"Finished download thread %ld", (long)idx);
+#endif
                 return;
             }
         }];
@@ -154,7 +158,9 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
+#ifdef GC_VERBOSE
 //  NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveData:(NSData *)");
+#endif
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -176,12 +182,16 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
+#ifdef GC_VERBOSE
     NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveResponse:(NSURLResponse *)");
+#endif
 
     @synchronized (asyncRequests) {
         [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
+#ifdef GC_VERBOSE
                 NSLog(@"Starting download thread %ld", (long)idx);
+#endif
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
 
@@ -199,7 +209,9 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)redirectResponse newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler
 {
+#ifdef GC_VERBOSE
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) willPerformHTTPRedirection:(NSHTTPURLResponse *)redirectResponse newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler");
+#endif
     if (redirectResponse != nil)
         completionHandler(nil);
 }
