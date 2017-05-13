@@ -56,7 +56,7 @@
 
 - (NSArray<FileObject *> *)loadContents:(NSString *)cwd
 {
-    NSLog(@"loadContents: %@", cwd);
+//    NSLog(@"loadContents: %@", cwd);
     NSArray<NSString *> *fes = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], cwd] error:nil];
     NSMutableArray<FileObject *> *fos = [NSMutableArray arrayWithCapacity:20];
 
@@ -72,6 +72,11 @@
         fo.isDir = isDir;
         if (isDir == YES) {
             fo.contents = [self loadContents:[NSString stringWithFormat:@"%@%@/", cwd, fn]];
+            __block NSInteger totalSize = 0;
+            [fo.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
+                totalSize += fo.filesize;
+            }];
+            fo.filesize = totalSize;
         } else {
             NSDictionary<NSFileAttributeKey, id> *d = [fileManager attributesOfItemAtPath:fullFilename error:nil];
             fo.filesize = [[d objectForKey:NSFileSize] integerValue];
@@ -86,6 +91,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refreshContentsView];
+}
+
+- (void)calculateRects
+{
+    [super calculateRects];
     [self refreshContentsView];
 }
 
@@ -118,7 +129,7 @@
     [self.shownFO.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
         FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
         fov.filename.text = fo.filename;
-        fov.filesize.text = (fo.isDir == YES ? @"" : [MyTools niceFileSize:fo.filesize]);
+        fov.filesize.text = [MyTools niceFileSize:fo.filesize];
         fov.filetype.text = fo.isDir == YES ? @"(d)" : @"(f)";
         fov.fo = fo;
         self.y += fov.frame.size.height;
@@ -126,6 +137,8 @@
         fov.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFile:)];
         [fov addGestureRecognizer:tapGesture];
+        UILongPressGestureRecognizer *tap2Gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(fileMenu:)];
+        [fov addGestureRecognizer:tap2Gesture];
 
         [contentView addSubview:fov];
     }];
@@ -166,6 +179,42 @@
     self.shownFO = [self.stackFO lastObject];
     [self.stackFO removeLastObject];
     [self refreshContentsView];
+}
+
+- (void)fileMenu:(UILongPressGestureRecognizer *)tap
+{
+    FileObjectView *fov = (FileObjectView *)tap.view;
+    FileObject *fo = fov.fo;
+
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:fo.filename
+                               message:@"Choose you action"
+                               preferredStyle:UIAlertControllerStyleActionSheet];
+    view.popoverPresentationController.sourceView = self.view;
+    view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
+
+    UIAlertAction *delete = [UIAlertAction
+                             actionWithTitle:@"Delete"
+                             style:UIAlertActionStyleDestructive
+                             handler:^(UIAlertAction * action) {
+                                 NSError *e = nil;
+                                 [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename] error:&e];
+                                 if (e != nil)
+                                     [MyTools messageBox:self header:@"Deleting" text:[e description]];
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [view addAction:delete];
+    [view addAction:cancel];
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
+
 }
 
 @end
