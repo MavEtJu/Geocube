@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="49" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-qI-wRB" userLabel="Label - filetype" customClass="GCLabel">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="49" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-qI-wRB" userLabel="Label - filetype" customClass="GCLabel">
                     <rect key="frame" x="0.0" y="0.0" width="42" height="49"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -44,7 +44,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="G5K-qI-wRB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3B6-6W-MZV"/>
-                <constraint firstItem="Njx-99-XK7" firstAttribute="leading" secondItem="G5K-qI-wRB" secondAttribute="trailing" id="Cr0-sb-thC"/>
+                <constraint firstItem="Njx-99-XK7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="D85-mc-pl6"/>
                 <constraint firstItem="Njx-99-XK7" firstAttribute="baseline" secondItem="96L-yO-4Fv" secondAttribute="baseline" id="EsQ-kV-cPa"/>
                 <constraint firstAttribute="trailing" secondItem="96L-yO-4Fv" secondAttribute="trailing" id="GYT-hJ-sq0"/>
                 <constraint firstItem="G5K-qI-wRB" firstAttribute="baseline" secondItem="Njx-99-XK7" secondAttribute="baseline" id="HWD-SQ-gFu"/>
