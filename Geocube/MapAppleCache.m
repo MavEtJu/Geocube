@@ -32,7 +32,18 @@
 
 + (NSString *)createPrefix:(NSString *)_prefix;
 {
-    NSString *p = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
+    // The cache has moved from files/MapCache/x to MapCache/x
+    if ([_prefix isEqualToString:@""] == NO) {
+        NSString *old = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
+        if ([fileManager fileExistsAtPath:old] == YES) {
+            if ([fileManager fileExistsAtPath:[MyTools MapCacheDir]] == NO)
+                [fileManager createDirectoryAtPath:[MyTools MapCacheDir] withIntermediateDirectories:YES attributes:nil error:nil];
+            NSError *e = nil;
+            [fileManager moveItemAtPath:old toPath:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], _prefix] error:&e];
+        }
+    }
+
+    NSString *p = [NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], _prefix];
     if ([fileManager fileExistsAtPath:p] == NO)
         [fileManager createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
 

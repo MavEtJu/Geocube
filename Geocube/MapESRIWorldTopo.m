@@ -25,11 +25,16 @@
 
 @implementation MapESRIWorldTopo
 
++ (NSString *)cachePrefix
+{
+    return @"ESRIWorldTopo";
+}
+
 - (void)initMap
 {
     self.creditsText = @"© Esri";
     self.tileServerTemplate = @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png";
-    self.cachePrefix = @"ESRIWorldTopo";
+    self.cachePrefix = [self cachePrefix];
     [super initMap];
     self.minimumAltitude = 287;
 }

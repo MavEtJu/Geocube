@@ -25,4 +25,6 @@
 @property (nonatomic, retain) NSString *tileServerTemplate;
 @property (nonatomic, retain) NSString *cachePrefix;
 
++ (NSString *)cachePrefix;
+
 @end

@@ -25,11 +25,16 @@
 
 @implementation MapOSM
 
++ (NSString *)cachePrefix
+{
+    return @"OSM";
+}
+
 - (void)initMap
 {
     self.creditsText = @"© OpenStreetMap";
     self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = @"OSM";
+    self.cachePrefix = [self cachePrefix];
     [super initMap];
     self.minimumAltitude = 287;
 }
