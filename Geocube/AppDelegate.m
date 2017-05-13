@@ -266,7 +266,7 @@
                 [controllers addObject:nav];
 
                 vc = [[FileBrowserViewController alloc] init];
-                vc.title = @"Browser";
+                vc.title = @"File Browser";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
