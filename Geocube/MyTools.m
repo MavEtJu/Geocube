@@ -55,6 +55,13 @@
     return s;
 }
 
+/// Returns the location where the mapcache will be
++ (NSString *)MapCacheDir
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/MapCache", [self DocumentRoot]];
+    return s;
+}
+
 /// Returns the location where a downloaded image will be
 + (NSString *)ImageFile:(NSString *)imgFile;
 {
@@ -65,6 +72,18 @@
                    imgFile
                    ];
     return s;
+}
+
++ (NSInteger)determineDirectorySize:(NSString *)path
+{
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:path];
+    NSString *file;
+    NSInteger size = 0;
+    while ((file = [dirEnum nextObject])) {
+        NSDictionary<NSFileAttributeKey,id> *d = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", path, file] error:nil];
+        size += [[d objectForKey:NSFileSize] integerValue];
+    }
+    return size;
 }
 
 ///////////////////////////////////////////

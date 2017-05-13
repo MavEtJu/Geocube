@@ -29,8 +29,11 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)FilesDir;
++ (NSString *)MapCacheDir;
 + (NSString *)ImagesDir;
 + (NSString *)ImageFile:(NSString *)imgFile;
+
++ (NSInteger)determineDirectorySize:(NSString *)path;
 
 + (struct timeval)timevalDifference:(struct timeval)t0 t1:(struct timeval)t1;
 
@@ -102,6 +105,8 @@ typedef sqlite3_int64 NSId;
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
 #define NEEDS_OVERLOADING(__name__) \
     - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
+#define NEEDS_OVERLOADING_NSSTRING(__name__) \
+    + (NSString *) __name__ { NEEDS_OVERLOADING_ASSERT; return nil; }
 #define NEEDS_OVERLOADING_BOOL(__name__) \
     - (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
 #define NEEDS_OVERLOADING_NSRANGE(__name__) \
