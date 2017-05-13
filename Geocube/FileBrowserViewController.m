@@ -43,6 +43,11 @@
     contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     contentView.delegate = self;
     self.view = contentView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 
     FileObject *rootFO = [[FileObject alloc] init];
     rootFO.filename = @"";
@@ -52,6 +57,8 @@
     self.allFO = rootFO;
     self.shownFO = self.allFO;
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
+
+    [self refreshContentsView];
 }
 
 - (NSArray<FileObject *> *)loadContents:(NSString *)cwd
@@ -66,7 +73,9 @@
         NSString *fullFilename = [NSString stringWithFormat:@"%@/%@%@", [MyTools DocumentRoot], cwd, fn];
 
         BOOL isDir = NO;
-        [fileManager fileExistsAtPath:fullFilename isDirectory:&isDir];
+        NSDictionary<NSFileAttributeKey, id> *attrs = [fileManager attributesOfItemAtPath:fullFilename error:nil];
+        if ([[attrs objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+            isDir = YES;
 
         fo.filename = fn;
         fo.isDir = isDir;
@@ -78,20 +87,13 @@
             }];
             fo.filesize = totalSize;
         } else {
-            NSDictionary<NSFileAttributeKey, id> *d = [fileManager attributesOfItemAtPath:fullFilename error:nil];
-            fo.filesize = [[d objectForKey:NSFileSize] integerValue];
+            fo.filesize = [[attrs objectForKey:NSFileSize] integerValue];
         }
 
         [fos addObject:fo];
     }];
 
     return fos;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self refreshContentsView];
 }
 
 - (void)calculateRects
