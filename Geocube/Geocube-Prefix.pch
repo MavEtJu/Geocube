@@ -245,6 +245,9 @@
 
 #import "FilesTableViewCell.h"
 #import "FilesViewController.h"
+#import "FileObject.h"
+#import "FileObjectView.h"
+#import "FileBrowserViewController.h"
 
 #import "TrackablesListViewController.h"
 #import "TrackablesMineViewController.h"

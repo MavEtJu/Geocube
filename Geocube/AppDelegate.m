@@ -265,6 +265,12 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
+                vc = [[FileBrowserViewController alloc] init];
+                vc.title = @"Browser";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
                 TABBARCONTROLLER(RC_FILES, controllers)
                 break;
 

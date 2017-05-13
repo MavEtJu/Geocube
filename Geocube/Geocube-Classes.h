@@ -31,6 +31,9 @@
 @class DatabaseCache;
 @class DownloadManager;
 @class ExportGPX;
+@class FileBrowserViewController;
+@class FileObject;
+@class FileObjectView;
 @class FilesTableViewCell;
 @class FilesViewController;
 @class FilterCategoryTableViewCell;

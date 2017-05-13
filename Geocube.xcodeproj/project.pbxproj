@@ -522,6 +522,10 @@
 		E8F7FF271D74507100AC7EE6 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF261D74507100AC7EE6 /* GCButton.m */; };
 		E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F7FF2B1D75645800AC7EE6 /* MyClock.m */; };
 		E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */; };
+		E8FD96A81EC681CD00AFA7FA /* FileBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96A71EC681CD00AFA7FA /* FileBrowserViewController.m */; };
+		E8FD96AB1EC691DD00AFA7FA /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96AA1EC691DD00AFA7FA /* FileObject.m */; };
+		E8FD96AE1EC6A09000AFA7FA /* FileObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96AD1EC6A09000AFA7FA /* FileObjectView.m */; };
+		E8FD96B01EC6A0A300AFA7FA /* FileObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */; };
 		E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */; };
 		E8FEDE4E1DA77F9D007C756B /* container size - large - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */; };
 		E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */; };
@@ -1427,6 +1431,13 @@
 		E8F7FF2B1D75645800AC7EE6 /* MyClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClock.m; sourceTree = "<group>"; };
 		E8F9913A1C17FF4500D360F1 /* SettingsMainColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMainColorPickerViewController.h; sourceTree = "<group>"; };
 		E8F9913B1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
+		E8FD96A61EC681CD00AFA7FA /* FileBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileBrowserViewController.h; sourceTree = "<group>"; };
+		E8FD96A71EC681CD00AFA7FA /* FileBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileBrowserViewController.m; sourceTree = "<group>"; };
+		E8FD96A91EC691DD00AFA7FA /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObject.h; sourceTree = "<group>"; };
+		E8FD96AA1EC691DD00AFA7FA /* FileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObject.m; sourceTree = "<group>"; };
+		E8FD96AC1EC6A09000AFA7FA /* FileObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObjectView.h; sourceTree = "<group>"; };
+		E8FD96AD1EC6A09000AFA7FA /* FileObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObjectView.m; sourceTree = "<group>"; };
+		E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileObjectView.xib; sourceTree = "<group>"; };
 		E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11.png"; path = "images/containers/container size - large - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@2x.png"; path = "images/containers/container size - large - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@3x.png"; path = "images/containers/container size - large - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -3090,6 +3101,13 @@
 				E8ABA0921E277CF20080D5FE /* FilesTableViewCell.h */,
 				E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */,
 				E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */,
+				E8FD96A61EC681CD00AFA7FA /* FileBrowserViewController.h */,
+				E8FD96A71EC681CD00AFA7FA /* FileBrowserViewController.m */,
+				E8FD96A91EC691DD00AFA7FA /* FileObject.h */,
+				E8FD96AA1EC691DD00AFA7FA /* FileObject.m */,
+				E8FD96AC1EC6A09000AFA7FA /* FileObjectView.h */,
+				E8FD96AD1EC6A09000AFA7FA /* FileObjectView.m */,
+				E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -3540,6 +3558,7 @@
 				E82E67411DA07D0200CFBDED /* attributes - 23.png in Resources */,
 				E82E663F1DA07A8700CFBDED /* icons - target - 30x30@2x.png in Resources */,
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
+				E8FD96B01EC6A0A300AFA7FA /* FileObjectView.xib in Resources */,
 				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
 				E89C398F1E28A01400BB60CA /* QueriesTableViewCell.xib in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
@@ -3798,6 +3817,7 @@
 				E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */,
 				E83C20581E2E2651006C523E /* WaypointHeaderHeaderView.m in Sources */,
 				E80732C31B5FB4EA007FDC29 /* dbState.m in Sources */,
+				E8FD96AB1EC691DD00AFA7FA /* FileObject.m in Sources */,
 				E8C5BB4D1C6DF12F006222D5 /* dbQueryImport.m in Sources */,
 				E807A8571BBB88F500AE3C1B /* SettingsColoursViewController.m in Sources */,
 				E829904A1C87AFA400504421 /* XMLReader.m in Sources */,
@@ -3837,6 +3857,7 @@
 				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
 				E82FBB2A1B4613D70009AB6D /* GCTableViewController.m in Sources */,
 				E8F9913C1C17FF4500D360F1 /* SettingsMainColorPickerViewController.m in Sources */,
+				E8FD96A81EC681CD00AFA7FA /* FileBrowserViewController.m in Sources */,
 				E8C522FB1B760DA300423BCE /* BrowserBrowserViewController.m in Sources */,
 				E88144221C840C5400940820 /* IOSFileTransfers.m in Sources */,
 				E8E8D0071B66493600CC741A /* FilterTypesTableViewCell.m in Sources */,
@@ -3882,6 +3903,7 @@
 				E8D569F81B54A108001A0F8E /* ActionSheetDistancePicker.m in Sources */,
 				E8F570CB1B4008DD003F020C /* dbType.m in Sources */,
 				E80413921E9EF73D001FD7BF /* KxIntroViewController.m in Sources */,
+				E8FD96AE1EC6A09000AFA7FA /* FileObjectView.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
