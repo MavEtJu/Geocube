@@ -27,4 +27,6 @@
 @property (weak, nonatomic) IBOutlet GCLabel *filesize;
 @property (weak, nonatomic) IBOutlet GCLabel *filetype;
 
+@property (nonatomic, retain) FileObject *fo;
+
 @end
