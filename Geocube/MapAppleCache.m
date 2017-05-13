@@ -82,6 +82,10 @@
     NSInteger totalFileSize = 0;
     NSInteger filesize;
     NSInteger checked = 0, deletedAge = 0, deletedSize = 0;
+    MyClock *clock = [[MyClock alloc] initClock:@"cleanup"];
+
+    [clock clockEnable:YES];
+    [clock clockShowAndReset:@"start"];
 
     // Purge the whole cache
     error = nil;
@@ -150,6 +154,7 @@
             break;
    }
 
+    [clock clockShowAndReset:@"finished"];
     NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], (long)checked, (long)totalFileSize / (1024 * 1024), (long)deletedAge, (long)deletedSize);
 }
 
