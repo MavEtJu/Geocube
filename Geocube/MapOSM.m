@@ -34,7 +34,7 @@
 {
     self.creditsText = @"© OpenStreetMap";
     self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = [self cachePrefix];
+    self.cachePrefix = [MapOSM cachePrefix];
     [super initMap];
     self.minimumAltitude = 287;
 }

@@ -43,7 +43,9 @@
         }
     }
 
-    NSString *p = [NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], _prefix];
+    NSMutableString *p = [NSMutableString stringWithString:[MyTools MapCacheDir]];
+    if ([_prefix isEqualToString:@""] == NO)
+        [p appendFormat:@"/%@", _prefix];
     if ([fileManager fileExistsAtPath:p] == NO)
         [fileManager createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
 
