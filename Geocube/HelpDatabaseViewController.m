@@ -21,8 +21,10 @@
 
 @interface HelpDatabaseViewController ()
 {
-    NSArray<NSString *> *fields1;
-    NSArray<NSString *> *values1;
+    NSArray<NSString *> *fieldsSizes;
+    NSArray<NSString *> *valuesSizes;
+    NSArray<NSString *> *fieldsDBCount;
+    NSArray<NSString *> *valuesDBCount;
     NSArray<dbConfig *> *config;
 }
 
@@ -33,7 +35,8 @@
 #define THISCELL @"HelpDatabaseViewController"
 
 enum {
-    SECTION_DBCOUNT = 0,
+    SECTION_SIZES = 0,
+    SECTION_DBCOUNT,
     SECTION_CONFIGURATION,
     SECTION_MAX
 };
@@ -66,9 +69,6 @@ enum {
 {
     NSMutableArray<NSString *> *vs = [NSMutableArray arrayWithCapacity:20];
     NSMutableArray<NSString *> *fs = [NSMutableArray arrayWithCapacity:20];
-
-    [fs addObject:@"Database size"];
-    [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
 
     [fs addObject:@"Accounts"];
     [vs addObject:[[NSNumber numberWithInteger:[dbAccount dbCount]] stringValue]];
@@ -120,8 +120,36 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbType dbCount]] stringValue]];
     [fs addObject:@"Waypoints"];
     [vs addObject:[[NSNumber numberWithInteger:[dbWaypoint dbCount]] stringValue]];
-    fields1 = fs;
-    values1 = vs;
+    fieldsDBCount = fs;
+    valuesDBCount = vs;
+
+    vs = [NSMutableArray arrayWithCapacity:20];
+    fs = [NSMutableArray arrayWithCapacity:20];
+
+    [fs addObject:@"Database size"];
+    [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
+
+    NSInteger size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
+    [fs addObject:@"Images directory size"];
+    [vs addObject:[MyTools niceFileSize:size]];
+
+    size = [MyTools determineDirectorySize:[MyTools FilesDir]];
+    [fs addObject:@"Files directory size"];
+    [vs addObject:[MyTools niceFileSize:size]];
+
+    NSDictionary<NSString *, MapBrand *> *d = [MapTemplateViewController initMapBrands];
+    [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, MapBrand * _Nonnull mb, BOOL * _Nonnull stop) {
+        if ([mb.mapObject respondsToSelector:@selector(cachePrefix)] == NO)
+            return;
+        NSString *prefix = [mb.mapObject cachePrefix];
+        [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
+
+        NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
+        [vs addObject:[MyTools niceFileSize:size]];
+    }];
+
+    fieldsSizes = fs;
+    valuesSizes = vs;
 
     config = [dbConfig dbAll];
 }
@@ -142,6 +170,8 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
+        case SECTION_SIZES:
+            return @"File sizes";
         case SECTION_DBCOUNT:
             return @"Database count";
         case SECTION_CONFIGURATION:
@@ -154,8 +184,10 @@ enum {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
+        case SECTION_SIZES:
+            return [fieldsSizes count];
         case SECTION_DBCOUNT:
-            return [fields1 count];
+            return [fieldsDBCount count];
         case SECTION_CONFIGURATION:
             return [config count];
     }
@@ -168,13 +200,15 @@ enum {
     GCTableViewCellFieldValue *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     switch (indexPath.section) {
+        case SECTION_SIZES: {
+            cell.fieldLabel.text = [fieldsSizes objectAtIndex:indexPath.row];
+            cell.valueLabel.text = [[valuesSizes objectAtIndex:indexPath.row] description];
+            cell.userInteractionEnabled = NO;
+            break;
+        }
         case SECTION_DBCOUNT: {
-            cell.fieldLabel.text = [fields1 objectAtIndex:indexPath.row];
-            NSObject *o = [values1 objectAtIndex:indexPath.row];
-            if ([o isKindOfClass:[NSNumber class]] == YES)
-                cell.valueLabel.text = [MyTools niceNumber:[[values1 objectAtIndex:indexPath.row] integerValue]];
-            else
-                cell.valueLabel.text = [[values1 objectAtIndex:indexPath.row] description];
+            cell.fieldLabel.text = [fieldsDBCount objectAtIndex:indexPath.row];
+            cell.valueLabel.text = [[valuesDBCount objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }
