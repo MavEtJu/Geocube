@@ -526,6 +526,12 @@
 		E8FD96AB1EC691DD00AFA7FA /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96AA1EC691DD00AFA7FA /* FileObject.m */; };
 		E8FD96AE1EC6A09000AFA7FA /* FileObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96AD1EC6A09000AFA7FA /* FileObjectView.m */; };
 		E8FD96B01EC6A0A300AFA7FA /* FileObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */; };
+		E8FD96B41EC866A800AFA7FA /* NVHTarGzip.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96B31EC866A800AFA7FA /* NVHTarGzip.m */; };
+		E8FD96B91EC8679900AFA7FA /* NVHGzipFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96B61EC8679900AFA7FA /* NVHGzipFile.m */; };
+		E8FD96BA1EC8679900AFA7FA /* NVHTarFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96B81EC8679900AFA7FA /* NVHTarFile.m */; };
+		E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96BC1EC867BC00AFA7FA /* NVHFile.m */; };
+		E8FD96C01EC867D900AFA7FA /* NSFileManager+NVHFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96BF1EC867D900AFA7FA /* NSFileManager+NVHFileSize.m */; };
+		E8FD96C31EC867FF00AFA7FA /* NVHProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD96C21EC867FF00AFA7FA /* NVHProgress.m */; };
 		E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */; };
 		E8FEDE4E1DA77F9D007C756B /* container size - large - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */; };
 		E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */; };
@@ -1438,6 +1444,18 @@
 		E8FD96AC1EC6A09000AFA7FA /* FileObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObjectView.h; sourceTree = "<group>"; };
 		E8FD96AD1EC6A09000AFA7FA /* FileObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObjectView.m; sourceTree = "<group>"; };
 		E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileObjectView.xib; sourceTree = "<group>"; };
+		E8FD96B21EC866A800AFA7FA /* NVHTarGzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHTarGzip.h; path = NVHTarGzip/NVHTarGzip.h; sourceTree = "<group>"; };
+		E8FD96B31EC866A800AFA7FA /* NVHTarGzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHTarGzip.m; path = NVHTarGzip/NVHTarGzip.m; sourceTree = "<group>"; };
+		E8FD96B51EC8679900AFA7FA /* NVHGzipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHGzipFile.h; path = NVHTarGzip/NVHGzipFile.h; sourceTree = "<group>"; };
+		E8FD96B61EC8679900AFA7FA /* NVHGzipFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHGzipFile.m; path = NVHTarGzip/NVHGzipFile.m; sourceTree = "<group>"; };
+		E8FD96B71EC8679900AFA7FA /* NVHTarFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHTarFile.h; path = NVHTarGzip/NVHTarFile.h; sourceTree = "<group>"; };
+		E8FD96B81EC8679900AFA7FA /* NVHTarFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHTarFile.m; path = NVHTarGzip/NVHTarFile.m; sourceTree = "<group>"; };
+		E8FD96BB1EC867BC00AFA7FA /* NVHFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHFile.h; path = NVHTarGzip/NVHFile.h; sourceTree = "<group>"; };
+		E8FD96BC1EC867BC00AFA7FA /* NVHFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHFile.m; path = NVHTarGzip/NVHFile.m; sourceTree = "<group>"; };
+		E8FD96BE1EC867D900AFA7FA /* NSFileManager+NVHFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+NVHFileSize.h"; path = "NVHTarGzip/NSFileManager+NVHFileSize.h"; sourceTree = "<group>"; };
+		E8FD96BF1EC867D900AFA7FA /* NSFileManager+NVHFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+NVHFileSize.m"; path = "NVHTarGzip/NSFileManager+NVHFileSize.m"; sourceTree = "<group>"; };
+		E8FD96C11EC867FF00AFA7FA /* NVHProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHProgress.h; path = NVHTarGzip/NVHProgress.h; sourceTree = "<group>"; };
+		E8FD96C21EC867FF00AFA7FA /* NVHProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHProgress.m; path = NVHTarGzip/NVHProgress.m; sourceTree = "<group>"; };
 		E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11.png"; path = "images/containers/container size - large - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@2x.png"; path = "images/containers/container size - large - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@3x.png"; path = "images/containers/container size - large - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2886,6 +2904,7 @@
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
+				E8FD96B11EC8668600AFA7FA /* NVHTarGzip */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
@@ -3110,6 +3129,25 @@
 				E8FD96AF1EC6A0A300AFA7FA /* FileObjectView.xib */,
 			);
 			name = Files;
+			sourceTree = "<group>";
+		};
+		E8FD96B11EC8668600AFA7FA /* NVHTarGzip */ = {
+			isa = PBXGroup;
+			children = (
+				E8FD96C11EC867FF00AFA7FA /* NVHProgress.h */,
+				E8FD96C21EC867FF00AFA7FA /* NVHProgress.m */,
+				E8FD96BE1EC867D900AFA7FA /* NSFileManager+NVHFileSize.h */,
+				E8FD96BF1EC867D900AFA7FA /* NSFileManager+NVHFileSize.m */,
+				E8FD96BB1EC867BC00AFA7FA /* NVHFile.h */,
+				E8FD96BC1EC867BC00AFA7FA /* NVHFile.m */,
+				E8FD96B51EC8679900AFA7FA /* NVHGzipFile.h */,
+				E8FD96B61EC8679900AFA7FA /* NVHGzipFile.m */,
+				E8FD96B71EC8679900AFA7FA /* NVHTarFile.h */,
+				E8FD96B81EC8679900AFA7FA /* NVHTarFile.m */,
+				E8FD96B21EC866A800AFA7FA /* NVHTarGzip.h */,
+				E8FD96B31EC866A800AFA7FA /* NVHTarGzip.m */,
+			);
+			name = NVHTarGzip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3713,6 +3751,7 @@
 				E8575FFF1B849BE600F34483 /* dbPersonalNote.m in Sources */,
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
+				E8FD96BA1EC8679900AFA7FA /* NVHTarFile.m in Sources */,
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */,
@@ -3737,6 +3776,7 @@
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
+				E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
@@ -3746,6 +3786,7 @@
 				E81D24301B9BDB94001E6027 /* XMLDictionary.m in Sources */,
 				E89C39931E29B0B400BB60CA /* KeepTracksTrackTableViewCell.m in Sources */,
 				E8467C8E1B4E04EE00FFA253 /* Coordinates.m in Sources */,
+				E8FD96C31EC867FF00AFA7FA /* NVHProgress.m in Sources */,
 				E8457F2E1E971ADE005A6347 /* WaypointSorter.m in Sources */,
 				E81D242C1B9B06B7001E6027 /* ImportLiveAPIJSON.m in Sources */,
 				E83C20491E2C8DF7006C523E /* WaypointTableViewCell.m in Sources */,
@@ -3831,6 +3872,7 @@
 				E84D6FC91C5236930000A6A0 /* ListFoundViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,
 				E8A3B0BA1CD33BC600170D61 /* MHTabBarController.m in Sources */,
+				E8FD96B91EC8679900AFA7FA /* NVHGzipFile.m in Sources */,
 				E8C5BB711C719EB1006222D5 /* WaypointGroupsViewController.m in Sources */,
 				E8457F311E989ABB005A6347 /* RemoteAPIProcessingGroup.m in Sources */,
 				E833B7321C522EA600B9FB45 /* ListTemplateViewController.m in Sources */,
@@ -3878,6 +3920,7 @@
 				E80732F31B626133007FDC29 /* dbAccount.m in Sources */,
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
+				E8FD96C01EC867D900AFA7FA /* NSFileManager+NVHFileSize.m in Sources */,
 				E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E89C398E1E28A01400BB60CA /* QueriesTableViewCell.m in Sources */,
@@ -3921,6 +3964,7 @@
 				E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */,
 				E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
+				E8FD96B41EC866A800AFA7FA /* NVHTarGzip.m in Sources */,
 				E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */,
 				E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */,
 				E8F570C51B40059F003F020C /* dbConfig.m in Sources */,

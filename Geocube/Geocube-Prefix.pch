@@ -45,6 +45,7 @@
 #import "LXMapScaleView.h"
 #import "MHTabBarController.h"
 #import "NKOColorPickerView.h"
+#import "NVHTarGzip.h"
 #import "RangeSlider.h"
 #import "Reachability.h"
 #import "SSZipArchive.h"
