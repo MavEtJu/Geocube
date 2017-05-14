@@ -52,25 +52,27 @@
     FileObject *rootFO = [[FileObject alloc] init];
     rootFO.filename = @"";
     rootFO.isDir = YES;
-    rootFO.contents = [self loadContents:@""];
+    rootFO.cwd = @"";
+    [self performSelectorInBackground:@selector(loadContents:) withObject:rootFO];
 
     self.allFO = rootFO;
     self.shownFO = self.allFO;
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
 
-    [self refreshContentsView];
+    [bezelManager showBezel:self];
+    [bezelManager setText:@"Retrieving directory contents"];
 }
 
-- (NSArray<FileObject *> *)loadContents:(NSString *)cwd
+- (void)loadContents:(FileObject *)rootFO
 {
-//    NSLog(@"loadContents: %@", cwd);
-    NSArray<NSString *> *fes = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], cwd] error:nil];
+//  NSLog(@"loadContents: %@", rootFO.cwd);
+    NSArray<NSString *> *fes = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], rootFO.cwd] error:nil];
     NSMutableArray<FileObject *> *fos = [NSMutableArray arrayWithCapacity:20];
 
     [fes enumerateObjectsUsingBlock:^(NSString * _Nonnull fn, NSUInteger idx, BOOL * _Nonnull stop) {
         FileObject *fo = [[FileObject alloc] init];
 
-        NSString *fullFilename = [NSString stringWithFormat:@"%@/%@%@", [MyTools DocumentRoot], cwd, fn];
+        NSString *fullFilename = [NSString stringWithFormat:@"%@/%@%@", [MyTools DocumentRoot], rootFO.cwd, fn];
 
         BOOL isDir = NO;
         NSDictionary<NSFileAttributeKey, id> *attrs = [fileManager attributesOfItemAtPath:fullFilename error:nil];
@@ -80,7 +82,8 @@
         fo.filename = fn;
         fo.isDir = isDir;
         if (isDir == YES) {
-            fo.contents = [self loadContents:[NSString stringWithFormat:@"%@%@/", cwd, fn]];
+            fo.cwd = [NSString stringWithFormat:@"%@%@/", rootFO.cwd, fn];
+            [self loadContents:fo];
             __block NSInteger totalSize = 0;
             [fo.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
                 totalSize += fo.filesize;
@@ -93,7 +96,14 @@
         [fos addObject:fo];
     }];
 
-    return fos;
+    if ([rootFO.cwd isEqualToString:@""] == YES) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [bezelManager removeBezel];
+            [self refreshContentsView];
+        }];
+    }
+
+    rootFO.contents = fos;
 }
 
 - (void)calculateRects
