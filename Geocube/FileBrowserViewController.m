@@ -24,7 +24,7 @@
     GCScrollView *contentView;
 }
 
-@property (nonatomic, retain) FileObject *allFO;
+@property (nonatomic, retain) FileObject *rootFO;
 @property (nonatomic, retain) FileObject *shownFO;
 @property (nonatomic, retain) NSMutableArray<FileObject *> *stackFO;
 @property (nonatomic) NSInteger y;
@@ -49,14 +49,13 @@
 {
     [super viewWillAppear:animated];
 
-    FileObject *rootFO = [[FileObject alloc] init];
-    rootFO.filename = @"";
-    rootFO.isDir = YES;
-    rootFO.cwd = @"";
-    [self performSelectorInBackground:@selector(loadContents:) withObject:rootFO];
+    self.rootFO = [[FileObject alloc] init];
+    self.rootFO.filename = @"";
+    self.rootFO.isDir = YES;
+    self.rootFO.cwd = @"";
+    [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
 
-    self.allFO = rootFO;
-    self.shownFO = self.allFO;
+    self.shownFO = self.rootFO;
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
 
     [bezelManager showBezel:self];
@@ -213,6 +212,14 @@
                                  [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename] error:&e];
                                  if (e != nil)
                                      [MyTools messageBox:self header:@"Deleting" text:[e description]];
+
+                                 self.shownFO = self.rootFO;
+                                 [self.stackFO removeAllObjects];
+
+                                 [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
+                                 [bezelManager showBezel:self];
+                                 [bezelManager setText:@"Retrieving directory contents"];
+
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *cancel = [UIAlertAction
