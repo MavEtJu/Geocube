@@ -848,6 +848,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
 - (void)menuRemoveTarget
 {
     [lmi disableItem:MVCmenuRemoveTarget];
+    [self updateMapButtons];
     [waypointManager setTheCurrentWaypoint:nil];
 }
 
