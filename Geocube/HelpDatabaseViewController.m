@@ -53,7 +53,6 @@ enum {
     [lmi addItem:menuDumpDatabase label:@"Dump database"];
 
     [self.tableView registerClass:[GCTableViewCellFieldValue class] forCellReuseIdentifier:THISCELL];
-    [self reloadNumbers];
 
     return self;
 }
@@ -62,6 +61,7 @@ enum {
 {
     [super viewWillAppear:animated];
     [self reloadNumbers];
+    [self performSelectorInBackground:@selector(reloadDiskUtilization) withObject:nil];
     [self.tableView reloadData];
 }
 
@@ -123,35 +123,45 @@ enum {
     fieldsDBCount = fs;
     valuesDBCount = vs;
 
-    vs = [NSMutableArray arrayWithCapacity:20];
-    fs = [NSMutableArray arrayWithCapacity:20];
+    config = [dbConfig dbAll];
+}
 
-    [fs addObject:@"Database size"];
+- (void)reloadDiskUtilization
+{
+    NSMutableArray<NSString *> *vs = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSString *> *fs = [NSMutableArray arrayWithCapacity:20];
+
+    fieldsSizes = fs;
+    valuesSizes = vs;
+
     [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
+    [fs addObject:@"Database size"];
+    [self reloadDataMainQueue];
 
-    NSInteger size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
-    [fs addObject:@"Images directory size"];
+    NSInteger size = [MyTools determineDirectorySize:[MyTools FilesDir]];
     [vs addObject:[MyTools niceFileSize:size]];
-
-    size = [MyTools determineDirectorySize:[MyTools FilesDir]];
     [fs addObject:@"Files directory size"];
-    [vs addObject:[MyTools niceFileSize:size]];
+    [self reloadDataMainQueue];
 
     NSDictionary<NSString *, MapBrand *> *d = [MapTemplateViewController initMapBrands];
     [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, MapBrand * _Nonnull mb, BOOL * _Nonnull stop) {
         if ([mb.mapObject respondsToSelector:@selector(cachePrefix)] == NO)
             return;
         NSString *prefix = [mb.mapObject cachePrefix];
-        [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
 
         NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
         [vs addObject:[MyTools niceFileSize:size]];
+        [self reloadDataMainQueue];
+
+        [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
     }];
 
-    fieldsSizes = fs;
-    valuesSizes = vs;
+    size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
+    [vs addObject:[MyTools niceFileSize:size]];
+    [fs addObject:@"Images directory size"];
+    [self reloadDataMainQueue];
 
-    config = [dbConfig dbAll];
+    [self reloadDataMainQueue];
 }
 
 - (void)viewDidLoad
