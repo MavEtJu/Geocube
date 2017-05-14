@@ -128,7 +128,7 @@
     self.y = 0;
 
     GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
-    l.text = [self determineFullPath];
+    l.text = [self determineVisiblePath];
     self.y += l.frame.size.height;
 
     l.userInteractionEnabled = YES;
@@ -165,6 +165,12 @@
         [s appendString:@"/"];
     }];
     [s appendString:self.shownFO.filename];
+    return s;
+}
+
+- (NSString *)determineVisiblePath
+{
+    NSMutableString *s = [NSMutableString stringWithString:[self determineFullPath]];
     if ([s length] == 0)
         [s appendString:@"/"];
     return s;
@@ -222,6 +228,46 @@
 
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
+
+    UIAlertAction *tar = [UIAlertAction
+                          actionWithTitle:@"Tar"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * action) {
+                              NSString *targz = [NSString stringWithFormat:@"%@/%@.tgz", [MyTools DocumentRoot], fo.filename];
+                              NSString *source = [NSString stringWithFormat:@"%@/%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
+                              [[NVHTarGzip sharedInstance] tarFileAtPath:source toPath:targz completion:^(NSError* tarError) {
+                                  if (tarError != nil)
+                                      [MyTools messageBox:self header:@"Tar" text:[tarError description]];
+                              }];
+
+                              self.shownFO = self.rootFO;
+                              [self.stackFO removeAllObjects];
+
+                              [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
+                              [bezelManager showBezel:self];
+                              [bezelManager setText:@"Retrieving directory contents"];
+
+                              [view dismissViewControllerAnimated:YES completion:nil];
+                          }];
+
+    UIAlertAction *uploadAirdrop = [UIAlertAction
+                                    actionWithTitle:@"Upload with Airdrop"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        NSString *fn = [NSString stringWithFormat:@"%@%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
+                                        [self uploadAirdrop:fn];
+                                        [view dismissViewControllerAnimated:YES completion:nil];
+                                    }];
+
+    UIAlertAction *uploadICloud = [UIAlertAction
+                                   actionWithTitle:@"Upload to iCloud"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       NSString *fn = [NSString stringWithFormat:@"%@%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
+                                       [self uploadICloud:fn];
+                                       [view dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
@@ -231,9 +277,21 @@
                              }];
 
     [view addAction:delete];
+    [view addAction:tar];
+    [view addAction:uploadAirdrop];
+    [view addAction:uploadICloud];
     [view addAction:cancel];
     [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
+}
 
+- (void)uploadAirdrop:(NSString *)filename
+{
+    [IOSFTM uploadAirdrop:filename vc:self];
+}
+
+- (void)uploadICloud:(NSString *)filename
+{
+    [IOSFTM uploadICloud:filename vc:self];
 }
 
 @end
