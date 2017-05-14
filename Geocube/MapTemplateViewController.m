@@ -213,6 +213,20 @@
     if (meLocation.longitude == 0 && meLocation.latitude == 0)
         [self updateLocationManagerLocation];
 
+    [self updateMapButtons];
+
+    isVisible = YES;
+    if (needsRefresh == YES) {
+        [self refreshWaypointsData];
+        needsRefresh = NO;
+    }
+
+    if ([self.map waypointInfoViewIsShown] == YES)
+        [self.map showWaypointInfo];
+}
+
+- (void)updateMapButtons
+{
     if (waypointManager.currentWaypoint == nil) {
         labelMapShowBoth.userInteractionEnabled = NO;
         labelMapShowBoth.enabled = NO;
@@ -228,15 +242,6 @@
         labelMapFindTarget.userInteractionEnabled = YES;
         labelMapFindTarget.enabled = YES;
     }
-
-    isVisible = YES;
-    if (needsRefresh == YES) {
-        [self refreshWaypointsData];
-        needsRefresh = NO;
-    }
-
-    if ([self.map waypointInfoViewIsShown] == YES)
-        [self.map showWaypointInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -341,6 +346,8 @@
     labelMapFindTarget.userInteractionEnabled = YES;
     [labelMapFindTarget setImage:[imageLibrary get:ImageIcon_FindTarget] forState:UIControlStateNormal];
     [self.view addSubview:labelMapFindTarget];
+
+    [self updateMapButtons];
 
     switch (self.followWhom) {
         case SHOW_FOLLOWME:
