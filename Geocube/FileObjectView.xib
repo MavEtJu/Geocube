@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,23 +18,29 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GCView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="49" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-qI-wRB" userLabel="Label - filetype" customClass="GCLabel">
-                    <rect key="frame" x="0.0" y="0.0" width="42" height="49"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="infinite" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-qI-wRB" userLabel="Label - filetype" customClass="GCLabel">
+                    <rect key="frame" x="0.0" y="0.0" width="42" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Ohr-UT-908"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njx-99-XK7" userLabel="Label - filename" customClass="GCLabel">
-                    <rect key="frame" x="42" y="0.0" width="42" height="49"/>
+                    <rect key="frame" x="42" y="0.0" width="198" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="49" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96L-yO-4Fv" userLabel="Label - filesize" customClass="GCLabel">
-                    <rect key="frame" x="278" y="0.0" width="42" height="49"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="18" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96L-yO-4Fv" userLabel="Label - filesize" customClass="GCLabel">
+                    <rect key="frame" x="240" y="0.0" width="80" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="d08-YC-5R9"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -43,17 +48,20 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="G5K-qI-wRB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3B6-6W-MZV"/>
-                <constraint firstItem="Njx-99-XK7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="D85-mc-pl6"/>
-                <constraint firstItem="Njx-99-XK7" firstAttribute="baseline" secondItem="96L-yO-4Fv" secondAttribute="baseline" id="EsQ-kV-cPa"/>
-                <constraint firstAttribute="trailing" secondItem="96L-yO-4Fv" secondAttribute="trailing" id="GYT-hJ-sq0"/>
-                <constraint firstItem="G5K-qI-wRB" firstAttribute="baseline" secondItem="Njx-99-XK7" secondAttribute="baseline" id="HWD-SQ-gFu"/>
-                <constraint firstItem="G5K-qI-wRB" firstAttribute="firstBaseline" secondItem="Njx-99-XK7" secondAttribute="firstBaseline" id="mmj-2B-J4p"/>
-                <constraint firstItem="G5K-qI-wRB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="z3S-bd-nul"/>
+                <constraint firstItem="96L-yO-4Fv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Dc-oL-073"/>
+                <constraint firstAttribute="bottom" secondItem="Njx-99-XK7" secondAttribute="bottom" id="AWg-Jj-cP3"/>
+                <constraint firstAttribute="bottom" secondItem="96L-yO-4Fv" secondAttribute="bottom" id="J5O-Mo-eDK"/>
+                <constraint firstAttribute="bottom" secondItem="G5K-qI-wRB" secondAttribute="bottom" id="RNq-6C-oTW"/>
+                <constraint firstItem="G5K-qI-wRB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fGo-pq-2V8"/>
+                <constraint firstItem="96L-yO-4Fv" firstAttribute="leading" secondItem="Njx-99-XK7" secondAttribute="trailing" id="fqg-5E-WUN"/>
+                <constraint firstItem="G5K-qI-wRB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="shF-FG-0dc"/>
+                <constraint firstItem="Njx-99-XK7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wHf-ea-bxa"/>
+                <constraint firstItem="Njx-99-XK7" firstAttribute="leading" secondItem="G5K-qI-wRB" secondAttribute="trailing" id="xJx-Sa-XFZ"/>
+                <constraint firstAttribute="trailing" secondItem="96L-yO-4Fv" secondAttribute="trailing" id="yxt-rj-IAk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33" y="-135.5"/>
+            <point key="canvasLocation" x="33" y="-143.5"/>
         </view>
     </objects>
 </document>

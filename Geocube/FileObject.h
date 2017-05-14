@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic) NSInteger filesize;
 @property (nonatomic) BOOL isDir;
+@property (nonatomic, retain) NSString *cwd;
 @property (nonatomic, retain) NSArray<FileObject *> *contents;
 
 @end
