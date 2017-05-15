@@ -103,7 +103,7 @@ enum {
                              actionWithTitle:@"Import"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
-                                 [self downloadFiles];
+                                 [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
@@ -298,6 +298,7 @@ enum {
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
     [bezelManager showBezel:self];
+    BOOL needsFullReload = ([[dbc Accounts] count] == 0);
 
     [self downloadFile:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
     [self downloadFile:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
@@ -313,6 +314,8 @@ enum {
 
     [bezelManager removeBezel];
 
+    if (needsFullReload == YES)
+        [dbc loadCachableData];
     [dbc AccountsReload];
     [self refreshAccountData];
 
