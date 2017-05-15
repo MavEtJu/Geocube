@@ -44,7 +44,6 @@
     self.Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
     self.Protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
     self.Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
-    self.Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
     self.Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
     self.Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
     LogStrings = [NSMutableArray arrayWithArray:[dbLogString dbAll]];
@@ -134,15 +133,6 @@
             self.Type_ManuallyEntered = self.Type_Unknown;
     }
 
-    [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
-        if ([pt.desc isEqualToString:@"*"] == YES) {
-            self.Pin_Unknown = pt;
-            *stop = YES;
-        }
-    }];
-    if ([self.Pins count] != 0)
-        NSAssert(self.Pin_Unknown != nil, @"Pin_Unknown");
-
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
         if ([s.symbol isEqualToString:@"*"] == YES) {
             self.Symbol_Unknown = s;
@@ -165,6 +155,23 @@
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *name, NSUInteger idx, BOOL * _Nonnull stop) {
         [Names setObject:name forKey:[NSNumber numberWithLongLong:name._id]];
     }];
+
+    [self pinsReloaded];
+}
+
+- (void)pinsReloaded
+{
+    self.Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
+
+    [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
+        if ([pt.desc isEqualToString:@"*"] == YES) {
+            self.Pin_Unknown = pt;
+            *stop = YES;
+        }
+    }];
+    if ([self.Pins count] != 0)
+        NSAssert(self.Pin_Unknown != nil, @"Pin_Unknown");
+
 }
 
 - (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor

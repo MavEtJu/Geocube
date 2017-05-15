@@ -60,6 +60,8 @@
 @property (nonatomic, retain) dbAttribute *Attribute_Unknown;
 
 - (void)loadCachableData;
+- (void)AccountsReload;
+- (void)pinsReloaded;
 
 - (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
 - (dbType *)Type_get_byminor:(NSString *)minor;
@@ -101,7 +103,6 @@
 - (dbLocale *)Locale_get:(NSId)_id;
 - (void)Locale_add:(dbLocale *)state;
 
-- (void)AccountsReload;
 - (dbAccount *)Account_get:(NSId)_id;
 - (BOOL)Account_isOwner:(dbWaypoint *)wp;
 
