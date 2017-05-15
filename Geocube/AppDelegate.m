@@ -437,10 +437,9 @@
     MHTabBarController *currentTab = [self.tabBars objectAtIndex:configManager.currentPage];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = currentTab;
-    NSInteger cpt = configManager.currentPageTab;
 
     [self.window makeKeyAndVisible];
-    [currentTab setSelectedIndex:cpt animated:YES];
+    [currentTab setSelectedIndex:configManager.currentPageTab animated:YES];
 
     // Browser View Controller
     browserTabController = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
@@ -455,11 +454,9 @@
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
     if (db == nil) {
-        [self switchController:RC_HELP];
-        currentTab = [self.tabBars objectAtIndex:RC_HELP];
-        cpt = VC_HELP_NOTICES;
-        [currentTab setSelectedIndex:cpt animated:YES];
-        [NoticesViewController AccountsNeedToBeInitialized];
+        [self switchController:RC_SETTINGS];
+        currentTab = [self.tabBars objectAtIndex:RC_SETTINGS];
+        [currentTab setSelectedIndex:VC_SETTINGS_ACCOUNTS animated:YES];
     }
 
     // Cleanup imported information from iTunes -- after the viewcontroller has been generated
