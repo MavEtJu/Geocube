@@ -114,6 +114,10 @@
 
     NSArray<NSDictionary *> *notices = [dict objectForKey:@"notice"];
     [infoViewer setLineObjectTotal:iiImport total:[notices count] isLines:NO];
+
+    if ([notices isKindOfClass:[NSDictionary class]] == YES)
+        notices = @[notices];
+
     [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
