@@ -4186,7 +4186,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-gnu";
 			};
 			name = Debug;
@@ -4221,7 +4221,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-gnu";
 			};
 			name = Release;

@@ -65,6 +65,84 @@
       "idiom" : "iphone",
       "filename" : "GC - logo - 180x180.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 20x20.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 40x40-2.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 29x29-1.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 58x58-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 40x40-1.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 80x80-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 50x50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 100x100.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 72x72.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 144x144.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 76x76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 152x152.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "GC - logo - 167x167.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
