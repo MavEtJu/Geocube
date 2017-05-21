@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointsOfflineListViewController ()
+@interface WaypointsListViewController ()
 {
     NSArray<dbWaypoint *> *waypoints;
 
@@ -35,7 +35,7 @@
 
 #define THISCELL @"WaypointTableViewCell"
 
-@implementation WaypointsOfflineListViewController
+@implementation WaypointsListViewController
 
 enum {
     menuAddWaypoint,

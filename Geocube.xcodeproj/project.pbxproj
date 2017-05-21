@@ -444,7 +444,7 @@
 		E8C5BB771C719EB1006222D5 /* WaypointLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB611C719EB1006222D5 /* WaypointLogViewController.m */; };
 		E8C5BB781C719EB1006222D5 /* WaypointPersonalNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */; };
 		E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */; };
-		E8C5BB7A1C719EB1006222D5 /* WaypointsOfflineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */; };
+		E8C5BB7A1C719EB1006222D5 /* WaypointsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB671C719EB1006222D5 /* WaypointsListViewController.m */; };
 		E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */; };
 		E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
@@ -1284,8 +1284,8 @@
 		E8C5BB631C719EB1006222D5 /* WaypointPersonalNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointPersonalNoteViewController.m; sourceTree = "<group>"; };
 		E8C5BB641C719EB1006222D5 /* WaypointRawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointRawViewController.h; sourceTree = "<group>"; };
 		E8C5BB651C719EB1006222D5 /* WaypointRawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointRawViewController.m; sourceTree = "<group>"; };
-		E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsOfflineListViewController.h; sourceTree = "<group>"; };
-		E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsOfflineListViewController.m; sourceTree = "<group>"; };
+		E8C5BB661C719EB1006222D5 /* WaypointsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointsListViewController.h; sourceTree = "<group>"; };
+		E8C5BB671C719EB1006222D5 /* WaypointsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointsListViewController.m; sourceTree = "<group>"; };
 		E8C5BB6A1C719EB1006222D5 /* WaypointTrackablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTrackablesViewController.h; sourceTree = "<group>"; };
 		E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTrackablesViewController.m; sourceTree = "<group>"; };
 		E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsViewController.h; sourceTree = "<group>"; };
@@ -1949,8 +1949,8 @@
 		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
-				E8C5BB661C719EB1006222D5 /* WaypointsOfflineListViewController.h */,
-				E8C5BB671C719EB1006222D5 /* WaypointsOfflineListViewController.m */,
+				E8C5BB661C719EB1006222D5 /* WaypointsListViewController.h */,
+				E8C5BB671C719EB1006222D5 /* WaypointsListViewController.m */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = Waypoints;
@@ -3885,7 +3885,7 @@
 				E88974BF1B6EC78900703E80 /* SettingsMainViewController.m in Sources */,
 				E847A5901BA04AF400BEFE83 /* GCTextblock.m in Sources */,
 				E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */,
-				E8C5BB7A1C719EB1006222D5 /* WaypointsOfflineListViewController.m in Sources */,
+				E8C5BB7A1C719EB1006222D5 /* WaypointsListViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */,

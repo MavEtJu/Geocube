@@ -254,7 +254,7 @@
 #import "TrackablesMineViewController.h"
 #import "TrackablesInventoryViewController.h"
 
-#import "WaypointsOfflineListViewController.h"
+#import "WaypointsListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
 #import "GroupsViewController.h"

@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointsOfflineListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, WaypointManagerDelegate, RemoteAPIDownloadDelegate>
+@interface WaypointsListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, WaypointManagerDelegate, RemoteAPIDownloadDelegate>
 
 @property (strong, nonatomic) UISearchController *searchController;
 

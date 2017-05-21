@@ -133,7 +133,7 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
-                vc = [[WaypointsOfflineListViewController alloc] init];
+                vc = [[WaypointsListViewController alloc] init];
                 vc.title = @"List";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
