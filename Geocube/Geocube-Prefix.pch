@@ -158,6 +158,7 @@
 
 #import "WaypointHeaderTableViewCell.h"
 #import "WaypointTableViewCell.h"
+#import "WaypointLogsTableViewCell.h"
 #import "LogTableViewCell.h"
 #import "NoticeTableViewCell.h"
 #import "PersonalNoteTableViewCell.h"

@@ -62,6 +62,7 @@ enum {
 #define THISCELL_HEADER @"Waypointtablecell_header"
 #define THISCELL_DATA @"Waypointtablecell_data"
 #define THISCELL_ACTIONS @"Waypointtablecell_actions"
+#define THISCELL_LOGS @"Waypointtablecell_logs"
 
 @implementation WaypointViewController
 
@@ -120,6 +121,7 @@ enum {
     [self makeInfoView];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"WaypointHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WaypointLogsTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_LOGS];
 
     UINib *sectionHeaderNib = [UINib nibWithNibName:@"WaypointHeaderHeaderView" bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];
@@ -300,15 +302,41 @@ enum {
                 }
 
                 case WAYPOINT_DATA_LOGS: {
-                    cell.textLabel.text = @"Logs";
+                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_LOGS forIndexPath:indexPath];
+                    cell.logs.text = @"Logs";
+                    cell.userInteractionEnabled = YES;
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+                    cell.image0.image = nil;
+                    cell.image1.image = nil;
+                    cell.image2.image = nil;
+                    cell.image3.image = nil;
+                    cell.image4.image = nil;
+                    cell.image5.image = nil;
+
                     NSInteger c = [waypoint hasLogs];
                     if (c == 0) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
+
                     } else {
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)c];
+                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", cell.logs.text, (long)c];
+
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint._id];
+#define IMAGE(__idx__) \
+    if ([logs count] > __idx__) { \
+        dbLog *log = [logs objectAtIndex:__idx__]; \
+        cell.image ## __idx__.image = [imageLibrary get:log.logstring.icon]; \
+    }
+                        IMAGE(0);
+                        IMAGE(1);
+                        IMAGE(2);
+                        IMAGE(3);
+                        IMAGE(4);
+                        IMAGE(5);
                     }
-                    break;
+
+                    return cell;
                 }
 
                 case WAYPOINT_DATA_ATTRIBUTES: {

@@ -422,6 +422,8 @@
 		E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA41B78A678003F4132 /* dbImage.m */; };
 		E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA71B78CE36003F4132 /* MyTools.m */; };
 		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
+		E8AA14961ED15FFD0023000A /* WaypointLogsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */; };
+		E8AA14971ED15FFD0023000A /* WaypointLogsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */; };
 		E8ABA0951E277CF20080D5FE /* FilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */; };
 		E8ABA0961E277CF20080D5FE /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */; };
 		E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */; };
@@ -1241,6 +1243,9 @@
 		E8A7FAA71B78CE36003F4132 /* MyTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTools.m; sourceTree = "<group>"; };
 		E8A9934C1BB6A78C00714B90 /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCloseButton.h; sourceTree = "<group>"; };
 		E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCloseButton.m; sourceTree = "<group>"; };
+		E8AA14931ED15FFD0023000A /* WaypointLogsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogsTableViewCell.h; sourceTree = "<group>"; };
+		E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogsTableViewCell.m; sourceTree = "<group>"; };
+		E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointLogsTableViewCell.xib; sourceTree = "<group>"; };
 		E8ABA0921E277CF20080D5FE /* FilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableViewCell.h; sourceTree = "<group>"; };
 		E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableViewCell.m; sourceTree = "<group>"; };
 		E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesTableViewCell.xib; sourceTree = "<group>"; };
@@ -1988,6 +1993,9 @@
 				E83C20561E2E2651006C523E /* WaypointHeaderHeaderView.h */,
 				E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */,
 				E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */,
+				E8AA14931ED15FFD0023000A /* WaypointLogsTableViewCell.h */,
+				E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */,
+				E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */,
 				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
@@ -3479,6 +3487,7 @@
 				E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */,
 				E82E66DB1DA07CBE00CFBDED /* cache - unknown - 30x30.png in Resources */,
 				E82E673E1DA07D0200CFBDED /* attributes - 20.png in Resources */,
+				E8AA14971ED15FFD0023000A /* WaypointLogsTableViewCell.xib in Resources */,
 				E82E675B1DA07D0200CFBDED /* attributes - 49.png in Resources */,
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
@@ -3906,6 +3915,7 @@
 				E8FEDEEF1DAC2DD2007C756B /* GCGMSCircle.m in Sources */,
 				E85279EF1EB88EBC00EFDA2A /* GCCoordsHistorical.m in Sources */,
 				E8F570A71B3F7F6A003F020C /* SSZipArchive.m in Sources */,
+				E8AA14961ED15FFD0023000A /* WaypointLogsTableViewCell.m in Sources */,
 				E86C65A71B4BD44000E2ABFE /* ImageLibrary.m in Sources */,
 				E8F570A61B3F7F6A003F020C /* zip.c in Sources */,
 				E8A7FAA51B78A678003F4132 /* dbImage.m in Sources */,

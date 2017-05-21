@@ -192,6 +192,7 @@
 @class WaypointLogImagesViewController;
 @class WaypointLogTrackablesViewController;
 @class WaypointLogViewController;
+@class WaypointLogsTableViewCell;
 @class WaypointLogsViewController;
 @class WaypointManager;
 @class WaypointPersonalNoteViewController;
