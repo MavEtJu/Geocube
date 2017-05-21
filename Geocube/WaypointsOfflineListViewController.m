@@ -42,6 +42,7 @@ enum {
     menuExportGPX,
     menuSortBy,
     menuReloadWaypoints,
+    menuDeleteAll,
     menuMax
 };
 
@@ -56,6 +57,7 @@ enum {
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuSortBy label:@"Sort By"];
     [lmi addItem:menuReloadWaypoints label:@"Reload waypoints"];
+    [lmi addItem:menuDeleteAll label:@"Delete all"];
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
 
@@ -252,6 +254,9 @@ enum {
         case menuReloadWaypoints:
             [self menuReloadWaypoints];
             return;
+        case menuDeleteAll:
+            [self menuDeleteAll];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -291,6 +296,38 @@ enum {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
     [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuDeleteAll
+{
+    NSArray<dbWaypoint *> *wps = waypointManager.currentWaypoints;
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Delete waypoints"
+                                message:@"Are you sure?"
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *yes = [UIAlertAction
+                          actionWithTitle:@"Yes"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction *action) {
+                              [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                                  [wp dbDelete];
+                              }];
+                              [db cleanupAfterDelete];
+                              [waypointManager needsRefreshAll];
+                              [self.navigationController popViewControllerAnimated:YES];
+                          }];
+
+    UIAlertAction *no = [UIAlertAction
+                         actionWithTitle:@"NO!" style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action) {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
+
+    [alert addAction:yes];
+    [alert addAction:no];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
