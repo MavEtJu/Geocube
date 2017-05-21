@@ -257,6 +257,34 @@
     return ls;
 }
 
++ (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)_wp_id
+{
+    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc limit 7");
+
+        SET_VAR_INT(1, _wp_id);
+
+        DB_WHILE_STEP {
+            dbLog *l = [[dbLog alloc] init];
+            INT_FETCH (0, l._id);
+            INT_FETCH (1, l.gc_id);
+            INT_FETCH (2, l.waypoint_id);
+            INT_FETCH (3, l.logstring_id);
+            TEXT_FETCH(4, l.datetime);
+            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH (6, l.logger_id);
+            TEXT_FETCH(7, l.log);
+            BOOL_FETCH(8, l.needstobelogged);
+            [l finish];
+            [ls addObject:l];
+        }
+        DB_FINISH;
+    }
+    return ls;
+}
+
 + (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
 {
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
