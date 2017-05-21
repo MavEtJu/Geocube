@@ -220,6 +220,7 @@ NEEDS_OVERLOADING(reloadQueries)
 
     [self reloadDataMainQueue];
     [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [waypointManager needsRefreshAll];
 
     [self hideInfoView];
 }
