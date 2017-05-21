@@ -560,6 +560,8 @@
             NSInteger flagMine = [[self configGet:@"flags_owner"] integerValue];
             NSInteger flagLoggedAsFound = [[self configGet:@"flags_loggedasfound"] integerValue];
             NSInteger flagLoggedAsDNF = [[self configGet:@"flags_loggedasdnf"] integerValue];
+            NSInteger flagEnabled = [[self configGet:@"flags_isenabled"] integerValue];
+            NSInteger flagArchived = [[self configGet:@"flags_isarchived"] integerValue];
 
             [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL keep = YES;
@@ -580,6 +582,10 @@
                     keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_NOTSET);
                 if (keep == YES && flagLoggedAsDNF != LOGSTATUS_NOTLOGGED)
                     keep = (wp.logStatus == LOGSTATUS_NOTFOUND && flagLoggedAsDNF == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_NOTFOUND && flagLoggedAsDNF == FILTER_FLAGS_NOTSET);
+                if (keep == YES && flagEnabled != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.gs_available == YES && flagEnabled == FILTER_FLAGS_SET) || (wp.gs_available == NO && flagEnabled == FILTER_FLAGS_NOTSET);
+                if (keep == YES && flagArchived != FILTER_FLAGS_NOTCHECKED)
+                    keep = (wp.gs_archived == YES && flagArchived == FILTER_FLAGS_SET) || (wp.gs_archived == NO && flagArchived == FILTER_FLAGS_NOTSET);
 
                 if (keep == YES)
                     [after addObject:wp];

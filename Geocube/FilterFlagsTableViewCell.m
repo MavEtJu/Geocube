@@ -29,6 +29,8 @@
     UIButton *buttonLoggedAsFound;
     UIButton *buttonLoggedAsDNF;
     UIButton *buttonOwner;
+    UIButton *buttonEnabled;
+    UIButton *buttonArchived;
 
     FilterFlag valueHighlighted;
     FilterFlag valueMarkedAsFound;
@@ -38,6 +40,8 @@
     FilterFlag valueLoggedAsFound;
     FilterFlag valueLoggedAsDNF;
     FilterFlag valueOwner;
+    FilterFlag valueEnabled;
+    FilterFlag valueArchived;
 
     NSArray<NSString *> *valuesHighlighted;
     NSArray<NSString *> *valuesMarkedAsFound;
@@ -47,6 +51,8 @@
     NSArray<NSString *> *valuesLoggedAsFound;
     NSArray<NSString *> *valuesLoggedAsDNF;
     NSArray<NSString *> *valuesOwner;
+    NSArray<NSString *> *valuesEnabled;
+    NSArray<NSString *> *valuesArchived;
 }
 
 @end
@@ -62,6 +68,8 @@ typedef NS_ENUM(NSInteger, FlagType) {
     flagLoggedAsFound,
     flagLoggedAsDNF,
     flagOwner,
+    flagEnabled,
+    flagArchived,
     flagMax
 };
 
@@ -90,6 +98,8 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valueInProgress = FILTER_FLAGS_NOTCHECKED;
     valueLoggedAsFound = FILTER_FLAGS_NOTCHECKED;
     valueLoggedAsDNF = FILTER_FLAGS_NOTCHECKED;
+    valueEnabled = FILTER_FLAGS_NOTCHECKED;
+    valueArchived = FILTER_FLAGS_NOTCHECKED;
 
     valuesHighlighted = @[@"Highlighted", @"Highlighted", @"Not highlighted"];
     valuesMarkedAsFound = @[@"Marked as Found", @"Marked as Found", @"Not marked as found"];
@@ -99,31 +109,24 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valuesLoggedAsFound = @[@"Logged as found", @"Logged as found", @"Not logged as found"];
     valuesLoggedAsDNF = @[@"Logged as DNF", @"Logged as DNF", @"Not logged as DNF"];
     valuesOwner = @[@"Mine", @"Mine", @"Not mine"];
+    valuesEnabled = @[@"Enabled", @"Enabled", @"Not enabled"];
+    valuesArchived = @[@"Archived", @"Archived", @"Not archived"];
 
-    c = [self configGet:@"highlighted"];
-    if (c != nil)
-        valueHighlighted = [c integerValue];
-    c = [self configGet:@"markedfound"];
-    if (c != nil)
-        valueMarkedAsFound = [c integerValue];
-    c = [self configGet:@"markeddnf"];
-    if (c != nil)
-        valueMarkedAsDNF = [c integerValue];
-    c = [self configGet:@"ignored"];
-    if (c != nil)
-        valueIgnored = [c integerValue];
-    c = [self configGet:@"inprogress"];
-    if (c != nil)
-        valueInProgress = [c integerValue];
-    c = [self configGet:@"loggedasfound"];
-    if (c != nil)
-        valueLoggedAsFound = [c integerValue];
-    c = [self configGet:@"loggedasdnf"];
-    if (c != nil)
-        valueLoggedAsDNF = [c integerValue];
-    c = [self configGet:@"owner"];
-    if (c != nil)
-        valueOwner = [c integerValue];
+#define CHECK(__type__, __config__) \
+    c = [self configGet:__config__]; \
+    if (c != nil) \
+        value ## __type__ = [c integerValue];
+
+    CHECK(MarkedAsFound, @"markedfound");
+    CHECK(MarkedAsDNF, @"markeddnf");
+    CHECK(Ignored, @"ignored");
+    CHECK(Highlighted, @"highlighted");
+    CHECK(InProgress, @"inprogress");
+    CHECK(LoggedAsFound, @"loggedasfound");
+    CHECK(LoggedAsDNF, @"loggedasdnf");
+    CHECK(Owner, @"owner");
+    CHECK(Enabled, @"isenabled");
+    CHECK(Archived, @"isarchived");
 
     for (FlagType i = 0; i < flagMax; i++) {
         CGRect rect = CGRectMake(20, y, width - 40, 20);
@@ -132,47 +135,24 @@ typedef NS_ENUM(NSInteger, FlagType) {
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:b];
 
+#define CASE(__type__) \
+        case flag ## __type__: \
+            [b setTitle:[values ## __type__ objectAtIndex:value ## __type__] forState:UIControlStateNormal]; \
+            [b setTitleColor:(value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal]; \
+            button ## __type__ = b; \
+            break;
+
         switch (i) {
-            case flagHighlighted:
-                [b setTitle:[valuesHighlighted objectAtIndex:valueHighlighted] forState:UIControlStateNormal];
-                [b setTitleColor:(valueHighlighted != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonHighlighted = b;
-                break;
-            case flagMarkedAsFound:
-                [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];
-                [b setTitleColor:(valueMarkedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonMarkedAsFound = b;
-                break;
-            case flagMarkedAsDNF:
-                [b setTitle:[valuesMarkedAsDNF objectAtIndex:valueMarkedAsDNF] forState:UIControlStateNormal];
-                [b setTitleColor:(valueMarkedAsDNF != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonMarkedAsDNF = b;
-                break;
-            case flagIgnored:
-                [b setTitle:[valuesIgnored objectAtIndex:valueIgnored] forState:UIControlStateNormal];
-                [b setTitleColor:(valueIgnored != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonIgnored = b;
-                break;
-            case flagInProgress:
-                [b setTitle:[valuesInProgress objectAtIndex:valueInProgress] forState:UIControlStateNormal];
-                [b setTitleColor:(valueInProgress != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonInProgress = b;
-                break;
-            case flagLoggedAsFound:
-                [b setTitle:[valuesLoggedAsFound objectAtIndex:valueLoggedAsFound] forState:UIControlStateNormal];
-                [b setTitleColor:(valueLoggedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonLoggedAsFound = b;
-                break;
-            case flagLoggedAsDNF:
-                [b setTitle:[valuesLoggedAsDNF objectAtIndex:valueLoggedAsDNF] forState:UIControlStateNormal];
-                [b setTitleColor:(valueLoggedAsDNF != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonLoggedAsDNF = b;
-                break;
-            case flagOwner:
-                [b setTitle:[valuesOwner objectAtIndex:valueOwner] forState:UIControlStateNormal];
-                [b setTitleColor:(valueOwner != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-                buttonOwner = b;
-                break;
+            CASE(Highlighted);
+            CASE(MarkedAsFound);
+            CASE(MarkedAsDNF);
+            CASE(Ignored);
+            CASE(InProgress);
+            CASE(LoggedAsFound);
+            CASE(LoggedAsDNF);
+            CASE(Owner);
+            CASE(Enabled);
+            CASE(Archived);
             default:
                 NSAssert1(0, @"Flag %ld not found", (long)i);
         }
@@ -214,78 +194,26 @@ typedef NS_ENUM(NSInteger, FlagType) {
 
 - (void)clickGroup:(UIButton *)b
 {
-    if (b == buttonMarkedAsFound) {
-        valueMarkedAsFound = (valueMarkedAsFound + 1) % [valuesMarkedAsFound count];
-        [b setTitle:[valuesMarkedAsFound objectAtIndex:valueMarkedAsFound] forState:UIControlStateNormal];
-        [b setTitleColor:(valueMarkedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"markedfound" value:[NSString stringWithFormat:@"%ld", (long)valueMarkedAsFound]];
-        [self configUpdate];
-        return;
+#define PROCESS(__type__, __config__) \
+    if (b == button ## __type__) { \
+        value ## __type__ = (value ## __type__ + 1) % [values ## __type__ count]; \
+        [b setTitle:[values ## __type__ objectAtIndex:value ## __type__] forState:UIControlStateNormal]; \
+        [b setTitleColor:(value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal]; \
+        [self configSet:__config__ value:[NSString stringWithFormat:@"%ld", (long)value ## __type__]]; \
+        [self configUpdate]; \
+        return; \
     }
 
-    if (b == buttonMarkedAsDNF) {
-        valueMarkedAsDNF = (valueMarkedAsDNF + 1) % [valuesMarkedAsDNF count];
-        [b setTitle:[valuesMarkedAsDNF objectAtIndex:valueMarkedAsDNF] forState:UIControlStateNormal];
-        [b setTitleColor:(valueMarkedAsDNF != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"markeddnf" value:[NSString stringWithFormat:@"%ld", (long)valueMarkedAsDNF]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonIgnored) {
-        valueIgnored = (valueIgnored + 1) % [valuesIgnored count];
-        [b setTitle:[valuesIgnored objectAtIndex:valueIgnored] forState:UIControlStateNormal];
-        [b setTitleColor:(valueIgnored != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"ignored" value:[NSString stringWithFormat:@"%ld", (long)valueIgnored]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonHighlighted) {
-        valueHighlighted = (valueHighlighted + 1) % [valuesHighlighted count];
-        [b setTitle:[valuesHighlighted objectAtIndex:valueHighlighted] forState:UIControlStateNormal];
-        [b setTitleColor:(valueHighlighted != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"highlighted" value:[NSString stringWithFormat:@"%ld", (long)valueHighlighted]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonInProgress) {
-        valueInProgress = (valueInProgress + 1) % [valuesInProgress count];
-        [b setTitle:[valuesInProgress objectAtIndex:valueInProgress] forState:UIControlStateNormal];
-        [b setTitleColor:(valueInProgress != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"inprogress" value:[NSString stringWithFormat:@"%ld", (long)valueInProgress]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonLoggedAsFound) {
-        valueLoggedAsFound = (valueLoggedAsFound + 1) % [valuesLoggedAsFound count];
-        [b setTitle:[valuesLoggedAsFound objectAtIndex:valueLoggedAsFound] forState:UIControlStateNormal];
-        [b setTitleColor:(valueLoggedAsFound != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"loggedasfound" value:[NSString stringWithFormat:@"%ld", (long)valueLoggedAsFound]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonLoggedAsDNF) {
-        valueLoggedAsDNF = (valueLoggedAsDNF + 1) % [valuesLoggedAsDNF count];
-        [b setTitle:[valuesLoggedAsDNF objectAtIndex:valueLoggedAsDNF] forState:UIControlStateNormal];
-        [b setTitleColor:(valueLoggedAsDNF != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"loggedasdnf" value:[NSString stringWithFormat:@"%ld", (long)valueLoggedAsDNF]];
-        [self configUpdate];
-        return;
-    }
-
-    if (b == buttonOwner) {
-        valueOwner = (valueOwner + 1) % [valuesOwner count];
-        [b setTitle:[valuesOwner objectAtIndex:valueOwner] forState:UIControlStateNormal];
-        [b setTitleColor:(valueOwner != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [self configSet:@"owner" value:[NSString stringWithFormat:@"%ld", (long)valueOwner]];
-        [self configUpdate];
-        return;
-    }
-
+    PROCESS(MarkedAsFound, @"markedfound");
+    PROCESS(MarkedAsDNF, @"markeddnf");
+    PROCESS(Ignored, @"ignored");
+    PROCESS(Highlighted, @"highlighted");
+    PROCESS(InProgress, @"inprogress");
+    PROCESS(LoggedAsFound, @"loggedasfound");
+    PROCESS(LoggedAsDNF, @"loggedasdnf");
+    PROCESS(Owner, @"owner");
+    PROCESS(Enabled, @"isenabled");
+    PROCESS(Archived, @"isarchived");
 }
 
 @end
