@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,8 +21,7 @@
                 <outlet property="labelDescription" destination="6bK-nA-1Gb" id="36B-T7-ghQ"/>
                 <outlet property="labelFavourites" destination="9Z9-de-NaJ" id="4gY-RQ-a1J"/>
                 <outlet property="labelGCCode" destination="vdG-I4-9x4" id="M5c-hY-uck"/>
-                <outlet property="labelRatingD" destination="LX9-SE-R4s" id="DRV-Aj-s95"/>
-                <outlet property="labelRatingT" destination="wZf-2T-TDH" id="0hc-SB-drr"/>
+                <outlet property="labelRatingDT" destination="LX9-SE-R4s" id="Egt-Rw-cE4"/>
                 <outlet property="labelSize" destination="sNU-U2-yrg" id="VDK-c8-xji"/>
                 <outlet property="labelStateCountry" destination="A0S-Nw-HhY" id="crW-rB-d6a"/>
                 <outlet property="labelWhoWhen" destination="mvu-bK-Opw" id="a3f-vp-3h5"/>
@@ -51,20 +50,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="14" text="Label - Bearing and direction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH4-cj-jfX" customClass="GCLabel">
-                    <rect key="frame" x="40" y="49" width="240" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="220" placeholderIntrinsicHeight="14" text="Label - Bearing and direction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH4-cj-jfX" customClass="GCLabel">
+                    <rect key="frame" x="40" y="49" width="220" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="14" text="D:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LX9-SE-R4s" customClass="GCLabel">
-                    <rect key="frame" x="280" y="49" width="30" height="14"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="14" text="T:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZf-2T-TDH" customClass="GCLabel">
-                    <rect key="frame" x="280" y="63" width="30" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="14" text="D:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LX9-SE-R4s" customClass="GCLabel">
+                    <rect key="frame" x="260" y="49" width="50" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -118,9 +111,7 @@
                 <constraint firstItem="5U8-Zs-vdp" firstAttribute="leading" secondItem="mvu-bK-Opw" secondAttribute="trailing" constant="10" id="Ch1-pA-SCZ"/>
                 <constraint firstItem="0Vx-cE-UZx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="D0t-or-q2b"/>
                 <constraint firstAttribute="trailing" secondItem="5U8-Zs-vdp" secondAttribute="trailing" constant="10" id="Fev-bf-xBg"/>
-                <constraint firstItem="wZf-2T-TDH" firstAttribute="top" secondItem="LX9-SE-R4s" secondAttribute="bottom" id="IJ8-7u-9Tp"/>
                 <constraint firstItem="LX9-SE-R4s" firstAttribute="top" secondItem="Qig-0c-G3c" secondAttribute="bottom" constant="4" id="Jpa-bQ-RI6"/>
-                <constraint firstItem="LX9-SE-R4s" firstAttribute="leading" secondItem="NH4-cj-jfX" secondAttribute="trailing" id="KD1-lW-ov5"/>
                 <constraint firstItem="4js-3d-nFs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="L6h-CF-pwL"/>
                 <constraint firstItem="9Z9-de-NaJ" firstAttribute="leading" secondItem="mvu-bK-Opw" secondAttribute="trailing" constant="10" id="Lbh-87-FZ9"/>
                 <constraint firstAttribute="trailing" secondItem="9Au-kX-wDV" secondAttribute="trailing" id="OQa-Xt-JwH"/>
@@ -130,8 +121,10 @@
                 <constraint firstItem="6bK-nA-1Gb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UN8-1A-dEJ"/>
                 <constraint firstAttribute="trailing" secondItem="sNU-U2-yrg" secondAttribute="trailing" constant="10" id="Un2-kQ-via"/>
                 <constraint firstItem="9Au-kX-wDV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Vxo-0h-9QO"/>
+                <constraint firstItem="LX9-SE-R4s" firstAttribute="leading" secondItem="NH4-cj-jfX" secondAttribute="trailing" priority="500" id="WVY-fy-PZg"/>
                 <constraint firstItem="0Vx-cE-UZx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WcI-T4-XWK"/>
                 <constraint firstItem="LX9-SE-R4s" firstAttribute="top" secondItem="sNU-U2-yrg" secondAttribute="bottom" id="XjH-62-4vB"/>
+                <constraint firstAttribute="trailing" secondItem="LX9-SE-R4s" secondAttribute="trailing" constant="10" id="aB5-qI-Mjg"/>
                 <constraint firstItem="Qig-0c-G3c" firstAttribute="top" secondItem="mvu-bK-Opw" secondAttribute="bottom" id="b3N-Of-MNl"/>
                 <constraint firstItem="vdG-I4-9x4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="bam-Fn-9XF"/>
                 <constraint firstItem="sNU-U2-yrg" firstAttribute="top" secondItem="mvu-bK-Opw" secondAttribute="bottom" id="fDd-YB-QFo"/>
@@ -145,9 +138,7 @@
                 <constraint firstAttribute="bottom" secondItem="hNP-L2-LYk" secondAttribute="bottom" constant="5" id="ptT-yd-LN7"/>
                 <constraint firstAttribute="bottom" secondItem="0Vx-cE-UZx" secondAttribute="bottom" id="vTH-16-Trn"/>
                 <constraint firstItem="4js-3d-nFs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vbA-IE-G3z"/>
-                <constraint firstAttribute="trailing" secondItem="NH4-cj-jfX" secondAttribute="trailing" constant="40" id="wB0-AL-LYz"/>
                 <constraint firstAttribute="trailing" secondItem="9Z9-de-NaJ" secondAttribute="trailing" constant="10" id="wKB-R6-LWQ"/>
-                <constraint firstItem="wZf-2T-TDH" firstAttribute="leading" secondItem="A0S-Nw-HhY" secondAttribute="trailing" id="xC3-y6-nHS"/>
                 <constraint firstItem="mvu-bK-Opw" firstAttribute="top" secondItem="6bK-nA-1Gb" secondAttribute="bottom" id="yi2-DH-mdC"/>
                 <constraint firstItem="NH4-cj-jfX" firstAttribute="top" secondItem="vdG-I4-9x4" secondAttribute="bottom" id="zIg-WD-hP7"/>
             </constraints>

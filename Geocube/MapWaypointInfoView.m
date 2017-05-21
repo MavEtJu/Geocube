@@ -38,8 +38,8 @@
 @property (weak, nonatomic) IBOutlet GCLabel *labelGCCode;
 @property (weak, nonatomic) IBOutlet GCLabel *labelBearing;
 @property (weak, nonatomic) IBOutlet GCLabel *labelStateCountry;
-@property (weak, nonatomic) IBOutlet GCLabel *labelRatingD;
-@property (weak, nonatomic) IBOutlet GCLabel *labelRatingT;
+@property (weak, nonatomic) IBOutlet GCLabel *labelRatingDT;
+//@property (weak, nonatomic) IBOutlet GCLabel *labelRatingT;
 
 @property (weak, nonatomic) IBOutlet GCButton *buttonOverlay;
 @property (weak, nonatomic) IBOutlet GCButton *buttonSetAsTarget;
@@ -75,8 +75,7 @@
     self.labelDescription.text = @"";
     self.labelWhoWhen.text = @"";
     self.labelGCCode.text = @"";
-    self.labelRatingD.text = @"";
-    self.labelRatingT.text = @"";
+    self.labelRatingDT.text = @"";
     self.labelBearing.text = @"";
     self.labelSize.text = @"";
     self.labelStateCountry.text = @"";
@@ -108,9 +107,7 @@
         self.labelDescription.backgroundColor = [UIColor clearColor];
 
     if (wp.gs_rating_terrain != 0)
-        self.labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", wp.gs_rating_terrain];
-    if (wp.gs_rating_difficulty != 0)
-        self.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
+        self.labelRatingDT.text = [NSString stringWithFormat:@"D/T: %0.1f/%0.1f", wp.gs_rating_difficulty, wp.gs_rating_terrain];
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
     NSInteger b = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
@@ -157,8 +154,7 @@
     [self.labelGCCode changeTheme];
     [self.labelStateCountry changeTheme];
     [self.labelBearing changeTheme];
-    [self.labelRatingD changeTheme];
-    [self.labelRatingT changeTheme];
+    [self.labelRatingDT changeTheme];
     [self.labelSize changeTheme];
     [self.labelWhoWhen changeTheme];
 }
