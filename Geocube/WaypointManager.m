@@ -679,6 +679,19 @@
             caches = after;
         }
 
+        // Make sure there is always the current waypoint
+        if (self.currentWaypoint != nil) {
+            __block BOOL found = NO;
+            [caches enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull db, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (db._id == self.currentWaypoint._id) {
+                    found = YES;
+                    *stop = YES;
+                }
+            }];
+            if (found == NO)
+                [caches addObject:self.currentWaypoint];
+        }
+
         NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
         self.currentWaypoints = caches;
         needsRefresh = NO;
