@@ -132,17 +132,17 @@
         if (needsRefresh != YES)
             return;
 
-        NSMutableArray<dbWaypoint *> *caches;
+        NSMutableArray<dbWaypoint *> *waypoints;
         NSMutableArray<dbWaypoint *> *after;
         MyClock *clock = [[MyClock alloc] initClock:@"filter"];
         [clock clockEnable:YES];
 
         /* Filter out by group:
-         * The filter selects out the caches which belong to a certain group.
+         * The filter selects out the waypoints which belong to a certain group.
          * If a group is not defined then it will be considered not to be included.
          */
 
-        caches = [NSMutableArray arrayWithCapacity:200];
+        waypoints = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"groups"];
 
         __block NSString *c_groups = [self configGet:@"groups_enabled"];
@@ -155,7 +155,7 @@
                     return;
                 [groups addObject:group];
             }];
-            [caches addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
+            [waypoints addObjectsFromArray:[dbWaypoint dbAllInGroups:groups]];
         } else if (c_distance != nil && [c_distance boolValue] == YES) {
             NSInteger compareDistance = [[self configGet:@"distance_compareDistance"] integerValue];
             NSInteger distanceM = [[self configGet:@"distance_distanceM"] integerValue];
@@ -171,30 +171,30 @@
                 case FILTER_DISTANCE_LESSTHAN: {
                     CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude - ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
                     CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE), coords.longitude + ((distanceKm * 1000 + distanceM) / KM_IN_DEGREE));
-                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+                    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
                     break;
                 }
                 case FILTER_DISTANCE_MORETHAN:
                     // Don't worry about these...
-                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+                    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
                     break;
                 case FILTER_DISTANCE_INBETWEEN: {
                     CLLocationCoordinate2D LB = CLLocationCoordinate2DMake(coords.latitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude - (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
                     CLLocationCoordinate2D RT = CLLocationCoordinate2DMake(coords.latitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE), coords.longitude + (((distanceKm + variationKm) * 1000 + distanceM + variationM) / KM_IN_DEGREE));
-                    caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
+                    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:LB RT:RT]];
                     break;
                 }
             }
 
         } else {
-            caches = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
+            waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
             [clock clockShowAndReset:@"dbAll"];
         }
 
-        NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         /* Filter out cache types:
-         * The filter selects out the caches which are of a certain type.
+         * The filter selects out the waypoints which are of a certain type.
          * If a type is not defined then it will be considered not to be included.
          */
 
@@ -208,13 +208,13 @@
                 c = [self configGet:[NSString stringWithFormat:@"types_type_%ld", (long)type._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                     if (wp.wpt_type_id == type._id)
                         [after addObject:wp];
                 }];
             }];
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter out favourites:
@@ -226,7 +226,7 @@
 
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"favourites"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"favourites_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -235,35 +235,35 @@
             NSInteger max = [[self configGet:@"favourites_max"] integerValue];
 
             if (min == 0 && max == 100) {
-                after = caches;
+                after = waypoints;
             } else if (min == 0) {
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                     if (wp.gs_favourites <= max)
                         [after addObject:wp];
                 }];
             } else if (max == 100) {
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                     if (wp.gs_favourites >= min)
                         [after addObject:wp];
                 }];
             } else {
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                     if (wp.gs_favourites >= min && wp.gs_favourites <= max)
                         [after addObject:wp];
                 }];
             }
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter out sizes:
-         * The filter selects out the caches which are of a certain size.
+         * The filter selects out the waypoints which are of a certain size.
          * If a size is not defined then it will be considered not to be included.
          */
 
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"sizes"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"sizes_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -272,20 +272,20 @@
                 c = [self configGet:[NSString stringWithFormat:@"sizes_container_%ld", (long)container._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
-                [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                     if (wp.gs_container_id == container._id)
                         [after addObject:wp];
                 }];
             }];
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter out difficulty rating
          */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"difficulty"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"difficulty_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -293,12 +293,12 @@
             float min = [[self configGet:@"difficulty_min"] floatValue];
             float max = [[self configGet:@"difficulty_max"] floatValue];
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 if (wp.gs_rating_difficulty >= min && wp.gs_rating_difficulty <= max)
                     [after addObject:wp];
             }];
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter out terrain rating
@@ -306,7 +306,7 @@
 
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"terrain"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"terrain_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -314,20 +314,20 @@
             float min = [[self configGet:@"terrain_min"] floatValue];
             float max = [[self configGet:@"terrain_max"] floatValue];
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 if (wp.gs_rating_terrain >= min && wp.gs_rating_terrain <= max)
                     [after addObject:wp];
             }];
 
-            caches = after;
+            waypoints = after;
         }
-        NSLog(@"%@: Number of waypoints after filtering terrain: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering terrain: %ld", [self class], (unsigned long)[waypoints count]);
 
         /* Filter out dates
          */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"dates"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"dates_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -339,21 +339,21 @@
 
             switch (placedCompare) {
                 case FILTER_DATE_BEFORE: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         if (wp.wpt_date_placed_epoch <= placedEpoch)
                             [after addObject:wp];
                     }];
                     break;
                 }
                 case FILTER_DATE_AFTER: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         if (wp.wpt_date_placed_epoch >= placedEpoch)
                             [after addObject:wp];
                     }];
                     break;
                 }
                 case FILTER_DATE_ON: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         if (wp.wpt_date_placed_epoch >= placedEpoch - 86400 && wp.wpt_date_placed_epoch <= placedEpoch + 86400)
                             [after addObject:wp];
                     }];
@@ -363,7 +363,7 @@
 
             switch (lastLogCompare) {
                 case FILTER_DATE_BEFORE: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
                         __block BOOL rv = YES;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
@@ -378,7 +378,7 @@
                     break;
                 }
                 case FILTER_DATE_AFTER: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
@@ -393,7 +393,7 @@
                     break;
                 }
                 case FILTER_DATE_ON: {
-                    [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
@@ -409,7 +409,7 @@
                 }
             }
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Text self
@@ -417,7 +417,7 @@
          */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"text"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"text_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -469,7 +469,7 @@
                 }];
             }
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 __block BOOL rv = YES;
 
                 if (cachename != nil && [cachename isEqualToString:@""] == NO &&
@@ -542,13 +542,13 @@
                     [after addObject:wp];
             }];
 
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter by flags */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"flags"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"flags_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -563,7 +563,7 @@
             NSInteger flagEnabled = [[self configGet:@"flags_isenabled"] integerValue];
             NSInteger flagArchived = [[self configGet:@"flags_isarchived"] integerValue];
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL keep = YES;
 
                 if (keep == YES && flagHighlight != FILTER_FLAGS_NOTCHECKED)
@@ -591,7 +591,7 @@
                     [after addObject:wp];
             }];
 
-            caches = after;
+            waypoints = after;
         } else {
 
             /* Filter out ignored ones
@@ -601,16 +601,16 @@
             [clock clockShowAndReset:@"ignored"];
 
             NSLog(@"%@ - Filtering ignored", [self class]);
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 if (wp.flag_ignore == NO)
                     [after addObject:wp];
             }];
-            caches = after;
+            waypoints = after;
         }
 
         /* Calculate the distance and the bearing */
         NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:coords]);
-        [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
             wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:wp.coordinates];
         }];
@@ -618,7 +618,7 @@
         /* Filter by distance */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"distance"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"distance_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -629,7 +629,7 @@
             NSInteger variationM = [[self configGet:@"distance_variationM"] integerValue];
             NSInteger variationKm = [[self configGet:@"distance_variationKm"] integerValue];
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL fine = NO;
                 switch (compareDistance) {
                     case FILTER_DISTANCE_LESSTHAN:
@@ -648,20 +648,20 @@
                 if (fine == YES)
                     [after addObject:wp];
             }];
-            caches = after;
+            waypoints = after;
         }
 
         /* Filter by direction */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"direction"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"direction_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering direction", [self class]);
             NSInteger direction = [[self configGet:@"direction_direction"] integerValue];
 
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
                 BOOL fine = NO;
 
                 if (direction == FILTER_DIRECTIONS_NORTH     && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
@@ -676,24 +676,24 @@
                 if (fine == YES)
                     [after addObject:wp];
             }];
-            caches = after;
+            waypoints = after;
         }
 
         // Make sure there is always the current waypoint
         if (self.currentWaypoint != nil) {
             __block BOOL found = NO;
-            [caches enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull db, NSUInteger idx, BOOL * _Nonnull stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull db, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (db._id == self.currentWaypoint._id) {
                     found = YES;
                     *stop = YES;
                 }
             }];
             if (found == NO)
-                [caches addObject:self.currentWaypoint];
+                [waypoints addObject:self.currentWaypoint];
         }
 
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[caches count]);
-        self.currentWaypoints = caches;
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+        self.currentWaypoints = waypoints;
         needsRefresh = NO;
     }
 }

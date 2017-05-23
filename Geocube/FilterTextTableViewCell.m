@@ -21,7 +21,7 @@
 
 @interface FilterTextTableViewCell ()
 {
-    UIButton *bCacheName;
+    UIButton *bWaypointName;
     UIButton *bOwner;
     UIButton *bPlacedBy;
     UIButton *bCountry;
@@ -30,7 +30,7 @@
     UIButton *bDescription;
     UIButton *bLogs;
 
-    NSString *cacheName;
+    NSString *waypointName;
     NSString *owner;
     NSString *placedBy;
     NSString *country;
@@ -70,12 +70,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bCacheName = [UIButton buttonWithType:UIButtonTypeSystem];
-    bCacheName.frame = rect;
-    bCacheName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bCacheName setTitle:cacheName forState:UIControlStateNormal];
-    [bCacheName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bCacheName];
+    bWaypointName = [UIButton buttonWithType:UIButtonTypeSystem];
+    bWaypointName.frame = rect;
+    bWaypointName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bWaypointName setTitle:waypointName forState:UIControlStateNormal];
+    [bWaypointName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bWaypointName];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -190,7 +190,7 @@
     if (s != nil)
         fo.expanded = [s boolValue];
 
-    cacheName = [self configGet:@"cachename"];
+    waypointName = [self configGet:@"waypointname"];
     owner = [self configGet:@"owner"];
     placedBy = [self configGet:@"placedby"];
     locale = [self configGet:@"locale"];
@@ -202,7 +202,7 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"cachename" value:cacheName];
+    [self configSet:@"waypointname" value:waypointName];
     [self configSet:@"owner" value:owner];
     [self configSet:@"placedby" value:placedBy];
     [self configSet:@"locale" value:locale];
@@ -231,7 +231,7 @@
                              NSString *newstring = tf.text;
 
                              [b setTitle:newstring forState:UIControlStateNormal];
-                             if (b == bCacheName) cacheName = newstring;
+                             if (b == bWaypointName) waypointName = newstring;
                              if (b == bOwner) owner = newstring;
                              if (b == bPlacedBy) placedBy = newstring;
                              if (b == bLocale) locale = newstring;
