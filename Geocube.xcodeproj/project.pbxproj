@@ -424,6 +424,7 @@
 		E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9934D1BB6A78C00714B90 /* GCCloseButton.m */; };
 		E8AA14961ED15FFD0023000A /* WaypointLogsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */; };
 		E8AA14971ED15FFD0023000A /* WaypointLogsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */; };
+		E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AA14991ED30A1E0023000A /* dbListData.m */; };
 		E8ABA0951E277CF20080D5FE /* FilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */; };
 		E8ABA0961E277CF20080D5FE /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */; };
 		E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */; };
@@ -1246,6 +1247,8 @@
 		E8AA14931ED15FFD0023000A /* WaypointLogsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogsTableViewCell.h; sourceTree = "<group>"; };
 		E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogsTableViewCell.m; sourceTree = "<group>"; };
 		E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointLogsTableViewCell.xib; sourceTree = "<group>"; };
+		E8AA14981ED30A1E0023000A /* dbListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbListData.h; sourceTree = "<group>"; };
+		E8AA14991ED30A1E0023000A /* dbListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbListData.m; sourceTree = "<group>"; };
 		E8ABA0921E277CF20080D5FE /* FilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableViewCell.h; sourceTree = "<group>"; };
 		E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableViewCell.m; sourceTree = "<group>"; };
 		E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesTableViewCell.xib; sourceTree = "<group>"; };
@@ -2984,6 +2987,8 @@
 				E88FD8F21B4160A700D0CCE7 /* dbGroup.m */,
 				E8A7FAA31B78A678003F4132 /* dbImage.h */,
 				E8A7FAA41B78A678003F4132 /* dbImage.m */,
+				E8AA14981ED30A1E0023000A /* dbListData.h */,
+				E8AA14991ED30A1E0023000A /* dbListData.m */,
 				E8F7FF131D6518FF00AC7EE6 /* dbLocale.h */,
 				E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
@@ -3786,6 +3791,7 @@
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */,
+				E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
