@@ -14,6 +14,14 @@ for fn in db*.m; do
 done
 
 echo
+echo "HelpDatabaseViewController:"
+for class in $(grep implementation db*.m | awk '{ print $2 }' | grep -v dbObject); do
+	if [ $(grep -c "$class dbCount" HelpDatabaseViewController.m) == 0 ]; then
+		echo "Not found: $class"
+	fi
+done
+
+echo
 echo "Classes:"
 grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
 grep @class Geocube-Classes.h > /tmp/b

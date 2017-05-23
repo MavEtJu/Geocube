@@ -94,6 +94,10 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbGroup dbCount]] stringValue]];
     [fs addObject:@"Images"];
     [vs addObject:[[NSNumber numberWithInteger:[dbImage dbCount]] stringValue]];
+    [fs addObject:@"ListData"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbListData dbCount]] stringValue]];
+    [fs addObject:@"Locales"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLocale dbCount]] stringValue]];
     [fs addObject:@"Logs"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLog dbCount]] stringValue]];
     [fs addObject:@"LogStrings"];
@@ -102,9 +106,13 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbName dbCount]] stringValue]];
     [fs addObject:@"Notices"];
     [vs addObject:[[NSNumber numberWithInteger:[dbNotice dbCount]] stringValue]];
-    [fs addObject:@"Personal Notes"];
+    [fs addObject:@"PersonalNotes"];
     [vs addObject:[[NSNumber numberWithInteger:[dbPersonalNote dbCount]] stringValue]];
-    [fs addObject:@"QueryImports"];
+    [fs addObject:@"Pins"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbPin dbCount]] stringValue]];
+    [fs addObject:@"Protocol"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbProtocol dbCount]] stringValue]];
+    [fs addObject:@"QueryImport"];
     [vs addObject:[[NSNumber numberWithInteger:[dbQueryImport dbCount]] stringValue]];
     [fs addObject:@"States"];
     [vs addObject:[[NSNumber numberWithInteger:[dbState dbCount]] stringValue]];
