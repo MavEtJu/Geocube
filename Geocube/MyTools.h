@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 
 + (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime;
 + (NSInteger)secondsSinceEpochFromISO8601:(NSString *)datetime;
-+ (NSInteger)millisecondsSinceEpoch;
++ (long long)millisecondsSinceEpoch;
 
 + (NSString *)dateTimeString_YYYY_MM_DDThh_mm_ss:(NSInteger)seconds;
 + (NSString *)dateTimeString_YYYY_MM_DDThh_mm_ss;

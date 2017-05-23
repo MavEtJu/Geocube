@@ -722,7 +722,7 @@ bail2:
     [params setObject:remoteAPI.account.ggcw_username forKey:@"k"];
     [params setObject:remoteAPI.account.ggcw_sessiontoken forKey:@"st"];
     [params setObject:jQueryCallback forKey:@"callback"];
-    [params setObject:[NSNumber numberWithInteger:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
+    [params setObject:[NSNumber numberWithLongLong:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
 
     NSString *urlString = [self prepareURLString:@"/map.info" params:params servers:GGCW_TILESERVERS];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -796,7 +796,7 @@ bail2:
     [params setObject:remoteAPI.account.ggcw_username forKey:@"k"];
     [params setObject:remoteAPI.account.ggcw_sessiontoken forKey:@"st"];
     [params setObject:jQueryCallback forKey:@"jsoncallback"];
-    [params setObject:[NSNumber numberWithInteger:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
+    [params setObject:[NSNumber numberWithLongLong:[MyTools millisecondsSinceEpoch]] forKey:@"_"];
 
     NSString *urlString = [self prepareURLString:@"/map.details" params:params servers:GGCW_TILESERVERS];
     NSURL *url = [NSURL URLWithString:urlString];

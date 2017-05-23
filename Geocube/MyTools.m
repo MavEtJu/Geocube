@@ -113,7 +113,7 @@
 + (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime
 {
     // /Date(1413702000000-0700)/
-    return [[datetime substringFromIndex:6] integerValue] / 1000;
+    return (NSInteger)([[datetime substringFromIndex:6] longLongValue] / 1000);
 }
 
 /**
@@ -140,7 +140,7 @@
 }
 
 /// Returns the number of milliseconds for the current time
-+ (NSInteger)millisecondsSinceEpoch
++ (long long)millisecondsSinceEpoch
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
