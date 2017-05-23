@@ -25,7 +25,7 @@
 
 @implementation WaypointSorter
 
-+ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps sortOrder:(SortOrder)newSortOrder
++ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps waypointsSortOrder:(SortOrderWaypoints)newSortOrder
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
@@ -52,28 +52,28 @@
             }]]; \
         break;
     switch (newSortOrder) {
-        NCMP(SORTORDER_DISTANCE_ASC, obj1.calculatedDistance, obj2.calculatedDistance, >)
-        NCMP(SORTORDER_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
-        NCMP(SORTORDER_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
-        NCMP(SORTORDER_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
-        NCMP(SORTORDER_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
-        NCMP(SORTORDER_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
-        NCMP(SORTORDER_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
-        NCMP(SORTORDER_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
-        NCMP(SORTORDER_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
-        NCMP(SORTORDER_TERRAIN_DESC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, <)
-        NCMP(SORTORDER_DIFFICULTY_ASC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, >)
-        NCMP(SORTORDER_DIFFICULTY_DESC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, <)
-        SCMP(SORTORDER_CODE_ASC, obj1.wpt_name, obj2.wpt_name, NSOrderedAscending)
-        SCMP(SORTORDER_CODE_DESC, obj1.wpt_name, obj2.wpt_name, NSOrderedDescending)
-        SCMP(SORTORDER_NAME_ASC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedAscending)
-        SCMP(SORTORDER_NAME_DESC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedDescending)
-        NCMP(SORTORDER_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
-        NCMP(SORTORDER_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
-        NCMP(SORTORDER_DATE_FOUND_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
-        NCMP(SORTORDER_DATE_FOUND_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
-        NCMP(SORTORDER_DATE_LASTLOG_OLDESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, >)
-        NCMP(SORTORDER_DATE_LASTLOG_NEWESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, <)
+        NCMP(SORTORDERWP_DISTANCE_ASC, obj1.calculatedDistance, obj2.calculatedDistance, >)
+        NCMP(SORTORDERWP_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
+        NCMP(SORTORDERWP_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
+        NCMP(SORTORDERWP_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
+        NCMP(SORTORDERWP_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
+        NCMP(SORTORDERWP_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
+        NCMP(SORTORDERWP_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
+        NCMP(SORTORDERWP_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
+        NCMP(SORTORDERWP_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
+        NCMP(SORTORDERWP_TERRAIN_DESC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, <)
+        NCMP(SORTORDERWP_DIFFICULTY_ASC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, >)
+        NCMP(SORTORDERWP_DIFFICULTY_DESC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, <)
+        SCMP(SORTORDERWP_CODE_ASC, obj1.wpt_name, obj2.wpt_name, NSOrderedAscending)
+        SCMP(SORTORDERWP_CODE_DESC, obj1.wpt_name, obj2.wpt_name, NSOrderedDescending)
+        SCMP(SORTORDERWP_NAME_ASC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedAscending)
+        SCMP(SORTORDERWP_NAME_DESC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedDescending)
+        NCMP(SORTORDERWP_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
+        NCMP(SORTORDERWP_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
+        NCMP(SORTORDERWP_DATE_FOUND_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
+        NCMP(SORTORDERWP_DATE_FOUND_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+        NCMP(SORTORDERWP_DATE_LASTLOG_OLDESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, >)
+        NCMP(SORTORDERWP_DATE_LASTLOG_NEWESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, <)
         default:
             NSAssert(NO, @"Unknown sort order");
     }
@@ -81,37 +81,152 @@
     return wps;
 }
 
-+ (NSArray<NSString *> *)sortOrders
++ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag
 {
-    NSMutableArray<NSString *> *orders = [NSMutableArray arrayWithCapacity:SORTORDER_MAX];
-    for (SortOrder i = 0; i < SORTORDER_MAX; i++) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+    }];
+
+#define NCMP(I, O1, O2, W) \
+    case I: \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedDescending; \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedAscending; \
+            return (NSComparisonResult)NSOrderedSame; \
+        }]]; \
+    break;
+#define SCMP(I, O1, O2, W) \
+    case I: \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+            if (W == NSOrderedAscending) \
+                return (NSComparisonResult)[O1 compare:O2 options:NSCaseInsensitiveSearch]; \
+            else \
+                return (NSComparisonResult)(-[O1 compare:O2 options:NSCaseInsensitiveSearch]); \
+            }]]; \
+        break;
+    switch (newSortOrder) {
+        NCMP(SORTORDERLIST_DISTANCE_ASC, obj1.calculatedDistance, obj2.calculatedDistance, >)
+        NCMP(SORTORDERLIST_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
+        NCMP(SORTORDERLIST_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
+        NCMP(SORTORDERLIST_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
+        NCMP(SORTORDERLIST_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
+        NCMP(SORTORDERLIST_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
+        NCMP(SORTORDERLIST_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
+        NCMP(SORTORDERLIST_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
+        NCMP(SORTORDERLIST_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
+        NCMP(SORTORDERLIST_TERRAIN_DESC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, <)
+        NCMP(SORTORDERLIST_DIFFICULTY_ASC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, >)
+        NCMP(SORTORDERLIST_DIFFICULTY_DESC, obj1.gs_rating_difficulty, obj2.gs_rating_difficulty, <)
+        SCMP(SORTORDERLIST_CODE_ASC, obj1.wpt_name, obj2.wpt_name, NSOrderedAscending)
+        SCMP(SORTORDERLIST_CODE_DESC, obj1.wpt_name, obj2.wpt_name, NSOrderedDescending)
+        SCMP(SORTORDERLIST_NAME_ASC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedAscending)
+        SCMP(SORTORDERLIST_NAME_DESC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedDescending)
+        NCMP(SORTORDERLIST_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
+        NCMP(SORTORDERLIST_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
+        NCMP(SORTORDERLIST_DATE_FOUND_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
+        NCMP(SORTORDERLIST_DATE_FOUND_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+        NCMP(SORTORDERLIST_DATE_LASTLOG_OLDESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, >)
+        NCMP(SORTORDERLIST_DATE_LASTLOG_NEWESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, <)
+        case SORTORDERLIST_TIMEADDED_ASC:
+        case SORTORDERLIST_TIMEADDED_DESC:
+        {
+            NSArray<dbListData *> *lds = [dbListData dbAllByType:flag];
+
+            NSMutableArray<dbWaypoint *> *new = [NSMutableArray arrayWithCapacity:[wps count]];
+            NSMutableArray<dbWaypoint *> *old = [NSMutableArray arrayWithArray:wps];
+
+            [lds enumerateObjectsUsingBlock:^(dbListData * _Nonnull ld, NSUInteger idx, BOOL * _Nonnull stop) {
+                [old enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (wp._id == ld.waypoint_id) {
+                        [new addObject:wp];
+                        *stop = YES;
+                    }
+                }];
+            }];
+            wps = new;
+            break;
+        }
+        default:
+            NSAssert(NO, @"Unknown sort order");
+    }
+
+    return wps;
+}
+
++ (NSArray<NSString *> *)waypointsSortOrders
+{
+    NSMutableArray<NSString *> *orders = [NSMutableArray arrayWithCapacity:SORTORDERWP_MAX];
+    for (SortOrderWaypoints i = 0; i < SORTORDERWP_MAX; i++) {
 #define CASE(__order__, __title__) \
     case __order__: \
         [orders addObject:__title__]; \
         break;
         switch (i) {
-            CASE(SORTORDER_DISTANCE_ASC, @"Distance (ascending)")
-            CASE(SORTORDER_DISTANCE_DESC, @"Distance (descending)")
-            CASE(SORTORDER_DIRECTION_ASC, @"Direction (ascending)")
-            CASE(SORTORDER_DIRECTION_DESC, @"Direction (descending)")
-            CASE(SORTORDER_TYPE, @"Type")
-            CASE(SORTORDER_CONTAINER, @"Container")
-            CASE(SORTORDER_FAVOURITES_ASC, @"Favourites (ascending)")
-            CASE(SORTORDER_FAVOURITES_DESC, @"Favourites (descending)")
-            CASE(SORTORDER_TERRAIN_ASC, @"Terrain (ascending)")
-            CASE(SORTORDER_TERRAIN_DESC, @"Terrain (descending)")
-            CASE(SORTORDER_DIFFICULTY_ASC, @"Difficulty (ascending)")
-            CASE(SORTORDER_DIFFICULTY_DESC, @"Difficulty (descending)")
-            CASE(SORTORDER_NAME_ASC, @"Name (ascending)")
-            CASE(SORTORDER_NAME_DESC, @"Name (descending)")
-            CASE(SORTORDER_CODE_ASC, @"Code (ascending)")
-            CASE(SORTORDER_CODE_DESC, @"Code (descending)")
-            CASE(SORTORDER_DATE_LASTLOG_OLDESTFIRST, @"Last log date (oldest first)")
-            CASE(SORTORDER_DATE_LASTLOG_NEWESTFIRST, @"Last log date (newest first)")
-            CASE(SORTORDER_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
-            CASE(SORTORDER_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
-            CASE(SORTORDER_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
-            CASE(SORTORDER_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
+            CASE(SORTORDERWP_DISTANCE_ASC, @"Distance (ascending)")
+            CASE(SORTORDERWP_DISTANCE_DESC, @"Distance (descending)")
+            CASE(SORTORDERWP_DIRECTION_ASC, @"Direction (ascending)")
+            CASE(SORTORDERWP_DIRECTION_DESC, @"Direction (descending)")
+            CASE(SORTORDERWP_TYPE, @"Type")
+            CASE(SORTORDERWP_CONTAINER, @"Container")
+            CASE(SORTORDERWP_FAVOURITES_ASC, @"Favourites (ascending)")
+            CASE(SORTORDERWP_FAVOURITES_DESC, @"Favourites (descending)")
+            CASE(SORTORDERWP_TERRAIN_ASC, @"Terrain (ascending)")
+            CASE(SORTORDERWP_TERRAIN_DESC, @"Terrain (descending)")
+            CASE(SORTORDERWP_DIFFICULTY_ASC, @"Difficulty (ascending)")
+            CASE(SORTORDERWP_DIFFICULTY_DESC, @"Difficulty (descending)")
+            CASE(SORTORDERWP_NAME_ASC, @"Name (ascending)")
+            CASE(SORTORDERWP_NAME_DESC, @"Name (descending)")
+            CASE(SORTORDERWP_CODE_ASC, @"Code (ascending)")
+            CASE(SORTORDERWP_CODE_DESC, @"Code (descending)")
+            CASE(SORTORDERWP_DATE_LASTLOG_OLDESTFIRST, @"Last log date (oldest first)")
+            CASE(SORTORDERWP_DATE_LASTLOG_NEWESTFIRST, @"Last log date (newest first)")
+            CASE(SORTORDERWP_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
+            CASE(SORTORDERWP_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
+            CASE(SORTORDERWP_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
+            CASE(SORTORDERWP_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
+            default:
+                NSAssert(NO, @"Unknown sort order");
+        }
+    }
+    return orders;
+}
+
++ (NSArray<NSString *> *)listSortOrders
+{
+    NSMutableArray<NSString *> *orders = [NSMutableArray arrayWithCapacity:SORTORDERLIST_MAX];
+    for (SortOrderList i = 0; i < SORTORDERLIST_MAX; i++) {
+#define CASE(__order__, __title__) \
+    case __order__: \
+        [orders addObject:__title__]; \
+        break;
+        switch (i) {
+            CASE(SORTORDERLIST_TIMEADDED_ASC, @"Time added (ascending)")
+            CASE(SORTORDERLIST_TIMEADDED_DESC, @"Time added (descending)")
+            CASE(SORTORDERLIST_DISTANCE_ASC, @"Distance (ascending)")
+            CASE(SORTORDERLIST_DISTANCE_DESC, @"Distance (descending)")
+            CASE(SORTORDERLIST_DIRECTION_ASC, @"Direction (ascending)")
+            CASE(SORTORDERLIST_DIRECTION_DESC, @"Direction (descending)")
+            CASE(SORTORDERLIST_TYPE, @"Type")
+            CASE(SORTORDERLIST_CONTAINER, @"Container")
+            CASE(SORTORDERLIST_FAVOURITES_ASC, @"Favourites (ascending)")
+            CASE(SORTORDERLIST_FAVOURITES_DESC, @"Favourites (descending)")
+            CASE(SORTORDERLIST_TERRAIN_ASC, @"Terrain (ascending)")
+            CASE(SORTORDERLIST_TERRAIN_DESC, @"Terrain (descending)")
+            CASE(SORTORDERLIST_DIFFICULTY_ASC, @"Difficulty (ascending)")
+            CASE(SORTORDERLIST_DIFFICULTY_DESC, @"Difficulty (descending)")
+            CASE(SORTORDERLIST_NAME_ASC, @"Name (ascending)")
+            CASE(SORTORDERLIST_NAME_DESC, @"Name (descending)")
+            CASE(SORTORDERLIST_CODE_ASC, @"Code (ascending)")
+            CASE(SORTORDERLIST_CODE_DESC, @"Code (descending)")
+            CASE(SORTORDERLIST_DATE_LASTLOG_OLDESTFIRST, @"Last log date (oldest first)")
+            CASE(SORTORDERLIST_DATE_LASTLOG_NEWESTFIRST, @"Last log date (newest first)")
+            CASE(SORTORDERLIST_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
+            CASE(SORTORDERLIST_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
+            CASE(SORTORDERLIST_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
+            CASE(SORTORDERLIST_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
             default:
                 NSAssert(NO, @"Unknown sort order");
         }

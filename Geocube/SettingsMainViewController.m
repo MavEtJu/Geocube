@@ -954,7 +954,7 @@ enum sections {
                     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Sort waypoints default by...";
-                    NSArray<NSString *> *order = [WaypointSorter sortOrders];
+                    NSArray<NSString *> *order = [WaypointSorter waypointsSortOrders];
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
 
                     return cell;
@@ -1886,7 +1886,7 @@ enum sections {
 - (void)changeWaypointSortBy
 {
     [ActionSheetStringPicker showPickerWithTitle:@"Sort waypoints by"
-                                            rows:[WaypointSorter sortOrders]
+                                            rows:[WaypointSorter waypointsSortOrders]
                                 initialSelection:configManager.waypointListSortBy
                                           target:self
                                    successAction:@selector(updateWaypointSortBy:element:)

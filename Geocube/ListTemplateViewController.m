@@ -21,7 +21,7 @@
 
 @interface ListTemplateViewController ()
 {
-    SortOrder currentSortOrder;
+    SortOrderList currentSortOrder;
     RemoteAPIProcessingGroup *processing;
 }
 
@@ -52,7 +52,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuSortBy label:@"Sort By"];
 
-    currentSortOrder = SORTORDER_DISTANCE_ASC;
+    currentSortOrder = SORTORDERLIST_TIMEADDED_ASC;
     processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
@@ -74,7 +74,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:[dbWaypoint dbAllByFlag:flag] sortOrder:currentSortOrder]];
+    waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:[dbWaypoint dbAllByFlag:flag] listSortOrder:currentSortOrder flag:flag]];
     [self.tableView reloadData];
 
     if ([waypoints count] == 0)
@@ -254,20 +254,20 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
 
 - (void)menuSortBy
 {
-    NSArray<NSString *> *orders = [WaypointSorter sortOrders];
+    NSArray<NSString *> *orders = [WaypointSorter listSortOrders];
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Sort by"
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
-    for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
+    for (NSInteger i = 0; i < SORTORDERLIST_MAX; i++) {
         UIAlertAction *action = [UIAlertAction
                                  actionWithTitle:[orders objectAtIndex:i]
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      currentSortOrder = i;
-                                     waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:waypoints sortOrder:currentSortOrder]];
+                                     waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:waypoints listSortOrder:currentSortOrder flag:flag]];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];

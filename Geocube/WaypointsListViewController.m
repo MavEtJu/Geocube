@@ -23,7 +23,7 @@
 {
     NSArray<dbWaypoint *> *waypoints;
 
-    SortOrder currentSortOrder;
+    SortOrderWaypoints currentSortOrder;
 
     BOOL needsRefresh;
     BOOL isVisible;
@@ -113,7 +113,7 @@ enum {
     if (needsRefresh == YES) {
         [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
     } else {
-        waypoints = [WaypointSorter resortWaypoints:waypoints sortOrder:currentSortOrder];
+        waypoints = [WaypointSorter resortWaypoints:waypoints waypointsSortOrder:currentSortOrder];
         [self.tableView reloadData];
     }
     needsRefresh = NO;
@@ -149,7 +149,7 @@ enum {
         [_wps addObject:wp];
     }];
 
-    waypoints = [WaypointSorter resortWaypoints:_wps sortOrder:currentSortOrder];
+    waypoints = [WaypointSorter resortWaypoints:_wps waypointsSortOrder:currentSortOrder];
 
     [self reloadDataMainQueue];
 }
@@ -220,19 +220,19 @@ enum {
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints sortOrder:currentSortOrder];
+    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
     [self reloadDataMainQueue];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints sortOrder:currentSortOrder];
+    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
     [self reloadDataMainQueue];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints sortOrder:currentSortOrder];
+    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
     [self reloadDataMainQueue];
 }
 
@@ -271,20 +271,20 @@ enum {
 
 - (void)menuSortBy
 {
-    NSArray<NSString *> *orders = [WaypointSorter sortOrders];
+    NSArray<NSString *> *orders = [WaypointSorter waypointsSortOrders];
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Sort by"
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
-    for (NSInteger i = 0; i < SORTORDER_MAX; i++) {
+    for (NSInteger i = 0; i < SORTORDERWP_MAX; i++) {
         UIAlertAction *action = [UIAlertAction
                                  actionWithTitle:[orders objectAtIndex:i]
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      currentSortOrder = i;
-                                     waypoints = [WaypointSorter resortWaypoints:waypoints sortOrder:currentSortOrder];
+                                     waypoints = [WaypointSorter resortWaypoints:waypoints waypointsSortOrder:currentSortOrder];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];
