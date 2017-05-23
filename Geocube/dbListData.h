@@ -36,6 +36,6 @@ typedef NS_ENUM(NSInteger, Flag) {
 + (void)waypointSetFlag:(dbWaypoint *)wp flag:(Flag)flag;
 + (void)waypointClearFlag:(dbWaypoint *)wp flag:(Flag)flag;
 
-+ (NSArray<dbListData *> *)dbAllByType:(Flag)flag;
++ (NSArray<dbListData *> *)dbAllByType:(Flag)flag ascending:(BOOL)asc;
 
 @end

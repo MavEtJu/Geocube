@@ -59,13 +59,13 @@
     }
 }
 
-+ (NSArray<dbListData *> *)dbAllByType:(Flag)type
++ (NSArray<dbListData *> *)dbAllByType:(Flag)type ascending:(BOOL)asc
 {
     NSMutableArray<dbListData *> *lds = [[NSMutableArray alloc] initWithCapacity:20];
+    NSString *sql = [NSString stringWithFormat:@"select id, waypoint_id, type, datetime from listdata where type = ? order by datetime %@", (asc == YES ? @"asc" : @"desc")];
 
     @synchronized (db) {
-        DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? order by datetime");
-
+        DB_PREPARE(sql);
         SET_VAR_INT(1, type);
 
         DB_WHILE_STEP {

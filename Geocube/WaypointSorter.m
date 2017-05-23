@@ -133,7 +133,7 @@
         case SORTORDERLIST_TIMEADDED_ASC:
         case SORTORDERLIST_TIMEADDED_DESC:
         {
-            NSArray<dbListData *> *lds = [dbListData dbAllByType:flag];
+            NSArray<dbListData *> *lds = [dbListData dbAllByType:flag ascending:(newSortOrder == SORTORDERLIST_TIMEADDED_ASC)];
 
             NSMutableArray<dbWaypoint *> *new = [NSMutableArray arrayWithCapacity:[wps count]];
             NSMutableArray<dbWaypoint *> *old = [NSMutableArray arrayWithArray:wps];
