@@ -27,14 +27,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
     LOGSTATUS_FOUND,
 };
 
-typedef NS_ENUM(NSInteger, Flag) {
-    FLAGS_HIGHLIGHTED,
-    FLAGS_IGNORED,
-    FLAGS_MARKEDFOUND,
-    FLAGS_INPROGRESS,
-    FLAGS_MARKEDDNF,
-};
-
 @property (nonatomic, retain) NSString *wpt_name;
 @property (nonatomic, retain) NSString *wpt_description;
 @property (nonatomic, retain) NSString *wpt_url;

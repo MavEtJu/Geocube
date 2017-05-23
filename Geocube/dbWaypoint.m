@@ -672,6 +672,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    if (self.flag_highlight == YES)
+        [dbListData waypointSetFlag:self flag:FLAGS_HIGHLIGHTED];
+    else
+        [dbListData waypointClearFlag:self flag:FLAGS_HIGHLIGHTED];
 }
 
 - (void)dbUpdateIgnore
@@ -685,6 +690,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    if (self.flag_ignore == YES)
+        [dbListData waypointSetFlag:self flag:FLAGS_IGNORED];
+    else
+        [dbListData waypointClearFlag:self flag:FLAGS_IGNORED];
 }
 
 - (void)dbUpdateMarkedFound
@@ -698,6 +708,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    if (self.flag_markedfound == YES)
+        [dbListData waypointSetFlag:self flag:FLAGS_MARKEDFOUND];
+    else
+        [dbListData waypointClearFlag:self flag:FLAGS_MARKEDFOUND];
 }
 
 - (void)dbUpdateMarkedDNF
@@ -711,6 +726,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    if (self.flag_dnf == YES)
+        [dbListData waypointSetFlag:self flag:FLAGS_MARKEDDNF];
+    else
+        [dbListData waypointClearFlag:self flag:FLAGS_MARKEDDNF];
 }
 
 - (void)dbUpdateInProgress
@@ -724,6 +744,11 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
+
+    if (self.flag_inprogress == YES)
+        [dbListData waypointSetFlag:self flag:FLAGS_INPROGRESS];
+    else
+        [dbListData waypointClearFlag:self flag:FLAGS_INPROGRESS];
 }
 
 - (void)dbDelete
