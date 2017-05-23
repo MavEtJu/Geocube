@@ -62,7 +62,7 @@
 + (NSArray<dbListData *> *)dbAllByType:(Flag)type
 {
     NSMutableArray<dbListData *> *lds = [[NSMutableArray alloc] initWithCapacity:20];
-    
+
     @synchronized (db) {
         DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? order by datetime");
 
