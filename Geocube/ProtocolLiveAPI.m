@@ -316,6 +316,45 @@
     return json;
 }
 
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointnames:(NSArray<NSString *> *)wpnames infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSLog(@"SearchForGeocaches_waypointnames:%ld", (long)[wpnames count]);
+
+    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
+
+    /*
+     * {
+     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
+     *  "CacheCode": {
+     *      "CacheCodes": [
+     *          "GC3NZDM"
+     *      ]
+     *      },
+     *  "GeocacheLogCount": 20,
+     *  "IsLite": false,
+     *  "MaxPerPage": 20,
+     *  "TrackableLogCount": 1
+     * }
+     */
+    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
+
+    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
+    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
+    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
+    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
+
+    NSDictionary *cachecodes = [NSDictionary dictionaryWithObject:wpnames forKey:@"CacheCodes"];
+    [_dict setValue:cachecodes forKey:@"CacheCode"];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
+    urlRequest.HTTPBody = body;
+
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    return json;
+}
+
 - (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);

@@ -236,18 +236,14 @@
 
 - (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
-    NSInteger dlcount = 1;
-    [iv setChunksTotal:iid total:[wpcodes count]];
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
+    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointnames:wpcodes infoViewer:iv iiDownload:iid];
+    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
-    for (NSString *wpcode in wpcodes) {
-        [iv setChunksCount:iid count:dlcount++];
-        GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:wpcode infoViewer:iv iiDownload:iid];
-        LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
-
-        InfoItemID iii = [iv addImport:NO];
-        [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:json group:group account:self.account];
-    };
+    InfoItemID iii = [iv addImport:NO];
+    [iv setDescription:iii description:IMPORTMSG];
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:json group:group account:self.account];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wpcodes count]];
     return REMOTEAPI_OK;
@@ -260,7 +256,7 @@
     loadWaypointsWaypoints = 0;
 
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[LiveAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:@"[LiveAPI] loadWaypointsByCenter: remote API is disabled" error:REMOTEAPI_APIDISABLED];
         [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
@@ -268,7 +264,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
     GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_pointradius:center infoViewer:iv iiDownload:iid];
-    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCenter", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     LIVEAPI_GET_VALUE_CB(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
     NSInteger total = [ptotal integerValue];
@@ -286,7 +282,7 @@
             done += 20;
 
             json = [liveAPI GetMoreGeocaches:done infoViewer:iv iiDownload:iid];
-            LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
+            LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCenter", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;

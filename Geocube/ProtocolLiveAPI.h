@@ -26,6 +26,7 @@
 - (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)waypoint logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointnames:(NSArray<NSString *> *)wpnames infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryLiveAPI *)SearchForGeocaches_boundbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
