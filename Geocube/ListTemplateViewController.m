@@ -52,7 +52,7 @@ NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuSortBy label:@"Sort By"];
 
-    currentSortOrder = SORTORDERLIST_TIMEADDED_ASC;
+    currentSortOrder = configManager.listSortBy;
     processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;

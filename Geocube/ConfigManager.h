@@ -102,6 +102,8 @@
 @property (nonatomic) NSInteger waypointListSortBy;
 @property (nonatomic) BOOL refreshWaypointAfterLog;
 
+@property (nonatomic) NSInteger listSortBy;
+
 @property (nonatomic) BOOL accountsSaveAuthenticationName;
 @property (nonatomic) BOOL accountsSaveAuthenticationPassword;
 
@@ -177,6 +179,7 @@
 - (void)showCountryAsAbbrevationUpdate:(BOOL)value;
 - (void)waypointListSortByUpdate:(NSInteger)value;
 - (void)refreshWaypointAfterLogUpdate:(BOOL)value;
+- (void)listSortByUpdate:(NSInteger)value;
 - (void)accountsSaveAuthenticationNameUpdate:(BOOL)value;
 - (void)accountsSaveAuthenticationPasswordUpdate:(BOOL)value;
 - (void)gpsAdjustmentEnableUpdate:(BOOL)value;

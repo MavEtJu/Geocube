@@ -270,6 +270,7 @@ enum sections {
     SECTION_KEEPTRACK,
     SECTION_MARKAS,
     SECTION_WAYPOINTS,
+    SECTION_LISTS,
     SECTION_ACCOUNTS,
     SECTION_GPSADJUSTMENT,
     SECTION_MAX,
@@ -350,6 +351,9 @@ enum sections {
     SECTION_WAYPOINTS_REFRESHAFTERLOG,
     SECTION_WAYPOINTS_MAX,
 
+    SECTION_LISTS_SORTBY = 0,
+    SECTION_LISTS_MAX,
+
     SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME = 0,
     SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD,
     SECTION_ACCOUNTS_MAX,
@@ -386,6 +390,7 @@ enum sections {
         SECTION_MAX(MAPSEARCHMAXIMUM);
         SECTION_MAX(MARKAS);
         SECTION_MAX(WAYPOINTS);
+        SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
         SECTION_MAX(GPSADJUSTMENT);
         default:
@@ -427,6 +432,8 @@ enum sections {
             return @"Mark as...";
         case SECTION_WAYPOINTS:
             return @"Waypoints";
+        case SECTION_LISTS:
+            return @"Lists";
         case SECTION_ACCOUNTS:
             return @"Accounts";
         case SECTION_GPSADJUSTMENT:
@@ -1011,6 +1018,21 @@ enum sections {
             break;
         }
 
+        case SECTION_LISTS: {
+            switch (indexPath.row) {
+                case SECTION_LISTS_SORTBY: {
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+
+                    cell.textLabel.text = @"Sort lists default by...";
+                    NSArray<NSString *> *order = [WaypointSorter listSortOrders];
+                    cell.detailTextLabel.text = [order objectAtIndex:configManager.listSortBy];
+
+                    return cell;
+                }
+            }
+            break;
+        }
+
         case SECTION_ACCOUNTS: {
             switch (indexPath.row) {
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
@@ -1294,6 +1316,14 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY:
                     [self changeWaypointSortBy];
+                    break;
+            }
+            return;
+
+        case SECTION_LISTS:
+            switch (indexPath.row) {
+                case SECTION_LISTS_SORTBY:
+                    [self changeListSortBy];
                     break;
             }
             return;
@@ -1922,6 +1952,26 @@ enum sections {
 - (void)updateShowStateAsAbbrevationWithLocale:(GCSwitch *)b
 {
     [configManager showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeListSortBy
+{
+    [ActionSheetStringPicker showPickerWithTitle:@"Sort lists by"
+                                            rows:[WaypointSorter listSortOrders]
+                                initialSelection:configManager.listSortBy
+                                          target:self
+                                   successAction:@selector(updateListSortBy:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:self.tableView
+     ];
+}
+
+- (void)updateListSortBy:(NSNumber *)selectedIndex element:(id)element
+{
+    [configManager listSortByUpdate:selectedIndex.integerValue];
     [self.tableView reloadData];
 }
 

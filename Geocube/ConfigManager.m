@@ -128,6 +128,8 @@
 
     CHECK(@"waypoint_refreshafterlog", @"1");
 
+    CHECK(@"list_sortby", @"0");
+
     CHECK(@"accounts_save_authenticationname", @"1");
     CHECK(@"accounts_save_authenticationpassword", @"0");
 
@@ -200,6 +202,7 @@
     self.showStateAsAbbrevationIfLocaleExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
     self.waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
     self.refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
+    self.listSortBy = [[dbConfig dbGetByKey:@"list_sortby"].value integerValue];
     self.accountsSaveAuthenticationName = [[dbConfig dbGetByKey:@"accounts_save_authenticationname"].value boolValue];
     self.accountsSaveAuthenticationPassword = [[dbConfig dbGetByKey:@"accounts_save_authenticationpassword"].value boolValue];
     self.gpsAdjustmentEnable = [[dbConfig dbGetByKey:@"gpsadjustment_enable"].value boolValue];
@@ -579,6 +582,12 @@
 {
     self.refreshWaypointAfterLog = value;
     [self BOOLUpdate:@"waypoint_refreshafterlog" value:value];
+}
+
+- (void)listSortByUpdate:(NSInteger)value
+{
+    self.listSortBy = value;
+    [self NSIntegerUpdate:@"list_sortby" value:value];
 }
 
 - (void)accountsSaveAuthenticationNameUpdate:(BOOL)value
