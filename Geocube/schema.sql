@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.2.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.2.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.2.geocube");
-insert into config(key, value) values("version", "39");
+insert into config(key, value) values("version", "40");
 
 create table filters (
     id integer primary key,
@@ -383,3 +383,12 @@ create table log_strings (
     found integer,
     forlogs bool
 );
+
+create table listdata (
+    id integer primary key,
+    waypoint_id integer,	-- points to waypoints(id)
+    type integer,		-- 0: HIGHLIGHTED, 1: IGNORED, 2: MARKEDFOUND,
+				-- 3: INPROGRESS, 4: MARKEDDNF,
+    datetime integer
+);
+create index listdata_idx_id  on listdata(id);

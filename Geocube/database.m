@@ -522,6 +522,17 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 40
+    a = @[
+    @"create table listdata(id integer primary key, waypoint_id integer, type integer, datetime integer)",
+    @"create index listdata_idx_id  on listdata(id)",
+    @"insert into listdata(waypoint_id, type, datetime) select id, 0, id from waypoints where highlight = 1",
+    @"insert into listdata(waypoint_id, type, datetime) select id, 1, id from waypoints where ignore = 1",
+    @"insert into listdata(waypoint_id, type, datetime) select id, 2, id from waypoints where markedfound = 1",
+    @"insert into listdata(waypoint_id, type, datetime) select id, 3, id from waypoints where inprogress = 1",
+    @"insert into listdata(waypoint_id, type, datetime) select id, 4, id from waypoints where dnfed = 1",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
