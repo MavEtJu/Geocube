@@ -77,7 +77,7 @@ enum {
     qis = [dbQueryImport dbAll];
 }
 
-NEEDS_OVERLOADING(reloadQueries)
+- NEEDS_OVERLOADING_VOID(reloadQueries)
 
 - (void)reloadQueries:(NSInteger)protocol
 {

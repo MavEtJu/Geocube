@@ -92,9 +92,9 @@
     [self parseDictionary:dict infoViewer:nil iiImport:0];
 }
 
-NEEDS_OVERLOADING(parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
-NEEDS_OVERLOADING(parseData:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
-NEEDS_OVERLOADING(parseString:(NSString *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
-NEEDS_OVERLOADING(parseDictionary:(id)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
+- NEEDS_OVERLOADING_VOID(parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
+- NEEDS_OVERLOADING_VOID(parseData:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
+- NEEDS_OVERLOADING_VOID(parseString:(NSString *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
+- NEEDS_OVERLOADING_VOID(parseDictionary:(id)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii)
 
 @end

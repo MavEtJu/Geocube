@@ -25,12 +25,12 @@
 
 @implementation dbObject
 
-NEEDS_OVERLOADING(dbUpdate)
-NEEDS_OVERLOADING(dbDelete)
-- (NSId)dbCreate { NEEDS_OVERLOADING_ASSERT; return 0; }
-+ (NSArray<dbObject *> *)dbAll { NEEDS_OVERLOADING_ASSERT; return nil; }
-+ (dbObject *)dbGet:(NSId)_id { NEEDS_OVERLOADING_ASSERT; return nil; }
-+ (NSInteger)dbCount { NEEDS_OVERLOADING_ASSERT; return -1; }
+- NEEDS_OVERLOADING_VOID(dbUpdate)
+- NEEDS_OVERLOADING_VOID(dbDelete)
+- NEEDS_OVERLOADING_NSID(dbCreate)
++ NEEDS_OVERLOADING_NSARRAY_DBOBJECT(dbAll)
++ NEEDS_OVERLOADING_DBOBJECT(dbGet:(NSId)_id)
++ NEEDS_OVERLOADING_NSINTEGER(dbCount)
 
 - (instancetype)init
 {

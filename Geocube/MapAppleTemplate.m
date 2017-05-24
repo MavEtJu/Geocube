@@ -49,7 +49,7 @@
     return NO;
 }
 
-NEEDS_OVERLOADING_NSSTRING(cachePrefix)
++ NEEDS_OVERLOADING_NSSTRING(cachePrefix)
 
 - (void)initMap
 {

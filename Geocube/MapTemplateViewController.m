@@ -551,7 +551,7 @@
     }
 }
 
-NEEDS_OVERLOADING(refreshWaypointsData)
+- NEEDS_OVERLOADING_VOID(refreshWaypointsData)
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
@@ -878,7 +878,7 @@ NEEDS_OVERLOADING(refreshWaypointsData)
     [self.map removeHistory];
 }
 
-NEEDS_OVERLOADING(menuLoadWaypoints)
+- NEEDS_OVERLOADING_VOID(menuLoadWaypoints)
 
 - (void)performLocalMenuAction:(NSInteger)index
 {

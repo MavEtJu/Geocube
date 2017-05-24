@@ -96,8 +96,9 @@
 
 #pragma mark -- configuration
 
-NEEDS_OVERLOADING(configUpdate)
-NEEDS_OVERLOADING(configInit)
+- NEEDS_OVERLOADING_VOID(configUpdate)
+- NEEDS_OVERLOADING_VOID(configInit)
++ NEEDS_OVERLOADING_NIL(NSArray<NSString *> *, configFields)
 
 - (void)configPrefix:(NSString *)prefix
 {

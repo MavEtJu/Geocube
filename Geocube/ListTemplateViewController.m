@@ -39,8 +39,8 @@ enum {
 
 #define THISCELL @"WaypointTableViewCell"
 
-NEEDS_OVERLOADING(clearFlags)
-NEEDS_OVERLOADING(removeMark:(NSInteger)idx)
+- NEEDS_OVERLOADING_VOID(clearFlags)
+- NEEDS_OVERLOADING_VOID(removeMark:(NSInteger)idx)
 
 - (instancetype)init
 {

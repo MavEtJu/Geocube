@@ -103,16 +103,38 @@ typedef sqlite3_int64 NSId;
 
 #define NEEDS_OVERLOADING_ASSERT \
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
-#define NEEDS_OVERLOADING(__name__) \
-    - (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
+#define NEEDS_OVERLOADING_VOID(__name__) \
+    (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
+
+#define NEEDS_OVERLOADING_NIL(__type__, __name__) \
+    (__type__) __name__ { NEEDS_OVERLOADING_ASSERT; return nil; }
+
 #define NEEDS_OVERLOADING_NSSTRING(__name__) \
-    + (NSString *) __name__ { NEEDS_OVERLOADING_ASSERT; return nil; }
+    NEEDS_OVERLOADING_NIL(NSString *, __name__)
+#define NEEDS_OVERLOADING_NSARRAY_DBOBJECT(__name__) \
+    NEEDS_OVERLOADING_NIL(NSArray<dbObject *> *, __name__)
+#define NEEDS_OVERLOADING_DBOBJECT(__name__) \
+    NEEDS_OVERLOADING_NIL(dbObject *, __name__)
+
 #define NEEDS_OVERLOADING_BOOL(__name__) \
-    - (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
+    (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
 #define NEEDS_OVERLOADING_NSRANGE(__name__) \
-    - (NSRange) __name__ { NEEDS_OVERLOADING_ASSERT; return NSMakeRange(0, 0); }
+    (NSRange) __name__ { NEEDS_OVERLOADING_ASSERT; return NSMakeRange(0, 0); }
+#define NEEDS_OVERLOADING_CLLOCATIONCOORDINATE2D(__name__) \
+    (CLLocationCoordinate2D) __name__ { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
+#define NEEDS_OVERLOADING_NSINTEGER(__name__) \
+    (NSInteger) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
+#define NEEDS_OVERLOADING_GCMAPTYPE(__name__) \
+    (GCMapType) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
+#define NEEDS_OVERLOADING_DOUBLE(__name__) \
+    (double) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
+#define NEEDS_OVERLOADING_NSID(__name__) \
+    (NSId) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
+
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
+#define EMPTY_METHOD_DOUBLE(__name__) \
+    - (double) __name__ { return 0; }
 #define EMPTY_METHOD_BOOL(__name__) \
     - (BOOL) __name__ { return NO; }
 
