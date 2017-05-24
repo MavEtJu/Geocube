@@ -82,22 +82,13 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"difficulty"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
+    [super configInit];
+    
+    NSString *s;
     s = [self configGet:@"min"];
-    if (s == nil)
-        config_min = 1;
-    else
-        config_min = [s floatValue];
+    config_min = [s floatValue];
     s = [self configGet:@"max"];
-    if (s == nil)
-        config_max = 5;
-    else
-        config_max = [s floatValue];
+    config_max = [s floatValue];
 }
 
 - (void)configUpdate
@@ -105,6 +96,24 @@
     [self configSet:@"min" value:[NSString stringWithFormat:@"%0.1f", config_min]];
     [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"difficulty";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"min", @"max", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"min": @1,
+             @"max": @5,
+             @"enabled": @NO
+             };
 }
 
 #pragma mark -- callback functions

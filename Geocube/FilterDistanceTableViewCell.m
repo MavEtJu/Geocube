@@ -101,41 +101,19 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"distance"];
+    [super configInit];
 
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
+    NSString *s;
     s = [self configGet:@"distanceKm"];
-    if (s == nil)
-        distanceKm = 10;
-    else
-        distanceKm = [s integerValue];
-
+    distanceKm = [s integerValue];
     s = [self configGet:@"distanceM"];
-    if (s == nil)
-        distanceM = 0;
-    else
-        distanceM = [s integerValue];
-
+    distanceM = [s integerValue];
     s = [self configGet:@"variationKm"];
-    if (s == nil)
-        variationKm = 2;
-    else
-        variationKm = [s integerValue];
-
+    variationKm = [s integerValue];
     s = [self configGet:@"variationM"];
-    if (s == nil)
-        variationM = 500;
-    else
-        variationM = [s integerValue];
-
+    variationM = [s integerValue];
     s = [self configGet:@"compareDistance"];
-    if (s == nil)
-        compareDistance = FILTER_DISTANCE_LESSTHAN;
-    else
-        compareDistance = [s integerValue];
+    compareDistance = [s integerValue];
 }
 
 - (void)configUpdate
@@ -146,6 +124,27 @@
     [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", (long)variationM]];
     [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", (long)variationKm]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"distance";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"compareDistance", @"distanceM", @"distanceKm", @"variationM", @"variationKm", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"compareDistance": [NSNumber numberWithInteger:FILTER_DISTANCE_LESSTHAN],
+             @"distanceM": @0,
+             @"distanceKm": @10,
+             @"variationM": @500,
+             @"variationKm": @2,
+             @"enabled": @NO
+             };
 }
 
 #pragma mark -- callback functions

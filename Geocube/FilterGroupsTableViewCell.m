@@ -80,20 +80,37 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"groups"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
-    s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
+    [super configInit];
 }
 
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"groups";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        [as addObject:g.name];
+    }];
+    return as;
+}
+
++ (NSDictionary *)configDefaults
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Groups] count] + 1];
+    [dict setObject:@NO forKey:@"enabled"];
+
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dict setObject:@NO forKey:g.name];
+    }];
+    return dict;
 }
 
 #pragma mark -- callback functions

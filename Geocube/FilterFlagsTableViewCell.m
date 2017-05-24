@@ -174,20 +174,38 @@ typedef NS_ENUM(NSInteger, FlagType) {
 
 - (void)configInit
 {
-    [self configPrefix:@"flags"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
-    s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
+    [super configInit];
 }
 
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"flags";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"enabled", @"markedfound", @"markeddnf", @"ignored", @"highlighted", @"inprogress", @"loggedasfound", @"loggedasdnf", @"owner", @"isenabled", @"isarchived"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"enabled": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"markedfound": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"markeddnf": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"ignored": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"highlighted": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"inprogress": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"loggedasfound": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"loggedasdnf": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"owner": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"isenabled": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             @"isarchived": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+             };
 }
 
 #pragma mark -- callback functions

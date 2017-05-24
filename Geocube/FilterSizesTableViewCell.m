@@ -85,16 +85,37 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"sizes"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
+    [super configInit];
 }
 
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"sizes";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    NSMutableArray *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
+    [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        [as addObject:c.size];
+    }];
+    return as;
+}
+
++ (NSDictionary *)configDefaults
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Containers] count] + 1];
+    [dict setObject:@NO forKey:@"enabled"];
+
+    [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dict setObject:@NO forKey:c.size];
+    }];
+    return dict;
 }
 
 #pragma mark -- callback functions

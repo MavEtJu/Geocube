@@ -80,22 +80,13 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"favourites"];
+    [super configInit];
 
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
+    NSString *s;
     s = [self configGet:@"min"];
-    if (s == nil)
-        config_min = 0;
-    else
-        config_min = [s integerValue];
+    config_min = [s integerValue];
     s = [self configGet:@"max"];
-    if (s == nil)
-        config_max = 100;
-    else
-        config_max = [s integerValue];
+    config_max = [s integerValue];
 }
 
 - (void)configUpdate
@@ -103,6 +94,24 @@
     [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)config_min]];
     [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"favourites";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"min", @"max", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"min": @0,
+             @"max": @100,
+             @"enabled": @NO,
+             };
 }
 
 #pragma mark -- callback functions

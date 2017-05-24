@@ -37,6 +37,8 @@
 - (void)configInit;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)configUpdate;
++ (NSString *)configPrefix;
 + (NSArray<NSString *> *)configFields;
++ (NSDictionary *)configDefaults;
 
 @end

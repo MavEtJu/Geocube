@@ -97,8 +97,17 @@
 #pragma mark -- configuration
 
 - NEEDS_OVERLOADING_VOID(configUpdate)
-- NEEDS_OVERLOADING_VOID(configInit)
-+ NEEDS_OVERLOADING_NIL(NSArray<NSString *> *, configFields)
++ NEEDS_OVERLOADING_NSSTRING(configPrefix)
++ NEEDS_OVERLOADING_NSARRAY_NSSTRING(configFields)
++ NEEDS_OVERLOADING_NSDICTIONARY(configDefaults)
+
+- (void)configInit
+{
+    [self configPrefix:[[self class] configPrefix]];
+
+    NSString *s = [self configGet:@"enabled"];
+    fo.expanded = [s boolValue];
+}
 
 - (void)configPrefix:(NSString *)prefix
 {
@@ -107,7 +116,12 @@
 
 - (NSString *)configGet:(NSString *)_name
 {
-    return [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
+    NSString *retvalue = [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
+    if (retvalue != nil)
+        return retvalue;
+
+    NSDictionary *defs = [[self class] configDefaults];
+    return [defs objectForKey:_name];
 }
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value

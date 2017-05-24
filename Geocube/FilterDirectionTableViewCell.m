@@ -76,11 +76,7 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"direction"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
+    [super configInit];
 
     direction = [[self configGet:@"direction"] integerValue];
     directionString = [directions objectAtIndex:direction];
@@ -90,6 +86,23 @@
 {
     [self configSet:@"direction" value:[NSString stringWithFormat:@"%ld", (long)direction]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"direction";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"direction", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"direction": @0,
+             @"enabled": @NO,
+             };
 }
 
 #pragma mark -- callback functions

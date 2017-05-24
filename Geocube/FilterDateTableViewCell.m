@@ -111,35 +111,17 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"dates"];
+    [super configInit];
 
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
-
+    NSString *s;
     s = [self configGet:@"placed_epoch"];
-    if (s == nil)
-        epochPlaced = JAN1_2000;
-    else
-        epochPlaced = [s integerValue];
-
+    epochPlaced = [s integerValue];
     s = [self configGet:@"lastlog_epoch"];
-    if (s == nil)
-        epochLastLog = JAN1_2000;
-    else
-        epochLastLog = [s integerValue];
-
+    epochLastLog = [s integerValue];
     s = [self configGet:@"placed_compare"];
-    if (s == nil)
-        comparePlaced = FILTER_DATE_AFTER;
-    else
-        comparePlaced = [s integerValue];
-
+    comparePlaced = [s integerValue];
     s = [self configGet:@"lastlog_compare"];
-    if (s == nil)
-        compareLastLog = FILTER_DATE_AFTER;
-    else
-        compareLastLog = [s integerValue];
+    compareLastLog = [s integerValue];
 }
 
 - (void)configUpdate
@@ -149,6 +131,26 @@
     [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)comparePlaced]];
     [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", (long)compareLastLog]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"dates";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"placed_epoch", @"lastlog_epoch", @"placed_compare", @"lastlog_compare", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"placed_epoch": @JAN1_2000,
+             @"lastlog_epoch": @JAN1_2000,
+             @"placed_compare": [NSNumber numberWithInteger:FILTER_DATE_AFTER],
+             @"lastlog_compare": [NSNumber numberWithInteger:FILTER_DATE_AFTER],
+             @"enabled": @NO,
+             };
 }
 
 #pragma mark -- callback functions

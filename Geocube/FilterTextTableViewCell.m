@@ -184,11 +184,7 @@
 
 - (void)configInit
 {
-    [self configPrefix:@"text"];
-
-    NSString *s = [self configGet:@"enabled"];
-    if (s != nil)
-        fo.expanded = [s boolValue];
+    [super configInit];
 
     waypointName = [self configGet:@"waypointname"];
     owner = [self configGet:@"owner"];
@@ -211,6 +207,30 @@
     [self configSet:@"description" value:description];
     [self configSet:@"logs" value:logs];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+}
+
++ (NSString *)configPrefix
+{
+    return @"text";
+}
+
++ (NSArray<NSString *> *)configFields
+{
+    return @[@"waypointname", @"owner", @"placedby", @"locale", @"state", @"country", @"description", @"logs", @"enabled"];
+}
+
++ (NSDictionary *)configDefaults
+{
+    return @{@"waypointname": @"",
+             @"owner": @"",
+             @"placedby": @"",
+             @"locale": @"",
+             @"state": @"",
+             @"country": @"",
+             @"description": @"",
+             @"logs": @"",
+             @"enabled": @NO,
+             };
 }
 
 #pragma mark -- callback functions

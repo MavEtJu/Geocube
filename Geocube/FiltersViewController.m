@@ -30,6 +30,8 @@
 
 enum {
     menuSetDefaultValues,
+    menuSaveFilter,
+    menuLoadFilterr,
     menuMax
 };
 
@@ -54,6 +56,8 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuSetDefaultValues label:@"Set default values"];
+    [lmi addItem:menuSaveFilter label:@"Save filter"];
+    [lmi addItem:menuLoadFilterr label:@"Load filter"];
 
     filters = [NSMutableArray arrayWithCapacity:15];
 
@@ -172,6 +176,12 @@ enum {
                 fo.expanded = NO;
             }];
             [self.tableView reloadData];
+            return;
+        case menuSaveFilter:
+//            [self menuSaveFilter];
+            return;
+        case menuLoadFilterr:
+//            [self menuLoadFilter];
             return;
     }
 
