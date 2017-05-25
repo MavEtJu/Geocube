@@ -425,6 +425,7 @@
 		E8AA14961ED15FFD0023000A /* WaypointLogsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AA14941ED15FFD0023000A /* WaypointLogsTableViewCell.m */; };
 		E8AA14971ED15FFD0023000A /* WaypointLogsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */; };
 		E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AA14991ED30A1E0023000A /* dbListData.m */; };
+		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8ABA0951E277CF20080D5FE /* FilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */; };
 		E8ABA0961E277CF20080D5FE /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */; };
 		E8B52AC31DC935C800CDE1A6 /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B52AC21DC935C800CDE1A6 /* dbProtocol.m */; };
@@ -1249,6 +1250,7 @@
 		E8AA14951ED15FFD0023000A /* WaypointLogsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointLogsTableViewCell.xib; sourceTree = "<group>"; };
 		E8AA14981ED30A1E0023000A /* dbListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbListData.h; sourceTree = "<group>"; };
 		E8AA14991ED30A1E0023000A /* dbListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbListData.m; sourceTree = "<group>"; };
+		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
 		E8ABA0921E277CF20080D5FE /* FilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableViewCell.h; sourceTree = "<group>"; };
 		E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableViewCell.m; sourceTree = "<group>"; };
 		E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesTableViewCell.xib; sourceTree = "<group>"; };
@@ -2890,6 +2892,7 @@
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
+				E8AA149B1ED7988A0023000A /* Updates and changes.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3483,6 +3486,7 @@
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
+				E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,

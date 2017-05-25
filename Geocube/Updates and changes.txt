@@ -1,0 +1,20 @@
+Interesting additions and changes to Geocube
+
+
+Version 1.2(x)
+
+- Being able to load/save filter collections.
+- Filter additions: enabled and archived.
+- Lists now can be sorted on "date/time added to the list".
+- Show icons of the last six logs in the waypoint view.
+- Add iPad support in the app, not yet in the workflow.
+
+Version 1.1(15)
+
+- Added ESRi WorldTopoMap.
+- Now using the Geocaching Australia API.
+- Add toolbox.
+
+Version 1.0(9)
+
+- Initial release.
