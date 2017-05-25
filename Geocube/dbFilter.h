@@ -29,6 +29,7 @@
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value;
 - (NSId)dbCreate;
 - (void)dbUpdate;
-+ (void)dbAllClear;
++ (void)dbAllClear:(NSString *)prefix;
++ (NSArray<NSString *> *)findFilterNames;
 
 @end

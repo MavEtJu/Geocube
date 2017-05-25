@@ -100,18 +100,58 @@
     [c dbCreate];
 }
 
-+ (void)dbAllClear
++ (void)dbAllClear:(NSString *)prefix
 {
-    @synchronized(db) {
-        DB_PREPARE(@"delete from filters");
-        DB_CHECK_OKAY;
-        DB_FINISH;
+    if (prefix == nil) {
+        @synchronized(db) {
+            DB_PREPARE(@"delete from filters where not key like '%||%'");
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }
+    } else {
+        @synchronized(db) {
+            DB_PREPARE(@"delete from filters where key like '?'");
+            NSString *s = [NSString stringWithFormat:@"%@||%%", prefix];
+            SET_VAR_TEXT(1, s);
+            DB_CHECK_OKAY;
+            DB_FINISH;
+        }
     }
 }
 
 + (NSInteger)dbCount
 {
     return [dbFilter dbCount:@"filters"];
+}
+
++ (NSArray<NSString *> *)findFilterNames
+{
+    NSMutableArray<NSString *> *fs = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select key from filters");
+
+        DB_WHILE_STEP {
+            TEXT_FETCH_AND_ASSIGN(0, s);
+            if ([s containsString:@"||"] == NO)
+                continue;
+
+            NSArray<NSString *> *ws = [s componentsSeparatedByString:@"||"];
+            s = [ws objectAtIndex:0];
+
+            __block BOOL found = NO;
+            [fs enumerateObjectsUsingBlock:^(NSString * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([f isEqualToString:s] == YES) {
+                    found = YES;
+                    *stop = YES;
+                }
+            }];
+            if (found == NO)
+                [fs addObject:s];
+        }
+        DB_FINISH;
+    }
+    return fs;
 }
 
 @end
