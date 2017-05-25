@@ -108,9 +108,9 @@
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"min": @0,
-             @"max": @100,
-             @"enabled": @NO,
+    return @{@"min": @"0",
+             @"max": @"100",
+             @"enabled": @"0",
              };
 }
 

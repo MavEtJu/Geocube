@@ -83,7 +83,7 @@
 - (void)configInit
 {
     [super configInit];
-    
+
     NSString *s;
     s = [self configGet:@"min"];
     config_min = [s floatValue];
@@ -110,9 +110,9 @@
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"min": @1,
-             @"max": @5,
-             @"enabled": @NO
+    return @{@"min": @"1",
+             @"max": @"5",
+             @"enabled": @"0",
              };
 }
 

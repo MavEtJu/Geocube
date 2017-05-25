@@ -138,12 +138,12 @@
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"compareDistance": [NSNumber numberWithInteger:FILTER_DISTANCE_LESSTHAN],
-             @"distanceM": @0,
-             @"distanceKm": @10,
-             @"variationM": @500,
-             @"variationKm": @2,
-             @"enabled": @NO
+    return @{@"compareDistance": [NSString stringWithFormat:@"%ld", (long)FILTER_DISTANCE_LESSTHAN],
+             @"distanceM": @"0",
+             @"distanceKm": @"10",
+             @"variationM": @"500",
+             @"variationKm": @"2",
+             @"enabled": @"0",
              };
 }
 

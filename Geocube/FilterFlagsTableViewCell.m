@@ -194,17 +194,17 @@ typedef NS_ENUM(NSInteger, FlagType) {
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"enabled": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"markedfound": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"markeddnf": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"ignored": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"highlighted": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"inprogress": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"loggedasfound": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"loggedasdnf": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"owner": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"isenabled": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
-             @"isarchived": [NSNumber numberWithInteger:FILTER_FLAGS_NOTCHECKED],
+    return @{@"enabled": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"markedfound": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"markeddnf": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"ignored": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"highlighted": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"inprogress": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"loggedasfound": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"loggedasdnf": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"owner": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"isenabled": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+             @"isarchived": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
              };
 }
 

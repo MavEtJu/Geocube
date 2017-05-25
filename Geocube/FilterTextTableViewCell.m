@@ -229,7 +229,7 @@
              @"country": @"",
              @"description": @"",
              @"logs": @"",
-             @"enabled": @NO,
+             @"enabled": @"0",
              };
 }
 

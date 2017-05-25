@@ -145,11 +145,11 @@
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"placed_epoch": @JAN1_2000,
-             @"lastlog_epoch": @JAN1_2000,
-             @"placed_compare": [NSNumber numberWithInteger:FILTER_DATE_AFTER],
-             @"lastlog_compare": [NSNumber numberWithInteger:FILTER_DATE_AFTER],
-             @"enabled": @NO,
+    return @{@"placed_epoch": [@JAN1_2000 stringValue],
+             @"lastlog_epoch": [@JAN1_2000 stringValue],
+             @"placed_compare": [NSString stringWithFormat:@"%ld", (long)FILTER_DATE_AFTER],
+             @"lastlog_compare": [NSString stringWithFormat:@"%ld", (long)FILTER_DATE_AFTER],
+             @"enabled": @"0",
              };
 }
 

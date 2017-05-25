@@ -95,7 +95,7 @@
 
 + (NSArray<NSString *> *)configFields
 {
-    NSMutableArray *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:g.name];
     }];
@@ -105,10 +105,10 @@
 + (NSDictionary *)configDefaults
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Groups] count] + 1];
-    [dict setObject:@NO forKey:@"enabled"];
+    [dict setObject:@"0" forKey:@"enabled"];
 
     [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dict setObject:@NO forKey:g.name];
+        [dict setObject:@"0" forKey:g.name];
     }];
     return dict;
 }

@@ -100,8 +100,8 @@
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"direction": @0,
-             @"enabled": @NO,
+    return @{@"direction": @"0",
+             @"enabled": @"0",
              };
 }
 
