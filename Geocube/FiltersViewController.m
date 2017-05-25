@@ -29,14 +29,14 @@
 @implementation FiltersViewController
 
 enum {
-    menuSetDefaultValues,
+    menuSetDefaultValues = 0,
     menuSaveFilter,
-    menuLoadFilterr,
+    menuLoadFilter,
     menuMax
 };
 
 enum {
-    filterGroups,
+    filterGroups = 0,
     filterTypes,
     filterFavourites,
     filterSizes,
@@ -57,7 +57,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuSetDefaultValues label:@"Set default values"];
     [lmi addItem:menuSaveFilter label:@"Save filter"];
-    [lmi addItem:menuLoadFilterr label:@"Load filter"];
+    [lmi addItem:menuLoadFilter label:@"Load filter"];
 
     filters = [NSMutableArray arrayWithCapacity:15];
 
@@ -166,22 +166,128 @@ enum {
 
 #pragma mark - Local menu related
 
+- (void)saveAsFilter:(NSString *)filtername
+{
+#define SAVE(__class__) \
+    { \
+        NSString *prefix = [__class__ configPrefix]; \
+        NSArray<NSString *> *fields = [__class__ configFields]; \
+        NSDictionary *defaults = [__class__ configDefaults]; \
+        [fields enumerateObjectsUsingBlock:^(NSString * _Nonnull fn, NSUInteger idx, BOOL * _Nonnull stop) { \
+            NSString *value = [defaults objectForKey:fn]; \
+            dbFilter *f = [dbFilter dbGetByKey:[NSString stringWithFormat:@"%@_%@", prefix, fn]]; \
+            if (f != nil) \
+                value = f.value; \
+            [dbFilter dbUpdateOrInsert:[NSString stringWithFormat:@"%@||%@_%@", filtername, prefix, fn] value:value]; \
+        }]; \
+    }
+
+    SAVE(FilterGroupsTableViewCell)
+    SAVE(FilterTypesTableViewCell)
+    SAVE(FilterFavouritesTableViewCell)
+    SAVE(FilterSizesTableViewCell)
+    SAVE(FilterDifficultyTableViewCell)
+    SAVE(FilterTerrainTableViewCell)
+    SAVE(FilterDistanceTableViewCell)
+    SAVE(FilterDirectionTableViewCell)
+    SAVE(FilterTextTableViewCell)
+    SAVE(FilterDateTableViewCell)
+    SAVE(FilterFlagsTableViewCell)
+}
+
+- (void)menuSaveFilter
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Save filter as..."
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *save = [UIAlertAction
+                           actionWithTitle:@"Save" style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                               UITextField *tf = alert.textFields.firstObject;
+                               [self saveAsFilter:tf.text];
+                               [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [alert addAction:save];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Filter name";
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)loadFilter:(NSString *)filtername
+{
+    [dbFilter dbAllClear:nil];
+
+#define LOAD(__class__) { \
+        NSString *prefix = [__class__ configPrefix]; \
+        NSArray<NSString *> *fields = [__class__ configFields]; \
+        [fields enumerateObjectsUsingBlock:^(NSString * _Nonnull fn, NSUInteger idx, BOOL * _Nonnull stop) { \
+            NSString *ffn = [NSString stringWithFormat:@"%@||%@_%@", filtername, prefix, fn]; \
+            dbFilter *f = [dbFilter dbGetByKey:ffn]; \
+            if (f != nil) \
+                [dbFilter dbUpdateOrInsert:[NSString stringWithFormat:@"%@_%@", prefix, fn] value:f.value]; \
+        }]; \
+    }
+
+    LOAD(FilterGroupsTableViewCell)
+    LOAD(FilterTypesTableViewCell)
+    LOAD(FilterFavouritesTableViewCell)
+    LOAD(FilterSizesTableViewCell)
+    LOAD(FilterDifficultyTableViewCell)
+    LOAD(FilterTerrainTableViewCell)
+    LOAD(FilterDistanceTableViewCell)
+    LOAD(FilterDirectionTableViewCell)
+    LOAD(FilterTextTableViewCell)
+    LOAD(FilterDateTableViewCell)
+    LOAD(FilterFlagsTableViewCell)
+    [self.tableView reloadData];
+}
+
+- (void)menuLoadFilter
+{
+    NSArray<NSString *> *fs = [dbFilter findFilterNames];
+
+    [ActionSheetStringPicker
+        showPickerWithTitle:@"Load filter"
+        rows:fs
+        initialSelection:0
+        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+            NSString *filter = [fs objectAtIndex:selectedIndex];
+            [self loadFilter:filter];
+        }
+        cancelBlock:^(ActionSheetStringPicker *picker) {
+        }
+        origin:self.view
+     ];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     // Add a group
     switch (index) {
         case menuSetDefaultValues:
-            [dbFilter dbAllClear];
+            [dbFilter dbAllClear:nil];
             [filters enumerateObjectsUsingBlock:^(FilterObject *fo, NSUInteger idx, BOOL *stop) {
                 fo.expanded = NO;
             }];
             [self.tableView reloadData];
             return;
         case menuSaveFilter:
-//            [self menuSaveFilter];
+            [self menuSaveFilter];
             return;
-        case menuLoadFilterr:
-//            [self menuLoadFilter];
+        case menuLoadFilter:
+            [self menuLoadFilter];
             return;
     }
 
