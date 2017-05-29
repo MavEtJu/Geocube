@@ -99,6 +99,7 @@
     [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_Unknown];
     [self addToLibrary:@"log - moved - 30x30" index:ImageLog_Moved];
     [self addToLibrary:@"log - announcement - 30x30" index:ImageLog_Announcement];
+    [self addToLibrary:@"log - empty - 30x30" index:ImageLog_Empty];
 
     [self addToLibrary:@"container size - large - 35x11" index:ImageContainerSize_Large];
     [self addToLibrary:@"container size - micro - 35x11" index:ImageContainerSize_Micro];

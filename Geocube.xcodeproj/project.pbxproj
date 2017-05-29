@@ -384,6 +384,7 @@
 		E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891D27D1D2D2DDE00A17B17 /* ImportOKAPIJSON.m */; };
 		E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */; };
 		E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */; };
+		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -1181,6 +1182,7 @@
 		E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGGCWJSON.m; sourceTree = "<group>"; };
 		E891E7911DD1660500EC9066 /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXGarmin.h; sourceTree = "<group>"; };
 		E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXGarmin.m; sourceTree = "<group>"; };
+		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -2323,6 +2325,7 @@
 				E82E65E91DA079E500CFBDED /* log - coordinates - 30x30.png */,
 				E82E65EA1DA079E500CFBDED /* log - didnotfind - 30x30.png */,
 				E82E65EB1DA079E500CFBDED /* log - disabled - 18x18.png */,
+				E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */,
 				E82E65EC1DA079E500CFBDED /* log - enabled - 30x30.png */,
 				E82E65ED1DA079E500CFBDED /* log - found - 30x30.png */,
 				E82E65EE1DA079E500CFBDED /* log - moved - 30x30.png */,
@@ -3445,6 +3448,7 @@
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
+				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
 				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
 				E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */,

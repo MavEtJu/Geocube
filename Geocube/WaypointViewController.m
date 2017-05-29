@@ -307,16 +307,16 @@ enum {
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-                    cell.image0.image = nil;
-                    cell.image1.image = nil;
-                    cell.image2.image = nil;
-                    cell.image3.image = nil;
-                    cell.image4.image = nil;
-                    cell.image5.image = nil;
+                    cell.image0.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image1.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image2.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image3.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image4.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image5.image = [imageLibrary get:ImageLog_Empty];
 
                     NSInteger c = [waypoint hasLogs];
                     if (c == 0) {
-                        tc = currentTheme.labelTextColorDisabled;
+                        cell.logs.textColor = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
 
                     } else {

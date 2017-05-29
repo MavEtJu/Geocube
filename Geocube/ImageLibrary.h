@@ -83,6 +83,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageLog_Unknown,               // 416
     ImageLog_Moved,                 // 417
     ImageLog_Announcement,          // 418
+    ImageLog_Empty,                 // 419
 
     ImageContainerSize_Large = 450,
     ImageContainerSize_Micro,
