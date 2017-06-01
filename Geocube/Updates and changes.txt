@@ -3,19 +3,24 @@ Interesting additions and changes to Geocube
 
 Version 1.2(x)
 
-- Fix problem with swipe-left on waypoint images.
-- Proper map on the Keep Track section.
-- Being able to load/save filter collections.
-- Filter additions: enabled and archived.
-- Lists now can be sorted on "date/time added to the list".
-- Show icons of the last six logs in the waypoint view.
-- Add iPad support in the app, not yet in the workflow.
+  Features:
+  - Proper map on the Keep Track section.
+  - Being able to load/save filter collections.
+  - Filter additions: enabled and archived.
+  - Lists now can be sorted on "date/time added to the list".
+  - Show icons of the last six logs in the waypoint view.
+
+  Fixes:
+  - Fix problem with swipe-left on waypoint images.
+  - Close button area is now bigger than before.
+  - Add iPad support in the app, not yet in the workflow.
 
 Version 1.1(15)
 
-- Added ESRi WorldTopoMap.
-- Now using the Geocaching Australia API.
-- Add toolbox.
+  Features:
+  - Added ESRi WorldTopoMap.
+  - Now using the Geocaching Australia API.
+  - Add toolbox.
 
 Version 1.0(9)
 
