@@ -615,7 +615,7 @@
         bottom = MIN(bottom, te.coords.latitude);
         top = MAX(top, te.coords.latitude);
         right = MAX(right, te.coords.longitude);
-        left = MIN(left, te.coords.longitude);;
+        left = MIN(left, te.coords.longitude);
 
         if (te.restart == NO) {
             coordinateArray[counter++] = te.coords;

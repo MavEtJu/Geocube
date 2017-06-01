@@ -442,7 +442,7 @@
         bottom = MIN(bottom, te.coords.latitude);
         top = MAX(top, te.coords.latitude);
         right = MAX(right, te.coords.longitude);
-        left = MIN(left, te.coords.longitude);;
+        left = MIN(left, te.coords.longitude);
 
         if (te.restart == NO) {
             [lastPathHistory addCoordinate:te.coords];
@@ -462,7 +462,7 @@
 
     trackBL = CLLocationCoordinate2DMake(bottom, left);
     trackTR = CLLocationCoordinate2DMake(top, right);
-    
+
     [self performSelector:@selector(showTrack) withObject:nil afterDelay:1];
 }
 
