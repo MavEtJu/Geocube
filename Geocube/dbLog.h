@@ -35,11 +35,12 @@
 @property (nonatomic, retain) dbName *logger;
 @property (nonatomic, retain) NSString *log;
 @property (nonatomic) BOOL needstobelogged;
+@property (nonatomic) BOOL localLog;
 
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wp_id logstring_id:(NSId)_lsid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged;
+- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wp_id logstring_id:(NSId)_lsid datetime:(NSString *)_datetime logger_id:(NSId)_logger_id log:(NSString *)_log needstobelogged:(BOOL)needtobelogged locallog:(BOOL)locallog;
 - (instancetype)init:(NSInteger)gc_id;
 
 + (NSId)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;
@@ -53,6 +54,6 @@
 - (void)dbUpdateWaypoint:(NSId)wp_id;
 - (void)dbUpdateNote;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;
-+ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged;
++ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog;
 
 @end

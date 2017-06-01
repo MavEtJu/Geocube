@@ -25,6 +25,7 @@
 @property (nonatomic, retain) IBOutlet GCLabel *labelDateTime;
 @property (nonatomic, retain) IBOutlet GCLabel *labelLogger;
 @property (nonatomic, retain) IBOutlet GCLabel *labelLog;
+@property (nonatomic, retain) IBOutlet GCLabel *labelLocalLog;
 
 @end
 
@@ -42,6 +43,7 @@
     [self.labelLog changeTheme];
     [self.labelLogger changeTheme];
     [self.labelDateTime changeTheme];
+    [self.labelLocalLog changeTheme];
 }
 
 - (void)setLog:(dbLog *)log
@@ -50,6 +52,7 @@
     self.labelLogger.text = log.logger.name;
     self.ivLogType.image = [imageLibrary get:log.logstring.icon];
     self.labelLog.text = log.log;
+    self.labelLocalLog.hidden = (log.localLog == NO);
 }
 
 @end

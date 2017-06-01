@@ -533,6 +533,13 @@
     @"insert into listdata(waypoint_id, type, datetime) select id, 4, id from waypoints where dnfed = 1",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 41
+    a = @[
+    @"alter table logs add column locallog bool",
+    @"update logs set locallog = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

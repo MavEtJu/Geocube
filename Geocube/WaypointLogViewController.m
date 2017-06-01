@@ -478,7 +478,7 @@ enum {
 {
     // Do not upload, save it locally for later
     if (upload == NO) {
-        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES];
+        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES locallog:NO];
         waypoint.logStatus = LOGSTATUS_FOUND;
         [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
@@ -530,7 +530,7 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
-        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO];
+        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO locallog:YES];
         [log dbUpdate];
 
         if (configManager.loggingRemovesMarkedAsFoundDNF == YES) {

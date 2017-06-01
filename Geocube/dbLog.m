@@ -33,7 +33,7 @@
     return self;
 }
 
-- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSString *)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSString *)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog
 {
     self = [super init];
     self._id = _id;
@@ -44,6 +44,7 @@
     self.logger_id = logger_id;
     self.log = log;
     self.needstobelogged = needstobelogged;
+    self.localLog = locallog;
 
     [self finish];
 
@@ -146,7 +147,7 @@
     NSId _id = 0;
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged) values(?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, gc_id, needstobelogged, locallog) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, log.waypoint_id);
         SET_VAR_INT (2, log.logstring_id);
@@ -156,6 +157,7 @@
         SET_VAR_TEXT(6, log.log);
         SET_VAR_INT (7, log.gc_id);
         SET_VAR_BOOL(8, log.needstobelogged);
+        SET_VAR_BOOL(9, log.localLog);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -168,17 +170,18 @@
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? where id = ?");
+        DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? locallog = ? where id = ?");
 
-        SET_VAR_INT (1, self.logstring_id);
-        SET_VAR_INT (2, self.waypoint_id);
-        SET_VAR_TEXT(3, self.datetime);
-        SET_VAR_INT (4, self.datetime_epoch);
-        SET_VAR_INT (5, self.logger_id);
-        SET_VAR_TEXT(6, self.log);
-        SET_VAR_INT (7, self.gc_id);
-        SET_VAR_INT (8, self._id);
-        SET_VAR_BOOL(9, self.needstobelogged);
+        SET_VAR_INT ( 1, self.logstring_id);
+        SET_VAR_INT ( 2, self.waypoint_id);
+        SET_VAR_TEXT( 3, self.datetime);
+        SET_VAR_INT ( 4, self.datetime_epoch);
+        SET_VAR_INT ( 5, self.logger_id);
+        SET_VAR_TEXT( 6, self.log);
+        SET_VAR_INT ( 7, self.gc_id);
+        SET_VAR_BOOL( 8, self.needstobelogged);
+        SET_VAR_BOOL( 9, self.localLog);
+        SET_VAR_INT (10, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -234,7 +237,7 @@
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? order by datetime_epoch desc");
 
         SET_VAR_INT(1, _wp_id);
 
@@ -249,6 +252,7 @@
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
+            BOOL_FETCH(9, l.localLog);
             [l finish];
             [ls addObject:l];
         }
@@ -262,7 +266,7 @@
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? order by datetime_epoch desc limit 7");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? order by datetime_epoch desc limit 7");
 
         SET_VAR_INT(1, _wp_id);
 
@@ -277,6 +281,7 @@
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
+            BOOL_FETCH(9, l.localLog);
             [l finish];
             [ls addObject:l];
         }
@@ -290,7 +295,7 @@
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
+        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
 
         SET_VAR_INT(1, wp_id);
 
@@ -305,6 +310,7 @@
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
+            BOOL_FETCH(9, l.localLog);
             [l finish];
             [ls addObject:l];
         }
@@ -337,11 +343,12 @@
     return [dbLog dbCount:@"logs"];
 }
 
-+ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged
++ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog
 {
     dbLog *log = [[dbLog alloc] init];
 
     log.needstobelogged = needstobelogged;
+    log.localLog = locallog;
     log.logstring_string = logstring.text;
     log.log = note;
     log.datetime = [NSString stringWithFormat:@"%@T00:00:00", date];

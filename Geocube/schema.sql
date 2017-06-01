@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.2.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.2.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.2.geocube");
-insert into config(key, value) values("version", "40");
+insert into config(key, value) values("version", "41");
 
 create table filters (
     id integer primary key,
@@ -180,6 +180,7 @@ create table logs (
     datetime_epoch integer,
     logger_id integer,			-- points to names(id)
     needstobelogged bool,
+    locallog bool,
     log text
 );
 create index logs_idx_id on logs(id);
