@@ -34,4 +34,12 @@
     return b;
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+   if (self.frame.origin.x < point.x && point.x < self.frame.origin.x + 3 * self.frame.size.width &&
+        self.frame.origin.y < point.y && point.y < self.frame.origin.y + 3 * self.frame.size.height)
+        return YES;
+    return NO;
+}
+
 @end
