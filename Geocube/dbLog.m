@@ -371,4 +371,16 @@
     return log;
 }
 
+- (void)dbDelete
+{
+    @synchronized(db) {
+        DB_PREPARE(@"delete from logs where id = ?");
+
+        SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end

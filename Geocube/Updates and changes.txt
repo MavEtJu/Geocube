@@ -9,6 +9,8 @@ Version 1.2(x)
   - Filter additions: enabled and archived.
   - Lists now can be sorted on "date/time added to the list".
   - Show icons of the last six logs in the waypoint view.
+  - Logs not imported but written by the app are now marked as such.
+  - Able to delete log entries.
 
   Fixes:
   - Fix problem with swipe-left on waypoint images.

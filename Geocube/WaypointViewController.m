@@ -189,6 +189,11 @@ enum {
     [self reloadDataMainQueue];
 }
 
+-  (void)WaypointLogs_refreshTable
+{
+    [self reloadDataMainQueue];
+}
+
 -  (void)WaypointLog_refreshWaypointData
 {
     [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
@@ -471,7 +476,8 @@ enum {
                 }
 
                 case WAYPOINT_DATA_LOGS: {
-                    UITableViewController *newController = [[WaypointLogsViewController alloc] init:waypoint];
+                    WaypointLogsViewController *newController = [[WaypointLogsViewController alloc] init:waypoint];
+                    newController.delegateWaypoint = self;
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
                     return;

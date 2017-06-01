@@ -37,6 +37,7 @@
 enum {
     menuScanForWaypoints,
     menuCopyLog,
+    menuDeleteLog,
     menuMax,
 };
 
@@ -57,6 +58,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
     [lmi addItem:menuCopyLog label:@"Copy log to clipboard"];
+    [lmi addItem:menuDeleteLog label:@"Delete log"];
     [lmi disableItem:menuScanForWaypoints];
     [lmi disableItem:menuCopyLog];
 
@@ -135,6 +137,9 @@ enum {
         case menuCopyLog:
             [self menuCopyLog];
             return;
+        case menuDeleteLog:
+            [self menuDeleteLog];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -157,6 +162,19 @@ enum {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = selectedLog.log;
     [MyTools messageBox:self header:@"Copy successful" text:@"The text of the selected log has been copied to the clipboard"];
+}
+
+- (void)menuDeleteLog
+{
+    if (selectedLog == nil)
+        return;
+
+    [selectedLog dbDelete];
+    logs = [dbLog dbAllByWaypoint:waypoint._id];
+    [self reloadDataMainQueue];
+
+    if (self.delegateWaypoint != nil)
+        [self.delegateWaypoint WaypointLogs_refreshTable];
 }
 
 @end
