@@ -54,6 +54,10 @@ ConfigManager *configManager = nil;
 MHTabBarController *browserTabController = nil;
 BrowserBrowserViewController *browserViewController = nil;
 
+// Keep Track Map
+MHTabBarController *keepTrackTabController = nil;
+MapTrackViewController *keepTrackMapViewController = nil;
+
 // Download manager
 DownloadManager *downloadManager = nil;
 ImportManager *importManager = nil;

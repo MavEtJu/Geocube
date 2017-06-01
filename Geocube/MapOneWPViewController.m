@@ -27,7 +27,7 @@
 
 - (instancetype)init
 {
-    self = [super init];
+    self = [super init:NO];
     self.followWhom = SHOW_SHOWBOTH;
 
     [lmi disableItem:MVCmenuLoadWaypoints];

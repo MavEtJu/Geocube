@@ -33,6 +33,7 @@
     NSMutableArray<MKPolylineRenderer *> *viewLinesHistory;
     CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
     NSInteger historyCoordsIdx;
+    CLLocationCoordinate2D trackBL, trackTR;
 
     BOOL modifyingMap;
 }
@@ -64,7 +65,8 @@
 - (void)initMap
 {
     mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
-    mapView.showsUserLocation = YES;
+    if (self.staticHistory == NO)
+        mapView.showsUserLocation = YES;
     mapView.delegate = self;
 
     self.minimumAltitude = 0;
@@ -82,10 +84,13 @@
     [mapView addGestureRecognizer:lpgr];
 
     [self initWaypointInfo];
-    linesHistory = [NSMutableArray arrayWithCapacity:100];
-    viewLinesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (linesHistory == nil)
+        linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (viewLinesHistory == nil)
+        viewLinesHistory = [NSMutableArray arrayWithCapacity:100];
     historyCoordsIdx = 0;
-    [self showHistory];
+    if (self.staticHistory == NO)
+        [self showHistory];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -506,6 +511,9 @@
 
 - (void)showHistory
 {
+    if (self.staticHistory == YES)
+        return;
+
 #define ADDPATH(__coords__, __count__) { \
         MKPolyline *lh = [MKPolyline polylineWithCoordinates:__coords__ count:__count__]; \
         \
@@ -542,6 +550,9 @@
 
 - (void)addHistory:(GCCoordsHistorical *)ch
 {
+    if (self.staticHistory == YES)
+        return;
+
     if (ch.restart == NO && historyCoordsIdx < COORDHISTORYSIZE - 1) {
         historyCoords[historyCoordsIdx++] = ch.coord;
         [mapView removeOverlay:[linesHistory lastObject]];
@@ -556,6 +567,9 @@
 
 - (void)removeHistory
 {
+    if (self.staticHistory == YES)
+        return;
+
     NSLog(@"removing %ld history", (long)[linesHistory count]);
     [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
         [mapView removeOverlay:lh];
@@ -563,6 +577,71 @@
     [viewLinesHistory removeAllObjects];
     [linesHistory removeAllObjects];
     historyCoordsIdx = 0;
+}
+
+- (void)showTrack:(dbTrack *)track
+{
+    NSAssert(self.staticHistory == YES, @"Should only be called with static history");
+
+#define ADDPATH(__coords__, __count__) { \
+        MKPolyline *lh = [MKPolyline polylineWithCoordinates:__coords__ count:__count__]; \
+        \
+        MKPolylineRenderer *vlHistory = [[MKPolylineRenderer alloc] initWithPolyline:lh]; \
+        vlHistory.fillColor = configManager.mapTrackColour; \
+        vlHistory.strokeColor = configManager.mapTrackColour; \
+        vlHistory.lineWidth = 5; \
+        \
+        [viewLinesHistory addObject:vlHistory]; \
+        [linesHistory addObject:lh]; \
+        [mapView addOverlay:lh]; \
+    }
+
+    if (linesHistory == nil)
+        linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (viewLinesHistory == nil)
+        viewLinesHistory = [NSMutableArray arrayWithCapacity:100];
+
+    __block CLLocationDegrees left, right, top, bottom;
+    left = 180;
+    right = -180;
+    top = -180;
+    bottom = 180;
+
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track._id];
+
+    __block CLLocationCoordinate2D *coordinateArray = calloc([tes count], sizeof(CLLocationCoordinate2D));
+    __block NSInteger counter = 0;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
+        bottom = MIN(bottom, te.coords.latitude);
+        top = MAX(top, te.coords.latitude);
+        right = MAX(right, te.coords.longitude);
+        left = MIN(left, te.coords.longitude);;
+
+        if (te.restart == NO) {
+            coordinateArray[counter++] = te.coords;
+            return;
+        }
+
+        ADDPATH(coordinateArray, counter)
+        counter = 0;
+    }];
+    if (counter != 0)
+        ADDPATH(coordinateArray, counter)
+
+    free(coordinateArray);
+
+    trackBL = CLLocationCoordinate2DMake(bottom, left);
+    trackTR = CLLocationCoordinate2DMake(top, right);
+
+    [self performSelector:@selector(showTrack) withObject:nil afterDelay:1];
+}
+
+- (void)showTrack
+{
+    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+        [mapView addOverlay:lh];
+    }];
+    [self moveCameraTo:trackBL c2:trackTR];
 }
 
 - (CLLocationCoordinate2D)currentCenter

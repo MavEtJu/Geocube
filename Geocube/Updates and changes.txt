@@ -3,6 +3,7 @@ Interesting additions and changes to Geocube
 
 Version 1.2(x)
 
+- Proper map on the Keep Track section.
 - Being able to load/save filter collections.
 - Filter additions: enabled and archived.
 - Lists now can be sorted on "date/time added to the list".

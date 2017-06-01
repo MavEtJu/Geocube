@@ -19,8 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackTrack : GCViewController
+@interface MapTrackViewController : MapTemplateViewController
 
 - (void)showTrack:(dbTrack *)track;
+- (void)showTrack;
 
 @end

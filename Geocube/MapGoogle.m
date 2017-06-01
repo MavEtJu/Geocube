@@ -32,6 +32,8 @@
     NSMutableArray<GMSPolyline *> *linesHistory;
     GMSMutablePath *lastPathHistory;
 
+    CLLocationCoordinate2D trackBL, trackTR;
+
     dbWaypoint *wpSelected;
 }
 
@@ -64,7 +66,8 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:LM.coords zoom:15];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.mapType = kGMSTypeNormal;
-    mapView.myLocationEnabled = YES;
+    if (self.staticHistory == NO)
+        mapView.myLocationEnabled = YES;
     mapView.delegate = self;
 
     self.mapvc.view = mapView;
@@ -77,9 +80,12 @@
     wpSelected = nil;
     [self initWaypointInfo];
 
-    linesHistory = [NSMutableArray arrayWithCapacity:100];
-    lastPathHistory = [GMSMutablePath path];
-    [self showHistory];
+    if (linesHistory == nil)
+        linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (lastPathHistory == nil)
+        lastPathHistory = [GMSMutablePath path];
+    if (self.staticHistory == NO)
+        [self showHistory];
 }
 
 - (void)removeMap
@@ -91,7 +97,11 @@
 - (void)initCamera:(CLLocationCoordinate2D)coords
 {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:coords zoom:15];
+    if (self.staticHistory == NO)
     [mapView setCamera:camera];
+
+    if (self.staticHistory == YES)
+        [self moveCameraTo:trackBL c2:trackTR];
 }
 
 - (void)removeCamera
@@ -333,6 +343,9 @@
 
 - (void)showHistory
 {
+    if (self.staticHistory == YES)
+        return;
+
     [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
         if (mho.restart == NO) {
             [lastPathHistory addCoordinate:mho.coord];
@@ -359,6 +372,9 @@
 
 - (void)addHistory:(GCCoordsHistorical *)ch
 {
+    if (self.staticHistory == YES)
+        return;
+
     /*
      * If it is not a restart, then remove the last linesHistory, add a new entry to the path and add the path to the linesHistory.
      * If it is a restart, then just clear the path and add it to the linesHistory.
@@ -385,11 +401,77 @@
 
 - (void)removeHistory
 {
+    if (self.staticHistory == YES)
+        return;
+
     for (GMSPolyline *lh in linesHistory) {
         lh.map = nil;
     };
     [linesHistory removeAllObjects];
     [lastPathHistory removeAllCoordinates];
+}
+
+- (void)showTrack:(dbTrack *)track
+{
+    NSAssert(self.staticHistory, @"Shouldn't be called for staticHistory = NO");
+
+    if (linesHistory == nil)
+        linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (lastPathHistory == nil)
+        lastPathHistory = [GMSMutablePath path];
+
+    for (GMSPolyline *lh in linesHistory) {
+        lh.map = nil;
+    };
+    [linesHistory removeAllObjects];
+    [lastPathHistory removeAllCoordinates];
+
+#define ADDPATH(__path__, __line__) \
+    GMSPolyline *__line__ = [GMSPolyline polylineWithPath:__path__]; \
+        __line__.strokeWidth = 2.f; \
+        __line__.strokeColor = configManager.mapTrackColour; \
+        __line__.map = mapView;
+
+    __block CLLocationDegrees left, right, top, bottom;
+    left = 180;
+    right = -180;
+    top = -180;
+    bottom = 180;
+
+    [[dbTrackElement dbAllByTrack:track._id] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        bottom = MIN(bottom, te.coords.latitude);
+        top = MAX(top, te.coords.latitude);
+        right = MAX(right, te.coords.longitude);
+        left = MIN(left, te.coords.longitude);;
+
+        if (te.restart == NO) {
+            [lastPathHistory addCoordinate:te.coords];
+            return;
+        }
+
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+
+        [lastPathHistory removeAllCoordinates];
+    }];
+
+    if ([lastPathHistory count] != 0) {
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+    }
+
+    trackBL = CLLocationCoordinate2DMake(bottom, left);
+    trackTR = CLLocationCoordinate2DMake(top, right);
+    
+    [self performSelector:@selector(showTrack) withObject:nil afterDelay:1];
+}
+
+- (void)showTrack
+{
+    [linesHistory enumerateObjectsUsingBlock:^(GMSPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        line.map = mapView;
+    }];
+    [self moveCameraTo:trackBL c2:trackTR];
 }
 
 - (CLLocationCoordinate2D)currentCenter

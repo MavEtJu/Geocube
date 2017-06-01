@@ -27,6 +27,7 @@
 
 @property (nonatomic, retain) MapTemplateViewController *mapvc;
 @property (nonatomic) BOOL circlesShown;
+@property (nonatomic) BOOL staticHistory;
 
 - (void)mapViewWillAppear;
 - (void)mapViewWillDisappear;
@@ -75,6 +76,9 @@
 - (void)removeHistory;
 - (void)showHistory;
 - (void)addHistory:(GCCoordsHistorical *)ch;
+
+- (void)showTrack:(dbTrack *)track;
+- (void)showTrack;
 
 - (void)hideWaypointInfo;
 - (void)showWaypointInfo;

@@ -43,7 +43,7 @@ enum {
 
 - (instancetype)init
 {
-    self = [super init];
+    self = [super init:NO];
     self.followWhom = SHOW_SHOWBOTH;
 
     processing = [[RemoteAPIProcessingGroup alloc] init];

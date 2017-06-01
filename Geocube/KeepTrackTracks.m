@@ -106,13 +106,11 @@ enum {
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
-    NSString *newTitle = t.name;
 
-    KeepTrackTrack *newController = [[KeepTrackTrack alloc] init];
-    [newController showTrack:t];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = newTitle;
-    [self.navigationController pushViewController:newController animated:YES];
+    [_AppDelegate switchController:RC_KEEPTRACK];
+    [keepTrackTabController setSelectedIndex:VC_KEEPTRACK_MAP animated:YES];
+    [keepTrackMapViewController showTrack:t];
+    return;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

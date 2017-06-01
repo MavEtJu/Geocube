@@ -58,7 +58,15 @@
 
 - (instancetype)init
 {
+    NSAssert(FALSE, @"This should not be called");
+    return nil;
+}
+
+- (instancetype)init:(BOOL)staticHistory
+{
     self = [super init];
+
+    self.staticHistory = staticHistory;
 
     mapBrands = [MapTemplateViewController initMapBrands];
 
@@ -103,6 +111,7 @@
     [lmi addItem:MVCmenuRemoveHistory label:@"Remove History"];
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
+    self.map.staticHistory = self.staticHistory;
     [lmi disableItem:self.currentMapBrand.menuItem];
 
     // Various map view options
@@ -171,7 +180,8 @@
 
     needsRefresh = YES;
     isVisible = NO;
-    [waypointManager startDelegation:self];
+    if (self.staticHistory == NO)
+        [waypointManager startDelegation:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -209,9 +219,11 @@
     [super viewDidAppear:animated];
     [self.map mapViewDidAppear];
 
-    [LM startDelegation:self isNavigating:isNavigating];
-    if (meLocation.longitude == 0 && meLocation.latitude == 0)
-        [self updateLocationManagerLocation];
+    if (self.staticHistory == NO) {
+        [LM startDelegation:self isNavigating:isNavigating];
+        if (meLocation.longitude == 0 && meLocation.latitude == 0)
+            [self updateLocationManagerLocation];
+    }
 
     [self updateMapButtons];
 
@@ -247,7 +259,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
-    [LM stopDelegation:self];
+
+    if (self.staticHistory == NO)
+        [LM stopDelegation:self];
     [super viewWillDisappear:animated];
     [self.map mapViewWillDisappear];
     isVisible = NO;
@@ -416,6 +430,8 @@
 {
     if (useGPS == NO)
         return;
+    if (self.staticHistory == YES)
+        return;
 
     meLocation = [LM coords];
 
@@ -505,19 +521,22 @@
     if (whom == SHOW_FOLLOWME) {
         self.followWhom = whom;
         meLocation = [LM coords];
-        [self.map moveCameraTo:meLocation zoom:NO];
+        if (self.staticHistory == NO)
+            [self.map moveCameraTo:meLocation zoom:NO];
         [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
         meLocation = [LM coords];
-        [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
+        if (self.staticHistory == NO)
+            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
         meLocation = [LM coords];
-        [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+        if (self.staticHistory == NO)
+            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
     }
 }
@@ -600,6 +619,7 @@
     }];
     NSLog(@"Switching to %@", mapBrand.key);
     self.map = [[mapBrand.mapObject alloc] initMapObject:self];
+    self.map.staticHistory = self.staticHistory;
     [lmi disableItem:mapBrand.menuItem];
     self.currentMapBrand = mapBrand;
 

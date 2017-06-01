@@ -338,7 +338,6 @@
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
 		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */; };
-		E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
 		E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */; };
 		E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */; };
@@ -385,6 +384,7 @@
 		E891E7901DD06EED00EC9066 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E78F1DD06EED00EC9066 /* ImportGGCWJSON.m */; };
 		E891E7931DD1660500EC9066 /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
+		E89286601EDD4D2B008894E6 /* MapTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E892865F1EDD4D2B008894E6 /* MapTrackViewController.m */; };
 		E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801A1C643AD500282177 /* ProtocolTemplate.m */; };
 		E895801E1C65F01E00282177 /* QueriesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E895801D1C65F01E00282177 /* QueriesTemplateViewController.m */; };
 		E89580251C66E44900282177 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580241C66E44900282177 /* Reachability.m */; };
@@ -413,7 +413,6 @@
 		E8A4BEE91BD4B8BE00BCA5A5 /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE61BD4B8BE00BCA5A5 /* dbTrack.m */; };
 		E8A4BEEA1BD4B8BE00BCA5A5 /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */; };
 		E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */; };
-		E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */; };
 		E8A4BEF41BD4B91000BCA5A5 /* KeepTrackTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */; };
 		E8A7FA951B77763F003F4132 /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA941B77763F003F4132 /* BrowserAccountsViewController.m */; };
 		E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FA971B77F7F7003F4132 /* BrowserUserViewController.m */; };
@@ -1093,8 +1092,6 @@
 		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
 		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellFieldValue.h; sourceTree = "<group>"; };
 		E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellFieldValue.m; sourceTree = "<group>"; };
-		E8620E0D1C607C1100D8AE77 /* KeepTrackHeightScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackHeightScroller.h; sourceTree = "<group>"; };
-		E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackHeightScroller.m; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
 		E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsTableViewCell.h; sourceTree = "<group>"; };
@@ -1183,6 +1180,8 @@
 		E891E7911DD1660500EC9066 /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXGarmin.h; sourceTree = "<group>"; };
 		E891E7921DD1660500EC9066 /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXGarmin.m; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
+		E892865E1EDD4D2B008894E6 /* MapTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTrackViewController.h; sourceTree = "<group>"; };
+		E892865F1EDD4D2B008894E6 /* MapTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTrackViewController.m; sourceTree = "<group>"; };
 		E89580191C643AD500282177 /* ProtocolTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolTemplate.h; sourceTree = "<group>"; };
 		E895801A1C643AD500282177 /* ProtocolTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolTemplate.m; sourceTree = "<group>"; };
 		E895801C1C65F01E00282177 /* QueriesTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueriesTemplateViewController.h; sourceTree = "<group>"; };
@@ -1227,8 +1226,6 @@
 		E8A4BEE81BD4B8BE00BCA5A5 /* dbTrackElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbTrackElement.m; sourceTree = "<group>"; };
 		E8A4BEEC1BD4B91000BCA5A5 /* KeepTrackCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackCar.h; sourceTree = "<group>"; };
 		E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackCar.m; sourceTree = "<group>"; };
-		E8A4BEEE1BD4B91000BCA5A5 /* KeepTrackTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTrack.h; sourceTree = "<group>"; };
-		E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTrack.m; sourceTree = "<group>"; };
 		E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepTrackTracks.h; sourceTree = "<group>"; };
 		E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepTrackTracks.m; sourceTree = "<group>"; };
 		E8A7FA931B77763F003F4132 /* BrowserAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserAccountsViewController.h; sourceTree = "<group>"; };
@@ -1900,6 +1897,8 @@
 				E84725F11DFE6F6E00CFF99B /* MapOneWPViewController.m */,
 				E84725F31DFF3B0500CFF99B /* MapAllWPViewController.h */,
 				E84725F41DFF3B0500CFF99B /* MapAllWPViewController.m */,
+				E892865E1EDD4D2B008894E6 /* MapTrackViewController.h */,
+				E892865F1EDD4D2B008894E6 /* MapTrackViewController.m */,
 				E87821151EA5927300FC155A /* MapBrand.h */,
 				E87821161EA5927300FC155A /* MapBrand.m */,
 			);
@@ -2549,10 +2548,6 @@
 			children = (
 				E8A4BEEC1BD4B91000BCA5A5 /* KeepTrackCar.h */,
 				E8A4BEED1BD4B91000BCA5A5 /* KeepTrackCar.m */,
-				E8620E0D1C607C1100D8AE77 /* KeepTrackHeightScroller.h */,
-				E8620E0E1C607C1100D8AE77 /* KeepTrackHeightScroller.m */,
-				E8A4BEEE1BD4B91000BCA5A5 /* KeepTrackTrack.h */,
-				E8A4BEEF1BD4B91000BCA5A5 /* KeepTrackTrack.m */,
 				E8A4BEF01BD4B91000BCA5A5 /* KeepTrackTracks.h */,
 				E8A4BEF11BD4B91000BCA5A5 /* KeepTrackTracks.m */,
 				E89C39901E29B0B400BB60CA /* KeepTracksTrackTableViewCell.h */,
@@ -3774,6 +3769,7 @@
 				E85707941CA1EE0F00467CE0 /* ImportTemplate.m in Sources */,
 				E84D6FC31C52366D0000A6A0 /* ListIgnoredViewController.m in Sources */,
 				E8FD96BA1EC8679900AFA7FA /* NVHTarFile.m in Sources */,
+				E89286601EDD4D2B008894E6 /* MapTrackViewController.m in Sources */,
 				E87DF7811D7EDFE000F16B5A /* SVIndefiniteAnimatedView.m in Sources */,
 				E8F7FF2C1D75645800AC7EE6 /* MyClock.m in Sources */,
 				E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */,
@@ -3830,7 +3826,6 @@
 				E84D6FD31C5826810000A6A0 /* QueriesGroundspeakViewController.m in Sources */,
 				E8F570A31B3F7F6A003F020C /* ioapi.c in Sources */,
 				E82302481DCD525E0032C5C6 /* TFHppleElement.m in Sources */,
-				E8A4BEF31BD4B91000BCA5A5 /* KeepTrackTrack.m in Sources */,
 				E89D15721DE6AD9500ED14B3 /* GCLocationCoordinate2D.m in Sources */,
 				E84E23A01DBF03A00079496D /* GCString.m in Sources */,
 				E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */,
@@ -3890,7 +3885,6 @@
 				E83C205F1E2F321F006C523E /* GCTableViewHeaderFooterView.m in Sources */,
 				E8575FFB1B8466D900F34483 /* YIPopupTextView.m in Sources */,
 				E84D6FCF1C531CD30000A6A0 /* FilterFlagsTableViewCell.m in Sources */,
-				E8620E0F1C607C1100D8AE77 /* KeepTrackHeightScroller.m in Sources */,
 				E8C5BB741C719EB1006222D5 /* WaypointImagesViewController.m in Sources */,
 				E84D6FC91C5236930000A6A0 /* ListFoundViewController.m in Sources */,
 				E880379F1B9467E90053AD01 /* NoticesViewController.m in Sources */,

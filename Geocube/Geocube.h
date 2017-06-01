@@ -57,6 +57,10 @@ extern ConfigManager *configManager;
 extern MHTabBarController *browserTabController;
 extern BrowserBrowserViewController *browserViewController;
 
+// Keep Track Map
+extern MHTabBarController *keepTrackTabController;
+extern MapTrackViewController *keepTrackMapViewController;
+
 // Download and Import manager
 extern DownloadManager *downloadManager;
 extern ImportManager *importManager;

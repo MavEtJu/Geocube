@@ -242,8 +242,6 @@
 
 #import "KeepTracksTrackTableViewCell.h"
 #import "KeepTrackCar.h"
-#import "KeepTrackHeightScroller.h"
-#import "KeepTrackTrack.h"
 #import "KeepTrackTracks.h"
 
 #import "FilesTableViewCell.h"
@@ -274,6 +272,7 @@
 #import "MapBrand.h"
 #import "MapAllWPViewController.h"
 #import "MapOneWPViewController.h"
+#import "MapTrackViewController.h"
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"

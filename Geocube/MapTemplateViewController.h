@@ -72,12 +72,16 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 @property (nonatomic, retain) MapTemplate *map;
 @property (nonatomic) GCMapFollow followWhom; /* FOLLOW_ME | FOLLOW_TARGET | FOLLOW_BOTH */
 @property (nonatomic, retain) MapBrand *currentMapBrand;
+@property (nonatomic) BOOL staticHistory;
 
+- (instancetype)init:(BOOL)staticHistory;
 - (void)viewDidAppear:(BOOL)animated isNavigating:(BOOL)isNavigating;
 - (void)userInteractionStart;
 - (void)userInteractionFinished;
 - (void)refreshWaypointsData;
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords;
 + (NSDictionary *)initMapBrands;
+
+- (void)menuChangeMapbrand:(MapBrand *)mapBrand;
 
 @end

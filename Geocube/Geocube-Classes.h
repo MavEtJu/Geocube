@@ -113,8 +113,6 @@
 @class InfoItem;
 @class InfoViewer;
 @class KeepTrackCar;
-@class KeepTrackHeightScroller;
-@class KeepTrackTrack;
 @class KeepTrackTracks;
 @class KeepTracksTrackTableViewCell;
 @class KeyboardCoordinateView;
@@ -138,6 +136,7 @@
 @class MapOneWPViewController;
 @class MapTemplate;
 @class MapTemplateViewController;
+@class MapTrackViewController;
 @class MapWaypointInfoView;
 @class MyClock;
 @class MyTools;

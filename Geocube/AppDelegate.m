@@ -163,6 +163,12 @@
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
 
+                vc = [[MapTrackViewController alloc] init];
+                vc.title = @"Map";
+                nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.navigationBarHidden = YES;
+                [controllers addObject:nav];
+
                 TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;
 
@@ -445,6 +451,11 @@
     browserTabController = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];
     UINavigationController *nvc = [browserTabController.viewControllers objectAtIndex:VC_BROWSER_BROWSER];
     browserViewController = [nvc.viewControllers objectAtIndex:0];
+
+    // Keep Track Map
+    keepTrackTabController = [_AppDelegate.tabBars objectAtIndex:RC_KEEPTRACK];
+    nvc = [keepTrackTabController.viewControllers objectAtIndex:VC_KEEPTRACK_MAP];
+    keepTrackMapViewController = [nvc.viewControllers objectAtIndex:0];
 
     // Download View Controller and Manager
     downloadManager = [[DownloadManager alloc] init];
