@@ -161,6 +161,9 @@ enum {
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
 
+    applicationFrame.size.width--;
+    applicationFrame.size.height--;
+
     // Nothing to zoom in if the picture is small enough already.
     if (image.size.width < applicationFrame.size.width &&
         image.size.height < applicationFrame.size.height) {
