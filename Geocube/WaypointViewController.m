@@ -295,15 +295,42 @@ enum {
                         tc = currentTheme.labelTextColorDisabled;
                     break;
 
+#define IMAGE(__idx__) \
+    if ([logs count] > __idx__) { \
+        dbLog *log = [logs objectAtIndex:__idx__]; \
+        cell.image ## __idx__.image = [imageLibrary get:log.logstring.icon]; \
+    }
                 case WAYPOINT_DATA_FIELDNOTES: {
-                    cell.textLabel.text = @"Field Notes";
+                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_LOGS forIndexPath:indexPath];
+                    cell.logs.text = @"Fields Notes";
+                    cell.userInteractionEnabled = YES;
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+                    cell.image0.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image1.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image2.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image3.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image4.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image5.image = [imageLibrary get:ImageLog_Empty];
+
                     NSInteger c = [waypoint hasFieldNotes];
                     if (c == 0) {
-                        tc = currentTheme.labelTextColorDisabled;
+                        cell.logs.textColor = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
-                    } else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)c];
-                    break;
+
+                    } else {
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:waypoint._id];
+                        IMAGE(0);
+                        IMAGE(1);
+                        IMAGE(2);
+                        IMAGE(3);
+                        IMAGE(4);
+                        IMAGE(5);
+
+                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", cell.logs.text, (long)c];
+                    }
+
+                    return cell;
                 }
 
                 case WAYPOINT_DATA_LOGS: {
