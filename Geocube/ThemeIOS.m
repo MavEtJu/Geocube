@@ -39,6 +39,8 @@
     self.labelTextColorDisabled = [UIColor lightGrayColor];
     self.labelBackgroundColor = clearColor;
 
+    self.labelHighlightBackgroundColor = [UIColor yellowColor];
+
     self.backgroundColor = bgColor;
     self.textColor = fgColor;
 

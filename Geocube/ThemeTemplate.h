@@ -24,6 +24,7 @@
 @property (nonatomic, retain) UIColor *backgroundColor;
 @property (nonatomic, retain) UIColor *textColor;
 
+@property (nonatomic, retain) UIColor *labelHighlightBackgroundColor;
 @property (nonatomic, retain) UIColor *labelBackgroundColor;
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) UIColor *labelTextColorDisabled;

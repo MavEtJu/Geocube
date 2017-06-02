@@ -49,7 +49,7 @@
 {
     UIColor *bgColor = [UIColor clearColor];
     if (waypoint.flag_highlight == YES)
-        bgColor = [UIColor yellowColor];
+        bgColor = currentTheme.labelHighlightBackgroundColor;
 
     self.labelName.text = waypoint.wpt_urlname;
     self.labelName.backgroundColor = bgColor;

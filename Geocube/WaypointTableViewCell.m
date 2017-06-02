@@ -79,7 +79,7 @@
         self.labelWhoWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
 
     if (wp.flag_highlight == YES)
-        self.labelDescription.backgroundColor = [UIColor yellowColor];
+        self.labelDescription.backgroundColor = currentTheme.labelHighlightBackgroundColor;
     else
         self.labelDescription.backgroundColor = [UIColor clearColor];
 
