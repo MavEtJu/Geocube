@@ -14,6 +14,7 @@ Version 1.2(16)
 
   Fixes:
   - The Waypoint header now works in the Night Theme.
+  - A waypoint marked as highlighted is now shown properly in the Night Theme.
   - Fix problem with swipe-left on waypoint images.
   - Close button area is now bigger than before.
   - Add iPad support in the app, not yet in the workflow.
