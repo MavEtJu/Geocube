@@ -30,6 +30,21 @@
 
 @implementation WaypointHeaderHeaderView
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelName changeTheme];
+    [self.labelWhoWhen changeTheme];
+    [self.labelCode changeTheme];
+    [self.labelLastImport changeTheme];
+}
+
 - (void)setWaypoint:(dbWaypoint *)waypoint
 {
     UIColor *bgColor = [UIColor clearColor];
