@@ -462,6 +462,7 @@
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
 		E8C8C8C41EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C31EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib */; };
 		E8C8C8C61EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C51EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib */; };
+		E8C8C8C81EE27C9100E2438D /* WaypointTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1322,6 +1323,7 @@
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8C31EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "KeepTracksTrackTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8C51EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PersonalNoteTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -2423,6 +2425,7 @@
 				E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */,
 				E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */,
 				E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */,
+				E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */,
 			);
 			name = "Base TableViewCells";
 			sourceTree = "<group>";
@@ -3583,6 +3586,7 @@
 				E82E67791DA0D1E600CFBDED /* menu icon - find me@2x.png in Resources */,
 				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
+				E8C8C8C81EE27C9100E2438D /* WaypointTableViewCell~ipad.xib in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
 				E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */,
