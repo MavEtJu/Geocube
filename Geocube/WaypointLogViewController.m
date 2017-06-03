@@ -63,9 +63,11 @@ enum {
     SECTION_SUBMIT_MAX,
 };
 
-#define THISCELL_ALL @"CacheLogViewControllerCellAll"
-#define THISCELL_PHOTO @"CacheLogViewControllerCellPhoto"
-#define THISCELL_SUBTITLE @"CacheLogViewControllerCellSubtitle"
+#define THISCELL_ALL @"CacheLogViewControllerCell_"
+#define THISCELL_PHOTO @"CacheLogViewControllerCell_Photo"
+#define THISCELL_SUBTITLE @"CacheLogViewControllerCell_Subtitle"
+#define THISCELL_SWITCH @"CacheLogViewControllerCell_Switch"
+#define THISCELL_KEYVALUE @"CacheLogViewControllerCell_KeyValue"
 
 - (instancetype)init:(dbWaypoint *)_waypoint
 {
@@ -95,8 +97,10 @@ enum {
     date = [dateFormatter stringFromDate:d];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
-    [self.tableView registerClass:[GCTableViewCellKeyValue class] forCellReuseIdentifier:THISCELL_ALL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_ALL];
     [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellRightImage" bundle:nil] forCellReuseIdentifier:THISCELL_PHOTO];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellSwitch" bundle:nil] forCellReuseIdentifier:THISCELL_SWITCH];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellKeyValue" bundle:nil] forCellReuseIdentifier:THISCELL_KEYVALUE];
     self.hasCloseButton = YES;
     lmi = nil;
 
@@ -142,35 +146,44 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellKeyValue *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
     cell.accessoryType = UITableViewCellStyleDefault;
     cell.accessoryView = nil;
     cell.userInteractionEnabled = YES;
-    cell.keyLabel.text = @"";
-    cell.valueLabel.text = @"";
 
     switch (indexPath.section) {
         case SECTION_LOGDETAILS: {
             switch (indexPath.row) {
-                case SECTION_LOGDETAILS_TYPE:
-                    cell.keyLabel.text = @"Type";
-                    cell.valueLabel.text = logstring.text;
+                case SECTION_LOGDETAILS_TYPE: {
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    c.keyLabel.text = @"Type";
+                    c.valueLabel.text = logstring.text;
+                    cell = c;
                     break;
-                case SECTION_LOGDETAILS_DATE:
-                    cell.keyLabel.text = @"Date";
-                    cell.valueLabel.text = date;
+                }
+
+                case SECTION_LOGDETAILS_DATE: {
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    c.keyLabel.text = @"Date";
+                    c.valueLabel.text = date;
+                    cell = c;
                     break;
-                case SECTION_LOGDETAILS_COMMENT:
-                    cell.keyLabel.text = @"Comment";
-                    cell.valueLabel.text = note;
+                }
+
+                case SECTION_LOGDETAILS_COMMENT: {
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    c.keyLabel.text = @"Comment";
+                    c.valueLabel.text = note;
+                    cell = c;
                     break;
+                }
             }
             break;
         }
+
         case SECTION_EXTRADETAILS: {
             switch (indexPath.row) {
                 case SECTION_EXTRADETAILS_PHOTO: {
-                    cell = nil;
                     GCTableViewCellRightImage *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_PHOTO];
                     c.textLabel.text = @"Photo";
                     if (image != nil)
@@ -181,36 +194,42 @@ enum {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     }
-                    // Only place to return because the return format has changed.
-                    return c;
-                }
-                case SECTION_EXTRADETAILS_FAVOURITE: {
-                    cell.keyLabel.text = @"Favourite Point";
-                    GCSwitch *fpSwitch = [[GCSwitch alloc] initWithFrame:CGRectZero];
-                    fpSwitch.on = fp;
-                    cell.accessoryView = fpSwitch;
-                    if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
-                        cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = currentTheme.labelTextColorDisabled;
-                    } else {
-                        [fpSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
-                    }
+                    cell = c;
                     break;
                 }
+
+                case SECTION_EXTRADETAILS_FAVOURITE: {
+                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
+                    c.textLabel.text = @"Favourite Point";
+                    c.optionSwitch.on = fp;
+                    if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
+                        c.userInteractionEnabled = NO;
+                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                    } else {
+                        [c.optionSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                    }
+                    cell = c;
+                    break;
+                }
+
                 case SECTION_EXTRADETAILS_RATING: {
-                    cell.keyLabel.text = @"Rating";
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    c.keyLabel.text = @"Rating";
                     if ([waypoint.account.remoteAPI commentSupportsRating] == NO) {
-                        cell.userInteractionEnabled = NO;
-                        cell.keyLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.userInteractionEnabled = NO;
+                        c.keyLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.valueLabel.text = @"";
                     } else {
                         NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
                         if (ratingSelected != 0)
-                            cell.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
+                            c.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
                         else
-                            cell.valueLabel.text = @"No rating selected";
+                            c.valueLabel.text = @"No rating selected";
                     }
+                    cell = c;
                     break;
                 }
+
                 case SECTION_EXTRADETAILS_TRACKABLE:
                     cell = nil;
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
@@ -251,37 +270,39 @@ enum {
                             [s appendString:@" none"];
                         c.detailTextLabel.text = s;
                     }
-                    // Only place to return because the return format has changed.
-                    return c;
+                    cell = c;
+                    break;
             }
             break;
         }
+
         case SECTION_SUBMIT: {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_UPLOAD: {
-                    cell.keyLabel.text = @"Upload";
-                    GCSwitch *uploadSwitch = [[GCSwitch alloc] initWithFrame:CGRectZero];
+                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
+                    c.textLabel.text = @"Upload";
                     if (waypoint.account.canDoRemoteStuff == YES) {
-                        uploadSwitch.on = upload;
-                        [uploadSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
-                        cell.userInteractionEnabled = YES;
+                        c.optionSwitch.on = upload;
+                        [c.optionSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
+                        c.userInteractionEnabled = YES;
                     } else {
-                        uploadSwitch.on = NO;
-                        cell.userInteractionEnabled = NO;
+                        c.optionSwitch.on = NO;
+                        c.userInteractionEnabled = NO;
                     }
-                    cell.accessoryView = uploadSwitch;
+
+                    cell = c;
                     break;
                 }
+
                 case SECTION_SUBMIT_SUBMIT:
                     if (waypoint.account.canDoRemoteStuff == YES && upload == YES) {
-                        cell.keyLabel.text = @"Submit";
+                        cell.textLabel.text = @"Submit";
                         cell.userInteractionEnabled = (note == nil || [note isEqualToString:@""] == YES) ? NO : YES;
-                        cell.keyLabel.textColor = cell.userInteractionEnabled == YES ? [UIColor blackColor] : [UIColor lightGrayColor];
-                        cell.keyLabel.textColor = cell.userInteractionEnabled == YES ? [currentTheme labelTextColor] : [currentTheme labelTextColorDisabled];
+                        cell.textLabel.textColor = cell.userInteractionEnabled == YES ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled;
                     } else {
-                        cell.keyLabel.text = @"Save";
+                        cell.textLabel.text = @"Save";
                         cell.userInteractionEnabled = YES;
-                        cell.keyLabel.textColor = [currentTheme labelTextColor];
+                        cell.textLabel.textColor = [currentTheme labelTextColor];
                     }
                     break;
             }

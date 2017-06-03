@@ -19,9 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCellKeyValue : GCTableViewCell
+@interface GCTableViewCellSwitch : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *keyLabel;
-@property (weak, nonatomic) IBOutlet GCLabel *valueLabel;
+@property (nonatomic, weak) IBOutlet GCSwitch *optionSwitch;
 
 @end

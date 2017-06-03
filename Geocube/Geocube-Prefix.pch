@@ -131,6 +131,7 @@
 #import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellSubtitleRightImage.h"
+#import "GCTableViewCellSwitch.h"
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellFieldValue.h"
 #import "GCTableViewCellKeyValue.h"

@@ -84,6 +84,7 @@
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
 @class GCTableViewCellSubtitleRightImage;
+@class GCTableViewCellSwitch;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
 @class GCTableViewHeaderFooterView;

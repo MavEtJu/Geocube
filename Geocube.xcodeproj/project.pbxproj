@@ -454,6 +454,11 @@
 		E8C8C8AF1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8AE1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib */; };
 		E8C8C8B31EE23A1A00E2438D /* GCTableViewCellRightImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */; };
 		E8C8C8B51EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8B41EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib */; };
+		E8C8C8B91EE2528D00E2438D /* GCTableViewCellSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C8C8B71EE2528D00E2438D /* GCTableViewCellSwitch.m */; };
+		E8C8C8BA1EE2528D00E2438D /* GCTableViewCellSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8B81EE2528D00E2438D /* GCTableViewCellSwitch.xib */; };
+		E8C8C8BC1EE253D700E2438D /* GCTableViewCellSwitch~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8BB1EE253D700E2438D /* GCTableViewCellSwitch~ipad.xib */; };
+		E8C8C8BE1EE2582B00E2438D /* GCTableViewCellKeyValue.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8BD1EE2582B00E2438D /* GCTableViewCellKeyValue.xib */; };
+		E8C8C8C01EE2583500E2438D /* GCTableViewCellKeyValue~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8BF1EE2583500E2438D /* GCTableViewCellKeyValue~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1305,6 +1310,12 @@
 		E8C8C8AE1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointLogsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellRightImage.xib; sourceTree = "<group>"; };
 		E8C8C8B41EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellRightImage~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8B61EE2528D00E2438D /* GCTableViewCellSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellSwitch.h; sourceTree = "<group>"; };
+		E8C8C8B71EE2528D00E2438D /* GCTableViewCellSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSwitch.m; sourceTree = "<group>"; };
+		E8C8C8B81EE2528D00E2438D /* GCTableViewCellSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellSwitch.xib; sourceTree = "<group>"; };
+		E8C8C8BB1EE253D700E2438D /* GCTableViewCellSwitch~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellSwitch~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8BD1EE2582B00E2438D /* GCTableViewCellKeyValue.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellKeyValue.xib; sourceTree = "<group>"; };
+		E8C8C8BF1EE2583500E2438D /* GCTableViewCellKeyValue~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellKeyValue~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -2066,6 +2077,8 @@
 				E85760071B85DB5500F34483 /* GCTableViewCell.m */,
 				E88037AC1B96D05A0053AD01 /* GCTableViewCellKeyValue.h */,
 				E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */,
+				E8C8C8BD1EE2582B00E2438D /* GCTableViewCellKeyValue.xib */,
+				E8C8C8BF1EE2583500E2438D /* GCTableViewCellKeyValue~ipad.xib */,
 				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
 				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
 				E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */,
@@ -2074,6 +2087,10 @@
 				E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */,
 				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */,
 				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */,
+				E8C8C8B61EE2528D00E2438D /* GCTableViewCellSwitch.h */,
+				E8C8C8B71EE2528D00E2438D /* GCTableViewCellSwitch.m */,
+				E8C8C8B81EE2528D00E2438D /* GCTableViewCellSwitch.xib */,
+				E8C8C8BB1EE253D700E2438D /* GCTableViewCellSwitch~ipad.xib */,
 				E85760091B85DC7B00F34483 /* GCTableViewCellWithSubtitle.h */,
 				E857600A1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m */,
 				E83C205D1E2F321F006C523E /* GCTableViewHeaderFooterView.h */,
@@ -3462,6 +3479,7 @@
 				E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
+				E8C8C8BE1EE2582B00E2438D /* GCTableViewCellKeyValue.xib in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
@@ -3472,6 +3490,7 @@
 				E8FEDED81DA8EEE9007C756B /* cache - cito - 30x30@2x.png in Resources */,
 				E82E675D1DA07D0200CFBDED /* attributes - 51.png in Resources */,
 				E82E663C1DA07A8700CFBDED /* icons - smiley - 30x30@2x.png in Resources */,
+				E8C8C8BC1EE253D700E2438D /* GCTableViewCellSwitch~ipad.xib in Resources */,
 				E82E666A1DA07C4900CFBDED /* container flag - owner - 24x24@3x.png in Resources */,
 				E8FEDE881DA7AD67007C756B /* map - found stick - 35x42@2x.png in Resources */,
 				E8FEDE7F1DA7AD67007C756B /* map - archived - 15x15@3x.png in Resources */,
@@ -3482,6 +3501,7 @@
 				E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */,
 				E82E65C81DA0797E00CFBDED /* ratings - star off 18x18.png in Resources */,
 				E83C205A1E2E266C006C523E /* WaypointHeaderHeaderView.xib in Resources */,
+				E8C8C8BA1EE2528D00E2438D /* GCTableViewCellSwitch.xib in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
 				E8A3867B1BBBFE5A0003DE49 /* nko_colormap.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
@@ -3517,6 +3537,7 @@
 				E8FEDE911DA7AD67007C756B /* map - own overlay - 18x18@3x.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E82E66691DA07C4900CFBDED /* container flag - owner - 24x24@2x.png in Resources */,
+				E8C8C8C01EE2583500E2438D /* GCTableViewCellKeyValue~ipad.xib in Resources */,
 				E84725D91DF770DA00CFF99B /* menu icon - local - default.png in Resources */,
 				E8FEDE901DA7AD67007C756B /* map - own overlay - 18x18@2x.png in Resources */,
 				E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */,
@@ -3774,6 +3795,7 @@
 				E8B771D51DD9DA4E008B2F9E /* RemoteAPIGGCW.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
 				E8C5BB791C719EB1006222D5 /* WaypointRawViewController.m in Sources */,
+				E8C8C8B91EE2528D00E2438D /* GCTableViewCellSwitch.m in Sources */,
 				E89C398A1E289A5900BB60CA /* ActionSheetMultipleStringPicker.m in Sources */,
 				E89051731C8ACEFA00220986 /* WaypointLogImagesViewController.m in Sources */,
 				E8F7FF151D6518FF00AC7EE6 /* dbLocale.m in Sources */,
