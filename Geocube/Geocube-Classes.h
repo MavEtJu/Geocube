@@ -80,7 +80,6 @@
 @class GCStringGPXGarmin;
 @class GCSwitch;
 @class GCTableViewCell;
-@class GCTableViewCellFieldValue;
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
 @class GCTableViewCellSubtitleRightImage;

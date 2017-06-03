@@ -337,7 +337,6 @@
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
-		E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
 		E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */; };
 		E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */; };
@@ -1107,8 +1106,6 @@
 		E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWaypointAnnotation.m; sourceTree = "<group>"; };
 		E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDatabaseViewController.h; sourceTree = "<group>"; };
 		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
-		E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellFieldValue.h; sourceTree = "<group>"; };
-		E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellFieldValue.m; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
 		E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsTableViewCell.h; sourceTree = "<group>"; };
@@ -2107,8 +2104,6 @@
 				E89051761C8C281B00220986 /* GCTableViewCellSubtitleRightImage.h */,
 				E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */,
 				E8C8C8CF1EE2D18100E2438D /* GCTableViewCellSubtitleRightImage~ipad.xib */,
-				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */,
-				E8611A961B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m */,
 				E8C8C8B61EE2528D00E2438D /* GCTableViewCellSwitch.h */,
 				E8C8C8B71EE2528D00E2438D /* GCTableViewCellSwitch.m */,
 				E8C8C8B81EE2528D00E2438D /* GCTableViewCellSwitch.xib */,
@@ -4043,7 +4038,6 @@
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
-				E8611A971B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.m in Sources */,
 				E807A85E1BBBBB1500AE3C1B /* SettingsColourViewController.m in Sources */,
 				E80732C01B5FB4DF007FDC29 /* dbCountry.m in Sources */,
 				E8A9934E1BB6A78C00714B90 /* GCCloseButton.m in Sources */,

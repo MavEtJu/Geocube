@@ -52,7 +52,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDumpDatabase label:@"Dump database"];
 
-    [self.tableView registerClass:[GCTableViewCellFieldValue class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:THISCELL];
 
     return self;
 }
@@ -215,24 +215,24 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellFieldValue *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellKeyValue *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     switch (indexPath.section) {
         case SECTION_SIZES: {
-            cell.fieldLabel.text = [fieldsSizes objectAtIndex:indexPath.row];
+            cell.keyLabel.text = [fieldsSizes objectAtIndex:indexPath.row];
             cell.valueLabel.text = [[valuesSizes objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }
         case SECTION_DBCOUNT: {
-            cell.fieldLabel.text = [fieldsDBCount objectAtIndex:indexPath.row];
+            cell.keyLabel.text = [fieldsDBCount objectAtIndex:indexPath.row];
             cell.valueLabel.text = [[valuesDBCount objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }
         case SECTION_CONFIGURATION: {
             dbConfig *c = [config objectAtIndex:indexPath.row];
-            cell.fieldLabel.text = c.key;
+            cell.keyLabel.text = c.key;
             cell.valueLabel.text = c.value;
             cell.userInteractionEnabled = NO;
             break;
