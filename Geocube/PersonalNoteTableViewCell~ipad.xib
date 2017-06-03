@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,29 +19,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqH-N4-Lqw" customClass="GCLabel">
-                        <rect key="frame" x="8" y="0.0" width="302" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16" id="HVs-EI-baR"/>
-                        </constraints>
+                        <rect key="frame" x="48" y="0.0" width="224" height="14.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55w-VE-dAL" customClass="GCLabel">
-                        <rect key="frame" x="8" y="16" width="302" height="13"/>
+                        <rect key="frame" x="48" y="15" width="224" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="55w-VE-dAL" firstAttribute="top" secondItem="aqH-N4-Lqw" secondAttribute="bottom" id="EEr-xc-fa8"/>
-                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Nhs-r2-9J1"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="55w-VE-dAL" secondAttribute="bottom" id="cDG-Zx-RmA"/>
-                    <constraint firstAttribute="trailing" secondItem="aqH-N4-Lqw" secondAttribute="trailing" constant="10" id="oug-Hl-8s0"/>
-                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="usP-QY-0oE"/>
-                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="leading" secondItem="55w-VE-dAL" secondAttribute="leading" id="yH6-9j-JaF"/>
-                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="trailing" secondItem="55w-VE-dAL" secondAttribute="trailing" id="zrf-uE-jfu"/>
+                    <constraint firstAttribute="trailing" secondItem="55w-VE-dAL" secondAttribute="trailing" constant="48" id="0C6-8G-R53"/>
+                    <constraint firstAttribute="bottom" secondItem="55w-VE-dAL" secondAttribute="bottom" id="72j-MK-YdG"/>
+                    <constraint firstAttribute="trailing" secondItem="aqH-N4-Lqw" secondAttribute="trailing" constant="48" id="8HT-Y9-NzS"/>
+                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PQk-Aa-h3f"/>
+                    <constraint firstItem="aqH-N4-Lqw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="T5u-IU-bdC"/>
+                    <constraint firstItem="55w-VE-dAL" firstAttribute="top" secondItem="aqH-N4-Lqw" secondAttribute="bottom" id="Yzl-Nk-WN1"/>
+                    <constraint firstItem="55w-VE-dAL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="pLH-0z-p0i"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
