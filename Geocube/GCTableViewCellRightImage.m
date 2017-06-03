@@ -21,50 +21,34 @@
 
 @interface GCTableViewCellRightImage ()
 
+@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
+
 @end
 
 @implementation GCTableViewCellRightImage
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)ri
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ri];
-    return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-
-    CGRect oldImageView = self.imageView.frame;
-    CGRect oldTextLabel = self.textLabel.frame;
-
-    /*
-     * Swap from
-     * +---+---------------+---+
-     * | I | Label         | A |
-     * +---+---------------+---+
-     * to
-     * +---------------+---+---+
-     * | Label         | I | A |
-     * +---------------+---+---+
-     */
-
-    CGRect newImageView = CGRectMake(oldTextLabel.origin.x + oldTextLabel.size.width - oldImageView.size.width, oldImageView.origin.y, oldImageView.size.width, oldImageView.size.height);
-    CGRect newTextLabel = CGRectMake(oldImageView.origin.x, oldTextLabel.origin.y, oldTextLabel.size.width, oldTextLabel.size.height);
-
-    self.imageView.frame = newImageView;
-    self.textLabel.frame = newTextLabel;
-
+    [super awakeFromNib];
     [self changeTheme];
 }
 
 - (void)changeTheme
 {
-    /*
-    self.textLabel.textColor = currentTheme.labelTextColor;
-    self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
-     */
     [super changeTheme];
+    [self.myTextLabel changeTheme];
+    [self.myImageView changeTheme];
+}
+
+- (UILabel *)textLabel
+{
+    return self.myTextLabel;
+}
+
+- (UIImageView *)imageView
+{
+    return self.myImageView;
 }
 
 @end

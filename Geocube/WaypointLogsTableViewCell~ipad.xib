@@ -25,29 +25,29 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
-                        <rect key="frame" x="215" y="7" width="30" height="30"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-15-W89" customClass="GCImageView">
-                        <rect key="frame" x="245" y="7" width="30" height="30"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="HSs-2q-kfm" customClass="GCImageView">
-                        <rect key="frame" x="275" y="7" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="hix-8X-mpu" customClass="GCImageView">
+                        <rect key="frame" x="345" y="7" width="30" height="30"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="JFu-H1-fbu" customClass="GCImageView">
-                        <rect key="frame" x="305" y="7" width="30" height="30"/>
+                        <rect key="frame" x="315" y="7" width="30" height="30"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="HSs-2q-kfm" customClass="GCImageView">
+                        <rect key="frame" x="285" y="7" width="30" height="30"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-15-W89" customClass="GCImageView">
+                        <rect key="frame" x="255" y="7" width="30" height="30"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
+                        <rect key="frame" x="225" y="7" width="30" height="30"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="umU-H1-2zX" customClass="GCImageView">
-                        <rect key="frame" x="185" y="7" width="30" height="30"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="hix-8X-mpu" customClass="GCImageView">
-                        <rect key="frame" x="335" y="7" width="30" height="30"/>
+                        <rect key="frame" x="195" y="7" width="30" height="30"/>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XTl-VS-Dbh" firstAttribute="centerY" secondItem="CaD-ER-6kV" secondAttribute="centerY" id="6V8-gw-ijW"/>
                     <constraint firstItem="XTl-VS-Dbh" firstAttribute="leading" secondItem="CaD-ER-6kV" secondAttribute="leadingMargin" constant="40" id="QgS-UU-IG3"/>
-                    <constraint firstAttribute="trailing" secondItem="hix-8X-mpu" secondAttribute="trailing" constant="10" id="TbJ-LV-dfp"/>
+                    <constraint firstAttribute="trailing" secondItem="hix-8X-mpu" secondAttribute="trailing" id="TbJ-LV-dfp"/>
                     <constraint firstItem="HSs-2q-kfm" firstAttribute="centerY" secondItem="CaD-ER-6kV" secondAttribute="centerY" id="XRB-z7-olu"/>
                     <constraint firstItem="JFu-H1-fbu" firstAttribute="leading" secondItem="HSs-2q-kfm" secondAttribute="trailing" id="b2l-tR-1Ig"/>
                     <constraint firstItem="Ue7-15-W89" firstAttribute="leading" secondItem="Lja-xK-CZ8" secondAttribute="trailing" id="bDX-kd-YUY"/>

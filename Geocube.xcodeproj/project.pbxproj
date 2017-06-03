@@ -452,6 +452,8 @@
 		E8C5BB7C1C719EB1006222D5 /* WaypointTrackablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6B1C719EB1006222D5 /* WaypointTrackablesViewController.m */; };
 		E8C5BB7D1C719EB1006222D5 /* WaypointWaypointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */; };
 		E8C8C8AF1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8AE1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib */; };
+		E8C8C8B31EE23A1A00E2438D /* GCTableViewCellRightImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */; };
+		E8C8C8B51EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8B41EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1301,6 +1303,8 @@
 		E8C5BB6C1C719EB1006222D5 /* WaypointWaypointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsViewController.h; sourceTree = "<group>"; };
 		E8C5BB6D1C719EB1006222D5 /* WaypointWaypointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointWaypointsViewController.m; sourceTree = "<group>"; };
 		E8C8C8AE1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointLogsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellRightImage.xib; sourceTree = "<group>"; };
+		E8C8C8B41EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellRightImage~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -2064,6 +2068,8 @@
 				E88037AD1B96D05A0053AD01 /* GCTableViewCellKeyValue.m */,
 				E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */,
 				E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */,
+				E8C8C8B21EE23A1A00E2438D /* GCTableViewCellRightImage.xib */,
+				E8C8C8B41EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib */,
 				E89051761C8C281B00220986 /* GCTableViewCellSubtitleRightImage.h */,
 				E89051771C8C281B00220986 /* GCTableViewCellSubtitleRightImage.m */,
 				E8611A951B89DFFE00B9D7C3 /* GCTableViewCellFieldValue.h */,
@@ -3346,6 +3352,7 @@
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E86C4AB01E321822004526E2 /* CompassView.xib in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
+				E8C8C8B51EE243D100E2438D /* GCTableViewCellRightImage~ipad.xib in Resources */,
 				E82E66C21DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png in Resources */,
 				E8FEDED31DA8EEE9007C756B /* cache - beacon - 30x30@3x.png in Resources */,
 				E84725DA1DF770DA00CFF99B /* menu icon - local@2x - default.png in Resources */,
@@ -3439,6 +3446,7 @@
 				E82E66C51DA07CBE00CFBDED /* cache - mega - 30x30.png in Resources */,
 				E82E67581DA07D0200CFBDED /* attributes - 46.png in Resources */,
 				E8FEDE521DA77F9D007C756B /* container size - micro - 35x11@3x.png in Resources */,
+				E8C8C8B31EE23A1A00E2438D /* GCTableViewCellRightImage.xib in Resources */,
 				E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
 				E8FEDEA61DA7C08A007C756B /* waypoint - question - 30x30@2x.png in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,

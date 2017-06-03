@@ -61,7 +61,7 @@ enum {
 #define THISHEADER_HEADER @"Waypointheader_header"
 #define THISCELL_HEADER @"Waypointtablecell_header"
 #define THISCELL_DATA @"Waypointtablecell_data"
-#define THISCELL_ACTIONS @"Waypointtablecell_actions"
+#define THISCELL_RIGHTIMAGE @"Waypointtablecell_rightimage"
 #define THISCELL_LOGS @"Waypointtablecell_logs"
 
 @implementation WaypointViewController
@@ -122,6 +122,7 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:@"WaypointHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerNib:[UINib nibWithNibName:@"WaypointLogsTableViewCell" bundle:nil] forCellReuseIdentifier:THISCELL_LOGS];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellRightImage" bundle:nil] forCellReuseIdentifier:THISCELL_RIGHTIMAGE];
 
     UINib *sectionHeaderNib = [UINib nibWithNibName:@"WaypointHeaderHeaderView" bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];
@@ -130,7 +131,6 @@ enum {
     self.tableView.estimatedRowHeight = 20;
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
-    [self.tableView registerClass:[GCTableViewCellRightImage class] forCellReuseIdentifier:THISCELL_ACTIONS];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -427,7 +427,7 @@ enum {
         case WAYPOINT_ACTIONS:
             switch (indexPath.row) {
                 case WAYPOINT_ACTIONS_SETASTARGET: {
-                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_RIGHTIMAGE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
                     if (waypoint == waypointManager.currentWaypoint) {
@@ -439,7 +439,7 @@ enum {
                 }
 
                 case WAYPOINT_ACTIONS_LOGTHISWAYPOINT: {
-                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_ACTIONS forIndexPath:indexPath];
+                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_RIGHTIMAGE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
                     cell.textLabel.text = @"Log this waypoint";
