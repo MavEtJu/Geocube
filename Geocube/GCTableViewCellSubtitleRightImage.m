@@ -21,57 +21,41 @@
 
 @interface GCTableViewCellSubtitleRightImage ()
 
+@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabel *myDetailTextLabel;
+@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
+
 @end
 
 @implementation GCTableViewCellSubtitleRightImage
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)ri
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ri];
-    return self;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-
-    CGRect oldImageView = self.imageView.frame;
-    CGRect oldTextLabel = self.textLabel.frame;
-    CGRect oldDetailTextLabel = self.detailTextLabel.frame;
-
-    /*
-     * Swap from
-     * +---+---------------+---+
-     * | I | Label         | A |
-     * +---+---------------+---+
-     * to
-     * +---------------+---+---+
-     * | Label         | I | A |
-     * +---------------+---+---+
-     */
-
-    CGRect newImageView = CGRectMake(applicationFrame.size.width - oldImageView.size.width - oldImageView.origin.x, oldImageView.origin.y, oldImageView.size.width, oldImageView.size.height);
-    CGRect newTextLabel = CGRectMake(oldImageView.origin.x, oldTextLabel.origin.y, oldTextLabel.size.width, oldTextLabel.size.height);
-    CGRect newDetailTextLabel = CGRectMake(oldImageView.origin.x, oldDetailTextLabel.origin.y, oldDetailTextLabel.size.width, oldDetailTextLabel.size.height);
-
-    //return;
-
-    self.imageView.frame = newImageView;
-    self.textLabel.frame = newTextLabel;
-    self.detailTextLabel.frame = newDetailTextLabel;
-
+    [super awakeFromNib];
     [self changeTheme];
 }
 
 - (void)changeTheme
 {
-    /*
-     self.textLabel.textColor = currentTheme.labelTextColor;
-     self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
-     */
     [super changeTheme];
+    [self.myTextLabel changeTheme];
+    [self.myImageView changeTheme];
+    [self.myDetailTextLabel changeTheme];
+}
+
+- (UILabel *)textLabel
+{
+    return self.myTextLabel;
+}
+
+- (UILabel *)detailTextLabel
+{
+    return self.myDetailTextLabel;
+}
+
+- (UIImageView *)imageView
+{
+    return self.myImageView;
 }
 
 @end
