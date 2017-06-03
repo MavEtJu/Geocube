@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_GCTABLEVIEWCELLSWITCH @"GCTableViewCellSwitch"
+
 @interface GCTableViewCellSwitch : GCTableViewCell
 
 @property (nonatomic, weak) IBOutlet GCSwitch *optionSwitch;

@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_WAYPOINTTABLEVIEWCELL @"WaypointTableViewCell"
+
 @interface WaypointTableViewCell : GCTableViewCell
 
 - (void)setWaypoint:(dbWaypoint *)wp;

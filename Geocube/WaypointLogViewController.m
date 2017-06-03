@@ -98,9 +98,9 @@ enum {
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_ALL];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellRightImage" bundle:nil] forCellReuseIdentifier:THISCELL_PHOTO];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellSwitch" bundle:nil] forCellReuseIdentifier:THISCELL_SWITCH];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GCTableViewCellKeyValue" bundle:nil] forCellReuseIdentifier:THISCELL_KEYVALUE];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:THISCELL_PHOTO];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:THISCELL_SWITCH];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:THISCELL_KEYVALUE];
     self.hasCloseButton = YES;
     lmi = nil;
 

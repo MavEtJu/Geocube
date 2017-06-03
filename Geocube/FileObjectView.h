@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_FILEOBJECTVIEW @"FileObjectView"
+
 @interface FileObjectView : GCView
 
 @property (weak, nonatomic) IBOutlet GCLabel *filename;

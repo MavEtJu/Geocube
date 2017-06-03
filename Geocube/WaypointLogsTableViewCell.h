@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_WAYPOINTLOGSTABLEVIEWCELL @"WaypointLogsTableViewCell"
+
 @interface WaypointLogsTableViewCell : GCTableViewCell
 
 @property (weak, nonatomic) IBOutlet GCLabel *logs;

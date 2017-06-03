@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_KEEPTRACKSTRACKTABLEVIEWCELL @"KeepTracksTrackTableViewCell"
+
 @interface KeepTracksTrackTableViewCell : GCTableViewCell
 
 @property (weak, nonatomic) IBOutlet GCLabel *labelTrackName;

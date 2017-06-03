@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_FILESTABLEVIEWCELL @"FilesTableViewCell"
+
 @interface FilesTableViewCell : GCTableViewCell
 
 @property (weak, nonatomic) IBOutlet GCLabel *labelFilename;
