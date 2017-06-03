@@ -1,7 +1,6 @@
 Interesting additions and changes to Geocube
 
-
-Version 1.2(16)
+Version 1.2(17)
 
   Features:
   - Proper map on the Keep Track section.
@@ -17,7 +16,7 @@ Version 1.2(16)
   - A waypoint marked as highlighted is now shown properly in the Night Theme.
   - Fix problem with swipe-left on waypoint images.
   - Close button area is now bigger than before.
-  - Add iPad support in the app, not yet in the workflow.
+  - Add iPad support in the app, not yet in the workflow and not yet in landscape mode.
 
 Version 1.1(15)
 
