@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAE-ND-a6x" customClass="GCLabel">
-                        <rect key="frame" x="290" y="11.5" width="42" height="21"/>
+                        <rect key="frame" x="325" y="11.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="pW7-fI-tR5" firstAttribute="leading" secondItem="f7T-kC-6gb" secondAttribute="leadingMargin" constant="8" id="3a8-KX-kVI"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="VAE-ND-a6x" secondAttribute="trailing" constant="35" id="Q2P-8T-rJL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="VAE-ND-a6x" secondAttribute="trailing" id="Q2P-8T-rJL"/>
                     <constraint firstItem="pW7-fI-tR5" firstAttribute="centerY" secondItem="f7T-kC-6gb" secondAttribute="centerY" id="WJP-Sd-IJq"/>
                     <constraint firstItem="VAE-ND-a6x" firstAttribute="centerY" secondItem="f7T-kC-6gb" secondAttribute="centerY" id="jFk-JF-m1B"/>
                 </constraints>

@@ -171,9 +171,9 @@ enum {
                 }
 
                 case SECTION_LOGDETAILS_COMMENT: {
-                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
-                    c.keyLabel.text = @"Comment";
-                    c.valueLabel.text = note;
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
+                    c.textLabel.text = @"Comment";
+                    c.detailTextLabel.text = note;
                     cell = c;
                     break;
                 }

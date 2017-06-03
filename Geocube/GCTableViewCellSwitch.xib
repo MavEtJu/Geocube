@@ -26,12 +26,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bKC-tU-H1b" customClass="GCSwitch">
-                        <rect key="frame" x="236" y="6.5" width="51" height="31"/>
+                        <rect key="frame" x="261" y="6.5" width="51" height="31"/>
                     </switch>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7uP-gR-S9a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="0VJ-xx-1pg"/>
-                    <constraint firstAttribute="trailing" secondItem="bKC-tU-H1b" secondAttribute="trailing" constant="35" id="dwz-X3-hlo"/>
+                    <constraint firstAttribute="trailing" secondItem="bKC-tU-H1b" secondAttribute="trailing" constant="10" id="dwz-X3-hlo"/>
                     <constraint firstItem="bKC-tU-H1b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ika-0L-dgd"/>
                     <constraint firstItem="7uP-gR-S9a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x5O-Il-Rpf"/>
                 </constraints>

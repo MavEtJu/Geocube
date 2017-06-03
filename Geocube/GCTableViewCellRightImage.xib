@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,12 +27,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ig1-US-Gj0" customClass="GCImageView">
-                        <rect key="frame" x="310" y="7" width="30" height="30"/>
+                        <rect key="frame" x="335" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Ig1-US-Gj0" secondAttribute="height" multiplier="1:1" id="HOx-Lv-YTU"/>
+                            <constraint firstAttribute="height" constant="30" id="zsZ-uN-Igv"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Cc2-k3-fzQ" firstAttribute="leading" secondItem="viZ-vd-Mde" secondAttribute="leadingMargin" constant="8" id="Huq-aF-3A5"/>
-                    <constraint firstAttribute="trailing" secondItem="Ig1-US-Gj0" secondAttribute="trailing" constant="35" id="bO9-kc-77f"/>
+                    <constraint firstAttribute="trailing" secondItem="Ig1-US-Gj0" secondAttribute="trailing" constant="10" id="bO9-kc-77f"/>
                     <constraint firstItem="Ig1-US-Gj0" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="dDd-dg-yWj"/>
                     <constraint firstItem="Cc2-k3-fzQ" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="lut-Rc-I8A"/>
                 </constraints>
