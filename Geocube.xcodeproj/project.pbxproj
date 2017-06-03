@@ -337,6 +337,8 @@
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
 		E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */; };
+		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
+		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E867E83A1B539F6C00CB126A /* dbAttribute.m */; };
 		E86B2FED1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B2FEC1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.m */; };
 		E86C4AAA1E30D250004526E2 /* PersonalNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */; };
@@ -1106,6 +1108,8 @@
 		E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWaypointAnnotation.m; sourceTree = "<group>"; };
 		E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDatabaseViewController.h; sourceTree = "<group>"; };
 		E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDatabaseViewController.m; sourceTree = "<group>"; };
+		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
+		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E867E8391B539F6C00CB126A /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E867E83A1B539F6C00CB126A /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
 		E86B2FEB1E1F317C004FC8C1 /* WaypointWaypointsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointWaypointsTableViewCell.h; sourceTree = "<group>"; };
@@ -1887,6 +1891,8 @@
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */,
+				E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */,
 			);
 			name = logos;
 			sourceTree = "<group>";
@@ -3586,6 +3592,7 @@
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
+				E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
 				E8C8C8CA1EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
@@ -3720,6 +3727,7 @@
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
 				E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */,
 				E82E65B81DA0794600CFBDED /* waypoint - finish - 30x30.png in Resources */,
+				E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */,
 				E8FEDEE11DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png in Resources */,
 				E8ABA0961E277CF20080D5FE /* FilesTableViewCell.xib in Resources */,
 				E82E676B1DA07D0200CFBDED /* attributes - 65.png in Resources */,

@@ -20,6 +20,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "GC - logo - 768×1024.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "1x"
@@ -34,6 +35,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "GC - logo - 1536×2048.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
