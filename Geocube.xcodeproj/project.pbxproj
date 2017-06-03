@@ -463,6 +463,7 @@
 		E8C8C8C41EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C31EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib */; };
 		E8C8C8C61EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C51EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib */; };
 		E8C8C8C81EE27C9100E2438D /* WaypointTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */; };
+		E8C8C8CA1EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C91EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1324,6 +1325,7 @@
 		E8C8C8C31EE26D8900E2438D /* KeepTracksTrackTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "KeepTracksTrackTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8C51EE27AED00E2438D /* PersonalNoteTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PersonalNoteTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8C91EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointHeaderTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -2022,6 +2024,7 @@
 				E83C204E1E2DAADC006C523E /* WaypointHeaderTableViewCell.h */,
 				E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */,
 				E83C20501E2DAADC006C523E /* WaypointHeaderTableViewCell.xib */,
+				E8C8C8C91EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib */,
 				E83C20561E2E2651006C523E /* WaypointHeaderHeaderView.h */,
 				E83C20571E2E2651006C523E /* WaypointHeaderHeaderView.m */,
 				E83C20591E2E266C006C523E /* WaypointHeaderHeaderView.xib */,
@@ -3574,6 +3577,7 @@
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
+				E8C8C8CA1EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */,
 				E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */,
