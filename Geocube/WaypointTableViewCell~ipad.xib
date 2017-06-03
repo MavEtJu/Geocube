@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="KGk-i7-Jjw" customClass="WaypointTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="69"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="WaypointTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="68.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-RO-UWK" customClass="GCImageView">
@@ -46,31 +46,31 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="21" text="Label - description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQy-ip-gLs" customClass="GCLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="21" text="Label - description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQy-ip-gLs" customClass="GCLabel">
                         <rect key="frame" x="83" y="0.0" width="240" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAb-iH-Cib" customClass="GCLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAb-iH-Cib" customClass="GCLabel">
                         <rect key="frame" x="83" y="21" width="240" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - who and when" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-0w-CPd" customClass="GCLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - who and when" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-0w-CPd" customClass="GCLabel">
                         <rect key="frame" x="83" y="33" width="240" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29H-J4-UGw" customClass="GCLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29H-J4-UGw" customClass="GCLabel">
                         <rect key="frame" x="83" y="45" width="240" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ud-DW-wpS" customClass="GCLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="12" text="Label - location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ud-DW-wpS" customClass="GCLabel">
                         <rect key="frame" x="83" y="57" width="240" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
@@ -130,7 +130,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="CRR-xh-Hfd" firstAttribute="trailing" secondItem="JzA-ae-XBp" secondAttribute="trailing" id="4EV-qF-bXj"/>
-                    <constraint firstItem="MQy-ip-gLs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4KW-7u-XWd"/>
                     <constraint firstItem="PAb-iH-Cib" firstAttribute="leading" secondItem="MQy-ip-gLs" secondAttribute="leading" id="BfX-Cl-oxz"/>
                     <constraint firstItem="29H-J4-UGw" firstAttribute="leading" secondItem="MQy-ip-gLs" secondAttribute="leading" id="Bki-IE-ljY"/>
                     <constraint firstItem="XnY-wS-K8E" firstAttribute="trailing" secondItem="b8C-P0-FBr" secondAttribute="trailing" id="Cdk-KR-fnw"/>
@@ -142,6 +141,7 @@
                     <constraint firstItem="29H-J4-UGw" firstAttribute="top" secondItem="uMi-0w-CPd" secondAttribute="bottom" id="KBc-1C-pPe"/>
                     <constraint firstAttribute="trailingMargin" secondItem="b8C-P0-FBr" secondAttribute="trailing" constant="40" id="LbT-UB-rK3"/>
                     <constraint firstItem="deP-oh-fKb" firstAttribute="trailing" secondItem="rGc-RO-UWK" secondAttribute="trailing" id="LkG-m1-HJZ"/>
+                    <constraint firstItem="MQy-ip-gLs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LkZ-g2-yra"/>
                     <constraint firstItem="8Ud-DW-wpS" firstAttribute="leading" secondItem="MQy-ip-gLs" secondAttribute="leading" id="No6-zJ-9dT"/>
                     <constraint firstAttribute="bottom" secondItem="XnY-wS-K8E" secondAttribute="bottom" id="WXQ-QM-JkN"/>
                     <constraint firstItem="rGc-RO-UWK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="X7X-Qc-H3n"/>
