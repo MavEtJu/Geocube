@@ -465,6 +465,7 @@
 		E8C8C8C81EE27C9100E2438D /* WaypointTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */; };
 		E8C8C8CA1EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C91EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib */; };
 		E8C8C8CC1EE2CCDF00E2438D /* QueriesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8CB1EE2CCDF00E2438D /* QueriesTableViewCell~ipad.xib */; };
+		E8C8C8CE1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8CD1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1328,6 +1329,7 @@
 		E8C8C8C71EE27C9100E2438D /* WaypointTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8C91EE2C3BF00E2438D /* WaypointHeaderTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WaypointHeaderTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8CB1EE2CCDF00E2438D /* QueriesTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "QueriesTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8C8C8CD1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FilesTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -3178,6 +3180,7 @@
 				E8ABA0921E277CF20080D5FE /* FilesTableViewCell.h */,
 				E8ABA0931E277CF20080D5FE /* FilesTableViewCell.m */,
 				E8ABA0941E277CF20080D5FE /* FilesTableViewCell.xib */,
+				E8C8C8CD1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib */,
 				E8FD96A61EC681CD00AFA7FA /* FileBrowserViewController.h */,
 				E8FD96A71EC681CD00AFA7FA /* FileBrowserViewController.m */,
 				E8FD96A91EC691DD00AFA7FA /* FileObject.h */,
@@ -3670,6 +3673,7 @@
 				E82E663F1DA07A8700CFBDED /* icons - target - 30x30@2x.png in Resources */,
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
 				E8FD96B01EC6A0A300AFA7FA /* FileObjectView.xib in Resources */,
+				E8C8C8CE1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib in Resources */,
 				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
 				E89C398F1E28A01400BB60CA /* QueriesTableViewCell.xib in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
