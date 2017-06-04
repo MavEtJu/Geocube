@@ -89,7 +89,7 @@
     [self addToLibrary:@"log - reviewernote - 30x30" index:ImageLog_ReviewerNote];
     [self addToLibrary:@"log - published - 30x30" index:ImageLog_Published];
     [self addToLibrary:@"log - archived - 30x30" index:ImageLog_Archived];
-    [self addToLibrary:@"log - disabled - 18x18" index:ImageLog_Disabled];
+    [self addToLibrary:@"log - disabled - 30x30" index:ImageLog_Disabled];
     [self addToLibrary:@"log - unarchived - 30x30" index:ImageLog_Unarchived];
     [self addToLibrary:@"log - coordinates - 30x30" index:ImageLog_Coordinates];
     [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_WebcamPhoto];
