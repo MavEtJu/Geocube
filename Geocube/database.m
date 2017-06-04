@@ -540,6 +540,24 @@
     @"update logs set locallog = 0",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 42
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.3.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.3.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.3.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.3.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.3.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.3.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.3.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.3.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.3.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.3.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.3.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.3.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.3.geocube' where key = 'url_logstrings'",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
