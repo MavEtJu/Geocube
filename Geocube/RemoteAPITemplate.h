@@ -81,8 +81,8 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
-- (BOOL)supportsLogNotes;
 
+- (BOOL)supportsLogs;
 - (BOOL)supportsUserStatistics;
 - (BOOL)supportsLoadWaypoint;
 - (BOOL)supportsLoadWaypointsByCenter;

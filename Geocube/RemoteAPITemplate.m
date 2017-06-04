@@ -226,6 +226,7 @@
 - NEEDS_OVERLOADING_BOOL(supportsListQueries)
 - NEEDS_OVERLOADING_BOOL(supportsRetrieveQueries)
 - NEEDS_OVERLOADING_BOOL(supportsTrackables)
+- NEEDS_OVERLOADING_BOOL(supportsLogs)
 
 // ----------------------------------------
 
