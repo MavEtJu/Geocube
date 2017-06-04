@@ -71,11 +71,10 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGGCW *dict = [ggcw my_default:iv iiDownload:iid];
-    GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+    GCDictionaryGGCW *dict = [ggcw my_statistics:iv iiDownload:iid];
+    GGCW_CHECK_STATUS(dict, @"my_statistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
-    [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
 
     *retDict = ret;
     return REMOTEAPI_OK;

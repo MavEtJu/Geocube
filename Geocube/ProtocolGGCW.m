@@ -318,6 +318,48 @@ bail2:
     return dict;
 }
 
+- (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/my/statistics.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSMutableDictionary *ds = [NSMutableDictionary dictionaryWithCapacity:4];
+
+    NSString *re = @"//div[@class='StatisticsWrapper']/div[@id='BasicFinds']";
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e;
+    NSString *found;
+
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+
+    CHECK_ARRAY(e.children, 1, bail);
+    e = [e.children objectAtIndex:1];
+    found = e.content;
+    NSRange r = [found rangeOfString:@"found "];
+    CHECK_RANGE(r, bail);
+
+    found = [found substringFromIndex:r.location + r.length];
+    r = [found rangeOfString:@" "];
+    CHECK_RANGE(r, bail);
+    found = [found substringToIndex:r.length];
+
+    [ds setObject:[NSNumber numberWithInteger:[found integerValue]] forKey:@"caches_found"];
+
+bail:
+    NSLog(@"");
+    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
+    return dict;
+}
+
 - (GCDictionaryGGCW *)pocket_default:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"pocket_default");
@@ -407,7 +449,7 @@ bail2:
         [d setValue:count forKey:@"count"];
         [ds setObject:d forKey:name];
 bail:
-        NSLog(@"foo");
+        NSLog(@"");
     }];
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
