@@ -205,6 +205,13 @@ enum {
     if (__r__.location == NSNotFound) \
         goto __bail__;
 
+- (NSString *)viewState:(NSInteger)i
+{
+    if (i == 0)
+        return @"__VIEWSTATE";
+    return [NSString stringWithFormat:@"__VIEWSTATE%ld", (long)i];
+}
+
 // ------------------------------------------------
 
 // Needed to get the publicGuid
@@ -470,9 +477,7 @@ bail:
     NSString *eventtarget = nil;
     NSString *eventargument = nil;
     NSString *viewstatefieldcount = nil;
-    NSString *viewstate = nil;
-    NSString *viewstate1 = nil;
-    NSString *viewstate2 = nil;
+    NSMutableArray<NSString *> *viewstates = [NSMutableArray arrayWithCapacity:3];
     NSString *viewstategenerator = nil;
     NSString *scrollpositionx = nil;
     NSString *scrollpositiony = nil;
@@ -483,9 +488,11 @@ bail:
     GETVALUE(@"__EVENTTARGET", eventtarget);
     GETVALUE(@"__EVENTARGUMENT", eventargument);
     GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
-    GETVALUE(@"__VIEWSTATE", viewstate);
-    GETVALUE(@"__VIEWSTATE1", viewstate1);
-    GETVALUE(@"__VIEWSTATE2", viewstate2);
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        NSString *viewstate = nil;
+        GETVALUE([self viewState:i], viewstate);
+        [viewstates addObject:viewstate];
+    }
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
     GETVALUE(@"__SCROLLPOSITIONX", scrollpositionx);
     GETVALUE(@"__SCROLLPOSITIONY", scrollpositiony);
@@ -549,12 +556,15 @@ bail2:
     [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
     [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
     [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
-    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
-    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
-    [dict setObject:viewstate2 forKey:@"__VIEWSTATE2"];
-    [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
-    [dict setObject:scrollpositionx forKey:@"__SCROLLPOSITIONX"];
-    [dict setObject:scrollpositiony forKey:@"__SCROLLPOSITIONY"];
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        [dict setObject:[viewstates objectAtIndex:i] forKey:[self viewState:i]];
+    }
+    if (viewstategenerator != nil)
+        [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+    if (scrollpositionx != nil)
+        [dict setObject:scrollpositionx forKey:@"__SCROLLPOSITIONX"];
+    if (scrollpositiony != nil)
+        [dict setObject:scrollpositiony forKey:@"__SCROLLPOSITIONY"];
     [dict setObject:location forKey:@"location"];
     [dict setObject:usertoken forKey:@"usertoken"];
     [dict setObject:gc_id forKey:@"gc_id"];
@@ -581,12 +591,15 @@ bail2:
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], [MyTools urlEncode:[gc objectForKey:@"__EVENTTARGET"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], [MyTools urlEncode:[gc objectForKey:@"__EVENTARGUMENT"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE1"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE2"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE2"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONX"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONX"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONY"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONY"]]];
+    for (NSInteger i = 0; i < [[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"] integerValue]; i++) {
+        [ps appendFormat:@"&%@=%@", [self viewState:i], [MyTools urlEncode:[gc objectForKey:[self viewState:i]]]];
+    }
+    if ([gc objectForKey:@"__VIEWSTATEGENERATOR"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
+    if ([gc objectForKey:@"__SCROLLPOSITIONX"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONX"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONX"]]];
+    if ([gc objectForKey:@"__SCROLLPOSITIONY"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONY"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONY"]]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
@@ -1318,8 +1331,7 @@ bail:
     NSString *eventtarget = nil;
     NSString *eventargument = nil;
     NSString *viewstatefieldcount = nil;
-    NSString *viewstate = nil;
-    NSString *viewstate1 = nil;
+    NSMutableArray<NSString *> *viewstates = [NSMutableArray arrayWithCapacity:4];;
     NSString *lastfocus = nil;
     NSString *viewstategenerator = nil;
     NSMutableDictionary *dict;
@@ -1331,8 +1343,11 @@ bail:
     GETVALUE(@"__EVENTARGUMENT", eventargument);
     GETVALUE(@"__LASTFOCUS", lastfocus);
     GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
-    GETVALUE(@"__VIEWSTATE", viewstate);
-    GETVALUE(@"__VIEWSTATE1", viewstate1);
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        NSString *viewstate = nil;
+        GETVALUE([self viewState:i], viewstate);
+        [viewstates addObject:viewstate];
+    }
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
 
     dict = [NSMutableDictionary dictionaryWithCapacity:6];
@@ -1340,8 +1355,9 @@ bail:
     [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
     [dict setObject:lastfocus forKey:@"__LASTFOCUS"];
     [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
-    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
-    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        [dict setObject:[viewstates objectAtIndex:i] forKey:[self viewState:i]];
+    }
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
 bail1:
     NSLog(@"");
@@ -1438,8 +1454,9 @@ bail1:
     [s appendFormat:@"&%@=%@", @"__EVENTARGUMENT", [MyTools urlEncode:[dict objectForKey:@"__EVENTARGUMENT"]]];
     [s appendFormat:@"&%@=%@", @"__LASTFOCUS", [MyTools urlEncode:[dict objectForKey:@"__LASTFOCUS"]]];
     [s appendFormat:@"&%@=%@", @"__VIEWSTATEFIELDCOUNT", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATE", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATE1", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE1"]]];
+    for (NSInteger i = 0; i < [[dict objectForKey:@"__VIEWSTATEFIELDCOUNT"] integerValue]; i++) {
+        [s appendFormat:@"&%@=%@", [self viewState:i], [MyTools urlEncode:[dict objectForKey:[self viewState:i]]]];
+    }
     [s appendFormat:@"&%@=%@", @"__VIEWSTATEGENERATOR", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEGENERATOR"]]];
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogCreationSource", @"New"];
     [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$LogContainsHtml", @""];
