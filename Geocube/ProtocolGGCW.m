@@ -207,11 +207,12 @@ enum {
 
 // ------------------------------------------------
 
-- (GCDictionaryGGCW *)my_default:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+// Needed to get the publicGuid
+- (GCDictionaryGGCW *)account_dashboard:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
-    NSString *urlString = [self prepareURLString:@"/my/default.aspx" params:params];
+    NSString *urlString = [self prepareURLString:@"/account/dashboard" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
@@ -221,60 +222,6 @@ enum {
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-
-    // Find the data for the "Found" field.
-    /*
-     <div id="uxCacheFind" class="statbox">
-
-     <strong>
-     Finds
-     </strong>
-     <span class="statcount">
-     976
-     </span>
-
-     </div>
-     */
-
-    NSInteger iHidden = 0;
-    NSInteger iFound = 0;
-    TFHppleElement *e;
-    NSString *s;
-
-    NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
-    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    CHECK_ARRAY(nodes, 1, bail1);
-    e = [nodes objectAtIndex:0];
-    CHECK_ARRAY(e.children, 1, bail1);
-    e = [e.children objectAtIndex:0];
-    s = e.content;
-    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iFound = [s integerValue];
-bail1:
-
-    // Find the data for the "Hidden" field.
-    /*
-     <div id="uxCacheHide" class="statbox">
-
-     <strong>
-     Hides
-     </strong>
-     <span class="statcount">
-     37
-     </span>
-
-     </div>
-     */
-    re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
-    nodes = [parser searchWithXPathQuery:re];
-    CHECK_ARRAY(nodes, 1, bail2);
-    e = [nodes objectAtIndex:0];
-    CHECK_ARRAY(e.children, 1, bail2);
-    e = [e.children objectAtIndex:0];
-    s = e.content;
-    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iHidden = [s integerValue];
-bail2:
 
     // Find the data for thea publicGuid
     /*
@@ -292,8 +239,8 @@ bail2:
         }
     }
      */
-    re = @"//script";
-    nodes = [parser searchWithXPathQuery:re];
+    NSString *re = @"//script";
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
         NSRange r = [e.content rangeOfString:@"publicGuid: \""];
         if (r.location == NSNotFound)
@@ -309,13 +256,7 @@ bail2:
         return;
     }];
 
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
-    [d setObject:[NSNumber numberWithInteger:iFound] forKey:@"caches_found"];
-    [d setObject:[NSNumber numberWithInteger:iHidden] forKey:@"caches_hidden"];
-    [d setObject:uid forKey:@"uid"];
-
-    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
-    return dict;
+    return nil;
 }
 
 - (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid
@@ -1162,7 +1103,7 @@ bail:
 - (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     if (uid == nil)
-        [self my_default:iv iiDownload:iid];
+        [self account_dashboard:iv iiDownload:iid];
 
     NSLog(@"track_search:%@", uid);
     /*
