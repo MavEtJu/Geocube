@@ -27,26 +27,19 @@
 
 #define IMPORTMSG   @"LiveAPI JSON data (queued)"
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return YES;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return YES;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (BOOL)commentSupportsTrackables
-{
-    return YES;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return YES;
-}
+- (BOOL)commentSupportsFavouritePoint { return YES; }
+- (BOOL)commentSupportsPhotos { return YES; }
+- (BOOL)commentSupportsRating { return NO; }
+- (BOOL)commentSupportsTrackables { return YES; }
+- (BOOL)waypointSupportsPersonalNotes { return YES; }
+- (BOOL)supportsUserStatistics { return YES; }
+- (BOOL)supportsLoadWaypoint { return YES; }
+- (BOOL)supportsLoadWaypointsByCenter { return YES; }
+- (BOOL)supportsLoadWaypointsByCodes { return YES; }
+- (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
+- (BOOL)supportsListQueries { return YES; }
+- (BOOL)supportsRetrieveQueries { return YES; }
+- (BOOL)supportsTrackables { return YES; }
 
 #define LIVEAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \

@@ -74,12 +74,23 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 
 - (instancetype)init:(dbAccount *)account;
 - (BOOL)Authenticate;
+
 - (BOOL)waypointSupportsPersonalNotes;
 - (BOOL)commentSupportsPhotos;
 - (BOOL)commentSupportsTrackables;
 - (BOOL)commentSupportsFavouritePoint;
 - (BOOL)commentSupportsRating;
 - (NSRange)commentSupportsRatingRange;
+- (BOOL)supportsLogNotes;
+
+- (BOOL)supportsUserStatistics;
+- (BOOL)supportsLoadWaypoint;
+- (BOOL)supportsLoadWaypointsByCenter;
+- (BOOL)supportsLoadWaypointsByCodes;
+- (BOOL)supportsLoadWaypointsByBoundaryBox;
+- (BOOL)supportsListQueries;
+- (BOOL)supportsRetrieveQueries;
+- (BOOL)supportsTrackables;
 
 // Feedback from the network error and the data interpretation
 // - Network error: Connection refused, HTTP error

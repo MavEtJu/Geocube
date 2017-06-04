@@ -28,30 +28,20 @@
 #define IMPORTMSG_GPX   @"Geocaching.com GPX Garmin data (queued)"
 #define IMPORTMSG_PQ    @"Geocaching.com Pocket Query data (queued)"
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return YES;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return NO;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (NSRange)commentSupportsRatingRange
-{
-    return NSMakeRange(0, 0);
-}
-- (BOOL)commentSupportsTrackables
-{
-    return YES;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return YES;
-}
+- (BOOL)commentSupportsFavouritePoint { return YES; }
+- (BOOL)commentSupportsPhotos { return NO; }
+- (BOOL)commentSupportsRating { return NO; }
+- (NSRange)commentSupportsRatingRange { return NSMakeRange(0, 0); }
+- (BOOL)commentSupportsTrackables { return YES; }
+- (BOOL)waypointSupportsPersonalNotes { return YES; }
+- (BOOL)supportsUserStatistics { return YES; }
+- (BOOL)supportsLoadWaypoint { return YES; }
+- (BOOL)supportsLoadWaypointsByCenter { return YES; }
+- (BOOL)supportsLoadWaypointsByCodes { return NO; }
+- (BOOL)supportsLoadWaypointsByBoundaryBox { return NO; }
+- (BOOL)supportsListQueries { return YES; }
+- (BOOL)supportsRetrieveQueries { return YES; }
+- (BOOL)supportsTrackables { return NO; }
 
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
