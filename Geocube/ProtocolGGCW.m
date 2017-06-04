@@ -291,7 +291,7 @@ enum {
     found = [found substringFromIndex:r.location + r.length];
     r = [found rangeOfString:@" "];
     CHECK_RANGE(r, bail);
-    found = [found substringToIndex:r.length];
+    found = [found substringToIndex:r.location];
 
     [ds setObject:[NSNumber numberWithInteger:[found integerValue]] forKey:@"caches_found"];
 
