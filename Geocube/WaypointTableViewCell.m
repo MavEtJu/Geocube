@@ -67,8 +67,12 @@
 - (void)setWaypoint:(dbWaypoint *)wp
 {
     self.labelDescription.text = wp.wpt_urlname;
-    self.labelCode.text = wp.wpt_name;
     self.ivContainer.image = [imageLibrary getType:wp];
+
+    if (wp.account == nil)
+        self.labelCode.text = wp.wpt_name;
+    else
+        self.labelCode.text = [NSString stringWithFormat:@"%@ on %@", wp.wpt_name, wp.account.site];
 
     if (wp.gs_owner == nil) {
         if ([wp hasGSData] == NO)
