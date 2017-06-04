@@ -472,7 +472,10 @@ bail:
     NSString *viewstatefieldcount = nil;
     NSString *viewstate = nil;
     NSString *viewstate1 = nil;
+    NSString *viewstate2 = nil;
     NSString *viewstategenerator = nil;
+    NSString *scrollpositionx = nil;
+    NSString *scrollpositiony = nil;
 
     NSString *re;
     NSArray<TFHppleElement *> *nodes;
@@ -482,7 +485,10 @@ bail:
     GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
     GETVALUE(@"__VIEWSTATE", viewstate);
     GETVALUE(@"__VIEWSTATE1", viewstate1);
+    GETVALUE(@"__VIEWSTATE2", viewstate2);
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+    GETVALUE(@"__SCROLLPOSITIONX", scrollpositionx);
+    GETVALUE(@"__SCROLLPOSITIONY", scrollpositiony);
 bail1:
     NSLog(@"");
 
@@ -545,7 +551,10 @@ bail2:
     [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
     [dict setObject:viewstate forKey:@"__VIEWSTATE"];
     [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
+    [dict setObject:viewstate2 forKey:@"__VIEWSTATE2"];
     [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+    [dict setObject:scrollpositionx forKey:@"__SCROLLPOSITIONX"];
+    [dict setObject:scrollpositiony forKey:@"__SCROLLPOSITIONY"];
     [dict setObject:location forKey:@"location"];
     [dict setObject:usertoken forKey:@"usertoken"];
     [dict setObject:gc_id forKey:@"gc_id"];
@@ -574,7 +583,10 @@ bail2:
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE1"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE2"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE2"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONX"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONX"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONY"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONY"]]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
