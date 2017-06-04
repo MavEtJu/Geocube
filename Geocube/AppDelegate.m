@@ -398,7 +398,7 @@
                 [controllers addObject:nav];
 
                 vc = [[QueriesGGCWViewController alloc] init];
-                vc.title = @"GGCW";
+                vc.title = @"Geocaching.com website";
                 nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 nav.navigationBarHidden = YES;
                 [controllers addObject:nav];
