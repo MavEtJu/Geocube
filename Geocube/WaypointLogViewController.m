@@ -93,7 +93,7 @@ enum {
 
     NSDate *d = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     date = [dateFormatter stringFromDate:d];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
