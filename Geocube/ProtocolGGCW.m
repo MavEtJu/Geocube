@@ -1441,6 +1441,8 @@ bail:
     isWaiting:                      true
      */
 
+    dateLogged = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[MyTools secondsSinceEpochFromISO8601:dateLogged]];
+
     NSMutableString *s = [NSMutableString stringWithString:@""];
     [s appendFormat:@"%@=%@", @"logTextMaxLength", [MyTools urlEncode:@"4000"]];
     [s appendFormat:@"&%@=%@", @"maxImages", [MyTools urlEncode:@"1"]];
