@@ -807,6 +807,8 @@ enum {
         [groups addObject:cg];
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:WAYPOINT_DATA_GROUPMEMBERS inSection:WAYPOINT_DATA]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
         rows:groupNames
         initialSelection:configManager.lastAddedGroup
@@ -819,7 +821,7 @@ enum {
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");
         }
-        origin:self.tableView
+        origin:cell.contentView
     ];
 }
 

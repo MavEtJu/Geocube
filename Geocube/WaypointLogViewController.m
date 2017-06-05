@@ -375,7 +375,7 @@ enum {
     __block NSInteger selected;
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:[logstrings count]];
 
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS inSection:SECTION_LOGDETAILS_TYPE]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS_TYPE inSection:SECTION_LOGDETAILS]];
 
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls == logstring)
@@ -408,7 +408,7 @@ enum {
 
     NSDate *d = [NSDate date];
 
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS inSection:SECTION_LOGDETAILS_DATE]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS_DATE inSection:SECTION_LOGDETAILS]];
 
     ActionSheetDatePicker *asdp =
         [[ActionSheetDatePicker alloc]
