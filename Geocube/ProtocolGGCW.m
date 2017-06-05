@@ -1286,6 +1286,187 @@ bail:
     return retjson;
 }
 
+- (NSDictionary *)api_proxy_web_v1_geocache:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/geocache/%@", [gccode lowercaseString]] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    /*
+     {
+         callerSpecific =     {
+             favorited = 0;
+         };
+         geocacheType =     {
+             id = 2;
+             name = "Traditional Cache";
+         };
+         id = 5864006;
+         owner =     {
+             id = 8305738;
+             referenceCode = PR9DJJZ;
+         };
+         postedCoordinates =     {
+             latitude = "-34.0425";
+             longitude = "151.1220166666667";
+         };
+         referenceCode = GC6RKRD;
+     }
+     */
+    return json;
+}
+
+- (NSDictionary *)play_geocache_log__form:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSDictionary *dict = [self api_proxy_web_v1_geocache:gccode infoViewer:iv iiDownload:iid];
+
+    NSString *s;
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:20];
+    DICT_NSSTRING_PATH(dict, s, @"callerSpecific.favorited");
+    [d setObject:s forKey:@"geocache[callerSpecific][favorited]"];
+    DICT_NSSTRING_PATH(dict, s, @"postedCoordinates.latitude");
+    [d setObject:s forKey:@"geocache[postedCoordinates][latitude]"];
+    DICT_NSSTRING_PATH(dict, s, @"postedCoordinates.longitude");
+    [d setObject:s forKey:@"geocache[postedCoordinates][longitude]"];
+    DICT_NSSTRING_PATH(dict, s, @"owner.id");
+    [d setObject:s forKey:@"geocache[owner][id]"];
+    DICT_NSSTRING_PATH(dict, s, @"owner.referenceCode");
+    [d setObject:s forKey:@"geocache[owner][referenceCode]"];
+    DICT_NSSTRING_PATH(dict, s, @"geocacheType.id");
+    [d setObject:s forKey:@"geocache[geocacheType][id]"];
+    DICT_NSSTRING_PATH(dict, s, @"geocacheType.name");
+    [d setObject:s forKey:@"geocache[geocacheType][name]"];
+    DICT_NSSTRING_PATH(dict, s, @"id");
+    [d setObject:s forKey:@"geocache[[id]"];
+    DICT_NSSTRING_PATH(dict, s, @"referenceCode");
+    [d setObject:s forKey:@"geocache[referenceCode]"];
+
+    /*
++   logTextMaxLength:               4000
++   maxImages:                      1
++   ownerIsViewing:                 true
++   isWaiting:                      true
+     
+|   geocache[id]:                   6140457
+|   geocache[referenceCode]:        GC72XE6
+|   geocache[postedCoordinates][latitude]:-34.017967
+|   geocache[postedCoordinates][longitude]:151.125933
+|   geocache[callerSpecific][favorited]:false
+|   geocache[owner][id]:            8305738
+|   geocache[owner][referenceCode]: PR9DJJZ
+|   geocache[geocacheType][id]:     2
+|   geocache[geocacheType][name]:   Traditional Cache
+    geocache[isEvent]:              false
+
+    logTypes[0][value]:             46
+    logTypes[0][name]:              Owner maintenance
+    logTypes[0][selected]:          true
+    logTypes[1][value]:             4
+    logTypes[1][name]:              Write note
+    logTypes[1][selected]:          false
+    logTypes[2][value]:             22
+    logTypes[2][name]:              Disable
+    logTypes[2][selected]:          false
+    logTypes[3][value]:             5
+    logTypes[3][name]:              Archive
+    logTypes[3][selected]:          false
+    logTypes[4][value]:             47
+    logTypes[4][name]:              Update coordinates
+    logTypes[4][selected]:          false
+
++   logType:                        46
++   logDate:                        2017-06-05
++   logText:                        test
+     */
+
+//  https://www.geocaching.com/play/geocache/gc72xe6/log
+//  https://www.geocaching.com/api/proxy/web/v1/geocache/gc72xe6
+    return d;
+}
+
+- (NSString *)play_geocache_log__submit:(NSString *)gccode dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)tbs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/geocache/%@/GeocacheLog", gccode] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
+    note = [note stringByReplacingOccurrencesOfString:@"\x0a" withString:@"\x0d\x0a"];
+
+    /*
+    https://www.geocaching.com/api/proxy/web/v1/Geocache/GC72XE6/GeocacheLog
+
+    logTextMaxLength:               4000
+    maxImages:                      1
+    geocache[id]:                   6140457
+    geocache[referenceCode]:        GC72XE6
+    geocache[postedCoordinates][latitude]:-34.017967
+    geocache[postedCoordinates][longitude]:151.125933
+    geocache[callerSpecific][favorited]:false
+    geocache[owner][id]:            8305738
+    geocache[owner][referenceCode]: PR9DJJZ
+    geocache[geocacheType][id]:     2
+    geocache[geocacheType][name]:   Traditional Cache
+    geocache[isEvent]:              false
+    logTypes[0][value]:             46
+    logTypes[0][name]:              Owner maintenance
+    logTypes[0][selected]:          true
+    logTypes[1][value]:             4
+    logTypes[1][name]:              Write note
+    logTypes[1][selected]:          false
+    logTypes[2][value]:             22
+    logTypes[2][name]:              Disable
+    logTypes[2][selected]:          false
+    logTypes[3][value]:             5
+    logTypes[3][name]:              Archive
+    logTypes[3][selected]:          false
+    logTypes[4][value]:             47
+    logTypes[4][name]:              Update coordinates
+    logTypes[4][selected]:          false
+    logType:                        46
+    ownerIsViewing:                 true
+    logDate:                        2017-06-05
+    logText:                        test
+    isWaiting:                      true
+     */
+
+    NSMutableString *s = [NSMutableString stringWithString:@""];
+    [s appendFormat:@"%@=%@", @"logTextMaxLength", [MyTools urlEncode:@"4000"]];
+    [s appendFormat:@"&%@=%@", @"maxImages", [MyTools urlEncode:@"1"]];
+    [s appendFormat:@"&%@=%@", @"ownerIsViewing", [MyTools urlEncode:@"false"]];
+    [s appendFormat:@"&%@=%@", @"logDate", [MyTools urlEncode:dateLogged]];
+    [s appendFormat:@"&%@=%@", @"logText", [MyTools urlEncode:note]];
+    [s appendFormat:@"&%@=%@", @"isWaiting", [MyTools urlEncode:@"true"]];
+    [s appendFormat:@"&%@=%@", @"logType", [MyTools urlEncode:logstring_type]];
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
+        [s appendFormat:@"&%@=%@", key, [MyTools urlEncode:value]];
+    }];
+    
+    req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    NSString *ss = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([ss containsString:@"View Geocache Log"] == NO)
+        return nil;
+
+    return ss;
+
+     return nil;
+}
+
 - (NSDictionary *)seek_log__form:(NSString *)gc_id infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"seek_log__form:%@", gc_id);

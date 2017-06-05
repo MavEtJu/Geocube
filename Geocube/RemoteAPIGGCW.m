@@ -107,10 +107,10 @@
         [tbs setObject:note forKey:[NSNumber numberWithLongLong:tb.gc_id]];
     }];
 
-    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-    NSString *gc_id = [dict objectForKey:@"gc_id"];
-    dict = [ggcw seek_log__form:gc_id infoViewer:iv iiDownload:iid];
-    [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs infoViewer:iv iiDownload:iid];
+//    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+//    NSString *gc_id = [dict objectForKey:@"gc_id"];
+    NSDictionary *dict = [ggcw play_geocache_log__form:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    [ggcw play_geocache_log__submit:waypoint.wpt_name dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs infoViewer:iv iiDownload:iid];
 
     return REMOTEAPI_OK;
 }
