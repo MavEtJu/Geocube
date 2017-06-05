@@ -1542,6 +1542,8 @@ enum sections {
             break;
     }
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:SECTION_DYNAMICMAP]];
+
     __block NSInteger selectedSpeed = 0;
     [speeds enumerateObjectsUsingBlock:^(NSString *speed, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([currentSpeed isEqualToString:speed] == YES) {
@@ -1556,7 +1558,7 @@ enum sections {
                                           target:self
                                    successAction:successAction
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1605,6 +1607,8 @@ enum sections {
             break;
     }
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:SECTION_DYNAMICMAP]];
+
     __block NSInteger selectedDistance = 0;
     [distances enumerateObjectsUsingBlock:^(NSString *distance, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([currentDistance isEqualToString:distance] == YES) {
@@ -1619,7 +1623,7 @@ enum sections {
                                           target:self
                                    successAction:successAction
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1653,13 +1657,15 @@ enum sections {
         }
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_QUERY inSection:SECTION_IMPORTS]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for big HTTP requests"
                                             rows:downloadQueryTimeouts
                                 initialSelection:currentChoice
                                           target:self
                                    successAction:@selector(updateDownloadQueryTimeout:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1679,13 +1685,15 @@ enum sections {
         }
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_SIMPLE inSection:SECTION_IMPORTS]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for simple HTTP requests"
                                             rows:downloadSimpleTimeouts
                                 initialSelection:currentChoice
                                           target:self
                                    successAction:@selector(updateDownloadSimpleTimeout:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1713,13 +1721,15 @@ enum sections {
         }
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXAGE inSection:SECTION_MAPCACHE]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Maximum age for objects in the map cache"
                                             rows:mapcacheMaxAgeValues
                                 initialSelection:currentChoice
                                           target:self
                                    successAction:@selector(updateMapcacheMaxAge:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1738,13 +1748,15 @@ enum sections {
         }
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXSIZE inSection:SECTION_MAPCACHE]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Maximum size for the map cache"
                                             rows:mapcacheMaxSizeValues
                                 initialSelection:currentChoice
                                           target:self
                                    successAction:@selector(updateMapcacheMaxSize:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1752,13 +1764,15 @@ enum sections {
 
 - (void)changeThemeTheme
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_THEME inSection:SECTION_THEME]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select theme"
                                             rows:[themeManager themeNames]
                                 initialSelection:configManager.themeType
                                           target:self
                                    successAction:@selector(updateThemeThemeSuccess:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1774,13 +1788,15 @@ enum sections {
 
 - (void)changeThemeCompass
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_COMPASS inSection:SECTION_THEME]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select Compass"
                                             rows:compassTypes
                                 initialSelection:configManager.compassType
                                           target:self
                                    successAction:@selector(updateThemeCompassSuccess:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1793,6 +1809,8 @@ enum sections {
 
 - (void)changeThemeOrientations
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_ORIENTATIONS inSection:SECTION_THEME]];
+
     __block NSInteger orientationIndex = 0;
     [orientationValues enumerateObjectsUsingBlock:^(NSNumber *n, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([n integerValue] == configManager.orientationsAllowed) {
@@ -1806,7 +1824,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateThemeOrientations:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1821,6 +1839,8 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceGS
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS inSection:SECTION_MAPSEARCHMAXIMUM]];
+
     NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
@@ -1831,7 +1851,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumDistanceGS:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1844,6 +1864,8 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceGCA
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA inSection:SECTION_MAPSEARCHMAXIMUM]];
+
     NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
@@ -1854,7 +1876,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumDistanceGCA:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1867,6 +1889,8 @@ enum sections {
 
 - (void)changeMapSearchMaximumDistanceOKAPI
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI inSection:SECTION_MAPSEARCHMAXIMUM]];
+
     NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
@@ -1877,7 +1901,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumDistanceOKAPI:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1890,6 +1914,8 @@ enum sections {
 
 - (void)changeMapSearchMaximumNumberGCA
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA inSection:SECTION_MAPSEARCHMAXIMUM]];
+
     NSMutableArray<NSNumber *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
     for (NSInteger d = 10; d < 200; d += 10) {
         [distances addObject:[NSNumber numberWithInteger:d]];
@@ -1900,7 +1926,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateMapSearchMaximumNumberGCA:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1915,13 +1941,15 @@ enum sections {
 
 - (void)changeWaypointSortBy
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_WAYPOINTS_SORTBY inSection:SECTION_WAYPOINTS]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Sort waypoints by"
                                             rows:[WaypointSorter waypointsSortOrders]
                                 initialSelection:configManager.waypointListSortBy
                                           target:self
                                    successAction:@selector(updateWaypointSortBy:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1959,13 +1987,15 @@ enum sections {
 
 - (void)changeListSortBy
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LISTS_SORTBY inSection:SECTION_LISTS]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Sort lists by"
                                             rows:[WaypointSorter listSortOrders]
                                 initialSelection:configManager.listSortBy
                                           target:self
                                    successAction:@selector(updateListSortBy:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -1979,6 +2009,8 @@ enum sections {
 
 - (void)changeMapsDefaultBrand
 {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPS_DEFAULTBRAND inSection:SECTION_MAPS]];
+
     __block NSInteger initial = 0;
     [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
@@ -1993,7 +2025,7 @@ enum sections {
                                           target:self
                                    successAction:@selector(updateMapsDefaultBrand:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
@@ -2015,13 +2047,15 @@ enum sections {
         }
     }];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_APPS_EXTERNALMAP inSection:SECTION_APPS]];
+
     [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
                                             rows:externalMapTypes
                                 initialSelection:initial
                                           target:self
                                    successAction:@selector(updateAppsExternalMap:element:)
                                     cancelAction:@selector(updateCancel:)
-                                          origin:self.tableView
+                                          origin:cell.contentView
      ];
 }
 
