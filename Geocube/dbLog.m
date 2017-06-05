@@ -56,7 +56,10 @@
 - (void)finish
 {
     self.waypoint = [dbWaypoint dbGet:self.waypoint_id]; // This can be nil when an import is happening
-    self.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:self.datetime];
+    if (self.datetime_epoch == 0)
+        self.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:self.datetime];
+    if (self.datetime == nil)
+        self.datetime = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:self.datetime_epoch];
 
     if (self.logstring_id == 0) {
         self.logstring = [dbc LogString_get_bytype:self.waypoint.account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
@@ -248,7 +251,7 @@
             INT_FETCH (2, l.waypoint_id);
             INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
-            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH (5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
@@ -277,7 +280,7 @@
             INT_FETCH (2, l.waypoint_id);
             INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
-            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH (5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
@@ -306,7 +309,7 @@
             INT_FETCH (2, l.waypoint_id);
             INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
-            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH (5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
@@ -335,7 +338,7 @@
             INT_FETCH (2, l.waypoint_id);
             INT_FETCH (3, l.logstring_id);
             TEXT_FETCH(4, l.datetime);
-            //INT_FETCH_AND_ASSIGN(5, l.datetime_epoch);
+            INT_FETCH (5, l.datetime_epoch);
             INT_FETCH (6, l.logger_id);
             TEXT_FETCH(7, l.log);
             BOOL_FETCH(8, l.needstobelogged);
@@ -380,7 +383,7 @@
     log.localLog = locallog;
     log.logstring_string = logstring.text;
     log.log = note;
-    log.datetime = [NSString stringWithFormat:@"%@T00:00:00", date];
+    log.datetime = date;
     log.waypoint_id = waypoint._id;
     log.waypoint = waypoint;
 
