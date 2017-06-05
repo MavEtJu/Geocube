@@ -159,8 +159,10 @@
     NSDate *date;
     if ([datetime length] == 10) {
         date = [MyTools dateFromISO8601String:datetime format:"%Y-%m-%d"];
-    } else {
+    } else if ([datetime containsString:@"T"] == YES) {
         date = [MyTools dateFromISO8601String:datetime format:"%Y-%m-%dT%H:%M:%S%z"];
+    } else {
+        date = [MyTools dateFromISO8601String:datetime format:"%Y-%m-%d %H:%M:%S%z"];
     }
     return [date timeIntervalSince1970];
 }
