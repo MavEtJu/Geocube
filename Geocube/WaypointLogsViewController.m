@@ -61,6 +61,7 @@ enum {
     [lmi addItem:menuDeleteLog label:@"Delete log"];
     [lmi disableItem:menuScanForWaypoints];
     [lmi disableItem:menuCopyLog];
+    [lmi disableItem:menuDeleteLog];
 
     return self;
 }
@@ -116,6 +117,7 @@ enum {
     selectedLog = [logs objectAtIndex:indexPath.row];
     [lmi enableItem:menuScanForWaypoints];
     [lmi enableItem:menuCopyLog];
+    [lmi enableItem:menuDeleteLog];
 }
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,6 +125,7 @@ enum {
     selectedLog = nil;
     [lmi disableItem:menuScanForWaypoints];
     [lmi disableItem:menuCopyLog];
+    [lmi disableItem:menuDeleteLog];
 }
 
 #pragma mark - Local menu related functions
