@@ -136,7 +136,7 @@
     tm.tm_isdst = -1;
     t = mktime(&tm);
 
-    return [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];
+    return [NSDate dateWithTimeIntervalSince1970:t];
 }
 
 /// Returns the number of milliseconds for the current time
@@ -174,9 +174,11 @@
  */
 + (NSString *)dateTimeStringFormat:(NSInteger)seconds format:(NSString *)format
 {
+    NSTimeZone *tz = [NSTimeZone localTimeZone];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:format];
+    dateFormatter.dateFormat = format;
+    dateFormatter.timeZone = tz;
     return [dateFormatter stringFromDate:date];
 }
 
