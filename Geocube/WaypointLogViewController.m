@@ -375,6 +375,8 @@ enum {
     __block NSInteger selected;
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:[logstrings count]];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS inSection:SECTION_LOGDETAILS_TYPE]];
+
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls == logstring)
             selected = idx;
@@ -390,7 +392,7 @@ enum {
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
         }
-        origin:self.view
+        origin:cell.contentView
     ];
 }
 
@@ -406,6 +408,8 @@ enum {
 
     NSDate *d = [NSDate date];
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS inSection:SECTION_LOGDETAILS_DATE]];
+
     ActionSheetDatePicker *asdp =
         [[ActionSheetDatePicker alloc]
          initWithTitle:@"Date" datePickerMode:UIDatePickerModeDate
@@ -414,7 +418,7 @@ enum {
          maximumDate:maxDate
          target:self
          action:@selector(dateWasSelected:element:)
-         origin:self.tableView];
+         origin:cell.contentView];
 
     [asdp showActionSheetPicker];
 }
