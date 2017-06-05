@@ -170,7 +170,7 @@
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ? locallog = ? where id = ?");
+        DB_PREPARE(@"update logs set log_string_id = ?, waypoint_id = ?, datetime = ?, datetime_epoch = ?, logger_id = ?, log = ?, gc_id = ?, needstobelogged = ?, locallog = ? where id = ?");
 
         SET_VAR_INT ( 1, self.logstring_id);
         SET_VAR_INT ( 2, self.waypoint_id);
