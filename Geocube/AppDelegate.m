@@ -40,6 +40,18 @@
     /* Create files directory */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
+    // Do some directory juggling
+    NSDictionary *d = @{
+                        [MyTools OldImagesDir]: [MyTools ImagesDir],
+                        [MyTools OldMapCacheDir]: [MyTools MapCacheDir]
+                        };
+    [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull old, NSString * _Nonnull new, BOOL * _Nonnull stop) {
+        if ([fileManager fileExistsAtPath:old] == YES) {
+            NSLog(@"Rename %@ to %@", old, new);
+            [fileManager moveItemAtPath:old toPath:new error:nil];
+        }
+    }];
+
     // Initialize the global menu
     menuGlobal = [[SideMenu alloc] init];
 

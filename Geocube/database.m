@@ -60,7 +60,14 @@
 
 - (void)checkVersion
 {
-    dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
+    // Check and rename
+    NSString *dbold = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DocumentRoot], DB_NAME];
+    if ([fileManager fileExistsAtPath:dbold] == YES) {
+        NSString *dbnew = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools ApplicationSupportRoot], DB_NAME];
+        [fileManager moveItemAtPath:dbold toPath:dbnew error:nil];
+    }
+
+    dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools ApplicationSupportRoot], DB_NAME];
     NSLog(@"Using %@ as the database.", dbname);
     dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 

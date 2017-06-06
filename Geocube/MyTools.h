@@ -28,9 +28,12 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
++ (NSString *)ApplicationSupportRoot;
 + (NSString *)FilesDir;
 + (NSString *)MapCacheDir;
++ (NSString *)OldMapCacheDir;
 + (NSString *)ImagesDir;
++ (NSString *)OldImagesDir;
 + (NSString *)ImageFile:(NSString *)imgFile;
 
 + (NSInteger)determineDirectorySize:(NSString *)path;

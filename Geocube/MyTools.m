@@ -35,6 +35,14 @@
     return documentsDirectory;
 }
 
++ (NSString *)ApplicationSupportRoot
+{
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    // create path to theDirectory
+    NSString *apsupDirectory = [paths objectAtIndex:0];
+    return apsupDirectory;
+}
+
 /// Returns the location where the app has installed the various files
 + (NSString *)DataDistributionDirectory
 {
@@ -51,12 +59,22 @@
 /// Returns the location where the images downloaded will be
 + (NSString *)ImagesDir
 {
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/images", [self ApplicationSupportRoot]];
+    return s;
+}
++ (NSString *)OldImagesDir
+{
     NSString *s = [[NSString alloc] initWithFormat:@"%@/images", [self DocumentRoot]];
     return s;
 }
 
 /// Returns the location where the mapcache will be
 + (NSString *)MapCacheDir
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/MapCache", [self ApplicationSupportRoot]];
+    return s;
+}
++ (NSString *)OldMapCacheDir
 {
     NSString *s = [[NSString alloc] initWithFormat:@"%@/MapCache", [self DocumentRoot]];
     return s;
