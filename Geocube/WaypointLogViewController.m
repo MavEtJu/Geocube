@@ -493,10 +493,12 @@ enum {
 
 - (void)changeTrackable
 {
-    WaypointLogTrackablesViewController *newController = [[WaypointLogTrackablesViewController alloc] init:waypoint trackables:trackables];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.navigationController pushViewController:newController animated:YES];
-    newController.delegate = self;
+    if (waypoint.account.remoteAPI.supportsTrackables == YES && waypoint.account.canDoRemoteStuff == YES) {
+        WaypointLogTrackablesViewController *newController = [[WaypointLogTrackablesViewController alloc] init:waypoint trackables:trackables];
+        newController.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.navigationController pushViewController:newController animated:YES];
+        newController.delegate = self;
+    }
 }
 
 - (void)submitLog
