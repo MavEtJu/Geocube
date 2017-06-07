@@ -27,20 +27,23 @@
 
 #define IMPORTMSG   @"OKAPI JSON data (queued)"
 
-- (BOOL)commentSupportsFavouritePoint { return NO; }
-- (BOOL)commentSupportsPhotos { return NO; }
-- (BOOL)commentSupportsRating { return NO; }
-- (BOOL)commentSupportsTrackables { return NO; }
-- (BOOL)waypointSupportsPersonalNotes { return NO; }
+- (BOOL)supportsWaypointPersonalNotes { return NO; }
+- (BOOL)supportsTrackables { return NO; }
 - (BOOL)supportsUserStatistics { return YES; }
+
+- (BOOL)supportsLogging { return YES; }
+- (BOOL)supportsLoggingFavouritePoint { return NO; }
+- (BOOL)supportsLoggingPhotos { return NO; }
+- (BOOL)supportsLoggingRating { return NO; }
+- (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
+
 - (BOOL)supportsLoadWaypoint { return YES; }
 - (BOOL)supportsLoadWaypointsByCenter { return YES; }
 - (BOOL)supportsLoadWaypointsByCodes { return YES; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
-- (BOOL)supportsListQueries { return YES; }
-- (BOOL)supportsRetrieveQueries { return YES; }
-- (BOOL)supportsTrackables { return NO; }
-- (BOOL)supportsLogging { return YES; }
+
+- (BOOL)supportsListQueries { return NO; }
+- (BOOL)supportsRetrieveQueries { return NO; }
 
 #define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \

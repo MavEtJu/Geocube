@@ -190,7 +190,7 @@ enum {
                         c.imageView.image = image.imageGet;
                     else
                         c.imageView.image = [imageLibrary get:Image_NoImageFile];
-                    if ([waypoint.account.remoteAPI commentSupportsPhotos] == NO) {
+                    if ([waypoint.account.remoteAPI supportsLoggingPhotos] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     }
@@ -202,7 +202,7 @@ enum {
                     GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
                     c.textLabel.text = @"Favourite Point";
                     c.optionSwitch.on = fp;
-                    if ([waypoint.account.remoteAPI commentSupportsFavouritePoint] == NO) {
+                    if ([waypoint.account.remoteAPI supportsLoggingFavouritePoint] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
@@ -215,12 +215,12 @@ enum {
                 case SECTION_EXTRADETAILS_RATING: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
                     c.keyLabel.text = @"Rating";
-                    if ([waypoint.account.remoteAPI commentSupportsRating] == NO) {
+                    if ([waypoint.account.remoteAPI supportsLoggingRating] == NO) {
                         c.userInteractionEnabled = NO;
                         c.keyLabel.textColor = currentTheme.labelTextColorDisabled;
                         c.valueLabel.text = @"";
                     } else {
-                        NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
+                        NSRange r = waypoint.account.remoteAPI.supportsLoggingRatingRange;
                         if (ratingSelected != 0)
                             c.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
                         else
@@ -234,7 +234,7 @@ enum {
                     cell = nil;
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
                     c.textLabel.text = @"Trackables";
-                    if ([waypoint.account.remoteAPI commentSupportsTrackables] == NO) {
+                    if ([waypoint.account.remoteAPI supportsTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
@@ -471,7 +471,7 @@ enum {
 - (void)changeRating
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:5];
-    NSRange r = waypoint.account.remoteAPI.commentSupportsRatingRange;
+    NSRange r = waypoint.account.remoteAPI.supportsLoggingRatingRange;
     [as addObject:@"No rating selected"];
     for (NSInteger i = r.location; i <= r.length; i++) {
         [as addObject:[NSString stringWithFormat:@"%ld out of %lu", (long)i, (unsigned long)r.length]];
@@ -531,7 +531,7 @@ enum {
 
     [bezelManager removeBezel];
 
-    if ([waypoint.account.remoteAPI commentSupportsTrackables] == YES) {
+    if ([waypoint.account.remoteAPI supportsTrackables] == YES) {
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_DROPOFF) {
                 tb.logtype = TRACKABLE_LOG_NONE;

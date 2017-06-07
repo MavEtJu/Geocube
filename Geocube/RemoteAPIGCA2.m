@@ -27,21 +27,24 @@
 
 #define IMPORTMSG   @"Geocaching Australia JSON data (queued)"
 
-- (BOOL)commentSupportsFavouritePoint { return NO; }
-- (BOOL)commentSupportsPhotos { return YES; }
-- (BOOL)commentSupportsRating { return YES; }
-- (NSRange)commentSupportsRatingRange { return NSMakeRange(1, 5); }
-- (BOOL)commentSupportsTrackables { return NO; }
-- (BOOL)waypointSupportsPersonalNotes { return NO; }
+- (BOOL)supportsWaypointPersonalNotes { return NO; }
+- (BOOL)supportsTrackables { return NO; }
 - (BOOL)supportsUserStatistics { return YES; }
+
+- (BOOL)supportsLogging { return YES; }
+- (BOOL)supportsLoggingFavouritePoint { return NO; }
+- (BOOL)supportsLoggingPhotos { return YES; }
+- (BOOL)supportsLoggingRating { return YES; }
+- (NSRange)supportsLoggingRatingRange { return NSMakeRange(1, 5); }
+
 - (BOOL)supportsLoadWaypoint { return YES; }
 - (BOOL)supportsLoadWaypointsByCenter { return YES; }
 - (BOOL)supportsLoadWaypointsByCodes { return YES; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
+
 - (BOOL)supportsListQueries { return YES; }
 - (BOOL)supportsRetrieveQueries { return YES; }
-- (BOOL)supportsTrackables { return NO; }
-- (BOOL)supportsLogging { return YES; }
+
 
 #define GCA2_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) { \

@@ -127,7 +127,7 @@ enum {
 
 - (void)updatePersonalNote
 {
-    if ([waypoint.account.remoteAPI waypointSupportsPersonalNotes] == YES) {
+    if ([waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
         [bezelManager showBezel:self];
         [bezelManager setText:@"Updating personal note"];
         if ([waypoint.account.remoteAPI updatePersonalNote:note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {

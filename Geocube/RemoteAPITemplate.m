@@ -37,6 +37,21 @@
 
 @implementation RemoteAPITemplate
 
+- NEEDS_OVERLOADING_BOOL(supportsWaypointPersonalNotes)
+- NEEDS_OVERLOADING_BOOL(supportsTrackables)
+- NEEDS_OVERLOADING_BOOL(supportsUserStatistics)
+- NEEDS_OVERLOADING_BOOL(supportsLogging)
+- NEEDS_OVERLOADING_BOOL(supportsLoggingFavouritePoint)
+- NEEDS_OVERLOADING_BOOL(supportsLoggingPhotos)
+- NEEDS_OVERLOADING_BOOL(supportsLoggingRating)
+- NEEDS_OVERLOADING_NSRANGE(supportsLoggingRatingRange)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCenter)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCodes)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByBoundaryBox)
+- NEEDS_OVERLOADING_BOOL(supportsListQueries)
+- NEEDS_OVERLOADING_BOOL(supportsRetrieveQueries)
+
 - (instancetype)init:(dbAccount *)account;
 {
     self = [super init];
@@ -209,24 +224,6 @@
     if (self.authenticationDelegate)
         [self.authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:_error];
 }
-
-// ----------------------------------------
-
-- NEEDS_OVERLOADING_BOOL(commentSupportsFavouritePoint)
-- NEEDS_OVERLOADING_BOOL(commentSupportsPhotos)
-- NEEDS_OVERLOADING_BOOL(commentSupportsRating)
-- NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
-- NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
-- NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
-- NEEDS_OVERLOADING_BOOL(supportsUserStatistics)
-- NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)
-- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCenter)
-- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCodes)
-- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByBoundaryBox)
-- NEEDS_OVERLOADING_BOOL(supportsListQueries)
-- NEEDS_OVERLOADING_BOOL(supportsRetrieveQueries)
-- NEEDS_OVERLOADING_BOOL(supportsTrackables)
-- NEEDS_OVERLOADING_BOOL(supportsLogging)
 
 // ----------------------------------------
 
