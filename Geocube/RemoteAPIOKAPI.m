@@ -40,6 +40,7 @@
 - (BOOL)supportsListQueries { return YES; }
 - (BOOL)supportsRetrieveQueries { return YES; }
 - (BOOL)supportsTrackables { return NO; }
+- (BOOL)supportsLogging { return YES; }
 
 #define OKAPI_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) \

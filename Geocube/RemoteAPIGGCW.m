@@ -33,7 +33,7 @@
 - (BOOL)commentSupportsRating { return NO; }
 - (NSRange)commentSupportsRatingRange { return NSMakeRange(0, 0); }
 - (BOOL)commentSupportsTrackables { return YES; }
-- (BOOL)waypointSupportsPersonalNotes { return YES; }
+- (BOOL)waypointSupportsPersonalNotes { return NO; }
 - (BOOL)supportsUserStatistics { return YES; }
 - (BOOL)supportsLoadWaypoint { return YES; }
 - (BOOL)supportsLoadWaypointsByCenter { return YES; }
@@ -42,6 +42,7 @@
 - (BOOL)supportsListQueries { return YES; }
 - (BOOL)supportsRetrieveQueries { return YES; }
 - (BOOL)supportsTrackables { return NO; }
+- (BOOL)supportsLogging { return NO; }
 
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
